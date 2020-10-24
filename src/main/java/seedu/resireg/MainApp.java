@@ -15,16 +15,16 @@ import seedu.resireg.commons.util.ConfigUtil;
 import seedu.resireg.commons.util.StringUtil;
 import seedu.resireg.logic.Logic;
 import seedu.resireg.logic.LogicManager;
-import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
-import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ReadOnlyUserPrefs;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.util.SampleDataUtil;
-import seedu.resireg.storage.AddressBookStorage;
-import seedu.resireg.storage.JsonAddressBookStorage;
+import seedu.resireg.storage.JsonResiRegStorage;
 import seedu.resireg.storage.JsonUserPrefsStorage;
+import seedu.resireg.storage.ResiRegStorage;
 import seedu.resireg.storage.Storage;
 import seedu.resireg.storage.StorageManager;
 import seedu.resireg.storage.UserPrefsStorage;
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing ResiReg ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,8 +56,8 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ResiRegStorage resiRegStorage = new JsonResiRegStorage(userPrefs.getResiRegFilePath());
+        storage = new StorageManager(resiRegStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -69,25 +69,25 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s ResiReg and {@code userPrefs}. <br>
+     * The data from the sample ResiReg will be used instead if {@code storage}'s ResiReg is not found,
+     * or an empty ResiReg model will be used instead if errors occur when reading {@code storage}'s ResiReg.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        Optional<ReadOnlyResiReg> resiRegOptional;
+        ReadOnlyResiReg initialData;
         try {
-            addressBookOptional = storage.readAddressBook();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            resiRegOptional = storage.readResiReg();
+            if (!resiRegOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ResiReg");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = resiRegOptional.orElseGet(SampleDataUtil::getSampleResiReg);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Data file not in the correct format. Will be starting with an empty ResiReg");
+            initialData = new ResiReg();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new AddressBook();
+            logger.warning("Problem while reading from the file. Will be starting with an empty ResiReg");
+            initialData = new ResiReg();
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -120,7 +120,7 @@ public class MainApp extends Application {
             initializedConfig = configOptional.orElse(new Config());
         } catch (DataConversionException e) {
             logger.warning("Config file at " + configFilePathUsed + " is not in the correct format. "
-                    + "Using default config properties");
+                + "Using default config properties");
             initializedConfig = new Config();
         }
 
@@ -148,10 +148,10 @@ public class MainApp extends Application {
             initializedPrefs = prefsOptional.orElse(new UserPrefs());
         } catch (DataConversionException e) {
             logger.warning("UserPrefs file at " + prefsFilePath + " is not in the correct format. "
-                    + "Using default user prefs");
+                + "Using default user prefs");
             initializedPrefs = new UserPrefs();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty ResiReg");
             initializedPrefs = new UserPrefs();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting ResiReg " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping ResiReg ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

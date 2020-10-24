@@ -13,11 +13,12 @@ import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.Model;
+import seedu.resireg.storage.Storage;
 
-public class AddressBookParserTest {
+public class ResiRegParserTest {
     private static final String MOCK_COMMAND_WORD = "command";
 
-    private final AddressBookParser mockParser;
+    private final ResiRegParser mockParser;
 
     private static class MockCommand extends Command {
         private final String userInput;
@@ -27,7 +28,7 @@ public class AddressBookParserTest {
         }
 
         @Override
-        public CommandResult execute(Model model) throws CommandException {
+        public CommandResult execute(Model model, Storage storage) throws CommandException {
             throw new CommandException("unimplemented stub method");
         }
 
@@ -36,10 +37,10 @@ public class AddressBookParserTest {
         }
     }
 
-    AddressBookParserTest() {
+    ResiRegParserTest() {
         Map<String, Parser<Command>> map = new HashMap<>();
         map.put(MOCK_COMMAND_WORD, MockCommand::new);
-        mockParser = new AddressBookParser(map);
+        mockParser = new ResiRegParser(map);
     }
 
     @Test

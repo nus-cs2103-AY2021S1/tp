@@ -4,9 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.resireg.model.Model;
+import seedu.resireg.storage.Storage;
 
 /**
- * Lists all students in the address book to the user.
+ * Lists all students in ResiReg to the user.
  */
 public class ListCommand extends Command {
 
@@ -17,7 +18,7 @@ public class ListCommand extends Command {
     public static final Help HELP = new Help(COMMAND_WORD, "Lists all students.");
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         return new ToggleCommandResult(MESSAGE_SUCCESS, TabView.STUDENTS);

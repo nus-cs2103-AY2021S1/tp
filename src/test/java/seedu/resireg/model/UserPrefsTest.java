@@ -28,9 +28,9 @@ public class UserPrefsTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setResiRegFilePath_nullPath_throwsNullPointerException() {
         UserPrefs userPrefs = new UserPrefs();
-        assertThrows(NullPointerException.class, () -> userPrefs.setAddressBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> userPrefs.setResiRegFilePath(null));
     }
 
     @Test
@@ -64,7 +64,7 @@ public class UserPrefsTest {
     private static class UserPrefsStub implements ReadOnlyUserPrefs {
         private GuiSettings guiSettings = new GuiSettings();
         private List<CommandWordAlias> commandWordAliases;
-        private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+        private Path resiRegFilePath = Paths.get("data" , "resireg.json");
 
         UserPrefsStub(List<CommandWordAlias> commandWordAliases) {
             this.commandWordAliases = commandWordAliases;
@@ -81,8 +81,8 @@ public class UserPrefsTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
-            return addressBookFilePath;
+        public Path getResiRegFilePath() {
+            return resiRegFilePath;
         }
     }
 

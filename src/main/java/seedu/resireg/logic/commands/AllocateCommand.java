@@ -14,10 +14,11 @@ import seedu.resireg.model.Model;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 
 
 /**
- * Adds a student to the address book.
+ * Adds a student to ResiReg.
  */
 public class AllocateCommand extends Command {
 
@@ -53,7 +54,7 @@ public class AllocateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownListStudent = model.getFilteredStudentList();
         List<Room> lastShownListRoom = model.getFilteredRoomList();

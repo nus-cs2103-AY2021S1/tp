@@ -13,18 +13,20 @@ import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.resireg.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.commands.EditCommand.EditStudentDescriptor;
-import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
+import seedu.resireg.storage.StorageManager;
 import seedu.resireg.testutil.EditStudentDescriptorBuilder;
 import seedu.resireg.testutil.StudentBuilder;
 
@@ -33,7 +35,8 @@ import seedu.resireg.testutil.StudentBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
+    private Storage storage = new StorageManager(null, null);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -43,7 +46,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         expectedModel.saveStateResiReg();
 
@@ -57,15 +60,15 @@ public class EditCommandTest {
 
         StudentBuilder studentInList = new StudentBuilder(lastStudent);
         Student editedStudent = studentInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+            .withTags(VALID_TAG_HUSBAND).build();
 
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+            .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudent);
         expectedModel.saveStateResiReg();
 
@@ -79,7 +82,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.saveStateResiReg();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -92,11 +95,11 @@ public class EditCommandTest {
         Student studentInFilteredList = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student editedStudent = new StudentBuilder(studentInFilteredList).withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         expectedModel.saveStateResiReg();
 
@@ -116,10 +119,10 @@ public class EditCommandTest {
     public void execute_duplicateStudentFilteredList_failure() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
 
-        // edit student in filtered list into a duplicate in address book
-        Student studentInList = model.getAddressBook().getStudentList().get(INDEX_SECOND_PERSON.getZeroBased());
+        // edit student in filtered list into a duplicate in ResiReg
+        Student studentInList = model.getResiReg().getStudentList().get(INDEX_SECOND_PERSON.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditStudentDescriptorBuilder(studentInList).build());
+            new EditStudentDescriptorBuilder(studentInList).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
@@ -135,17 +138,17 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of ResiReg
      */
     @Test
     public void execute_invalidStudentIndexFilteredList_failure() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
+        // ensures that outOfBoundIndex is still in bounds of ResiReg's student list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getStudentList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
+            new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -156,12 +159,12 @@ public class EditCommandTest {
         Student studentToEdit = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditStudentDescriptor desc = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, desc);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.setStudent(studentToEdit, editedStudent);
         expectedModel.saveStateResiReg();
 
         // edit -> first student edited
-        editCommand.execute(model);
+        editCommand.execute(model, storage);
 
         // undo -> reverts resireg back to prev state and filtered student list to show all students
         expectedModel.undoResiReg();
@@ -199,7 +202,7 @@ public class EditCommandTest {
         Student editedStudent = new StudentBuilder().build();
         EditStudentDescriptor desc = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, desc);
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
 
         showStudentAtIndex(model, INDEX_SECOND_PERSON);
         Student studentToEdit = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -207,7 +210,7 @@ public class EditCommandTest {
         expectedModel.saveStateResiReg();
 
         // edit -> edits second student in unfiltered list / first student in filtered student list
-        editCommand.execute(model);
+        editCommand.execute(model, storage);
 
         // undo -> reverts resireg back to prev state and filtered student list to show all students
         expectedModel.undoResiReg();

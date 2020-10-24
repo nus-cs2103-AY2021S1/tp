@@ -8,6 +8,7 @@ import seedu.resireg.commons.core.Messages;
 import seedu.resireg.logic.CommandMapper;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
+import seedu.resireg.storage.Storage;
 
 /**
  * Displays help message for a command.
@@ -51,7 +52,7 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         if (input.isBlank()) {
             return new CommandResult(MESSAGE_GENERAL_HELP);
         } else if (commandWordToHelpMap.containsKey(input)) { // print full help message for specific command

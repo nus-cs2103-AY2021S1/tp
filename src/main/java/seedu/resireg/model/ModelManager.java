@@ -16,38 +16,41 @@ import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
+import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of ResiReg data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final VersionedResiReg versionedResiReg;
     private final UserPrefs userPrefs;
+    private final Semester semester;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<Room> filteredRooms;
     private final FilteredList<Allocation> filteredAllocations;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given ResiReg data and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyResiReg readOnlyResiReg, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(readOnlyResiReg, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with ResiReg data: " + readOnlyResiReg + " and user prefs " + userPrefs);
 
-        versionedResiReg = new VersionedResiReg(addressBook);
+        versionedResiReg = new VersionedResiReg(readOnlyResiReg);
         this.userPrefs = new UserPrefs(userPrefs);
+        semester = versionedResiReg.getSemester();
         filteredStudents = new FilteredList<>(versionedResiReg.getStudentList());
         filteredRooms = new FilteredList<>(versionedResiReg.getRoomList());
         filteredAllocations = new FilteredList<>(versionedResiReg.getAllocationList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ResiReg(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -102,25 +105,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getResiRegFilePath() {
+        return userPrefs.getResiRegFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setResiRegFilePath(Path resiRegFilePath) {
+        requireNonNull(resiRegFilePath);
+        userPrefs.setResiRegFilePath(resiRegFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ResiReg ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        versionedResiReg.resetData(addressBook);
+    public void setResiReg(ReadOnlyResiReg resiReg) {
+        versionedResiReg.resetData(resiReg);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyResiReg getResiReg() {
         return versionedResiReg;
     }
 
@@ -184,7 +187,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns true if an allocation relating to {@code room} exists in the address book.
+     * Returns true if an allocation relating to {@code room} exists in ResiReg.
      */
     @Override
     public boolean isAllocated(Room room) {
@@ -216,11 +219,14 @@ public class ModelManager implements Model {
         versionedResiReg.setAllocation(target, editedAllocation);
     }
 
+    public Semester getSemester() {
+        return semester;
+    }
     //=========== Filtered Student List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedResiReg}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
@@ -237,7 +243,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Room} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedResiReg}
      */
     @Override
     public ObservableList<Room> getFilteredRoomList() {

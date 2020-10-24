@@ -7,6 +7,7 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_COMMAND;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.alias.CommandWordAlias;
+import seedu.resireg.storage.Storage;
 
 /**
  * Adds a student to the address book.
@@ -35,7 +36,7 @@ public class AddAliasCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (model.hasCommandWordAlias(toAdd)) {

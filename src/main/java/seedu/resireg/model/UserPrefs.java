@@ -19,7 +19,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private List<CommandWordAlias> commandWordAliases = new ArrayList<>();
-    private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+    private Path resiRegFilePath = Paths.get("data" , "resireg.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -41,7 +41,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setCommandAliases(newUserPrefs.getCommandWordAliases());
-        setAddressBookFilePath(newUserPrefs.getAddressBookFilePath());
+        setResiRegFilePath(newUserPrefs.getResiRegFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -90,13 +90,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     }
 
 
-    public Path getAddressBookFilePath() {
-        return addressBookFilePath;
+    public Path getResiRegFilePath() {
+        return resiRegFilePath;
     }
 
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        this.addressBookFilePath = addressBookFilePath;
+    public void setResiRegFilePath(Path resiRegFilePath) {
+        requireNonNull(resiRegFilePath);
+        this.resiRegFilePath = resiRegFilePath;
     }
 
     @Override
@@ -112,12 +112,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && commandWordAliases.equals(o.commandWordAliases)
-                && addressBookFilePath.equals(o.addressBookFilePath);
+                && resiRegFilePath.equals(o.resiRegFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, commandWordAliases, addressBookFilePath);
+        return Objects.hash(guiSettings, commandWordAliases, resiRegFilePath);
     }
 
     @Override
@@ -125,7 +125,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("Command Aliases : " + commandWordAliases);
-        sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + resiRegFilePath);
         return sb.toString();
     }
 

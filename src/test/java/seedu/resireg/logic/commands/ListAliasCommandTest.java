@@ -2,14 +2,14 @@ package seedu.resireg.logic.commands;
 
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.getTypicalUserPrefs;
-import static seedu.resireg.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
 
 /**
@@ -25,11 +25,11 @@ public class ListAliasCommandTest {
 
     @BeforeEach
     public void setUp() {
-        fullModel = new ModelManager(getTypicalAddressBook(), getTypicalUserPrefs());
-        expectedFullModel = new ModelManager(fullModel.getAddressBook(), fullModel.getUserPrefs());
+        fullModel = new ModelManager(getTypicalResiReg(), getTypicalUserPrefs());
+        expectedFullModel = new ModelManager(fullModel.getResiReg(), fullModel.getUserPrefs());
 
-        emptyModel = new ModelManager(new AddressBook(), new UserPrefs());
-        expectedEmptyModel = new ModelManager(emptyModel.getAddressBook(), emptyModel.getUserPrefs());
+        emptyModel = new ModelManager(new ResiReg(), new UserPrefs());
+        expectedEmptyModel = new ModelManager(emptyModel.getResiReg(), emptyModel.getUserPrefs());
     }
 
     @Test

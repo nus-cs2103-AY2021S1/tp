@@ -6,6 +6,7 @@ import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_ROOMS;
 
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
+import seedu.resireg.storage.Storage;
 
 /**
  * Reverts the {@code model}'s ResiReg to its previous state.
@@ -19,7 +20,7 @@ public class UndoCommand extends Command {
     public static final Help HELP = new Help(COMMAND_WORD, "Undo a previous command");
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.canUndoResiReg()) {

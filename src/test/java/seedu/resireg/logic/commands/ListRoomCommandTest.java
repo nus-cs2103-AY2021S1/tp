@@ -1,7 +1,7 @@
 package seedu.resireg.logic.commands;
 
 import static seedu.resireg.logic.commands.CommandTestUtil.assertToggleCommandSuccess;
-import static seedu.resireg.testutil.TypicalRooms.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalRooms.getTypicalResiReg;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,8 +21,8 @@ public class ListRoomCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalResiReg(), new UserPrefs());
+        expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
     }
 
     @Test

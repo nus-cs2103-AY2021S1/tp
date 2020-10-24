@@ -3,6 +3,7 @@ package seedu.resireg.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.resireg.model.Model;
+import seedu.resireg.storage.Storage;
 
 /**
  * Lists all students in the address book to the user.
@@ -18,7 +19,7 @@ public class ListAliasCommand extends Command {
     public static final Help HELP = new Help(COMMAND_WORD, "Lists all command-alias pairs.");
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model, Storage storage) {
         requireNonNull(model);
         if (model.getCommandWordAliases().isEmpty()) {
             return new CommandResult(MESSAGE_EMPTY_ALIAS);
