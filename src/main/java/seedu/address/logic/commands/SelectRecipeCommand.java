@@ -36,7 +36,7 @@ public class SelectRecipeCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        logger.log(Level.INFO, "going to start deleting");
+        logger.log(Level.INFO, "going to start selecting");
         requireNonNull(model);
         List<Recipe> lastShownList = model.getFilteredRecipeList();
 
@@ -46,7 +46,19 @@ public class SelectRecipeCommand extends Command {
 
         Recipe recipeToSelect = lastShownList.get(toSelect.getZeroBased());
         logger.log(Level.INFO, "end of selecting");
-        return new CommandResult(String.format(MESSAGE_SELECT_RECIPE_SUCCESS, recipeToSelect), recipeToSelect);
+        String selectedRecipe = separateRecipeString(recipeToSelect);
+        return new CommandResult(String.format(MESSAGE_SELECT_RECIPE_SUCCESS, selectedRecipe), recipeToSelect);
+    }
+
+    private String separateRecipeString(Recipe recipe) {
+        String recipeString = recipe.toString();
+        String recipeStringSeparated;
+        recipeStringSeparated = recipeString.replace("Ingredient:", "\n" + "Ingredient:")
+                .replace("Calories:", "\n" + "Calories:")
+                .replace("Instructions:", "\n" + "Instructions:")
+                .replace("Tags:", "\n" + "Tags:");
+        recipeStringSeparated = "\n" + recipeStringSeparated;
+        return recipeStringSeparated;
     }
 
     @Override

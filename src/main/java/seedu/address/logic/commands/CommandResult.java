@@ -86,6 +86,7 @@ public class CommandResult {
         this(feedbackToUser, "showRecipe");
         this.recipe = recipe;
     }
+
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, "general");
     }
