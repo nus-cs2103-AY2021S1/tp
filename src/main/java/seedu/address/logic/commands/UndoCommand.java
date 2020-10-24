@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_REVENUE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -18,6 +20,9 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
+
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
 
         if (activeAccount.hasNoPreviousState()) {
             throw new CommandException(MESSAGE_NO_PREVIOUS_COMMAND);
