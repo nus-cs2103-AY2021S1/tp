@@ -32,6 +32,7 @@ public class ModelManager implements Model {
     private final OrderManager orderManager;
 
     private final UserPrefs userPrefs;
+    // TODO: remove filteredvendors and orderitems
     private final FilteredList<Vendor> filteredVendors;
     private FilteredList<Food> filteredFoods;
     private FilteredList<OrderItem> filteredOrderItems;
@@ -221,8 +222,8 @@ public class ModelManager implements Model {
 
     @Override
     public void addFood(Food food, int index) {
-        menuManagers.get(index).addFood(food);
-        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS, index);
+//        menuManagers.get(index).addFood(food);
+//        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
 
     @Override
@@ -301,12 +302,12 @@ public class ModelManager implements Model {
     //=========== Filtered Food List Accessors =============================================================
 
     @Override
-    public ObservableList<Food> getFilteredFoodList(int index) {
-        //todo the filteredFoods need to be changed
-        if (menuManagers.get(index).getFoodList() == null) {
-            updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS, index);
+    public ObservableList<Food> getFilteredFoodList() {
+        //todo the filteredFoods need to be changed and this whole class needs to be updated
+        if (filteredFoods == null) {
+            updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
         }
-        return menuManagers.get(index).getFoodList();
+        return filteredFoods;
     }
 
     @Override
@@ -320,10 +321,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredFoodList(Predicate<Food> predicate, int index) {
-        if (!this.menuManagers.isEmpty()) {
-            filteredFoods = new FilteredList<>(this.menuManagers.get(index).getFoodList());
-        }
+    public void updateFilteredFoodList(Predicate<Food> predicate) {
+        requireNonNull(predicate);
+        filteredFoods = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
+        filteredFoods.setPredicate(predicate);
     }
 
     //=========== Filtered OrderItem List Accessors =============================================================
@@ -338,7 +339,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateFilteredOrderItemList(Predicate<OrderItem> predicateindex) {
-        filteredOrderItems = new FilteredList<>(this.orderManager.getOrderItemList());;
+        filteredOrderItems = new FilteredList<>(this.orderManager.getOrderItemList());
     }
 
     @Override

@@ -36,7 +36,7 @@ public class AddCommandTest {
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
         expectedModel.addOrderItem(addedItem);
-        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_FIRST_SUCCESS, addedItem);
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
     }
@@ -55,7 +55,7 @@ public class AddCommandTest {
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
         expectedModel.addOrderItem(addedItem);
-        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_FIRST_SUCCESS, addedItem);
+        String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
     }
