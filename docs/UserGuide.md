@@ -19,7 +19,7 @@ This user guide provides a detailed description of all the features available in
   * [Add a task: `add`](#add-a-task-add) - Li Gangwei
   * [Add a lesson: `lesson`](#add-a-lesson-lesson) - Marcus Tan
   * [Delete a task : `delete`](#delete-a-task--delete) - Li Beining
-  * [Mark a task as done: `done`](#mark-a-task-as-done-done) - Li Beining
+  * [Mark a deadline as done: `done`](#mark-a-deadline-as-done-done) - Li Beining
   * [Find a task : `find`](#find-a-task-by-attribute-find) - Zhou Zijian
   * [Edit a task : `edit`](#edit-a-task-edit`) - Gabriella Teh
   * [Exit the program : `exit`](#exit-the-program--exit) - Li Gangwei
@@ -41,8 +41,8 @@ This user guide provides a detailed description of all the features available in
 * Items in square brackets are optional input. e.g `desc:DESCRIPTION` <br>
   `[desc:DESCRIPTION]` can be used as `title:homework 1 desc:science project` or just as `title:homework 1`.
 
-* Items with `...` after them can be used multiple times including zero times.<br>
-  e.g. `done INDEX...` can be used as (i.e. 0 times), `done 1 2 3`.
+* Items with `...` after them can be used multiple times.<br>
+  e.g. `done INDEX:TIME_TAKEN...` can be used as `done 1:20 2:120 3:50`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `title:TITLE desc:DESCRIPTION`, `desc:DESCRIPTION title:TITLE` is also acceptable.
@@ -107,11 +107,12 @@ Examples:
 
 Deletes the specified task from PlaNus.
 
-Format: `delete INDEX`
+Format: `delete INDEX...`
 
 * Deletes the task(s) at the specified `INDEX`.
 * The index refers to the index number shown in the displayed task list.
 * The index **must be a positive integer** 1, 2, 3, ...
+* User can provide more than 1 index at the same time, eg. delete 1 2 3, However, if one of the index is invalid, the whole command will not be executed and an error message will be shown.
 
 Examples:
 
@@ -122,16 +123,26 @@ Examples:
 
 Marks a specified task in PlaNus as done.
 
-Format: `done INDEX...`
+Format: `done INDEX:TIME_TAKEN...`
 
-* Marks the task(s) at the specified `INDEX...` as done
-* The index refers to the index number shown in the displayed task list
-* The index **must be a positive integer** 1, 2, 3, ...
+* Marks the task(s) at the specified `INDEX` as done and record the time taken to complete the task.
+* The index refers to the index number shown in the displayed task list.
+* The time taken refers to the time in minutes that the user took to complete the specific task.
+* The index and time taken **must be a positive integer** 1:20, 2:30, 3:120, ...
+* Take note that there are two type of task, one is event, another one is deadline, only task of deadline can be marked as done through this command, an error message will be shown if user attempts to mark a event as done.
+* After user marked a deadline as done, user cannot edit the deadline or undo the done command anymore.
+
+In order to avoid typo from user, this command will not be executed successfully when (and a corresponding error message will be shown):
+* one or more target indexes are event rather then deadline.
+* one or more target deadline are already in complete status.
+* same index appear more than one time in the command, eg. done 1:20 2:20 2:30 
+* wrong INDEX/TIME_TAKEN value
+
 
 Examples:
 
-* `list` followed by `done 2 3` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done.
-* `find title:homework` followed by `done 1` marks the 1st task in the results of the `find` command status to be done.
+* `list` followed by `done 2:30 3:60` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and record that user has spend 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
+* `find title:homework` followed by `done 1:20` marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline is 20 minutes.
 
 ### Find a task by an attribute: `find`
 
@@ -139,8 +150,8 @@ Finds a task by a set of attributes given below.
 
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
-If you provide different attributes in the command, tasks that match all attributes will be displayed.
-If you provide multiple search phrases of the same attribute, tasks that match any of the
+If user provide different attributes in the command, tasks that match all attributes will be displayed.
+If user provide multiple search phrases of the same attribute, tasks that match any of the
 search phrase of the same attribute will be displayed.
 
 Available attributes in v1.3 include:
@@ -167,7 +178,7 @@ Edits a task by a set of defined attributes by the user.
 
 Format: `edit INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 
-If you provide different attributes in the command, multiple attributes of the specified task will be changed simultaneously.
+If user provide different attributes in the command, multiple attributes of the specified task will be changed simultaneously.
 
 Available attributes in v1.3 include:
 
@@ -206,10 +217,22 @@ Format: `exit`
 | ---------- | ------------------------------------------------------------ |
 | **Help**   | `help`                                                       |
 | **List**   | `list`                                                       |
-| **Add**    | `add title:TITLE type:TYPE_OF_TASK [desc:DESCRIPTION] [date:DATE_TIME] [tag:MODULE_CODE]` <br> e.g. `add title:Read textbook type:todo tag:CS2103T` |
+| **Event**  | `event title:TITLE [desc:DESCRIPTION] date:DATE from:TIME to:TIME tag:MODULE_CODE` <br> e.g. `event title:CS2103T Group meeting date:23-10-2020 from:20:00 to:22:00 tag:CS2103T` |
+| **Deadline**  | `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATETIME] tag:MODULE_CODE` <br> e.g. `deadline title:Assignment2 submission datetime:23-10-2020 18:00 tag:CS2103T` |
 | **Lesson** | `title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`<br>e.g.`lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020` |
-| **Delete** | `delete INDEX...` <br> e.g. `delete 3`                       |
-| **Done**   | `done INDEX...`<br> e.g. `done 1 2 3`                        |
+| **Delete** | `delete INDEX...` <br> e.g. `delete 3`, `delete 3, 4, 5`                       |
+| **Done**   | `done INDEX:TIME_TAKEN...`<br> e.g. `done 1:20`, `done 1:20 2:60 3:120`    |
 | **Find**   | `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...` <br> e.g.`find title:dinner type:todo` |
 | **Edit**   | `edit INDEX [title:TITLE] [date:DATE] [desc:DESCRIPTION] [type:TYPE] [tag:MODULE_CODE]`<br>e.g. `edit 1 date:02-02-2020 12:00 tag:CS2101` |
 | **Exit**   | `exit`                                                       |
+
+## Input Format summary
+All the keyword mentioned in command should follow the format stated below:
+
+| keyword     | Format, Examples                                             |
+| ---------- | ------------------------------------------------------------ |
+| **date**   | `dd-MM-yyyy`  <br> e.g. 23-10-2020                                                    |
+| **datetime**   | `dd-MM-yyyy HH:mm`                                                       |
+| **day**  |  `Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday` |
+| **from, to, time** | `HH:mm` <br> 18:00      |
+                                                     |
