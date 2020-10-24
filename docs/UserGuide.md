@@ -2,17 +2,24 @@
 layout: page
 title: User Guide
 ---
+## Warenager's User Guide
+This user guide introduces our inventory application, Warenager, and provides support
+for the usage of its functionalities. For quick reference, we have provided a summarised table of commands
+and their usage formats at the end of this guide.
 
+### About Warenager
 Warenager is an **inventory application** to help tech-savvy warehouse managers to keep track of items
 in their warehouse. It **optimizes management tasks** for warehouse managers including but not
-exhaustive of updating, searching and ordering supplies, via Command Line Interface (CLI).
+exhaustive of updating, searching, sorting and ordering supplies, via Command Line Interface (CLI).
 
+### Table of Contents
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+To get started using Warenager,
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -21,7 +28,7 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
 1. Copy the jar file to the folder you want to use as the _home folder_ for your Warenager.
 
 1. Double-click the jar file to start the app. The commands available in the current version of
-   Warenager are listed below:
+   Warenager are: add, delete, update, find, findexact, note, notedelete, stats, sort, print, list and help.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -31,29 +38,41 @@ exhaustive of updating, searching and ordering supplies, via Command Line Interf
 
 **:information_source: Brief summary of features:**<br>
 
-* Items contain location, quantities, etc. Item Details presented in a drop down window.
-* Searching by
+Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Location etc. <br>
+(These stock details are presented in a drop down window.)
+
+* **Adding** stocks: Unique serial number is generated based on the stock item and source company.
+* **Deleting** stocks
+* **Updating** stock fields
+* **Searching** for stocks by
     * name of stock
     * serial number
     * source of stock
     * location stored in warehouse
-* Startup default sorted by the order stocks are added, highlight item with short quantity.
-* Commands.<br>
-  e.g. add stock, delete stock, and find stock.
-* Storage into csv and json files.
-* Adding/Deleting items: Unique serial number generation per item per source company.
-* Adding/Deleting optional notes to stocks. <br>
-  e.g. important information to take note
-* Setting up: Personalized GUI.<br>
-  e.g. company name displayed in the GUI, predefined color presets.
-* Bookmark feature.<br>
-  e.g. often used stocks, search bookmark<item>.
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/<name> q/<source of stock>`, `q/<source of stock> n/<name>` is also acceptable.
+* Adding / Deleting **optional notes** to stocks
+* **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
+* **Print** to generate file for printing of stock list.
+* **Storage** into csv and json files.
+* **Personalized GUI**: e.g. company name displayed in the GUI, predefined color presets.
 
+* Upon start up of the Warenager application, stocks are by default displayed
+in order of decreasing priority: low quantity stocks, bookmarked stocks, other stocks
 </div>
 
 ## Commands
+
+This section provides support for the commands required to perform desired actions on Warenager.
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note for command input format:**<br>
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `[command word] n/<name> q/<source of stock>`,
+  `[command word] q/<source of stock> n/<name>` is also acceptable.
+* Duplicate parameters are not allowed.
+  e.g. `[command word] n/<name> n/<name>` is an invalid command format and will show an error message.
+  
+</div>
 
 ### Viewing help : `help`
 
@@ -68,8 +87,9 @@ Adds a new stock into the inventory. A unique serial number for the new stock wi
     3. Quantity (default 0)
     4. Location in warehouse
 
-Format (the header fields can be in any order):<br>
-`add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br>
+#### Format
+The header fields can be in any order:<br>
+`add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`</br>
 `add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`
 
 ⚠ Each specific fields specified in the `add` command should only be entered once.<br>
@@ -77,46 +97,52 @@ e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid co
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
-Format: `list`
+#### Format:
+`list`
 
 ### Deleting of stock: `delete`
 Deletes the stock(s) using the stock's serial number from the inventory. Multiple stocks can be deleted simultaneously.
 * Required fields:
     1. Serial number of product
 
-Format (single): `delete sn/<serial number>`
-Format (multiple): `delete sn/<serial number> sn/<serial number 2> ...`
+#### Format
+* Single: `delete sn/<serial number>`
+* Multiple: `delete sn/<serial number> sn/<serial number 2> ...`
 
 ### Find stocks from inventory: `find`
-Displays a list of stocks found in the inventory that contains all keywords specified in ANY fields searched.
+
+Displays a list of stocks found in the inventory that contains all keywords
+specified in ANY one of fields searched.
+
 * Fields that can be searched:
     * Name
     * Serial Number
     * Location stored
     * Source of the stock
 
-Format (any combination of 1,2,3 or 4 of the fields): <br>
+#### Format 
+Any combination of 1,2,3 or 4 of the fields: <br>
 * Single:
-    1. `find n/<name keyword(s) to be searched in stock name>` <br>
-    2. `find sn/<serial number keyword(s) to be searched in stock serial number>` <br>
-    3. `find l/<location stored keyword(s) to be searched in stock location stored>` <br>
-    4. `find s/<source keyword(s) to be searched in stock source>` <br>
+    * `find n/<name keyword(s) to be searched in stock name>` <br>
+    * `find sn/<serial number keyword(s) to be searched in stock serial number>` <br>
+    * `find l/<location stored keyword(s) to be searched in stock location stored>` <br>
+    * `find s/<source keyword(s) to be searched in stock source>` <br>
 * Multiple:
-    1. `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number keyword(s)>` <br>
+    * `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number keyword(s)>` <br>
 
 ⚠ Each specific fields specified in the `find` command should only be entered once.<br>
-e.g. `find n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
+e.g. `find n/banana n/apple` is not a valid command.
 
-Search criteria: <br>
+#### Search criteria:
 * Only stocks that contain all the search keywords for a field will be displayed. <br>
-    1. e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
-    2. e.g. `find n/ChickenNuggets abcdef` will not match stock with Name: ChickenNuggets. <br>
+    e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
+    e.g. `find n/ChickenNuggets abcdef` will not match stock with Name: ChickenNuggets. <br>
 
 * Search is case-insensitive.
-    1.e.g. `find n/ashLey` will match stock with Name: Ashley.
+    e.g. `find n/ashLey` will match stock with Name: Ashley.
 
-* Any stock with any field that contains all the search keywords in any of the fields searched will be displayed.
-    1. e.g.
+* Any stock with any field that contains all the search keywords in any of the fields searched will be displayed.<br>
+    e.g.
 
 Stock | Details
 ------| --------
@@ -136,32 +162,33 @@ Displays a list of stocks found in the inventory that contains all keywords spec
     * Location stored
     * Source of the stock
 
-Format (any combination of 1,2,3 or 4 of the fields): <br>
+#### Format
+Any combination of 1,2,3 or 4 of the fields: <br>
 * Single:
-    1. `findexact n/<name keyword(s) to be searched in stock name>` <br>
-    2. `findexact sn/<serial number keyword(s) to be searched in stock serial number>` <br>
-    3. `findexact l/<location stored keyword(s) to be searched in stock location stored>` <br>
-    4. `findexact s/<source keyword(s) to be searched in stock source>` <br>
+    * `findexact n/<name keyword(s) to be searched in stock name>` <br>
+    *  `findexact sn/<serial number keyword(s) to be searched in stock serial number>` <br>
+    * `findexact l/<location stored keyword(s) to be searched in stock location stored>` <br>
+    * `findexact s/<source keyword(s) to be searched in stock source>` <br>
 * Multiple:
-    1. `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number keyword(s)>` <br>
+    * `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number keyword(s)>` <br>
 
 ⚠ Each specific fields specified in the `findexact` command should only be entered once.<br>
 e.g. `findexact n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
 
-Search criteria: <br>
+#### Search criteria:
 * Only stocks that contain all the search keywords for all fields will be displayed. <br>
-    1. e.g. `findexact n/ChickenNuggets s/ntuc` 
+    e.g. `findexact n/ChickenNuggets s/ntuc` 
     will match stock with Name: Chick, Source: ntuc. <br>
-    2. e.g. `findexact n/Chicken sn/1111`
+    e.g. `findexact n/Chicken sn/1111`
     will match stock with Name: ChickenNuggets, SerialNumber: 1111. <br>
-    3. e.g. `findexact n/ChickenNuggets abcdef l/section b`
+    e.g. `findexact n/ChickenNuggets abcdef l/section b`
     will not match stock with Name: ChickenNuggets, Location: section b.<br>
 
 * Search is case-insensitive.
-    1. e.g. `findexact n/ashLey s/nTuC` will match stock with Name: Ashley, Source: ntuc.
+    e.g. `findexact n/ashLey s/nTuC` will match stock with Name: Ashley, Source: ntuc.
 
-* Any stock with fields containing all the search keywords in all the fields searched will be displayed.
-    1. e.g.
+* Any stock with fields containing all the search keywords in all the fields searched will be displayed.<br>
+    e.g.
 
 Stock | Details
 ------| --------
@@ -191,7 +218,7 @@ Prefixes:
 * `l/<new location>`
 * `s/<new source>`
 
-Format:
+#### Format:
 * Any combination of the prefixes may be passed in and updated at once.
 * Only at most one of `iq/` or `nq/` may be passed.
 * User may pass in more than one serial number to update all at once.
@@ -216,7 +243,7 @@ will not update anything and shows an error message.
 Values to be updated are case-sensitive.
 * e.g. `update sn/NUS1 n/Book` will update the name of the stock with serial number `NUS1` to `Book` instead of `book`.
 
-Example usages:
+#### Example usages:
 
 Stock | Details
 ------| --------
@@ -246,9 +273,10 @@ To view full notes for the stock, use the `noteview` command.
     1. Serial number of stock
     2. Note to add to stock
 
-Format: `note sn/<serial number> nt/<note>`
+#### Format: 
+`note sn/<serial number> nt/<note>`
 
-Example Usages:
+#### Example Usages:
 
 Stock | Details
 ------| --------
@@ -276,9 +304,10 @@ Deletes a note, specified by the note's index, from the stock specified by its s
 ⚠ Note index must be an integer.
 To delete ALL notes from a stock, note index to specify is 0.
 
-Format: `notedelete sn/<serial number> ni/<note index>`
+#### Format:
+`notedelete sn/<serial number> ni/<note index>`
 
-Example Usages:
+#### Example Usages:
 * Before: <br>
 
 ![before notes](images/add_note1_to_banana.png)
@@ -296,7 +325,8 @@ Generates a statistical view in a pie chart depicting the target fields.
 * Required fields:
     1. Type of statistics to generate and display.
 
-Format: `stats `, followed by one of the following:
+#### Format:
+`stats `, followed by one of the following:
 
 **Command to append** | **What the statistics describes**
 ------| --------
@@ -313,6 +343,25 @@ e.g. `stats st/source`, `stats st/source-qd-abc`
 
 ![SourceQuantityDistributionStatistics](images/SourceQuantityDistributionStatistics.png)
 
+### Generating a csv file that contains all stocks: `print`
+Generates a csv file that contains all stocks. Users may want to sort the stock using `sort` command
+to sort the stock in their preferred format before converting it into the csv file.
+
+#### Format:
+`print`
+
+### Saving data
+Data generated in Warenager (all stocks in inventory in json) is automatically saved to
+`[root directory]/data/stockbook.json` when any of these commands is executed:
+* add
+* delete
+* note
+* update
+
+The set of used serial number sources is automatically saved to
+`[root directory]/data/serialnumbers.json` when any of these commands is executed:
+* add
+
 ### Command Suggestion
 Sometimes user will type in wrong commands. Warenager will help such user by suggesting the correct format
 of the command if the command word is valid. If the command word is invalid, then Warenager will try to predict
@@ -322,7 +371,7 @@ and suggest the closest command to whatever the user has typed.
 are errors such as serial number not found, then Warenager will not suggest anything to the user and instead displays
 an error message.
 
-Example usages:
+#### Example usages:
 
 * `del` <br>
   Warenager will suggest: `delete sn/<serial number>`
@@ -340,7 +389,8 @@ Sort the inventory by a specific field and order.
     1. The field to be sorted by
     2. The order of the sorting
 
-Format: `sort o/<order> by/<field>`
+#### Format:
+`sort o/<order> by/<field>`
 
 * The order can only be one of the following:
     1. `ascending` - sorts the inventory in ascending order
@@ -353,7 +403,7 @@ Format: `sort o/<order> by/<field>`
     4. `location` - sorts the inventory by location
     5. `serialnumber` - sorts the inventory by serial number
 
-Example usages:
+#### Example usages:
 
 Stock | Details
 ------| --------
@@ -421,6 +471,7 @@ Format : `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+Summary of the commands required to perform certain actions is listed in this table:
 
 Action | Format, Examples
 --------|------------------
@@ -432,6 +483,7 @@ Action | Format, Examples
 **Note** | `note sn/<serial number> nt/<note>`
 **NoteDelete** | `notedelete sn/<serial number> ni<note index>`
 **Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number keyword> n/<new name>` <br> `update sn/<serial number keyword> iq/<+/-><increment value>` <br> `update sn/<serial number keyword> nq/<new quantity>` <br> `update sn/<serial number keyword> l/<new location>` <br> `update sn/<serial number keyword> s/<new source>` <br> `update sn/<serial number keyword> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number keyword> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
-**print** | `print`
+**Statistics** | `stats st/source` or `stats st/source-qd-<source company>`
+**Print** | `print`
 **Help** | `help`
 **Exit** | `exit`
