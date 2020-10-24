@@ -33,30 +33,30 @@ public class Statistics {
         return null;
     }
 
-    public static void main(String args[]) {
-        Path filePath = Paths.get("data", "planus.json");
-        try {
-            JsonSerializablePlanus dataFromFile = JsonUtil.readJsonFile(filePath,
-                    JsonSerializablePlanus.class).get();
-            Planus planus = dataFromFile.toModelType();
-            System.out.println(planus);
-            HashMap<Tag, Integer[]> stats = new HashMap<>();
-            for (Task task: planus.getTaskList()) {
-                Tag currentTag = task.getTag();
-                int currentDuration = task.getDuration();
-                if(stats.containsKey(currentTag)) {
-                    Integer[] res = stats.get(currentTag);
-//                    res[0] = currentDuration.durationInMinutes;
-                } else {
-//                    stats.put()
-                }
-            }
-            for (Lesson lesson: planus.getLessonList()) {
-                
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-    }
+//    public static void main(String args[]) {
+//        Path filePath = Paths.get("data", "planus.json");
+//        try {
+//            JsonSerializablePlanus dataFromFile = JsonUtil.readJsonFile(filePath,
+//                    JsonSerializablePlanus.class).get();
+//            Planus planus = dataFromFile.toModelType();
+//            System.out.println(planus);
+//            HashMap<Tag, Integer[]> stats = new HashMap<>();
+//            for (Task task: planus.getTaskList()) {
+//                Tag currentTag = task.getTag();
+//                int currentDuration = task.getDuration();
+//                if(stats.containsKey(currentTag)) {
+//                    Integer[] res = stats.get(currentTag);
+////                    res[0] = currentDuration.durationInMinutes;
+//                } else {
+////                    stats.put()
+//                }
+//            }
+//            for (Lesson lesson: planus.getLessonList()) {
+//
+//            }
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
+//    }
 
 }

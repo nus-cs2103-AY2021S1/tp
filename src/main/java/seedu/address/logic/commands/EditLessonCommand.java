@@ -116,16 +116,17 @@ public class EditLessonCommand extends Command {
     private static Lesson createEditedLesson(Lesson lessonToEdit, EditLessonDescriptor editLessonDescriptor) {
         assert lessonToEdit != null;
 
-        Title updatedTitle = editLessonDescriptor.getTitle().orElse(lessonToEdit.getTitle());
-        Description updatedDescription = editLessonDescriptor.getDescription().orElse(lessonToEdit.getDescription());
-        DayOfWeek updatedDayOfWeek = editLessonDescriptor.getDayOfWeek().orElse(lessonToEdit.getDayOfWeek());
-        LocalDate updatedStartDate = editLessonDescriptor.getStartDate().orElse(lessonToEdit.getStartDate());
-        LocalDate updatedEndDate = editLessonDescriptor.getEndDate().orElse(lessonToEdit.getEndDate());
-        LocalTime updatedStartTime = editLessonDescriptor.getStartTime().orElse(lessonToEdit.getStartTime());
-        LocalTime updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
-
-        return new Lesson(updatedTitle, updatedDescription, updatedDayOfWeek, updatedStartTime, updatedEndTime,
-                updatedStartDate, updatedEndDate);
+//        Title updatedTitle = editLessonDescriptor.getTitle().orElse(lessonToEdit.getTitle());
+//        Description updatedDescription = editLessonDescriptor.getDescription().orElse(lessonToEdit.getDescription());
+//        DayOfWeek updatedDayOfWeek = editLessonDescriptor.getDayOfWeek().orElse(lessonToEdit.getDayOfWeek());
+//        LocalDate updatedStartDate = editLessonDescriptor.getStartDate().orElse(lessonToEdit.getStartDate());
+//        LocalDate updatedEndDate = editLessonDescriptor.getEndDate().orElse(lessonToEdit.getEndDate());
+//        LocalTime updatedStartTime = editLessonDescriptor.getStartTime().orElse(lessonToEdit.getStartTime());
+//        LocalTime updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
+//
+//        return new Lesson(updatedTitle, updatedDescription, updatedDayOfWeek, updatedStartTime, updatedEndTime,
+//                updatedStartDate, updatedEndDate);
+        return null;
     }
 
     @Override
