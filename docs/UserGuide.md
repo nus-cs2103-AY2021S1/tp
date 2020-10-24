@@ -82,8 +82,7 @@ Examples:
 * `deadline title:Return book datetime:02-01-2020 18:00`<br>
 Adds a deadline with title "Return book", and a date and time of "02-01-2020 18:00" to PlaNus.
 * `deadline title:Assignment 1 desc:CS3230 Assignment 1 datetime:01-11-2020 18:00 tag:CS3230`<br>
-Adds a deadline with title “Assignment 1”, description “CS3230 Assignment 1”,
-and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
+Adds a deadline with title “Assignment 1”, description “CS3230 Assignment 1”, and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
 
 ### 4. Add an event : `event`
 
@@ -97,10 +96,8 @@ Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTI
 Examples:
 
 * `event title:Career Talk date:02-01-2020 from:09:00 to:12:30`<br>
-Adds an event with title "Career Talk", and a date "02-01-2020" with start time of "09:00" and end time of "11:30"
-to PlaNus.
-* `event title:Consultation date:13-10-2020 from:19:00 to:20:30 desc:CS2105 consultation tag:CS2105`<br>
-and a date "13-10-2020" with start time of "19:00" and end time of "20:30" with tag "CS2105" to PlaNus.
+Adds an event with title "Career Talk", and a date "02-01-2020" with start time of "09:00" and end time of "11:30" to PlaNus.
+* `event title:Consultation date:13-10-2020 from:19:00 to:20:30 desc:CS2105 consultation tag:CS2105`<br> and a date "13-10-2020" with start time of "19:00" and end time of "20:30" with tag "CS2105" to PlaNus.
 
 ### 5. Add a lesson : `lesson`
 
@@ -108,9 +105,7 @@ Adds a lesson to PlaNus.
 
 Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
-* Adds a lesson to PlaNus, starting from the date specified in `start:DATE` to the
- date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time
- specified in `to:TIME`.
+* Adds a lesson to PlaNus, starting from the date specified in `start:DATE` to the date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time specified in `to:TIME`.
 * The format of day in `day:DAY` must be as follows (case-insensitive):
   * Mon - Sun
   * Monday - Sunday
@@ -135,15 +130,15 @@ Examples:
 * `list` followed by `delete 1 2` deletes the 1st task followed by the 2nd task in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
-### 7. Mark a task as done : `done`
+### 7. Mark a deadline as done : `done`
 
-Marks a specified task in PlaNus as done.
+Marks a specified deadline in PlaNus as done.
 
 Format: `done INDEX:TIME_TAKEN...`
 
-* Marks the task(s) at the specified `INDEX` as done and record the time taken to complete the task.
+* Marks the deadline(s) at the specified `INDEX` as done and record the time taken to complete the deadline.
 * The index refers to the index number shown in the displayed task list.
-* The time taken refers to the time in minutes that the user took to complete the specific task.
+* The time taken refers to the time in minutes that the user took to complete the specific deadline.
 * The index and time taken **must be a positive integer** 1:20, 2:30, 3:120, ...
 * Take note that there are two type of task, one is event, another one is deadline, only task of deadline can be marked as done through this command, an error message will be shown if user attempts to mark a event as done.
 * After user marked a deadline as done, user cannot edit the deadline or undo the done command anymore.
@@ -182,11 +177,10 @@ Available attributes in v1.3 include:
 Examples:
 
 * `find title:play games` will list all tasks with a title that includes the phrase `play games`
-* `find type:todo` will list all tasks with the type `todo`
-* `find title:dinner type:todo` will list all tasks with a title that includes `dinner` and is of the type `todo`
+* `find type:deadline` will list all deadlines
+* `find title:dinner type:deadline` will list all deadlines with a title that includes `dinner`
 * `find date:01-01-2020 11:00` will list all tasks with the date 01-01-2020 11:00
-* `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and with the title
-   that includes either `dinner` or `lunch`
+* `find title:dinner title:lunch type:deadline` will list all deadlines with the title includes either `dinner` or `lunch`
 
 
 ### 9. Edit a task : `edit`
@@ -211,12 +205,9 @@ Format: `edit INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 
 Examples:
 
-* `edit 1 title:play games` will edit the first task in the results of the `list` command, changing its title
-to `play games`
-* `find type:todo` followed by `edit 3 desc:This is very urgent!` will edit the first task of the third task in the
-results of the `find` command, changing its description to "This is very urgent!"
-* `find title:homework` followed by`edit 2 desc:Homework is difficult date:01-01-2020` will edit the second task in the
-results of the `find` command, changing its date to 01-01-2020 and its description to "Homework is difficult"
+* `edit 1 title:play games` will edit the first task in the results of the `list` command, changing its title to `play games`
+* `find type:deadline` followed by `edit 3 desc:This is very urgent!` will edit the first deadline of the third deadline in the results of the `find` command, changing its description to "This is very urgent!"
+* `find title:homework` followed by`edit 2 desc:Homework is difficult date:01-01-2020` will edit the second task in the results of the `find` command if the task is an event, changing its date to 01-01-2020 and its description to "Homework is difficult", otherwise, PlaNus will notify the user of the imcompatible error
 * `edit 1 tag:CS2103T` will edit the first task in the results of the `list` command, changing its tag to "CS2103T"
 
 ### 10. Exit the program : `exit`
