@@ -9,6 +9,7 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -57,6 +58,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private VBox vendorBox;
+
+    @FXML
+    private VBox menuBox;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -117,17 +124,17 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts(boolean bool) {
+    void fillInnerParts() {
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
-        setFoodListDisplay(bool);
+        setFoodListDisplay(false);
 
         vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
         vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
-        setVendorListDisplay(!bool);
 
         orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList());
         orderItemListPanelPlaceholder.getChildren().add(orderItemListPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -143,16 +150,16 @@ public class MainWindow extends UiPart<Stage> {
      * Sets visibility of vendor list display based on the boolean provided.
      */
     void setVendorListDisplay(boolean bool) {
-        vendorListPanel.getRoot().setVisible(bool);
-        vendorListPanel.getRoot().setManaged(bool);
+        vendorBox.visibleProperty().setValue(bool);
+        vendorBox.managedProperty().setValue(bool);
     }
 
     /**
      * Sets visibility of food list display based on the boolean provided.
      */
     void setFoodListDisplay(boolean bool) {
-        foodListPanel.getRoot().setVisible(bool);
-        foodListPanel.getRoot().setManaged(bool);
+        menuBox.visibleProperty().setValue(bool);
+        menuBox.managedProperty().setValue(bool);
 
     }
 
@@ -162,9 +169,10 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Displays menu if boolean is true, otherwise display vendor list.
+     * Displays menu if vendor has been selected, otherwise display vendor list.
      */
-    void displayMenu(boolean bool) {
+    void displayMenu() {
+        boolean bool = logic.isSelected();
         setVendorListDisplay(!bool);
         setFoodListDisplay(bool);
         setOrderItemListDisplay(true);
@@ -217,6 +225,7 @@ public class MainWindow extends UiPart<Stage> {
     public void handleVendor() {
         foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+        displayMenu();
     }
 
     public VendorListPanel getVendorListPanel() {

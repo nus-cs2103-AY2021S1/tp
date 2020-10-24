@@ -37,7 +37,7 @@
         <HBox maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
           <children>
 
-            <VBox fx:id="vendorList" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
+            <VBox fx:id="vendorBox" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
@@ -47,7 +47,7 @@
               </children>
             </VBox>
 
-            <VBox fx:id="foodList" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
+            <VBox fx:id="menuBox" minWidth="-Infinity" styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
               <padding>
                 <Insets bottom="10" left="10" right="10" top="10" />
               </padding>
