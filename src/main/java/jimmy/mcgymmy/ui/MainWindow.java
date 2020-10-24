@@ -155,7 +155,7 @@ public class MainWindow extends UiPart<Stage> {
         datePicker.setValue(LocalDate.now());
 
         //Add listener to execute after date is changed
-        datePicker.valueProperty().addListener((observable, oldDate, newDate)-> {
+        datePicker.valueProperty().addListener((observable, oldDate, newDate) -> {
             setDate();
         });
     }
@@ -231,6 +231,7 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser("Please select a valid directory");
         }
     }
+
     /**
      * Get the export directory chosen by the user.
      */
@@ -259,6 +260,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Get the date which the user selected.
+     *
      * @return Optional containing the date selected. Null if no date is selected.
      */
     public Optional<LocalDate> getDate() {
@@ -300,6 +302,8 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             summaryPanel.setTotalCalories(getFoodListPanel().getCurrentCalories());
+            summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentProteins(),
+                    getFoodListPanel().getCurrentCarbs(), getFoodListPanel().getCurrentFats());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
