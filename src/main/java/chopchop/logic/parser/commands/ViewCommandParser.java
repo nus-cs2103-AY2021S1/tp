@@ -1,13 +1,9 @@
 package chopchop.logic.parser.commands;
 
-import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
-
-import java.util.ArrayList;
-import java.util.Optional;
+import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 
 import chopchop.logic.commands.Command;
-import chopchop.logic.commands.MakeRecipeCommand;
-import chopchop.logic.parser.ArgName;
+import chopchop.logic.commands.ViewCommand;
 import chopchop.logic.parser.CommandArguments;
 import chopchop.logic.parser.ItemReference;
 import chopchop.commons.util.Result;
@@ -28,6 +24,13 @@ public class ViewCommandParser {
             return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), commandName);
         }
 
-
+        return getCommandTarget(args)
+                .then(target -> {
+                    if (target.snd().isEmpty()) {
+                        return Result.error("'%s' command requires at least one search term\n%s",
+                                commandName, ViewCommand.MESSAGE_USAGE);
+                    }
+                    return Result.of(new ViewCommand(ItemReference.parse(target.snd()).getValue()));
+                });
     }
 }

@@ -1,11 +1,16 @@
 package chopchop.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
+import chopchop.model.recipe.Recipe;
 
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Display a recipe identified using its name from the recipe book.
+ */
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
@@ -19,13 +24,21 @@ public class ViewCommand extends Command {
 
     private final ItemReference item;
 
+    /**
+     * Constructs a {@code ViewCommand} from the given recipe item.
+     * @param item
+     */
     public ViewCommand(ItemReference item) {
         requireNonNull(item);
         this.item = item;
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) {
-        return new CommandResult("");
+    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+        Recipe recipe = model
+                .findRecipeWithName(this.item.getName())
+                .orElseThrow(() -> new CommandException(String.format(MESSAGE_RECIPE_NOT_FOUND,
+                        this.item.getName())));
+        return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, recipe));
     }
 }
