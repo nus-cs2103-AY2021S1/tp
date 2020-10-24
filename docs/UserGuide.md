@@ -143,9 +143,18 @@ Example:
     * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**
     * Unit for liquids (Milk and Oolong Tea) : **L**
 
-All ingredients which are available and thus can be set are predefined in the ingredient book. 
-Here is a comprehensive list of all available ingredients : Milk, Pearl, Boba, Oolong Tea, Brown Sugar. 
-Please note that the ingredient names are case-sensitive.
+* All ingredients' levels are set to 0.
+
+* All ingredients which are available and thus can be set are predefined in the ingredient book. 
+  
+* Please note that the ingredient names are case-sensitive.
+
+* Here is a comprehensive list of all available ingredients :
+    * Milk
+    * Pearl
+    * Boba
+    * Oolong Tea
+    * Brown Sugar
 
 </div>
 
