@@ -2,12 +2,9 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -33,9 +30,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label deadline;
+    private Label gitUserName;
     @FXML
-    private FlowPane tags;
+    private Label phone;
+    @FXML
+    private Label email;
+    @FXML
+    private Label address;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -45,11 +46,10 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         personName.setText(person.getPersonName().fullPersonName);
-        deadline.setText(person.getDeadline().toString());
-        person.getPersonTags().stream()
-                .sorted(Comparator.comparing(personTag -> personTag.personTagName))
-                .forEach(personTag -> this.tags.getChildren()
-                .add(new Label(personTag.personTagName)));
+        gitUserName.setText(person.getGitUserNameString());
+        phone.setText(person.getPhone().value);
+        email.setText(person.getEmail().value);
+        address.setText(person.getAddress().value);
     }
 
     @Override
