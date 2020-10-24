@@ -1,11 +1,5 @@
 package seedu.address.logic.commands.itemcommand;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.commands.results.CommandResult;
-import seedu.address.model.Models;
-import seedu.address.model.inventorymodel.InventoryModel;
-import seedu.address.model.item.Item;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MAX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_METRIC;
@@ -13,6 +7,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.results.CommandResult;
+import seedu.address.model.Models;
+import seedu.address.model.inventorymodel.InventoryModel;
+import seedu.address.model.item.Item;
 
 /**
  * Adds a item to the inventory book.

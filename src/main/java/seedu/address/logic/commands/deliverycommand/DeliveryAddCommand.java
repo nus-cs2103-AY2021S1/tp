@@ -1,16 +1,17 @@
 package seedu.address.logic.commands.deliverycommand;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 /**
  * Adds a delivery to the delivery book.
