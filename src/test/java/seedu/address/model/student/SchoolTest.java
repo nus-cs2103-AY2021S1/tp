@@ -27,8 +27,6 @@ public class SchoolTest {
         // invalid school names
         assertFalse(School.isValidSchool("")); // empty string
         assertFalse(School.isValidSchool(" ")); // spaces only
-        assertFalse(School.isValidSchool("123")); // numeric
-        assertFalse(School.isValidSchool("!@#$,./")); // characters
 
         // valid school name
         assertTrue(School.isValidSchool("a")); //1 small letter

@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddQuestionCommand;
+import seedu.address.logic.commands.AdditionalDetailCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -28,8 +29,8 @@ import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.testutil.EditAdminDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.FindStudentDescriptorBuilder;
@@ -99,7 +100,7 @@ public class ReeveParserTest {
     @Test
     public void parseCommand_question() throws Exception {
         String testQuestion = "How do birds fly?";
-        Question question = new Question(testQuestion);
+        UnsolvedQuestion question = new UnsolvedQuestion(testQuestion);
         QuestionCommand command = (QuestionCommand) parser.parseCommand(QuestionCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ADD_QUESTION + testQuestion);
         assertEquals(new AddQuestionCommand(INDEX_FIRST_PERSON, question), command);
@@ -115,6 +116,11 @@ public class ReeveParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_additionalDetail() throws Exception {
+        assertTrue(parser.parseCommand("detail add 2 d/ smart") instanceof AdditionalDetailCommand);
     }
 
     @Test

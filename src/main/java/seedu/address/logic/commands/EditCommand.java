@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
@@ -10,13 +9,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -25,16 +21,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
 
 /**
  * Edits the details of an existing student in Reeve.
@@ -54,14 +49,13 @@ public class EditCommand extends Command {
             + "[" + PREFIX_VENUE + "CLASS_VENUE]"
             + "[" + PREFIX_TIME + "CLASS_TIME]"
             + "[" + PREFIX_FEE + "FEE]"
-            + "[" + PREFIX_PAYMENT + "PAYMENT_DATE]"
-            + "[" + PREFIX_DETAILS + "ADDITIONAL_DETAILS]\n"
+            + "[" + PREFIX_PAYMENT + "PAYMENT_DATE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_VENUE + "Anderson Junior College"
             + PREFIX_TIME + "2 1300-1400";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student:\n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in Reeve.";
 
@@ -88,7 +82,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -97,12 +91,12 @@ public class EditCommand extends Command {
         Student studentToEdit = lastShownList.get(index.getZeroBased());
         Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor, editAdminDescriptor);
 
-        if (!studentToEdit.isSameStudent(editedStudent) && model.hasPerson(editedStudent)) {
+        if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(studentToEdit, editedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToEdit, editedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
@@ -129,10 +123,10 @@ public class EditCommand extends Command {
                     .orElse(studentToEdit.getAdmin().getFee());
             PaymentDate updatedPaymentDate = editAdminDescriptor.getPaymentDate()
                     .orElse(studentToEdit.getAdmin().getPaymentDate());
-            Set<AdditionalDetail> updatedAdditionalDetails = editAdminDescriptor.getAdditionalDetails()
-                    .orElse(studentToEdit.getAdmin().getDetails());
+
+            // Additional Details cannot be edited through this channel
             updatedAdmin = new Admin(updatedClassVenue, updatedClassTime, updatedFee, updatedPaymentDate,
-                    updatedAdditionalDetails);
+                    studentToEdit.getAdmin().getDetails());
         } else {
             updatedAdmin = studentToEdit.getAdmin();
         }
@@ -250,7 +244,6 @@ public class EditCommand extends Command {
         private ClassVenue venue;
         private Fee fee;
         private PaymentDate paymentDate;
-        private Set<AdditionalDetail> details;
 
         public EditAdminDescriptor() {}
 
@@ -263,14 +256,13 @@ public class EditCommand extends Command {
             setVenue(toCopy.venue);
             setFee(toCopy.fee);
             setPaymentDate(toCopy.paymentDate);
-            setAdditionalDetails(toCopy.details);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(time, venue, fee, paymentDate, details);
+            return CollectionUtil.isAnyNonNull(time, venue, fee, paymentDate);
         }
 
         public void setTime(ClassTime time) {
@@ -305,23 +297,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(paymentDate);
         }
 
-        /**
-         * Sets {@code details} to this object's {@code details}.
-         * A defensive copy of {@code details} is used internally.
-         */
-        public void setAdditionalDetails(Set<AdditionalDetail> details) {
-            this.details = (details != null) ? new HashSet<>(details) : null;
-        }
-
-        /**
-         * Returns an unmodifiable detail set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code details} is null.
-         */
-        public Optional<Set<AdditionalDetail>> getAdditionalDetails() {
-            return Optional.ofNullable(details).map(Collections::unmodifiableSet);
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -340,8 +315,7 @@ public class EditCommand extends Command {
             return getClassVenue().equals(e.getClassVenue())
                     && getClassTime().equals(e.getClassTime())
                     && getFee().equals(e.getFee())
-                    && getPaymentDate().equals(e.getPaymentDate())
-                    && getAdditionalDetails().equals(e.getAdditionalDetails());
+                    && getPaymentDate().equals(e.getPaymentDate());
         }
     }
 

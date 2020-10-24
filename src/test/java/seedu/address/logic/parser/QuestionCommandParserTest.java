@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TEST_QUESTIONS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_QUESTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_QUESTION;
@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SOLVE_QUESTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
@@ -20,7 +21,8 @@ import seedu.address.logic.commands.AddQuestionCommand;
 import seedu.address.logic.commands.DeleteQuestionCommand;
 import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.SolveQuestionCommand;
-import seedu.address.model.student.Question;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.UnsolvedQuestion;
 
 public class QuestionCommandParserTest {
 
@@ -45,10 +47,13 @@ public class QuestionCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + QUESTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + NAME_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + QUESTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
+
+        // non-numerical index
+        assertParseFailure(parser, "a" + QUESTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -73,16 +78,26 @@ public class QuestionCommandParserTest {
         // invalid solve parameters
         assertParseFailure(parser,
                 INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_SOLVE_QUESTION,
-                MESSAGE_INVALID_INDEX);
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser,
                 INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_SOLVE_QUESTION + " ",
-                MESSAGE_INVALID_INDEX);
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser,
                 INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_SOLVE_QUESTION + "A",
-                MESSAGE_INVALID_INDEX);
+                MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser,
                 INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_SOLVE_QUESTION + "A1",
+                MESSAGE_INVALID_FORMAT);
+
+        // invalid question index
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_SOLVE_QUESTION + "0 test",
                 MESSAGE_INVALID_INDEX);
+
+        // invalid solution
+        assertParseFailure(parser,
+                INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_SOLVE_QUESTION + "1  ",
+                MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -134,7 +149,7 @@ public class QuestionCommandParserTest {
     public void parse_addQuestionPrefix_success() {
         Index target = INDEX_SECOND_PERSON;
         String userInput = target.getOneBased() + " " + PREFIX_ADD_QUESTION + TEST_QUESTIONS[0];
-        AddQuestionCommand command = new AddQuestionCommand(target, new Question(TEST_QUESTIONS[0]));
+        AddQuestionCommand command = new AddQuestionCommand(target, new UnsolvedQuestion(TEST_QUESTIONS[0]));
 
         assertParseSuccess(parser, userInput, command);
     }
@@ -142,10 +157,11 @@ public class QuestionCommandParserTest {
     @Test
     public void parse_solveQuestionPrefix_success() {
         Index target = INDEX_THIRD_PERSON;
-        Index question = INDEX_FIRST_PERSON;
+        Index question = Index.fromOneBased(1);
+        String input = question.getOneBased() + " " + DEFAULT_SOLUTION;
 
-        String userInput = target.getOneBased() + " " + PREFIX_SOLVE_QUESTION + question.getOneBased();
-        SolveQuestionCommand command = new SolveQuestionCommand(target, question);
+        String userInput = target.getOneBased() + " " + PREFIX_SOLVE_QUESTION + input;
+        SolveQuestionCommand command = new SolveQuestionCommand(target, question, DEFAULT_SOLUTION);
 
         assertParseSuccess(parser, userInput, command);
     }
@@ -153,7 +169,7 @@ public class QuestionCommandParserTest {
     @Test
     public void parse_deleteQuestionPrefix_success() {
         Index target = INDEX_SECOND_PERSON;
-        Index question = INDEX_THIRD_PERSON;
+        Index question = Index.fromOneBased(3);
 
         String userInput = target.getOneBased() + " " + PREFIX_DELETE_QUESTION + question.getOneBased();
         DeleteQuestionCommand command = new DeleteQuestionCommand(target, question);
