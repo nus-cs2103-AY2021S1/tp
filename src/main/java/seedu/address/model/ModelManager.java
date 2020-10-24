@@ -94,6 +94,8 @@ public class ModelManager implements Model {
         return wishfulShrinking;
     }
 
+    //=========== Recipe ================================================================================
+
     @Override
     public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
@@ -119,6 +121,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void clearRecipe() {
+        wishfulShrinking.clearRecipe();
+    }
+
+    //=========== Consumption ================================================================================
+
+    @Override
     public void addConsumption(Consumption target) {
         wishfulShrinking.addConsumption(target);
     }
@@ -127,6 +136,13 @@ public class ModelManager implements Model {
     public void deleteConsumption(Consumption target) {
         wishfulShrinking.removeConsumption(target);
     }
+
+    @Override
+    public void clearConsumption() {
+        wishfulShrinking.clearConsumption();
+    }
+
+    //=========== Ingredient ================================================================================
 
     @Override
     public boolean hasIngredient(Ingredient ingredient) {
@@ -150,6 +166,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedIngredient);
 
         wishfulShrinking.setIngredient(target, editedIngredient);
+    }
+
+    @Override
+    public void clearIngredient() {
+        wishfulShrinking.clearIngredient();
     }
 
     //=========== Filtered Recipe List Accessors =============================================================

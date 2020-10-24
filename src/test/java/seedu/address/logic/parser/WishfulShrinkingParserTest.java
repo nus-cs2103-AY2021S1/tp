@@ -19,7 +19,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddIngredientCommand;
 import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearConsumptionCommand;
+import seedu.address.logic.commands.ClearIngredientCommand;
+import seedu.address.logic.commands.ClearRecipeCommand;
 import seedu.address.logic.commands.DeleteConsumptionCommand;
 import seedu.address.logic.commands.DeleteIngredientCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
@@ -41,10 +43,6 @@ import seedu.address.testutil.IngredientBuilder;
 import seedu.address.testutil.IngredientUtil;
 import seedu.address.testutil.RecipeBuilder;
 import seedu.address.testutil.RecipeUtil;
-/*import seedu.address.model.recipe.Recipe;
-import seedu.address.testutil.EditRecipeDescriptorBuilder;
-import seedu.address.testutil.RecipeBuilder;
-import seedu.address.testutil.RecipeUtil;*/
 
 public class WishfulShrinkingParserTest {
 
@@ -76,9 +74,21 @@ public class WishfulShrinkingParserTest {
     }
 
     @Test
-    public void parseCommand_clear() throws Exception {
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    public void parseCommand_clearIngredient() throws Exception {
+        assertTrue(parser.parseCommand(ClearIngredientCommand.COMMAND_WORD) instanceof ClearIngredientCommand);
+        assertTrue(parser.parseCommand(ClearIngredientCommand.COMMAND_WORD + " 3") instanceof ClearIngredientCommand);
+    }
+
+    @Test
+    public void parseCommand_clearRecipe() throws Exception {
+        assertTrue(parser.parseCommand(ClearRecipeCommand.COMMAND_WORD) instanceof ClearRecipeCommand);
+        assertTrue(parser.parseCommand(ClearRecipeCommand.COMMAND_WORD + " 3") instanceof ClearRecipeCommand);
+    }
+
+    @Test
+    public void parseCommand_clearConsumption() throws Exception {
+        assertTrue(parser.parseCommand(ClearConsumptionCommand.COMMAND_WORD) instanceof ClearConsumptionCommand);
+        assertTrue(parser.parseCommand(ClearConsumptionCommand.COMMAND_WORD + " 3") instanceof ClearConsumptionCommand);
     }
 
     @Test

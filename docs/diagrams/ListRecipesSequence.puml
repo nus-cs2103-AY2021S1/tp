@@ -11,6 +11,7 @@ end box
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 participant ":WishfulShrinking" as WishfulShrinking MODEL_COLOR
+participant ":UniqueRecipeList" as UniqueRecipeList MODEL_COLOR
 end box
 
 [-> LogicManager : execute("recipes")
@@ -50,7 +51,7 @@ deactivate WishfulShrinking
 Model -> ListRecipesCommand
 deactivate Model
 
-Model --> ListRRecipesCommand
+Model --> ListRecipesCommand
 deactivate Model
 
 create CommandResult

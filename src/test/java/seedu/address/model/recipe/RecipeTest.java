@@ -99,17 +99,5 @@ public class RecipeTest {
                 .build();
         assertFalse(SANDWICH.equals(editedSandwich));
 
-        // different quantity -> returns false
-        editedSandwich =
-                new RecipeBuilder(SANDWICH)
-                        .withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_MARGARITAS)
-                        .build();
-        assertFalse(SANDWICH.equals(editedSandwich));
-
-        // same ingredient and quantity -> returns true
-        editedSandwich =
-                new RecipeBuilder(SANDWICH).withIngredient(VALID_INGREDIENT_SANDWICH, VALID_QUANTITY_SANDWICH).build();
-        assertTrue(SANDWICH.equals(editedSandwich));
-
     }
 }

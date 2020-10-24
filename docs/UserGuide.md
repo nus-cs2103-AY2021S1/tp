@@ -45,7 +45,7 @@ Wishful Shrinking is a **desktop app for managing your diet, keeping track of yo
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `addR n/salad`.
-  
+
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/Salad t/healthy` or as `n/Salad`.
 
@@ -79,11 +79,12 @@ Adds a recipe to Recipes Collection.
 Format: `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
-    * there is  a compulsory space before `-` 
+    * there is a compulsory space before `-` 
+* `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
 
 Examples:
-* `addR n/salad i/lettuce, tomato, olive oil c/40`
-* `addR n/sandwiches i/breads, cheese -2 sclices c/80`
+* `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/1. Cook 2. Eat`
+* `addR n/sandwiches i/breads, cheese -2 sclices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/1. Cook 2. Eat`
 
 
 ### Listing all recipes : `recipes`
@@ -133,6 +134,11 @@ Format: `recommend`
 Examples:
 * `recommend` returns `salad` with ingredients `lettuce`, `onion` and `tomato` only if the user has all `lettuce`, `onion` and `tomato` in the fridge
 
+### Clearing all recipes : `clearR'
+
+Clear all the recipes in the Recipe Collection.
+
+Format: `clearR`
 
 ## Fridge
 
@@ -183,6 +189,12 @@ Examples:
 * `searchF peanut` returns `peanut`
 
 
+### Clearing all ingredients : `clearF'
+
+Clear all the recipes in the Fridge.
+
+Format: `clearF`
+
 ## Consumption
 
 ### Eating a recipe : `eatR`
@@ -220,6 +232,11 @@ Format: `deleteC INDEX`
 Examples:
 * `calories` followed by `deleteC 2` deletes the 2nd recipe in Consumption List.
 
+### Clearing all consumption : `clearC'
+
+Clear all the recipe ate in the daily consumption list.
+
+Format: `clearC`
 
 ### Saving the data
 
@@ -247,7 +264,7 @@ _{give a remark to the recipe}_
 
 Features | Format, Examples
 --------|------------------
-**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, carrots, olive oil c/80`
+**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
 **Add Ingredient to the fridge** | `addF i/INGREDIENTS` <br> e.g., `addF i/banana, green peas, salmon fish`
 **Delete recipe** | `deleteR INDEX`<br> e.g., `deleteR 3`
 **Delete Ingredient from the fridge** | `deleteF INDEX`<br> e.g., `deleteF 3`

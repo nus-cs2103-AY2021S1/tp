@@ -50,7 +50,7 @@ deactivate WishfulShrinkingParser
 LogicManager -> DeleteRecipeCommand : execute()
 activate DeleteRecipeCommand
 
-DeleteCommand -> Model : getFilteredRecipeList()
+DeleteRecipeCommand -> Model : getFilteredRecipeList()
 activate Model
 
 Model -> WishfulShrinking : removeRecipe(key)

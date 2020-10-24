@@ -45,7 +45,7 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
         resetData(toBeCopied);
     }
 
-    //// list overwrite operations
+    //=========== List Overwrite Operations ===================================================================
 
     /**
      * Replaces the contents of the recipe list with {@code recipes}.
@@ -82,7 +82,7 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
         setConsumptions(newData.getConsumptionList());
     }
 
-    //// recipe-level operations
+    //=========== Recipe-Level Operations ===================================================================
 
     /**
      * Returns true if a recipe with the same identity as {@code recipe} exists in the recipe collection.
@@ -120,7 +120,14 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
         recipes.remove(key);
     }
 
-    //// calorie counter operations
+    /**
+     * Clear recipes from this {@code WishfulShrinking}.
+     */
+    public void clearRecipe() {
+        recipes.clear();
+    }
+
+    //=========== Calorie Counter Operations ===================================================================
 
     /**
      * Add {@code key} from this {@code WishfulShrinking} to daily consumption.
@@ -139,18 +146,13 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
     }
 
     /**
-     * Replaces the given consumption {@code target} in the list with {@code editedConsumption}.
-     * {@code target} must exist in the consumption collection.
-     * The consumption identity of {@code editedConsumption} must not be the same as
-     * another existing consumption in the consumption collection.
+     * Clear ingredients from this {@code WishfulShrinking}.
      */
-    public void setConsumption(Consumption target, Consumption editedConsumption) {
-        requireNonNull(editedConsumption);
-
-        consumption.setConsumption(target, editedConsumption);
+    public void clearConsumption() {
+        consumption.clear();
     }
 
-    //// ingredient-level operations
+    //=========== Ingredient-Level Operations ===================================================================
 
     /**
      * Returns true if a ingredient with the same identity as {@code ingredient} exists in the fridge.
@@ -188,7 +190,14 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
         ingredients.remove(key);
     }
 
-    //// util methods
+    /**
+     * Clear ingredients from this {@code WishfulShrinking}.
+     */
+    public void clearIngredient() {
+        ingredients.clear();
+    }
+
+    //=========== Util Methods ===================================================================
 
     @Override
     public String toString() {
