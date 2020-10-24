@@ -1,7 +1,6 @@
 package seedu.fma.logic;
 
 import java.nio.file.Path;
-import java.util.HashMap;
 import java.util.List;
 
 import javafx.collections.ObservableList;

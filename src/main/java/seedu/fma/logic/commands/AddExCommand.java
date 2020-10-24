@@ -1,7 +1,8 @@
 package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.fma.logic.parser.CliSyntax.*;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_C;
+import static seedu.fma.logic.parser.CliSyntax.PREFIX_E;
 
 import seedu.fma.logic.commands.exceptions.CommandException;
 import seedu.fma.model.Model;

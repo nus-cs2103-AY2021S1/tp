@@ -2,11 +2,12 @@ package seedu.fma.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
 
-import java.util.List;
 
 /**
  * A ui for the status bar that is displayed at the header of the application.
@@ -36,7 +37,7 @@ public class ResultDisplay extends UiPart<Region> {
     public void getAutoCompleteResult(String input) {
         requireNonNull(input);
         String feedback = "";
-        input = input.length() > 3 ? input.substring(0,3) : input;
+        input = input.length() > 3 ? input.substring(0, 3) : input;
         for (String suggestion : commandSuggestionList) {
             if (suggestion.startsWith(input.toLowerCase())) {
                 feedback += suggestion + "\n";

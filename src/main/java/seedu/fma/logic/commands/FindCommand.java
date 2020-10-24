@@ -1,7 +1,6 @@
 package seedu.fma.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.fma.logic.parser.CliSyntax.*;
 
 import seedu.fma.commons.core.Messages;
 import seedu.fma.model.Model;
@@ -14,7 +13,6 @@ import seedu.fma.model.util.NameContainsKeywordsPredicate;
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
-
 
     public static final String AC_SUGGESTION = COMMAND_WORD + " <word>";
 
