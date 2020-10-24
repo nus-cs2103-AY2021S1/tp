@@ -329,7 +329,7 @@ Action | Format, Examples
 **Search** | `search KEYWORD [MORE_KEYWORDS]`<br> e.g., `search James Jake`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
-**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all emp;oees\):**  `c-archvie all` <br>3. **List all archived data:**  `c-archvie list`</br>
+**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive all` <br>3. **List all archived data:**  `c-archive list`</br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
 ### Ingredients  Tracking
