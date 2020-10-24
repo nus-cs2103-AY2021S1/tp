@@ -186,7 +186,8 @@ public class StringView {
      *         or {@code -1} if it does not exist
      */
     public int find(StringView sub) {
-        return Collections.indexOfSubList(Arrays.asList(this.chars), Arrays.asList(sub.chars));
+        return Collections.indexOfSubList(Arrays.asList(this.chars).subList(this.begin, this.end),
+            Arrays.asList(sub.chars).subList(sub.begin, sub.end));
     }
 
     /**

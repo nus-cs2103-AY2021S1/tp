@@ -65,5 +65,10 @@ public class EitherTest {
         assertEquals("Right(123)", r1.toString());
 
         assertThrows(AssertionError.class, () -> new Either<>("asdf", "bsdf"));
+
+
+
+        // this is a bit hacky, but just make a new Strings() class owo
+        var s = new Strings();
     }
 }
