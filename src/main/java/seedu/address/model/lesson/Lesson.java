@@ -9,7 +9,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Objects;
-import java.util.Optional;
 
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
