@@ -2,7 +2,6 @@ package seedu.address.model.recipe;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.Objects;
 
