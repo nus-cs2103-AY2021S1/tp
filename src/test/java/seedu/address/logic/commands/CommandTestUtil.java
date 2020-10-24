@@ -20,6 +20,8 @@ import seedu.address.logic.commands.global.EditCommand;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.Model;
 import seedu.address.model.project.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonNameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 
@@ -138,6 +140,20 @@ public class CommandTestUtil {
         Project project = model.getFilteredProjectList().get(targetIndex.getZeroBased());
         final String[] splitName = project.getProjectName().fullProjectName.split("\\s+");
         model.updateFilteredProjectList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredProjectList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * {@code model}'s main catalogue.
+     */
+    public static void showPersonAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+
+        Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
+        final String[] splitName = person.getGitUserNameString().split("\\s+");
+        model.updateFilteredPersonList(new PersonNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredProjectList().size());
     }
