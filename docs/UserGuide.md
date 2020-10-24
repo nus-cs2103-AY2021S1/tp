@@ -20,7 +20,7 @@ as well as summary commands.
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
 
-1. Ensure you have Java `11` or above irnstalled in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer.
 
 2. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
 
@@ -254,7 +254,7 @@ Format: `redo`
 (i.e. the previous undo commands are "forgotten" and `redo` will have no effect)
 
 --------------------------------------------------------------------------------------------------------------------
-### 3.2 Default Features
+### 3.2 General Features
 #### 3.2.1 Saving the data
 
 OneShelf data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -337,7 +337,7 @@ Notify the user if a certain stock is below threshold
 |**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
 |**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`                                       |
 |**List Inventory**   | `list-i`
-|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |                                                                                          |
+|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |
 
 
 #### 5.3 Delivery summary
