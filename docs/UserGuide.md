@@ -111,9 +111,10 @@ All tCheck data (i.e. contact details, ingredient data, sales data) are saved in
 
 ### 2. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 
-<div markdown="span" class="alert alert-primary">:information_source:
+<div markdown="span" class="alert alert-primary">
 
-**Notes about available drinks:**<br>
+**:information_source: Notes about available drinks:**<br>
+
 Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
  abbreviations are shown as below:<br>
  
@@ -163,11 +164,11 @@ Example:
     
 <div markdown="span" class="alert alert-primary">:information_source:
 
-**Notes about ingredients:**<br>
+**:information_source: Notes about ingredients:**<br>
 
 * Unit of measurement for ingredients:<br>
-    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
-    * Unit for liquids (Milk and Oolong Tea) : **L**<br>
+    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**
+    * Unit for liquids (Milk and Oolong Tea) : **L**
 
 * All ingredients' levels are set to 0.<br>
 
@@ -176,11 +177,11 @@ Example:
 * Please note that the ingredient names are case-sensitive.<br>
 
 * Here is a comprehensive list of all available ingredients :<br>
-    * Milk<br>
-    * Pearl<br>
-    * Boba<br>
-    * Oolong Tea<br>
-    * Brown Sugar<br>
+    * Milk
+    * Pearl
+    * Boba
+    * Oolong Tea
+    * Brown Sugar
 
 </div>
 
