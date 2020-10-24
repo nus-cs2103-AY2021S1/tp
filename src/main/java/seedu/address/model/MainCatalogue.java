@@ -8,6 +8,7 @@ import java.util.Optional;
 import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.task.Task;
@@ -19,6 +20,7 @@ import seedu.address.model.task.Task;
 public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     private final UniqueProjectList projects;
+    private final UniquePersonList persons;
     private Status status;
     private Optional<Project> project;
 
@@ -31,6 +33,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      */
     {
         projects = new UniqueProjectList();
+        persons = new UniquePersonList();
         status = Status.CATALOGUE;
         project = Optional.empty();
     }
@@ -56,12 +59,59 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     }
 
     /**
+     * Replaces the contents of the person list with {@code persons}.
+     * {@code persons} must not contain duplicate persons.
+     */
+    public void setPersons(List<Person> persons) {
+        this.persons.setPersons(persons);
+    }
+
+    /**
      * Resets the existing data of this {@code MainCatalogue} with {@code newData}.
      */
     public void resetData(ReadOnlyMainCatalogue newData) {
         requireNonNull(newData);
 
         setProjects(newData.getProjectList());
+        setPersons(newData.getPersonList());
+    }
+
+    //// person-level operations
+
+    /**
+     * Returns true if a person with the same identity as {@code person} exists in the main catalogue.
+     */
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return persons.contains(person);
+    }
+
+    /**
+     * Adds a person to the main catalogue.
+     * The person must not already exist in the main catalogue.
+     */
+    public void addPerson(Person p) {
+        persons.add(p);
+    }
+
+    /**
+     * Replaces the given person {@code target} in the list with {@code editedPerson}.
+     * {@code target} must exist in the main catalogue.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the main
+     * catalogue.
+     */
+    public void setPerson(Person target, Person editedPerson) {
+        requireNonNull(editedPerson);
+
+        persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Removes {@code key} from this {@code MainCatalogue}.
+     * {@code key} must exist in the main catalogue.
+     */
+    public void removePerson(Person key) {
+        persons.remove(key);
     }
 
     //// project-level operations
@@ -171,10 +221,16 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     }
 
     @Override
+    public ObservableList<Person> getPersonList() {
+        return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MainCatalogue // instanceof handles nulls
-                && projects.equals(((MainCatalogue) other).projects));
+                && projects.equals(((MainCatalogue) other).projects)
+                && persons.equals(((MainCatalogue) other).persons));
     }
 
     @Override

@@ -18,6 +18,12 @@ public interface ReadOnlyMainCatalogue {
     ObservableList<Project> getProjectList();
 
     /**
+     * Returns an unmodifiable view of the persons list.
+     * This list will not contain any duplicate persons.
+     */
+    ObservableList<Person> getPersonList();
+
+    /**
      * Gets the current status for valid scope.
      */
     Status getStatus();
