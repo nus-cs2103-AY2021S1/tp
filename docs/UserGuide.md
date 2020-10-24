@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+![Logo](images/logo.png [image,width=322,height=322])
+
 Welcome to the tCheck User Guide! Thank you for choosing tCheck, the most popular command-line milk tea shop management desktop application in the T-Sugar chain!
 
 tCheck offers an integrated system to efficiently manage a T-Sugar shop, by providing sales tracking, ingredient tracking and employees' contact management in one platform.
