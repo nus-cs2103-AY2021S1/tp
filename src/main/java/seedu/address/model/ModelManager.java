@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final MainCatalogue mainCatalogue;
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
+    private final FilteredList<Person> filteredPersons;
     //private final List<Task> filteredTasks;
     //private final List<Person> filteredTeammates;
     private Optional<Project> projectToBeDisplayedOnDashboard;
@@ -45,6 +46,7 @@ public class ModelManager implements Model {
         this.mainCatalogue = new MainCatalogue(mainCatalogue);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.mainCatalogue.getProjectList());
+        filteredPersons = new FilteredList<>(this.mainCatalogue.getPersonList());
         //filteredTasks = new ArrayList<>();
         //filteredTeammates = new ArrayList<>();;
         this.projectToBeDisplayedOnDashboard = Optional.empty();
@@ -223,6 +225,23 @@ public class ModelManager implements Model {
     public void updateFilteredProjectList(Predicate<Project> predicate) {
         requireNonNull(predicate);
         filteredProjects.setPredicate(predicate);
+    }
+
+    //=========== Filtered Person List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * {@code versionedMainCatalogue}
+     */
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return filteredPersons;
+    }
+
+    @Override
+    public void updateFilteredPersonList(Predicate<Person> predicate) {
+        requireNonNull(predicate);
+        filteredPersons.setPredicate(predicate);
     }
 
     @Override
