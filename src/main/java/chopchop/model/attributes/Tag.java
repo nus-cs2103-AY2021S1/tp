@@ -40,7 +40,9 @@ public class Tag {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Tag
-                && this.tag.equalsIgnoreCase(((Tag) other).tag));
+                && this.tag.equalsIgnoreCase(((Tag) other).tag)
+                || (other instanceof String
+                && this.tag.equalsIgnoreCase((String) other)));
     }
 
     @Override
