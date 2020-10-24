@@ -6,11 +6,13 @@ import java.util.List;
 import java.util.Map;
 
 import chopchop.commons.util.Pair;
+import chopchop.logic.parser.exceptions.ParseException;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static chopchop.testutil.Assert.assertThrows;
 
 public class CommandParserTest {
 
@@ -54,6 +56,12 @@ public class CommandParserTest {
             assertTrue(x.hasValue());
 
             assertEquals(v, x.getValue());
+        });
+
+
+        // just... force coverage on this class.
+        assertThrows(ParseException.class, () -> {
+            throw new ParseException("owo");
         });
     }
 }

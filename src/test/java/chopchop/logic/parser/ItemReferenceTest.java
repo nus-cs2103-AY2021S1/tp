@@ -25,6 +25,8 @@ public class ItemReferenceTest {
         assertEquals(ItemReference.parse("#0"), Result.error("invalid index (cannot be zero or negative)"));
         assertEquals(ItemReference.parse("#-30"), Result.error("invalid index (cannot be zero or negative)"));
 
+        assertEquals(0, ItemReference.ofZeroIndex(0).getZeroIndex());
+        assertEquals(3, ItemReference.ofZeroIndex(3).getZeroIndex());
         assertThrows(AssertionError.class, () -> ItemReference.ofZeroIndex(-3));
         assertThrows(AssertionError.class, () -> ItemReference.ofOneIndex(0));
 
