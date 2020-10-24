@@ -2,6 +2,7 @@ package chopchop.model.attributes;
 
 import chopchop.commons.util.StringUtil;
 import chopchop.model.Entry;
+import chopchop.model.recipe.Recipe;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -21,10 +22,6 @@ public class TagContainsKeywordsPredicate implements Predicate<Entry> {
         if (entry.getTags().isEmpty()) {
             return false;
         }
-        /*Stream<String> tagNameList = entry.getTags()
-                .stream().map(tag -> tag.getTagName());
-        return tagNameList.anyMatch(tagName -> this.keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tagName, keyword)));*/
         return this.keywords.stream()
                 .allMatch(keyword -> entry.getTags()
                     .stream()
@@ -38,5 +35,4 @@ public class TagContainsKeywordsPredicate implements Predicate<Entry> {
                 || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
                 && this.keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
     }
-
 }

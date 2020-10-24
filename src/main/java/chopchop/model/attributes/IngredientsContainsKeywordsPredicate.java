@@ -19,8 +19,8 @@ public class IngredientsContainsKeywordsPredicate implements Predicate<Recipe> {
     @Override
     public boolean test(Recipe recipe) {
         // Returns recipes whose ingredient name list containing any of these keywords
-        /*return indNameList.anyMatch(indName -> this.keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(indName, keyword)));*/
+        // return indNameList.anyMatch(indName -> this.keywords.stream()
+        //     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(indName, keyword)));
 
         // Returns recipes whose ingredient name list contains all these keywords
         return this.keywords.stream().allMatch(keyword -> recipe.getIngredients()

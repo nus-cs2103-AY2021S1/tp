@@ -37,6 +37,7 @@ public class Strings {
         COMMAND_HELP,
         COMMAND_LIST,
         COMMAND_FIND,
+        COMMAND_FILTER,
         COMMAND_EDIT,
         COMMAND_QUIT,
         COMMAND_DELETE,

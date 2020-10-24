@@ -2,8 +2,11 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import chopchop.commons.core.Messages;
 import chopchop.logic.history.HistoryManager;
+import chopchop.model.Entry;
 import chopchop.model.Model;
 import chopchop.model.attributes.ExpiryDateMatchesKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
@@ -13,14 +16,16 @@ import chopchop.ui.DisplayNavigator;
  * Finds and lists all ingredients in ingredient book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterIngredientCommand extends Command {
+public class FilterIngredientCommand extends FilterCommand {
 
     public static final String COMMAND_WORD = "filter ingredient";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all ingredients whose content contain any of "
-            + "the specified keywords (case-insensitive) as tags and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " /tag favourite /expiry 2020-04-05";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters and gets all ingredients whose tag(s) "
+            + "contain any of the specified keywords (case-insensitive) and expire before the "
+            + "earliest specified date (keywords) and displays them as a list with index numbers.\n"
+            + "Parameters: /FIELD_NAME KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + "/expiry 2020-12-12 /tag favourite /tag handmade /expiry 2020-11-07\n"
+            + "Note: Tag names should be split into single words";
 
     private final TagContainsKeywordsPredicate tagPredicates;
     private final ExpiryDateMatchesKeywordsPredicate expPredicate;
@@ -40,12 +45,15 @@ public class FilterIngredientCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
-        if (expPredicate != null) {
-            model.updateFilteredIngredientList(expPredicate);
+        Predicate<Entry> p = x -> true;
+        if (expPredicate != null && tagPredicates != null) {
+            p = expPredicate.and(tagPredicates);
+        } else if (expPredicate != null) {
+            p = expPredicate;
+        } else if (tagPredicates != null) {
+            p = tagPredicates;
         }
-        if (tagPredicates != null) {
-            model.updateFilteredIngredientList(tagPredicates);
-        }
+        model.updateFilteredIngredientList(p);
 
         if (DisplayNavigator.hasDisplayController()) {
             DisplayNavigator.loadIngredientPanel();

@@ -4,23 +4,28 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.commons.core.Messages;
 import chopchop.logic.history.HistoryManager;
+import chopchop.model.recipe.Recipe;
+import chopchop.model.Entry;
 import chopchop.model.Model;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.ui.DisplayNavigator;
 
+import java.util.function.Predicate;
+
 /**
  * Finds and lists all ingredients in ingredient book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FilterRecipeCommand extends Command {
+public class FilterRecipeCommand extends FilterCommand {
 
     public static final String COMMAND_WORD = "filter recipe";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all ingredients whose content contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " sugar";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters and gets all recipes whose ingredient "
+            + "and tag list contain any of the specified keywords (case-insensitive) and displays them as a "
+            + "list with index numbers.\nParameters: /FIELD_NAME KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " /ingredient apple /tag home /ingredient chocolate /tag snacks"
+            + "Note: Tag(s) and Ingredient names should be split into single words during your search.";
 
     private final IngredientsContainsKeywordsPredicate ingredientPredicates;
     private final TagContainsKeywordsPredicate tagPredicates;
@@ -40,13 +45,15 @@ public class FilterRecipeCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
 
-        if (tagPredicates != null) {
-            model.updateFilteredRecipeList(tagPredicates);
+        Predicate<? super Recipe> p = x -> true;
+        if (ingredientPredicates != null && tagPredicates != null) {
+            p = ingredientPredicates.and(tagPredicates);
+        } else if (ingredientPredicates != null) {
+            p = ingredientPredicates;
+        } else if (tagPredicates != null) {
+            p = tagPredicates;
         }
-
-        if (ingredientPredicates != null) {
-            model.updateFilteredRecipeList(ingredientPredicates);
-        }
+        model.updateFilteredRecipeList(p);
 
         if (DisplayNavigator.hasDisplayController()) {
             DisplayNavigator.loadRecipePanel();
