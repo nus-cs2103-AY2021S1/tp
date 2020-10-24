@@ -38,7 +38,6 @@ public class PrintCommand extends Command {
         Path csvFilePath = model.getUserPrefs().getCsvFilePath();
 
         try {
-            System.out.println(model.getUserPrefs().getClass());
             FileUtil.createIfMissing(csvFilePath);
             BufferedWriter writer = new BufferedWriter(new FileWriter(csvFilePath.toString()));
             writer.append(makeFileCreationTime());

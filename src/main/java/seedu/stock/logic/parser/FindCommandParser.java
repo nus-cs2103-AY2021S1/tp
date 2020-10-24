@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,13 +10,12 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
-import seedu.stock.model.stock.Stock;
+import seedu.stock.model.stock.predicates.FieldContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.LocationContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
 import seedu.stock.model.stock.predicates.SerialNumberContainsKeywordsPredicate;
@@ -45,14 +45,19 @@ public class FindCommandParser implements Parser<FindCommand> {
         // Check if command format is correct
         if (!isAnyPrefixPresent(argMultimap, validPrefixesForFind)
                 || isAnyPrefixPresent(argMultimap, invalidPrefixesForFind)
-                || isDuplicatePrefixPresent(argMultimap, validPrefixesForFind)
                 || !argMultimap.getPreamble().isEmpty()) {
+
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     FindCommand.MESSAGE_USAGE));
         }
 
+        if (isDuplicatePrefixPresent(argMultimap, validPrefixesForFind)) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD,
+                    FindCommand.MESSAGE_USAGE));
+        }
+
         // Get the predicates to test to find stocks wanted
-        List<Predicate<Stock>> predicatesToTest =
+        List<FieldContainsKeywordsPredicate> predicatesToTest =
                 parsePrefixAndKeywords(argMultimap, validPrefixesForFind);
 
         return new FindCommand(predicatesToTest);
@@ -95,11 +100,11 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param prefixes prefixes to parse
      * @return list of predicates to filter stocks
      */
-    private static List<Predicate<Stock>> parsePrefixAndKeywords(
+    private static List<FieldContainsKeywordsPredicate> parsePrefixAndKeywords(
             ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
-                .map(prefix -> getPredicate(prefix, argumentMultimap.getValue(prefix).get()))
+                .map(prefix -> generatePredicate(prefix, argumentMultimap.getValue(prefix).get()))
                 .collect(Collectors.toList());
     }
 
@@ -110,8 +115,8 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param keywordsToFind keywords to match with the stock's field
      * @return predicate filter stocks based on field
      */
-    private static Predicate<Stock> getPredicate(Prefix prefix, String keywordsToFind) {
-        final Predicate<Stock> fieldContainsKeywordsPredicate;
+    private static FieldContainsKeywordsPredicate generatePredicate(Prefix prefix, String keywordsToFind) {
+        final FieldContainsKeywordsPredicate fieldContainsKeywordsPredicate;
         String trimmedKeywordsToFind = keywordsToFind.trim();
         String[] keywords = trimmedKeywordsToFind.split("\\s+");
 

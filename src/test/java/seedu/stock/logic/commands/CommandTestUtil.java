@@ -41,6 +41,7 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
+    public static final String NAME_DESC_BANANA_WITH_WHITESPACES_BETWEEN = " " + PREFIX_NAME + "Banana         Bun";
     public static final String SERIAL_NUMBER_DESC_APPLE = " " + PREFIX_SERIAL_NUMBER + VALID_SERIAL_NUMBER_APPLE;
     public static final String SERIAL_NUMBER_DESC_BANANA = " " + PREFIX_SERIAL_NUMBER + VALID_SERIAL_NUMBER_BANANA;
     public static final String SOURCE_DESC_APPLE = " " + PREFIX_SOURCE + VALID_SOURCE_APPLE;
@@ -67,6 +68,12 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String DEFAULT_SERIAL_NUMBER = "0";
+
+    public static final String[] VALID_NAME_APPLE_KEYWORDS = VALID_NAME_APPLE.split("\\s+");
+    public static final String[] VALID_NAME_BANANA_KEYWORDS = VALID_NAME_BANANA.split("\\s+");
+    public static final String[] VALID_SOURCE_APPLE_KEYWORDS = VALID_SOURCE_APPLE.split("\\s+");
+    public static final String[] VALID_LOCATION_APPLE_KEYWORDS = VALID_LOCATION_APPLE.split("\\s+");
+    public static final String[] VALID_SERIAL_NUMBER_BANANA_KEYWORDS = VALID_SERIAL_NUMBER_BANANA.split("\\s+");
 
     /**
      * Executes the given {@code command}, confirms that <br>

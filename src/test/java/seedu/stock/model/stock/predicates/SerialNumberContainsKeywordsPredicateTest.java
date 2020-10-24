@@ -1,5 +1,6 @@
 package seedu.stock.model.stock.predicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -147,6 +148,13 @@ public class SerialNumberContainsKeywordsPredicateTest {
         //Mixed-case with multiple matching keywords and one empty string keyword
         predicate = new SerialNumberContainsKeywordsPredicate(Arrays.asList("ABC-DEF", "DEF12345", ""));
         assertFalse(predicate.test(new StockBuilder().withSerialNumber("ABC-DEF12345").build()));
+    }
+
+    @Test
+    public void testToString() {
+        SerialNumberContainsKeywordsPredicate predicate =
+                new SerialNumberContainsKeywordsPredicate(Collections.singletonList("test"));
+        assertEquals(predicate.toString(), "Serial Number: test");
     }
 
 }
