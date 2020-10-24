@@ -57,7 +57,7 @@ class MacronutrientTest {
     @Test
     public void getCaloricMultiplierReturnsCorrectMultiplier() {
         assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, CORRECT_PROTEIN_MULTIPLIER).getCaloricMultiplier(),
-                PROTEIN_MULTIPLIER);
+                CORRECT_PROTEIN_MULTIPLIER);
         assertEquals(DEFAULT_FAT_1.getCaloricMultiplier(), CORRECT_FATS_MULTIPLIER);
         assertEquals(DEFAULT_CARBOHYDRATE_1.getCaloricMultiplier(), CORRECT_CARBOHYDRATE_MULTIPLIER);
         assertEquals(DEFAULT_PROTEIN_1.getCaloricMultiplier(), CORRECT_PROTEIN_MULTIPLIER);
