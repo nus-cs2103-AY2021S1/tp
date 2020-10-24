@@ -52,7 +52,7 @@ This user guide provides a detailed description of all the features available in
 
 ### 1. Show all commands : `help`
 
-Shows a message with a link to the user guide.
+Shows the user a message with a link to the user guide.
 
 ![help message](images/helpMessage.png)
 
@@ -72,7 +72,7 @@ Format: `list`
 
 ### 3. Add a deadline : `deadline`
 
-User can add a deadline to PlaNus.
+Users can add a deadline to PlaNus.
 
 Format: `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATE_TIME] [tag:MODULE_CODE]`
 
@@ -107,7 +107,7 @@ Users can add a lesson to PlaNus.
 
 Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
-* Adds a lesson to PlaNus, starting from the date specified in `start:DATE` to the date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time specified in `to:TIME`.
+* Adds a lesson to PlaNus, with the title specified in `title:TITLE`, starting from the date specified in `start:DATE` to the date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time specified in `to:TIME`.
 * The format of day in `day:DAY` must be as follows (case-insensitive):
   * Monday, Tuesday, ..., Sunday
 
@@ -120,7 +120,7 @@ Examples:
 
 ### 6. Delete a task : `delete`
 
-Deletes the specified task from PlaNus.
+Users can delete the specified task from PlaNus.
 
 Format: `delete INDEX...`
 
@@ -136,7 +136,7 @@ Examples:
 
 ### 7. Mark a deadline as done : `done`
 
-Marks a specified deadline in PlaNus as done.
+Users can mark a specified deadline in PlaNus as done.
 
 Format: `done INDEX:TIME_TAKEN...`
 
@@ -156,12 +156,12 @@ In order to avoid any typo from user, this command will not be executed successf
 
 Examples:
 
-* `list` followed by `done 2:30 3:60` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and record that user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
+* `list` followed by `done 2:30 3:60` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and record that the user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
 * `find title:homework` followed by `done 1:20` marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline is 20 minutes.
 
 ### 8. Find a task by an attribute : `find`
 
-Finds a task by a set of attributes given below.
+Users can find a task by a set of attributes given below.
 
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
@@ -188,7 +188,7 @@ Examples:
 
 ### 9. Edit a task : `edit`
 
-Edits a task by a set of attributes given below.
+Users can edit a task by a set of attributes given below.
 
 Format: `edit INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 
@@ -215,7 +215,7 @@ Examples:
 
 ### 10. Exit the program : `exit`
 
-Exits PlaNus.
+Users can exit PlaNus.
 
 Format: `exit`
 
