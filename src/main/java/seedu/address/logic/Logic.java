@@ -91,6 +91,11 @@ public interface Logic {
      * Quits the current project view.
      */
     void quit();
+
+    /**
+     * Checks whether the app is viewing list of projects.
+     */
+    boolean isProjectsView();
 }
 
 ///** Returns an unmodifiable view of the filtered list of tasks */

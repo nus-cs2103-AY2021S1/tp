@@ -123,6 +123,19 @@ public class LogicManager implements Logic {
     public void quit() {
         model.quit();
     }
+
+    @Override
+    public boolean isProjectsView() {
+        switch (getStatus()) {
+        case PROJECT_LIST:
+        case PROJECT:
+        case TASK:
+        case MEETING:
+            return true;
+        default:
+            return false;
+        }
+    }
 }
 
 
