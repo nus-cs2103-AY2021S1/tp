@@ -1,6 +1,7 @@
 package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.stock.commons.util.SortUtil;
 import seedu.stock.model.Model;
 
