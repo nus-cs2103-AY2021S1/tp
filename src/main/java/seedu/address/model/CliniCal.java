@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.UniqueAppointmentList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.UniquePatientList;
 
@@ -15,6 +17,7 @@ import seedu.address.model.patient.UniquePatientList;
 public class CliniCal implements ReadOnlyCliniCal {
 
     private final UniquePatientList patients;
+    private final UniqueAppointmentList appointments;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -25,6 +28,7 @@ public class CliniCal implements ReadOnlyCliniCal {
      */
     {
         patients = new UniquePatientList();
+        appointments = new UniqueAppointmentList();
     }
 
     public CliniCal() {}
@@ -48,12 +52,21 @@ public class CliniCal implements ReadOnlyCliniCal {
     }
 
     /**
+     * Replaces the contents of the appointment list with {@code appointments}.
+     * {@code appointments} must not contain any duplicate appointments.
+     */
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments.setAppointments(appointments);
+    }
+
+    /**
      * Resets the existing data of this {@code CliniCal} with {@code newData}.
      */
     public void resetData(ReadOnlyCliniCal newData) {
         requireNonNull(newData);
 
         setPatients(newData.getPatientList());
+        setAppointments(newData.getAppointmentList());
     }
 
     //// patient-level operations
@@ -94,6 +107,44 @@ public class CliniCal implements ReadOnlyCliniCal {
         patients.remove(key);
     }
 
+    //// appointment-level operations
+
+    /**
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the appointment list.
+     */
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return appointments.contains(appointment);
+    }
+
+    /**
+     * Adds an appointment to the appointments.
+     * The appointment must not already exist in the appointment list.
+     */
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+    }
+
+    /**
+     * Replaces the given appointment {@code target} in the list with {@code editedAppointment}.
+     * {@code target} must exist in the appointment list.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing
+     * appointment in the appointment list.
+     */
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireNonNull(editedAppointment);
+
+        appointments.setAppointment(target, editedAppointment);
+    }
+
+    /**
+     * Removes {@code key} from this {@code CliniCal}.
+     * {@code key} must exist in the appointments list.
+     */
+    public void removeAppointment(Appointment key) {
+        appointments.remove(key);
+    }
+
     //// util methods
 
     @Override
@@ -105,6 +156,11 @@ public class CliniCal implements ReadOnlyCliniCal {
     @Override
     public ObservableList<Patient> getPatientList() {
         return patients.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getAppointmentList() {
+        return appointments.asUnmodifiableObservableList();
     }
 
     @Override

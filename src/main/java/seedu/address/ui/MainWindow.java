@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private AppointmentListPanel appointmentListPanel;
     private CalendarDisplay calendarDisplay;
 
     @FXML
@@ -47,6 +48,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane appointmentListPanelPlaceholder;
 
     @FXML
     private StackPane calendarDisplayPlaceholder;
@@ -125,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
+        appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
         calendarDisplay = new CalendarDisplay();
         calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
