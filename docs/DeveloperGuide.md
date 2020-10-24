@@ -27,7 +27,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,7 +62,7 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -78,9 +78,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `StockBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a stock).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -97,7 +97,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/model/Model.java)
 
 The `Model`,
 
@@ -117,7 +117,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/stock/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T15-3/tp/blob/master/src/main/java/seedu/stock/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.stock.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,23 +133,200 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### General Features
+General features that are used in many of the implemented features are defined here.
+
+#### StockBookParser
+The `StockBookParser` is used to parse a full user input to determine if the user input corresponds to any of the
+`COMMAND_WORD` in the various command classes. If the the user input does not conform the any of the expected format
+required, Warenager will produce an error message.
+
+### Add Feature
+
+The mechanism for add feature is facilitated by `AddCommandParser`, `AddCommand` and `Model`.
+
+#### AddCommand
+
+`AddCommand` class extends `Command` interface. `AddCommand` class is tasked to add the new stock into the stock book
+and creating a new `CommandResult` to be displayed to the user in the user interface.
+
+Some important operations implemented here are:
+
+* `AddCommand#execute()`
+  Adds a stock in the stock book if it is not present and returns a new `CommandResult` 
+  to be displayed to the user in the user interface.
+
+#### AddCommandParser
+`AddCommandParser` class extends `Parser` interface. `AddCommandParser` class is tasked with parsing the
+user inputs and generate a new `AddCommand`. The main logic of the add feature is encapsulated here.
+
+`AddCommandParser` receives the user input, and extracts the arguments of the required prefixes. 
+The `parse` method inside the `AddCommandParser` receives the user input, and extracts the 
+arguments of the required prefixes. This `parse` method will then return an `Addcommand` with the given stock
+as argument if the user input is a valid `Addcommand` and throw a `ParseException` otherwise.
+
+Some important operations implemented here are:
+
+* `AddCommandParser#parse()` <br>
+  Returns `Addcommand` to be executed.
+* `AddCommandParser#arePrefixesPresent()` <br>
+  Returns true if all required prefixes are present in the user input.
+* `AddCommandParser#doesPrefixesAppearOnce()` <br>
+  Returns true if all required prefixes appear only once in the user input.
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the add feature behaves at each step.
+
+**Example 1: Adding a valid stock into the stock book**
+
+Step 1. The user enters `add n/Apple s/Fairprice q/1000 l/Fruits section`.
+
+Step 2. The command word add is extracted out in `StockBookParser`, and matches the `COMMAND_WORD`for AddCommand class.
+
+Step 3. The remaining user input is the given to the AddCommandParser to determine if the user input contains the required fields.
+
+Step 4. Inside `AddCommandParser#parse()` method, the remaining user input `n/Apple s/Fairprice q/1000 l/Fruits section`,
+ will be subjected to checks by the `AddCommandParser#arePrefixesPresent()` and `AddCommandParser#doesPrefixesAppearOnce()` methods. In this case,
+ all prefixes are present and appear only once. 
+ 
+Step 5. The `AddCommandParser#parse()` method then proceeds to create `Name`, `Source`, `SerialNumber`, `Quantity` and `Location` with
+the user input. A default `SerialNumber` will be generated for the stock. In this case, the input for the prefixes matches the criteria for the respective 
+classes. The aforementioned objects will be parsed as arguments to create a `Stock` object. All criteria of the `AddCommandParser#parse()` method are met, 
+hence returning a `AddCommand` object.
+
+Step 6. The `AddCommand#execute()` is then called by the `Logic Manager`. In this method, a unique serial number will be
+ generated by `Model#generateNextSerialNumber`, and replaces the default serial number in the `Stock` object. 
+ 
+Step 7. The `AddCommand#execute()` is then checks if the `Stock` exists in the `StockBook`.
+ In this case, the `Stock` object will be added in the `Stockbook` as does not exist in the `StockBook`,
+ and returns a new `CommandResult` to be displayed to the user.
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the add feature works for **Example 1**:
+
+* TODO Sequence diagram
+
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the add feature is triggered:
+
+* TODO Sequence diagram
+
+#### Design Consideration
+
+##### Aspect: Input format for add command.
+
+* **Alternative 1 (current implementation):** Required prefixes must only appear once.
+  * Pros: No ambiguity on which prefix extract, and corresponding arguments used in the creation of stock.
+  * Cons: User have to backtrack and change the argument corresponding to the field header.
+
+* **Alternative 2:** Required prefix can appear for than once.
+  * Pros: Only the argument corresponding to the last appearance of the prefix will be used. Allows users to input prefix and
+  corresponding arguments to override the last occurence of this prefix.
+  * Cons: Users may type 2 of the required prefixes accidentally and add a wrong stock into the stockbook.
+
+### Update Feature
+
+The mechanism for update feature is facilitated by `UpdateCommandParser, UpdateCommand, UpdateStockDescriptor`.
+
+#### UpdateCommand
+
+`UpdateCommand` class implements `Command` interface. `UpdateCommand` class is tasked with creating a new `CommandResult`
+with the updated stocks message as its argument.
+
+Some of the important operations implemented here are:
+
+* `UpdateCommand#execute()` <br>
+  Generates a new `CommandResult` with the updated stocks message as its argument.
+
+* `UpdateCommand#stocksAsString()` <br>
+  Generates the updated stocks message by transforming the updated stocks into their string descriptions.
+
+* `UpdateCommand#createUpdatedStock()` <br>
+  Generates the updated stock based on the information of the current stock in inventory and `UpdateStockDescriptor`.
+
+#### UpdateCommandParser
+
+`UpdateCommandParser` class implements `Parser` interface. `UpdateCommandParser` class is tasked with parsing the user inputs
+and generate a new `UpdateCommand`.
+
+`UpdateCommandParser` receives the prefixes and their values from the user input. The `UpdateCommandParser#parse()` will
+check for compulsory prefixes and their values. `ParseException` will be thrown if the values are not valid or some
+compulsory prefixes are missing. 
+
+Some of the important operations implemented here are:
+
+* `UpdateCommandParser#parse()` <br>
+  Parses the prefixes and their values attained from user input. This method will first check if all compulsory prefixes
+  are present. This method will then create a new `UpdateStockDescriptor` based on the prefixes values. 
+  A `ParseException` will be thrown if any compulsory prefixes are missing or invalid values.
+
+#### UpdateStockDescriptor
+
+`UpdateStockDescriptor` is a inner static class inside `UpdateCommand`. This class is tasked with storing the temporary
+values for the fields to be later updated into the stock in inventory.
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the update mechanism behaves at each step. It is assumed that
+the stock with serial number `fairprice1` exists in the inventory.
+
+**Example 1: Update a stock's name and quantity**
+
+Step 1. The user enters `update sn/fairprice1 n/Banana q/10000` to the CLI.
+
+Step 2. The command word `update` is extracted out in `StockBookParser` and checked if it matches any valid command word.
+
+Step 3. `update` is a valid command word. User input prefixes and their values are passed down to `UpdateCommandParser#parse()`
+
+Step 4. `UpdateCommandParser#parse()` will check if the prefixes `sn/` exists as it is compulsory.
+
+Step 5. The prefix `sn/` exist. `UpdateCommandParser#parse()` will extract the value of the prefix `sn/` which in this
+case is `fairprice1` 
+
+Step 6. `UpdateCommandParser#parse()` will extract the value of other prefixes present as well.
+
+Step 7. `UpdateCommandParser#parse()` returns a new `UpdateCommand` with the `UpdateStockDescriptor` as its argument.
+The `UpdateStockDescriptor` contains the values of the parsed prefixes.
+
+Step 8. `Logic Manager` then calls `UpdateCommand#execute()`. Inside the method, it will check if the serial numbers
+in `UpdateStockDescriptor` is found in the `Model`.
+
+Step 9. All serial numbers matched. The method `UpdateCommand#createUpdatedStock()` is called to produce the new updated
+stock.
+
+Step 10. The corresponding stocks in current inventory is replaced by the new updated stocks.
+
+Step 11. Returns a new `CommandResult` containing the updated stocks message as its argument.
+
+Step 12. The updated stocks message is displayed to the user.
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the update feature works for **Example 1**:
+
+![Update Example 1](images/UpdateSequenceDiagramExample1.png)
+
 ### Suggestion Feature
 
 The mechanism for suggestion feature is facilitated by `SuggestionCommandParser, SuggestionCommand, SuggestionUtil`.
 
 #### SuggestionCommand
 
-`SuggestionCommand` class extends `Command` interface. `SuggestionCommand` class is tasked with creating a new `CommandResult`
+`SuggestionCommand` class implements `Command` interface. `SuggestionCommand` class is tasked with creating a new `CommandResult`
 with the suggestion message to be displayed to the user as its argument. The suggestion message to be displayed
 is gathered from the result of the parsing stage for suggestion.
 
 Some of the important operations implemented here are:
 
-* `SuggestionCommand#execute()`
+* `SuggestionCommand#execute()` <br>
   Generates a new `CommandResult` with the suggestion message as its argument.
 
 #### SuggestionCommandParser
-`SugestionCommandParser` class extends `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
+
+`SugestionCommandParser` class implements `Parser` interface. `SuggestionCommandParser` class is tasked with parsing the
 user inputs and generate a new `SuggestionCommand`. The main logic of the suggestion feature is encapsulated here.
 
 `SuggestionCommandParser` receives the user input, along with either the faulty command word or parsing error messages
@@ -162,24 +339,39 @@ Some of the important operations implemented here are:
   Parses the user input and parsing error messages thrown from another `Parser` and returns a new `SuggestionCommand`
   with the suggestion to be shown as its argument. The inference for the command word to be suggested is made in here.
   After the correct command word is inferred, then it will call helper functions to generate the suggestion messages.
+
 * `SuggestionCommandParser#generateAddSuggestion()` <br>
   Generates the suggestion message for an add command.
+
 * `SuggestionCommandParser#generateListSuggestion()` <br>
   Generates the suggestion message for a list command.
+
 * `SuggestionCommandParser#generateHelpSuggestion()` <br>
   Generates the suggestion message for a help command.
+
 * `SuggestionCommandParser#generateExitSuggestion()` <br>
-  Generates the suggestion message for a ecit command.
+  Generates the suggestion message for a exit command.
+
 * `SuggestionCommandParser#generateUpdateSuggestion()` <br>
   Generates the suggestion message for an update command.
+
 * `SuggestionCommandParser#generateDeleteSuggestion()` <br>
   Generates the suggestion message for a delete command.
+
 * `SuggestionCommandParser#generateFindSuggestion()` <br>
   Generates the suggestion message for a find command.
+
 * `SuggestionCommandParser#generateFindExactSuggestion()` <br>
   Generates the suggestion message for a find exact command.
+
 * `SuggestionCommandParser#generateStatisticsSuggestion()` <br>
   Generates the suggestion message for a stats command.
+
+* `SuggestionCommandParser#generateNoteSuggestion()` <br>
+  Generates the suggestion message for a note command.
+
+* `SuggestionCommandParser#generateNoteDeleteSuggestion()` <br>
+  Generates the suggestion message for a note delete command.
 
 #### SuggestionUtil
 
@@ -189,6 +381,7 @@ The utilities provided inside are:
 
 * `SuggestionUtil#min()` <br>
   Computes the minimum of three integers.
+
 * `SuggestionUtil#minimumEditDistance()` <br>
   Computes the minimum edit distance between 2 strings.
 
@@ -271,17 +464,16 @@ will fill the argument with a default value. In this case, the prefix `n/` is pr
 `n/Milk` is then added to the suggestion message. The prefix `s/` is present, but its argument is empty.
 `s/<source>` is then added to the suggestion message.
 
-Step 9. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
+Step 12. Lastly `SuggestionCommandParser#generateUpdateSuggestion()` will append the usage message for `update` command.
 
-Step 10. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
+Step 13. `SuggestionCommandParser#parse()` method returns a new `SuggestionCommand` with the suggestion message
 to be displayed as its argument.
 
-Step 11. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
+Step 14. `SuggestionCommand` is executed and produces a new `CommandResult` to display the message to the user.
 
-Step 12. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
+Step 15. The suggestion `update sn/<serial number> n/Milk s/<source>` is displayed to the user along with what kind of
 error and the message usage information. In this case the error is `Invalid command format` and the message usage is from
 `UpdateCommand`.
-
 
 #### Sequence Diagram
 
@@ -381,6 +573,548 @@ The following activity diagram summarizes what happens when the suggestion featu
   * Cons: The distance estimate between two strings is quite bad, especially if no substring overlaps. Slow in speed
     compared to minimum edit distance. Generates worse suggestion compared to minimum edit distance.
 
+### Find and FindExact Features
+
+#### Description
+The Find and FindExact Features allow users to search for `Stock` items in the stockbook. 
+
+There are two commands users can use:
+* `find` - Stock that matches ALL keywords of ANY field will be displayed.
+* `findexact` - Stock that matches ALL keywords of ALL fields will be displayed.
+
+Find and FindExact features allow search for four fields:
+
+Field         | Prefix
+--------------| -------
+Name          |   n/
+Source        |   s/
+Serial Number |   sn/
+Location      |   l/
+
+#### Mechanism
+The mechanism for the Find feature is facilitated by classes `FindCommand`(or `FindExactCommand`),
+`FindCommandParser` (or `FindExactCommandParser`), `FindUtil` and `FieldContainsKeywordsPredicate`
+subclasses that include:
+* `NameContainsKeywordsPredicate`
+* `SerialNumberContainsKeywordsPredicate`
+* `SourceContainsKeywordsPredicate`
+* `LocationContainsKeywordsPredicate`
+
+#### FindCommandParser
+The `FindCommandParser` (as with the `FindExactCommandParser`) class
+implements the `Parser` interface. 
+`FindCommandParser` class is tasked with parsing the user inputs
+to generate a `FindCommand` with a list of `FieldContainsKeywordsPredicate`.
+
+The list of `FieldContainsKeywordsPredicate` is obtained from parsing
+the user input, to produce either of the following predicates shown
+in the table below, for each `Prefix` and keywords pair.
+
+(Note that the user input should contain at least one `Prefix` and keywords to search.
+The table below shows which `FieldContainsKeywordsPredicate`
+is generate for the specific `Prefix`.)
+
+Prefix       | FieldContainsKeywordsPredicate
+-------------| -------------------------
+n/<keywords> | NameContainsKeywordsPredicate
+s/<keywords> | SourceContainsKeywordsPredicate
+l/<keywords> | LocationContainsKeywordsPredicate
+sn/<keywords>| SerialNumberContainsKeywordsPredicate
+
+`FindCommandParser` implements the following important operations:
+
+* `FindCommandParser#parse()` -
+ Parses the user input to produce a `FindCommand`.
+* `FindCommandParser#parsePrefixAndKeywords()` -
+ Generates a list of `FieldContainsKeywordsPredicate` from a map of `Prefix` and keywords.
+* `FindCommandParser#generatePredicate()` -
+ Generates a `FieldContainsKeywordsPredicate` from a `Prefix` and keywords.
+
+#### FindCommand / FindExactCommand
+The `FindCommand` class (as with the `FindExactCommand` class)
+extends the `Command` abstract class. The `FindCommand` class
+is tasked with creating a new `CommandResult` that represents
+the result of the execution of a `FindCommand`. 
+
+The construction of a `FindCommand` takes in a list of `FieldContainsKeywordsPredicate`.
+These predicates will be evaluated to filter the Stock items to be displayed to user.
+
+When a `FindCommand` is executed, a `CommandResult` is constructed with the status message,
+showing the searched terms and searched results of the number of stocks found from the search.
+
+`FindCommand` implements the following important operations:
+
+* `FindCommand#execute()` -
+Executes the search and returns the result message of the search.
+
+#### FindUtil
+The `FindUtil` class is part of the util package.
+It provides utility to combine the list of `FieldContainsKeywordsPredicate`
+of the `FindCommand` into a composed `Predicate<Stock>`.
+
+`Find` feature requires the `Stock` to fulfill only one
+`FieldContainsKeywordsPredicate` in the list for `Stock`
+to be displayed. The mechansim used to combine the predicates
+into a composed Predicate<Stock> for `Find` is Java 8 Predicate method,
+Predicate.or().
+
+`FindExact` feature requires the `Stock` to fulfill all
+`FieldContainsKeywordsPredicate` in the list for `Stock` to be displayed.
+The mechansim used to combine the predicates into a composed Predicate<Stock>
+for `FindExact` is Java 8 Predicate method, Predicate.and().
+
+`FindUtil` implements the following important operations:
+
+* `FindUtil#generateCombinedPredicatesWithOr()` -
+ Combines predicates using Predicate.or()
+* `FindUtil#generateCombinedPredicatesWithAnd()` -
+ Combines predicates using Predicate.and()
+
+#### FieldContainsKeywordsPredicate
+
+`FieldContainsKeywordsPredicate` is an abstract class
+that implements the interface Predicate<Stock>.
+Its subclasses are `NameContainsKeywordsPredicate`,
+`LocationContainsKeywordsPredicate`, `SerialNumberContainsKeywordsPredicate`
+and `SourceContainsKeywordsPredicate`, which inherit and implement the method
+`test(Stock)`, and is constructed with a list of String keywords to test.
+
+* `NameContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s name contains all the keywords in the list.
+* `SerialNumberContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s serial number contains all the keywords in the list.
+* `LocationContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s location stored contains all the keywords in the list.
+* `SourceContainsKeywordsPredicate` implements test() to evaluate true
+ when a `Stock`'s source contains all the keywords in the list.
+* For all `FieldContainsKeywordsPredicate`, if keyword given is an
+ empty string, method test() evaluates to false.
+
+Note: For any `FieldContainsKeywordsPredicate#test()` to return true,
+ field of `Stock` must contain ALL keywords in the list.  
+
+`FieldContainsKeywordsPredicate` implements the following important operations:
+* `FieldContainsKeywordsPredicate#test()` -
+ Evaluates this predicate on the given Stock argument.
+
+#### Example Usage Scenario
+Given below are some example usage scenarios and how
+ the find feature mechanism behaves at each step.
+
+**Example 1: Finding all stocks with Name that contains
+ "pineapple" OR serial number that contains "pine"**
+
+Step 1. The user enters `find n/pineapple sn/pine`.
+
+Step 2. `MainWindow#executeCommand()` is called with the user input.
+Within this method, `LogicManager#execute()` is called with the
+user input to obtain a `CommandResult`.
+
+Step 3. The command word `find` is extracted out in `StockBookParser`.
+The command word matches `COMMAND_WORD`: `find` in the `FindCommand` class.
+
+Step 4. The remaining user input is passed to the `FindCommandParser`
+to generate a list of `FieldContainsKeywordsPredicate` to evaluate on the stocks. 
+
+Step 5. Within the `FindCommandParser#parsePrefixAndKeywords()` method,
+the respective `NameContainsKeywordsPredicate` and `SerialNumberContainsKeywordsPredicate`
+will be created using the `Prefix` and keywords given, and
+added to the list of `FieldContainsKeywordsPredicate`.
+
+Step 6. The `FindCommandParser#parse()` method then returns a `FindCommand`,
+constructed with the list of `FieldContainsKeywordsPredicate`. 
+
+Step 7. On construction of the `FindCommand`, the method
+`FindUtil#generateCombinedPredicatesWithOr()` is called to generate
+a composed Predicate<Stock>, which only requires one `FieldContainsKeywordsPredicate`
+to be fulfilled for stock to be displayed.
+
+Step 8. `LogicManager#execute()` then calls `FindCommand#execute()` method,
+with current `Model` as argument. Within this method call,
+`Model#updateFilteredStockList` method evaluates the composed
+Predicate<Stock> on all the stocks in the stock list.
+
+Step 9. For each `FieldContainsKeywordsPredicate`, `FieldContainsKeywordsPredicate#test()`
+evaluates the predicate on the stock.
+
+Step 10. Stocks that do not match the search terms are filtered out.
+The result of the search is stored in the returning `CommandResult`object
+and displayed with `ResultDisplay`.
+
+Step 11. User views the new `StockListPanel` with the filtered stock list.
+
+**Example 2: Finding all stocks with Name that contains "pineapple"
+AND serial number that contains "pine"**
+
+Steps are the same as Example 1, with the replacement of:
+
+Command word:
+* `find` to `findexact`
+
+Classes:
+* `FindCommandParser` to `FindExactCommandParser`
+* `FindCommand` to `FindExactCommand`
+
+Method(s):
+* Step 7: `FindUtil#generateCombinedPredicatesWithOr()` to
+ `FindUtil#generateCombinedPredicatesWithAnd()`
+
+#### Sequence Diagram
+The following sequence diagram shows how the Find feature works for Example 1:
+![Find Feature Sequence Diagram](images/FindFeatureSequenceDiagram.png)
+
+#### Activity Diagram
+The following activity diagram summarizes what happens when
+ the Find feature is triggered:
+![Find Feature Activity Diagram](images/FindFeatureActivityDiagram.png)
+
+#### Design Consideration
+
+##### Aspect: Matching of stock and user input for each field
+* **Alternative 1 (current implementation):** For any field prefix, a stock
+matches user input if the stock's field contains all of the keywords entered. <br>
+(eg. For `find n/ this is a banana`, stock matches user input if it contains
+all keywords `this`, `is`, `a`, `banana`)
+ * Pros: Results in a more accurate matching of stocks to user input.
+ * Cons: User has to be careful not to input irrelevant terms along with terms
+ that match with the stock's field, else the stock intended will not show up.
+ 
+* **Alternative 2:** For any field prefix, a stock matches user input
+if the stock's field contains at least one of the keywords entered. <br>
+(eg. For `find n/ this is a banana`, stock matches user input if it contains
+at least one of `a`, `this`, `is`, `banana`.)
+ * Pros: More flexible as desired stock will be displayed with at least
+ one matching keyword, even when irrelevant keywords are entered.
+ * Cons: A less accurate list of matching stocks is displayed as more stocks will
+ match with the keywords since the search criteria is less rigid.
+
+##### Aspect: Input format for find command.
+
+* **Alternative 1 (current implementation):** Duplicate prefixes cannot be present in user input.
+  * Pros: Removes ambiguity in choosing the corresponding arguments used in searching for stocks.
+  * Cons: Users have to retype their command in the case where
+  they forget which prefixes they have typed and input duplicate prefixes.
+
+* **Alternative 2:** Duplicate prefixes can be present in user input.
+  * Pros: Only the argument corresponding to the last appearance of the prefix will be used.
+  Allows users to input prefix and corresponding arguments to override the last occurrence of this prefix.
+  * Cons: Users may type 2 of the required prefixes accidentally and search for unintended stocks.
+
+### Statistics Feature
+
+The backend mechanism for statistics feature is facilitated by `StockBookParser, StatisticsCommandParser, StatisticsCommand`
+and one of the child command classes of StatisticsCommand that includes (as of documentation):
+* `SourceStatisticsCommand`
+* `SourceQuantityDistributionStatisticsCommand`  
+
+The frontend mechanism for statistics feature mainly facilitated by the controller class `StatisticsWindow` for
+`StatisticsWindow.fxml`. The choice of display is `JavaFX Piechart` from the `JavaFX Charts`.
+
+#### StatisticsCommandParser
+`StatisticsCommandParser` class extends `Parser` interface. `StatisticsCommandParser` class is tasked with parsing the
+user inputs (without the command word) and generates a new `StatisticsCommand` object. The `StatisticsCommand` will be one of the
+existing child commands stated above.
+
+Upon successful parsing, the `StatisticsCommand` object will then be passed on to the respective child command classes
+for logical execution.
+
+If the user inputs do not correspond to any of the `STATISTICS_TYPE` words in the child command classes, an error message
+will be shown and no `StatisticsCommand` object will be created.
+
+Some of the more important operations implemented here are:
+
+* `StatisticsCommandParser#parse()` <br>
+  Parses the user input and returns a new `StatisticsCommand` object that can be belongs to either one of the
+  child classes of `StatisticsCommand`. This is aided by the `StatisticsCommandParser#getStatisticsType()` method.
+  
+* `StatisticsCommandParser#getStatisticsType()` <br>
+  This is a further abstracted method that reads the input string and determines what is the correct statistical type
+  command that the user wants.
+  
+:warning: It is to note that some child classes requires parameters in their constructors for their respective purposes.
+  
+#### StatisticsCommand
+
+`StatisticsCommand` abstract class extends `Command` interface. While the `StatisticsCommand` class contains minimal
+functionality, it serves as an inheritance bridge between the various types of statistics command, to comply with
+`SOLID` principles.
+
+The respective child classes will be tasked with consolidating the required data and storing it in a `CommandResult` object.
+
+#### SourceStatisticsCommand
+`SourceStatisticsCommand` class extends `StatisticsCommand` class. The `SourceStatisticsCommand` class is tasked with
+consolidating the required data and storing it in a `CommandResult` object. The statistics shown by this class
+describes the **percentage of the different sources** existing in Warenager.
+
+The format for this command is fixed and is ensured by the parser. Any errors arising from this command will be an
+assertion error.
+
+The main operation implemented in `SourceStatisticsCommand` class is:
+* `SourceStatisticsCommand#execute()`
+  Generates a new `CommandResult`. Some key attributes of this object consists of:
+   1. `statisticsData` The statistics data to be displayed.
+   2. `otherStatisticsDetails` that includes:
+        * Statistics type
+
+#### SourceQuantityDistributionStatisticsCommand
+`SourceQuantityDistributionStatisticsCommand` class extends `StatisticsCommand` class. The
+`SourceQuantityDistributionStatisticsCommand` requires a single parameter: `targetSource`. The statistics shown by this class
+describes the **distribution among the different stocks** of the given `targetSource`.
+
+If the `targetSource` is not found by Warenager, this will result in an error message to be shown to prompt the
+user that Warenager cannot find the target source company.
+
+The main operation implemented in `SourceQuantityDistributionStatisticsCommand` class is:
+* `SourceQuantityDistributionStatisticsCommand#execute()`
+  Generates a new `CommandResult`. The key attributes of this object consists of:
+   1. `statisticsData` The statistics data to be displayed.
+   2. `otherStatisticsDetails` that includes:
+        * Statistics type
+        * Target source
+  
+#### StatisticsWindow
+`StatisticsWindow` is the controller class for the `StatisticsWindow.fxml`. Here, the piechart in the class is updated
+with the correct data corresponding to the command the user inputs. The title will also be customised to the
+type of statistics the user wants to display. The compiled data from the `CommandResult` returned by the `#execute`
+methods will be read here and supplied to the pie chart.
+
+Some of the more important operations implemented here are:
+
+* `StatisticsWindow#refreshData()` <br>
+  This method clears all the current data in the piechart and inserts the correct data depending on the Statistics type
+  from `otherStatisticsDetails` in the `CommandResult` object. It then calls the respective methods needed to extract
+  the compiled data.
+  
+* `StatisticsCommandParser#updateDataForSourceQuantityDistributionStatistics()` <br>
+  This method is called if the type of statistics is `SourceQuantityDistribution Statistics`. Some calculations are done
+  here to provide users with more data.
+  
+* `StatisticsCommandParser#updateDataForSourceStatistics()` <br>
+  This method is called if the type of statistics is `Source Statistics`. Some calculations are done here to provide users
+  with more data.
+  
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the statistics mechanism behaves at each step.
+
+**Example 1: Calling statistics for Source Companies**
+
+Step 1. The user enters `stats st/source`.
+
+Step 2. The command word `stats` is extracted out in `StockBookParser`, in this case, it matches the `COMMAND_WORD`,
+        which is `stats` in the `StatisticsCommand` class.
+
+Step 3. The remaining user input is the given to the `StatisticsCommandParser` to determine which type of statistics
+        the user wants.
+
+Step 4. Inside `StatisticsCommandParser#parse()` method, the header will be dropped, resulting in the remaining user
+        input to be `source`. This matches to the criteria for `SourceStatisticsCommand`, and returning a
+        `SourceStatisticsCommand` object.
+        
+Step 5. The `SourceStatisticsCommand#execute()` is then called by the `Logic Manager`. Data extraction and compilation
+        will be done and stored in the returning `CommandResult` object. The `CommandResult` object will also store
+        the type of statistics in `otherStatisticsDetails`, in this case will be `source`, for later usage.
+
+Step 6. When the `UiManager` calls the `SourceQuantityDistributionStatisticsCommand#execute()` method, this will invoke
+        `MainWindow#execute()`. This `CommandResult` is of the statistics class, leading to the `MainWindow#handleStatistics()`
+         method call. This leads to the `StatisticsWindow#show()` method call.
+
+Step 7. `StatisticsWindow#show()` will then call the `StatisticsWindow#refreshData()` which in turn will determine display the
+        data in the desired format, based on the type of statistics from `otherStatisticsDetails` in `CommandResult` from Step 5.
+        In this case, `Source Statistics` will be displayed.
+
+Step 8. This will then update the pie chart with both the relevant data, format, and title to suit the type of statistics
+        to be shown. The UI of the window to be shown is customised by the styling based on the `StatisticsWindow.fxml` file.
+     
+Step 9. The updated piechart will be shown in a popup window.
+
+**Example 2: Calling statistics for Source Quantity Distribution**
+
+Step 1. The user enters `stats st/source-qt-ntuc`. `ntuc` is a valid source that exists in Warenager.
+
+Step 2. The command word `stats` is extracted out in `StockBookParser`, in this case, it matches the `COMMAND_WORD`,
+        which is `stats` in the `StatisticsCommand` class.
+
+Step 3. The remaining user input is the given to the `StatisticsCommandParser` to determine which type of statistics
+        the user wants.
+
+Step 4. Inside `StatisticsCommandParser#parse()` method, the header will be dropped, resulting in the remaining user
+        input to be `source-qt-ntuc`. This matches to the criteria for `SourceQuantityDistributionStatisticsCommand`,
+        and returning a `SourceQuantityDistributionStatisticsCommand` object.
+        
+Step 5. The `SourceQuantityDistributionStatisticsCommand#execute()` is then called by the `Logic Manager`. Data
+        extraction and compilation will be done and stored in the returning `CommandResult` object. The `CommandResult` object
+        will also store the type of statistics in `otherStatisticsDetails`, in this case will be `source-qt-`, for later usage.
+        For this command, the `targetSource` will also be stored in `otherStatisticsDetails` as it is needed to customise the
+        title for the piechart.
+
+Step 6. When the `UiManager` calls the `SourceQuantityDistributionStatisticsCommand#execute()` method, this will invoke
+        `MainWindow#execute()`. This `CommandResult` is of the statistics class, leading to the `MainWindow#handleStatistics()`
+        method call. This leads to the `StatisticsWindow#show()` method call.
+
+Step 7. `StatisticsWindow#show()` will then call the `StatisticsWindow#refreshData()` which in turn will determine display the
+        data in the desired format, based on the type of statistics from `otherStatisticsDetails` in `CommandResult` from Step 5.
+        In this case, `Source Quantity Distribution Statistics` will be displayed.
+
+Step 8. This will then update the pie chart with both the relevant data, format, and title to suit the type of statistics
+        to be shown. The UI of the window to be shown is customised by the styling based on the `StatisticsWindow.fxml` file.
+     
+Step 9. The updated piechart will be shown in a popup window.
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the Logic aspect of the statistics feature works for **Example 1**:
+
+![Statistics-Logic Example 1](images/StatisticsCommandSequenceDiagramLogicExample1.png)
+
+The following sequence diagram shows how the Ui aspect of the statistics feature works for **Example 1**:
+
+![Statistics-Ui Example 1](images/StatisticsCommandSequenceDiagramUiExample1.png)
+
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the statistics feature is triggered:
+
+![StatisticsActivityDiagram](images/StatisticsActivityDiagram.png)
+
+#### Design Considerations
+
+##### Aspect: UI view for statistics
+
+* **Alternative 1 (current implementation):** Pop up window.
+  * Pros: Window can be resized for clearer view. Reduces panel usage since it does not share a common space
+          with the stockcards display.
+  * Cons: May impede typing speed if statistics are viewed very often.
+
+* **Alternative 2:** Side-by-side view beside the stock cards.
+  * Pros: Reduce interruption between typing.
+  * Cons: Statistical views are not often used but rather, only after huge changes over time. In order to display the
+          piechart properly, there needs to be a sufficiently large area. This leads to a huge portion of display space
+          not being utilised efficiently when other commands are being used.
+    
+##### Aspect: Choice of charts as the primary display for statistics
+Pie chart is being used as the choice of statistical display to aid the lack of relativity between stocks
+in Warenager. Absolute numbers of each stock is already displayed by the stockcards in Warenager. Pie charts
+are more useful when working out the compositions of the data.
+
+#### Future statistical features
+With the expansion of more data fields for each stock, there will be more varieties of statistics that can be
+shown based on these new fields.
+
+### Sort Feature
+
+The mechanism for sort feature is facilitated by `SortCommandParser, SortCommand, SortUtil`.
+
+#### SortCommand
+
+`SortCommand` class extends `Command` interface. `SortCommand` class is tasked with creating a new `CommandResult`
+with the sort result to be displayed to the user as its argument. The sort message generated is based on the sorted
+field.
+
+Some of the important operations implemented here are:
+
+* `SortCommand#execute()` <br>
+  Generates a new `CommandResult` with the sort result as its argument. Creates the comparator needed to sort
+  from the `fieldToSort` and `isReversed` passed down by `SortCommandParser#parse()`. 
+  After the comparator is created, `Model#sortFilteredStockList()` is called with the comparator as
+  its argument to sort the inventory.
+
+#### SuggestionCommandParser
+
+`SortCommandParser` class implements `Parser` interface. `SortCommandParser` class is tasked with parsing the
+user inputs and generate a new `SortCommand`.
+
+`SortCommandParser` receives the user input and gets the compulsory prefixes needed for sort feature to function.
+If any of the compulsory prefixes are not present or their values are invalid, then a `ParseException` will be thrown
+indicating an error in parsing the user input.
+
+Some of the important operations implemented here are:
+
+* `SortCommandParser#parse()` <br>
+  Generates a new `SortCommand` with the field to be sorted and its order as the arguments. This method is tasked
+  with parsing the compulsory prefixes needed and passing their values to `SortCommand`. If any of the compulsory
+  prefixes are not present or their values are invalid, a `ParseException` will be thrown.
+
+#### SortUtil
+
+`SortUtil` class contains the utilities needed to generate the comparator for the sorting to be executed.
+
+The utilities provided inside are:
+
+* `SortUtil#getFieldDescription()` <br>
+  Generates a string describing the current sorted field.
+
+* `SortUtil#generateComparator()` <br>
+  Generates a suitable comparator for sorting based on the provided field.
+
+* `SortUtil#generateReverseComparator()` <br>
+  Generates a reversed comparator for sorting based on the provided field.
+
+* `SortUtil#generateNameComparator()` <br>
+  Generates a comparator based on name field. The behavior is that it will compare two names `n1`, `n2` and
+  returns an integer with value
+    * `< 0` if `n1 < n2`
+    * `= 0` if `n1 == n2`
+    * `> 0` if `n1 > n2`
+  
+  Based on this behavior, this method by default sort by name in ascending order.
+
+* `SortUtil#generateSourceComparator()` <br>
+  Generates a comparator based on source field. It will compare two sources `s1`, `s2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by source in ascending order.
+
+* `SortUtil#generateLocationComparator()` <br>
+  Generates a comparator based on location field. It will compare two locations `l1`, `l2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by location in ascending order.
+
+* `SortUtil#generateSerialNumberComparator()` <br>
+  Generates a comparator based on serial number field. It will compare two serial numbers `sn1`, `sn2` 
+  and have the same exact behaviour as `SortUtil#generateNameComparator()`.
+  This method by default sort by serial number in ascending order.
+
+* `SortUtil#generateQuantityComparator()` <br>
+  Generates a comparator based on quantity field. It will compare two quantity `q1`, `q2` and have the same exact
+  behaviour as `SortUtil#generateNameComparator()`. This method by default sort by quantity in ascending order.
+
+#### Example Usage Scenario
+
+Given below are some example usage scenarios and how the sort mechanism behaves at each step.
+
+**Example 1: Sort by name and in ascending order**
+
+Step 1. The user enters `sort o/ascending by/name` to the CLI.
+
+Step 2. The command word `sort` is extracted out in `StockBookParser` and checked if it matches any valid command word.
+
+Step 3. `sort` is a valid command word. User input prefixes and their values are passed down to `SortCommandParser#parse()`
+
+Step 4. `SortCommandParser#parse()` will check if the prefixes `o/` and `by/` both exist.
+
+Step 5. Both prefixes exist. `SortCommandParser#parse()` will extract the value of the prefix `o/` which in this case is
+`ascending` and create a new enum `Order` with value `ASCENDING`.
+
+Step 6. Since the `Order` is `ASCENDING`, `isReversed` will be set to `false`.
+
+Step 7. `SortCommandParser#parse()` will extract the value of the prefix `by/` which in this case is `name`
+and create a new enum `Field` with value `NAME`
+
+Step 8. The method returns a new `SortCommand` with the `NAME` and `isReversed` as its arguments.
+
+Step 9. `LogicManager` calls `SortCommand#execute()`. `SortCommand#execute()` generates the comparator based on
+the field and `isReversed`.
+
+Step 10. `SortCommand#execute()` calls `Model#sortFilteredStockList()` and sorts the inventory.
+
+Step 11. `SortCommand#execute()` returns the `CommandResult`. The message generated is based on the field sorted.
+
+Step 12. The sort success message is displayed to the user.
+
+#### Sequence Diagram
+
+The following sequence diagram shows how the sort feature works for **Example 1**:
+
+![SortFeatureExample1](images/SortFeatureExample1.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -449,7 +1183,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Warenager` and the **Actor** is the `user`, unless specified otherwise)
 
-#### Use case: Adding a stock
+#### Use case 1: Adding a stock
 
 **MSS**
 
@@ -485,7 +1219,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 1.
 
 
-#### Use case: Deleting stocks
+#### Use case 2: Deleting stocks
 
 **MSS**
 
@@ -520,7 +1254,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
        Use case resumes at step 2.
 
-#### Use case: Find a stock by name
+#### Use case 3: Find a stock by name
 
 **MSS**
 
@@ -548,7 +1282,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by serial number
+#### Use case 4: Find a stock by serial number
 
 **MSS**
 
@@ -575,7 +1309,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by location stored
+#### Use case 5: Find a stock by location stored
 
 **MSS**
 
@@ -602,7 +1336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Find a stock by source of stock
+#### Use case 6: Find a stock by source of stock
 
 **MSS**
 
@@ -629,7 +1363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-#### Use case: Increment or decrement a stock's quantity
+#### Use case 7: Increment or decrement a stock's quantity
 
 **MSS**
 
@@ -688,7 +1422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Rewrite a stock's quantity
+#### Use case 8: Rewrite a stock's quantity
 
 **MSS**
 
@@ -741,7 +1475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the name of a stock.
+#### Use case 9: Update the name of a stock.
 
 **MSS**
 
@@ -776,7 +1510,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the location of a stock
+#### Use case 10: Update the location of a stock
 
 **MSS**
 
@@ -811,7 +1545,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Update the source of a stock
+#### Use case 11: Update the source of a stock
 
 **MSS**
 
@@ -846,7 +1580,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-#### Use case: Using the stats command
+#### Use case 12: Using the stats command
 
 **MSS**
 
@@ -875,13 +1609,184 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-* 1d. The given input contains fields that cannot be found.
+* 1d. The given input is empty.
 
     * 1d1. Warenager shows an error message.
 
      Use case resumes at step 1.
 
-#### Use case: Using the help command
+* 1e. The given input contains fields that cannot be found.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 13: Adding a note to a stock
+
+**MSS**
+
+1.  User requests to add a note to a stock.
+2.  Warenager adds the note to the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 14: Deleting a note from a stock
+
+**MSS**
+
+1.  User requests to delete a note from a stock.
+2.  Warenager deletes the note from the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1f. The note cannot be found based on given input.
+
+    * 1f1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+#### Use case 15: Deleting all notes from a stock
+
+**MSS**
+
+1.  User requests to delete all notes from a stock.
+2.  Warenager deletes all notes from the stock.
+
+    Use case ends.
+    
+**Extensions**
+* 1a. The given input has an additional header.
+
+    * 1a1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1b. The given input has a wrong header.
+
+    * 1b1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1c. The given input has a missing header.
+
+    * 1c1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1d. The given input is empty.
+
+    * 1d1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1e. The stock cannot be found based on given input.
+
+    * 1e1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+
+* 1f. The stock specified has no notes.
+
+    * 1f1. Warenager shows an error message.
+
+     Use case resumes at step 1.
+     
+#### Use case 16: Generating a csv file that contains all stocks
+
+**MSS**
+
+1.  User requests to print stocks in stock book.
+2.  Warenager generates a csv file containing all stocks.
+ 
+    Use case ends.
+ 
+**Extensions**
+ 
+* 1a. The given input contains has the wrong format.
+
+    * 1a1. Warenager shows an error message and suggested command.
+ 
+      Use case resumes at step 1.
+ 
+* 1b. There is an error when creating the csv file.
+ 
+    * 1b1. Warenager shows an error message.
+ 
+      Use case resumes at step 1.
+
+#### Use case 17: Generating a csv file that contains all stocks sorted in desired order
+
+ **MSS**
+ 
+ 1.  User sort stocks in stock book (Use case..) in their desired order.
+ 2.  User request to generate csv file based on the existing stock book (Use case 16).
+ 3.  Warenager generates a csv file containing all stocks.
+ 
+     Use case ends.
+
+#### Use case 18: Using the help command
 
 **MSS**
 
@@ -898,7 +1803,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
      Use case resumes at step 1.
 
-#### Use case: Suggestion feature
+#### Use case 19: Suggestion feature
 
 **MSS**
 
@@ -927,7 +1832,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 3.
 
-#### Use case: Exit Warenager
+#### Use case 20: Sort stocks by field and order
+
+**MSS**
+
+1. User types in command
+2. User provides the field to sort and the sort order.
+3. Warenager sorts the inventory according to the field and order specified.
+
+   Use case ends.
+
+**Extensions**
+* 2a. The field user provided is not valid but the order is valid.
+
+    * 2a1. Warenager will generate command suggestion to the user (Use case 19).
+    
+    Use case ends.
+
+* 2b. The order user provided is not valid but the field is valid.
+
+    * 2b1. Warenager will generate command suggestion for the user (Use case 19).
+
+    Use case ends.
+
+* 2c. Both the order and field user provided is not valid.
+
+    * 2c1. Warenager will generate command suggesstion for the user (Use case 19).
+
+    Use case ends.
+
+#### Use case 21: Exit Warenager
 
 **MSS**
 
@@ -996,7 +1930,7 @@ testers are expected to do more *exploratory* testing.
 1. Adding a stock into the inventory.
 
    1. Test case: `n/Banana s/NUS q/9999 l/Fruit Section`<br>
-      Expected: New stock added: Banana SerialNumber: 12 Source: NUS Quantity: 9999 Location: Fruit Section.
+      Expected: New stock added: Banana SerialNumber: NUS1 Source: NUS Quantity: 9999 Location: Fruit Section.
       Details of the added stock shown in the status message.
 
    1. Test case: `add n/Banana s/NUS q/9999 l/`<br>
@@ -1058,21 +1992,86 @@ testers are expected to do more *exploratory* testing.
       Status message shows success of command.
 
    1. Test case: `find l/section 3`<br>
-      Expected: All stocks with storage location containing "section 3" are displayed from the inventory.
+      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.
       Status message shows success of command.
 
    1. Test case: `find s/company abc`<br>
-      Expected: All stocks with field source containing "company abc" are displayed from the inventory.
+      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.
       Status message shows success of command.
-            
+
+   1. Test case: `find n/umbrella l/section 3`<br>
+         Expected: All stocks with field name containing "umbrella" OR field location containing "section" and "3"
+         are displayed from the inventory.
+         Status message shows success of command.
+   
    1. Test case: `find 1111111`<br>
       Expected: No stock found due to invalid format from missing field header
       either n/, sn/, l/ or s/.
-      Error details shown in the status message. Status bar remains the same.
+      Error details shown in the status message. Suggestion message will be shown too.
 
-   1. Other incorrect find commands to try: `find`, `find sn/absdsa`
-      (where serial number is not an integer or is a negative integer)<br>
-      Expected: Similar to previous.
+   1. Test case: `find n/umbrella n/company abc`<br>
+      Expected: No stock found due to invalid format from duplicate field header of n/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `find`<br>
+      Expected: No stock found due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `find q/1111`<br>
+      Expected: No stock found due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `find n/`<br>
+      Expected: No stock found due to empty input for field name.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+### Advanced finding a stock
+
+1. Finding a stock from the inventory.
+
+   1. Prerequisites: Multiple stocks in the list. Stock exists in inventory.
+
+   1. Test case: `findexact sn/1111111`<br>
+      Expected: Stock of the serial number 1111111 is displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact n/umbrella`<br>
+      Expected: All stocks with name containing "umbrella" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact l/section 3`<br>
+      Expected: All stocks with storage location containing "section" and "3" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact s/company abc`<br>
+      Expected: All stocks with field source containing "company" and "abc" are displayed from the inventory.
+      Status message shows success of command.
+
+   1. Test case: `findexact n/umbrella l/section 3`<br>
+         Expected: All stocks with field name containing "umbrella" AND field location containing "section" and "3"
+         are displayed from the inventory.
+         Status message shows success of command.
+   
+   1. Test case: `findexact 1111111`<br>
+      Expected: No stock found due to invalid format from missing field header
+      either n/, sn/, l/ or s/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact n/umbrella n/company abc`<br>
+      Expected: No stock found due to invalid format from duplicate field header of n/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact`<br>
+      Expected: No stock found due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact q/1111`<br>
+      Expected: No stock found due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `findexact n/`<br>
+      Expected: No stock found due to empty input for field name.
+      Error details shown in the status message. Suggestion message will be shown too.
 
 ### Updating a stock
 
@@ -1122,16 +2121,97 @@ testers are expected to do more *exploratory* testing.
        Expected: A pie chart describing the distribution of source companies for the entire inventory is popped up.
        Details of the successful generation of statistics are shown in the status message.
 
-    1. Test case: `stats st/source-qt-ntuc` (the source company `ntuc` exists) <br>
+    1. Test case: `stats st/source-qd-ntuc` (the source company `ntuc` exists) <br>
        Expected: A pie chart describing the distribution of stocks in `ntuc` is popped up.
        Details of the successful generation of statistics are shown in the status message.
 
-    1. Test case: `stats st/source-qt-fair price` (the source company `fair price` does not exist)<br>
+    1. Test case: `stats st/source-qd-fair price` (the source company `fair price` does not exist)<br>
        Expected: No pop ups describing the statistics will be given or shown.
        Error details shown in the status message. Suggestion message will be shown too.
 
    1. Other incorrect statistics commands to try: `stats`, `stats st/absdsa`, `stats st/source st/source`
       Expected: Similar to previous.
+      
+### Generating unique serial number
+
+1. Generating serial number for a newly added stock.
+
+    1. Test case: `n/Crabs s/Giant q/99 l/Seafood Section`<br> (source `Giant` has been used `50` times)
+      Expected: New stock added: Crabs SerialNumber: Giant51 Source: Giant Quantity: 99 Location: Seafood Section.
+      Details of the added stock shown in the status message.
+
+    1. Test case: `n/Peaches s/Market q/500 l/Fruits Section`<br> (source `Market` has never been used)
+      Expected: New stock added: Peaches SerialNumber: Market51 Source: Market Quantity: 500 Location: Fruits Section.
+      Details of the added stock shown in the status message.
+
+### Adding note to stock
+
+1. Adding a note to a stock.
+
+    1. Test case: `note sn/ntuc1 nt/first note`
+    Expected: Note is added to the stock with serial number ntuc1 and displayed in the notes column for the stock.
+    Details of the stock with successful note added is shown in status message.
+   
+   1. Test case: `note 1111111`<br>
+      Expected: No note added due to invalid format from missing field headers sn/ and nt/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note sn/umbrella1 sn/company1 nt/first note`<br>
+      Expected: No note added due to invalid format from duplicate field header of sn/.
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `note`<br>
+      Expected: No note added due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note q/1111`<br>
+      Expected: No note added due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `note sn/ntuc1 nt/`<br>
+      Expected: No note added due to empty input for field note.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+### Deleting a note from stock
+
+1. Deleting a note from stock.
+
+    1. Test case: `notedelete sn/ntuc1 ni/1`
+    Expected: Note with index 1 is deleted from the stock with serial number ntuc1
+    and display is removed from the notes column for the stock.
+    Details of the stock with successful note deleted is shown in status message.
+
+   1. Test case: `notedelete sn/ntuc1 ni/noninteger`<br>
+      Expected: No note deleted as note index given is not a positive integer.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/-99`<br>
+      Expected: No note deleted as note index given is not a positive integer.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/9999`<br>
+      Expected: No note deleted (if stock does not have note with index 9999) as note index given is not found.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete 1111111`<br>
+      Expected: No note deleted due to invalid format from missing field headers sn/ and ni/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/umbrella1 sn/company1 ni/2`<br>
+      Expected: No note deleted due to invalid format from duplicate field header of sn/.
+      Error details shown in the status message. Status bar remains the same.
+
+   1. Test case: `notedelete`<br>
+      Expected: No note deleted due to missing field headers.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete q/1111`<br>
+      Expected: No note deleted due to invalid field header q/.
+      Error details shown in the status message. Suggestion message will be shown too.
+
+   1. Test case: `notedelete sn/ntuc1 ni/`<br>
+      Expected: No note delete due to empty input for field note index.
+      Error details shown in the status message. Suggestion message will be shown too.
 
 ### Saving data
 

@@ -1,5 +1,6 @@
 package seedu.stock.model.stock.predicates;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -149,6 +150,13 @@ public class NameContainsKeywordsPredicateTest {
         //Mixed-case with multiple matching keywords and one empty string keyword
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("pOrK bEllY", "bElly", ""));
         assertFalse(predicate.test(new StockBuilder().withName("Pork Belly 100g").build()));
+    }
+
+    @Test
+    public void testToString() {
+        NameContainsKeywordsPredicate predicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("test"));
+        assertEquals(predicate.toString(), "Name: test");
     }
 
 }
