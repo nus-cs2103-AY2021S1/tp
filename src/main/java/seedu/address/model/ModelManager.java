@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private final Planus planus;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Lesson> filteredLessons;
 
     /**
      * Initializes a ModelManager with the given planus and userPrefs.
@@ -37,6 +38,7 @@ public class ModelManager implements Model {
         this.planus = new Planus(planus);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.planus.getTaskList());
+        filteredLessons = new FilteredList<>(this.planus.getLessonList());
     }
 
     public ModelManager() {
@@ -136,10 +138,25 @@ public class ModelManager implements Model {
         return filteredTasks;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Lesson} backed by the internal list of
+     * {@code versionedPlanus}
+     */
+    @Override
+    public ObservableList<Lesson> getFilteredLessonList() {
+        return filteredLessons;
+    }
+
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredLessonList(Predicate<Lesson> predicate) {
+        requireNonNull(predicate);
+        filteredLessons.setPredicate(predicate);
     }
 
     @Override
@@ -158,7 +175,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return planus.equals(other.planus)
                 && userPrefs.equals(other.userPrefs)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && filteredLessons.equals(other.filteredLessons);
     }
 
 }
