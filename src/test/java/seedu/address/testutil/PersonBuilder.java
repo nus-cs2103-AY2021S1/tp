@@ -23,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NOTE = "sd";
+    public static final boolean DEFAULT_IS_ARCHIVE = false;
     public static final String DEFAULT_PRIORITY = "u";
 
     private Name name;
@@ -31,6 +32,7 @@ public class PersonBuilder {
     private Address address;
     private Set<ClientSource> clientSources;
     private Note note;
+    private boolean isArchive;
     private Priority priority;
 
     /**
@@ -43,6 +45,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         clientSources = new HashSet<>();
         note = new Note(DEFAULT_NOTE);
+        isArchive = DEFAULT_IS_ARCHIVE;
         priority = new Priority(DEFAULT_PRIORITY);
     }
 
@@ -56,6 +59,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         clientSources = new HashSet<>(personToCopy.getClientSources());
         note = personToCopy.getNote();
+        isArchive = personToCopy.getIsArchive();
         priority = personToCopy.getPriority();
     }
 
@@ -141,6 +145,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code isArchive} of the {@code Person} that we are building to true.
+     */
+    public PersonBuilder addToArchive() {
+        this.isArchive = true;
+        return this;
+    }
+
+    /**
      * Sets the {@code Priority} of the {@code Person} that we are building.
      */
     public PersonBuilder withPriority(String priority) {
@@ -157,7 +169,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, clientSources, note, priority);
+        return new Person(name, phone, email, address, clientSources, note, isArchive, priority);
     }
 
 }

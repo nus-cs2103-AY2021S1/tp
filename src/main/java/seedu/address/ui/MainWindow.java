@@ -34,12 +34,16 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ArchiveModeBox archiveModeBox;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane archiveModePlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -115,6 +119,9 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+
+        archiveModeBox = new ArchiveModeBox(false);
+        archiveModePlaceholder.getChildren().add(archiveModeBox.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getClientListFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());

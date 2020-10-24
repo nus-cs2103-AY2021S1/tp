@@ -12,7 +12,8 @@ import seedu.address.model.note.Note;
 
 /**
  * Represents a Person in the client list.
- * Guarantees: details are present and not null, field values are validated, immutable.
+ * Guarantees: name, client sources, priority, archive status are present and not null,
+ * field values are validated, immutable.
  */
 public class Person {
 
@@ -25,11 +26,12 @@ public class Person {
     private final Address address;
     private final Set<ClientSource> clientSources = new HashSet<>();
     private final Note note;
+    private final boolean isArchive;
     private final Priority priority;
 
-
     /**
-     * Only name and tags need to be non-null.
+     * Only name, client sources, priority need to be non-null.
+     * By default, Person is not in archive
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note,
                   Priority priority) {
@@ -40,8 +42,24 @@ public class Person {
         this.address = address;
         this.clientSources.addAll(clientSources);
         this.note = note;
+        this.isArchive = false;
         this.priority = priority;
+    }
 
+    /**
+     * Only name, client sources, priority, archive status need to be non-null.
+     */
+    public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources,
+                  Note note, boolean isArchive, Priority priority) {
+        requireAllNonNull(name, clientSources, isArchive, priority);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.clientSources.addAll(clientSources);
+        this.note = note;
+        this.isArchive = isArchive;
+        this.priority = priority;
     }
 
     public Name getName() {
@@ -72,6 +90,10 @@ public class Person {
         return note;
     }
 
+    public boolean getIsArchive() {
+        return isArchive;
+    }
+
     public Priority getPriority() {
         return priority;
     }
@@ -81,6 +103,8 @@ public class Person {
      * If one of phone or email is null for both self and other person, check the other field instead.
      * If both of phone and email are null for both self and other person, return true.
      * This defines a weaker notion of equality between two persons.
+     *
+     * Note that archive status is not checked here, i.e. a person cannot belong in archive and also in active list.
      */
     public boolean isSamePerson(Person otherPerson) {
         if (otherPerson == this) {
@@ -139,7 +163,8 @@ public class Person {
                 && equalsNullable(otherPerson.getEmail(), getEmail())
                 && equalsNullable(otherPerson.getAddress(), getAddress())
                 && otherPerson.getClientSources().equals(getClientSources())
-                && equalsNullable(otherPerson.getNote(), getNote());
+                && equalsNullable(otherPerson.getNote(), getNote())
+                && (otherPerson.getIsArchive() == getIsArchive());
     }
 
     private boolean equalsNullable(Object obj, Object otherObj) {
@@ -153,7 +178,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, clientSources, note, priority);
+        return Objects.hash(name, phone, email, address, clientSources, note, isArchive, priority);
     }
 
     @Override
@@ -181,6 +206,8 @@ public class Person {
             builder.append(" Note: ")
                     .append(getNote());
         }
+        // Not necessary to add archive status
+
         builder.append(" Priority: ")
                 .append(getPriority());
 
