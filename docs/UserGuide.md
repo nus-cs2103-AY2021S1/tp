@@ -225,33 +225,45 @@ Examples:
 You can only show statistics based on index or based on tags but not both!
 </div>
 
-#### Statistics by index: `stats`
+#### Statistics by index: `stats INDEX`
 
-Shows the Pie Chart for a specified Flashcard in the list.
+You can display the statistics of a specified flashcard in a Pie Chart based on the last displayed list.
+
+<div markdown="block" class="alert alert-info">
+:information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
+</div>
 
 Statistics include:
 
 * The number of times and the percentage the user answers the question associated with the flashcard correctly.
 * The number of times and the percentage the user answers the question associated with the flashcard incorrectly.
 
-Format: `stats INDEX`
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+![StatsIndexStep1](./images/StatsIndexStep1.png)
+2. Using the indices of the displayed list, enter the stats command followed by the index of the flashcard you want to reveal the statistics of. For example, if you want to delete the 4th flashcard in the displayed list, you can enter `stats 2`.
+![StatsIndexStep2](./images/StatsIndexStep2.png)
+3. Press enter and QuickCache will display the statistics of the flashcard specified by the index.
+![StatsIndexStep3](./images/StatsIndexStep3.png)
+You have successfully displayed the statistics of a flashcard!
 
-* Displays the statistics of a flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+#### Statistics by tags: `stats t/TAG1 TAG2`
 
-#### Statistics by tags: `stats`
+You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags. 
 
-Shows a Pie Chart summary for statistics of all flashcards containing the specified tag(s).
+<div markdown="block" class="alert alert-info">
+:bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation in the aggregation in the aggregation in the aggregation.
+</div>
 
 Statistics include:
 
 * The number of times and the percentage the user answers all flashcards containing the specified tag(s) correctly.
 * The number of times and the percentage the user answers all flashcards containing the specified tag(s) incorrectly.
 
-Format: `stats t/TAG1 TAG2`
-        
-* Displays the statistics of all flashcards with the tags `TAG1` and `TAG2`
+1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
+![StatsTagsStep1](./images/StatsTagsStep1.png)
+2. Press enter and QuickCache will display the statistics of the flashcards containing the specified tags.
+![StatsTagsStep2](./images/StatsTagsStep2.png)
+You have successfully displayed the statistics of all flashcards containing the specified tags!
 
 ### Clearing a flashcard's statistics : `clearstats`
 
@@ -315,7 +327,7 @@ Action | Format, Examples
 **Add** | `add q/QUESTION ans/ANSWER` <br> e.g., `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
 **Addmcq** | `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
 **Test** | `test INDEX ans/ANSWER` (open-ended question)<br> e.g., `test 2 a/lorem ipsum` <br> `test INDEX o/OPTION` (multiple choice question)<br> e.g., `test 3 o/1`
-**stats** | `stats INDEX`
+**Stats** | `stats INDEX` or `stats t/TAG1`<br> e.g., `stats 3` or `stats t/MCQ`
 **Clear** | `clear`
 **ClearStats** | `clearstats INDEX`
 **Delete** | `delete INDEX` or `delete t/TAG1`<br> e.g., `delete 3` or `delete t/MCQ`
