@@ -14,6 +14,7 @@ import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
+import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
 import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddAssignmentCommand;
@@ -30,6 +31,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.gradetrackerparsers.AddAssignmentParser;
 import seedu.address.logic.parser.gradetrackerparsers.AddGradeParser;
 import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
+import seedu.address.logic.parser.modulelistparsers.AddCompletedModuleParser;
 import seedu.address.logic.parser.modulelistparsers.AddZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
@@ -109,6 +111,9 @@ public class ModuleListParser implements FeatureParser {
 
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
+
+        case AddCompletedModuleCommand.COMMAND_WORD:
+            return new AddCompletedModuleParser().parse(arguments);
 
         //case EditGradeCommand.COMMAND_WORD:
         //            return new EditGradeParser().parse(arguments);

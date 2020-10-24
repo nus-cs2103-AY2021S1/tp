@@ -2,10 +2,12 @@ package seedu.address.model.module;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.Grade;
+import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 
@@ -124,6 +126,23 @@ public class Module {
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
     }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param tags tag attached to module
+     * @param modularCredits modular credits for module
+     * @param gradePoint grade point attached to module
+     */
+    public Module(ModuleName name, Set<Tag> tags, ModularCredits modularCredits, GradePoint gradePoint) {
+        this.name = name;
+        this.zoomLink = null;
+        this.gradeTracker = new GradeTracker();
+        gradeTracker.setGradePoint(Optional.of(gradePoint));
+        this.tags.addAll(tags);
+        this.modularCredits = modularCredits;
+    }
+
 
     /**
      * Represents the module object constructor.
