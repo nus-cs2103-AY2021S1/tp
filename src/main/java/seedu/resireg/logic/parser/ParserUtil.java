@@ -10,6 +10,8 @@ import java.util.stream.Stream;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.commons.util.StringUtil;
 import seedu.resireg.logic.parser.exceptions.ParseException;
+import seedu.resireg.model.alias.Alias;
+import seedu.resireg.model.alias.CommandWord;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
@@ -170,6 +172,36 @@ public class ParserUtil {
             throw new ParseException(RoomNumber.MESSAGE_CONSTRAINTS);
         }
         return new RoomNumber(trimmedRoomNumber);
+    }
+
+    /**
+     * Parses a {@code String commandWord} into a {@code CommandWord}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code commandWord} is invalid.
+     */
+    public static CommandWord parseCommandWord(String commandWord) throws ParseException {
+        requireNonNull(commandWord);
+        String trimmedCommandWord = commandWord.trim();
+        if (!CommandWord.isValidCommandWord(trimmedCommandWord)) {
+            throw new ParseException(CommandWord.MESSAGE_CONSTRAINTS);
+        }
+        return new CommandWord(trimmedCommandWord);
+    }
+
+    /**
+     * Parses a {@code String alias} into a {@code Alias}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code alias} is invalid.
+     */
+    public static Alias parseAlias(String alias) throws ParseException {
+        requireNonNull(alias);
+        String trimmedAlias = alias.trim();
+        if (!Alias.isValidAlias(trimmedAlias)) {
+            throw new ParseException(Alias.MESSAGE_CONSTRAINTS);
+        }
+        return new Alias(trimmedAlias);
     }
 
     /**

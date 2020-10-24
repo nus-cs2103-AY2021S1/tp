@@ -2,6 +2,8 @@ package seedu.resireg.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ALIAS;
+import static seedu.resireg.logic.parser.CliSyntax.PREFIX_COMMAND;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_FACULTY;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_NAME;
@@ -29,7 +31,7 @@ import seedu.resireg.testutil.EditStudentDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    // Valid students
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -43,6 +45,7 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    // Valid rooms
     public static final String VALID_FLOOR_A = "21";
     public static final String VALID_FLOOR_B = "7";
     public static final String VALID_FLOOR_C = "11";
@@ -54,6 +57,12 @@ public class CommandTestUtil {
     public static final String VALID_ROOM_TYPE_C = "NN";
     public static final String VALID_TAG_RENOVATED = "renovated";
     public static final String VALID_TAG_DAMAGED = "damaged";
+
+    // Valid command word aliases
+    public static final String VALID_COMMAND_ROOMS_RO = "rooms";
+    public static final String VALID_COMMAND_STUDENTS_ST = "students";
+    public static final String VALID_ALIAS_ROOMS_RO = "ro";
+    public static final String VALID_ALIAS_STUDENTS_ST = "st";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -68,6 +77,11 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String COMMAND_DESC_ROOMS_RO = " " + PREFIX_COMMAND + VALID_COMMAND_ROOMS_RO;
+    public static final String COMMAND_DESC_STUDENTS_STU = " " + PREFIX_COMMAND + VALID_COMMAND_STUDENTS_ST;
+    public static final String ALIAS_DESC_ROOMS_RO = " " + PREFIX_ALIAS + VALID_ALIAS_ROOMS_RO;
+    public static final String ALIAS_DESC_STUDENTS_STU = " " + PREFIX_ALIAS + VALID_ALIAS_STUDENTS_ST;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
@@ -78,6 +92,10 @@ public class CommandTestUtil {
     public static final String INVALID_FLOOR = "asfdj";
     public static final String INVALID_ROOM_NUMBER = "asdfj";
     public static final String INVALID_ROOM_TYPE = "asdfjk";
+
+    public static final String INVALID_COMMAND_DESC = " " + PREFIX_COMMAND + "71ndn"; // command word doesn't exist
+    // alias cant be a command word
+    public static final String INVALID_ALIAS_DESC = " " + PREFIX_ALIAS + ListRoomCommand.COMMAND_WORD;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -179,4 +197,12 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredRoomList().size());
     }
 
+    /**
+     * Deletes the first student in {@code model}'s filtered list from {@code model}'s resireg.
+     */
+    public static void deleteFirstStudent(Model model) {
+        Student firstStudent = model.getFilteredStudentList().get(0);
+        model.deleteStudent(firstStudent);
+        model.saveStateResiReg();
+    }
 }

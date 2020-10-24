@@ -6,8 +6,6 @@ import static seedu.resireg.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.resireg.model.student.faculty.Faculty;
-
 public class StudentIdTest {
 
     @Test
@@ -18,20 +16,20 @@ public class StudentIdTest {
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
         String invalidStudentId = "";
-        assertThrows(IllegalArgumentException.class, () -> new Faculty(invalidStudentId));
+        assertThrows(IllegalArgumentException.class, () -> new StudentId((invalidStudentId)));
     }
 
     @Test
-    public void isValidFaculty() {
+    public void isValidStudentId() {
         // null student ID
-        assertThrows(NullPointerException.class, () -> Faculty.isValidFaculty(null));
+        assertThrows(NullPointerException.class, () -> StudentId.isValidStudentId((null)));
 
         // invalid student IDs
-        assertFalse(Faculty.isValidFaculty("")); // empty string
-        assertFalse(Faculty.isValidFaculty(" ")); // spaces only
-        assertFalse(Faculty.isValidFaculty("e")); // missing "0" and 6 digits
-        assertFalse(Faculty.isValidFaculty("E0")); // missing 6 digits
-        assertFalse(Faculty.isValidFaculty("E012345")); // only 5 digits
+        assertFalse(StudentId.isValidStudentId((""))); // empty string
+        assertFalse(StudentId.isValidStudentId((" "))); // spaces only
+        assertFalse(StudentId.isValidStudentId(("e"))); // missing "0" and 6 digits
+        assertFalse(StudentId.isValidStudentId(("E0"))); // missing 6 digits
+        assertFalse(StudentId.isValidStudentId(("E012345"))); // only 5 digits
 
 
         // valid student IDs

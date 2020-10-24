@@ -24,4 +24,6 @@ public class CliSyntax {
      * Prefix for --style keywords eg. --vacant
      */
     public static final Prefix PREFIX_KEYWORD = new Prefix("--");
+    public static final Prefix PREFIX_COMMAND = new Prefix("c/");
+    public static final Prefix PREFIX_ALIAS = new Prefix("a/");
 }

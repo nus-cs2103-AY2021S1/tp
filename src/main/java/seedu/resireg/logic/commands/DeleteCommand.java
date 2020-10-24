@@ -12,11 +12,11 @@ import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.student.Student;
 
 /**
- * Deletes a student identified using it's displayed index from the address book.
+ * Deletes a student identified using its displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = CommandWordEnum.DELETE_COMMAND.toString();
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
     public static final String MESSAGE_ROOM_ALLOCATION_EXISTS =

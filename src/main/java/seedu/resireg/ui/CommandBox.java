@@ -26,7 +26,6 @@ public class CommandBox extends UiPart<Region> {
     private static final KeyCombination redo =
             new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
 
-
     private final CommandExecutor commandExecutor;
 
     @FXML

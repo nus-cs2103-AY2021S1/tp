@@ -9,6 +9,7 @@ import static seedu.resireg.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -20,6 +21,7 @@ import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyAddressBook;
 import seedu.resireg.model.ReadOnlyUserPrefs;
+import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -102,6 +104,31 @@ public class AddCommandTest {
         }
 
         @Override
+        public String getCommandWordAliasesAsString() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public List<CommandWordAlias> getCommandWordAliases() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCommandWordAlias(CommandWordAlias target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteCommandWordAlias(CommandWordAlias target) {
+            throw new AssertionError("This method should not be called.");
+        };
+
+        @Override
+        public void addCommandWordAlias(CommandWordAlias source) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getAddressBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
@@ -158,6 +185,16 @@ public class AddCommandTest {
 
         @Override
         public boolean hasRoom(Room room) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteRoom(Room target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addRoom(Room room) {
             throw new AssertionError("This method should not be called.");
         }
 
