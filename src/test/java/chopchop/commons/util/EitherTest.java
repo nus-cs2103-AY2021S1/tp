@@ -63,5 +63,7 @@ public class EitherTest {
 
         assertEquals("Left(foo)", l1.toString());
         assertEquals("Right(123)", r1.toString());
+
+        assertThrows(AssertionError.class, () -> new Either<>("asdf", "bsdf"));
     }
 }
