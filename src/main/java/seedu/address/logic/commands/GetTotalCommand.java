@@ -43,7 +43,7 @@ public class GetTotalCommand extends Command {
             totalSum = activeAccount.getTotalRevenue();
         }
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, category)
+        return CommandResultFactory.createDefaultCommandResult(String.format(MESSAGE_SUCCESS, category)
             + String.format("%.2f", totalSum));
     }
 }
