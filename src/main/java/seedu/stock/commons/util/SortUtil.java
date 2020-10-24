@@ -75,11 +75,11 @@ public class SortUtil {
                 int pointsA = 0;
                 int pointsB = 0;
 
-                if (a.getBookmarked()) {
+                if (a.getIsBookmarked()) {
                     pointsA += 2;
                 }
 
-                if (b.getBookmarked()) {
+                if (b.getIsBookmarked()) {
                     pointsB += 2;
                 }
 

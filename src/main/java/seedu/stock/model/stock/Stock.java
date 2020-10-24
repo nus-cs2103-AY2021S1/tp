@@ -75,7 +75,7 @@ public class Stock {
         return notes;
     }
 
-    public boolean getBookmarked() {
+    public boolean getIsBookmarked() {
         return isBookmarked;
     }
 

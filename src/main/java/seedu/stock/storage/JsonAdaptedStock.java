@@ -57,7 +57,7 @@ class JsonAdaptedStock {
         quantity = source.getQuantity().quantity;
         location = source.getLocation().value;
         notes = source.getNotesValues();
-        isBookmarked = source.getBookmarked();
+        isBookmarked = source.getIsBookmarked();
     }
 
     /**

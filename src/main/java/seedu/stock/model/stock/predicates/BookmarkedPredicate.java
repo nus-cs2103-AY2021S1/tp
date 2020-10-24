@@ -19,7 +19,7 @@ public class BookmarkedPredicate implements Predicate<Stock> {
      */
     @Override
     public boolean test(Stock stock) {
-        boolean stockIsBookmarked = stock.getBookmarked();
+        boolean stockIsBookmarked = stock.getIsBookmarked();
 
         if (stockIsBookmarked) {
             // test returns true if stock isBookmarked

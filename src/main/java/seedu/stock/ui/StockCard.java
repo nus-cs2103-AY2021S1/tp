@@ -57,7 +57,7 @@ public class StockCard extends UiPart<Region> {
         quantity.setText(stock.getQuantity().quantity);
         source.setText(stock.getSource().value);
         locationStored.setText(stock.getLocation().value);
-        bookmark.setVisible(stock.getBookmarked());
+        bookmark.setVisible(stock.getIsBookmarked());
 
 
         if (stock.getNotes().size() != 0) {

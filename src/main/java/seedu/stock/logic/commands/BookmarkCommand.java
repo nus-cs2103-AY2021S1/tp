@@ -92,7 +92,7 @@ public class BookmarkCommand extends Command {
 
         // Bookmark stocks
         for (Stock stockToBookmark: stocksToBookmark) {
-            if (stockToBookmark.getBookmarked()) {
+            if (stockToBookmark.getIsBookmarked()) {
                 notUpdatedStocks.add(stockToBookmark);
             } else {
                 stockToBookmark.setBookmarked();
