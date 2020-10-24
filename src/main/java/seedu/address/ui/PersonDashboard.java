@@ -5,17 +5,17 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.project.Project;
+import seedu.address.model.person.Person;
 
 import java.util.Comparator;
 import java.util.Optional;
 
 /**
- * An UI component that displays information of a {@code Project}.
+ * An UI component that displays information of a {@code Person}.
  */
 public class PersonDashboard extends UiPart<Region> {
 
-    private static final String FXML = "ProjectDashboard.fxml";
+    private static final String FXML = "PersonDashboard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,18 +25,20 @@ public class PersonDashboard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on MainCatalogue level 4</a>
      */
 
-    public final Project project;
+    public final Person person;
 
     @FXML
     private HBox dashboardPane;
     @FXML
-    private Label projectName;
+    private Label personName;
     @FXML
-    private Label deadline;
+    private Label gitUserName;
     @FXML
-    private Label projectDescription;
+    private Label phone;
     @FXML
-    private Label repoUrl;
+    private Label email;
+    @FXML
+    private Label address;
     @FXML
     private Label header1;
     @FXML
@@ -44,34 +46,36 @@ public class PersonDashboard extends UiPart<Region> {
     @FXML
     private Label header3;
     @FXML
-    private FlowPane tags;
-    @FXML
-    private FlowPane teammates;
+    private FlowPane projects;
     @FXML
     private FlowPane tasks;
     @FXML
     private FlowPane meetings;
 
     /**
-     * Creates a {@code ProjectDashboardCode} with the given {@code Project} and index to display.
+     * Creates a {@code PersonDashboardCode} with the given {@code Person} and index to display.
      */
-    public PersonDashboard(Optional<Project> project) {
+    public PersonDashboard(Optional<Person> person) {
         super(FXML);
-        this.project = project.get();
-        projectName.setText(this.project.getProjectName().fullProjectName);
-        deadline.setText("Project deadline: " + this.project.getDeadline().toString());
-        projectDescription.setText("Project description: " + this.project.getProjectDescription().value);
-        repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
+        this.person = person.get();
+        personName.setText(this.person.getPersonName().fullPersonName);
+        gitUserName.setText("GitHub username: " + this.person.getGitUserNameString());
+        phone.setText("Contact number: " + this.person.getPhone().value);
+        email.setText("Email: " + this.person.getEmail().value);
+        address.setText("Address: " + this.person.getAddress().value);
+        header1.setText("Projects: ");
+
+
         header1.setText("Tasks: ");
-        this.project.getFilteredTaskList().stream()
+        this.person.getFilteredTaskList().stream()
                 .sorted(Comparator.comparing(task -> task.taskName))
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         header2.setText("Teammates: ");
-        this.project.getTeammates().stream()
+        this.person.getTeammates().stream()
                 .forEach(person -> teammates.getChildren().add(
                         new Label(person.getPerson().getPersonName().toString())));
         header3.setText("Meetings: ");
-        this.project.getMeetings()
+        this.person.getMeetings()
                 .forEach(meeting -> meetings.getChildren().add(new Label(meeting.getMeetingName())));
     }
 
@@ -89,6 +93,6 @@ public class PersonDashboard extends UiPart<Region> {
 
         // state check
         PersonDashboard card = (PersonDashboard) other;
-        return project.equals(card.project);
+        return person.equals(card.person);
     }
 }
