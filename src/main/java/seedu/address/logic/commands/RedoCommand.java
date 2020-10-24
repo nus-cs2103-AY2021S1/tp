@@ -2,13 +2,12 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * Reverts the {@code model}'s address book to its previously undone state.
