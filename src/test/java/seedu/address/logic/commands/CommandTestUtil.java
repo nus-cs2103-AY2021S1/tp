@@ -19,9 +19,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.global.EditCommand;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.Model;
-import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.person.PersonNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.NameContainsKeywordsPredicate;
 import seedu.address.model.project.Project;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
 
