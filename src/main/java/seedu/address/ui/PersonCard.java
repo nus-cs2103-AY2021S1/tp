@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Paint;
+import javafx.scene.shape.Circle;
 import seedu.address.model.person.Person;
 
 /**
@@ -35,9 +37,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label department;
-    @FXML
-    private Label office;
+    private Label departmentOffice;
     @FXML
     private Label email;
     @FXML
@@ -51,11 +51,10 @@ public class PersonCard extends UiPart<Region> {
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
-        id.setText(displayedIndex + ". ");
+        id.setText(String.format("%d ", displayedIndex));
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
-        department.setText(person.getDepartment().value);
-        office.setText(person.getOffice().value);
+        departmentOffice.setText(String.format("%s, %s", person.getDepartment().value, person.getOffice().value));
         email.setText(person.getEmail().value);
         remark.setText(person.getRemark().value);
         person.getTags().stream()
