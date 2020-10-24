@@ -43,7 +43,9 @@ public class RecipeUtil {
                 })
                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a) + " ");
         sb.append(PREFIX_CALORIES + String.valueOf(recipe.getCalories().value) + " ");
-        sb.append(PREFIX_INSTRUCTION + recipe.getInstruction() + " ");
+        sb.append(PREFIX_INSTRUCTION + recipe.getInstruction().stream()
+                .map(item -> item.toString() + ". ")
+                .reduce("", (a, b) -> a + b).trim());
         sb.append(PREFIX_RECIPE_IMAGE + recipe.getRecipeImage() + " ");
         recipe.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
@@ -60,6 +62,11 @@ public class RecipeUtil {
                         .append(ingredients.stream()
                                 .map(item -> item.getValue())
                                 .reduce("", (a, b) -> b.equals("") ? a : b + ", " + a)).append(" "));
+        descriptor.getInstruction()
+                .ifPresent(instr -> sb.append(PREFIX_INSTRUCTION)
+                        .append(instr.stream()
+                                .map(item -> item.toString() + ". ")
+                                .reduce("", (a, b) -> a + b).trim()).append(" "));
         descriptor.getInstruction().ifPresent(instr -> sb.append(PREFIX_INSTRUCTION).append(" "));
         descriptor.getRecipeImage().ifPresent(img -> sb.append(PREFIX_RECIPE_IMAGE).append(" "));
         descriptor.getCalories().ifPresent(cal -> sb.append(PREFIX_CALORIES).append(cal.value).append(" "));
