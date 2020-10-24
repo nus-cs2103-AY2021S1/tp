@@ -48,7 +48,8 @@ public class Recipe extends Entry {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(String name, List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags, List<LocalDateTime> usages) {
+    public Recipe(String name, List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags,
+                  List<LocalDateTime> usages) {
         super(name);
         requireAllNonNull(name, ingredients, steps);
         this.usages.addAll(usages);
@@ -81,6 +82,10 @@ public class Recipe extends Entry {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public List<LocalDateTime> getUsages() {
+        return Collections.unmodifiableList(usages);
     }
 
     public String getTagList() {

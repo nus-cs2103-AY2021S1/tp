@@ -1,5 +1,6 @@
 package chopchop.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,6 +21,7 @@ public class JsonAdaptedRecipe {
     private final List<JsonAdaptedIngredientReference> ingredients;
     private final List<String> steps;
     private final JsonAdaptedTagSet tags;
+    private final JsonAdaptedUsageList usages;
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
@@ -28,11 +30,13 @@ public class JsonAdaptedRecipe {
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
                              @JsonProperty("ingredients") List<JsonAdaptedIngredientReference> ingredients,
                              @JsonProperty("steps") List<String> steps,
-                             @JsonProperty("tags") JsonAdaptedTagSet tags) {
+                             @JsonProperty("tags") JsonAdaptedTagSet tags,
+                             @JsonProperty("usages") JsonAdaptedUsageList usages) {
         this.name = name;
         this.ingredients = ingredients == null ? null : new ArrayList<>(ingredients);
         this.steps = steps == null ? null : new ArrayList<>(steps);
         this.tags = tags;
+        this.usages = usages;
     }
 
     /**
@@ -44,6 +48,9 @@ public class JsonAdaptedRecipe {
                 .collect(Collectors.toList());
         this.steps = source.getSteps().stream().map(Step::toString).collect(Collectors.toList());
         this.tags = new JsonAdaptedTagSet(source.getTags());
+        this.usages = new JsonAdaptedUsageList(source.getUsages().stream()
+            .map(LocalDateTime::toString)
+            .collect(Collectors.toList()));
     }
 
     /**
@@ -78,6 +85,7 @@ public class JsonAdaptedRecipe {
             modelSteps.add(new Step(step));
         }
 
-        return new Recipe(this.name, modelIngredients, modelSteps, this.tags.toModelType());
+        return new Recipe(this.name, modelIngredients, modelSteps, this.tags.toModelType(),
+            this.usages.toModelType());
     }
 }
