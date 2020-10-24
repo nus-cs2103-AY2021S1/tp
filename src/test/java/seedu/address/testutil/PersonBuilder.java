@@ -71,7 +71,7 @@ public class PersonBuilder {
      * Parses the {@code clientSources} into a {@code Set<ClientSource>}
      * and set it to the {@code Person} that we are building.
      */
-    public PersonBuilder withClientSources(String... clientSources) {
+    public PersonBuilder withClientSources(String ... clientSources) {
         this.clientSources = SampleDataUtil.getClientSourceSet(clientSources);
         return this;
     }

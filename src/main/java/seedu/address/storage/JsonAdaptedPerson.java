@@ -89,12 +89,7 @@ class JsonAdaptedPerson {
         } else {
             note = null;
         }
-
-        if (source.getPriority() != null) {
-            priority = source.getPriority().value;
-        } else {
-            priority = null;
-        }
+        priority = source.getPriority().value;
     }
 
     /**

@@ -10,7 +10,7 @@ public class Priority {
 
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Priority numbers should only contain characters L,M,H,U OR ulmh";
+            "Priority values should only take L, M, H, U, l, m, h, u, low, medium, high, or undefined";
     public static final String VALIDATION_REGEX = "[ulmhULMH]|^undefined$|^high$|^medium$|^low$";
     public final String value;
 
@@ -58,6 +58,7 @@ public class Priority {
         case "high":
             return PriorityType.HIGH.name().toLowerCase();
         default:
+            assert false : "Validation Regex should have caught this error";
             return "x"; // priority type does not exist
         }
     }

@@ -33,7 +33,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note,
                   Priority priority) {
-        requireAllNonNull(name, clientSources);
+        requireAllNonNull(name, clientSources, priority);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -139,8 +139,7 @@ public class Person {
                 && equalsNullable(otherPerson.getEmail(), getEmail())
                 && equalsNullable(otherPerson.getAddress(), getAddress())
                 && otherPerson.getClientSources().equals(getClientSources())
-                && equalsNullable(otherPerson.getNote(), getNote())
-                && equalsNullable(otherPerson.getPriority(), getPriority());
+                && equalsNullable(otherPerson.getNote(), getNote());
     }
 
     private boolean equalsNullable(Object obj, Object otherObj) {
@@ -182,11 +181,8 @@ public class Person {
             builder.append(" Note: ")
                     .append(getNote());
         }
-
-        if (getPriority() != null) {
-            builder.append(" Priority: ")
-                    .append(getPriority());
-        }
+        builder.append(" Priority: ")
+                .append(getPriority());
 
         return builder.toString();
     }

@@ -69,10 +69,7 @@ public class PersonCard extends UiPart<Region> {
         if (person.getNote() != null) {
             note.getChildren().add(new Label(person.getNote().noteName));
         }
-
-        if (person.getPriority() != null) {
-            priority.getChildren().add(new Label(person.getPriority().value));
-        }
+        priority.getChildren().add(new Label(person.getPriority().value));
 
         person.getClientSources().stream()
                 .sorted(Comparator.comparing(clientSource -> clientSource.clientSourceName))
