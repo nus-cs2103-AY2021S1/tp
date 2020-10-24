@@ -1,15 +1,14 @@
 package seedu.flashcard.logic.parser;
 
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.CliSyntax.*;
 
 import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.flashcard.logic.commands.FilterCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
-import seedu.flashcard.model.flashcard.Category;
-import seedu.flashcard.model.flashcard.CategoryEqualsKeywordsPredicate;
+import seedu.flashcard.model.flashcard.*;
 
 /**
  * Parses input arguments and creates a new FilterCommand object
@@ -22,17 +21,32 @@ public class FilterCommandParser implements Parser<FilterCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterCommand parse(String args) throws ParseException {
+        Category category = null;
+        Rating rating = null;
+        Boolean isFavourite = null;
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
+                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_RATING, PREFIX_FAV);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+        boolean noPrefixesPresent = !arePrefixesPresent(argMultimap, PREFIX_CATEGORY)
+                && !arePrefixesPresent(argMultimap, PREFIX_RATING)
+                && !arePrefixesPresent(argMultimap, PREFIX_FAV);
+        if (noPrefixesPresent
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
         }
+        if (arePrefixesPresent(argMultimap, PREFIX_CATEGORY)) {
+            category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
+        }
+        if (arePrefixesPresent(argMultimap, PREFIX_RATING)) {
+            rating = ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
+        }
+        if (arePrefixesPresent(argMultimap, PREFIX_FAV)) {
+            isFavourite = ParserUtil.parseFavourite(argMultimap.getValue(PREFIX_FAV).get());
+        }
 
-        List<Category> categoryList = ParserUtil.parseCategories(argMultimap.getAllValues(PREFIX_CATEGORY));
-        return new FilterCommand(new CategoryEqualsKeywordsPredicate(categoryList));
+        return new FilterCommand(new CategoryEqualsKeywordsPredicate(category),
+                new RatingEqualsKeywordsPredicate(rating), new FavouriteEqualsKeywordsPredicate(isFavourite));
     }
 
     /**
