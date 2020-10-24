@@ -16,6 +16,7 @@ import seedu.address.logic.commands.global.FindCommand;
 import seedu.address.logic.commands.global.HelpCommand;
 import seedu.address.logic.commands.global.ListPersonsCommand;
 import seedu.address.logic.commands.global.ListProjectsCommand;
+import seedu.address.logic.commands.global.StartPersonCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.meeting.LeaveMeetingViewCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
@@ -93,8 +94,10 @@ public class MainCatalogueParser {
             return new HelpCommand();
 
         case StartProjectCommand.COMMAND_WORD:
-            assert true;
             return new StartProjectCommandParser().parse(arguments);
+
+        case StartPersonCommand.COMMAND_WORD:
+            return new StartPersonCommandParser().parse(arguments);
 
         case LeaveProjectViewCommand.COMMAND_WORD:
             if (status == Status.PROJECT) {
