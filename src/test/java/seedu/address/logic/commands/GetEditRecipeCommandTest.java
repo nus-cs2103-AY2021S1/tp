@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showEditRecipeCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showRecipeAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_RECIPE;
@@ -44,23 +45,19 @@ public class GetEditRecipeCommandTest {
         assertCommandFailure(getEditRecipeCommand, model, Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
     }
 
-    //@Test
-    //public void execute_validIndexFilteredList_success() {
-    //    showRecipeAtIndex(model, INDEX_FIRST_Recipe);
-    //
-    //    Recipe RecipeToDelete =
-    //            model.getFilteredRecipeList().get(INDEX_FIRST_Recipe.getZeroBased());
-    //    DeleteRecipeCommand deleteRecipeCommand = new DeleteRecipeCommand(INDEX_FIRST_Recipe);
-    //
-    //    String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_DELETE_Recipe_SUCCESS,
-    //            RecipeToDelete);
-    //
-    //    Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
-    //    expectedModel.deleteRecipe(RecipeToDelete);
-    //    showNoRecipe(expectedModel);
-    //
-    //    assertCommandSuccess(deleteRecipeCommand, model, expectedMessage, expectedModel);
-    //}
+    @Test
+    public void execute_validIndexFilteredList_success() {
+        Recipe recipeToEdit =
+                model.getFilteredRecipeList().get(INDEX_FIRST_RECIPE.getZeroBased());
+        GetEditRecipeCommand getEditRecipeCommand = new GetEditRecipeCommand(INDEX_FIRST_RECIPE);
+
+        String expectedMessage = String.format(GetEditRecipeCommand.MESSAGE_GET_EDIT_RECIPE_SUCCESS,
+                recipeToEdit);
+
+        Model expectedModel = new ModelManager(model.getWishfulShrinking(), new UserPrefs());
+
+        assertCommandSuccess(getEditRecipeCommand, model, expectedMessage, expectedModel);
+    }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
