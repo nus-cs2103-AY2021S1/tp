@@ -16,9 +16,22 @@ public enum CommandTarget {
      * Creates a {@code CommandTarget} from its name.
      */
     public static Optional<CommandTarget> of(String str) {
-        if (str.equals("recipe") || str.equals("recipes")) {
+        if (str.equals("recipe")) {
             return Optional.of(RECIPE);
-        } else if (str.equals("ingredient") || str.equals("ingredients")) {
+        } else if (str.equals("ingredient")) {
+            return Optional.of(INGREDIENT);
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Creates a {@code CommandTarget} from its name.
+     */
+    public static Optional<CommandTarget> of(String str, boolean acceptsPlural) {
+        if (str.equals("recipe") || (acceptsPlural && str.equals("recipes"))) {
+            return Optional.of(RECIPE);
+        } else if (str.equals("ingredient") || (acceptsPlural && str.equals("ingredients"))) {
             return Optional.of(INGREDIENT);
         } else {
             return Optional.empty();

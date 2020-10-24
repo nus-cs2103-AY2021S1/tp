@@ -42,7 +42,7 @@ public class ListCommandParser {
             return Result.error("'list' command doesn't support '%s'", foo.get());
         }
 
-        return getCommandTarget(args)
+        return getCommandTarget(args, /* acceptsPlural: */ true)
             .then(target -> {
                 switch (target.fst()) {
                 case RECIPE:

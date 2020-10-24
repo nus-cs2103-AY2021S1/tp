@@ -49,6 +49,7 @@ public class ItemReference {
      * @return    an ItemReference
      */
     public static ItemReference ofZeroIndex(int idx) {
+        assert idx >= 0;
         return new ItemReference(Either.left(idx));
     }
 
@@ -105,5 +106,14 @@ public class ItemReference {
         return this == obj
             || (obj instanceof ItemReference
                 && ((ItemReference) obj).reference.equals(this.reference));
+    }
+
+    @Override
+    public String toString() {
+        if (this.reference.isLeft()) {
+            return String.format("#%d", this.getZeroIndex() + 1);
+        } else {
+            return this.reference.fromRight();
+        }
     }
 }

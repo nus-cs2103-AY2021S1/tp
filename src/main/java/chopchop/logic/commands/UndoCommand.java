@@ -19,4 +19,9 @@ public class UndoCommand extends Command {
 
         return historyManager.undo(model);
     }
+
+    @Override
+    public String toString() {
+        return String.format("UndoCommand");
+    }
 }

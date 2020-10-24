@@ -114,6 +114,36 @@ public class Either<L, R> {
             : Either.left(this.leftValue);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Either<?, ?>)) {
+            return false;
+        }
+
+        var other = (Either<?, ?>) obj;
+        if (this.leftValue == null && other.leftValue == null) {
+            return (this.rightValue == null && other.rightValue == null)
+                || (this.rightValue != null && other.rightValue != null
+                    && this.rightValue.equals(other.rightValue)
+                );
+        } else if (this.rightValue == null && other.rightValue == null) {
+            return (this.leftValue == null && other.leftValue == null)
+                || (this.leftValue != null && other.leftValue != null
+                    && this.leftValue.equals(other.leftValue)
+                );
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s)",
+            this.leftValue == null ? "Right" : "Left",
+            this.leftValue == null ? this.rightValue : this.leftValue);
+    }
+
+
     /**
      * Creates an Either containing a left value.
      *
