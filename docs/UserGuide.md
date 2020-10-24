@@ -18,7 +18,6 @@ exhaustive of updating, searching, sorting and ordering supplies, via Command Li
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Quick start
 To get started using Warenager,
 
@@ -32,7 +31,6 @@ To get started using Warenager,
    Warenager are: add, delete, update, find, findexact, note, notedelete, stats, sort, print, list and help.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -125,11 +123,11 @@ specified in ANY one of fields searched.
 Any combination of 1,2,3 or 4 of the fields: <br>
 * Single:
     * `find n/<name keyword(s) to be searched in stock name>` <br>
-    * `find sn/<serial number keyword(s) to be searched in stock serial number>` <br>
+    * `find sn/<serial number to be searched in stock serial number>` <br>
     * `find l/<location stored keyword(s) to be searched in stock location stored>` <br>
     * `find s/<source keyword(s) to be searched in stock source>` <br>
 * Multiple:
-    * `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number keyword(s)>` <br>
+    * `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
 
 ⚠ Each specific fields specified in the `find` command should only be entered once.<br>
 e.g. `find n/banana n/apple` is not a valid command.
@@ -167,11 +165,11 @@ Displays a list of stocks found in the inventory that contains all keywords spec
 Any combination of 1,2,3 or 4 of the fields: <br>
 * Single:
     * `findexact n/<name keyword(s) to be searched in stock name>` <br>
-    *  `findexact sn/<serial number keyword(s) to be searched in stock serial number>` <br>
+    *  `findexact sn/<serial numberto be searched in stock serial number>` <br>
     * `findexact l/<location stored keyword(s) to be searched in stock location stored>` <br>
     * `findexact s/<source keyword(s) to be searched in stock source>` <br>
 * Multiple:
-    * `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number keyword(s)>` <br>
+    * `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
 
 ⚠ Each specific fields specified in the `findexact` command should only be entered once.<br>
 e.g. `findexact n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
@@ -212,7 +210,7 @@ Updates the details of the desired stock, requires the serial number of products
     1. Serial number of product
 
 Prefixes:
-* `sn/<serial number keyword>`
+* `sn/<serial number>`
 * `n/<new name>`
 * `iq/<+/-><increment value>`
 * `nq/<new quantity>`
@@ -224,19 +222,19 @@ Prefixes:
 * Only at most one of `iq/` or `nq/` may be passed.
 * User may pass in more than one serial number to update all at once.
 
-`update sn/<serial number keyword> n/<new name>`
+`update sn/<serial number> n/<new name>`
 
-`update sn/<serial number keyword> iq/<+/-><increment value>`
+`update sn/<serial number> iq/<+/-><increment value>`
 
-`update sn/<serial number keyword> nq/<new quantity>`
+`update sn/<serial number> nq/<new quantity>`
 
-`update sn/<serial number keyword> l/<new location>`
+`update sn/<serial number> l/<new location>`
 
-`update sn/<serial number keyword> s/<new source>`
+`update sn/<serial number> s/<new source>`
 
-`update sn/<serial number keyword> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>`
+`update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>`
 
-`update sn/<serial number keyword> n/<new name> nq/<new quantity> l/<new location> s/<new source>`
+`update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>`
 
 ⚠ If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
 will not update anything and shows an error message.
@@ -298,7 +296,7 @@ Command: `note sn/ntuc1 nt/banana just arrived` will add note with index 1 in no
 ![banana note 1](images/add_note1_to_banana.png)
 
 ### Deleting note(s) from stock: `notedelete`
-Deletes a note, specified by the note's index, from the stock specified by its serial number..
+Deletes a note, specified by the note's index, from the stock specified by its serial number.
 * Required fields:
     1. Serial number of stock
     2. Note index of note to delete
@@ -446,7 +444,6 @@ Format : `exit`
 
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## FAQ
 
 **Q**: Can I use Warenager on any OS?<br>
@@ -457,7 +454,6 @@ Format : `exit`
 other device.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Command summary
 Summary of the commands required to perform certain actions is listed in this table:
 
@@ -470,14 +466,14 @@ Action | Format, Examples
 **FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `findexact n/umbrella s/ntuc`
 **Note** | `note sn/<serial number> nt/<note>`
 **NoteDelete** | `notedelete sn/<serial number> ni<note index>`
-**Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number keyword> n/<new name>` <br> `update sn/<serial number keyword> iq/<+/-><increment value>` <br> `update sn/<serial number keyword> nq/<new quantity>` <br> `update sn/<serial number keyword> l/<new location>` <br> `update sn/<serial number keyword> s/<new source>` <br> `update sn/<serial number keyword> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number keyword> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
-**Statistics** | `stats st/source` or `stats st/source-qd-<source company>`
+**Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number> n/<new name>` <br> `update sn/<serial number> iq/<+/-><increment value>` <br> `update sn/<serial number> nq/<new quantity>` <br> `update sn/<serial number> l/<new location>` <br> `update sn/<serial number> s/<new source>` <br> `update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
+**Statistics** | `stats st/source`<br>`stats st/source-qd-<source company>`
 **Print** | `print`
 **Help** | `help`
 **Exit** | `exit`
-
 --------------------------------------------------------------------------------------------------------------------
 ## Glossary
+
 Term | Definition
 --------|------------------
 **CSV File** | Comma-separated values File. It contains data separated by commas.
