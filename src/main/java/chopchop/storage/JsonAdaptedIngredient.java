@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import chopchop.model.attributes.Tag;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.attributes.Name;
+import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
 
 public class JsonAdaptedIngredient {
