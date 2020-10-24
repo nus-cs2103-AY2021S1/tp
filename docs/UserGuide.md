@@ -58,19 +58,21 @@ Shows a message with a link to the user guide.
 
 Format: `help`
 
+<br>
 
 ### 2. List all tasks : `list`
 
-Shows a list of all tasks in PlaNus.
+Shows the user a list of all the tasks in PlaNus.
 
 ![list tasks](images/ListTasks.png)
 
 Format: `list`
 
+<br>
 
 ### 3. Add a deadline : `deadline`
 
-Adds a deadline to PlaNus.
+User can add a deadline to PlaNus.
 
 Format: `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATE_TIME] [tag:MODULE_CODE]`
 
@@ -87,7 +89,7 @@ and a date and time of “01-01-2020 18:00” with tag "CS3230" to PlaNus.
 
 ### 4. Add an event : `event`
 
-Adds an event to PlaNus.
+Users can add an event to PlaNus.
 
 Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTION] [tag:MODULE_CODE]`
 
@@ -104,7 +106,7 @@ and a date "13-10-2020" with start time of "19:00" and end time of "20:30" with 
 
 ### 5. Add a lesson : `lesson`
 
-Adds a lesson to PlaNus.
+Users can add a lesson to PlaNus.
 
 Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
@@ -112,12 +114,14 @@ Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME
  date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time
  specified in `to:TIME`.
 * The format of day in `day:DAY` must be as follows (case-insensitive):
-  * Mon - Sun
-  * Monday - Sunday
+  * Monday, Tuesday, ..., Sunday
 
 Examples:
 
-* `lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` Adds a lesson to PlaNus with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
+* `lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` 
+ <br> Adds a lesson to PlaNus with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
+
+<br>
 
 ### 6. Delete a task : `delete`
 
@@ -151,7 +155,7 @@ Format: `done INDEX:TIME_TAKEN...`
 In order to avoid typo from user, this command will not be executed successfully when (and a corresponding error message will be shown):
 * one or more target indexes are event rather then deadline.
 * one or more target deadline are already in complete status.
-* same index appear more than one time in the command, eg. done 1:20 2:20 2:30 
+* same index appear more than one time in the command, eg. done 1:20 2:20 2:30
 * wrong INDEX/TIME_TAKEN value
 
 
@@ -187,7 +191,6 @@ Examples:
 * `find date:01-01-2020 11:00` will list all tasks with the date 01-01-2020 11:00
 * `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and with the title
    that includes either `dinner` or `lunch`
-
 
 ### 9. Edit a task : `edit`
 
@@ -225,14 +228,14 @@ Exits PlaNus.
 
 Format: `exit`
 
-
+<br>
 --------------------------------------------------------------------------------------------------------------------
-
+<br>
 ## FAQ
 
 **Q**: How do I start the application?<br>
 **A**: In command prompt, go to the folder the application resides in and type: java - jar planus.jar
-
+<br>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
