@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.recipe.exceptions.DuplicateIngredientException;
-import seedu.address.model.recipe.exceptions.DuplicateRecipeException;
 import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
 /**
@@ -45,7 +44,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     public void add(Ingredient toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateRecipeException();
+            throw new DuplicateIngredientException();
         }
         internalList.add(toAdd);
     }
@@ -71,17 +70,6 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
         internalList.set(index, editedIngredient);
     }
 
-    /**
-     * Removes the equivalent ingredient from the list.
-     * The ingredient must exist in the list.
-     */
-    public void remove(Ingredient toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new IngredientNotFoundException();
-        }
-    }
-
     public void setIngredients(UniqueIngredientList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -98,6 +86,24 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
         }
 
         internalList.setAll(ingredients);
+    }
+
+    /**
+     * Removes the equivalent ingredient from the list.
+     * The ingredient must exist in the list.
+     */
+    public void remove(Ingredient toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new IngredientNotFoundException();
+        }
+    }
+
+    /**
+     * Clears all the ingredients from the list.
+     */
+    public void clear() {
+        internalList.clear();
     }
 
     /**

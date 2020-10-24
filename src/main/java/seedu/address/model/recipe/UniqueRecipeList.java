@@ -68,17 +68,6 @@ public class UniqueRecipeList implements Iterable<Recipe> {
         internalList.set(index, editedRecipe);
     }
 
-    /**
-     * Removes the equivalent recipe from the list.
-     * The recipe must exist in the list.
-     */
-    public void remove(Recipe toRemove) {
-        requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
-            throw new RecipeNotFoundException();
-        }
-    }
-
     public void setRecipes(UniqueRecipeList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
@@ -95,6 +84,24 @@ public class UniqueRecipeList implements Iterable<Recipe> {
         }
 
         internalList.setAll(recipes);
+    }
+
+    /**
+     * Removes the equivalent recipe from the list.
+     * The recipe must exist in the list.
+     */
+    public void remove(Recipe toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new RecipeNotFoundException();
+        }
+    }
+
+    /**
+     * Clears all the recipes from the list.
+     */
+    public void clear() {
+        internalList.clear();
     }
 
     /**

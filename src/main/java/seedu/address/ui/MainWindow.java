@@ -4,7 +4,12 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import com.jfoenix.assets.JFoenixResources;
+import com.jfoenix.controls.JFXDrawer;
+import com.jfoenix.controls.JFXDrawersStack;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,12 +23,14 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.recipe.Recipe;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -66,6 +73,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
     @FXML
     private VBox leftPanel;
+
+    private JFXDrawersStack drawersStack;
+    private JFXDrawer leftDrawer;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -126,8 +136,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        fillRecipePanel();
-
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -136,6 +144,15 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        this.leftDrawer = new JFXDrawer();
+        leftDrawer.setDefaultDrawerSize(320);
+        leftDrawer.setResizeContent(true);
+        leftDrawer.setOverLayVisible(false);
+        leftDrawer.setResizableOnDrag(true);
+        leftDrawer.setId("LEFT");
+        this.drawersStack = new JFXDrawersStack();
+        fillRecipePanel();
     }
 
     void fillRecipePanel() {
@@ -178,9 +195,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     void show() {
+        primaryStage.setResizable(true);
+        primaryStage.setWidth(800);
+        primaryStage.setHeight(600);
+        primaryStage.setX(500);
+        primaryStage.setY(100);
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             leftPanel.setPrefWidth(primaryStage.getWidth() / 3);
+            leftDrawer.setDefaultDrawerSize(primaryStage.getWidth() / 3.1);
         };
         primaryStage.widthProperty().addListener(stageSizeListener);
 
@@ -203,8 +226,29 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public RecipeListPanel getRecipeListPanel() {
-        return recipeListPanel;
+    private void showDrawer(Recipe selected) {
+        StackPane leftDrawerPane = new StackPane();
+        leftDrawerPane.getChildren().add(new SingleRecipeCard(selected).getRoot());
+        final KeyFrame kf1 = new KeyFrame(Duration.seconds(0), e ->
+                leftDrawer.setSidePane(leftDrawerPane));
+        final KeyFrame kf2 = new KeyFrame(Duration.seconds(0.05), e -> {
+            listPanelPlaceholder.getChildren().add(drawersStack);
+        });
+        final KeyFrame kf3 = new KeyFrame(Duration.seconds(0.1), e -> {
+            drawersStack.toggle(leftDrawer, true);
+        });
+        final Timeline timeline = new Timeline(kf1, kf2, kf3);
+        Platform.runLater(timeline::play);
+    }
+    private void hideDrawer() {
+        final KeyFrame kf1 = new KeyFrame(Duration.seconds(0), e ->
+                drawersStack.toggle(leftDrawer, false));
+        final KeyFrame kf2 = new KeyFrame(Duration.seconds(1), e -> {
+            listPanelPlaceholder.getChildren().remove(drawersStack);
+            leftDrawer.setSidePane();
+        });
+        final Timeline timeline = new Timeline(kf1, kf2);
+        Platform.runLater(timeline::play);
     }
 
     /**
@@ -217,6 +261,16 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            //handle showing single recipe
+            Recipe selected = commandResult.getRecipe();
+            if (selected != null) {
+                showDrawer(selected);
+            }
+            //handle closing drawer
+            if (commandResult.isClose()) {
+                hideDrawer();
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

@@ -2,7 +2,6 @@ package seedu.address.model.recipe;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
 import java.util.Objects;
 
@@ -106,9 +105,8 @@ public class Ingredient {
      */
     public String stringify(int position) {
         String commandWord = EditIngredientCommand.COMMAND_WORD;
-        String ingredientValue = PREFIX_INGREDIENT + getValue();
-        String quantity = PREFIX_QUANTITY + getQuantity();
-        return commandWord + " " + position + " " + ingredientValue + " " + quantity;
+        String ingredient = PREFIX_INGREDIENT + parseToString();
+        return commandWord + " " + position + " " + ingredient;
     }
 
     @Override
@@ -125,8 +123,7 @@ public class Ingredient {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Ingredient // instanceof handles nulls
-                && value.equals(((Ingredient) other).getValue())
-                && quantity.equals(((Ingredient) other).getQuantity())); // state check
+                && value.equals(((Ingredient) other).getValue()));
     }
 
     @Override
