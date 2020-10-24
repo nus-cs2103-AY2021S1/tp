@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class AppointmentDateTime {
 
+    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
-            "Times should be entered in the format: 2020-12-25T23:36";
+            "Times should be entered in the format: yyyy-MM-dd HH:mm";
     // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
     // rather than a regex.
 
@@ -23,7 +25,7 @@ public class AppointmentDateTime {
     public AppointmentDateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.dateTime = LocalDateTime.parse(dateTime);
+        this.dateTime = LocalDateTime.parse(dateTime, formatter);
     }
 
     /**
@@ -31,7 +33,7 @@ public class AppointmentDateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test);
+            LocalDateTime.parse(test, formatter);
             return true;
         } catch (DateTimeParseException e) {
             return false;
