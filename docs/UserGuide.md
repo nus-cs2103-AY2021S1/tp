@@ -20,7 +20,7 @@ as well as summary commands.
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
 
-1. Ensure you have Java `11` or above irnstalled in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer.
 
 2. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
 
@@ -254,7 +254,7 @@ Format: `redo`
 (i.e. the previous undo commands are "forgotten" and `redo` will have no effect)
 
 --------------------------------------------------------------------------------------------------------------------
-### 3.2 Default Features
+### 3.2 General Features
 #### 3.2.1 Saving the data
 
 OneShelf data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -310,7 +310,7 @@ Notify the user if a certain stock is below threshold
 ## 4. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous InventoryBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Inventory/ DeliveryBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -326,6 +326,7 @@ Notify the user if a certain stock is below threshold
 |**Get help summary**    | `help summary` or press `F2` or use GUI help menu at the top left |                                                                                       |                                                                                             |
 |**Undo last command**   | `undo`  |
 |**Redo last undone command**   | `redo`  |
+|**Exit command** | `exit` |
 
 #### 5.2 Inventory summary
 
@@ -337,7 +338,7 @@ Notify the user if a certain stock is below threshold
 |**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
 |**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`                                       |
 |**List Inventory**   | `list-i`
-|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |                                                                                          |
+|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |
 
 
 #### 5.3 Delivery summary
