@@ -104,7 +104,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
-                .map(prefix -> getPredicate(prefix, argumentMultimap.getValue(prefix).get()))
+                .map(prefix -> generatePredicate(prefix, argumentMultimap.getValue(prefix).get()))
                 .collect(Collectors.toList());
     }
 
@@ -115,7 +115,7 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @param keywordsToFind keywords to match with the stock's field
      * @return predicate filter stocks based on field
      */
-    private static FieldContainsKeywordsPredicate getPredicate(Prefix prefix, String keywordsToFind) {
+    private static FieldContainsKeywordsPredicate generatePredicate(Prefix prefix, String keywordsToFind) {
         final FieldContainsKeywordsPredicate fieldContainsKeywordsPredicate;
         String trimmedKeywordsToFind = keywordsToFind.trim();
         String[] keywords = trimmedKeywordsToFind.split("\\s+");
