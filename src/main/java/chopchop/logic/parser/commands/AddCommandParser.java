@@ -99,13 +99,13 @@ public class AddCommandParser {
         }
 
         var tags = args.getArgument(Strings.ARG_TAG);
+        var tagSet = Set.copyOf(tags.stream()
+            .map(x -> new Tag(x))
+            .collect(Collectors.toList())
+        );
 
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
         // then constructs the command from it -- while returning any intermediate error messages.
-        Optional<Set<String>> tagSet = tags.isEmpty()
-            ? Optional.empty()
-            : Optional.of(Set.copyOf(tags));
-
         return Result.transpose(qtys
             .stream()
             .findFirst()
@@ -137,6 +137,12 @@ public class AddCommandParser {
                 AddRecipeCommand.MESSAGE_USAGE);
         }
 
+        var tags = args.getArgument(Strings.ARG_TAG);
+        var tagSet = Set.copyOf(tags.stream()
+            .map(x -> new Tag(x))
+            .collect(Collectors.toList())
+        );
+
         return parseIngredientList(args)
             .map(ingrs -> createAddRecipeCommand(name, ingrs,
                     args.getAllArguments()
@@ -144,7 +150,8 @@ public class AddCommandParser {
                         .filter(p -> p.fst().equals(Strings.ARG_STEP))
                         .map(p -> p.snd())
                         .map(x -> new Step(x))
-                        .collect(Collectors.toList()))
+                        .collect(Collectors.toList()),
+                    tagSet)
             );
     }
 
@@ -215,24 +222,21 @@ public class AddCommandParser {
     }
 
     private static AddRecipeCommand createAddRecipeCommand(String name,
-        List<IngredientReference> ingredients, List<Step> steps) {
+        List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
 
         return new AddRecipeCommand(new Recipe(
-            name, ingredients, steps
+            name, ingredients, steps, tags
         ));
     }
 
 
     private static Result<AddIngredientCommand> createAddIngredientCommand(String name, Optional<Quantity> qty,
-        Optional<String> expiry, Optional<Set<String>> tags) {
+        Optional<String> expiry, Set<Tag> tags) {
 
         return Result.transpose(expiry
             .map(ExpiryDate::of))
-            .map(exp -> {
-                var tagList = tags.map(x -> x.stream().map(Tag::new).collect(Collectors.toSet())).orElse(null);
-
-                return new AddIngredientCommand(new Ingredient(name,
-                    qty.orElse(Count.of(1)), exp.orElse(null), tagList));
-            });
+            .map(exp -> new AddIngredientCommand(new Ingredient(name,
+                qty.orElse(Count.of(1)), exp.orElse(null), tags))
+            );
     }
 }
