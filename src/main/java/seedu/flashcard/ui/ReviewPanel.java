@@ -3,23 +3,28 @@ package seedu.flashcard.ui;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
-import seedu.flashcard.logic.StudyManager;
+import seedu.flashcard.logic.Logic;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
- * An UI component that displays review function.
+ * An UI component that handles review mode.
  */
 public class ReviewPanel extends StudyPanel {
 
     public static final String EXIT_MESSAGE = "Exited review mode";
     public static final String HELP_MESSAGE = "You are in review mode \n\u2191 hide answer   \u2193 show answer   "
             + "\u2190 previous flashcard" + "   \u2192 next flashcard" + "   q quit review mode";
+    public static final int RIGHT_ARROW = 39;
+    public static final int LEFT_ARROW = 37;
+    public static final int DOWN_ARROW = 40;
+    public static final int UP_ARROW = 38;
+    public static final int Q_KEY = 81;
 
     /**
      * Creates a {@code ReviewPanel} that handles review mode.
      */
-    public ReviewPanel(StudyManager studyManager, MainWindow parent) {
-        super(studyManager, parent);
+    public ReviewPanel(Logic logic, MainWindow parent) {
+        super(logic, parent);
         showFlashcard(studyManager.getCurrentFlashcard());
         handleStudy();
     }
@@ -36,30 +41,21 @@ public class ReviewPanel extends StudyPanel {
                     return;
                 }
                 switch (event.getCode().getCode()) {
-                case 39: // right arrow key down
-                    if (!studyManager.hasNextFlashcard()) {
-                        parent.setResultDisplayMessage("This are no more flashcards to be reviewed\n" + HELP_MESSAGE);
-                    } else {
-                        showFlashcard(studyManager.getNextFlashcard());
-                    }
+                case RIGHT_ARROW: // right arrow key down
+                    handleUserNextFlashcardInput();
                     break;
-                case 37: // left arrow key down
-                    if (!studyManager.hasPreviousFlashcard()) {
-                        parent.setResultDisplayMessage("This are no more previous flashcards to be reviewed\n"
-                                + HELP_MESSAGE);
-                    } else {
-                        showFlashcard(studyManager.getPrevFlashcard());
-                    }
+                case LEFT_ARROW: // left arrow key down
+                    handleUserPreviousFlashcardInput();
                     break;
-                case 40: // down arrow key down
+                case DOWN_ARROW: // down arrow key down
                     FlashcardAnswerCard flashcardAnswerCard = new FlashcardAnswerCard(
                             studyManager.getCurrentFlashcard());
                     showAnswer(flashcardAnswerCard);
                     break;
-                case 38: // up arrow key down
+                case UP_ARROW: // up arrow key down
                     hideAnswer();
                     break;
-                case 81: // 'q' key down
+                case Q_KEY: // 'q' key down
                     exitStudyMode(EXIT_MESSAGE);
                     break;
                 default:
@@ -69,6 +65,23 @@ public class ReviewPanel extends StudyPanel {
             }
         };
         parent.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
+    }
+
+    private void handleUserNextFlashcardInput() {
+        if (!studyManager.hasNextFlashcard()) {
+            parent.setResultDisplayMessage("This are no more flashcards to be reviewed\n" + HELP_MESSAGE);
+        } else {
+            showFlashcard(studyManager.getNextFlashcard());
+        }
+    }
+
+    private void handleUserPreviousFlashcardInput() {
+        if (!studyManager.hasPreviousFlashcard()) {
+            parent.setResultDisplayMessage("This are no more previous flashcards to be reviewed\n"
+                    + HELP_MESSAGE);
+        } else {
+            showFlashcard(studyManager.getPrevFlashcard());
+        }
     }
 
     @Override

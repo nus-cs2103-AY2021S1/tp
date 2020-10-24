@@ -8,7 +8,7 @@ import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
- * Maintains state for the review function.
+ * Maintains state for a study mode.
  */
 public class StudyManager {
     private ObservableList<Flashcard> flashcardList;
@@ -19,12 +19,10 @@ public class StudyManager {
 
     /**
      * Creates a {@code StudyManager} with the specified list of flashcards and logic manager
-     *
-     * @param flashcardList
      * @param logic
      */
-    public StudyManager(ObservableList<Flashcard> flashcardList, Logic logic) {
-        this.flashcardList = flashcardList;
+    public StudyManager(Logic logic) {
+        this.flashcardList = logic.getFilteredFlashcardList();
         this.logic = logic;
         initialiseHashMap();
         currentIndex = 0;
@@ -85,7 +83,6 @@ public class StudyManager {
      */
     public void incrementCurrentFlashcardStatistics(boolean isCorrect) throws CommandException {
         logic.executeCommand(new IncrementStatsCommand(getCurrentFlashcard(), isCorrect));
-
     }
 
 }

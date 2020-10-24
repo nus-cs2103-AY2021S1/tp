@@ -13,13 +13,13 @@ public class IncrementStatsCommand extends Command {
 
 
     /**
+     * Creates an IncrementStatsCommand to increment the statistics of the given {@code Flashcard}
      * @param flashcard Flashcard that contains the statistics to be incremented.
      * @param isCorrect Represents the correctness of the user's answer to the flashcard.
      */
     public IncrementStatsCommand(Flashcard flashcard, boolean isCorrect) {
         this.flashcard = flashcard;
         this.isCorrect = isCorrect;
-
     }
 
     @Override

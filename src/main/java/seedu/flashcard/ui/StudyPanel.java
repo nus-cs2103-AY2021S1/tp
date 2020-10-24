@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.flashcard.logic.Logic;
 import seedu.flashcard.logic.StudyManager;
 import seedu.flashcard.model.flashcard.Flashcard;
 
@@ -23,7 +24,6 @@ public abstract class StudyPanel extends UiPart<Region> {
 
     protected EventHandler<KeyEvent> keyDownEventHandler;
     protected final MainWindow parent;
-
     protected final StudyManager studyManager;
 
     @FXML
@@ -35,16 +35,16 @@ public abstract class StudyPanel extends UiPart<Region> {
     /**
      * Creates a {@code StudyPanel} with the given parent {@code MainWindow}
      */
-    public StudyPanel(StudyManager studyManager, MainWindow parent) {
+    public StudyPanel(Logic logic, MainWindow parent) {
         super(FXML);
-        this.studyManager = studyManager;
+        this.studyManager = new StudyManager(logic);
         this.parent = parent;
     }
 
     /**
-     * Shows the current flashcard being reviewed.
+     * Shows the current flashcard being studied.
      *
-     * @param flashcard the FlashCard being reviewed.
+     * @param flashcard the FlashCard being studied.
      */
     protected void showFlashcard(Flashcard flashcard) {
         questionPlaceholder.getChildren().clear();

@@ -53,9 +53,10 @@ public class LogicManager implements Logic {
 
         return commandResult;
     }
+
     @Override
     public CommandResult executeCommand(Command command) throws CommandException {
-        logger.info("----------------[STUDY COMMAND]");
+        logger.info("----------------[INTERNAL COMMAND]");
         CommandResult commandResult;
         commandResult = command.execute(model);
 

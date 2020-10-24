@@ -24,6 +24,12 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
+    /**
+     * Executes the given command and returns the result. Used internally.
+     * @param command The command provided by the system.
+     * @return the result of the command execution.
+     * @throws CommandException If an error occurs during command execution.
+     */
     CommandResult executeCommand(Command command) throws CommandException;
 
     /**

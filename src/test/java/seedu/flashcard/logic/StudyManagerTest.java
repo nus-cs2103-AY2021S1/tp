@@ -29,6 +29,12 @@ public class StudyManagerTest {
     private StudyManager studyManager;
 
     class LogicStub implements Logic {
+
+        private Model model;
+
+        public LogicStub(Model model) {
+            this.model = model;
+        }
         @Override
         public CommandResult execute(String commandText) throws CommandException, ParseException {
             return null;
@@ -46,7 +52,7 @@ public class StudyManagerTest {
 
         @Override
         public ObservableList<Flashcard> getFilteredFlashcardList() {
-            return null;
+            return model.getFilteredFlashcardList();
         }
 
         @Override
@@ -68,7 +74,7 @@ public class StudyManagerTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
-        studyManager = new StudyManager(model.getFilteredFlashcardList(), new LogicStub());
+        studyManager = new StudyManager(new LogicStub(model));
     }
 
     @Test
