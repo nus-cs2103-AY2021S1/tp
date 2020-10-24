@@ -75,7 +75,8 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(FLASHCARD_1, FLASHCARD_2, FLASHCARD_3));
+        return new ArrayList<>(Arrays.asList(FLASHCARD_1, FLASHCARD_2, FLASHCARD_3,
+                FLASHCARD_4, FLASHCARD_5, FLASHCARD_6));
     }
 
     public static List<Flashcard> getReviewedFlashcards() {

@@ -120,7 +120,8 @@ public class FilterCommandTest {
     @Test
     public void execute_oneKeyword_multipleFlashcardsFound() {
         String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
-        CategoryEqualsKeywordsPredicate categoryPredicate = new CategoryEqualsKeywordsPredicate(new Category("general"));
+        CategoryEqualsKeywordsPredicate categoryPredicate =
+                new CategoryEqualsKeywordsPredicate(new Category("general"));
         MultipleFieldsEqualsKeywordsPredicate combinedPredicate =
                 new MultipleFieldsEqualsKeywordsPredicate(categoryPredicate, nullRatingPredicate,
                         nullFavouritePredicate, nullTagsPredicate);
