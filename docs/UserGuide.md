@@ -257,7 +257,7 @@ All the keyword mentioned in command should follow the format stated below:
 | keyword     | Format, Examples                                             |
 | ---------- | ------------------------------------------------------------ |
 | **date**   | `dd-MM-yyyy`  <br> e.g. 23-10-2020                                                    |
-| **datetime**   | `dd-MM-yyyy HH:mm`                                                       |
+| **datetime**   | `dd-MM-yyyy HH:mm` <br> e.g. 21-10-2020 10:00                                                      |
 | **day**  |  `Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday` |
-| **from, to, time** | `HH:mm` <br> 18:00      |
+| **from, to, time** | `HH:mm` <br> e.g. 18:00      |
                                                      |
