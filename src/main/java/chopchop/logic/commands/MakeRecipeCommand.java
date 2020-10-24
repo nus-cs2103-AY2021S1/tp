@@ -49,7 +49,8 @@ public class MakeRecipeCommand extends Command implements Undoable {
     }
 
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager)
+        throws CommandException {
         requireNonNull(model);
 
         if (this.item.isIndexed()) {
@@ -89,7 +90,6 @@ public class MakeRecipeCommand extends Command implements Undoable {
         }
 
         model.setRecipe(this.recipe, this.recipe.addUsage());
-
         return new CommandResult(String.format(MESSAGE_MAKE_RECIPE_SUCCESS, this.recipe));
     }
 

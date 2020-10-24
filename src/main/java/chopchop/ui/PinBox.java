@@ -2,7 +2,11 @@ package chopchop.ui;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
-import chopchop.logic.Logic;
+import java.time.LocalDateTime;
+
+import chopchop.commons.util.Pair;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
@@ -14,7 +18,7 @@ import javafx.scene.layout.Region;
 public class PinBox extends UiPart<Region> {
     private static final String EMPTY_PROMPT = "You haven't cooked anything yet.";
     private static final String FXML = "PinBox.fxml";
-    private Logic logic;
+    private ObservableSet<Pair<String, LocalDateTime>> observableRecords;
 
     @FXML
     private TextArea pins;
@@ -31,20 +35,30 @@ public class PinBox extends UiPart<Region> {
     @FXML
     private TextArea body2;
 
-
     /**
      * Creates a {@code PinBox}.
      */
-    public PinBox(Logic logic) {
+    public PinBox(ObservableSet<Pair<String, LocalDateTime>> records) {
         super(FXML);
-        this.logic = logic;
+        this.observableRecords = records;
         pins.setText("Statistics\n");
         header1.setText("Recently cooked recipe");
-        body1.setText(EMPTY_PROMPT);
+        if (records.isEmpty()) {
+            body1.setText(EMPTY_PROMPT);
+        } else {
+            body1.setText(records.toString());
+        }
         header2.setText("Ingredients expiring soon");
+        observableRecords.addListener(new SetChangeListener<Pair<String, LocalDateTime>>() {
+            @Override
+            public void onChanged(Change<? extends Pair<String, LocalDateTime>> c) {
+                //todo: expiring ingredient.
+                setStatisticsToUser(observableRecords.toString(), "To be implemented");
+            }
+        });
     }
 
-    public void setStatisticsToUser(String recentRecipes, String expiringIngredients) {
+    private void setStatisticsToUser(String recentRecipes, String expiringIngredients) {
         requireAllNonNull(recentRecipes, expiringIngredients);
         body1.setText(recentRecipes);
         body2.setText(expiringIngredients);

@@ -9,7 +9,7 @@ import java.util.TreeSet;
 import chopchop.commons.util.Pair;
 
 public class StatsManager {
-    private Set<Pair<String, LocalDateTime>> records = new TreeSet<>(new Comparator<Pair<String, LocalDateTime>>() {
+    private TreeSet<Pair<String, LocalDateTime>> records = new TreeSet<>(new Comparator<Pair<String, LocalDateTime>>() {
         @Override
         public int compare(Pair<String, LocalDateTime> o1, Pair<String, LocalDateTime> o2) {
             if (o1.snd().isAfter(o2.snd())) {
@@ -27,4 +27,13 @@ public class StatsManager {
     public Set<Pair<String, LocalDateTime>> getRecords() {
         return this.records;
     }
+
+    public void pop() {
+        this.records.remove(records.first());
+    }
+
+    public void add() {
+        this.records.add(new Pair("NEW", LocalDateTime.now()));
+    }
+
 }

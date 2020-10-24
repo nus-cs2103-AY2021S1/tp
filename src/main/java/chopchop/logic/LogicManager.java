@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -14,6 +13,7 @@ import chopchop.commons.core.LogsCenter;
 import chopchop.commons.util.Pair;
 import chopchop.logic.autocomplete.AutoCompleter;
 import chopchop.logic.commands.CommandResult;
+import chopchop.logic.commands.MakeRecipeCommand;
 import chopchop.logic.commands.Undoable;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
@@ -25,7 +25,9 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.stats.StatsManager;
 import chopchop.storage.Storage;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ObservableSet;
 
 /**
  * The main LogicManager governing the logic in the app.
@@ -48,7 +50,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         this.statsManager = initStatsManager(model);
-        this.historyManager = new HistoryManager();
+        this.historyManager = new HistoryManager(this.statsManager);
         this.parser = new CommandParser();
         this.completer = new AutoCompleter();
     }
@@ -74,6 +76,12 @@ public class LogicManager implements Logic {
         if (cmd instanceof Undoable) {
             this.historyManager.addCommand((Undoable) cmd);
         }
+
+        if (cmd instanceof MakeRecipeCommand) {
+            this.statsManager.add();
+        }
+
+        logger.info("RECORD IS " + this.statsManager.getRecords().toString());
 
         try {
             this.storage.saveIngredientBook(this.model.getIngredientBook());
@@ -144,6 +152,11 @@ public class LogicManager implements Logic {
     @Override
     public List<String> getInputHistory(String prefix) {
         return this.historyManager.getInputHistory(prefix);
+    }
+
+    @Override
+    public ObservableSet<Pair<String, LocalDateTime>> getRecordSet() {
+        return FXCollections.observableSet(this.statsManager.getRecords());
     }
 
     @Override
