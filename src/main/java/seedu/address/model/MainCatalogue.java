@@ -34,7 +34,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     {
         projects = new UniqueProjectList();
         persons = new UniquePersonList();
-        status = Status.CATALOGUE;
+        status = Status.PROJECT_LIST;
         project = Optional.empty();
     }
 
@@ -169,7 +169,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     @Override
     public void quit() {
         if (status == Status.PROJECT) {
-            status = Status.CATALOGUE;
+            status = Status.PROJECT_LIST;
             this.project = Optional.empty();
         } else if (status == Status.TASK) {
             status = Status.PROJECT;

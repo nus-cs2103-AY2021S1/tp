@@ -121,84 +121,84 @@ public class MainCatalogueParser {
             }
 
         case AssignCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new AssignCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AllTasksCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new AllTasksCommand();
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AllMeetingsCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new AllMeetingsCommand();
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case TaskFilterCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new TaskFilterCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case MeetingFilterCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new MeetingFilterCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case NewTeammateCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new NewTeammateCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case AddTaskCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new AddTaskCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case EditTaskCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new EditTaskCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case EditTeammateCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new EditTeammateCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case ViewTaskCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new ViewTaskCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case ViewTeammateCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new ViewTeammateCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
         case ViewMeetingCommand.COMMAND_WORD:
-            if (status != Status.CATALOGUE) {
+            if (status != Status.PROJECT_LIST) {
                 return new ViewMeetingCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);

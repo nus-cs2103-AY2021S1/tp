@@ -173,7 +173,7 @@ public class MainCatalogueTest {
     private static class MainCatalogueStub implements ReadOnlyMainCatalogue {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private Status status = Status.CATALOGUE;
+        private Status status = Status.PROJECT_LIST;
 
         MainCatalogueStub(Collection<Project> projects, Collection<Person> persons) {
             this.projects.setAll(projects);
