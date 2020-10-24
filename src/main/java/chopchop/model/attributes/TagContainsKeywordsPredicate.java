@@ -5,7 +5,6 @@ import chopchop.model.Entry;
 
 import java.util.List;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 /**
  * Tests that an item's {@code Name} matches any of the keywords given.
@@ -19,15 +18,18 @@ public class TagContainsKeywordsPredicate implements Predicate<Entry> {
 
     @Override
     public boolean test(Entry entry) {
-        Stream<String> tagNameList = entry.getTags()
+        if (entry.getTags().isEmpty()) {
+            return false;
+        }
+        /*Stream<String> tagNameList = entry.getTags()
                 .stream().map(tag -> tag.getTagName());
-
         return tagNameList.anyMatch(tagName -> this.keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tagName, keyword)));
-
-        //      String tagStr = entry.getTags().stream().map(t -> t.toString()).collect(Collectors.joining());
-        //      return this.keywords.stream()
-        //              .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tagStr, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tagName, keyword)));*/
+        return this.keywords.stream()
+                .allMatch(keyword -> entry.getTags()
+                    .stream()
+                    .map(tag -> tag.getTagName())
+                    .anyMatch(tagName -> StringUtil.containsWordIgnoreCase(tagName, keyword)));
     }
 
     @Override

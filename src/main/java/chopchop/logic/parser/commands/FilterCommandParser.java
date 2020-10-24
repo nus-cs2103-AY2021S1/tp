@@ -59,20 +59,8 @@ public class FilterCommandParser {
                 foo.get(), FilterRecipeCommand.MESSAGE_USAGE);
         }
 
-        /*if ((foo = getFirstUnknownArgument(args, new ArrayList<>())).isPresent()) {
-            return Result.error("filtering criteria cannot be empty!\n%s",
-                    foo.get(), FilterRecipeCommand.MESSAGE_USAGE);
-        }*/
-
         return getCommandTarget(args)
             .then(target -> {
-                /*var words = new StringView(target.snd()).words();
-
-                if (words.isEmpty()) {
-                    return Result.error("'%s' command requires at least one search term\n%s",
-                        commandName, FilterRecipeCommand.MESSAGE_USAGE);
-                }*/
-
                 switch (target.fst()) {
                 case RECIPE:
                     return parseFilterRecipeCommand(args);
@@ -160,9 +148,8 @@ public class FilterCommandParser {
         }
 
         return Result.of(new FilterRecipeCommand(
-                new TagContainsKeywordsPredicate(tags),
-                new IngredientsContainsKeywordsPredicate(ingredients)
+                tags.isEmpty() ? null : new TagContainsKeywordsPredicate(tags),
+                ingredients.isEmpty() ? null : new IngredientsContainsKeywordsPredicate(ingredients)
                 ));
-
     }
 }
