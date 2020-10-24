@@ -59,7 +59,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
         Student replacement = asker.deleteQuestion(deleted);
 
         model.setStudent(asker, replacement);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_SUCCESS, replacement.getName(), deleted));
     }

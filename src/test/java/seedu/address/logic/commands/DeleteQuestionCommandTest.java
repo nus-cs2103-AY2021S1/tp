@@ -66,7 +66,7 @@ public class DeleteQuestionCommandTest {
     public void execute_validIndicesSolved_success() {
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index questionIndex = Index.fromOneBased(2);
         Question removed = clone.getQuestions().get(questionIndex.getZeroBased());
@@ -86,7 +86,7 @@ public class DeleteQuestionCommandTest {
 
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
         Index questionIndex = Index.fromOneBased(2);
         Question removed = clone.getQuestions().get(questionIndex.getZeroBased());
 
@@ -120,7 +120,7 @@ public class DeleteQuestionCommandTest {
     public void execute_invalidQuestionIndex_success() {
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index questionIndex = Index.fromZeroBased(TEST_QUESTIONS.length);
         DeleteQuestionCommand command = new DeleteQuestionCommand(INDEX_FIRST_PERSON, questionIndex);

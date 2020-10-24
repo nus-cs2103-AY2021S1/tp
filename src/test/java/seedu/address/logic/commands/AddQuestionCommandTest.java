@@ -85,7 +85,7 @@ public class AddQuestionCommandTest {
     @Test
     public void execute_solvedQuestionAlreadyExists_throwsCommandException() {
         Student asker = new StudentBuilder(ALICE).withSolved(DEFAULT_SOLUTION, TEST_QUESTION).build();
-        model.setPerson(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
+        model.setStudent(model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), asker);
 
         AddQuestionCommand invalidCommand = new AddQuestionCommand(INDEX_FIRST_PERSON,
                 new UnsolvedQuestion(TEST_QUESTION));

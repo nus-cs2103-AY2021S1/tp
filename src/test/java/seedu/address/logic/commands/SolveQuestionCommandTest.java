@@ -132,7 +132,7 @@ public class SolveQuestionCommandTest {
     public void execute_alreadySolvedQuestion_throwsCommandException() {
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withSolved(DEFAULT_SOLUTION, TEST_QUESTIONS).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         Index question = Index.fromOneBased(1);
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question, DEFAULT_SOLUTION);
