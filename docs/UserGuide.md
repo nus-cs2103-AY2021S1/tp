@@ -6,7 +6,14 @@ User Guide v1.3
 
 ##Introduction - Gabriella Teh
 
-PlaNus is **task managing desktop application** for students in NUS with many projects and deadlines, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus reduces the time spent by students in task management as adding tasks and lessons is now simple and quick! 
+PlaNus is a project done under NUS module CS2103T by a group of five aspiring computer science students.
+
+PlaNus is **task managing desktop application** for students in NUS with many projects and deadlines, optimized for use via a Command Line Interface (CLI) with the benefits of Graphical User Interface (GUI). PlaNus reduces the time spent by students in task management as adding tasks and lessons is now simple and quick!
+
+Objectives of PlaNus:
+1. Provide students with a detailed breakdown of how much time they spend on their tasks and lessons in their respective modules.
+2. Allow students to have a organised view of their schedule. (coming soon in v1.3B)
+3. Allocate tasks and lessons to their schedule automatically. (coming soon in v1.4)
 
 ##About
 This user guide provides a detailed description of all the features available in the application.
@@ -52,25 +59,27 @@ This user guide provides a detailed description of all the features available in
 
 ### 1. Show all commands : `help`
 
-Shows a message with a link to the user guide.
+Shows the user a message with a link to the user guide.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
 
+<br>
 
 ### 2. List all tasks : `list`
 
-Shows a list of all tasks in PlaNus.
+Shows the user a list of all the tasks in PlaNus.
 
 ![list tasks](images/ListTasks.png)
 
 Format: `list`
 
+<br>
 
 ### 3. Add a deadline : `deadline`
 
-Adds a deadline to PlaNus.
+Users can add a deadline to PlaNus.
 
 Format: `deadline title:TITLE [desc:DESCRIPTION] [datetime:DATE_TIME] [tag:MODULE_CODE]`
 
@@ -87,7 +96,7 @@ Adds a deadline with title “Assignment 1”, description “CS3230 Assignment 
 
 ### 4. Add an event : `event`
 
-Adds an event to PlaNus.
+Users can add an event to PlaNus.
 
 Format: `event title:TITLE date:DATE from:START_TIME to:END_TIME [desc:DESCRIPTION] [tag:MODULE_CODE]`
 
@@ -103,22 +112,24 @@ Adds an event with title "Career Talk", and a date "02-01-2020" with start time 
 
 ### 5. Add a lesson : `lesson`
 
-Adds a lesson to PlaNus.
+Users can add a lesson to PlaNus.
 
 Format: `lesson title:TITLE tag:MODULE_CODE [desc:DESCRIPTION] day:DAY from:TIME to:TIME start:DATE end:DATE`
 
-* Adds a lesson to PlaNus, starting from the date specified in `start:DATE` to the date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time specified in `to:TIME`.
+* Adds a lesson to PlaNus, with the title specified in `title:TITLE`, starting from the date specified in `start:DATE` to the date specified in `end:DATE`, on the days specified in `day:DAY` from the time specified in `from:TIME` to the time specified in `to:TIME`.
 * The format of day in `day:DAY` must be as follows (case-insensitive):
-  * Mon - Sun
-  * Monday - Sunday
+  * Monday, Tuesday, ..., Sunday
 
 Examples:
 
-* `lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` Adds a lesson to PlaNus with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
+* `lesson title:CS2103T Lecture tag:CS2103T desc:Most exciting lecture in NUS! day:Mon from:12:00 to:14:00 start:01-01-2020 end:01-05-2020 ` 
+ <br> Adds a lesson to PlaNus with a title "CS2103 Lecture", under the module "CS2103T", with a description "Most exciting lecture in NUS!", on all Mondays 12:00-14:00 in the date range 01-01-2020 to 01-05-2020.
+
+<br>
 
 ### 6. Delete a task : `delete`
 
-Deletes the specified task from PlaNus.
+Users can delete the specified task from PlaNus.
 
 Format: `delete INDEX...`
 
@@ -132,9 +143,11 @@ Examples:
 * `list` followed by `delete 1 2` deletes the 1st task followed by the 2nd task in the results of the `list` command.
 * `find title:homework` followed by `delete 1` deletes the 1st task in the results of the `find` command.
 
+<br>
+
 ### 7. Mark a deadline as done : `done`
 
-Marks a specified deadline in PlaNus as done.
+Users can mark a specified deadline in PlaNus as done.
 
 Format: `done INDEX:TIME_TAKEN...`
 
@@ -145,28 +158,22 @@ Format: `done INDEX:TIME_TAKEN...`
 * Take note that there are two type of task, one is event, another one is deadline, only task of deadline can be marked as done through this command, an error message will be shown if user attempts to mark the event as done.
 * After user marked a deadline as done, user cannot edit the deadline or undo the done command anymore.
 
-In order to avoid any typo from user, this command will not be executed successfully when (and a corresponding error message will be shown):
-* one or more target indexes are event rather than deadline.
-* one or more target deadline are already in complete status.
-* same index appear more than one time in the command, eg. done 1:20 2:20 2:30 
-* wrong INDEX/TIME_TAKEN value
-
-
 Examples:
 
-* `list` followed by `done 2:30 3:60` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and record that user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
+* `list` followed by `done 2:30 3:60` marks the 2nd and the 3rd tasks in the results of the `list` command status to be done, and record that the user has spent 30 minutes to finish the 2nd task, and 60 minutes to finish the 3rd task.
 * `find title:homework` followed by `done 1:20` marks the 1st task in the results of the `find` command status to be done and record the time taken to complete the deadline is 20 minutes.
+
+<br>
 
 ### 8. Find a task by an attribute : `find`
 
-Finds a task by a set of attributes given below.
+Users can find a task by a set of attributes given below.
 
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
+If the user provides different attributes in the command, tasks that match all attributes will be displayed.
 
-If different attributes are provided in the command, tasks that match all attributes will be displayed.
-
-If multiple search phrases of the same attribute are provided in the command, tasks that match any of the
+If the user provides multiple search phrases of the same attribute in the command, tasks that match any of the search phrases will be displayed.
 
 Available attributes in v1.3 include:
 * `title:` finds all tasks which contain the search phrase in the given title
@@ -184,10 +191,11 @@ Examples:
 * `find date:01-01-2020 11:00` will list all tasks with the date 01-01-2020 11:00
 * `find title:dinner title:lunch type:deadline` will list all deadlines with the title includes either `dinner` or `lunch`
 
+<br>
 
 ### 9. Edit a task : `edit`
 
-Edits a task by a set of attributes given below.
+Users can edit a task by a set of attributes given below.
 
 Format: `edit INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 
@@ -212,20 +220,22 @@ Examples:
 * `find title:homework` followed by`edit 2 desc:Homework is difficult date:01-01-2020` will edit the second task in the results of the `find` command if the task is an event, changing its date to 01-01-2020 and its description to "Homework is difficult", otherwise, PlaNus will notify the user of the incompatible error
 * `edit 1 tag:CS2103T` will edit the first task in the results of the `list` command, changing its tag to "CS2103T"
 
+<br>
+
 ### 10. Exit the program : `exit`
 
-Exits PlaNus.
+Users can exit PlaNus.
 
 Format: `exit`
 
-
+<br>
 --------------------------------------------------------------------------------------------------------------------
-
+<br>
 ## FAQ
 
 **Q**: How do I start the application?<br>
 **A**: In command prompt, go to the folder the application resides in and type: java - jar planus.jar
-
+<br>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
@@ -249,7 +259,7 @@ All the keyword mentioned in command should follow the format stated below:
 | keyword     | Format, Examples                                             |
 | ---------- | ------------------------------------------------------------ |
 | **date**   | `dd-MM-yyyy`  <br> e.g. 23-10-2020                                                    |
-| **datetime**   | `dd-MM-yyyy HH:mm`                                                       |
+| **datetime**   | `dd-MM-yyyy HH:mm` <br> e.g. 21-10-2020 10:00                                                      |
 | **day**  |  `Monday/Tuesday/Wednesday/Thursday/Friday/Saturday/Sunday` |
-| **from, to, time** | `HH:mm` <br> 18:00      |
+| **from, to, time** | `HH:mm` <br> e.g. 18:00      |
                                                      |
