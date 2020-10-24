@@ -240,7 +240,7 @@ Statistics include:
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 ![StatsIndexStep1](./images/StatsIndexStep1.png)
-2. Using the indices of the displayed list, enter the stats command followed by the index of the flashcard you want to reveal the statistics of. For example, if you want to delete the 4th flashcard in the displayed list, you can enter `stats 2`.
+2. Using the indices of the displayed list, enter the stats command followed by the index of the flashcard you want to reveal the statistics of. For example, if you want to display the statistics of the 2nd flashcard in the displayed list, you can enter `stats 2`.
 ![StatsIndexStep2](./images/StatsIndexStep2.png)
 3. Press enter and QuickCache will display the statistics of the flashcard specified by the index.
 ![StatsIndexStep3](./images/StatsIndexStep3.png)
