@@ -137,9 +137,9 @@ Examples:
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
-### Clearing all food items : `clear`
+### Clearing all food items shown : `clear`
 
-Removes all food items in McGymmy.
+Removes all food items shown in McGymmy.
 
 Format: `clear`
 
@@ -381,6 +381,27 @@ Examples:
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
+### Undoing the previous command : `undo`
+
+Undoes the change made by the previous command
+
+Format: `undo`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:
+
+* Undo command can be called multiple times.
+* Help command will be ignored when undoing. 
+For example, if the user calls the following commands in sequence:
+`add -n Burger`, `help edit`, `undo`, the undo command will undo the adding operation, not the help one.
+* Calling `undo` after 2 or more consecutive `list` calls only undoes the listing operation once.
+* Calling `undo` after 2 or more consecutive `find` calls with the same sequence of keyword only undoes the find operation once.
+* All additional input after the *command word* `undo` will be ignored. E.g. `undo` and `undo 123` will have the same effect.
+
+![Undo command example](images/CommandImagesForUG/Undo.png)
+
+</div>
 
 ### Saving the data
 
