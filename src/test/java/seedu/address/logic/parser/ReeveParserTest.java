@@ -30,8 +30,8 @@ import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.testutil.EditAdminDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.FindStudentDescriptorBuilder;
@@ -101,7 +101,7 @@ public class ReeveParserTest {
     @Test
     public void parseCommand_question() throws Exception {
         String testQuestion = "How do birds fly?";
-        Question question = new Question(testQuestion);
+        UnsolvedQuestion question = new UnsolvedQuestion(testQuestion);
         QuestionCommand command = (QuestionCommand) parser.parseCommand(QuestionCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + PREFIX_ADD_QUESTION + testQuestion);
         assertEquals(new AddQuestionCommand(INDEX_FIRST_PERSON, question), command);

@@ -5,7 +5,6 @@ import java.util.List;
 
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
@@ -16,6 +15,8 @@ import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -36,6 +37,7 @@ public class StudentBuilder {
     public static final String DEFAULT_ADDITIONAL_DETAILS_FRIEND = "friends";
     public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
     public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
+    public static final String DEFAULT_SOLUTION = "Read your textbook";
 
     // Identity fields
     private Name name;
@@ -72,7 +74,7 @@ public class StudentBuilder {
 
         List.of(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
                 .stream()
-                .map(Question::new)
+                .map(UnsolvedQuestion::new)
                 .forEach(questions::add);
     }
 
@@ -179,8 +181,8 @@ public class StudentBuilder {
     /**
      * Sets some {@code Questions} as solved for the {@code Student} that we are building.
      */
-    public StudentBuilder withSolved(String... questions) {
-        this.questions = SampleDataUtil.getSolvedQuestions(questions);
+    public StudentBuilder withSolved(String solution, String... questions) {
+        this.questions = SampleDataUtil.getSolvedQuestions(solution, questions);
         return this;
     }
 
