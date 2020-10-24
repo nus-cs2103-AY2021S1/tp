@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
@@ -25,6 +26,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.Reeve;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 
@@ -39,8 +41,12 @@ public class CommandTestUtil {
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_SCHOOL_AMY = "NUS High School";
     public static final String VALID_SCHOOL_BOB = "Hwa Chong Institution";
-    public static final String VALID_YEAR_AMY = "6";
-    public static final String VALID_YEAR_BOB = "4";
+    public static final SchoolType VALID_SCHOOL_TYPE_AMY = SchoolType.SECONDARY;
+    public static final Integer VALID_SCHOOL_LEVEL_AMY = 2;
+    public static final String VALID_YEAR_AMY = "Secondary 2";
+    public static final SchoolType VALID_SCHOOL_TYPE_BOB = SchoolType.SECONDARY;
+    public static final Integer VALID_SCHOOL_LEVEL_BOB = 4;
+    public static final String VALID_YEAR_BOB = "Secondary 4";
     public static final String VALID_CLASS_TIME_AMY = "2 1200-1300";
     public static final String VALID_CLASS_TIME_BOB = "5 0900-1100";
     public static final String VALID_CLASS_VENUE_AMY = "347 Woodlands Ave 3, Singapore 730347";
@@ -82,6 +88,9 @@ public class CommandTestUtil {
 
     public static final String QUESTION_DESC_AMY = " " + PREFIX_DETAILS + VALID_QUESTION_AMY;
     public static final String QUESTION_DESC_BOB = " " + PREFIX_DETAILS + VALID_QUESTION_BOB;
+
+    public static final String ADDITIONAL_DETAIL_DESC_AMY = " " + PREFIX_DETAIL_TEXT + VALID_ADDITIONAL_DETAILS_AMY;
+    public static final String ADDITIONAL_DETAIL_DESC_BOB = " " + PREFIX_DETAIL_TEXT + VALID_ADDITIONAL_DETAILS_BOB;
 
     public static final String QUESTION_MATH = "What is 1 + 1?";
     public static final String QUESTION_PHYSICS = "How does Newton's Second Law work?";

@@ -20,7 +20,7 @@ import seedu.address.model.student.Year;
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_SCHOOL = "Ros#th Primary";
+    private static final String INVALID_SCHOOL = " ";
     private static final String INVALID_YEAR = "F!ck!";
 
     private static final String VALID_NAME = BOB.getName().toString();

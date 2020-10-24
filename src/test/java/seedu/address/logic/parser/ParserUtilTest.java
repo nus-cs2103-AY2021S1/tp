@@ -3,11 +3,10 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
-import static seedu.address.logic.parser.ParserUtil.parseSchool;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
@@ -17,6 +16,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
+import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.AdditionalDetail;
@@ -28,7 +28,7 @@ import seedu.address.model.student.admin.PaymentDate;
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_SCHOOL = "Method!st Girls School";
+    private static final String INVALID_SCHOOL = " ";
     private static final String INVALID_YEAR = "$4";
     private static final String INVALID_CLASS_VENUE = " ";
     private static final String INVALID_CLASS_TIME = "8 1240-2400";
@@ -45,7 +45,9 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_SCHOOL = "Raffles Institution";
-    private static final String VALID_YEAR = "Year 6";
+    private static final String VALID_YEAR = "JC 2";
+    private static final SchoolType VALID_SCHOOL_TYPE = SchoolType.JC;
+    private static final Integer VALID_SCHOOL_LEVEL = 2;
     private static final String VALID_CLASS_VENUE = "Blk 411 #04-11, Lorong Chuan, Singapore 234332";
     private static final String VALID_CLASS_TIME = "3 1240-1530";
     private static final String VALID_FEE = "2350.30";
@@ -133,9 +135,6 @@ public class ParserUtilTest {
     @Test
     public void parseSchool_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseSchool(INVALID_SCHOOL));
-
-        String invalidSchool = "Method!st Girls School";
-        assertThrows(ParseException.class, () -> parseSchool(invalidSchool));
     }
 
     @Test
@@ -163,15 +162,38 @@ public class ParserUtilTest {
 
     @Test
     public void parseYear_validYear_returnsYear() throws Exception {
-        Year expectedYear = new Year(VALID_YEAR);
+        Year expectedYear = new Year(VALID_SCHOOL_TYPE, VALID_SCHOOL_LEVEL);
         assertEquals(expectedYear, ParserUtil.parseYear(VALID_YEAR));
+        assertEquals(expectedYear, ParserUtil.parseYear("J2")); // no whitespace
+        assertEquals(expectedYear, ParserUtil.parseYear("J2               ")); // lots of trailing whitespace
+        assertEquals(expectedYear, ParserUtil.parseYear("J         2               ")); // lots of whitespace
+        assertEquals(expectedYear, ParserUtil.parseYear("Jc 2")); // only one letter capitalised
+        assertEquals(expectedYear, ParserUtil.parseYear("jc 2")); // no letter capitalised
+        assertEquals(expectedYear, ParserUtil.parseYear("jc 2")); // no letter capitalised
+        assertEquals(expectedYear, ParserUtil.parseYear("j2")); // short form
     }
 
     @Test
     public void parseYear_validYearWithWhiteSpace_returnsTrimmedYear() throws Exception {
         String yearWithWhiteSpace = WHITESPACE + VALID_YEAR + WHITESPACE;
-        Year expectedYear = new Year(VALID_YEAR);
+        Year expectedYear = new Year(VALID_SCHOOL_TYPE, VALID_SCHOOL_LEVEL);
         assertEquals(expectedYear, ParserUtil.parseYear(yearWithWhiteSpace));
+    }
+
+    @Test
+    public void parseSchoolType_validSchoolType_returnsCorrectSchoolType() throws ParseException {
+        assertEquals(SchoolType.PRIMARY, ParserUtil.parseSchoolType("Primary")); // full word first letter capitalised
+        assertEquals(SchoolType.PRIMARY, ParserUtil.parseSchoolType("primary")); // full word all lower case
+        assertEquals(SchoolType.SECONDARY, ParserUtil.parseSchoolType("s")); // one letter not capitalised
+        assertEquals(SchoolType.SECONDARY, ParserUtil.parseSchoolType("S")); // one letter capitalised
+        assertEquals(SchoolType.SECONDARY, ParserUtil.parseSchoolType("  Sec   ")); // lots of whitespace
+    }
+
+    @Test
+    public void parseSchoolType_invalidSchoolType_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseSchoolType("pri  mary")); // mangled school type
+        assertThrows(ParseException.class, () -> ParserUtil.parseSchoolType("ns")); // not valid school type
+        assertThrows(ParseException.class, () -> ParserUtil.parseSchoolType("yramirp")); // reverse spelling
     }
 
     @Test
@@ -296,29 +318,29 @@ public class ParserUtilTest {
 
     @Test
     public void parseAdditionalDetails_invalidDetail_throwsParseException() {
-        Set<String> invalidSet = Set.of(INVALID_ADDITIONAL_DETAIL);
+        List<String> invalidSet = List.of(INVALID_ADDITIONAL_DETAIL);
         assertThrows(ParseException.class, () -> ParserUtil.parseAdditionalDetails(invalidSet));
     }
 
     @Test
     public void parseAdditionalDetails_validDetails_returnsDetails() throws Exception {
-        Set<String> validSet = Set.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
-        Set<AdditionalDetail> expectedSet = validSet.stream()
+        List<String> validList = List.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
+        List<AdditionalDetail> expectedSet = validList.stream()
                 .map(AdditionalDetail::new)
-                .collect(Collectors.toSet());
-        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validSet));
+                .collect(Collectors.toList());
+        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validList));
     }
 
     @Test
     public void parseAdditionalDetails_validDetailsSpace_returnsTrimmedDetails() throws Exception {
-        Set<String> baseSet = Set.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
-        Set<String> validSet = baseSet.stream()
+        List<String> baseList = List.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
+        List<String> validList = baseList.stream()
                 .map(string -> WHITESPACE + string + WHITESPACE)
-                .collect(Collectors.toSet());
-        Set<AdditionalDetail> expectedSet = baseSet.stream()
+                .collect(Collectors.toList());
+        List<AdditionalDetail> expectedSet = baseList.stream()
                 .map(AdditionalDetail::new)
-                .collect(Collectors.toSet());
-        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validSet));
+                .collect(Collectors.toList());
+        assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validList));
     }
 
     @Test
@@ -358,9 +380,6 @@ public class ParserUtilTest {
     @Test
     public void parseExamName_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseExamName(INVALID_EXAM_NAME));
-
-        String invalidExamName = " ";
-        assertThrows(ParseException.class, () -> parseSchool(invalidExamName));
     }
 
     @Test

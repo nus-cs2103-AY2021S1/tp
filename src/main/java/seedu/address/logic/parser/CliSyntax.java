@@ -21,6 +21,10 @@ public class CliSyntax {
     public static final Prefix PREFIX_SOLVE_QUESTION = new Prefix("s/");
     public static final Prefix PREFIX_DELETE_QUESTION = new Prefix("d/");
 
+    /* Prefix for additionalDetail commands */
+    public static final Prefix PREFIX_DETAIL_INDEX = new Prefix("i/");
+    public static final Prefix PREFIX_DETAIL_TEXT = new Prefix("d/");
+
     /* Prefix for exam commands */
     public static final Prefix PREFIX_EXAM_NAME = new Prefix("n/");
     public static final Prefix PREFIX_EXAM_DATE = new Prefix("d/");
@@ -38,6 +42,9 @@ public class CliSyntax {
 
     public static final Prefix[] QUESTION_COMMAND_PREFIXES =
             new Prefix[] {PREFIX_ADD_QUESTION, PREFIX_SOLVE_QUESTION, PREFIX_DELETE_QUESTION};
+
+    public static final Prefix[] ADDITIONAL_DETAIL_COMMAND_PREFIXES =
+            new Prefix[] {PREFIX_DETAIL_INDEX, PREFIX_DETAIL_TEXT};
 
     public static final Prefix[] EXAM_COMMAND_PREFIXES =
             new Prefix[] {PREFIX_EXAM_NAME, PREFIX_EXAM_DATE, PREFIX_SCORE};

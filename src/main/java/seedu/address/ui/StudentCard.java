@@ -63,17 +63,20 @@ public class StudentCard extends UiPart<Region> {
         name.setText(student.getName().fullName);
         phone.setText("Phone: " + student.getPhone().value);
         school.setText("School: " + student.getSchool().school);
-        year.setText("Year: " + student.getYear().year);
+        year.setText("Year: " + student.getYear());
         venue.setText("Class Venue: " + student.getAdmin().getClassVenue().venue);
         time.setText("Class Time: " + student.getAdmin().getClassTime().toString());
         fee.setText("Fee: " + student.getAdmin().getFee().toString());
         payment.setText("Last Payment Date: " + student.getAdmin().getPaymentDate().toString());
         details.setText("Additional Details: \n" + student.getAdmin().getFormattedDetails());
+        details.setVisible(!student.getDetails().isEmpty());
         questions.setText("Questions:\n" + student.getQuestions()
                 .stream()
                 .map(Question::toString)
                 .collect(Collectors.joining("\n")));
         exams.setText("Examinations: \n" + student.getFormattedExams());
+        questions.setVisible(!student.getQuestions().isEmpty());
+        exams.setVisible(!student.getExams().isEmpty());
     }
 
     @Override

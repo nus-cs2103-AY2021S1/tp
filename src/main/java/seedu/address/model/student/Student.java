@@ -5,8 +5,10 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 
 /**
@@ -96,6 +98,10 @@ public class Student {
         return result;
     }
 
+    public List<AdditionalDetail> getDetails() {
+        return admin.getDetails();
+    }
+
     /**
      * Returns true if both student of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two students.
@@ -148,18 +154,29 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
+        builder.append("Name: ")
+                .append(getName())
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append(" School: ")
+                .append("\nSchool: ")
                 .append(getSchool())
-                .append(" Year: ")
+                .append("\nYear: ")
                 .append(getYear())
-                .append(getAdmin())
-                .append(" Questions: ");
-        questions.forEach(builder::append);
-        builder.append(" Examinations:");
-        exams.forEach(builder::append);
+                .append(getAdmin());
+
+        if (!questions.isEmpty()) {
+            builder.append("\nQuestions:\n");
+            String questionList = questions.stream()
+                    .map(Question::toString)
+                    .collect(Collectors.joining("\n"));
+            builder.append(questionList);
+        }
+
+        if (!exams.isEmpty()) {
+            builder.append("\nExams:\n");
+            exams.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

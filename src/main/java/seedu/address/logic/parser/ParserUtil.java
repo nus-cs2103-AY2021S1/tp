@@ -1,10 +1,12 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.regex.Matcher;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -14,6 +16,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
+import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
@@ -101,7 +104,32 @@ public class ParserUtil {
         if (!Year.isValidYear(trimmedYear)) {
             throw new ParseException(Year.MESSAGE_CONSTRAINTS);
         }
-        return new Year(trimmedYear);
+        final Matcher matcher = Year.YEAR_FORMAT.matcher(year.trim());
+        boolean isMatched = matcher.matches();
+        assert isMatched;
+        String schoolTypeString = matcher.group("school").trim().toLowerCase();
+        String levelString = matcher.group("level").trim().toLowerCase();
+
+        SchoolType schoolType = parseSchoolType(schoolTypeString);
+        Integer level = Integer.parseInt(levelString);
+
+        return new Year(schoolType, level);
+    }
+
+    /**
+     * Parses a {@code String schoolType} into a {@code SchoolType}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code schoolType} is invalid.
+     */
+    public static SchoolType parseSchoolType(String schoolType) throws ParseException {
+        requireNonNull(schoolType);
+        String trimmed = schoolType.trim().toLowerCase();
+        if (!SchoolType.isValidSchoolType(trimmed)) {
+            throw new ParseException(SchoolType.SCHOOL_TYPE_CONSTRANTS);
+        }
+        checkArgument(SchoolType.isValidSchoolType(trimmed), SchoolType.SCHOOL_TYPE_CONSTRANTS);
+        return SchoolType.LOOKUP_TABLE.get(trimmed);
     }
 
     /**
@@ -196,10 +224,10 @@ public class ParserUtil {
     /**
      * Parses {@code Collection<String> additionalDetails} into a {@code Set<Tag>}.
      */
-    public static Set<AdditionalDetail> parseAdditionalDetails(Collection<String> additionalDetails)
+    public static List<AdditionalDetail> parseAdditionalDetails(Collection<String> additionalDetails)
             throws ParseException {
         requireNonNull(additionalDetails);
-        final Set<AdditionalDetail> detailSet = new HashSet<>();
+        final List<AdditionalDetail> detailSet = new ArrayList<>();
         for (String detail : additionalDetails) {
             detailSet.add(parseAdditionalDetail(detail));
         }

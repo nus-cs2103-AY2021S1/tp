@@ -2,14 +2,13 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
+import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.exam.Exam;
@@ -30,7 +29,8 @@ public class StudentBuilder {
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_SCHOOL = "NUS High School";
-    public static final String DEFAULT_YEAR = "4";
+    public static final SchoolType DEFAULT_SCHOOL_TYPE = SchoolType.SECONDARY;
+    public static final Integer DEFAULT_SCHOOL_LEVEL = 4;
     public static final String DEFAULT_CLASS_VENUE = "311, Clementi Ave 2, #02-25";
     public static final String DEFAULT_CLASS_TIME = "1 1500-1700";
     public static final String DEFAULT_FEE = "21";
@@ -52,7 +52,7 @@ public class StudentBuilder {
     private ClassTime time;
     private Fee fee;
     private PaymentDate paymentDate;
-    private Set<AdditionalDetail> details = new HashSet<>();
+    private List<AdditionalDetail> details = new ArrayList<>();
 
     private List<Question> questions = new ArrayList<>();
 
@@ -66,7 +66,7 @@ public class StudentBuilder {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         school = new School(DEFAULT_SCHOOL);
-        year = new Year(DEFAULT_YEAR);
+        year = new Year(DEFAULT_SCHOOL_TYPE, DEFAULT_SCHOOL_LEVEL);
 
         venue = new ClassVenue(DEFAULT_CLASS_VENUE);
         time = new ClassTime(DEFAULT_CLASS_TIME);
@@ -133,8 +133,8 @@ public class StudentBuilder {
     /**
      * Sets the {@code Year} of the {@code Student} that we are building.
      */
-    public StudentBuilder withYear(String year) {
-        this.year = new Year(year);
+    public StudentBuilder withYear(SchoolType schoolType, Integer level) {
+        this.year = new Year(schoolType, level);
         return this;
     }
 
@@ -174,7 +174,7 @@ public class StudentBuilder {
      * Sets the {@code Details} of the {@code Student} that we are building.
      */
     public StudentBuilder withDetails(String... details) {
-        this.details = SampleDataUtil.getDetailSet(details);
+        this.details = SampleDataUtil.getDetailList(details);
         return this;
     }
 
