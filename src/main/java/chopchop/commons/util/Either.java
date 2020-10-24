@@ -2,6 +2,7 @@
 
 package chopchop.commons.util;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -121,19 +122,8 @@ public class Either<L, R> {
         }
 
         var other = (Either<?, ?>) obj;
-        if (this.leftValue == null && other.leftValue == null) {
-            return (this.rightValue == null && other.rightValue == null)
-                || (this.rightValue != null && other.rightValue != null
-                    && this.rightValue.equals(other.rightValue)
-                );
-        } else if (this.rightValue == null && other.rightValue == null) {
-            return (this.leftValue == null && other.leftValue == null)
-                || (this.leftValue != null && other.leftValue != null
-                    && this.leftValue.equals(other.leftValue)
-                );
-        } else {
-            return false;
-        }
+        return Objects.equals(this.leftValue, other.leftValue)
+            && Objects.equals(this.rightValue, other.rightValue);
     }
 
     @Override

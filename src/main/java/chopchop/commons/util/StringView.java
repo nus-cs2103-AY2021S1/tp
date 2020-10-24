@@ -186,7 +186,20 @@ public class StringView {
      *         or {@code -1} if it does not exist
      */
     public int find(StringView sub) {
-        return Collections.indexOfSubList(Arrays.asList(this.chars), Arrays.asList(sub.chars));
+        var l1 = new ArrayList<Character>();
+        var l2 = new ArrayList<Character>();
+
+        // FFS java, FFS
+        for (char c : this.chars) {
+            l1.add(c);
+        }
+
+        for (char c : sub.chars) {
+            l2.add(c);
+        }
+
+        return Collections.indexOfSubList(l1.subList(this.begin, this.end),
+            l2.subList(sub.begin, sub.end));
     }
 
     /**
@@ -289,7 +302,7 @@ public class StringView {
      */
     public StringView takeLast(int n) {
         assert n >= 0;
-        return new StringView(this.chars, Math.min(this.begin + n, this.end), this.end);
+        return new StringView(this.chars, Math.max(this.end - n, 0), this.end);
     }
 
     /**
