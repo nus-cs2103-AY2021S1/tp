@@ -1,9 +1,11 @@
 package com.eva.logic.commands;
 
-import static com.eva.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import com.eva.commons.core.Messages;
@@ -16,20 +18,38 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
+import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
 public class AddCommentCommand extends CommentCommand {
-    public AddCommentCommand(Index index, CommentCommand.CommentPersonDescriptor commentPersonDescriptor) {
+    private String personType;
+
+    /**
+     * Creates an addcommentcommand object
+     * @param index
+     * @param commentPersonDescriptor
+     * @param personType
+     */
+    public AddCommentCommand(Index index, CommentCommand.CommentPersonDescriptor commentPersonDescriptor,
+                             String personType) {
         super(index, commentPersonDescriptor);
+        this.personType = personType;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         //for now is staff because we only working with staff for now
-        List<Staff> lastShownList = model.getFilteredStaffList();
+        List<? extends Person> lastShownList;
+        if (this.personType.equals("applicant")) {
+            lastShownList = model.getFilteredApplicantList();
+        } else {
+            lastShownList = model.getFilteredStaffList();
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -44,10 +64,11 @@ public class AddCommentCommand extends CommentCommand {
 
         if (editedPerson instanceof Staff) {
             model.setStaff((Staff) personToEdit, (Staff) editedPerson);
+            model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
         } else {
-            model.setPerson(personToEdit, editedPerson);
+            model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
+            model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         }
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_ADD_COMMENT_SUCCESS, editedPerson));
     }
 
@@ -70,10 +91,16 @@ public class AddCommentCommand extends CommentCommand {
             updatedComments.add(new Comment(comment.getDate(),
                     comment.getDescription(), comment.getTitle().getTitle()));
         }
+
         if (personToEdit instanceof Staff) {
-            Set<Leave> updatedLeaves = commentPersonDescriptor.getLeaves();
+            Set<Leave> updatedLeaves = ((Staff) personToEdit).getLeaves();
             return new Staff(updatedName, updatedPhone, updatedEmail,
                     updatedAddress, updatedTags, updatedLeaves, updatedComments);
+        } else if (personToEdit instanceof Applicant) {
+            ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
+            Optional<InterviewDate> interviewDate = ((Applicant) personToEdit).getInterviewDate();
+            return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                    updatedTags, updatedComments, interviewDate, applicationStatus);
         }
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);
     }

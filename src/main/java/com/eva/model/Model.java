@@ -121,7 +121,7 @@ public interface Model {
     Optional<Leave> hasLeaveDate(Staff target, LocalDate date);
 
     /**
-     * Returns the conflicting leave if a staff with the same identity as {@code staff}
+     * Returns true if a staff with the same identity as {@code staff}
      * has the same leave period as {@code leave}.
      */
     boolean hasLeavePeriod(Staff target, Leave leave);

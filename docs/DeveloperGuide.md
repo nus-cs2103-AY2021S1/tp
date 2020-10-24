@@ -7,36 +7,37 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **1. Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
-
-### Architecture
-
-<img src="images/ArchitectureDiagram.png" width="450" />
-
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+## **2. Design**
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+### 2.1 Architecture
+
+<img src="images/ArchitectureDiagram.png" width="450" />
+
+The ***Architecture Diagram*** given above explains the high-level design of the App. 
+Given below is a quick overview of each component.
+
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four main components.
 
 * [**`UI`**](#ui-component): The UI of the App.
-* [**`Logic`**](#logic-component): The command executor.
+* [**`Logic`**](#logic-component): The command parser and executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
@@ -57,85 +58,85 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 2.1.1 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 2.1.2 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a staff).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delstaff 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 2.1.3 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the eva database data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the staff and applicant data.
+* exposes an unmodifiable `ObservableList<Staff>` and an `ObservableList<Applicant>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `EvaStorage`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
 
-### Storage component
+### 2.1.4 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](hhttps://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W13-1/tp/tree/master/src/main/java/com/eva/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the eva database data in json format and read it back.
+* can save the Eva staff and applicant data in json format and read it back.
 
-### Common classes
+### 2.1.5 Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `com.eva.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **3. Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### 3.1 \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
+#### 3.1.1 Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
@@ -198,7 +199,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+#### 3.1.2 Design consideration:
 
 ##### Aspect: How undo & redo executes
 
@@ -213,14 +214,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### 3.2 \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **4. Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -230,23 +231,22 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **5. Appendix: Requirements**
 
-### Product scope
+### 5.1 Product scope
 
 **Target user profile**:
 
-* work in SME
-* staff size 50 - 100
+* works in small business/startup (5-30 headcount)
 * can type fast
-* prefers desktop apps over other types
-* prefers typing to mouse interactions
+* prefers desktop apps over other types of apps
+* prefers typing inputs compared to mouse interactions
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: Simple and lightweight application that handles HR related administrative tasks, like manage staff performance and recruitment applicants, faster than a typical mouse/GUI driven app.
 
 
-### User stories
+### 5.3 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -257,19 +257,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Director of Human Resources                | I want to have quick and easy access to all HR information|                                               |
 | `* * *`  | organised HR manager                       | add data of applicants           | have these data at one place in a neat manner                          |
 | `* *`    | organised HR manager                       | delete data of applicants        | have these data at one place in a neat manner                          |
-| `*`      |  |              |                                                  |
+| `*`      |                                            |                                  |                                                  |
 
 *{More to be added}*
 
-### Use cases
+### 5.3 Use cases
 
 (For all use cases below, the **System** is the `Eva` and the **Actor** is the `user`, unless specified otherwise)
+(Optional fields are given in square bracket e.g \[t/TAG\])
 
 ***Use case: UC01 - Adding a Record of staff***
 
 **MSS**
 
-1.  User types in add <staffname> / <email> / <phoneno>
+1.  User types in `add s- n/<staffname> a/address e/<email> p/<phoneno> c/<comments>`
 2.  Eva adds in the staff record
 3.  Eva displays the staff record added to User
     Use case ends.
@@ -285,7 +286,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-* 1b. Eva detects invalid email or phone number.
+* 1b. Eva detects invalid email, phone number or comment.
 
     * 1b1. Eva shows the valid format to key in the relevant field.
     * 1b2. Eva requests the user to add in data again.
@@ -294,17 +295,215 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-
-
 ***Use case: UC02 - Deleting a Record of staff***
 
 **MSS**
 
-1. User types in delete <staff_name>
-2. Eva shows all matched staff records to the <staff_name> with indexes beside.
+1. User types in `delete <index_of_staff> s-`. 
+2. Eva deletes the staff record permanently.
+3. Eva displays the confirmed message of deletion of that staff record.  
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find staff record with the keyed in index.
+
+    * 1a1. Eva informs the user that there are no such records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in `delete <index_of_staff> s-` with correct index of staff
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva does not detect any input for <index>.
+
+    * 1b1. Eva requests the user to type the command in again. 
+    * 1b2. User types in the new command `delete <index_of_staff> s-`.    
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+***Use case: UC03 - Adding a Comment on staff***
+
+**MSS**
+
+1. User types in `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`. 
+2. Eva adds the comment to staff record permanently.
+3. Eva displays the confirmed message of addition of comment to that staff record.  
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find staff record with the keyed in index.
+
+    * 1a1. Eva informs the user that there are no such records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>` with correct index of staff
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva does not detect any input for <index>.
+
+    * 1b1. Eva requests the user to type the command in again. 
+    * 1b2. User types in the new command `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`.    
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+* 1c. Eva detects missing fields
+
+    * 1c1. Eva shows the correct format to key in data.
+    * 1c2. Eva requests the user to add in data again.
+    * 1c3  User enters new data.
+
+    Steps 1c1-1c3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+
+***Use case: UC04 - Deleting a Comment on staff***
+
+**MSS**
+
+1. User types in `delete <index_of_staff> s- c- t:<title>`. 
+2. Eva deletes the comment with entered `<title>` from staff record permanently.
+3. Eva displays the confirmed message of deletion of comment from staff record.  
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find staff record with the keyed in index.
+
+    * 1a1. Eva informs the user that there are no such records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in `delete <index_of_staff>  s- c- t:<title>` with correct index of staff
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva does not detect any input for <index>.
+
+    * 1b1. Eva requests the user to type the command in again. 
+    * 1b2. User types in the new command `delete <index_of_staff> s- c- t:<title>`.    
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+* 1c. Eva detects missing fields
+
+    * 1c1. Eva shows the correct format to key in data.
+    * 1c2. Eva requests the user to add in data again.
+    * 1c3  User enters new data.
+
+    Steps 1c1-1c3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+***Use case: UC05 - Adding a leave record to staff***
+
+**MSS**
+
+1.  User types in addleave <index> l/d:DATE \[d:DATE\]
+2.  Eva adds in the leave to staff record based on index
+3.  Eva displays the updated staff to User
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva detects missing fields or more fields than expected.
+
+    * 1a1. Eva shows the correct format to key in data.
+    * 1a2. Eva requests the user to add in data again.
+    * 1a3  User enters new data.
+
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva detects invalid date.
+
+    * 1b1. Eva shows the valid format to key in the relevant field.
+    * 1b2. Eva requests the user to add in data again.
+    * 1b3. User enters new data.
+
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+* 1c. Eva detects conflict in leave dates within the specified staff record.
+
+    * 1a1. Eva informs the user that there are conflicting records.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in a new leave date.
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+***Use case: UC06 - Deleting a leave record from staff***
+
+**MSS**
+
+1.  User types in deleteleave <index> d:DATE
+2.  Eva deletes the leave containing specified date from index specified staff record
+3.  Eva displays the updated staff to User
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva detects missing fields or more fields than expected.
+
+    * 1a1. Eva shows the correct format to key in data.
+    * 1a2. Eva requests the user to add in data again.
+    * 1a3  User enters new data.
+
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva detects invalid date.
+
+    * 1b1. Eva shows the valid format to key in the relevant field.
+    * 1b2. Eva requests the user to add in data again.
+    * 1b3. User enters new data.
+
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+* 1c. Eva detects no leave in index specified staff record containing specified date.
+
+    * 1a1. Eva informs the user that there are no exiting record containing specified date.
+    * 1a2. Eva requests the user to type the command in again. 
+    * 1a3  User types in a new leave date.
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+***Use case: UC07 - Adding a record of applicant***
+
+**MSS**
+
+1.  User types in addapplicant n/<applicant_name> e/<email> p/<phoneno> a/<address> id/22/11/2020 
+2.  Eva adds in the applicant record
+3.  Eva displays the applicant record added to User
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva detects missing compulsory fields (name, email, address, phone)
+
+    * 1a1. Eva shows the correct format to key in data.
+    * 1a2. Eva requests the user to add in data again.
+    * 1a3  User enters new data.
+
+    Steps 1a1-1a3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+
+* 1b. Eva detects invalid email, phone number or interview date.
+
+    * 1b1. Eva shows the valid format to key in the relevant field.
+    * 1b2. Eva requests the user to add in data again.
+    * 1b3. User enters new data.
+
+    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Use case resumes from step 2.
+    
+***Use case: UC08 - Deleting a Record of Applicant***
+
+**MSS**
+
+1. User types in delete <applicant_name>
+2. Eva shows all matched staff records to the <applicant_name> with indexes beside.
 3. User types in the index to delete
-4. Eva deletes the staff record permanently.
-5. Eva displays the confirmed message of deletion of that staff record.  
+4. Eva deletes the applicant record and all related information permanently.
+5. Eva displays the confirmed message of deletion of that applicant record.  
     Use case ends.
 
 **Extensions**
@@ -313,20 +512,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. Eva informs the user that there are no such records.
     * 1a2. Eva requests the user to type the command in again. 
-    * 1a3  User types in the new staff_name of delete <staff_name>.
+    * 1a3  User types in the new applicant_name of delete <applicant_name>.
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-* 1b. Eva does not detect any input for <staff_name>.
+* 1b. Eva does not detect any input for <applicant_name>.
 
     * 1b1. Eva requests the user to type the command in again. 
-    * 1b2. User types in the new staff_name of delete <staff_name>.    
+    * 1b2. User types in the new applicant_name of delete <applicant_name>.    
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
+    
+***Use case: UC09 - Adding an applicant to record***
 
+Similar to Use Case 01, except that instead of s-, key in a-.
 
+Example: `add a- n/<applicantname> a/address e/<email> p/<phoneno> c/<comments>`
 
-***Use case: UC03 - list all staff records***
+***Use case: UC10 - Deleting an applicant from record***
+
+Similar to Use Case 02, except that instead of s-, key in a-.
+
+Example: `delete <index_of_applicant> a-`
+    
+***Use case: UC11 - Adding a Comment on applicant***
+
+Similar to Use Case 03, just that instead of s-, key in a-.
+
+Example: `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`    
+
+***Use case: UC12 - Deleting a Comment on applicant***
+
+Similar to Use Case 04 except that instead of s-, key in a-.
+
+Example: `delete <index_of_applicant> a- c- t:<title>`
+
+***Use case: UC13 - Adding an application to a staff***
+
+**MSS**
+
+1. User types in `addapplication <index_of_applicant> <filepath_of_resume>`
+2. Eva inserts the resume data into storage, under the applicant indicated.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any file (resume) specified.
+
+    * 1a1. Eva informs the user that the file cannot be found.
+    Use case ends
+    
+***Use case: UC14 - list all staff records***
 
 **MSS**
 
@@ -341,9 +577,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Eva informs the user that no records exist.
     Use case ends
 
-
-
-***Use case: UC04 - Exiting the program***
+***Use case: UC15 - Exiting the program***
 
 **MSS**
 
@@ -352,16 +586,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Use case ends.
 
-**Extensions**
-
-* 1a. Eva does not find any staff records.
-
-    * 1a1. Eva informs the user that no records exist.
-    Use case ends
-
 *{More to be added}*
 
-### Non-Functional Requirements
+### 5.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 records of staff and applications without a noticeable sluggishness in performance for typical usage.
@@ -369,13 +596,13 @@ Use case ends.
 
 *{More to be added}*
 
-### Glossary
+### 5.5 Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **6. Appendix: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
 
@@ -384,7 +611,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### 6.1 Launch and shutdown
 
 1. Initial launch
 
@@ -401,7 +628,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### 6.2 Deleting a person
 
 1. Deleting a person while all persons are being shown
 
@@ -418,7 +645,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Saving data
+### 6.3 Saving data
 
 1. Dealing with missing/corrupted data files
 

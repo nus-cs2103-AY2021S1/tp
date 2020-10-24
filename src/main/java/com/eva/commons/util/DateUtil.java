@@ -71,8 +71,8 @@ public class DateUtil {
     }
     /**
      * Returns the number of days elapsed between two dates.
-     * @param start cannot be empty.
-     * @param end cannot be empty.
+     * @param start cannot be empty, inclusive.
+     * @param end cannot be empty, inclusive.
      */
     public static int getDaysBetween(LocalDate start, LocalDate end) {
         requireAllNonNull(start, end);
