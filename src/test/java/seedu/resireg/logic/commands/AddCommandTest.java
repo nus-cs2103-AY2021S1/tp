@@ -21,6 +21,7 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.exceptions.DataConversionException;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
+import seedu.resireg.model.ModelPredicate;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.ResiReg;
@@ -253,12 +254,27 @@ public class AddCommandTest {
         }
 
         @Override
+        public void updateFilteredStudentList(ModelPredicate<Student> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredRoomList(Predicate<Room> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void updateFilteredRoomList(ModelPredicate<Room> predicate) {
+
+        }
+
+        @Override
         public void updateFilteredAllocationList(Predicate<Allocation> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredAllocationList(ModelPredicate<Allocation> predicate) {
 
         }
 

@@ -7,8 +7,6 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_ALLOCATIONS;
-import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -95,13 +93,12 @@ public class EditCommand extends Command {
                             allocation.getRoomNumber(),
                             editedStudent.getStudentId());
                     model.setAllocation(allocation, editedAllocation);
-                    model.updateFilteredAllocationList(PREDICATE_SHOW_ALL_ALLOCATIONS);
+                    // model.updateFilteredAllocationList(PREDICATE_SHOW_ALL_ALLOCATIONS);
                 }
             }
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         model.saveStateResiReg();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }

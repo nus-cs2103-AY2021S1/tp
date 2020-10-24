@@ -28,9 +28,9 @@ public class ModelManager implements Model {
     private final VersionedResiReg versionedResiReg;
     private final UserPrefs userPrefs;
     private final Semester semester;
-    private final FilteredList<Student> filteredStudents;
-    private final FilteredList<Room> filteredRooms;
-    private final FilteredList<Allocation> filteredAllocations;
+    private final ModelAwareFilteredList<Student> filteredStudents;
+    private final ModelAwareFilteredList<Room> filteredRooms;
+    private final ModelAwareFilteredList<Allocation> filteredAllocations;
 
     /**
      * Initializes a ModelManager with the given ResiReg data and userPrefs.
@@ -44,9 +44,9 @@ public class ModelManager implements Model {
         versionedResiReg = new VersionedResiReg(readOnlyResiReg);
         this.userPrefs = new UserPrefs(userPrefs);
         semester = versionedResiReg.getSemester();
-        filteredStudents = new FilteredList<>(versionedResiReg.getStudentList());
-        filteredRooms = new FilteredList<>(versionedResiReg.getRoomList());
-        filteredAllocations = new FilteredList<>(versionedResiReg.getAllocationList());
+        filteredStudents = new ModelAwareFilteredList<>(versionedResiReg.getStudentList());
+        filteredRooms = new ModelAwareFilteredList<>(versionedResiReg.getRoomList());
+        filteredAllocations = new ModelAwareFilteredList<>(versionedResiReg.getAllocationList());
     }
 
     public ModelManager() {
@@ -127,6 +127,13 @@ public class ModelManager implements Model {
         return versionedResiReg;
     }
 
+    //=========== Utils  ================================================================================
+
+    private void refilterLists() {
+        filteredStudents.refilter();
+        filteredRooms.refilter();
+        filteredAllocations.refilter();
+    }
 
     //=========== Student  ================================================================================
 
@@ -139,19 +146,21 @@ public class ModelManager implements Model {
     @Override
     public void deleteStudent(Student target) {
         versionedResiReg.removeStudent(target);
+        refilterLists();
     }
 
     @Override
     public void addStudent(Student student) {
         requireNonNull(student);
         versionedResiReg.addStudent(student);
-        updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        refilterLists();
     }
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
         versionedResiReg.setStudent(target, editedStudent);
+        refilterLists();
     }
 
     //=========== Room ================================================================================
@@ -159,6 +168,7 @@ public class ModelManager implements Model {
     public void setRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
         versionedResiReg.setRoom(target, editedRoom);
+        refilterLists();
     }
 
     @Override
@@ -170,13 +180,14 @@ public class ModelManager implements Model {
     @Override
     public void deleteRoom(Room target) {
         versionedResiReg.removeRoom(target);
+        refilterLists();
     }
 
     @Override
     public void addRoom(Room room) {
         requireNonNull(room);
         versionedResiReg.addRoom(room);
-        updateFilteredRoomList(PREDICATE_SHOW_ALL_ROOMS);
+        refilterLists();
     }
 
     //=========== Allocation ================================================================================
@@ -205,18 +216,21 @@ public class ModelManager implements Model {
     public void removeAllocation(Allocation target) {
         requireNonNull(target);
         versionedResiReg.removeAllocation(target);
+        refilterLists();
     }
 
     @Override
     public void addAllocation(Allocation allocation) {
         requireNonNull(allocation);
         versionedResiReg.addAllocation(allocation);
+        refilterLists();
     }
 
     @Override
     public void setAllocation(Allocation target, Allocation editedAllocation) {
         requireAllNonNull(target, editedAllocation);
         versionedResiReg.setAllocation(target, editedAllocation);
+        refilterLists();
     }
 
     public Semester getSemester() {
@@ -230,11 +244,17 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
-        return filteredStudents;
+        return filteredStudents.getObservableList();
     }
 
     @Override
     public void updateFilteredStudentList(Predicate<Student> predicate) {
+        requireNonNull(predicate);
+        filteredStudents.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredStudentList(ModelPredicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
@@ -247,12 +267,12 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Room> getFilteredRoomList() {
-        return filteredRooms;
+        return filteredRooms.getObservableList();
     }
 
     @Override
     public ObservableList<Allocation> getFilteredAllocationList() {
-        return filteredAllocations;
+        return filteredAllocations.getObservableList();
     }
 
     @Override
@@ -262,10 +282,24 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void updateFilteredRoomList(ModelPredicate<Room> predicate) {
+        requireNonNull(predicate);
+        filteredRooms.setPredicate(predicate);
+    }
+
+    @Override
     public void updateFilteredAllocationList(Predicate<Allocation> predicate) {
         requireNonNull(predicate);
         filteredAllocations.setPredicate(predicate);
     }
+
+    @Override
+    public void updateFilteredAllocationList(ModelPredicate<Allocation> predicate) {
+        requireNonNull(predicate);
+        filteredAllocations.setPredicate(predicate);
+    }
+
+
 
     //=========== Undo/Redo =============================================================
 
@@ -282,11 +316,13 @@ public class ModelManager implements Model {
     @Override
     public void undoResiReg() {
         versionedResiReg.undo();
+        refilterLists();
     }
 
     @Override
     public void redoResiReg() {
         versionedResiReg.redo();
+        refilterLists();
     }
 
     @Override
@@ -312,7 +348,54 @@ public class ModelManager implements Model {
         return versionedResiReg.equals(other.versionedResiReg)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
-                && filteredRooms.equals(other.filteredRooms);
+                && filteredRooms.equals(other.filteredRooms)
+                && filteredAllocations.equals(other.filteredAllocations);
     }
 
+    /**
+     * Essentially a FilteredList which allows predicates that use methods from the {@code Model}. This class
+     * contains a useful method to refilter the list after the state of the model or any of the elements in the
+     * underlying {@code ObservableList} have changed.
+     */
+    private class ModelAwareFilteredList<T> {
+        private final FilteredList<T> filteredList;
+        private ModelPredicate<T> modelPredicate;
+
+        ModelAwareFilteredList(ObservableList<T> list) {
+            filteredList = new FilteredList<>(list);
+            setPredicate((t, model) -> true);
+        }
+
+        void setPredicate(ModelPredicate<T> predicate) {
+            requireNonNull(predicate);
+            modelPredicate = predicate;
+            refilter();
+        }
+
+        void setPredicate(Predicate<T> predicate) {
+            setPredicate((t, model) -> predicate.test(t));
+        }
+
+        /**
+         * Refilter the list in case any elements in the list or the state of the model has changed.
+         */
+        void refilter() {
+            filteredList.setPredicate(t -> modelPredicate.test(t, ModelManager.this));
+        }
+
+        ObservableList<T> getObservableList() {
+            return filteredList;
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            }
+            if (!(obj instanceof ModelAwareFilteredList)) {
+                return false;
+            }
+            return filteredList.equals(((ModelAwareFilteredList<?>) obj).filteredList);
+        }
+    }
 }

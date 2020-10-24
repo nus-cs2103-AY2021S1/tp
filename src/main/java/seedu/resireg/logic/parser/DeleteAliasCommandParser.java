@@ -3,8 +3,7 @@ package seedu.resireg.logic.parser;
 import static seedu.resireg.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_COMMAND;
-
-import java.util.stream.Stream;
+import static seedu.resireg.logic.parser.ParserUtil.arePrefixesPresent;
 
 import seedu.resireg.logic.commands.DeleteAliasCommand;
 import seedu.resireg.logic.parser.exceptions.ParseException;
@@ -39,13 +38,4 @@ public class DeleteAliasCommandParser implements Parser<DeleteAliasCommand> {
 
         return new DeleteAliasCommand(commandWordAlias);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }
