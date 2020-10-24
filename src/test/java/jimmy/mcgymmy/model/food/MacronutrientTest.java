@@ -16,9 +16,9 @@ class MacronutrientTest {
     private static final Carbohydrate DEFAULT_CARBOHYDRATE_1 = new Carbohydrate(1);
     private static final Macronutrient MACRONUTRIENT_1 = new MacronutrientStub(4, 9);
     private static final Macronutrient MACRONUTRIENT_2 = new MacronutrientStub(9, 4);
-    private static final int CARBOHYDRATE_MULTIPLIER = 4;
-    private static final int PROTEIN_MULTIPLIER = 4;
-    private static final int FATS_MULTIPLIER = 9;
+    private static final int CORRECT_CARBOHYDRATE_MULTIPLIER = 4;
+    private static final int CORRECT_PROTEIN_MULTIPLIER = 4;
+    private static final int CORRECT_FATS_MULTIPLIER = 9;
     private static final int INVALID_MULTIPLIER = 5;
     private static final int DEFAULT_AMOUNT = 10;
 
@@ -51,16 +51,16 @@ class MacronutrientTest {
 
     @Test
     public void getTotalCalories() {
-        assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, CARBOHYDRATE_MULTIPLIER).getTotalCalories(), 40);
+        assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, CORRECT_CARBOHYDRATE_MULTIPLIER).getTotalCalories(), 40);
     }
 
     @Test
-    public void getCaloricMultiplier() {
-        assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, PROTEIN_MULTIPLIER).getCaloricMultiplier(),
+    public void getCaloricMultiplierReturnsCorrectMultiplier() {
+        assertEquals(new MacronutrientStub(DEFAULT_AMOUNT, CORRECT_PROTEIN_MULTIPLIER).getCaloricMultiplier(),
                 PROTEIN_MULTIPLIER);
-        assertEquals(DEFAULT_FAT_1.getCaloricMultiplier(), FATS_MULTIPLIER);
-        assertEquals(DEFAULT_CARBOHYDRATE_1.getCaloricMultiplier(), CARBOHYDRATE_MULTIPLIER);
-        assertEquals(DEFAULT_PROTEIN_1.getCaloricMultiplier(), PROTEIN_MULTIPLIER);
+        assertEquals(DEFAULT_FAT_1.getCaloricMultiplier(), CORRECT_FATS_MULTIPLIER);
+        assertEquals(DEFAULT_CARBOHYDRATE_1.getCaloricMultiplier(), CORRECT_CARBOHYDRATE_MULTIPLIER);
+        assertEquals(DEFAULT_PROTEIN_1.getCaloricMultiplier(), CORRECT_PROTEIN_MULTIPLIER);
     }
 
     @Test
