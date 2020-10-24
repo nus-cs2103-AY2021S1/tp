@@ -34,4 +34,13 @@ public class Template {
     public void setCalories(Integer calories) {
         this.calories = calories;
     }
+
+    @Override
+    public String toString() {
+        return "Template{" +
+                "name:'" + name + '\'' +
+                ", description:'" + description + '\'' +
+                ", calories:" + calories +
+                '}';
+    }
 }

@@ -7,21 +7,22 @@ public class TemplateList {
     public static Template pushUp = new Template("push up", "half an hour", 100);
     public static Template running = new Template("running", "half an hour", 180);
     public static Template sitUp = new Template("sit up", "half an hour", 100);
+    public static  ArrayList<Template> list = new ArrayList<Template>();
 
     public static List<Template> getList() {
-        ArrayList<Template> list = new ArrayList<Template>();
-        list.add(pushUp);
-        list.add(running);
-        list.add(sitUp);
         return list;
     }
 
     public static Template getTemp(String name) {
-        switch (name){
-            case "PUSH_UP" : return pushUp;
-            case "RUNNING" : return running;
-            case "SIT_UP" : return sitUp;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getName().equals(name)) {
+                return list.get(i);
+            }
         }
-        return pushUp;
+        return null;
+    }
+
+    public static void addTemplate(Template template) {
+        list.add(template);
     }
 }

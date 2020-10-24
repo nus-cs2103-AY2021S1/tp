@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.ui.Template;
 
 /**
  * The API of the Model component.
@@ -72,6 +73,9 @@ public interface ExerciseModel {
      * {@code exercise} must not already exist in the address book.
      */
     void addExercise(Exercise exercise);
+
+
+    void createTemplate(Template template);
 
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.

@@ -10,6 +10,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddTemplateCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.CommandForExercise;
+import seedu.address.logic.commands.CreateTemplateCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -50,6 +51,9 @@ public class ExerciseBookParser {
 
         case AddTemplateCommand.COMMAND_WORD:
             return new AddTempCommandParser().parse(arguments);
+
+        case CreateTemplateCommand.COMMAND_WORD:
+            return new CreateTemplateCommandParser().parse(arguments);
 
         case ArchiveCommand.COMMAND_WORD:
             return new ArchiveCommandParser().parse(arguments);

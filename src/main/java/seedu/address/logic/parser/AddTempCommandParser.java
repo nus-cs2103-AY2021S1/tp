@@ -28,12 +28,17 @@ public class AddTempCommandParser implements ExerciseParser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TEMP, PREFIX_DATE)
             /*|| !argMultimap.getPreamble().isEmpty()*/) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddTemplateCommand.MESSAGE_USAGE));
         }
 
         Name templateName = ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_TEMP).get());
 
         Template template = TemplateList.getTemp(templateName.toString());
+
+        if (template == null) {
+            throw new ParseException("The template does not exist.");
+        }
 
         Name name = ParserUtil.parseExerciseName(template.getName());
         Description description = ParserUtil.parseDescription(template.getDescription());
