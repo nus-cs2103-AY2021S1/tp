@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 //import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 //import seedu.address.model.task.State;
-import seedu.address.model.task.Task;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.ui.UiPart;
 
 /**
@@ -25,7 +25,7 @@ public class DeadlineCard extends UiPart<Region> {
      * or an exception will be thrown by JavaFX during runtime.
      */
 
-    public final Task task;
+    public final Deadline deadline;
 
     @FXML
     private HBox cardPane;
@@ -40,7 +40,9 @@ public class DeadlineCard extends UiPart<Region> {
     @FXML
     private CheckBox statusSign;
     @FXML
-    private Label type;
+    private HBox durationHolder;
+    @FXML
+    private Label duration;
     @FXML
     private HBox dateTimeHolder;
     @FXML
@@ -53,40 +55,44 @@ public class DeadlineCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
-    public DeadlineCard(Task task, int displayedIndex) {
+    public DeadlineCard(Deadline deadline, int displayedIndex) {
         super(FXML);
-        this.task = task;
+        this.deadline = deadline;
         id.setText(displayedIndex + ". ");
-        title.setText(task.getTitle().title);
-        type.setText("haha");
-        loadStatus(task);
-        loadDescription(task);
-        loadDateTime(task);
+        title.setText(deadline.getTitle().title);
+        statusSign.setSelected(deadline.getStatus().isCompleted);
+        status.setText(deadline.getStatus().toString());
+        loadDescription(deadline);
+        loadDateTime(deadline);
+        loadDuration(deadline);
     }
 
-    private boolean loadStatus(Task task) {
-        statusSign.setSelected(true);
-        status.setText("haha");
-        return true;
+    private boolean loadDateTime(Deadline deadline) {
+        if (deadline.getDeadlineDateTime().isNull()) {
+            card.getChildren().remove(dateTimeHolder);
+            return false;
+        } else {
+            dateTime.setText(deadline.getDeadlineDateTime().toString());
+            return true;
+        }
     }
 
-    private boolean loadDateTime(Task task) {
-//        if (task.getDateTime().equals(DateTime.defaultDateTime())) {
-//            card.getChildren().remove(dateTimeHolder);
-//            return false;
-//        } else {
-//            dateTime.setText(task.getDateTime().toString());
-//            return true;
-//        }
-        return false;
-    }
-
-    private boolean loadDescription(Task task) {
-        if (task.getDescription().equals(Description.defaultDescription())) {
+    private boolean loadDescription(Deadline deadline) {
+        if (deadline.getDescription().equals(Description.defaultDescription())) {
             card.getChildren().remove(descriptionHolder);
             return false;
         } else {
-            description.setText(task.getDescription().value.toString());
+            description.setText(deadline.getDescription().value);
+            return true;
+        }
+    }
+
+    private boolean loadDuration(Deadline deadline) {
+        if (deadline.getDuration().isNull()) {
+            card.getChildren().remove(durationHolder);
+            return false;
+        } else {
+            duration.setText(deadline.getDurationValue() + " mins");
             return true;
         }
     }
@@ -106,6 +112,6 @@ public class DeadlineCard extends UiPart<Region> {
         // state check
         DeadlineCard card = (DeadlineCard) other;
         return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+                && deadline.equals(card.deadline);
     }
 }
