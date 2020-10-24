@@ -12,6 +12,7 @@ import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.ClearConsumptionCommand;
 import seedu.address.logic.commands.ClearIngredientCommand;
 import seedu.address.logic.commands.ClearRecipeCommand;
+import seedu.address.logic.commands.CloseCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteConsumptionCommand;
 import seedu.address.logic.commands.DeleteIngredientCommand;
@@ -27,6 +28,7 @@ import seedu.address.logic.commands.ListRecipesCommand;
 import seedu.address.logic.commands.RecommendCommand;
 import seedu.address.logic.commands.SearchIngredientCommand;
 import seedu.address.logic.commands.SearchRecipeCommand;
+import seedu.address.logic.commands.SelectRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -120,6 +122,12 @@ public class WishfulShrinkingParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case SelectRecipeCommand.COMMAND_WORD:
+            return new SelectRecipeCommandParser().parse(arguments);
+
+        case CloseCommand.COMMAND_WORD:
+            return new CloseCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

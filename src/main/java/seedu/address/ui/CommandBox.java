@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,10 +19,10 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private CustomTextArea commandTextField;
 
     @FXML
-    private TextField commandTextField;
-
+    private StackPane commandBoxContainer;
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
@@ -30,14 +30,21 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        commandTextField = new CustomTextArea();
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setWrapText(true);
+        commandTextField.setId("commandTextField");
+        commandTextField.setPromptText("Type something...");
+
+        commandBoxContainer.getChildren().add(commandTextField);
+        commandBoxContainer.setOnKeyPressed(event -> handleCommandEntered());
     }
 
     /**
      * Handles the Enter button pressed event.
      */
     @FXML
-    private void handleCommandEntered() throws IOException, CommandException, ParseException {
+    private void handleCommandEntered() {
         try {
             CommandResult commandResult = commandExecutor.execute(commandTextField.getText());
             if (commandResult.isEditRecipe() || commandResult.isEditIngredient()) {
