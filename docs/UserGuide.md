@@ -266,6 +266,7 @@ to `50`.
 ### Adding notes to stock: `note`
 Adds a note to the stock specified, displayed in the notes column for that stock.
 Multiple notes can be added to the stock and each note will be indexed. <br>
+
 ⚠ If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
 To view full notes for the stock, use the `noteview` command.
 
@@ -343,38 +344,6 @@ e.g. `stats st/source`, `stats st/source-qd-abc`
 
 ![SourceQuantityDistributionStatistics](images/SourceQuantityDistributionStatistics.png)
 
-### Saving data
-Data generated in Warenager (all stocks in inventory in json) is automatically saved to
-`[root directory]/data/stockbook.json` when any of these commands is executed:
-* add
-* delete
-* note
-* update
-
-The set of used serial number sources is automatically saved to
-`[root directory]/data/serialnumbers.json` when any of these commands is executed:
-* add
-
-### Command Suggestion
-Sometimes user will type in wrong commands. Warenager will help such user by suggesting the correct format
-of the command if the command word is valid. If the command word is invalid, then Warenager will try to predict
-and suggest the closest command to whatever the user has typed.
-
-⚠ The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
-are errors such as serial number not found, then Warenager will not suggest anything to the user and instead displays
-an error message.
-
-#### Example usages:
-
-* `del` <br>
-  Warenager will suggest: `delete sn/<serial number>`
-* `delt sn/NUS1` <br>
-  Warenager will suggest: `delete sn/NUS1`
-* `ad n/Thai Tea s/Fairprice q/100` <br>
-  Warenager will suggest: `add n/Thai Tea s/Fairprice q/100 l/<location>`
-* `list n/Duck q/100` <br>
-  Warenager will suggest: `list`
-
 ### Sorting inventory: `sort`
 Sort the inventory by a specific field and order.
 
@@ -413,15 +382,35 @@ Command: `sort o/ascending by/name` will sort based on name and in ascending ord
 
 ![SortNameAscending](images/SortNameAscending.png)
 
+### Command Suggestion
+Sometimes user will type in wrong commands. Warenager will help such user by suggesting the correct format
+of the command if the command word is valid. If the command word is invalid, then Warenager will try to predict
+and suggest the closest command to whatever the user has typed.
+
+⚠ The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
+are errors such as serial number not found, then Warenager will not suggest anything to the user and instead displays
+an error message.
+
+#### Example usages:
+
+* `del` <br>
+  Warenager will suggest: `delete sn/<serial number>`
+* `delt sn/NUS1` <br>
+  Warenager will suggest: `delete sn/NUS1`
+* `ad n/Thai Tea s/Fairprice q/100` <br>
+  Warenager will suggest: `add n/Thai Tea s/Fairprice q/100 l/<location>`
+* `list n/Duck q/100` <br>
+  Warenager will suggest: `list`
+
 ### Generates a csv file that contains all stocks: `print`
 Generates a csv file that contains all stocks. Users may want to sort the stocks using `sort` command
 to sort the stock in their preferred order before converting it into the csv file. The csv file is saved
 to `[root directory]/data/stocks.csv` after successfully executing the command.
 
 #### Format:
-`print`
+Single: `print`
 
-#### Example usage:
+#### Example Usage:
 
 After executing the `print` command, proceed to the folder which contains Warenager. Click on the `data`
 folder circled in red.
