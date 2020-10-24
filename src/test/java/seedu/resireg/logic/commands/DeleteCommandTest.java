@@ -18,6 +18,7 @@ import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -26,6 +27,7 @@ import seedu.resireg.model.student.Student;
 public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
+    private Storage storage = null;
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -88,7 +90,7 @@ public class DeleteCommandTest {
         expectedModel.saveStateResiReg();
 
         // delete -> first student deleted
-        deleteCommand.execute(model);
+        deleteCommand.execute(model, storage);
 
         // undo -> reverts resireg back to previous state
         expectedModel.undoResiReg();
@@ -132,7 +134,7 @@ public class DeleteCommandTest {
         expectedModel.saveStateResiReg();
 
         // delete -> deletes second student in unfiltered student list, first student in filtered student list
-        deleteCommand.execute(model);
+        deleteCommand.execute(model, storage);
 
         // undo -> reverts resireg back to previous state and filtered student list to show all students
         expectedModel.undoResiReg();

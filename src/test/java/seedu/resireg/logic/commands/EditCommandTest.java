@@ -25,6 +25,8 @@ import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
+import seedu.resireg.storage.StorageManager;
 import seedu.resireg.testutil.EditStudentDescriptorBuilder;
 import seedu.resireg.testutil.StudentBuilder;
 
@@ -34,6 +36,7 @@ import seedu.resireg.testutil.StudentBuilder;
 public class EditCommandTest {
 
     private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
+    private Storage storage = new StorageManager(null, null);
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -161,7 +164,7 @@ public class EditCommandTest {
         expectedModel.saveStateResiReg();
 
         // edit -> first student edited
-        editCommand.execute(model);
+        editCommand.execute(model, storage);
 
         // undo -> reverts resireg back to prev state and filtered student list to show all students
         expectedModel.undoResiReg();
@@ -207,7 +210,7 @@ public class EditCommandTest {
         expectedModel.saveStateResiReg();
 
         // edit -> edits second student in unfiltered list / first student in filtered student list
-        editCommand.execute(model);
+        editCommand.execute(model, storage);
 
         // undo -> reverts resireg back to prev state and filtered student list to show all students
         expectedModel.undoResiReg();
