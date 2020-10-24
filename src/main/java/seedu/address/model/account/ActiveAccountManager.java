@@ -3,11 +3,11 @@ package seedu.address.model.account;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
@@ -17,8 +17,9 @@ import seedu.address.model.account.entry.Revenue;
  */
 public class ActiveAccountManager implements ActiveAccount {
     private final Account activeAccount;
-    private final FilteredList<Expense> filteredExpenses;
-    private final FilteredList<Revenue> filteredRevenues;
+    private FilteredList<Expense> filteredExpenses;
+    private FilteredList<Revenue> filteredRevenues;
+    private Optional<ActiveAccount> previousState;
 
     /**
      * Initializes an ActiveAccountManager with the given account.
@@ -30,6 +31,59 @@ public class ActiveAccountManager implements ActiveAccount {
         this.activeAccount = new Account(account);
         filteredExpenses = new FilteredList<>(this.activeAccount.getExpenseList());
         filteredRevenues = new FilteredList<>(this.activeAccount.getRevenueList());
+        previousState = Optional.empty();
+    }
+
+    /**
+     * Initializes an ActiveAccountManager with the given account, expenses,
+     * revenues and previous state of ActiveAccount.
+     */
+    private ActiveAccountManager(ReadOnlyAccount account, FilteredList<Expense> filteredExpenses,
+                                 FilteredList<Revenue> filteredRevenues, Optional<ActiveAccount> previousState) {
+        this.activeAccount = new Account(account);
+        this.filteredExpenses = filteredExpenses;
+        this.filteredRevenues = filteredRevenues;
+        this.previousState = previousState;
+    }
+    //=========== ActiveAccount ================================================================================
+
+    @Override
+    public ActiveAccount getCopy() {
+        Account copiedAccount = getAccount();
+        FilteredList<Expense> copiedExpenses = new FilteredList<>(copiedAccount.getExpenseList());
+        FilteredList<Revenue> copiedRevenues = new FilteredList<>(copiedAccount.getRevenueList());
+        return new ActiveAccountManager(copiedAccount, copiedExpenses, copiedRevenues, previousState);
+    }
+
+    @Override
+    public Optional<ActiveAccount> getPreviousState() {
+        return previousState;
+    }
+
+    @Override
+    public boolean hasNoPreviousState() {
+        return previousState.isEmpty();
+    }
+
+    @Override
+    public void setPreviousState() {
+        previousState = Optional.of(this.getCopy());
+    }
+
+    @Override
+    public void removePreviousState() {
+        previousState = Optional.empty();
+    }
+
+    @Override
+    public void returnToPreviousState() {
+        previousState.ifPresent((prevState) -> {
+            Account prevStateAccount = prevState.getAccount();
+            setActiveAccount(prevStateAccount);
+            filteredExpenses = new FilteredList<>(activeAccount.getExpenseList());
+            filteredRevenues = new FilteredList<>(activeAccount.getRevenueList());
+            previousState = prevState.getPreviousState();
+        });
     }
 
     //=========== Account ================================================================================
@@ -140,25 +194,18 @@ public class ActiveAccountManager implements ActiveAccount {
     }
 
     @Override
-    public Double getTotalExpenses() {
-        Double sum = 0.00;
-        ObservableList<Expense> expenses = activeAccount.getExpenseList();
-        for (Expense expense : expenses) {
-            Amount amount = expense.getAmount();
-            sum = sum + amount.getValue();
-        }
-        return sum;
+    public double getTotalExpenses() {
+        return activeAccount.getTotalExpense();
     }
 
     @Override
-    public Double getTotalRevenue() {
-        Double sum = 0.00;
-        ObservableList<Revenue> revenues = activeAccount.getRevenueList();
-        for (Revenue revenue : revenues) {
-            Amount amount = revenue.getAmount();
-            sum = sum + amount.getValue();
-        }
-        return sum;
+    public double getTotalRevenue() {
+        return activeAccount.getTotalRevenue();
+    }
+
+    @Override
+    public double getProfits() {
+        return activeAccount.getProfits();
     }
 
     @Override
