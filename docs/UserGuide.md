@@ -11,6 +11,7 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
+Here is a quick start on how you can start using our app in your own computer. 
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -24,29 +25,31 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
    
-   * **`list`** : Lists all FlashCards.
-   
-   * **`open`**`1` : Opens the 1st question shown in the current list.
-
-   * **`add`**`q/Plants give out ___ when they photosynthesise? ans/Oxygen t/Biology` :  Adds a open ended question `Plants give out ___ when they photosynthesise?` with answer `Oxygen` and tagged to `Biology`. 
-   
+   * **`add`**`q/Plants give out ___ when they photosynthesise? ans/Oxygen t/Biology` :  Adds an open ended question `Plants give out ___ when they photosynthesise?` with answer `Oxygen` and tagged to `Biology`. 
+      
    * **`addmcq`**`q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide` :  Adds a multiple choice question `Plants give out ___ when they photosynthesise?` with 3 options `Oxygen`, `Carbon`, `Carbon dioxide` and with answer `Oxygen`.
+
+   * **`open`**`1` : Opens the 1st question shown in the current list.
    
-   * **`test`**`1 ans/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer.
+   * **`edit`**`1 ans/Edited answer` : Edit the answer of the first flashcard on the list to become `Edited answer`.
+   
+   * **`list`** : Lists all FlashCards.
    
    * **`find`** `find t/MCQ q/What CS2103T q/is t/GoodQuestion` : Finds all Flashcards tagged to the tag `MCQ` and `GoodQuestion` and has keywords `What`, `CS2103T` and `is` in question.
    
+   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
+   
+   * **`clear`** : Deletes all FlashCards.
+   
+   * **`test`**`1 ans/Example answer` : Tests the 1st question shown in the current list with `Example answer` as the answer.
+   
    * **`stats`**`1` : Show stats of the 1st question shown in the current list.
    
-   * **`delete`**`3` : Deletes the 3rd flashcard shown in the current list.
-
-   * **`clear`** : Deletes all FlashCards.
+   * **`clearstats`**`1` : Clears the statistics of the 1st flashcard shown in the current list.
    
    * **`export`**`science-questions.json` : Exports current list of flashcard to a file named `science-questions.json` in the `export` folder.
    
    * **`import`**`science-questions.json` : Import all flashcards from a file named `science-questions.json` in the `import` folder.
-
-   * **`clearstats`**`1` : Clears the statistics of the 1st flashcard shown in the current list.
 
    * **`exit`** : Exits the app.
 
@@ -72,9 +75,40 @@ QuickCache is a **desktop app for managing flashcards, optimized for use via a C
 
 Shows a message explaning how to access the help page.
 
+Format: `help`
+
 ![help message](images/helpMessage.png)
 
-Format: `help`
+### Creating a new flashcard : You can add a new flashcard to the list.
+#### Creating a flashcard with open ended question: `add`
+You can create a flashcard that contains an open ended question which will be added to the list.
+
+Format: `add q/QUESTION ans/ANSWER`
+
+Examples:
+* `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
+
+![addOpenEnded](images/addOpenEnded.png)
+
+<div class="alert alert-danger">
+You cannot add a flashcard with empty question and empty answer.
+</div>
+
+#### Creating a flashcard with multiple choice question: `addmcq`
+You can create a flashcard that contains a multiple choice question which will be added to the list.
+
+Format: `addmcq q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
+
+Examples:
+* `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
+
+![addMCQ](images/addMCQ.png)
+
+<div class="alert alert-danger">
+You cannot add flashcard with missing question or missing answer or missing choice.
+<br>
+You should have at least two choices.
+</div>
 
 ### Open a flashcard: `open`
 
@@ -89,32 +123,71 @@ Format: `open INDEX`
 Examples:
 * `list` followed by `open 2` opens the 2nd flashcard in the list.
 
-### Adding a flashcard with open ended question: `add`
+### Editing a flashcard: `edit`
 
-Adds a new flashcard to the application.
+You can edit a flashcard that you have created previously.
 
-Format: `add q/QUESTION ans/ANSWER`
-
-Examples:
-* `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
-
-### Adding a flashcard with multiple choice question: `addmcq`
-
-Adds a new flashcard to the application.
-
-Format: `addmcq q/QUESTION ans/ANSWER c/first choice c/second choice ..`
-
-Examples:
-* `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
-
-### Edit a flashcard: `edit`
-
-Edit a flashcard.
-
-Format: `edit INDEX q/QUESTION ans/ANSWER c/first choice c/second choice ..`
+Format: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
 
 Examples:
 * `edit 1 q/Plants give out ___ when they photosynthesise? ans/2 c/Oxygen c/Carbon c/Carbon dioxide`
+
+![edit](images/edit.png)
+
+<div class="alert alert-danger">
+You must have at least one edited field which is different from the previous flashcard.
+</div>
+
+### Listing all flashcards : `list`
+
+Shows a list of all flashcards currently created.
+
+Format: `list`
+
+### Finding Flashcards by their tags and/or question: `find`
+
+Finds all Flashcards based on their tags and/or question.
+
+Format: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
+
+* Do not need to use both `t/` and `q/` when finding a flashcard.
+* Tags are case-sensitive.
+* Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.
+* Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.
+
+Example: `find t/MCQ q/What CS2103T q/is t/GoodQuestion` where `MCQ` and `GoodQuestion` are tags and `What`, `CS2103T` and `is` are keywords.
+
+### Deleting a flashcard : You can delete the flashcard from the list.
+
+<div class="alert alert-danger">
+You can only delete based on index or based on tags but not both!
+</div>
+
+#### Deleting by index: `delete`
+You can delete a flashcard based on the index from the last displayed list.
+Format: `delete INDEX` 
+
+* Deletes the flashcard at the specified `INDEX`.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples:
+
+* `list` followed by `delete 3` deletes the 3rd flashcard in the list.
+![deleteIndex](images/deleteIndex.png)
+
+#### Deleting by tags : `delete`
+Format: `delete t/TAG1 TAG2`
+
+* Deletes all flashcards with the tags `TAG1` and `TAG2`
+
+Examples:
+
+* `delete t/MCQ` will delete all flashcards with the tag `MCQ`
+#### Clearing all entries : `clear`
+Clears all entries from QuickCache.
+
+Format: `clear`
 
 ### Testing a flashcard : `test`
 
@@ -161,52 +234,6 @@ Format: `stats INDEX`
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-### Listing all flashcards : `list`
-
-Shows a list of all flashcards currently created.
-
-Format: `list`
-
-### Finding Flashcards by their tags and/or question: `find`
-
-Finds all Flashcards based on their tags and/or question.
-
-Format: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
-
-* Do not need to use both `t/` and `q/` when finding a flashcard.
-* Tags are case-sensitive.
-* Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.
-* Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.
-
-Example: `find t/MCQ q/What CS2103T q/is t/GoodQuestion` where `MCQ` and `GoodQuestion` are tags and `What`, `CS2103T` and `is` are keywords.
-
-### Deleting a flashcard : `delete`
-
-Deletes a flashcard based on the index from the last displayed list or delete a set of flashcards based on their tags.
-
-<div class="alert alert-danger">
-You can only delete based on index or based on tags but not both!
-</div>
-
-Format: `delete INDEX` 
-
-* Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd flashcard in the list.
-
-
-Format: `delete t/TAG1 TAG2`
-
-* Deletes all flashcards with the tags `TAG1` and `TAG2`
-
-Examples:
-
-* `delete t/MCQ` will delete all flashcards with the tag `MCQ`
-
 ### Clearing a flashcard's statistics : `clearstats`
 
 Clears the specified flashcard's statistics.
@@ -220,22 +247,6 @@ Format: `clearstats INDEX`
 Examples:
 * `list` followed by `clearstats 2` clears the statistics of the 2nd flashcard in the list.
 
-### Clearing all entries : `clear`
-
-Clears all entries from QuickCache.
-
-Format: `clear`
-
-### Exporting a set of flashcards : `export`
-
-Exports the current list of flashcard into a file.
-
-Format: `export FILE_NAME`
-
-* Exports the previously shown list of flashcards.
-* The output file follows the name specified in `FILE_NAME`.
-* The output file can be found in the `export` folder.
-
 ### Importing a set of flashcards : `import`
 
 Imports the flashcards from a specified file into your local QuickCache.
@@ -246,6 +257,17 @@ Format: `import FILE_NAME`
 * Duplicate flashcards will be ignored.
 * The input file follows the name specified in `FILE_NAME`.
 * The input file should be placed within the `import` folder for it to be detected.
+
+
+### Exporting a set of flashcards : `export`
+
+Exports the current list of flashcard into a file.
+
+Format: `export FILE_NAME`
+
+* Exports the previously shown list of flashcards.
+* The output file follows the name specified in `FILE_NAME`.
+* The output file can be found in the `export` folder.
 
 ### Exiting the program : `exit`
 

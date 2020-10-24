@@ -1,0 +1,91 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":QuickCacheParser" as QuickCacheParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "t:EditCommand" as EditCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":QuickCache" as QuickCache MODEL_COLOR
+participant "flashcards:UniqueFlashcardList" as Flashcards MODEL_COLOR
+participant "internalList:ObservableList<Flashcard>" as ObservableList MODEL_COLOR
+end box
+[-> LogicManager : execute("edit 1 ans/answer")
+activate LogicManager
+
+LogicManager -> QuickCacheParser : parseCommand("edit 1 ans/answer")
+activate QuickCacheParser
+
+create EditCommandParser
+QuickCacheParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser -> QuickCacheParser
+deactivate EditCommandParser
+
+QuickCacheParser -> EditCommandParser : parse("edit 1 ans/answer")
+activate EditCommandParser
+
+create EditCommand
+EditCommandParser -> EditCommand
+activate EditCommand
+
+EditCommand --> EditCommandParser : t
+deactivate EditCommand
+
+EditCommandParser -> QuickCacheParser : t
+deactivate EditCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> QuickCacheParser
+destroy EditCommandParser
+
+QuickCacheParser --> LogicManager : t
+deactivate QuickCacheParser
+
+LogicManager -> EditCommand : execute()
+activate EditCommand
+
+EditCommand -> Model : getFilteredFlashcardList()
+activate Model
+
+Model --> EditCommand : lastShownList
+deactivate Model
+
+EditCommand ->EditCommand : createEditedFlashcard(flashcard, editFlashcardDescriptor)
+activate EditCommand
+
+EditCommand ->EditCommand : editedFlashcard
+deactivate EditCommand
+
+EditCommand -> Model : setFlashcard(flashcard, editedFlashcard)
+activate Model
+
+Model -> QuickCache :setFlashcard(flashcard, editedFlashcard)
+activate QuickCache
+
+QuickCache -> Flashcards :setFlashcard(flashcard, editedFlashcard)
+activate Flashcards
+
+Flashcards -> ObservableList : setFlashcard(flashcard, editedFlashcard)
+activate ObservableList
+return
+
+return
+
+return
+
+return
+
+return result
+
+EditCommand -[hidden]-> LogicManager
+destroy EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
