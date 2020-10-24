@@ -38,6 +38,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of projects */
     ObservableList<Project> getFilteredProjectList();
 
+    /** Returns an unmodifiable view of the filtered list of persons */
+    ObservableList<Person> getFilteredPersonList();
+
     /**
      * Gets the project to be displayed on dashboard.
      * @return the project to be displayed on dashboard.

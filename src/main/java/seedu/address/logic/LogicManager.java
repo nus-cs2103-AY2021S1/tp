@@ -70,6 +70,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
+    }
+
+    @Override
     public Optional<Project> getProjectToBeDisplayedOnDashBoard() {
         return model.getProjectToBeDisplayedOnDashboard();
     }
