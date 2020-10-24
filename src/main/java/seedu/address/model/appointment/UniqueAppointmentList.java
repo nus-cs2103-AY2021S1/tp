@@ -30,13 +30,6 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
-    public UniqueAppointmentList() {
-        super();
-        add(new Appointment(new Name("Kim Test"),
-                new AppointmentDateTime("2020-10-24T15:40"),
-                new AppointmentDateTime("2020-10-24T15:55")));
-    }
-
     /**
      * Returns true if the list contains an appointment that clashes with the given appointment.
      */
