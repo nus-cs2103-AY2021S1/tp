@@ -34,6 +34,7 @@ public class ModelManager implements Model {
     private Optional<Task> taskToBeDisplayedOnDashboard;
     private Optional<Participation> teammateToBeDisplayedOnDashboard;
     private Optional<Meeting> meetingToBeDisplayedOnDashboard;
+    private Optional<Person> personToBeDisplayedOnDashboard;
 
     /**
      * Initializes a ModelManager with the given mainCatalogue and userPrefs.
@@ -54,6 +55,7 @@ public class ModelManager implements Model {
         this.taskToBeDisplayedOnDashboard = Optional.empty();
         this.teammateToBeDisplayedOnDashboard = Optional.empty();
         this.meetingToBeDisplayedOnDashboard = Optional.empty();
+        this.personToBeDisplayedOnDashboard = Optional.empty();
     }
 
     public ModelManager() {
@@ -180,16 +182,24 @@ public class ModelManager implements Model {
 
     @Override
     public void quit() {
-        if (mainCatalogue.getStatus() == Status.PROJECT) {
+        switch (mainCatalogue.getStatus()) {
+        case PROJECT:
             projectToBeDisplayedOnDashboard = Optional.empty();
             teammateToBeDisplayedOnDashboard = Optional.empty();
             taskToBeDisplayedOnDashboard = Optional.empty();
-        } else if (mainCatalogue.getStatus() == Status.TEAMMATE) {
-            teammateToBeDisplayedOnDashboard = Optional.empty();
-        } else if (mainCatalogue.getStatus() == Status.TASK) {
+            break;
+        case TASK:
             taskToBeDisplayedOnDashboard = Optional.empty();
-        } else if (mainCatalogue.getStatus() == Status.MEETING) {
+            break;
+        case MEETING:
             meetingToBeDisplayedOnDashboard = Optional.empty();
+            break;
+        case TEAMMATE:
+            teammateToBeDisplayedOnDashboard = Optional.empty();
+            break;
+        case PERSON:
+            personToBeDisplayedOnDashboard = Optional.empty();
+            break;
         }
         mainCatalogue.quit();
     }
