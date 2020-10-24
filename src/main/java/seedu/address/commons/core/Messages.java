@@ -13,6 +13,7 @@ public class Messages {
     public static final String MESSAGE_UNDONE_REDONE_INPUT = "%1$s %2$s";
     public static final String MESSAGE_INVALID_APPOINTMENT_START_END = "Invalid appointment time range."
             + " Starting time of the appointment should be earlier than ending time.";
+    public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX = "The appointment index provided is invalid";
     public static final String MESSAGE_MISSING_PATIENT_IN_APPOINTMENT = "Appointment should involve a patient.";
 
 }
