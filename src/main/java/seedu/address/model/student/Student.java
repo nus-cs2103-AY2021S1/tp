@@ -87,9 +87,9 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName())
+                && otherStudent.getName().toString().toLowerCase().equals(getName().toString().toLowerCase())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getSchool().equals(getSchool())
+                && otherStudent.getSchool().toString().toLowerCase().equals(getSchool().toString().toLowerCase())
                 && otherStudent.getYear().equals(getYear());
     }
 

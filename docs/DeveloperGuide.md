@@ -1,21 +1,34 @@
----
-layout: page
-title: Developer Guide
+Reeve - Developer Guide
 ---
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+Welcome to Reeve!
 
-## **Setting up, getting started**
+Reeve is an integrated platform specifically catered to Primary, Secondary and Tertiary education private tutors to better manage their students' individual needs. 
+It contains  students' particulars, administrative and academic details.
+
+Reeve is optimized for users that are very comfortable with typing as it works on a Command Line Interface (CLI).
+
+Students' details are displayed in a neat and organized manner through the use of a Graphical User Interface (GUI).
+
+If you are looking for an application to better allow you to track your students' administrative and academic details so that you can better meet their needs? Look no further!
+  
+## 1. About
+
+## 2. Understanding the Guide
+
+## 3. **Getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## 4. **Design**
 
-### Architecture
+### 4.1 Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
@@ -57,7 +70,7 @@ The *Sequence Diagram* below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### 4.2 UI component
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
@@ -73,7 +86,7 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### 4.3 Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -93,7 +106,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### 4.4 Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -113,7 +126,7 @@ The `Model`,
 </div>
 
 
-### Storage component
+### 4.5 Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -123,15 +136,43 @@ The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
 * can save the address book data in json format and read it back.
 
-### Common classes
+### 4.6 Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## 5. **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### 5.1 Student administrative details features
+
+The student administrative details feature keeps track of essential administrative student details. The feature comprises of the following commands,
+* `AddCommand` - Adds a student into the student list
+* `EditCommand` - Edits the details of a particular student
+* `DeleteCommand` - Deletes a particular student
+* `FindCommand` - Finds students matching certain parameters
+* `OverdueCommand` - Finds students who have overdue payments
+* `ClearCommand` - Deletes all students in the student list
+
+#### 5.1.1 Add Student Command
+
+The following describes the flow of how `AddCommand` is performed.
+
+1. Upon successfully parsing the user input, the `AddCommand#execute(Model model)` is called which checks whether 
+the added student already exists in the `UniqueStudentList`.
+2. A unique student is defined by `Name`, `Phone`, `School` and `Year`. If a duplicate student is defined, 
+a `CommandException` is thrown and the student will not be added.
+3. If the added student is not a duplicate, then the `Model#addStudent(Student student)` is called to add the student. 
+A new `CommandResult` is returned with a success message and the added student.
+4. The student is be added into `UniqueStudentList` and a success message is shown in the result display.
+
+The following activity diagram summarizes the flow of events when the `AddCommand` is being executed:
+
+![Flow of Add Student Command](images/AddStudentActivityDiagram.png)
+
+Figure ___. Activity Diagram for AddStudentCommand
 
 ### 5.2 Student questions features
 

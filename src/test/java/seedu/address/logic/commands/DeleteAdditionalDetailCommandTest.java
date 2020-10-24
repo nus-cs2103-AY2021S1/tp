@@ -50,26 +50,26 @@ public class DeleteAdditionalDetailCommandTest {
 
     @Test
     public void execute_validStudentIndexUnfilteredList_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_DETAIL).build();
         AdditionalDetail additionalDetail = new AdditionalDetail(TEST_DETAIL);
         DeleteAdditionalDetailCommand deleteAdditionalDetailCommand =
                 new DeleteAdditionalDetailCommand(TEST_INDEX_FIRST_STUDENT, TEST_INDEX_FIRST_DETAIL);
         Student expectedStudent = new StudentBuilder(ALICE).withDetails().build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         String expectedMessage = String.format(DeleteAdditionalDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), additionalDetail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(deleteAdditionalDetailCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         DeleteAdditionalDetailCommand command = new DeleteAdditionalDetailCommand(outOfBoundsStudentIndex,
                 TEST_INDEX_FIRST_DETAIL);
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -77,7 +77,8 @@ public class DeleteAdditionalDetailCommandTest {
 
     @Test
     public void execute_invalidDetailIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsDetailIndex = Index.fromOneBased(model.getFilteredPersonList().get(0).getDetails().size() + 1);
+        Index outOfBoundsDetailIndex =
+                Index.fromOneBased(model.getFilteredStudentList().get(0).getDetails().size() + 1);
         DeleteAdditionalDetailCommand invalidCommand = new DeleteAdditionalDetailCommand(TEST_INDEX_FIRST_STUDENT,
                 outOfBoundsDetailIndex);
 
@@ -88,10 +89,10 @@ public class DeleteAdditionalDetailCommandTest {
     public void execute_validStudentIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
         Student clone = new StudentBuilder(asker).withDetails(TEST_DETAIL).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         DeleteAdditionalDetailCommand command = new DeleteAdditionalDetailCommand(INDEX_FIRST_PERSON,
                 TEST_INDEX_FIRST_DETAIL);
@@ -101,7 +102,7 @@ public class DeleteAdditionalDetailCommandTest {
                 clone.getName(), detail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
@@ -121,9 +122,10 @@ public class DeleteAdditionalDetailCommandTest {
     public void execute_invalidDetailIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Index outOfBoundsDetailIndex = Index.fromOneBased(model.getFilteredPersonList().get(0).getDetails().size() + 1);
-        DeleteAdditionalDetailCommand invalidCommand = new DeleteAdditionalDetailCommand(TEST_INDEX_FIRST_STUDENT,
-                outOfBoundsDetailIndex);
+        Index outOfBoundsDetailIndex =
+                Index.fromOneBased(model.getFilteredStudentList().get(0).getDetails().size() + 1);
+        DeleteAdditionalDetailCommand invalidCommand =
+                new DeleteAdditionalDetailCommand(TEST_INDEX_FIRST_STUDENT, outOfBoundsDetailIndex);
 
         assertCommandFailure(invalidCommand, model, MESSAGE_BAD_DETAIL_INDEX);
     }
