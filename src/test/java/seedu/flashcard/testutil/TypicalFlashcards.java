@@ -27,8 +27,7 @@ public class TypicalFlashcards {
 
     public static final Flashcard FLASHCARD_3 = new FlashcardBuilder()
             .withQuestion("It is recommended that assertions to be used liberally in the code. True or False?")
-            .withAnswer("True")
-            .build();
+            .withAnswer("True").build();
 
     public static final Flashcard FLASHCARD_4 = new FlashcardBuilder()
             .withQuestion("Can the singleton pattern can reduce testability?")
@@ -44,7 +43,7 @@ public class TypicalFlashcards {
             .build();
 
     public static final Flashcard FLASHCARD_6 = new FlashcardBuilder()
-            .withQuestion("IMore test cases is always better. True or False?")
+            .withQuestion("More test cases is always better. True or False?")
             .withStatistics(new Statistics(5, 2))
             .withAnswer("True").build();
 
@@ -76,7 +75,8 @@ public class TypicalFlashcards {
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
-        return new ArrayList<>(Arrays.asList(FLASHCARD_1, FLASHCARD_2, FLASHCARD_3));
+        return new ArrayList<>(Arrays.asList(FLASHCARD_1, FLASHCARD_2, FLASHCARD_3,
+                FLASHCARD_4, FLASHCARD_5, FLASHCARD_6));
     }
 
     public static List<Flashcard> getReviewedFlashcards() {

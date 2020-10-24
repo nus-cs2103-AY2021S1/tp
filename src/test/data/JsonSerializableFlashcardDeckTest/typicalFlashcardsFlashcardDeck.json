@@ -41,6 +41,48 @@
         "successFrequency": 0
       },
       "isFavourite": "false"
+    },
+    {
+      "question": "Can the singleton pattern can reduce testability?",
+      "answer": "Yes",
+      "category": "Singleton",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 3,
+        "successFrequency": 2
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "The Command pattern uses polymorphism. True or False?",
+      "answer": "True",
+      "category": "Command Pattern",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 1,
+        "successFrequency": 0
+      },
+      "isFavourite": "false"
+    },
+    {
+      "question": "More test cases is always better. True or False?",
+      "answer": "True",
+      "category": "General",
+      "note": "",
+      "rating": "",
+      "tagged" : [ ],
+      "diagramFilePath": "",
+      "statistics": {
+        "reviewFrequency": 5,
+        "successFrequency": 2
+      },
+      "isFavourite": "false"
     }
   ]
 }
