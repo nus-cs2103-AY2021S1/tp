@@ -12,7 +12,8 @@ import seedu.address.model.note.Note;
 
 /**
  * Represents a Person in the client list.
- * Guarantees: name, tags, archive status are present and not null, field values are validated, immutable.
+ * Guarantees: name, client sources, priority, archive status are present and not null,
+ * field values are validated, immutable.
  */
 public class Person {
 
@@ -29,7 +30,7 @@ public class Person {
     private final Priority priority;
 
     /**
-     * Only name, tags need to be non-null.
+     * Only name, client sources, priority need to be non-null.
      * By default, Person is not in archive
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note,
@@ -46,7 +47,7 @@ public class Person {
     }
 
     /**
-     * Only name, tags, archive status need to be non-null.
+     * Only name, client sources, priority, archive status need to be non-null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources,
                   Note note, boolean isArchive, Priority priority) {
