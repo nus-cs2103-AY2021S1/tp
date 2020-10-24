@@ -33,12 +33,13 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Set listener for display result
+     * Set autocomplete listener.
+     * @param resultDisplay resultdisplay
      */
-    public void setListener(ResultDisplay resultDisplay) {
-        // This is how you listen into the text
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) ->
-                resultDisplay.getAutoCompleteResult(unused3));
+    public void setAutoCompleteListener(ResultDisplay resultDisplay) {
+        // calls resultDisplay.showAutoCompleteResult() whenever there is a change to the text of the command box.
+        commandTextField.textProperty().addListener((unused1, unused2, input) ->
+                resultDisplay.showAutoCompleteResult(input));
     }
 
     /**

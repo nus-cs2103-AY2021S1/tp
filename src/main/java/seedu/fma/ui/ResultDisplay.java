@@ -34,7 +34,11 @@ public class ResultDisplay extends UiPart<Region> {
         this.commandSuggestionList = commandMessageUsage;
     }
 
-    public void getAutoCompleteResult(String input) {
+    /**
+     * Show autocomplete result to user.
+     * @param input input of the user
+     */
+    public void showAutoCompleteResult(String input) {
         requireNonNull(input);
         String feedback = "";
         input = input.length() > 3 ? input.substring(0, 3) : input;

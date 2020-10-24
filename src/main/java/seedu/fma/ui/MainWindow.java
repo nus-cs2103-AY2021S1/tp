@@ -140,7 +140,7 @@ public class MainWindow extends UiPart<Stage> {
 
         // For autocompletion
         resultDisplay.setSuggestionList(logic.getCommandSuggestionList());
-        commandBox.setListener(resultDisplay);
+        commandBox.setAutoCompleteListener(resultDisplay);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
