@@ -63,21 +63,25 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        assert name != null : "Value stored in name should not be null";
 
         if (source.getPhone() != null) {
             phone = source.getPhone().value;
+            assert phone != null : "Value stored in phone should not be null";
         } else {
             phone = null;
         }
 
         if (source.getEmail() != null) {
             email = source.getEmail().value;
+            assert email != null : "Value stored in email should not be null";
         } else {
             email = null;
         }
 
         if (source.getAddress() != null) {
             address = source.getAddress().value;
+            assert address != null : "Value stored in address should not be null";
         } else {
             address = null;
         }
@@ -89,12 +93,16 @@ class JsonAdaptedPerson {
 
         if (source.getNote() != null) {
             note = source.getNote().noteName;
+            assert note != null : "Value stored in note should not be null";
         } else {
             note = null;
         }
 
         isArchive = source.getIsArchive();
+
         priority = source.getPriority().value;
+        assert priority != null : "Value stored in priority should not be null";
+
     }
 
     /**
