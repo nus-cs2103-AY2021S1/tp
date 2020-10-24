@@ -1,8 +1,9 @@
-// EditCommandParser.java
+package chopchop.logic.parser.commands;
 
 import java.util.Optional;
 import java.util.ArrayList;
 
+import chopchop.logic.commands.EditRecipeCommand;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.commons.util.Result;
@@ -124,7 +125,7 @@ public class EditCommandParser {
                     return Result.error(ies.getError());
                 }
 
-                return Result.of(new EditCommandStub(item,
+                return Result.of(new EditRecipeCommand(item,
                     new RecipeEditDescriptor(editedName, ies.getValue(), ses.getValue(), tes.getValue())
                 ));
             });
@@ -270,23 +271,6 @@ public class EditCommandParser {
         } else {
             return Result.error("expected either /%s:add, /%s:edit, or /%s:delete",
                 editor, editor, editor);
-        }
-    }
-
-
-    static class EditCommandStub extends Command {
-
-        private final ItemReference recipe;
-        private final RecipeEditDescriptor edit;
-
-        public EditCommandStub(ItemReference recipe, RecipeEditDescriptor edit) {
-            this.recipe = recipe;
-            this.edit = edit;
-        }
-
-        @Override
-        public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-            return new CommandResult("");
         }
     }
 }
