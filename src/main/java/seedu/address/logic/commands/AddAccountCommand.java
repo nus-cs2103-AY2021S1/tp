@@ -40,11 +40,9 @@ public class AddAccountCommand extends Command {
         if (model.hasAccount(this.account)) {
             throw new CommandException(MESSAGE_DUPLICATE_ACCOUNT);
         }
-
         model.addAccount(this.account);
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.account),
             false, false, true);
-
     }
 
     @Override

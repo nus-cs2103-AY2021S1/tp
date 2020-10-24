@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_REVENUE;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -64,6 +66,8 @@ public class EditCommand extends Command {
         requireNonNull(model);
         assert(activeAccount != null && model != null);
 
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
 
         List<? extends Entry> lastShownList;
         if (editEntryDescriptor.isEntryExpense()) {
@@ -90,8 +94,8 @@ public class EditCommand extends Command {
             activeAccount.setRevenue((Revenue) entryToEdit, (Revenue) editedEntry);
             activeAccount.updateFilteredRevenueList(ActiveAccount.PREDICATE_SHOW_ALL_REVENUE);
         }
-        model.setAccount(activeAccount.getAccount());
 
+        model.setAccount(activeAccount.getAccount());
         return new CommandResult(String.format(MESSAGE_SUCCESS, editedEntry),
             false, false, true);
     }

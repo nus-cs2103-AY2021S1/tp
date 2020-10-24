@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_REVENUE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -55,6 +57,9 @@ public class FindCommand extends Command {
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
         assert (activeAccount != null);
+
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
 
         if (expensePredicate != null) {
             activeAccount.updateFilteredExpenseList(expensePredicate);
