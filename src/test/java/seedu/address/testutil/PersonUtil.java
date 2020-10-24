@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.Set;
 
@@ -39,6 +40,7 @@ public class PersonUtil {
             s -> sb.append(PREFIX_CLIENTSOURCE + s.clientSourceName + " ")
         );
         sb.append(PREFIX_NOTE + person.getNote().noteName + " ");
+        sb.append(PREFIX_PRIORITY + person.getPriority().value);
         return sb.toString();
     }
 
@@ -55,7 +57,8 @@ public class PersonUtil {
             Set<ClientSource> clientSources = descriptor.getClientSources().get();
             clientSources.forEach(s -> sb.append(PREFIX_CLIENTSOURCE).append(s.clientSourceName).append(" "));
         }
-        descriptor.getNote().ifPresent(note -> sb.append(PREFIX_NOTE).append(note.noteName));
+        descriptor.getNote().ifPresent(note -> sb.append(PREFIX_NOTE).append(note.noteName).append(" "));
+        descriptor.getPriority().ifPresent(priority -> sb.append(PREFIX_PRIORITY).append(priority.value));
         return sb.toString();
     }
 }

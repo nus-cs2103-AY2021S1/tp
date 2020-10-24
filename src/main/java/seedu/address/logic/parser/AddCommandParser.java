@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -20,6 +21,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -40,7 +42,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_EMAIL,
                         PREFIX_ADDRESS,
                         PREFIX_CLIENTSOURCE,
-                        PREFIX_NOTE);
+                        PREFIX_NOTE,
+                        PREFIX_PRIORITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -54,8 +57,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<ClientSource> clientSourceList = ParserUtil
                 .parseClientSources(argMultimap.getAllValues(PREFIX_CLIENTSOURCE));
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(null));
+        Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).orElse(null));
 
-        Person person = new Person(name, phone, email, address, clientSourceList, note);
+        Person person = new Person(name, phone, email, address, clientSourceList, note, priority);
 
         return new AddCommand(person);
     }
