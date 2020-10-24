@@ -48,6 +48,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
             editEntryDescriptor.setCategory(ParserUtil.parseCategory(argMultimap
                     .getValue(PREFIX_CATEGORY).get()));
+        } else {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditCommand.MESSAGE_USAGE));
         }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editEntryDescriptor.setDescription(ParserUtil.parseDescription(argMultimap

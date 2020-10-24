@@ -209,6 +209,26 @@ public class EditCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditEntryDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditEntryDescriptor e = (EditEntryDescriptor) other;
+
+            return getCategory().equals(e.getCategory())
+                    && getDescription().equals(e.getDescription())
+                    && getAmount().equals(e.getAmount())
+                    && getTags().equals(e.getTags());
+        }
     }
 
 }
