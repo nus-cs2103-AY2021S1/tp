@@ -13,6 +13,7 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.module.Module;
+import seedu.address.testutil.builders.ModuleBuilder;
 
 /**
  * A utility class containing a list of {@code Module} objects to be used in tests.

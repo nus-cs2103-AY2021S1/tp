@@ -22,7 +22,7 @@ import seedu.address.logic.commands.AddModCommand;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleName;
-import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.builders.ModuleBuilder;
 
 public class AddModCommandParserTest {
     private AddModCommandParser parser = new AddModCommandParser();
