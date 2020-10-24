@@ -34,7 +34,7 @@ public class ListAccountCommand extends Command {
      * @param accounts Account list of the model.
      * @return String containing names of the accounts.
      */
-    private String accountsToString(List<Account> accounts) {
+    public String accountsToString(List<Account> accounts) {
         StringBuilder sb = new StringBuilder();
         sb.append(MESSAGE_SUCCESS_INTRO).append(NEW_LINE);
         int index = STARTING_ACC_INDEX;
