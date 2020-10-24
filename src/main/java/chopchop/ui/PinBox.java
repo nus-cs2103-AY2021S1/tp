@@ -3,6 +3,10 @@ package chopchop.ui;
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
 import javafx.collections.ListChangeListener;
@@ -42,20 +46,35 @@ public class PinBox extends UiPart<Region> {
         super(FXML);
         this.observableRecords = records;
         pins.setText("Statistics\n");
-        header1.setText("Recently cooked recipe");
+        header1.setText("Recently cooked recipe:");
         if (records.isEmpty()) {
             body1.setText(EMPTY_PROMPT);
         } else {
-            body1.setText(records.toString());
+            body1.setText(formatRecords(observableRecords));
         }
-        header2.setText("Ingredients expiring soon");
+        header2.setText("Ingredients expiring soon:");
+        body2.setText("To be implemented");
         observableRecords.addListener(new ListChangeListener<Pair<String, LocalDateTime>>() {
             @Override
             public void onChanged(Change<? extends Pair<String, LocalDateTime>> c) {
                 //todo: expiring ingredient.
-                setStatisticsToUser(observableRecords.toString(), "To be implemented");
+                setStatisticsToUser(formatRecords(observableRecords), "To be implemented");
             }
         });
+    }
+
+    private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
+        List<Pair<String, LocalDateTime>> outputList = new ArrayList<>();
+        int i = 0;
+        while (i < 3 && records.size() != 0) {
+            outputList.add(records.remove(records.size() - 1));
+            i++;
+        }
+        String output = outputList.stream()
+            .map(x -> String.format("%s, %s", x.fst(),
+                x.snd().format(DateTimeFormatter.ofPattern("dd-MMM-yy hh:mm a"))))
+            .collect(Collectors.joining("\n"));
+        return output.toString();
     }
 
     private void setStatisticsToUser(String recentRecipes, String expiringIngredients) {

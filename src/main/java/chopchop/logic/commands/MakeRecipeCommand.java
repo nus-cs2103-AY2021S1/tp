@@ -48,6 +48,10 @@ public class MakeRecipeCommand extends Command implements Undoable {
         this.ingredients = new ArrayList<>();
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager)
         throws CommandException {

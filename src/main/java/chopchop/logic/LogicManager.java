@@ -76,7 +76,7 @@ public class LogicManager implements Logic {
         }
 
         if (cmd instanceof MakeRecipeCommand) {
-            this.statsManager.add();
+            this.statsManager.add(((MakeRecipeCommand) cmd).getRecipe());
         }
 
         logger.info("RECORD IS " + this.statsManager.getRecords().toString());
