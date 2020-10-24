@@ -106,6 +106,14 @@ public class CommandTestUtil {
     public static final String VALID_COMMENT_ONE = "Need immediate attention";
     public static final String VALID_COMMENT_TWO = "No need to follow up";
 
+    // for Appointment
+    public static final String VALID_PATIENT_NAME_FIRST = "Amy Bee";
+    public static final String VALID_PATIENT_NAME_SECOND = "Bob Choo";
+    public static final String VALID_START_TIME_FIRST = "2020-11-11T11:10";
+    public static final String VALID_START_TIME_SECOND = "2020-11-11T11:40";
+    public static final String VALID_END_TIME_FIRST = "2020-11-11T11:30";
+    public static final String VALID_END_TIME_SECOND = "2020-11-11T11:50";
+
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
                 .withIcNumber(VALID_ICNUMBER_AMY).withAddress(VALID_ADDRESS_AMY).withEmail(VALID_EMAIL_AMY)
