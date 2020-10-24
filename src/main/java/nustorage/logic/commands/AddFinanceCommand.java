@@ -52,7 +52,7 @@ public class AddFinanceCommand extends Command {
 
         //ignore comparison of internal ID field as user cannot set it
         if (other instanceof AddFinanceCommand) {
-            return newRecord.equalsWithoutID(((AddFinanceCommand) other).newRecord);
+            return newRecord.hasSameData(((AddFinanceCommand) other).newRecord);
         }
 
         return false;
