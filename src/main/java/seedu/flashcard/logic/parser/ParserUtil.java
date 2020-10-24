@@ -26,6 +26,7 @@ import seedu.flashcard.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String INVALID_FAV_INPUT = "Favourite should only take in 'yes' or 'no'.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -101,6 +102,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String isFavourite} into a {@code Boolean}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code isFavourite} is invalid.
+     */
+    public static Boolean parseFavourite(String isFavourite) throws ParseException {
+        requireNonNull(isFavourite);
+        String trimmedIsFavourite = isFavourite.trim().toLowerCase();
+        if (!trimmedIsFavourite.equals("yes") && !trimmedIsFavourite.equals("no")) {
+            throw new ParseException(INVALID_FAV_INPUT);
+        }
+        return trimmedIsFavourite.equals("yes");
+    }
+
+    /**
      * Parses a {@code String note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -121,6 +137,20 @@ public class ParserUtil {
             throw new ParseException(Rating.MESSAGE_CONSTRAINTS);
         }
         return new Rating(trimmedRating);
+    }
+
+    /**
+     * Parses {@code Collection<String> ratings} into a {@code List<Category>}.
+     */
+    public static List<Rating> parseRatings(Collection<String> ratings) throws ParseException {
+        requireNonNull(ratings);
+        final Set<Rating> ratingSet = new HashSet<>();
+        for (String ratingValue : ratings) {
+            ratingSet.add(parseRating(ratingValue));
+        }
+        List<Rating> ratingList = new ArrayList<>();
+        ratingList.addAll(ratingSet);
+        return ratingList;
     }
 
     /**
