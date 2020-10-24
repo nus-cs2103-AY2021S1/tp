@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StockBookParser" as StockBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindCommandParser LOGIC_COLOR
+participant ":FindCommand" as FindCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":FieldContainsKeywordsPredicate" as FieldContainsKeywordsPredicate MODEL_COLOR
+end box
+
+box Commons MODEL_COLOR_T1
+participant ":FindUtil" as FindUtil << class >> MODEL_COLOR
+end box
+
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> StockBookParser : parseCommand()
+activate StockBookParser
+
+create FindCommandParser
+StockBookParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> StockBookParser
+deactivate FindCommandParser
+
+StockBookParser -> FindCommandParser : parse(args)
+activate FindCommandParser
+
+FindCommandParser -> FindCommandParser : parsePrefixAndKeywords()
+activate FindCommandParser
+
+FindCommandParser -> FindCommandParser : generatePredicate()
+activate FindCommandParser
+
+create FieldContainsKeywordsPredicate
+FindCommandParser -> FieldContainsKeywordsPredicate
+activate FieldContainsKeywordsPredicate
+
+FieldContainsKeywordsPredicate --> FindCommandParser
+deactivate FieldContainsKeywordsPredicate
+
+FindCommandParser --> FindCommandParser
+deactivate FindCommandParser
+
+FindCommandParser --> FindCommandParser
+deactivate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand -> FindUtil : generateCombinedPredicatesWithOr()
+activate FindUtil
+
+FindUtil --> FindCommand
+deactivate FindUtil
+
+FindCommand --> FindCommandParser
+deactivate FindCommand
+
+FindCommandParser --> StockBookParser
+deactivate FindCommandParser
+
+StockBookParser --> LogicManager
+deactivate StockBookParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredStockList()
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+FindCommand --> LogicManager
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

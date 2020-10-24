@@ -18,7 +18,7 @@ public class ListAllCommand extends ListCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStockList(PREDICATE_SHOW_ALL_PERSONS);
+//        model.updateFilteredStockList(PREDICATE_SHOW_ALL_PERSONS);
         model.sortFilteredStockList(SortUtil.generateGeneralComparator());
         return new CommandResult(MESSAGE_SUCCESS);
     }
