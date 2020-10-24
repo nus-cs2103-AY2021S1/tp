@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
@@ -15,7 +15,7 @@ import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
 import seedu.address.storage.bidderstorage.BidderAddressBookStorage;
 import seedu.address.storage.bidstorage.BidBookStorage;
-import seedu.address.storage.calendar.MeetingBookStorage;
+import seedu.address.storage.meeting.MeetingBookStorage;
 import seedu.address.storage.property.PropertyBookStorage;
 import seedu.address.storage.sellerstorage.SellerAddressBookStorage;
 
@@ -88,8 +88,8 @@ public interface Storage extends SellerAddressBookStorage, BidderAddressBookStor
     Path getMeetingBookFilePath();
 
     @Override
-    Optional<ReadOnlyMeetingManager> readMeetingBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMeetingBook> readMeetingBook() throws DataConversionException, IOException;
 
     @Override
-    void saveMeetingBook(ReadOnlyMeetingManager meetingBook) throws IOException;
+    void saveMeetingBook(ReadOnlyMeetingBook meetingBook) throws IOException;
 }

@@ -38,7 +38,7 @@ public class ModelManagerTest {
         assertEquals(new BidderAddressBook(), new BidderAddressBook(modelManager.getBidderAddressBook()));
         assertEquals(new SellerAddressBook(), new SellerAddressBook(modelManager.getSellerAddressBook()));
         assertEquals(new BidBook(), new BidBook(modelManager.getBidBook()));
-        assertEquals(new MeetingBook(), new MeetingBook(modelManager.getMeetingManager()));
+        assertEquals(new MeetingBook(), new MeetingBook(modelManager.getMeetingBook()));
         assertEquals(new PropertyBook(), new PropertyBook(modelManager.getPropertyBook()));
     }
 

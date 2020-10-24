@@ -20,7 +20,7 @@ import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
@@ -42,8 +42,8 @@ import seedu.address.storage.bidderstorage.BidderAddressBookStorage;
 import seedu.address.storage.bidderstorage.JsonBidderAddressBookStorage;
 import seedu.address.storage.bidstorage.BidBookStorage;
 import seedu.address.storage.bidstorage.JsonBidBookStorage;
-import seedu.address.storage.calendar.JsonMeetingBookStorage;
-import seedu.address.storage.calendar.MeetingBookStorage;
+import seedu.address.storage.meeting.JsonMeetingBookStorage;
+import seedu.address.storage.meeting.MeetingBookStorage;
 import seedu.address.storage.property.JsonPropertyBookStorage;
 import seedu.address.storage.property.PropertyBookStorage;
 import seedu.address.storage.sellerstorage.JsonSellerAddressBookStorage;
@@ -108,14 +108,14 @@ public class MainApp extends Application {
         Optional<ReadOnlyBidderAddressBook> bidderAddressBookOptional;
         Optional<ReadOnlySellerAddressBook> sellerAddressBookOptional;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
-        Optional<ReadOnlyMeetingManager> meetingBookOptional;
+        Optional<ReadOnlyMeetingBook> meetingBookOptional;
 
         ReadOnlyAddressBook initialData;
         ReadOnlyBidBook initialBidData;
         ReadOnlyBidderAddressBook initialBidderData;
         ReadOnlySellerAddressBook initialSellerData;
         ReadOnlyPropertyBook initialPropertyData;
-        ReadOnlyMeetingManager initialMeetingData;
+        ReadOnlyMeetingBook initialMeetingData;
 
         try {
             addressBookOptional = storage.readAddressBook();
