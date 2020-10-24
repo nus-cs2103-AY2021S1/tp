@@ -13,6 +13,7 @@ import seedu.address.model.student.Student;
  * The API of the Model component.
  */
 public interface Model {
+
     /**
      * {@code Predicate} that always evaluate to true
      */
