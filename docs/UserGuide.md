@@ -131,6 +131,21 @@ There is no need to save manually, though you can create a copy of the current d
 
 ---
 
+### Finding animals by their fields : `find`
+
+Finds and lists all animals in the `ZooKeep` book whose fields contain any of the specified argument keywords.
+
+Format: `find [SPECIFIED KEYWORDS]...`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Keyword matching is case insensitive.
+</div>
+
+Example:
+* `find Ahmeng Buttercup Coco` finds all animals with the fields (name) containing any of the specified keywords.
+* `find 1200` finds all animals with the field (id or feeding time) containing the specified keyword.
+
+---
+
 ### Viewing help : `help`
 
 Shows a message explaining how you can access the help page.
@@ -181,7 +196,7 @@ Format: `sort CATEGORY`
 Examples:
 * `sort name` sorts all animals by name in alphabetical order.
 * `sort id` sorts all animals by id in ascending order.
-* `sort feedtime` sorts all animals by feeding time from the earliest to the latest.
+* `sort feedtime` sorts all animals by feeding time from the earliest to the latest (chronological order).
 
 ---
 
@@ -222,6 +237,12 @@ Format: `undo`
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ZooKeep home folder.
 
+**Q**: Can I record the feeding times of a specific animal in any order I prefer?
+**A**: The feeding time will be arranged in chronological order regardless of the order entered for easier reference.
+
+**Q**: Can I search for animals based on a certain alphabet or half specified keywords?
+**A**: The find feature will only list animals with the exact specified keyword provided.
+
 ## Command summary
 
 Action | Format, Examples
@@ -231,6 +252,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Exit** | `exit`
+**Find** | `find [SPECIFIED KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
 **Help** | `help`
 **List** | `list`
 **Redo** | `redo`
