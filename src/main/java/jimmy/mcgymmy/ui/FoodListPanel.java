@@ -9,10 +9,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import jimmy.mcgymmy.commons.core.LogsCenter;
-import jimmy.mcgymmy.model.food.Carbohydrate;
-import jimmy.mcgymmy.model.food.Fat;
 import jimmy.mcgymmy.model.food.Food;
-import jimmy.mcgymmy.model.food.Protein;
 
 /**
  * Panel containing the list of persons.
@@ -50,28 +47,16 @@ public class FoodListPanel extends UiPart<Region> {
 
     private void updateCurrentCalories() {
         //Calculate the current calories when the list is changed.
-        currentCalories = foodListView.getItems()
-                .stream()
-                .map(Food::getCalories)
-                .reduce(Integer::sum).orElseGet(() -> 0);
-
-        currentCarbs = foodListView.getItems()
-                .stream()
-                .map(Food::getCarbs)
-                .map(Carbohydrate::getAmount)
-                .reduce(Integer::sum).orElseGet(() -> 0);
-
-        currentProteins = foodListView.getItems()
-                .stream()
-                .map(Food::getProtein)
-                .map(Protein::getAmount)
-                .reduce(Integer::sum).orElseGet(() -> 0);
-
-        currentFats = foodListView.getItems()
-                .stream()
-                .map(Food::getFat)
-                .map(Fat::getAmount)
-                .reduce(Integer::sum).orElseGet(() -> 0);
+        currentCalories = 0;
+        currentFats = 0;
+        currentCarbs = 0;
+        currentProteins = 0;
+        for (Food food : foodListView.getItems()) {
+            currentCalories += food.getCalories();
+            currentFats += food.getFat().getAmount();
+            currentCarbs += food.getCarbs().getAmount();
+            currentProteins += food.getProtein().getAmount();
+        }
     }
 
     /**

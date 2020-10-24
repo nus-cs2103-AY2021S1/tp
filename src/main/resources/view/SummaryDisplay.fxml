@@ -1,21 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
 <?import javafx.scene.chart.*?>
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<StackPane prefHeight="150.0" prefWidth="200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<AnchorPane prefHeight="200.0" prefWidth="250.0" minWidth="250.0" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="totalCalories" alignment="TOP_CENTER" contentDisplay="CENTER" nodeOrientation="LEFT_TO_RIGHT" text="Label">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </Label>
-      <Group fx:id="pieChartPlaceholder">
-         <children>
-            <PieChart fx:id="pieChart" style="-fx-background-color: #0F0F0F0F;" />
-         </children></Group>
+      <PieChart id="pieChartMain" fx:id="pieChart" stylesheets="@DarkTheme.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
    </children>
-</StackPane>
+</AnchorPane>

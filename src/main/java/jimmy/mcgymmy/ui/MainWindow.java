@@ -148,10 +148,11 @@ public class MainWindow extends UiPart<Stage> {
         summaryPanel = new SummaryDisplay();
         summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
-        //Update current value to total calories
-        summaryPanel.setTotalCalories(getFoodListPanel().getCurrentCalories());
-        summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentProteins(),
-                getFoodListPanel().getCurrentCarbs(), getFoodListPanel().getCurrentFats());
+        //Update current value to total calories and macronutrient values.
+        summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentCalories(),
+                getFoodListPanel().getCurrentProteins(),
+                getFoodListPanel().getCurrentCarbs(),
+                getFoodListPanel().getCurrentFats());
 
         //Set the date value to today's date
         datePicker.setValue(LocalDate.now());
@@ -302,10 +303,10 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
-            summaryPanel.setTotalCalories(getFoodListPanel().getCurrentCalories());
-            summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentProteins(),
-                    getFoodListPanel().getCurrentCarbs(), getFoodListPanel().getCurrentFats());
+            summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentCalories(),
+                    getFoodListPanel().getCurrentProteins(),
+                    getFoodListPanel().getCurrentCarbs(),
+                    getFoodListPanel().getCurrentFats());
 
             return commandResult;
         } catch (CommandException | ParseException e) {
