@@ -263,23 +263,24 @@ Users inputs will be validated, if an invalid command is given, the program will
 Example of Error Message:  `No ingredient called ‘suger’ found !` .
 </div>
 
-#### 3.4 View a Single Ingredient Level: `ingredient single`
-Prints the ingredient level for a particular type of ingredient which is specified by the user’s command.
+#### 3.4 Viewing a single ingredient's level : `i-view-single`
+Shows the ingredient's level of a particular type of ingredient which is specified by the user’s command.
 
-Format: `ingredient single INGREDIENT_NAME`
+Format: `i-view-single i/INGREDIENT_NAME`
 
 Example:
-* `ingredient single milk`
+* `i-view-single i/Milk`
+Shows the amount of milk which is recorded by tCheck.
 
-#### 3.5 Resetting all to zero : `ingredient resetAll`
-Sets all ingredient levels to 0 by updating the database when the command is entered.
+#### 3.5 Resetting all ingredients' levels to zero : `i-reset-all`
+Sets all ingredients' levels to zero.
 
-Format: `ingredient resetAll`
+Format: `i-reset-all`
 
-#### 3.6 Listing Ingredient Levels : `ingredient list`
-Prints the ingredient levels for all ingredient types retrieved from the database.
+#### 3.6 Listing all ingredients' levels : `i-list`
+Shows the ingredient's levels of all ingredient types.
 
-Format: `ingredient list`
+Format: `i-list`
 
 ### 4. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
@@ -348,9 +349,9 @@ Action | Format, Examples
 **Set**  | `set INGREDIENT_NAME AMOUNT` <br> e.g., `set milk 20`
 **Set all**  | `set all ingredients AMOUNT` <br> e.g., `set all ingredients 5`
 **Set ingredients**  | `set ingredients m/MILK b/BLACK_TEA s/SUGAR o/BUBBLE` <br> e.g., `set ingredients m/19 b/20 s/5 o/0`
-**Get**| `ingredient single INGREDIENT_NAME`  <br> e.g., `ingredient single milk`
-**Reset**| `ingredient resetAll`
-**List**| `ingredient list`
+**View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
+**Reset**| `i-reset-all`
+**List**| `i-list`
 
 ### Sales Tracking
 
