@@ -3,12 +3,16 @@ layout: page
 title: User Guide
 ---
 
-tCheck is a desktop application that helps bubble tea store managers manage the staffs’ contact information, 
-store’s inventory and historical sales data. It is optimized for CLI users to update and retrieve the information 
-more efficiently.
+Welcome to the tCheck User Guide! Thank you for choosing tCheck, the most popular command-line milk tea shop management desktop application in the T-Sugar chain!
+
+tCheck offers an integrated system to efficiently manage a T-Sugar shop, by providing sales tracking, ingredient tracking and employees' contact management in one platform.
+
+This guide will help you to get started with tCheck, and provide useful tips along the way.
+
 
 
 * Table of Contents
+    * [About this document](#about-this-document)
     * [Quick start](#quick-start)
     * [Features](#features)
         * [Commands - General](#commands-general)
@@ -16,6 +20,21 @@ more efficiently.
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
         * [Commands - Sales Tracking](#commands-sales-tracking) 
     * [Command summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
+## About this document  <a name="about-this-document"></a>
+This document introduces the features of tCheck. 
+
+The following are symbols and formatting used in this document:
+
+:bulb: 
+Tips are used to describe small features or techniques
+that may come in handy when using tCheck!
+
+
+:information_source: 
+Notes describe certain features or behaviour that may
+not be so obvious!
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -106,6 +125,7 @@ Examples:
 #### 2.2 Listing all employees : `c-list`
 
 Shows a list of all employees in the contact list.
+
 
 Format: `c-list`
   
