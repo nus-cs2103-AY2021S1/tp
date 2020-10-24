@@ -48,7 +48,7 @@ public class ExerciseTest {
         assertNotEquals(EXERCISE_C, EXERCISE_A);
 
         // different name -> returns false
-        Exercise editedSitUp = new ExerciseBuilder(EXERCISE_A).withName(EXERCISE_B).build();
+        Exercise editedSitUp = new ExerciseBuilder(EXERCISE_A).withStringName(EXERCISE_B).build();
         assertNotEquals(editedSitUp, EXERCISE_A);
     }
 

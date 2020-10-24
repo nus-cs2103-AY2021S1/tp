@@ -22,6 +22,8 @@ import seedu.fma.model.exercise.Exercise;
 import seedu.fma.model.log.Comment;
 import seedu.fma.model.log.Log;
 import seedu.fma.model.log.Rep;
+import seedu.fma.model.util.Calories;
+import seedu.fma.model.util.Name;
 import seedu.fma.model.util.NameContainsKeywordsPredicate;
 import seedu.fma.testutil.ExerciseBuilder;
 import seedu.fma.testutil.LogBuilder;
@@ -42,6 +44,18 @@ public class CommandTestUtil {
 
     public static final Rep VALID_REP_A = new Rep(VALID_REP_A_STR);
     public static final Rep VALID_REP_B = new Rep(VALID_REP_B_STR);
+
+    public static final Name VALID_EXERCISE_NAME_A = new Name(EXERCISE_A);
+    public static final Name VALID_EXERCISE_NAME_B = new Name(EXERCISE_B);
+
+    public static final String VALID_CALORIES_A_STR = new ExerciseBuilder(getSampleExercises()[1])
+            .build().getCaloriesPerRep().toString();
+
+    public static final String VALID_CALORIES_B_STR = new ExerciseBuilder(getSampleExercises()[3])
+            .build().getCaloriesPerRep().toString();
+
+    public static final Calories VALID_CALORIES_A = new Calories(Integer.parseInt(VALID_CALORIES_A_STR));
+    public static final Calories VALID_CALORIES_B = new Calories(Integer.parseInt(VALID_CALORIES_B_STR));
 
     public static final Exercise VALID_EXERCISE_A = new ExerciseBuilder(getSampleExercises()[1]).build();
     public static final Exercise VALID_EXERCISE_B = new ExerciseBuilder(getSampleExercises()[3]).build();
@@ -88,6 +102,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditLogDescriptor EDIT_LOG_DESCRIPTOR_A;
     public static final EditCommand.EditLogDescriptor EDIT_LOG_DESCRIPTOR_B;
 
+    public static final EditExCommand.EditExDescriptor EDIT_EX_DESCRIPTOR_A;
+    public static final EditExCommand.EditExDescriptor EDIT_EX_DESCRIPTOR_B;
+
     static {
         VALID_LOG_A = new LogBuilder().withExercise(VALID_EXERCISE_A)
                 .withReps(VALID_REP_A_STR).withComment(VALID_COMMENT_A_STR).build();
@@ -99,6 +116,12 @@ public class CommandTestUtil {
 
         EDIT_LOG_DESCRIPTOR_B = new EditCommand.EditLogDescriptor();
         EDIT_LOG_DESCRIPTOR_B.setRep(new Rep(VALID_REP_B_STR));
+
+        EDIT_EX_DESCRIPTOR_A = new EditExCommand.EditExDescriptor();
+        EDIT_EX_DESCRIPTOR_A.setExerciseName(VALID_EXERCISE_NAME_A);
+
+        EDIT_EX_DESCRIPTOR_B = new EditExCommand.EditExDescriptor();
+        EDIT_EX_DESCRIPTOR_B.setCaloriesPerRep(VALID_CALORIES_B);
     }
 
     /**

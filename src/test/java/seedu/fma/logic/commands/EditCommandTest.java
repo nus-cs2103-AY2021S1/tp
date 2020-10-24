@@ -26,6 +26,7 @@ import seedu.fma.model.Model;
 import seedu.fma.model.ModelManager;
 import seedu.fma.model.UserPrefs;
 import seedu.fma.model.log.Log;
+import seedu.fma.testutil.EditExDescriptorBuilder;
 import seedu.fma.testutil.EditLogDescriptorBuilder;
 import seedu.fma.testutil.LogBuilder;
 
