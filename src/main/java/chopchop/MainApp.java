@@ -2,6 +2,7 @@ package chopchop;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -18,22 +19,27 @@ import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ReadOnlyUserPrefs;
+import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 import chopchop.model.util.SampleDataUtil;
 import chopchop.storage.IngredientBookStorage;
 import chopchop.storage.JsonIngredientBookStorage;
+import chopchop.storage.JsonIngredientUsageStorage;
 import chopchop.storage.JsonRecipeBookStorage;
+import chopchop.storage.JsonRecipeUsageStorage;
 import chopchop.storage.JsonUserPrefsStorage;
 import chopchop.storage.RecipeBookStorage;
-import chopchop.storage.UsageStorage;
 import chopchop.storage.Storage;
 import chopchop.storage.StorageManager;
 import chopchop.storage.UserPrefsStorage;
 import chopchop.ui.Ui;
 import chopchop.ui.UiManager;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
 import javafx.stage.Stage;
 
 /**
@@ -63,7 +69,11 @@ public class MainApp extends Application {
         RecipeBookStorage recipeBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
         IngredientBookStorage ingredientBookStorage =
                 new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
-        storage = new StorageManager(recipeBookStorage, ingredientBookStorage, statsStorage, userPrefsStorage);
+        JsonRecipeUsageStorage recipeUsageStorage = new JsonRecipeUsageStorage(userPrefs.getRecipeUsageFilePath());
+        JsonIngredientUsageStorage ingredientUsageStorage =
+            new JsonIngredientUsageStorage(userPrefs.getRecipeUsageFilePath());
+        storage = new StorageManager(recipeBookStorage, ingredientBookStorage, recipeUsageStorage,
+            ingredientUsageStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -84,12 +94,18 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyEntryBook<Recipe>> recipeBookOptional;
         Optional<ReadOnlyEntryBook<Ingredient>> ingredientBookOptional;
+        Optional<List<RecipeUsage>> recipeUsageOptional;
+        Optional<List<IngredientUsage>> ingredientUsageOptional;
         ReadOnlyEntryBook<Recipe> initialRecipeData;
         ReadOnlyEntryBook<Ingredient> initialIngredientData;
+        UsageList<RecipeUsage> initialRecipeUsageData;
+        UsageList<IngredientUsage> initialIngredientUsageData;
 
         try {
             recipeBookOptional = storage.readRecipeBook();
             ingredientBookOptional = storage.readIngredientBook();
+            recipeUsageOptional = storage.readRecipeUsages();
+            ingredientUsageOptional = storage.readIngredientUsages();
 
             if (recipeBookOptional.isEmpty()) {
                 logger.info("Data file for recipe book not found. Will be starting with a sample RecipeBook");
@@ -99,16 +115,30 @@ public class MainApp extends Application {
                 logger.info("Data file for ingredient book not found. Will be starting with a sample IngredientBook");
             }
 
+            if (recipeUsageOptional.isEmpty()) {
+                logger.info("Data file for recipe usage list not found. Will be starting with an empty list");
+            }
+
+            if (ingredientUsageOptional.isEmpty()) {
+                logger.info("Data file for ingredient usage list not found. Will be starting with an empty list");
+            }
+
             initialRecipeData = recipeBookOptional.orElseGet(SampleDataUtil::getSampleRecipeBook);
             initialIngredientData = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
+            initialRecipeUsageData = new UsageList<>(recipeUsageOptional.orElseGet(FXCollections::observableArrayList));
+            initialIngredientUsageData = new UsageList<>(ingredientUsageOptional
+                .orElseGet(FXCollections::observableArrayList));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
                     + " IngredientBook");
             initialRecipeData = new EntryBook<>();
             initialIngredientData = new EntryBook<>();
+            initialRecipeUsageData = new UsageList<RecipeUsage>(FXCollections.observableArrayList());
+            initialIngredientUsageData = new UsageList<IngredientUsage>(FXCollections.observableArrayList());
         }
 
-        return new ModelManager(initialRecipeData, initialIngredientData, userPrefs);
+        return new ModelManager(initialRecipeData, initialIngredientData,
+            initialRecipeUsageData, initialIngredientUsageData, userPrefs);
     }
 
     private void initLogging(Config config) {

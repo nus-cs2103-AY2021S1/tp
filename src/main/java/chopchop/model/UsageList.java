@@ -15,7 +15,7 @@ import javafx.collections.ObservableList;
 public class UsageList<T extends Usage> {
     private final ObservableList<T> usages = FXCollections.observableArrayList();
 
-    public UsageList(ObservableList<T> usages) {
+    public UsageList(List<T> usages) {
         requireAllNonNull(usages);
         this.usages.setAll(usages);
     }

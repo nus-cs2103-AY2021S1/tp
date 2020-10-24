@@ -4,6 +4,7 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given RecipeBook, IngredientBook and userPrefs.
      */
     public ModelManager(ReadOnlyEntryBook<Recipe> recipeBook, ReadOnlyEntryBook<Ingredient> ingredientBook,
+                        UsageList<RecipeUsage> recipeUsageList, UsageList<IngredientUsage> ingredientUsageList,
                         ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(recipeBook, ingredientBook, userPrefs);
@@ -47,12 +49,13 @@ public class ModelManager implements Model {
         this.ingredientBook = new EntryBook<>(ingredientBook);
         this.filteredRecipes = new FilteredList<>(this.recipeBook.getEntryList());
         this.filteredIngredients = new FilteredList<>(this.ingredientBook.getEntryList());
-        //this.recipeUsageList = new UsageList<>();
-        //this.ingredientUsageList = new UsageList<>();
+        this.recipeUsageList = recipeUsageList;
+        this.ingredientUsageList = ingredientUsageList;
     }
 
     public ModelManager() {
-        this(new EntryBook<>(), new EntryBook<>(), new UserPrefs());
+        this(new EntryBook<>(), new EntryBook<>(), new UsageList<>(new ArrayList<RecipeUsage>()),
+            new UsageList<>(new ArrayList<IngredientUsage>()), new UserPrefs());
     }
 
     @Override
