@@ -111,7 +111,8 @@ public class EditRecipeCommand extends Command {
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
         String updatedRecipeImage = editRecipeDescriptor.getRecipeImage().orElse(recipeToEdit.getRecipeImage());
-        ArrayList<Instruction> updatedInstruction = editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
+        ArrayList<Instruction> updatedInstruction =
+                editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
         ArrayList<Ingredient> updatedIngredient =
                 editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
         Calories updatedCalories = editRecipeDescriptor.getCalories().orElse(recipeToEdit.getCalories());

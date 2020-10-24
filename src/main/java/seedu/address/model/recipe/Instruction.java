@@ -1,13 +1,12 @@
 package seedu.address.model.recipe;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Instruction {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Instructions should only contain alphanumeric characters and spaces, and it should not be blank. " +
-                    "They are separated by full stop";
+            "Instructions should only contain alphanumeric characters and spaces, and it should not be blank. "
+                    + "They are separated by full stop";
 
     /*
      * The first character of the address must not be a whitespace,

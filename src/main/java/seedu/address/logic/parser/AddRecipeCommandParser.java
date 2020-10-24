@@ -43,17 +43,17 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        
+
         String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
-        
+
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
-        
+
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         String instructionString = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         ArrayList<Instruction> instructions = InstructionParser.parse(instructionString);
-        
+
         String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
         assert(recipeImage.length() != 0);
 

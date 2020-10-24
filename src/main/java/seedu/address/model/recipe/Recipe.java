@@ -138,7 +138,7 @@ public class Recipe {
         }
         return tags;
     }
-    
+
     private String stringifyInstructions(ArrayList<Instruction> instructions) {
         int len = instructions.size();
         StringBuilder sb = new StringBuilder();

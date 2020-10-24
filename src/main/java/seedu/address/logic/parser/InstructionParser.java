@@ -1,10 +1,9 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.recipe.Ingredient;
-import seedu.address.model.recipe.Instruction;
-
 import java.util.ArrayList;
+
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.recipe.Instruction;
 
 /**
  * Parse user inputted ingredients.

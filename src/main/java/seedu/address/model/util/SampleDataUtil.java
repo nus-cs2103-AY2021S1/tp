@@ -87,7 +87,7 @@ public class SampleDataUtil {
         }
         return instructionList;
     }
-    
+
     private static String getTag(String str) {
         return str.substring(8, str.length() - 3);
     }

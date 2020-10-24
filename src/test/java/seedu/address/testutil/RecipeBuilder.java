@@ -23,15 +23,15 @@ public class RecipeBuilder {
             new ArrayList<>(List.of(new Ingredient("Kaiser Rolls Or Other Bread", "2 whole")));
     public static final Integer DEFAULT_CALORIES = 70;
     public static final ArrayList<Instruction> DEFAULT_INSTRUCTION =
-            new ArrayList<>(List.of(new Instruction("Make egg salad by chopping the hard boiled eggs " +
-                    "and mixing in a bowl with mayonnaise, Dijon"),
-                    new Instruction("Make egg salad by chopping the hard boiled eggs and mixing in a " +
-                            "bowl with mayonnaise, Dijon"),
-                    new Instruction("Halve the rolls and spread one half with Dijon, the other half " +
-                            "with mayonnaise"),
+            new ArrayList<>(List.of(new Instruction("Make egg salad by chopping the hard boiled eggs "
+                            + "and mixing in a bowl with mayonnaise, Dijon"),
+                    new Instruction("Make egg salad by chopping the hard boiled eggs and mixing in a "
+                            + "bowl with mayonnaise, Dijon"),
+                    new Instruction("Halve the rolls and spread one half with Dijon, the other half "
+                            + "with mayonnaise"),
                     new Instruction("Sprinkle the mayonnaise-spread half with salt and pepper"),
-                    new Instruction("Lay cheese and ham on the mustard half; lay avocado, onion slices, " +
-                            "tomato slices, egg salad, and lettuce on the other half")));
+                    new Instruction("Lay cheese and ham on the mustard half; lay avocado, onion slices, "
+                            + "tomato slices, egg salad, and lettuce on the other half")));
 
     public static final String DEFAULT_RECIPE_IMAGE = "images/sandwich.jpeg";
 
