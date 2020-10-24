@@ -113,7 +113,7 @@ public class TypicalRecipes {
             .withIngredient("Small Chocolate Easter Eggs", "20 pieces")
             .withCalories(102)
             .withInstruction(
-                    "In a large saucepan, melt butter over low heat. " 
+                    "In a large saucepan, melt butter over low heat. "
                             + "Add marshmallows and stir until melted."
                             + "Remove from heat, then add rice cereal and stir until well coated. "
                             + "Lightly spray interior of the plastic eggs with non-stick cooking spray. "
