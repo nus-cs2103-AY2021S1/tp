@@ -127,7 +127,8 @@ public class Messages {
                 .append("Delete an inventory item: delete-i INDEX\n")
                 .append("Edit an inventory item: edit-i INDEX [n/NAME] [q/QUANTITY]"
                         + " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
-                .append("Find an inventory item: find-i [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG]\n")
+                .append("Find an inventory item: find-i [n/NAME | q/QUANTITY | s/SUPPLIER | "
+                        + "max/MAX_QUANTITY | t/TAG]\n")
                 .append("Clear all inventory items: clear-i\n")
                 .append("List all inventory items: list-i\n")
                 .append(DIVIDER)
