@@ -1,32 +1,25 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.modulelistparsers;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.CalculateCapCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleName;
-import seedu.address.model.module.ZoomLink;
-import seedu.address.model.tag.Tag;
-
-import java.util.Set;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+import seedu.address.logic.commands.modulelistcommands.CalculateCapCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.Prefix;
+import seedu.address.logic.parser.exceptions.ParseException;
+
+
 
 /**
  * Parses input arguments and creates a new CalculateCapCommand object
  */
-public class CalculateCapParser {
+public class CalculateCapParser implements Parser<CalculateCapCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the CalculateCapCommand
      * and returns an CalculateCapCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public CalculateCapCommand parse(String args) throws ParseException {
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args);
-        ArgumentMultimap argMultimap = tokenizer.tokenize();
         return new CalculateCapCommand();
     }
 

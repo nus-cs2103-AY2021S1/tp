@@ -1,6 +1,7 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.modulelistcommands;
 
-import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -8,17 +9,14 @@ import seedu.address.model.module.Module;
 import java.util.List;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+
 
 
 public class CalculateCapCommand extends Command {
-    private double cap;
     public static final String COMMAND_WORD = "calculatecap";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a zoom link to the module. "
-            + "Parameters: " + "INDEX (must be a positive integer) "
-            + PREFIX_ZOOM_LINK + "ZOOM LINK "
-            + "Example: " + COMMAND_WORD + " "
-            + "1" + PREFIX_ZOOM_LINK + "www.zoom.com";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Calculates the user's CAP "
+            + "Example: " + COMMAND_WORD;
+    private double cap;
     /**
      * Creates and initialises a new CalculateCapCommand object.
      */
@@ -49,15 +47,17 @@ public class CalculateCapCommand extends Command {
      * @param modules List of modules
      */
     public double calculateCap(List<Module> modules) {
+        double totalPoints = 0.0;
         double totalMC = 0.0;
-        double totalGradePoints = 0.0;
         for (Module m : modules) {
             if (m.isCompleted()) {
-                totalMC += m.getModularCredits();
-                totalGradePoints += m.getGradeTracker().getGrade();
+                double modularCredits = m.getModularCredits().moduleCredits;
+                double gradePoints = m.getGradeTracker().getGradePoint().get().gradePoint;
+                totalMC += modularCredits;
+                totalPoints += gradePoints * modularCredits;
             }
         }
-        return totalGradePoints / totalMC;
+        return totalPoints / totalMC;
     }
     /**
      * Indicates if the application session has ended.
