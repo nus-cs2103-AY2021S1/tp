@@ -1,10 +1,12 @@
 package seedu.address.testutil;
 
-import seedu.address.model.meeting.Time;
-import seedu.address.model.meeting.Venue;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.Venue;
+
+
 
 /**
  * A utility class to help with building Meeting objects.
