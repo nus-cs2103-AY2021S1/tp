@@ -2,8 +2,8 @@
 
 package chopchop.logic.parser.commands;
 
+import java.util.List;
 import java.util.Optional;
-import java.util.ArrayList;
 
 import chopchop.commons.util.Result;
 import chopchop.commons.util.Strings;
@@ -23,8 +23,6 @@ import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgumen
 
 public class FindCommandParser {
 
-    private static final String commandName = Strings.COMMAND_FIND;
-
     /**
      * Parses a 'find' command. Syntax(es):
      * {@code delete recipe (keywords)+}
@@ -34,14 +32,11 @@ public class FindCommandParser {
      * @return     a FindCommand, if the input was valid.
      */
     public static Result<? extends Command> parseFindCommand(CommandArguments args) {
+        assert args.getCommand().equals(Strings.COMMAND_FIND);
 
-        if (!args.getCommand().equals(commandName)) {
-            return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), commandName);
-        }
-
-        // we expect no named arguments
+        // we expect no named arguments. note we don't need to check for augments.
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, new ArrayList<>())).isPresent()) {
+        if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
             return Result.error("'find' command doesn't support '%s'\n%s",
                 foo.get(), FindRecipeCommand.MESSAGE_USAGE);
         }
@@ -51,8 +46,7 @@ public class FindCommandParser {
                 var words = new StringView(target.snd()).words();
 
                 if (words.isEmpty()) {
-                    return Result.error("'%s' command requires at least one search term\n%s",
-                        commandName, FindRecipeCommand.MESSAGE_USAGE);
+                    return Result.error("'find' command requires at least one search term");
                 }
 
                 switch (target.fst()) {

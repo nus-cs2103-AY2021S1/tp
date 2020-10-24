@@ -52,4 +52,8 @@ public class FindIngredientCommand extends Command {
                 && predicate.equals(((FindIngredientCommand) other).predicate)); // state check
     }
 
+    @Override
+    public String toString() {
+        return String.format("FindIngredientCommand(keywords: %s)", this.predicate.getKeywords());
+    }
 }

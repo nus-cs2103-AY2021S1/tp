@@ -2,6 +2,7 @@
 
 package chopchop.commons.util;
 
+import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Function;
 
@@ -113,6 +114,25 @@ public class Either<L, R> {
             ? Either.right(fn.apply(this.rightValue))
             : Either.left(this.leftValue);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Either<?, ?>)) {
+            return false;
+        }
+
+        var other = (Either<?, ?>) obj;
+        return Objects.equals(this.leftValue, other.leftValue)
+            && Objects.equals(this.rightValue, other.rightValue);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s(%s)",
+            this.leftValue == null ? "Right" : "Left",
+            this.leftValue == null ? this.rightValue : this.leftValue);
+    }
+
 
     /**
      * Creates an Either containing a left value.

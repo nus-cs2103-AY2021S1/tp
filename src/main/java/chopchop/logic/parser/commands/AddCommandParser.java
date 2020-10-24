@@ -53,14 +53,14 @@ public class AddCommandParser {
                     }
 
                     switch (target.fst()) {
-                        case RECIPE:
-                            return parseAddRecipeCommand(target.snd().strip(), args);
+                    case RECIPE:
+                        return parseAddRecipeCommand(target.snd().strip(), args);
 
-                        case INGREDIENT:
-                            return parseAddIngredientCommand(target.snd().strip(), args);
+                    case INGREDIENT:
+                        return parseAddIngredientCommand(target.snd().strip(), args);
 
-                        default:
-                            return Result.error("can only add recipes or ingredients ('%s' invalid)", target.fst());
+                    default:
+                        return Result.error("can only add recipes or ingredients ('%s' invalid)", target.fst());
                     }
                 });
     }
@@ -84,6 +84,11 @@ public class AddCommandParser {
                     AddIngredientCommand.MESSAGE_USAGE);
         }
 
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add ingredient' command doesn't support edit-arguments\n%s",
+                AddIngredientCommand.MESSAGE_USAGE);
+        }
+
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
         if (qtys.size() > 1) {
             return Result.error("multiple quantities specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
@@ -100,8 +105,8 @@ public class AddCommandParser {
 
         var tags = args.getArgument(Strings.ARG_TAG);
         var tagSet = Set.copyOf(tags.stream()
-                .map(x -> new Tag(x))
-                .collect(Collectors.toList())
+            .map(x -> new Tag(x))
+            .collect(Collectors.toList())
         );
 
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
@@ -137,22 +142,28 @@ public class AddCommandParser {
                     AddRecipeCommand.MESSAGE_USAGE);
         }
 
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add recipe' command doesn't support edit-arguments\n%s",
+                AddRecipeCommand.MESSAGE_USAGE);
+        }
+
         var tags = args.getArgument(Strings.ARG_TAG);
         var tagSet = Set.copyOf(tags.stream()
-                .map(x -> new Tag(x))
-                .collect(Collectors.toList())
+            .map(x -> new Tag(x))
+            .collect(Collectors.toList())
         );
 
         return parseIngredientList(args)
-                .map(ingrs -> createAddRecipeCommand(name, ingrs,
-                        args.getAllArguments()
-                                .stream()
-                                .filter(p -> p.fst().equals(Strings.ARG_STEP))
-                                .map(p -> p.snd())
-                                .map(x -> new Step(x))
-                                .collect(Collectors.toList()),
-                        tagSet)
-                );
+            .map(ingrs -> createAddRecipeCommand(name, ingrs,
+                    args.getAllArguments()
+                        .stream()
+                        .filter(p -> p.fst().equals(Strings.ARG_STEP))
+                        .map(p -> p.snd())
+                        .map(x -> new Step(x))
+                        .collect(Collectors.toList()),
+                    tagSet)
+            );
+
     }
 
     /**
@@ -222,21 +233,19 @@ public class AddCommandParser {
     }
 
     private static AddRecipeCommand createAddRecipeCommand(String name,
-                                                           List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
-
+        List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
         return new AddRecipeCommand(new Recipe(
-                name, ingredients, steps, tags
+            name, ingredients, steps, tags
         ));
     }
 
 
     private static Result<AddIngredientCommand> createAddIngredientCommand(String name, Optional<Quantity> qty,
-                                                                           Optional<String> expiry, Set<Tag> tags) {
-
+        Optional<String> expiry, Set<Tag> tags) {
         return Result.transpose(expiry
-                .map(ExpiryDate::of))
-                .map(exp -> new AddIngredientCommand(new Ingredient(name,
-                        qty.orElse(Count.of(1)), exp.orElse(null), tags))
-                );
+            .map(ExpiryDate::of))
+            .map(exp -> new AddIngredientCommand(new Ingredient(name,
+                qty.orElse(Count.of(1)), exp.orElse(null), tags))
+            );
     }
 }

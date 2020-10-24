@@ -10,12 +10,9 @@
       <URL value="@Style.css" />
    </stylesheets>
    <bottom>
-      <ScrollPane fx:id="recipePanel" pannable="true" prefHeight="422.0" prefWidth="610.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER_LEFT">
+      <ScrollPane fx:id="recipePanel" pannable="true" prefHeight="422.0" prefWidth="618.0" vbarPolicy="NEVER" BorderPane.alignment="CENTER_LEFT">
          <content>
-            <GridPane fx:id="recipeGridView" gridLinesVisible="true" hgap="20" vgap="10">
-               <padding>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="0.0" />
-               </padding></GridPane>
+            <GridPane fx:id="recipeGridView" gridLinesVisible="true" hgap="12" vgap="12" />
          </content>
       </ScrollPane>
    </bottom>

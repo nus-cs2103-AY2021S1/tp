@@ -45,7 +45,7 @@ public class CommandParser {
 
                 currentArg.bisect(argName, ' ', argValue);
                 if (argName.isEmpty()) {
-                    return Result.error("argument name cannot be empty");
+                    return Result.error("expected argument name after '/'");
                 }
 
                 ret.add(Pair.of(new ArgName(argName.trim().toString()), argValue.trim().toString()));
@@ -83,7 +83,7 @@ public class CommandParser {
         xs.bisect(x, '/', xs);
         var theRest = x.toString().strip();
 
-        if (!xs.isEmpty()) {
+        if (input.indexOf("/") != -1) {
             xs = xs.undrop(1);
             assert xs.at(0) == '/';
         }

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
+import chopchop.commons.util.StringView;
 
 /**
  * A container class to hold a parsed command, holding its:
@@ -88,6 +89,16 @@ public class CommandArguments {
         return this.remaining;
     }
 
+    public String getFirstWordFromRemaining() {
+        // get(0) will throw an exception if the list is empty, which we
+        // definitely don't want.
+        return new StringView(this.remaining)
+            .words()
+            .stream()
+            .findFirst()
+            .orElse("");
+    }
+
     /**
      * Gets the arguments with the given name. Since it makes sense for some parameters to
      * be specified more than once, this method returns a list of all arguments with the
@@ -103,5 +114,18 @@ public class CommandArguments {
 
     public List<Pair<ArgName, String>> getAllArguments() {
         return new ArrayList<>(this.arguments);
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof CommandArguments)) {
+            return false;
+        }
+
+        var ca = (CommandArguments) obj;
+        return this.command.equals(ca.command)
+            && this.remaining.equals(ca.remaining)
+            && this.arguments.equals(ca.arguments);
     }
 }
