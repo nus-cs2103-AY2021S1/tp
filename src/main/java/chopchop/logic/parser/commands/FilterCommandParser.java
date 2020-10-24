@@ -61,6 +61,10 @@ public class FilterCommandParser {
 
         return getCommandTarget(args)
             .then(target -> {
+                if (!target.snd().isEmpty()) {
+                    return Result.error("recipe or ingredient name should be empty");
+                }
+
                 switch (target.fst()) {
                 case RECIPE:
                     return parseFilterRecipeCommand(args);
@@ -84,7 +88,7 @@ public class FilterCommandParser {
 
             return Result.error("'filter ingredient' command doesn't support 's%'\n%s",
                 foo.get(), FilterIngredientCommand.MESSAGE_USAGE);
-        }
+        } ///tag movie /tag family reunion /tag snacks
 
         var tags = args.getArgument(Strings.ARG_TAG);
         if (tags.size() == 1 && tags.get(0).isEmpty()) {
