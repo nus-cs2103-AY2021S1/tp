@@ -200,28 +200,21 @@
 }
 
 .menu .left-container {
-    -fx-background-color: black;
+    -fx-background-color: #989898;
 }
 
-/*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
 .button {
     -fx-padding: 5 22 5 22;
     -fx-border-color: #e2e2e2;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: TRANSPARENT;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #bcbcbc;
 }
 
 .button:pressed, .button:default:hover:pressed {
@@ -324,7 +317,7 @@
     -fx-text-fill: white;
 }
 
-#filterField, #personListPanel, #personWebpage {
+#filterField, #foodListPanel {
     -fx-effect: innershadow(gaussian, black, 10, 0, 0, 0);
 }
 
@@ -380,4 +373,26 @@ chart-pie-label-line {
 .chart-title {
     -fx-text-fill: #ffffff;
     -fx-alignment: CENTER;
+}
+
+.root {
+    -fx-base: rgb(128, 128, 128);
+    -fx-background: rgb(110, 110, 110);
+    -fx-border-color: rgb(176, 176, 176);
+
+    /* make controls (buttons, thumb, etc.) slightly lighter */
+    -fx-color: derive(-fx-base, 10%);
+
+    /* text fields and table rows background */
+    -fx-control-inner-background: rgb(128, 128, 128);
+    /* version of -fx-control-inner-background for alternative rows */
+    -fx-control-inner-background-alt: derive(-fx-control-inner-background, 2.5%);
+
+    /* A color for highlighting/accenting objects.  For example: selected
+     * text; selected items in menus, lists, trees, and tables; progress bars */
+    -fx-accent: rgb(239, 239, 239);
+
+    /* color of non-focused yet selected elements */
+    -fx-selection-bar-non-focused: rgb(207, 207, 207);
+
 }

@@ -255,10 +255,15 @@ public class MainWindow extends UiPart<Stage> {
      * Add the selected Date to the commandLine.
      */
     public void setDate() {
-        if (getDate().isPresent()) {
-            logger.info(String.format("Selected %s", getDate().get().toString()));
-            commandBox.insertText(getDate().get().toString());
+        if (getDate().isEmpty()) {
+            return;
+        }
+        logger.info(String.format("Selected %s", getDate().get().toString()));
+        try {
+            executeCommand(String.format("find -d %s", getDate().get().toString()));
             datePicker.setValue(null);
+        } catch (CommandException | ParseException e) {
+            assert false : "Help button on menu error";
         }
     }
 
