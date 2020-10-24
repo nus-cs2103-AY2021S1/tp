@@ -25,8 +25,8 @@ public class SwitchAccountCommand extends Command {
             + "Parameters: INDEX (must be a positive integer). "
             + "Example: " + COMMAND_WORD + " 1";
 
-    private static final String MESSAGE_SWITCH_ACCOUNT_SUCCESS = "Account switch! Current account: %1$s";
-    private static final String MESSAGE_ACTIVE_ACCOUNT = "You are already on the account!";
+    public static final String MESSAGE_SWITCH_ACCOUNT_SUCCESS = "Account switch! Current account: %1$s";
+    public static final String MESSAGE_ACTIVE_ACCOUNT = "You are already on the account!";
 
     private final Index targetIndex;
 
@@ -40,10 +40,10 @@ public class SwitchAccountCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
-        assert true;
-
+      
         activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
         activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
+      
         List<Account> accounts = model.getFilteredAccountList();
 
         int index = targetIndex.getZeroBased();

@@ -1,6 +1,8 @@
 package seedu.address.testutil;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -12,6 +14,12 @@ import seedu.address.model.account.Account;
 
 
 public class ModelStub implements Model {
+    private List<Account> accountList = new ArrayList<>();
+
+    public List<Account> getAccountList() {
+        return accountList;
+    }
+
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
 
@@ -54,7 +62,7 @@ public class ModelStub implements Model {
 
     @Override
     public boolean hasAccount(Account account) {
-        return false;
+        return accountList.contains(account);
     }
 
     @Override
@@ -64,7 +72,7 @@ public class ModelStub implements Model {
 
     @Override
     public void addAccount(Account account) {
-
+        accountList.add(account);
     }
 
     @Override
