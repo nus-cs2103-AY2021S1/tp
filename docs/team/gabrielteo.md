@@ -46,7 +46,7 @@ Given below are my contributions to the project.
     * Updated product screenshots and included some new screenshots (Pull request [\#71]())
 
 * **Contributions to the Developer Guide**:
-  * Developer Guide: (Pull requests [\#21](), [\#139]())
+  * Developer Guide: (Pull requests [\#21](), [\#141]())
     * Added Target user profile, value proposition, and user stories.
     * Added Use cases.
     * Added Non-functional requirements.
@@ -58,7 +58,7 @@ Given below are my contributions to the project.
   * Set up team issue tracker and manage team issues and milestones
   * Maintaining issue tracker
   * Updating the Developer Guide
-    * Target user profile, value proposition, user stories, use cases, non-functional requirements, glossary (Pull requests [\#21](), [\#139]())
+    * Target user profile, value proposition, user stories, use cases, non-functional requirements, glossary (Pull requests [\#21](), [\#141]())
   * Renaming the product to Hospify (Pull request [\#70]())
   * Changing the App window's bottom path display (Pull requests [\#70](), [\#124]())
   * Updating product home page and description to Hospify and relevant links to Java CI and codecov (Pull request [\#76]())
