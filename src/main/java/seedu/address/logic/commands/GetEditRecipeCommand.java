@@ -10,6 +10,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.recipe.Recipe;
 
+/**
+ * Sets the main window command box to the command of the specified recipe for editing purposes.
+ */
 public class GetEditRecipeCommand extends Command {
     public static final String COMMAND_WORD = "editR";
 

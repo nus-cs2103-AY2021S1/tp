@@ -17,6 +17,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.recipe.Ingredient;
 
+/**
+ * Edit the details of an existing ingredient in the ingredient list specified by its index.
+ */
 public class EditIngredientCommand extends Command {
 
     public static final String COMMAND_WORD = "editF";

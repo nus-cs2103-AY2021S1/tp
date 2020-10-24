@@ -6,6 +6,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.GetEditRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new GetEditRecipeCommand object
+ */
 public class GetEditRecipeCommandParser implements Parser<GetEditRecipeCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the GetEditRecipeCommand

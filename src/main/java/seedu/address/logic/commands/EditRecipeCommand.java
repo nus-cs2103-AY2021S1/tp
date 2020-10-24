@@ -33,7 +33,7 @@ import seedu.address.model.tag.Tag;
 //import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing recipe in the address book.
+ * Edits the details of an existing recipe in the recipe list specified by its index.
  */
 public class EditRecipeCommand extends Command {
 
