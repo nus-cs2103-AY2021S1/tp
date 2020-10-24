@@ -221,41 +221,48 @@ Examples:
 ### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
 * Unit of measurement for ingredients: 
-    * Unit for solid items / jelly : **KG**
-    * Unit for liquids : **L**
+    * Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**
+    * Unit for liquids (Milk and Oolong Tea) : **L**
     
-#### 3.1 Setting one ingredient to initial level : `set`
+#### 3.1 Setting one ingredient's level : `i-set`
 
-Users can set the level for one type of ingredient individually.
+Sets the level of one single ingredient predefined in the ingredient book to the specified amount.
 
-Format: `set INGREDIENT_NAME AMOUNT`
+Format: `i-set i/INGREDIENT_NAME m/AMOUNT`
 
-* Set the `INGREDIENT_NAME` to the specified `AMOUNT`.
-
-Example:
-* `set milk 15`
-
-#### 3.2 Setting all ingredients to the same initial level : `set all ingredients`
-
-Users can initialise all ingredients levels to a standard default value or a desired value use a short command.
-
-Format: `set all ingredients DEFAULT`
-
-* Set all ingredient levels to the `DEFAULT` level, such as five units of the respective units.
+* Sets the `INGREDIENT_NAME` to the specified `AMOUNT`.
 
 Example:
-* `set all ingredients 10`
+* `i-set i/Milk m/15`
 
-#### 3.3 Setting all ingredients to different levels : `set ingredients`
 
-Users can enter all current ingredients level in a single command by following a pre-defined sequence.
+<div markdown="span" class="alert alert-primary">:bulb: **Notice:**
+All ingredients which are available and thus can be set are predefined in the ingredient book. 
+Here is a comprehensive list of all available ingredients : Milk, Pearl, Boba, Oolong Tea, Brown Sugar. 
+Please note that the ingredient names are case-sensitive.
+</div>
 
-Format: `set ingredients m/MILK b/BLACK_TEA s/SUGAR o/BUBBLE`
+#### 3.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
 
-* Set all the level of milk left to `MILK` , the level of black tea left to `BLACK_TEA`, the level of sugar left to `SUGAR`, the level of bubble left to `BUBBLE`.
+Sets all ingredients' levels to different specified amounts according to user inputs.
+
+Format: `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR`
+
+* Sets all ingredients' levels as such : Milk : `AMOUNT_FOR_MILK` L, Pearl : `AMOUNT_FOR_PREAL` KG, Boba : `AMOUNT_FOR_BOBA` KG, Oolong Tea : `AMOUNT_FOR_OOLONG_TEA` L, Brown Sugar : `AMOUNT_FOR_BROWN_SUGAR` KG.
 
 Example:
-* `set ingredients m/10 b/12 s/5 o/30`
+* `i-set-all M/20 P/20 B/20 O/50 S/50`
+
+#### 3.3 Setting all ingredients to different levels : `i-set-default`
+
+Sets all ingredients' levels to their pre-determined default levels for a stall.
+
+Format: `i-set-default`
+
+* Sets all ingredients' levels to their default levels : Milk : 50 L, Pearl : 20 KG, Boba : 20 KG, Oolong Tea : 50 L, Brown Sugar : 20 KG.
+
+Example:
+* `i-set-default`
 
 
 <div markdown="span" class="alert alert-primary">:bulb: **Notice:**
@@ -347,12 +354,13 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Set**  | `set INGREDIENT_NAME AMOUNT` <br> e.g., `set milk 20`
-**Set all**  | `set all ingredients AMOUNT` <br> e.g., `set all ingredients 5`
-**Set ingredients**  | `set ingredients m/MILK b/BLACK_TEA s/SUGAR o/BUBBLE` <br> e.g., `set ingredients m/19 b/20 s/5 o/0`
+**Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
+**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 O/50 S/100`
+**Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
 **View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
 **Reset**| `i-reset-all`
 **List**| `i-list`
+
 
 ### Sales Tracking
 
