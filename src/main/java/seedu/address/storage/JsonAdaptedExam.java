@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
@@ -19,7 +20,7 @@ public class JsonAdaptedExam {
     private final String score;
 
     /**
-     * Constructs a {@code JsonAdaptedQuestion} with the given {@code question}.
+     * Constructs a {@code JsonAdaptedExam} with the given {@code exam}.
      */
     @JsonCreator
     public JsonAdaptedExam(@JsonProperty("examName") String examName,

@@ -1,7 +1,5 @@
 package seedu.address.model.student.academic.exam;
 
-import java.text.ParseException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -12,7 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Score {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Scores should be in the form int/int";
+            "Scores should be in the form x/y, where x and y are both whole numbers and x is less than "
+                    + "or equal to y";
 
     public final String examScore;
 
@@ -39,13 +38,32 @@ public class Score {
 
         int firstInt;
         int secInt;
+
         try {
             firstInt = Integer.parseInt(splitScore[0]);
             secInt = Integer.parseInt(splitScore[1]);
         } catch (NumberFormatException e) {
             return false;
         }
+
+        if (firstInt < 0 || secInt < 0) {
+            return false;
+        }
+
         return firstInt <= secInt;
+    }
+
+    /**
+     * Get percentage converted score.
+     * @return score in terms of percentage.
+     */
+    public double getScorePercentage() {
+        String[] splitScore = examScore.split("/");
+
+        double firstInt = Double.parseDouble(splitScore[0]);
+        double secondInt = Double.parseDouble(splitScore[1]);
+
+        return Math.round((firstInt / secondInt) * 1000) / 10.0;
     }
 
     @Override

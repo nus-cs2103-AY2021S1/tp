@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -7,21 +15,15 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.academic.exam.Exam;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-public class DeleteExamCommand extends ExamCommand{
+/**
+ * Deletes an exam from a student.
+ */
+public class DeleteExamCommand extends ExamCommand {
 
     public static final String COMMAND_WORD = "delete";
 
-    public static final String MESSAGE_USAGE = ExamCommand.COMMAND_WORD + " " + COMMAND_WORD +
-            ": Deletes an exam from a student.\n\n"
+    public static final String MESSAGE_USAGE = ExamCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": Deletes an exam from a student.\n\n"
             + "Parameters: INDEX (must be a positive integer)"
             + PREFIX_EXAM_INDEX
             + "EXAM_INDEX (must be a positive integer)\n"
@@ -37,6 +39,9 @@ public class DeleteExamCommand extends ExamCommand{
     private final Index studentIndex;
     private final Index examIndex;
 
+    /**
+     * Creates an AddExamCommand to delete the specified {@code Exam} of a specified student based on index.
+     */
     public DeleteExamCommand(Index studentIndex, Index examIndex) {
         requireAllNonNull(studentIndex, examIndex);
         this.studentIndex = studentIndex;

@@ -5,19 +5,29 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
+/**
+ * Represents an Exam in Reeve that can be assigned to a {@code Student}.
+ */
 public class Exam {
+    private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
+    private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
+    private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy");
     private final String examName;
     private final LocalDate examDate;
     private final Score score;
 
-    private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
-    private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
-
+    /**
+     * Constructs a {@code Exam}.
+     *
+     * @param examName name of exam.
+     * @param examDate date of exam.
+     * @param score score obtained.
+     */
     public Exam(String examName, String examDate, Score score) {
         this.examName = examName;
         LocalDate formattedDate;
         try {
-            formattedDate= LocalDate.parse(examDate, INPUT_DEF);
+            formattedDate = LocalDate.parse(examDate, INPUT_DEF);
         } catch (DateTimeParseException ignored) {
             formattedDate = LocalDate.parse(examDate, INPUT_ALT);
         }
@@ -41,9 +51,12 @@ public class Exam {
         return this.examDate.format(INPUT_ALT);
     }
 
+    /**
+     * Returns true if a given string is a valid date for {@code Exam}.
+     */
     public static boolean isValidDate(String date) {
-        String VALIDATION_REGEX = "(\\d{1,2})(\\/)(\\d{1,2})(\\/)(\\d{2}|\\d{4})";
-        if (!date.matches(VALIDATION_REGEX)) {
+        String validationRegex = "(\\d{1,2})(\\/)(\\d{1,2})(\\/)(\\d{2}|\\d{4})";
+        if (!date.matches(validationRegex)) {
             return false;
         }
 
@@ -57,7 +70,6 @@ public class Exam {
                 // does not match the DateTimeFormat, try the next
             }
         }
-        
         return testDate != null;
     }
 
@@ -82,11 +94,7 @@ public class Exam {
 
     @Override
     public String toString() {
-        return " -> Name: " +
-                examName +
-                "\n\tDate: " +
-                examDate +
-                "\n\tActual Score: " +
-                score;
+        return " " + examName + "\n\t- Date: " + examDate.format(OUTPUT) + "\n\t- Score: "
+                + score + " (" + score.getScorePercentage() + "%)";
     }
 }

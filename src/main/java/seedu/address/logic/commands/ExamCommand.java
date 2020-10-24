@@ -1,17 +1,23 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.student.Student;
-import seedu.address.model.student.academic.exam.Exam;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 
 import java.util.ArrayList;
 
-import static seedu.address.logic.parser.CliSyntax.*;
+import seedu.address.model.student.Student;
+import seedu.address.model.student.academic.exam.Exam;
 
+/**
+ * Abstract class of exam commands such as AddExam and DeleteExam.
+ */
 public abstract class ExamCommand extends Command {
     public static final String COMMAND_WORD = "exam";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or deletes an Exam"
-            + "from a student in Reeve.\n\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or deletes an Exam "
+            + "to/from a student in Reeve.\n\n"
             + "Example:\n"
             + "To add an exam (adds an exam to the first student in the list):\n"
             + ExamCommand.COMMAND_WORD
@@ -23,11 +29,17 @@ public abstract class ExamCommand extends Command {
             + "To delete an exam (deletes the first exam of the second student in the list):\n"
             + ExamCommand.COMMAND_WORD
             + " delete" + " 2 "
-            + "1";
+            + PREFIX_EXAM_INDEX + "1";
 
-    public Student updateStudentExam(Student studentToAddExam, ArrayList<Exam> exams) {
-        return new Student(studentToAddExam.getName(), studentToAddExam.getPhone(),
-                studentToAddExam.getSchool(), studentToAddExam.getYear(), studentToAddExam.getAdmin(),
-                studentToAddExam.getQuestions(), exams);
+    /**
+     * Updates a specific students exam list when an exam is being added or deleted.
+     * @param studentToUpdate selected student to be be updated.
+     * @param exams the updated array list of exams.
+     * @return selected student with the updated exams.
+     */
+    public Student updateStudentExam(Student studentToUpdate, ArrayList<Exam> exams) {
+        return new Student(studentToUpdate.getName(), studentToUpdate.getPhone(),
+                studentToUpdate.getSchool(), studentToUpdate.getYear(), studentToUpdate.getAdmin(),
+                studentToUpdate.getQuestions(), exams);
     }
 }

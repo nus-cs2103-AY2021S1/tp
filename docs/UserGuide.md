@@ -187,6 +187,36 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in Reeve.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+### Adding an exam record to a student: `exam add`
+
+Adds an exam to a specified student in Reeve.
+
+Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
+
+* Adds the given exam to the student at the specified `INDEX`.
+* The format of EXAM_DATE is dd/mm/yyyy (e.g. 08/12/2020).
+* The format of EXAM_SCORE is x/y where x and y are both whole numbers and x has to be less than or equal to y (e.g. 30/50).
+
+Examples:
+* `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam  with date 8 Dec 2020 and 
+score 40/60 to the first student in Reeve.
+
+* `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam  with date 12 May 2020 and 
+score 67/100 to the fifth student in Reeve.
+
+### Deleting an exam record to a student: `exam delete`
+
+Deletes an exam from a specified student in Reeve.
+
+Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
+
+* Deletes the an exam at `EXAM_INDEX` in the specified student's exam list.
+* The specified student is chosen based on `STUDENT_INDEX` of Reeve. 
+
+Examples:
+* `exam delete 1 i/1` deletes the first exam from the first student in Reeve.
+* `exam delete 2 i/5` deletes the fifth exam from the second student in Reeve.
+
 ### Clearing all entries : `clear`
 
 Clears all entries from Reeve.

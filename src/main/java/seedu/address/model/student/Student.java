@@ -25,6 +25,7 @@ public class Student {
 
     /**
      *  name, phone, school, year, must be present and not null.
+     *  exams is empty when a student is first initialised.
      */
     public Student(Name name, Phone phone, School school, Year year,
                    Admin admin, List<Question> questions) {
@@ -38,6 +39,9 @@ public class Student {
         this.exams = new ArrayList<>();
     }
 
+    /**
+     * Used when updating exams of a student.
+     */
     public Student(Name name, Phone phone, School school, Year year,
                    Admin admin, List<Question> questions, ArrayList<Exam> exams) {
         requireAllNonNull(name, phone, school, year, admin);
@@ -76,6 +80,20 @@ public class Student {
 
     public ArrayList<Exam> getExams() {
         return exams;
+    }
+
+    /**
+     * Get exams of student formatted for GUI use.
+     * @return formatted exams.
+     */
+    public String getFormattedExams() {
+        String result = "";
+        int index = 1;
+        for (Exam exam : exams) {
+            result = result + index + "." + exam.toString() + "\n";
+            index++;
+        }
+        return result;
     }
 
     /**
@@ -140,6 +158,8 @@ public class Student {
                 .append(getAdmin())
                 .append(" Questions: ");
         questions.forEach(builder::append);
+        builder.append(" Examinations:");
+        exams.forEach(builder::append);
         return builder.toString();
     }
 

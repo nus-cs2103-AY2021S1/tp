@@ -1,19 +1,29 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.EXAM_COMMAND_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
+
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
 
-import java.time.LocalDate;
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-
+/**
+ * Parses input arguments and creates a new AddExamCommand object.
+ */
 public class AddExamCommandParser implements Parser<AddExamCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddExamCommand
+     * and returns an AddExamCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format.
+     */
     @Override
     public AddExamCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -32,18 +42,9 @@ public class AddExamCommandParser implements Parser<AddExamCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExamCommand.MESSAGE_USAGE), pe);
         }
 
-        String examName = argMultimap.getValue(PREFIX_EXAM_NAME).get().trim();
-        String examDate = argMultimap.getValue(PREFIX_EXAM_DATE).get().trim();
+        String examName = ParserUtil.parseExamName(argMultimap.getValue(PREFIX_EXAM_NAME).get());
+        String examDate = ParserUtil.parseExamDate(argMultimap.getValue(PREFIX_EXAM_DATE).get());
         Score score = ParserUtil.parseScore(argMultimap.getValue(PREFIX_SCORE).get().trim());
-
-        if (examName.isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddExamCommand.MESSAGE_EXAM_INVALID_NAME));
-        }
-
-        if (!Exam.isValidDate(examDate)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddExamCommand.MESSAGE_EXAM_INVALID_DATE));
-        }
 
         Exam exam = new Exam(examName, examDate, score);
         return new AddExamCommand(index, exam);

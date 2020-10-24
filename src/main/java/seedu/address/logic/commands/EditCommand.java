@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +30,7 @@ import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
@@ -139,7 +141,9 @@ public class EditCommand extends Command {
 
         // Questions should not be edited through this command
         List<Question> questions = studentToEdit.getQuestions();
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions);
+        // Exams should not be edited through this command
+        ArrayList<Exam> exams = studentToEdit.getExams();
+        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions, exams);
     }
 
     @Override

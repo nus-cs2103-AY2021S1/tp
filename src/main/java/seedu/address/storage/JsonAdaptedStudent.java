@@ -75,8 +75,8 @@ class JsonAdaptedStudent {
                 .collect(Collectors.toList()));
 
         jsonAdaptedExams.addAll(source.getExams().stream()
-        .map(JsonAdaptedExam::new)
-        .collect(Collectors.toList()));
+                .map(JsonAdaptedExam::new)
+                .collect(Collectors.toList()));
     }
 
     /**

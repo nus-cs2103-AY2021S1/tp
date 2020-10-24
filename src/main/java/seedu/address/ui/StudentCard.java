@@ -73,7 +73,7 @@ public class StudentCard extends UiPart<Region> {
                 .stream()
                 .map(Question::toString)
                 .collect(Collectors.joining("\n")));
-        exams.setText("Examinations: \n" + student.getExams());
+        exams.setText("Examinations: \n" + student.getFormattedExams());
     }
 
     @Override

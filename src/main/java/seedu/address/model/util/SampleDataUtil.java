@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -13,6 +14,8 @@ import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
@@ -26,13 +29,18 @@ import seedu.address.model.student.admin.PaymentDate;
  */
 public class SampleDataUtil {
     public static Student[] getSamplePersons() {
+        //Sample Exams
+        Exam sampleExam1 = new Exam("CA2", "13/3/2020", new Score("34/50"));
+        Exam sampleExam2 = new Exam("End of Year 2020", "5/11/2020", new Score("50/50"));
+        Exam sampleExam3 = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
+
         return new Student[] {
             new Student(new Name("Alex Yeoh"), new Phone("87438807"),
                     new School("NUS High School"), new Year("Year 4"),
                     new Admin(new ClassVenue("Blk 30 Geylang Street 29, #06-40"),
                             new ClassTime("1 1400-1500"), new Fee("430"),
                             new PaymentDate("23/4/19"), getDetailSet("clever")),
-                    getQuestions("How do birds fly?")),
+                    getQuestions("How do birds fly?"), getExams(sampleExam1, sampleExam2)),
             new Student(new Name("Bernice Yu"), new Phone("99272758"),
                     new School("Montford Secondary School"), new Year("Sec 4"),
                     new Admin(new ClassVenue("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -44,7 +52,7 @@ public class SampleDataUtil {
                     new Admin(new ClassVenue("Blk 11 Ang Mo Kio Street 74, #11-04"),
                             new ClassTime("2 1900-1930"), new Fee("680"),
                             new PaymentDate("1/12/19"), getDetailSet()),
-                    getQuestions()),
+                    getQuestions(), getExams(sampleExam3)),
             new Student(new Name("David Li"), new Phone("91031282"),
                     new School("Anderson Primary School"), new Year("Pri 2"),
                     new Admin(new ClassVenue("Blk 436 Serangoon Gardens Street 26, #16-43"),
@@ -62,7 +70,7 @@ public class SampleDataUtil {
                     new Admin(new ClassVenue("Blk 45 Aljunied Street 85, #11-31"),
                             new ClassTime("4 2000-2130"), new Fee("38"),
                             new PaymentDate("19/12/19"), getDetailSet("rude")),
-                    getQuestions())
+                    getQuestions(), getExams(sampleExam2, sampleExam3))
         };
     }
 
@@ -99,6 +107,10 @@ public class SampleDataUtil {
         return Arrays.stream(strings)
                 .map(string -> new Question(string, true))
                 .collect(Collectors.toList());
+    }
+
+    public static ArrayList<Exam> getExams(Exam... exams) {
+        return new ArrayList<>(Arrays.asList(exams));
     }
 
 }
