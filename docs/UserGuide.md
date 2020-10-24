@@ -61,6 +61,7 @@ in order of decreasing priority: low quantity stocks, bookmarked stocks, other s
 
 ## Commands
 
+This section provides support for the commands required to perform desired actions on Warenager.
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note for command input format:**<br>
@@ -350,7 +351,7 @@ to sort the stock in their preferred format before converting it into the csv fi
 `print`
 
 ### Saving data
-Data (all stocks in inventory in json) is automatically saved to
+Data generated in Warenager (all stocks in inventory in json) is automatically saved to
 `[root directory]/data/stockbook.json` when any of these commands is executed:
 * add
 * delete
@@ -435,6 +436,7 @@ Format : `exit`
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
+Summary of the commands required to perform certain actions is listed in this table:
 
 Action | Format, Examples
 --------|------------------
