@@ -75,6 +75,6 @@ public class DeleteRecipeCommand extends Command implements Undoable {
 
     @Override
     public String toString() {
-        return String.format("DeleteRecipeCommand: %s", this.item);
+        return String.format("DeleteRecipeCommand(%s)", this.item);
     }
 }

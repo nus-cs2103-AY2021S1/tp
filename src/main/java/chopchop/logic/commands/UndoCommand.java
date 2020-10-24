@@ -21,11 +21,6 @@ public class UndoCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this || (other instanceof UndoCommand);
-    }
-
-    @Override
     public String toString() {
         return String.format("UndoCommand");
     }

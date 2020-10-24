@@ -21,11 +21,6 @@ public class RedoCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this || (other instanceof RedoCommand);
-    }
-
-    @Override
     public String toString() {
         return String.format("RedoCommand");
     }

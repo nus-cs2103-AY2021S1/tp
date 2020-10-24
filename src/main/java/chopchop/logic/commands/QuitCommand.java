@@ -12,11 +12,6 @@ public class QuitCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this || (other instanceof QuitCommand);
-    }
-
-    @Override
     public String toString() {
         return String.format("QuitCommand");
     }

@@ -21,11 +21,6 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this || (other instanceof HelpCommand);
-    }
-
-    @Override
     public String toString() {
         return String.format("HelpCommand");
     }
