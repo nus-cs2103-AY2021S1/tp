@@ -16,7 +16,7 @@ import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ResiReg that is serializable to JSON format.
  */
 @JsonRootName(value = "preferences")
 class JsonSerializableUserPrefs {
@@ -25,34 +25,34 @@ class JsonSerializableUserPrefs {
 
     private final List<JsonAdaptedCommandWordAlias> commandWordAliases = new ArrayList<>();
     private final GuiSettings guiSettings;
-    private final Path addressBookFilePath;
+    private final Path resiRegFilePath;
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given students.
+     * Constructs a {@code JsonSerializableResiReg} with the given students.
      */
     @JsonCreator
     public JsonSerializableUserPrefs(@JsonProperty("guiSettings") GuiSettings guiSettings,
                                      @JsonProperty("commandWordAliases") List<JsonAdaptedCommandWordAlias> aliases,
-                                     @JsonProperty("addressBookFilePath") Path addressBookFilePath) {
+                                     @JsonProperty("addressBookFilePath") Path resiRegFilePath) {
         this.commandWordAliases.addAll(aliases);
         this.guiSettings = guiSettings;
-        this.addressBookFilePath = addressBookFilePath;
+        this.resiRegFilePath = resiRegFilePath;
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyResiReg} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableResiReg}.
      */
     public JsonSerializableUserPrefs(ReadOnlyUserPrefs source) {
         commandWordAliases.addAll(source.getCommandWordAliases().stream().map(JsonAdaptedCommandWordAlias::new)
             .collect(Collectors.toList()));
         this.guiSettings = source.getGuiSettings();
-        this.addressBookFilePath = source.getAddressBookFilePath();
+        this.resiRegFilePath = source.getResiRegFilePath();
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code ResiReg} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -67,7 +67,7 @@ class JsonSerializableUserPrefs {
         }
 
         userPrefs.setGuiSettings(guiSettings);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setResiRegFilePath(resiRegFilePath);
 
         return userPrefs;
     }

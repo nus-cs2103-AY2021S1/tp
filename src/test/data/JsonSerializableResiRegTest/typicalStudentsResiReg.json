@@ -5,7 +5,7 @@
     "allocations" : [ ],
     "roomFees" : { }
   },
-  "_comment": "AddressBook save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
+  "_comment": "ResiReg save file which contains the same Student values as in TypicalStudents#getTypicalResiReg()",
   "students" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

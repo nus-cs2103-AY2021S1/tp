@@ -17,10 +17,10 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.logic.commands.exceptions.CommandException;
-import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.Model;
-import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ReadOnlyUserPrefs;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
@@ -121,7 +121,9 @@ public class AddCommandTest {
         @Override
         public void deleteCommandWordAlias(CommandWordAlias target) {
             throw new AssertionError("This method should not be called.");
-        };
+        }
+
+        ;
 
         @Override
         public void addCommandWordAlias(CommandWordAlias source) {
@@ -129,12 +131,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getResiRegFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setResiRegFilePath(Path resiRegFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,12 +146,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setResiReg(ReadOnlyResiReg newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyResiReg getResiReg() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -316,8 +318,8 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyResiReg getResiReg() {
+            return new ResiReg();
         }
     }
 

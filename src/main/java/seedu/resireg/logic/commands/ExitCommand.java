@@ -9,7 +9,7 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = CommandWordEnum.EXIT_COMMAND.toString();
 
-    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
+    public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting ResiReg as requested ...";
 
     public static final Help HELP = new Help(COMMAND_WORD, "Closes ResiReg.");
 

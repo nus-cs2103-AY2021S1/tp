@@ -16,13 +16,13 @@ import org.junit.jupiter.api.Test;
 
 import seedu.resireg.model.exceptions.NoRedoableStateException;
 import seedu.resireg.model.exceptions.NoUndoableStateException;
-import seedu.resireg.testutil.AddressBookBuilder;
+import seedu.resireg.testutil.ResiRegBuilder;
 
 class VersionedResiRegTest {
-    private final ReadOnlyAddressBook resiRegWithAmy = new AddressBookBuilder().withStudent(AMY).build();
-    private final ReadOnlyAddressBook resiRegWithBob = new AddressBookBuilder().withStudent(BOB).build();
-    private final ReadOnlyAddressBook resiRegWithCarl = new AddressBookBuilder().withStudent(CARL).build();
-    private final ReadOnlyAddressBook emptyResiReg = new AddressBookBuilder().build();
+    private final ReadOnlyResiReg resiRegWithAmy = new ResiRegBuilder().withStudent(AMY).build();
+    private final ReadOnlyResiReg resiRegWithBob = new ResiRegBuilder().withStudent(BOB).build();
+    private final ReadOnlyResiReg resiRegWithCarl = new ResiRegBuilder().withStudent(CARL).build();
+    private final ReadOnlyResiReg emptyResiReg = new ResiRegBuilder().build();
 
     @Test
     public void commit_singleResiReg_noStatesRemovedCurrentStateSaved() {
@@ -244,11 +244,11 @@ class VersionedResiRegTest {
      * is equal to {@code expectedStatesAfterPtr}
      */
     private void assertResiRegListStatus(VersionedResiReg versionedResiReg,
-                                         List<ReadOnlyAddressBook> expectedStatesBeforePtr,
-                                         ReadOnlyAddressBook expectedCurrentState,
-                                         List<ReadOnlyAddressBook> expectedStatesAfterPtr) {
+                                         List<ReadOnlyResiReg> expectedStatesBeforePtr,
+                                         ReadOnlyResiReg expectedCurrentState,
+                                         List<ReadOnlyResiReg> expectedStatesAfterPtr) {
         // check state currently pointing to is correct
-        assertEquals(new AddressBook(versionedResiReg), expectedCurrentState);
+        assertEquals(new ResiReg(versionedResiReg), expectedCurrentState);
 
         // shift ptr to start of state list
         while (versionedResiReg.canUndo()) {
@@ -257,14 +257,14 @@ class VersionedResiRegTest {
 
         // check states before ptr are correct
         for (var expectedResiReg : expectedStatesBeforePtr) {
-            assertEquals(expectedResiReg, new AddressBook(versionedResiReg));
+            assertEquals(expectedResiReg, new ResiReg(versionedResiReg));
             versionedResiReg.redo();
         }
 
         // check states after ptr are correct
         for (var expectedResiReg : expectedStatesAfterPtr) {
             versionedResiReg.redo();
-            assertEquals(expectedResiReg, new AddressBook(versionedResiReg));
+            assertEquals(expectedResiReg, new ResiReg(versionedResiReg));
         }
 
         // check that there are not more states after ptr
@@ -278,7 +278,7 @@ class VersionedResiRegTest {
      * Creates and returns a {@code VersionedResiReg} with the {@code resiRegStates} added into it, and
      * the {@code VersionedResiReg#currentStatePtr} at the end of the list.
      */
-    private VersionedResiReg prepareResiRegList(ReadOnlyAddressBook ...resiRegStates) {
+    private VersionedResiReg prepareResiRegList(ReadOnlyResiReg ...resiRegStates) {
         assertFalse(resiRegStates.length == 0);
 
         VersionedResiReg versionedResiReg = new VersionedResiReg(resiRegStates[0]);

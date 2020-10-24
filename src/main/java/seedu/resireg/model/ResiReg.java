@@ -18,10 +18,10 @@ import seedu.resireg.model.student.Student;
 import seedu.resireg.model.student.UniqueStudentList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the base level
  * Duplicates are not allowed (by .isSameStudent comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ResiReg implements ReadOnlyResiReg {
 
     private Semester semester;
     private final UniqueStudentList students;
@@ -45,12 +45,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         allocations = new UniqueAllocationList();
     }
 
-    public AddressBook() {}
+    public ResiReg() {}
 
     /**
-     * Creates an AddressBook using the Students and Rooms in the {@code toBeCopied}
+     * Creates an ResiReg using the Students and Rooms in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ResiReg(ReadOnlyResiReg toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -90,9 +90,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ResiReg} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyResiReg newData) {
         requireNonNull(newData);
 
         setSemester(newData.getSemester());
@@ -104,7 +104,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// student-level operations
 
     /**
-     * Returns true if a student with the same identity as {@code student} exists in the address book.
+     * Returns true if a student with the same identity as {@code student} exists in ResiReg.
      */
     public boolean hasStudent(Student student) {
         requireNonNull(student);
@@ -112,8 +112,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a student to the address book.
-     * The student must not already exist in the address book.
+     * Adds a student to ResiReg.
+     * The student must not already exist in ResiReg.
      */
     public void addStudent(Student p) {
         students.add(p);
@@ -121,9 +121,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given student {@code target} in the list with {@code editedStudent}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ResiReg.
      * The student identity of {@code editedStudent} must not be the same as another existing student
-     * in the address book.
+     * in ResiReg.
      */
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
@@ -131,15 +131,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ResiReg}.
+     * {@code key} must exist in ResiReg.
      */
     public void removeStudent(Student key) {
         students.remove(key);
     }
 
     /**
-     * Returns true if an allocation relating to {@code student} exists in the address book.
+     * Returns true if an allocation relating to {@code student} exists in ResiReg.
      */
     public boolean isAllocated(Student student) {
         requireNonNull(student);
@@ -147,7 +147,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if an allocation relating to {@code room} exists in the address book.
+     * Returns true if an allocation relating to {@code room} exists in ResiReg.
      */
     public boolean isAllocated(Room room) {
         requireNonNull(room);
@@ -158,15 +158,15 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// room-level operations
 
     /**
-     * Adds a room to the address book.
-     * The room must not already exist in the address book.
+     * Adds a room to ResiReg.
+     * The room must not already exist in ResiReg.
      */
     public void addRoom(Room r) {
         rooms.add(r);
     }
 
     /**
-     * Returns true if a room with the same identity as {@code room} exists in the address book.
+     * Returns true if a room with the same identity as {@code room} exists in ResiReg.
      */
     public boolean hasRoom(Room room) {
         requireNonNull(room);
@@ -175,9 +175,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given room {@code target} in the list with {@code editedRoom}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ResiReg.
      * The room identity of {@code editedStudent} must not be the same as another existing room
-     * in the address book.
+     * in ResiReg.
      */
     public void setRoom(Room target, Room editedRoom) {
         requireNonNull(editedRoom);
@@ -185,8 +185,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ResiReg}.
+     * {@code key} must exist in ResiReg.
      */
     public void removeRoom(Room key) {
         rooms.remove(key);
@@ -195,8 +195,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// allocation-level operations
 
     /**
-     * Adds an allocation to the address book.
-     * The allocation must not already exist in the address book.
+     * Adds an allocation to ResiReg.
+     * The allocation must not already exist in ResiReg.
      */
     public void addAllocation(Allocation allocation) {
         requireNonNull(allocation);
@@ -204,7 +204,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if an allocation with the same identity as {@code allocation} exists in the address book.
+     * Returns true if an allocation with the same identity as {@code allocation} exists in ResiReg.
      */
     public boolean hasAllocation(Allocation allocation) {
         requireNonNull(allocation);
@@ -213,9 +213,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Replaces the given allocation {@code target} in the list with {@code editedAllocation}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in ResiReg.
      * The allocation identity of {@code editedALlocation} must not be the same as another existing allocation
-     * in the address book.
+     * in ResiReg.
      */
     public void setAllocation(Allocation target, Allocation editedAllocation) {
         requireNonNull(editedAllocation);
@@ -223,8 +223,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code ResiReg}.
+     * {@code key} must exist in ResiReg.
      */
     public void removeAllocation(Allocation key) {
         allocations.remove(key);
@@ -261,10 +261,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && students.equals(((AddressBook) other).students)
-                && rooms.equals(((AddressBook) other).rooms)
-                && allocations.equals(((AddressBook) other).allocations));
+                || (other instanceof ResiReg // instanceof handles nulls
+                && students.equals(((ResiReg) other).students)
+                && rooms.equals(((ResiReg) other).rooms)
+                && allocations.equals(((ResiReg) other).allocations));
     }
 
     @Override

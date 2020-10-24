@@ -7,7 +7,7 @@ import seedu.resireg.model.Model;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
 
 /**
- * Finds and lists all students in address book whose name contains any of the argument keywords.
+ * Finds and lists all students in ResiReg whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {

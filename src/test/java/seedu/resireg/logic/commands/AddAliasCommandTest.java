@@ -18,7 +18,7 @@ import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
-import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
@@ -129,12 +129,12 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getResiRegFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setResiRegFilePath(Path addressBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -144,12 +144,12 @@ public class AddAliasCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setResiReg(ReadOnlyResiReg newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyResiReg getResiReg() {
             throw new AssertionError("This method should not be called.");
         }
 

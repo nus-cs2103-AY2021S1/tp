@@ -6,7 +6,7 @@ import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.resireg.model.Model;
 
 /**
- * Lists all students in the address book to the user.
+ * Lists all students in ResiReg to the user.
  */
 public class ListCommand extends Command {
 

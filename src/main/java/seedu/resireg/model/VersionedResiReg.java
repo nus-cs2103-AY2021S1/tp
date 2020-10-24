@@ -7,21 +7,21 @@ import seedu.resireg.model.exceptions.NoRedoableStateException;
 import seedu.resireg.model.exceptions.NoUndoableStateException;
 
 /**
- * {@code AddressBook} that keeps track of its own history.
+ * {@code ResiReg} that keeps track of its own history.
  */
-public class VersionedResiReg extends AddressBook {
+public class VersionedResiReg extends ResiReg {
 
-    private final List<ReadOnlyAddressBook> resiRegStateList;
+    private final List<ReadOnlyResiReg> resiRegStateList;
     private int currentStatePtr;
 
     /**
-     * Creates a {@code VersionedResiReg} with the given {@code ReadOnlyAddressBook}.
+     * Creates a {@code VersionedResiReg} with the given {@code ReadOnlyResiReg}.
      */
-    public VersionedResiReg(ReadOnlyAddressBook initialState) {
+    public VersionedResiReg(ReadOnlyResiReg initialState) {
         super(initialState);
 
         resiRegStateList = new ArrayList<>();
-        resiRegStateList.add(new AddressBook(initialState));
+        resiRegStateList.add(new ResiReg(initialState));
         currentStatePtr = 0;
     }
 
@@ -30,12 +30,12 @@ public class VersionedResiReg extends AddressBook {
     }
 
     /**
-     * Saves a copy of the current {@code AddressBook} state at the end of
+     * Saves a copy of the current {@code ResiReg} state at the end of
      * the state list. Undone states are removed from the state list.
      */
     public void save() {
         removeStatesAfterCurrentPtr();
-        resiRegStateList.add(new AddressBook(this));
+        resiRegStateList.add(new ResiReg(this));
         currentStatePtr++;
     }
 

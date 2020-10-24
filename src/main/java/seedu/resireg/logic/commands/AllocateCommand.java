@@ -17,7 +17,7 @@ import seedu.resireg.model.student.Student;
 
 
 /**
- * Adds a student to the address book.
+ * Adds a student to ResiReg.
  */
 public class AllocateCommand extends Command {
 

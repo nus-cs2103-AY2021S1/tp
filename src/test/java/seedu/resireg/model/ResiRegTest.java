@@ -11,7 +11,7 @@ import static seedu.resireg.logic.commands.CommandTestUtil.VALID_TAG_RENOVATED;
 import static seedu.resireg.testutil.Assert.assertThrows;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.resireg.testutil.TypicalStudents.ALICE;
-import static seedu.resireg.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,25 +33,25 @@ import seedu.resireg.testutil.RoomBuilder;
 import seedu.resireg.testutil.StudentBuilder;
 import seedu.resireg.testutil.TypicalSemesters;
 
-public class AddressBookTest {
+public class ResiRegTest {
 
-    private final AddressBook addressBook = new AddressBook();
+    private final ResiReg resiReg = new ResiReg();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getStudentList());
+        assertEquals(Collections.emptyList(), resiReg.getStudentList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> resiReg.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        AddressBook newData = getTypicalAddressBook();
-        addressBook.resetData(newData);
-        assertEquals(newData, addressBook);
+    public void resetData_withValidReadOnlyResiReg_replacesData() {
+        ResiReg newData = getTypicalResiReg();
+        resiReg.resetData(newData);
+        assertEquals(newData, resiReg);
     }
 
     @Test
@@ -60,38 +60,38 @@ public class AddressBookTest {
         Student editedAlice = new StudentBuilder(ALICE).withFaculty(VALID_FACULTY_BOB).withTags(VALID_TAG_HUSBAND)
             .build();
         List<Student> newStudents = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newStudents, new ArrayList<>());
+        ResiRegStub newData = new ResiRegStub(newStudents, new ArrayList<>());
 
-        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> resiReg.resetData(newData));
     }
 
     @Test
     public void hasStudent_nullStudent_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
+        assertThrows(NullPointerException.class, () -> resiReg.hasStudent(null));
     }
 
     @Test
-    public void hasStudent_studentNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentNotInResiReg_returnsFalse() {
+        assertFalse(resiReg.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
-        assertTrue(addressBook.hasStudent(ALICE));
+    public void hasStudent_studentInResiReg_returnsTrue() {
+        resiReg.addStudent(ALICE);
+        assertTrue(resiReg.hasStudent(ALICE));
     }
 
     @Test
-    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addStudent(ALICE);
+    public void hasStudent_studentWithSameIdentityFieldsInResiReg_returnsTrue() {
+        resiReg.addStudent(ALICE);
         Student editedAlice = new StudentBuilder(ALICE).withFaculty(VALID_FACULTY_BOB).withTags(VALID_TAG_HUSBAND)
-            .build();
-        assertTrue(addressBook.hasStudent(editedAlice));
+                .build();
+        assertTrue(resiReg.hasStudent(editedAlice));
     }
 
     @Test
     public void getStudentList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> resiReg.getStudentList().remove(0));
     }
 
 
@@ -101,51 +101,51 @@ public class AddressBookTest {
         // Two rooms with the same identity fields
         Room editedOne = new RoomBuilder(ROOM_ONE).withTags(VALID_TAG_RENOVATED).build();
         List<Room> newRooms = Arrays.asList(ROOM_ONE, editedOne);
-        AddressBookStub newData = new AddressBookStub(new ArrayList<>(), newRooms);
+        ResiRegStub newData = new ResiRegStub(new ArrayList<>(), newRooms);
 
-        assertThrows(DuplicateRoomException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateRoomException.class, () -> resiReg.resetData(newData));
     }
 
     @Test
     public void hasRoom_nullRoom_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasRoom(null));
+        assertThrows(NullPointerException.class, () -> resiReg.hasRoom(null));
     }
 
     @Test
     public void hasRoom_roomNotInResiReg_returnsFalse() {
-        assertFalse(addressBook.hasRoom(ROOM_ONE));
+        assertFalse(resiReg.hasRoom(ROOM_ONE));
     }
 
     @Test
     public void hasRoom_roomInResiReg_returnsTrue() {
-        addressBook.addRoom(ROOM_ONE);
-        assertTrue(addressBook.hasRoom(ROOM_ONE));
+        resiReg.addRoom(ROOM_ONE);
+        assertTrue(resiReg.hasRoom(ROOM_ONE));
     }
 
     @Test
     public void hasRoom_roomWithSameIdentityFieldsInResiReg_returnsTrue() {
-        addressBook.addRoom(ROOM_ONE);
+        resiReg.addRoom(ROOM_ONE);
         Room editedRoom = new RoomBuilder(ROOM_ONE).withRoomType(VALID_ROOM_TYPE_B).withTags(VALID_TAG_DAMAGED)
             .build();
-        assertTrue(addressBook.hasRoom(editedRoom));
+        assertTrue(resiReg.hasRoom(editedRoom));
     }
 
     @Test
     public void getRoomList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getRoomList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> resiReg.getRoomList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
+     * A stub ReadOnlyResiReg whose students list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ResiRegStub implements ReadOnlyResiReg {
         private final Semester semester = TypicalSemesters.AY2020_SEM_2;
         private final ObservableList<Student> students = FXCollections.observableArrayList();
         private final ObservableList<Room> rooms = FXCollections.observableArrayList();
         private final ObservableList<Allocation> allocations = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Student> students, Collection<Room> rooms) {
-            this.students.setAll(students);
+        ResiRegStub(Collection<Student> students, Collection<Room> rooms) {
+            this.students.setAll(students); // todo: set rooms
             this.rooms.setAll(rooms);
         }
 

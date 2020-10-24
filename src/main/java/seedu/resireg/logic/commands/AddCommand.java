@@ -13,14 +13,14 @@ import seedu.resireg.model.Model;
 import seedu.resireg.model.student.Student;
 
 /**
- * Adds a student to the address book.
+ * Adds a student to ResiReg.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = CommandWordEnum.ADD_COMMAND.toString();
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s (%2$s)";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiReg";
 
     public static final Help HELP = new Help(COMMAND_WORD,
             "Adds a student to ResiReg.\n",

@@ -15,7 +15,7 @@ import seedu.resireg.logic.parser.exceptions.ParseException;
  * Parses user input in the format COMMAND_WORD ARGUMENTS, where COMMAND_WORD and ARGUMENTS are separated
  * by 1 or more spaces.
  */
-public class AddressBookParser {
+public class ResiRegParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -25,11 +25,11 @@ public class AddressBookParser {
     private Map<String, Parser<Command>> commandWordToParserMap;
 
     /**
-     * Creates a new AddressBookParser which can parse the commands specified in the map given.
+     * Creates a new ResiRegParser which can parse the commands specified in the map given.
      *
      * @param commandWordToParserMap Mapping from command word to {@link Parser}.
      */
-    public AddressBookParser(Map<String, Parser<Command>> commandWordToParserMap) {
+    public ResiRegParser(Map<String, Parser<Command>> commandWordToParserMap) {
         this.commandWordToParserMap = commandWordToParserMap;
     }
 

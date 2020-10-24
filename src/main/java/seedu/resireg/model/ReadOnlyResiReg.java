@@ -7,9 +7,9 @@ import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of ResiReg
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyResiReg {
 
     /**
      * Returns the semester that this view is mapped to.

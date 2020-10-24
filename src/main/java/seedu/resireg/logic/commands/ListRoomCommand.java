@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.resireg.model.Model;
 
 /**
- * Lists all rooms in the address book to the user.
+ * Lists all rooms in ResiReg to the user.
  */
 public class ListRoomCommand extends Command {
     public static final String COMMAND_WORD = CommandWordEnum.LIST_ROOM_COMMAND.toString();

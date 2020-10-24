@@ -26,7 +26,6 @@ import seedu.resireg.logic.commands.RedoCommand;
 import seedu.resireg.logic.commands.UndoCommand;
 import seedu.resireg.logic.parser.AddAliasCommandParser;
 import seedu.resireg.logic.parser.AddCommandParser;
-import seedu.resireg.logic.parser.AddressBookParser;
 import seedu.resireg.logic.parser.AllocateCommandParser;
 import seedu.resireg.logic.parser.DeallocateCommandParser;
 import seedu.resireg.logic.parser.DeleteAliasCommandParser;
@@ -36,18 +35,19 @@ import seedu.resireg.logic.parser.FindCommandParser;
 import seedu.resireg.logic.parser.ListRoomCommandParser;
 import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ReallocateCommandParser;
+import seedu.resireg.logic.parser.ResiRegParser;
 import seedu.resireg.model.alias.CommandWordAlias;
 
 /**
  * Manages the mapping between command words and parsers, and command words and their help messages.
- *
+ * <p>
  * Developers can add new commands by modifying the constructor for this class. This class ensures that all
  * commands (1) are bound to their parsing logic and (2) their documentation can be checked using the help command.
  */
 public class CommandMapper {
 
     private CommandMap commandMap;
-    private AddressBookParser parser;
+    private ResiRegParser parser;
 
     /**
      * Creates a new CommandMapper with all the commands supported by the application bound appropriately.
@@ -78,13 +78,12 @@ public class CommandMapper {
         commandMap.addCommand(ListAliasCommand.COMMAND_WORD, ListAliasCommand.HELP, unused -> new ListAliasCommand());
 
 
-
         for (CommandWordAlias commandWordAlias : aliases) {
             commandMap.addAliasCommand(commandWordAlias.getAlias().toString(),
                 commandWordAlias.getCommandWord().toString());
         }
 
-        parser = new AddressBookParser(commandMap.getCommandWordToParserMap());
+        parser = new ResiRegParser(commandMap.getCommandWordToParserMap());
     }
 
     public Map<String, Help> getCommandWordToHelpMap() {
@@ -97,7 +96,7 @@ public class CommandMapper {
      *
      * @return Parser.
      */
-    AddressBookParser getParser() {
+    ResiRegParser getParser() {
         return parser;
     }
 

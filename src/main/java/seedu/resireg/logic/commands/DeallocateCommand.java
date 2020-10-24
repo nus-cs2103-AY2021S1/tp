@@ -14,7 +14,7 @@ import seedu.resireg.model.student.Student;
 
 
 /**
- * Deallocates a room to a student to the address book.
+ * Deallocates a room to a student to ResiReg.
  */
 public class DeallocateCommand extends Command {
 

@@ -10,10 +10,10 @@ import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.logic.commands.Command;
 import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.exceptions.CommandException;
-import seedu.resireg.logic.parser.AddressBookParser;
+import seedu.resireg.logic.parser.ResiRegParser;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.Model;
-import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -28,7 +28,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private AddressBookParser addressBookParser; // mutable, to allow for dynamic aliasing
+    private ResiRegParser resiRegParser; // mutable, to allow for dynamic aliasing
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -43,12 +43,12 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        addressBookParser = new CommandMapper(model.getCommandWordAliases()).getParser();
-        Command command = addressBookParser.parseCommand(commandText);
+        resiRegParser = new CommandMapper(model.getCommandWordAliases()).getParser();
+        Command command = resiRegParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveResiReg(model.getResiReg());
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -58,8 +58,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyResiReg getResiReg() {
+        return model.getResiReg();
     }
 
     @Override
@@ -78,8 +78,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getResiRegFilePath() {
+        return model.getResiRegFilePath();
     }
 
     @Override

@@ -7,7 +7,7 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
-import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -26,11 +26,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ResiReg.
      *
-     * @see seedu.resireg.model.Model#getAddressBook()
+     * @see seedu.resireg.model.Model#getResiReg()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyResiReg getResiReg();
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
@@ -42,9 +42,9 @@ public interface Logic {
     ObservableList<Allocation> getFilteredAllocationList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' ResiReg file path.
      */
-    Path getAddressBookFilePath();
+    Path getResiRegFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
