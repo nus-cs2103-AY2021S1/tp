@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import static seedu.address.commons.core.Messages.HELP_START;
 import static seedu.address.commons.core.Messages.HELP_SUMMARY;
+import static seedu.address.commons.core.Messages.MESSAGE_HELP_ON_START;
 
 import java.util.logging.Logger;
 
@@ -130,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
-        resultDisplay.setFeedbackToUser(HELP_SUMMARY);
+        resultDisplay.setFeedbackToUser(MESSAGE_HELP_ON_START);
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         deliveryListPanel = new DeliveryListPanel(logic.getFilteredDeliveryList());
