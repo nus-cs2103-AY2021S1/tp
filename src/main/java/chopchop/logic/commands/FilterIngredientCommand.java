@@ -1,19 +1,13 @@
 package chopchop.logic.commands;
 
-import java.util.Optional;
-import java.util.Set;
+import static java.util.Objects.requireNonNull;
 
 import chopchop.commons.core.Messages;
-import chopchop.commons.util.Result;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
-import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.ExpiryDateMatchesKeywordsPredicate;
-import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 import chopchop.ui.DisplayNavigator;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all ingredients in ingredient book whose name contains any of the argument keywords.

@@ -1,6 +1,14 @@
 package chopchop.model.ingredient;
 
-import java.util.*;
+import static java.util.Objects.requireNonNull;
+
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.TreeMap;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.Entry;
@@ -9,8 +17,6 @@ import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.commons.util.Pair;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an Ingredient in the recipe manager.
