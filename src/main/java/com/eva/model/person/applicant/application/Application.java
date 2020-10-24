@@ -1,12 +1,9 @@
 package com.eva.model.person.applicant.application;
 
-import static com.eva.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import com.eva.model.person.Name;
 
 /**
  * Represents an Applicant's application, similar to a resume.
@@ -31,6 +28,9 @@ public class Application {
         this.educationSection = educationSection;
     }
 
+    /**
+     * Creates a blank Application object without details.
+     */
     public Application() {
         this.applicantName = "Default";
         this.experienceSection = new ArrayList<>();

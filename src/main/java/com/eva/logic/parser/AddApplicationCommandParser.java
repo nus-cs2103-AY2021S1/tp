@@ -74,7 +74,7 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
             Application application = new Application(name, expList, eduList);
             Index index = ParserUtil.parseIndex(indexNo);
             return new AddApplicationCommand(index, application);
-        } catch (ParseException pe){
+        } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddApplicationCommand.MESSAGE_USAGE_2), pe);
         }
