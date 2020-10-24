@@ -117,17 +117,17 @@ public class Person {
      * Returns true if both teammates of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two teammates.
      */
-    public boolean isSameTeammate(Person otherTeammate) {
-        if (otherTeammate == this) {
+    public boolean isSamePerson(Person otherPerson) {
+        if (otherPerson == this) {
             return true;
         }
 
-        return otherTeammate != null
-            && otherTeammate.getGitUserName().equals(getGitUserName())
-            && otherTeammate.getPhone().equals(getPhone())
-            && otherTeammate.getEmail().equals(getEmail())
-            && (otherTeammate.getPersonName().equals(getPersonName())
-            || otherTeammate.getAddress().equals(getAddress()));
+        return otherPerson != null
+            && otherPerson.getGitUserName().equals(getGitUserName())
+            && otherPerson.getPhone().equals(getPhone())
+            && otherPerson.getEmail().equals(getEmail())
+            && (otherPerson.getPersonName().equals(getPersonName())
+            || otherPerson.getAddress().equals(getAddress()));
     }
 
     /**
