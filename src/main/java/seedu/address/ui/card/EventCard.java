@@ -1,7 +1,6 @@
-package seedu.address.ui;
+package seedu.address.ui.card;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -10,13 +9,15 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.task.Description;
 //import seedu.address.model.task.State;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.event.Event;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Task}.
  */
-public class TaskCard extends UiPart<Region> {
+public class EventCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "EventCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +25,7 @@ public class TaskCard extends UiPart<Region> {
      * or an exception will be thrown by JavaFX during runtime.
      */
 
-    public final Task task;
+    public final Event event;
 
     @FXML
     private HBox cardPane;
@@ -35,15 +36,9 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label status;
+    private Label from;
     @FXML
-    private CheckBox statusSign;
-    @FXML
-    private Label type;
-    @FXML
-    private HBox dateTimeHolder;
-    @FXML
-    private Label dateTime;
+    private Label to;
     @FXML
     private HBox descriptionHolder;
     @FXML
@@ -52,32 +47,14 @@ public class TaskCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
-    public TaskCard(Task task, int displayedIndex) {
+    public EventCard(Event event, int displayedIndex) {
         super(FXML);
-        this.task = task;
+        this.event = event;
         id.setText(displayedIndex + ". ");
-        title.setText(task.getTitle().title);
-        type.setText("haha");
-        loadStatus(task);
-        loadDescription(task);
-        loadDateTime(task);
-    }
-
-    private boolean loadStatus(Task task) {
-        statusSign.setSelected(true);
-        status.setText("haha");
-        return true;
-    }
-
-    private boolean loadDateTime(Task task) {
-//        if (task.getDateTime().equals(DateTime.defaultDateTime())) {
-//            card.getChildren().remove(dateTimeHolder);
-//            return false;
-//        } else {
-//            dateTime.setText(task.getDateTime().toString());
-//            return true;
-//        }
-        return false;
+        title.setText(event.getTitle().title);
+        from.setText(event.getStartDateTime().toString());
+        to.setText(event.getEndDateTime().toString());
+        loadDescription(event);
     }
 
     private boolean loadDescription(Task task) {
@@ -85,7 +62,7 @@ public class TaskCard extends UiPart<Region> {
             card.getChildren().remove(descriptionHolder);
             return false;
         } else {
-            description.setText(task.getDescription().value.toString());
+            description.setText(task.getDescription().value);
             return true;
         }
     }
@@ -98,13 +75,13 @@ public class TaskCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TaskCard)) {
+        if (!(other instanceof EventCard)) {
             return false;
         }
 
         // state check
-        TaskCard card = (TaskCard) other;
+        EventCard card = (EventCard) other;
         return id.getText().equals(card.id.getText())
-                && task.equals(card.task);
+                && event.equals(card.event);
     }
 }

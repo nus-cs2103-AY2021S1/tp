@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.card;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -7,13 +7,14 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Description;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Lesson}.
  */
 public class LessonCard extends UiPart<Region> {
 
-    private static final String FXML = "LessonListCard.fxml";
+    private static final String FXML = "LessonCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
