@@ -82,8 +82,10 @@ public class SampleDataUtil {
         String instrString = instruction.substring(17, instruction.length() - 2);
         String[] instructions = instrString.split("\\.");
         ArrayList<Instruction> instructionList = new ArrayList<>();
+        int index = 1;
         for (String instr : instructions) {
-            instructionList.add(new Instruction(instr.trim()));
+            instructionList.add(new Instruction((index) + ") " + instr.trim()));
+            index = index + 1;
         }
         return instructionList;
     }
@@ -136,8 +138,8 @@ public class SampleDataUtil {
 
     private static Recipe getFallbackRecipe() {
         Name name = new Name("Tahini cake");
-        Instruction instruction1 = new Instruction("Heat oven");
-        Instruction instruction2 = new Instruction("Add flour");
+        Instruction instruction1 = new Instruction("1) Heat oven");
+        Instruction instruction2 = new Instruction("2) Add flour");
         ArrayList<Instruction> instructionList = new ArrayList<>();
         instructionList.add(instruction1);
         instructionList.add(instruction2);

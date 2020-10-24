@@ -62,8 +62,8 @@ public class CommandTestUtil {
     public static final String VALID_INGREDIENT_NOODLE = "Pasta fettuccine";
     public static final String VALID_QUANTITY_NOODLE = "1/2 pound";
     public static final Integer VALID_CALORIES_NOODLE = 180;
-    public static final String VALID_INSTRUCTION_NOODLE = "Cook the noodles according to package instructions. "
-            + "(If using angel hair, stop just short of the al dente stage.) Drain and set aside. "
+    public static final String VALID_INSTRUCTION_NOODLE = "Cook the noodles according to package instructions "
+            + "(If using angel hair, stop just short of the al dente stage). Drain and set aside. "
             + "Melt butter in a large skillet over medium-high heat. "
             + "Throw in the cooked pasta and cook it around in the butter for a couple of minutes "
                 + "so that a few of the noodles get a little bit of a panfried texture to them, whatever that means. "

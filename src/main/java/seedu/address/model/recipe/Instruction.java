@@ -2,6 +2,8 @@ package seedu.address.model.recipe;
 
 import static java.util.Objects.requireNonNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Instruction {
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -12,7 +14,7 @@ public class Instruction {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[\\p{Alnum}\\p{Punct}][\\p{Alnum}\\p{Punct} ]*";
 
     public final String instructions;
 
@@ -21,9 +23,13 @@ public class Instruction {
      *
      * @param instructions A valid instruction.
      */
-    public Instruction(String instructions) {
+    public Instruction(@JsonProperty("instructions") String instructions) {
         requireNonNull(instructions);
         this.instructions = instructions;
+    }
+
+    public String getInstruction() {
+        return this.instructions;
     }
 
     /**

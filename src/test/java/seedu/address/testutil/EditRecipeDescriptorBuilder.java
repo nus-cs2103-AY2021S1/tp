@@ -96,7 +96,7 @@ public class EditRecipeDescriptorBuilder {
         String[] instructionsToken = instruction.split("\\.");
         ArrayList<Instruction> instructions = new ArrayList<>();
         for (int i = 0; i < instructionsToken.length; i++) {
-            instructions.add(new Instruction(instructionsToken[i].trim()));
+            instructions.add(new Instruction((i + 1) + ") " + instructionsToken[i].trim()));
         }
         descriptor.setInstruction(instructions);
         return this;
