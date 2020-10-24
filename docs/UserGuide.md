@@ -130,36 +130,30 @@ Examples:
 
 ### Find a task by an attribute: `find`
 
-Finds a task by a set of defined attributes.
+Finds a task by a set of attributes given below.
 
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
-If different attributes are supplied, tasks that match all attributes will be displayed.
-If multiple search phrases of the same attribute is supplied, tasks that match any of the 
-search phrase will be displayed.
-
-Search phrases supplied must be valid input.
+If you provide different attributes in the command, tasks that match all attributes will be displayed.
+If you provide multiple search phrases of the same attribute, tasks that match any of the 
+search phrase of the same attribute will be displayed.
 
 Available attributes in v1.3 include:
-* `title:` find all tasks with the search phrase in the given title
-* `desc:` find all tasks with the search phrase in the given description
-* `type:` find all tasks of the given type
-* `date:` find all tasks with the given date and/or time
-* `status:` find all tasks with the given status
-* `tag:` find all tasks related with the given module tag
+* `title:` finds all tasks which contain the search phrase in the given title
+* `desc:` finds all tasks which contain the search phrase in the given description
+* `type:` finds all tasks of the given type
+* `date:` finds all tasks with the given date and/or time
+* `status:` finds all tasks with the given status
+* `tag:` finds all tasks related with the given module tag
 
 Examples:
 
-* `find title:play games` will list all tasks with title that includes the phrase `play games`
-
+* `find title:play games` will list all tasks with a title that includes the phrase `play games`
 * `find type:todo` will list all tasks with the type `todo`
-
-* `find title:dinner type:todo` will list all tasks with a title that includes `dinner` and of the type `todo`
-
+* `find title:dinner type:todo` will list all tasks with a title that includes `dinner` and is of the type `todo`
 * `find date:01-01-2020 11:00` will list all tasks with the date 01-01-2020 11:00
-
-* `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and title that includes either
-  `dinner` or `lunch`
+* `find title:dinner title:lunch type:todo` will list all tasks with the type `todo` and with the title 
+   that includes either `dinner` or `lunch`
 
   
 
