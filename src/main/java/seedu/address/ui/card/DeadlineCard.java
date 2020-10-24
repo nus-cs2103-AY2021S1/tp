@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.card;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -10,13 +10,14 @@ import javafx.scene.layout.VBox;
 import seedu.address.model.task.Description;
 //import seedu.address.model.task.State;
 import seedu.address.model.task.Task;
+import seedu.address.ui.UiPart;
 
 /**
  * An UI component that displays information of a {@code Task}.
  */
-public class TaskCard extends UiPart<Region> {
+public class DeadlineCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml";
+    private static final String FXML = "DeadlineCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -52,7 +53,7 @@ public class TaskCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
-    public TaskCard(Task task, int displayedIndex) {
+    public DeadlineCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
@@ -98,12 +99,12 @@ public class TaskCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TaskCard)) {
+        if (!(other instanceof DeadlineCard)) {
             return false;
         }
 
         // state check
-        TaskCard card = (TaskCard) other;
+        DeadlineCard card = (DeadlineCard) other;
         return id.getText().equals(card.id.getText())
                 && task.equals(card.task);
     }
