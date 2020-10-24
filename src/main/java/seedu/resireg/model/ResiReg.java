@@ -11,9 +11,9 @@ import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.allocation.UniqueAllocationList;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.UniqueRoomList;
-import seedu.resireg.model.semester.AcademicYear;
 import seedu.resireg.model.semester.Semester;
-import seedu.resireg.model.semester.SemesterNumber;
+import seedu.resireg.model.semester.academicyear.AcademicYear;
+import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.model.student.UniqueStudentList;
 

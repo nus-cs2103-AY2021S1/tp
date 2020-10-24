@@ -10,6 +10,9 @@ import java.util.Objects;
 
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.roomtype.RoomType;
+import seedu.resireg.model.semester.academicyear.AcademicYear;
+import seedu.resireg.model.semester.roomrate.RoomRate;
+import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 
 /**
  * Represents a Semester in ResiReg.
@@ -71,8 +74,8 @@ public class Semester {
         }
 
         return otherSemester != null
-                && Objects.equals(otherSemester.getAcademicYear(), getAcademicYear())
-                && Objects.equals(otherSemester.getSemesterNumber(), getSemesterNumber());
+            && Objects.equals(otherSemester.getAcademicYear(), getAcademicYear())
+            && Objects.equals(otherSemester.getSemesterNumber(), getSemesterNumber());
     }
 
     @Override
@@ -92,25 +95,25 @@ public class Semester {
 
         Semester otherSemester = (Semester) other;
         return otherSemester.getAcademicYear().equals(getAcademicYear())
-                && otherSemester.getSemesterNumber().equals(getSemesterNumber())
-                && Objects.equals(otherSemester.getRoomFees(), getRoomFees())
-                && Objects.equals(otherSemester.getAllocations(), getAllocations());
+            && otherSemester.getSemesterNumber().equals(getSemesterNumber())
+            && Objects.equals(otherSemester.getRoomFees(), getRoomFees())
+            && Objects.equals(otherSemester.getAllocations(), getAllocations());
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(" Academic Year: ")
-                .append(getAcademicYear())
-                .append(" Semester: ")
-                .append(getSemesterNumber())
-                .append(" Room Fees: (");
+            .append(getAcademicYear())
+            .append(" Semester: ")
+            .append(getSemesterNumber())
+            .append(" Room Fees: (");
         getRoomFees().forEach((roomType, fee) ->
-                builder.append(" Room type: ")
-                        .append(roomType.toString())
-                        .append(", Fee: ")
-                        .append(fee)
-                        .append(" "));
+            builder.append(" Room type: ")
+                .append(roomType.toString())
+                .append(", Fee: ")
+                .append(fee)
+                .append(" "));
         builder.append(") ");
         return builder.toString();
     }

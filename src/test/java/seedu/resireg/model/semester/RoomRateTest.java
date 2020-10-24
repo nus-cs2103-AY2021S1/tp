@@ -7,6 +7,8 @@ import static seedu.resireg.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.model.semester.roomrate.RoomRate;
+
 class RoomRateTest {
     @Test
     public void constructor_invalidRoomRate_throwsIllegalArgumentException() {

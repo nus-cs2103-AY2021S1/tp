@@ -1,4 +1,4 @@
-package seedu.resireg.model.semester;
+package seedu.resireg.model.semester.semesternumber;
 
 import static seedu.resireg.commons.util.AppUtil.checkArgument;
 

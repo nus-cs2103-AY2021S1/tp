@@ -12,10 +12,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.resireg.commons.exceptions.IllegalValueException;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.roomtype.RoomType;
-import seedu.resireg.model.semester.AcademicYear;
-import seedu.resireg.model.semester.RoomRate;
 import seedu.resireg.model.semester.Semester;
-import seedu.resireg.model.semester.SemesterNumber;
+import seedu.resireg.model.semester.academicyear.AcademicYear;
+import seedu.resireg.model.semester.roomrate.RoomRate;
+import seedu.resireg.model.semester.semesternumber.SemesterNumber;
 
 /**
  * Jackson-friendly version of {@link Semester}.
@@ -56,8 +56,8 @@ public class JsonAdaptedSemester {
         academicYear = source.getAcademicYear().value;
         semesterNumber = source.getSemesterNumber().value;
         allocations.addAll(source.getAllocations().stream()
-                .map(JsonAdaptedAllocation::new)
-                .collect(Collectors.toList()));
+            .map(JsonAdaptedAllocation::new)
+            .collect(Collectors.toList()));
     }
 
     /**

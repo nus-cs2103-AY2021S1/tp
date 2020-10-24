@@ -6,6 +6,8 @@ import static seedu.resireg.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.model.semester.semesternumber.SemesterNumber;
+
 class SemesterNumberTest {
     @Test
     public void constructor_invalidSemesterNumber_throwsIllegalArgumentException() {
