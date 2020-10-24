@@ -17,6 +17,7 @@ import seedu.address.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     //Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     //Predicate<Person> PREDICATE_SHOW_ALL_TEAMMATES = unused -> true;
 

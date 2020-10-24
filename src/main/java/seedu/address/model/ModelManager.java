@@ -128,6 +128,30 @@ public class ModelManager implements Model {
         mainCatalogue.setProject(target, editedProject);
     }
 
+    @Override
+    public boolean hasPerson(Person person) {
+        requireNonNull(person);
+        return mainCatalogue.hasPerson(person);
+    }
+
+    @Override
+    public void deletePerson(Person target) {
+        mainCatalogue.removePerson(target);
+    }
+
+    @Override
+    public void addPerson(Person person) {
+        mainCatalogue.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
+    public void setPerson(Person target, Person editedPerson) {
+        requireAllNonNull(target, editedPerson);
+
+        mainCatalogue.setPerson(target, editedPerson);
+    }
+
     //=========== Scoping modifiers ===========================================================================
 
     @Override
