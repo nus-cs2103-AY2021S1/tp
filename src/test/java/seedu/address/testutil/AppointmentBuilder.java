@@ -24,8 +24,8 @@ import java.util.Set;
 public class AppointmentBuilder {
 
     public static final String DEFAULT_NAME = "Danny Williams";
-    public static final String DEFAULT_START_TIME = "2020-02-02T14:20";
-    public static final String DEFAULT_END_TIME = "2020-02-02T14:35";
+    public static final String DEFAULT_START_TIME = "2020-02-02 14:20";
+    public static final String DEFAULT_END_TIME = "2020-02-02 14:35";
 
     private Name patientName;
     private AppointmentDateTime startTime;

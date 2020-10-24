@@ -39,24 +39,24 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SECO
 public class TypicalAppointments {
 
     public static final Appointment APP1 = new AppointmentBuilder().withPatientName("Alice Pauline")
-            .withStartTime("2020-10-24T10:20").withEndTime("2020-10-24T10:50").build();
+            .withStartTime("2020-10-24 10:20").withEndTime("2020-10-24 10:50").build();
 
     public static final Appointment APP2 = new AppointmentBuilder().withPatientName("Benson Meier")
-            .withStartTime("2020-10-25T14:00").withEndTime("2020-10-25T14:20").build();
+            .withStartTime("2020-10-25 14:00").withEndTime("2020-10-25 14:20").build();
 
     public static final Appointment APP3 = new AppointmentBuilder().withPatientName("Carl Kurz")
-            .withStartTime("2020-10-25T15:50").withEndTime("2020-10-25T16:10").build();
+            .withStartTime("2020-10-25 15:50").withEndTime("2020-10-25 16:10").build();
 
     public static final Appointment APP4 = new AppointmentBuilder().withPatientName("Daniel Meier")
-            .withStartTime("2020-10-25T16:20").withEndTime("2020-10-25T16:50").build();
+            .withStartTime("2020-10-25 16:20").withEndTime("2020-10-25 16:50").build();
 
     public static final Appointment APP5 = new AppointmentBuilder().withPatientName("Elle Meyer")
-            .withStartTime("2020-10-25T17:00").withEndTime("2020-10-24T17:10").build();
+            .withStartTime("2020-10-25 17:00").withEndTime("2020-10-24 17:10").build();
 
     // Manually added - Appointment's details found in {@code CommandTestUtil}
-    public static final Appointment FIRST = new AppointmentBuilder().withPatientName(VALID_PATIENT_NAME_FIRST)
+    public static final Appointment FIRST_APP = new AppointmentBuilder().withPatientName(VALID_PATIENT_NAME_FIRST)
             .withStartTime(VALID_START_TIME_FIRST).withEndTime(VALID_END_TIME_FIRST).build();
-    public static final Appointment SECOND = new AppointmentBuilder().withPatientName(VALID_PATIENT_NAME_SECOND)
+    public static final Appointment SECOND_APP = new AppointmentBuilder().withPatientName(VALID_PATIENT_NAME_SECOND)
             .withStartTime(VALID_START_TIME_SECOND).withEndTime(VALID_END_TIME_SECOND).build();
 
     private TypicalAppointments() {} // prevents instantiation

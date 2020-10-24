@@ -8,58 +8,58 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SECOND;
-import static seedu.address.testutil.TypicalAppointments.FIRST;
-import static seedu.address.testutil.TypicalAppointments.SECOND;
+import static seedu.address.testutil.TypicalAppointments.FIRST_APP;
+import static seedu.address.testutil.TypicalAppointments.SECOND_APP;
 
 public class AppointmentTest {
 
     @Test
     public void isSameAppointment() {
         // same object -> returns true
-        assertTrue(FIRST.isSameAppointment(FIRST));
+        assertTrue(FIRST_APP.isSameAppointment(FIRST_APP));
 
         // null -> returns false
-        assertFalse(FIRST.isSameAppointment(null));
+        assertFalse(FIRST_APP.isSameAppointment(null));
 
         // different patient name -> returns false
-        Appointment editedFirst = new AppointmentBuilder(FIRST).withPatientName(VALID_PATIENT_NAME_SECOND).build();
-        assertFalse(FIRST.isSameAppointment(editedFirst));
+        Appointment editedFirst = new AppointmentBuilder(FIRST_APP).withPatientName(VALID_PATIENT_NAME_SECOND).build();
+        assertFalse(FIRST_APP.isSameAppointment(editedFirst));
 
         // same patient name and different time -> returns true
-        editedFirst = new AppointmentBuilder(FIRST).withEndTime(VALID_END_TIME_SECOND).build();
-        assertTrue(FIRST.isSameAppointment(editedFirst));
+        editedFirst = new AppointmentBuilder(FIRST_APP).withEndTime(VALID_END_TIME_SECOND).build();
+        assertTrue(FIRST_APP.isSameAppointment(editedFirst));
 
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Appointment firstCopy = new AppointmentBuilder(FIRST).build();
-        assertTrue(FIRST.equals(firstCopy));
+        Appointment firstCopy = new AppointmentBuilder(FIRST_APP).build();
+        assertTrue(FIRST_APP.equals(firstCopy));
 
         // same object -> returns true
-        assertTrue(FIRST.equals(FIRST));
+        assertTrue(FIRST_APP.equals(FIRST_APP));
 
         // null -> returns false
-        assertFalse(FIRST.equals(null));
+        assertFalse(FIRST_APP.equals(null));
 
         // different type -> returns false
-        assertFalse(FIRST.equals(5));
+        assertFalse(FIRST_APP.equals(5));
 
         // different patient -> returns false
-        assertFalse(FIRST.equals(SECOND));
+        assertFalse(FIRST_APP.equals(SECOND_APP));
 
         // different patient name -> returns false
-        Appointment editedFirst = new AppointmentBuilder(FIRST).withPatientName(VALID_PATIENT_NAME_SECOND).build();
-        assertFalse(FIRST.equals(editedFirst));
+        Appointment editedFirst = new AppointmentBuilder(FIRST_APP).withPatientName(VALID_PATIENT_NAME_SECOND).build();
+        assertFalse(FIRST_APP.equals(editedFirst));
 
         // different start time -> returns false
-        editedFirst = new AppointmentBuilder(FIRST).withStartTime(VALID_START_TIME_SECOND).build();
-        assertFalse(FIRST.equals(editedFirst));
+        editedFirst = new AppointmentBuilder(FIRST_APP).withStartTime(VALID_START_TIME_SECOND).build();
+        assertFalse(FIRST_APP.equals(editedFirst));
 
         // different end time -> returns false
-        editedFirst = new AppointmentBuilder(FIRST).withEndTime(VALID_END_TIME_SECOND).build();
-        assertFalse(FIRST.equals(editedFirst));
+        editedFirst = new AppointmentBuilder(FIRST_APP).withEndTime(VALID_END_TIME_SECOND).build();
+        assertFalse(FIRST_APP.equals(editedFirst));
 
     }
 }
