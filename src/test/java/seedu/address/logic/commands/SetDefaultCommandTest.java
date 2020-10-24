@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -18,34 +19,51 @@ import seedu.address.model.ingredient.IngredientName;
 
 class SetDefaultCommandTest {
 
+    private static final IngredientBook stubBook = new IngredientBook();
+    private static final IngredientBook stubBook2 = new IngredientBook();
+    private static final IngredientBook filledBook = new IngredientBook();
+
     @Test
-    public void execute_zeroIngredientBook_success() {
+    public void execute_emptyIngredientBook_success() {
         Model model = new ModelManager();
 
         Model expectedModel = new ModelManager();
 
-        IngredientBook defaultIngredientBook = new IngredientBook();
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Milk")),
+        stubBook.addIngredient(new Ingredient(new IngredientName("Milk")));
+        stubBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
+        stubBook.addIngredient(new Ingredient(new IngredientName("Boba")));
+        stubBook.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        stubBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
+
+        stubBook.setIngredient(new Ingredient(new IngredientName("Milk")),
                 new Ingredient(new IngredientName("Milk"), new Amount("50")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Pearl")),
+        stubBook.setIngredient(new Ingredient(new IngredientName("Pearl")),
                 new Ingredient(new IngredientName("Pearl"), new Amount("20")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Boba")),
+        stubBook.setIngredient(new Ingredient(new IngredientName("Boba")),
                 new Ingredient(new IngredientName("Boba"), new Amount("20")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
+        stubBook.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
                 new Ingredient(new IngredientName("Oolong Tea"), new Amount("50")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
+        stubBook.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
                 new Ingredient(new IngredientName("Brown Sugar"), new Amount("20")));
 
-        ReadOnlyIngredientBook defaultReadOnlyIngredientBook = defaultIngredientBook;
+        ReadOnlyIngredientBook defaultReadOnlyIngredientBook = stubBook;
         expectedModel.setIngredientBook(defaultReadOnlyIngredientBook);
 
         assertCommandSuccess(new SetDefaultCommand(), model, SetDefaultCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyIngredientBook_success() {
+
+        filledBook.addIngredient(new Ingredient(new IngredientName("Milk")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Boba")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        filledBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
+
         Model model = new ModelManager(getTypicalAddressBook(), new SalesBook(),
-                new IngredientBook(), new UserPrefs());
+                filledBook, new UserPrefs());
+
 
         model.setIngredient(new Ingredient(new IngredientName("Milk")),
                 new Ingredient(new IngredientName("Milk"), new Amount("100")));
@@ -53,21 +71,26 @@ class SetDefaultCommandTest {
                 new Ingredient(new IngredientName("Pearl"), new Amount("120")));
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new SalesBook(),
-                new IngredientBook(), new UserPrefs());
+                stubBook2, new UserPrefs());
 
-        IngredientBook defaultIngredientBook = new IngredientBook();
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Milk")),
+        stubBook2.addIngredient(new Ingredient(new IngredientName("Milk")));
+        stubBook2.addIngredient(new Ingredient(new IngredientName("Pearl")));
+        stubBook2.addIngredient(new Ingredient(new IngredientName("Boba")));
+        stubBook2.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        stubBook2.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
+
+        stubBook2.setIngredient(new Ingredient(new IngredientName("Milk")),
                 new Ingredient(new IngredientName("Milk"), new Amount("50")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Pearl")),
+        stubBook2.setIngredient(new Ingredient(new IngredientName("Pearl")),
                 new Ingredient(new IngredientName("Pearl"), new Amount("20")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Boba")),
+        stubBook2.setIngredient(new Ingredient(new IngredientName("Boba")),
                 new Ingredient(new IngredientName("Boba"), new Amount("20")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
+        stubBook2.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
                 new Ingredient(new IngredientName("Oolong Tea"), new Amount("50")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
+        stubBook2.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
                 new Ingredient(new IngredientName("Brown Sugar"), new Amount("20")));
 
-        ReadOnlyIngredientBook defaultReadOnlyIngredientBook = defaultIngredientBook;
+        ReadOnlyIngredientBook defaultReadOnlyIngredientBook = stubBook2;
 
         expectedModel.setIngredientBook(defaultReadOnlyIngredientBook);
 

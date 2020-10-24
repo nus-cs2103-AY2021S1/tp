@@ -5,7 +5,16 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.Drink;
+import seedu.address.model.IngredientBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyIngredientBook;
+import seedu.address.model.ReadOnlySalesBook;
+import seedu.address.model.SalesBook;
+import seedu.address.model.SalesRecordEntry;
+import seedu.address.model.ingredient.Amount;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.IngredientName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ArchiveStatus;
 import seedu.address.model.person.Name;
@@ -52,12 +61,42 @@ public class SampleDataUtil {
         };
     }
 
+    public static SalesRecordEntry[] getSampleSales() {
+        return new SalesRecordEntry[]{
+            new SalesRecordEntry(Drink.BSBM, 0),
+            new SalesRecordEntry(Drink.BSBBT, 0),
+            new SalesRecordEntry(Drink.BSBGT, 0),
+            new SalesRecordEntry(Drink.BSPM, 0),
+            new SalesRecordEntry(Drink.BSPBT, 0),
+            new SalesRecordEntry(Drink.BSPGT, 0)
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+
+    public static ReadOnlySalesBook getSampleSalesBook() {
+        SalesBook sampleSb = new SalesBook();
+        for (SalesRecordEntry sampleSalesRecordEntry : getSampleSales()) {
+            sampleSb.addSalesRecordEntry(sampleSalesRecordEntry);
+        }
+        return sampleSb;
+    }
+
+    public static Ingredient[] getSampleIngredients() {
+        return new Ingredient[]{
+            new Ingredient(new IngredientName("Milk"), new Amount("0")),
+            new Ingredient(new IngredientName("Pearl"), new Amount("0")),
+            new Ingredient(new IngredientName("Boba"), new Amount("0")),
+            new Ingredient(new IngredientName("Oolong Tea"), new Amount("0")),
+            new Ingredient(new IngredientName("Brown Sugar"), new Amount("0"))
+        };
     }
 
     /**
@@ -69,4 +108,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static ReadOnlyIngredientBook getSampleIngredientBook() {
+        IngredientBook sampleIb = new IngredientBook();
+        for (Ingredient sampleIngredient : getSampleIngredients()) {
+            sampleIb.addIngredient(sampleIngredient);
+        }
+        return sampleIb;
+    }
 }
