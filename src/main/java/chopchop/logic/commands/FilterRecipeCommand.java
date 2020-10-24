@@ -22,15 +22,12 @@ public class FilterRecipeCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " sugar";
 
-
-    //    private final List<IngredientsContainsKeywordsPredicate> ingredientPredicates;
-    //    private final List<TagContainsKeywordsPredicate> tagPredicates;
     private final IngredientsContainsKeywordsPredicate ingredientPredicates;
     private final TagContainsKeywordsPredicate tagPredicates;
 
     /**
      * Constructs a command that filters and finds the matching recipe items.
-     * @param indPredicate
+     * @param indPredicates
      * @param tagPredicates
      */
     public FilterRecipeCommand(TagContainsKeywordsPredicate tagPredicates,
@@ -42,15 +39,6 @@ public class FilterRecipeCommand extends Command {
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) {
         requireNonNull(model);
-
-        /*
-        for (TagContainsKeywordsPredicate tp : tagPredicates) {
-            model.updateFilteredRecipeList(tp);
-        }
-
-        for (IngredientsContainsKeywordsPredicate ip : ingredientPredicates) {
-            model.updateFilteredRecipeList(ip);
-        }*/
 
         if (tagPredicates != null) {
             model.updateFilteredRecipeList(tagPredicates);
