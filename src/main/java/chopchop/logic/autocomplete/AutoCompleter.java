@@ -124,7 +124,7 @@ public class AutoCompleter {
         assert args.getAllArguments().size() > 0;
 
         var lastArg = args.getAllArguments().get(args.getAllArguments().size() - 1);
-        var argName = lastArg.fst().toString();
+        var argName = lastArg.fst().name();
 
         // we could complete all arguments for you, but we can do something a little smarter
         // by looking at the current command+target combo to get the valid arguments.
@@ -151,7 +151,7 @@ public class AutoCompleter {
         }
 
         for (var validArg : validArguments) {
-            var va = validArg.toString();
+            var va = validArg.name();
 
             if (va.equals(argName)) {
                 return orig;

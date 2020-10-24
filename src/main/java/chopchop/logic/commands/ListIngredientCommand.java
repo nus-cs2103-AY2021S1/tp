@@ -25,4 +25,14 @@ public class ListIngredientCommand extends Command {
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this || (other instanceof ListIngredientCommand);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("ListIngredientCommand");
+    }
 }

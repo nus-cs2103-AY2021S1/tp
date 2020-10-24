@@ -117,4 +117,10 @@ public class DeleteIngredientCommand extends Command implements Undoable {
                 && this.item.equals(((DeleteIngredientCommand) other).item)
                 && this.quantity.equals(((DeleteIngredientCommand) other).quantity));
     }
+
+    @Override
+    public String toString() {
+        return String.format("DeleteIngredientCommand(%s%s)", this.item,
+            this.quantity.map(q -> String.format(" (%s)", q)).orElse(""));
+    }
 }
