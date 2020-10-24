@@ -6,6 +6,7 @@ import javafx.scene.layout.Region;
 
 /**
  * The UI component that is responsible for displaying pinned information.
+ * Displays results of statistics.
  */
 public class PinBox extends UiPart<Region> {
 
@@ -14,12 +15,16 @@ public class PinBox extends UiPart<Region> {
     @FXML
     private TextArea pins;
 
+    @FXML
+    private TextArea header1;
+
+
     /**
      * Creates a {@code PinBox}.
      */
     public PinBox() {
         super(FXML);
-        // Have to decide what to do with this real estate uwu
         pins.setText("Statistics\nTo be implemented.");
+        header1.setText("This is header 1");
     }
 }

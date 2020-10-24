@@ -10,7 +10,12 @@
         <URL value="@Style.css" />
     </stylesheets>
     <children>
-        <Rectangle styleClass="pins-background" arcHeight="32.0" arcWidth="48.0"  height="270.0" stroke="BLACK" strokeType="INSIDE" width="285.0" />
-        <TextArea fx:id="pins" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$pins" editable="false"/>
+        <Rectangle styleClass="pins-background" arcHeight="32.0" arcWidth="48.0"  height="265.0" stroke="BLACK" strokeType="INSIDE" width="285.0" />
+        <VBox alignment="CENTER">
+            <children>
+                <TextArea fx:id="pins" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$pins" editable="false"/>
+                <TextArea fx:id="header1" styleClass="header1" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$header1" editable="false"/>
+            </children>
+        </VBox>
     </children>
 </StackPane>
