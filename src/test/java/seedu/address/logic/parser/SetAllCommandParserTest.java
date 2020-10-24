@@ -1,11 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACK_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOBA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BROWN_SUGAR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MILK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACK_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GREEN_TEA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MILK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PEARL;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -52,7 +52,7 @@ class SetAllCommandParserTest {
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "some random string" + MILK_AMOUNT
-                + PEARL_AMOUNT + BOBA_AMOUNT + BLACK_TEA_AMOUNT + GREEN_TEA_AMOUNT+ BROWN_SUGAR_AMOUNT,
+                + PEARL_AMOUNT + BOBA_AMOUNT + BLACK_TEA_AMOUNT + GREEN_TEA_AMOUNT + BROWN_SUGAR_AMOUNT,
                 MESSAGE_INVALID_FORMAT);
 
         // invalid prefix being parsed as preamble

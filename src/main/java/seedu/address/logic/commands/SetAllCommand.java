@@ -2,11 +2,11 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACK_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BOBA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BROWN_SUGAR;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MILK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_BLACK_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GREEN_TEA;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MILK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PEARL;
 
 import seedu.address.logic.commands.exceptions.CommandException;
