@@ -167,7 +167,7 @@ public class Recipe extends Entry {
                 .add(stepJoiner.toString())
                 .add("Tags:")
                 .add(getTagList())
-                .add("" + this.usages.size());
+                .add("Cooked: " + this.usages.size());
 
         return recipeJoiner.toString();
     }

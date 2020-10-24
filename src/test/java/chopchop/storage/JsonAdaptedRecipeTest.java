@@ -34,14 +34,14 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
-                new JsonAdaptedRecipe(INVALID_NAME, VALID_REFS,  VALID_STEPS, null);
+                new JsonAdaptedRecipe(INVALID_NAME, VALID_REFS, VALID_STEPS, null, null);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(null, VALID_REFS, VALID_STEPS, null);
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(null, VALID_REFS, VALID_STEPS, null, null);
         String expectedMessage = String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
@@ -50,7 +50,7 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidReference_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
-                new JsonAdaptedRecipe(VALID_NAME, Collections.singletonList(INVALID_REF), VALID_STEPS, null);
+                new JsonAdaptedRecipe(VALID_NAME, Collections.singletonList(INVALID_REF), VALID_STEPS, null, null);
         String expectedMessage = String.format(
                 JsonAdaptedIngredientReference.INGREDIENT_REFERENCE_MISSING_FIELD_MESSAGE_FORMAT,
                 Name.class.getSimpleName());
@@ -59,7 +59,7 @@ public class JsonAdaptedRecipeTest {
 
     @Test
     public void toModelType_nullReference_throwsIllegalValueException() {
-        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, null, VALID_STEPS, null);
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, null, VALID_STEPS, null, null);
         String expectedMessage = String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
                 IngredientReference.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
@@ -67,7 +67,7 @@ public class JsonAdaptedRecipeTest {
 
     @Test
     public void toModelType_nullStep_throwsIllegalValueException() {
-        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, VALID_REFS, null, null);
+        JsonAdaptedRecipe recipe = new JsonAdaptedRecipe(VALID_NAME, VALID_REFS, null, null, null);
         String expectedMessage = String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT, Step.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }
