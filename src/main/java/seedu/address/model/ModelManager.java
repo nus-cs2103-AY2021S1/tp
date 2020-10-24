@@ -37,6 +37,8 @@ public class ModelManager implements Model {
     private FilteredList<Food> filteredFoods;
     private FilteredList<OrderItem> filteredOrderItems;
 
+    private boolean changeVendor = false;
+
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -304,7 +306,8 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Food> getFilteredFoodList() {
         //todo the filteredFoods need to be changed and this whole class needs to be updated
-        if (filteredFoods == null) {
+        if (filteredFoods == null || changeVendor) {
+            changeVendor = false;
             updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
         }
         return filteredFoods;
@@ -318,6 +321,11 @@ public class ModelManager implements Model {
     @Override
     public void resetOrder() {
         orderManager.resetOrder();
+    }
+
+    @Override
+    public void updateVendor() {
+        changeVendor = true;
     }
 
     @Override
