@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 ---
-<h1>Warenager’s User Guide</h1>
+<h2>Warenager’s User Guide</h2>
 This user guide introduces our inventory application, Warenager, and provides support
 for the usage of its functionalities. For quick reference, we have provided a summarised table of commands
 and their usage formats at the end of this guide.
@@ -118,7 +118,7 @@ specified in ANY one of fields searched.
 * Fields that can be searched:
     * Name
     * Serial Number
-    * Location stored
+    * Location in warehouse
     * Source of the stock
 
 <h5>Format</h5> 
@@ -160,7 +160,7 @@ Displays a list of stocks found in the inventory that contains all keywords spec
 * Fields that can be searched:
     * Name
     * Serial Number
-    * Location stored
+    * Location in warehouse
     * Source of the stock
 
 <h5>Format</h5>
@@ -206,7 +206,7 @@ Updates the details of the desired stock, requires the serial number of products
 * Fields that can be updated:
     * Name
     * Quantity
-    * Location stored
+    * Location in warehouse
     * Source of the stock
 * Required fields:
     1. Serial number of product
@@ -481,3 +481,5 @@ Action | Format, Examples
 Term | Definition
 --------|------------------
 **CSV File** | Comma-separated values File. It contains data separated by commas.
+
+--------------------------------------------------------------------------------------------------------------------
