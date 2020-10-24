@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.food.Food;
 
 /**
  * Tests that a {@code Vendor}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Vendor> {
+public class NameContainsKeywordsPredicate implements Predicate<Food> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -16,9 +17,10 @@ public class NameContainsKeywordsPredicate implements Predicate<Vendor> {
     }
 
     @Override
-    public boolean test(Vendor vendor) {
+    public boolean test(Food food) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(vendor.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(food.getName(), keyword));
+        //todo: tags
     }
 
     @Override

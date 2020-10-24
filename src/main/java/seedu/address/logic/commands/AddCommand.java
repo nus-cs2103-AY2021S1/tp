@@ -23,8 +23,7 @@ public class AddCommand extends Command {
             + " Index of FoodItem in Menu "
             + " [Quantity of Food to add]";
 
-    public static final String MESSAGE_ADD_FIRST_SUCCESS = "%1$s has been added to your Order";
-    public static final String MESSAGE_ADD_QUANTITY_SUCCESS = "%1$s has been added to your Order";
+    public static final String MESSAGE_ADD_SUCCESS = "%1$s has been added to your Order";
 
     private final Index addIndex;
     private final int quantity;
@@ -52,7 +51,7 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // Todo: This index value will be that of the chosen vendor. As of now the first menu on the list is chosen
-        ObservableList<Food> menu = model.getFilteredFoodList(model.getVendorIndex());
+        ObservableList<Food> menu = model.getFilteredFoodList();
         int index = addIndex.getZeroBased();
 
         if (menu == null) {
@@ -64,7 +63,7 @@ public class AddCommand extends Command {
 
         OrderItem orderItem = new OrderItem(menu.get(index), quantity);
         model.addOrderItem(orderItem);
-        return new CommandResult(String.format(MESSAGE_ADD_FIRST_SUCCESS, orderItem));
+        return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, orderItem));
     }
 
     @Override
