@@ -87,137 +87,51 @@ Format: `exit`
 All tCheck data (i.e. contact details, ingredient data, sales data) are saved in the hard disk automatically after any
  command that changes the data. There is no need to save manually.
 
-### 2. Commands - Contact details <a name="commands-contact-details"></a>
 
-#### 2.1 Adding an employee : `c-add`
+### 2. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 
-Adds an employee to the contact list.
+<div markdown="span" class="alert alert-primary">:information_source:
 
-Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…​`
+**Notice:**
+Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
+ abbreviations are shown as below:
+ 
+* `BSBM`  : Brown Sugar Boba Milk
+* `BSBBT` : Brown Sugar Boba Black Tea
+* `BSBGT` : Brown Sugar Boba Green Tea
+* `BSPM`  : Brown Sugar Pearl Milk
+* `BSPBT` : Brown Sugar Pearl Black Tea
+* `BSPGT` : Brown Sugar Pearl Green Tea
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An employee can have any number of tags (including 0)
 </div>
 
-Examples:
-* `c-add n/John Doe p/98765432 e/81234567`.
-* `c-add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`.
+#### 2.1 Updating the number of drinks sold for the day : `s-update`
+Updates tCheck on the number of each type of drink sold for the current day, based on the sales data provided by the
+user.
 
-#### 2.2 Listing all employees : `c-list`
+Format: `s-update A/NUM B/NUM C/NUM ...`
+* `A`, `B`, `C` are abbreviations for the drink types.
+* `NUM` refers to the number of drinks sold. It should be a non-negative integer.
 
-Shows a list of all employees in the contact list.
+Example:
+* `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
+ Brown Sugar Boba Black Tea `BSBBT` to 120.
 
-Format: `c-list`
-  
-#### 2.3 Editing a person : `c-edit`
+#### 2.2 Listing the number of drinks sold for the day : `s-list`
+Shows a list of all types of drinks sold for the current day.
 
-Edits the corresponding contact information in the contact list.
+Format: `s-list`
 
-Format: `c-edit INDEX n/NAME p/PHONE e/EMERGENCY_CONTACT [t/TAG] …​​`
+#### 2.3 Listing the sales record for a specific day :
+Shows a sales record for each type of mile tea on a specific date.
 
-* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
-* You can remove all the employees’s tags by typing `t/` without
-    specifying any tags after it.
+Format: `sales YYYY-MM-DD`
+* `YYYY-MM-DD` refers to date in YYYY-MM-DD format.
 
-Examples:
-*  `c-edit 1 p/91234567 e/81234567` Edits the phone number and emergency contact of the 1st employee to be `91234567` and
- `81234567` respectively.
-*  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
-
-
-#### 2.4 Locating persons by keywords: `c-find`
-
-Finds all contacts that contain the KEYWORD(s).
-
-Format: `c-find KEYWORD [MORE_KEYWORDS]`
-
-* The search is case-insensitive. e.g `hans` will match `Hans`.
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`.
-* Employees matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
-
-Examples:
-* `c-find John` returns `john` and `John Doe`.
-* `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
-
-#### 2.5 Deleting a person : `c-delete`
-
-Deletes the specified employee from the contact list.
-
-Format: `c-delete INDEX`
-
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `c-list` followed by `c-delete 2` deletes the 2nd employee in the contact list.
-* `c-find Betsy` followed by `c-delete 1` deletes the 1st employee in the results of the `c-find` command.
-
-#### 2.6 Clearing all entries : `c-clear`
-
-Clears all entries from the contact list.
-
-Format: `c-clear`
-
-#### 2.7 Archiving an employee : `c-archive`
-Archives the specified employee's contact detail from the tCheck.
-
-Format: `c-archive INDEX`
-
-* Archives the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-<div markdown="span" class="alert alert-primary">:bulb: ** Tip: **
-Command `c-list` can be used first to show a list of all active employees' contact details. 
-Then, `c-archive INDEX` can be used to archive a specific employee.
-</div>
-
-<div markdown="span" class="alert alert-primary">:warning: ** Warning: **
-A warning message will be shown if user tries to archive a person who is already in the archived list.
-</div>
-
-Examples:
-* `c-list` followed by `c-archive 2` archives the 2nd person in the employees' contact details.
-* `c-find Betsy` followed by `c-archive 1` archives the 1st person in the results of the `find` command.
-
-#### 2.8 Archiving all employees : `c-archive all`
-Archives all employees' contact details from the tCheck.
-
-Format: `c-archive all`
-
-#### 2.9 Listing all archived employees : `c-archive list`
-Shows a list of all archived employees' contact details in tCheck.
-
-Format: `c-archive list`
-
-#### 2.10 Unarchiving an employee : `c-unarchive`
-Unarchives the specified employee's contact detail from the tCheck's archived employee list.
-
-Format: `c-unarchive INDEX`
-
-* Unarchives the employee at the specified `INDEX`.
-* The index refers to the index number shown in the displayed `employees' contact details` panel.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-<div markdown="span" class="alert alert-primary">:bulb: ** Tip: **
-Command `c-archive-list` can be used first to show a list of all archived employees' contact details. 
-Then, `c-unarchive INDEX` can be used to unarchive a specific employee.
-</div>
-
-<div markdown="span" class="alert alert-primary">:warning: ** Warning: **
-A warning message will be shown if user tries to unarchive a person who is not in the archived list.
-</div>
-
-Examples:
-* `c-archive-list` followed by `c-unarchive 2` unarchives the 2nd person in the archived employees' contact details.
-
+Example:
+* `sales 2020-08-01` returns the sales record for each type of milk tea on 2020-08-01.
+ 
+ 
 ### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
 * Unit of measurement for ingredients: 
@@ -236,7 +150,9 @@ Example:
 * `i-set i/Milk m/15`
 
 
-<div markdown="span" class="alert alert-primary">:bulb: **Notice:**
+<div markdown="span" class="alert alert-primary">:information_source:
+
+**Notice:**
 All ingredients which are available and thus can be set are predefined in the ingredient book. 
 Here is a comprehensive list of all available ingredients : Milk, Pearl, Boba, Oolong Tea, Brown Sugar. 
 Please note that the ingredient names are case-sensitive.
@@ -264,12 +180,6 @@ Format: `i-set-default`
 Example:
 * `i-set-default`
 
-
-<div markdown="span" class="alert alert-primary">:bulb: **Notice:**
-Users inputs will be validated, if an invalid command is given, the program will show relevant error messages to notify the user to re-input.
-Example of Error Message:  `No ingredient called ‘suger’ found !` .
-</div>
-
 #### 3.4 Viewing a single ingredient's level : `i-view-single`
 Shows the ingredient's level of a particular type of ingredient which is specified by the user’s command.
 
@@ -289,42 +199,134 @@ Shows the ingredient's levels of all ingredient types.
 
 Format: `i-list`
 
-### 4. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
-Currently, there are 6 types of drinks that can be tracked by tCheck's sales tracker. The drinks and their respective
- abbreviations are shown as below:
-* `BSBM`  : Brown Sugar Boba Milk
-* `BSBBT` : Brown Sugar Boba Black Tea
-* `BSBGT` : Brown Sugar Boba Green Tea
-* `BSPM`  : Brown Sugar Pearl Milk
-* `BSPBT` : Brown Sugar Pearl Black Tea
-* `BSPGT` : Brown Sugar Pearl Green Tea
+### 4. Commands - Contact details <a name="commands-contact-details"></a>
 
-#### 4.1 Updating the number of drinks sold for the day : `s-update`
-Updates tCheck on the number of each type of drink sold for the current day, based on the sales data provided by the
-user.
+#### 4.1 Adding an employee : `c-add`
 
-Format: `s-update A/NUM B/NUM C/NUM ...`
-* `A`, `B`, `C` are abbreviations for the drink types.
-* `NUM` refers to the number of drinks sold. It should be a non-negative integer.
+Adds an employee to the contact list.
 
-Example:
-* `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
- Brown Sugar Boba Black Tea `BSBBT` to 120.
+Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…​`
 
-#### 4.2 Listing the number of drinks sold for the day : `s-list`
-Shows a list of all types of drinks sold for the current day.
+<div markdown="span" class="alert alert-primary">:bulb: 
 
-Format: `s-list`
+**Tip:**
+An employee can have any number of tags (including 0)
+</div>
 
-#### 4.3 Listing the sales record for a specific day :
-Shows a sales record for each type of mile tea on a specific date.
+Examples:
+* `c-add n/John Doe p/98765432 e/81234567`.
+* `c-add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`.
 
-Format: `sales YYYY-MM-DD`
-* `YYYY-MM-DD` refers to date in YYYY-MM-DD format.
+#### 4.2 Listing all employees : `c-list`
 
-Example:
-* `sales 2020-08-01` returns the sales record for each type of milk tea on 2020-08-01.
- 
+Shows a list of all employees in the contact list.
+
+Format: `c-list`
+  
+#### 4.3 Editing a person : `c-edit`
+
+Edits the corresponding contact information in the contact list.
+
+Format: `c-edit INDEX n/NAME p/PHONE e/EMERGENCY_CONTACT [t/TAG] …​​`
+
+* Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the employee will be removed i.e adding of tags is not cumulative.
+* You can remove all the employees’s tags by typing `t/` without
+    specifying any tags after it.
+
+Examples:
+*  `c-edit 1 p/91234567 e/81234567` Edits the phone number and emergency contact of the 1st employee to be `91234567` and
+ `81234567` respectively.
+*  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
+
+
+#### 4.4 Locating persons by keywords: `c-find`
+
+Finds all contacts that contain the KEYWORD(s).
+
+Format: `c-find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `hans` will match `Hans`.
+* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
+* Only the name is searched.
+* Only full words will be matched e.g. `Han` will not match `Hans`.
+* Employees matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`.
+
+Examples:
+* `c-find John` returns `john` and `John Doe`.
+* `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
+
+#### 4.5 Deleting a person : `c-delete`
+
+Deletes the specified employee from the contact list.
+
+Format: `c-delete INDEX`
+
+* Deletes the person at the specified `INDEX`.
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `c-list` followed by `c-delete 2` deletes the 2nd employee in the contact list.
+* `c-find Betsy` followed by `c-delete 1` deletes the 1st employee in the results of the `c-find` command.
+
+#### 4.6 Clearing all entries : `c-clear`
+
+Clears all entries from the contact list.
+
+Format: `c-clear`
+
+#### 4.7 Archiving an employee : `c-archive`
+Archives the specified employee's contact detail from the tCheck.
+
+Format: `c-archive INDEX`
+
+* Archives the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed `employees' contact details` panel.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
+Command `c-list` can be used first to show a list of all active employees' contact details. 
+Then, `c-archive INDEX` can be used to archive a specific employee.
+</div>
+
+Examples:
+* `c-list` followed by `c-archive 2` archives the 2nd person in the employees' contact details.
+* `c-find Betsy` followed by `c-archive 1` archives the 1st person in the results of the `find` command.
+
+#### 4.8 Archiving all employees : `c-archive all`
+Archives all employees' contact details from the tCheck.
+
+Format: `c-archive all`
+
+#### 4.9 Listing all archived employees : `c-archive list`
+Shows a list of all archived employees' contact details in tCheck.
+
+Format: `c-archive list`
+
+#### 4.10 Unarchiving an employee : `c-unarchive`
+Unarchives the specified employee's contact detail from the tCheck's archived employee list.
+
+Format: `c-unarchive INDEX`
+
+* Unarchives the employee at the specified `INDEX`.
+* The index refers to the index number shown in the displayed `employees' contact details` panel.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="span" class="alert alert-primary">:bulb: 
+
+**Tip:**
+Command `c-archive-list` can be used first to show a list of all archived employees' contact details. 
+Then, `c-unarchive INDEX` can be used to unarchive a specific employee.
+</div>
+
+Examples:
+* `c-archive-list` followed by `c-unarchive 2` unarchives the 2nd person in the archived employees' contact details.
 
 
 ## Command summary <a name="command-summary"></a>
@@ -335,6 +337,25 @@ Action | Format, Examples
 -------|------------------------------
 **Help** | `help`
 **Exit** | `exit`
+
+### Sales Tracking
+
+Action | Format, Examples
+-------|------------------------------
+**Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
+**List**| `s-list`
+**Find**| `sales YYYY-MM-DD`
+
+### Ingredients  Tracking
+
+Action | Format, Examples
+-------|------------------------------
+**Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
+**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 O/50 S/100`
+**Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
+**View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
+**Reset**| `i-reset-all`
+**List**| `i-list`
 
 ### Employees' Contact Details
 
@@ -349,24 +370,4 @@ Action | Format, Examples
 **Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive all` <br>3. **List all archived data:**  `c-archive list`</br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
-
-### Ingredients  Tracking
-
-Action | Format, Examples
--------|------------------------------
-**Set a single ingredient**  | `i-set i/INGREDIENT_NAME m/AMOUNT` <br> e.g., `i-set i/Milk m/20`
-**Set all ingredients**  | `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR` <br> e.g., `i-set-all M/20 P/20 B/20 O/50 S/100`
-**Set all ingredients to default**  | `i-set-default` <br> e.g., `i-set-default`
-**View a single ingredient**| `i-view-single INGREDIENT_NAME`  <br> e.g., `i-view-single i/Milk`
-**Reset**| `i-reset-all`
-**List**| `i-list`
-
-
-### Sales Tracking
-
-Action | Format, Examples
--------|------------------------------
-**Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
-**List**| `s-list`
-**Find**| `sales YYYY-MM-DD`
  
