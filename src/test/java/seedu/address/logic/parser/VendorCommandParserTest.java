@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.ParserUtil.MESSAGE_INSUFFICENT_ARGUMENTS;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_TOO_MANY_ARGUMENTS;
 
@@ -24,10 +23,11 @@ public class VendorCommandParserTest {
 
     @Test
     public void parse_invalidValues_failure() {
-        // empty String
-        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                String.format(MESSAGE_INSUFFICENT_ARGUMENTS, VendorCommand.COMMAND_WORD, 1,
-                        VendorCommand.MESSAGE_USAGE)));
+        //TODO: Refactor to VendorCommandTest
+        //        // empty String
+        //        assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        //                String.format(MESSAGE_INSUFFICENT_ARGUMENTS, VendorCommand.COMMAND_WORD, 1,
+        //                        VendorCommand.MESSAGE_USAGE)));
 
         // More than 2 arguments
         assertParseFailure(parser, "1 2 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,

@@ -12,7 +12,7 @@ import seedu.address.model.vendor.Vendor;
 /**
  * Selects a Vendor to order from.
  */
-public class VendorCommand extends Command {
+public class VendorCommand extends ResetVendorCommand {
 
     public static final String COMMAND_WORD = "vendor";
 
@@ -31,7 +31,6 @@ public class VendorCommand extends Command {
         requireNonNull(index);
         this.vendorIndex = index;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
