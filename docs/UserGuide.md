@@ -150,9 +150,10 @@ Finds a task by a set of attributes given below.
 
 Format: `find ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...`
 
-If user provide different attributes in the command, tasks that match all attributes will be displayed.
-If user provide multiple search phrases of the same attribute, tasks that match any of the
-search phrase of the same attribute will be displayed.
+
+If different attributes are provided in the command, tasks that match all attributes will be displayed.
+
+If multiple search phrases of the same attribute are provided in the command, tasks that match any of the
 
 Available attributes in v1.3 include:
 * `title:` finds all tasks which contain the search phrase in the given title
@@ -174,14 +175,13 @@ Examples:
 
 ### Edit a task: `edit`
 
-Edits a task by a set of defined attributes by the user.
+Edits a task by a set of attributes given below.
 
 Format: `edit INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 
-If user provide different attributes in the command, multiple attributes of the specified task will be changed simultaneously.
+If different attributes are provided in the command, multiple attributes of the specified task will be changed simultaneously.
 
 Available attributes in v1.3 include:
-
 * `title` edits the title of the specified task
 * `desc` edits the description of the specified task
 * `type` edits the type of the specified task
