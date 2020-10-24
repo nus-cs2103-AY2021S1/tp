@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -18,19 +19,27 @@ public class Contact {
     // Identity fields
     private final Name name;
     private final Email email;
-    private final Telegram telegramUsername;
+    private final Telegram telegram;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
+
+    public Contact(Name name, Email email) {
+        requireAllNonNull(name, email);
+        this.name = name;
+        this.email = email;
+        this.telegram = null;
+    }
+
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Email email, Telegram telegramUsername) {
-        requireAllNonNull(name, email, telegramUsername);
+    public Contact(Name name, Email email, Telegram telegram) {
+        requireAllNonNull(name, email, telegram);
         this.name = name;
         this.email = email;
-        this.telegramUsername = telegramUsername;
+        this.telegram = telegram;
         // this.tags.addAll(tags);
     }
 
@@ -42,8 +51,8 @@ public class Contact {
         return email;
     }
 
-    public Telegram getTelegramUsername() {
-        return this.telegramUsername;
+    public Optional<Telegram> getTelegram() {
+        return Optional.ofNullable(this.telegram);
     }
 
     /**
@@ -66,7 +75,7 @@ public class Contact {
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTelegramUsername().equals(getTelegramUsername());
+                && otherPerson.getTelegram().equals(getTelegram());
     }
 
     /**
@@ -86,14 +95,14 @@ public class Contact {
         Contact otherPerson = (Contact) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTelegramUsername().equals(getTelegramUsername())
+                && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, email, telegramUsername, tags);
+        return Objects.hash(name, email, telegram, tags);
     }
 
     @Override
@@ -103,7 +112,7 @@ public class Contact {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Telegram: ")
-                .append(getTelegramUsername())
+                .append(getTelegram())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

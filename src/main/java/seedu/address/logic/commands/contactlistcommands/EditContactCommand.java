@@ -85,7 +85,7 @@ public class EditContactCommand extends Command {
 
         Name updatedName = editContactDescriptor.getName().orElse(contactToEdit.getName());
         Email updatedEmail = editContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
-        Telegram updatedTelegram = editContactDescriptor.getTelegram().orElse(contactToEdit.getTelegramUsername());
+        Telegram updatedTelegram = editContactDescriptor.getTelegram().orElse(contactToEdit.getTelegram());
 
         return new Contact(updatedName, updatedEmail, updatedTelegram);
     }

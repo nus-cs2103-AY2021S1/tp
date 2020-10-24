@@ -41,7 +41,7 @@ public class JsonAdaptedContact {
     public JsonAdaptedContact(Contact source) {
         name = source.getName().fullName;
         email = source.getEmail().value;
-        telegram = source.getTelegramUsername().telegramUsername;
+        telegram = source.getTelegram().telegramUsername;
         // tagged.addAll(source.getTags().stream()
         //        .map(JsonAdaptedTag::new)
         //        .collect(Collectors.toList()));

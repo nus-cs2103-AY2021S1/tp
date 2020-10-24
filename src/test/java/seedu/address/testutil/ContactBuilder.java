@@ -40,7 +40,7 @@ public class ContactBuilder {
     public ContactBuilder(Contact personToCopy) {
         name = personToCopy.getName();
         email = personToCopy.getEmail();
-        telegram = personToCopy.getTelegramUsername();
+        telegram = personToCopy.getTelegram().get();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
