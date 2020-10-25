@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedVendor.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVendors.BENSON;
@@ -33,12 +34,11 @@ public class JsonAdaptedVendorTest {
             .collect(Collectors.toList());
     private static final List<JsonAdaptedFood> VALID_MENU = BENSON.getMenu().getFoods();
 
-    //TODO: pass
-    //    @Test
-    //    public void toModelType_validVendorDetails_returnsVendor() throws Exception {
-    //        JsonAdaptedVendor vendor = new JsonAdaptedVendor(BENSON);
-    //        assertEquals(BENSON, vendor.toModelType());
-    //    }
+    @Test
+    public void toModelType_validVendorDetails_returnsVendor() throws Exception {
+        JsonAdaptedVendor vendor = new JsonAdaptedVendor(BENSON);
+        assertEquals(BENSON, vendor.toModelType());
+    }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {

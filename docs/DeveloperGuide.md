@@ -285,10 +285,18 @@ Step 8: The `RemoveCommand` is executed and one quantity of the first item in th
 - If the inputted prefix exists for more than 1 command, a `Parse Exception` will be thrown.
 - If there is a command which is a prefix for another command, it can no longer be executed.
 
-### Vendor Command
+### Vendor Commands
 
 * There are two VendorCommand classes in SupperStrikers.
+* `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from.
 * `VendorCommand`, deselects the vendor to the default unintialized value.
+* If the vendor does not exist, a `Command Exception` will be thrown
+* If the vendor selected is different from the current vendor, the model will clear the current order.
+
+The following activity diagram summarises the process when the SwitchVendorCommand is executed.
+![SwitchVendorActivityDiagram](diagrams/SwitchVendorCommandActivityDiagram.puml)
+
+
 * `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from,
 * If the vendor does not exist, a `Command Exception` will be thrown.
 * If the vendor selected is different from the current vendor, the model will clear the current order.
@@ -302,6 +310,7 @@ The following diagram summarises the sequence when the SwitchVendorCommmand is e
 
 ## 
 
+>>>>>>> 2c906983c1b7ce22b0503b357c7bf63e54fe568d
 Given below is an example usage scenario and how the SwitchVendorCommand behaves at each step.
 
 Step 1: The user launches the application for the first time, by default, no vendor is selected.
@@ -321,6 +330,26 @@ showing the vendor list is hidden and the UI showing the menu is displayed to th
 `MainWindow#displayMenu()`.
 
 Step 8: `Model#resetOrder()` creates a new empty order for the i<sup>th</sup> vendor.
+
+
+The following diagram summarises the sequence when the SwitchVendorCommmand is executed.
+![VendorSequendeDiagram](images/VendorCommandSequenceDiagram.png)
+
+
+Given below is an example usage scenario and how VendorCommand behaves at each step.
+
+Step 1: The user has selected a vendor with index `i`.
+
+Step 2: The user enters the vendor command `vendor`.
+
+Step 3:  `Model#setVendorIndex(-1)` is executed to set the vendor to the default uninitialized value.
+
+Step 4: The UI component showing the menu is hidden and the UI component showing
+        the vendor list is displayed to the user by calling `MainWindow#displayMenu()`.
+        
+Step 5: `Model#resetOrder()` sets the order to a new empty order. 
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 

@@ -144,6 +144,7 @@ public interface Model {
     void sortFoodByPrice(boolean ascending);
 
     /**
+
      * Replaces address book data with the data in {@code orderManager}.
      */
     void setOrderManager(ReadOnlyOrderManager orderManager);

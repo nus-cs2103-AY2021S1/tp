@@ -112,9 +112,9 @@ class JsonAdaptedVendor {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
 
-        if (menu == null) {
+        if (menu == null || menu.size() == 0) {
             // todo change error message
-            throw new IllegalValueException("MENU CANNOT BE NULL");
+            throw new IllegalValueException("Menu must not be empty.");
         }
         final Address modelAddress = new Address(address);
 

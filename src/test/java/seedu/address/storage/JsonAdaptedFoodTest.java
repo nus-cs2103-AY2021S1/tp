@@ -31,7 +31,7 @@ public class JsonAdaptedFoodTest {
 
 
     @Test
-    public void toModelType_validVendorDetails_returnsFood() throws Exception {
+    public void toModelType_validFoodDetails_returnsFood() throws Exception {
         JsonAdaptedFood food = new JsonAdaptedFood(EGG_PRATA);
         assertEquals(EGG_PRATA, food.toModelType());
     }

@@ -21,7 +21,7 @@ import seedu.address.model.vendor.Vendor;
  * A utility class containing a list of {@code Vendor} objects to be used in tests.
  */
 public class TypicalVendors {
-    private static final Menu menu = new Menu();
+    private static final Menu menu = TypicalMenus.MENU;
 
     public static final Vendor ALICE = new VendorBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")

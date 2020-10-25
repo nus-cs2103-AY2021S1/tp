@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.exceptions.DuplicateFoodException;
 import seedu.address.testutil.FoodBuilder;
+import seedu.address.testutil.TypicalMenus;
 
 public class MenuManagerTest {
 
@@ -25,6 +26,13 @@ public class MenuManagerTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), menuManager.getFoodList());
+    }
+
+    @Test
+    public void constructor_menuToBeCopied() {
+        MenuManager menuManager2 = new MenuManager(TypicalMenus.MENU);
+        assertEquals(TypicalMenus.MENU.asUnmodifiableObservableList(),
+                menuManager2.getFoodList());
     }
 
     @Test
@@ -81,4 +89,12 @@ public class MenuManagerTest {
     public void getFoodList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> menuManager.getFoodList().remove(0));
     }
+
+    @Test
+    public void removeFood_hasFoodInMenuManager_returnsFalse() {
+        menuManager.addFood(PRATA);
+        menuManager.removeFood(PRATA);
+        assertFalse(menuManager.hasFood(PRATA));
+    }
+
 }
