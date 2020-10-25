@@ -3,6 +3,7 @@ package seedu.address.model.exercise;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -36,6 +37,16 @@ public class Date {
         return true;
     }
 
+    public boolean isBefore(Date other) {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            java.util.Date thisDate = formatter.parse(value);
+            java.util.Date otherDate = formatter.parse(other.value);
+            return thisDate.before(otherDate);
+        } catch (java.text.ParseException e) {
+            return false;
+        }
+    }
 
     @Override
     public String toString() {
