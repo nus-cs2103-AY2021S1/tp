@@ -67,6 +67,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     public void setTags(List<Tag> tags) {
         this.tags.setTags(tags);
     }
+
     /**
      * Resets the existing data of this {@code ExpenseBook} with {@code newData}.
      */
@@ -102,6 +103,10 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
         return tags.contains(tag);
     }
 
+    /**
+     * Adds a category to the expense book.
+     * The tag must not already exist in the expense book.
+     */
     public void addCategory(Tag tag) {
         requireNonNull(tag);
         tags.add(tag);

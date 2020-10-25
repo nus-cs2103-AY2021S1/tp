@@ -189,6 +189,11 @@ class SwitchCommandTest {
         }
 
         @Override
+        public void addCategory(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasCategory(Tag toCheck) {
             return categoryExpenseBook.containsCategory(toCheck);
         }
