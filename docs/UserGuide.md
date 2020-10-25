@@ -214,7 +214,7 @@ Formats:
 
 </div>
 
-*(Add screenshot showing the profit message)*
+*(Add screenshots showing the before and after the edit command)*
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -317,8 +317,6 @@ The `clear` command will clear all entries in the stipulated category. If you wo
 entries, use the `delete` command instead.
 
 </div>
-
-<div markdown="block" class="alert alert-danger">
 
 
 ### Calculating net profits based on expenses and revenues: `profit` 
