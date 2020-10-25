@@ -9,9 +9,9 @@ import javafx.scene.layout.AnchorPane;
 public class SummaryDisplay extends UiPart<AnchorPane> {
     private static final String FXML = "SummaryDisplay.fxml";
     private static final String TOTAL_CALORIES_TEXT = "Total Calories %d";
-    private static final String TOTAL_PROTEIN_TEXT = "Protein: %s";
-    private static final String TOTAL_CARBOHYDRATE_TEXT = "Carbs: %s";
-    private static final String TOTAL_FAT_TEXT = "Fats: %s";
+    private static final String TOTAL_PROTEIN_TEXT = "Protein: %-5s";
+    private static final String TOTAL_CARBOHYDRATE_TEXT = "Carbs: %-5s";
+    private static final String TOTAL_FAT_TEXT = "Fats: %-5s";
 
     @FXML
     private PieChart pieChart;
