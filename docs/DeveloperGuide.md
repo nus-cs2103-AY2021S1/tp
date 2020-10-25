@@ -322,7 +322,7 @@ _{more aspects and alternatives to be added}_
 ### Help Window
 There are 2 types of help window: `help summary` and `help start`.
 The `logic` behind help command is similar to other commands in terms of `parsing`.
-In this section, we will only discuss the main differences in `Logic` component of `Help Window` as compared to 
+In this section, we will only discuss the main difference of `Help Window` as compared to 
 other features' implementation.
 
 Refer to the code snippet shown below which is related to `help summary` command:
@@ -341,13 +341,14 @@ Refer to the code snippet shown below which is related to `help summary` command
         this.popUpContent = requireNonNull(popUpContent);
     }
 ```
-After parsing of help command has been done *(Refer to Figure 6 for similar sequence diagram)*, `execute(Models)` 
-method in `HelpSummaryCommand` will override `isShowPreview` 
-field from `CommandResult` to be true *(Refer to the constructor of CommandResult)*.
+After parsing of help command has been done *(Refer to Figure 6 for similar sequence diagram)*,
+`HelpSummaryCommand#execute(Model)` will override `isShowPreview` 
+field from `CommandResult` to be true.
 This method returns `HelpCommandResult` which will interact with `Ui` component to display 
 the result in the user interface. Similar to this, the only difference for `help start` is that isShowHelp is
 the field to be overridden as true. <br>
-Also notice that the `execute(Models)` method in HelpSummaryCommand takes in `HELP_SUMMARY` as the `popUpContent`.
+Also notice that `HelpSummaryCommand#execute(Models)` takes in `HELP_SUMMARY` as the `popUpContent`, 
+which is the message that will be shown to users in the new window.
 If there is a need for any changes in the help message, `HELP_SUMMARY` can be found in `Message` class inside
 `commons/core` package.
 <br>
