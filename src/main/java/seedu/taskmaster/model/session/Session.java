@@ -86,8 +86,7 @@ public class Session {
     }
 
     /**
-     * Returns true if both sessions have the same identity and data fields.
-     * This defines a stronger notion of equality between two sessions.
+     * Returns true if both sessions have the same name.
      */
     @Override
     public boolean equals(Object other) {
@@ -98,8 +97,6 @@ public class Session {
             return false;
         }
         Session otherSession = (Session) other;
-        return otherSession.getSessionName().equals(getSessionName())
-                && otherSession.getSessionDateTime().equals(getSessionDateTime())
-                && otherSession.getStudentRecords().equals(getStudentRecords());
+        return otherSession.getSessionName().equals(getSessionName());
     }
 }

@@ -3,6 +3,7 @@ package seedu.taskmaster.model.session;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.session.exceptions.DuplicateSessionException;
+import seedu.taskmaster.model.session.exceptions.SessionNotFoundException;
 import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;
 
 import java.util.Iterator;
@@ -29,12 +30,38 @@ public class SessionListManager implements SessionList {
         return sessionList;
     }
 
+    @Override
+    public Session get(SessionName sessionName) throws SessionNotFoundException {
+        for (int i = 0; i < getNumberOfSessions(); i++) {
+            if (internalList.get(i).getSessionName().equals(sessionName)) {
+                return internalList.get(i);
+            }
+        }
+        throw new SessionNotFoundException();
+    }
+
+    public int getNumberOfSessions() {
+        return internalList.size();
+    }
+
     /**
      * Returns true if the session list contains {@code session}.
      */
     @Override
     public boolean contains(Session session) {
         return internalList.contains(session);
+    }
+
+    /**
+     * Returns true if the session list contains a session with {@code sessionName}.
+     */
+    public boolean contains(SessionName sessionName) {
+        for (Session session : internalList) {
+            if (session.getSessionName().equals(sessionName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

@@ -15,6 +15,7 @@ import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 
@@ -98,9 +99,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void changeSession(SessionName sessionName) {
+        taskmaster.changeSession(sessionName);
+    }
+
+    @Override
     public boolean hasSession(Session session) {
         requireNonNull(session);
         return taskmaster.hasSession(session);
+    }
+
+    @Override
+    public boolean hasSession(SessionName sessionName) {
+        requireNonNull(sessionName);
+        return taskmaster.hasSession(sessionName);
     }
 
     @Override

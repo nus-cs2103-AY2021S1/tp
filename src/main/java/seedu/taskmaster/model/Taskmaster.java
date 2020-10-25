@@ -24,7 +24,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
     private final UniqueStudentList students;
     private final SessionList sessions;
-    private Session currentSession;
+    protected Session currentSession;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -37,13 +37,13 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     {
         students = new UniqueStudentList();
 
-        // TODO: Current session is a placeholder for now
+        // TODO: Current session is a default placeholder for now
         currentSession = new Session(
-                new SessionName("Placeholder session"),
+                new SessionName("Default session"),
                 new SessionDateTime(LocalDateTime.now()),
                 StudentRecordListManager.of(students.asUnmodifiableObservableList()));
 
-        // TODO: SessionList is temporary a list with one placeholder session
+        // TODO: For now, SessionList is initialised to a list with one default placeholder session
         List<Session> sessionList = new ArrayList<>();
         sessionList.add(currentSession);
         sessions = SessionListManager.of(sessionList);
@@ -84,12 +84,22 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
     /* Session-Level Operations */
 
+    public void changeSession(SessionName sessionName) {
+        assert sessions.contains(sessionName);
+        currentSession = sessions.get(sessionName);
+    }
+
     /**
      * Returns true if {@code session} exists in the session list.
      */
     public boolean hasSession(Session session) {
         requireNonNull(session);
         return sessions.contains(session);
+    }
+
+    public boolean hasSession(SessionName sessionName) {
+        requireNonNull(sessionName);
+        return sessions.contains(sessionName);
     }
 
     /* Student-Level Operations */

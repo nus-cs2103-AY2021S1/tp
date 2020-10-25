@@ -24,6 +24,7 @@ import seedu.taskmaster.model.Taskmaster;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.testutil.StudentBuilder;
@@ -134,7 +135,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void changeSession(SessionName sessionName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasSession(Session session) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasSession(SessionName sessionName) {
             throw new AssertionError("This method should not be called.");
         }
 

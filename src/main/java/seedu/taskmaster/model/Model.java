@@ -9,6 +9,7 @@ import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 
@@ -65,10 +66,17 @@ public interface Model {
     /** Returns the Taskmaster */
     ReadOnlyTaskmaster getTaskmaster();
 
+    void changeSession(SessionName sessionName);
+
     /**
      * Returns true if {@code session} exists in the session list.
      */
     boolean hasSession(Session session);
+
+    /**
+     * Returns true if a session with {@code sessionName} exists in the session list.
+     */
+    boolean hasSession(SessionName sessionName);
 
     /**
      * Adds the given session.
