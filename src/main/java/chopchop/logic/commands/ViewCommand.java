@@ -2,12 +2,10 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import chopchop.commons.core.Messages;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
-import chopchop.model.recipe.Recipe;
 import chopchop.ui.DisplayNavigator;
 
 /**
@@ -20,9 +18,6 @@ public class ViewCommand extends Command {
             + ": Displays the recipe identified by the name used in the displayed recipe list.\n"
             + "Parameters: NAME \n"
             + "Example: " + COMMAND_WORD + " chicken soup";
-
-    public static final String MESSAGE_VIEW_SUCCESS = "Recipe: %s";
-    public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipe named '%s'";
 
     private final ItemReference item;
 
@@ -37,28 +32,17 @@ public class ViewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-        Recipe recipe;
-        if (this.item.isIndexed()) {
-            var lastShownList = model.getFilteredRecipeList();
 
-            if (this.item.getZeroIndex() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
-            }
-
-            recipe = lastShownList.get(this.item.getZeroIndex());
-
-        } else {
-            recipe = model
-                    .findRecipeWithName(this.item.getName())
-                    .orElseThrow(() -> new CommandException(String.format(MESSAGE_RECIPE_NOT_FOUND,
-                            this.item.getName())));
+        var recipe = resolveRecipeReference(this.item, model);
+        if (recipe.isError()) {
+            return CommandResult.error(recipe.getError());
         }
 
 
         if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecipeDisplay(recipe);
+            DisplayNavigator.loadRecipeDisplay(recipe.getValue());
         }
 
-        return new CommandResult(String.format(MESSAGE_VIEW_SUCCESS, recipe));
+        return CommandResult.message("Displaying recipe '%s'", recipe.getValue().getName());
     }
 }
