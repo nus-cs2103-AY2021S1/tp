@@ -13,6 +13,7 @@ import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.commands.ClearCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.CommentCommand;
+import com.eva.logic.commands.DeleteApplicantCommand;
 import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.DeleteLeaveCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
@@ -29,7 +30,7 @@ import com.eva.logic.parser.leave.DeleteLeaveCommandParser;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class EvaParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -94,6 +95,9 @@ public class AddressBookParser {
 
         case AddApplicantCommand.COMMAND_WORD:
             return new AddApplicantCommandParser().parse(arguments);
+
+        case DeleteApplicantCommand.COMMAND_WORD:
+            return new DeleteApplicantCommandParser().parse(arguments);
 
         case AddApplicationCommand
                 .COMMAND_WORD:

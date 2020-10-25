@@ -2,8 +2,8 @@ package com.eva.logic.parser;
 
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static com.eva.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
@@ -38,7 +38,7 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
     public AddApplicantCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_COMMENT, PREFIX_INTERVIEW_DATE);
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_COMMENT, PREFIX_DATE);
 
         // compulsory information of a applicant
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
@@ -54,8 +54,8 @@ public class AddApplicantCommandParser implements Parser<AddApplicantCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Comment> commentList = ParserUtil.parseComments(argMultimap.getAllValues(PREFIX_COMMENT));
         ApplicationStatus applicationStatus = new ApplicationStatus("received");
-        Optional<InterviewDate> interviewDate = arePrefixesPresent(argMultimap, PREFIX_INTERVIEW_DATE)
-                ? Optional.of(ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get()))
+        Optional<InterviewDate> interviewDate = arePrefixesPresent(argMultimap, PREFIX_DATE)
+                ? Optional.of(ParserUtil.parseInterviewDate(argMultimap.getValue(PREFIX_DATE).get()))
                 : Optional.empty();
 
         Applicant applicant = new Applicant(name, phone, email, address, tagList,
