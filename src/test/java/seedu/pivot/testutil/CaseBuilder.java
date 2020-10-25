@@ -1,6 +1,7 @@
 package seedu.pivot.testutil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,13 +9,13 @@ import java.util.Set;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
-import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Reference;
 import seedu.pivot.model.investigationcase.Status;
-import seedu.pivot.model.investigationcase.Suspect;
 import seedu.pivot.model.investigationcase.Title;
-import seedu.pivot.model.investigationcase.Victim;
-import seedu.pivot.model.investigationcase.Witness;
+import seedu.pivot.model.investigationcase.caseperson.Name;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 import seedu.pivot.model.util.SampleDataUtil;
 
@@ -91,8 +92,8 @@ public class CaseBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
      */
-    public CaseBuilder withWitnesses(String ... witnesses) {
-        this.witnesses = SampleDataUtil.getWitnessList(witnesses);
+    public CaseBuilder withWitnesses(Witness ... witnesses) {
+        this.witnesses = Arrays.asList(witnesses);
         return this;
     }
 
@@ -113,20 +114,19 @@ public class CaseBuilder {
         return this;
     }
 
-    //TODO: Not used anywhere in code, use the witness example and use there
     /**
      * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code Person} that we are building.
      */
-    public CaseBuilder withSuspects(String ... suspects) {
-        this.suspects = SampleDataUtil.getSuspectList(suspects);
+    public CaseBuilder withSuspects(Suspect ... suspects) {
+        this.suspects = Arrays.asList(suspects);
         return this;
     }
 
     /**
      * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Person} that we are building.
      */
-    public CaseBuilder withVictims(String ... victims) {
-        this.victims = SampleDataUtil.getVictimList(victims);
+    public CaseBuilder withVictims(Victim ... victims) {
+        this.victims = Arrays.asList(victims);
         return this;
     }
 

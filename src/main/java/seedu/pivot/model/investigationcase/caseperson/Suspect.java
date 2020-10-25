@@ -1,4 +1,4 @@
-package seedu.pivot.model.investigationcase;
+package seedu.pivot.model.investigationcase.caseperson;
 
 /**
  * Represents a Suspect in the investigation case.
@@ -10,8 +10,8 @@ public class Suspect extends CasePerson {
      *
      * @param name A valid name.
      */
-    public Suspect(Name name) {
-        super(name);
+    public Suspect(Name name, Gender gender, Phone phone, Email email, Address address) {
+        super(name, gender, phone, email, address);
     }
 
     /**
@@ -29,6 +29,10 @@ public class Suspect extends CasePerson {
         }
 
         Suspect otherSuspect = (Suspect) other;
-        return otherSuspect.getName().equals(getName());
+        return otherSuspect.getName().equals(getName())
+                && otherSuspect.getGender().equals(getGender())
+                && otherSuspect.getPhone().equals(getPhone())
+                && otherSuspect.getEmail().equals(getEmail())
+                && otherSuspect.getAddress().equals(getAddress());
     }
 }

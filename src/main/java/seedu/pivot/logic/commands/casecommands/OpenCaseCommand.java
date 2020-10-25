@@ -40,8 +40,6 @@ public class OpenCaseCommand extends OpenCommand {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        assert(StateManager.atMainPage()) : "Program should be at main page";
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             logger.info("Invalid index: " + targetIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
