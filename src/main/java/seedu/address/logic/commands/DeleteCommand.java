@@ -19,12 +19,12 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the assignment identified by the index number used in the displayed assignment list.\n"
-            + "Parameters: INDEX (must be a positive integer and not greater than the size of the current "
+            + ": Deletes the assignment identified by the index number(s) used in the displayed assignment list.\n"
+            + "Parameters: INDEX [MORE INDEXES] (must be a positive integer, must not contain duplicates and cannot be greater than the size of the current"
             + "assignment list)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Assignment: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Assignment(s): %1$s";
 
     private final List<Index> targetIndexes;
 
@@ -32,10 +32,29 @@ public class DeleteCommand extends Command {
         this.targetIndexes = targetIndexes;
     }
 
-    private static boolean containsDuplicates(List<Index> targetIndexes) {
-        long distinctIndexes = targetIndexes.stream().distinct().count();
-        long lengthOfIndexesList = targetIndexes.size();
-        return distinctIndexes < lengthOfIndexesList;
+    private static void checkForDuplicatedIndexes(List<Index> targetIndexes) throws CommandException {
+        List<Integer> zeroBasedIndexes = new ArrayList<>();
+        for (Index targetIndex : targetIndexes) {
+            int zeroBasedIndex = targetIndex.getZeroBased();
+            zeroBasedIndexes.add(zeroBasedIndex);
+        }
+
+        long distinctIndexes = zeroBasedIndexes.stream().distinct().count();
+        long lengthOfIndexesList = zeroBasedIndexes.size();
+        boolean containsDuplicates = distinctIndexes < lengthOfIndexesList;
+
+        if (containsDuplicates) {
+            throw new CommandException(Messages.MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX);
+        }
+    }
+
+    private static void checkForInvalidIndexes(List<Index> targetIndexes, Model model) throws CommandException {
+        List<Assignment> lastShownList = model.getFilteredAssignmentList();
+        for (Index targetIndex : targetIndexes) {
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+            }
+        }
     }
 
     @Override
@@ -45,15 +64,8 @@ public class DeleteCommand extends Command {
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
         List<Assignment> deletedAssignments = new ArrayList<>();
 
-        if (containsDuplicates(targetIndexes)) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
-        }
-
-        for (Index targetIndex : targetIndexes) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
-            }
-        }
+        checkForDuplicatedIndexes(targetIndexes);
+        checkForInvalidIndexes(targetIndexes, model);
 
         for (Index targetIndex : targetIndexes) {
             Assignment assignmentToDelete = lastShownList.get(targetIndex.getZeroBased());
