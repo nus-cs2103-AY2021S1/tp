@@ -2,19 +2,49 @@
 
 Common Cents is your convenient at-hand expense-tracking tool, meant for anyone who runs a small-scale business. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
 
-* Quick Start
-* Features
-  <!--* Viewing help: `help`-->
-  * Adding an expense: `add`
-  * Deleting an expense: `delete`
-  * Editing an expense: `edit`
-  * Finding expenses by a keyword: `find`
-  * Exiting the program: `exit`
-* Command Summary
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+[comment]: <> (Copy the blocks below and edit your message)
+# How to identify notations
+These blocks are a few examples of notations that will be used in this document. Each block and icon 
+has a different meaning so do look out for them under our features.
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:** 
+
+Important notes to read regarding the feature. 
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+[comment]: <> (This only appears in Github CSS)
+
+:bulb: **Tip:**
+
+Ways to better your experience with Common Cents.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+An example, or multiple examples to follow.
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+Important cautions that needs to be known before using the feature.
+</div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -22,21 +52,41 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 
 1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample expenses and income.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample expenses and revenues.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add c/expense d/buy lunch a/5.20 t/food`** : Adds an expense named "buy lunch" to the expense list.
-   * **`delete 1 c/expense`** : Deletes the 1st entry in the expense list.
-   * **`exit`** : Exits the app.
+   * `add c/expense d/buy lunch a/5.20 t/food` : Adds an expense named "buy lunch" to the expense list.
+   * `delete 1 c/expense` : Deletes the 1st entry in the expense list.
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+# User Interface Overview
+Figure shows the default user interface (UI) of Common Cents. You can find the description for each UI components in the 
+table below.<br> 
+![annotatedUi](images/commands/annotatedUi.PNG)
+<p align="center"> <sub> <b>Figure</b>: Default user interface of Common Cents </sub> </p>
 
-## Features
+UI component | Description
+--------|------------------
+*Menu bar* | Displays the menu bar of Common Cents. You can use this to access the User Guide or exit the application. 
+*Active account name* | Displays the account you are currently on.
+*Display picture* | Displays the default display picture of the application.
+*Command box* | Displays a text field for you to type the commands.
+*Result display* | Displays the result of your command. If the command is invalid, an error message will be displayed to prompt and guide you to input valid correct command.
+*Account summary chart* | Displays the total expenses and revenues in your current account in a pie chart.
+*Chart legend* | Displays the legend for the account summary chart.
+*Status bar* | Displays the current date.
+*Expense list* | Displays all the expenses in your current account in a panel.
+*Revenue list* | Displays all the revenues in your current account in a panel.
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -54,13 +104,24 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 
 </div>
 
+## App-Level Commands
+
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
+Shows a message explaining how to access the help page (Figure). You can click on the `Copy URL ` button to copy
+the link to clipboard and paste it 
+<br>![Ui](images/helpMessage.png)
+<p align="center"> <sub> <b>Figure</b>: Help message </sub> </p>
 
 Format: `help`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+## Entry-Level Commands
 
 ### Adding an entry: `add`
 
@@ -77,7 +138,8 @@ Examples:
 * `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
 
 
-### Deleting entries : `delete`
+
+### Deleting entries: `delete`
 
 Removes an entry (expense/revenue) from the tracker.
 
@@ -92,7 +154,7 @@ Example:
 * `delete 2 c/revenue`
 
 
-<!-- ### Editing an entry (expense/revenue) : `edit`
+### Editing an entry: `edit`
 
 Edits an entry in the tracker.
 
@@ -111,30 +173,232 @@ Example:
 * `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
 
 
-### Locating expenses by name: `find`
+### Locating entries by description: `find`
 
-Find expenses that have the given keyword in their names.
+You can use this command to list expenses and/or revenues that have the given keyword(s) in their description. If there
+is no expense or revenue found, the respective list will be empty.
 
-* The search is case-sensitive. e.g `grocery` will match `grocery` but not `Grocery`.
-* Only the expense name is searched.
-* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, `Restaurant Food`
+**Format:** `find [c/CATEGORY] k/KEYWORDS`
 
-Format:
-* `find KEYWORD [MORE_KEYWORDS]`
+<div markdown="block" class="alert alert-success">
 
-Example:
-* `find food`: Finds expenses with the keyword `food`.
--->
+:heavy_check_mark: **Example:** 
 
-### Exiting the program : `exit`
+`find c/expense k/watercolours canvas` : finds all expenses with keywords `watercolours` and/or `canvas` in their 
+description.
 
-Exits the program.
+`find c/revenue k/phone` : finds all revenues with keyword `phone` in their 
+description.
 
-Format: `exit`
+`find k/canvas earrings` : finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
+description (Figure).
+ 
+</div>
+
+<br>![findCommand](images/commands/findCommand.PNG)
+<p align="center"> <sub> <b>Figure</b>: Find command successfully executed </sub> </p>
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+* The search is case-insensitive. e.g. `grocery` will match `grocery` and `Grocery`.
+* Only the entry's description is searched.
+* The search does not match partial words. e.g. `food` will match `food` and `fast food` but not `fastfood`.
+* Entries matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker food`, 
+`Restaurant Food`.
+* The `c/CATEGORY` is optional.
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+[comment]: <> (This only appears in Github CSS)
+
+:bulb: **Tip:** When there are a lot of entries and you want to delete something, 
+you can use `find` to search for it in the list and use `delete ENTRY_INDEX` to remove it from the updated
+list, with the updated `ENTRY INDEX`.
+</div>
+
+
+### Listing all entries: `list`
+
+### Clearing all expenses or revenue: `clear`
+
+### Calculating net profits based on expenses and revenues: `profit` 
+
+### Undoing Entry-level commands: `undo`
+If you wish to undo the previous command, you can use this command to return to the state of entries prior to
+previous command.
+ 
+Format: `undo`
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `undo`: Returns the state of expenses and revenues prior to the previous command. For example, if the 
+[`add`](#adding-an-entry-add) command was used, using `undo` returns account to the state before the 
+[`add`](#adding-an-entry-add) command was used as shown in the Figures below.
+
+</div>
+
+*(Add screenshots for before and after the undo, pointing to the entries)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+Do note that the `undo` command can only undo  [`add`](#adding-an-entry-add), [`delete`](#deleting-entries-delete),
+[`edit`](#editing-an-entry-edit) and [`clear`](#clearing-all-expenses-or-revenue-clear) commands at the entry-level. 
+Account-level commands cannot be reverted using the `undo` command.
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+There is no `redo` command to revert your `undo` command. Do use the `undo` command with caution!
+
+</div>
+
+## Account-level Commands
+
+### Add new Account: `newacc`
+If you wish to separate your expenses and revenues for another purpose, you can create a new account with this
+command. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
+or switch to it via [`switchacc`](#switching-accounts-switchacc). 
+
+Format: `newacc n/NAME`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `newacc n/Lim's Flower Shop`: adds a new account, `Lim's Flower Shop`, with no expenses or revenues.
+* `newacc n/$uper $avers`: adds a new account, `$uper $avers`, with no expenses or revenues. 
+</div>
+
+*(Insert screenshot here for the second example, pointing to the feedback)*
+
+### Deleting an account: `deleteacc`
+If you wish to remove an account that you are not using anymore, you can delete the account using this command.
+
+Format: `deleteacc INDEX`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `deletacc 1`: Deletes first account based on list generated by [`listacc`](#listing-accounts-you-have-listacc).
+
+</div>
+
+*(Insert screenshot here, pointing to the feedback)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+Do note that Common Cents prevents you from deleting the account if you are currently on that account
+or if the account is your only account left.
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+If you are unsure of the account index, use [`listacc`](#listing-accounts-you-have-listacc) to check the index!
+</div>
+
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+Deleting your account means all the data on entries in the account is lost as well. Also, deleting is an 
+irreversible action and cannot be undone. Do delete your account with caution!
+
+</div>
+
+### Editing the name current account: `editacc`
+You can edit the name of the current account you are on using this command. 
+
+Format: `editacc n/NAME`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `editacc n/Bob's Bakery`: Replaces the name of the current account, `Josh's Bakery` to `Bob's Bakery` as shown in the Figure below
+
+</div>
+
+*(Insert screenshot here, point to the feedback and the account name)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+Do note that you cannot edit account names other than the account you are currently on. To edit the name
+of another account, you can use [`switchacc`](#switching-accounts-switchacc) to switch to the other account
+and edit the name from there.
+
+</div>
+
+### Listing accounts you have: `listacc`
+You can check the accounts you have in the app by using this command. Each account will be numbered with an index and 
+displayed as their names.
+
+Format: `listacc`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `listacc`: Shows a numbered list of the account names as a message.
+
+</div>
+
+*(Insert screenshot here, pointing to the feedback)*
+
+### Switching accounts: `switchacc`
+If you wish to manage your expenses or revenues on another account, you can use this command to switch to the desired
+account. 
+
+Format: `switchacc INDEX`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `switchacc 1`: Switches to the first account based on list generated by [`listacc`](#listing-accounts-you-have-listacc).
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+If you are unsure of the account index, use [`listacc`](#listing-accounts-you-have-listacc) to check the index!
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+Once you use the `switchacc` command, all the previous states for the [`undo`](#undoing-entry-level-commands-undo) will
+be lost. This would mean that if you choose to switch back to the account, you cannot undo the previous entry-level
+commands anymore. Do confirm your changes to the entries in the account before you switch account!
+
+</div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 Action | Format, Examples
 --------|------------------

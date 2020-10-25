@@ -63,6 +63,44 @@ public class FindCommand extends Command {
             activeAccount.updateFilteredRevenueList(revenuePredicate);
         }
 
-        return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_LISTED_OVERVIEW);
+        boolean noExpenseFoundWithExpensePredicate =
+            activeAccount.getFilteredExpenseList().size() == 0 && expensePredicate != null;
+        boolean noRevenueFoundWithRevenuePredicate =
+            activeAccount.getFilteredRevenueList().size() == 0 && revenuePredicate != null;
+        boolean noEntryFound = activeAccount.getFilteredExpenseList().size() == 0
+                            && activeAccount.getFilteredRevenueList().size() == 0;
+
+        if (noEntryFound || noExpenseFoundWithExpensePredicate || noRevenueFoundWithRevenuePredicate) {
+            return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_EMPTY_FILTERED_LIST);
+        } else {
+            return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_UPDATED);
+        }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof FindCommand)) {
+            return false;
+        }
+
+        FindCommand otherFindCommand = (FindCommand) other;
+        if (expensePredicate == null || revenuePredicate == null) {
+            if (expensePredicate != null) {
+                return expensePredicate.equals(otherFindCommand.expensePredicate);
+            } else if (revenuePredicate != null) {
+                return revenuePredicate.equals(otherFindCommand.revenuePredicate);
+            } else {
+                return true; // if both predicates are null
+            }
+        } else {
+            return revenuePredicate.equals(otherFindCommand.revenuePredicate)
+                && expensePredicate.equals(otherFindCommand.expensePredicate);
+        }
     }
 }

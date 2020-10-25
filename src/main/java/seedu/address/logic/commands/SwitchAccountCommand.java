@@ -41,9 +41,6 @@ public class SwitchAccountCommand extends Command {
     public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
         requireAllNonNull(model, activeAccount);
 
-        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
-        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
-
         List<Account> accounts = model.getFilteredAccountList();
 
         int index = targetIndex.getZeroBased();
@@ -60,9 +57,11 @@ public class SwitchAccountCommand extends Command {
         }
 
         activeAccount.setActiveAccount(toBeSwitched);
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
         activeAccount.removePreviousState();
         return CommandResultFactory.createCommandResultForEntryListChangingCommand(
-            String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched));
+                String.format(MESSAGE_SWITCH_ACCOUNT_SUCCESS, toBeSwitched));
     }
 
     @Override
