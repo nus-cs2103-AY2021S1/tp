@@ -7,7 +7,7 @@ Welcome to the Wishful Shrinking User Guide! This user guide provides in-depth d
 
 
 ## Introducing Wishful Shrinking
-Wishful Shrinking your desktop diet manager. It is an app that helps you manage your on-hand ingredients, organise personal recipes and track your diet. Wishful Shrinking facilitates a healthier diet in three main ways: 
+Wishful Shrinking is your desktop diet manager. It is an app that helps you manage your on-hand ingredients, organise personal recipes and track your diet. Wishful Shrinking facilitates a healthier diet in three main ways: 
 1. Provide a source of healthy, customizable recipes 
 2. Recommend recipes to improve ease of home cooking 
 3. Track daily food and calorie intake
@@ -34,18 +34,22 @@ Choose a topic from the table of contents to get started on your Wishful Shrinki
    The app should look similar to the one shows below: <br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Below is a brief explanation of Wishful Shrinking's components.
+   ![UiExplained](images/UiExplained.png)
+
+6. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`recipe`** : Lists all recipes.
+   * **`recipes`** : Lists all recipes.
 
-   * **`addR`**` n/salad i/lettuce, carrots, olive oil c/40` : Adds a `salad` recipe to Wishful Shrinking.
+   * **`addR`**` n/salad i/lettuce, carrots, olive oil c/40 instr/Prepare the ingredients. Toss the ingredients together. Serve. img/https://www.onceuponachef.com/images/2019/07/Big-Italian-Salad.jpg t/yummy t/healthy` : Adds a `salad` recipe to Wishful Shrinking.
 
    * **`deleteR`**`3` : Deletes the 3rd recipe shown in the current list.
 
    * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+7. Refer to the [Features](#features) below for details of each command.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -76,17 +80,21 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
 
+
 ## Recipe
 
 ### Adding a recipe: `addR`
 
 Adds a recipe to Recipes list.
+
+![add recipe](images/AddRecipeImage.png)
 
 Format: `addR n/TITLE i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES img/IMAGE inst
 /INSTRUCTION... [t/TAG]...`
@@ -97,7 +105,7 @@ Format: `addR n/TITLE i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]
 * Each `INSTRUCTION` is separated by a `.` e.g. instr/Cook. Eat.
 
 Examples:
-* `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat.`
+* `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy`
 * `addR n/sandwiches i/breads, cheese -2 sclices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/Cook. Eat.`
 
 
@@ -105,12 +113,37 @@ Examples:
 
 Shows a list of all recipes in the Recipes list.
 
+![list recipes](images/ListRecipesImage.png)
+
 Format: `recipes`
+
+
+### Open a single recipe : `selectR`
+
+Display a single recipe in full view.
+
+![select recipe](images/SelectRecipeImage.png)
+
+Format: `selectR INDEX`
+
+Examples:
+* `selectR 1` shows the 1st recipe in full view (left drawer).
+
+
+### Close left drawer : `close`
+
+Close the left drawer (if opened).
+
+![close recipe](images/CloseRecipeImage.png)
+
+Format: `close`
 
 
 ### Deleting a recipe : `deleteR`
 
 Deletes the specified recipe from Recipes list.
+
+![delete recipes](images/DeleteRecipeImage.png)
 
 Format: `deleteR INDEX`
 
@@ -122,9 +155,12 @@ Examples:
 * `list` followed by `deleteR 2` deletes the 2nd recipe in Recipe list.
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the results of the `search` command.
 
+
 ### Edit a recipe: `editR`
 
 Edits the specified recipe from Recipes list.
+
+![edit recipe](images/EditRecipeImage.png)
 
 Format: `editR INDEX [n/TITLE] i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] [c/CALORIES] [img/IMAGE] 
 [inst/INSTRUCTION...] [t/TAG]...`
@@ -141,9 +177,12 @@ Examples:
 * `editR 2` followed by `n/Apple salad i/apple` will edit the update the name of this recipe to Apple
  and the ingredients to contain an apple ingredient.
 
+
 ### Get a recipe to edit: `editR`
 
 Set the edit existing recipe command into the command box for editing purposes.
+
+![edit recipe get](images/EditRecipeGetImage.png)
 
 Format: `editR INDEX`
 
@@ -152,9 +191,12 @@ Format: `editR INDEX`
 Examples:
 * `editR 2`
 
+
 ### Searching for a recipe: `searchR`
 
 Finds recipes that contains all the specified ingredients OR whose title OR tags contain any of the given keywords.
+
+![search recipe](images/SearchRecipeImage.png)
 
 Format: `searchR i/INGREDIENT [MORE_INGREDIENT]` OR `searchR n/TITLE [MORE_TITLE]` OR `searchR t/TAG [MORE_TAG]`
 
@@ -173,16 +215,22 @@ Examples:
 Shows a list of all recipes in the Recipes list that can be made with the ingredients in the user's
  fridge.
 
+![recommend recipe](images/RecommendImage.png)
+
 Format: `recommend`
 
 Examples:
 * `recommend` returns `salad` with ingredients `lettuce`, `onion` and `tomato` only if the user has all `lettuce`, `onion` and `tomato` in the fridge
 
-### Clearing all recipes : `clearR'
+
+### Clearing all recipes : `clearR`
 
 Clear all the recipes in the Recipe list.
 
+![clear recipes](images/ClearRecipeImage.png)
+
 Format: `clearR`
+
 
 ## Fridge
 
@@ -190,16 +238,21 @@ Format: `clearR`
 
 Adds an ingredient to fridge.
 
+![add ingredient](images/AddIngredientImage.png)
+
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 Examples:
 * `addF i/peanut`
+* `addF i/tomato -1 kg`
 * `addF i/banana -3/4 cups, green peas -200g, salmon fish`
 
 
 ### Listing all ingredients : `fridge`
 
 Shows a list of all ingredients in the fridge.
+
+![list ingredient](images/ListIngredientsImage.png)
 
 Format: `fridge`
 
@@ -208,6 +261,8 @@ Format: `fridge`
 
 Deletes the specified ingredient from Fridge.
 
+![delete ingredient](images/DeleteIngredientImage.png)
+
 Format: `deleteF INDEX`
 
 * Deletes the recipe at the specified `INDEX`.
@@ -215,12 +270,15 @@ Format: `deleteF INDEX`
 * The index **must be a positive integer** 1, 2, 3......
 
 Examples:
-* `list` followed by `deleteF 2` deletes the 2nd ingredient in the fridge.
+* `fridge` followed by `deleteF 4` deletes the 4th ingredient in the fridge.
 * `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `search` command.
+
 
 ### Edit an ingredient: `editF`
 
 Edits the specified ingredient from Ingredient list.
+
+![edit ingredient](images/EditIngredientImage.png)
 
 Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 
@@ -235,42 +293,53 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 Examples:
 * `editF 2` followed by `i/apple` will edit the update the ingredient value to apple.
 
+
 ### Get an ingredient to edit: `editF`
 
 Set the edit existing ingredient command into the command box for editing purposes.
+
+![edit ingredient get](images/EditIngredientGetImage.png)
 
 Format: `editF INDEX`
 
 * Get the edit ingredient command with the ingredient at the specified `INDEX`
 
 Examples:
-* `editF 2`
+* `editF 1`
+
 
 ### Searching for an Ingredient: `searchF`
 
 Finds ingredients that contain any of the given keywords.
 
+![search ingredient](images/SearchIngredientImage.png)
+
 Format: `searchF KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `peanut` will match `Peanut`
-* Only the recipe title is searched.
+* Only the ingredient name is searched.
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut
 
 Examples:
-* `searchF peanut` returns `peanut`
+* `searchF peanut` returns `peanut` and `peanut butter`
 
 
-### Clearing all ingredients : `clearF'
+### Clearing all ingredients : `clearF`
 
 Clear all the recipes in the Fridge.
 
+![clear fridge](images/ClearFridgeImage.png)
+
 Format: `clearF`
+
 
 ## Consumption
 
 ### Eating a recipe : `eatR`
 
 Add the specified recipe to the Consumption list from Recipes list.
+
+![eat recipe](images/EatRecipeImage.png)
 
 Format: `eatR INDEX`
 
@@ -287,12 +356,16 @@ Examples:
 
 Shows a list of all recipes eat by the user.
 
+![calories](images/CaloriesImage.png)
+
 Format: `calories`
 
 
 ### Deleting a recipe eaten: `deleteC`
 
 Deletes the specified recipe from consumption list.
+
+![delete calories](images/DeleteCalorieImage.png)
 
 Format: `deleteC INDEX`
 
@@ -303,35 +376,20 @@ Format: `deleteC INDEX`
 Examples:
 * `calories` followed by `deleteC 2` deletes the 2nd recipe in Consumption List.
 
+
 ### Clearing all consumption : `clearC`
 
 Clear all the recipe ate in the daily consumption list.
 
+![clear consumption](images/ClearConsumptionImage.png)
+
 Format: `clearC`
 
-### Open a single recipe : `selectR`
 
-Display a single recipe in full view.
+## Saving the data
 
-Format: `selectR INDEX`
+Wishful Shrinking's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-Examples:
-* `selectR 1` shows the 1st recipe in full view (left drawer).
-
-### Close left drawer : `close`
-
-Close the left drawer.
-
-Format: `close`
-
-### Saving the data
-
-Wishful Shrinking data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-
-### Remark `[coming in v1.4]`
-
-_{give a remark to the recipe}_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -348,7 +406,10 @@ _{give a remark to the recipe}_
 
 # Glossary
 **Wishful Shrinking**: can refer to name of the application as a whole or to app’s storage file
-**Consumption**: stores a list of recipes that a user has marked as consumed 
+**Fridge**: A personalised storage that contains all the ingredients that a user has
+**Recipe**: A set of cooking instructions that describes how to prepare a meal and ingredients required
+**Ingredient**: Foods that can be used to prepare a particular dish according to a recipe
+**Consumption**: A counter which calculates and displays the calorie intake of a user based on the recipes consumed as well as a list of recipes consumed 
 **Drawer**: Page that layers above left section of the window when the select command runs and closes when the
  close command runs
 
