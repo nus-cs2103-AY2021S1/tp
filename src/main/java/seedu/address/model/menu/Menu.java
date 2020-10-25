@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -101,6 +102,32 @@ public class Menu implements Iterable<Food> {
         }
 
         internalList.setAll(foods);
+    }
+
+    /**
+     * Sort Food items in menu by name
+     * @param ascending decide whether to sort ascending or descending
+     */
+    public void sortFoodByName(boolean ascending) {
+        Comparator<Food> foodComparator = Comparator.comparing(Food::getName);
+        if (ascending) {
+            internalList.sort(foodComparator);
+        } else {
+            internalList.sort(foodComparator.reversed());
+        }
+    }
+
+    /**
+     * Sort Food items in menu by price
+     * @param ascending decide whether to sort ascending or descending
+     */
+    public void sortFoodByPrice(boolean ascending) {
+        Comparator<Food> foodComparator = Comparator.comparing(Food::getPrice);
+        if (ascending) {
+            internalList.sort(foodComparator);
+        } else {
+            internalList.sort(foodComparator.reversed());
+        }
     }
 
     /**

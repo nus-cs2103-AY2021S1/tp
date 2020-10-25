@@ -93,6 +93,14 @@ public class MenuManager implements ReadOnlyMenuManager {
         menu.setFood(target, editedFood);
     }
 
+    public void sortFoodByName(boolean ascending) {
+        menu.sortFoodByName(ascending);
+    }
+
+    public void sortFoodByPrice(boolean ascending) {
+        menu.sortFoodByPrice(ascending);
+    }
+
     /**
      * Removes {@code key} from this {@code MenuManager}.
      * {@code key} must exist in the address book.
