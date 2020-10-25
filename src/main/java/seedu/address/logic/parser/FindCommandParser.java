@@ -28,12 +28,7 @@ public class FindCommandParser implements ExerciseParser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        try {
-            assert !args.isEmpty();
-        } catch (AssertionError e) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
+        requireNonNull(args);
 
         Name name = null;
         Description description = null;
@@ -43,6 +38,14 @@ public class FindCommandParser implements ExerciseParser<FindCommand> {
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
                 PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_CALORIES, PREFIX_KEYWORD);
+
+        try {
+            assert !args.isEmpty();
+            assert argMultimap.getPreamble().isEmpty();
+        } catch (AssertionError e) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             name = new Name(argMultimap.getValue(PREFIX_NAME).get());

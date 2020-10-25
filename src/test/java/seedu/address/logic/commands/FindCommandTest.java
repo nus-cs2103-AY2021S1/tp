@@ -25,7 +25,7 @@ import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), new UserPrefs());
+    /*private ExerciseModel model = new ExerciseModelManager(getTypicalExerciseBook(), new UserPrefs());
     private ExerciseModel expectedModel = new ExerciseModelManager(getTypicalExerciseBook(), new UserPrefs());
 
     @Test
@@ -73,12 +73,12 @@ public class FindCommandTest {
         expectedModel.updateFilteredExerciseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(PULL_UP, PUSH_UP, SIT_UP, SQUAT), model.getFilteredExerciseList());
-    }
+    }*/
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicateForExercise preparePredicate(String userInput) {
+    /*private NameContainsKeywordsPredicateForExercise preparePredicate(String userInput) {
         return new NameContainsKeywordsPredicateForExercise(Arrays.asList(userInput.split("\\s+")));
-    }
+    }*/
 }

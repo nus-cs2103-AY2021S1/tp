@@ -13,8 +13,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.model.exercise.Calories;
+import seedu.address.model.exercise.Date;
+import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
+import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
 import seedu.address.testutil.ExerciseBuilder;
 
 
@@ -25,9 +30,16 @@ public class ExerciseBookParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        Name name = new Name("Push Up");
+        Description description = new Description("test");
+        Date date = new Date("10-10-2020");
+        Calories calories = new Calories("224");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicateForExercise(keywords)), command);
+                FindCommand.COMMAND_WORD + " "
+                        + "n/Push Up d/test at/10-10-2020 c/224 k/"
+                        + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCommand(new PropertiesMatchPredicateForExercise(name,
+                description, date, calories, (String[]) keywords.toArray())), command);
     }
 
     @Test
