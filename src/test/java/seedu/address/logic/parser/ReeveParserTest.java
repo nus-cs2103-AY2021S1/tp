@@ -127,7 +127,7 @@ public class ReeveParserTest {
 
     @Test
     public void parseCommand_additionalDetail() throws Exception {
-        assertTrue(parser.parseCommand("detail add 2 d/ smart") instanceof AdditionalDetailCommand);
+        assertTrue(parser.parseCommand("detail add 2 t/ smart") instanceof AdditionalDetailCommand);
     }
 
     @Test
