@@ -88,6 +88,8 @@ public class AddQuantityToItemCommand extends Command {
 
         logger.info(itemToEdit.getName() + "'s quantity changed to " + updatedQuantity + ".");
 
+        model.commitInventory();
+
         return editItemCommand.execute(model);
     }
 

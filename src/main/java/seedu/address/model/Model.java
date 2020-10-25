@@ -223,4 +223,23 @@ public interface Model {
     void resetRecipeFilters();
 
     void setLocationList(LocationList locationList);
+
+    /**
+     * Commits the current state of the inventory to VersionedInventory.
+     */
+    void commitInventory();
+
+    /**
+     * Sets inventory to previous state.
+     *
+     * @return true on successful undo, returns false when no previous state exists
+     */
+    boolean undoInventory();
+
+    /**
+     * Sets inventory to next state.
+     *
+     * @return true on successful redo, returns false when no next state exists
+     */
+    boolean redoInventory();
 }
