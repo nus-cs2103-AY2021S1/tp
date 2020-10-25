@@ -12,6 +12,7 @@ import seedu.address.model.Models;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 
+
 /**
  * Adds a delivery to the delivery book.
  */
@@ -31,7 +32,7 @@ public class DeliveryAddCommand extends DeliveryCommand {
             + PREFIX_ADDRESS + "Blk 30 Geylang Street 29, #06-40 "
             + PREFIX_ORDER + "2x Chicken Rice, 1x Ice Milo";
 
-    public static final String MESSAGE_SUCCESS = "New delivery added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New delivery added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_DELIVERY = "This delivery already existed in the delivery book";
 
 
