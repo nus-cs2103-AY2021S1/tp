@@ -14,6 +14,7 @@ public class Deadline implements Comparable<Deadline> {
             "Deadline should only be in the format of dd-MM-yyyy HH:mm:ss, "
                     + "and the time should only be in the format of 24-Hour";
     public static final String VALIDATION_REGEX = "(\\d{2}-\\d{2}-\\d{4} \\d{2}:\\d{2}:\\d{2})";
+    private final String deadline;
     private final LocalDateTime dateTime;
 
     /**
@@ -24,6 +25,7 @@ public class Deadline implements Comparable<Deadline> {
     public Deadline(String deadline) {
         requireNonNull(deadline);
         checkArgument(isValidDeadline(deadline), MESSAGE_CONSTRAINTS);
+        this.deadline = deadline;
         dateTime = convertIntoDateTime(deadline);
     }
 
@@ -38,7 +40,7 @@ public class Deadline implements Comparable<Deadline> {
         String dateString = dateTime[0];
         String timeString = dateTime[1];
         String[] date = dateString.split("-");
-        String[] time = timeString.split("-");
+        String[] time = timeString.split(":");
         int day = Integer.parseInt(date[0]);
         int month = Integer.parseInt(date[1]);
         int year = Integer.parseInt(date[2]);
@@ -110,7 +112,7 @@ public class Deadline implements Comparable<Deadline> {
 
     @Override
     public String toString() {
-        return dateTime.toString();
+        return this.deadline;
     }
 
     @Override
