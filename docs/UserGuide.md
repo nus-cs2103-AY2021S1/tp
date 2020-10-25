@@ -110,7 +110,7 @@ You cannot add flashcard with missing question or missing answer or missing choi
 You should have at least two choices.
 </div>
 
-### Open a flashcard: `open INDEX`
+### Opening a flashcard: `open INDEX`
 
 To view a flashcard you can open it by its index.
 
@@ -408,19 +408,213 @@ QuickCache data are saved in the hard disk automatically after any command that 
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Open**| `open INDEX` <br> e.g., `open 3`
-**Add** | `add q/QUESTION ans/ANSWER` <br> e.g., `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
-**Addmcq** | `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
-**Test** | `test INDEX ans/ANSWER` (open-ended question)<br> e.g., `test 2 a/lorem ipsum` <br> `test INDEX o/OPTION` (multiple choice question)<br> e.g., `test 3 o/1`
-**stats** | `stats INDEX`
-**Clear** | `clear`
-**ClearStats** | `clearstats INDEX`
-**Delete** | `delete INDEX` or `delete t/TAG1`<br> e.g., `delete 3` or `delete t/MCQ`
-**List** | `list`
-**Find** | `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..` <br> e.g., `find t/MCQ q/What CS2103T q/is t/GoodQuestion`
-**Help** | `help`
-**Export** | `export FILE_NAME` <br> e.g., `export science-questions.json`
-**Import** | `import FILE_NAME` <br> e.g., `import science-questions.json`
-**Exit** | `exit`
+<table>
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Command</th>
+            <th>Format</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2>
+            	<Strong>Creating a flashcard</Strong>
+            </td>
+            <td rowspan=1>add</td>
+            <td rowspan=1>
+            	<code>add q/QUESTION ans/ANSWER</code>
+            </td>
+            <td rowspan=1>
+            	<code>add q/Sample Question? ans/A</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>addmcq</td>
+            <td rowspan=1>
+            	<code>addmcq q/QUESTION ans/ANSWER <br>
+            	c/FIRST_CHOICE c/SECOND_CHOICE ..</code>
+            </td>
+            <td rowspan=1>
+            	<code>addmcq q/Sample Question? ans/1 c/A c/B c/C</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>
+            	<Strong>Opening a flashcard</Strong></td>
+            <td>open</td>
+            <td rowspan=1>
+            	<code>open INDEX</code>
+            </td>
+            <td rowspan=1>
+            	<code>open 1</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>
+            	<Strong>Editing a flashcard</Strong></td>
+            <td>edit</td>
+            <td rowspan=1>
+            	<code>edit INDEX q/QUESTION ans/ANSWER <br>
+            	c/FIRST_CHOICE c/SECOND_CHOICE ..</code>
+            </td>
+            <td rowspan=1>
+            	<code>edit 1 q/Sample Question? ans/2 c/A c/C c/B</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>
+            	<Strong>Listing flashcards</Strong></td>
+            <td>list</td>
+            <td rowspan=1>
+            	<code>list</code>
+            </td>
+            <td rowspan=1>
+            	<code>list</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=3>
+            	<Strong>Finding flashcards</Strong></td>
+            <td rowspan=3>find</td>
+            <td rowspan=1>
+            	<code>find q/KEYWORD1 q/KEYWORD2 ..</code>
+            </td>
+            <td rowspan=1>
+            	<code>find q/CS2103T q/What q/is</code>
+            </td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<code>find t/TAG1 t/TAG2 ..</code>
+        	</td>
+          <td rowspan=1>
+            	<code>find t/Assembly t/MCQ</code>
+         	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<code>find t/TAG1 t/TAG2 .. <br>
+        		q/KEYWORD1 q/KEYWORD2 ..</code>
+        	</td>
+          <td rowspan=1>
+            	<code>find t/Assembly t/MCQ q/CS2100 q/What</code>
+         	</td>
+        </tr>
+        <tr>
+            <td rowspan=3>
+            	<Strong>Deleting flashcard(s)</Strong></td>
+            <td rowspan=2>delete</td>
+            <td rowspan=1>
+            	<code>delete INDEX</code>
+            </td>
+            <td rowspan=1>
+            	<code>delete 1</code>
+            </td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<code>delete t/TAG1</code>
+        	</td>
+          <td rowspan=1>
+            	<code>delete t/Assembly</code>
+         	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>clear</td>
+          <td rowspan=1>
+            	<code>clear</code>
+         	</td>
+          <td rowspan=1>
+            	<code>clear</code>
+         	</td>
+        </tr>
+        <tr>
+        	<td rowspan=2>
+        		<Strong>Testing a flashcard<Strong>
+        	</td>
+        	<td rowspan=2>test</td>
+        	<td rowspan=1>
+        		Open Ended: <code>test INDEX a/ANSWER</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>test 2 a/lorem ipsum</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		MCQ: <code>test INDEX o/OPTION</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>test 3 o/1</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=2>
+        		<Strong>Flashcard Statistics<Strong>
+        	</td>
+        	<td rowspan=1>stats</td>
+        	<td rowspan=1>
+        		Display statistics:<code>stats INDEX </code>
+        	</td>
+        	<td rowspan=1>
+        		<code>stats 1</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>clearstats</td>
+        	<td rowspan=1>
+        		Clear statistics:<code>clearstats INDEX</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>clearstats 1</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=2>
+        		<Strong>Import and Export<Strong>
+        	</td>
+        	<td rowspan=1>import</td>
+        	<td rowspan=1>
+        		<code>import FILE_NAME</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>import science-questions.json</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>export</td>
+        	<td rowspan=1>
+        		<code>export FILE_NAME</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>export science-questions.json</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<Strong>Get user guide URL</Strong>
+        	</td>
+        	<td>help</td>
+        	<td>
+        		<code>help</code>
+        	</td>
+        	<td>
+        		<code>help</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<Strong>Exit QuickCache</Strong>
+        	</td>
+        	<td>exit</td>
+        	<td>
+        		<code>exit</code>
+        	</td>
+        	<td>
+        		<code>exit</code>
+        	</td>
+        </tr>
+    </tbody>
+</table>
