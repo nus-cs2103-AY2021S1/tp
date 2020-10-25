@@ -1,16 +1,13 @@
 package seedu.address.ui;
 
-// import java.util.Comparator;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.module.Module;
-
-import java.util.Comparator;
 
 /**
  * An UI component that displays information of a {@code Module}.
@@ -59,6 +56,8 @@ public class ModuleCard extends UiPart<Region> {
         module.getGradeTracker().getAssignments().stream()
                 .sorted(Comparator.comparing(assignment -> assignment.assignmentName))
                 .forEach(assignment -> assignments.getChildren().add(new Label(assignment.assignmentName)));
+        assignments.setHgap(10);
+        assignments.setVgap(10);
         //module.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

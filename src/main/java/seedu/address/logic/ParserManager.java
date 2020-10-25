@@ -6,7 +6,6 @@ import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.TodoListParser;
 import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.grade.GradeTracker;
 
 /**
  * Represents the manager in charge of overseeing all the medium feature parsers.

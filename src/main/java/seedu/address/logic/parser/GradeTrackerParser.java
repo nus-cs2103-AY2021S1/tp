@@ -1,5 +1,11 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
@@ -13,12 +19,6 @@ import seedu.address.logic.parser.gradetrackerparsers.AddAssignmentParser;
 import seedu.address.logic.parser.gradetrackerparsers.AddGradeParser;
 import seedu.address.logic.parser.gradetrackerparsers.DeleteAssignmentParser;
 import seedu.address.logic.parser.gradetrackerparsers.EditAssignmentParser;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Represents the parser in charge for GradeTracker related commands.
@@ -46,29 +46,29 @@ public class GradeTrackerParser implements FeatureParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddAssignmentCommand.COMMAND_WORD:
-                return new AddAssignmentParser().parse(arguments);
+        case AddAssignmentCommand.COMMAND_WORD:
+            return new AddAssignmentParser().parse(arguments);
 
-            case EditAssignmentCommand.COMMAND_WORD:
-                return new EditAssignmentParser().parse(arguments);
+        case EditAssignmentCommand.COMMAND_WORD:
+            return new EditAssignmentParser().parse(arguments);
 
-            case DeleteAssignmentCommand.COMMAND_WORD:
-                return new DeleteAssignmentParser().parse(arguments);
+        case DeleteAssignmentCommand.COMMAND_WORD:
+            return new DeleteAssignmentParser().parse(arguments);
 
-            case AddGradeCommand.COMMAND_WORD:
-                return new AddGradeParser().parse(arguments);
+        case AddGradeCommand.COMMAND_WORD:
+            return new AddGradeParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }
