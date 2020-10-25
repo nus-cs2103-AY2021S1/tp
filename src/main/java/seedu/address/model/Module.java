@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import javafx.collections.ObservableList;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -23,7 +25,7 @@ public class Module implements Showable<Module> {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     private final String moduleId;
-    private List<TutorialGroup> tutorialGroups;
+    private UniqueTutorialGroupList tutorialGroups;
     private TaskList taskList;
     private int totalStudents = 0;
     private int totalGroups = 0;
@@ -37,7 +39,7 @@ public class Module implements Showable<Module> {
         requireNonNull(moduleId);
         checkArgument(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
         this.moduleId = moduleId;
-        this.tutorialGroups = new ArrayList<>();
+        this.tutorialGroups = new UniqueTutorialGroupList();
         this.taskList = new TaskList();
     }
 
@@ -62,16 +64,16 @@ public class Module implements Showable<Module> {
         return this.totalGroups;
     }
 
-    public List<TutorialGroup> getTutorialGroups() {
-        return Collections.unmodifiableList(tutorialGroups);
+    public ObservableList<TutorialGroup> getTutorialGroups() {
+        return tutorialGroups.asUnmodifiableObservableList();
     }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
-        tutorialGroups.add(tutorialGroup);
+        tutorialGroups.addTutorialGroup(tutorialGroup);
     }
 
     public void removeTutorialGroup(TutorialGroup tutorialGroup) {
-        tutorialGroups.remove(tutorialGroup);
+        tutorialGroups.removeTutorialGroup(tutorialGroup);
     }
 
     //    public void addTask(Task task) {
