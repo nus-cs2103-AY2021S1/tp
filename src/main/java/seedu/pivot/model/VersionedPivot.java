@@ -21,6 +21,7 @@ public class VersionedPivot extends Pivot {
 
     public void commit(ReadOnlyPivot pivot) {
         pivotUndoHistory.push(pivot);
+        pivotRedoHistory.clear();
     }
 
     /**
