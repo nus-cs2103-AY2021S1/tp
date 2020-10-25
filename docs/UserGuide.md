@@ -139,7 +139,7 @@ Format: `list [NUMBER_OF_DAYS]`
 
 You can list your assignments altogether with just typing `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that are within the current date (and time) and `NUMBER_OF_DAYS` later.
 
-You can use `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon! (with deadlines nearing).
+You can key in a `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon! (with deadlines nearing).
 For example, `list 2` will show you assignments that are due 2 days (48 hours) from the current date (and current time).
 {: .alert .alert-gitlab-purple}
 
@@ -170,41 +170,41 @@ Here is the table of prefixes that is used:
   overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
   font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-0lax{text-align:left;vertical-align:top}
+.tg .tg-vask{font-size:13px;text-align:left;vertical-align:top}
 </style>
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0lax">Prefix</th>
-    <th class="tg-0lax">Type of keyword</th>
-    <th class="tg-0lax">Syntax with examples</th>
-    <th class="tg-0lax">Remarks</th>
+    <th class="tg-vask">Prefix</th>
+    <th class="tg-vask">Type of keyword</th>
+    <th class="tg-vask">Syntax with examples</th>
+    <th class="tg-vask">Remarks</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-0lax">n/</td>
-    <td class="tg-0lax">Name</td>
-    <td class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">n/NAME_OF_ASSIGNMENT </span><br>[MORE NAME_OF_ASSIGNMENT]<br><br>Examples:<br>n/Tutorial<br>n/tutorial essay</td>
-    <td class="tg-0lax">Case insensitive</td>
+    <td class="tg-vask">n/</td>
+    <td class="tg-vask">Name</td>
+    <td class="tg-vask"><span style="font-weight:normal;font-style:normal;text-decoration:none">n/NAME_OF_ASSIGNMENT </span><br>[MORE NAME_OF_ASSIGNMENT]<br><br>Examples:<br>n/Tutorial<br>n/tutorial essay</td>
+    <td class="tg-vask">Case insensitive</td>
   </tr>
   <tr>
-    <td class="tg-0lax">mod/</td>
-    <td class="tg-0lax">Module code</td>
-    <td class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">mod/MODULE_CODE </span><br>[MORE MODULE_CODE]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br><span style="font-weight:normal;font-style:normal;text-decoration:none">mod/ST2334</span><br>mod/CS2100 cs2103t</td>
-    <td class="tg-0lax">Case insensitive</td>
+    <td class="tg-vask">mod/</td>
+    <td class="tg-vask">Module code</td>
+    <td class="tg-vask"><span style="font-weight:normal;font-style:normal;text-decoration:none">mod/MODULE_CODE </span><br>[MORE MODULE_CODE]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br><span style="font-weight:normal;font-style:normal;text-decoration:none">mod/ST2334</span><br>mod/CS2100 cs2103t</td>
+    <td class="tg-vask">Case insensitive</td>
   </tr>
   <tr>
-    <td class="tg-0lax">d/</td>
-    <td class="tg-0lax">Date or time in deadline</td>
-    <td class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">d/DATE_OR_TIME_OF_ASSIGNMENT </span><br>[MORE DATE_OR_TIME_OF_ASSIGNMENT]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br>d/24-10-2020<br>d/1200<br>d/1300 25-11-2020</td>
-    <td class="tg-0lax">Date keywords are irrespective of time <br>and time keywords are irrespective of date.<br>For example, find d/1300 25-11-2020 will list<br>assignments with due date of 25-11-2020 (regardless<br>of time) or with due time of 1300 (regardless of date). </td>
+    <td class="tg-vask">d/</td>
+    <td class="tg-vask">Date or time in deadline</td>
+    <td class="tg-vask"><span style="font-weight:normal;font-style:normal;text-decoration:none">d/DATE_OR_TIME_OF_ASSIGNMENT </span><br>[MORE DATE_OR_TIME_OF_ASSIGNMENT]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br>d/24-10-2020<br>d/1200<br>d/1300 25-11-2020</td>
+    <td class="tg-vask">Date keywords are irrespective of time <br>and time keywords are irrespective of date.<br>For example, find d/1300 25-11-2020 will list<br>assignments with due date of 25-11-2020 (regardless<br>of time) or with due time of 1300 (regardless of date). </td>
   </tr>
   <tr>
-    <td class="tg-0lax">p/</td>
-    <td class="tg-0lax">Priority level</td>
-    <td class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">p/PRIORITY_OF_ASSIGNMENT </span><br>[MORE PRIORITY_OF_ASSIGNMENT]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br>p/high<br>p/LOW</td>
-    <td class="tg-0lax">Case insensitive</td>
+    <td class="tg-vask">p/</td>
+    <td class="tg-vask">Priority level</td>
+    <td class="tg-vask"><span style="font-weight:normal;font-style:normal;text-decoration:none">p/PRIORITY_OF_ASSIGNMENT </span><br>[MORE PRIORITY_OF_ASSIGNMENT]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br>p/high<br>p/LOW</td>
+    <td class="tg-vask">Case insensitive</td>
   </tr>
 </tbody>
 </table>
