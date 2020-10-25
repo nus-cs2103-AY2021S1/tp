@@ -31,11 +31,11 @@ public class DeleteCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), null);
 
+    private List<Index> indexesToDelete = new ArrayList<>();
+    private List<Assignment> assignmentsToDelete = new ArrayList<>();
+
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        List<Index> indexesToDelete = new ArrayList<>();
-        List<Assignment> assignmentsToDelete = new ArrayList<>();
-
         indexesToDelete.add(INDEX_SECOND_ASSIGNMENT);
 
         Assignment assignmentToDelete = model.getFilteredAssignmentList()
@@ -53,6 +53,32 @@ public class DeleteCommandTest {
     }
 
     @Test
+    public void execute_validMultipleIndexesUnfilteredList_success() {
+        indexesToDelete.add(INDEX_FIRST_ASSIGNMENT);
+        indexesToDelete.add(INDEX_SECOND_ASSIGNMENT); // Two indexes of assignments to delete
+
+        Assignment firstAssignmentToDelete = model.getFilteredAssignmentList()
+                .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
+
+        Assignment secondAssignmentToDelete = model.getFilteredAssignmentList()
+                .get(INDEX_SECOND_ASSIGNMENT.getZeroBased());
+
+        assignmentsToDelete.add(secondAssignmentToDelete);
+        assignmentsToDelete.add(firstAssignmentToDelete);
+
+        DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
+
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_TASK_SUCCESS, assignmentsToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
+
+        expectedModel.deleteAssignment(secondAssignmentToDelete);
+        expectedModel.deleteAssignment(firstAssignmentToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAssignmentList().size() + 1);
         List<Index> assignmentIndexesToDelete = new ArrayList<>();
@@ -65,19 +91,17 @@ public class DeleteCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
-        List<Index> indexesToDelete = new ArrayList<>();
-        List<Assignment> deletedAssignments = new ArrayList<>();
 
         indexesToDelete.add(INDEX_FIRST_ASSIGNMENT);
 
         Assignment firstAssignmentToDelete = model.getFilteredAssignmentList()
                 .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
 
-        deletedAssignments.add(firstAssignmentToDelete);
+        assignmentsToDelete.add(firstAssignmentToDelete);
 
         DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, deletedAssignments);
+        String expectedMessage = String.format(MESSAGE_DELETE_TASK_SUCCESS, assignmentsToDelete);
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), null);
         expectedModel.deleteAssignment(firstAssignmentToDelete);
         showNoAssignment(expectedModel);
@@ -88,13 +112,13 @@ public class DeleteCommandTest {
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
-        List<Index> assignmentIndexesToDelete = new ArrayList<>();
+
         Index outOfBoundIndex = INDEX_SECOND_ASSIGNMENT;
-        assignmentIndexesToDelete.add(outOfBoundIndex);
+        indexesToDelete.add(outOfBoundIndex);
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(assignmentIndexesToDelete);
+        DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
     }
@@ -102,19 +126,19 @@ public class DeleteCommandTest {
     @Test
     public void execute_duplicatedIndexFilteredList_throwsCommandException() {
         showAssignmentAtIndex(model, INDEX_FIRST_ASSIGNMENT);
-        List<Index> assignmentIndexesToDelete = new ArrayList<>();
+
         Index duplicatedIndex = INDEX_FIRST_ASSIGNMENT;
-        assignmentIndexesToDelete.add(duplicatedIndex);
-        assignmentIndexesToDelete.add(duplicatedIndex);
+        // adds duplicated indexes to list
+        indexesToDelete.add(duplicatedIndex);
+        indexesToDelete.add(duplicatedIndex);
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(duplicatedIndex.getZeroBased() < model.getAddressBook().getAssignmentList().size());
 
-        DeleteCommand deleteCommand = new DeleteCommand(assignmentIndexesToDelete);
+        DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
 
         assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand
                 .MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX));
     }
-
 
     @Test
     public void equals() {
