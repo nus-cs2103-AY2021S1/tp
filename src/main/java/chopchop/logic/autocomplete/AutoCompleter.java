@@ -96,13 +96,37 @@ public class AutoCompleter {
      * Returns a completion for the command only.
      */
     private String completeCommand(CommandArguments args, String orig) {
+
+        var valids = new ArrayList<String>();
         for (var cmd : Strings.COMMAND_NAMES) {
             if (cmd.startsWith(args.getCommand())) {
-                return cmd + " ";
+                valids.add(cmd);
             }
         }
 
-        return orig;
+        valids.sort((a, b) -> a.length() - b.length());
+
+        if (this.lastViableCompletions == null) {
+            this.lastViableCompletions = new ArrayList<String>(valids);
+        }
+
+        if (this.lastViableCompletions.isEmpty()) {
+            return orig;
+        } else {
+
+            // this should always hold, because:
+            // (a) we always perform the modulo at the end
+            // (b) the list of viableCompletions should not change as long as the
+            //     internal state is not reset
+            // (c) if 'partial' changed due to user input, then we are supposed to be reset.
+
+            assert this.lastCompletionIndex < this.lastViableCompletions.size();
+
+            var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
+            this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
+
+            return completion + " ";
+        }
     }
 
     /**
@@ -146,11 +170,21 @@ public class AutoCompleter {
                 validArguments.add(Strings.ARG_QUANTITY);
                 validArguments.add(Strings.ARG_EXPIRY);
                 validArguments.add(Strings.ARG_TAG);
-
             }
         } else if (cmd.equals(Strings.COMMAND_EDIT)) {
             if (tgt.equals(CommandTarget.RECIPE.toString())) {
                 return completeEditRecipeArguments(args, partial, orig);
+            }
+        } else if (cmd.equals(Strings.COMMAND_FILTER)) {
+            if (tgt.equals(CommandTarget.RECIPE.toString())) {
+
+                validArguments.add(Strings.ARG_TAG);
+                validArguments.add(Strings.ARG_INGREDIENT);
+
+            } else if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
+
+                validArguments.add(Strings.ARG_TAG);
+                validArguments.add(Strings.ARG_EXPIRY);
             }
         }
 
@@ -282,11 +316,7 @@ public class AutoCompleter {
             return Optional.empty();
         } else {
 
-            // this should always hold, because:
-            // (a) we always perform the modulo at the end
-            // (b) the list of viableCompletions should not change as long as the
-            //     internal state is not reset
-            // (c) if 'partial' changed due to user input, then we are supposed to be reset.
+            // see the note in completeCommand ('this should always hold, because...')
 
             assert this.lastCompletionIndex < this.lastViableCompletions.size();
 

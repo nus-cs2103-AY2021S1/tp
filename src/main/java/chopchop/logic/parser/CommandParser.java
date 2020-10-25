@@ -32,8 +32,11 @@ public class CommandParser {
         var ret = new ArrayList<Pair<ArgName, String>>();
         while (input.size() > 0) {
 
+            System.out.printf("input = '%s'\n", input);
             if (input.find('/') != 0) {
                 break;
+            } else if (input.size() == 1) {
+                return Result.error("expected argument name after '/'");
             }
 
             var pair = splitUntilNextSlash(input.drop(1));
@@ -65,13 +68,12 @@ public class CommandParser {
             // split based on " /" (ie. there must be a leading space before the slash),
             // but that requires changing StringView::bisect. later.
             var currentArg = input.drop(1).bisect('/', input);
-
             {
                 var argName = new StringView("");
                 var argValue = new StringView("");
 
                 currentArg.bisect(argName, ' ', argValue);
-                if (argName.isEmpty()) {
+                if (currentArg.isEmpty() || argName.isEmpty()) {
                     return Result.error("expected argument name after '/'");
                 }
 

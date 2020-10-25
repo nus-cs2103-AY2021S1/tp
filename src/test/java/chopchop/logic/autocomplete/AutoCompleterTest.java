@@ -55,6 +55,7 @@ public class AutoCompleterTest {
         cases.put("u",                                      "undo");
         cases.put("r",                                      "redo");
         cases.put("d",                                      "delete");
+        cases.put("fil",                                    "filter");
 
         runTests(cases);
     }
