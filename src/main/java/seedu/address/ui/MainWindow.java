@@ -133,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         appointmentListPanel = new AppointmentListPanel(logic.getFilteredAppointmentList());
         appointmentListPanelPlaceholder.getChildren().add(appointmentListPanel.getRoot());
 
-        calendarDisplay = new CalendarDisplay();
+        calendarDisplay = new CalendarDisplay(logic.getFilteredAppointmentList());
         calendarDisplayPlaceholder.getChildren().add(calendarDisplay.getRoot());
     }
 

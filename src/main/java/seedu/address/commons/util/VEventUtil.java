@@ -42,6 +42,7 @@ public class VEventUtil {
         resultVEvent.setSummary(appToMap.getPatientName().fullName);
         resultVEvent.setDateTimeStart(appToMap.getStartTime().dateTime);
         resultVEvent.setDateTimeEnd(appToMap.getEndTime().dateTime);
+        resultVEvent.setUniqueIdentifier();
 
         return resultVEvent;
     }
