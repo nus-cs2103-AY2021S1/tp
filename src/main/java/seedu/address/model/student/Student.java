@@ -1,5 +1,6 @@
 package seedu.address.model.student;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.question.Question;
 
 /**
  * Represents a Student in Reeve.
@@ -23,26 +25,11 @@ public class Student {
     private final Year year;
     private final Admin admin;
     private final List<Question> questions = new ArrayList<>();
-    private final ArrayList<Exam> exams;
+    private final ArrayList<Exam> exams = new ArrayList<>();
 
     /**
      *  name, phone, school, year, must be present and not null.
      *  exams is empty when a student is first initialised.
-     */
-    public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin, List<Question> questions) {
-        requireAllNonNull(name, phone, school, year, admin);
-        this.name = name;
-        this.phone = phone;
-        this.school = school;
-        this.year = year;
-        this.admin = admin;
-        this.questions.addAll(questions);
-        this.exams = new ArrayList<>();
-    }
-
-    /**
-     * Used when updating exams of a student.
      */
     public Student(Name name, Phone phone, School school, Year year,
                    Admin admin, List<Question> questions, ArrayList<Exam> exams) {
@@ -53,7 +40,18 @@ public class Student {
         this.year = year;
         this.admin = admin;
         this.questions.addAll(questions);
-        this.exams = exams;
+        this.exams.addAll(exams);
+    }
+
+    private Student(Student copy) {
+        requireNonNull(copy);
+        this.name = copy.name;
+        this.phone = copy.phone;
+        this.school = copy.school;
+        this.year = copy.year;;
+        this.admin = copy.admin;
+        this.questions.addAll(copy.questions);
+        this.exams.addAll(copy.exams);
     }
 
     public Name getName() {
@@ -77,7 +75,7 @@ public class Student {
     }
 
     public List<Question> getQuestions() {
-        return questions;
+        return List.copyOf(questions);
     }
 
     public ArrayList<Exam> getExams() {
@@ -112,14 +110,54 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName())
+                && otherStudent.getName().toString().toLowerCase().equals(getName().toString().toLowerCase())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getSchool().equals(getSchool())
+                && otherStudent.getSchool().toString().toLowerCase().equals(getSchool().toString().toLowerCase())
                 && otherStudent.getYear().equals(getYear());
     }
 
     public boolean containsQuestion(Question question) {
         return questions.stream().anyMatch(question::isSameQuestion);
+    }
+
+    /***
+     * Creates a new student object with a newly added question at the end of the questions list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student addQuestion(Question question) {
+        assert !containsQuestion(question);
+
+        requireNonNull(question);
+        Student replacement = new Student(this);
+        replacement.questions.add(question);
+        return replacement;
+    }
+
+    /**
+     * Creates a new student object with a modified question replacing the previous question in the list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student setQuestion(Question target, Question newQuestion) {
+        assert questions.contains(target);
+        requireAllNonNull(target, newQuestion);
+
+        Student replacement = new Student(this);
+        int location = replacement.questions.indexOf(target);
+        replacement.questions.set(location, newQuestion);
+        return replacement;
+    }
+
+    /**
+     * Creates a new student object with the specified question removed from the list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student deleteQuestion(Question target) {
+        assert questions.contains(target);
+        requireNonNull(target);
+
+        Student replacement = new Student(this);
+        replacement.questions.remove(target);
+        return replacement;
     }
 
     /**

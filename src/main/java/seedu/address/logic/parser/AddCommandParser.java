@@ -21,16 +21,17 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
 
 
 /**
@@ -65,7 +66,8 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         Admin admin = new Admin(classVenue, classTime, fee, paymentDate, detailList);
         List<Question> questions = new ArrayList<>();
-        Student student = new Student(name, phone, school, year, admin, questions);
+        ArrayList<Exam> exams = new ArrayList<>();
+        Student student = new Student(name, phone, school, year, admin, questions, exams);
         return new AddCommand(student);
     }
 

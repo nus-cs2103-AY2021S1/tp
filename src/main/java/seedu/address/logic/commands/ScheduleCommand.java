@@ -45,10 +45,10 @@ public class ScheduleCommand extends Command {
         Predicate<Student> predicate = student -> student.getAdmin().getClassTime().isSameDay(day);
 
         // updates the list that is currently showed in the ui
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStudentList(predicate);
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 
     @Override

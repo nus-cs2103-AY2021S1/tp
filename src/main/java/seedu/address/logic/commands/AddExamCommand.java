@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +60,7 @@ public class AddExamCommand extends ExamCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -78,8 +78,8 @@ public class AddExamCommand extends ExamCommand {
         Student updatedStudent = new Student(selectedStudent.getName(), selectedStudent.getPhone(),
                 selectedStudent.getSchool(), selectedStudent.getYear(), selectedStudent.getAdmin(),
                 selectedStudent.getQuestions(), exams);
-        model.setPerson(selectedStudent, updatedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(selectedStudent, updatedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EXAM_ADDED_SUCCESS, updatedStudent.getName(), toAdd));
     }
 

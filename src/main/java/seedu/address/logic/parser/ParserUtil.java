@@ -14,7 +14,6 @@ import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
@@ -25,6 +24,9 @@ import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.SolvedQuestion;
+import seedu.address.model.student.question.UnsolvedQuestion;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -133,15 +135,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String question} into a {@code Question}.
+     * Parses a {@code String question} into an {@code UnsolvedQuestion}.
      */
-    public static Question parseQuestion(String question) throws ParseException {
+    public static UnsolvedQuestion parseQuestion(String question) throws ParseException {
         requireNonNull(question);
         String trimmedQuestion = question.trim();
         if (!Question.isValidQuestion(trimmedQuestion)) {
             throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
-        return new Question(trimmedQuestion);
+        return new UnsolvedQuestion(trimmedQuestion);
+    }
+
+    /**
+     * Parses a {@code String solution} a trimmed {@code solution}.
+     */
+    public static String parseSolution(String solution) throws ParseException {
+        requireNonNull(solution);
+        String trimmedSolution = solution.trim();
+        if (!SolvedQuestion.isValidSolution(trimmedSolution)) {
+            throw new ParseException(SolvedQuestion.MESSAGE_SOLUTION_CONSTRAINTS);
+        }
+        return trimmedSolution;
     }
 
     /**

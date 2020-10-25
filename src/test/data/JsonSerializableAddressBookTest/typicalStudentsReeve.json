@@ -12,10 +12,15 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": ["owesMoney", "friends"]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ],
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    }],
     "exams" : [ {
       "examName" : "End of Year Examination 2020",
       "examDate" : "7/11/2020",
@@ -24,8 +29,7 @@
       "examName" : "Mid Year Examination 2020",
       "examDate" : "25/7/2020",
       "score" : "20/30"
-    } ]
-  }, {
+  }]}, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "school": "Pei Hwa Secondary",
@@ -37,20 +41,24 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ],
-    "exams" : [ {
-      "examName" : "CA2",
-      "examDate" : "19/9/2020",
-      "score" : "73/100"
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
     }, {
-      "examName" : "CA1",
-      "examDate" : "2/3/2020",
-      "score" : "21/40"
-    } ]
-  }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ],
+      "exams" : [ {
+        "examName" : "CA2",
+        "examDate" : "19/9/2020",
+        "score" : "73/100"
+      }, {
+        "examName" : "CA1",
+        "examDate" : "2/3/2020",
+        "score" : "21/40"
+  }]}, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "school": "Catholic High",
@@ -62,10 +70,15 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -78,10 +91,15 @@
       "paymentDate": "28/2/2018",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ]
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -94,10 +112,15 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "1 | What is Newton's Second Law?",
-      "1 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : true,
+      "question" : "What is Newton's Second Law?",
+      "solution" : "Read your textbook"
+    }, {
+      "status" : true,
+      "question" : "How do you inverse a matrix?",
+      "solution" : "Read your textbook"
+    } ]
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -110,20 +133,24 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ],
-    "exams" : [ {
-      "examName" : "End of Year Examination 2020",
-      "examDate" : "7/11/2020",
-      "score" : "61/100"
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
     }, {
-      "examName" : "Mid Year Examination 2020",
-      "examDate" : "25/7/2020",
-      "score" : "13/30"
-    } ]
-  }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ],
+        "exams" : [ {
+          "examName" : "End of Year Examination 2020",
+          "examDate" : "7/11/2020",
+          "score" : "61/100"
+        }, {
+          "examName" : "Mid Year Examination 2020",
+          "examDate" : "25/7/2020",
+          "score" : "13/30"
+  }]}, {
     "name" : "George Best",
     "phone" : "9482442",
     "school": "Montford Secondary",
@@ -135,9 +162,14 @@
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
     },
-    "questions": [
-      "0 | What is Newton's Second Law?",
-      "0 | How do you inverse a matrix?"
-    ]
+    "questions": [ {
+      "status" : false,
+      "question" : "What is Newton's Second Law?",
+      "solution" : ""
+    }, {
+      "status" : false,
+      "question" : "How do you inverse a matrix?",
+      "solution" : ""
+    } ]
   } ]
 }

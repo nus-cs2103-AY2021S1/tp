@@ -49,10 +49,10 @@ public class ScheduleCommandTest {
         DayOfWeek day = validDate.getDayOfWeek();
 
         Model expectedModel = new ModelManager(new Reeve(model.getReeve()), new UserPrefs());
-        expectedModel.updateFilteredPersonList(std -> std.getAdmin().getClassTime().isSameDay(day));
+        expectedModel.updateFilteredStudentList(std -> std.getAdmin().getClassTime().isSameDay(day));
 
         String expectedMsg = String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW,
-                expectedModel.getFilteredPersonList().size());
+                expectedModel.getFilteredStudentList().size());
 
         ScheduleCommand scheduleCommand = new ScheduleCommand(validDate);
 

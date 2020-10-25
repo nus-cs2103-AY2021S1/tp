@@ -56,25 +56,25 @@ public class AddExamCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withExams().build();
         AddExamCommand addExamCommand =
                 new AddExamCommand(INDEX_FIRST_PERSON, dummyExam);
         Student expectedStudent = new StudentBuilder(ALICE).withExams(dummyExam).build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         String expectedMessage = String.format(AddExamCommand.MESSAGE_EXAM_ADDED_SUCCESS, expectedStudent.getName(),
                 dummyExam);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(addExamCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
+        Index outOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         AddExamCommand command = new AddExamCommand(outOfBounds,
                 dummyExam);
 
@@ -85,9 +85,9 @@ public class AddExamCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withExams().build();
-        model.setPerson(asker, clone);
+        model.setStudent(asker, clone);
 
         AddExamCommand command = new AddExamCommand(INDEX_FIRST_PERSON, dummyExam);
         Student expectedStudent = new StudentBuilder(BENSON).withExams(dummyExam).build();
@@ -96,7 +96,7 @@ public class AddExamCommandTest {
                 expectedStudent.getName(), dummyExam);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
-        expectedModel.setPerson(clone, expectedStudent);
+        expectedModel.setStudent(clone, expectedStudent);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
     }
