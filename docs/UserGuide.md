@@ -15,7 +15,9 @@ NUStorage is optimised for store owners and managers who prefer to work with a c
 
 With some experience in typing, NUStorage can manage your inventory and finance records much faster than traditional GUI-based applications, streamlining your workflow and increasing productivity.
 
-Interested? Read on to get started!
+Interested? Read on to get [started](#2-quick-start-guide)!
+
+If you see a acronym that you don't understand, kindly refer to the [glossary](#6-glossary).
 
 ---
 
@@ -259,9 +261,17 @@ __Exit programme__ | `exit`
 
 ---
 
-## 6. FAQs
+## 6. Glossary
 
-### 6.1. How do I migrate the data to another computer?
+1. `CLI`: command line interface.
+2. `GUI`: graphical user interface.
+3. `.jar`: The file type that NUStorage is released in. This is similar to the `.exe` files in Windows and `.app` files in MacOS.
+
+---
+
+## 7. FAQs
+
+### 7.1. How do I migrate the data to another computer?
 
 WARNING: doing so will overwrite the existing data you may have on the other device. Please make sure you make a backup before migrating data.
 
@@ -272,11 +282,11 @@ Steps to migrate data:
 3. Place the two files under the directory `./data`.
 4. Restart NUStorage on the other device to load the data.
 
-### 6.2. How do I combine data from two devices?
+### 7.2. How do I combine data from two devices?
 
 Currently, NUStorage does not support the merging of data between different devices. NUStorage only supports moving of data from one device to another. Please see FAQ 6.1 regarding how to migrate data.
 
-### 6.3. Can I directly modify the storage file?
+### 7.3. Can I directly modify the storage file?
 
 Modifying the storage file is possible but NOT RECOMMENDED! Doing so may result in a complete data loss.
 
