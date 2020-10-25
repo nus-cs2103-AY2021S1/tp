@@ -334,7 +334,7 @@ Examples:
 * Click on `file` option in the menubar above the command box
 * Click on `Export` button to open the directory selector
 * Navigate using the GUI to the save file
-* Click on select folder when done
+* Click on `Select Folder` when done
 
 </div>
 
