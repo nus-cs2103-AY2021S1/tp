@@ -8,7 +8,6 @@ import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.BANANA;
-import static seedu.stock.testutil.TypicalStocks.ORANGE;
 import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
@@ -52,7 +51,7 @@ public class FindCommandTest {
                 + sourcePredicate.toString() + "\n" + expectedMessage;
         List<Predicate<Stock>> predicateList = Arrays.asList(namePredicate, sourcePredicate);
         expectedModel.updateFilteredStockList(
-                predicateList.stream().reduce(x -> true, Predicate::or));
+                predicateList.stream().reduce(x -> false, Predicate::or));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(APPLE, BANANA), model.getFilteredStockList());
