@@ -7,10 +7,12 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+
 
 /**
  * Controller class for the swappable display region.
@@ -30,6 +32,18 @@ public class DisplayController extends UiPart<Region> {
 
     @FXML
     private StackPane displayAreaPlaceholder;
+
+    @FXML
+    private Button recipeButton;
+
+    @FXML
+    private Button ingredientButton;
+
+    @FXML
+    private Button recommendationButton;
+
+    @FXML
+    private Button favouriteButton;
 
     /**
      * Creates a {@code DisplayController} with the given {@code Logic}.
