@@ -349,6 +349,8 @@ _{give a remark to the recipe}_
 # Glossary
 **Wishful Shrinking**: can refer to name of the application as a whole or to app’s storage file
 **Consumption**: stores a list of recipes that a user has marked as consumed 
+**Drawer**: Page that layers above left section of the window when the select command runs and closes when the
+ close command runs
 
 --------------------------------------------------------------------------------------------------------------------
 
