@@ -36,7 +36,7 @@ public class DeleteCommandParser {
         return getCommandTarget(args)
             .then(target -> {
                 if (target.snd().isEmpty()) {
-                    return Result.error("recipe or ingredient name cannot be empty");
+                    return Result.error("Recipe or ingredient name cannot be empty");
                 }
 
                 switch (target.fst()) {
@@ -47,7 +47,7 @@ public class DeleteCommandParser {
                     return parseDeleteIngredientCommand(target.snd().strip(), args);
 
                 default:
-                    return Result.error("can only delete recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("Can only delete recipes or ingredients ('%s' invalid)", target.fst());
                 }
             });
     }
@@ -60,26 +60,22 @@ public class DeleteCommandParser {
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY))).isPresent()) {
-            return Result.error("'delete ingredient' command doesn't support '%s'\n%s",
-                    foo.get(), DeleteIngredientCommand.MESSAGE_USAGE);
-        }
-
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'delete ingredient' command doesn't support edit-arguments\n%s",
-                DeleteIngredientCommand.MESSAGE_USAGE);
+            return Result.error("'delete ingredient' command doesn't support '%s'", foo.get());
+        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'delete ingredient' command doesn't support edit-arguments");
         }
 
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
         if (qtys.size() > 1) {
-            return Result.error("multiple quantities specified");
+            return Result.error("Multiple quantities specified");
         }
 
         return ItemReference.parse(name)
             .then(ref -> Result.transpose(qtys
-                    .stream()
-                    .findFirst()
-                    .map(Quantity::parse))
-                    .map(qty -> new DeleteIngredientCommand(ref, qty)));
+                .stream()
+                .findFirst()
+                .map(Quantity::parse))
+                .map(qty -> new DeleteIngredientCommand(ref, qty)));
     }
 
     /**
@@ -90,16 +86,11 @@ public class DeleteCommandParser {
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
-            return Result.error("'delete recipe' command doesn't support '%s'\n%s",
-                    foo.get(), DeleteRecipeCommand.MESSAGE_USAGE);
+            return Result.error("'delete recipe' command doesn't support '%s'", foo.get());
+        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'delete recipe' command doesn't support edit-arguments");
         }
 
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'delete recipe' command doesn't support edit-arguments\n%s",
-                DeleteRecipeCommand.MESSAGE_USAGE);
-        }
-
-        return ItemReference.parse(name)
-            .map(DeleteRecipeCommand::new);
+        return ItemReference.parse(name).map(DeleteRecipeCommand::new);
     }
 }

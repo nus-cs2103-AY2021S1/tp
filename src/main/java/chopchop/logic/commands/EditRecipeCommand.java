@@ -4,11 +4,16 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import chopchop.commons.core.Messages;
+import chopchop.commons.util.Result;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.edit.EditOperationType;
+import chopchop.logic.edit.IngredientEditDescriptor;
 import chopchop.logic.edit.RecipeEditDescriptor;
+import chopchop.logic.edit.StepEditDescriptor;
+import chopchop.logic.edit.TagEditDescriptor;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
 import chopchop.model.Model;
@@ -29,16 +34,6 @@ public class EditRecipeCommand extends Command implements Undoable {
             + "Parameters: INDEX (must be a positive integer) / NAME\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Recipe edited: %s";
-    public static final String MESSAGE_EDIT_OPERATION_TYPE_NOT_SUPPORTED = "Edit operation type not supported";
-    public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipe named '%s'";
-    public static final String MESSAGE_INGREDIENT_NOT_FOUND = "No ingredient named '%s' in recipe '%s'";
-    public static final String MESSAGE_TAG_NOT_FOUND = "No tag named '%s' in recipe '%s'";
-    public static final String MESSAGE_QUANTITY_MISSING = "No quantity specified for '%s'";
-    public static final String MESSAGE_STEP_INDEX_MISSING = "No step index specified";
-    public static final String MESSAGE_INVALID_STEP_INDEX = "No step at index #%d";
-    public static final String MESSAGE_UNDO_SUCCESS = "Recipe unedited: %s";
-
     private final ItemReference item;
     private final RecipeEditDescriptor recipeEditDescriptor;
     private Recipe recipe;
@@ -55,113 +50,174 @@ public class EditRecipeCommand extends Command implements Undoable {
         this.recipeEditDescriptor = recipeEditDescriptor;
     }
 
+
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         requireNonNull(model);
 
-        if (this.item.isIndexed()) {
-            var lastShownList = model.getFilteredRecipeList();
-
-            if (this.item.getZeroIndex() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
-            }
-
-            this.recipe = lastShownList.get(this.item.getZeroIndex());
-        } else {
-            this.recipe = model
-                    .findRecipeWithName(this.item.getName())
-                    .orElseThrow(() -> new CommandException(String.format(MESSAGE_RECIPE_NOT_FOUND,
-                            this.item.getName())));
+        var res = resolveRecipeReference(this.item, model);
+        if (res.isError()) {
+            return CommandResult.error(res.getError());
         }
 
-        var name = recipeEditDescriptor.getNameEdit().orElse(this.recipe.getName());
-        var ingredients = new ArrayList<>(this.recipe.getIngredients());
-        var steps = new ArrayList<>(this.recipe.getSteps());
-        var tags = new HashSet<>(this.recipe.getTags());
+        this.recipe = res.getValue();
 
-        for (var ingredientEditDescriptor : this.recipeEditDescriptor.getIngredientEdits()) {
-            var type = ingredientEditDescriptor.getEditType();
-            var ingredientName = ingredientEditDescriptor.getIngredientName();
-            var quantityOptional = ingredientEditDescriptor.getIngredientQuantity();
+        var newName = this.recipeEditDescriptor.getNameEdit()
+            .orElse(this.recipe.getName());
 
-            if (type == EditOperationType.ADD) {
-                ingredients.add(new IngredientReference(ingredientName, quantityOptional.orElse(Count.of(1))));
-            } else {
-                var existingIngredient = ingredients.stream()
-                        .filter(ingredient -> ingredient.getName().equalsIgnoreCase(ingredientName))
-                        .findFirst()
-                        .orElseThrow(() -> new CommandException(String.format(MESSAGE_INGREDIENT_NOT_FOUND,
-                                ingredientName, this.recipe.getName())));
+        var newIngredients = performIngredientEdits(this.recipeEditDescriptor.getIngredientEdits());
+        var newSteps = performStepEdits(this.recipeEditDescriptor.getStepEdits());
+        var newTags = performTagEdits(this.recipeEditDescriptor.getTagEdits());
 
-                if (type == EditOperationType.EDIT) {
-                    var quantity = quantityOptional
-                            .orElseThrow(() -> new CommandException(String.format(MESSAGE_QUANTITY_MISSING,
-                                    ingredientName)));
-                    ingredients.set(ingredients.indexOf(existingIngredient),
-                            new IngredientReference(ingredientName, quantity));
-                } else if (type == EditOperationType.DELETE) {
-                    ingredients.remove(existingIngredient);
-                } else {
-                    throw new CommandException(MESSAGE_EDIT_OPERATION_TYPE_NOT_SUPPORTED);
-                }
-            }
+        var foo = Result.firstError(newIngredients, newSteps, newTags);
+        if (foo.isPresent()) {
+            return CommandResult.error(foo.get());
         }
 
-        for (var stepEditDescriptor : this.recipeEditDescriptor.getStepEdits()) {
-            var type = stepEditDescriptor.getEditType();
-            var numberOptional = stepEditDescriptor.getStepNumber();
-            var step = stepEditDescriptor.getStepText();
-
-            if (type == EditOperationType.ADD) {
-                steps.add(numberOptional.map(x -> x - 1).orElse(steps.size()), new Step(step));
-            } else {
-                int index = numberOptional.map(x -> x - 1)
-                        .orElseThrow(() -> new CommandException(MESSAGE_STEP_INDEX_MISSING));
-
-                if (index < 0 || index > steps.size() - 1) {
-                    throw new CommandException(String.format(MESSAGE_INVALID_STEP_INDEX, index + 1));
-                }
-
-                if (type == EditOperationType.EDIT) {
-                    steps.set(index, new Step(step));
-                } else if (type == EditOperationType.DELETE) {
-                    steps.remove(index);
-                } else {
-                    throw new CommandException(MESSAGE_EDIT_OPERATION_TYPE_NOT_SUPPORTED);
-                }
-            }
-        }
-
-        for (var tagEditDescriptor : this.recipeEditDescriptor.getTagEdits()) {
-            var tagName = tagEditDescriptor.getTagName();
-
-            switch (tagEditDescriptor.getEditType()) {
-            case ADD:
-                tags.add(new Tag(tagName));
-                break;
-            case DELETE:
-                var existingTag = tags.stream().filter(tag -> tag.equals(tagName)).findFirst()
-                        .orElseThrow(() -> new CommandException(String.format(MESSAGE_TAG_NOT_FOUND,
-                                tagName, this.recipe.getName())));
-                tags.remove(existingTag);
-                break;
-            default:
-                throw new CommandException(MESSAGE_EDIT_OPERATION_TYPE_NOT_SUPPORTED);
-            }
-        }
-
-        this.editedRecipe = new Recipe(name, ingredients, steps, tags);
+        this.editedRecipe = new Recipe(newName,
+            newIngredients.getValue(),
+            newSteps.getValue(),
+            newTags.getValue());
 
         model.setRecipe(this.recipe, this.editedRecipe);
-        return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, this.editedRecipe));
+        return CommandResult.message("Edited recipe '%s'%s",
+            this.recipe.getName(), !this.recipe.getName().equals(newName)
+                ? String.format(" (renamed to '%s')", newName)
+                : "");
     }
+
+
+
+
+    private Result<List<IngredientReference>> performIngredientEdits(List<IngredientEditDescriptor> edits) {
+
+        // this is a reference.
+        var ingredients = new ArrayList<>(this.recipe.getIngredients());
+
+        for (var edit : edits) {
+
+            var type = edit.getEditType();
+            var name = edit.getIngredientName();
+            var qtyOpt = edit.getIngredientQuantity();
+
+            if (type == EditOperationType.ADD) {
+
+                // TODO: validate the ingredient here
+                ingredients.add(new IngredientReference(name, qtyOpt.orElse(Count.of(1))));
+
+            } else {
+
+                var opt = ingredients.stream()
+                    .filter(ingr -> ingr.getName().equalsIgnoreCase(name))
+                    .findFirst();
+
+                if (opt.isEmpty()) {
+                    return Result.error("Recipe doesn't contain an ingredient named '%s'", name);
+                } else if (type == EditOperationType.EDIT && qtyOpt.isEmpty()) {
+                    return Result.error("Missing quantity to edit ingredient '%s'", name);
+                }
+
+                var existing = opt.get();
+
+                if (type == EditOperationType.EDIT) {
+
+                    var idx = ingredients.indexOf(existing);
+                    ingredients.set(idx, new IngredientReference(name, qtyOpt.get()));
+
+                } else if (type == EditOperationType.DELETE) {
+
+                    ingredients.remove(existing);
+
+                } else {
+                    return Result.error("Cannot %s ingredients", type);
+                }
+            }
+        }
+
+        return Result.of(ingredients);
+    }
+
+
+    private Result<List<Step>> performStepEdits(List<StepEditDescriptor> edits) {
+
+        var steps = new ArrayList<>(this.recipe.getSteps());
+
+        for (var edit : edits) {
+            var type = edit.getEditType();
+            var step = edit.getStepText();
+            var numOpt = edit.getStepNumber().map(x -> x - 1);
+
+            if (type == EditOperationType.ADD) {
+
+                steps.add(numOpt.orElse(steps.size()), new Step(step));
+
+            } else {
+
+                if (numOpt.isEmpty()) {
+                    return Result.error("Missing step number for %s", type);
+                }
+
+                var index = numOpt.get();
+                if (index < 0 || index >= steps.size()) {
+                    return Result.error("Step number '%d' is out of range (should be between 1 and %d)",
+                        1 + index, steps.size());
+                }
+
+                if (type == EditOperationType.EDIT) {
+
+                    steps.set(index, new Step(step));
+
+                } else if (type == EditOperationType.DELETE) {
+
+                    steps.remove(index);
+
+                } else {
+                    return Result.error("Cannot %s steps", type);
+                }
+            }
+        }
+
+        return Result.of(steps);
+    }
+
+    private Result<Set<Tag>> performTagEdits(List<TagEditDescriptor> edits) {
+
+        var tags = new HashSet<>(this.recipe.getTags());
+
+        for (var edit : edits) {
+
+            var tagName = edit.getTagName();
+
+            if (edit.getEditType() == EditOperationType.ADD) {
+
+                // it's a Set<Tag>, so we don't need to check for dupes.
+                tags.add(new Tag(tagName));
+
+            } else if (edit.getEditType() == EditOperationType.DELETE) {
+
+                var opt = tags.stream().filter(t -> t.equals(tagName)).findFirst();
+                if (opt.isEmpty()) {
+                    return Result.error("Recipe '%s' does not have tag '%s'",
+                        this.recipe.getName(), tagName);
+                }
+
+                tags.remove(opt.get());
+
+            } else {
+                return Result.error("Cannot %s tags", edit.getEditType());
+            }
+        }
+
+        return Result.of(tags);
+    }
+
 
     @Override
     public CommandResult undo(Model model) {
         requireNonNull(model);
 
         model.setRecipe(this.editedRecipe, this.recipe);
-        return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.recipe));
+        return CommandResult.message("Undo: un-edited recipe '%s'", this.recipe.getName());
     }
 
     @Override

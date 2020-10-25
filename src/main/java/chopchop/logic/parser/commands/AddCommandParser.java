@@ -46,22 +46,22 @@ public class AddCommandParser {
         assert args.getCommand().equals(Strings.COMMAND_ADD);
 
         return getCommandTarget(args)
-                .then(target -> {
-                    if (target.snd().isEmpty()) {
-                        return Result.error("recipe or ingredient name cannot be empty");
-                    }
+            .then(target -> {
+                if (target.snd().isEmpty()) {
+                    return Result.error("Recipe or ingredient name cannot be empty");
+                }
 
-                    switch (target.fst()) {
-                    case RECIPE:
-                        return parseAddRecipeCommand(target.snd().strip(), args);
+                switch (target.fst()) {
+                case RECIPE:
+                    return parseAddRecipeCommand(target.snd().strip(), args);
 
-                    case INGREDIENT:
-                        return parseAddIngredientCommand(target.snd().strip(), args);
+                case INGREDIENT:
+                    return parseAddIngredientCommand(target.snd().strip(), args);
 
-                    default:
-                        return Result.error("can only add recipes or ingredients ('%s' invalid)", target.fst());
-                    }
-                });
+                default:
+                    return Result.error("Can only add recipes or ingredients ('%s' invalid)", target.fst());
+                }
+            });
     }
 
     /**
@@ -71,35 +71,27 @@ public class AddCommandParser {
     private static Result<AddIngredientCommand> parseAddIngredientCommand(String name, CommandArguments args) {
 
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
-                Strings.ARG_EXPIRY, Strings.ARG_TAG))).isPresent()) {
+        var supportedArgs = List.of(Strings.ARG_QUANTITY, Strings.ARG_EXPIRY, Strings.ARG_TAG);
 
-            return Result.error("'add ingredient' command doesn't support '%s'\n%s",
-                    foo.get(), AddIngredientCommand.MESSAGE_USAGE);
+        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+            return Result.error("'add ingredient' command doesn't support '%s'", foo.get());
+        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add ingredient' command doesn't support edit-arguments");
         }
 
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'add ingredient' command doesn't support edit-arguments\n%s",
-                    AddIngredientCommand.MESSAGE_USAGE);
-        }
-
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'add ingredient' command doesn't support edit-arguments\n%s",
-                AddIngredientCommand.MESSAGE_USAGE);
-        }
 
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
         if (qtys.size() > 1) {
-            return Result.error("multiple quantities specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
+            return Result.error("Multiple quantities specified");
         } else if (qtys.size() == 1 && qtys.get(0).isEmpty()) {
-            return Result.error("quantity cannot be empty");
+            return Result.error("Specified quantity cannot be emtpy");
         }
 
         var exps = args.getArgument(Strings.ARG_EXPIRY);
         if (exps.size() > 1) {
-            return Result.error("multiple expiry dates specified\n%s", AddIngredientCommand.MESSAGE_USAGE);
+            return Result.error("Multiple expiry dates specified");
         } else if (exps.size() == 1 && exps.get(0).isEmpty()) {
-            return Result.error("expiry date cannot be empty");
+            return Result.error("Specified expiry date cannot be empty");
         }
 
         var tags = args.getArgument(Strings.ARG_TAG);
@@ -111,15 +103,15 @@ public class AddCommandParser {
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
         // then constructs the command from it -- while returning any intermediate error messages.
         return Result.transpose(qtys
+            .stream()
+            .findFirst()
+            .map(Quantity::parse))
+            .then(qty -> Result.transpose(exps
                 .stream()
                 .findFirst()
-                .map(Quantity::parse))
-                .then(qty -> Result.transpose(exps
-                        .stream()
-                        .findFirst()
-                        .map(e -> Result.of(e)))
-                        .then(exp -> createAddIngredientCommand(name, qty, exp, tagSet))
-                );
+                .map(e -> Result.of(e)))
+                .then(exp -> createAddIngredientCommand(name, qty, exp, tagSet))
+            );
     }
 
     /**
@@ -129,21 +121,13 @@ public class AddCommandParser {
     private static Result<AddRecipeCommand> parseAddRecipeCommand(String name, CommandArguments args) {
 
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
-                Strings.ARG_INGREDIENT, Strings.ARG_STEP, Strings.ARG_TAG))).isPresent()) {
+        var supportedArgs = List.of(Strings.ARG_QUANTITY, Strings.ARG_INGREDIENT,
+            Strings.ARG_STEP, Strings.ARG_TAG);
 
-            return Result.error("'add recipe' command doesn't support '%s'\n%s",
-                    foo.get(), AddRecipeCommand.MESSAGE_USAGE);
-        }
-
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'add recipe' command doesn't support edit-arguments\n%s",
-                    AddRecipeCommand.MESSAGE_USAGE);
-        }
-
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'add recipe' command doesn't support edit-arguments\n%s",
-                AddRecipeCommand.MESSAGE_USAGE);
+        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+            return Result.error("'add recipe' command doesn't support '%s'", foo.get());
+        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add recipe' command doesn't support edit-arguments");
         }
 
         var tags = args.getArgument(Strings.ARG_TAG);
@@ -154,13 +138,13 @@ public class AddCommandParser {
 
         return parseIngredientList(args)
             .map(ingrs -> createAddRecipeCommand(name, ingrs,
-                    args.getAllArguments()
-                        .stream()
-                        .filter(p -> p.fst().equals(Strings.ARG_STEP))
-                        .map(p -> p.snd())
-                        .map(x -> new Step(x))
-                        .collect(Collectors.toList()),
-                    tagSet)
+                args.getAllArguments()
+                    .stream()
+                    .filter(p -> p.fst().equals(Strings.ARG_STEP))
+                    .map(p -> p.snd())
+                    .map(x -> new Step(x))
+                    .collect(Collectors.toList()),
+                tagSet)
             );
 
     }
@@ -207,7 +191,7 @@ public class AddCommandParser {
 
             } else if (p.fst().equals(Strings.ARG_QUANTITY)) {
                 return Result.error("'%s' without ingredient in argument %d [/qty %s...]",
-                        Strings.ARG_QUANTITY, i + 1, new StringView(p.snd()).take(4));
+                    Strings.ARG_QUANTITY, i + 1, new StringView(p.snd()).take(4));
             } else {
                 // do nothing.
             }
@@ -233,6 +217,7 @@ public class AddCommandParser {
 
     private static AddRecipeCommand createAddRecipeCommand(String name,
         List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
+
         return new AddRecipeCommand(new Recipe(
             name, ingredients, steps, tags
         ));
@@ -241,6 +226,7 @@ public class AddCommandParser {
 
     private static Result<AddIngredientCommand> createAddIngredientCommand(String name, Optional<Quantity> qty,
         Optional<String> expiry, Set<Tag> tags) {
+
         return Result.transpose(expiry
             .map(ExpiryDate::of))
             .map(exp -> new AddIngredientCommand(new Ingredient(name,

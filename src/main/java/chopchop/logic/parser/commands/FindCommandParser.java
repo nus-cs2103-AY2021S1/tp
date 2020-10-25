@@ -37,8 +37,7 @@ public class FindCommandParser {
         // we expect no named arguments. note we don't need to check for augments.
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
-            return Result.error("'find' command doesn't support '%s'\n%s",
-                foo.get(), FindRecipeCommand.MESSAGE_USAGE);
+            return Result.error("'find' command doesn't support '%s'", foo.get());
         }
 
         return getCommandTarget(args)

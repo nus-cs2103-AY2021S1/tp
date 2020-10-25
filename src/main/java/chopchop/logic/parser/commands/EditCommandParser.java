@@ -38,9 +38,9 @@ public class EditCommandParser {
         return getCommandTarget(args)
             .then(target -> {
                 if (target.snd().isEmpty()) {
-                    return Result.error("recipe name cannot be empty");
+                    return Result.error("Recipe name cannot be empty");
                 } else if (target.fst() != CommandTarget.RECIPE) {
-                    return Result.error("only recipes can be edited");
+                    return Result.error("Only recipes can be edited");
                 }
 
                 return ItemReference.parse(target.snd());
@@ -65,9 +65,9 @@ public class EditCommandParser {
                     if (argName.name().equals(Strings.ARG_NAME.name())) {
 
                         if (argValue.isEmpty()) {
-                            return Result.error("expected a name after '/name'");
+                            return Result.error("Expected a name after '/name'");
                         } else if (editedName.isPresent()) {
-                            return Result.error("only one '/name' should be provided");
+                            return Result.error("Only one '/name' should be provided");
                         }
 
                         editedName = Optional.of(argValue);
@@ -137,11 +137,11 @@ public class EditCommandParser {
         if (components.size() != 1
             || (!op.equals("add") && !op.equals("edit") && !op.equals("delete"))) {
 
-            return Result.error("expected either (and only) 'add', 'edit', or 'delete' after '/ingredient:'");
+            return Result.error("Expected either (and only) 'add', 'edit', or 'delete' after '/ingredient:'");
         }
 
         if (ingredientName.isEmpty()) {
-            return Result.error("expected ingredient name after /ingredient:%s", op);
+            return Result.error("Expected ingredient name after /ingredient:%s", op);
         }
 
         return ensureNoArgsForDeleteAndGetOperationType("ingredient", op, qty.isEmpty())
@@ -162,11 +162,11 @@ public class EditCommandParser {
 
         var op = components.get(0);
         if (components.size() > 1 || (!op.equals("add") && !op.equals("delete"))) {
-            return Result.error("expected either /tag:add or /tag:delete");
+            return Result.error("Expected either /tag:add or /tag:delete");
         }
 
         if (argValue.isEmpty()) {
-            return Result.error("expected tag name after /tag:add or /tag:delete");
+            return Result.error("Expected tag name after /tag:add or /tag:delete");
         } else if (!Tag.isValidTag(argValue)) {
             return Result.error(Tag.MESSAGE_CONSTRAINTS);
         }
@@ -198,7 +198,7 @@ public class EditCommandParser {
             }
 
             if (stepnum <= 0) {
-                return Result.error("step number should be greater than 0");
+                return Result.error("Step number should be greater than 0");
             }
 
             optStep = Optional.of(stepnum);
@@ -210,11 +210,11 @@ public class EditCommandParser {
 
             // for add, the index is optional.
             if (components.size() > 2) {
-                return Result.error("expected either /step:add or /step:add:<number>");
+                return Result.error("Expected either /step:add or /step:add:<number>");
             }
 
             if (argValue.isEmpty()) {
-                return Result.error("expected non-empty step after /step:add");
+                return Result.error("Expected non-empty step after /step:add");
             }
 
             return Result.of(new StepEditDescriptor(EditOperationType.ADD, stepNumber, argValue));
@@ -224,14 +224,14 @@ public class EditCommandParser {
             // what a mess of a function.
 
             if (components.size() != 2 || stepNumber.isEmpty()) {
-                return Result.error("expected number after /step:%s (eg. /step:%s:3)", op, op);
+                return Result.error("Expected number after /step:%s (eg. /step:%s:3)", op, op);
             }
 
             return ensureNoArgsForDeleteAndGetOperationType("step", op, argValue.isEmpty())
                 .map(kind -> new StepEditDescriptor(kind, stepNumber, argValue));
 
         } else {
-            return Result.error("expected either /step:add, /step:edit, or /step:delete");
+            return Result.error("Expected either /step:add, /step:edit, or /step:delete");
         }
     }
 
@@ -243,27 +243,27 @@ public class EditCommandParser {
 
         if (op.equals("add")) {
             if (argIsEmpty) {
-                return Result.error("expected non-empty step after /%s:%s", editor, op);
+                return Result.error("Expected non-empty step after /%s:%s", editor, op);
             }
 
             return Result.of(EditOperationType.ADD);
 
         } else if (op.equals("edit")) {
             if (argIsEmpty) {
-                return Result.error("expected non-empty step after /%s:%s", editor, op);
+                return Result.error("Expected non-empty step after /%s:%s", editor, op);
             }
 
             return Result.of(EditOperationType.EDIT);
 
         } else if (op.equals("delete")) {
             if (!argIsEmpty) {
-                return Result.error("unexpected %s after /%s:%s", editor, editor, op);
+                return Result.error("Unexpected %s after /%s:%s", editor, editor, op);
             }
 
             return Result.of(EditOperationType.DELETE);
 
         } else {
-            return Result.error("expected either /%s:add, /%s:edit, or /%s:delete",
+            return Result.error("Expected either /%s:add, /%s:edit, or /%s:delete",
                 editor, editor, editor);
         }
     }
