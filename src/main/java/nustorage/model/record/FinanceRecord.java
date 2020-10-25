@@ -8,9 +8,9 @@ public class FinanceRecord {
     private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
 
     private final int id;
-    private LocalDateTime datetime;
+    private LocalDateTime dateTime;
     private double amount;
-    private String numberId;
+    private String UiUsableIndex;
 
     /**
      * Constructs a {@code Finance Record}.
@@ -20,21 +20,21 @@ public class FinanceRecord {
     public FinanceRecord(double amount) {
         id = this.hashCode();
         this.amount = amount;
-        this.datetime = LocalDateTime.now();
-        this.numberId = "" + numberId;
+        this.dateTime = LocalDateTime.now();
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     /**
      * Constructs a {@code Finance Record}.
      *
      * @param amount Amount of the transaction.
-     * @param datetime Date of the transaction.
+     * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(double amount, LocalDateTime datetime) {
+    public FinanceRecord(double amount, LocalDateTime dateTime) {
         id = this.hashCode();
         this.amount = amount;
-        this.datetime = datetime;
-        this.numberId = "" + numberId;
+        this.dateTime = dateTime;
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     /**
@@ -42,13 +42,13 @@ public class FinanceRecord {
      *
      * @param id ID of the transaction.
      * @param amount Amount of the transaction.
-     * @param datetime Date of the transaction.
+     * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(int id, double amount, LocalDateTime datetime) {
+    public FinanceRecord(int id, double amount, LocalDateTime dateTime) {
         this.id = id;
         this.amount = amount;
-        this.datetime = datetime;
-        this.numberId = "" + numberId;
+        this.dateTime = dateTime;
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     public int getID() {
@@ -59,16 +59,20 @@ public class FinanceRecord {
         return amount;
     }
 
-    public LocalDateTime getDatetime() {
-        return datetime;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     public String getDatetimeString() {
-        return DATETIME_FORMAT.format(datetime);
+        return DATETIME_FORMAT.format(dateTime);
     }
 
-    public String getNumberId() {
-        return numberId;
+    public String getUiUsableIndex() {
+        return UiUsableIndex;
+    }
+
+    public void setUiUsableIndex(int i) {
+        this.UiUsableIndex = "" + i;
     }
 
     /**
@@ -115,7 +119,5 @@ public class FinanceRecord {
                 amount);
     }
 
-    public void setId(int i) {
-        this.numberId = "" + i;
-    }
+
 }

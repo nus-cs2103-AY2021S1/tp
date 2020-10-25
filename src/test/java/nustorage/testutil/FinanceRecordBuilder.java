@@ -33,7 +33,7 @@ public class FinanceRecordBuilder {
      */
     public FinanceRecordBuilder(FinanceRecord recordToCopy) {
         amount = recordToCopy.getAmount();
-        datetime = recordToCopy.getDatetime();
+        datetime = recordToCopy.getDateTime();
     }
 
     /**
