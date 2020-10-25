@@ -20,11 +20,11 @@ import seedu.pivot.model.tag.Tag;
 import seedu.pivot.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Case objects.
  */
 public class CaseBuilder {
 
-    public static final String DEFAULT_TITLE = "Alice Pauline";
+    public static final String DEFAULT_TITLE = "Kovan Thefts";
     public static final String DEFAULT_DESCRIPTION = "";
     public static final String DEFAULT_STATUS = "active";
 
@@ -38,7 +38,7 @@ public class CaseBuilder {
     private List<Witness> witnesses;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code CaseBuilder} with the default details.
      */
     public CaseBuilder() {
         title = new Title(DEFAULT_TITLE);
@@ -52,7 +52,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the CaseBuilder with the data of {@code caseToCopy}.
      */
     public CaseBuilder(Case caseToCopy) {
         title = caseToCopy.getTitle();
@@ -66,7 +66,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Title} of the {@code Case} that we are building.
      */
     public CaseBuilder withTitle(String title) {
         this.title = new Title(title);
@@ -74,7 +74,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code Person} that we are building.
+     * Sets the {@code Description} of the {@code Case} that we are building.
      */
     public CaseBuilder withDescription(String description) {
         this.description = new Description(description);
@@ -82,7 +82,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Case} that we are building.
      */
     public CaseBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -90,7 +90,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code witnesses} into a {@code List<Witness>} and set it to the {@code Case} that we are building.
      */
     public CaseBuilder withWitnesses(Witness ... witnesses) {
         this.witnesses = Arrays.asList(witnesses);
@@ -98,7 +98,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Sets the {@code Document} of the {@code Person} that we are building.
+     * Sets the {@code Document} of the {@code Case} that we are building.
      */
     public CaseBuilder withDocument(String name, String ref) {
         this.documents = new ArrayList<>();
@@ -107,7 +107,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Person} that we are building.
+     * Sets the {@code Status} of the {@code Case} that we are building.
      */
     public CaseBuilder withStatus(String status) {
         this.status = Status.createStatus(status);
@@ -115,7 +115,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code Person} that we are building.
+     * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code Case} that we are building.
      */
     public CaseBuilder withSuspects(Suspect ... suspects) {
         this.suspects = Arrays.asList(suspects);
@@ -123,7 +123,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Person} that we are building.
+     * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Case} that we are building.
      */
     public CaseBuilder withVictims(Victim ... victims) {
         this.victims = Arrays.asList(victims);
@@ -131,7 +131,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Generates a {@code Person} object with existing fields.
+     * Generates a {@code Case} object with existing fields.
      * @return Person object
      */
     public Case build() {

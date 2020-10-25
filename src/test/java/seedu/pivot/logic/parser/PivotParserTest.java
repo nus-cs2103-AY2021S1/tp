@@ -63,7 +63,7 @@ public class PivotParserTest {
         Case investigationCase = new CaseBuilder().build();
         EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder(investigationCase).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + CaseUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + CaseUtil.getEditCaseDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
