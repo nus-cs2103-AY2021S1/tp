@@ -216,6 +216,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortFoodByName(boolean ascending) {
+        menuManagers.get(getVendorIndex()).sortFoodByName(ascending);
+    }
+
+    @Override
+    public void sortFoodByPrice(boolean ascending) {
+        menuManagers.get(getVendorIndex()).sortFoodByPrice(ascending);
+    }
+
+    @Override
     public boolean hasFood(Food food, int index) {
         requireNonNull(food);
         return menuManagers.get(index).hasFood(food);

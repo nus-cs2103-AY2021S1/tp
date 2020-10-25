@@ -139,6 +139,10 @@ public interface Model {
      */
     void setFood(Food target, Food editedFood, int index);
 
+    void sortFoodByName(boolean ascending);
+
+    void sortFoodByPrice(boolean ascending);
+
     /**
      * Replaces address book data with the data in {@code orderManager}.
      */
