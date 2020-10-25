@@ -455,11 +455,11 @@ The following activity diagram summarizes what happens when feeding times are ad
 
 **Target user profile**:
 
-* has a need to manage a significant number of animals
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of animals
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: 
 * Zookeepers have to account for a large number of animals and their statuses (health, feeding times etc).
