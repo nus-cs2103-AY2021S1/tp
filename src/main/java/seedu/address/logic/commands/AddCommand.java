@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_REVENUE;
 
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
@@ -49,14 +51,22 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
+        // Set previous state for undo before new entry is added
+        activeAccount.setPreviousState();
 
-        if (this.entry instanceof Expense) {
+
+        if (entry instanceof Expense) {
             activeAccount.addExpense((Expense) entry);
-        } else if (this.entry instanceof Revenue) {
+        } else {
+            assert entry instanceof Revenue;
             activeAccount.addRevenue((Revenue) entry);
         }
+
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
         model.setAccount(activeAccount.getAccount());
-        return new CommandResult(String.format(MESSAGE_SUCCESS, this.entry));
+        return CommandResultFactory
+            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_SUCCESS, this.entry));
 
     }
 

@@ -37,6 +37,10 @@ public abstract class Entry {
         return amount;
     }
 
+    protected boolean hasTags() {
+        return !tags.isEmpty();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

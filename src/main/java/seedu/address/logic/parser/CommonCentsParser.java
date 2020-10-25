@@ -12,7 +12,7 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteAccountCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditAccountCommand;
+import seedu.address.logic.commands.EditAccountNameCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -22,6 +22,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAccountCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SwitchAccountCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -82,12 +83,15 @@ public class CommonCentsParser {
         case GetProfitCommand.COMMAND_WORD:
             return new GetProfitCommand();
 
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
         // Account-level Commands
         case AddAccountCommand.COMMAND_WORD:
             return new AddAccountCommandParser().parse(arguments);
 
-        case EditAccountCommand.COMMAND_WORD:
-            return new EditAccountCommandParser().parse(arguments);
+        case EditAccountNameCommand.COMMAND_WORD:
+            return new EditAccountNameCommandParser().parse(arguments);
 
         case DeleteAccountCommand.COMMAND_WORD:
             return new DeleteAccountCommandParser().parse(arguments);

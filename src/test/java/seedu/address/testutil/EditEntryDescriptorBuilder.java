@@ -46,6 +46,14 @@ public class EditEntryDescriptorBuilder {
     }
 
     /**
+     * Sets the {@code category} of the {@code EditEntryDescriptor} that we are building.
+     */
+    public EditEntryDescriptorBuilder withCategory(String category) {
+        descriptor.setCategory(new Category(category));
+        return this;
+    }
+
+    /**
      * Sets the {@code Description} of the {@code EditEntryDescriptor} that we are building.
      */
     public EditEntryDescriptorBuilder withDescription(String description) {

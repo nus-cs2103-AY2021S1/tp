@@ -13,7 +13,7 @@ import seedu.address.model.account.Name;
 /**
  * Edits the details of an existing account in Common Cents.
  */
-public class EditAccountCommand extends Command {
+public class EditAccountNameCommand extends Command {
     public static final String COMMAND_WORD = "editacc";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the current Account's name\n"
@@ -27,7 +27,7 @@ public class EditAccountCommand extends Command {
     /**
      * Creates an EditAccountCommand to edit the current {@code ActiveAccount}
      */
-    public EditAccountCommand(Name name) {
+    public EditAccountNameCommand(Name name) {
         requireNonNull(name);
         this.name = name;
     }
@@ -42,15 +42,15 @@ public class EditAccountCommand extends Command {
         model.setAccount(previousAccount, newAccount);
         Name previousName = previousAccount.getName();
         Name newName = newAccount.getName();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, previousName.toString(), newName.toString()));
-
+        return CommandResultFactory
+            .createDefaultCommandResult(String.format(MESSAGE_SUCCESS, previousName.toString(), newName.toString()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof EditAccountCommand // instanceof handles nulls
-                && name.equals(((EditAccountCommand) other).name));
+                || (other instanceof EditAccountNameCommand // instanceof handles nulls
+                && name.equals(((EditAccountNameCommand) other).name));
     }
 
 }
