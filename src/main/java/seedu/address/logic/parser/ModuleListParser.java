@@ -11,7 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindContactCommand;
-import seedu.address.logic.commands.FindTaskCommand;
+import seedu.address.logic.commands.todolistcommands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
@@ -35,6 +35,7 @@ import seedu.address.logic.parser.modulelistparsers.AddZoomLinkParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
+import seedu.address.logic.parser.todolistparsers.FindTaskParser;
 
 /**
  * Parses user input.
