@@ -131,7 +131,7 @@ public class UniqueExerciseListTest {
     }
 
     @Test
-    public void setExercises_list_replacesOwnListWithProvidedList() {
+    public void setExercises_listWithSingleExercise_replacesOwnListWithProvidedList() {
         uniqueExerciseList.add(EXERCISE_A);
         List<Exercise> exerciseList = Collections.singletonList(EXERCISE_B);
         uniqueExerciseList.setExercises(exerciseList);
