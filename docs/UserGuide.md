@@ -196,13 +196,13 @@ is no expense or revenue found, the respective list will be empty.
 
 :heavy_check_mark: **Example:** 
 
-`find c/expense k/watercolours canvas` : finds all expenses with keywords `watercolours` and/or `canvas` in their 
+* `find c/expense k/watercolours canvas` : finds all expenses with keywords `watercolours` and/or `canvas` in their 
 description.
 
-`find c/revenue k/phone` : finds all revenues with keyword `phone` in their 
+* `find c/revenue k/phone` : finds all revenues with keyword `phone` in their 
 description.
 
-`find k/canvas earrings` : finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
+* `find k/canvas earrings` : finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
 description (Figure).
  
 </div>
