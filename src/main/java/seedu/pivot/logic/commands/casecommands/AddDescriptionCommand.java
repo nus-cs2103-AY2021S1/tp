@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_DESC;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;

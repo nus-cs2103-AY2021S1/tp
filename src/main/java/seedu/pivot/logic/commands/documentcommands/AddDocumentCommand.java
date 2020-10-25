@@ -5,7 +5,6 @@ import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -81,7 +80,6 @@ public class AddDocumentCommand extends AddCommand {
                 stateCase.getTags());
 
         model.setCase(stateCase, updatedCase);
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
     }
