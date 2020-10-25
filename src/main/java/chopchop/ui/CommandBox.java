@@ -37,6 +37,13 @@ public class CommandBox extends UiPart<Region> {
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
         // No commands entered yet.
         historyPointer = 0;
+
+        this.getRoot().focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
+            if (isNowFocused) {
+                commandTextField.requestFocus();
+            }
+        });
+
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 
             if (event.getCode().equals(KeyCode.DOWN) && historyPointer < logic.getInputHistory().size()) {
