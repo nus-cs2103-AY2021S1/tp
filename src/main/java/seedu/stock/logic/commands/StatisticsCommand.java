@@ -8,5 +8,7 @@ public abstract class StatisticsCommand extends Command {
             + "stats st/source: Shows statistics for source companies\n"
             + "stats st/source-qd-<source company>: Shows statistics for the quantity "
             + "distribution in a particular source company\n"
-            + "Parameters: No parameters\n";
+            + "Parameters:\n"
+            + "st/source\n"
+            + "st/source-qd-<source company>";
 }

@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.stock.logic.commands.AddCommand;
+import seedu.stock.logic.commands.BookmarkCommand;
 import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -13,8 +14,12 @@ import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
+import seedu.stock.logic.commands.NoteCommand;
+import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.PrintCommand;
+import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
+import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
@@ -70,8 +75,12 @@ public class StockBookParser {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
 
-        //        case ClearCommand.COMMAND_WORD:
-        //            return new ClearCommand();
+        case SortCommand.COMMAND_WORD:
+            try {
+                return new SortCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
 
         case ListCommand.COMMAND_WORD:
             try {
@@ -108,13 +117,40 @@ public class StockBookParser {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
 
-        case PrintCommand.COMMAND_WORD:
+        case NoteCommand.COMMAND_WORD:
             try {
-                return new PrintCommandParser().parse(arguments);
+                return new NoteCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
 
+        case NoteDeleteCommand.COMMAND_WORD:
+            try {
+                return new DeleteNoteCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case PrintCommand.COMMAND_WORD:
+            try {
+                return new PrintCommandParser().parse(arguments);
+
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case BookmarkCommand.COMMAND_WORD:
+            try {
+                return new BookmarkCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+        case UnbookmarkCommand.COMMAND_WORD:
+            try {
+                return new UnbookmarkCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
         default:
             return new SuggestionCommandParser(commandWord).parse(arguments);
         }

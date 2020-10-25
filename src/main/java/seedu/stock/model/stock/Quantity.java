@@ -5,7 +5,7 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Stock's quantity in the stock book.
- * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)} } (to be changed)
+ * Guarantees: immutable; is valid as declared in {@link #isValidQuantity(String)} }
  */
 public class Quantity {
 

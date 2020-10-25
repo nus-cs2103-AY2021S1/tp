@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.stock.commons.core.Messages;
+import seedu.stock.commons.util.FindUtil;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
+import seedu.stock.model.stock.predicates.FieldContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
@@ -30,7 +32,7 @@ public class FindCommand extends Command {
             + PREFIX_LOCATION + " KEYWORD [more KEYWORDS which will be matched with Location field of stock]\n"
             + "Example: " + COMMAND_WORD + " n/ pork 100grams  s/ farm";
 
-    private final List<Predicate<Stock>> predicates; // list of predicates to filter stocks by
+    private final List<FieldContainsKeywordsPredicate> predicates; // list of predicates to filter stocks by
     private final Predicate<Stock> combinedPredicates; // combined predicates to filter stocks by
 
     /**
@@ -38,9 +40,10 @@ public class FindCommand extends Command {
      * a list of predicates to filter and find stocks by
      * @param predicates list of predicates to filter stocks
      */
-    public FindCommand(List<Predicate<Stock>> predicates) {
+    public FindCommand(List<FieldContainsKeywordsPredicate> predicates) {
+        requireNonNull(predicates);
         this.predicates = predicates;
-        this.combinedPredicates = predicates.stream().reduce(x -> false, Predicate::or);
+        this.combinedPredicates = FindUtil.getCombinedPredicatesWithOr(predicates);
     }
 
     @Override

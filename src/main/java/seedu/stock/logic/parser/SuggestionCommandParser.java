@@ -2,15 +2,21 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.BOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.NOTE_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.NOTE_DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.UNBOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
@@ -21,6 +27,7 @@ import java.util.Random;
 
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
+import seedu.stock.logic.commands.BookmarkCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -28,15 +35,18 @@ import seedu.stock.logic.commands.FindCommand;
 import seedu.stock.logic.commands.FindExactCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
+import seedu.stock.logic.commands.NoteCommand;
+import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
+import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
-    private static final String MESSAGE_SUGGESTION = "Do you mean \n";
+    private static final String MESSAGE_SUGGESTION = "Do you mean: \n";
     private String faultyCommandWord;
     private String commandWord;
     private String headerErrorMessage;
@@ -146,8 +156,24 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateFindExactSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case NoteCommand.COMMAND_WORD:
+            generateNoteSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case NoteDeleteCommand.COMMAND_WORD:
+            generateDeleteNoteSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         case PrintCommand.COMMAND_WORD:
             generatePrintSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case BookmarkCommand.COMMAND_WORD:
+            generateBookmarkSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case UnbookmarkCommand.COMMAND_WORD:
+            generateUnbookmarkSuggestion(toBeDisplayed, argMultimap);
             break;
 
         default:
@@ -156,6 +182,59 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
         return new SuggestionCommand(toBeDisplayed.toString());
     }
+
+
+    /**
+     * Generates suggestion for faulty bookmark exact command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateBookmarkSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
+                PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
+        toBeDisplayed.append(BOOKMARK_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            }
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + BookmarkCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Generates suggestion for faulty unbookmark exact command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateUnbookmarkSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
+                PREFIX_SERIAL_NUMBER, PREFIX_LOCATION);
+        toBeDisplayed.append(UNBOOKMARK_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + argMultimap.getValue(currentPrefix).get());
+            }
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + UnbookmarkCommand.MESSAGE_USAGE);
+        }
+    }
+
+
 
     /**
      * Generates suggestion for faulty find exact command.
@@ -258,6 +337,54 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
             toBeDisplayed.append("\n" + FindCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Generates suggestion for faulty note command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateNoteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(
+                PREFIX_SERIAL_NUMBER, PREFIX_NOTE);
+        toBeDisplayed.append(NOTE_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            toBeDisplayed.append(" ").append(currentPrefix)
+                    .append(CliSyntax.getDefaultDescription(currentPrefix));
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + NoteCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Generates suggestion for faulty deletenote command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateDeleteNoteSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(
+                PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX);
+        toBeDisplayed.append(NOTE_DELETE_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            toBeDisplayed.append(" ").append(currentPrefix)
+                    .append(CliSyntax.getDefaultDescription(currentPrefix));
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + NoteDeleteCommand.MESSAGE_USAGE);
         }
     }
 

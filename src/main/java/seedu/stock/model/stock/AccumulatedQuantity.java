@@ -14,7 +14,7 @@ public class AccumulatedQuantity {
     private String accumulatedQuantity;
 
     /**
-     * Constructs a {@code AccmulatedQuantity}.
+     * Constructs a {@code AccumulatedQuantity}.
      *
      * @param accumulatedQuantity A valid accumulated quantity.
      */

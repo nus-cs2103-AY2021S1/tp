@@ -14,6 +14,7 @@ import seedu.stock.commons.util.StringUtil;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.Location;
 import seedu.stock.model.stock.Name;
+import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Quantity;
 import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
@@ -100,7 +101,41 @@ public class ParserUtil {
     }
 
     /**
+<<<<<<< HEAD
      * Parses a {@code String serialNumbers} into an {@code Set<SerialNumber>}.
+=======
+     * Parses a {@code String note} into a {@code Note}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code note} is invalid.
+     */
+    public static Note parseNote(String note) throws ParseException {
+        requireNonNull(note);
+        String trimmedNote = note.trim();
+        if (!Note.isValidNote(trimmedNote)) {
+            throw new ParseException(Note.MESSAGE_CONSTRAINTS);
+        }
+        return new Note(trimmedNote);
+    }
+
+    /**
+     * Parses a {@code String serialNumber} into a {@code SerialNumber}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code serialNumber} is invalid.
+     */
+    public static SerialNumber parseSerialNumber(String serialNumber) throws ParseException {
+        requireNonNull(serialNumber);
+        String trimmedSerialNumber = serialNumber.trim();
+        if (!SerialNumber.isValidSerialNumber(trimmedSerialNumber)) {
+            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new SerialNumber(trimmedSerialNumber);
+    }
+
+    /**
+     * Parses a {@code String serialNumber} into an {@code SerialNumber}.
+>>>>>>> f61876ad704f51cf5c2fb7459d32d3b2cb2aa62d
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code serialNumber} is invalid.
@@ -118,6 +153,7 @@ public class ParserUtil {
         List<String> values = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
 
         if (values.isEmpty()) {
+
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
@@ -128,20 +164,6 @@ public class ParserUtil {
             serialNumberSet.add(parseSerialNumber(currentSerialNumberInString));
         }
         return serialNumberSet;
-    }
-
-    /**
-     * Parses and ensures that the serial number provided is in the correct format.
-     *
-     * @param serialNumberInString The serial number to be parsed in string format.
-     * @return The SerialNumber object.
-     * @throws ParseException if the serial number in string format is invalid.
-     */
-    public static SerialNumber parseSerialNumber(String serialNumberInString) throws ParseException {
-        if (!SerialNumber.isValidSerialNumber(serialNumberInString)) {
-            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
-        }
-        return new SerialNumber(serialNumberInString);
     }
 
     /**
@@ -173,4 +195,23 @@ public class ParserUtil {
         }
         return listOfPrefixes;
     }
+
+    /**
+     * Returns an array containing all invalid prefixes for the command.
+     *
+     * @param validPrefixes prefixes that are valid for the command
+     * @return An array containing all invalid prefixes for the command.
+     */
+    public static Prefix[] getInvalidPrefixesForCommand(Prefix[] validPrefixes) {
+        List<Prefix> allPossiblePrefixes = CliSyntax.getAllPossiblePrefixes();
+
+        for (Prefix prefix : validPrefixes) {
+            allPossiblePrefixes.remove(prefix);
+        }
+
+        Prefix[] allInvalidPrefixes = allPossiblePrefixes.toArray(new Prefix[0]);
+
+        return allInvalidPrefixes;
+    }
+
 }

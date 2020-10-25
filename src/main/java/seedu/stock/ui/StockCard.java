@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -26,6 +27,8 @@ public class StockCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private VBox bookmark;
+    @FXML
     private Label name;
     @FXML
     private Label serialNumber;
@@ -37,9 +40,13 @@ public class StockCard extends UiPart<Region> {
     private Label locationStored;
     @FXML
     private Label source;
+    @FXML
+    private Label notes;
+    @FXML
+    private VBox notesBox;
 
     /**
-     * Creates a {@code StockCode} with the given {@code Stock} and index to display.
+     * Creates a {@code StockCard} with the given {@code Stock} and index to display.
      */
     public StockCard(Stock stock, int displayedIndex) {
         super(FXML);
@@ -50,6 +57,18 @@ public class StockCard extends UiPart<Region> {
         quantity.setText(stock.getQuantity().quantity);
         source.setText(stock.getSource().value);
         locationStored.setText(stock.getLocation().value);
+        bookmark.setVisible(stock.getIsBookmarked());
+
+
+        if (stock.getNotes().size() != 0) {
+            StringBuilder notesAppended = new StringBuilder();
+            for (int i = 0; i < stock.getNotes().size(); i++) {
+                notesAppended.append(i + 1).append(". ")
+                        .append(stock.getNotes().get(i)).append("\n");
+            }
+            notes.setText(notesAppended.toString());
+        }
+
     }
 
     @Override

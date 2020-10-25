@@ -36,7 +36,7 @@ project documents, Coding standards, format of deliverables
 [[portfolio](team/audrey.md)]
 
 * Role: Developer
-* Responsibilities: Project repository manager and maintainer, main PR reviewer and merger, Update feature, 
+* Responsibilities: Project repository manager and maintainer, main PR reviewer and merger, Update feature,
   Git & GitHub expert.
 
 
@@ -59,5 +59,5 @@ project documents, Coding standards, format of deliverables
 [[portfolio](team/dennis.md)]
 
 * Role: Developer
-* Responsibilities: Deadline and Deliverables manager - in charge of making sure that 
+* Responsibilities: Deadline and Deliverables manager - in charge of making sure that
 members completes tasks and submit deliverables on time

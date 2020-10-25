@@ -11,11 +11,11 @@ searching and ordering supplies, via Command Line Interface (CLI).
 
 Given below are my contributions to the project.
 
-* **Initial set-up of code**: 
+* **Initial set-up of code**:
   * Refactored ab3 code to suit the classes needed in Warenager.
     * Added base classes such as name, quantity, source, serial number and location for stock.
   * Provided a base platform for teammates to work on their commands, without the need to refactor the whole AB3 code.
-    
+
 * **New Feature**: Added the ability to add items in the storage.
   * What it does: Allows the user to add new stock into the storage.
   * Justification: This is a necessary feature as it would allow users to add their new stocks into the
@@ -35,12 +35,12 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added implementation details of the `add` feature.
     * Added documentation for `product scope` section.
-    
+
 * **Testing**:
   * User Guide:
     * Added test classes for `add` command.
     * Added testing for bases classes in model package.
-    
+
 * **Tracking of task**
   * Ensures that all assigned tasks completed before deadline and TP task tracker badges updated correctly.
-    
+
