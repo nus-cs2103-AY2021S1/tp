@@ -149,7 +149,7 @@ public class Case {
 
         for (Document doc : getDocuments()) {
             builder.append(doc.getName()).append(" ");
-            builder.append(doc.getReference()).append(" ");
+            builder.append(doc.getReference().getFileName()).append(" ");
         }
 
         for (Suspect suspect : getSuspects()) {
