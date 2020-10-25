@@ -9,7 +9,7 @@ public class VersionedModuleList extends ModuleList {
     private int currentStatePointer;
 
     /**
-     * Creates a versioned module list using the module lists in the {@code toBeCopied}
+     * Creates a versioned module list using the module list in the {@code toBeCopied}
      * @param toBeCopied
      */
     public VersionedModuleList(ReadOnlyModuleList toBeCopied) {

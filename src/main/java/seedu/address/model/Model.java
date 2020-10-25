@@ -160,6 +160,21 @@ public interface Model {
      */
     public Path getContactListFilePath();
 
+    /**
+     * Saves the current contact list state in history.
+     */
+    void commitContactList();
+
+    /**
+     * Restores the previous contact list state from history.
+     */
+    void undoContactList();
+
+    /**
+     * Restores the previously undone contact list state from history.
+     */
+    void redoContactList();
+
     // ============================ TodoList ==================================================
 
     /**
@@ -211,4 +226,19 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedTodoList(Comparator<Task> comparator);
+
+    /**
+     * Saves the current module list state in history.
+     */
+    void commitTodoList();
+
+    /**
+     * Restores the previous todo list state from history.
+     */
+    void undoTodoList();
+
+    /**
+     * Restores the previously undone todo list state from history.
+     */
+    void redoTodoList();
 }

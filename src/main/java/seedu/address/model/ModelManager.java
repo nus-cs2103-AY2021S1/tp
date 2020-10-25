@@ -26,7 +26,9 @@ public class ModelManager implements Model {
     private final ModuleList moduleList;
     private final VersionedModuleList versionedModuleList;
     private final ContactList contactList;
+    private final VersionedContactList versionedContactList;
     private final TodoList todoList;
+    private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModules;
     private final FilteredList<Contact> filteredContacts;
@@ -47,7 +49,9 @@ public class ModelManager implements Model {
         this.moduleList = new ModuleList(moduleList);
         this.versionedModuleList = new VersionedModuleList(moduleList);
         this.contactList = new ContactList(contactList);
+        this.versionedContactList = new VersionedContactList(contactList);
         this.todoList = new TodoList(todoList);
+        this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
         filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
@@ -188,6 +192,23 @@ public class ModelManager implements Model {
         return userPrefs.getContactListFilePath();
     }
 
+    @Override
+    public void commitContactList() {
+        versionedContactList.commit(contactList);
+    }
+
+    @Override
+    public void undoContactList() {
+        versionedContactList.undo();
+        setContactList(versionedContactList.getCurrentContactList());
+    };
+
+    @Override
+    public void redoContactList() {
+        versionedContactList.redo();
+        setContactList(versionedContactList.getCurrentContactList());
+    };
+
     //=========== Todo List =============================================================
 
     @Override
@@ -223,6 +244,23 @@ public class ModelManager implements Model {
 
         todoList.setTask(target, editedTask);
     }
+
+    @Override
+    public void commitTodoList() {
+        versionedTodoList.commit(todoList);
+    }
+
+    @Override
+    public void undoTodoList() {
+        versionedTodoList.undo();
+        setTodoList(versionedTodoList.getCurrentTodoList());
+    };
+
+    @Override
+    public void redoTodoList() {
+        versionedTodoList.redo();
+        setTodoList(versionedTodoList.getCurrentTodoList());
+    };
 
     //=========== Filtered Module List Accessors =============================================================
 
