@@ -382,15 +382,17 @@ Format: `switchacc INDEX`
 :bulb: **Tip:**
 
 If you are unsure of the account index, use [`listacc`](#listing-accounts-you-have-listacc) to check the index!
+
 </div>
 
-<div>
+<div markdown="block" class="alert alert-danger">
 
 :warning: **Warning:**
 
 Once you use the `switchacc` command, all the previous states for the [`undo`](#undoing-entry-level-commands-undo) will
 be lost. This would mean that if you choose to switch back to the account, you cannot undo the previous entry-level
 commands anymore. Do confirm your changes to the entries in the account before you switch account!
+
 </div>
 
 
