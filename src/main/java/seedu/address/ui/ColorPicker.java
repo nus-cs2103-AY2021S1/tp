@@ -3,7 +3,7 @@ package seedu.address.ui;
 import javafx.scene.paint.Color;
 
 /**
- * Class for custom colors used for AB3, especially for the priorityShape
+ * Class for custom colors used for I4I, especially for the priorityShape
  */
 public class ColorPicker {
 
