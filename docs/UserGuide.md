@@ -175,15 +175,16 @@ Find expenses that have the given keyword in their names.
 * Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, `Restaurant Food`
 
 Format:
-* `find KEYWORD [MORE_KEYWORDS]`
+* `find k/KEYWORD [MORE_KEYWORDS]`
 
 Example:
-* `find food`: Finds expenses with the keyword `food`.
+* `find k/food`: Finds expenses with the keyword `food`.
 
 ### Listing all entries: `list`
 
-### Calculating net profits based on expenses and revenues: `profit` 
+### Clearing all expenses or revenue: `clear`
 
+### Calculating net profits based on expenses and revenues: `profit` 
 
 ## Account-level Commands
 
