@@ -161,9 +161,9 @@ Examples:
 
 ### Finding assignments : `find`
 
-You can find your assignments based on keywords (and prefixes) you enter. The keywords can be the name, module code, deadline and priority level of assignments.
+You can find your assignments based on keywords (and prefixes) you enter. The types of keywords are the name, module code, deadline and priority level of assignments. You can find assignments with multiple keywords of the same type.
 
-Here is the table of prefixes that can be used:
+Here is the table of prefixes that is used:
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -177,36 +177,41 @@ Here is the table of prefixes that can be used:
   <tr>
     <th class="tg-0lax">Prefix</th>
     <th class="tg-0lax">Type of keyword</th>
-    <th class="tg-0lax">Syntax</th>
+    <th class="tg-0lax">Syntax with examples</th>
+    <th class="tg-0lax">Remarks</th>
   </tr>
 </thead>
 <tbody>
   <tr>
     <td class="tg-0lax">n/</td>
-    <td class="tg-0lax">Name (case insensitive)</td>
-    <td class="tg-0lax">n/Tutorial<br>n/tutorial essay</td>
+    <td class="tg-0lax">Name</td>
+    <td class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">n/NAME_OF_ASSIGNMENT </span><br>[MORE NAME_OF_ASSIGNMENT]<br><br>Examples:<br>n/Tutorial<br>n/tutorial essay</td>
+    <td class="tg-0lax">Case insensitive</td>
   </tr>
   <tr>
     <td class="tg-0lax">mod/</td>
-    <td class="tg-0lax">Module code (case insensitive)</td>
-    <td class="tg-0lax">mod/CS2100 cs2103t</td>
+    <td class="tg-0lax">Module code</td>
+    <td class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">mod/MODULE_CODE </span><br>[MORE MODULE_CODE]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br><span style="font-weight:normal;font-style:normal;text-decoration:none">mod/ST2334</span><br>mod/CS2100 cs2103t</td>
+    <td class="tg-0lax">Case insensitive</td>
   </tr>
   <tr>
     <td class="tg-0lax">d/</td>
-    <td class="tg-0lax">Date or time of deadline</td>
-    <td class="tg-0lax">d/24-10-2020<br>d/1200<br>d/1300 25-11-2020</td>
+    <td class="tg-0lax">Date or time in deadline</td>
+    <td class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">d/DATE_OR_TIME_OF_ASSIGNMENT </span><br>[MORE DATE_OR_TIME_OF_ASSIGNMENT]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br>d/24-10-2020<br>d/1200<br>d/1300 25-11-2020</td>
+    <td class="tg-0lax">Date keywords are irrespective of time <br>and time keywords are irrespective of date.<br>For example, find d/1300 25-11-2020 will list<br>assignments with due date of 25-11-2020 (regardless<br>of time) or with due time of 1300 (regardless of date). </td>
   </tr>
   <tr>
     <td class="tg-0lax">p/</td>
     <td class="tg-0lax">Priority level</td>
-    <td class="tg-0lax">p/HIGH<br>p/LOW</td>
+    <td class="tg-0lax"><span style="font-weight:normal;font-style:normal;text-decoration:none">p/PRIORITY_OF_ASSIGNMENT </span><br>[MORE PRIORITY_OF_ASSIGNMENT]<br><br><span style="font-weight:normal;font-style:normal;text-decoration:none">Examples:</span><br>p/high<br>p/LOW</td>
+    <td class="tg-0lax">Case insensitive</td>
   </tr>
 </tbody>
 </table>
 
-
-
 Format: `find PREFIX/ KEYWORD [MORE KEYWORDS]`
+
+
 
 Parameters are:
 - n/ NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENTS] to find by name of assignment.
