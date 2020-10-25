@@ -1,5 +1,3 @@
-# User Guide
-
 Common Cents is your convenient at-hand expense-tracking tool, meant for anyone who runs a small-scale business. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
 
 * Quick Start
@@ -123,11 +121,11 @@ UI component | Description
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page (Figure). You can click on the `Copy URL ` button to copy
-the link to clipboard and paste it 
-<br>![Ui](images/helpMessage.png)
+the link to clipboard and paste it in your web browser. <br> 
+![helpMessage](images/helpMessage.png)
 <p align="center"> <sub> <b>Figure</b>: Help message </sub> </p>
 
-Format: `help`
+**Format**: `help`
 
 ### Exiting the program : `exit`
 
