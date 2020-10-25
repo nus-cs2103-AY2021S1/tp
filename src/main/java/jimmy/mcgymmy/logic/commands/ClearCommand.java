@@ -18,6 +18,6 @@ public class ClearCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.clearFilteredFood();
-        return new CommandResult(MESSAGE_SUCCESS, false, true);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 }

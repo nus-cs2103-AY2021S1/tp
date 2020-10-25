@@ -17,17 +17,11 @@ public class CommandResult {
     private final boolean exit;
 
     /**
-     * Indicate if the command changed data
-     */
-    private final boolean hasChanged;
-
-    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean exit, boolean hasChanged) {
+    public CommandResult(String feedbackToUser, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.exit = exit;
-        this.hasChanged = hasChanged;
     }
 
     /**
@@ -35,15 +29,11 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
-    }
-
-    public boolean getChanged() {
-        return hasChanged;
     }
 
     public boolean isExit() {

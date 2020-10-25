@@ -82,6 +82,6 @@ public class FindCommand extends Command {
 
         model.updateFilteredFoodList(combinedPredicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, model.getFilteredFoodList().size()), false, true);
+                String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW, model.getFilteredFoodList().size()));
     }
 }

@@ -42,7 +42,7 @@ public class ImportCommand extends Command {
                 throw new CommandException(MESSAGE_IMPORT_FOOD_FAILURE);
             }
             model.setMcGymmy(readOnlyMcGymmyOptional.get());
-            return new CommandResult(String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName()), false, true);
+            return new CommandResult(String.format(MESSAGE_IMPORT_FOOD_SUCCESS, filepath.getFileName()));
         } catch (DataConversionException e) {
             throw new CommandException(MESSAGE_IMPORT_FOOD_FAILURE);
         }

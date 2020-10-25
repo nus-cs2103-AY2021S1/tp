@@ -117,6 +117,6 @@ public class EditCommand extends Command {
         }
 
         model.setFood(index, editedFood);
-        return new CommandResult(String.format(MESSAGE_EDIT_FOOD_SUCCESS, editedFood), false, true);
+        return new CommandResult(String.format(MESSAGE_EDIT_FOOD_SUCCESS, editedFood));
     }
 }

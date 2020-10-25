@@ -310,14 +310,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.getChanged()) {
-                logger.info("Graph changed");
-                //Update the graphs
-                summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentCalories(),
-                        getFoodListPanel().getCurrentProteins(),
-                        getFoodListPanel().getCurrentCarbs(),
-                        getFoodListPanel().getCurrentFats());
-            }
+            //Update the graphs
+            summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentCalories(),
+                    getFoodListPanel().getCurrentProteins(),
+                    getFoodListPanel().getCurrentCarbs(),
+                    getFoodListPanel().getCurrentFats());
 
             return commandResult;
         } catch (CommandException | ParseException e) {

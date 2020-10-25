@@ -93,6 +93,6 @@ public class AddCommand extends Command {
         }
 
         model.addFood(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, true);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 }
