@@ -199,6 +199,10 @@ public class ModelManager implements Model {
         return this.addressBook.getVendorIndex();
     }
 
+    @Override
+    public boolean isSelected() {
+        return this.addressBook.getVendorIndex() != -1;
+    }
     //=========== MenuManager ================================================================================
 
     @Override
@@ -209,6 +213,16 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyMenuManager getMenuManager(int index) {
         return menuManagers.get(index);
+    }
+
+    @Override
+    public void sortFoodByName(boolean ascending) {
+        menuManagers.get(getVendorIndex()).sortFoodByName(ascending);
+    }
+
+    @Override
+    public void sortFoodByPrice(boolean ascending) {
+        menuManagers.get(getVendorIndex()).sortFoodByPrice(ascending);
     }
 
     @Override

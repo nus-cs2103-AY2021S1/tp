@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_TOO_MANY_ARGUMENTS;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.SwitchVendorCommand;
 import seedu.address.logic.commands.VendorCommand;
 
 public class VendorCommandParserTest {
@@ -17,8 +18,8 @@ public class VendorCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        assertParseSuccess(parser, "1", new VendorCommand(Index.fromOneBased(1)));
-        assertParseSuccess(parser, "2", new VendorCommand(Index.fromOneBased(2)));
+        assertParseSuccess(parser, "1", new SwitchVendorCommand(Index.fromOneBased(1)));
+        assertParseSuccess(parser, "2", new SwitchVendorCommand(Index.fromOneBased(2)));
     }
 
     @Test
@@ -32,7 +33,7 @@ public class VendorCommandParserTest {
         // More than 2 arguments
         assertParseFailure(parser, "1 2 3", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 String.format(MESSAGE_TOO_MANY_ARGUMENTS,
-                VendorCommand.COMMAND_WORD, 1, VendorCommand.MESSAGE_USAGE)));
+                VendorCommand.COMMAND_WORD, 1, SwitchVendorCommand.MESSAGE_USAGE)));
 
         // Index passed is not a non-zero integer
         assertParseFailure(parser, "1.4", String.format(MESSAGE_INVALID_INDEX, "Vendor Index"));

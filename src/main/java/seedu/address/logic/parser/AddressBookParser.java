@@ -20,6 +20,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MenuCommand;
 import seedu.address.logic.commands.PriceCommand;
 import seedu.address.logic.commands.RemoveCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SubmitCommand;
 import seedu.address.logic.commands.TotalCommand;
 import seedu.address.logic.commands.UndoCommand;
@@ -56,6 +57,7 @@ public class AddressBookParser {
             AddCommand.COMMAND_WORD,
             EditCommand.COMMAND_WORD,
             RemoveCommand.COMMAND_WORD,
+            SortCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
             PriceCommand.COMMAND_WORD,
@@ -66,7 +68,7 @@ public class AddressBookParser {
             UndoCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
-            VendorCommand.COMMAND_WORD
+            VendorCommand.COMMAND_WORD,
         };
 
         ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));
@@ -88,6 +90,9 @@ public class AddressBookParser {
 
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommandParser().parse(arguments);

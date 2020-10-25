@@ -55,7 +55,7 @@ public class AddCommand extends Command {
         ObservableList<Food> menu = model.getFilteredFoodList();
         int index = addIndex.getZeroBased();
 
-        if (menu == null) {
+        if (!model.isSelected()) {
             throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
         if (menu.size() <= index) {
