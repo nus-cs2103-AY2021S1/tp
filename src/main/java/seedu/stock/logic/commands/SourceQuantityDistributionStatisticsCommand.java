@@ -52,7 +52,8 @@ public class SourceQuantityDistributionStatisticsCommand extends StatisticsComma
         //array of size 2, index 0 is statistics type, index 1 is target source company
         String[] otherStatisticsDetails = {"source-qd-", targetSource};
         logger.log(Level.INFO, "Valid input with found source company.");
-        return new CommandResult(MESSAGE_SUCCESS, nameQuantityTable, false, true, otherStatisticsDetails, false);
+        return new CommandResult(MESSAGE_SUCCESS, nameQuantityTable, false,
+                false, null, true, otherStatisticsDetails, false);
     }
 
 
