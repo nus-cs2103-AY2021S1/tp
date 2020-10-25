@@ -14,18 +14,32 @@ import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
-import seedu.address.logic.commands.modulelistcommands.*;
 import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddAssignmentCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
+import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.CalculateCapCommand;
+import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.TargetCapCalculatorCommand;
+import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
 import seedu.address.logic.parser.contactlistparsers.AddContactParser;
 import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
 import seedu.address.logic.parser.contactlistparsers.EditContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.gradetrackerparsers.AddAssignmentParser;
 import seedu.address.logic.parser.gradetrackerparsers.AddGradeParser;
-import seedu.address.logic.parser.modulelistparsers.*;
+import seedu.address.logic.parser.modulelistparsers.AddCompletedModuleParser;
+import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
+import seedu.address.logic.parser.modulelistparsers.AddZoomLinkParser;
+import seedu.address.logic.parser.modulelistparsers.CalculateCapParser;
+import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
+import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
+import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
+import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
 
 /**
  * Parses user input.
@@ -107,6 +121,9 @@ public class ModuleListParser implements FeatureParser {
 
         case CalculateCapCommand.COMMAND_WORD:
             return new CalculateCapParser().parse(arguments);
+
+        case TargetCapCalculatorCommand.COMMAND_WORD:
+            return new TargetCapCalculatorParser().parse(arguments);
         //case EditGradeCommand.COMMAND_WORD:
         //            return new EditGradeParser().parse(arguments);
 

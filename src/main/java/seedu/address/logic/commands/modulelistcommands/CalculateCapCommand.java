@@ -1,16 +1,14 @@
 package seedu.address.logic.commands.modulelistcommands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
-
 
 public class CalculateCapCommand extends Command {
     public static final String COMMAND_WORD = "calculatecap";
@@ -46,7 +44,7 @@ public class CalculateCapCommand extends Command {
      * Calculates CAP score with a given list of modules.
      * @param modules List of modules
      */
-    public double calculateCap(List<Module> modules) {
+    public static double calculateCap(List<Module> modules) {
         double totalPoints = 0.0;
         double totalMC = 0.0;
         for (Module m : modules) {
@@ -58,6 +56,12 @@ public class CalculateCapCommand extends Command {
             }
         }
         return totalPoints / totalMC;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddModuleCommand); // instanceof handles nulls
     }
     /**
      * Indicates if the application session has ended.
