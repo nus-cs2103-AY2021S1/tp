@@ -139,8 +139,8 @@ public class FilterCommandParser {
 
             if (s.isEmpty()) {
                 return Optional.of(String.format("%s cannot be empty", kind));
-            } else if (s.split("\\s+").length > 1) {
-                return Optional.of(String.format("Filter terms should not contain spaces"));
+            } else if (kind == "Expiry date" && s.split("\\s+").length > 1) {
+                return Optional.of(String.format("Expiry date cannot contain spaces"));
             }
         }
 

@@ -1,6 +1,5 @@
 package chopchop.model.attributes;
 
-import chopchop.commons.util.StringUtil;
 import chopchop.model.recipe.Recipe;
 
 import java.util.List;
@@ -23,10 +22,12 @@ public class IngredientsContainsKeywordsPredicate implements Predicate<Recipe> {
         //     .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(indName, keyword)));
 
         // Returns recipes whose ingredient name list contains all these keywords
-        return this.keywords.stream().allMatch(keyword -> recipe.getIngredients()
+        return this.keywords.stream()
+                .map(kw -> kw.toLowerCase())
+                .allMatch(keyword -> recipe.getIngredients()
                 .stream()
                 .map(indRef -> indRef.getName())
-                .anyMatch(indName -> StringUtil.containsWordIgnoreCase(indName, keyword)));
+                .anyMatch(indName -> indName.toLowerCase().contains(keyword)));
     }
 
     @Override

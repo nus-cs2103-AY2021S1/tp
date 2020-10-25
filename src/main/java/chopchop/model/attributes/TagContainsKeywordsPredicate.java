@@ -1,6 +1,5 @@
 package chopchop.model.attributes;
 
-import chopchop.commons.util.StringUtil;
 import chopchop.model.Entry;
 
 import java.util.List;
@@ -22,10 +21,11 @@ public class TagContainsKeywordsPredicate implements Predicate<Entry> {
             return false;
         }
         return this.keywords.stream()
+                .map(kw -> kw.toLowerCase())
                 .allMatch(keyword -> entry.getTags()
                     .stream()
                     .map(Tag::toString)
-                    .anyMatch(tagName -> StringUtil.containsWordIgnoreCase(tagName, keyword)));
+                    .anyMatch(tagName -> tagName.toLowerCase().contains(keyword)));
     }
 
     @Override
