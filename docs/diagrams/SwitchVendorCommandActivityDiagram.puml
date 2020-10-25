@@ -1,0 +1,24 @@
+@startuml
+start
+:User executes SwitchVendorCommand;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Vendor Index is valid])
+    :Supper Strikers selects vendor
+    corresponding to the index;
+    :Vendor window will be hidden
+    and replaced with corresponding
+    Menu window;
+    if() then([index is different from current index])
+    :Current order is cleared;
+    else ([else])
+    endif
+else ([else])
+:Supper Strikers throws a CommandException
+informing user that index provided is invalid;
+:Error message is displayed to user;
+endif
+stop
+@enduml
