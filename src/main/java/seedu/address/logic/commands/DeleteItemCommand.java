@@ -75,6 +75,9 @@ public class DeleteItemCommand extends Command {
         }
         // delete recipes connected to this identified item as a product, or an ingredient
         recipeList.forEach(model::deleteRecipe);
+
+        model.commitInventory();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, itemToDelete));
     }
 

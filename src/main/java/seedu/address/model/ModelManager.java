@@ -30,11 +30,10 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final UserPrefs userPrefs;
-    private final ItemList itemList;
+    private final Inventory inventory;
+    private final VersionedInventory versionedInventory;
     private final FilteredList<Item> filteredItems;
-    private final LocationList locationList;
     private final FilteredList<Location> filteredLocations;
-    private final RecipeList recipeList;
     private final FilteredList<Recipe> filteredRecipes;
 
     /**
@@ -51,12 +50,12 @@ public class ModelManager implements Model {
                 + " and user prefs " + userPrefs);
 
         this.userPrefs = new UserPrefs(userPrefs);
-        this.itemList = new ItemList(itemList);
-        filteredItems = new FilteredList<>(this.itemList.getItemList());
-        this.locationList = new LocationList(locationList);
-        filteredLocations = new FilteredList<>(this.locationList.getLocationList());
-        this.recipeList = new RecipeList(recipeList);
-        filteredRecipes = new FilteredList<>(this.recipeList.getRecipeList());
+        this.inventory = new Inventory(new ItemList(itemList), new LocationList(locationList),
+                new RecipeList(recipeList));
+        this.versionedInventory = new VersionedInventory(inventory);
+        filteredItems = new FilteredList<>(this.inventory.getItemList().getItemList());
+        filteredLocations = new FilteredList<>(this.inventory.getLocationList().getLocationList());
+        filteredRecipes = new FilteredList<>(this.inventory.getRecipeList().getRecipeList());
 
     }
 
@@ -125,77 +124,77 @@ public class ModelManager implements Model {
 
     @Override
     public void setItemList(ReadOnlyItemList itemList) {
-        this.itemList.resetData(itemList);
+        this.inventory.getItemList().resetData(itemList);
     }
 
     @Override
     public void setLocationList(LocationList locationList) {
-        this.locationList.resetData(locationList);
+        this.inventory.getLocationList().resetData(locationList);
     }
 
     @Override
     public void setRecipeList(ReadOnlyRecipeList recipeList) {
-        this.recipeList.resetData(recipeList);
+        this.inventory.getRecipeList().resetData(recipeList);
     }
 
     @Override
     public ReadOnlyItemList getItemList() {
-        return itemList;
+        return this.inventory.getItemList();
     }
 
     @Override
     public ReadOnlyLocationList getLocationList() {
-        return locationList;
+        return this.inventory.getLocationList();
     }
 
     @Override
     public ReadOnlyRecipeList getRecipeList() {
-        return recipeList;
+        return this.inventory.getRecipeList();
     }
 
     @Override
     public boolean hasItem(Item item) {
         requireNonNull(item);
-        return itemList.hasItem(item);
+        return this.inventory.getItemList().hasItem(item);
     }
 
     @Override
     public boolean hasLocation(Location location) {
         requireNonNull(location);
-        return locationList.hasLocation(location);
+        return this.inventory.getLocationList().hasLocation(location);
     }
 
     @Override
     public boolean hasRecipe(Recipe recipe) {
         requireNonNull(recipe);
-        return recipeList.hasRecipe(recipe);
+        return this.inventory.getRecipeList().hasRecipe(recipe);
     }
 
     @Override
     public void deleteItem(Item target) {
-        itemList.deleteItem(target);
+        this.inventory.getItemList().deleteItem(target);
     }
 
     @Override
     public void deleteRecipe(Recipe target) {
-        recipeList.deleteRecipe(target);
+        this.inventory.getRecipeList().deleteRecipe(target);
     }
 
     @Override
     public void addItem(Item item) {
-        itemList.addItem(item);
+        this.inventory.getItemList().addItem(item);
         updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override
     public void addLocation(Location location) {
-        locationList.addLocation(location);
+        this.inventory.getLocationList().addLocation(location);
     }
 
     @Override
     public void addRecipe(Recipe recipe) {
-        recipeList.addRecipe(recipe);
-        itemList.addRecipeIdToItem(recipe.getProductId(), recipe.getId());
+        this.inventory.getRecipeList().addRecipe(recipe);
+        this.inventory.getItemList().addRecipeIdToItem(recipe.getProductId(), recipe.getId());
         updateFilteredRecipeList(PREDICATE_SHOW_ALL_RECIPES);
     }
 
@@ -203,14 +202,14 @@ public class ModelManager implements Model {
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
 
-        itemList.setItem(target, editedItem);
+        this.inventory.getItemList().setItem(target, editedItem);
     }
 
     @Override
     public void setRecipe(Recipe target, Recipe editedRecipe) {
         requireAllNonNull(target, editedRecipe);
 
-        recipeList.setRecipe(target, editedRecipe);
+        this.inventory.getRecipeList().setRecipe(target, editedRecipe);
     }
 
     //=========== Filtered Item and Location List Accessors ==================================================
@@ -261,12 +260,12 @@ public class ModelManager implements Model {
     @Override
     public int findLocationID(Location toFind) {
         requireNonNull(toFind);
-        return locationList.findLocationID(toFind);
+        return this.inventory.getLocationList().findLocationID(toFind);
     }
 
     private int findItemIdByName(String itemName) throws ItemNotFoundException {
         requireNonNull(itemName);
-        int id = itemList.findItemIdByName(itemName);
+        int id = this.inventory.getItemList().findItemIdByName(itemName);
         if (id == -1) {
             throw new ItemNotFoundException();
         }
@@ -316,6 +315,23 @@ public class ModelManager implements Model {
         return toAdd.getId();
     }
 
+    //=========== Undo/Redo helpers ========================================================================
+
+    @Override
+    public void commitInventory() {
+        versionedInventory.commit(this);
+    }
+
+    @Override
+    public boolean undoInventory() {
+        return versionedInventory.undo(this);
+    }
+
+    @Override
+    public boolean redoInventory() {
+        return versionedInventory.redo(this);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -331,11 +347,9 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return userPrefs.equals(other.userPrefs)
-                && itemList.equals(other.itemList)
+                && inventory.equals(other.inventory)
                 && filteredItems.equals(other.filteredItems)
-                && locationList.equals(other.locationList)
                 && filteredLocations.equals(other.filteredLocations)
-                && recipeList.equals(other.recipeList)
                 && filteredRecipes.equals(other.filteredRecipes);
     }
 
@@ -343,11 +357,11 @@ public class ModelManager implements Model {
     public String toString() {
         return "ModelManager{"
                 + "userPrefs=" + userPrefs
-                + ", itemList=" + itemList
+                + ", itemList=" + inventory.getItemList()
                 + ", filteredItems=" + filteredItems
-                + ", locationList=" + locationList
+                + ", locationList=" + inventory.getLocationList()
                 + ", filteredLocations=" + filteredLocations
-                + ", recipeList=" + recipeList
+                + ", recipeList=" + inventory.getRecipeList()
                 + ", filteredRecipes=" + filteredRecipes
                 + '}';
     }

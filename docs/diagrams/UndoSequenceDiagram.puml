@@ -9,7 +9,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedInventoryinator" as VersionedInventoryinator MODEL_COLOR
+participant ":VersionedInventory" as VersionedInventory MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
@@ -30,15 +30,14 @@ deactivate InventoryParser
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoInventoryinator()
+UndoCommand -> Model : undo()
 activate Model
 
-Model -> VersionedInventoryinator : undo()
-activate VersionedInventoryinator
+Model -> VersionedInventory : undo()
+activate VersionedInventory
 
-VersionedInventoryinator -> VersionedInventoryinator :resetData(ReadOnlyInventoryinator)
-VersionedInventoryinator --> Model :
-deactivate VersionedInventoryinator
+VersionedInventory --> Model :
+deactivate VersionedInventory
 
 Model --> UndoCommand
 deactivate Model

@@ -39,6 +39,9 @@ public class ClearItemCommand extends Command {
         model.setItemList(new ItemList());
         // clears locations as well
         model.setLocationList(new LocationList());
+
+        model.commitInventory();
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
