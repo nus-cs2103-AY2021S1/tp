@@ -2,10 +2,12 @@ package seedu.address.logic.commands.deliverycommand;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
-import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
+import seedu.address.model.delivery.Delivery;
 import seedu.address.model.deliverymodel.DeliveryModel;
 
 /**
@@ -22,9 +24,9 @@ public class DeliveryFindCommand extends DeliveryCommand {
             + "Parameters: " + "PREFIX " + "KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " n/Sally";
 
-    private final DeliveryContainsKeywordsPredicate predicate;
+    private final Predicate<Delivery> predicate;
 
-    public DeliveryFindCommand(DeliveryContainsKeywordsPredicate predicate) {
+    public DeliveryFindCommand(Predicate<Delivery> predicate) {
         this.predicate = predicate;
     }
 

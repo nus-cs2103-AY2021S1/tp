@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.inventorymodel.InventoryModel.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.CHICKEN;
@@ -18,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModelManager;
-import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import seedu.address.model.item.predicate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.InventoryBookBuilder;
 
 public class InventoryModelManagerTest {
@@ -122,8 +121,7 @@ public class InventoryModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = CHICKEN.getName().fullName.split("\\s+");
-        modelManager.updateItemListFilter(new ItemContainsKeywordsPredicate(Arrays.asList(keywords),
-                PREFIX_NAME));
+        modelManager.updateItemListFilter(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new InventoryModelManager(inventoryBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

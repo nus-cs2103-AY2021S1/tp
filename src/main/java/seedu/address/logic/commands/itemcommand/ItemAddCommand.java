@@ -35,8 +35,8 @@ public class ItemAddCommand extends ItemCommand {
             + PREFIX_MAX_QUANTITY + "50 "
             + PREFIX_METRIC + "kg ";
 
-    public static final String MESSAGE_SUCCESS = "New item added: %1$s";
-    public static final String MESSAGE_ITEM_ADDED_TO_INVENTORY = "Item added to inventory. Stock is now: %1$s";
+    public static final String MESSAGE_SUCCESS = "New item added: \n%1$s";
+    public static final String MESSAGE_ITEM_ADDED_TO_INVENTORY = "Item added to inventory. Stock is now: \n%1$s";
 
     public static final String MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM =
             "You cannot change the max quantity when adding to existing items.";
