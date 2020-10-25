@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.commands.schedule.ScheduleCommand;
 
 public class ScheduleCommandParserTest {
 
