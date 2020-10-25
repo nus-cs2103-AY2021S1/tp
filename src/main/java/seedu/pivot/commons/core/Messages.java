@@ -26,4 +26,6 @@ public class Messages {
     // Reference invalid message
     public static final String MESSAGE_REFERENCE_DOES_NOT_EXIST = "This document with reference %1$s does not exist.";
     public static final String MESSAGE_ERROR_OPENING_FILE = "There was an error opening your file!";
+    public static final String MESSAGE_DESKTOP_API_NOT_AVAILABLE = "Desktop API is not available, "
+            + "we are unable to open your file.";
 }

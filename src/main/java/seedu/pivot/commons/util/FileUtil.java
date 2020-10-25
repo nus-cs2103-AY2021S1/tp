@@ -8,6 +8,9 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+import seedu.pivot.commons.core.Messages;
+import seedu.pivot.logic.commands.exceptions.CommandException;
+
 /**
  * Writes and reads files
  */
@@ -95,7 +98,13 @@ public class FileUtil {
      * Opens a document at the specified path. Path should already be valid.
      *
      */
-    public static void openFile(Path file) throws IOException {
+    public static void openFile(Path file) throws IOException, CommandException {
+
+        //check if Desktop is supported by Platform or not
+        if (!Desktop.isDesktopSupported()) {
+            throw new CommandException(Messages.MESSAGE_DESKTOP_API_NOT_AVAILABLE);
+        }
+
         assert (isFileExists(file)) : "file should exist";
         File doc = file.toFile();
         Desktop desktop = Desktop.getDesktop();
