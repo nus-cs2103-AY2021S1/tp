@@ -401,6 +401,8 @@ You can use this command to do calculate the total expenses or revenues in your 
 * `total c/expense`: Returns the sum of all the expenses.
 * `total c/revenue`: Returns the sum of all the revenues.
 
+</div>
+
 (add screenshots to show the total expense/revenue message)
 
 
