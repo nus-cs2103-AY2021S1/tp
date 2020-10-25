@@ -159,33 +159,61 @@ Format: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
 
 Example: `find t/MCQ q/What CS2103T q/is t/GoodQuestion` where `MCQ` and `GoodQuestion` are tags and `What`, `CS2103T` and `is` are keywords.
 
-### Deleting a flashcard : You can delete the flashcard from the list.
+### Deleting a flashcard
 
-<div class="alert alert-danger">
-You can only delete based on index or based on tags but not both!
+To delete a flashcard, you can either delete it by its index or based off its tags.
+
+<div markdown="block" class="alert alert-danger">
+
+:exclamation: You can only delete based on index or based on tags but not both!
+
 </div>
 
-#### Deleting by index: `delete`
-You can delete a flashcard based on the index from the last displayed list.
-Format: `delete INDEX` 
+#### Deleting by index : `delete INDEX`
 
-* Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+You can delete a flashcard based on the index shown in the last displayed list.
 
-Examples:
 
-* `list` followed by `delete 3` deletes the 3rd flashcard in the list.
-![deleteIndex](images/deleteIndex.png)
+<div markdown="block" class="alert alert-info">
 
-#### Deleting by tags : `delete`
-Format: `delete t/TAG1 TAG2`
+:information_source: The INDEX refers to the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
 
-* Deletes all flashcards with the tags `TAG1` and `TAG2`
+</div>
 
-Examples:
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
-* `delete t/MCQ` will delete all flashcards with the tag `MCQ`
+	![DeleteIndexStep1](./images/DeleteIndexStep1.png)
+	
+2. Using the indices of the displayed list, enter the delete command followed by the index of the flashcard you want to delete. For example, if you want to delete the 4th flashcard in the displayed list, you can enter `delete 4`.
+
+	![DeleteIndexStep2](./images/DeleteIndexStep2.png)
+	
+3. Press enter and QuickCache will delete the flashcard specified by the index. 
+
+	![DeleteIndexStep3](./images/DeleteIndexStep3.png)
+	
+You have successfully deleted a flashcard!
+
+#### Delete by tags : `delete t/TAG1`
+
+You can delete a group of flashcards based on a specified tag. All flashcards that have this specified tag will be deleted.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: You can specify more than one tag to be used when deleting flashcards. Any flashcard with **at least one** of these specified tags will be deleted.
+
+</div>
+
+1. In the user input box, enter in the delete command together with the tags that you want to use as the criteria. For example, if you want to delete all flashcards with the tag `SolarSystem`, type `delete t/SolarSystem`.
+
+	![DeleteTagStep1](./images/DeleteTagStep1.png)
+
+2. Press enter and QuickCache will delete the flashcards accordingly.
+
+	![DeleteTagStep2](./images/DeleteTagStep2.png)
+
+All flashcards with your specified tag(s) are now deleted!
+
 #### Clearing all entries : `clear`
 Clears all entries from QuickCache.
 
