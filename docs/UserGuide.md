@@ -232,7 +232,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **List** | `list`
 **Review** | `review`
-**Sort** | `sort <success&#124;reviewed> <-a&#124;-d>` <br> e.g. sort success -a
+**Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d>`</code> <br> e.g. sort success -a
 **Fav** | `fav INDEX` <br> e.g., `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g., `unfav 1`
 **View** | `view INDEX` <br> e.g., `view 1`
