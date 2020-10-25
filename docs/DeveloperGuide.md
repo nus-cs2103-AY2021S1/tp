@@ -318,7 +318,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### 3.2.1 Implementation
 
-This feature allows users to add image files to serve as the patient's profile picture. The mechanism utilises the `StorageManager#addPictureToProfile`
+This feature allows users to add image files to serve as the patient's profile picture. The mechanism utilises the `StorageManager#addPicture`
 method to update the patients' profile pictures.
 
 This feature comprises the `AddProfilePictureCommand` class. Given below is an example usage scenario and how the mechanism behaves at each step.
@@ -333,7 +333,7 @@ Step 1. User input is parsed to obtain the patient index and file path of the de
 
 Step 2. After successful parsing of user input, the `AddProfilePictureCommand#execute(Model model)` method is called. 
 
-Step 3. The `StorageManager#addPictureToProfile` method is then called which adds the desired profile picture to the specified patient.
+Step 3. The `StorageManager#addPicture` method is then called which adds the desired profile picture to the specified patient.
 
 Step 4. Next, the patient's profile picture is updated in the `Model` by calling the `Model#setPatient` method.
 
