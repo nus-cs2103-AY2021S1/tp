@@ -11,6 +11,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
+import static seedu.address.testutil.TypicalTasks.PLAN_MEETING;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -24,6 +25,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
@@ -145,24 +147,39 @@ public class MainCatalogueTest {
     public void enterQuit_correctScope_success() {
         try {
             mainCatalogue.addProject(APEAKAPP);
+            mainCatalogue.addPerson(ALICE);
             mainCatalogue.enter(APEAKAPP);
+            mainCatalogue.enterTask(PLAN_MEETING);
+            mainCatalogue.quit();
+            mainCatalogue.quit();
+            mainCatalogue.enter(ALICE);
             mainCatalogue.quit();
         } catch (Exception e) {
+            System.out.println(e);
             fail();
         }
     }
 
     @Test
-    public void enter_nonExistingProject_throwProjectNotFoundException() {
+    public void enter_nonExisting_throwNotFoundException() {
         assertThrows(ProjectNotFoundException.class, () -> mainCatalogue.enter(APEAKAPP));
+        assertThrows(PersonNotFoundException.class, () -> mainCatalogue.enter(ALICE));
     }
 
     @Test
-    public void enter_sameButNotEqualProject_success() {
+    public void enter_sameButNotEqual_success() {
         mainCatalogue.addProject(APEAKAPP);
-        Project adapted = new ProjectBuilder(APEAKAPP).withTags().build();
+        Project adaptedProject = new ProjectBuilder(APEAKAPP).withTags().build();
         try {
-            mainCatalogue.enter(adapted);
+            mainCatalogue.enter(adaptedProject);
+        } catch (Exception e) {
+            fail();
+        }
+
+        mainCatalogue.addPerson(ALICE);
+        Person adaptedPerson = new PersonBuilder(ALICE).withAddress(VALID_TEAMMATE_ADDRESS_B).build();
+        try {
+            mainCatalogue.enter(adaptedPerson);
         } catch (Exception e) {
             fail();
         }

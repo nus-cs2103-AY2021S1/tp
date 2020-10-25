@@ -172,12 +172,14 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     public void enter(Project project) {
         status = Status.PROJECT;
         this.project = Optional.of(projects.getProject(project));
+        this.person = Optional.empty();
     }
 
     @Override
     public void enter(Person person) {
         status = Status.PERSON;
         this.person = Optional.of(persons.getPerson(person));
+        this.project = Optional.empty();
     }
 
     @Override
