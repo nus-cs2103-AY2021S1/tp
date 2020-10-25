@@ -79,6 +79,26 @@ May have irreversible effect when used. Backup and caution is recommended.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+# User Interface Overview
+Figure shows the default user interface (UI) of Common Cents. You can find the description for each UI components in the 
+table below.<br> 
+![annotatedUi](images/commands/annotatedUi.PNG)
+<p align="center"> <sub> <b>Figure</b>: Default user interface of Common Cents </sub> </p>
+
+UI component | Description
+--------|------------------
+*Menu bar* | Displays the menu bar of Common Cents. You can use this to access the User Guide or exit the application. 
+*Active account name* | Displays the account you are currently on.
+*Display picture* | Displays the default display picture of the application.
+*Command box* | Displays a text field for you to type the commands.
+*Result display* | Displays the result of your command. If the command is invalid, an error message will be displayed to prompt and guide you to input valid correct command.
+*Account summary chart* | Displays the total expenses and revenues in your current account in a pie chart.
+*Chart legend* | Displays the legend for the account summary chart.
+*Status bar* | Displays the current date.
+*Expense list* | Displays all the expenses in your current account in a panel.
+*Revenue list* | Displays all the revenues in your current account in a panel.
+
+--------------------------------------------------------------------------------------------------------------------
 
 # Features
 
@@ -105,7 +125,7 @@ May have irreversible effect when used. Backup and caution is recommended.
 Shows a message explaining how to access the help page (Figure). You can click on the `Copy URL ` button to copy
 the link to clipboard and paste it 
 <br>![Ui](images/helpMessage.png)
-<p align="center"> <i>Figure: Help message</i> </p>
+<p align="center"> <sub> <b>Figure</b>: Help message </sub> </p>
 
 Format: `help`
 
@@ -189,7 +209,7 @@ description (Figure).
  
 </div>
 
-<br>![findCommand](images/commands/findCommand.png)
+<br>![findCommand](images/commands/findCommand.PNG)
 <p align="center"> <sub> <b>Figure</b>: Find command successfully executed </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
@@ -201,7 +221,7 @@ description (Figure).
 * The search does not match partial words. e.g. `food` will match `food` and `fast food` but not `fastfood`.
 * Entries matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker food`, 
 `Restaurant Food`.
-* The category is optional.
+* The `c/CATEGORY` is optional.
 
 </div>
 
