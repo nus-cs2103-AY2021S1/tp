@@ -32,7 +32,7 @@ class JsonAdaptedComment {
      */
     public JsonAdaptedComment(Comment source) {
         date = source.date;
-        description = source.description;
+        description = source.getDescription();
         title = source.getTitle().getTitle();
     }
 

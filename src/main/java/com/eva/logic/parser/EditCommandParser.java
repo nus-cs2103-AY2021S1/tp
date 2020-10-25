@@ -1,10 +1,16 @@
 package com.eva.logic.parser;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static com.eva.logic.commands.EditCommand.MESSAGE_NO_APPLICANTORSTAFF;
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
@@ -17,6 +23,9 @@ import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.EditCommand;
 import com.eva.logic.commands.EditCommand.EditPersonDescriptor;
 import com.eva.logic.parser.exceptions.ParseException;
+import com.eva.model.comment.Comment;
+import com.eva.model.person.applicant.ApplicationStatus;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
 
@@ -32,8 +41,23 @@ public class EditCommandParser implements Parser<EditCommand> {
      */
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+        ArgumentMultimap argMultimap;
+
+        ArgumentMultimap typeMap =
+                ArgumentTokenizer.tokenize(args, PREFIX_APPLICANT, PREFIX_STAFF);
+
+        boolean isApplicant = (!typeMap.getValue(PREFIX_APPLICANT).isEmpty());
+        boolean isStaff = (!typeMap.getValue(PREFIX_STAFF).isEmpty());
+
+        if (isApplicant) {
+            argMultimap =
+                    ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_APPLICANT, PREFIX_COMMENT, PREFIX_DATE);
+        } else {
+            argMultimap =
+                    ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_STAFF, PREFIX_COMMENT, PREFIX_LEAVE);
+        }
 
         Index index;
 
@@ -58,11 +82,30 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
+        parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT)).ifPresent(editPersonDescriptor::setComments);
+
+        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+            editPersonDescriptor.setInterviewDate(Optional.ofNullable(ParserUtil
+                    .parseInterviewDate(argMultimap.getValue(PREFIX_DATE).get())));
+        }
+
+        if (argMultimap.getAllValues(PREFIX_LEAVE).size() > 0) {
+            editPersonDescriptor.setLeaves((Set<Leave>) ParserUtil
+                    .parseLeaveArgs(argMultimap.getAllValues(PREFIX_LEAVE)));
+        }
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-
-        return new EditCommand(index, editPersonDescriptor);
+        if (!argMultimap.getValue(PREFIX_APPLICANT).isEmpty()) {
+            ApplicationStatus applicationStatus = new ApplicationStatus("received");
+            editPersonDescriptor.setApplicationStatus(applicationStatus);
+            return new EditCommand(index, editPersonDescriptor, "applicant");
+        } else if (!argMultimap.getValue(PREFIX_STAFF).isEmpty()) {
+            return new EditCommand(index, editPersonDescriptor, "staff");
+        } else {
+            throw new ParseException(MESSAGE_NO_APPLICANTORSTAFF);
+        }
     }
 
     /**
@@ -80,4 +123,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 
+    private Optional<Set<Comment>> parseCommentsForEdit(Collection<String> comments) throws ParseException {
+        assert comments != null;
+
+        if (comments.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> commentSet = comments.size() == 1
+                && comments.contains("") ? Collections.emptySet() : comments;
+        return Optional.of(ParserUtil.parseComments(commentSet));
+    }
 }
