@@ -19,7 +19,7 @@ public class SortCommand extends Command {
             + " Sort by Price or Quantity "
             + " [Ascending / Descending]";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Menu successfully sorted!";
 
     private final String sortedBy;
     private final boolean ascending;
