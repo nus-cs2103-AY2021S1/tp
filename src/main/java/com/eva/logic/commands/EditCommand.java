@@ -123,7 +123,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Comment> editedComments = editPersonDescriptor.getComments();
         Set<Comment> currentComments = personToEdit.getComments();
-        Set<Comment> newComments = update(editedComments, currentComments);
+        Set<Comment> newComments = updateComments(editedComments, currentComments);
         if (personToEdit instanceof Staff) {
             Set<Leave> updatedLeaves = ((Staff) personToEdit).getLeaves();
             return new Staff(updatedName, updatedPhone, updatedEmail,
@@ -138,7 +138,13 @@ public class EditCommand extends Command {
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, newComments);
     }
 
-    public static Set<Comment> update(Set<Comment> editedComments, Set<Comment> currentComments) {
+    /**
+     * Updates Comments
+     * @param editedComments
+     * @param currentComments
+     * @return
+     */
+    public static Set<Comment> updateComments(Set<Comment> editedComments, Set<Comment> currentComments) {
         if (editedComments != null) {
             for (Comment comment: currentComments) {
                 for (Comment editedComment : editedComments) {
