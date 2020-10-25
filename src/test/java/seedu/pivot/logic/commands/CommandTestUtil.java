@@ -16,7 +16,7 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
+import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 import seedu.pivot.testutil.EditCaseDescriptorBuilder;
 
 /**
@@ -109,7 +109,7 @@ public class CommandTestUtil {
 
         Case investigationCase = model.getFilteredCaseList().get(targetIndex.getZeroBased());
         final String[] splitName = investigationCase.getTitle().getAlphaNum().split("\\s+");
-        model.updateFilteredCaseList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredCaseList(new DetailsContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCaseList().size());
     }

@@ -7,8 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.exceptions.IllegalValueException;
-import seedu.pivot.model.investigationcase.Name;
-import seedu.pivot.model.investigationcase.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Address;
+import seedu.pivot.model.investigationcase.caseperson.Email;
+import seedu.pivot.model.investigationcase.caseperson.Gender;
+import seedu.pivot.model.investigationcase.caseperson.Name;
+import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
 
 
 /**
@@ -20,20 +24,34 @@ public class JsonAdaptedVictim {
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedVictim.class);
 
     private final String name;
+    private final String gender;
+    private final String phone;
+    private final String email;
+    private final String address;
 
     /**
      * Constructs a {@code JsonAdaptedVictim} with the given {@code name}.
      */
     @JsonCreator
-    public JsonAdaptedVictim(@JsonProperty("name") String name) {
+    public JsonAdaptedVictim(@JsonProperty("name") String name, @JsonProperty("gender") String gender,
+                             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                             @JsonProperty("address") String address) {
         this.name = name;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
     }
 
     /**
      * Converts a given {@code Victim} into this class for Jackson use.
      */
     public JsonAdaptedVictim(Victim source) {
-        name = source.getName().getAlphaNum();
+        this.name = source.getName().getAlphaNum();
+        this.gender = source.getGender().toString();
+        this.phone = source.getPhone().toString();
+        this.email = source.getEmail().toString();
+        this.address = source.getAddress().toString();
     }
 
     /**
@@ -53,6 +71,42 @@ public class JsonAdaptedVictim {
         }
         final Name modelName = new Name(name);
 
-        return new Victim(modelName);
+        if (gender == null) {
+            logger.warning("Victim gender is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            logger.warning("Victim gender is invalid. Check data");
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = Gender.createGender(gender);
+
+        if (phone == null) {
+            logger.warning("Victim phone is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(phone)) {
+            logger.warning("Victim phone is invalid. Check data");
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelPhone = new Phone(phone);
+
+        if (email == null) {
+            logger.warning("Victim email is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        }
+        if (!Email.isValidEmail(email)) {
+            logger.warning("Victim email is invalid. Check data");
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+        final Email modelEmail = new Email(email);
+
+        if (address == null) {
+            logger.warning("Victim address is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        final Address modelAddress = new Address(address);
+
+        return new Victim(modelName, modelGender, modelPhone, modelEmail, modelAddress);
     }
 }

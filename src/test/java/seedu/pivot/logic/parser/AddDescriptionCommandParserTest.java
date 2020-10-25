@@ -1,6 +1,6 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pivot.testutil.Assert.assertThrows;
@@ -18,8 +18,8 @@ import seedu.pivot.model.investigationcase.Description;
 
 public class AddDescriptionCommandParserTest {
 
-    public final String PREFIX_DESC = " " + CliSyntax.PREFIX_DESC.getPrefix();
-    public final String VALID_DESC = "I am a valid description";
+    public static final String PREFIX_DESC = " " + CliSyntax.PREFIX_DESC.getPrefix();
+    public static final String VALID_DESC = "I am a valid description";
 
     private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
 

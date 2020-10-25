@@ -1,19 +1,12 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
-import seedu.pivot.logic.commands.documentcommands.DeleteDocumentCommand;
-import seedu.pivot.logic.state.StateManager;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -24,8 +17,8 @@ import seedu.pivot.logic.state.StateManager;
  */
 public class DeleteCommandParserMainPageTest {
 
-    private final String VALID_INDEX = " " + "1";
-    public final String TYPE_CASE = "case";
+    public static final String VALID_INDEX = " " + "1";
+    public static final String TYPE_CASE = "case";
 
     private static Index caseIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
 

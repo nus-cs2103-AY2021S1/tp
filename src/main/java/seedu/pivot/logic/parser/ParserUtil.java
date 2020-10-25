@@ -1,7 +1,7 @@
 package seedu.pivot.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -11,10 +11,14 @@ import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.StringUtil;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Description;
-import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Reference;
 import seedu.pivot.model.investigationcase.Status;
 import seedu.pivot.model.investigationcase.Title;
+import seedu.pivot.model.investigationcase.caseperson.Address;
+import seedu.pivot.model.investigationcase.caseperson.Email;
+import seedu.pivot.model.investigationcase.caseperson.Gender;
+import seedu.pivot.model.investigationcase.caseperson.Name;
+import seedu.pivot.model.investigationcase.caseperson.Phone;
 import seedu.pivot.model.tag.Tag;
 
 /**
@@ -153,6 +157,63 @@ public class ParserUtil {
             throw new ParseException(Description.MESSAGE_CONSTRAINTS);
         }
         return new Description(trimmedDescription);
+    }
+
+    /**
+     * Parses a {@code String gender} into a {@code Gender}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code gender} is invalid.
+     */
+    public static Gender parseGender(String gender) throws ParseException {
+        requireNonNull(gender);
+        String trimmedGender = gender.trim();
+        if (!Gender.isValidGender(trimmedGender)) {
+            throw new ParseException(Gender.MESSAGE_CONSTRAINTS);
+        }
+
+        return Gender.createGender(trimmedGender);
+    }
+
+    /**
+     * Parses a {@code String phone} into a {@code Phone}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static Phone parsePhone(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(trimmedPhone);
+    }
+
+    /**
+     * Parses a {@code String address} into an {@code Address}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Address parseAddress(String address) {
+        requireNonNull(address);
+        String trimmedAddress = address.trim();
+        return new Address(trimmedAddress);
+    }
+
+    /**
+     * Parses a {@code String email} into an {@code Email}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static Email parseEmail(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!Email.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+        }
+        return new Email(trimmedEmail);
     }
 
 }

@@ -198,6 +198,80 @@ Its implementation is similar to the `OpenCaseCommand` except it resets the stat
 
 ![Interactions Inside the Logic Component for the `return` Command](images/ReturnSequenceDiagram.png)
 
+### Including Documents to PIVOT
+
+#### Reference class
+The `Reference` class represents a file location in the directory `./references` of the program. A `reference` only 
+exists if there is a file present at the file location in the user's local directory. The validity of a  
+`reference` depends on the user's operating system and the different acceptable file names. A `reference` object must 
+have a valid file name on creation.
+
+#### Document class
+The `Document` class represents a file on the user's local computer. It contains a `name` for easy viewing 
+and a `reference` to the file location. It is used for tracking files that are stored in PIVOT and for opening 
+of documents.
+<br>
+![Structure of the Document Component](images/DocumentClassDiagram.png)
+
+The documents are stored in a list for a particular case and you can only manipulate 
+documents(adding, deleting, opening) while inside a `case`. This is because the program stores a state of which
+interface (main page or case) the user is at and will manipulate the documents according to the `document list` in that 
+current `case`. 
+
+#### Adding a Document
+When a user executes `add doc n:name r:reference.txt`, to add a document with the specified name and file reference
+to the current "opened" case in the state, `addDocumandCommandParser` will be invoked to parse the 
+name (prefixed with n:) and reference (prefixed with r:) inputs. The program must be at an "opened" case at this point.
+ <br><br>
+`addDocumandCommandParser` will check for a valid name as well as a valid 
+reference that exists in the `./references` directory. This is to prevent a user from creating a document when the 
+program is active when they have yet to include the file in the program's directory. The appropriate error message 
+should be returned for a better user experience. It will then successfully create a `Document` and 
+return `addDocumandCommand`
+<br><br>
+`addDocumandCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
+It will check for duplicated documents at this point as this is where the program accesses the list of documents in the
+current state. The `model` will then be updated with the updated `case`.
+
+The following sequence diagram shows adding a document to the current case: <br>
+![Adding a document to current case](images/AddDocumentDiagram.png)
+
+#### Deleting a Document
+Deleting a document works about the same as adding a document. When a user executes `delete doc 2`, to delete the 
+second `document` in the list of documents of the current "opened" case in the state. The program must be at an 
+"opened" case at this point.`DeleteCommandParser` parses the given index as a `Index` object and gets the `case index`
+in the current state. It returns `DeleteDocumentCommand` if the inputs are valid.
+<br><br>
+`DeleteDocumentCommand` gets the list of documents in the current case using the `case index` and checks if the 
+input `index` is within bounds. The check occurs in the `Command` rather than `DeleteDocumentParser` so that we
+can distinguish between `ParseException` and `CommandException`. The command then removes the specified `document` 
+in the list and updates the `model`.
+
+The following activity diagram shows a successful delete document operation at a case page: <br>
+![Deleting a document to current case](images/DeleteDocumentDiagram.png)
+
+#### Design considerations
+##### Aspect: For `Reference` object, separate validity (of the String) and existence (of the actual file path) checks.
+* **Alternative 1 (current choice):** A reference object can be both valid but doesn't exists at the same time.
+   - Pros: A document file deletion on the user's local machine will not affect loading the current cases in the Json 
+   file
+   - Cons: More prone to bugs
+   
+* **Alternative 2:** A reference object must be both valid and exists to be created.
+     - Pros: A document is only created when we know there is a valid and existing `Reference`. Easier for testing.
+     - Cons: The program cannot load if there is a missing file (due to external user deletion) which was previously 
+     saved in the Json file
+     
+##### Aspect: Integrate `ReferenceStorage` with current Storage Design
+* **Alternative 1 (current choice):** Separate `ReferenceStorage` to handle all `Reference` and storage interactions.
+   - Pros: Easier to implement and increases cohesion.
+   - Cons: More classes and code in the program
+   
+* **Alternative 2:** Make use of `Config.java` and `UserPrefsStorage` to integrate `ReferenceStorage` such as saving 
+default file paths.
+     - Pros: Makes use of existing infrastructure, lesser code and possibly lesser code duplication.
+     - Cons: Increased coupling, more prone to bugs and harder to test
+
 ### Undo feature (Not yet implemented)
 
 #### Proposed Implementation
@@ -244,6 +318,8 @@ The following sequence diagram shows how the undo operation works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
+</div>
+
 Step 5. The user then decides to execute the command `list`. Commands that do not modify Pivot, such as `list`, will usually not call `Model#commitPivot()` or `Model#undoPivot()`. Thus, the `pivotStateStack` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
@@ -251,6 +327,19 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How undo executes
+
+* **Alternative 1 (current choice):** Saves the entire Pivot.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the case being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 

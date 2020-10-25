@@ -1,6 +1,6 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TAG;
@@ -17,10 +17,10 @@ import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
 import seedu.pivot.model.investigationcase.Status;
-import seedu.pivot.model.investigationcase.Suspect;
 import seedu.pivot.model.investigationcase.Title;
-import seedu.pivot.model.investigationcase.Victim;
-import seedu.pivot.model.investigationcase.Witness;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 
 public class AddCaseCommandParser implements Parser<AddCaseCommand> {

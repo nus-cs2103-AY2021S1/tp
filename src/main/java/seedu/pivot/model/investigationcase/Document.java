@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.pivot.model.investigationcase.caseperson.Name;
+
 public class Document {
 
     public final Name name;

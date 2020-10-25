@@ -18,4 +18,5 @@ public class ReferenceStorage {
     protected void addTestFile() throws IOException {
         FileUtil.createIfMissing(TEST_FILE_PATH);
     }
+
 }

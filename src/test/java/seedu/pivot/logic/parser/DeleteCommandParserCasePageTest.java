@@ -16,16 +16,16 @@ import seedu.pivot.logic.state.StateManager;
 
 public class DeleteCommandParserCasePageTest {
 
-    private final String VALID_INDEX = " " + "1";
-    public final String TYPE_DOC = "doc";
-    public final String TYPE_SUSPECT = "suspect";
-    public final String TYPE_WITNESS = "witness";
-    public final String TYPE_VICTIM = "victim";
-    private static Index caseIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
-    private static Index miscTypeIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    public static final String VALID_INDEX = " " + "1";
+    public static final String TYPE_DOC = "doc";
+    public static final String TYPE_SUSPECT = "suspect";
+    public static final String TYPE_WITNESS = "witness";
+    public static final String TYPE_VICTIM = "victim";
+
+    private static final Index caseIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private static final Index miscTypeIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
 
     private DeleteCommandParser parser = new DeleteCommandParser();
-
 
     @BeforeEach
     public void setStateZero() {
@@ -39,22 +39,22 @@ public class DeleteCommandParserCasePageTest {
 
     @Test
     public void parse_validArgs_returnsDeleteDocumentCommand() {
-        assertParseSuccess(parser, TYPE_DOC + VALID_INDEX, new DeleteDocumentCommand(caseIndex,miscTypeIndex));
+        assertParseSuccess(parser, TYPE_DOC + VALID_INDEX, new DeleteDocumentCommand(caseIndex, miscTypeIndex));
     }
 
     @Test
     public void parse_validArgs_returnsDeleteSuspectCommand() {
-        assertParseSuccess(parser, TYPE_SUSPECT + VALID_INDEX, new DeleteSuspectCommand(caseIndex,miscTypeIndex));
+        assertParseSuccess(parser, TYPE_SUSPECT + VALID_INDEX, new DeleteSuspectCommand(caseIndex, miscTypeIndex));
     }
 
     @Test
     public void parse_validArgs_returnsDeleteVictimCommand() {
-        assertParseSuccess(parser, TYPE_VICTIM + VALID_INDEX, new DeleteVictimCommand(caseIndex,miscTypeIndex));
+        assertParseSuccess(parser, TYPE_VICTIM + VALID_INDEX, new DeleteVictimCommand(caseIndex, miscTypeIndex));
     }
 
     @Test
     public void parse_validArgs_returnsDeleteWitnessCommand() {
-        assertParseSuccess(parser, TYPE_WITNESS + VALID_INDEX, new DeleteWitnessCommand(caseIndex,miscTypeIndex));
+        assertParseSuccess(parser, TYPE_WITNESS + VALID_INDEX, new DeleteWitnessCommand(caseIndex, miscTypeIndex));
     }
 
 

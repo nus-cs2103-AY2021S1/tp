@@ -1,6 +1,7 @@
 package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.CollectionUtil;
 import seedu.pivot.logic.commands.exceptions.CommandException;
@@ -23,10 +24,10 @@ import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
 import seedu.pivot.model.investigationcase.Status;
-import seedu.pivot.model.investigationcase.Suspect;
 import seedu.pivot.model.investigationcase.Title;
-import seedu.pivot.model.investigationcase.Victim;
-import seedu.pivot.model.investigationcase.Witness;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 
 /**
@@ -71,10 +72,10 @@ public class EditCommand extends Command {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        assert(StateManager.atMainPage()) : "Program should be at main page";
+        assert(StateManager.atMainPage()) : ASSERT_MAIN_PAGE;
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+            throw new CommandException(UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
         }
 
         Case caseToEdit = lastShownList.get(index.getZeroBased());
