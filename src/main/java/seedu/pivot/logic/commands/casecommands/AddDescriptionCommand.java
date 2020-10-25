@@ -76,7 +76,6 @@ public class AddDescriptionCommand extends AddCommand {
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags());
         model.setCase(stateCase, updatedCase);
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
     }

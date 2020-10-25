@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
@@ -20,6 +21,14 @@ import seedu.pivot.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Case {
+
+    private static final String DESCRIPTION_HEADER = " Description: ";
+    private static final String STATUS_HEADER = " Status: ";
+    private static final String DOCUMENTS_HEADER = " Documents: ";
+    private static final String SUSPECTS_HEADER = " Suspects: ";
+    private static final String VICTIMS_HEADER = " Victims: ";
+    private static final String WITNESSES_HEADER = " Witnesses: ";
+    private static final String TAGS_HEADER = " Tags: ";
 
     // Identity fields
     private final Title title;
@@ -136,49 +145,45 @@ public class Case {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle()).append("\n")
-                .append(" Description: ").append(getDescription()).append("\n")
-                .append(" Status: ").append(getStatus()).append("\n");
+                .append(DESCRIPTION_HEADER).append(getDescription()).append("\n")
+                .append(STATUS_HEADER).append(getStatus()).append("\n");
 
         // Documents
         if (!getDocuments().isEmpty()) {
             builder.append("\n");
-            builder.append(" Documents: ");
+            builder.append(DOCUMENTS_HEADER);
         }
-        for (Document doc : getDocuments()) {
-            builder.append(doc.getName()).append(",");
-        }
+        Stream<String> docs = getDocuments().stream().map(x -> x.getName().toString());
+        builder.append(docs.collect(Collectors.joining(", ")));
 
         // Suspects
         if (!getSuspects().isEmpty()) {
             builder.append("\n");
-            builder.append(" Suspects: ");
+            builder.append(SUSPECTS_HEADER);
         }
-        for (Suspect suspect : getSuspects()) {
-            builder.append(suspect.getName()).append(",");
-        }
+        Stream<String> suspects = getSuspects().stream().map(x -> x.getName().toString());
+        builder.append(suspects.collect(Collectors.joining(", ")));
 
         // Victims
         if (!getVictims().isEmpty()) {
             builder.append("\n");
-            builder.append(" Victims: ");
+            builder.append(VICTIMS_HEADER);
         }
-        for (Victim victim : getVictims()) {
-            builder.append(victim.getName()).append(",");
-        }
+        Stream<String> victims = getVictims().stream().map(x -> x.getName().toString());
+        builder.append(victims.collect(Collectors.joining(", ")));
 
         // Witnesses
         if (!getWitnesses().isEmpty()) {
             builder.append("\n");
-            builder.append(" Witnesses: ");
+            builder.append(WITNESSES_HEADER);
         }
-        for (Witness witness : getWitnesses()) {
-            builder.append(witness.getName()).append(",");
-        }
+        Stream<String> witnesses = getWitnesses().stream().map(x -> x.getName().toString());
+        builder.append(witnesses.collect(Collectors.joining(", ")));
 
         // Tags
         if (!getTags().isEmpty()) {
             builder.append("\n");
-            builder.append(" Tags: ");
+            builder.append(TAGS_HEADER);
         }
         for (Tag tag : getTags()) {
             builder.append(tag.tagName);
