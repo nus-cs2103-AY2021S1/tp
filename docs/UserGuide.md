@@ -47,7 +47,7 @@ Interested? Read on to get started!
 
 * Words in `UPPER_CASE` are the __parameters__ to be supplied by the user.<br>
   e.g. in `add_inventory i/ITEM`, `ITEM` is a parameter which can be used as `add_inventory i/MacBook`.
-* Items in square brackets are optional.<br>
+* Items in square brackets are **optional**.<br>
   e.g `amt/AMOUNT [at/DATE] [TIME]` can be used as the possible formats:
   * `amt/200 at/2020-04-10 18:00`
   * `amt/200 at/2020-04-10`
@@ -83,7 +83,7 @@ Adds and stores a new inventory record into the inventory list.
 
 __Format:__ `add_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
-__Example:__ `add_inventory i/iphone q/10`
+__Example:__ `add_inventory i/iphone q/10` to create a new inventory record of item `iphone` and quantity `10`.
 
 ![Add inventory command example](images/commands/add_inventory_command.jpg)
 
@@ -99,7 +99,7 @@ Removes the specified record from the inventory list.
 
 __Format:__ `delete_inventory INDEX`
 
-__Example:__ `delete_inventory 1`
+__Example:__ `delete_inventory 1` to delete the inventory record with ID `1`.
 
 ![Delete inventory command example](images/commands/delete_inventory_command.jpg)
 
@@ -115,7 +115,7 @@ Edits the specified record in the inventory list.
 
 __Format:__ `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`
 
-__Example:__ `edit_inventory 1 i/iPad q/100`
+__Example:__ `edit_inventory 1 i/iPad q/100` to edit the inventory record with ID `1`.
 
 ![Edit inventory command example](images/commands/edit_inventory_command.jpg)
 
@@ -153,7 +153,7 @@ Note: Date and time are default to current location's datetime unless specified
 
 __Format:__ `add_finance amt/AMOUNT [at/DATE] [TIME]`
 
-__Example:__ `add_finance amt/30000 at/2020-03-03`
+__Example:__ `add_finance amt/30000 at/2020-03-03` to create a new finance record of amount `$30000` on `3rd March 2020`
 
 ![Add finance command example](images/commands/add_finance_command.jpg)
 
@@ -169,7 +169,7 @@ Deletes the specified finance record from the account.
 
 __Format:__ `delete_finance INDEX`
 
-__Example:__ `delete_finance 1`
+__Example:__ `delete_finance 1` to delete the finance record with ID `1`.
 
 ![Delete finance command example](images/commands/delete_finance_command.jpg)
 
@@ -185,7 +185,7 @@ Edits the specified record in the finance account.
 
 __Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 
-__Example:__ `edit_finance 1 amt/120`
+__Example:__ `edit_finance 1 amt/120` to edit the finance record with ID `1`.
 
 ![Edit finance command example](images/commands/edit_finance_command.jpg)
 
@@ -231,6 +231,8 @@ __Result:__ Programme terminates.
 
 #### 4.3.2. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
 
+[_This feature is planned for v2.0_]
+
 Undo or redo the previous command
 
 __Format:__ `undo` or `redo`
@@ -243,7 +245,7 @@ __Result:__ Undo or redo the previous command.
 
 ## 5. Command Summary
 
-Action | Format, Examples
+Action | Format & Examples
 --------|------------------
 __Add inventory__ | `add_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `add_inventory i/MacBook pro q/200 c/50`
 __Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4`
