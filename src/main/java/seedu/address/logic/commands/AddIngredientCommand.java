@@ -20,7 +20,9 @@ public class AddIngredientCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient(s) to the fridge.\n"
             + "Parameters: "
             + PREFIX_INGREDIENT + "INGREDIENT "
-            + "[" + PREFIX_QUANTITY + "QUANTITY" + "]" + "\n"
+            + "[" + PREFIX_QUANTITY + "QUANTITY" + "]"
+            + "[ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]"
+            + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT + "bread, oranges " + PREFIX_QUANTITY + "2kg" + ", cheese ";
 

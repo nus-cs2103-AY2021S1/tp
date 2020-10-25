@@ -62,8 +62,11 @@ Choose a topic from the table of contents to get started on your Wishful Shrinki
 
 **:information_source: Notes about the command format:**<br>
 
+* All commands are case-sensitive.<br>
+  e.g. in `addR`, `add` is in small letters while `R` is in capital letters.
+
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `addR n/salad`.
+  e.g. in `addR n/NAME`, `NAME` is a parameter which can be used as `addR n/salad`.
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/Salad t/healthy` or as `n/Salad`.
@@ -100,7 +103,7 @@ Adds a recipe to Recipe list.
 
 ![add recipe](images/AddRecipeImage.png)
 
-Format: `addR n/TITLE i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...`
+Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
     * there is a mandatory space before `-` 
@@ -176,7 +179,7 @@ Edits the specified recipe from the Recipe list.
 
 ![edit recipe](images/EditRecipeImage.png)
 
-Format: `editR INDEX [n/TITLE] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] 
+Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] 
 [inst/INSTRUCTION...] [t/TAG]...`
 
 * Edits the recipe at the specified `INDEX`.
@@ -209,14 +212,14 @@ Examples:
 
 ### Searching for a recipe: `searchR`
 
-Finds recipes in the Recipe list that contains all the specified ingredients OR whose title OR tags contain any of the given keywords.
+Finds recipes in the Recipe list that contains all the specified ingredients OR whose name OR tags contain any of the given keywords.
 
 ![search recipe](images/SearchRecipeImage.png)
 
-Format: `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/TITLE [MORE_TITLE]] [t/TAG [MORE_TAG]]`
+Format: `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]`
 
 * The search is case-insensitive. e.g `salad` will match `Salad`
-* Note: All fields are optional, but **only one** of the fields must be present. You can only search by the recipe ingredient OR recipe title OR recipe tag.
+* Note: All fields are optional, but **only one** of the fields must be present. You can only search by the recipe ingredient OR recipe name OR recipe tag.
 * The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham
 * Ingredient are separated by a space
 
@@ -440,14 +443,14 @@ Features | Format, Examples
 --------|------------------
 **Help** | `help`
 **Exit** | `exit`
-**Add recipe** | `addR n/TITLE i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g. `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy`
+**Add recipe** | `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g. `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy`
 **List recipes** | `recipes`
 **Select recipe**| `selectR INDEX` <br> e.g. `selectR 3`
 **Close recipe drawer**| `close`
 **Delete recipe** | `deleteR INDEX`<br> e.g. `deleteR 3`
-**Edit recipe** | `editR INDEX [n/TITLE] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [inst/INSTRUCTION...] [t/TAG]...` <br> e.g. `editR 2 n/Apple salad i/apple`
+**Edit recipe** | `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] [inst/INSTRUCTION...] [t/TAG]...` <br> e.g. `editR 2 n/Apple salad i/apple`
 **Get edit recipe info** | `editR INDEX` <br> e.g. `editR 2`
-**Search for recipe** | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/TITLE [MORE_TITLE]] [t/TAG [MORE_TAG]]` <br> e.g. `searchR i/lettuce tomato`, `searchR n/salad`, `searchR t/healthy`
+**Search for recipe** | `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]` <br> e.g. `searchR i/lettuce tomato`, `searchR n/salad`, `searchR t/healthy`
 **Recommend recipe** | `recommend`
 **Clear all recipes** | `clearR`
 **Add ingredient to the fridge** | `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]` <br> e.g. `addF i/banana -3/4 cups, green peas -200g, salmon fish`

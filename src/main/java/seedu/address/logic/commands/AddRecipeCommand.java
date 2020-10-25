@@ -25,6 +25,7 @@ public class AddRecipeCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_INGREDIENT + "INGREDIENT "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
+            + "[, MORE INGREDIENTS [ -QUANTITY]] "
             + PREFIX_CALORIES + "CALORIES "
             + PREFIX_INSTRUCTION + "INSTRUCTIONS "
             + PREFIX_RECIPE_IMAGE + "IMAGE "
