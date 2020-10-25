@@ -155,18 +155,80 @@ Shows a list of all flashcards currently created.
 
 Format: `list`
 
-### Finding Flashcards by their tags and/or question: `find`
+### Finding Flashcards
 
-Finds all Flashcards based on their tags and/or question.
+To find flashcards, you can find them by specifying keywords within their questions and/or specifying their tags.
 
-Format: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
+<div markdown="block" class="alert alert-info">
 
-* Do not need to use both `t/` and `q/` when finding a flashcard.
-* Tags are case-sensitive.
-* Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.
-* Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.
+:information_source: The .. refers to any number of tags and/or keywords
 
-Example: `find t/MCQ q/What CS2103T q/is t/GoodQuestion` where `MCQ` and `GoodQuestion` are tags and `What`, `CS2103T` and `is` are keywords.
+</div>
+
+#### Finding by question: `find q/KEYWORD1 q/KEYWORD2 ..`
+	
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+- Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.<br>
+- Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.
+
+</div>
+
+1. Use the `list` command to first list all the flashcards.
+
+	![FindQuestionStep1](./images/FindQuestionStep1.png)
+	
+2. Enter the find command followed by `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the keyword `CS2103T` in their question in the displayed list, you can enter `find q/CS2103T`.
+
+	![FindQuestionStep2](./images/FindQuestionStep2.png)
+	
+3. Press enter and QuickCache will display all the flashcards with the keyword `CS2103T` in their question.
+
+	![FindQuestionStep3](./images/FindQuestionStep3.png)
+
+#### Finding by tags: `find t/TAG1 t/TAG2 ..`
+	
+<div markdown="block" class="alert alert-info">
+
+:information_source: Tags are case-sensitive.
+
+</div>
+
+1. Use the `list` command to first list all the flashcards.
+
+	![FindTagsStep1](./images/FindTagsStep1.png)
+	
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. For example, if you want to find flashcards with the tag `Assembly` in the displayed list, you can enter `find t/Assembly`.
+
+	![FindTagsStep2](./images/FindTagsStep2.png)
+	
+3. Press enter and QuickCache will display all the flashcards with the tag `Assembly`.
+
+	![FindTagsStep3](./images/FindTagsStep3.png)
+	
+#### Finding by tags and keywords: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+- Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.<br>
+- Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.<br>
+- Tags are case-sensitive.
+
+</div>
+
+1. Use the `list` command to first list all the flashcards.
+
+	![FindQuestionAndTagsStep1](./images/FindQuestionAndTagsStep1.png)
+	
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `TCPforLife` in the displayed list and the keyword `What`, you can enter `find t/TCPforLife q/What`.
+
+	![FindQuestionAndTagsStep2](./images/FindQuestionAndTagsStep2.png)
+	
+3. Press enter and QuickCache will display all the flashcards with the tag `TCPforLife ` and the keyword `What` in their question.
+
+	![FindQuestionAndTagsStep3](./images/FindQuestionAndTagsStep3.png)
 
 ### Deleting a flashcard : You can delete the flashcard from the list.
 
