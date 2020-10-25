@@ -323,7 +323,7 @@ Notify the user if a certain stock is below threshold
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
 |**Get help to start off**    | `help start` or press `F1` or use GUI help menu at the top left |
-|**Get help summary**    | `help summary` or press `F2` or use GUI help menu at the top left |                                                                                       |                                                                                             |
+|**Get help summary**    | `help summary` or press `F2` or use GUI help menu at the top left |   
 |**Undo last command**   | `undo`  |
 |**Redo last undone command**   | `redo`  |
 |**Exit command** | `exit` |
