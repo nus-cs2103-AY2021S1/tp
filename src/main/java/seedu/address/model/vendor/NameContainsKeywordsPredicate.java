@@ -19,7 +19,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Food> {
     @Override
     public boolean test(Food food) {
         StringBuilder sentence = new StringBuilder(food.getName() + ' ');
-        food.getTags().forEach(x-> sentence.append(x.tagName).append(' '));
+        food.getTags().forEach(x -> sentence.append(x.tagName).append(' '));
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(sentence.toString(), keyword));
     }
