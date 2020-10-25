@@ -16,7 +16,7 @@ import seedu.address.model.policy.PolicyList;
  * An immutable PolicyList that is serializable to JSON format.
  */
 @JsonRootName(value = "policylist")
-public class JsonAdaptedPolicyList {
+public class JsonSerializablePolicyList {
 
     public static final String MESSAGE_DUPLICATE_POLICY = "Policy list contains duplicate Policy(s).";
 
@@ -26,7 +26,7 @@ public class JsonAdaptedPolicyList {
      * Constructs a {@code JsonAdaptedPolicyList} with the given policy list.
      */
     @JsonCreator
-    public JsonAdaptedPolicyList(@JsonProperty("policyList") List<JsonAdaptedPolicy> policyList) {
+    public JsonSerializablePolicyList(@JsonProperty("policyList") List<JsonAdaptedPolicy> policyList) {
         this.policyList.addAll(policyList);
     }
 
@@ -35,7 +35,7 @@ public class JsonAdaptedPolicyList {
      *
      * @param source future changes to this will not affect the created {@code JsonAdaptedPolicyList}.
      */
-    public JsonAdaptedPolicyList(PolicyList source) {
+    public JsonSerializablePolicyList(PolicyList source) {
         Hashtable<String, Policy> policies = source.getHashtableCopy();
 
         for (Policy p : policies.values()) {

@@ -40,8 +40,8 @@ public class JsonPolicyListStorage implements PolicyListStorage {
     @Override
     public Optional<PolicyList> readPolicyList(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
-        Optional<JsonAdaptedPolicyList> jsonPolicyList = JsonUtil.readJsonFile(
-                filePath, JsonAdaptedPolicyList.class);
+        Optional<JsonSerializablePolicyList> jsonPolicyList = JsonUtil.readJsonFile(
+                filePath, JsonSerializablePolicyList.class);
         if (!jsonPolicyList.isPresent()) {
             return Optional.empty();
         }
@@ -65,6 +65,6 @@ public class JsonPolicyListStorage implements PolicyListStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonAdaptedPolicyList(policyList), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePolicyList(policyList), filePath);
     }
 }

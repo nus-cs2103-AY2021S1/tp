@@ -13,9 +13,8 @@ public class Policy {
     private final PolicyDescription description;
 
     /**
-     *
-     * @param policyName
-     * @param description
+     * Constructs a Policy object.
+     * Requires policyName and description to be non-null
      */
     public Policy(PolicyName policyName, PolicyDescription description) {
         requireAllNonNull(policyName, description);
@@ -33,9 +32,6 @@ public class Policy {
     /**
      * Returns true if the other object is an instance of Policy and if the other has the same name
      * and if other has the same description.
-     *
-     * @param other
-     * @return
      */
     @Override
     public boolean equals(Object other) {
@@ -51,12 +47,9 @@ public class Policy {
     }
 
     /**
-     * Returns true if otherPolicy has the same name and same description.
+     * Returns true if otherPolicy has the same name.
      * This method differs from equals method as isSamePolicy takes into account
      * both the name and description.
-     *
-     * @param otherPolicy
-     * @return
      */
     public boolean isSamePolicy(Policy otherPolicy) {
         return otherPolicy == this
