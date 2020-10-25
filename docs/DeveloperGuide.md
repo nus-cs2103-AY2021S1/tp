@@ -94,6 +94,14 @@ Figure 4: Class Diagram of UI Component
 
 
 ### Logic component
+The logic component is responsible for all the necessary parsing logic of command, displaying command result 
+by instructing `Ui`, and modifies `Model` and/or `Storage` component depending on the command by user.
+
+The following class diagram illustrated the structure of `Logic` component:
+![Structure of the Logic Component](images/LogicClassDiagram.png)
+
+**API** :
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `Parser` API to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
@@ -101,11 +109,6 @@ Figure 4: Class Diagram of UI Component
 4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-The following class diagram illustrated the structure of `Logic` component:
-![Structure of the Logic Component](images/LogicClassDiagram.png)
-
-**API** :
-[`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-i 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
