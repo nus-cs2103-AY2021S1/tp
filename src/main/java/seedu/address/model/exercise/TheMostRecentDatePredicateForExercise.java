@@ -14,7 +14,10 @@ public class TheMostRecentDatePredicateForExercise implements Predicate<Exercise
 
     @Override
     public boolean test(Exercise exercise) {
-        return name == exercise.getName() && date == exercise.getDate();
+        if(name == null || date == null) {
+            return false;
+        }
+        return name.equals(exercise.getName()) && date.equals(exercise.getDate());
     }
 
 }

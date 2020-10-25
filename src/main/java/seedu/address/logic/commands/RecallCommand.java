@@ -19,7 +19,7 @@ public class RecallCommand extends CommandForExercise {
 
     public static final String MESSAGE_SUCCESS = "%1$d most recent exercise found";
 
-    private Name name;
+    private final Name name;
     private ObservableList<Exercise> filteredExercises;
     private Date date;
 

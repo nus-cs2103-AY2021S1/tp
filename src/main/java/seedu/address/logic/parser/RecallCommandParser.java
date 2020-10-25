@@ -15,6 +15,6 @@ public class RecallCommandParser implements ExerciseParser<RecallCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        return new RecallCommand(trimmedArgs);
+        return new RecallCommand(args.substring(1));
     }
 }
