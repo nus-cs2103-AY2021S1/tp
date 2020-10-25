@@ -17,6 +17,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Name;
@@ -35,6 +36,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Meeting> filteredMeetings;
     private final FilteredList<Module> filteredModules;
+    private UniqueMeetingList selectedMeeting = new UniqueMeetingList();
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -56,6 +58,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
         filteredModules = new FilteredList<>(this.moduleBook.getModuleList());
+        selectedMeeting.add(filteredMeetings.get(0));
     }
 
     public ModelManager() {
@@ -201,6 +204,22 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedMeeting);
 
         meetingBook.setMeeting(target, editedMeeting);
+    }
+
+    @Override
+    public void setSelectedMeeting(Meeting target) {
+        logger.fine("Setting selected meeting");
+        if (selectedMeeting.size() == 1) {
+            selectedMeeting.remove(0);
+        }
+        assert selectedMeeting.size() == 0;
+        selectedMeeting.add(target);
+    }
+
+    @Override
+    public ObservableList<Meeting> getSelectedMeeting() {
+        logger.fine("Retrieving selected meeting");
+        return selectedMeeting.asUnmodifiableObservableList();
     }
 
     @Override

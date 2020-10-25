@@ -146,10 +146,20 @@ public interface Model {
 
     /**
      * Updates all meetings in the meeting book if the required person was part of any meeting.
-     * @param persons First argument is the person to update which is either deleted or replaced. If replaced,
-     * second argument is the edited person who will replace the deleted person.
+     * @param persons First argument is the person to update which is either deleted or replaced. If replaced, there
+     * is a second argument which is the edited person who will replace the deleted person.
      */
     void updatePersonInMeetingBook(Person ...persons);
+
+    /**
+     * Sets the selected Meeting for the model manager.
+     */
+    void setSelectedMeeting(Meeting target);
+
+    /**
+     * Returns a selected Meeting in an observable list.
+     */
+    ObservableList<Meeting> getSelectedMeeting();
 
     /** Returns an unmodifiable view of the filtered meeting list */
     ObservableList<Meeting> getFilteredMeetingList();
