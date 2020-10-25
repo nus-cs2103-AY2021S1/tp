@@ -45,7 +45,6 @@ public class AddBidCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasBid(bid)) {
             throw new CommandException(MESSAGE_DUPLICATE_BID);
         }
