@@ -36,10 +36,9 @@ public class ExerciseBookParserTest {
         Calories calories = new Calories("224");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " "
-                        + "n/Push Up d/test at/10-10-2020 c/224 k/"
-                        + keywords.stream().collect(Collectors.joining(" ")));
+                        + "n/Push Up d/test at/10-10-2020 c/224 k/foo bar baz");
         assertEquals(new FindCommand(new PropertiesMatchPredicateForExercise(name,
-                description, date, calories, (String[]) keywords.toArray())), command);
+                description, date, calories, keywords)), command);
     }
 
     @Test

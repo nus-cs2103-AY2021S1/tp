@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.Arrays;
+
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
@@ -63,7 +65,8 @@ public class FindCommandParser implements ExerciseParser<FindCommand> {
             keywords = argMultimap.getValue(PREFIX_KEYWORD).get().split("\\s+");
         }
 
-        return new FindCommand(new PropertiesMatchPredicateForExercise(name, description, date, calories, keywords));
+        return new FindCommand(new PropertiesMatchPredicateForExercise(name, description, date, calories,
+                keywords == null? null : Arrays.asList(keywords)));
     }
 
 }

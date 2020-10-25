@@ -1,6 +1,7 @@
 package seedu.address.model.exercise;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> {
@@ -8,10 +9,10 @@ public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> 
     private final Description description;
     private final Date date;
     private final Calories calories;
-    private final String[] keywords;
+    private final List<String> keywords;
 
     public PropertiesMatchPredicateForExercise(Name name, Description description,
-                                               Date date, Calories calories, String[] keywords) {
+                                               Date date, Calories calories, List<String> keywords) {
         this.name = name;
         this.description = description;
         this.date = date;
@@ -36,10 +37,21 @@ public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> 
             result = result && (calories.equals(exercise.getCalories()));
         }
         if (keywords != null) {
-            result = result && new NameContainsKeywordsPredicateForExercise(Arrays.asList(keywords)).test(exercise);
+            result = result && new NameContainsKeywordsPredicateForExercise(keywords).test(exercise);
         }
 
         return result;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PropertiesMatchPredicateForExercise // instanceof handles nulls
+                && name.equals(((PropertiesMatchPredicateForExercise) other).name)
+                && description.equals(((PropertiesMatchPredicateForExercise) other).description)
+                && date.equals(((PropertiesMatchPredicateForExercise) other).date)
+                && calories.equals(((PropertiesMatchPredicateForExercise) other).calories)
+                && keywords.equals(((PropertiesMatchPredicateForExercise) other).keywords)); // state check
     }
 
 }
