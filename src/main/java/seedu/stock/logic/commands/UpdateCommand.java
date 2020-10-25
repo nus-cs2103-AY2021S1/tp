@@ -122,7 +122,7 @@ public class UpdateCommand extends Command {
             updatedStocks.add(updatedStock);
         }
 
-        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
 
         return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, stocksAsString(updatedStocks)));
     }

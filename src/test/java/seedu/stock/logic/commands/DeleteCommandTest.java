@@ -78,7 +78,6 @@ public class DeleteCommandTest {
         List<Stock> firstStock = new ArrayList<>();
         firstStock.add(stockToDelete);
 
-
         DeleteCommand deleteCommand = new DeleteCommand(firstSerialNumberSet);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STOCK_SUCCESS,
