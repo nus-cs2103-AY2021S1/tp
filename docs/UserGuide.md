@@ -189,7 +189,7 @@ description (Figure).
  
 </div>
 
-<br>![findCommand](images/command/findCommand.png)
+<br>![findCommand](images/commands/findCommand.png)
 <p align="center"> <sub> <b>Figure</b>: Find command successfully executed </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
