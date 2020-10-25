@@ -82,6 +82,10 @@ public class TagCommand extends Command {
         }
 
         model.addTag(toTag.toAbsolute(isAbsolutePath, model.getCurrentPath().getAddress()));
+
+        // Save commit for undo
+        model.commitAddressBook();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toTag));
     }
 

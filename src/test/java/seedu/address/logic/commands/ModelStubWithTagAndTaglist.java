@@ -12,10 +12,12 @@ import seedu.address.model.tag.Tag;
 public class ModelStubWithTagAndTaglist extends ModelStub {
     private final List<Tag> tags;
     private final CurrentPath currentPath;
+    private int commitCount;
 
     ModelStubWithTagAndTaglist() {
         tags = new ArrayList<>();
         currentPath = new CurrentPath(System.getProperty("user.dir"), new FileList());
+        commitCount = 0;
     }
 
     @Override
@@ -44,9 +46,16 @@ public class ModelStubWithTagAndTaglist extends ModelStub {
     }
 
     @Override
+    public void commitAddressBook() {
+        commitCount += 1;
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ModelStubWithTagAndTaglist // instanceof handles nulls
-                && ((ModelStubWithTagAndTaglist) other).tags.equals(this.tags));
+                && ((ModelStubWithTagAndTaglist) other).tags.equals(this.tags)
+                && ((ModelStubWithTagAndTaglist) other).commitCount == this.commitCount);
     }
+
 }

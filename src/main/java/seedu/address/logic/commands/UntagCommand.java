@@ -44,6 +44,10 @@ public class UntagCommand extends Command {
         }
 
         model.deleteTag(tagList.get(0));
+
+        // Save commit for undo
+        model.commitAddressBook();
+
         return new CommandResult(String.format(MESSAGE_UNTAG_TAG_SUCCESS, tagName));
     }
 

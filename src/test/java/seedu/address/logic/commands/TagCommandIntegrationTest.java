@@ -24,6 +24,7 @@ public class TagCommandIntegrationTest {
 
         Model expectedModel = new ModelStubWithTagAndTaglist();
         expectedModel.addTag(validTag.toAbsolute(false, new FileAddress(USER_DIRECTORY_ADDRESS)));
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(new TagCommand(validTag), model,
                 String.format(TagCommand.MESSAGE_SUCCESS, validTag), expectedModel);

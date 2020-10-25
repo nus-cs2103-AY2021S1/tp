@@ -41,6 +41,7 @@ public class UntagCommandTest {
         String expectedMessage = String.format(UntagCommand.MESSAGE_UNTAG_TAG_SUCCESS, tagToDelete.getTagName());
 
         ModelStub expectedModel = new ModelStubDeleteTag(new ArrayList<Tag>());
+        expectedModel.commitAddressBook();
 
         assertCommandSuccess(untagCommand, modelStub, expectedMessage, expectedModel);
     }
