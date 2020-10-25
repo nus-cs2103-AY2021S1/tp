@@ -25,7 +25,9 @@ import seedu.expense.model.Model;
 import seedu.expense.model.ModelManager;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.UserPrefs;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.storage.JsonAliasMapStorage;
 import seedu.expense.storage.JsonExpenseBookStorage;
 import seedu.expense.storage.JsonUserPrefsStorage;
 import seedu.expense.storage.StorageManager;
@@ -45,7 +47,8 @@ public class LogicManagerTest {
         JsonExpenseBookStorage expenseBookStorage =
                 new JsonExpenseBookStorage(temporaryFolder.resolve("expenseBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(expenseBookStorage, userPrefsStorage);
+        JsonAliasMapStorage aliasMapStorage = new JsonAliasMapStorage(temporaryFolder.resolve("aliasMap.json"));
+        StorageManager storage = new StorageManager(expenseBookStorage, userPrefsStorage, aliasMapStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -74,7 +77,9 @@ public class LogicManagerTest {
                 new JsonExpenseBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionExpenseBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(expenseBookStorage, userPrefsStorage);
+        JsonAliasMapStorage aliasMapStorage =
+                new JsonAliasMapStorage(temporaryFolder.resolve("ioExceptionAliasMap.json"));
+        StorageManager storage = new StorageManager(expenseBookStorage, userPrefsStorage, aliasMapStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -127,7 +132,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getExpenseBook(), new UserPrefs(), new AliasMap());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

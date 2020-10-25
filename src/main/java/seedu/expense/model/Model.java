@@ -5,6 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
+import seedu.expense.model.alias.AliasEntry;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
@@ -82,6 +84,18 @@ public interface Model {
      * in the expense book.
      */
     void setExpense(Expense target, Expense editedExpense);
+
+    void setAliasMap(AliasMap aliasMap);
+
+    AliasMap getAliasMap();
+
+    boolean hasAlias(AliasEntry alias);
+
+    void deleteAlias(AliasEntry alias);
+
+    void addAlias(AliasEntry alias);
+
+    void setAlias(AliasEntry target, AliasEntry editedExpense);
 
     /**
      * Returns an unmodifiable view of the filtered expense list
