@@ -159,7 +159,7 @@ Adding Items and Delivery both are done similarly which will be illustrated with
 
 ![AddItemActivityDiagram](images/AddItemActivityDiagram.png)
 
-We've repurposed the `Add` command from AB3 to add on to existing item's quantity instead of throwing an error.
+Apart from adding a new Item, should there be an existing item in the Inventory Book, `Add` will be able to increase the quantity of that particular Item.
 In this case 2 items are considered the same if they have the same `Name` and `Supplier`.
 The other variables such as:
 
