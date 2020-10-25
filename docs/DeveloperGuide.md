@@ -87,7 +87,7 @@ The `UI` component,
 The following diagram illustrates the structure of the `UI` component:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
-Figure 4: Class Diagram of UI Component
+Figure 4: Class Diagram of `UI` Component
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -99,6 +99,7 @@ by instructing `Ui`, and modifies `Model` and/or `Storage` component depending o
 
 The following class diagram illustrated the structure of `Logic` component:
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
+Figure 5: Class Diagram of `Logic` Component
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
@@ -111,7 +112,8 @@ The following class diagram illustrated the structure of `Logic` component:
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-i 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete-i 1` Command](images/DeleteSequenceDiagram.png)
+Figure 6: Sequence Diagram of `delete-i 1`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ItemDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -122,7 +124,7 @@ The Model component corresponds to all the data-related logic that the user work
 The following class diagram illustrates the structure of the `Model` component:
 
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
-Structure of the Model Component
+Figure 7: Class Diagram of `Model` Component
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -152,16 +154,17 @@ Structure of the Model Component
 We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
 
 ![Structure of the Item Component](images/ItemClassDiagram.png) <br>
-Structure of Items Object
+Figure 8: Class Diagram of `Item`
 
 ![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
-Structure of Delivery Object
+Figure 9: Class Diagram of `Delivery`
 
 ### Storage component
 Storage component is responsible to save the data of inventory and delivery book into the hard disk.
 
 The following diagram illustrated the structure of `Storage` component:
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
+Figure 10: Class Diagram of `Storage` Component
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
