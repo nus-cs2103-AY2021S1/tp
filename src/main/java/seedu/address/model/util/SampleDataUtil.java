@@ -12,10 +12,10 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
 import seedu.address.model.student.question.Question;
@@ -79,9 +79,9 @@ public class SampleDataUtil {
     /**
      * Returns a {@code AdditionalDetail} list containing the list of given strings.
      */
-    public static List<AdditionalDetail> getDetailList(String... strings) {
+    public static List<Detail> getDetailList(String... strings) {
         return Arrays.stream(strings)
-                .map(AdditionalDetail::new)
+                .map(Detail::new)
                 .collect(Collectors.toList());
     }
 

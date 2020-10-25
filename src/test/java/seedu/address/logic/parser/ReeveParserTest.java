@@ -16,9 +16,9 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddQuestionCommand;
-import seedu.address.logic.commands.AdditionalDetailCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DetailCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
@@ -127,7 +127,7 @@ public class ReeveParserTest {
 
     @Test
     public void parseCommand_additionalDetail() throws Exception {
-        assertTrue(parser.parseCommand("detail add 2 d/ smart") instanceof AdditionalDetailCommand);
+        assertTrue(parser.parseCommand("detail add 2 d/ smart") instanceof DetailCommand);
     }
 
     @Test

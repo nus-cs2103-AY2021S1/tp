@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.question.Question;
 
 /**
@@ -73,7 +73,7 @@ public class Student {
         return List.copyOf(questions);
     }
 
-    public List<AdditionalDetail> getDetails() {
+    public List<Detail> getDetails() {
         return admin.getDetails();
     }
 

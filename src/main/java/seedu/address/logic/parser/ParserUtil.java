@@ -16,9 +16,9 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
 import seedu.address.model.student.question.Question;
@@ -223,22 +223,22 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code detail} is invalid.
      */
-    public static AdditionalDetail parseAdditionalDetail(String detail) throws ParseException {
+    public static Detail parseAdditionalDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = detail.trim();
-        if (!AdditionalDetail.isValidAdditionalDetail(trimmedDetail)) {
-            throw new ParseException(AdditionalDetail.MESSAGE_CONSTRAINTS);
+        if (!Detail.isValidAdditionalDetail(trimmedDetail)) {
+            throw new ParseException(Detail.MESSAGE_CONSTRAINTS);
         }
-        return new AdditionalDetail(trimmedDetail);
+        return new Detail(trimmedDetail);
     }
 
     /**
      * Parses {@code Collection<String> additionalDetails} into a {@code Set<Tag>}.
      */
-    public static List<AdditionalDetail> parseAdditionalDetails(Collection<String> additionalDetails)
+    public static List<Detail> parseAdditionalDetails(Collection<String> additionalDetails)
             throws ParseException {
         requireNonNull(additionalDetails);
-        final List<AdditionalDetail> detailSet = new ArrayList<>();
+        final List<Detail> detailSet = new ArrayList<>();
         for (String detail : additionalDetails) {
             detailSet.add(parseAdditionalDetail(detail));
         }

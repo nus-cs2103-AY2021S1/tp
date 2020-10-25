@@ -12,14 +12,14 @@ import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddAdditionalDetailCommand;
-import seedu.address.logic.commands.AdditionalDetailCommand;
-import seedu.address.logic.commands.DeleteAdditionalDetailCommand;
-import seedu.address.logic.commands.EditAdditionalDetailCommand;
+import seedu.address.logic.commands.AddDetailCommand;
+import seedu.address.logic.commands.DeleteDetailCommand;
+import seedu.address.logic.commands.DetailCommand;
+import seedu.address.logic.commands.EditDetailCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Detail;
 
-public class AdditionalDetailCommandParser implements Parser<AdditionalDetailCommand> {
+public class DetailCommandParser implements Parser<DetailCommand> {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
@@ -30,7 +30,7 @@ public class AdditionalDetailCommandParser implements Parser<AdditionalDetailCom
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AdditionalDetailCommand parse(String userInput)
+    public DetailCommand parse(String userInput)
             throws ParseException {
 
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
@@ -44,13 +44,13 @@ public class AdditionalDetailCommandParser implements Parser<AdditionalDetailCom
 
         switch (commandWord) {
 
-        case AddAdditionalDetailCommand.COMMAND_WORD:
+        case AddDetailCommand.COMMAND_WORD:
             return parseAddDetailCommand(arguments);
 
-        case DeleteAdditionalDetailCommand.COMMAND_WORD:
+        case DeleteDetailCommand.COMMAND_WORD:
             return parseDeleteDetailCommand(arguments);
 
-        case EditAdditionalDetailCommand.COMMAND_WORD:
+        case EditDetailCommand.COMMAND_WORD:
             return parseEditDetailCommand(arguments);
 
         default:
@@ -59,13 +59,13 @@ public class AdditionalDetailCommandParser implements Parser<AdditionalDetailCom
     }
 
     //@@author VaishakAnand
-    private AddAdditionalDetailCommand parseAddDetailCommand(String args) throws ParseException {
+    private AddDetailCommand parseAddDetailCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DETAIL_TEXT);
 
         if (!areRequiredPrefixesPresent(argMultimap, PREFIX_DETAIL_TEXT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAdditionalDetailCommand.MESSAGE_USAGE));
+                    AddDetailCommand.MESSAGE_USAGE));
         }
 
         Index index;
@@ -73,22 +73,22 @@ public class AdditionalDetailCommandParser implements Parser<AdditionalDetailCom
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAdditionalDetailCommand.MESSAGE_USAGE), pe);
+                    AddDetailCommand.MESSAGE_USAGE), pe);
         }
 
-        AdditionalDetail additionalDetail = ParserUtil.parseAdditionalDetail(argMultimap
+        Detail detail = ParserUtil.parseAdditionalDetail(argMultimap
                 .getValue(PREFIX_DETAIL_TEXT).get());
 
-        return new AddAdditionalDetailCommand(index, additionalDetail);
+        return new AddDetailCommand(index, detail);
     }
 
-    private DeleteAdditionalDetailCommand parseDeleteDetailCommand(String args) throws ParseException {
+    private DeleteDetailCommand parseDeleteDetailCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_DETAIL_INDEX);
 
         if (!areRequiredPrefixesPresent(argMultimap, PREFIX_DETAIL_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteAdditionalDetailCommand.MESSAGE_USAGE));
+                    DeleteDetailCommand.MESSAGE_USAGE));
         }
 
         Index studentIndex;
@@ -98,19 +98,19 @@ public class AdditionalDetailCommandParser implements Parser<AdditionalDetailCom
             detailIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DETAIL_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteAdditionalDetailCommand.MESSAGE_USAGE), pe);
+                    DeleteDetailCommand.MESSAGE_USAGE), pe);
         }
 
-        return new DeleteAdditionalDetailCommand(studentIndex, detailIndex);
+        return new DeleteDetailCommand(studentIndex, detailIndex);
     }
 
-    private EditAdditionalDetailCommand parseEditDetailCommand(String args) throws ParseException {
+    private EditDetailCommand parseEditDetailCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, ADDITIONAL_DETAIL_COMMAND_PREFIXES);
 
         if (!areRequiredPrefixesPresent(argMultimap, ADDITIONAL_DETAIL_COMMAND_PREFIXES)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditAdditionalDetailCommand.MESSAGE_USAGE));
+                    EditDetailCommand.MESSAGE_USAGE));
         }
 
         Index studentIndex;
@@ -120,13 +120,13 @@ public class AdditionalDetailCommandParser implements Parser<AdditionalDetailCom
             detailIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DETAIL_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditAdditionalDetailCommand.MESSAGE_USAGE), pe);
+                    EditDetailCommand.MESSAGE_USAGE), pe);
         }
 
-        AdditionalDetail additionalDetail = ParserUtil.parseAdditionalDetail(argMultimap
+        Detail detail = ParserUtil.parseAdditionalDetail(argMultimap
                 .getValue(PREFIX_DETAIL_TEXT).get());
 
-        return new EditAdditionalDetailCommand(studentIndex, detailIndex, additionalDetail);
+        return new EditDetailCommand(studentIndex, detailIndex, detail);
     }
 
     private boolean areRequiredPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

@@ -9,10 +9,10 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
 import seedu.address.model.student.question.Question;
@@ -50,7 +50,7 @@ public class StudentBuilder {
     private ClassTime time;
     private Fee fee;
     private PaymentDate paymentDate;
-    private List<AdditionalDetail> details = new ArrayList<>();
+    private List<Detail> details = new ArrayList<>();
 
     private List<Question> questions = new ArrayList<>();
 
@@ -69,7 +69,7 @@ public class StudentBuilder {
         paymentDate = new PaymentDate(DEFAULT_PAYMENT_DATE);
         List.of(DEFAULT_ADDITIONAL_DETAILS_MONEY, DEFAULT_ADDITIONAL_DETAILS_FRIEND)
                 .stream()
-                .map(AdditionalDetail::new)
+                .map(Detail::new)
                 .forEach(details::add);
 
         List.of(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)

@@ -13,28 +13,28 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddAdditionalDetailCommand;
-import seedu.address.logic.commands.DeleteAdditionalDetailCommand;
-import seedu.address.logic.commands.EditAdditionalDetailCommand;
+import seedu.address.logic.commands.AddDetailCommand;
+import seedu.address.logic.commands.DeleteDetailCommand;
+import seedu.address.logic.commands.EditDetailCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Detail;
 
 
-public class AdditionalDetailCommandParserTest {
+public class DetailCommandParserTest {
 
-    private static final String ADD_DETAIL_DESC = AddAdditionalDetailCommand.COMMAND_WORD + " ";
-    private static final String EDIT_DETAIL_DESC = EditAdditionalDetailCommand.COMMAND_WORD + " ";
-    private static final String DELETE_DETAIL_DESC = DeleteAdditionalDetailCommand.COMMAND_WORD + " ";
+    private static final String ADD_DETAIL_DESC = AddDetailCommand.COMMAND_WORD + " ";
+    private static final String EDIT_DETAIL_DESC = EditDetailCommand.COMMAND_WORD + " ";
+    private static final String DELETE_DETAIL_DESC = DeleteDetailCommand.COMMAND_WORD + " ";
 
-    private final AdditionalDetailCommandParser parser = new AdditionalDetailCommandParser();
+    private final DetailCommandParser parser = new DetailCommandParser();
 
     @Test
     public void parse_addDetailAllFieldsPresent_success() {
         Index targetStudentIndex = INDEX_SECOND_PERSON;
         String userInput = ADD_DETAIL_DESC + targetStudentIndex.getOneBased() + ADDITIONAL_DETAIL_DESC_AMY;
-        AddAdditionalDetailCommand expectedCommand = new AddAdditionalDetailCommand(targetStudentIndex,
-                new AdditionalDetail(VALID_ADDITIONAL_DETAILS_AMY));
+        AddDetailCommand expectedCommand = new AddDetailCommand(targetStudentIndex,
+                new Detail(VALID_ADDITIONAL_DETAILS_AMY));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -42,7 +42,7 @@ public class AdditionalDetailCommandParserTest {
     @Test
     public void parse_addDetailMissingParts_throwsParseException() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                AddAdditionalDetailCommand.MESSAGE_USAGE);
+                AddDetailCommand.MESSAGE_USAGE);
         Index targetStudentIndex = INDEX_SECOND_PERSON;
 
         // missing index and prefix
@@ -60,7 +60,7 @@ public class AdditionalDetailCommandParserTest {
         Index targetStudentIndex = INDEX_SECOND_PERSON;
         String targetDetailIndexDesc = " " + PREFIX_DETAIL_INDEX + "2";
         String userInput = DELETE_DETAIL_DESC + targetStudentIndex.getOneBased() + targetDetailIndexDesc;
-        DeleteAdditionalDetailCommand expectedCommand = new DeleteAdditionalDetailCommand(targetStudentIndex,
+        DeleteDetailCommand expectedCommand = new DeleteDetailCommand(targetStudentIndex,
                 Index.fromOneBased(2));
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -69,7 +69,7 @@ public class AdditionalDetailCommandParserTest {
     @Test
     public void parse_deleteDetailMissingParts_throwsParseException() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteAdditionalDetailCommand.MESSAGE_USAGE);
+                DeleteDetailCommand.MESSAGE_USAGE);
 
         // missing 2 arguments
         assertParseFailure(parser, DELETE_DETAIL_DESC, expectedMessage);
@@ -92,15 +92,15 @@ public class AdditionalDetailCommandParserTest {
         String targetDetailIndexDesc = String.format(" %s%s", PREFIX_DETAIL_INDEX, "2");
         String userInput = EDIT_DETAIL_DESC + "2" + targetDetailIndexDesc + ADDITIONAL_DETAIL_DESC_AMY;
 
-        EditAdditionalDetailCommand expectedCommand = new EditAdditionalDetailCommand(targetStudentIndex,
-                targetDetailIndex, new AdditionalDetail(VALID_ADDITIONAL_DETAILS_AMY));
+        EditDetailCommand expectedCommand = new EditDetailCommand(targetStudentIndex,
+                targetDetailIndex, new Detail(VALID_ADDITIONAL_DETAILS_AMY));
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_editDetailMissingParts_throwsParseException() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                EditAdditionalDetailCommand.MESSAGE_USAGE);
+                EditDetailCommand.MESSAGE_USAGE);
 
         Index targetStudentIndex = INDEX_SECOND_PERSON;
         Index targetDetailIndex = INDEX_SECOND_PERSON;
