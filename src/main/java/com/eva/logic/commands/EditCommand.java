@@ -123,6 +123,22 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Comment> editedComments = editPersonDescriptor.getComments();
         Set<Comment> currentComments = personToEdit.getComments();
+        Set<Comment> newComments = update(editedComments, currentComments);
+        if (personToEdit instanceof Staff) {
+            Set<Leave> updatedLeaves = ((Staff) personToEdit).getLeaves();
+            return new Staff(updatedName, updatedPhone, updatedEmail,
+                    updatedAddress, updatedTags, updatedLeaves, newComments);
+        } else if (personToEdit instanceof Applicant) {
+            ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
+            Optional<InterviewDate> updatedInterviewDate = editPersonDescriptor.getInterviewDate();
+            return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                    updatedTags, newComments, updatedInterviewDate, applicationStatus);
+        }
+
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, newComments);
+    }
+
+    public static Set<Comment> update(Set<Comment> editedComments, Set<Comment> currentComments) {
         if (editedComments != null) {
             for (Comment comment: currentComments) {
                 for (Comment editedComment : editedComments) {
@@ -133,18 +149,7 @@ public class EditCommand extends Command {
                 }
             }
         }
-        if (personToEdit instanceof Staff) {
-            Set<Leave> updatedLeaves = ((Staff) personToEdit).getLeaves();
-            return new Staff(updatedName, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags, updatedLeaves, currentComments);
-        } else if (personToEdit instanceof Applicant) {
-            ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
-            Optional<InterviewDate> updatedInterviewDate = editPersonDescriptor.getInterviewDate();
-            return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                    updatedTags, currentComments, updatedInterviewDate, applicationStatus);
-        }
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, currentComments);
+        return editedComments;
     }
 
     @Override
