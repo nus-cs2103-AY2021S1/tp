@@ -178,12 +178,14 @@ public class ModelManager implements Model {
     public void enter(Project project) {
         mainCatalogue.enter(project);
         updateProjectToBeDisplayedOnDashboard(project);
+        personToBeDisplayedOnDashboard = Optional.empty();
     }
 
     @Override
     public void enter(Person person) {
         mainCatalogue.enter(person);
-
+        updatePersonToBeDisplayedOnDashboard(person);
+        projectToBeDisplayedOnDashboard = Optional.empty();
     }
 
     @Override
