@@ -16,8 +16,8 @@ class UniqueIngredientListTest {
 
     private static final UniqueIngredientList uniqueIngredientList = new UniqueIngredientList();
     private static final UniqueIngredientList myIngredientList = new UniqueIngredientList();
-    private static final Ingredient OOLONG_TEA = new Ingredient(new IngredientName("Oolong Tea"));
-    private static final Ingredient OOLONG_TEA_VALID_AMOUNT = new Ingredient(new IngredientName("Oolong Tea"),
+    private static final Ingredient BLACK_TEA = new Ingredient(new IngredientName("Black Tea"));
+    private static final Ingredient BLACK_TEA_VALID_AMOUNT = new Ingredient(new IngredientName("Black Tea"),
             new Amount("90"));
     private static final Ingredient BOBA = new Ingredient(new IngredientName("Boba"));
     private static final List<Ingredient> internalList = new ArrayList<>();
@@ -36,19 +36,19 @@ class UniqueIngredientListTest {
     @Test
     public void setIngredient_nullTargetIngredient_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueIngredientList.setIngredient(null,
-                OOLONG_TEA_VALID_AMOUNT));
+                BLACK_TEA_VALID_AMOUNT));
     }
 
     @Test
     public void setIngredient_nullEditedIngredient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueIngredientList.setIngredient(OOLONG_TEA,
+        assertThrows(NullPointerException.class, () -> uniqueIngredientList.setIngredient(BLACK_TEA,
                 null));
     }
 
     @Test
     public void setIngredient_targetIngredientNotInList_throwsIllegalArgumentException() {
         assertThrows(IllegalArgumentException.class, () -> uniqueIngredientList
-                .setIngredient(new Ingredient(new IngredientName("Olong Tea")), OOLONG_TEA_VALID_AMOUNT));
+                .setIngredient(new Ingredient(new IngredientName("Olong Tea")), BLACK_TEA_VALID_AMOUNT));
     }
 
     /*@Test
@@ -109,7 +109,7 @@ class UniqueIngredientListTest {
 
     @Test
     public void setIngredients_listWithDuplicateIngredients_throwsNoChangeIngredientException() {
-        List<Ingredient> listWithDuplicateIngredients = Arrays.asList(OOLONG_TEA, OOLONG_TEA);
+        List<Ingredient> listWithDuplicateIngredients = Arrays.asList(BLACK_TEA, BLACK_TEA);
         assertThrows(NoChangeIngredientException.class, ()
             -> uniqueIngredientList.setIngredients(listWithDuplicateIngredients));
     }

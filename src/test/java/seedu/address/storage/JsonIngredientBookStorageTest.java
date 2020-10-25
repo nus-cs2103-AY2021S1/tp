@@ -85,9 +85,6 @@ public class JsonIngredientBookStorageTest {
         assertThrows(NullPointerException.class, () -> saveIngredientBook(null, "SomeFile.json"));
     }
 
-    /**
-     * Saves {@code IngredientBook} at the specified {@code filePath}.
-     */
     private void saveIngredientBook(ReadOnlyIngredientBook ingredientBook, String filePath) {
         try {
             new JsonIngredientBookStorage(Paths.get(filePath))
@@ -101,6 +98,5 @@ public class JsonIngredientBookStorageTest {
     public void saveIngredientBook_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveIngredientBook(new IngredientBook(), null));
     }
-
 
 }
