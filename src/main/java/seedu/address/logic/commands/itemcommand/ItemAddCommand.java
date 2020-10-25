@@ -40,6 +40,8 @@ public class ItemAddCommand extends ItemCommand {
 
     public static final String MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM =
             "You cannot change the max quantity when adding to existing items.";
+    public static final String MESSAGE_CHANGE_METRIC_ON_EXISTING_ITEM =
+            "You cannot change the metric when adding to existing items.";
 
     private final Item toAdd;
 
@@ -59,8 +61,13 @@ public class ItemAddCommand extends ItemCommand {
 
         CommandResult commandResult;
 
-        if (inventoryModel.hasItem(toAdd) && toAdd.getMaxQuantity().isPresent()) {
-            throw new CommandException(MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM);
+        if (inventoryModel.hasItem(toAdd)) {
+            if (toAdd.getMaxQuantity().isPresent()) {
+                throw new CommandException(MESSAGE_CHANGE_MAX_ON_EXISTING_ITEM);
+            }
+            if (toAdd.getMetric().isPresent()) {
+                throw new CommandException(MESSAGE_CHANGE_METRIC_ON_EXISTING_ITEM);
+            }
         }
 
         if (inventoryModel.hasItem(toAdd)) {

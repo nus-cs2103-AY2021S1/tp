@@ -13,7 +13,7 @@ public class DeliveryListCommand extends DeliveryCommand {
 
     public static final String COMMAND_WORD = "list-d";
 
-    public static final String MESSAGE_SUCCESS = "Listed all items";
+    public static final String MESSAGE_SUCCESS = "Listed all deliveries";
 
 
     @Override
