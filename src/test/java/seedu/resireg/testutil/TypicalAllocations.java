@@ -1,5 +1,12 @@
 package seedu.resireg.testutil;
 
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_FLOOR_A;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_FLOOR_B;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_A;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_B;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
+import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,13 +15,6 @@ import seedu.resireg.model.AddressBook;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
-
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_FLOOR_A;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_FLOOR_B;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_A;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_B;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
 
 /**
  * A utility class containing a list of {@code Allocation} objects to be used in tests.
