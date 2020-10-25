@@ -3,8 +3,10 @@
 package chopchop.logic.autocomplete;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
@@ -73,6 +75,9 @@ public class AutoCompleter {
         case INGREDIENT_NAME_IN_ARG:
             return completeIngredient(req, model, args, orig);
 
+        case COMPONENT_NAME:
+            return completeArgComponent(args, orig);
+
         // TODO: tags
         case TAG_NAME:
             return orig;
@@ -91,13 +96,37 @@ public class AutoCompleter {
      * Returns a completion for the command only.
      */
     private String completeCommand(CommandArguments args, String orig) {
+
+        var valids = new ArrayList<String>();
         for (var cmd : Strings.COMMAND_NAMES) {
             if (cmd.startsWith(args.getCommand())) {
-                return cmd + " ";
+                valids.add(cmd);
             }
         }
 
-        return orig;
+        valids.sort((a, b) -> a.length() - b.length());
+
+        if (this.lastViableCompletions == null) {
+            this.lastViableCompletions = new ArrayList<String>(valids);
+        }
+
+        if (this.lastViableCompletions.isEmpty()) {
+            return orig;
+        } else {
+
+            // this should always hold, because:
+            // (a) we always perform the modulo at the end
+            // (b) the list of viableCompletions should not change as long as the
+            //     internal state is not reset
+            // (c) if 'partial' changed due to user input, then we are supposed to be reset.
+
+            assert this.lastCompletionIndex < this.lastViableCompletions.size();
+
+            var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
+            this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
+
+            return completion + " ";
+        }
     }
 
     /**
@@ -105,18 +134,11 @@ public class AutoCompleter {
      */
     private String completeTarget(CommandArguments args, String orig) {
 
-        var target = args.getFirstWordFromRemaining();
+        var partial = args.getFirstWordFromRemaining();
 
-        for (var t : CommandTarget.values()) {
-            var ts = t.toString();
-            if (ts.equals(target)) {
-                return orig;
-            } else if (ts.startsWith(target)) {
-                return orig + ts.substring(target.length()) + " ";
-            }
-        }
-
-        return orig;
+        return tryCompletionUsing(Arrays.stream(CommandTarget.values()).map(x -> x.toString())
+                .collect(Collectors.toList()), orig, partial)
+            .orElse(orig);
     }
 
     /**
@@ -126,7 +148,7 @@ public class AutoCompleter {
         assert args.getAllArguments().size() > 0;
 
         var lastArg = args.getAllArguments().get(args.getAllArguments().size() - 1);
-        var argName = lastArg.fst().name();
+        var partial = lastArg.fst().name();
 
         // we could complete all arguments for you, but we can do something a little smarter
         // by looking at the current command+target combo to get the valid arguments.
@@ -148,24 +170,88 @@ public class AutoCompleter {
                 validArguments.add(Strings.ARG_QUANTITY);
                 validArguments.add(Strings.ARG_EXPIRY);
                 validArguments.add(Strings.ARG_TAG);
+            }
+        } else if (cmd.equals(Strings.COMMAND_EDIT)) {
+            if (tgt.equals(CommandTarget.RECIPE.toString())) {
+                return completeEditRecipeArguments(args, partial, orig);
+            }
+        } else if (cmd.equals(Strings.COMMAND_DELETE)) {
+            if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
+                validArguments.add(Strings.ARG_QUANTITY);
+            }
+        } else if (cmd.equals(Strings.COMMAND_FILTER)) {
+            if (tgt.equals(CommandTarget.RECIPE.toString())) {
 
+                validArguments.add(Strings.ARG_TAG);
+                validArguments.add(Strings.ARG_INGREDIENT);
+
+            } else if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
+
+                validArguments.add(Strings.ARG_TAG);
+                validArguments.add(Strings.ARG_EXPIRY);
             }
         }
 
-        for (var validArg : validArguments) {
-            var va = validArg.name();
-
-            if (va.equals(argName)) {
-                return orig;
-            } else if (va.startsWith(argName)) {
-                return orig + va.substring(argName.length()) + " ";
-            }
-        }
-
-        return orig;
+        return tryCompletionUsing(getArgNames(validArguments), orig, partial)
+            .orElse(orig);
     }
 
 
+    private List<String> getValidEditOps(String arg) {
+        if (Strings.ARG_INGREDIENT.nameEquals(arg) || Strings.ARG_STEP.nameEquals(arg)) {
+            return List.of("add", "edit", "delete");
+        } else if (Strings.ARG_TAG.nameEquals(arg)) {
+            return List.of("add", "delete");
+        } else {
+            return List.of();
+        }
+    }
+
+    private String completeArgComponent(CommandArguments args, String orig) {
+        assert args.getAllArguments().size() > 0;
+
+        var last = args.getAllArguments().get(args.getAllArguments().size() - 1);
+        var comps = last.fst().getComponents();
+        var argname = last.fst();
+
+        // for now, there's only 2 components max, and the last component is always the index.
+        if (comps.isEmpty() || comps.size() > 1) {
+            return orig;
+        }
+
+        var partial = comps.get(comps.size() - 1);
+
+        var valids = getValidEditOps(argname.name());
+        return tryCompletionUsing(valids, orig, partial, /* appending: */ "")
+            .map(comp -> {
+                if (comp.endsWith(":")) {
+                    return comp;
+                }
+
+                if (argname.nameEquals(Strings.ARG_STEP)) {
+                    if (comp.endsWith("edit") || comp.endsWith("delete")) {
+                        return comp + ":";
+                    }
+                }
+
+                return comp + " ";
+
+            })
+            .orElse(orig);
+    }
+
+    private String completeEditRecipeArguments(CommandArguments args, String partial, String orig) {
+
+        // oof.
+        var opt = tryCompletionUsing(getArgNames(Strings.ARG_NAME, Strings.ARG_QUANTITY), orig, partial);
+        if (opt.isPresent()) {
+            return opt.get();
+        }
+
+        return tryCompletionUsing(getArgNames(Strings.ARG_TAG, Strings.ARG_INGREDIENT, Strings.ARG_STEP),
+            orig, partial, /* appending: */ ":")
+        .orElse(orig);
+    }
 
 
 
@@ -234,11 +320,7 @@ public class AutoCompleter {
             return Optional.empty();
         } else {
 
-            // this should always hold, because:
-            // (a) we always perform the modulo at the end
-            // (b) the list of viableCompletions should not change as long as the
-            //     internal state is not reset
-            // (c) if 'partial' changed due to user input, then we are supposed to be reset.
+            // see the note in completeCommand ('this should always hold, because...')
 
             assert this.lastCompletionIndex < this.lastViableCompletions.size();
 
@@ -299,6 +381,12 @@ public class AutoCompleter {
                     .map(tgt -> {
                         switch (tgt) {
                         case RECIPE:
+                            // we don't let you autocomplete recipe names when adding them
+                            // -- only for ingredients.
+                            if (cmd.equals(Strings.COMMAND_ADD)) {
+                                return RequiredCompletion.NONE;
+                            }
+
                             return RequiredCompletion.RECIPE_NAME;
 
                         case INGREDIENT:
@@ -311,7 +399,7 @@ public class AutoCompleter {
 
             } else if (commandRequiresItemReference(cmd)) {
 
-                if (cmd.equals(Strings.COMMAND_MAKE)) {
+                if (cmd.equals(Strings.COMMAND_MAKE) || cmd.equals(Strings.COMMAND_VIEW)) {
                     return RequiredCompletion.RECIPE_NAME;
                 } else {
                     return RequiredCompletion.NONE;
@@ -324,7 +412,7 @@ public class AutoCompleter {
         } else {
 
             // get the last argument.
-            // congratulations, it's 2020 and you're dumb langauge collection library
+            // congratulations, it's 2020 and your dumb langauge collection library
             // has neither a front() nor back() method.
             var last = args.getAllArguments().get(args.getAllArguments().size() - 1);
             var lastArg = last.fst();
@@ -333,13 +421,14 @@ public class AutoCompleter {
             if (!lastVal.isEmpty()) {
 
                 // now we should check what the name is.
-                if (lastArg.equals(Strings.ARG_INGREDIENT)) {
+                if (lastArg.nameEquals(Strings.ARG_INGREDIENT)) {
                     return RequiredCompletion.INGREDIENT_NAME_IN_ARG;
-                } else if (lastArg.equals(Strings.ARG_TAG)) {
+                } else if (lastArg.nameEquals(Strings.ARG_TAG)) {
                     return RequiredCompletion.TAG_NAME;
                 } else {
                     return RequiredCompletion.NONE;
                 }
+
             } else if (orig.endsWith(" ")) {
 
                 // a bit dirty, but if the last char in the raw input was a space,
@@ -348,10 +437,43 @@ public class AutoCompleter {
                 return RequiredCompletion.NONE;
 
             } else {
-                // complete the argument name.
-                return RequiredCompletion.ARGUMENT_NAME;
+
+                // check if the argument had components
+                if (lastArg.getComponents().size() > 0) {
+                    return RequiredCompletion.COMPONENT_NAME;
+                } else {
+                    // complete the argument name.
+                    return RequiredCompletion.ARGUMENT_NAME;
+                }
             }
         }
+    }
+
+    private Optional<String> tryCompletionUsing(List<String> candidates, String orig, String partial,
+        String appending) {
+
+        for (var arg : candidates) {
+            if (arg.equals(partial)) {
+                return Optional.of(orig);
+            } else if (arg.startsWith(partial)) {
+                return Optional.of(orig + arg.substring(partial.length()) + appending);
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    private Optional<String> tryCompletionUsing(List<String> candidates, String orig, String partial) {
+        return tryCompletionUsing(candidates, orig, partial, " ");
+    }
+
+    @SafeVarargs
+    private List<String> getArgNames(ArgName... args) {
+        return Arrays.stream(args).map(ArgName::name).collect(Collectors.toList());
+    }
+
+    private List<String> getArgNames(List<ArgName> args) {
+        return args.stream().map(ArgName::name).collect(Collectors.toList());
     }
 
     private boolean commandRequiresTarget(String commandName) {
@@ -359,13 +481,18 @@ public class AutoCompleter {
             Strings.COMMAND_ADD,
             Strings.COMMAND_LIST,
             Strings.COMMAND_FIND,
+            Strings.COMMAND_EDIT,
+            Strings.COMMAND_FILTER,
             Strings.COMMAND_DELETE
         ).indexOf(commandName) >= 0;
     }
 
     private boolean commandRequiresItemReference(String commandName) {
         return List.of(
+            Strings.COMMAND_ADD,
             Strings.COMMAND_MAKE,
+            Strings.COMMAND_EDIT,
+            Strings.COMMAND_VIEW,
             Strings.COMMAND_DELETE
         ).indexOf(commandName) >= 0;
     }
@@ -380,6 +507,7 @@ public class AutoCompleter {
         INGREDIENT_NAME,
         RECIPE_NAME_IN_ARG,
         INGREDIENT_NAME_IN_ARG,
+        COMPONENT_NAME,
         TAG_NAME
     }
 }

@@ -40,7 +40,8 @@ public class FindIngredientCommand extends Command {
             DisplayNavigator.loadIngredientPanel();
         }
 
-        return CommandResult.message("Found %d ingredients", model.getFilteredIngredientList().size());
+        var sz = model.getFilteredIngredientList().size();
+        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s");
     }
 
     @Override
