@@ -23,6 +23,7 @@ import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.testutil.PersonBuilder;
@@ -165,6 +166,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasLeavePeriod(Staff target, Leave leave) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyEvaDatabase<Person> getPersonDatabase() {
             throw new AssertionError("This method should not be called.");
         }
@@ -236,6 +242,11 @@ public class AddCommandTest {
 
         @Override
         public void addApplicant(Applicant person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addApplicantApplication(Applicant target, Application toAdd) {
             throw new AssertionError("This method should not be called.");
         }
 

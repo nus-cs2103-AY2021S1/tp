@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import com.eva.commons.core.GuiSettings;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -115,10 +116,16 @@ public interface Model {
     boolean hasStaffLeave(Staff target, Leave leave);
 
     /**
-     * Returns true if a staff with the same identity as {@code staff} has the same leave as {@code leave}.
-     * @return
+     * Returns the conflicting leave if a staff with the same identity as {@code staff}
+     * has the same leave period as {@code leave}.
      */
     Optional<Leave> hasLeaveDate(Staff target, LocalDate date);
+
+    /**
+     * Returns true if a staff with the same identity as {@code staff}
+     * has the same leave period as {@code leave}.
+     */
+    boolean hasLeavePeriod(Staff target, Leave leave);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
@@ -141,7 +148,9 @@ public interface Model {
      */
     void setStaffDatabase(ReadOnlyEvaDatabase<Staff> personDatabase);
 
-    /** Returns the EvaDatabase */
+    /**
+     * Returns the EvaDatabase.
+     */
     ReadOnlyEvaDatabase<Staff> getStaffDatabase();
 
     /**
@@ -201,6 +210,12 @@ public interface Model {
      * {@code person} must not already exist in the eva database.
      */
     void addApplicant(Applicant person);
+
+    /**
+     * Adds the given leave to the given staff.
+     * {@code leave} must not already exist in the staff's {@code leaves}.
+     */
+    void addApplicantApplication(Applicant target, Application toAdd);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

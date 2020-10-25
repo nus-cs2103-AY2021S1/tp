@@ -1,6 +1,7 @@
 package com.eva.commons.util;
 
 import static com.eva.commons.util.AppUtil.checkArgument;
+import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
@@ -70,12 +71,23 @@ public class DateUtil {
     }
     /**
      * Returns the number of days elapsed between two dates.
-     * @param start cannot be empty.
-     * @param end cannot be empty.
+     * @param start cannot be empty, inclusive.
+     * @param end cannot be empty, inclusive.
      */
     public static int getDaysBetween(LocalDate start, LocalDate end) {
-        requireNonNull(start);
-        requireNonNull(end);
+        requireAllNonNull(start, end);
         return Period.between(start, end).getDays() + 1;
+    }
+
+    /**
+     * Returns a list of LocalDates between the two given {@code dates}.
+     * @param start cannot be empty
+     * @param end cannot be empty.
+     */
+    public static List<LocalDate> getDatesBetween(LocalDate start, LocalDate end) {
+        requireAllNonNull(start, end);
+        List<LocalDate> out = start.datesUntil(end).collect(Collectors.toList());
+        out.add(end);
+        return out;
     }
 }

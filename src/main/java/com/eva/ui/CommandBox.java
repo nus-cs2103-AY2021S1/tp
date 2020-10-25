@@ -1,6 +1,8 @@
 package com.eva.ui;
 
 
+import java.io.FileNotFoundException;
+
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
@@ -41,7 +43,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | FileNotFoundException e) {
             setStyleToIndicateCommandFailure();
         }
     }
@@ -76,7 +78,7 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see com.eva.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException, FileNotFoundException;
     }
 
 }
