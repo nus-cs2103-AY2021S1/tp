@@ -32,13 +32,13 @@
                      </VBox>
                      <HBox maxWidth="500.0" minWidth="500.0" prefHeight="115.0" prefWidth="500.0">
                         <children>
-                           <Label alignment="CENTER" contentDisplay="RIGHT" maxHeight="120.0" maxWidth="200.0" minHeight="120.0" minWidth="200.0" prefHeight="120.0" prefWidth="200.0" styleClass="label-bright" />
-                           <ImageView fx:id="profilePicture" fitHeight="115.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                           <Label alignment="CENTER" contentDisplay="RIGHT" maxHeight="120.0" maxWidth="439.0" minHeight="120.0" minWidth="123.0" prefHeight="120.0" prefWidth="189.0" styleClass="label-bright" />
+                           <ImageView fx:id="profilePicture" fitHeight="113.0" fitWidth="159.0" pickOnBounds="true" preserveRatio="true">
                               <HBox.margin>
                                  <Insets />
                               </HBox.margin>
                            </ImageView>
-                           <Label alignment="CENTER" contentDisplay="RIGHT" maxHeight="120.0" maxWidth="200.0" minHeight="120.0" minWidth="200.0" prefHeight="120.0" prefWidth="200.0" styleClass="label-bright" />
+                           <Label alignment="CENTER" contentDisplay="RIGHT" maxHeight="120.0" maxWidth="200.0" minHeight="120.0" minWidth="113.0" prefHeight="120.0" prefWidth="118.0" styleClass="label-bright" />
                         </children>
                         <HBox.margin>
                            <Insets />

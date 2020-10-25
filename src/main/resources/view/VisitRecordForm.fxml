@@ -23,7 +23,7 @@
                     <VBox fx:id="visitRecordForm" layoutY="5.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
                             <Label styleClass="label-bright" text="Prescription :" />
-                            <TextArea fx:id="prescription" prefHeight="65.0" prefWidth="483.0" promptText="Prescription given to the patient" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                            <TextArea fx:id="prescription" prefHeight="65.0" prefWidth="483.0" promptText="Fill in patient's prescription here" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></TextArea>
@@ -31,7 +31,7 @@
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></Label>
-                            <TextArea fx:id="diagnosis" prefHeight="65.0" prefWidth="483.0" promptText="Diagnosis of the patient" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                            <TextArea fx:id="diagnosis" prefHeight="65.0" prefWidth="483.0" promptText="Fill in patient's diagnosis here" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></TextArea>
@@ -39,7 +39,7 @@
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></Label>
-                            <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0" promptText="Any Additional Remarks" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                            <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0" promptText="Fill in any additional remarks here" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></TextArea>
