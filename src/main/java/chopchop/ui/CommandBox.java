@@ -38,12 +38,6 @@ public class CommandBox extends UiPart<Region> {
         // No commands entered yet.
         historyPointer = 0;
 
-        this.getRoot().focusedProperty().addListener((obs, wasFocused, isNowFocused) -> {
-            if (isNowFocused) {
-                commandTextField.requestFocus();
-            }
-        });
-
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
 
             if (event.getCode().equals(KeyCode.DOWN) && historyPointer < logic.getInputHistory().size()) {
@@ -106,6 +100,14 @@ public class CommandBox extends UiPart<Region> {
         } finally {
             historyPointer = logic.getInputHistory().size();
             commandTextField.clear();
+        }
+    }
+
+    protected void setFocus(String keypress) {
+        if (!commandTextField.isFocused()) {
+            commandTextField.setText(commandTextField.getText() + keypress);
+            commandTextField.requestFocus();
+            commandTextField.end();
         }
     }
 

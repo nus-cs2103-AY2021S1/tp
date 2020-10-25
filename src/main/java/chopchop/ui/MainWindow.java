@@ -14,7 +14,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -128,11 +127,10 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand, this.logic);
         this.commandBox = commandBox;
-        Region commandBoxDisplay = commandBox.getRoot();
-        commandBoxPlaceholder.getChildren().setAll(commandBoxDisplay);
+        commandBoxPlaceholder.getChildren().setAll(commandBox.getRoot());
         primaryStage.addEventFilter(KeyEvent.ANY, event -> {
             if (event.getEventType() == KeyEvent.KEY_TYPED) {
-                commandBoxDisplay.requestFocus();
+                commandBox.setFocus(event.getCharacter());
             }
         });
     }
