@@ -150,6 +150,10 @@ public class AutoCompleter {
                 validArguments.add(Strings.ARG_TAG);
 
             }
+        } else if (cmd.equals(Strings.COMMAND_EDIT)) {
+            if (tgt.equals(CommandTarget.RECIPE.toString())) {
+                return completeEditRecipeArguments(args, argName, orig);
+            }
         }
 
         for (var validArg : validArguments) {
@@ -166,6 +170,38 @@ public class AutoCompleter {
     }
 
 
+    private List<String> getValidEditOps(ArgName arg) {
+        if (arg.equals(Strings.ARG_INGREDIENT) || arg.equals(Strings.ARG_STEP)) {
+            return List.of("add", "edit", "delete");
+        } else if (arg.equals(Strings.ARG_TAG)) {
+            return List.of("add", "delete");
+        } else {
+            return List.of();
+        }
+    }
+
+    private String completeEditRecipeArguments(CommandArguments args, String arg, String orig) {
+
+        // oof.
+        // just check manually i guess.
+        if (Strings.ARG_NAME.name().startsWith(arg)) {
+            if (Strings.ARG_NAME.name().equals(arg)) {
+                return orig;
+            } else {
+                return orig + Strings.ARG_NAME.name().substring(arg.length()) + " ";
+            }
+        } else if (Strings.ARG_TAG) {
+
+        }
+
+                // validArguments.add(Strings.ARG_INGREDIENT);
+                // validArguments.add(Strings.ARG_QUANTITY);
+                // validArguments.add(Strings.ARG_STEP);
+                // validArguments.add(Strings.ARG_NAME);
+                // validArguments.add(Strings.ARG_TAG);
+
+        return orig;
+    }
 
 
 
@@ -354,11 +390,28 @@ public class AutoCompleter {
         }
     }
 
+    private String canCompleteUsing(ArgName arg, String orig, String input) {
+
+        var va = arg.name();
+
+        // for (var validArg : validArguments) {
+            var va = validArg.name();
+
+            if (va.equals(argName)) {
+                return orig;
+            } else if (va.startsWith(argName)) {
+                return orig + va.substring(argName.length()) + " ";
+            }
+        // }
+    }
+
     private boolean commandRequiresTarget(String commandName) {
         return List.of(
             Strings.COMMAND_ADD,
             Strings.COMMAND_LIST,
             Strings.COMMAND_FIND,
+            Strings.COMMAND_EDIT,
+            Strings.COMMAND_FILTER,
             Strings.COMMAND_DELETE
         ).indexOf(commandName) >= 0;
     }
@@ -366,6 +419,7 @@ public class AutoCompleter {
     private boolean commandRequiresItemReference(String commandName) {
         return List.of(
             Strings.COMMAND_MAKE,
+            Strings.COMMAND_EDIT,
             Strings.COMMAND_DELETE
         ).indexOf(commandName) >= 0;
     }
