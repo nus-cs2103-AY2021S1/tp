@@ -16,7 +16,7 @@ public class TypicalIngredientPrecursors {
      */
     public static List<IngredientPrecursor> getTypicalIngredientList() {
         List<IngredientPrecursor> ab = new ArrayList<>();
-        ab.add(INGREDIENT_PRECURSOR_1);
+        ab.add((INGREDIENT_PRECURSOR_1));
         ab.add(INGREDIENT_PRECURSOR_2);
         return ab;
     }

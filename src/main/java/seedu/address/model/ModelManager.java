@@ -220,6 +220,7 @@ public class ModelManager implements Model {
         return filteredItems;
     }
 
+    @Override
     public void resetItemFilters() {
         filteredItems.setPredicate(x -> true);
     }
@@ -232,6 +233,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Recipe> getFilteredRecipeList() {
         return filteredRecipes;
+    }
+
+    @Override
+    public void resetRecipeFilters() {
+        filteredRecipes.setPredicate(x -> true);
     }
 
     @Override

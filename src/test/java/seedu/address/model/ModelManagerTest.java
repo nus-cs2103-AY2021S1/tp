@@ -179,11 +179,11 @@ public class ModelManagerTest {
 
     @Test
     public void testUpdateRecipeNames() {
-        modelManager.addRecipe(APPLE_PIE);
+        modelManager.addRecipe(BANANA_PIE);
         modelManager.updateRecipeNames("Apple", "Banana");
 
         ModelManager expectedModelManager = new ModelManager();
-        Recipe updatedRecipe = APPLE_PIE.setProductName(VALID_ITEM_NAME_BANANA);
+        Recipe updatedRecipe = BANANA_PIE.setProductName(VALID_ITEM_NAME_BANANA);
         expectedModelManager.addRecipe(updatedRecipe);
 
         assertEquals(expectedModelManager, modelManager);

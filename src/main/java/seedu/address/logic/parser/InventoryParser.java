@@ -13,6 +13,7 @@ import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.commands.ClearItemCommand;
 import seedu.address.logic.commands.ClearRecipeCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CraftItemCommand;
 import seedu.address.logic.commands.DeleteItemCommand;
 import seedu.address.logic.commands.DeleteRecipeCommand;
 import seedu.address.logic.commands.EditItemCommand;
@@ -72,6 +73,8 @@ public class InventoryParser {
             return new DeleteItemCommandParser().parse(arguments);
         case ViewDetailsCommand.COMMAND_WORD:
             return new ViewDetailsCommandParser().parse(arguments);
+        case CraftItemCommand.COMMAND_WORD:
+            return new CraftItemCommandParser().parse(arguments);
 
         // Recipe commands start here
         case AddRecipeCommand.COMMAND_WORD:

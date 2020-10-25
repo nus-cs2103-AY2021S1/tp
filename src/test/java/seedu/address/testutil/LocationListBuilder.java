@@ -24,7 +24,7 @@ public class LocationListBuilder {
      * Adds a new {@code Location} to the {@code LocationList} that we are building.
      */
     public LocationListBuilder withLocation(Location location) {
-        locationList.addLocation(location);
+        locationList.addLocation(new LocationBuilder(location).build());
         return this;
     }
 

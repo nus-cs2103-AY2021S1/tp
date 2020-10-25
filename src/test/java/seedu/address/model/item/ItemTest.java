@@ -10,10 +10,13 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalItems.APPLE;
 import static seedu.address.testutil.TypicalItems.BANANA;
 
+import java.util.HashSet;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ItemBuilder;
 
 public class ItemTest {
@@ -50,6 +53,19 @@ public class ItemTest {
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Item item = new ItemBuilder().build();
         assertThrows(UnsupportedOperationException.class, () -> item.getTags().remove(0));
+    }
+
+    /**
+     * Tests that creation of an edited item does not increase the id counter.
+     */
+    @Test
+    public void testEditItemConstructor() {
+        int initialIdCounter = Item.getIdCounter();
+        Item editedItem = new Item(1, VALID_ITEM_NAME_BANANA, new Quantity(VALID_ITEM_QUANTITY_BANANA),
+                VALID_ITEM_DESCRIPTION_BANANA, new HashSet<Integer>(), new HashSet<Integer>(),
+                new HashSet<Tag>(), true);
+        int updatedIdCounter = Item.getIdCounter();
+        assertEquals(initialIdCounter, updatedIdCounter);
     }
 
     /**

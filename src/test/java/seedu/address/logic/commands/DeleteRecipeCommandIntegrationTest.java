@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
 import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 import static seedu.address.testutil.TypicalLocations.getTypicalLocationsList;
-import static seedu.address.testutil.TypicalRecipes.APPLE_PIE;
+import static seedu.address.testutil.TypicalRecipes.BANANA_PIE;
 import static seedu.address.testutil.TypicalRecipes.getTypicalRecipeList;
 
 import org.junit.jupiter.api.Test;
@@ -28,8 +28,8 @@ public class DeleteRecipeCommandIntegrationTest {
         DeleteRecipeCommand drc = new DeleteRecipeCommand("Apple", Index.fromOneBased(1));
         Model expectedModel = new ModelManager(getTypicalItemList(), getTypicalLocationsList(),
                 getTypicalRecipeList(), new UserPrefs());
-        expectedModel.deleteRecipe(APPLE_PIE);
-        String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_SUCCESS, APPLE_PIE);
+        expectedModel.deleteRecipe(BANANA_PIE);
+        String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_SUCCESS, BANANA_PIE);
         assertCommandSuccess(drc, model, expectedMessage, expectedModel);
     }
 

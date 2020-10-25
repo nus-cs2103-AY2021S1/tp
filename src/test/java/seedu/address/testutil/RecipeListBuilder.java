@@ -24,7 +24,7 @@ public class RecipeListBuilder {
      * Adds a new {@code Location} to the {@code LocationList} that we are building.
      */
     public RecipeListBuilder withRecipe(Recipe recipe) {
-        recipeList.addRecipe(recipe);
+        recipeList.addRecipe(new RecipeBuilder(recipe).build());
         return this;
     }
 

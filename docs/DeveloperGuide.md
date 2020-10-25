@@ -26,6 +26,7 @@ get your inventory management tasks done faster than traditional GUI apps.
 * [EndUserPersona](EndUserPersona.md)
 * [Usecases](Usecases.md)
 * [Implementation Details and Sequence Flow](CommandSequenceDiagram.md)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -212,6 +213,62 @@ One problem with the current implementation is that it is rather slow due to AB3
 implementation is to create an association class between `Logic` and `Model`, and allow for `Logic` to access `Model`'s 
 `FilteredItemList` directly, which would greatly simplify the command execution process. However, this might not be
 possible without breaking abstraction or heavy modifications to `Model` or `ModelManager`.
+
+### Delete Item Feature
+
+`DeleteItemCommand` facilitates the deletion of an existing `Item`. This deletion cascades to impact any 
+`Recipe` in the list of recipes that are associated with this item, as such, these matching `Recipe` are also deleted.
+
+This command was implemented to resolve the [userstory](user-stories-for-v1.1), regarding "As a user I want to delete
+ a item so that I can remove item that I no longer need to track."
+
+#### Current Implementation
+
+During the execution of an `DeleteItemCommand`, as referenced from the [architecture sequence diagram](#Architecture), 
+the input is accepted by the GUI, and passed into the `LogicManager` that calls `InventoryParser` to parse the command 
+word and determines that command is a `DeleteItemCommand`. This also cleans the user input by removing the command word.
+
+Then `InventoryParser` calls the specific `DeleteItemCommandParser#parse(Input)` to read and parse the given field, in this case,
+ **"-n Bob's Toenail"**. This process reads the given input string, and checks for validity. Then assuming no `ParseException` occurs,
+ the resulting `DeleteItemCommand` is created for the input item.
+  This `DeleteItemCommand` is returned up the method call stack to the `LogicManager` where the `Command#execute(model)`
+ occurs.
+ 
+This is where change is made into the stored `Model` within the `DeleteItemCommand`. `Model` is used as an abstraction of the internal
+details of cached storage.
+ 
+First a query is made to the `Model` to check that the `Item` exists, and if so, deletes the item from the the `Model`.
+
+Then, a query is made for any `Recipe` in the `Item`, or has the `Item` as a product of the `Recipe` and this reference is
+ then deleted from the product.
+
+Lastly, the deleted `Recipe` also cascade their `Recipe` deletion to any items that contain the `Recipe`.
+
+This concludes the **deletion routine**.
+ 
+After successful deletion occurs, the resulting `CommandResult` with a success message is returned 
+successfully to the  `LogicManager` and then displayed on the GUI.
+
+The following sequence diagram details in depth how the `DeleteItemCommand` works:
+
+Initial user input is shown in full, but as the system transforms the input,
+ inputs and returned values abstracted out into apt representations.
+ 
+![DeleteItemSequenceDiagram](images/commandseqdiagrams/DeleteItemSequenceDiagram.png)
+
+#### Alternative Implementation and Reasoning against its implementation
+
+One problem with the current implementation is that there is a deep coupling between 
+the internal structure of the `Model`, that is namely the `FilteredItemList` and `FilteredRecipeList`,
+ with no direct methods manipulating these classes from the `ModelManager` facade design pattern itself.
+
+This causes some direct manipulation of non-neighbouring classes, which violates 
+[`Law of Demeter`](https://hackernoon.com/object-oriented-tricks-2-law-of-demeter-4ecc9becad85). 
+However, the facade design pattern applied to `ModelManager` also prevents excessive bloat and coupling.
+
+Hence refraining from this implementation reduces the size of the class significantly,
+ improving readability of the code and preventing `ModelManager` from entailing extra responsibility.
+
 
 ### List item/recipe feature
 
@@ -416,6 +473,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **GUI**: The graphical user interface is a form of user interface that allows users
+ to interact with electronic devices through graphical icons and audio indicator such as primary notation.
 * **Item**: An item represents an object you obtain in a game. Eg a <u>Rock</u>
 * **Recipe**: A recipe is associated with multiple items, and represents the consumption of items in the input,
  to produce an item of the output. Eg: 3 <u>Sticks</u> -> <u>Staff</u>
