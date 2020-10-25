@@ -157,6 +157,21 @@ public class AddCaseCommandTest {
         }
 
         @Override
+        public boolean canRedoPivot() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoPivot() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoPivot() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void undoPivot() {
             throw new AssertionError("This method should not be called.");
         }
@@ -196,6 +211,11 @@ public class AddCaseCommandTest {
         public void addCase(Case investigationCase) {
             requireNonNull(investigationCase);
             personsAdded.add(investigationCase);
+        }
+
+        @Override
+        public void commitPivot() {
+
         }
 
         @Override

@@ -79,6 +79,7 @@ public class AddSuspectCommand extends AddCommand {
                 openCase.getTags());
 
         model.setCase(openCase, updatedCase);
+        model.commitPivot();
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
         return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
     }

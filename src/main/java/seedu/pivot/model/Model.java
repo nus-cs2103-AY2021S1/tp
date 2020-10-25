@@ -91,5 +91,11 @@ public interface Model {
 
     void commitPivot();
 
+    boolean canRedoPivot();
+
+    void redoPivot();
+
+    boolean canUndoPivot();
+
     void undoPivot();
 }

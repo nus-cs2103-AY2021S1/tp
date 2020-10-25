@@ -35,7 +35,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with PIVOT: " + pivot + " and user prefs " + userPrefs);
 
         this.pivot = new Pivot(pivot);
-        this.versionedPivot = new VersionedPivot(this.pivot);
+        this.versionedPivot = new VersionedPivot(pivot);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCases = new FilteredList<>(this.pivot.getCaseList());
     }
@@ -84,6 +84,7 @@ public class ModelManager implements Model {
     @Override
     public void setPivot(ReadOnlyPivot pivot) {
         this.pivot.resetData(pivot);
+        StateManager.refresh();
     }
 
     @Override
@@ -118,13 +119,29 @@ public class ModelManager implements Model {
     //=========== Versioned Pivot ===========================================================================
     @Override
     public void commitPivot() {
-        this.versionedPivot.commit(pivot);
+        this.versionedPivot.commit(new Pivot(this.pivot));
+    }
+
+    @Override
+    public boolean canRedoPivot() {
+        return this.versionedPivot.canRedo();
+    }
+
+    @Override
+    public void redoPivot() {
+        ReadOnlyPivot pivot = this.versionedPivot.redo();
+        this.setPivot(pivot);
+    }
+
+    @Override
+    public boolean canUndoPivot() {
+        return this.versionedPivot.canUndo();
     }
 
     @Override
     public void undoPivot() {
-        Pivot pivot = this.versionedPivot.undo();
-        setPivot(pivot);
+        ReadOnlyPivot pivot = this.versionedPivot.undo();
+        this.setPivot(pivot);
     }
 
     //=========== Filtered Case List Accessors =============================================================

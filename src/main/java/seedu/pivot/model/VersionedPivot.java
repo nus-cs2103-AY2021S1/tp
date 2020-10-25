@@ -3,31 +3,43 @@ package seedu.pivot.model;
 import java.util.Stack;
 
 public class VersionedPivot extends Pivot {
-    private static final String MESSAGE_EMPTY_STACK = "Nothing to undo.";
 
-    private Stack<Pivot> pivotStateStack = new Stack<>();
+    private Stack<ReadOnlyPivot> pivotUndoHistory = new Stack<>();
+    private Stack<ReadOnlyPivot> pivotRedoHistory = new Stack<>();
 
-    public VersionedPivot(Pivot pivot) {
-        pivotStateStack.push(pivot);
+    public VersionedPivot(ReadOnlyPivot pivot) {
+        pivotUndoHistory.push(pivot);
     }
 
-    public int getStackSize() {
-        return pivotStateStack.size();
+    public boolean canUndo() {
+        return pivotUndoHistory.size() != 1;
     }
 
-    public void commit(Pivot pivot) {
-        pivotStateStack.push(pivot);
+    public boolean canRedo() {
+        return pivotRedoHistory.size() != 0;
+    }
+
+    public void commit(ReadOnlyPivot pivot) {
+        pivotUndoHistory.push(pivot);
     }
 
     /**
-     * Restores the previous pivot state.
+     * Undoes the previous pivot state.
      * @return Previous pivot state.
      */
-    public Pivot undo() {
-        if (pivotStateStack.size() == 1) {
-            // Todo: throw exception
-        }
-        pivotStateStack.pop();
-        return pivotStateStack.peek();
+    public ReadOnlyPivot undo() {
+        ReadOnlyPivot undonePivot = pivotUndoHistory.pop();
+        pivotRedoHistory.push(undonePivot);
+        return pivotUndoHistory.peek();
+    }
+
+    /**
+     * Redoes the most recent pivot state.
+     * @return Recent pivot state.
+     */
+    public ReadOnlyPivot redo() {
+        ReadOnlyPivot redonePivot = pivotRedoHistory.pop();
+        pivotUndoHistory.push(redonePivot);
+        return redonePivot;
     }
 }
