@@ -6,7 +6,14 @@ import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
 
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
+import seedu.taskmaster.model.record.StudentRecordList;
+import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionDateTime;
+import seedu.taskmaster.model.session.SessionName;
+import seedu.taskmaster.model.student.Student;
+
+import java.util.List;
 
 /**
  * Adds a session to the session list.
@@ -21,24 +28,37 @@ public class NewSessionCommand extends Command {
             + PREFIX_SESSION_DATE_TIME + "SESSION_DATE_TIME...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SESSION_NAME + "CS2103 Tutorial 1 "
-            + PREFIX_SESSION_DATE_TIME + "23 Oct 2020 0900H";
+            + PREFIX_SESSION_DATE_TIME + "23-10-2020 0900";
 
     public static final String MESSAGE_SUCCESS = "New session added: %1$s";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the session list";
 
-    private final Session toAdd;
+    private final SessionName sessionName;
+    private final SessionDateTime sessionDateTime;
+    protected StudentRecordList studentRecordList = null;
 
     /**
      * Creates a NewSessionCommand to add the specified {@code Session}
      */
-    public NewSessionCommand(Session session) {
-        requireNonNull(session);
-        toAdd = session;
+    public NewSessionCommand(SessionName sessionName, SessionDateTime sessionDateTime) {
+        requireNonNull(sessionName);
+        requireNonNull(sessionDateTime);
+        this.sessionName = sessionName;
+        this.sessionDateTime = sessionDateTime;
+    }
+
+    public void setStudentRecords(StudentRecordList studentRecords) {
+        studentRecordList = studentRecords;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        // At the point of execution, student records must be set.
+        requireNonNull(studentRecordList);
+
+        Session toAdd = new Session(sessionName, sessionDateTime, studentRecordList);
 
         if (model.hasSession(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SESSION);
@@ -52,6 +72,8 @@ public class NewSessionCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((NewSessionCommand) other).toAdd));
+                && sessionName.equals(((NewSessionCommand) other).sessionName)
+                && sessionDateTime.equals(((NewSessionCommand) other).sessionDateTime)
+                && studentRecordList.equals(((NewSessionCommand) other).studentRecordList));
     }
 }

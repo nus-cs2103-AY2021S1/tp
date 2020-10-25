@@ -2,6 +2,8 @@ package seedu.taskmaster.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +12,9 @@ import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.commons.util.StringUtil;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionDateTime;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Email;
 import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
@@ -50,6 +55,32 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code SessionName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static SessionName parseSessionName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!SessionName.isValidName(trimmedName)) {
+            throw new ParseException(SessionName.MESSAGE_CONSTRAINTS);
+        }
+        return new SessionName(trimmedName);
+    }
+
+    public static SessionDateTime parseSessionDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        try {
+            LocalDateTime localDateTime = LocalDateTime.parse(dateTime, SessionDateTime.DATE_TIME_FORMAT);
+            return new SessionDateTime(localDateTime);
+        } catch (DateTimeParseException dateTimeParseException) {
+            throw new ParseException(SessionDateTime.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

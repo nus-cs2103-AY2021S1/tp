@@ -17,6 +17,7 @@ import seedu.taskmaster.logic.commands.HelpCommand;
 import seedu.taskmaster.logic.commands.ListCommand;
 import seedu.taskmaster.logic.commands.LoadAttendanceCommand;
 import seedu.taskmaster.logic.commands.MarkCommand;
+import seedu.taskmaster.logic.commands.NewSessionCommand;
 import seedu.taskmaster.logic.commands.StoreAttendanceCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 
@@ -73,6 +74,9 @@ public class TaskmasterParser {
 
         case MarkCommand.COMMAND_WORD:
             return new MarkCommandParser().parse(arguments);
+
+        case NewSessionCommand.COMMAND_WORD:
+            return new NewSessionCommandParser().parse(arguments);
 
         case LoadAttendanceCommand.COMMAND_WORD:
             return new LoadAttendanceCommandParser().parse(arguments);

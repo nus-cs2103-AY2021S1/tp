@@ -5,8 +5,10 @@ import java.time.format.DateTimeFormatter;
 
 public class SessionDateTime {
 
-    private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
-    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("h:mm a");
+    public static final DateTimeFormatter DATE_TIME_FORMAT =
+            DateTimeFormatter.ofPattern("dd-MM-yyyy HHmm");
+    public static final String MESSAGE_CONSTRAINTS =
+            "Date and time should be in the format 'dd-MM-yyyy HHmm'.";
 
     private final LocalDateTime localDateTime;
 
@@ -25,8 +27,7 @@ public class SessionDateTime {
 
     @Override
     public String toString() {
-        return localDateTime.toLocalDate().format(DATE_FORMAT) + " "
-                + localDateTime.toLocalTime().format(TIME_FORMAT);
+        return localDateTime.format(DATE_TIME_FORMAT);
     }
 
     @Override
