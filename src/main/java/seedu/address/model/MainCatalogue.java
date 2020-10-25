@@ -124,7 +124,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         } else if (status == Status.TASK) {
             status = Status.PROJECT;
             project.get().updateTaskOnView(null);
-        } else if (status == Status.PERSON) {
+        } else if (status == Status.TEAMMATE) {
             status = Status.PROJECT;
             project.get().updateTeammateOnView(null);
         } else if (status == Status.MEETING) {
@@ -143,7 +143,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     @Override
     public void enterTeammate(Person teammate) {
-        status = Status.PERSON;
+        status = Status.TEAMMATE;
         project.get().updateTaskOnView(null);
         project.get().updateMeetingFilter(null);
         project.get().updateTeammateOnView(teammate);
