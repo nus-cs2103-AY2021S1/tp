@@ -28,8 +28,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
     private final FilteredList<Person> filteredPersons;
-    //private final List<Task> filteredTasks;
-    //private final List<Person> filteredTeammates;
     private Optional<Project> projectToBeDisplayedOnDashboard;
     private Optional<Task> taskToBeDisplayedOnDashboard;
     private Optional<Participation> teammateToBeDisplayedOnDashboard;
@@ -49,8 +47,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.mainCatalogue.getProjectList());
         filteredPersons = new FilteredList<>(this.mainCatalogue.getPersonList());
-        //filteredTasks = new ArrayList<>();
-        //filteredTeammates = new ArrayList<>();;
         this.projectToBeDisplayedOnDashboard = Optional.empty();
         this.taskToBeDisplayedOnDashboard = Optional.empty();
         this.teammateToBeDisplayedOnDashboard = Optional.empty();
@@ -363,35 +359,3 @@ public class ModelManager implements Model {
         return personToBeDisplayedOnDashboard;
     }
 }
-
-//    //=========== Filtered Task List Accessors =============================================================
-//
-//    /**
-//     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
-//     * {@code versionedMainCatalogue}
-//     */
-//    @Override
-//    public List<Task> getFilteredTaskList() {
-//        return filteredTasks;
-//    }
-//
-//    @Override
-//    public void updateFilteredTaskList(List<Task> taskList) {
-//        this.filteredTasks.addAll(taskList);
-//    }
-//
-//    //=========== Filtered Teammates List Accessors =============================================================
-//
-//    /**
-//     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-//     * {@code versionedMainCatalogue}
-//     */
-//    @Override
-//    public List<Person> getFilteredTeammateList() {
-//        return filteredTeammates;
-//    }
-//
-//    @Override
-//    public void updateFilteredTeammateList(List<Person> teammatesList) {
-//        filteredTeammates.addAll(teammatesList);
-//    }

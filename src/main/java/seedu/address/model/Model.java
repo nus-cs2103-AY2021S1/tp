@@ -19,8 +19,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
-    //Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
-    //Predicate<Person> PREDICATE_SHOW_ALL_TEAMMATES = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -227,21 +225,3 @@ public interface Model {
     Optional<Person> getPersonToBeDisplayedOnDashboard();
 
 }
-
-///** Returns an unmodifiable view of the filtered task list */
-//List<Task> getFilteredTaskList();
-
-///**
-// * Updates the filter of the filtered task list to filter by the given {@code predicate}.
-// * @throws NullPointerException if {@code predicate} is null.
-// */
-//void updateFilteredTaskList(List<Task> taskList);
-
-///** Returns an unmodifiable view of the filtered teammate list */
-//List<Person> getFilteredTeammateList() ;
-
-///**
-// * Updates the filter of the filtered teammate list to filter by the given {@code predicate}.
-// * @throws NullPointerException if {@code predicate} is null.
-// */
-//void updateFilteredTeammateList(List<Person> teammatesList);

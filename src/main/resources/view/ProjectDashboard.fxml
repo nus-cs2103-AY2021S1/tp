@@ -44,19 +44,13 @@
                   <Font size="50.0" />
                </font>
             </Label>
-            <FlowPane id="dashboardTask" fx:id="tasks" layoutX="25.0" layoutY="412.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
+            <FlowPane id="dashboardTM" fx:id="teammates" orientation="VERTICAL" prefWidth="700.0" stylesheets="@Extensions.css" />
             <Label id="dashboardH2" fx:id="header2" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header2">
                <font>
                   <Font size="50.0" />
                </font>
             </Label>
-            <FlowPane id="dashboardTM" fx:id="teammates" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
-            <Label id="dashboardH3" fx:id="header3" layoutX="25.0" layoutY="376.0" prefHeight="74.0" prefWidth="687.0" styleClass="cell_small_label" stylesheets="@Extensions.css" text="\$header3">
-               <font>
-                  <Font size="50.0" />
-               </font>
-            </Label>
-            <FlowPane id="dashboardTM" fx:id="meetings" layoutX="25.0" layoutY="430.0" orientation="VERTICAL" prefHeight="75.0" prefWidth="700.0" stylesheets="@Extensions.css" />
+            <FlowPane id="dashboardTask" fx:id="tasks" layoutX="25.0" layoutY="412.0" orientation="VERTICAL" prefWidth="700.0" stylesheets="@Extensions.css" />
          </children>
       </VBox>
    </children>
