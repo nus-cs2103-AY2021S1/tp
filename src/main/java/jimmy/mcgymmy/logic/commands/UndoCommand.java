@@ -15,6 +15,6 @@ public class UndoCommand extends Command {
             return new CommandResult(MESSAGE_NOT_UNDOABLE);
         }
         model.undo();
-        return new CommandResult(MESSAGE_UNDO_SUCCESS);
+        return new CommandResult(MESSAGE_UNDO_SUCCESS, false, true);
     }
 }
