@@ -209,8 +209,57 @@ Lists all entries in the current account.
 
 
 ### Clearing all expenses or revenue: `clear`
+If for whatever reason you would like to clear all entries from a particular category, 
+you can use this command to do so.
+ 
+Format: `clear`
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `clear c/expense`: clears all entries in expenses by setting the state to an empty one.
+
+* `clear c/revenue`: clears all entries in revenues by setting the state to an empty one.
+
+</div>
+
+*(Add screenshots for before and after clear.)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+The `clear` command will clear all entries in the stipulated category. If you would like to delete selected
+entries, use the `delete` command instead.
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
 
 ### Calculating net profits based on expenses and revenues: `profit` 
+If you wish to calculate the profits you have currently, you may use this command to do so.
+ 
+Format: `profit`
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `profit`: Returns the profits by taking the difference between the expenses and revenues.
+
+</div>
+
+*(Add screenshot showing the profit message)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+The `profit` function will show deficits as a negative number should expenses be greater than revenue.
+</div>
+
 
 ### Undoing Entry-level commands: `undo`
 If you wish to undo the previous command, you can use this command to return to the state of entries prior to
