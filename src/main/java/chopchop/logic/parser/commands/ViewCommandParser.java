@@ -24,9 +24,7 @@ public class ViewCommandParser {
      * @return     a ViewCommand , if the input was valid.
      */
     public static Result<? extends Command> parseViewCommand(CommandArguments args) {
-        if (!args.getCommand().equals(commandName)) {
-            return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), commandName);
-        }
+        assert args.getCommand().equals(Strings.COMMAND_VIEW);
 
         // we expect no named arguments
         Optional<ArgName> foo;

@@ -2,6 +2,7 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import chopchop.commons.core.Messages;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.logic.parser.ItemReference;
@@ -10,7 +11,7 @@ import chopchop.model.recipe.Recipe;
 import chopchop.ui.DisplayNavigator;
 
 /**
- * Display a recipe identified using its name from the recipe book.
+ * Displays a recipe identified by the index number or its name from the recipe book.
  */
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
@@ -36,10 +37,23 @@ public class ViewCommand extends Command {
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-        Recipe recipe = model
-                .findRecipeWithName(this.item.getName())
-                .orElseThrow(() -> new CommandException(String.format(MESSAGE_RECIPE_NOT_FOUND,
-                        this.item.getName())));
+        Recipe recipe;
+        if (this.item.isIndexed()) {
+            var lastShownList = model.getFilteredRecipeList();
+
+            if (this.item.getZeroIndex() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
+            }
+
+            recipe = lastShownList.get(this.item.getZeroIndex());
+
+        } else {
+            recipe = model
+                    .findRecipeWithName(this.item.getName())
+                    .orElseThrow(() -> new CommandException(String.format(MESSAGE_RECIPE_NOT_FOUND,
+                            this.item.getName())));
+        }
+
 
         if (DisplayNavigator.hasDisplayController()) {
             DisplayNavigator.loadRecipeDisplay(recipe);
