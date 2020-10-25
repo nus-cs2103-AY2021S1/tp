@@ -28,6 +28,7 @@ import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.MeetingFilterCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
+import seedu.address.logic.commands.project.TaskSorterCommand;
 import seedu.address.logic.commands.project.ViewMeetingCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.commands.project.ViewTeammateCommand;
@@ -142,6 +143,12 @@ public class MainCatalogueParser {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
+        case TaskSorterCommand.COMMAND_WORD:
+            if (status != Status.PROJECT_LIST) {
+                return new TaskSorterCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
         case MeetingFilterCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new MeetingFilterCommandParser().parse(arguments);
