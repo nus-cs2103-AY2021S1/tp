@@ -29,17 +29,16 @@ public class UnremindCommand extends NegateCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Removes the reminder from the assignment identified by the index number "
-            + "used in the displayed assignment list."
+            + "used in the displayed reminders list."
             + " Assignments will no longer have reminders set and will be removed from the displayed reminders list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_UNREMIND_ASSIGNMENT_SUCCESS = "Removed reminder for Assignment: %1$s";
-    public static final String MESSAGE_UNREMINDED_ASSIGNMENT = "This assignment does not have reminders set.";
 
     /**
      * Constructs an UnremindCommand to remove reminders from the specified assignment.
-     * @param targetIndex index of the assignment in the filtered assignment list to remove reminders
+     * @param targetIndex index of the assignment in the reminded assignments list to remove reminders
      */
     public UnremindCommand(Index targetIndex) {
         super(targetIndex);
@@ -48,19 +47,15 @@ public class UnremindCommand extends NegateCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Assignment> lastShownList = model.getFilteredAssignmentList();
+        List<Assignment> remindedAssignmentsList = model.getRemindedAssignmentsList();
 
-        if (getTargetIndex().getZeroBased() >= lastShownList.size()) {
+        if (getTargetIndex().getZeroBased() >= remindedAssignmentsList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
         }
 
-        Assignment assignmentToUnremind = lastShownList.get(getTargetIndex().getZeroBased());
-
-        if (!assignmentToUnremind.isReminded() && model.hasAssignment(assignmentToUnremind)) {
-            throw new CommandException(MESSAGE_UNREMINDED_ASSIGNMENT);
-        }
-
+        Assignment assignmentToUnremind = remindedAssignmentsList.get(getTargetIndex().getZeroBased());
         assert(assignmentToUnremind.isReminded());
+
         Assignment unremindedAssignment = createUnremindedAssignment(assignmentToUnremind);
 
         model.setAssignment(assignmentToUnremind, unremindedAssignment);
