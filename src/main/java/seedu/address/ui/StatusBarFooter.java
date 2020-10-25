@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -21,7 +23,8 @@ public class StatusBarFooter extends UiPart<Region> {
      */
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
-        randomQuote.setText("Stop spending like you are rich.");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
+        randomQuote.setText(formatter.format(LocalDate.now()));
     }
 
 }
