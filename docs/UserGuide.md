@@ -101,10 +101,11 @@ UI component | Description
 * Parameters can be in any order.<br>
   e.g. if the command specifies `c/CATEGORY d/DESCRIPTION...`, `d/DESCRIPTION c/CATEGORY...` is also acceptable.
 
-
+The commands are separated into three categories: App-Level commands, Entry-Level commands and Account-Level Commands
 </div>
 
 ## App-Level Commands
+App-Level commands deals with interactions with the app, Common Cents, itself.
 
 ### Viewing help : `help`
 
@@ -122,6 +123,7 @@ Exits the program.
 Format: `exit`
 
 ## Entry-Level Commands
+Entry-Level commands involves managing the entries which are either expenses or revenues in an account. 
 
 ### Adding an entry: `add`
 
@@ -228,8 +230,7 @@ list, with the updated `ENTRY INDEX`.
 ### Calculating net profits based on expenses and revenues: `profit` 
 
 ### Undoing Entry-level commands: `undo`
-If you wish to undo the previous command, you can use this command to return to the state of entries prior to
-previous command.
+You can use this command to return to the state of entries prior to previous command.
  
 Format: `undo`
  
@@ -264,11 +265,11 @@ There is no `redo` command to revert your `undo` command. Do use the `undo` comm
 </div>
 
 ## Account-level Commands
+Account-Level commands involves managing the different accounts in the app. 
 
 ### Add new Account: `newacc`
-If you wish to separate your expenses and revenues for another purpose, you can create a new account with this
-command. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
-or switch to it via [`switchacc`](#switching-accounts-switchacc). 
+You can create a new account to manage a different set of entries with this command. Once the account is created, 
+you can check it via [`listacc`](#listing-accounts-you-have-listacc) or switch to it via [`switchacc`](#switching-accounts-switchacc). 
 
 Format: `newacc n/NAME`
 
@@ -283,7 +284,8 @@ Format: `newacc n/NAME`
 *(Insert screenshot here for the second example, pointing to the feedback)*
 
 ### Deleting an account: `deleteacc`
-If you wish to remove an account that you are not using anymore, you can delete the account using this command.
+You can remove the account using this command. This command is useful for clearing accounts that you might not be using
+anymore.
 
 Format: `deleteacc INDEX`
 
@@ -323,7 +325,7 @@ irreversible action and cannot be undone. Do delete your account with caution!
 </div>
 
 ### Editing the name current account: `editacc`
-You can edit the name of the current account you are on using this command. 
+You can edit the name of the current account you are on using this command.
 
 Format: `editacc n/NAME`
 
@@ -364,8 +366,8 @@ Format: `listacc`
 *(Insert screenshot here, pointing to the feedback)*
 
 ### Switching accounts: `switchacc`
-If you wish to manage your expenses or revenues on another account, you can use this command to switch to the desired
-account. 
+You can use this command to switch to the desired account. This is useful if you want to manage entries in the 
+account or edit the name of the desired account.
 
 Format: `switchacc INDEX`
 
