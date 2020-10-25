@@ -7,19 +7,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteMeetingCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditMeetingCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindMeetingCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListMeetingCommand;
 import seedu.address.logic.commands.bidcommands.AddBidCommand;
 import seedu.address.logic.commands.bidcommands.DeleteBidCommand;
 import seedu.address.logic.commands.bidcommands.EditBidCommand;
@@ -30,6 +25,12 @@ import seedu.address.logic.commands.biddercommands.DeleteBidderCommand;
 import seedu.address.logic.commands.biddercommands.EditBidderCommand;
 import seedu.address.logic.commands.biddercommands.FindBidderCommand;
 import seedu.address.logic.commands.biddercommands.ListBidderCommand;
+import seedu.address.logic.commands.meetingcommands.AddMeetingCommand;
+import seedu.address.logic.commands.meetingcommands.DeleteMeetingCommand;
+import seedu.address.logic.commands.meetingcommands.EditMeetingCommand;
+import seedu.address.logic.commands.meetingcommands.FindMeetingCommand;
+import seedu.address.logic.commands.meetingcommands.ListMeetingCommand;
+import seedu.address.logic.commands.meetingcommands.SortMeetingCommand;
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.logic.commands.property.EditPropertyCommand;
@@ -48,6 +49,11 @@ import seedu.address.logic.parser.bidparser.DeleteBidCommandParser;
 import seedu.address.logic.parser.bidparser.EditBidCommandParser;
 import seedu.address.logic.parser.bidparser.FindBidCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.meetingparser.AddMeetingCommandParser;
+import seedu.address.logic.parser.meetingparser.DeleteMeetingCommandParser;
+import seedu.address.logic.parser.meetingparser.EditMeetingCommandParser;
+import seedu.address.logic.parser.meetingparser.FindMeetingCommandParser;
+import seedu.address.logic.parser.meetingparser.SortMeetingCommandParser;
 import seedu.address.logic.parser.property.AddPropertyCommandParser;
 import seedu.address.logic.parser.property.DeletePropertyCommandParser;
 import seedu.address.logic.parser.property.EditPropertyCommandParser;
@@ -137,6 +143,9 @@ public class AddressBookParser {
 
         case FindMeetingCommand.COMMAND_WORD:
             return new FindMeetingCommandParser().parse(arguments);
+
+        case SortMeetingCommand.COMMAND_WORD:
+            return new SortMeetingCommandParser().parse(arguments);
 
         // -------------------- PROPERTY ------------------- //
         case AddPropertyCommand.COMMAND_WORD:

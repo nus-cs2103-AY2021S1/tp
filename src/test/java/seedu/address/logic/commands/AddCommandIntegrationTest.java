@@ -42,7 +42,7 @@ public class AddCommandIntegrationTest {
                 model.getPropertyBook(),
                 model.getBidderAddressBook(),
                 model.getSellerAddressBook(),
-                model.getMeetingManager()
+                model.getMeetingBook()
         );
         expectedModel.addPerson(validPerson);
 

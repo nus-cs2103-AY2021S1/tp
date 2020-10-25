@@ -46,7 +46,6 @@ public class AddSellerCommand extends Command {
         if (model.hasSeller(seller)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
         model.addSeller(seller);
         return new CommandResult(String.format(MESSAGE_SUCCESS, seller)).setEntity(EntityType.SELLER);
     }

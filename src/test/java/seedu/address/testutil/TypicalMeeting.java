@@ -8,38 +8,38 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.MeetingBook;
-import seedu.address.model.calendar.CalendarMeeting;
+import seedu.address.model.meeting.Meeting;
 
 /**
  * A utility class containing a list of {@code Seller} objects to be used in tests.
  */
 public class TypicalMeeting {
 
-    public static final CalendarMeeting ALICE = new MeetingBuilder().withPropertyId("P1")
+    public static final Meeting ALICE = new MeetingBuilder().withPropertyId("P1")
             .withBidderId("B1").withVenue("Alice's Wonderland")
             .withTime("friends").build();
-    public static final CalendarMeeting BENSON = new MeetingBuilder().withPropertyId("P2")
+    public static final Meeting BENSON = new MeetingBuilder().withPropertyId("P2")
             .withTime("owesMoney").withVenue("Beverly Hills").build();
-    public static final CalendarMeeting CARL = new MeetingBuilder().withPropertyId("P3")
+    public static final Meeting CARL = new MeetingBuilder().withPropertyId("P3")
             .withBidderId("B2").withVenue("Carl Town").build();
-    public static final CalendarMeeting DANIEL = new MeetingBuilder().withPropertyId("P4")
+    public static final Meeting DANIEL = new MeetingBuilder().withPropertyId("P4")
             .withBidderId("B3").withTime("friends").withVenue("Dempsy hill").build();
-    public static final CalendarMeeting ELLE = new MeetingBuilder().withPropertyId("P5")
+    public static final Meeting ELLE = new MeetingBuilder().withPropertyId("P5")
             .withBidderId("B4").withVenue("Easton Avenue")
             .build();
-    public static final CalendarMeeting FIONA = new MeetingBuilder().withPropertyId("P6")
+    public static final Meeting FIONA = new MeetingBuilder().withPropertyId("P6")
             .withBidderId("B5").withVenue("Fiona Road")
             .build();
-    public static final CalendarMeeting GEORGE = new MeetingBuilder()
+    public static final Meeting GEORGE = new MeetingBuilder()
             .withPropertyId("P7").withBidderId("B6")
             .withVenue("George Town")
             .build();
 
     // Manually added - Meeting's details found in {@code CommandTestUtil}
-    public static final CalendarMeeting AMY = new MeetingBuilder().withPropertyId("P1").withBidderId("B1")
+    public static final Meeting AMY = new MeetingBuilder().withPropertyId("P1").withBidderId("B1")
             .withTime(VALID_TAG_FRIEND).withVenue("S Avenue")
             .build();
-    public static final CalendarMeeting BOB = new MeetingBuilder().withPropertyId("P2").withBidderId("B2")
+    public static final Meeting BOB = new MeetingBuilder().withPropertyId("P2").withBidderId("B2")
             .withTime(VALID_TAG_HUSBAND).withVenue("Serangoon")
             .build();
 
@@ -48,13 +48,13 @@ public class TypicalMeeting {
      */
     public static MeetingBook getTypicalMeetingAddressBook() {
         MeetingBook ab = new MeetingBook();
-        for (CalendarMeeting bidder : getTypicalMeetings()) {
+        for (Meeting bidder : getTypicalMeetings()) {
             ab.addMeeting(bidder);
         }
         return ab;
     }
 
-    public static List<CalendarMeeting> getTypicalMeetings() {
+    public static List<Meeting> getTypicalMeetings() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 }

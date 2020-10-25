@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
@@ -35,7 +35,7 @@ import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.bidderstorage.JsonBidderAddressBookStorage;
 import seedu.address.storage.bidstorage.JsonBidBookStorage;
-import seedu.address.storage.calendar.JsonMeetingBookStorage;
+import seedu.address.storage.meeting.JsonMeetingBookStorage;
 import seedu.address.storage.property.JsonPropertyBookStorage;
 import seedu.address.storage.sellerstorage.JsonSellerAddressBookStorage;
 import seedu.address.testutil.PersonBuilder;
@@ -159,7 +159,7 @@ public class LogicManagerTest {
             String expectedMessage) {
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(),
-                model.getSellerAddressBook(), model.getMeetingManager());
+                model.getSellerAddressBook(), model.getMeetingBook());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -238,7 +238,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveMeetingBook(ReadOnlyMeetingManager meetingBook, Path filePath) throws IOException {
+        public void saveMeetingBook(ReadOnlyMeetingBook meetingBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

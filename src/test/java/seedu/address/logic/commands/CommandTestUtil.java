@@ -17,8 +17,8 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bid.BidContainsKeywordsPredicate;
-import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.calendar.VenueContainsKeywordsPredicate;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.VenueContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -138,8 +138,8 @@ public class CommandTestUtil {
     public static void showMeetingAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
 
-        CalendarMeeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
-        final String[] splitName = meeting.getCalendarVenue().venue.split("\\s+");
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        final String[] splitName = meeting.getVenue().venue.split("\\s+");
         model.updateFilteredMeetingList(new VenueContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredMeetingList().size());

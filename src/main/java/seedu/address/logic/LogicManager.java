@@ -14,11 +14,11 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
-import seedu.address.model.calendar.CalendarMeeting;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -59,7 +59,7 @@ public class LogicManager implements Logic {
             storage.saveBidBook(model.getBidBook());
             storage.saveBidderAddressBook(model.getBidderAddressBook());
             storage.saveSellerAddressBook(model.getSellerAddressBook());
-            storage.saveMeetingBook(model.getMeetingManager());
+            storage.saveMeetingBook(model.getMeetingBook());
             storage.savePropertyBook(model.getPropertyBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
@@ -143,12 +143,12 @@ public class LogicManager implements Logic {
     // ===================== MEETING =====================
 
     @Override
-    public ReadOnlyMeetingManager getMeetingManager() {
-        return model.getMeetingManager();
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return model.getMeetingBook();
     }
 
     @Override
-    public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+    public ObservableList<Meeting> getFilteredMeetingList() {
         return model.getFilteredMeetingList();
     }
 

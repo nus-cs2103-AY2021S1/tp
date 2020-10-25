@@ -8,21 +8,21 @@ import java.util.stream.Collectors;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.ReadOnlyMeetingManager;
+import seedu.address.model.ReadOnlyMeetingBook;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
-import seedu.address.model.calendar.CalendarAdmin;
-import seedu.address.model.calendar.CalendarMeeting;
-import seedu.address.model.calendar.CalendarPaperwork;
-import seedu.address.model.calendar.CalendarTime;
-import seedu.address.model.calendar.CalendarVenue;
-import seedu.address.model.calendar.CalendarViewing;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.id.SellerId;
+import seedu.address.model.meeting.Admin;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.Paperwork;
+import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.Venue;
+import seedu.address.model.meeting.Viewing;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -161,20 +161,20 @@ public class SampleDataUtil {
     }
 
     // ================= MEETING ==================
-    public static CalendarMeeting[] getSampleMeetings() {
-        return new CalendarMeeting[] {
-            new CalendarPaperwork(new BidderId("B1"), new PropertyId("P2"),
-                        new CalendarTime("15 OCT 2020"), new CalendarVenue("Marina Bay")),
-            new CalendarAdmin(new BidderId("B5"), new PropertyId("P6"),
-                        new CalendarTime("19 OCT 2020"), new CalendarVenue("Bedok")),
-            new CalendarViewing(new BidderId("B11"), new PropertyId("P8"),
-                        new CalendarTime("21 OCT 2020"), new CalendarVenue("Tampines"))
+    public static Meeting[] getSampleMeetings() {
+        return new Meeting[] {
+            new Paperwork(new BidderId("B1"), new PropertyId("P2"),
+                        new Time("15 OCT 2020"), new Venue("Marina Bay")),
+            new Admin(new BidderId("B5"), new PropertyId("P6"),
+                        new Time("19 OCT 2020"), new Venue("Bedok")),
+            new Viewing(new BidderId("B11"), new PropertyId("P8"),
+                        new Time("21 OCT 2020"), new Venue("Tampines"))
         };
     }
 
-    public static ReadOnlyMeetingManager getSampleMeetingBook() {
+    public static ReadOnlyMeetingBook getSampleMeetingBook() {
         MeetingBook sampleMeetingAb = new MeetingBook();
-        for (CalendarMeeting sampleMeeting : getSampleMeetings()) {
+        for (Meeting sampleMeeting : getSampleMeetings()) {
             sampleMeetingAb.addMeeting(sampleMeeting);
         }
         return sampleMeetingAb;

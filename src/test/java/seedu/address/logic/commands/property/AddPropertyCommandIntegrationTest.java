@@ -45,7 +45,7 @@ public class AddPropertyCommandIntegrationTest {
                 model.getPropertyBook(),
                 model.getBidderAddressBook(),
                 model.getSellerAddressBook(),
-                model.getMeetingManager()
+                model.getMeetingBook()
         );
         expectedModel.addProperty(validProperty);
 

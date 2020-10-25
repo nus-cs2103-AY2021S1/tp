@@ -40,7 +40,7 @@ public class AddSellerCommandIntegrationTest {
                 model.getPropertyBook(),
                 model.getBidderAddressBook(),
                 model.getSellerAddressBook(),
-                model.getMeetingManager()
+                model.getMeetingBook()
         );
 
         expectedModel.addSeller(validSeller);

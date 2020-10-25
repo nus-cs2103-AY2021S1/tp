@@ -47,7 +47,7 @@ public class DeleteSellerCommandTest {
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(),
-                model.getSellerAddressBook(), model.getMeetingManager());
+                model.getSellerAddressBook(), model.getMeetingBook());
         expectedModel.deleteSeller(sellerToDelete);
         assertCommandSuccess(deleteSellerCommand, model, expectedMessage, expectedModel);
     }
@@ -70,7 +70,7 @@ public class DeleteSellerCommandTest {
         String expectedMessage = String.format(DeleteSellerCommand.MESSAGE_DELETE_SELLER_SUCCESS, sellerToDelete);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
                 new PropertyBook(), model.getBidderAddressBook(),
-                model.getSellerAddressBook(), model.getMeetingManager());
+                model.getSellerAddressBook(), model.getMeetingBook());
         expectedModel.deleteSeller(sellerToDelete);
         showNoSeller(expectedModel);
 
