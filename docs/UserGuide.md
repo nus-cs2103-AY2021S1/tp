@@ -47,7 +47,7 @@ If you see a acronym that you don't understand, kindly refer to the [glossary](#
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the __parameters__ to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the __parameters__ to be keyed-in by the user.<br>
   e.g. in `add_inventory i/ITEM`, `ITEM` is a parameter which can be used as `add_inventory i/MacBook`.
 * Items in square brackets are **optional**.<br>
   e.g `amt/AMOUNT [at/DATE] [TIME]` can be used as the possible formats:
@@ -101,7 +101,7 @@ Removes the specified record from the inventory list.
 
 __Format:__ `delete_inventory INDEX`
 
-__Example:__ `delete_inventory 1` to delete the inventory record with ID `1`.
+__Example:__ `delete_inventory 1` to delete the inventory record at index `1`.
 
 ![Delete inventory command example](images/commands/delete_inventory_command.jpg)
 
@@ -117,7 +117,7 @@ Edits the specified record in the inventory list.
 
 __Format:__ `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`
 
-__Example:__ `edit_inventory 1 i/iPad q/100` to edit the inventory record with ID `1`.
+__Example:__ `edit_inventory 1 i/iPad q/100` to edit the inventory record at index `1`.
 
 ![Edit inventory command example](images/commands/edit_inventory_command.jpg)
 
@@ -171,7 +171,7 @@ Deletes the specified finance record from the account.
 
 __Format:__ `delete_finance INDEX`
 
-__Example:__ `delete_finance 1` to delete the finance record with ID `1`.
+__Example:__ `delete_finance 1` to delete the finance record with index `1`.
 
 ![Delete finance command example](images/commands/delete_finance_command.jpg)
 
@@ -187,7 +187,7 @@ Edits the specified record in the finance account.
 
 __Format:__ `edit_finance INDEX amt/AMOUNT [at/DATE]`
 
-__Example:__ `edit_finance 1 amt/120` to edit the finance record with ID `1`.
+__Example:__ `edit_finance 1 amt/120` to edit the finance record at `1`.
 
 ![Edit finance command example](images/commands/edit_finance_command.jpg)
 
