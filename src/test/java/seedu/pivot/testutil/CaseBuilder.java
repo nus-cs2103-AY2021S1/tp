@@ -101,7 +101,9 @@ public class CaseBuilder {
      * Sets the {@code Document} of the {@code Case} that we are building.
      */
     public CaseBuilder withDocument(String name, String ref) {
-        this.documents = new ArrayList<>();
+        if (this.documents == null) {
+            this.documents = new ArrayList<>();
+        }
         this.documents.add(new Document(new Name(name), new Reference(ref)));
         return this;
     }
