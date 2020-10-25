@@ -39,6 +39,9 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
         addData(TOTAL_CARBOHYDRATE_TEXT, totalCarbs);
         addData(TOTAL_PROTEIN_TEXT, totalProtein);
         addData(TOTAL_FAT_TEXT, totalFats);
+
+        //Hide the graph if it is not visible
+        pieChart.setVisible(totalCalories != 0);
     }
 
     private void addData(String formatString, int count) {
