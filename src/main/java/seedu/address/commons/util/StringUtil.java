@@ -7,6 +7,8 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.Arrays;
 
+import seedu.address.logic.commands.enums.Inequality;
+
 /**
  * Helper functions for handling strings.
  */
@@ -64,5 +66,32 @@ public class StringUtil {
         } catch (NumberFormatException nfe) {
             return false;
         }
+    }
+
+    /**
+     * Returns true if {@code s} represents a non-negative unsigned double
+     *
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isNonNegativeUnsignedDouble(String s) {
+        requireNonNull(s);
+
+        try {
+            double value = Double.parseDouble(s);
+            return value >= 0 && !s.startsWith("+");
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    /**
+     * Returns true if {@code s} represents the symbol of inequality.
+     *
+     * @throws NullPointerException if {@code s} is null.
+     */
+    public static boolean isInequality(String s) {
+        requireNonNull(s);
+
+        return Inequality.get(s) != null;
     }
 }

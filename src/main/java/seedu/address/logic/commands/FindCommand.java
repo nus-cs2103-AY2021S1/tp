@@ -30,8 +30,8 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredFoodList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_VENDORS_LISTED_OVERVIEW,
-                        model.getFilteredFoodList().size()), false, false, true);
+                String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW,
+                        model.getFilteredFoodListSize()), false, false, true);
     }
 
     @Override

@@ -18,6 +18,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
+    //TODO: Update message to be closer to user guide
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a OrderItem to the OrderManager. "
             + "Parameters: "
             + " Index of FoodItem in Menu "
