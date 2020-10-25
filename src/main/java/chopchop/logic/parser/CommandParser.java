@@ -36,6 +36,31 @@ public class CommandParser {
                 break;
             }
 
+            var pair = splitUntilNextSlash(input.drop(1));
+            var self = new StringView(pair.fst());
+            input = pair.snd();
+
+            {
+
+                var argValue = new StringView("");
+                var argName = self.bisect(' ', argValue);
+
+                if (argName.isEmpty()) {
+                    return Result.error("expected argument name after '/'");
+                }
+
+                System.err.printf("arg = %s, val = %s\n", argName, argValue);
+                ret.add(Pair.of(new ArgName(argName.trim().toString()), argValue.trim().toString()));
+            }
+
+            if (input.isEmpty()) {
+                break;
+            }
+
+
+
+            /*
+
             // TODO: this won't handle things like slashes in dates. ideally we want to
             // split based on " /" (ie. there must be a leading space before the slash),
             // but that requires changing StringView::bisect. later.
@@ -58,6 +83,7 @@ public class CommandParser {
             }
 
             input = input.undrop(1);
+            */
         }
 
         return Result.of(ret);
@@ -78,19 +104,12 @@ public class CommandParser {
         var x = new StringView("");
         var xs = new StringView("");
 
-        sv.bisect(x, ' ', xs);
+        var command = sv.bisect(' ', xs).toString().strip();
 
-        var command = x.toString().strip();
+        var p = splitUntilNextSlash(xs);
+        var theRest = p.fst();
 
-        xs.bisect(x, '/', xs);
-        var theRest = x.toString().strip();
-
-        if (input.indexOf("/") != -1) {
-            xs = xs.undrop(1);
-            assert xs.at(0) == '/';
-        }
-
-        return this.parseNamedArguments(xs)
+        return this.parseNamedArguments(p.snd())
             .map(args -> new CommandArguments(command, theRest, args));
     }
 
@@ -124,5 +143,26 @@ public class CommandParser {
                     return Result.error("unknown command '%s'", args.getCommand());
                 }
             });
+    }
+
+
+
+    private Pair<String, StringView> splitUntilNextSlash(StringView input) {
+
+        int i = 0;
+        var sb = new StringBuilder();
+
+        for (; i < input.size(); i++) {
+            if (i + 1 < input.size() && input.at(i) == '\\' && input.at(i + 1) == '/') {
+                i += 1;
+                sb.append("/");
+            } else if (input.at(i) == '/') {
+                break;
+            } else {
+                sb.append(input.at(i));
+            }
+        }
+
+        return Pair.of(sb.toString().strip(), input.drop(i));
     }
 }
