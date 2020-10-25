@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands.casecommand;
+package seedu.pivot.logic.commands.casecommands;
 
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
@@ -8,7 +8,6 @@ import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.pivot.logic.commands.casecommands.ListCaseCommand;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.UserPrefs;

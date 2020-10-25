@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands.casecommand;
+package seedu.pivot.logic.commands.casecommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import seedu.pivot.commons.core.Messages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.DeleteCommand;
-import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.UserPrefs;

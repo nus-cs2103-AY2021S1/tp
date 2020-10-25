@@ -29,8 +29,8 @@ public class AddDocumentCommand extends AddCommand {
             + PREFIX_NAME + "Location file "
             + PREFIX_REFERENCE + "test1.txt";
 
-    private static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
-    private static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
+    public static final String MESSAGE_ADD_DOCUMENT_SUCCESS = "New document added: %1$s";
+    public static final String MESSAGE_DUPLICATE_DOCUMENT = "This document already exists in the case.";
     private static final Logger logger = LogsCenter.getLogger(AddDocumentCommand.class);
     private final Index index;
     private final Document doc;
