@@ -7,22 +7,7 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddItemCommand;
-import seedu.address.logic.commands.AddQuantityToItemCommand;
-import seedu.address.logic.commands.AddRecipeCommand;
-import seedu.address.logic.commands.ClearItemCommand;
-import seedu.address.logic.commands.ClearRecipeCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CraftItemCommand;
-import seedu.address.logic.commands.DeleteItemCommand;
-import seedu.address.logic.commands.DeleteRecipeCommand;
-import seedu.address.logic.commands.EditItemCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindItemCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListItemCommand;
-import seedu.address.logic.commands.ListRecipeCommand;
-import seedu.address.logic.commands.ViewDetailsCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -63,8 +48,12 @@ public class InventoryParser {
             return new EditItemCommandParser().parse(arguments);
         case AddQuantityToItemCommand.COMMAND_WORD:
             return new AddQuantityToItemCommandParser().parse(arguments);
+        case AddItemTagCommand.COMMAND_WORD:
+            return new AddItemTagCommandParser().parse(arguments);
         case FindItemCommand.COMMAND_WORD:
             return new FindItemCommandParser().parse(arguments);
+        case FindByTagCommand.COMMAND_WORD:
+            return new FindByTagCommandParser().parse(arguments);
         case ClearItemCommand.COMMAND_WORD:
             return new ClearItemCommand();
         case ListItemCommand.COMMAND_WORD:
