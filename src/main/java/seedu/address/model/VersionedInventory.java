@@ -59,9 +59,9 @@ public class VersionedInventory {
 
         assert prevState != null : "Previous state is invalid!";
 
-        model.setItemList(new ItemList(inventoryStateList.get(currentStatePointer - 1).getItemList()));
-        model.setRecipeList(new RecipeList(inventoryStateList.get(currentStatePointer - 1).getRecipeList()));
-        model.setLocationList(new LocationList(inventoryStateList.get(currentStatePointer - 1).getLocationList()));
+        model.setItemList(new ItemList(prevState.getItemList()));
+        model.setRecipeList(new RecipeList(prevState.getRecipeList()));
+        model.setLocationList(new LocationList(prevState.getLocationList()));
 
         currentStatePointer--;
 
@@ -83,9 +83,9 @@ public class VersionedInventory {
 
         assert nextState != null : "Next state is invalid!";
 
-        model.setItemList(new ItemList(inventoryStateList.get(currentStatePointer + 1).getItemList()));
-        model.setRecipeList(new RecipeList(inventoryStateList.get(currentStatePointer + 1).getRecipeList()));
-        model.setLocationList(new LocationList(inventoryStateList.get(currentStatePointer + 1).getLocationList()));
+        model.setItemList(new ItemList(nextState.getItemList()));
+        model.setRecipeList(new RecipeList(nextState.getRecipeList()));
+        model.setLocationList(new LocationList(nextState.getLocationList()));
 
         currentStatePointer++;
 
