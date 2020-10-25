@@ -1,7 +1,10 @@
 package seedu.taskmaster.ui;
 
 import java.util.logging.Logger;
+import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -61,7 +64,16 @@ public class MainWindow extends UiPart<Stage> {
     private Menu studentRecordMenu;
 
     @FXML
-    private StackPane buttonListPanelPlaceholder;
+    private StackPane sessionListPanelPlaceholder;
+
+    /*
+    THIS SECTION IS A STUB FOR SESSION LIST - REMOVE WHEN IT IS IMPLEMENTED
+     */
+    ObservableList<SessionStub> sessionList = FXCollections.observableArrayList();
+    /*
+    END OF STUB
+     */
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -89,6 +101,16 @@ public class MainWindow extends UiPart<Stage> {
             }
         });
         studentRecordMenu.getItems().add(newMenuItem);
+
+        /*
+        THIS SECTION IS A STUB FOR SESSION LIST - REMOVE WHEN IT IS IMPLEMENTED
+         */
+        SessionStub newSessionToAdd = new SessionStub("Session 1", logic.getFilteredStudentRecordList());
+        sessionList.add(newSessionToAdd);
+        /*
+        END OF STUB
+         */
+
     }
 
     public Stage getPrimaryStage() {
@@ -134,8 +156,12 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts(int index) {
         assert index >= 0;
+
         fillMainList(index);
         viewListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
+
+        SessionListPanel sessionListPanel = new SessionListPanel(sessionList, this::fillInnerParts, this::handleStudent);
+        sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -155,7 +181,7 @@ public class MainWindow extends UiPart<Stage> {
         if (index == 0) {
             mainListPanel = new StudentListPanel(logic.getFilteredStudentList());
         } else {
-            mainListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
+            mainListPanel = new StudentRecordListPanel(sessionList.get(index - 1).getSrList());
         }
     }
 
