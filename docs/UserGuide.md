@@ -110,18 +110,29 @@ You cannot add flashcard with missing question or missing answer or missing choi
 You should have at least two choices.
 </div>
 
-### Open a flashcard: `open`
+### Open a flashcard: `open INDEX`
 
-Opens a specified flashcard from the list .
+To view a flashcard you can open it by its index.
 
-Format: `open INDEX`
+<div markdown="block" class="alert alert-info">
 
-* Opens the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+:information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
 
-Examples:
-* `list` followed by `open 2` opens the 2nd flashcard in the list.
+</div>
+
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+
+	![OpenIndexStep1](./images/OpenIndexStep1.png)
+	
+2. Using the indices of the displayed list, enter the open command followed by the index of the flashcard you want to open. For example, if you want to open the 1st flashcard in the displayed list, you can enter `open 1`.
+
+	![OpenIndexStep2](./images/OpenIndexStep2.png)
+	
+3. Press enter and QuickCache will open the flashcard specified by the index.
+
+	![OpenIndexStep3](./images/OpenIndexStep3.png)
+	
+You have successfully opened a flashcard!
 
 ### Editing a flashcard: `edit`
 
@@ -219,33 +230,78 @@ Format: `test INDEX o/OPTION`
 Examples:
 * `list` followed by `test 1 o/2` tests the 1st flashcard in the list with `OPTION 2` corresponding to the 2nd choice in the choices of the multiple choice question as the answer.
 
-### Displaying statistics for a Flashcard: `stats`
+### Displaying statistics for a Flashcard: `stats INDEX`
 
-Shows the Pie Chart for a specified Flashcard in the list.
+To view the statistics of a flashcard you can use the stats command.
 
-Statistics include:
+<div markdown="block" class="alert alert-info">
 
-* The number of times and the percentage the user answers the question associated with the flashcard correctly.
-* The number of times and the percentage the user answers the question associated with the flashcard incorrectly.
+:information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
 
-Format: `stats INDEX`
+</div>
 
-* Displays the statistics of a flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+<div markdown="block" class="alert alert-dark">
 
-### Clearing a flashcard's statistics : `clearstats`
+Statistics include:<br>
 
-Clears the specified flashcard's statistics.
+- The number of times and the percentage the user answers the question associated with the flashcard correctly.<br>
+- The number of times and the percentage the user answers the question associated with the flashcard incorrectly.
 
-Format: `clearstats INDEX`
+</div>
 
-* Clears the statistics of the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
-Examples:
-* `list` followed by `clearstats 2` clears the statistics of the 2nd flashcard in the list.
+	![StatsIndexStep1](./images/StatsIndexStep1.png)
+	
+2. Using the indices of the displayed list, enter the stats command followed by the index of the flashcard you want to view the statistics of. For example, if you want to view the statistics of the first flashcard in the displayed list, you can enter `stats 1`.
+
+	![StatsIndexStep2](./images/StatsIndexStep2.png)
+	
+3. Press enter and QuickCache will display the statistics of the flashcard specified by the index.
+
+	![StatsIndexStep3](./images/StatsIndexStep3.png)
+	
+You have successfully displayed the statistics of a flashcard!
+
+### Clearing a flashcard's statistics : `clearstats INDEX`
+
+To clear the statistics of a flashcard you can use the clearstats command.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
+
+</div>
+
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+
+	![ClearstatsIndexStep1](./images/ClearstatsIndexStep1.png)
+	
+	<div markdown="block" class="alert alert-dark">
+	<Strong>Optional Step:</Strong>
+	You can first check the statistics of the flashcard you want to clear the statistics of.
+	
+	<img src="./images/ClearstatsIndexStepOptional1.png">
+		
+	</div>
+	
+2. Using the indices of the displayed list, enter the clearstats command followed by the index of the flashcard you want to clear the statistics of. For example, if you want to clear the statistics of the first flashcard in the displayed list, you can enter `clearstats 1`.
+
+	![ClearstatsIndexStep2](./images/ClearstatsIndexStep2.png)
+	
+3. Press enter and QuickCache will clear the statistics of the flashcard specified by the index.
+
+	![ClearstatsIndexStep3](./images/ClearstatsIndexStep3.png)
+	
+	<div markdown="block" class="alert alert-dark">
+	<Strong>Optional Step:</Strong>
+	You can check that the statistics of the flashcard has been cleared.
+	
+	<img src="./images/ClearstatsIndexStepOptional2.png">
+	
+	</div>
+	
+You have successfully cleared the statistics of a flashcard!
 
 ### Importing a set of flashcards : `import`
 
