@@ -24,7 +24,7 @@ public class TagContainsKeywordsPredicate implements Predicate<Entry> {
         return this.keywords.stream()
                 .allMatch(keyword -> entry.getTags()
                     .stream()
-                    .map(tag -> tag.getTagName())
+                    .map(Tag::toString)
                     .anyMatch(tagName -> StringUtil.containsWordIgnoreCase(tagName, keyword)));
     }
 
