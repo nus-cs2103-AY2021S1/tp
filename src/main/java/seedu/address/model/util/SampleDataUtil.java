@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import seedu.address.model.CliniCal;
 import seedu.address.model.ReadOnlyCliniCal;
 import seedu.address.model.allergy.Allergy;
+import seedu.address.model.appointment.Appointment;
+import seedu.address.model.appointment.AppointmentDateTime;
 import seedu.address.model.patient.Address;
 import seedu.address.model.patient.BloodType;
 import seedu.address.model.patient.Email;
@@ -54,10 +56,28 @@ public class SampleDataUtil {
         };
     }
 
+    public static Appointment[] getSampleAppointments() {
+        return new Appointment[] {
+            new Appointment(new Name("Alex Yeoh"), new IcNumber("G4329854B"),
+                    new AppointmentDateTime("2020-10-24 10:20"), new AppointmentDateTime("2020-10-24 10:50")),
+            new Appointment(new Name("Bernice Yu"), new IcNumber("S7908430A"),
+                    new AppointmentDateTime("2020-10-25 14:00"), new AppointmentDateTime("2020-10-25 14:20")),
+            new Appointment(new Name("Charlotte Oliveiro"), new IcNumber("S7856411C"),
+                    new AppointmentDateTime("2020-10-25 15:50"), new AppointmentDateTime("2020-10-25 16:10")),
+            new Appointment(new Name("David Li"), new IcNumber("F1155948D"),
+                    new AppointmentDateTime("2020-10-25 16:20"), new AppointmentDateTime("2020-10-25 16:50")),
+            new Appointment(new Name("Irfan Ibrahim"), new IcNumber("S1568938I"),
+                    new AppointmentDateTime("2020-10-25 17:00"), new AppointmentDateTime("2020-10-25 17:10"))
+        };
+    }
+
     public static ReadOnlyCliniCal getSampleCliniCal() {
         CliniCal sampleAb = new CliniCal();
         for (Patient samplePatient : getSamplePatients()) {
             sampleAb.addPatient(samplePatient);
+        }
+        for (Appointment sampleAppointment : getSampleAppointments()) {
+            sampleAb.addAppointment(sampleAppointment);
         }
         return sampleAb;
     }

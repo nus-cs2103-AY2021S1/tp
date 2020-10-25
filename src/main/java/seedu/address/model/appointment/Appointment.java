@@ -17,9 +17,9 @@ import seedu.address.model.patient.Name;
 public class Appointment {
 
     private Name patientName;
+    private IcNumber icNumber;
     private AppointmentDateTime startTime;
     private AppointmentDateTime endTime;
-    private IcNumber icNumber;
 
     /**
      * Patient name, appointment time must be present and not null.
@@ -116,6 +116,18 @@ public class Appointment {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(patientName, startTime, endTime);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Patient: ")
+                .append(getPatientName())
+                .append(" Start: ")
+                .append(getStartTime())
+                .append(" End: ")
+                .append(getEndTime());
+        return builder.toString();
     }
 
 }

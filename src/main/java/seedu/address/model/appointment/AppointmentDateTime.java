@@ -9,7 +9,7 @@ import java.time.format.DateTimeParseException;
 
 public class AppointmentDateTime {
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final String MESSAGE_CONSTRAINTS =
             "Times should be entered in the format: yyyy-MM-dd HH:mm";
     // Compared to other classes, this class uses the LocalDateTime class to check validity of the String
@@ -26,7 +26,7 @@ public class AppointmentDateTime {
     public AppointmentDateTime(String dateTime) {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
-        this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
+        this.dateTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER);
     }
 
     /**
@@ -41,7 +41,7 @@ public class AppointmentDateTime {
         requireNonNull(duration);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.duration = duration;
-        this.dateTime = LocalDateTime.parse(dateTime, FORMATTER).plusMinutes(this.duration);
+        this.dateTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER).plusMinutes(this.duration);
     }
 
     /**
@@ -49,7 +49,7 @@ public class AppointmentDateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test, FORMATTER);
+            LocalDateTime.parse(test, DATE_TIME_FORMATTER);
             return true;
         } catch (DateTimeParseException e) {
             return false;
@@ -74,6 +74,6 @@ public class AppointmentDateTime {
 
     @Override
     public String toString() {
-        return dateTime.toString();
+        return dateTime.format(DATE_TIME_FORMATTER);
     }
 }
