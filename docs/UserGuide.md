@@ -86,7 +86,7 @@ Format: `exit`
 
 ### Adding a recipe: `addR`
 
-Adds a recipe to Recipes Collection.
+Adds a recipe to Recipes list.
 
 Format: `addR n/TITLE i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES img/IMAGE inst
 /INSTRUCTION... [t/TAG]...`
@@ -94,22 +94,23 @@ Format: `addR n/TITLE i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
     * there is a mandatory space before `-` 
 * `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
+* Each `INSTRUCTION` is separated by a `.` e.g. instr/Cook. Eat.
 
 Examples:
-* `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/1. Cook 2. Eat`
-* `addR n/sandwiches i/breads, cheese -2 sclices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/1. Cook 2. Eat`
+* `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat.`
+* `addR n/sandwiches i/breads, cheese -2 sclices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/Cook. Eat.`
 
 
 ### Listing all recipes : `recipes`
 
-Shows a list of all recipes in the Recipes Collection.
+Shows a list of all recipes in the Recipes list.
 
 Format: `recipes`
 
 
 ### Deleting a recipe : `deleteR`
 
-Deletes the specified recipe from Recipes Collection.
+Deletes the specified recipe from Recipes list.
 
 Format: `deleteR INDEX`
 
@@ -118,12 +119,12 @@ Format: `deleteR INDEX`
 * The index **must be a positive integer** 1, 2, 3......
 
 Examples:
-* `list` followed by `deleteR 2` deletes the 2nd recipe in Recipe Collection.
+* `list` followed by `deleteR 2` deletes the 2nd recipe in Recipe list.
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the results of the `search` command.
 
 ### Edit a recipe: `editR`
 
-Edits the specified recipe from Recipes Collection.
+Edits the specified recipe from Recipes list.
 
 Format: `editR INDEX [n/TITLE] i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] [c/CALORIES] [img/IMAGE] 
 [inst/INSTRUCTION...] [t/TAG]...`
@@ -169,7 +170,8 @@ Examples:
 
 ### Recommending recipes : `recommend`
 
-Shows a list of all recipes in the Recipes Collection that can be made with the ingredients in the user's fridge.
+Shows a list of all recipes in the Recipes list that can be made with the ingredients in the user's
+ fridge.
 
 Format: `recommend`
 
@@ -178,7 +180,7 @@ Examples:
 
 ### Clearing all recipes : `clearR'
 
-Clear all the recipes in the Recipe Collection.
+Clear all the recipes in the Recipe list.
 
 Format: `clearR`
 
@@ -218,7 +220,7 @@ Examples:
 
 ### Edit an ingredient: `editF`
 
-Edits the specified ingredient from Ingredient Collection.
+Edits the specified ingredient from Ingredient list.
 
 Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 
@@ -268,16 +270,16 @@ Format: `clearF`
 
 ### Eating a recipe : `eatR`
 
-Add the specified recipe to the Consumption Collection from Recipes Collection.
+Add the specified recipe to the Consumption list from Recipes list.
 
 Format: `eatR INDEX`
 
-* Add the recipe at the specified `INDEX` to the Consumption Collection.
+* Add the recipe at the specified `INDEX` to the Consumption list.
 * The index refers to the index number shown in the displayed recipe list.
 * The index **must be a positive integer** 1, 2, 3......
 
 Examples:
-* `list` followed by `eatR 2` deletes the 2nd recipe in Recipe Collection.
+* `list` followed by `eatR 2` deletes the 2nd recipe in Recipe list.
 * `searchR n/salad` followed by `eatR 1` deletes the 1st recipe in the results of the `search` command.
 
 
@@ -301,11 +303,26 @@ Format: `deleteC INDEX`
 Examples:
 * `calories` followed by `deleteC 2` deletes the 2nd recipe in Consumption List.
 
-### Clearing all consumption : `clearC'
+### Clearing all consumption : `clearC`
 
 Clear all the recipe ate in the daily consumption list.
 
 Format: `clearC`
+
+### Open a single recipe : `selectR`
+
+Display a single recipe in full view.
+
+Format: `selectR INDEX`
+
+Examples:
+* `selectR 1` shows the 1st recipe in full view (left drawer).
+
+### Close left drawer : `close`
+
+Close the left drawer.
+
+Format: `close`
 
 ### Saving the data
 
@@ -331,6 +348,7 @@ _{give a remark to the recipe}_
 
 # Glossary
 **Wishful Shrinking**: can refer to name of the application as a whole or to app’s storage file
+**Consumption**: stores a list of recipes that a user has marked as consumed 
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -338,11 +356,15 @@ _{give a remark to the recipe}_
 
 Features | Format, Examples
 --------|------------------
-**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
-**Add Ingredient to the fridge** | `addF i/INGREDIENTS` <br> e.g., `addF i/banana, green peas, salmon fish`
+**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g. `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
+**Add Ingredient to the fridge** | `addF i/INGREDIENTS [ -QUANTITY]` <br> e.g., `addF i/banana, green peas, salmon fish`
 **Delete recipe** | `deleteR INDEX`<br> e.g., `deleteR 3`
 **Delete Ingredient from the fridge** | `deleteF INDEX`<br> e.g., `deleteF 3`
 **Delete recipe eaten**| `deleteC INDEX` <br> e.g., `deleteC 3`
+**Edit Recipe** | `editR INDEX [n/TITLE] [i/INGREDIENT[, MORE INGREDIENT]] [c/CALORIES] [img/IMAGE] [inst/INSTRUCTION...] [t/TAG]...` <br> e.g. `editR n/apple salad`
+**Edit Ingredient** | `editF INDEX i/INGREDIENTS [ -QUANTITY]` <br> e.g. `editF 3 i/apple sauce -20.0g`
+**Get Edit Recipe** | `editR INDEX` <br> e.g. `editR 2`
+**Get Edit Ingredient** | `editF INDEX` <br> e.g. `editF 2`
 **Search recipe** | `searchR i/INGREDIENT` OR `searchR n/TITLE` OR `searchR t/TAG` <br> e.g. `searchR i/lettuce`, `searchR n/salad`, `searchR t/healthy`
 **Search Ingredient in the fridge** | `searchF KEYWORD`<br> e.g., `searchF avocado`
 **List recipe** | `recipeS`

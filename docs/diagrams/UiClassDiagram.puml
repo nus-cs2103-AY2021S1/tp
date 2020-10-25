@@ -15,6 +15,7 @@ Class RecipeListPanel
 Class RecipeCard
 Class IngredientListPanel
 Class IngredientCard
+Class SingleRecipeCard
 Class ConsumptionListPanel
 Class ConsumptionCard
 Class StatusBarFooter
@@ -41,6 +42,7 @@ MainWindow *-down-> RecipeListPanel
 MainWindow *-down-> ConsumptionListPanel
 MainWindow *-down-> IngredientListPanel
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> SingleRecipeCard
 
 RecipeListPanel -down-> RecipeCard
 
@@ -52,6 +54,7 @@ RecipeListPanel --|> UiPart
 RecipeCard --|> UiPart
 IngredientCard --|> UiPart
 IngredientListPanel --|> UiPart
+SingleRecipeCard --|> UiPart
 ConsumptionCard --|> UiPart
 ConsumptionListPanel --|> UiPart
 StatusBarFooter --|> UiPart
@@ -63,6 +66,7 @@ ConsumptionListPanel --> ConsumptionCard
 RecipeCard ..> Model
 ConsumptionCard ..> Model
 IngredientCard ..> Model
+SingleRecipeCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 

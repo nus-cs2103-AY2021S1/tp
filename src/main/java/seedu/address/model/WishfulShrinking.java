@@ -201,7 +201,7 @@ public class WishfulShrinking implements ReadOnlyWishfulShrinking {
 
     @Override
     public String toString() {
-        return recipes.asUnmodifiableObservableList().size() + " recipes";
+        return recipes.asUnmodifiableObservableList() + " recipes";
         // TODO: refine later
     }
 

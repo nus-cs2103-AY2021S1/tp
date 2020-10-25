@@ -27,6 +27,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
@@ -113,8 +114,9 @@ public class EditRecipeCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        String updatedInstruction = editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
         String updatedRecipeImage = editRecipeDescriptor.getRecipeImage().orElse(recipeToEdit.getRecipeImage());
+        ArrayList<Instruction> updatedInstruction =
+                editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
         ArrayList<Ingredient> updatedIngredient =
                 editRecipeDescriptor.getIngredient().orElse(recipeToEdit.getIngredient());
         Calories updatedCalories = editRecipeDescriptor.getCalories().orElse(recipeToEdit.getCalories());
@@ -148,7 +150,7 @@ public class EditRecipeCommand extends Command {
      */
     public static class EditRecipeDescriptor {
         private Name name;
-        private String instruction;
+        private ArrayList<Instruction> instruction;
         private String recipeImage;
         private ArrayList<Ingredient> ingredients;
         private Calories calories;
@@ -183,10 +185,10 @@ public class EditRecipeCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-        public void setInstruction(String instruction) {
+        public void setInstruction(ArrayList<Instruction> instruction) {
             this.instruction = instruction;
         }
-        public Optional<String> getInstruction() {
+        public Optional<ArrayList<Instruction>> getInstruction() {
             return Optional.ofNullable(instruction);
         }
 
