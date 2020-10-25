@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindowForExercise extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "MainWindowForExercise.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -40,6 +40,9 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane exerciseListPanelPlaceholder;
