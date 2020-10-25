@@ -3,7 +3,9 @@ package seedu.expense.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.expense.model.budget.CategoryBudget;
+import seedu.expense.logic.commands.exceptions.CommandException;
+import seedu.expense.model.Model;
+import seedu.expense.model.tag.Tag;
 
 public class AddCategoryCommand extends Command {
 
@@ -16,16 +18,27 @@ public class AddCategoryCommand extends Command {
             + PREFIX_TAG + "Food";
 
     public static final String MESSAGE_SUCCESS = "New category added: %s";
+    public static final String MESSAGE_DUPLICATE_CATEGORY = "This category already exists in the expense book.";
 
-    private final CategoryBudget toAdd;
+    private final Tag toAdd;
 
     /**
      * Creates an AddCategoryCommand to add the specified {@code categoryBudget}.
      */
-    public AddCategoryCommand(CategoryBudget categoryBudget) {
-        requireNonNull(categoryBudget);
-        toAdd = categoryBudget;
+    public AddCategoryCommand(Tag tag) {
+        requireNonNull(tag);
+        toAdd = tag;
     }
 
+    @Override
+    public CommandResult execute(Model model) throws CommandException {
+        requireNonNull(model);
 
+        if (model.hasCategory(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CATEGORY);
+        }
+
+        model.addCategory(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
+    }
 }

@@ -10,6 +10,8 @@ import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
+import seedu.expense.model.tag.Tag;
+import seedu.expense.model.tag.UniqueTagList;
 
 /**
  * Wraps all data at the expense-book level
@@ -18,6 +20,7 @@ import seedu.expense.model.expense.UniqueExpenseList;
 public class ExpenseBook implements ReadOnlyExpenseBook {
     protected final UniqueCategoryBudgetList budgets;
     protected final UniqueExpenseList expenses;
+    protected final UniqueTagList tags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -29,6 +32,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     {
         budgets = new UniqueCategoryBudgetList();
         expenses = new UniqueExpenseList();
+        tags = new UniqueTagList();
     }
 
     public ExpenseBook() {
@@ -52,10 +56,17 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
         this.expenses.setExpenses(expenses);
     }
 
+    /**
+     * Replaces the contents of the category-budgets list with {@code budgets}.
+     * {@code expenses} must not contain duplicate expenses.
+     */
     public void setBudgets(UniqueCategoryBudgetList budgets) {
         this.budgets.setBudgets(budgets);
     }
 
+    public void setTags(List<Tag> tags) {
+        this.tags.setTags(tags);
+    }
     /**
      * Resets the existing data of this {@code ExpenseBook} with {@code newData}.
      */
@@ -85,6 +96,16 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
 
     public void topupBudget(Amount amount) {
         budgets.topupBudget(amount);
+    }
+
+    public boolean containsCategory(Tag tag) {
+        return tags.contains(tag);
+    }
+
+    public void addCategory(Tag tag) {
+        requireNonNull(tag);
+        tags.add(tag);
+        budgets.add(new CategoryBudget(tag));
     }
 
     //// expense-level operations
