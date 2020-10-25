@@ -34,6 +34,8 @@ public class DeleteDocumentCommand extends DeleteCommand {
      * @param documentIndex document index in the document list.
      */
     public DeleteDocumentCommand(Index caseIndex, Index documentIndex) {
+        requireNonNull(caseIndex);
+        requireNonNull(documentIndex);
         this.caseIndex = caseIndex;
         this.documentIndex = documentIndex;
     }
