@@ -86,7 +86,8 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#fafafa, 20%);
+    -fx-background-color: #fafafa;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.26), 10, 0.12, -1, 2);
 }
 
 .list-cell {
@@ -218,7 +219,9 @@
     -fx-fill: white;
     -fx-text-fill: white;
 }
-
+.scroll-bar {
+    -fx-pref-width: 5;
+}
 .scroll-bar:horizontal .track,
 .scroll-bar:vertical .track{
     -fx-background-color :transparent;
@@ -235,7 +238,6 @@
     -fx-padding :0.0 0.0 10.0 0.0;
 
 }
-
 .scroll-bar:vertical .increment-button ,
 .scroll-bar:vertical .decrement-button {
     -fx-background-color :transparent;
@@ -258,7 +260,7 @@
 
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
-    -fx-background-color :derive(black,90.0%);
+    -fx-background-color :derive(dodgerblue,90.0%);
     -fx-background-insets : 2.0, 0.0, 0.0;
     -fx-background-radius : 2.0em;
 }

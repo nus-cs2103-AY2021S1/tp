@@ -7,13 +7,11 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import com.jfoenix.controls.JFXChipView?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+    <GridPane>
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="200" />
+            <ColumnConstraints hgrow="NEVER" minWidth="10" prefWidth="200" />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" VBox.vgrow="ALWAYS" GridPane.columnIndex="0">
             <padding>
@@ -25,7 +23,6 @@
                 <padding>
                     <Insets top="5" right="5" bottom="5" left="5" />
                 </padding>
-                <Label fx:id="id" styleClass="cell_big_label" wrapText="true" />
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true" />
             </HBox>
             <FlowPane fx:id="tags" />
