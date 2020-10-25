@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -146,12 +147,12 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         this.leftDrawer = new JFXDrawer();
-        leftDrawer.setDefaultDrawerSize(320);
         leftDrawer.setResizeContent(true);
         leftDrawer.setOverLayVisible(false);
         leftDrawer.setResizableOnDrag(true);
         leftDrawer.setId("LEFT");
         this.drawersStack = new JFXDrawersStack();
+        leftDrawer.prefWidthProperty().bind(leftPanel.widthProperty());
         fillRecipePanel();
     }
 
@@ -200,10 +201,10 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.setHeight(600);
         primaryStage.setX(500);
         primaryStage.setY(100);
+        leftPanel.setPrefWidth(400);
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            leftPanel.setPrefWidth(primaryStage.getWidth() / 3);
-            leftDrawer.setDefaultDrawerSize(primaryStage.getWidth() / 3);
+            leftPanel.setPrefWidth(primaryStage.getWidth() / 2);
         };
         primaryStage.widthProperty().addListener(stageSizeListener);
 
@@ -227,8 +228,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void showDrawer(Recipe selected) {
-        StackPane leftDrawerPane = new StackPane();
-        leftDrawerPane.getChildren().add(new SingleRecipeCard(selected, 0).getRoot());
+        double drawerSize = primaryStage.getWidth() / 2.08;
+        leftDrawer.setDefaultDrawerSize(drawerSize);
+        //keep drawer width updated
+        leftDrawer.setMaxWidth(drawerSize);
+        leftDrawer.setMinWidth(drawerSize);
+        ScrollPane leftDrawerPane = new ScrollPane();
+        leftDrawerPane.setFitToWidth(true);
+        leftDrawerPane.setContent(new SingleRecipeCard(selected).getRoot());
         final KeyFrame kf1 = new KeyFrame(Duration.seconds(0), e ->
                 leftDrawer.setSidePane(leftDrawerPane));
         final KeyFrame kf2 = new KeyFrame(Duration.seconds(0.05), e -> {
@@ -245,7 +252,6 @@ public class MainWindow extends UiPart<Stage> {
                 drawersStack.toggle(leftDrawer, false));
         final KeyFrame kf2 = new KeyFrame(Duration.seconds(1), e -> {
             listPanelPlaceholder.getChildren().remove(drawersStack);
-            leftDrawer.setSidePane();
         });
         final Timeline timeline = new Timeline(kf1, kf2);
         Platform.runLater(timeline::play);

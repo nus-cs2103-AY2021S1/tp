@@ -3,8 +3,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<?import javafx.scene.layout.HBox?>
-<?import com.jfoenix.controls.JFXListView?>
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS">
-  <JFXListView fx:id="recipeListView" VBox.vgrow="ALWAYS" orientation="VERTICAL"/>
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS" styleClass="white-400">
+  <ListView fx:id="recipeListView" VBox.vgrow="ALWAYS" orientation="VERTICAL"/>
 </VBox>

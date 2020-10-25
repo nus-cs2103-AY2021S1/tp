@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.PixelReader;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import seedu.address.model.recipe.Recipe;
@@ -33,8 +35,6 @@ public class SingleRecipeCard extends UiPart<HBox> {
     @FXML
     private Label name;
     @FXML
-    private Label id;
-    @FXML
     private Label ingredients;
     @FXML
     private Label calories;
@@ -49,17 +49,18 @@ public class SingleRecipeCard extends UiPart<HBox> {
     /**
      * Creates a {@code RecipeCode} with the given {@code Recipe} and index to display.
      */
-    public SingleRecipeCard(Recipe recipe, int displayedIndex) {
+    public SingleRecipeCard(Recipe recipe) {
         super(FXML);
         this.recipe = recipe;
-        id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
         instruction.setText(recipe.getInstruction().stream()
                 .map(item -> item.toString() + ". \n")
                 .reduce("", (a, b) -> a + b).trim());
 
         Image rawImage = new Image(recipe.getRecipeImage(), 340, 0, true, true);
-        recipeImage.setImage(rawImage);
+        PixelReader reader = rawImage.getPixelReader();
+        WritableImage newImage = new WritableImage(reader, 0, 0, 310, 200);
+        recipeImage.setImage(newImage);
         recipeImage.setPreserveRatio(true);
 
         //Responsive resizing
@@ -92,7 +93,6 @@ public class SingleRecipeCard extends UiPart<HBox> {
 
         // state check
         SingleRecipeCard card = (SingleRecipeCard) other;
-        return id.getText().equals(card.id.getText())
-                && recipe.equals(card.recipe);
+        return recipe.equals(card.recipe);
     }
 }
