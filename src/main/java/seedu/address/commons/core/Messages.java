@@ -93,7 +93,8 @@ public class Messages {
                 .append(DIVIDER)
                 .append("In case where your inventory and delivery book has grown larger in the "
                         + "future, you can find a particular\n"
-                        + "item or delivery if you need to by using the command `find-i attribute/ATTRIBUTE_NAME`.\n"
+                        + "item or delivery if you need to by using the command:\n"
+                        + "`[n/NAME | s/SUPPLIER | t/TAG]`.\n"
                         + "Example: `find-i n/Chicken` returns any items containing the name "
                         + "chicken in inventory book.\n"
                         + "You may also put multiple keywords if you would like search a few items concurrently.\n"
@@ -126,7 +127,8 @@ public class Messages {
                 .append("Delete an inventory item: delete-i INDEX\n")
                 .append("Edit an inventory item: edit-i INDEX [n/NAME] [q/QUANTITY]"
                         + " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]\n")
-                .append("Find an inventory item: find-i n/KEYWORD [MORE_KEYWORDS]\n")
+                .append("Find an inventory item: find-i [n/NAME | s/SUPPLIER | "
+                        + "t/TAG]\n")
                 .append("Clear all inventory items: clear-i\n")
                 .append("List all inventory items: list-i\n")
                 .append(DIVIDER)
@@ -135,7 +137,7 @@ public class Messages {
                 .append("Add delivery: add-d n/NAME p/PHONE a/ADDRESS o/ORDER\n")
                 .append("Delete a delivery: delete-d INDEX\n")
                 .append("Edit a delivery: edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]\n")
-                .append("Find a delivery: find-d n/KEYWORD [MORE_KEYWORDS]\n")
+                .append("Find a delivery: find-d [n/NAME | p/PHONE | a/ADDRESS | o/ORDER]\n")
                 .append("Clear all deliveries: clear-d\n")
                 .append("List all deliveries: list-d\n");
         return summary.toString();
