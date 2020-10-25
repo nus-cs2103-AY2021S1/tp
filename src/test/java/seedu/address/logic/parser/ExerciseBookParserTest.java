@@ -58,5 +58,4 @@ public class ExerciseBookParserTest {
         assertEquals(new ArchiveCommand(path), command);
     }
 
-
 }
