@@ -96,6 +96,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public Optional<Person> getPersonToBeDisplayedOnDashboard() {
+        return model.getPersonToBeDisplayedOnDashboard();
+    }
+
+    @Override
     public Path getMainCatalogueFilePath() {
         return model.getProjectCatalogueFilePath();
     }

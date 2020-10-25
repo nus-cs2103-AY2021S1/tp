@@ -64,6 +64,11 @@ public interface Logic {
     Optional<Meeting> getMeetingToBeDisplayedOnDashboard();
 
     /**
+     * Gets the person to be displayed on dashboard.
+     */
+    Optional<Person> getPersonToBeDisplayedOnDashboard();
+
+    /**
      * Returns the user prefs' main catalogue file path.
      */
     Path getMainCatalogueFilePath();
