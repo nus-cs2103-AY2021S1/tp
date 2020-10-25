@@ -13,13 +13,11 @@ import chopchop.commons.util.Result;
 import chopchop.commons.util.Strings;
 import chopchop.commons.util.StringView;
 
-import chopchop.model.recipe.Recipe;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.ingredient.IngredientReference;
-
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
+
+import chopchop.model.ingredient.IngredientReference;
 
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
@@ -187,7 +185,7 @@ public class AddCommandParser {
                     }
                 }
 
-                ingredients.add(createIngredientReference(name, quantity));
+                ingredients.add(new IngredientReference(name, quantity));
 
             } else if (p.fst().equals(Strings.ARG_QUANTITY)) {
                 return Result.error("'%s' without ingredient in argument %d [/qty %s...]",
@@ -210,18 +208,12 @@ public class AddCommandParser {
 
 
 
-
-    private static IngredientReference createIngredientReference(String name, Optional<Quantity> qty) {
-        return new IngredientReference(name, qty);
-    }
-
     private static AddRecipeCommand createAddRecipeCommand(String name,
         List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
 
-        return new AddRecipeCommand(new Recipe(
-            name, ingredients, steps, tags
-        ));
+        return new AddRecipeCommand(name, ingredients, steps, tags);
     }
+
 
 
     private static Result<AddIngredientCommand> createAddIngredientCommand(String name, Optional<Quantity> qty,
@@ -229,8 +221,6 @@ public class AddCommandParser {
 
         return Result.transpose(expiry
             .map(ExpiryDate::of))
-            .map(exp -> new AddIngredientCommand(new Ingredient(name,
-                qty, exp, tags))
-            );
+            .map(exp -> new AddIngredientCommand(name, qty, exp, tags));
     }
 }
