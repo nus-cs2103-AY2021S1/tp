@@ -21,7 +21,7 @@ import seedu.address.model.tag.Tag;
  */
 public class SampleCommonCentsUtilData {
     private static Account[] getSampleAccount() {
-        Account acc = new Account(new Name("Lulu - bizacc"));
+        Account acc = new Account(new Name("Default account 1"));
         RevenueList accRevenues = new RevenueList();
         accRevenues.add(new Revenue(new Description("earrings sales"),
                 new Amount("13.50"), getTagSet("craft", "accessories")));
@@ -37,7 +37,7 @@ public class SampleCommonCentsUtilData {
         acc.setExpenses(accExpenses);
         acc.setRevenues(accRevenues);
 
-        Account acc2 = new Account(new Name("Lulu - nonbiz acc"));
+        Account acc2 = new Account(new Name("Default account 2"));
         ExpenseList acc2Expenses = new ExpenseList();
         RevenueList acc2Revenues = new RevenueList();
         acc2Expenses.add(new Expense(new Description("lunch"),
