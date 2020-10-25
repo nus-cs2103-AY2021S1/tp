@@ -1,14 +1,14 @@
 package seedu.taskmaster.model.session;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.record.StudentRecordList;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Represents a tutorial session conducted by a teaching assistant.

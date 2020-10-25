@@ -7,13 +7,10 @@ import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.record.StudentRecordList;
-import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
-import seedu.taskmaster.model.student.Student;
 
-import java.util.List;
 
 /**
  * Adds a session to the session list.
@@ -33,9 +30,9 @@ public class NewSessionCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New session added: %1$s";
     public static final String MESSAGE_DUPLICATE_SESSION = "This session already exists in the session list";
 
+    protected StudentRecordList studentRecordList = null;
     private final SessionName sessionName;
     private final SessionDateTime sessionDateTime;
-    protected StudentRecordList studentRecordList = null;
 
     /**
      * Creates a NewSessionCommand to add the specified {@code Session}

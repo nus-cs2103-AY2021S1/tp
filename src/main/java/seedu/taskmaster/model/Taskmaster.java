@@ -10,7 +10,11 @@ import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.record.StudentRecordListManager;
-import seedu.taskmaster.model.session.*;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionDateTime;
+import seedu.taskmaster.model.session.SessionList;
+import seedu.taskmaster.model.session.SessionListManager;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.UniqueStudentList;
@@ -22,9 +26,9 @@ import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
  */
 public class Taskmaster implements ReadOnlyTaskmaster {
 
+    protected Session currentSession;
     private final UniqueStudentList students;
     private final SessionList sessions;
-    protected Session currentSession;
 
     /*
      * The 'unusual' code block below is a non-static initialization block,
@@ -84,6 +88,10 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
     /* Session-Level Operations */
 
+    /**
+     * Changes the current session of this {@code Taskmaster} to a previously
+     * created session with name {@code sessionName}.
+     */
     public void changeSession(SessionName sessionName) {
         assert sessions.contains(sessionName);
         currentSession = sessions.get(sessionName);
@@ -97,6 +105,9 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         return sessions.contains(session);
     }
 
+    /**
+     * Returns true if a session with {@code sessionName} exists in the session list.
+     */
     public boolean hasSession(SessionName sessionName) {
         requireNonNull(sessionName);
         return sessions.contains(sessionName);

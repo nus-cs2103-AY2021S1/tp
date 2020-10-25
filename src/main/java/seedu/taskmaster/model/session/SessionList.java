@@ -1,9 +1,9 @@
 package seedu.taskmaster.model.session;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.session.exceptions.SessionNotFoundException;
-
-import java.util.List;
 
 public interface SessionList extends Iterable<Session> {
 

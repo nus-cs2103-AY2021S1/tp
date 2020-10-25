@@ -5,9 +5,7 @@ package seedu.taskmaster.model.session.exceptions;
  * Sessions are considered duplicates if they have the same identity.
  */
 public class DuplicateSessionException extends RuntimeException {
-
     public DuplicateSessionException() {
         super("Operation would result in duplicate sessions");
     }
-
 }

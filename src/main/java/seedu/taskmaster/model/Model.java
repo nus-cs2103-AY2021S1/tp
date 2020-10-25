@@ -118,12 +118,6 @@ public interface Model {
      */
     void updateFilteredStudentList(Predicate<Student> predicate);
 
-//    /**
-//     * Updates the filter of the filtered attendance list to filter by the given {@code predicate}.
-//     * @throws NullPointerException if {@code predicate} is null.
-//     */
-//    void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate);
-
     void updateFilteredSessionList(Predicate<Session> predicate);
 
     /**

@@ -1,7 +1,8 @@
 package seedu.taskmaster.logic.parser;
 
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taskmaster.logic.parser.CliSyntax.*;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_SESSION_DATE_TIME;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
 
 import java.util.stream.Stream;
 
@@ -27,11 +28,14 @@ public class NewSessionCommandParser implements Parser<NewSessionCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_SESSION_NAME, PREFIX_SESSION_DATE_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewSessionCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewSessionCommand.MESSAGE_USAGE));
         }
 
-        SessionName sessionName = ParserUtil.parseSessionName(argMultimap.getValue(PREFIX_SESSION_NAME).get());
-        SessionDateTime sessionDateTime = ParserUtil.parseSessionDateTime(argMultimap.getValue(PREFIX_SESSION_DATE_TIME).get());
+        SessionName sessionName = ParserUtil.parseSessionName(
+                argMultimap.getValue(PREFIX_SESSION_NAME).get());
+        SessionDateTime sessionDateTime = ParserUtil.parseSessionDateTime(
+                argMultimap.getValue(PREFIX_SESSION_DATE_TIME).get());
         return new NewSessionCommand(sessionName, sessionDateTime);
     }
 

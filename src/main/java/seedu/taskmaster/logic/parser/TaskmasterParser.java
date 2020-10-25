@@ -6,7 +6,20 @@ import static seedu.taskmaster.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.taskmaster.logic.commands.*;
+import seedu.taskmaster.logic.commands.AddCommand;
+import seedu.taskmaster.logic.commands.ChangeSessionCommand;
+import seedu.taskmaster.logic.commands.ClearCommand;
+import seedu.taskmaster.logic.commands.Command;
+import seedu.taskmaster.logic.commands.DeleteCommand;
+import seedu.taskmaster.logic.commands.EditCommand;
+import seedu.taskmaster.logic.commands.ExitCommand;
+import seedu.taskmaster.logic.commands.FindCommand;
+import seedu.taskmaster.logic.commands.HelpCommand;
+import seedu.taskmaster.logic.commands.ListCommand;
+import seedu.taskmaster.logic.commands.LoadAttendanceCommand;
+import seedu.taskmaster.logic.commands.MarkCommand;
+import seedu.taskmaster.logic.commands.NewSessionCommand;
+import seedu.taskmaster.logic.commands.StoreAttendanceCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 
 /**

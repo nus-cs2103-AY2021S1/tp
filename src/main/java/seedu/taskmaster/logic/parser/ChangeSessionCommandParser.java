@@ -1,7 +1,7 @@
 package seedu.taskmaster.logic.parser;
 
 import static seedu.taskmaster.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.taskmaster.logic.parser.CliSyntax.*;
+import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_SESSION_NAME;
 
 import java.util.stream.Stream;
 

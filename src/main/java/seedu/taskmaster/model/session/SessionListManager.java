@@ -1,16 +1,15 @@
 package seedu.taskmaster.model.session;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import seedu.taskmaster.model.session.exceptions.DuplicateSessionException;
-import seedu.taskmaster.model.session.exceptions.SessionNotFoundException;
-import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;
+import static java.util.Objects.requireNonNull;
+import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import seedu.taskmaster.model.session.exceptions.DuplicateSessionException;
+import seedu.taskmaster.model.session.exceptions.SessionNotFoundException;
 
 /**
  * Represents a list of sessions.

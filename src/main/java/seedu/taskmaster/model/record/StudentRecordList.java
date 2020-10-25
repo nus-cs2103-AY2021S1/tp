@@ -5,7 +5,6 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.student.NusnetId;
-import seedu.taskmaster.model.student.Student;
 
 public interface StudentRecordList extends Iterable<StudentRecord> {
 
