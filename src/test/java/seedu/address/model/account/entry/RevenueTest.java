@@ -59,7 +59,6 @@ public class RevenueTest {
 
         // null -> returns false
         assertNotEquals(null, validRevenue);
-
     }
 
 }
