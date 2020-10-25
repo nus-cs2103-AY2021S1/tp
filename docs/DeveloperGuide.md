@@ -568,14 +568,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
 
 ### Deleting an item
 
@@ -589,10 +581,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete-i 0`<br>
       Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size or 
+   x is a negative number)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -609,4 +601,3 @@ testers are expected to do more *exploratory* testing.
       Expected: OneShelf will load a new empty json file respectively
 
 
-1. _{ more test cases …​ }_
