@@ -17,27 +17,22 @@ import seedu.address.model.project.Project;
 import seedu.address.model.task.Task;
 
 /**
- * Filters tasks by assignee's name, task name or deadline.
+ * Filters tasks by assignee's name, task name, deadline, progress, or whether the task is done.
  */
 public class TaskFilterCommand extends Command {
-    public static final String COMMAND_WORD = "filtert";
+    public static final String COMMAND_WORD = "filter";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Filter and show tasks with given predicate\n"
         + "Parameters: ("
-        + PREFIX_TASK_ASSIGNEE + "ASSIGNEE NAME)||("
+        + PREFIX_TASK_ASSIGNEE + "ASSIGNEE GITHUB USERNAME)||("
         + PREFIX_TASK_DEADLINE + "DEADLINE)||("
         + PREFIX_TASK_NAME + "TASK NAME)||("
-        + PREFIX_TASK_PROGRESS + "DEADLINE)||("
-        + PREFIX_TASK_IS_DONE + "DEADLINE)\n"
-        + "Example: " + COMMAND_WORD + " ("
-        + PREFIX_TASK_ASSIGNEE + "Alice)||("
-        + PREFIX_TASK_DEADLINE + "31-12-2020 10:00:00)||("
-        + PREFIX_TASK_NAME + "group meeting)||("
-        + PREFIX_TASK_PROGRESS + "50)||("
-        + PREFIX_TASK_IS_DONE + "false)\n";
+        + PREFIX_TASK_PROGRESS + "PROGRESS)||("
+        + PREFIX_TASK_IS_DONE + "DONE STATUS)\n"
+        + "Example: " + COMMAND_WORD + " "
+        + PREFIX_TASK_ASSIGNEE + "T-Fang\n";
     public static final String MESSAGE_FILTER_TASK_SUCCESS = "Here are the filtered tasks:";
-    //TODO: CHOOSE ONE PREDICATE OR MULTIPLE???
     private final Predicate<Task> predicate;
 
     /**
@@ -52,6 +47,7 @@ public class TaskFilterCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert model.getProjectToBeDisplayedOnDashboard().isPresent();
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         project.updateTaskFilter(predicate);
         return new CommandResult(String.format(MESSAGE_FILTER_TASK_SUCCESS));
