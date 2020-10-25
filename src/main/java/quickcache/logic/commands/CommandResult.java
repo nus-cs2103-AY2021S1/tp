@@ -77,6 +77,16 @@ public class CommandResult {
         this.feedbackToUser.setStatistics(statistics);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * {@code statistics}
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, Statistics statistics) {
+        this(feedbackToUser, false, false, true);
+        this.feedbackToUser.setStatistics(statistics);
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser.toString();
     }
