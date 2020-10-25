@@ -15,7 +15,7 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
 
 public class DeleteSuspectCommand extends DeleteCommand {
 

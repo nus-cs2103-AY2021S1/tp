@@ -24,6 +24,7 @@ import seedu.pivot.model.Pivot;
 import seedu.pivot.model.UserPrefs;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.testutil.CaseBuilder;
+import seedu.pivot.testutil.CasePersonBuilder;
 import seedu.pivot.testutil.EditCaseDescriptorBuilder;
 
 /**
@@ -35,8 +36,10 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Case editedCase = new CaseBuilder().withDocument("name", "test1.txt")
-                                                 .withWitnesses("Janice").build();
+        Case editedCase = new CaseBuilder()
+                .withDocument("name", "test1.txt")
+                .withWitnesses(new CasePersonBuilder().withName("Janice").withGender("F").buildWitness())
+                .build();
         EditCommand.EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder(editedCase).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 

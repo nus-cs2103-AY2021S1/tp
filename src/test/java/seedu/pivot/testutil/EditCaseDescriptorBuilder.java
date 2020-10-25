@@ -1,5 +1,6 @@
 package seedu.pivot.testutil;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -7,11 +8,10 @@ import java.util.stream.Stream;
 
 import seedu.pivot.logic.commands.EditCommand.EditCaseDescriptor;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Status;
-import seedu.pivot.model.investigationcase.Suspect;
 import seedu.pivot.model.investigationcase.Title;
-import seedu.pivot.model.investigationcase.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.model.tag.Tag;
 
 /**
@@ -71,10 +71,9 @@ public class EditCaseDescriptorBuilder {
      * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditCaseDescriptorBuilder withSuspects(String... suspect) {
-        List<Suspect> suspects = Stream.of(suspect).map(string -> new Suspect(new Name(string)))
-                .collect(Collectors.toList());
-        descriptor.setSuspects(suspects);
+    public EditCaseDescriptorBuilder withSuspects(Suspect... suspects) {
+        List<Suspect> suspectList = Arrays.asList(suspects);
+        descriptor.setSuspects(suspectList);
         return this;
     }
 
@@ -82,10 +81,9 @@ public class EditCaseDescriptorBuilder {
      * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditCaseDescriptorBuilder withVictims(String... victims) {
-        List<Victim> victim = Stream.of(victims).map(string -> new Victim(new Name(string)))
-                .collect(Collectors.toList());
-        descriptor.setVictims(victim);
+    public EditCaseDescriptorBuilder withVictims(Victim... victims) {
+        List<Victim> victimList = Arrays.asList(victims);
+        descriptor.setVictims(victimList);
         return this;
     }
 

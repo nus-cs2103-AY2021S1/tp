@@ -9,13 +9,25 @@
       "reference" : "test1.txt"
     } ],
     "witnesses": [ {
-      "name" : "Janice"
+      "name" : "Janice",
+      "gender" : "F",
+      "phone" : "",
+      "email" : "",
+      "address" : ""
     } ],
     "suspects": [ {
-      "name" : "Peter"
+      "name" : "Peter",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "peter@gmail.com",
+      "address" : "Blk 123"
     } ],
     "victims" : [ {
-      "name" : "Tom"
+      "name" : "Tom",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "tom@gmail.com",
+      "address" : "Blk 123"
     } ],
     "tagged" : [ "friends" ]
   }, {
@@ -27,11 +39,19 @@
       "reference" : "test1.txt"
     } ],
     "witnesses": [ {
-      "name" : "Mary"
+      "name" : "Janice",
+      "gender" : "F",
+      "phone" : "",
+      "email" : "",
+      "address" : ""
     } ],
     "suspects": [],
     "victims" : [ {
-      "name" : "Tom"
+      "name" : "Tom",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "tom@gmail.com",
+      "address" : "Blk 123"
     } ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
