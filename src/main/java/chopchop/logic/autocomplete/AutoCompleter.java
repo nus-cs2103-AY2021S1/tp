@@ -175,6 +175,10 @@ public class AutoCompleter {
             if (tgt.equals(CommandTarget.RECIPE.toString())) {
                 return completeEditRecipeArguments(args, partial, orig);
             }
+        } else if (cmd.equals(Strings.COMMAND_DELETE)) {
+            if (tgt.equals(CommandTarget.INGREDIENT.toString())) {
+                validArguments.add(Strings.ARG_QUANTITY);
+            }
         } else if (cmd.equals(Strings.COMMAND_FILTER)) {
             if (tgt.equals(CommandTarget.RECIPE.toString())) {
 
@@ -377,6 +381,12 @@ public class AutoCompleter {
                     .map(tgt -> {
                         switch (tgt) {
                         case RECIPE:
+                            // we don't let you autocomplete recipe names when adding them
+                            // -- only for ingredients.
+                            if (cmd.equals(Strings.COMMAND_ADD)) {
+                                return RequiredCompletion.NONE;
+                            }
+
                             return RequiredCompletion.RECIPE_NAME;
 
                         case INGREDIENT:
@@ -479,6 +489,7 @@ public class AutoCompleter {
 
     private boolean commandRequiresItemReference(String commandName) {
         return List.of(
+            Strings.COMMAND_ADD,
             Strings.COMMAND_MAKE,
             Strings.COMMAND_EDIT,
             Strings.COMMAND_VIEW,

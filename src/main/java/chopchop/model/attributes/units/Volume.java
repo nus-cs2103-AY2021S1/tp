@@ -23,14 +23,12 @@ public class Volume implements Quantity {
 
     private Volume(double value, double ratio) {
         // see the comment in Mass.java for an explanation of this.
-        if (ratio == 1 || ratio == 0.001) {
-            if (value > 5000) {
-                ratio *= 1000;
-                value /= 1000;
-            } else if (value < 1.0) {
-                ratio /= 1000;
-                value *= 1000;
-            }
+        if (ratio == 0.001 && value > 5000) {
+            ratio *= 1000;
+            value /= 1000;
+        } else if (ratio == 1 && value < 1.0) {
+            ratio /= 1000;
+            value *= 1000;
         }
 
         this.value = value;
