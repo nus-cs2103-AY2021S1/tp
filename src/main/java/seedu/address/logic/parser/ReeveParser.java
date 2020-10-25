@@ -87,7 +87,7 @@ public class ReeveParser {
             return new SortCommandParser().parse(arguments);
 
         case AdditionalDetailCommand.COMMAND_WORD:
-            return new AdditionalDetailCommandParser().parseAdditionalDetailCommand(arguments);
+            return new AdditionalDetailCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
