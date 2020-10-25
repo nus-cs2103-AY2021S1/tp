@@ -1,0 +1,19 @@
+{
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
+  "students": [
+    {
+      "name": "Person with invalid name field: Ha!ns Mu@ster",
+      "phone": "9482424",
+      "email": "hans@example.com",
+      "faculty": "FASS",
+      "studentId": "E0407881"
+    }
+  ],
+  "rooms": [],
+  "allocations": []
+}

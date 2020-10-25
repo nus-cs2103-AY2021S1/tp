@@ -10,13 +10,14 @@ import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 
 /**
- * Deletes a student identified using its displayed index from the address book.
+ * Deletes a student identified using its displayed index from ResiReg.
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = CommandWordEnum.DELETE_COMMAND.toString();
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
     public static final String MESSAGE_ROOM_ALLOCATION_EXISTS =
@@ -33,7 +34,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Allocation> lastShownAllocationList = model.getFilteredAllocationList();

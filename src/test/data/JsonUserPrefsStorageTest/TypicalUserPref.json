@@ -7,5 +7,6 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "commandWordAliases" : [],
+  "resiRegFilePath" : "resireg.json"
 }

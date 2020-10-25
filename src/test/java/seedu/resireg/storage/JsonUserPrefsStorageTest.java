@@ -57,12 +57,6 @@ public class JsonUserPrefsStorageTest {
     }
 
     @Test
-    public void readUserPrefs_valuesMissingFromFile_defaultValuesUsed() throws DataConversionException {
-        UserPrefs actual = readUserPrefs("EmptyUserPrefs.json").get();
-        assertEquals(new UserPrefs(), actual);
-    }
-
-    @Test
     public void readUserPrefs_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
@@ -73,7 +67,7 @@ public class JsonUserPrefsStorageTest {
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setAddressBookFilePath(Paths.get("addressbook.json"));
+        userPrefs.setResiRegFilePath(Paths.get("resireg.json"));
         return userPrefs;
     }
 

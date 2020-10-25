@@ -1,0 +1,24 @@
+{
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
+  "students": [ {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "alice@example.com",
+    "faculty": "FASS",
+    "studentId": "E0407881",
+    "tagged": [ "friends" ]
+  }, {
+    "name": "Alice Pauline",
+    "phone": "94351253",
+    "email": "pauline@example.com",
+    "faculty": "FASS",
+    "studentId": "E0407881"
+  } ],
+  "rooms": [ ],
+  "allocations": []
+}

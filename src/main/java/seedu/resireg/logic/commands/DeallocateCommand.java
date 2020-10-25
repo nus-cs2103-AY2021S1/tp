@@ -11,14 +11,15 @@ import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 
 
 /**
- * Deallocates a room to a student to the address book.
+ * Deallocates a room to a student to ResiReg.
  */
 public class DeallocateCommand extends Command {
 
-    public static final String COMMAND_WORD = "deallocate";
+    public static final String COMMAND_WORD = CommandWordEnum.DEALLOCATE_COMMAND.toString();
 
     public static final Help HELP = new Help(COMMAND_WORD, "Deallocates a student from a room.",
             "Parameters: " + PREFIX_STUDENT_INDEX + "STUDENT INDEX\n"
@@ -40,7 +41,7 @@ public class DeallocateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownListStudent = model.getFilteredStudentList();
         List<Allocation> lastShownListAllocation = model.getFilteredAllocationList();
@@ -65,10 +66,6 @@ public class DeallocateCommand extends Command {
         }
 
         model.removeAllocation(toDeallocate);
-
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
-        model.updateFilteredAllocationList(Model.PREDICATE_SHOW_ALL_ALLOCATIONS);
 
         model.saveStateResiReg();
 

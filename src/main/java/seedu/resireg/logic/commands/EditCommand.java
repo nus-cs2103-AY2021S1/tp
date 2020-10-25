@@ -7,8 +7,6 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_ALLOCATIONS;
-import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -29,17 +27,18 @@ import seedu.resireg.model.student.Student;
 import seedu.resireg.model.student.StudentId;
 import seedu.resireg.model.student.faculty.Faculty;
 import seedu.resireg.model.tag.Tag;
+import seedu.resireg.storage.Storage;
 
 /**
- * Edits the details of an existing student in the address book.
+ * Edits the details of an existing student in ResiReg.
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = CommandWordEnum.EDIT_COMMAND.toString();
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiReg.";
 
     public static final Help HELP = new Help(COMMAND_WORD,
             "Edits the details of the student identified by the index number used in the displayed student list."
@@ -71,7 +70,7 @@ public class EditCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
         List<Allocation> lastShownAllocationList = model.getFilteredAllocationList();
@@ -94,13 +93,12 @@ public class EditCommand extends Command {
                             allocation.getRoomNumber(),
                             editedStudent.getStudentId());
                     model.setAllocation(allocation, editedAllocation);
-                    model.updateFilteredAllocationList(PREDICATE_SHOW_ALL_ALLOCATIONS);
+                    // model.updateFilteredAllocationList(PREDICATE_SHOW_ALL_ALLOCATIONS);
                 }
             }
         }
 
         model.setStudent(studentToEdit, editedStudent);
-        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
         model.saveStateResiReg();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }

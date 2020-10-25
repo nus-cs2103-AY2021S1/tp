@@ -46,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private StackPane semesterDisplayPlaceholder;
+
+    @FXML
     private StackPane studentListPanelPlaceholder;
 
     @FXML
@@ -132,8 +135,11 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getResiRegFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        SemesterDisplay semesterDisplay = new SemesterDisplay(logic.getSemester());
+        semesterDisplayPlaceholder.getChildren().add(semesterDisplay.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());

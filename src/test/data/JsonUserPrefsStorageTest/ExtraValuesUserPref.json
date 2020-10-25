@@ -9,5 +9,6 @@
       "z" : 99
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "commandWordAliases" : [],
+  "resiRegFilePath" : "resireg.json"
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.resireg.model.AddressBook;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.room.Room;
 
 /**
@@ -50,14 +50,14 @@ public class TypicalRooms {
     private TypicalRooms() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical rooms.
+     * Returns an {@code ResiReg} with all the typical rooms.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ResiReg getTypicalResiReg() {
+        ResiReg rr = new ResiReg();
         for (Room room : getTypicalRooms()) {
-            ab.addRoom(room);
+            rr.addRoom(room);
         }
-        return ab;
+        return rr;
     }
 
     public static List<Room> getTypicalRooms() {

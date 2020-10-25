@@ -14,14 +14,15 @@ import seedu.resireg.model.Model;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 
 
 /**
- * Adds a student to the address book.
+ * Adds a student to ResiReg.
  */
 public class AllocateCommand extends Command {
 
-    public static final String COMMAND_WORD = "allocate";
+    public static final String COMMAND_WORD = CommandWordEnum.ALLOCATE_COMMAND.toString();
     public static final Help HELP = new Help(COMMAND_WORD,
             "Allocates a student to a room.",
             "Parameters: "
@@ -53,7 +54,7 @@ public class AllocateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownListStudent = model.getFilteredStudentList();
         List<Room> lastShownListRoom = model.getFilteredRoomList();
@@ -83,10 +84,6 @@ public class AllocateCommand extends Command {
         model.setStudent(studentToAllocate, studentToEdit);
         model.setRoom(roomToAllocate, roomToEdit);
         model.addAllocation(toAllocate);
-
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
-        model.updateFilteredAllocationList(Model.PREDICATE_SHOW_ALL_ALLOCATIONS);
 
         model.saveStateResiReg();
 

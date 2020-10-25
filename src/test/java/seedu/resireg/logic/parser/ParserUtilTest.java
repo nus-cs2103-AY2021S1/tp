@@ -122,7 +122,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseFaculty_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void parseFaculty_validValueWithWhitespace_returnsTrimmedFaculty() throws Exception {
         String facultyWithWhitespace = WHITESPACE + VALID_FACULTY + WHITESPACE;
         Faculty expectedFaculty = new Faculty(VALID_FACULTY);
         assertEquals(expectedFaculty, ParserUtil.parseFaculty(facultyWithWhitespace));

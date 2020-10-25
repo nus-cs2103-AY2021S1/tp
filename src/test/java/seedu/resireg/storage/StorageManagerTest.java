@@ -2,7 +2,7 @@ package seedu.resireg.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.resireg.testutil.TypicalStudents.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 
 import java.nio.file.Path;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.resireg.commons.core.GuiSettings;
-import seedu.resireg.model.AddressBook;
-import seedu.resireg.model.ReadOnlyAddressBook;
+import seedu.resireg.model.ReadOnlyResiReg;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -24,9 +24,9 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage = new JsonAddressBookStorage(getTempFilePath("ab"));
+        JsonResiRegStorage resiRegStorage = new JsonResiRegStorage(getTempFilePath("ab"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
-        storageManager = new StorageManager(addressBookStorage, userPrefsStorage);
+        storageManager = new StorageManager(resiRegStorage, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,21 +48,21 @@ public class StorageManagerTest {
     }
 
     @Test
-    public void addressBookReadSave() throws Exception {
+    public void resiRegReadSave() throws Exception {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
-         * {@link JsonAddressBookStorage} class.
-         * More extensive testing of UserPref saving/reading is done in {@link JsonAddressBookStorageTest} class.
+         * {@link JsonResiRegStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonResiRegStorageTest} class.
          */
-        AddressBook original = getTypicalAddressBook();
-        storageManager.saveAddressBook(original);
-        ReadOnlyAddressBook retrieved = storageManager.readAddressBook().get();
-        assertEquals(original, new AddressBook(retrieved));
+        ResiReg original = getTypicalResiReg();
+        storageManager.saveResiReg(original);
+        ReadOnlyResiReg retrieved = storageManager.readResiReg().get();
+        assertEquals(original, new ResiReg(retrieved));
     }
 
     @Test
-    public void getAddressBookFilePath() {
-        assertNotNull(storageManager.getAddressBookFilePath());
+    public void getResiRegFilePath() {
+        assertNotNull(storageManager.getResiRegFilePath());
     }
 
 }

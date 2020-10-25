@@ -1,0 +1,17 @@
+{
+  "semester" : {
+    "academicYear" : 2020,
+    "semesterNumber" : 1,
+    "allocations" : [ ],
+    "roomFees" : { }
+  },
+  "students": [ {
+    "name": "Hans Muster",
+    "phone": "9482424",
+    "email": "invalid@email!3e",
+    "faculty": "FASS",
+    "studentId": "E0407881"
+  } ],
+  "rooms": [ ],
+  "allocations": []
+}

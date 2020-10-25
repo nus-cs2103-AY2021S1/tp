@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.resireg.model.AddressBook;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.student.Student;
 
 /**
@@ -84,10 +84,10 @@ public class TypicalStudents {
     private TypicalStudents() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical students.
+     * Returns an {@code ResiReg} with all the typical students.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ResiReg getTypicalResiReg() {
+        ResiReg ab = new ResiReg();
         for (Student student : getTypicalStudents()) {
             ab.addStudent(student);
         }

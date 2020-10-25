@@ -13,14 +13,15 @@ import seedu.resireg.model.Model;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
+import seedu.resireg.storage.Storage;
 
 
 /**
- * Adds a student to the address book.
+ * Adds a student to ResiReg.
  */
 public class ReallocateCommand extends Command {
 
-    public static final String COMMAND_WORD = "reallocate";
+    public static final String COMMAND_WORD = CommandWordEnum.REALLOCATE_COMMAND.toString();
     public static final Help HELP = new Help(COMMAND_WORD, "Reallocates a student to a room.",
             "Parameters: " + PREFIX_STUDENT_INDEX + "STUDENT INDEX " + PREFIX_ROOM_INDEX + "ROOM INDEX\n"
                     + "Example: " + COMMAND_WORD + " " + PREFIX_STUDENT_INDEX + "1 " + PREFIX_ROOM_INDEX + "1");
@@ -49,7 +50,7 @@ public class ReallocateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownListStudent = model.getFilteredStudentList();
         List<Room> lastShownListRoom = model.getFilteredRoomList();
@@ -82,10 +83,6 @@ public class ReallocateCommand extends Command {
         Allocation editedAllocation = new Allocation(roomToReallocate.getFloor(), roomToReallocate.getRoomNumber(),
                         studentToReallocate.getStudentId());
         model.setAllocation(toReallocate, editedAllocation);
-
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredRoomList(Model.PREDICATE_SHOW_ALL_ROOMS);
-        model.updateFilteredAllocationList(Model.PREDICATE_SHOW_ALL_ALLOCATIONS);
 
         model.saveStateResiReg();
 
