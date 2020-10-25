@@ -29,4 +29,6 @@ public interface Storage extends PivotStorage, UserPrefsStorage {
     @Override
     void savePivot(ReadOnlyPivot pivot) throws IOException;
 
+    void addReferenceTestFile() throws IOException;
+
 }

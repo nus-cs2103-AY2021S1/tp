@@ -25,7 +25,7 @@ import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.CasePerson;
+import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -175,6 +175,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        logger.info("MainWindow: Setup Placeholders");
         personListPanel = new PersonListPanel(logic.getFilteredCaseList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -195,13 +196,16 @@ public class MainWindow extends UiPart<Stage> {
      * @param index
      */
     private void updateCaseInformationPanel(Index index) {
+        logger.info("MainWindow: Updating Case Information Panel");
         setMainWindowPanel(index);
     }
 
     private void setMainWindowPanel(Index index) {
+        logger.info("Updating Case Information Panel with index:" + index);
         Case investigationCase = null;
 
         if (index != null) {
+            logger.info("Updating Case Information Panel with Case");
             investigationCase = logic.getFilteredCaseList().get(indexSimpleObjectProperty.get().getZeroBased());
         }
 
@@ -251,6 +255,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleHelp() {
+        logger.info("MainWindow: Handling Help");
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
@@ -267,6 +272,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        logger.info("MainWindow: Handling Exit");
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);

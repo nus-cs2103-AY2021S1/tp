@@ -4,28 +4,30 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.exceptions.IllegalValueException;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
 import seedu.pivot.model.investigationcase.Status;
-import seedu.pivot.model.investigationcase.Suspect;
 import seedu.pivot.model.investigationcase.Title;
-import seedu.pivot.model.investigationcase.Victim;
-import seedu.pivot.model.investigationcase.Witness;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Case}.
  */
 class JsonAdaptedCase {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Case's %s field is missing!";
+    private static final Logger logger = LogsCenter.getLogger(JsonAdaptedCase.class);
 
     private final String title;
     private final String description;
@@ -98,34 +100,41 @@ class JsonAdaptedCase {
      * @throws IllegalValueException if there were any data constraints violated in the adapted case.
      */
     public Case toModelType() throws IllegalValueException {
+        logger.info("Converting JSON to Case");
         final List<Tag> caseTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             caseTags.add(tag.toModelType());
         }
 
         if (title == null) {
+            logger.warning("Title is null. Check data");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Title.class.getSimpleName()));
         }
         if (!Title.isValidTitle(title)) {
+            logger.warning("Title is invalid. Check data");
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
         }
         final Title modelTitle = new Title(title);
 
         if (description == null) {
+            logger.warning("Description is null. Check data");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
+            logger.warning("Description is invalid. Check data");
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(description);
 
         if (status == null) {
+            logger.warning("Status is null. Check data");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Status.class.getSimpleName()));
         }
         if (!Status.isValidStatus(status)) {
+            logger.warning("Status is invalid. Check data");
             throw new IllegalValueException(Status.MESSAGE_CONSTRAINTS);
         }
         final Status modelStatus = Status.createStatus(status);

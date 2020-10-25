@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.core.Messages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
@@ -13,7 +15,7 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.Witness;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 
 /**
  * Deletes a case identified using it's displayed index from PIVOT.
@@ -21,6 +23,8 @@ import seedu.pivot.model.investigationcase.Witness;
 public class DeleteWitnessCommand extends DeleteCommand {
 
     public static final String MESSAGE_DELETE_WITNESS_SUCCESS = "Deleted witness: %1$s";
+
+    private static final Logger logger = LogsCenter.getLogger(DeleteWitnessCommand.class);
 
     private final Index caseIndex;
     private final Index witnessIndex;
@@ -37,6 +41,8 @@ public class DeleteWitnessCommand extends DeleteCommand {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        logger.info("Deleting witness from current case...");
+
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
@@ -48,6 +54,7 @@ public class DeleteWitnessCommand extends DeleteCommand {
 
         // invalid witness index
         if (witnessIndex.getZeroBased() >= updatedWitnesses.size()) {
+            logger.info("Invalid index: " + witnessIndex.getOneBased());
             throw new CommandException(Messages.MESSAGE_INVALID_WITNESS_DISPLAYED_INDEX);
         }
 
