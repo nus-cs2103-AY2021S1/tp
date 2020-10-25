@@ -187,6 +187,7 @@ public class ModelManager implements Model {
 
     @Override
     public void sortFilteredStockList(Comparator<Stock> comparator) {
+        filteredStocks.setPredicate(PREDICATE_SHOW_ALL_PERSONS);
         stockBook.sortStocks(comparator);
         filteredStocks = new FilteredList<>(stockBook.getStockList());
     }
