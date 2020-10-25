@@ -154,9 +154,18 @@ Figure 7: Structure of the `Model` Component
 
 We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
 
+An `Item` consists of `Name`, `Quantity`, `Supplier`, `MaxQuantity`, `Metric` and `Tag`. Once an `item` is deleted,
+its corresponding objects within its composition will also get deleted. An `Item` must have 1 `Name` and `Quantity`, 
+0 or 1 `Supplier`, `MaxQuantity`, `Metric` and 0 or more `Tag` objects.
+
+You may also refer to Figure 8 as shown below:
 ![Structure of the Item Component](images/ItemClassDiagram.png) <br>
 Figure 8: Structure of the `Item`
 
+
+A `Delivery` consists of one `DeliveryName`, `Phone`, `Address`, `Order`. 
+
+You may also refer to Figure 9 as shown below:
 ![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
 Figure 9: Structure of the `Delivery`
 
