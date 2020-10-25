@@ -258,7 +258,9 @@ Account-level commands cannot be reverted using the `undo` command.
 
 :warning: **Warning:**
 
-There is no `redo` command to revert your `undo` command. Do use the `undo` command with caution!
+* There is no `redo` command to revert your `undo` command. Do use the `undo` command with caution!
+* Once you exit the app, all the previous states will be lost. Do confirm your changes to the entries in the account 
+before you exit the app!
 
 </div>
 
