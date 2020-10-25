@@ -5,13 +5,13 @@ import static java.util.Objects.requireNonNull;
 import com.eva.commons.core.Messages;
 import com.eva.model.Model;
 import com.eva.model.person.NameContainsKeywordsPredicate;
-import com.eva.model.person.Person;
+import com.eva.model.person.applicant.Applicant;
 
 /**
  * Finds and lists all persons in eva database whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindApplicantCommand extends FindCommand {
 
     public static final String COMMAND_WORD = "find";
 
@@ -21,28 +21,24 @@ public class FindCommand extends Command {
             + "Parameters: -a|-s KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate<Person> predicate;
+    private final NameContainsKeywordsPredicate<Applicant> predicate;
 
-    public FindCommand() {
-        this(null); // for inheritance
-    }
-
-    public FindCommand(NameContainsKeywordsPredicate<Person> predicate) {
+    public FindApplicantCommand(NameContainsKeywordsPredicate<Applicant> predicate) {
         this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredApplicantList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredApplicantList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FindApplicantCommand // instanceof handles nulls
+                && predicate.equals(((FindApplicantCommand) other).predicate)); // state check
     }
 }
