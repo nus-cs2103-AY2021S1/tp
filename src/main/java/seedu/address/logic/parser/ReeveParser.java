@@ -19,6 +19,7 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OverdueCommand;
 import seedu.address.logic.commands.QuestionCommand;
 import seedu.address.logic.commands.ScheduleCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -81,6 +82,9 @@ public class ReeveParser {
 
         case OverdueCommand.COMMAND_WORD:
             return new OverdueCommand();
+
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
         case AdditionalDetailCommand.COMMAND_WORD:
             return new AdditionalDetailCommandParser().parseAdditionalDetailCommand(arguments);

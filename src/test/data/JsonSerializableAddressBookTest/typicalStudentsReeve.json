@@ -7,7 +7,7 @@
     "year": "Secondary 3",
     "admin" : {
       "classVenue": "123, Jurong West Ave 6, #08-111",
-      "classTime": "1 1500-1700",
+      "classTime": "5 1500-1700",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": ["owesMoney", "friends"]
@@ -28,7 +28,7 @@
     "year": "Secondary 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "2 1200-1430",
+      "classTime": "2 1230-1430",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
@@ -70,7 +70,7 @@
     "year": "Secondary 1",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "1 1500-1700",
+      "classTime": "1 1700-1900",
       "fee": "21.00",
       "paymentDate": "28/2/2018",
       "additionalDetails": [ "owesMoney", "friends" ]
@@ -91,7 +91,7 @@
     "year": "JC 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "1 1500-1700",
+      "classTime": "1 1900-2100",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
@@ -112,7 +112,7 @@
     "year": "Secondary 2",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "1 1500-1700",
+      "classTime": "3 1200-1430",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
@@ -133,7 +133,7 @@
     "year": "Secondary 4",
     "admin" : {
       "classVenue": "311, Clementi Ave 2, #02-25",
-      "classTime": "1 1500-1700",
+      "classTime": "2 1000-1230",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": [ "owesMoney", "friends" ]
