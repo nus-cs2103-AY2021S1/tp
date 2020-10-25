@@ -97,19 +97,4 @@ public class StringUtil {
             return false;
         }
     }
-
-    /**
-     * Returns false if any Strings are null or blank. Utility function to check a variable number of Strings.
-     *
-     * @param strings variable number of Strings
-     * @return {@code boolean} representing if any Strings are null or blank
-     */
-    public static boolean allStringsNotNullOrBlank (String ...strings) {
-        for (String str : strings) {
-            if (str == null || str.isBlank()) {
-                return false;
-            }
-        }
-        return true;
-    }
 }

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
 
 
 /**
@@ -19,40 +20,42 @@ import seedu.address.model.visit.Visit;
 public class ProfileCommand extends Command {
     public static final String COMMAND_WORD = "profile";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens the detailed profile of the patient identified "
-            + "by the index number used in the last person listing.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the profile of the patient identified "
+            + "by the index number used in the displayed patient list.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_VIEW_PROFILE_SUCCESS = "Generated profile view of : %1$s";
+    public static final String MESSAGE_VIEW_PROFILE_SUCCESS = "Displayed profile of : %1$s";
 
-    private final Index index;
+    private final Index patientIndex;
 
     /**
-     * @param index of the person in the last listing whose profile is to be viewed
+     * @param patientIndex of the person in the last listing whose profile is to be viewed
      */
-    public ProfileCommand(Index index) {
-        requireAllNonNull(index);
+    public ProfileCommand(Index patientIndex) {
+        requireAllNonNull(patientIndex);
 
-        this.index = index;
+        this.patientIndex = patientIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        // Get person list based on existing filter
-        List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        List<Patient> lastShownList = model.getFilteredPatientList();
+        int sizeOfList = lastShownList.size();
+
+        if (patientIndex.getZeroBased() >= sizeOfList) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        // Extract the person from list
-        Patient personProfileToShow = lastShownList.get(index.getZeroBased());
+        Patient patientToDisplay = lastShownList.get(patientIndex.getZeroBased());
+        VisitHistory visitHistory = patientToDisplay.getVisitHistory();
+        ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
 
-        ObservableList<Visit> personReportList = personProfileToShow.getVisitHistory().getObservableVisits();
+        ObservableList<Visit> copyOfObservableHistory = observableHistory;
 
-        return new CommandResult(String.format(MESSAGE_VIEW_PROFILE_SUCCESS, personProfileToShow),
-                personProfileToShow, personReportList);
+        return new CommandResult(String.format(MESSAGE_VIEW_PROFILE_SUCCESS, patientToDisplay), copyOfObservableHistory,
+                patientToDisplay);
     }
 
 
@@ -70,6 +73,6 @@ public class ProfileCommand extends Command {
 
         // state check
         ProfileCommand e = (ProfileCommand) other;
-        return index.equals(e.index);
+        return patientIndex.equals(e.patientIndex);
     }
 }

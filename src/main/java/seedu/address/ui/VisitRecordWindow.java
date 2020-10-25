@@ -6,7 +6,6 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
@@ -22,176 +21,166 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.visit.Visit;
 
 /**
- * Creates a new Form for user to enter visitation details.
+ * Instantiates a window for logging visit details.
  *
  */
 public class VisitRecordWindow extends UiPart<Stage> {
 
     private static final String FXML = "VisitRecordForm.fxml";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
-    private static final int INVALID_REPORT_INDEX = -1;
-
-    @FXML
-    private TextArea medicine;
+    private static final int INVALID_VISIT_INDEX = -1;
 
     @FXML
     private TextArea diagnosis;
 
     @FXML
-    private TextArea remarks;
+    private TextArea prescription;
 
     @FXML
-    private Button saveButton;
+    private TextArea comment;
 
-    private int index;
-    private int reportIdx;
-    private String date;
-    private String msg = "";
+    @FXML
+    private Button button;
+
+    private String visitDate;
+    private String feedbackMessage = "";
+    private int patientIndex;
+    private int visitIndex;
     private Logic logic;
 
-
     /**
-     * Creates a new VisitRecordWindow.
+     * Instantiates VisitRecordWindow.
      *
-     * @param root Stage to use as the root of the VisitRecordWindow.
+     * @param root Stage to use for VisitRecordWindow
      */
 
-    public VisitRecordWindow(Stage root, EventHandler<WindowEvent> e) {
+    public VisitRecordWindow(EventHandler<WindowEvent> e, Stage root) {
         super(FXML, root);
         root.setOnHidden(e);
         setup();
     }
 
     /**
-     * Creates a new VisitRecordWindow.
+     * Instantiates VisitRecordWindow.
      */
     public VisitRecordWindow(EventHandler<WindowEvent> e) {
-        this(new Stage(), e);
+        this(e, new Stage());
     }
 
     /**
-     * Shows the window.
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
+     * Displays VisitRecordWindow.
      */
     public void show() {
-        logger.fine("Showing Visit Record Window.");
+        logger.fine("Displaying Visit Record Window..");
         getRoot().show();
         getRoot().centerOnScreen();
         getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            if (KeyCode.ESCAPE == event.getCode()) {
+            KeyCode userInput = event.getCode();
+            if (userInput == KeyCode.ESCAPE) {
                 this.hide();
             }
         });
     }
 
     /**
-     * Returns true if the window is currently being shown.
+     * Checks if VisitRecordWindow is being displayed.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the window.
+     * Hides VisitRecordWindow.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Clears all text in textareas.
+     * Removes all parameters in VisitWindow.
      */
-    public void clearFields() {
-        medicine.clear();
+    public void flushParameters() {
+        prescription.clear();
         diagnosis.clear();
-        remarks.clear();
+        comment.clear();
     }
 
     /**
-     * Focuses on the window.
+     * Focuses on VisitRecordWindow.
      */
     public void focus() {
         getRoot().requestFocus();
     }
 
     /**
-     * Saves report and closes window
+     * Saves visit and exits VisitRecordWindow.
      */
     @FXML
-    protected void saveReport(ActionEvent event) throws CommandException {
+    protected void saveVisit(ActionEvent actionEvent) throws CommandException {
+        String prescriptionString = prescription.getText();
+        String diagnosisString = diagnosis.getText();
+        String commentString = comment.getText();
 
-        SaveVisitCommand save = new SaveVisitCommand(index, reportIdx, date, medicine.getText(),
-                diagnosis.getText(), remarks.getText());
+        SaveVisitCommand saveCommand = new SaveVisitCommand(patientIndex, visitDate, prescriptionString,
+                                                            diagnosisString, commentString, visitIndex);
 
-        CommandResult commandResult = logic.execute(save);
-        this.msg = commandResult.getFeedbackToUser();
+        CommandResult commandResult = logic.execute(saveCommand);
+        this.feedbackMessage = commandResult.getFeedbackToUser();
         this.hide();
-        this.msg = "";
+        this.feedbackMessage = "";
     }
 
-
-    public void setReportInfo(int idx, String date, Logic logic) {
-        this.index = idx;
-        this.reportIdx = INVALID_REPORT_INDEX;
-        this.date = date;
+    public void setVisitDetails(Logic logic, String visitDate, int patientIndex) {
         this.logic = logic;
+        this.visitDate = visitDate;
+        this.patientIndex = patientIndex;
+        this.visitIndex = INVALID_VISIT_INDEX;
     }
 
-    public void setOldReportInfo(int idx, int reportIdx, Visit report, Logic logic) {
-        this.index = idx;
-        this.reportIdx = reportIdx;
-        this.date = report.getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    public void setPreviousVisitDetails(Logic logic, Visit visit, int visitIndex, int patientIndex) {
         this.logic = logic;
+        this.visitIndex = visitIndex;
+        this.patientIndex = patientIndex;
+        this.visitDate = visit.getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-        medicine.setText(report.getPrescription());
-        diagnosis.setText(report.getDiagnosis());
-        remarks.setText(report.getComment());
+        String prescriptionToSet = visit.getPrescription();
+        String diagnosisToSet = visit.getDiagnosis();
+        String commentToSet = visit.getComment();
+
+        prescription.setText(prescriptionToSet);
+        diagnosis.setText(diagnosisToSet);
+        comment.setText(commentToSet);
     }
 
     public void setup() {
-        setSaveAccelerator(saveButton);
+        setAcceleratorForSaving(button);
     }
 
 
-    private void setSaveAccelerator(Button button) throws IllegalArgumentException {
+    private void setAcceleratorForSaving(Button button) throws IllegalArgumentException {
         if (button == null) {
-            System.out.println("Button null!!");
-        }
-        Scene scene = button.getScene();
-        if (scene == null) {
-            throw new IllegalArgumentException("setSaveAccelerator must be called"
-                    + "when a button is attached to a scene");
+            System.err.println("Button is null.");
         }
 
-        scene.getAccelerators().put(
-                KeyCombination.valueOf("F2"),
-                new Runnable() {
-                    @FXML public void run() {
-                        button.fire();
-                    }
-                }
-        );
+        assert button != null : "Button cannot be null.";
+
+        if (button.getScene() != null) {
+            // Do nothing.
+        } else {
+            throw new IllegalArgumentException("setSaveAccelerator must be called when a button is attached "
+                    + "to a scene");
+        }
+
+        button.getScene().getAccelerators().put(KeyCombination.valueOf("F1"), new Runnable() {
+            @FXML public void run() {
+                button.fire();
+            }
+        });
     }
 
-    public String getMessage() {
-        return this.msg;
+    public String getFeedbackMessage() {
+        return this.feedbackMessage;
     }
-
-
 }
 
 

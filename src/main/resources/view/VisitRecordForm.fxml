@@ -14,7 +14,7 @@
 
 <fx:root minWidth="450.0" resizable="false" title="Add Visit Form" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/visitWindowIcon.png" />
+        <Image url="@/images/stethoscope.png" />
     </icons>
     <scene>
         <Scene>
@@ -23,7 +23,7 @@
                     <VBox fx:id="visitRecordForm" layoutY="5.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                         <children>
                             <Label styleClass="label-bright" text="Prescription :" />
-                            <TextArea fx:id="medicine" prefHeight="65.0" prefWidth="483.0" promptText="Prescription given to the patient" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                            <TextArea fx:id="prescription" prefHeight="65.0" prefWidth="483.0" promptText="Prescription given to the patient" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></TextArea>
@@ -39,7 +39,7 @@
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></Label>
-                            <TextArea fx:id="remarks" prefHeight="200.0" prefWidth="200.0" promptText="Any Additional Remarks" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                            <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0" promptText="Any Additional Remarks" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
                                 <VBox.margin>
                                     <Insets top="5.0" />
                                 </VBox.margin></TextArea>
@@ -59,7 +59,7 @@
                                         </padding>
                                     </VBox>
                                     <VBox maxHeight="33.0" maxWidth="1.7976931348623157E308" minHeight="33.0" minWidth="0.0" prefHeight="33.0" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveReport" text="Save(F2)">
+                                    <Button fx:id="button" mnemonicParsing="false" onAction="#saveVisit" text="Save (F1)">
                                         <HBox.margin>
                                             <Insets />
                                         </HBox.margin>

@@ -40,14 +40,14 @@ class JsonAdaptedVisit {
     /**
      * Converts a given {@code Visit} into this class for Jackson use.
      */
-    public JsonAdaptedVisit(Visit source) {
+    public JsonAdaptedVisit(Visit visit) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        String formattedString = source.getVisitDate().format(formatter);
+        String formattedString = visit.getVisitDate().format(formatter);
         visitDate = formattedString;
-        patientName = source.getPatientName().toString();
-        diagnosis = source.getDiagnosis();
-        prescription = source.getPrescription();
-        comment = source.getComment();
+        patientName = visit.getPatientName().toString();
+        diagnosis = visit.getDiagnosis();
+        prescription = visit.getPrescription();
+        comment = visit.getComment();
     }
 
     /**
@@ -56,12 +56,13 @@ class JsonAdaptedVisit {
      * @throws IllegalValueException if there were any data constraints violated in the adapted allergy.
      */
     public Visit toModelType() throws IllegalValueException {
-        if (!Visit.isValidVisitDate(visitDate)) {
+        if (Visit.isValidVisitDate(visitDate)) {
+            // Do nothing.
+        } else {
             throw new IllegalValueException(Visit.MESSAGE_CONSTRAINTS);
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         return new Visit(LocalDate.parse(visitDate, formatter), new Name(patientName), diagnosis, prescription,
             comment);
     }
-
 }

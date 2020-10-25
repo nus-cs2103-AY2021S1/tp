@@ -13,96 +13,95 @@ import seedu.address.model.visit.Visit;
  */
 public class CommandResult {
 
-    private final String feedbackToUser;
-
     /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    private final boolean isShowHelp;
 
     /** The application should exit. */
-    private final boolean exit;
+    private final boolean isExit;
 
-    private int index;
-    private int reportIdx;
-    private String date;
-    private ObservableList<Visit> reports;
-    private Visit oldReport;
-    private Patient profilePatient;
+    /** The application should display patient's profile. */
+    private final boolean isDisplayProfile;
 
-    /** The application should AddVisit. */
+    /** The application should display current visit history. */
+    private final boolean isDisplayVisitHistory;
+
+    /** The application should add a new visit. */
     private final boolean isAddVisit;
 
-    /** The application should ShowVisitList. */
-    private final boolean isShowVisitList;
-
-    /** The application should EditVisit. */
+    /** The application should edit a specified visit. */
     private final boolean isEditVisit;
 
-    /** The application should show the Profile */
-    private final boolean isProfile;
+    private final String feedbackToUser;
+    private String visitDate;
+    private Patient patientProfile;
+    private ObservableList<Visit> visitHistory;
+    private Visit previousVisit;
+    private int visitIndex;
+    private int patientIndex;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean isAddVisit, boolean isShowVisitList,
-                         boolean isEditVisit, boolean isProfile, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isAddVisit, boolean isDisplayVisitHistory,
+                         boolean isEditVisit, boolean isDisplayProfile, boolean isExit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.isShowHelp = isShowHelp;
         this.isAddVisit = isAddVisit;
-        this.isShowVisitList = isShowVisitList;
+        this.isDisplayVisitHistory = isDisplayVisitHistory;
         this.isEditVisit = isEditVisit;
-        this.isProfile = isProfile;
+        this.isDisplayProfile = isDisplayProfile;
+        this.isExit = isExit;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * All other parameters are set to false for this constructor.
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false, false, false, false);
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * This constructor is used for adding visits.
      */
-    public CommandResult(String feedbackToUser, int idx, String date) {
+    public CommandResult(String feedbackToUser, String visitDate, int patientIndex) {
         this(feedbackToUser, false, true, false, false, false, false);
-        this.index = idx;
-        this.date = date;
+        this.visitDate = visitDate;
+        this.patientIndex = patientIndex;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * This constructor is used for displaying visit history.
      */
-    public CommandResult(String feedbackToUser, ObservableList<Visit> lst) {
+    public CommandResult(String feedbackToUser, ObservableList<Visit> visitHistory) {
         this(feedbackToUser, false, false, true, false,
             false, false);
-        this.reports = lst;
+        this.visitHistory = visitHistory;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * This constructor is used for editing visits.
      */
-    public CommandResult(String feedbackToUser, ObservableList<Visit> lst,
-                         int idx, int reportIdx, Visit report) {
+    public CommandResult(String feedbackToUser, ObservableList<Visit> visitHistory,
+                         Visit previousVisit, int visitIndex, int patientIndex) {
         this(feedbackToUser, false, false, false, true, false, false);
-        this.reports = lst;
-        this.index = idx;
-        this.reportIdx = reportIdx;
-        this.oldReport = report;
+        this.visitHistory = visitHistory;
+        this.previousVisit = previousVisit;
+        this.visitIndex = visitIndex;
+        this.patientIndex = patientIndex;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}.
+     * This constructor is used for displaying patient profile.
      */
-    public CommandResult(String feedbackToUser, Patient profilePatient, ObservableList<Visit> profileReportList) {
+    public CommandResult(String feedbackToUser, ObservableList<Visit> visitHistory, Patient patientProfile) {
         this(feedbackToUser, false, false, false, false, true, false);
-        this.profilePatient = profilePatient;
-        this.reports = profileReportList;
+        this.visitHistory = visitHistory;
+        this.patientProfile = patientProfile;
     }
 
     public String getFeedbackToUser() {
@@ -110,53 +109,52 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return isShowHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return isExit;
     }
 
-    public boolean isShowProfile() {
-        return isProfile;
-    }
-
-    public Patient getProfilePerson() {
-        return profilePatient;
+    public boolean isDisplayProfile() {
+        return isDisplayProfile;
     }
 
     public boolean isAddVisit() {
         return isAddVisit;
     }
 
-    public boolean isShowVisitList() {
-        return isShowVisitList;
+    public boolean isDisplayVisitHistory() {
+        return isDisplayVisitHistory;
     }
 
     public boolean isEditVisit() {
         return isEditVisit;
     }
 
-    public int getIdx() {
-        return index;
+    public Patient getPatientProfile() {
+        return patientProfile;
     }
 
-    public int getReportIdx() {
-        return reportIdx;
+    public int getPatientIndex() {
+        return patientIndex;
     }
 
-    public String getDate() {
-        return date;
+    public int getVisitIndex() {
+        return visitIndex;
     }
 
-    public Visit getOldReport() {
-        return this.oldReport;
+    public String getVisitDate() {
+        return visitDate;
+    }
+
+    public Visit getPreviousVisit() {
+        return this.previousVisit;
     }
 
     public ObservableList<Visit> getObservableVisitHistory() {
-        return this.reports;
+        return this.visitHistory;
     }
-
 
     @Override
     public boolean equals(Object other) {
@@ -173,14 +171,13 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && isAddVisit == otherCommandResult.isAddVisit
                 && isEditVisit == otherCommandResult.isEditVisit
-                && isShowVisitList == otherCommandResult.isShowVisitList
-                && isProfile == otherCommandResult.isProfile
-                && exit == otherCommandResult.exit;
+                && isDisplayVisitHistory == otherCommandResult.isDisplayVisitHistory
+                && isDisplayProfile == otherCommandResult.isDisplayProfile
+                && isExit == otherCommandResult.isExit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, isAddVisit, isProfile, exit);
+        return Objects.hash(feedbackToUser, isShowHelp, isAddVisit, isDisplayProfile, isExit);
     }
-
 }

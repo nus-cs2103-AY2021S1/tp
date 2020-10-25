@@ -12,27 +12,34 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.AddVisitCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+
+/**
+ * Parses input arguments and creates a new AddVisitCommandParser object
+ */
 public class AddVisitCommandParser implements Parser<AddVisitCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the {@code AddVisitCommandParser}
+     * and returns a {@code AddVisitCommandParser} object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public AddVisitCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-            ArgumentTokenizer.tokenize(args, PREFIX_VISIT_DATE);
-        Index index;
-        String date;
+
+        Index patientIndex;
+        String visitDate;
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_VISIT_DATE);
+
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            // Take date from '/vd' prefix or use current timing for report date.
-            date = ParserUtil.parseVisitReport(argMultimap.getValue(PREFIX_VISIT_DATE)
-                .orElse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
-        } catch (IllegalValueException ive) {
+            patientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+            visitDate = ParserUtil.parseVisit(argMultimap.getValue(PREFIX_VISIT_DATE)
+                        .orElse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
+        } catch (IllegalValueException exception) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                AddVisitCommand.MESSAGE_USAGE), ive);
+                                     AddVisitCommand.MESSAGE_USAGE), exception);
         }
-
-        return new AddVisitCommand(index, date);
-
-
+        return new AddVisitCommand(visitDate, patientIndex);
     }
 }

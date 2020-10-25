@@ -9,67 +9,63 @@ import javafx.scene.layout.Region;
 import seedu.address.model.visit.Visit;
 
 /**
- * An UI component that displays information of a {@code VisitReport} on the {@code ProfileWindow}.
+ * A UI class to show parameters of a {@code Visit} object on the patient's {@code ProfileWindow}.
  */
 public class ProfileVisitCard extends UiPart<Region> {
 
     private static final String FXML = "ProfileVisitCard.fxml";
 
-    public final Visit report;
-    public final String date;
+    public final Visit visit;
+    public final String visitDate;
     private String diagnosis;
-    private String medication;
-    private String remarks;
+    private String prescription;
+    private String comment;
 
     @FXML
-    private HBox profileVisitCardPane;
+    private HBox profileVisitCard;
     @FXML
-    private Label profileVisitDate;
+    private Label profileDate;
     @FXML
-    private Label profileVisitDiagnosis;
+    private Label profileDiagnosis;
     @FXML
-    private Label profileVisitMedication;
+    private Label profilePrescription;
     @FXML
-    private Label profileVisitRemarks;
+    private Label profileComment;
 
     /**
      * Instantiates a ProfileVisitCard object.
      */
-    public ProfileVisitCard(Visit report) {
+    public ProfileVisitCard(Visit visit) {
         super(FXML);
-        this.report = report;
+        this.visit = visit;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        this.date = report.getVisitDate().format(formatter);
-        this.diagnosis = report.getDiagnosis();
-        this.medication = report.getPrescription();
-        this.remarks = report.getComment();
+        this.visitDate = visit.getVisitDate().format(formatter);
+        this.diagnosis = visit.getDiagnosis();
+        this.prescription = visit.getPrescription();
+        this.comment = visit.getComment();
 
-        // Set date
-        profileVisitDate.setText("Visitation Report on [" + date + "]");
+        profileDate.setText("Visitation Report on [" + visitDate + "]");
 
-        // Set Diagnosis, Medication and Remark data
-        setVisitText(profileVisitDiagnosis, diagnosis);
-        setVisitText(profileVisitMedication, medication);
-        setVisitText(profileVisitRemarks, remarks);
+        setParameter(diagnosis, profileDiagnosis);
+        setParameter(prescription, profilePrescription);
+        setParameter(comment, profileComment);
     }
 
     /**
-     * Sets a label in the {@code ProfileVisitCard} with a specified {@code String} detailing
-     * the appropriate description.
+     * Sets the specified parameter in {@code ProfileVisitCard}
      *
-     * @param label {@code Label} instance to display the {@code String} content
-     * @param reportDetail {@code String} detailing the description for {@code Label} to display
+     * @param visitParameter Patient field to display
+     * @param label {@code Label} object to represent specified patient field
      */
-    private void setVisitText(Label label, String reportDetail) {
-        // Guard function for null label
+    private void setParameter(String visitParameter, Label label) {
         if (label == null) {
             return;
         }
 
-        if (reportDetail == null || reportDetail.isBlank()) {
-            label.setText("-");
+        if (!(visitParameter.isBlank() || visitParameter == null)) {
+            label.setText(visitParameter);
         } else {
-            label.setText(reportDetail);
+            label.setText("-");
         }
     }
 
@@ -87,8 +83,7 @@ public class ProfileVisitCard extends UiPart<Region> {
 
         // state check
         ProfileVisitCard card = (ProfileVisitCard) other;
-        return this.date.equals(card.date)
-                && report.equals(card.report);
+        return this.visitDate.equals(card.visitDate) && visit.equals(card.visit);
     }
 }
 

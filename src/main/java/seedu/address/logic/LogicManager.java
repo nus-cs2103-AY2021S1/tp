@@ -66,18 +66,20 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CommandResult execute(Command cmd) throws CommandException {
-        logger.info("----------------[USER COMMAND][" + cmd.toString() + "]");
+    public CommandResult execute(Command command) throws CommandException {
+        String commandString = command.toString();
+        //Logging, safe to ignore
+        logger.info("----------------[USER COMMAND][" + commandString + "]");
 
-        CommandResult commandResult;
-        commandResult = cmd.execute(model);
+        //Executes the Command and stores the result
+        CommandResult commandResult = command.execute(model);
 
         try {
-            storage.saveCliniCal(model.getCliniCal());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            ReadOnlyCliniCal copyOfClinical = model.getCliniCal();
+            storage.saveCliniCal(copyOfClinical);
+        } catch (IOException exception) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + exception, exception);
         }
-
         return commandResult;
     }
 
@@ -107,8 +109,6 @@ public class LogicManager implements Logic {
         CommandResult commandResult = execute(commandToRun);
         return commandResult;
     }
-
-
 
     @Override
     public ReadOnlyCliniCal getCliniCal() {

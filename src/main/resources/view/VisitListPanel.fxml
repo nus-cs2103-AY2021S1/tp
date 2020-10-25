@@ -11,7 +11,7 @@
 
 <fx:root minWidth="450" resizable="false" title="Visitation List for Edit/Delete" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
-        <Image url="@/images/visitWindowIcon.png" />
+        <Image url="@/images/stethoscope.png" />
     </icons>
     <scene>
         <Scene>
@@ -21,7 +21,7 @@
                         <Insets bottom="5.0" left="5.0" top="5.0" />
                     </VBox.margin>
                 </Label>
-                <ListView fx:id="visitListView" VBox.vgrow="ALWAYS" />
+                <ListView fx:id="visitHistoryView" VBox.vgrow="ALWAYS" />
             </VBox>
             <stylesheets>
                 <URL value="@DarkTheme.css" />

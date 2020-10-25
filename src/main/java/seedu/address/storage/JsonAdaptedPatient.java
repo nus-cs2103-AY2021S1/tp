@@ -83,9 +83,9 @@ class JsonAdaptedPatient {
         phone = source.getPhone().value;
         icNumber = source.getIcNumber().value;
         address = source.getAddress().value;
-        visitHistory.addAll(source.getVisitHistory().getVisits().stream()
-            .map(JsonAdaptedVisit::new)
-            .collect(Collectors.toList()));
+        VisitHistory tempVisitHistory = source.getVisitHistory();
+        ArrayList<Visit> arrayOfVisits = tempVisitHistory.getVisits();
+        visitHistory.addAll(arrayOfVisits.stream().map(JsonAdaptedVisit::new).collect(Collectors.toList()));
         email = source.getEmail().value;
         profilePicture = source.getProfilePicture().value;
         sex = source.getSex().value;
@@ -103,12 +103,12 @@ class JsonAdaptedPatient {
      */
     public Patient toModelType() throws IllegalValueException {
         final List<Allergy> patientAllergies = new ArrayList<>();
-        for (JsonAdaptedAllergy tag : tagged) {
+        for (JsonAdaptedAllergy tag: tagged) {
             patientAllergies.add(tag.toModelType());
         }
 
         final ArrayList<Visit> patientVisits = new ArrayList<>();
-        for (JsonAdaptedVisit visit : visitHistory) {
+        for (JsonAdaptedVisit visit: visitHistory) {
             patientVisits.add(visit.toModelType());
         }
 

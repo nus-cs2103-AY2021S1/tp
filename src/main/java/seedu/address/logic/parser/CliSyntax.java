@@ -17,7 +17,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_ALLERGY = new Prefix("g/");
     public static final Prefix PREFIX_COLORTAG = new Prefix("ct/");
     public static final Prefix PREFIX_VISIT_DELETE = new Prefix("d/");
-    public static final Prefix PREFIX_VISIT_DATE = new Prefix("vd/");
     public static final Prefix PREFIX_EDIT_VISIT = new Prefix("ev/");
+    public static final Prefix PREFIX_VISIT_DATE = new Prefix("vd/");
 
 }

@@ -13,48 +13,47 @@ import seedu.address.model.Model;
 import seedu.address.model.patient.Patient;
 
 /**
- * Changes the visitList of an elxisting person in the address book.
+ * Adds a visit record to the visitHistory of a patient.
  */
 public class AddVisitCommand extends Command {
     public static final String COMMAND_WORD = "addvisit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add the visitation record of the person identified "
-            + "by the index number used in the last person listing. "
-            + "Calls window popup for user to fill in details.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_VISIT_DATE + "[DATE i.e. DD/MM/YYYY]\n"
-            + "Only dates from year 19xx to 2xxx are accepted\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_VISIT_DATE + "01/01/2019";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a visit record to the patient "
+            + "by specifying the patient's index in the list of patients. \n"
+            + "Parameters: INDEX (must be a positive integer) ["
+            + PREFIX_VISIT_DATE + "DATE]\n"
+            + "Input DATE as DD/MM/YYYY. Input YYYY as 19xx to 2xxx.\n"
+            + "Example: " + COMMAND_WORD + " 2 "
+            + "[" + PREFIX_VISIT_DATE + "10/10/2020]";
 
-    public static final String MESSAGE_ADD_VISIT_PROMPT = "Please fill in the form";
+    public static final String MESSAGE_POPUP_PROMPT = "Please refer to the popup window and enter visitation log.";
 
-    private final Index index;
-    private final String date;
+    private final Index patientIndex;
+    private final String visitDate;
 
     /**
-     * @param index of the person in the filtered person list to edit the visitList
-     * @param date of the VisitReport
+     * @param patientIndex Index of the patient
+     * @param visitDate Date of patient visit
      */
-    public AddVisitCommand(Index index, String date) {
-        CollectionUtil.requireAllNonNull(index, date);
-
-        this.index = index;
-        this.date = date;
+    public AddVisitCommand(String visitDate, Index patientIndex) {
+        CollectionUtil.requireAllNonNull(patientIndex, visitDate);
+        this.visitDate = visitDate;
+        this.patientIndex = patientIndex;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (patientIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
         }
 
-        Patient personToEdit = lastShownList.get(index.getZeroBased());
+        Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
 
-        return new CommandResult(String.format(MESSAGE_ADD_VISIT_PROMPT, personToEdit), index.getOneBased(), date);
+        return new CommandResult(String.format(MESSAGE_POPUP_PROMPT, patientToEdit),
+                                 visitDate, patientIndex.getOneBased());
     }
 
 
@@ -72,8 +71,7 @@ public class AddVisitCommand extends Command {
 
         // state check
         AddVisitCommand e = (AddVisitCommand) other;
-        return index.equals(e.index)
-                && date.equals(e.date);
+        return patientIndex.equals(e.patientIndex) && visitDate.equals(e.visitDate);
     }
 }
 
