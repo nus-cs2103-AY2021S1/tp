@@ -21,6 +21,8 @@ public class Difficulty {
     public Difficulty(String value) {
         requireNonNull(value);
         AppUtil.checkArgument(isValidDifficultyName(value), MESSAGE_CONSTRAINTS);
+        boolean isValidInput = isValidDifficultyName(value);
+        assert isValidInput;
         this.value = value.toUpperCase();
     }
 
