@@ -26,6 +26,7 @@ class JsonAdaptedPerson {
 
     private final String name;
     private final String phone;
+    private final String emergency;
     private final String address;
     private final String archiveStatus;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -36,11 +37,14 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name,
                              @JsonProperty("phone") String phone,
+                             @JsonProperty("emergency") String emergency,
                              @JsonProperty("address") String address,
                              @JsonProperty("archiveStatus") String archiveStatus,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+
         this.name = name;
         this.phone = phone;
+        this.emergency = emergency;
         this.address = address;
         this.archiveStatus = archiveStatus;
 
@@ -55,6 +59,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
+        emergency = source.getEmergency().value;
         address = source.getAddress().value;
         archiveStatus = source.getArchiveStatus().toString();
         tagged.addAll(source.getTags().stream()
@@ -88,7 +93,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
         }
         final Phone modelPhone = new Phone(phone);
-
+        if (emergency == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if ((!Phone.isValidPhone(emergency))) {
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelEmergency = new Phone(emergency);
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -103,7 +114,9 @@ class JsonAdaptedPerson {
         final ArchiveStatus modelArchiveStatus = new ArchiveStatus(Boolean.parseBoolean(archiveStatus));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelAddress, modelArchiveStatus, modelTags);
+
+        return new Person(modelName, modelPhone, modelEmergency, modelAddress, modelArchiveStatus, modelTags);
+
     }
 
 }

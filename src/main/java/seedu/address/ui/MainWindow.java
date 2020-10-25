@@ -33,6 +33,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
+    private SalesRecordListPanel salesRecordListPanel;
+    private IngredientResultDisplay ingredientResultDisplay;
     private HelpWindow helpWindow;
 
     @FXML
@@ -46,6 +48,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane salesRecordListPanelPlaceholder;
+
+    @FXML
+    private StackPane ingredientResultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -110,6 +118,12 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        salesRecordListPanel = new SalesRecordListPanel(logic.getFilteredSalesRecordList());
+        salesRecordListPanelPlaceholder.getChildren().add(salesRecordListPanel.getRoot());
+
+        ingredientResultDisplay = new IngredientResultDisplay();
+        ingredientResultDisplayPlaceholder.getChildren().add(ingredientResultDisplay.getRoot());
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -170,7 +184,12 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            if (commandText.startsWith("i-list")) {
+                ingredientResultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            } else {
+                resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

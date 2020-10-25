@@ -146,14 +146,28 @@
     -fx-text-fill: #010504;
 }
 
+.cell_small_label_italic {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13px;
+    -fx-text-fill: #010504;
+    -fx-font-style: italic;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
 
-.pane-with-border {
+.pane-with-border{
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
+}
+
+.pane-with-border-orange{
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-color: derive(#1d1d1d, 10%);
+    -fx-border-top-width: 9px;
+    -fx-border-color: derive(#d2691e, 20%);
 }
 
 .status-bar {
@@ -219,6 +233,13 @@
 
 .menu .left-container {
     -fx-background-color: black;
+}
+
+.sales-record-list-panel-header {
+    -fx-text-fill: white;
+    -fx-font-size: 17;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-opacity: 1;
 }
 
 /*
@@ -321,6 +342,11 @@
     -fx-background-color: transparent;
     -fx-border-width: 0;
 }
+
+##salesCardPane {
+     -fx-background-color: transparent;
+     -fx-border-width: 0;
+ }
 
 #commandTypeLabel {
     -fx-font-size: 11px;

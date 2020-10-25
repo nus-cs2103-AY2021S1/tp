@@ -20,6 +20,7 @@ public class Person {
     private final Phone phone;
 
     // Data fields
+    private final Phone emergency;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -27,10 +28,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Address address, ArchiveStatus archiveStatus, Set<Tag> tags) {
-        requireAllNonNull(name, phone, address, tags, archiveStatus);
+
+    public Person(Name name, Phone phone, Phone emergency, Address address, ArchiveStatus archiveStatus,
+                  Set<Tag> tags) {
+        requireAllNonNull(name, phone, emergency, address, tags, archiveStatus);
+
         this.name = name;
         this.phone = phone;
+        this.emergency = emergency;
         this.address = address;
         this.archiveStatus = archiveStatus;
         this.tags.addAll(tags);
@@ -42,6 +47,10 @@ public class Person {
 
     public Phone getPhone() {
         return phone;
+    }
+
+    public Phone getEmergency() {
+        return emergency;
     }
 
     public Address getAddress() {
@@ -80,7 +89,7 @@ public class Person {
      * @return A Person whose archive status is true.
      */
     public Person archive() {
-        return new Person(this.name, this.phone, this.address, new ArchiveStatus(true),
+        return new Person(this.name, this.phone, this.emergency, this.address, new ArchiveStatus(true),
                 this.tags);
     }
 
@@ -90,7 +99,7 @@ public class Person {
      * @return A Person whose archive status is false.
      */
     public Person unarchive() {
-        return new Person(this.name, this.phone, this.address, new ArchiveStatus(false),
+        return new Person(this.name, this.phone, this.emergency, this.address, new ArchiveStatus(false),
                 this.tags);
     }
 
@@ -117,6 +126,7 @@ public class Person {
 
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
+                && otherPerson.getEmergency().equals((getEmergency()))
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getArchiveStatus().equals(getArchiveStatus());
@@ -125,7 +135,8 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, address, archiveStatus, tags);
+        return Objects.hash(name, phone, emergency, address, archiveStatus, tags);
+
     }
 
     @Override
@@ -134,6 +145,8 @@ public class Person {
         builder.append(getName())
                 .append(" Phone: ")
                 .append(getPhone())
+                .append(" Emergency Contact: ")
+                .append(getEmergency())
                 .append(" Address: ")
                 .append(getAddress())
                 .append(" Tags: ");

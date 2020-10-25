@@ -6,13 +6,16 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
 
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Address App" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+<fx:root minHeight="700" minWidth="1000" onCloseRequest="#handleExit" title="tCheck" type="javafx.stage.Stage"
+         xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -33,25 +36,70 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="300" minHeight="100" prefHeight="300.0" styleClass="pane-with-border">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <GridPane>
+          <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+              <ColumnConstraints hgrow="ALWAYS" minWidth="100.0" prefWidth="100.0" />
+          </columnConstraints>
+          <rowConstraints>
+              <RowConstraints maxHeight="400.0" minHeight="200.0" prefHeight="300.0" vgrow="ALWAYS" />
+              <RowConstraints maxHeight="400.0" minHeight="200.0" prefHeight="300.0" vgrow="ALWAYS" />
+          </rowConstraints>
+           <children>
+
+             <VBox fx:id="salesList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                   prefHeight="80.0" prefWidth="150.0" styleClass="pane-with-border-orange">
+                 <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                 </padding>
+                 <children>
+                    <StackPane fx:id="salesRecordListPanelPlaceholder" prefHeight="78.0" prefWidth="150.0"
+                               VBox.vgrow="ALWAYS" />
+                 </children>
+              </VBox>
+
+              <VBox fx:id="ingredientList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                    prefHeight="80.0" prefWidth="150.0" styleClass="pane-with-border-orange" GridPane.columnIndex="1">
+                 <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                 </padding>
+                 <children>
+                     <StackPane fx:id="ingredientResultDisplayPlaceholder" prefHeight="78.0" prefWidth="150.0"
+                                VBox.vgrow="ALWAYS" />
+                 </children>
+              </VBox>
+
+               <VBox fx:id="personList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="150.0" styleClass="pane-with-border-orange" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                   <padding>
+                       <Insets bottom="10" left="10" right="10" top="10" />
+                   </padding>
+
+                   <StackPane fx:id="personListPanelPlaceholder" prefHeight="78.0" prefWidth="150.0" VBox.vgrow="ALWAYS" />
+               </VBox>
+
+              <VBox fx:id="personList3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="150.0" styleClass="pane-with-border-orange" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                 <padding>
+                    <Insets bottom="10" left="10" right="10" top="10" />
+                 </padding>
+                 <children>
+                    <StackPane fx:id="personListPanelPlaceholder3" prefHeight="78.0" prefWidth="150.0" VBox.vgrow="ALWAYS" />
+                 </children>
+              </VBox>
+
+           </children>
+        </GridPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

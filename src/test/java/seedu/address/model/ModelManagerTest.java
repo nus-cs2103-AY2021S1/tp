@@ -100,7 +100,11 @@ public class ModelManagerTest {
         sales.put(Drink.BSPBT, 0);
         sales.put(Drink.BSPGT, 0);
         modelManager.overwrite(sales);
-        assertEquals(sales, modelManager.getSalesBook().getRecord());
+
+        UniqueSalesRecordList expectedSalesRecord = new UniqueSalesRecordList();
+        expectedSalesRecord.setSalesRecord(sales);
+
+        assertEquals(expectedSalesRecord, modelManager.getSalesBook().getRecord());
     }
 
     @Test
@@ -116,7 +120,11 @@ public class ModelManagerTest {
 
         sales.put(Drink.BSBBT, 80);
         modelManager.overwrite(sales);
-        assertEquals(sales, modelManager.getSalesBook().getRecord());
+
+        UniqueSalesRecordList expectedSalesRecord = new UniqueSalesRecordList();
+        expectedSalesRecord.setSalesRecord(sales);
+
+        assertEquals(expectedSalesRecord, modelManager.getSalesBook().getRecord());
     }
 
 

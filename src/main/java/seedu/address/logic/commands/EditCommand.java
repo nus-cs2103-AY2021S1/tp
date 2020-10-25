@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -38,6 +39,7 @@ public class EditCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMERGENCY + "EMERGENCY_CONTACT] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -93,10 +95,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
+        Phone updatedEmergency = editPersonDescriptor.getEmergency().orElse(personToEdit.getEmergency());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         ArchiveStatus archiveStatus = new ArchiveStatus(false);
-        return new Person(updatedName, updatedPhone, updatedAddress, archiveStatus, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmergency, updatedAddress, archiveStatus, updatedTags);
+
     }
 
     @Override
@@ -124,6 +128,7 @@ public class EditCommand extends Command {
     public static class EditPersonDescriptor {
         private Name name;
         private Phone phone;
+        private Phone emergency;
         private Address address;
         private ArchiveStatus archiveStatus;
         private Set<Tag> tags;
@@ -137,6 +142,7 @@ public class EditCommand extends Command {
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
+            setEmergency(toCopy.emergency);
             setAddress(toCopy.address);
             setArchiveStatus(toCopy.archiveStatus);
             setTags(toCopy.tags);
@@ -163,6 +169,14 @@ public class EditCommand extends Command {
 
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
+        }
+
+        public void setEmergency(Phone emergency) {
+            this.emergency = emergency;
+        }
+
+        public Optional<Phone> getEmergency() {
+            return Optional.ofNullable(emergency);
         }
 
         public void setAddress(Address address) {
@@ -214,6 +228,7 @@ public class EditCommand extends Command {
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
+                    && getEmergency().equals(e.getEmergency())
                     && getAddress().equals(e.getAddress())
                     && getArchiveStatus().equals(e.getArchiveStatus())
                     && getTags().equals(e.getTags());
