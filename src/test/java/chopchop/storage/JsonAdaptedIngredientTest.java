@@ -5,6 +5,7 @@ import static chopchop.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static chopchop.testutil.TypicalIngredients.BANANA;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
 import java.util.TreeMap;
@@ -41,14 +42,15 @@ public class JsonAdaptedIngredientTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        var ingredient = new JsonAdaptedIngredient(INVALID_NAME, getValidJsonIngredientSet(), null);
+        var ingredient = new JsonAdaptedIngredient(INVALID_NAME, getValidJsonIngredientSet(), new ArrayList<>());
 
         assertThrows(IllegalValueException.class, Name.MESSAGE_CONSTRAINTS, ingredient::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedIngredient ingredient = new JsonAdaptedIngredient(null, getValidJsonIngredientSet(), null);
+        JsonAdaptedIngredient ingredient = new JsonAdaptedIngredient(null, getValidJsonIngredientSet(),
+                new ArrayList<>());
 
         var expectedMessage = String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, ingredient::toModelType);
@@ -58,7 +60,7 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_invalidQuantity_throwsIllegalValueException() {
         var ingredient = new JsonAdaptedIngredient(VALID_NAME,
             new JsonAdaptedIngredientSet(Arrays.asList(
-                new JsonAdaptedIngredientSet.JsonAdaptedPair(INVALID_QTY, VALID_EXPIRY))), null
+                new JsonAdaptedIngredientSet.JsonAdaptedPair(INVALID_QTY, VALID_EXPIRY))), new ArrayList<>()
         );
 
         var expectedMessage = Quantity.parse(INVALID_QTY).getError();
@@ -69,7 +71,7 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_nullQuantity_throwsIllegalValueException() {
         var ingredient = new JsonAdaptedIngredient(VALID_NAME,
             new JsonAdaptedIngredientSet(Arrays.asList(
-                new JsonAdaptedIngredientSet.JsonAdaptedPair(null, VALID_EXPIRY))), null
+                new JsonAdaptedIngredientSet.JsonAdaptedPair(null, VALID_EXPIRY))), new ArrayList<>()
         );
 
         var expectedMessage = String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT, Quantity.class.getSimpleName());
@@ -80,7 +82,7 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_invalidExpiry_throwsIllegalValueException() {
         var ingredient = new JsonAdaptedIngredient(VALID_NAME,
             new JsonAdaptedIngredientSet(Arrays.asList(
-                new JsonAdaptedIngredientSet.JsonAdaptedPair(VALID_QTY, INVALID_EXPIRY))), null
+                new JsonAdaptedIngredientSet.JsonAdaptedPair(VALID_QTY, INVALID_EXPIRY))), new ArrayList<>()
         );
 
         var expectedMessage = ExpiryDate.MESSAGE_CONSTRAINTS;
@@ -91,7 +93,7 @@ public class JsonAdaptedIngredientTest {
     public void toModelType_nullExpiry_throwsIllegalValueException() {
         var ingredient = new JsonAdaptedIngredient(VALID_NAME,
             new JsonAdaptedIngredientSet(Arrays.asList(
-                new JsonAdaptedIngredientSet.JsonAdaptedPair(VALID_QTY, null))), null
+                new JsonAdaptedIngredientSet.JsonAdaptedPair(VALID_QTY, null))), new ArrayList<>()
         );
 
         var expectedMessage = String.format(INGREDIENT_MISSING_FIELD_MESSAGE_FORMAT,

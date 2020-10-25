@@ -27,7 +27,6 @@ public class StepTest {
         // invalid Step
         assertFalse(Step.isValidStep("")); // empty string
         assertFalse(Step.isValidStep(" ")); // spaces only
-        assertFalse(Step.isValidStep("^")); // only non-alphanumeric characters
 
         // valid Step
         assertTrue(Step.isValidStep("recipe*")); // contains non-alphanumeric characters

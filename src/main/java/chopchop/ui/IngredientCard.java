@@ -24,15 +24,36 @@ public class IngredientCard extends UiPart<Region> {
     public IngredientCard(Ingredient ingredient) {
         super(FXML);
         this.ingredient = ingredient;
-        name.setText(displayFormatter(ingredient.toString()));
+        name.setText(displayFormatter(ingredient));
     }
 
     /**
      * Adds a new line to separate the ingredient name and the quantity.
      */
-    private String displayFormatter(String string) {
-        String[] temp = string.split(" ", 2);
-        return String.join("\n", temp);
+    private String displayFormatter(Ingredient ingredient) {
+        String tags;
+
+        if (ingredient.getTags().isEmpty()) {
+            tags = "No tags attached";
+        } else {
+            StringBuilder sb = new StringBuilder();
+            int index = 1;
+            for (var tag : ingredient.getTags()) {
+                sb.append(index)
+                        .append(" : ")
+                        .append(tag.toString())
+                        .append("\n");
+                index++;
+            }
+            tags = sb.toString();
+        }
+
+        return String.format("%s\n(%s)%s \nTags: \n%s",
+                ingredient.getName(),
+                ingredient.getQuantity(),
+                ingredient.getExpiryDate().map(d -> String.format(" expires: %s", d))
+                        .orElse(""),
+                tags);
     }
 
     @Override

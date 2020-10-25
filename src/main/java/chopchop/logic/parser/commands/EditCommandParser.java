@@ -1,8 +1,9 @@
-// EditCommandParser.java
+package chopchop.logic.parser.commands;
 
 import java.util.Optional;
 import java.util.ArrayList;
 
+import chopchop.logic.commands.EditRecipeCommand;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.commons.util.Result;
@@ -17,16 +18,10 @@ import chopchop.logic.edit.TagEditDescriptor;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.ItemReference;
 import chopchop.logic.parser.CommandArguments;
-import chopchop.logic.parser.commands.CommandTarget;
 
 import chopchop.logic.commands.Command;
 
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
-
-import chopchop.model.Model;
-import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.HistoryManager;
 
 public class EditCommandParser {
 
@@ -63,7 +58,7 @@ public class EditCommandParser {
                     var argName = arg.fst();
                     var argValue = arg.snd();
 
-                    if (argName.getComponents().isEmpty()) {
+                    if (!argName.name().equals(Strings.ARG_NAME.name()) && argName.getComponents().isEmpty()) {
                         return Result.error("'%s' needs an edit-argument in an edit command", argName);
                     }
 
@@ -124,7 +119,7 @@ public class EditCommandParser {
                     return Result.error(ies.getError());
                 }
 
-                return Result.of(new EditCommandStub(item,
+                return Result.of(new EditRecipeCommand(item,
                     new RecipeEditDescriptor(editedName, ies.getValue(), ses.getValue(), tes.getValue())
                 ));
             });
@@ -172,7 +167,7 @@ public class EditCommandParser {
 
         if (argValue.isEmpty()) {
             return Result.error("expected tag name after /tag:add or /tag:delete");
-        } else if (!Tag.isValidTagName(argValue)) {
+        } else if (!Tag.isValidTag(argValue)) {
             return Result.error(Tag.MESSAGE_CONSTRAINTS);
         }
 
@@ -270,23 +265,6 @@ public class EditCommandParser {
         } else {
             return Result.error("expected either /%s:add, /%s:edit, or /%s:delete",
                 editor, editor, editor);
-        }
-    }
-
-
-    static class EditCommandStub extends Command {
-
-        private final ItemReference recipe;
-        private final RecipeEditDescriptor edit;
-
-        public EditCommandStub(ItemReference recipe, RecipeEditDescriptor edit) {
-            this.recipe = recipe;
-            this.edit = edit;
-        }
-
-        @Override
-        public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-            return new CommandResult("");
         }
     }
 }

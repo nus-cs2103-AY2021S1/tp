@@ -17,7 +17,7 @@ public class TagEditDescriptor extends EditDescriptor {
     public TagEditDescriptor(EditOperationType editType, String tag) {
         super(editType);
 
-        assert Tag.isValidTagName(tag);
+        assert Tag.isValidTag(tag);
         assert editType == EditOperationType.ADD || editType == EditOperationType.DELETE;
 
         this.tagName = tag;

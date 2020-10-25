@@ -27,7 +27,6 @@ public class NameTest {
         // invalid name
         assertFalse(Name.isValidName("")); // empty string
         assertFalse(Name.isValidName(" ")); // spaces only
-        assertFalse(Name.isValidName("^")); // only non-alphanumeric characters
 
         // valid name
         assertTrue(Name.isValidName("corn*")); // contains non-alphanumeric characters
