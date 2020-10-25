@@ -3,6 +3,7 @@ package quickcache.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static quickcache.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static quickcache.logic.parser.CliSyntax.PREFIX_CHOICE;
+import static quickcache.logic.parser.CliSyntax.PREFIX_DIFFICULTY;
 import static quickcache.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -45,6 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ANSWER + "ANSWER] "
             + "[" + PREFIX_CHOICE + "CHOICE]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_DIFFICULTY + "DIFFICULTY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUESTION + "New Question "
             + PREFIX_ANSWER + "New Answer";

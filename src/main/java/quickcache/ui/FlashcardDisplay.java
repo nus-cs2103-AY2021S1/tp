@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import quickcache.model.flashcard.Difficulties;
 import quickcache.model.flashcard.Flashcard;
 
 /**
@@ -46,6 +47,19 @@ public class FlashcardDisplay extends UiPart<Region> {
         flashcard.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (!(flashcard.getDifficulty().getValue().equals(Difficulties.UNSPECIFIED.name()))) {
+            Label difficultyLabel = new Label("Difficulty: " + flashcard.getDifficulty().value);
+            if (flashcard.getDifficulty().getValue().equals(Difficulties.LOW.name())) {
+                difficultyLabel.setStyle("-fx-background-color: #4BA314;");
+            } else if (flashcard.getDifficulty().getValue().equals(Difficulties.MEDIUM.name())) {
+                difficultyLabel.setStyle("-fx-background-color: #E5B915;");
+            } else if (flashcard.getDifficulty().getValue().equals(Difficulties.HIGH.name())) {
+                difficultyLabel.setStyle("-fx-background-color: #BE4C34;");
+            } else {
+                difficultyLabel.setStyle("-fx-background-color: #262626;");
+            }
+            tags.getChildren().add(difficultyLabel);
+        }
     }
 
     @Override

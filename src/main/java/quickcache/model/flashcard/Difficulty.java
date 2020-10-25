@@ -7,8 +7,9 @@ import quickcache.commons.util.AppUtil;
 public class Difficulty {
 
     public static final String MESSAGE_CONSTRAINTS = "Difficulty names should only be "
-            + "low, medium, or high. "
-            + "No spaces allowed. Cannot be empty.";
+            + "LOW, MEDIUM, or HIGH. "
+            + "No spaces allowed. "
+            + "Difficulty will be set to UNSPECIFIED if input is empty or UNSPECIFIED.";
 
     public final String value;
 
@@ -20,6 +21,8 @@ public class Difficulty {
     public Difficulty(String value) {
         requireNonNull(value);
         AppUtil.checkArgument(isValidDifficultyName(value), MESSAGE_CONSTRAINTS);
+        boolean isValidInput = isValidDifficultyName(value);
+        assert isValidInput;
         this.value = value.toUpperCase();
     }
 
@@ -27,7 +30,7 @@ public class Difficulty {
      * Constructs a {@code Difficulty}.
       */
     public Difficulty() {
-        this.value = "UNSPECIFIED";
+        this.value = Difficulties.UNSPECIFIED.name();
     }
 
     /**
