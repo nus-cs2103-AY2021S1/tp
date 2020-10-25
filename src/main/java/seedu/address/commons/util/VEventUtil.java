@@ -84,7 +84,13 @@ public class VEventUtil {
      * @return true if both vEvents are the same
      */
     public static boolean isSameVEvent(VEvent vEventOne, VEvent vEventTwo) {
-        return vEventOne.getSummary().equals(vEventTwo.getSummary())
+        if (vEventOne == vEventTwo) {
+            return true;
+        }
+
+        return vEventOne != null
+                && vEventTwo != null
+                && vEventOne.getSummary().equals(vEventTwo.getSummary())
                 && vEventOne.getDateTimeStart().equals(vEventTwo.getDateTimeStart())
                 && vEventOne.getDateTimeEnd().equals(vEventTwo.getDateTimeEnd());
     }
