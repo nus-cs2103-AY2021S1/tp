@@ -33,4 +33,12 @@ public class DatePredicate implements Predicate<Food> {
     public boolean test(Food food) {
         return this.date.equals(food.getDate());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DatePredicate // instanceof handles nulls
+                && date.equals(((DatePredicate) other).date)); // state check
+    }
+
 }
