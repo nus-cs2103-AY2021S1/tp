@@ -1,12 +1,15 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalModuleCodes.CS1010S_CODE;
 import static seedu.address.testutil.TypicalModuleCodes.CS1101S_CODE;
 import static seedu.address.testutil.TypicalModuleCodes.CS2030_CODE;
@@ -104,7 +107,29 @@ class AssignCommandTest {
     }
 
     @Test
-    void testEquals() {
+    public void equals() {
+        AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, moduleCodes);
+        AssignCommand otherCommand = new AssignCommand(INDEX_FIRST_PERSON, moduleCodes);
+        AssignCommand differentIndexCommand = new AssignCommand(INDEX_SECOND_PERSON, moduleCodes);
+        AssignCommand differentCodesCommand = new AssignCommand(INDEX_SECOND_PERSON, inexistentModuleCodes);
+
+        // same object -> returns true
+        assertEquals(assignCommand, assignCommand);
+
+        // same values -> returns true
+        assertEquals(assignCommand, otherCommand);
+
+        // different types -> returns false
+        assertNotEquals(assignCommand, 1);
+
+        // null -> returns false
+        assertNotEquals(assignCommand, null);
+
+        // different index -> returns false
+        assertNotEquals(assignCommand, differentIndexCommand);
+
+        // different module codes -> returns false
+        assertNotEquals(assignCommand, differentCodesCommand);
     }
 
     /**
