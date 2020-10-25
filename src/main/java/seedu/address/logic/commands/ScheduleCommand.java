@@ -27,6 +27,8 @@ public class ScheduleCommand extends Command {
     public static final String INCORRECT_DATE_FORMAT = "Date should be in the format dd/mm/yyyy";
     public static final String EMPTY_DATE_MESSAGE = "Please input a date";
 
+    public static final String COMMAND_SUCCESS_MESSAGE = "Here is your schedule";
+
     private final LocalDate dateToFindSchedule;
 
     public ScheduleCommand(LocalDate dateTime) {
@@ -48,7 +50,7 @@ public class ScheduleCommand extends Command {
         model.updateFilteredPersonList(predicate);
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(COMMAND_SUCCESS_MESSAGE, model.getFilteredPersonList().size()));
     }
 
     @Override
