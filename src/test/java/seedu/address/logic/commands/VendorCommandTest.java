@@ -28,11 +28,11 @@ public class VendorCommandTest {
     public void execute_validDefaultIndex_success() {
         Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
-        VendorCommand vendorCommand = new VendorCommand(first);
+        VendorCommand vendorCommand = new SwitchVendorCommand(first);
 
         Model expectedModel = initialiseModel();
         expectedModel.selectVendor(first.getZeroBased());
-        String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 1);
+        String expectedMessage = String.format(SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 1);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
                 false, true);
         assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
@@ -42,11 +42,11 @@ public class VendorCommandTest {
     public void execute_validIndex_success() {
         Model model = initialiseModel();
         Index third = Index.fromOneBased(3);
-        VendorCommand vendorCommand = new VendorCommand(third);
+        VendorCommand vendorCommand = new SwitchVendorCommand(third);
 
         Model expectedModel = initialiseModel();
         expectedModel.selectVendor(third.getZeroBased());
-        String expectedMessage = String.format(VendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 3);
+        String expectedMessage = String.format(SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 3);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
                 false, true);
         assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
@@ -56,21 +56,21 @@ public class VendorCommandTest {
     public void execute_invalidIndex_throwsCommandException() {
         Model model = initialiseModel();
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
-        VendorCommand vendorCommand = new VendorCommand(outOfBoundIndex);
+        VendorCommand vendorCommand = new SwitchVendorCommand(outOfBoundIndex);
 
         assertCommandFailure(vendorCommand, model, ParserUtil.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        VendorCommand removeFirstCommand = new VendorCommand(Index.fromOneBased(1));
-        VendorCommand removeSecondCommand = new VendorCommand(Index.fromOneBased(2));
+        VendorCommand removeFirstCommand = new SwitchVendorCommand(Index.fromOneBased(1));
+        VendorCommand removeSecondCommand = new SwitchVendorCommand(Index.fromOneBased(2));
 
         // same object -> returns true
         assertTrue(removeFirstCommand.equals(removeFirstCommand));
 
         // same values -> returns true
-        VendorCommand removeFirstCommandCopy = new VendorCommand(Index.fromOneBased(1));
+        VendorCommand removeFirstCommandCopy = new SwitchVendorCommand(Index.fromOneBased(1));
         assertTrue(removeFirstCommand.equals(removeFirstCommandCopy));
 
         // different types -> returns false

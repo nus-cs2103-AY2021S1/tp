@@ -144,9 +144,9 @@ Order commands represents the operations to which users interact with.
 
 #### Add Command
 
-- The Add Command allows the user to add an order from the selected menu `Model#getFilteredFoodList`
-- If the Index provided is greater or less than the size of the menu, a `CommandException will be thrown`
-- If the Quantity provided is less or equal to zero, a `CommandException will be thrown`
+- The Add Command allows the user to add an order item from the selected menu `Model#getFilteredFoodList()`.
+- If the index provided is greater or less than the size of the menu, a `CommandException will be thrown`.
+- If the quantity provided is less or equal to zero, a `CommandException will be thrown`.
 
 
 
@@ -164,21 +164,21 @@ Step 2: The user selects a vendor with the VendorCommand `vendor i`, the corresp
 
 Step 3: The user enters the command `add 2 3` which adds item 2 from the menu with a quantity of 3.
 
-Step 4: `Model#getFilteredFoodList()` is executed to retrieve the list of Food items or menu from the current vendor
+Step 4: `Model#getFilteredFoodList()` is executed to retrieve the list of Food items or menu from the current vendor.
 
 Step 5: AddCommand checks whether the index and quantity inputted is valid. Index and Quantity is valid.
 
 Step 6: An OrderItem object is created from input quantity and the retrieved Food item.
 
-Step 7: `Model#addOrderItem()` is executed to add the OrderItem into ModelManager.
+Step 7: `Model#addOrderItem()` is executed to add the OrderItem into the `Model`.
 
 
 
 #### Remove Command
 
-- The RemoveCommand allows the user to remove an order from the selected menu `Model#getFilteredOrderItemList`
-- If the Index provided is greater or less than the size of the menu, a `CommandException will be thrown`
-- If the Quantity provided is less or equal to zero, a `CommandException will be thrown`
+- The RemoveCommand allows the user to remove an order from the selected menu `Model#getFilteredOrderItemList()`.
+- If the index provided is greater or less than the size of the menu, a `CommandException will be thrown`.
+- If the quantity provided is less or equal to zero, a `CommandException will be thrown`.
 
 
 
@@ -190,9 +190,9 @@ The following diagram summarises the sequence when the RemoveCommand is executed
 
 Given below is an example usage scenario and how the RemoveCommand behaves at each step.
 
-Step 1: The user has selected a vendor with `vendor i`
+Step 1: The user has selected a vendor with `vendor i`.
 
-Step 2: The user has added items with `add i qty`
+Step 2: The user has added items with `add i qty`.
 
 Step 3: The user enters the command `remove 1 1` which removes 1 quantity of the item at the 1st index in the order.
 
@@ -202,14 +202,14 @@ Step 5: RemoveCommand checks whether the index and quantity inputted is valid. I
 
 Step 6: A new OrderItem object is created from input quantity and the retrieved OrderItem.
 
-Step 7: `Model#removeOrderItem()` is executed to remove the related OrderItem
+Step 7: `Model#removeOrderItem()` is executed to remove the related OrderItem.
 
 
 
 #### Clear Command
 
-- The ClearCommand allows the user to clear all orders in the current order
-- If the current Order has no items, a `CommandException will be thrown`
+- The ClearCommand allows the user to clear all orders in the current order.
+- If the current Order has no items, a `CommandException will be thrown`.
 
 
 
@@ -219,11 +219,11 @@ The following diagram summarises the sequence when the ClearCommand is executed.
 
 
 
-Given below is an example usage scenario and how the ClearCommand behaves at each step
+Given below is an example usage scenario and how the ClearCommand behaves at each step.
 
-Step 1: The user has selected a vendor with `vendor i`
+Step 1: The user has selected a vendor with `vendor i`.
 
-Step 2: The user has added items with `add i qty`
+Step 2: The user has added items with `add i qty`.
 
 Step 3: The user enters the command `clear`.
 
@@ -271,13 +271,13 @@ Step 2: SupperStrikers loads the menu of the 1<sup>st</sup> vendor into the GUI.
 
 Step 3: The user enters the add command `add 1 3` 
 
-Step 4:  SupperStrikers adds 3 of the 1<sup>st</sup> item into the order
+Step 4:  SupperStrikers adds 3 of the 1<sup>st</sup> item into the order.
 
 Step 5: The user enters the command `r 1 1`.
 
-Step 6: The `LogicManager#execute` is executed to call the `AddressBookParser#parseCommand` method.
+Step 6: The `LogicManager#execute()` is executed to call the `AddressBookParser#parseCommand()` method.
 
-Step 7: `AddressBookParser#parseCommand` checks if the inputted command word is a prefix of one and only one of the valid commands by filtering the list of valid commands based on whether they start with the user inputted prefix. The `r` in this case maps to the `remove` keyword.
+Step 7: `AddressBookParser#parseCommand()` checks if the inputted command word is a prefix of one and only one of the valid commands by filtering the list of valid commands based on whether they start with the user inputted prefix. The `r` in this case maps to the `remove` keyword.
 
 Step 8: The `RemoveCommand` is executed and one quantity of the first item in the order is removed.  
 
@@ -290,6 +290,7 @@ Step 8: The `RemoveCommand` is executed and one quantity of the first item in th
 * There are two VendorCommand classes in SupperStrikers.
 * `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from.
 * `VendorCommand`, deselects the vendor to the default unintialized value.
+<<<<<<< HEAD
 * If the vendor does not exist, a `Command Exception` will be thrown
 * If the vendor selected is different from the current vendor, the model will clear the current order.
 
@@ -297,6 +298,21 @@ The following activity diagram summarises the process when the SwitchVendorComma
 ![SwitchVendorActivityDiagram](diagrams/SwitchVendorCommandActivityDiagram.puml)
 
 
+=======
+* `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from,
+* If the vendor does not exist, a `Command Exception` will be thrown.
+* If the vendor selected is different from the current vendor, the model will clear the current order.
+
+
+
+The following diagram summarises the sequence when the SwitchVendorCommmand is executed.
+![VendorSequendeDiagram](images/VendorCommandSequenceDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 
+
+>>>>>>> 2c906983c1b7ce22b0503b357c7bf63e54fe568d
 Given below is an example usage scenario and how the SwitchVendorCommand behaves at each step.
 
 Step 1: The user launches the application for the first time, by default, no vendor is selected.
@@ -379,6 +395,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *` | NUS resident | undo my commands | fix any mistakes made while ordering |
 | `* * *` | NUS resident | submit my order |  |
 | `* *` | NUS resident | clear the current order | start a new order |
+| `* *` | NUS  resident | filter the menu | find the food item that I want to order easily |
+| `* *` | NUS resident | save my current order as a preset | load up the preset for fast supper ordering |
 *{More to be added}*
 
 ### Use cases
