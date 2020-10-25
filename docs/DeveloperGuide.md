@@ -448,6 +448,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
+*(i.e milk, cheese)*
+* **Delivery**: Delivery order that has yet to be delivered out from the restaurant
+* **Book**: There are 2 types of book, namely: Inventory Book and Delivery Book which stores the data of your 
+inventory items and pending deliveries respectively
+
 
 --------------------------------------------------------------------------------------------------------------------
 
