@@ -1,9 +1,21 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.CALORIES_DESC_SIT_UP;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_SIT_UP;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SIT_UP;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_CALORIES_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SIT_UP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalExercise.PUSH_UP;
+import static seedu.address.testutil.TypicalExercise.TYPICAL_EXERCISE;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,27 +32,36 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Exercise expectedExercise = new ExerciseBuilder(PUSH_UP).build();
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        Exercise expectedExercise = new ExerciseBuilder(TYPICAL_EXERCISE).build();
 
         // normal input
-        assertParseSuccess(parser, " n/Push Up d/Test 1 at/09-10-2020 c/12345",
+        assertParseSuccess(parser,
+                NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                        + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         // multiple names - last name accepted
-        assertParseSuccess(parser, " n/Push n/Push Up d/Test 1 at/09-10-2020 c/12345",
+        assertParseSuccess(parser,
+                NAME_DESC_SIT_UP + NAME_DESC_PUSH_UP
+                        + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         //multiple descriptions - last description accepted
-        assertParseSuccess(parser, " n/Push Up d/Test d/Test 1 at/09-10-2020 c/12345",
+        assertParseSuccess(parser,
+                NAME_DESC_PUSH_UP + DESCRIPTION_DESC_SIT_UP
+                        + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         //multiple date
-        assertParseSuccess(parser, " n/Push Up d/Test 1 at/10-10-2020 at/09-10-2020 c/12345",
+        assertParseSuccess(parser,
+                NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                        + DATE_DESC_SIT_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         //multiple calories
-        assertParseSuccess(parser, " n/Push Up d/Test 1 at/09-10-2020 c/1234 c/12345",
+        assertParseSuccess(parser,
+                NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                        + DATE_DESC_PUSH_UP + CALORIES_DESC_SIT_UP + CALORIES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
     }
 
@@ -49,38 +70,46 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
 
         //missing name
-        assertParseFailure(parser, " d/Test 1 at/09-10-2020 c/12345",
+        assertParseFailure(parser, DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 expectedMessage);
 
         //missing description
-        assertParseFailure(parser, " n/Push Up at/09-10-2020 c/12345",
+        assertParseFailure(parser, NAME_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 expectedMessage);
 
         //missing date
-        assertParseFailure(parser, " n/Push Up d/Test 1 c/12345",
+        assertParseFailure(parser, NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 expectedMessage);
 
         //missing calories
-        assertParseFailure(parser, " n/Run d/Test 1 at/10-10-2020",
+        assertParseFailure(parser, NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP,
                 expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         //invalid name
-        assertParseFailure(parser, " n/  d/Test 1 at/10-10-2020 c/12345",
+        assertParseFailure(parser,
+                INVALID_NAME_DESC + DESCRIPTION_DESC_PUSH_UP
+                        + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 Name.MESSAGE_CONSTRAINTS);
 
         //invalid description
-        assertParseFailure(parser, " n/Run d/ at/10-10-2020 c/12345",
+        assertParseFailure(parser,
+                NAME_DESC_PUSH_UP + INVALID_DESCRIPTION_DESC
+                        + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 Description.MESSAGE_CONSTRAINTS);
 
         //invalid date
-        assertParseFailure(parser, " n/Run d/Test 1 at/2020-10-10 c/12345",
+        assertParseFailure(parser,
+                NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                        + INVALID_DATE_DESC + CALORIES_DESC_PUSH_UP,
                 Date.MESSAGE_CONSTRAINTS);
 
         //invalid calories
-        assertParseFailure(parser, " n/Run d/Test 1 at/10-10-2020 c/abc",
+        assertParseFailure(parser,
+                NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                        + DATE_DESC_PUSH_UP + INVALID_CALORIES_DESC,
                 Calories.MESSAGE_CONSTRAINTS);
     }
 
