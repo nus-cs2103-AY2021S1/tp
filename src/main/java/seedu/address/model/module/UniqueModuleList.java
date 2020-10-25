@@ -8,6 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
@@ -78,6 +80,22 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
+     * Check whether {@code instructor} exists in at least one module.
+     */
+    public boolean isAnInstructor(Person instructor) {
+        requireNonNull(instructor);
+        boolean instructorExistInAnyModule = false;
+        for (int index = 0; index < internalList.size(); index++) {
+            Module toCheck = internalList.get(index);
+            if (toCheck.hasInstructor(instructor)) {
+                instructorExistInAnyModule = true;
+            }
+        }
+
+        return instructorExistInAnyModule;
+    }
+
+    /**
      * Assigns an instructor to the module with the equivalent module code from the list.
      * The module with the module code must exist in the list.
      */
@@ -110,6 +128,7 @@ public class UniqueModuleList implements Iterable<Module> {
      */
     public void unassignInstructor(Person instructor, ModuleCode moduleToUnassign) {
         requireAllNonNull(instructor, moduleToUnassign);
+
         int indexOfModuleToUnassign = 0;
         while (!internalList.get(indexOfModuleToUnassign).hasModuleCode(moduleToUnassign)
                 && indexOfModuleToUnassign < internalList.size()) {
@@ -118,6 +137,26 @@ public class UniqueModuleList implements Iterable<Module> {
         Module toSet = internalList.get(indexOfModuleToUnassign);
         toSet.unassignInstructor(instructor);
         internalList.set((indexOfModuleToUnassign), toSet);
+    }
+
+    /**
+     * Unassigns {@code instructor} from all modules that contains it.
+     */
+    public void unassignInstructorFromAll(Person instructor) throws CommandException {
+
+        if (isAnInstructor(instructor)) {
+            for (int index = 0; index < internalList.size(); index++) {
+
+                Module toSet = internalList.get(index);
+
+                if (toSet.hasInstructor(instructor)) {
+                    toSet.unassignInstructor(instructor);
+                    internalList.set((index), toSet);
+                }
+            }
+        } else {
+            throw new CommandException(Messages.MESSAGE_PERSON_IS_NOT_AN_INSTRUCTOR);
+        }
     }
 
     /**

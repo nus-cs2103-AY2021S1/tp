@@ -169,6 +169,12 @@ public class AddCommandTest {
         }
 
         @Override
+        public void unassignInstructorFromAll(Person instructor) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+
+        @Override
         public void unassignAllInstructors() {
             throw new AssertionError("This method should not be called.");
         }
