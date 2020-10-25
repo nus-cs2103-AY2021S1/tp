@@ -15,7 +15,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path addressBookFilePath = Paths.get("data" , "addressbook.json");
+<<<<<<< HEAD
     private Path salesBookFilePath = Paths.get("data" , "salesbook.json");
+=======
+>>>>>>> 352641ac0dadb52cd407beec806d2b44fbabc0f2
     private Path ingredientBookFilePath = Paths.get("data" , "ingredientbook.json");
 
     /**
@@ -53,10 +56,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
+<<<<<<< HEAD
     public Path getSalesBookFilePath() {
         return salesBookFilePath;
     }
 
+=======
+>>>>>>> 352641ac0dadb52cd407beec806d2b44fbabc0f2
     public Path getIngredientBookFilePath() {
         return ingredientBookFilePath;
     }
@@ -66,12 +72,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
+<<<<<<< HEAD
 
     public void setSalesBookFilePath(Path salesBookFilePath) {
         requireNonNull(salesBookFilePath);
         this.salesBookFilePath = salesBookFilePath;
     }
 
+=======
+>>>>>>> 352641ac0dadb52cd407beec806d2b44fbabc0f2
     public void setIngredientBookFilePath(Path ingredientBookFilePath) {
         requireNonNull(ingredientBookFilePath);
         this.ingredientBookFilePath = ingredientBookFilePath;
@@ -90,13 +99,20 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
+<<<<<<< HEAD
                 && salesBookFilePath.equals(o.salesBookFilePath)
+=======
+>>>>>>> 352641ac0dadb52cd407beec806d2b44fbabc0f2
                 && ingredientBookFilePath.equals(o.ingredientBookFilePath);
     }
 
     @Override
     public int hashCode() {
+<<<<<<< HEAD
         return Objects.hash(guiSettings, addressBookFilePath, salesBookFilePath, ingredientBookFilePath);
+=======
+        return Objects.hash(guiSettings, addressBookFilePath, ingredientBookFilePath);
+>>>>>>> 352641ac0dadb52cd407beec806d2b44fbabc0f2
     }
 
     @Override
@@ -104,9 +120,13 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+<<<<<<< HEAD
         sb.append("\nLocal data file location : " + salesBookFilePath);
         sb.append("\nLocal data file location : " + ingredientBookFilePath);
 
+=======
+        sb.append("\nLocal data file location : " + ingredientBookFilePath);
+>>>>>>> 352641ac0dadb52cd407beec806d2b44fbabc0f2
         return sb.toString();
     }
 

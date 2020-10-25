@@ -5,7 +5,12 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.IngredientBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyIngredientBook;
+import seedu.address.model.ingredient.Amount;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.IngredientName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.ArchiveStatus;
 import seedu.address.model.person.Name;
@@ -60,6 +65,16 @@ public class SampleDataUtil {
         return sampleAb;
     }
 
+    public static Ingredient[] getSampleIngredients() {
+        return new Ingredient[]{
+            new Ingredient(new IngredientName("Milk"), new Amount("0")),
+            new Ingredient(new IngredientName("Pearl"), new Amount("0")),
+            new Ingredient(new IngredientName("Boba"), new Amount("0")),
+            new Ingredient(new IngredientName("Oolong Tea"), new Amount("0")),
+            new Ingredient(new IngredientName("Brown Sugar"), new Amount("0"))
+        };
+    }
+
     /**
      * Returns a tag set containing the list of strings given.
      */
@@ -69,4 +84,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    public static ReadOnlyIngredientBook getSampleIngredientBook() {
+        IngredientBook sampleIb = new IngredientBook();
+        for (Ingredient sampleIngredient : getSampleIngredients()) {
+            sampleIb.addIngredient(sampleIngredient);
+        }
+        return sampleIb;
+    }
 }

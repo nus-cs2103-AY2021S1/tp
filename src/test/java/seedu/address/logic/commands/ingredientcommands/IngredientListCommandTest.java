@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
@@ -15,7 +17,10 @@ import seedu.address.model.ingredient.Amount;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 
-public class IngredientViewSingleCommandTest {
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for IngredientListCommand.
+ */
+public class IngredientListCommandTest {
 
 
     @Test
@@ -46,24 +51,27 @@ public class IngredientViewSingleCommandTest {
 
         IngredientViewSingleCommand.ViewIngredientDescriptor descriptor = new
                 IngredientViewSingleCommand.ViewIngredientDescriptor();
-        final IngredientViewSingleCommand standardCommand = new
-                IngredientViewSingleCommand(new IngredientName("Milk"), descriptor);
-        final String messageSuccess = "Here is the ingredient and its level: "
-                + new Ingredient(new IngredientName("Milk"), amount).toString();
-        assertCommandSuccess(standardCommand, model, messageSuccess, expectedModel);
+        final IngredientListCommand standardCommand = new
+                IngredientListCommand();
+        String ingredientList = "";
+        final char lineSeparator = '\n';
+        List<Ingredient> lastShownList = expectedModel.getFilteredIngredientList();
+        for (Ingredient i : lastShownList) {
+            ingredientList += i.toString() + lineSeparator;
+        }
+        assertCommandSuccess(standardCommand, model,
+                IngredientListCommand.MESSAGE_SUCCESS + ingredientList, expectedModel);
 
     }
 
+
     @Test
     public void equals() {
-        IngredientViewSingleCommand.ViewIngredientDescriptor descriptor = new
-                IngredientViewSingleCommand.ViewIngredientDescriptor();
-        final IngredientViewSingleCommand standardCommand = new
-                IngredientViewSingleCommand(new IngredientName("Milk"), descriptor);
+        final IngredientListCommand standardCommand = new IngredientListCommand();
 
         // same values -> returns true
-        IngredientViewSingleCommand commandWithSameValues = new
-                IngredientViewSingleCommand(new IngredientName("Milk"), descriptor);
+        IngredientListCommand commandWithSameValues = new IngredientListCommand();
+
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -75,11 +83,6 @@ public class IngredientViewSingleCommandTest {
         // different types -> returns false
         assertFalse(standardCommand.equals(new ClearCommand()));
 
-        // different ingredient names -> returns false
-        IngredientViewSingleCommand commandWithDifferentValues = new
-                IngredientViewSingleCommand(new IngredientName("Boba"), descriptor);
-        assertFalse(standardCommand.equals(commandWithDifferentValues));
-
     }
-
 }
+
