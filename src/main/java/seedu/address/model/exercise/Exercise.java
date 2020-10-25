@@ -86,11 +86,6 @@ public class Exercise {
      * This defines a weaker notion of equality between two exercises.
      */
     public boolean isSameExercise(Exercise otherExercise) {
-        if (otherExercise == this) {
-            return true;
-        }
-        return otherExercise != null
-                && otherExercise.getName().equals(getName())
-                && (otherExercise.getDate().equals(getDate()));
+        return equals(otherExercise);
     }
 }

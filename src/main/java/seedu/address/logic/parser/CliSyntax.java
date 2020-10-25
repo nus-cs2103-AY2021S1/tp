@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import java.awt.*;
+
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -11,6 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_DATE = new Prefix("at/");
     public static final Prefix PREFIX_CALORIES = new Prefix("c/");
+    public static final Prefix PREFIX_KEYWORD = new Prefix("k/");
 
     //AB3 prefix
     public static final Prefix PREFIX_PHONE = new Prefix("p/");
