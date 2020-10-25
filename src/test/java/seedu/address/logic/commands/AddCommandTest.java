@@ -48,7 +48,7 @@ public class AddCommandTest {
         Model modelStub = new ModelStub();
         ActiveAccount activeAccountStub = new ActiveAccountStub();
 
-        assertEquals("New entry added! Expense: buying paint supplies Amount: 131.73 Tags: ",
+        assertEquals("New entry added! Expense: buying paint supplies Amount: 131.73",
                 new AddCommand(expenseStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
     }
 
@@ -58,7 +58,7 @@ public class AddCommandTest {
         Model modelStub = new ModelStub();
         ActiveAccount activeAccountStub = new ActiveAccountStub();
 
-        assertEquals("New entry added! Revenue: buying paint supplies Amount: 131.73 Tags: ",
+        assertEquals("New entry added! Revenue: buying paint supplies Amount: 131.73",
                 new AddCommand(revenueStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
     }
 

@@ -36,9 +36,11 @@ public class Revenue extends Entry {
         builder.append("Revenue: ")
                 .append(getDescription())
                 .append(" Amount: ")
-                .append(getAmount())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getAmount());
+        if (hasTags()) {
+            builder.append(" Tags: ");
+            getTags().forEach(builder::append);
+        }
         return builder.toString();
     }
 
