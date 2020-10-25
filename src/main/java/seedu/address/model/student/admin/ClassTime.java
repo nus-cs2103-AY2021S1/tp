@@ -105,7 +105,7 @@ public class ClassTime implements Comparable<ClassTime> {
     @Override
     public String toString() {
         String dayDisplayName = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
-        return String.format("Day of week: %s, Start time: %s, End Time: %s",
+        return String.format("%1$s (%2$s - %3$s)",
                 dayDisplayName,
                 this.startTime.format(OUTPUT),
                 this.endTime.format(OUTPUT));

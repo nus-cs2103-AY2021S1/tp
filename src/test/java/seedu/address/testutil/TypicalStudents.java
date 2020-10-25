@@ -24,6 +24,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_TYPE_AMY
 import static seedu.address.logic.commands.CommandTestUtil.VALID_SCHOOL_TYPE_BOB;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_NEWTON;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,28 +43,33 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withSchool("Anderson Secondary").withYear(SchoolType.SECONDARY, 3).withPhone("94351253")
             .withClassVenue("123, Jurong West Ave 6, #08-111")
+            .withClassTime("5 1500-1700")
+            .withDetails("Clever")
             .withDetails("owesMoney", "friends")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withSchool("Pei Hwa Secondary").withYear(SchoolType.SECONDARY, 2).withPhone("98765432")
-            .withClassTime("2 1200-1430")
+            .withClassTime("2 1230-1430")
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
             .withSchool("Catholic High").withYear(SchoolType.SECONDARY, 5).withPhone("95352563")
             .withFee("450.50")
+            .withClassTime("1 1500-1700")
             .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
             .withSchool("Methodist Girls School").withYear(SchoolType.SECONDARY, 1).withPhone("87652533")
-            .withPaymentDate("28/2/2018")
+            .withPaymentDate("28/2/2018").withClassTime("1 1700-1900")
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
             .withSchool("River Valley High").withYear(SchoolType.JC, 2).withPhone("9482224")
-            .withSolved(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
+            .withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH).withClassTime("1 1900-2100")
             .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withSchool("Raffles Girls School").withYear(SchoolType.SECONDARY, 2).build();
+            .withSchool("Raffles Girls School").withYear(SchoolType.SECONDARY, 2)
+            .withClassTime("3 1200-1430").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
-            .withSchool("Montford Secondary").withYear(SchoolType.SECONDARY, 4).build();
+            .withSchool("Montford Secondary").withYear(SchoolType.SECONDARY, 4)
+            .withClassTime("2 1000-1230").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")
@@ -83,7 +89,6 @@ public class TypicalStudents {
             .withDetails(VALID_ADDITIONAL_DETAILS_AMY)
             .withQuestions(VALID_QUESTION_AMY)
             .build();
-    public static final Admin AMY_ADMIN = AMY.getAdmin();
 
     public static final Student BOB = new StudentBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB)
@@ -94,11 +99,9 @@ public class TypicalStudents {
             .withFee(VALID_FEE_BOB)
             .withPaymentDate(VALID_PAYMENT_DATE_BOB)
             .withDetails(VALID_ADDITIONAL_DETAILS_BOB)
-            .withSolved(VALID_QUESTION_BOB)
+            .withSolved(DEFAULT_SOLUTION, VALID_QUESTION_BOB)
             .build();
     public static final Admin BOB_ADMIN = BOB.getAdmin();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalStudents() {} // prevents instantiation
 

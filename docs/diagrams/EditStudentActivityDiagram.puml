@@ -1,0 +1,25 @@
+@startuml
+start
+:User executes edit student command;
+:Parses the command;
+if() then ([command is valid])
+    if() then ([there are edited student fields])
+    :Edit command is executed;
+        if() then ([student index is invalid])
+            :Display invalid student index error message;
+        else ([student index is valid])
+            if() then ([edited student is unique])
+            :Replace student with edited student in student list;
+            :Display edit student success message;
+            else ([edited student already exists])
+            :Display duplicate student error message;
+            endif
+        endif
+    else ([there are no edited student fields])
+    :Display no edits made message;
+    endif
+else ([command is invalid - missing or invalid parameters])
+    :Display parse error message;
+endif
+stop
+@enduml

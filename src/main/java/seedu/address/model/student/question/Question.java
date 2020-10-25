@@ -1,4 +1,4 @@
-package seedu.address.model.student;
+package seedu.address.model.student.question;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * Represents a question a Student has for a tutor in Reeve.
  */
-public class Question {
+public abstract class Question {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Questions should at least contain a non-whitespace character";
@@ -14,7 +14,6 @@ public class Question {
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
     public final String question;
-    public final boolean isResolved;
 
     /**
      * Constructs a new Question object. This is the default constructor for adding
@@ -24,17 +23,6 @@ public class Question {
         requireNonNull(question);
         checkArgument(isValidQuestion(question), MESSAGE_CONSTRAINTS);
         this.question = question;
-        this.isResolved = false;
-    }
-
-    /**
-     * Constructs a new Question object.
-     */
-    public Question(String question, boolean isResolved) {
-        requireNonNull(question);
-        checkArgument(isValidQuestion(question), MESSAGE_CONSTRAINTS);
-        this.question = question;
-        this.isResolved = isResolved;
     }
 
     /**
@@ -52,34 +40,14 @@ public class Question {
         return question.equals(other.question);
     }
 
-    /**
-     * Returns true if both questions have similar details and resolution status.
-     * This is a stronger notion of equality between questions.
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) { // short circuit if same object
-            return true;
-        }
-
-        if (!(obj instanceof Question)) { // instanceof handles nulls
-            return false;
-        }
-
-        // state check
-        Question other = (Question) obj;
-        return question.equals(other.question) && (isResolved == other.isResolved);
-    }
-
     @Override
     public String toString() {
-        String status = isResolved ? "(\u2713)" : "(\u2718)";
-        return String.format("%1$s %2$s", status, question);
+        return question;
     }
 
-    @Override
-    public int hashCode() {
-        return question.hashCode();
-    }
+    /**
+     * Returns true if the question has been resolved by the tutor.
+     */
+    public abstract boolean isResolved();
 
 }

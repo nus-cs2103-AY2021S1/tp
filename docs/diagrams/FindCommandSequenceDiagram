@@ -1,0 +1,35 @@
+@startuml
+!include ./style.puml
+
+box "Logic" LOGIC_COLOR_T1
+
+Participant "command:FindCommand" as fc LOGIC_COLOR
+Participant ":FindStudentDescriptor" as fcd LOGIC_COLOR
+Participant "result:CommandResult" as res LOGIC_COLOR
+
+
+[-> fc : execute(model)
+activate fc
+fc -> fcd++: getPredicates()
+fcd -> fcd: getNamePredicate()
+fcd -> fcd: getSchoolPredicate()
+fcd -> fcd: getYearPredicate()
+return consolidatedPredicates
+
+
+end box
+
+box "Model" MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR
+
+fc -> model: updateFilteredPersonList(consolidatedPredicates)
+
+fc -> model: getFilteredPersonList()
+create res
+fc -> res ++
+return result
+return result
+
+end box
+
+@enduml

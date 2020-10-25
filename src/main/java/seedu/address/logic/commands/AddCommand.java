@@ -44,7 +44,7 @@ public class AddCommand extends Command {
             + PREFIX_PAYMENT + "24/09/2020 "
             + PREFIX_DETAILS + "Additional details here ";
 
-    public static final String MESSAGE_SUCCESS = "New student added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New student added:\n%1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in Reeve";
 
     private final Student toAdd;
@@ -61,11 +61,11 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
+        if (model.hasStudent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.addPerson(toAdd);
+        model.addStudent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

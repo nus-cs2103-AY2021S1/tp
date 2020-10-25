@@ -1,0 +1,23 @@
+@startuml
+start
+:User executes delete question command;
+:Parses the command;
+if () then ([command is valid])
+    :DeleteQuestionCommand is executed;
+        if () then ([student exists])
+            if () then ([question does not exist])
+                :Display invalid question error message;
+            else ([else])
+                :Create student copy;
+                :Delete question from student copy;
+                :Replace student with modified copy;
+                :Display success message;
+            endif
+        else ([else])
+            :Display invalid student error message;
+        endif
+else ([command is invalid - missing or invalid arguments])
+    :Display parse error message;
+endif
+stop
+@enduml

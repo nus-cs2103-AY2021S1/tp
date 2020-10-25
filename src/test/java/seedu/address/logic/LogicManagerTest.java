@@ -89,7 +89,7 @@ public class LogicManagerTest {
                 + ADDITIONAL_DETAILS_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withQuestions().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addPerson(expectedStudent);
+        expectedModel.addStudent(expectedStudent);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
@@ -97,6 +97,11 @@ public class LogicManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredPersonList().remove(0));
+    }
+
+    @Test
+    public void getSortedPersonList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> logic.getSortedStudentList().remove(0));
     }
 
     /**

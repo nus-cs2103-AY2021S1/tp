@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +58,7 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
         requireNonNull(model);
         logger.log(Level.INFO, "Beginning command execution");
 
-        List<Student> lastShownList = model.getFilteredPersonList();
+        List<Student> lastShownList = model.getFilteredStudentList();
         if (index.getZeroBased() >= lastShownList.size()) {
             logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -71,8 +71,8 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
 
         Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);
 
-        model.setPerson(studentToAddDetail, updatedStudent);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setStudent(studentToAddDetail, updatedStudent);
+        model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), detailToAdd));
     }
