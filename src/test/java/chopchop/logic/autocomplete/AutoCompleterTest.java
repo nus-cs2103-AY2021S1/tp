@@ -101,6 +101,17 @@ public class AutoCompleterTest {
         cases.put("add ingredient milk /q",                 "add ingredient milk /qty");
         cases.put("add ingredient milk /e",                 "add ingredient milk /expiry");
 
+        cases.put("delete ingredient milk /q",              "delete ingredient milk /qty");
+
+        cases.put("filter recipe /i",                       "filter recipe /ingredient");
+        cases.put("filter recipe /t",                       "filter recipe /tag");
+
+        cases.put("filter ingredient /e",                   "filter ingredient /expiry");
+        cases.put("filter ingredient /t",                   "filter ingredient /tag");
+
+        // no completions
+        cases.put("delete recipe cake /q",                  "delete recipe cake /q");
+
         runTests(cases);
     }
 
@@ -115,6 +126,8 @@ public class AutoCompleterTest {
         cases.put("add recipe cake /ingredient baked b",    "add recipe cake /ingredient Baked beans");
         cases.put("delete ingredient a",                    "delete ingredient Apricot");
 
+        cases.put("add ingredient c",                       "add ingredient Custard");
+
         runTests(cases);
     }
 
@@ -127,6 +140,9 @@ public class AutoCompleterTest {
         cases.put("delete recipe a",                        "delete recipe Apricot Salad");
         cases.put("make cus",                               "make Custard Salad");
         cases.put("view b",                                 "view Banana Salad");
+
+        // this should not complete
+        cases.put("add recipe a",                           "add recipe a");
 
         runTests(cases);
     }
@@ -159,7 +175,35 @@ public class AutoCompleterTest {
         cases.put("edit recipe cake /tag:a",                "edit recipe cake /tag:add");
         cases.put("edit recipe cake /tag:d",                "edit recipe cake /tag:delete");
 
+        // no completions:
+        cases.put("edit ingredient /f",                     "edit ingredient /f");
+        cases.put("edit recipe /qty:e",                     "edit recipe /qty:e");
+        cases.put("edit recipe /qty:e:f:g",                 "edit recipe /qty:e:f:g");
+        cases.put("edit recipe cake /step:add:",            "edit recipe cake /step:add:");
+
         runTests(cases);
+    }
+
+    @Test
+    public void test_completionCycling() {
+
+        var cases = new HashMap<String, List<String>>();
+
+        cases.put("f",                                      List.of("find", "filter"));
+        cases.put("add recipe cake /ingredient b",          List.of("add recipe cake /ingredient Banana",
+            "add recipe cake /ingredient Baked beans"));
+
+        cases.forEach((k, v) -> {
+            var completer = new AutoCompleter();
+
+            var input = k;
+            var outputs = v;
+
+            for (var out : outputs) {
+                input = completer.getCompletionForInput(parser, model, input);
+                assertEquals(out.strip(), input.strip());
+            }
+        });
     }
 
 
@@ -172,8 +216,14 @@ public class AutoCompleterTest {
         cases.put("",                                       "");
         cases.put("kk",                                     "kk");
         cases.put("add",                                    "add");
+        cases.put("add owo /q",                             "add owo /q");
         cases.put("add recipe",                             "add recipe");
         cases.put("find recipe",                            "find recipe");
+        cases.put("find recipe /",                          "find recipe /");
+        cases.put("filter owo /f",                          "filter owo /f");
+        cases.put("list /f",                                "list /f");
+        cases.put("list /tag t",                            "list /tag t");
+        cases.put("list /qty 5",                            "list /qty 5");
 
         runTests(cases);
     }
