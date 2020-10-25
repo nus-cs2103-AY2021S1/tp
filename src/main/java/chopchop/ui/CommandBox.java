@@ -105,7 +105,7 @@ public class CommandBox extends UiPart<Region> {
 
     protected void setFocus(String keypress) {
         if (!commandTextField.isFocused()) {
-            commandTextField.setText(commandTextField.getText() + keypress);
+            commandTextField.appendText(keypress);
             commandTextField.requestFocus();
             commandTextField.end();
         }
