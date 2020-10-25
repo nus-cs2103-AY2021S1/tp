@@ -80,12 +80,12 @@ public class JsonAdaptedContact {
         final Email modelEmail = new Email(email);
 
         if (telegram == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    Telegram.class.getSimpleName()));
+            return new Contact(modelName, modelEmail);
         }
         if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
         }
+
         final Telegram modelTelegram = new Telegram(telegram);
 
         // final Set<Tag> modelTags = new HashSet<>(personTags);

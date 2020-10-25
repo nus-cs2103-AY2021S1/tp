@@ -25,6 +25,12 @@ public class Contact {
     private final Set<Tag> tags = new HashSet<>();
 
 
+    /**
+     * Creates and initialises a Contact object with a Name and Email field.
+     *
+     * @param name Name field of the Contact object.
+     * @param email Email field of the Contact object.
+     */
     public Contact(Name name, Email email) {
         requireAllNonNull(name, email);
         this.name = name;
@@ -34,6 +40,10 @@ public class Contact {
 
     /**
      * Every field must be present and not null.
+     *
+     * @param name Name field of the Contact object.
+     * @param email Email field of the Contact object.
+     * @param telegram Telegram field of the Contact object.
      */
     public Contact(Name name, Email email, Telegram telegram) {
         requireAllNonNull(name, email, telegram);

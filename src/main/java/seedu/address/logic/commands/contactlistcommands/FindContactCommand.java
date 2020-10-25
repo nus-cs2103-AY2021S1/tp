@@ -2,6 +2,8 @@ package seedu.address.logic.commands.contactlistcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -9,7 +11,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
 
-import java.util.logging.Logger;
 
 /**
  * Finds and lists all contacts in the contact list whose name contains any of the argument keywords.

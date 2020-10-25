@@ -33,6 +33,11 @@ public class DeleteContactCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates and initialises a DeleteContactCommand object.
+     *
+     * @param targetIndex Index object encapsulating the index of the contact in the contact list.
+     */
     public DeleteContactCommand(Index targetIndex) {
         requireNonNull(targetIndex);
         assert targetIndex.getZeroBased() >= 0 : "zero based index must be non-negative";
