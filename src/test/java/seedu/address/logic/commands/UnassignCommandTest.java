@@ -58,6 +58,17 @@ public class UnassignCommandTest {
     }
 
     @Test
+    public void execute_validIndexNoModulesUnfilteredList_success() throws CommandException {
+        Person validPerson = new PersonBuilder().build();
+        ModelStubAssigning modelStub = new ModelStubAssigning(validPerson, CS2103);
+
+        CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON).execute(modelStub);
+
+        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON),
+            commandResult.getFeedbackToUser());
+    }
+
+    @Test
     public void execute_validIndexFilteredList_success() throws CommandException {
 
         Person validPerson = new PersonBuilder().withName("Benson").build();
@@ -70,6 +81,18 @@ public class UnassignCommandTest {
         CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes).execute(modelStub);
 
         assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON, moduleCodes),
+            commandResult.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_validIndexNoModulesFilteredList_success() throws CommandException {
+        Person validPerson = new PersonBuilder().withName("Benson").build();
+        ModelStubAssigning modelStub = new ModelStubAssigning(validPerson, CS2103);
+        modelStub.updateFilteredPersonList(x -> x.getName().equals(BENSON.getName()));
+
+        CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON).execute(modelStub);
+
+        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON),
             commandResult.getFeedbackToUser());
     }
 
@@ -174,6 +197,11 @@ public class UnassignCommandTest {
 
         @Override
         public void unassignInstructor(Person person, ModuleCode moduleCode) {
+            this.module.unassignInstructor(this.person);
+        }
+
+        @Override
+        public void unassignInstructorFromAll(Person instructor) {
             this.module.unassignInstructor(this.person);
         }
 

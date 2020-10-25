@@ -155,4 +155,9 @@ public abstract class ModelStub implements Model {
     public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void unassignInstructorFromAll(Person instructor) {
+        throw new AssertionError("This method should not be called.");
+    }
 }

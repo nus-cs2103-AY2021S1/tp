@@ -68,9 +68,6 @@ public class AddCommandTest {
         assertNotEquals(addBobCommand, addAliceCommand);
     }
 
-    /**
-     * A Model stub that contains a single person.
-     */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
 
