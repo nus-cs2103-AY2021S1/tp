@@ -26,7 +26,7 @@ Choose a topic from the table of contents to get started on your Wishful Shrinki
 
 1. Ensure your computer has Java `11` or above installed.
 
-2. Download the latest `wishfulShrinking.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-2/tp).
+2. Download the latest `wishfulShrinking.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-2/tp/releases).
 
 3. Copy the file to an empty folder you want to use as the _home folder_.
 
