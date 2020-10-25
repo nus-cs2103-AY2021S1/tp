@@ -336,6 +336,10 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
+        int index = getVendorIndex();
+        if (index < 0 || index >= menuManagers.size()) {
+            return;
+        }
         filteredFoods = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
         filteredFoods.setPredicate(predicate);
     }

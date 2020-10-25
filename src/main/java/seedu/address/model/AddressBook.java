@@ -29,10 +29,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Default vendor index is 0. Assumes that there is at least 1 vendor in the AddressBook.
+     * Default vendor index is -1. Assumes that there is no vendor chosen yet.
      */
     public AddressBook() {
-        this.vendorIndex = 0;
+        this.vendorIndex = -1;
     }
 
     /**

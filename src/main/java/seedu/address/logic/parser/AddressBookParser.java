@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_AMBIGUOUS_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
@@ -122,7 +123,9 @@ public class AddressBookParser {
             return new VendorCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw matchingCommands.size() == 0
+                    ? new ParseException(MESSAGE_UNKNOWN_COMMAND)
+                    : new ParseException(String.format(MESSAGE_AMBIGUOUS_COMMAND, matchingCommands));
         }
     }
 

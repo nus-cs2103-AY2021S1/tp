@@ -20,6 +20,8 @@ public class TypicalModel {
     public static ModelManager getModelManagerWithMenu() {
         List<MenuManager> menuManagers = new ArrayList<>();
         menuManagers.add(TypicalFoods.getTypicalMenuManager());
-        return new ModelManager(new AddressBook(), new UserPrefs(), menuManagers, new OrderManager());
+        AddressBook addressBook = new AddressBook();
+        addressBook.selectVendor(0);
+        return new ModelManager(addressBook, new UserPrefs(), menuManagers, new OrderManager());
     }
 }
