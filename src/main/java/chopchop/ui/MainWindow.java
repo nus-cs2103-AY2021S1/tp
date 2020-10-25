@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CommandBox commandBox;
     private CommandOutput commandOutput;
+    private StatsBox statsOutput;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -118,9 +119,9 @@ public class MainWindow extends UiPart<Stage> {
         this.commandOutput = commandOutput;
         commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
-        //todo: pinbox will now return stats command output. Default recently cooked recipe.
-        PinBox pinBox = new PinBox("Stats command result");
-        pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
+        StatsBox statsOutput = new StatsBox();
+        this.statsOutput = statsOutput;
+        pinBoxPlaceholder.getChildren().add(statsOutput.getRoot());
 
         DisplayController displayController = new DisplayController(logic);
         DisplayNavigator.setDisplayController(displayController);
@@ -181,6 +182,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             this.commandOutput.setFeedbackToUser(commandResult.getFeedbackToUser());
+            this.statsOutput.setBoxContent(commandResult.getFeedbackToUser());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -194,6 +196,7 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             commandOutput.setFeedbackToUser(e.getMessage());
+            this.statsOutput.setBoxContent(e.getMessage());
             throw e;
         }
     }

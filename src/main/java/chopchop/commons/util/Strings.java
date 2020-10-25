@@ -18,6 +18,9 @@ public class Strings {
     public static final ArgName ARG_EXPIRY          = new ArgName("expiry");
     public static final ArgName ARG_TAG             = new ArgName("tag");
     public static final ArgName ARG_NAME            = new ArgName("name");
+    public static final ArgName ARG_AFTER           = new ArgName("after");
+    public static final ArgName ARG_BEFORE          = new ArgName("before");
+    public static final ArgName ARG_ON              = new ArgName("on");
 
     // command names
     public static final String COMMAND_ADD          = "add";
@@ -31,6 +34,7 @@ public class Strings {
     public static final String COMMAND_MAKE         = "make";
     public static final String COMMAND_UNDO         = "undo";
     public static final String COMMAND_REDO         = "redo";
+    public static final String COMMAND_STATS        = "stats";
 
 
     public static final List<String> COMMAND_NAMES = List.of(
@@ -44,7 +48,8 @@ public class Strings {
         COMMAND_DELETE,
         COMMAND_MAKE,
         COMMAND_UNDO,
-        COMMAND_REDO
+        COMMAND_REDO,
+        COMMAND_STATS
     );
 
     // command targets

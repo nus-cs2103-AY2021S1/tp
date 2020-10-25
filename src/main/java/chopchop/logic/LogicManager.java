@@ -67,8 +67,6 @@ public class LogicManager implements Logic {
             this.historyManager.addCommand((Undoable) cmd);
         }
 
-        logger.info("USAGE IS " + this.model.getRecipeUsageList().getUsages().toString());
-        logger.info("USAGE IS " + this.model.getIngredientUsageList().getUsages().toString());
         try {
             this.storage.saveRecipeUsages(this.model.getRecipeUsageList());
             this.storage.saveIngredientUsages(this.model.getIngredientUsageList());

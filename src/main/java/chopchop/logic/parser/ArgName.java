@@ -8,7 +8,7 @@ import java.util.List;
 import chopchop.commons.util.StringView;
 
 /**
- * A helper class to abtract away the menial task of handling '/' when printing argument names
+ * A helper class to abstract away the menial task of handling '/' when printing argument names
  */
 public class ArgName {
 
