@@ -200,7 +200,7 @@ Format: `clear`
 <div markdown="block" class="alert alert-info">
 :bulb: Answer is <b>case insensitive</b>.
 </div>
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-danger">
 The index <b>must be a positive integer</b> 1, 2, 3, ...
 </div>
 
@@ -217,7 +217,7 @@ You have successfully tested yourself on an open-ended question!
 
 #### Containing a multiple choice question : `test INDEX o/OPTION` 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-danger">
 The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
 </div>
 
@@ -232,16 +232,6 @@ You can also test yourself a flashcard containing a multiple choice question by 
 4. Press enter and QuickCache will tell you whether you got the question right.
 ![TestMCQStep4](./images/TestMCQStep4.png)
 You have successfully tested yourself on a multiple choice question!
-
-* Tests the flashcard at the specified `INDEX`
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer**  1, 2, 3, …
-* `CHOICE`(s) are displayed in the displayed choices list of the flashcard after `open INDEX` command is performed.
-* The `OPTION` refers to the index number of the specified `CHOICE`.
-* The `OPTION` **must be a positive integer** 1, 2, 3, …
-
-Examples:
-* `list` followed by `test 1 o/2` tests the 1st flashcard in the list with `OPTION 2` corresponding to the 2nd choice in the choices of the multiple choice question as the answer.
 
 ### Displaying statistics for a Flashcard: `stats`
 
@@ -295,7 +285,7 @@ Voila! You have successfully exported your flashcards into a file.
 #### Importing a set of flashcards : `import FILE_NAME`
 
 <div markdown="block" class="alert alert-info">
-:bulb: The filename specified includes the file format extension e.g. file.json
+:bulb: The filename specified includes the file format extension e.g. file.json and duplicate flashcards will be ignored.
 </div>
 
 You can import external flashcards into your local QuickCache as well. 
@@ -310,8 +300,6 @@ You can import external flashcards into your local QuickCache as well.
 ![ImportStep4](./images/ImportStep4.png)
 
 Good job! You have successfully imported flashcards from an external file.
-
-* Duplicate flashcards will be ignored.
 
 ### Exiting the program : `exit`
 
