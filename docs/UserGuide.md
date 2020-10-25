@@ -217,6 +217,11 @@ list, with the updated `ENTRY INDEX`.
 
 ### Listing all entries: `list`
 
+Lists all entries in the current account.
+
+**Format:** `list`
+
+
 ### Clearing all expenses or revenue: `clear`
 
 ### Calculating net profits based on expenses and revenues: `profit` 
