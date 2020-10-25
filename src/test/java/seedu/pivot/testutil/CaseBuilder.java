@@ -93,7 +93,10 @@ public class CaseBuilder {
      * Parses the {@code witnesses} into a {@code List<Witness>} and set it to the {@code Case} that we are building.
      */
     public CaseBuilder withWitnesses(Witness ... witnesses) {
-        this.witnesses = Arrays.asList(witnesses);
+        if (this.witnesses == null) {
+            this.witnesses = new ArrayList<>();
+        }
+        this.witnesses.addAll(Arrays.asList(witnesses));
         return this;
     }
 
@@ -120,7 +123,10 @@ public class CaseBuilder {
      * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code Case} that we are building.
      */
     public CaseBuilder withSuspects(Suspect ... suspects) {
-        this.suspects = Arrays.asList(suspects);
+        if (this.suspects == null) {
+            this.suspects = new ArrayList<>();
+        }
+        this.suspects.addAll(Arrays.asList(suspects));
         return this;
     }
 
@@ -128,7 +134,10 @@ public class CaseBuilder {
      * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Case} that we are building.
      */
     public CaseBuilder withVictims(Victim ... victims) {
-        this.victims = Arrays.asList(victims);
+        if (this.victims == null) {
+            this.victims = new ArrayList<>();
+        }
+        this.victims.addAll(Arrays.asList(victims));
         return this;
     }
 
