@@ -19,11 +19,11 @@ Before we move on to how to install **Hospify**, let us understand how the user 
 
 To navigate around this user guide, you may use the hyperlinks provided at the top of the page to jump to a particular section that you are interested in. This user guide is divided into 4 major sections: Quick Start, Features (contains sub section, each representing a feature of **Hospify**), Frequently Asked Questions (FAQ) and Command Summary. The following explains the key notations used in this user guide:
 
-1. `text in box`- represents a command, action, input, output or file
+1. `text in box` - represents a command, action, input, output or file
 
-1. **:information_source: Notes:**- represents noteworthy important information
+1. **:information_source: Notes:** - represents noteworthy important information
 
-1. **:bulb: Tip:**- represents a useful tip
+1. **:bulb: Tip:** - represents a useful tip
 
 ## Quick start
 
@@ -31,22 +31,24 @@ Ensure you have Java `11` or above installed in your Computer. If not, you may d
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about installing Java `11`:**<br>
+**:information_source: Note on installing Java `11`:**<br>
 There are many versions of Java `11` listed. Select the correct version based on your computer's operating system.
-
 </div>
 
 1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3.trial). Click on `hospify.jar` to start the download as shown in figure 1.1 below. <br>
+    
     ![Hospify download page](images/Hospify%20download%20page.png)
     Figure 1.1 **Hospify** download page
 
 1. Copy the file to the folder you want to use as the _home folder_ for the **Hospify** app.
 
 1. Double-click the file to start the app. A Graphical User Interface (GUI) similar to the one as shown in figure 1.2 below should appear in a few seconds. Notice that **Hospify** came listed with some sample patients.<br>
+   
    ![Ui](images/Ui.png)
    Figure 1.2 Start up UI showing list of sample patients
 
 1. You can now try typing your very first command in the command box and press `Enter` to execute it! Not sure what to type? Try typing **`help`** and pressing `Enter`. A help window as shown in figure 1.3 below should appear.<br>
+    
     ![Help window](images/Help%20window.PNG)
     Figure 1.3 Help window
     
@@ -83,7 +85,6 @@ There are many versions of Java `11` listed. Select the correct version based on
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
-
 </div>
 
 ### Displaying usage instructions: `help`
@@ -96,7 +97,7 @@ Format: `help`
 
 ### Adding a patient: `add` (by Cedric Lim Jun Wei)
 
-This is the core and basic feature of **Hospify**. This command allows you to add a new patient to **Hospify**. Start by typing the command word `add`, followed by the following items:
+This is a core and basic feature of **Hospify**. This command allows you to add a new patient to **Hospify**. Start by typing the command word `add`, followed by the following items:
 
 1. `n/NAME` : Name of patient
 
@@ -119,7 +120,6 @@ This is the core and basic feature of **Hospify**. This command allows you to ad
 * Items 1 to 6 are compulsory fields that you have to provide. Missing any one of those fields will trigger an error.
 
 * Item 7 is an optional item that you may choose to exclude. In addition, you may choose to include more than one of such item by using `t/ALLERGIES` again.
-
 </div>
 
 Let us summarise the information above to a single line of command in the following format.
@@ -137,6 +137,7 @@ Examples:
 * `add n/Betsy Crowe ic/S9425431A t/shellfish e/betsycrowe@example.com a/Newgate Prison p/1234567 t/grass mr/www.samplerecord.com/02`
 
 When a patient is successfully added to **Hospify**, a success message will appear in the message box, and the patient is shown at the bottom of the list as shown in figure 2.1 below. <br>
+
 ![Add patient](images/Add%20patient.PNG)
 Figure 2.1 Adding a patient (success scenario)
 
@@ -225,9 +226,11 @@ Examples:
 
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
-By now we have learnt that we can [`add`](#adding-a-patient--add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient--edit) patients by including the `mr/MEDICAL_RECORD_URL` field. Now, let us explore how we can make use of this feature to edit patients' medical record.
+By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit) patients by including the `mr/MEDICAL_RECORD_URL` field. Now, let us explore how we can make use of this feature to edit patients' medical record.
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**<br>
 
 * It is helpful to generate the medical record url before adding or editing a patient.
 
@@ -236,19 +239,23 @@ By now we have learnt that we can [`add`](#adding-a-patient--add-by-cedric-lim-j
 
 In the following example, we will be using [Google Docs](https://docs.google.com) to store the medical record of patient `John Doe`.
 
-1. First, we add patient `John Doe` using [`add`](#adding-a-patient--add-by-cedric-lim-jun-wei) as shown in figure 2.2.1 below.<br>
+1. First, we add patient `John Doe` using [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) as shown in figure 2.2.1 below.<br>
+    
     ![medical record example 1](images/Medical%20record%20example%20(1).png)
     Figure 2.2.1 Adding patient John Doe
     
 1. Next, to copy the medical record url of patient `John Doe` that we have just added, locate the patient in the list and click on the `MR URL` button located on the bottom right corner as shown in figure 2.2.2 below. A `Link Copied!` success message should appear once clicked, indicating that the link has been copied to the system clipboard.<br>
+    
     ![medical record example 2](images/Medical%20record%20example%20(2).png)
     Figure 2.2.2 Copying medical record url of John Doe
     
 1. Then, open the web browser of your choice and paste the medical record url onto the search bar as shown in figure 2.2.3 below.<br>
+    
     ![medical record example 3](images/Medical%20record%20example%20(3).png)
     Figure 2.2.3 Pasting medical record url of John Doe onto search bar
     
 1. Finally, you can access the medical record of the patient and make edits if applicable. A sample medical record is shown in figure 2.2.4 below for your reference.<br>
+    
     ![medical record example 4](images/Medical%20record%20example%20(4).png)
     Figure 2.2.4 Sample medical record of John Doe on Google Docs
 
