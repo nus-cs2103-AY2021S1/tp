@@ -1,15 +1,15 @@
 package seedu.stock.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
+
+import java.util.stream.Stream;
+
 import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 import seedu.stock.model.stock.SerialNumber;
-
-import java.util.stream.Stream;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
 public class NoteViewCommandParser implements Parser<NoteViewCommand> {
 

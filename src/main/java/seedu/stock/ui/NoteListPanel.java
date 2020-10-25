@@ -1,5 +1,7 @@
 package seedu.stock.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -7,8 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.model.stock.Note;
-
-import java.util.logging.Logger;
 
 public class NoteListPanel extends UiPart<Region> {
 

@@ -1,14 +1,14 @@
 package seedu.stock.logic.commands;
 
-import seedu.stock.logic.commands.exceptions.CommandException;
-import seedu.stock.model.Model;
-import seedu.stock.model.stock.SerialNumber;
-import seedu.stock.model.stock.Stock;
+import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Optional;
 
-import static seedu.stock.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.stock.logic.commands.exceptions.CommandException;
+import seedu.stock.model.Model;
+import seedu.stock.model.stock.SerialNumber;
+import seedu.stock.model.stock.Stock;
 
 public class NoteViewCommand extends Command {
 

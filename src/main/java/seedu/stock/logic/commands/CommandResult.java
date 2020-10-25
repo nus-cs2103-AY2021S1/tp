@@ -1,13 +1,11 @@
 package seedu.stock.logic.commands;
 
-import seedu.stock.model.stock.Note;
-import seedu.stock.model.stock.Stock;
-
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import seedu.stock.model.stock.Stock;
 
 /**
  * Represents the result of a command execution.
