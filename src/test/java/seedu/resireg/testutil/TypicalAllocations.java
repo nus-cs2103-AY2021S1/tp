@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.resireg.model.AddressBook;
+import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -54,10 +54,10 @@ public class TypicalAllocations {
     private TypicalAllocations() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical allocations.
+     * Returns an {@code ResiReg} with all the typical allocations.
      */
-    public static AddressBook getTypicalAddressBook() {
-        AddressBook ab = new AddressBook();
+    public static ResiReg getTypicalResiReg() {
+        ResiReg ab = new ResiReg();
         for (Student student : TypicalStudents.getTypicalStudents()) {
             ab.addStudent(student);
         }

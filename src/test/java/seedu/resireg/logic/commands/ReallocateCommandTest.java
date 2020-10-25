@@ -6,7 +6,7 @@ import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.showRoomAtIndex;
 import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
-import static seedu.resireg.testutil.TypicalAllocations.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIFTH_ROOM;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
@@ -30,12 +30,12 @@ import seedu.resireg.model.student.Student;
 
 /**
  * Contains unit tests for {@code ReallocateCommand}.
- * TypicalAddressBook is assumed to have allocated the first 3 students to the first 3 rooms, so the 4th student/room
+ * TypicalResiReg is assumed to have allocated the first 3 students to the first 3 rooms, so the 4th student/room
  * is free to be allocated.
  */
 public class ReallocateCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -58,7 +58,7 @@ public class ReallocateCommandTest {
                 studentToReallocate.getName().fullName,
                 roomToReallocate.getRoomLabel());
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
         expectedModel.setAllocation(toReallocate, editedAllocate);
         expectedModel.saveStateResiReg();
 
@@ -84,7 +84,7 @@ public class ReallocateCommandTest {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getStudentList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getStudentList().size());
         ReallocateCommand reallocateCommand = new ReallocateCommand(outOfBoundIndex, INDEX_FOURTH_ROOM);
         assertCommandFailure(reallocateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -94,7 +94,7 @@ public class ReallocateCommandTest {
         showRoomAtIndex(model, INDEX_FIRST_ROOM);
         Index outOfBoundIndex = INDEX_SECOND_ROOM;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getRoomList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getRoomList().size());
         ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
         assertCommandFailure(reallocateCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
     }
