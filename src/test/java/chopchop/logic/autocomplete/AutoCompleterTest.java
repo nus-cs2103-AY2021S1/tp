@@ -38,6 +38,8 @@ public class AutoCompleterTest {
         tests.put("l",                                      "list");
         tests.put("q",                                      "quit");
         tests.put("h",                                      "help");
+        tests.put("e",                                      "edit");
+        tests.put("v",                                      "view");
         tests.put("m",                                      "make");
         tests.put("u",                                      "undo");
         tests.put("r",                                      "redo");
@@ -50,6 +52,7 @@ public class AutoCompleterTest {
         tests.put("add r",                                  "add recipe");
         tests.put("find r",                                 "find recipe");
         tests.put("list r",                                 "list recipe");
+        tests.put("view r",                                 "view recipe");
         tests.put("delete r",                               "delete recipe");
 
         // target completion (ingredients)
@@ -73,6 +76,9 @@ public class AutoCompleterTest {
         // recipe name completion
         tests.put("delete recipe a",                        "delete recipe Apricot Salad");
         tests.put("make cus",                               "make Custard Salad");
+
+        // edit completion (a whole thing on its own)
+        // tests.put("edit ");
 
         // things that don't change
         tests.put("",                                       "");

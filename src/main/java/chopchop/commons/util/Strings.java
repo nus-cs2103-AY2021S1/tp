@@ -45,7 +45,8 @@ public class Strings {
         COMMAND_DELETE,
         COMMAND_MAKE,
         COMMAND_UNDO,
-        COMMAND_REDO
+        COMMAND_REDO,
+        COMMAND_VIEW
     );
 
     // command targets

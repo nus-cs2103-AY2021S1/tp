@@ -359,7 +359,7 @@ public class AutoCompleter {
 
             } else if (commandRequiresItemReference(cmd)) {
 
-                if (cmd.equals(Strings.COMMAND_MAKE)) {
+                if (cmd.equals(Strings.COMMAND_MAKE) || cmd.equals(Strings.COMMAND_VIEW)) {
                     return RequiredCompletion.RECIPE_NAME;
                 } else {
                     return RequiredCompletion.NONE;
@@ -451,6 +451,7 @@ public class AutoCompleter {
         return List.of(
             Strings.COMMAND_MAKE,
             Strings.COMMAND_EDIT,
+            Strings.COMMAND_VIEW,
             Strings.COMMAND_DELETE
         ).indexOf(commandName) >= 0;
     }
