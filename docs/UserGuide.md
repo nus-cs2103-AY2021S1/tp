@@ -123,9 +123,9 @@ Format: `exit`
 
 ### Finding animals by their fields: `find`
 
-Finds and lists all animals in the `ZooKeep` book whose fields contain any of the specified argument keywords.
+Finds and lists all animals in the `ZooKeep` book whose fields contain any of the specified argument keywords (at least 1).
 
-Format: `find [SPECIFIED KEYWORDS]...`
+Format: `find KEYWORD [MORE KEYWORDS]...`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Keyword matching is case insensitive.
 </div>
@@ -252,7 +252,7 @@ Action | Format, Examples
 **Clear** | `clear`
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Exit** | `exit`
-**Find** | `find [SPECIFIED KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
+**Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
 **Help** | `help`
 **List** | `list`
 **Redo** | `redo`
