@@ -3,7 +3,7 @@ package seedu.pivot.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.commons.core.Messages.MESSAGE_CASES_LISTED_OVERVIEW;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_CASES_LISTED_OVERVIEW;
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.testutil.TypicalCases.CARL;
 import static seedu.pivot.testutil.TypicalCases.ELLE;

@@ -1,6 +1,8 @@
 package seedu.pivot.logic.commands.casecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_DESC;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
@@ -57,8 +59,8 @@ public class AddDescriptionCommand extends AddCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(StateManager.atCasePage()) : "Program should be at case page";
-        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
+        assert(index.getZeroBased() < lastShownList.size()) : ASSERT_VALID_INDEX;
 
         Case stateCase = lastShownList.get(index.getZeroBased());
         Description stateCaseDescription = stateCase.getDescription();

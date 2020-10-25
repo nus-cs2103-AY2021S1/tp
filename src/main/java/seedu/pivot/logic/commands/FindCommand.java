@@ -2,7 +2,7 @@ package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 
@@ -30,7 +30,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredCaseList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CASES_LISTED_OVERVIEW, model.getFilteredCaseList().size()));
+                String.format(UserMessages.MESSAGE_CASES_LISTED_OVERVIEW, model.getFilteredCaseList().size()));
     }
 
     @Override
