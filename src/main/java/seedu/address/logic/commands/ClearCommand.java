@@ -7,7 +7,6 @@ import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_EXPEN
 import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_REVENUE;
 
 import seedu.address.commons.core.category.Category;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
 
@@ -35,7 +34,7 @@ public class ClearCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
+    public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
         assert(!isNull(model));
 

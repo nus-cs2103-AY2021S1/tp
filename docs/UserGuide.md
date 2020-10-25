@@ -5,16 +5,60 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 * Quick Start
 * Features
   <!--* Viewing help: `help`-->
-  * Adding an expense: `add`
-  * Deleting an expense: `delete`
-  * Editing an expense: `edit`
-  * Finding expenses by a keyword: `find`
+  * Adding an entry: `add`
+  * Deleting an entry: `delete`
+  * Editing an entry: `edit`
+  * Finding entries by a keyword: `find`
   * Exiting the program: `exit`
 * Command Summary
 
 --------------------------------------------------------------------------------------------------------------------
+[comment]: <> (Copy the blocks below and edit your message)
 
-## Quick start
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+Explains the rationale behind our design. 
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+[comment]: <> (This only appears in Github CSS)
+
+:bulb: **Tip:**
+
+Good to learn, but not necessary to know to use FitEgo. 
+</div>
+
+
+<div markdown="block" class="alert alert-warning">
+
+:star: **Feature:**
+
+Important to know.
+</div>
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+An example to follow. 
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+May have irreversible effect when used. Backup and caution is recommended.
+</div>
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+# Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -36,7 +80,7 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+# Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -54,13 +98,23 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 
 </div>
 
+## App-Level Commands
+
 ### Viewing help : `help`
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+{Insert help screenshot}
 
 Format: `help`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+## Entry-Level Commands
 
 ### Adding an entry: `add`
 
@@ -75,6 +129,7 @@ Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 Examples:
 * `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce`
 * `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
+
 
 
 ### Deleting entries : `delete`
@@ -92,7 +147,7 @@ Example:
 * `delete 2 c/revenue`
 
 
-<!-- ### Editing an entry (expense/revenue) : `edit`
+### Editing an entry (expense/revenue) : `edit`
 
 Edits an entry in the tracker.
 
@@ -111,7 +166,7 @@ Example:
 * `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
 
 
-### Locating expenses by name: `find`
+### Locating entries by name: `find`
 
 Find expenses that have the given keyword in their names.
 
@@ -124,17 +179,27 @@ Format:
 
 Example:
 * `find food`: Finds expenses with the keyword `food`.
--->
 
-### Exiting the program : `exit`
+### Listing all entries: `list`
 
-Exits the program.
+### Calculating net profits based on expenses and revenues: `profit` 
 
-Format: `exit`
+
+## Account-level Commands
+
+### Add new Account: `newacc`
+
+### Deleting an account: `deleteacc`
+
+### Editing the current account: `editacc`
+
+### Listing accounts you have: `listacc`
+
+### Switching accounts: `switchacc`
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+# Command summary
 
 Action | Format, Examples
 --------|------------------
