@@ -105,10 +105,6 @@ public class JsonAdaptedSuspect {
             logger.warning("Suspect address is null. Check data");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            logger.warning("Suspect address is invalid. Check data");
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
         final Address modelAddress = new Address(address);
 
         return new Suspect(modelName, modelGender, modelPhone, modelEmail, modelAddress);

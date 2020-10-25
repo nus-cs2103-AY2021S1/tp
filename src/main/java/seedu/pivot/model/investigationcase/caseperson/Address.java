@@ -1,7 +1,6 @@
 package seedu.pivot.model.investigationcase.caseperson;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.pivot.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Person's address in PIVOT.

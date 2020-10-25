@@ -106,10 +106,6 @@ public class JsonAdaptedWitness {
             logger.warning("Witness address is null. Check data");
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            logger.warning("Witness address is invalid. Check data");
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
         final Address modelAddress = new Address(address);
 
         return new Witness(modelName, modelGender, modelPhone, modelEmail, modelAddress);
