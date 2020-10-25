@@ -94,10 +94,25 @@ public class MainCatalogueParser {
             return new HelpCommand();
 
         case StartProjectCommand.COMMAND_WORD:
-            return new StartProjectCommandParser().parse(arguments);
+            switch (status) {
+            case PROJECT_LIST:
+            case TEAMMATE:
+            case PROJECT:
+            case TASK:
+            case MEETING:
+                return new StartProjectCommandParser().parse(arguments);
+            default:
+                throw new InvalidScopeException(Status.PROJECT_LIST, status);
+            }
 
         case StartPersonCommand.COMMAND_WORD:
-            return new StartPersonCommandParser().parse(arguments);
+            switch (status) {
+            case PERSON_LIST:
+            case PERSON:
+                return new StartPersonCommandParser().parse(arguments);
+            default:
+                throw new InvalidScopeException(Status.PERSON_LIST, status);
+            }
 
         case LeaveProjectViewCommand.COMMAND_WORD:
             if (status == Status.PROJECT) {
