@@ -1,19 +1,24 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.ScheduleCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -34,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private SchedulePanel schedulePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,6 +55,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane calendarPlaceholder;
+
+    @FXML
+    private GridPane displayGridPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +78,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+
     }
 
     public Stage getPrimaryStage() {
@@ -110,6 +123,11 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        schedulePanel = new SchedulePanel(FXCollections.observableList(new ArrayList<VEvent>()));
+        calendarPlaceholder.getChildren().add(schedulePanel.getRoot());
+        calendarPlaceholder.visibleProperty().setValue(false);
+        calendarPlaceholder.setManaged(false);
+
         studentListPanel = new StudentListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
 
@@ -163,6 +181,26 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    @FXML
+    private void handleCalendar() {
+        openCalendar();
+    }
+
+    private void openCalendar() {
+        displayGridPane.setManaged(false);
+        displayGridPane.visibleProperty().setValue(false);
+        calendarPlaceholder.setManaged(true);
+        calendarPlaceholder.visibleProperty().setValue(true);
+    }
+
+    @FXML
+    private void closeCalendar() {
+        displayGridPane.setManaged(true);
+        displayGridPane.visibleProperty().setValue(true);
+        calendarPlaceholder.setManaged(false);
+        calendarPlaceholder.visibleProperty().setValue(false);
+    }
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
@@ -184,6 +222,14 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            // this is to open calendar when schedule command is called
+            if (commandResult.getFeedbackToUser().equals(ScheduleCommand.COMMAND_SUCCESS_MESSAGE)) {
+                handleCalendar();
+            } else {
+                //closes the calendar if other command is called
+                closeCalendar();
             }
 
             return commandResult;
