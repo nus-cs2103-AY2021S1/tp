@@ -9,11 +9,16 @@ title: User Guide
 
 If you are a student who can type fast and loves organizing your study materials, QuickCache can get your flashcard management tasks done faster than any traditional GUI appplication.
 
-* Table of Contents
+**Table of Contents**
 
 1. [Quick start](#quickstart)
 2. [Features](#features)
     1. [Viewing help](#help)
+    2. [Creating a new flashcard](#creating-a-new-flashcard)
+        1. [Open ended question](#oeq)
+        2. [Multiple choice question](#mcq)
+    3. [Open a flashcard](#open-a-flashcard)
+    4. [Editing a flashcard](#editing-a-flashcard)
 3. [FAQ](#faq)
 4. [Command summary](#command-summary)
 
@@ -88,9 +93,9 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-### Creating a new flashcard
+### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
 You can add a new flashcard to the list.
-#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER`
+#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER` <a name="oeq"></a>
 You can create a flashcard that contains an open ended question which will be added to the list.
 
 1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
@@ -103,7 +108,7 @@ For example, you can enter`add q/Sample Question ans/Sample Answer`
 You cannot add a flashcard with empty question and empty answer.
 </div>
 
-#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
+#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..` <a name="mcq"></a>
 You can create a flashcard that contains a multiple choice question which will be added to the list.
 
 1. You can use the addmcq command to add a flashcard with a multiple choice question which will be added to the list.
@@ -118,7 +123,7 @@ You cannot add flashcard with missing question or missing answer or missing choi
 You should have at least two choices.
 </div>
 
-### Open a flashcard: `open`
+### Open a flashcard: `open` <a name="open-a-flashcard"></a>
 
 Opens a specified flashcard from the list .
 
@@ -131,7 +136,7 @@ Format: `open INDEX`
 Examples:
 * `list` followed by `open 2` opens the 2nd flashcard in the list.
 
-### Editing a flashcard: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
+### Editing a flashcard: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..` <a name="editing-a-flashcard"></a>
 
 You can edit a flashcard that you have created previously.
 
