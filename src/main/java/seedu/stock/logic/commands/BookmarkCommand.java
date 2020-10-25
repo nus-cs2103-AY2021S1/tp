@@ -102,7 +102,7 @@ public class BookmarkCommand extends Command {
 
         }
 
-        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
         if (stocksNotFound.size() == serialNumbers.size()) {

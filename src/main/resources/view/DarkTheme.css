@@ -354,6 +354,13 @@
     -fx-border-width: 0;
 }
 
+#cardNoteBox {
+    -fx-border-color: black;
+        -fx-border-insets: 0;
+        -fx-border-width: 1;
+        -fx-border-style: dashed;
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
