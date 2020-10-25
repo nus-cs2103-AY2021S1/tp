@@ -8,7 +8,7 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 
 /**
@@ -102,7 +102,7 @@ public class FileUtil {
 
         //check if Desktop is supported by Platform or not
         if (!Desktop.isDesktopSupported()) {
-            throw new CommandException(Messages.MESSAGE_DESKTOP_API_NOT_AVAILABLE);
+            throw new CommandException(UserMessages.MESSAGE_DESKTOP_API_NOT_AVAILABLE);
         }
 
         assert (isFileExists(file)) : "file should exist";

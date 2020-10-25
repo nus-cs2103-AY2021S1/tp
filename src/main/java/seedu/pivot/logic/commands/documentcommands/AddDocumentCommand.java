@@ -1,9 +1,10 @@
 package seedu.pivot.logic.commands.documentcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -57,8 +58,8 @@ public class AddDocumentCommand extends AddCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(StateManager.atCasePage()) : "Program should be at case page";
-        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
+        assert(index.getZeroBased() < lastShownList.size()) : ASSERT_VALID_INDEX;
 
         //get current case in state
         Case stateCase = lastShownList.get(index.getZeroBased());
@@ -80,7 +81,6 @@ public class AddDocumentCommand extends AddCommand {
 
         model.setCase(stateCase, updatedCase);
         model.commitPivot();
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
     }

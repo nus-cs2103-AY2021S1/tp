@@ -11,7 +11,7 @@ import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.pivot.model.Model;
@@ -45,7 +45,7 @@ public class DeleteCaseCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCaseList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }
 
     @Test
@@ -74,7 +74,7 @@ public class DeleteCaseCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }
 
     @Test
