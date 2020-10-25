@@ -29,6 +29,8 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     private final CategoryBudget defaultCategory = new CategoryBudget(new Tag("Default"));
     private final ObservableList<CategoryBudget> internalList = FXCollections.observableArrayList();
+    private final ObservableList<CategoryBudget> internalUnmodifiableList =
+        FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent category-budget as the given argument.
@@ -78,6 +80,13 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     public List<CategoryBudget> getCategoryBudgets() {
         return internalList;
+    }
+
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<CategoryBudget> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
     }
 
     public CategoryBudget getDefaultCategory() {

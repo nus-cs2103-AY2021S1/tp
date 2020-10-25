@@ -23,81 +23,93 @@ import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.exceptions.DuplicateExpenseException;
 import seedu.expense.testutil.ExpenseBuilder;
 
-public class ExpenseBookTest {
+class CategoryExpenseBookTest {
 
     private final ExpenseBook expenseBook = new ExpenseBook();
+    private final CategoryExpenseBook categoryExpenseBook = new CategoryExpenseBook(expenseBook);
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), expenseBook.getExpenseList());
+        assertEquals(Collections.emptyList(), categoryExpenseBook.getExpenseList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> expenseBook.resetData(null));
+        assertThrows(NullPointerException.class, () -> categoryExpenseBook.resetData(null));
     }
 
     @Test
-    public void resetData_withValidReadOnlyExpenseBook_replacesData() {
+    public void resetData_withValidExpenseBook_replacesData() {
         ExpenseBook newData = getTypicalExpenseBook();
-        expenseBook.resetData(newData);
-        assertEquals(newData, expenseBook);
+        categoryExpenseBook.resetData(newData);
+        assertEquals(newData, categoryExpenseBook);
     }
 
     @Test
     public void resetData_withDuplicateExpenses_throwsDuplicateExpenseException() {
         // Two expenses with the same identity fields
-        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
-                .build();
-        List<Expense> newExpenses = Arrays.asList(FEL_BDAY, editedAlice);
-        ExpenseBookStub newData = new ExpenseBookStub(newExpenses);
+        Expense edited = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+            .build();
+        List<Expense> newExpenses = Arrays.asList(FEL_BDAY, edited);
+        CategoryExpenseBookTest.CategoryExpenseBookStub newData =
+            new CategoryExpenseBookTest.CategoryExpenseBookStub(newExpenses);
 
-        assertThrows(DuplicateExpenseException.class, () -> expenseBook.resetData(newData));
+        assertThrows(DuplicateExpenseException.class, () -> categoryExpenseBook.resetData(newData));
     }
 
     @Test
     public void hasExpense_nullExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> expenseBook.hasExpense(null));
+        assertThrows(NullPointerException.class, () -> categoryExpenseBook.hasExpense(null));
     }
 
     @Test
-    public void hasExpense_expenseNotInExpenseBook_returnsFalse() {
-        assertFalse(expenseBook.hasExpense(FEL_BDAY));
+    public void hasExpense_expenseNotInCategoryExpenseBook_returnsFalse() {
+        assertFalse(categoryExpenseBook.hasExpense(FEL_BDAY));
     }
 
     @Test
-    public void hasExpense_expenseInExpenseBook_returnsTrue() {
-        expenseBook.addExpense(FEL_BDAY);
-        assertTrue(expenseBook.hasExpense(FEL_BDAY));
+    public void hasExpense_expenseInCategoryExpenseBook_returnsTrue() {
+        categoryExpenseBook.addExpense(FEL_BDAY);
+        assertTrue(categoryExpenseBook.hasExpense(FEL_BDAY));
     }
 
     @Test
-    public void hasExpense_expenseWithSameIdentityFieldsInExpenseBook_returnsTrue() {
-        expenseBook.addExpense(FEL_BDAY);
-        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
-                .build();
-        assertTrue(expenseBook.hasExpense(editedAlice));
+    public void hasExpense_expenseWithSameIdentityFieldsInCategoryExpenseBook_returnsTrue() {
+        categoryExpenseBook.addExpense(FEL_BDAY);
+        Expense edited = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+            .build();
+        assertTrue(categoryExpenseBook.hasExpense(edited));
     }
 
     @Test
     public void getExpenseList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> expenseBook.getExpenseList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> categoryExpenseBook.getExpenseList().remove(0));
     }
 
     @Test
     public void getBudgetList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> expenseBook.getBudgetList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> categoryExpenseBook.getBudgetList().remove(0));
+    }
+
+    @Test
+    public void getFilteredExpenses_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> categoryExpenseBook.getFilteredExpenses().remove(0));
+    }
+
+    @Test
+    public void getFilteredBudgets_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> categoryExpenseBook.getFilteredBudgets().remove(0));
     }
 
     /**
      * A stub ReadOnlyExpenseBook whose expenses list can violate interface constraints.
      */
-    private static class ExpenseBookStub implements ReadOnlyExpenseBook {
+    private static class CategoryExpenseBookStub extends ExpenseBook {
 
         private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
         private final UniqueCategoryBudgetList budgets = new UniqueCategoryBudgetList();
 
-        ExpenseBookStub(Collection<Expense> expenses) {
+        CategoryExpenseBookStub(Collection<Expense> expenses) {
             this.expenses.setAll(expenses);
         }
 
@@ -131,5 +143,4 @@ public class ExpenseBookTest {
             return -1; // should not be called
         }
     }
-
 }

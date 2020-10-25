@@ -1,14 +1,14 @@
 package seedu.expense.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.expense.testutil.Assert.assertThrows;
+import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.logic.commands.exceptions.CommandException;
-import seedu.expense.model.ExpenseBook;
+import seedu.expense.model.CategoryExpenseBook;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
@@ -27,63 +27,62 @@ import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
-import seedu.expense.testutil.ExpenseBuilder;
 
-public class AddCommandTest {
+/**
+ * Contains integration tests (interaction with the Model) for {@code SwitchCommand}.
+ */
+class SwitchCommandTest {
 
     @Test
-    public void constructor_nullExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new SwitchCommand(null));
     }
 
     @Test
-    public void execute_expenseAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingExpenseAdded modelStub = new ModelStubAcceptingExpenseAdded();
-        Expense validExpense = new ExpenseBuilder().build();
-
-        CommandResult commandResult = new AddCommand(validExpense).execute(modelStub);
-
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validExpense), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validExpense), modelStub.expensesAdded);
-    }
-
-    @Test
-    public void execute_duplicateExpense_throwsCommandException() {
-        Expense validExpense = new ExpenseBuilder().build();
-        AddCommand addCommand = new AddCommand(validExpense);
-        ModelStub modelStub = new ModelStubWithExpense(validExpense);
-
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EXPENSE, () -> addCommand.execute(modelStub));
+    void execute_noMatchingKeywords_noCategoryFound() throws Exception {
+        Tag foodTag = new Tag(VALID_TAG_FOOD);
+        SwitchCommand command = new SwitchCommand(foodTag);
+        ModelStub modelStub = new ModelStub();
+        assertThrows(CommandException.class, SwitchCommand.MESSAGE_INVALID_CATEGORY, ()
+            -> command.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Expense alice = new ExpenseBuilder().withDescription("Alice").build();
-        Expense bob = new ExpenseBuilder().withDescription("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Tag foodTag = new Tag(VALID_TAG_FOOD);
+        Tag transportTag = new Tag(VALID_TAG_TRANSPORT);
+
+        SwitchCommand switchFirstCommand = new SwitchCommand(foodTag);
+        SwitchCommand switchSecondCommand = new SwitchCommand(transportTag);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(switchFirstCommand.equals(switchFirstCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        SwitchCommand switchFirstCommandCopy = new SwitchCommand(foodTag);
+        assertTrue(switchFirstCommand.equals(switchFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(switchFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(switchFirstCommand.equals(null));
 
-        // different expense -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different tag -> returns false
+        assertFalse(switchFirstCommand.equals(switchSecondCommand));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A Model stub with a budget that can be topped up.
      */
     private class ModelStub implements Model {
+
+        final CategoryExpenseBook categoryExpenseBook;
+
+        ModelStub() {
+            categoryExpenseBook = new CategoryExpenseBook(getTypicalExpenseBook());
+        }
+
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -156,17 +155,27 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredExpenseList(Predicate<Expense> predicate) {
-            throw new AssertionError("This method should not be called.");
+            requireNonNull(predicate);
+            categoryExpenseBook.updateFilteredExpenses(predicate);
         }
 
         @Override
         public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
-            throw new AssertionError("This method should not be called.");
+            requireNonNull(predicate);
+            categoryExpenseBook.updateFilteredBudgets(predicate);
         }
 
         @Override
         public void updateCategoryExpenseBook(Tag category) {
-            throw new AssertionError("This method should not be called.");
+            requireNonNull(category);
+
+            if (category.equals(new Tag("Default"))) {
+                updateFilteredBudgetList(budget -> true);
+                updateFilteredExpenseList(expense -> true);
+            } else {
+                updateFilteredBudgetList(budget -> budget.getTag().equals(category));
+                updateFilteredExpenseList(expense -> expense.getTags().contains(category));
+            }
         }
 
         @Override
@@ -181,16 +190,19 @@ public class AddCommandTest {
 
         @Override
         public boolean hasCategory(Tag toCheck) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void setAlias(AliasEntry prev, AliasEntry curr) {
-            throw new AssertionError("This method should not be called.");
+            return categoryExpenseBook.containsCategory(toCheck);
         }
 
         @Override
         public void switchCategory(Tag category) {
+            requireNonNull(category);
+            if (hasCategory(category)) {
+                updateCategoryExpenseBook(category);
+            }
+        }
+
+        @Override
+        public void setAlias(AliasEntry prev, AliasEntry next) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -200,12 +212,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addAlias(AliasEntry entry) {
+        public AliasMap getAliasMap() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public AliasMap getAliasMap() {
+        public void addAlias(AliasEntry entry) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -219,47 +231,4 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
     }
-
-    /**
-     * A Model stub that contains a single expense.
-     */
-    private class ModelStubWithExpense extends ModelStub {
-        private final Expense expense;
-
-        ModelStubWithExpense(Expense expense) {
-            requireNonNull(expense);
-            this.expense = expense;
-        }
-
-        @Override
-        public boolean hasExpense(Expense expense) {
-            requireNonNull(expense);
-            return this.expense.isSameExpense(expense);
-        }
-    }
-
-    /**
-     * A Model stub that always accept the expense being added.
-     */
-    private class ModelStubAcceptingExpenseAdded extends ModelStub {
-        final ArrayList<Expense> expensesAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasExpense(Expense expense) {
-            requireNonNull(expense);
-            return expensesAdded.stream().anyMatch(expense::isSameExpense);
-        }
-
-        @Override
-        public void addExpense(Expense expense) {
-            requireNonNull(expense);
-            expensesAdded.add(expense);
-        }
-
-        @Override
-        public ReadOnlyExpenseBook getExpenseBook() {
-            return new ExpenseBook();
-        }
-    }
-
 }

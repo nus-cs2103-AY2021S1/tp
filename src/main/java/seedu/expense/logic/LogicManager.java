@@ -61,6 +61,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ReadOnlyExpenseBook getCategoryExpenseBook() {
+        return model.getCategoryExpenseBook();
+    }
+
+    @Override
     public ObservableList<Expense> getFilteredExpenseList() {
         return model.getFilteredExpenseList();
     }

@@ -19,6 +19,7 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
 import seedu.expense.logic.commands.RemarkCommand;
+import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.commands.TopupCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.alias.AliasMap;
@@ -97,6 +98,9 @@ public class ExpenseBookParser {
 
         case TopupCommand.COMMAND_WORD:
             return new TopupCommandParser().parse(arguments);
+
+        case SwitchCommand.COMMAND_WORD:
+            return new SwitchCommandParser().parse(arguments);
 
         case AliasCommand.COMMAND_WORD:
             return new AliasCommandParser().parse(arguments);
