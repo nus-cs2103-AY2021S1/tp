@@ -28,6 +28,9 @@ public class UsageList<T extends Usage> {
         return this.usages;
     }
 
+    /**
+     * Adds to the stack.
+     */
     public void add(T item) {
         requireAllNonNull(item);
         this.usages.add(item);

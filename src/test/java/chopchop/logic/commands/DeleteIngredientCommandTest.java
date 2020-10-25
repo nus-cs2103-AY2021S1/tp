@@ -4,8 +4,11 @@ import chopchop.commons.core.Messages;
 import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
+import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
 import chopchop.logic.parser.ItemReference;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 
 import org.junit.jupiter.api.Test;
 
@@ -20,7 +23,8 @@ import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 
 public class DeleteIngredientCommandTest {
 
-    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
+    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UsageList<RecipeUsage>(),
+        new UsageList<IngredientUsage>(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -29,7 +33,8 @@ public class DeleteIngredientCommandTest {
 
         String expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS, indToDelete);
 
-        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UserPrefs());
+        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(),
+            new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.deleteIngredient(indToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -52,7 +57,8 @@ public class DeleteIngredientCommandTest {
 
         var expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS, indToDelete);
 
-        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UserPrefs());
+        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UsageList<RecipeUsage>(),
+            new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.deleteIngredient(indToDelete);
         showNoIngredient(expectedModel);
 

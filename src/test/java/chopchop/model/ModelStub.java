@@ -5,10 +5,13 @@ import java.util.Optional;
 import java.util.function.Predicate;
 
 import chopchop.commons.core.GuiSettings;
+import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 
 import chopchop.model.ingredient.Ingredient;
 
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 import javafx.collections.ObservableList;
 
 
@@ -143,6 +146,36 @@ public abstract class ModelStub implements Model {
 
     @Override
     public Optional<Ingredient> findIngredientWithName(String name) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public UsageList<RecipeUsage> getRecipeUsageList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public UsageList<IngredientUsage> getIngredientUsageList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addRecipeUsage(Recipe recipe) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeRecipeUsage(Recipe recipe) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addIngredientUsage(IngredientReference ingredient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeIngredientUsage(IngredientReference ingredient) {
         throw new AssertionError("This method should not be called.");
     }
 }

@@ -38,7 +38,6 @@ import chopchop.storage.UserPrefsStorage;
 import chopchop.ui.Ui;
 import chopchop.ui.UiManager;
 import javafx.application.Application;
-import javafx.collections.FXCollections;
 import javafx.stage.Stage;
 
 /**
