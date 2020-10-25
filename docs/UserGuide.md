@@ -3,16 +3,16 @@ layout: page
 title: User Guide
 ---
 
-McGymmy (MG) is a **desktop app for Software Engineers who need help managing their diet, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). While we are primarily targetting software engineers who are familiar with the CLI, those who spend a large amount of time at their desk can still benefit from this application by saving time as opposed to the more traditional caloric tracker applications. <br>
-If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. MG aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow.
+McGymmy (McGymmy) is a **desktop app for Software Engineers who need help managing their diet, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). While we are primarily targetting software engineers who are familiar with the CLI, those who spend a large amount of time at their desk can still benefit from this application by saving time as opposed to the more traditional caloric tracker applications. <br>
+If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. McGymmy aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow.
 
-This document aims to showcase all of MG's commands.
+This document aims to showcase all of McGymmy's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
 
 ##  Icon Legend
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
+:bulb: **Tip:** This indicates that the following text consists of tips to better utilise McGymmy
 
 </div>
 
@@ -24,9 +24,9 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 
 ## A little note from the developers
 
-Thank you for using MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
-We understand that MG may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
-Thus we recommend you to start by first understanding how MG works at a high level at the Quick start section. Then, explore the Features section.
+Thank you for using McGymmy. We sincerely hope that McGymmy plays apart to help you achieve a healthier lifestyle.
+We understand that McGymmy may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
+Thus we recommend you to start by first understanding how McGymmy works at a high level at the Quick start section. Then, explore the Features section.
 
 <div markdown="block" class="alert alert-info">
 
