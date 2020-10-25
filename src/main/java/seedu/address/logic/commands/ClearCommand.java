@@ -3,6 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.isNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES;
+import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_REVENUE;
 
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -47,6 +49,10 @@ public class ClearCommand extends Command {
             assert isRevenue;
             activeAccount.clearRevenues();
         }
+
+        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
+
         model.setAccount(activeAccount.getAccount());
         return CommandResultFactory
             .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category));

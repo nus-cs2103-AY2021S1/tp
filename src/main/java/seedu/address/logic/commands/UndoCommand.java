@@ -24,6 +24,7 @@ public class UndoCommand extends Command {
         }
 
         activeAccount.returnToPreviousState();
+
         model.setAccount(activeAccount.getAccount());
         return CommandResultFactory.createCommandResultForEntryListChangingCommand(MESSAGE_SUCCESS);
     }
