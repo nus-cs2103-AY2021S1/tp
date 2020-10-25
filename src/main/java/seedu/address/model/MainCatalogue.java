@@ -25,6 +25,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     private Status status;
     private Optional<Project> project;
     private Optional<Person> person;
+    private Optional<Participation> participation;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -36,9 +37,11 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     {
         projects = new UniqueProjectList();
         persons = new UniquePersonList();
+        participations = new UniquePersonList();
         status = Status.PROJECT_LIST;
         project = Optional.empty();
         person = Optional.empty();
+        participation = Optional.empty();
     }
 
     public MainCatalogue() {}
@@ -242,6 +245,11 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Participation> getParticipationList() {
+        return participations.asUnmodifiableObservableList();
     }
 
     @Override

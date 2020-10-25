@@ -151,5 +151,20 @@ public class Participation {
                 && otherParticipation.getTasks().equals(getTasks());
 
     }
+
+    /**
+     * Returns true if both Participations contain the same project and person.
+     * This defines a weaker notion of equality between two Participations.
+     */
+    public boolean isSameParticipation(Participation other) {
+        if (other == this) {
+            return true;
+        }
+
+        return other != null
+                && other.getProject().equals(getProject())
+                && (other.getPerson().equals(getPerson()));
+    }
+
 }
 

@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.MainCatalogue;
 import seedu.address.model.ReadOnlyMainCatalogue;
 import seedu.address.model.person.Person;
+import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 
 /**
@@ -25,16 +26,20 @@ class JsonSerializableMainCatalogue {
 
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonParticipation> participations = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableMainCatalogue} with the given projects.
      */
     @JsonCreator
     public JsonSerializableMainCatalogue(@JsonProperty("projects") List<JsonAdaptedProject> projects,
-                                         @JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+                                         @JsonProperty("persons") List<JsonAdaptedPerson> persons,
+                                         @JsonProperty("participations") List<JsonParticipation> participations) {
         //TODO: update person field in catalogue
         this.projects.addAll(projects);
         this.persons.addAll(persons);
+        this.participations.addAll(participations);
+
     }
 
     /**
@@ -45,6 +50,8 @@ class JsonSerializableMainCatalogue {
     public JsonSerializableMainCatalogue(ReadOnlyMainCatalogue source) {
         projects.addAll(source.getProjectList().stream().map(JsonAdaptedProject::new).collect(Collectors.toList()));
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        participations.addAll(
+                source.getParticipationList().stream().map(JsonParticipation::new).collect(Collectors.toList()));
     }
 
     /**
@@ -64,6 +71,13 @@ class JsonSerializableMainCatalogue {
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (mainCatalogue.hasPerson(person)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            mainCatalogue.addPerson(person);
+        }
+        for (JsonParticipation jsonParticipation : participations) {
+            Participation participation = jsonParticipation.toModelType();
+            if (mainCatalogue.has(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             mainCatalogue.addPerson(person);
