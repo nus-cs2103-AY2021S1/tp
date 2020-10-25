@@ -42,8 +42,8 @@ public class RevenueTest {
 
     @Test
     public void constructor_invalidAmount_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-            () -> new Revenue(VALID_DESCRIPTION, new Amount(INVALID_AMOUNT_STRING), tags));
+        assertThrows(IllegalArgumentException.class, () ->
+            new Revenue(VALID_DESCRIPTION, new Amount(INVALID_AMOUNT_STRING), tags));
     }
 
     @Test

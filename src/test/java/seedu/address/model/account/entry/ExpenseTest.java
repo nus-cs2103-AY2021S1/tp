@@ -42,8 +42,8 @@ public class ExpenseTest {
 
     @Test
     public void constructor_invalidAmount_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class,
-            () -> new Expense(VALID_DESCRIPTION, new Amount(INVALID_AMOUNT_STRING), tags));
+        assertThrows(IllegalArgumentException.class, () ->
+            new Expense(VALID_DESCRIPTION, new Amount(INVALID_AMOUNT_STRING), tags));
     }
 
     @Test
