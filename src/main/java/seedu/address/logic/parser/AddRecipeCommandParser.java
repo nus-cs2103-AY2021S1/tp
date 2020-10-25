@@ -36,7 +36,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
                         PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES,
-                PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE)
+                PREFIX_INSTRUCTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecipeCommand.MESSAGE_USAGE));
         }
@@ -47,16 +47,17 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
+        System.out.println(tagList.size());
         String instruction = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
-        assert(recipeImage.length() != 0);
-
+        //String recipeImage = ParserUtil.parseImage(argMultimap.getValue(PREFIX_TAG).get());
+/*
         if (recipeImage.length() < 13) {
             recipeImage = "images/default.jpg";
         } else if (!recipeImage.substring(0, 6).equals("images") && !recipeImage.substring(0, 4).equals("http")) {
             recipeImage = "images/default.jpg";
         }
-        /*
+
             String filename = "";
             for (int i = recipeImage.length() - 1; i >= 0; i--) {
                 if (recipeImage.charAt(i) == '/') {

@@ -28,7 +28,7 @@ public class Recipe {
     // Identity fields
     private final Name name;
     private final String instruction;
-    private final String recipeImage;
+    private String recipeImage;
     // Data fields
     private final ArrayList<Ingredient> ingredients;
     private final Calories calories;
@@ -77,6 +77,10 @@ public class Recipe {
         return Collections.unmodifiableSet(tags);
     }
 
+    
+    public void setDefaultImage() {
+        this.recipeImage = "images/default.jpg";
+    }
     /**
      * Returns true if both recipes of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two recipes.

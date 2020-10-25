@@ -139,4 +139,20 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     *  Parses a {@code String instruction} into a {@code Image}.
+     *  Leading and trailing whitespaces will be trimmed.
+     *  
+     *  @throws ParseException if the given {@code image} is invalid.
+     */
+    public static String parseImage(String imgPath) throws ParseException {
+        requireNonNull(imgPath);
+        String trimmedPath = imgPath.trim();
+        //if (!isValid(trimmedPath)) {
+            //throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        //}
+        return trimmedPath;
+    }
+
 }
