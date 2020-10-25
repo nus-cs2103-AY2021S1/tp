@@ -161,7 +161,7 @@ public class ModelManager implements Model {
 
         addressBook.setPerson(target, editedPerson);
     }
-    
+
     //=========== Meetings ===================================================================================
     @Override
     public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
