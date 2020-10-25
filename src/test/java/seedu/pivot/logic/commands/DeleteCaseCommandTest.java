@@ -1,92 +1,48 @@
 package seedu.pivot.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.logic.commands.CommandTestUtil.showCaseAtIndex;
-import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.pivot.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.Messages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
-import seedu.pivot.model.Model;
-import seedu.pivot.model.ModelManager;
-import seedu.pivot.model.UserPrefs;
+import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.model.investigationcase.Case;
+import seedu.pivot.testutil.CaseBuilder;
+
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCaseCommand}.
+ * Unit Testing for DeleteCaseCommand
  */
 public class DeleteCaseCommandTest {
 
-    private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
-
     @Test
-    public void execute_validIndexUnfilteredList_success() {
-        Case caseToDelete = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCaseCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
-
-        ModelManager expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
-        expectedModel.deleteCase(caseToDelete);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCaseList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showCaseAtIndex(model, INDEX_FIRST_PERSON); // filter the list
-
-        Case caseToDelete = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCaseCommand(INDEX_FIRST_PERSON);
-
-        String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
-
-        Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
-        expectedModel.deleteCase(caseToDelete);
-        showNoPerson(expectedModel);
-
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showCaseAtIndex(model, INDEX_FIRST_PERSON);
-
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPivot().getCaseList().size());
-
-        DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
-
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+    public void constructor_nullCase_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new DeleteCaseCommand(null));
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCaseCommand(INDEX_FIRST_PERSON);
-        DeleteCommand deleteSecondCommand = new DeleteCaseCommand(INDEX_SECOND_PERSON);
+        Index indexZero = Index.fromZeroBased(0);
+        Index indexOne = Index.fromOneBased(1000);
+        DeleteCommand deleteFirstCommand = new DeleteCaseCommand(indexZero);
+        DeleteCommand deleteSecondCommand = new DeleteCaseCommand(indexOne);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCaseCommand(INDEX_FIRST_PERSON);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCaseCommand(indexZero);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false
@@ -99,12 +55,48 @@ public class DeleteCaseCommandTest {
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoPerson(Model model) {
-        model.updateFilteredCaseList(p -> false);
+    @Test
+    public void execute_caseDeletedByModel_deleteSuccessful() throws CommandException {
+        Case testCase = new CaseBuilder().withTitle("Alice").build();
+        List<Case> caseList = new ArrayList<>();
+        caseList.add(testCase);
 
-        assertTrue(model.getFilteredCaseList().isEmpty());
+        Index index = Index.fromZeroBased(0);
+        ModelStub modelStub = new ModelStubWithCaseList(caseList);
+        DeleteCommand deleteCommand = new DeleteCaseCommand(index);
+        CommandResult result = deleteCommand.execute(modelStub);
+        assertEquals(String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, testCase),
+                result.getFeedbackToUser());
+    }
+
+    @Test
+    public void execute_invalidIndex_throwsCommandException() {
+        List<Case> caseList = new ArrayList<>();
+        Index index = Index.fromZeroBased(0);
+        ModelStub modelStub = new ModelStubWithCaseList(caseList);
+        DeleteCommand deleteCommand = new DeleteCaseCommand(index);
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX, () -> deleteCommand.execute(modelStub));
+    }
+
+    /**
+     * A Model stub that holds a caseList.
+     */
+    private class ModelStubWithCaseList extends ModelStub {
+        private final List<Case> caseList;
+
+        private ModelStubWithCaseList(List<Case> caseList) {
+            this.caseList = caseList;
+        }
+
+        @Override
+        public ObservableList<Case> getFilteredCaseList() {
+            return FXCollections.observableList(caseList);
+        }
+
+        @Override
+        public void deleteCase(Case target) {
+            caseList.remove(target);
+        }
     }
 }

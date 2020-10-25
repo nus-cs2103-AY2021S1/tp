@@ -1,10 +1,10 @@
 package seedu.pivot.logic.parser;
 
 import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.pivot.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;

@@ -3,7 +3,7 @@ package seedu.pivot.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.ALICE;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;

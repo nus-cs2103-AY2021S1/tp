@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands;
+package seedu.pivot.logic.commands.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,6 +12,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.pivot.commons.core.index.Index;
+import seedu.pivot.logic.commands.Command;
+import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.Pivot;
@@ -64,7 +67,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);

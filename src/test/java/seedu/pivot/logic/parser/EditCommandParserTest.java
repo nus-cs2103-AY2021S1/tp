@@ -1,16 +1,16 @@
 package seedu.pivot.logic.parser;
 
 import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.pivot.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.pivot.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.pivot.logic.commands.CommandTestUtil.NAME_DESC_BOB;
-import static seedu.pivot.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.pivot.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.NAME_DESC_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.TAG_DESC_FRIEND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;

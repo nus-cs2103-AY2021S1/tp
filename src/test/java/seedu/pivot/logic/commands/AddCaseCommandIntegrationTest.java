@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands;
 
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import org.junit.jupiter.api.BeforeEach;

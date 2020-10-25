@@ -2,10 +2,10 @@ package seedu.pivot.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.pivot.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.DESC_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.DESC_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 

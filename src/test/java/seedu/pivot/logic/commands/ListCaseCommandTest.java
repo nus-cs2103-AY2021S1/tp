@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands;
 
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.logic.commands.CommandTestUtil.showCaseAtIndex;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 

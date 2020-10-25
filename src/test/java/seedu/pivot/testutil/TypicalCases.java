@@ -1,11 +1,11 @@
 package seedu.pivot.testutil;
 
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_STATUS_AMY;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_STATUS_BOB;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_STATUS_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_STATUS_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
