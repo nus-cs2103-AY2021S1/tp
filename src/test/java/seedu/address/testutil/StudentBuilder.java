@@ -1,13 +1,10 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
@@ -18,6 +15,8 @@ import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -38,6 +37,7 @@ public class StudentBuilder {
     public static final String DEFAULT_ADDITIONAL_DETAILS_FRIEND = "friends";
     public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
     public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
+    public static final String DEFAULT_SOLUTION = "Read your textbook";
 
     // Identity fields
     private Name name;
@@ -50,7 +50,7 @@ public class StudentBuilder {
     private ClassTime time;
     private Fee fee;
     private PaymentDate paymentDate;
-    private Set<AdditionalDetail> details = new HashSet<>();
+    private List<AdditionalDetail> details = new ArrayList<>();
 
     private List<Question> questions = new ArrayList<>();
 
@@ -74,7 +74,7 @@ public class StudentBuilder {
 
         List.of(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
                 .stream()
-                .map(Question::new)
+                .map(UnsolvedQuestion::new)
                 .forEach(questions::add);
     }
 
@@ -166,7 +166,7 @@ public class StudentBuilder {
      * Sets the {@code Details} of the {@code Student} that we are building.
      */
     public StudentBuilder withDetails(String... details) {
-        this.details = SampleDataUtil.getDetailSet(details);
+        this.details = SampleDataUtil.getDetailList(details);
         return this;
     }
 
@@ -181,8 +181,8 @@ public class StudentBuilder {
     /**
      * Sets some {@code Questions} as solved for the {@code Student} that we are building.
      */
-    public StudentBuilder withSolved(String... questions) {
-        this.questions = SampleDataUtil.getSolvedQuestions(questions);
+    public StudentBuilder withSolved(String solution, String... questions) {
+        this.questions = SampleDataUtil.getSolvedQuestions(solution, questions);
         return this;
     }
 

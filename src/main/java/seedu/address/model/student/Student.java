@@ -1,12 +1,16 @@
 package seedu.address.model.student;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
+import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.question.Question;
 
 /**
  * Represents a Student in Reeve.
@@ -35,6 +39,16 @@ public class Student {
         this.questions.addAll(questions);
     }
 
+    private Student(Student copy) {
+        requireNonNull(copy);
+        this.name = copy.name;
+        this.phone = copy.phone;
+        this.school = copy.school;
+        this.year = copy.year;;
+        this.admin = copy.admin;
+        this.questions.addAll(copy.questions);
+    }
+
     public Name getName() {
         return name;
     }
@@ -56,7 +70,11 @@ public class Student {
     }
 
     public List<Question> getQuestions() {
-        return questions;
+        return List.copyOf(questions);
+    }
+
+    public List<AdditionalDetail> getDetails() {
+        return admin.getDetails();
     }
 
     /**
@@ -69,14 +87,54 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName())
+                && otherStudent.getName().toString().toLowerCase().equals(getName().toString().toLowerCase())
                 && otherStudent.getPhone().equals(getPhone())
-                && otherStudent.getSchool().equals(getSchool())
+                && otherStudent.getSchool().toString().toLowerCase().equals(getSchool().toString().toLowerCase())
                 && otherStudent.getYear().equals(getYear());
     }
 
     public boolean containsQuestion(Question question) {
         return questions.stream().anyMatch(question::isSameQuestion);
+    }
+
+    /***
+     * Creates a new student object with a newly added question at the end of the questions list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student addQuestion(Question question) {
+        assert !containsQuestion(question);
+
+        requireNonNull(question);
+        Student replacement = new Student(this);
+        replacement.questions.add(question);
+        return replacement;
+    }
+
+    /**
+     * Creates a new student object with a modified question replacing the previous question in the list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student setQuestion(Question target, Question newQuestion) {
+        assert questions.contains(target);
+        requireAllNonNull(target, newQuestion);
+
+        Student replacement = new Student(this);
+        int location = replacement.questions.indexOf(target);
+        replacement.questions.set(location, newQuestion);
+        return replacement;
+    }
+
+    /**
+     * Creates a new student object with the specified question removed from the list.
+     * This operation preserves the immutability of the Student class.
+     */
+    public Student deleteQuestion(Question target) {
+        assert questions.contains(target);
+        requireNonNull(target);
+
+        Student replacement = new Student(this);
+        replacement.questions.remove(target);
+        return replacement;
     }
 
     /**
@@ -111,16 +169,24 @@ public class Student {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
+        builder.append("Name: ")
+                .append(getName())
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append(" School: ")
+                .append("\nSchool: ")
                 .append(getSchool())
-                .append(" Year: ")
+                .append("\nYear: ")
                 .append(getYear())
-                .append(getAdmin())
-                .append(" Questions: ");
-        questions.forEach(builder::append);
+                .append(getAdmin());
+
+        if (!questions.isEmpty()) {
+            builder.append("\nQuestions:\n");
+            String questionList = questions.stream()
+                    .map(Question::toString)
+                    .collect(Collectors.joining("\n"));
+            builder.append(questionList);
+        }
+
         return builder.toString();
     }
 

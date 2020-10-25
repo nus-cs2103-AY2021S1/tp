@@ -39,14 +39,16 @@ public class ScheduleCommand extends Command {
         // this date is given by the user, we extract out the day
         DayOfWeek day = this.dateToFindSchedule.getDayOfWeek();
 
+        assert day != null;
+
         // checks which student has the same day as the one given extracted out
         Predicate<Student> predicate = student -> student.getAdmin().getClassTime().isSameDay(day);
 
         // updates the list that is currently showed in the ui
-        model.updateFilteredPersonList(predicate);
+        model.updateFilteredStudentList(predicate);
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
     }
 
     @Override
