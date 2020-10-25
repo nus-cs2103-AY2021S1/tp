@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final VersionedAddressBook versionedAddressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Tag> filteredTags;
     private final FilteredList<File> filteredFiles;
@@ -38,11 +38,11 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.versionedAddressBook = new VersionedAddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTags = new FilteredList<>(this.addressBook.getTagList());
-        filteredFiles = new FilteredList<>(this.addressBook.getObservableFileList());
-        currentPath = new CurrentPath(this.userPrefs.getSavedFilePathValue(), this.addressBook.getFileList());
+        filteredTags = new FilteredList<>(this.versionedAddressBook.getTagList());
+        filteredFiles = new FilteredList<>(this.versionedAddressBook.getObservableFileList());
+        currentPath = new CurrentPath(this.userPrefs.getSavedFilePathValue(), this.versionedAddressBook.getFileList());
     }
 
     public ModelManager() {
@@ -88,28 +88,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.versionedAddressBook.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return versionedAddressBook;
     }
 
     @Override
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
-        return addressBook.hasTag(tag);
+        return versionedAddressBook.hasTag(tag);
     }
 
     @Override
     public void deleteTag(Tag target) {
-        addressBook.removeTag(target);
+        versionedAddressBook.removeTag(target);
     }
 
     @Override
     public void addTag(Tag tag) {
-        addressBook.addTag(tag);
+        versionedAddressBook.addTag(tag);
         updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
     }
 
@@ -117,7 +117,7 @@ public class ModelManager implements Model {
     public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
-        addressBook.setTag(target, editedTag);
+        versionedAddressBook.setTag(target, editedTag);
     }
 
     //=========== Filtered Tag List Accessors =============================================================
@@ -165,6 +165,33 @@ public class ModelManager implements Model {
                 .collect(Collectors.toList());
     }
 
+    //=========== Undo/Redo =================================================================================
+
+    @Override
+    public boolean canUndoAddressBook() {
+        return versionedAddressBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoAddressBook() {
+        return versionedAddressBook.canRedo();
+    }
+
+    @Override
+    public void undoAddressBook() {
+        versionedAddressBook.undo();
+    }
+
+    @Override
+    public void redoAddressBook() {
+        versionedAddressBook.redo();
+    }
+
+    @Override
+    public void commitAddressBook() {
+        versionedAddressBook.commit();
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -179,7 +206,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return versionedAddressBook.equals(other.versionedAddressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTags.equals(other.filteredTags);
     }
