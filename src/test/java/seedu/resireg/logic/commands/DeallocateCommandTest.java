@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.resireg.logic.commands.CommandTestUtil.showRoomAtIndex;
 import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -63,33 +64,6 @@ public class DeallocateCommandTest {
         Index outOfBoundIndexStudent = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         DeallocateCommand deallocateCommand = new DeallocateCommand(outOfBoundIndexStudent);
         assertCommandFailure(deallocateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validIndexFilteredList_success() {
-        showStudentAtIndex(model, INDEX_FIRST_PERSON);
-
-        Student studentToDeallocate = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Room roomToDeallocate = model.getFilteredRoomList().get(INDEX_FIRST_ROOM.getZeroBased());
-
-        List<Allocation> lastShownListAllocation = model.getFilteredAllocationList();
-        Allocation toDeallocate = null;
-        for (Allocation allocation : lastShownListAllocation) {
-            if (studentToDeallocate.getStudentId().equals(allocation.getStudentId())) {
-                toDeallocate = allocation;
-            }
-        }
-
-        DeallocateCommand deallocateCommand = new DeallocateCommand(INDEX_FIRST_PERSON);
-        String expectedMessage = String.format(DeallocateCommand.MESSAGE_SUCCESS,
-                roomToDeallocate.getFloor().toString() + ':' + roomToDeallocate.getRoomNumber(),
-                studentToDeallocate.getName().fullName);
-
-        Model expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
-        expectedModel.removeAllocation(toDeallocate);
-        expectedModel.saveStateResiReg();
-
-        assertCommandSuccess(deallocateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
