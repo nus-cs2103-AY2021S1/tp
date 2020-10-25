@@ -34,15 +34,6 @@ public class EditRecipeCommand extends Command implements Undoable {
             + "Parameters: INDEX (must be a positive integer) / NAME\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    // public static final String MESSAGE_EDIT_RECIPE_SUCCESS = "Recipe edited: %s";
-    // public static final String MESSAGE_EDIT_OPERATION_TYPE_NOT_SUPPORTED = "Edit operation type not supported";
-    // public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipe named '%s'";
-    // public static final String MESSAGE_INGREDIENT_NOT_FOUND = "No ingredient named '%s' in recipe '%s'";
-    // public static final String MESSAGE_TAG_NOT_FOUND = "No tag named '%s' in recipe '%s'";
-    // public static final String MESSAGE_QUANTITY_MISSING = "No quantity specified for '%s'";
-    // public static final String MESSAGE_STEP_INDEX_MISSING = "No step index specified";
-    // public static final String MESSAGE_INVALID_STEP_INDEX = "No step at index #%d";
-
     private final ItemReference item;
     private final RecipeEditDescriptor recipeEditDescriptor;
     private Recipe recipe;
@@ -130,8 +121,8 @@ public class EditRecipeCommand extends Command implements Undoable {
 
                 if (type == EditOperationType.EDIT) {
 
-                    ingredients.set(ingredients.indexOf(existing),
-                        new IngredientReference(name, qtyOpt.get()));
+                    var idx = ingredients.indexOf(existing);
+                    ingredients.set(idx, new IngredientReference(name, qtyOpt.get()));
 
                 } else if (type == EditOperationType.DELETE) {
 

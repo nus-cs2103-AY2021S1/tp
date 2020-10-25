@@ -1,14 +1,15 @@
 // FilterCommandParser.java
+//@@author hjl99
 
 package chopchop.logic.parser.commands;
 
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
+import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
 
 import chopchop.commons.util.Result;
 import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
-import chopchop.logic.commands.FilterCommand;
 import chopchop.logic.commands.FilterIngredientCommand;
 import chopchop.logic.commands.FilterRecipeCommand;
 import chopchop.logic.parser.ArgName;
@@ -18,8 +19,6 @@ import chopchop.model.attributes.ExpiryDateMatchesKeywordsPredicate;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -38,30 +37,19 @@ public class FilterCommandParser {
      */
     public static Result<? extends Command> parseFilterCommand(CommandArguments args) {
 
-        if (!args.getCommand().equals(commandName)) {
-            return Result.error("invalid command '%s' (expected '%s')", args.getCommand(), commandName);
-        }
-        if (args.getRemaining().isBlank()) {
-            return Result.error("filtering target cannot be empty!");
-        }
-        if (args.getAllArguments().isEmpty()) {
-            return Result.error("filtering criteria cannot be empty!");
-        }
+        assert args.getCommand().equals(Strings.COMMAND_FILTER);
 
-        // we expect no named arguments
+        // since the sub-commands check for the individual args, we don't need to check here.
+        // just check for no edit-args.
         Optional<ArgName> foo;
-        List<ArgName> s = new ArrayList<>(
-            List.of(Strings.ARG_EXPIRY, Strings.ARG_INGREDIENT, Strings.ARG_TAG));
-
-        if ((foo = getFirstUnknownArgument(args, s)).isPresent()) {
-            return Result.error("'filter' command doesn't support '%s'\n%s",
-                foo.get(), FilterRecipeCommand.MESSAGE_USAGE);
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'filter' command doesn't support edit-arguments");
         }
 
         return getCommandTarget(args)
             .then(target -> {
-                if (!target.snd().isEmpty()) {
-                    return Result.error("recipe or ingredient name should be empty");
+                if (args.getAllArguments().isEmpty()) {
+                    return Result.error("Filtering criteria cannot be empty!");
                 }
 
                 switch (target.fst()) {
@@ -72,98 +60,90 @@ public class FilterCommandParser {
                     return parseFilterIngredientCommand(args);
 
                 default:
-                    return Result.error("can only filter recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("Can only filter recipes or ingredients ('%s' invalid)", target.fst());
                 }
             });
     }
 
-    private static Result<? extends FilterCommand> parseFilterIngredientCommand(CommandArguments args) {
+
+    private static Result<? extends Command> parseFilterIngredientCommand(CommandArguments args) {
+
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_TAG,
-            Strings.ARG_EXPIRY))).isPresent()) {
-            return Result.error("'filter ingredient' command doesn't support '%s'\n%s",
-                foo.get(), FilterIngredientCommand.MESSAGE_USAGE);
+        var supportedArgs = List.of(Strings.ARG_TAG, Strings.ARG_EXPIRY);
+        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+            return Result.error("'filter ingredient' command doesn't support '%s'", foo.get());
         }
 
         var exps = args.getArgument(Strings.ARG_EXPIRY);
-        Result<FilterCommand> expError = checkImproperFieldInput(exps);
-        if (expError != null) {
-            return expError;
-        }
         var tags = args.getArgument(Strings.ARG_TAG);
-        Result<FilterCommand> tagError = checkImproperFieldInput(tags);
-        if (tagError != null) {
-            return tagError;
+
+        Optional<String> error;
+        if ((error = checkImproperFieldInput("Expiry date", exps)).isPresent()) {
+            return Result.error(error.get());
+        } else if ((error = checkImproperFieldInput("Tag", tags)).isPresent()) {
+            return Result.error(error.get());
         }
 
-        Result<ExpiryDate> nearestExpDate = null;
-        if (exps.size() > 0) {
-            // get the earliest expiry date
-            nearestExpDate = parseExpiryDates(exps);
-        }
-
-        return Result.of(new FilterIngredientCommand(
-                nearestExpDate == null ? null : new ExpiryDateMatchesKeywordsPredicate(nearestExpDate.getValue()),
-                tags.size() == 0 ? null : new TagContainsKeywordsPredicate(tags)
-        ));
+        return parseExpiryDates(exps)
+            .map(optExpiry -> new FilterIngredientCommand(
+                optExpiry.map(ExpiryDateMatchesKeywordsPredicate::new).orElse(null),
+                tags.isEmpty() ? null : new TagContainsKeywordsPredicate(tags)
+            ));
     }
 
-    private static Result<ExpiryDate> parseExpiryDates(List<String> args) {
 
-        var exdOrigList = new ArrayList<Result<ExpiryDate>>();
-        for (String s : args) {
-            exdOrigList.add(ExpiryDate.of(s));
-        }
-
-        List<ExpiryDate> exdList = exdOrigList.stream()
-            .map(rst -> rst.getValue())
-            .collect(Collectors.toList());
-
-        Collections.sort(exdList);
-
-        return Result.of(exdList.get(0));
-    }
-
-    private static Result<? extends FilterCommand> parseFilterRecipeCommand(CommandArguments args) {
+    private static Result<? extends Command> parseFilterRecipeCommand(CommandArguments args) {
 
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(
-                Strings.ARG_INGREDIENT, Strings.ARG_TAG))).isPresent()) {
-            return Result.error("'filter recipe' command doesn't support '%s'\n%s",
-                    foo.get(), FilterRecipeCommand.MESSAGE_USAGE);
+        var supportedArgs = List.of(Strings.ARG_TAG, Strings.ARG_INGREDIENT);
+        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+            return Result.error("'filter recipe' command doesn't support '%s'", foo.get());
         }
+
         var ingredients = args.getArgument(Strings.ARG_INGREDIENT);
-        Result<FilterCommand> indError = checkImproperFieldInput(ingredients);
-        if (indError != null) {
-            return indError;
-        }
         var tags = args.getArgument(Strings.ARG_TAG);
-        Result<FilterCommand> tagError = checkImproperFieldInput(tags);
-        if (tagError != null) {
-            return tagError;
+
+        Optional<String> error;
+        if ((error = checkImproperFieldInput("Tag", tags)).isPresent()) {
+            return Result.error(error.get());
+        } else if ((error = checkImproperFieldInput("Ingredient", ingredients)).isPresent()) {
+            return Result.error(error.get());
         }
 
         return Result.of(new FilterRecipeCommand(
-                tags.isEmpty() ? null : new TagContainsKeywordsPredicate(tags),
-                ingredients.isEmpty() ? null : new IngredientsContainsKeywordsPredicate(ingredients)
+            tags.isEmpty() ? null : new TagContainsKeywordsPredicate(tags),
+            ingredients.isEmpty() ? null : new IngredientsContainsKeywordsPredicate(ingredients)
         ));
     }
 
-    private static Result<FilterCommand> checkImproperFieldInput(List<String> lst) {
-        int siz = lst.size();
-        if (siz == 0) {
-            return null;
-        }
-        int i = 0;
-        while (i < siz) {
-            String s = lst.get(i);
+
+    /**
+     * Returns the first expiry date (chronologically) from the given list, or an
+     * error if any of them failed to parse.
+     */
+    private static Result<Optional<ExpiryDate>> parseExpiryDates(List<String> args) {
+
+        return Result.sequence(args.stream()
+            .map(ExpiryDate::of)
+            .collect(Collectors.toList())
+        ).map(exps -> exps.stream().sorted().findFirst());
+    }
+
+    /**
+     * Returns an error message if there was an error.
+     */
+    private static Optional<String> checkImproperFieldInput(String kind, List<String> list) {
+
+        for (int i = 0; i < list.size(); i++) {
+            var s = list.get(i);
+
             if (s.isEmpty()) {
-                return Result.error("field input cannot be empty");
+                return Optional.of(String.format("%s cannot be empty", kind));
             } else if (s.split("\\s+").length > 1) {
-                return Result.error("field inputs should be single words");
+                return Optional.of(String.format("Filter terms should not contain spaces"));
             }
-            i++;
         }
-        return null;
+
+        return Optional.empty();
     }
 }

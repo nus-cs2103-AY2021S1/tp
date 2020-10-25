@@ -55,7 +55,7 @@ public class CommonParser {
         var str = args.getRemaining();
 
         if (str.isEmpty()) {
-            return Result.error("no target specified (either 'recipe' or 'ingredient')");
+            return Result.error("No target specified (either 'recipe' or 'ingredient')");
         }
 
         var x = new StringView(str).bisect(' ').fst().trim();
@@ -65,7 +65,7 @@ public class CommonParser {
             CommandTarget.of(x.toString(), acceptsPlural)
                 .map(target -> Pair.of(target, xs.toString())),
 
-            String.format("unknown target '%s'", x)
+            String.format("Unknown target '%s'", x)
         );
     }
 
