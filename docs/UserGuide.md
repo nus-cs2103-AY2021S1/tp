@@ -1,10 +1,10 @@
 ---
 layout: page
-title: ProductiveNUS
+title: ProductiveNUS User Guide
 ---
-
-ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) contained in a **Graphical User Interface** (GUI). ProductiveNUS allows you to keep track of all your lessons and assignments at hand and type in your assignments quickly so that no time is wasted.
-
+## What is ProductiveNUS?
+ProductiveNUS is a desktop application for **managing and scheduling your academic tasks** via a **Graphical User Interface** (GUI). It uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a Command Box. 
+You can **keep track of all your assignments and lessons efficiently** and **view them in this single application**. It offers a scheduling function for your assignments that you can use to **plan your personal timetable quickly**.
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
@@ -90,18 +90,36 @@ Examples:
 * `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
 * `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
 
-### Deleting an assignment : `delete`
+### Deleting assignments : `delete`
 
-Deletes the specified assignment from the assignment list.
+Format: `delete INDEX [MORE INDEXES]`
 
-Format: `delete INDEX`
+You can delete assignments from your assignment list by specifying the assignment `INDEX` as shown in your list.
 
-* Deletes the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+You can delete **one or more than one** assignment at a time. Here is an example:
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd assignment in the assignment list.
+1) You have completed some of your assignments ("Statistics tutorial" and "Biology lab report" as shown in the figure below), and would like to delete them from your assignment list.
+2) You can simply enter `delete 1 3` into the command line as per their indexes as circled and labelled in the figure.
+3) The assignments "Statistics tutorial" and "Biology lab report" are no longer displayed and are successfully deleted from your assignment list.
+
+Example commands:
+* `delete 1`
+* `delete 4 5`
+* `delete 2 3 1`
+
+<div class="panel panel-info">
+**Pointers to note:**
+{: .panel-heading}
+<div class="panel-body">
+
+* At least one index must be **present**. For example, `delete` without any index will not work.
+* The indexes **must be a positive integer** 1, 2, 3, …​
+* The indexes **must be found in your assignment list**.
+* The indexes **must not be duplicated**. For example, `delete 3 3` will not work.
+
+</div>
+</div>
+
 
 ### Importing your timetable : `import`
 
@@ -117,21 +135,76 @@ Examples:
 
 ### Listing assignments : `list`
 
-Format: `list [NUMBER]`
+Format: `list [NUMBER_OF_DAYS]`
 
-- Shows a list of assignments in your schedule within next `NUMBER` 
-days, starting from the current date (and current time).
-- A day represents 24 hours. 
-- `list` without `NUMBER` displays your entire list of assignments 
-stored in ProductiveNUS.
+You can list your assignments altogether with just typing `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that are within the current date (and time) and `NUMBER_OF_DAYS` later.
 
+You can use `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon! (with deadlines nearing).
+For example, `list 2` will show you assignments that are due 2 days (48 hours) from the current date (and current time).
+{: .alert .alert-gitlab-purple}
 
 Examples: 
-- `list 2` lists all your assignments with deadline 2 days (48 hours) from the current date (and current time). 
-- `list 3` lists all your assignments with deadline 3 days (72 hours) from the current date (and current time). 
-- `list ` lists all your assignments.
+- `list` lists all your assignments.
+- `list 3` lists all your assignments with deadline 3 days (72 hours) from the current date (and current time). For example, If the current date and time is 24/10/2020 12:00 pm, all assignments due from this date and time to 27/10/2020 12:00PM will be displayed.
+ 
+
+<div class="panel panel-info">
+**Pointers to note:**
+{: .panel-heading}
+<div class="panel-body">
+
+* `NUMBER_OF_DAYS` **must be a positive integer** 1, 2, 3, …​
+* **Only one** number can be keyed in. For example, `list 1 2` will not work. 
+
+</div>
+</div>
 
 ### Finding assignments : `find`
+
+You can find your assignments based on keywords (and prefixes) you enter. The keywords can be the name, module code, deadline and priority level of assignments.
+
+Here is the table of prefixes that can be used:
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
+  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-0lax{text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0lax">Prefix</th>
+    <th class="tg-0lax">Type of keyword</th>
+    <th class="tg-0lax">Syntax</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-0lax">n/</td>
+    <td class="tg-0lax">Name (case insensitive)</td>
+    <td class="tg-0lax">n/Tutorial<br>n/tutorial essay</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">mod/</td>
+    <td class="tg-0lax">Module code (case insensitive)</td>
+    <td class="tg-0lax">mod/CS2100 cs2103t</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">d/</td>
+    <td class="tg-0lax">Date or time of deadline</td>
+    <td class="tg-0lax">d/24-10-2020<br>d/1200<br>d/1300 25-11-2020</td>
+  </tr>
+  <tr>
+    <td class="tg-0lax">p/</td>
+    <td class="tg-0lax">Priority level</td>
+    <td class="tg-0lax">p/HIGH<br>p/LOW</td>
+  </tr>
+</tbody>
+</table>
+
+
 
 Format: `find PREFIX/ KEYWORD [MORE KEYWORDS]`
 
