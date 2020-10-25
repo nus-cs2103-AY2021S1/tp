@@ -227,8 +227,8 @@ description (Figure).
 
 [comment]: <> (This only appears in Github CSS)
 
-:bulb: **Tip:** When there are a lot of entries and you want to delete something, 
-you can use `find` to search for it in the list and use `delete ENTRY_INDEX` to remove it from the updated
+:bulb: **Tip:** Finding the correct index to delete an entry can be troublesome, especially when there are a lot of entries.
+Fret not, you can use `find k/KEYWORDS` to search for the entry in the list and use `delete ENTRY_INDEX` to remove it from the updated
 list, with the updated `ENTRY INDEX`.
 </div>
 
