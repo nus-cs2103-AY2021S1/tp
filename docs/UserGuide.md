@@ -277,7 +277,7 @@ Format: `newacc n/NAME`
 
 :heavy_check_mark: **Example:**
 
-* `newacc n/Lim's Flower Shop`: adds a new account, `Lim's Flower Shop`, with no expenses or revenues.
+* `newacc n/My Flower Shop`: adds a new account, `My Flower Shop`, with no expenses or revenues.
 * `newacc n/$uper $avers`: adds a new account, `$uper $avers`, with no expenses or revenues. 
 </div>
 
@@ -333,7 +333,7 @@ Format: `editacc n/NAME`
 
 :heavy_check_mark: **Example:**
 
-* `editacc n/Bob's Bakery`: Replaces the name of the current account, `Josh's Bakery` to `Bob's Bakery` as shown in the Figure below
+* `editacc n/Bob's Bakery`: Replaces the name of the current account, `Default Account 1` to `Bob's Bakery` as shown in the Figure below
 
 </div>
 
