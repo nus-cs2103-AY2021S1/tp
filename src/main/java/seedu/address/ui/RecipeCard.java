@@ -58,7 +58,9 @@ public class RecipeCard extends UiPart<Region> {
         this.recipe = recipe;
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
-        instruction.setText(recipe.getInstruction());
+        instruction.setText(recipe.getInstruction().stream()
+                    .map(item -> item.toString() + ". ")
+                .reduce("", (a, b) -> a + b).trim());
 
         try {
             Image rawImage = new Image(recipe.getRecipeImage(), 340, 0, true, true);

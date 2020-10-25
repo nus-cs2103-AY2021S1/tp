@@ -17,6 +17,7 @@ import seedu.address.logic.commands.AddRecipeCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
@@ -42,13 +43,17 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+
         String ingredientString = ParserUtil.parseIngredient(argMultimap.getValue(PREFIX_INGREDIENT).get());
         ArrayList<Ingredient> ingredients = IngredientParser.parse(ingredientString);
-        Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        System.out.println(tagList.size());
-        String instruction = argMultimap.getValue(PREFIX_INSTRUCTION).get();
+        Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
+
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        
+        String instructionString = argMultimap.getValue(PREFIX_INSTRUCTION).get();
+        ArrayList<Instruction> instructions = InstructionParser.parse(instructionString);
+        
         String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
         //String recipeImage = ParserUtil.parseImage(argMultimap.getValue(PREFIX_TAG).get());
 /*
@@ -83,7 +88,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
             fos.close();
         }
          */
-        Recipe recipe = new Recipe(name, instruction, recipeImage, ingredients, calories, tagList);
+        Recipe recipe = new Recipe(name, instructions, recipeImage, ingredients, calories, tagList);
         return new AddRecipeCommand(recipe);
     }
 

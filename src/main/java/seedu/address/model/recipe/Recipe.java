@@ -27,8 +27,9 @@ public class Recipe {
 
     // Identity fields
     private final Name name;
-    private final String instruction;
+    private final ArrayList<Instruction> instructions;
     private String recipeImage;
+
     // Data fields
     private final ArrayList<Ingredient> ingredients;
     private final Calories calories;
@@ -37,12 +38,12 @@ public class Recipe {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, String instruction, String recipeImage,
+    public Recipe(Name name, ArrayList<Instruction> instructions, String recipeImage,
                   ArrayList<Ingredient> ingredients, Calories calories,
                   Set<Tag> tags) {
-        requireAllNonNull(name, ingredients, calories, instruction, tags);
+        requireAllNonNull(name, ingredients, calories, instructions, tags);
         this.name = name;
-        this.instruction = instruction;
+        this.instructions = instructions;
         this.recipeImage = recipeImage;
         this.ingredients = ingredients;
         this.calories = calories;
@@ -53,8 +54,8 @@ public class Recipe {
         return name;
     }
 
-    public String getInstruction() {
-        return instruction;
+    public ArrayList<Instruction> getInstruction() {
+        return instructions;
     }
 
     public String getRecipeImage() {
@@ -108,7 +109,7 @@ public class Recipe {
         String recipeName = PREFIX_NAME.toString() + name;
         String ingredients = PREFIX_INGREDIENT.toString() + stringifyIngredients(this.ingredients);
         String calories = PREFIX_CALORIES.toString() + this.calories.getValue();
-        String instructions = PREFIX_INSTRUCTION + this.instruction;
+        String instructions = PREFIX_INSTRUCTION.toString() + stringifyInstructions(this.instructions);
         String image = PREFIX_RECIPE_IMAGE + this.recipeImage;
         String tags = stringifyTags(this.tags);
         return commandWord + " " + position + " " + recipeName + " " + ingredients + " " + calories
@@ -143,6 +144,20 @@ public class Recipe {
         return tags;
     }
 
+    private String stringifyInstructions(ArrayList<Instruction> instructions) {
+        int len = instructions.size();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            Instruction instruction = instructions.get(i);
+            if (i == len - 1) {
+                sb.append(instruction.toString());
+            } else {
+                sb.append(instruction.toString() + ". ");
+            }
+        }
+        return sb.toString();
+    }
+
     /**
      * Returns true if both recipes have the same identity and data fields.
      * This defines a stronger notion of equality between two recipes.
@@ -169,7 +184,7 @@ public class Recipe {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, instruction, recipeImage, ingredients, calories, tags);
+        return Objects.hash(name, instructions, recipeImage, ingredients, calories, tags);
     }
 
     @Override
@@ -183,7 +198,9 @@ public class Recipe {
                 .append(" Calories: ")
                 .append(getCalories() + " cal")
                 .append(" Instructions: ")
-                .append(getInstruction())
+                .append(getInstruction().stream()
+                        .map(item -> item.toString() + ". ")
+                        .reduce("", (a, b) -> a + " " + b).trim())
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
