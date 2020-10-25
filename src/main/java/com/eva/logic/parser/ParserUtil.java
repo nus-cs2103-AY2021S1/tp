@@ -161,7 +161,6 @@ public class ParserUtil {
             return new Comment(DateUtil.dateParsed(date), desc, title);
         } else {
             String title = argMultiMap.getValue(PREFIX_TITLE).get();
-            System.out.println(title);
             return new Comment(title);
         }
     }

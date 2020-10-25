@@ -71,6 +71,25 @@ Here are all the commands you can execute with Eva.
 - [Add a applicant](#adding-an-applicant) <br>
 - [Record a leave for a staff](#record-leave-taken-by-staff-addleave)
 
+## Common Commands
+
+### View
+
+### Listing all persons : `list`
+
+Shows a list of all persons in the application.
+
+Format: `list`
+
+### Find
+
+## General Commands
+
+### Clearing all entries : `clear`
+
+Clears all entries from the application.
+
+Format: `clear`
 
 ### Viewing help : `help`
 
@@ -80,50 +99,17 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-## Centralised Add (Experienced users): `add`
+### Exiting the program : `exit`
 
-##### Add a staff to application: `add s-`
+Exits the program. 
 
-Format: `add s- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [l/LEAVE]`
+Format: `exit`
 
-##### Add a applicant to application: `add a-`
 
-Format: `add a- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [id/INTERVIEW_DATE]`
+### Saving the data
 
-##### Add a comment to staff in application: `add <index> s- c-`
-
-Format: `add <index_of_staff> s- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<DESCRIPTION>`
-
-##### Add a comment to applicant in application: `add <index> a- c-`
-
-Format: `add <index_of_applicant> a- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<DESCRIPTION>`
-
-##### Add leave to staff in application: `add <index> l/ `
-
-Format: `add <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
-
-## Centralised Delete (Experienced Users): `delete`
-
-##### Delete a staff from application: `delete <index_of_staff> s-`
-
-Format: `delete <index_of_staff> s-`
-
-##### Delete a applicant from application: `delete <index_of_applicant> a-`
-
-Format: `delete <index_of_applicant> a-`
-
-##### Delete a comment from staff in application: `delete <index> s- c-`
-
-Format: `delete <index_of_staff> s- c- t:<TITLE>`
-
-##### Delete a comment from applicant in application: `delete <index> a- c-`
-
-Format: `delete <index_of_applicant> a- c- t:<TITLE>`
-
-##### Delete leave from staff in application: `delete <index> l/ `
-
-Format: `delete <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
-
+Once any change is made to the data from the commands above, the data is saved in the hard disk. 
+There is no need to save manually.
 
 
 ## Staff commands
@@ -205,29 +191,51 @@ Format: `addapplication INDEX [filepath]`
 Examples:
 * `addapplication 1 C:\Users\Public\Downloads\resume.txt`
 
-## General commands
-### Listing all persons : `list`
 
-Shows a list of all persons in the application.
 
-Format: `list`
+## Centralised Add (Experienced users): `add`
 
-### Clearing all entries : `clear`
+##### Add a staff to application: `add s-`
 
-Clears all entries from the application.
+Format: `add s- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [l/LEAVE]`
 
-Format: `clear`
+##### Add a applicant to application: `add a-`
 
-### Exiting the program : `exit`
+Format: `add a- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [id/INTERVIEW_DATE]`
 
-Exits the program. 
+##### Add a comment to staff in application: `add <index> s- c-`
 
-Format: `exit`
+Format: `add <index_of_staff> s- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<DESCRIPTION>`
 
-### Saving the data
+##### Add a comment to applicant in application: `add <index> a- c-`
 
-Once any change is made to the data from the commands above, the data is saved in the hard disk. 
-There is no need to save manually.
+Format: `add <index_of_applicant> a- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<DESCRIPTION>`
+
+##### Add leave to staff in application: `add <index> l/ `
+
+Format: `add <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
+
+## Centralised Delete (Experienced Users): `delete`
+
+##### Delete a staff from application: `delete <index_of_staff> s-`
+
+Format: `delete <index_of_staff> s-`
+
+##### Delete a applicant from application: `delete <index_of_applicant> a-`
+
+Format: `delete <index_of_applicant> a-`
+
+##### Delete a comment from staff in application: `delete <index> s- c-`
+
+Format: `delete <index_of_staff> s- c- t:<TITLE>`
+
+##### Delete a comment from applicant in application: `delete <index> a- c-`
+
+Format: `delete <index_of_applicant> a- c- t:<TITLE>`
+
+##### Delete leave from staff in application: `delete <index> l/ `
+
+Format: `delete <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
 
 ### Archiving data files `[coming in v2.0]`
 
