@@ -33,26 +33,26 @@ class MeetingTest {
             new Venue("tampines"));
 
     @Test
-    void getCalendarBidderId() {
+    void getMeetingBidderId() {
         assertTrue(firstMeeting.getBidderId().equals(firstMeetingIdentical.getBidderId()));
         assertFalse(firstMeeting.getBidderId().equals(firstMeetingDiff.getBidderId()));
         assert (firstMeeting.getBidderId().equals(firstMeetingIdentical.getBidderId()));
     }
 
     @Test
-    void getCalendarPropertyId() {
+    void getMeetingPropertyId() {
         assertTrue(firstMeeting.getPropertyId().equals(firstMeetingIdentical.getPropertyId()));
         assertFalse(firstMeeting.getPropertyId().equals(firstMeetingDiff.getPropertyId()));
     }
 
     @Test
-    void getCalendarTime() {
+    void getMeetingTime() {
         assertTrue(firstMeeting.getTime().equals(firstMeetingIdentical.getTime()));
         assertFalse(firstMeeting.getTime().equals(firstMeetingDiff.getTime()));
     }
 
     @Test
-    void getCalendarVenue() {
+    void getMeetingVenue() {
         assertTrue(firstMeeting.getVenue().equals(firstMeetingIdentical.getVenue()));
         assertFalse(firstMeeting.getVenue().equals(firstMeetingDiff.getVenue()));
     }

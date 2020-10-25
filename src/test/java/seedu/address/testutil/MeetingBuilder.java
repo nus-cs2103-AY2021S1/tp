@@ -13,10 +13,10 @@ import seedu.address.model.meeting.Venue;
  */
 public class MeetingBuilder {
 
-    public static final String DEFAULT_NAME = "P1";
-    public static final String DEFAULT_PHONE = "B1";
-    public static final String DEFAULT_ID_PREFIX = "Serangoon";
-    public static final String DEFAULT_TIME = "12";
+    public static final String DEFAULT_PROPERTY_ID = "P1";
+    public static final String DEFAULT_BIDDER_ID = "B1";
+    public static final String DEFAULT_VENUE = "Serangoon";
+    public static final String DEFAULT_TIME = "10-12-2021";
 
 
     private PropertyId propertyId;
@@ -28,10 +28,10 @@ public class MeetingBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public MeetingBuilder() {
-        propertyId = new PropertyId(DEFAULT_NAME);
-        bidderId = new BidderId(DEFAULT_PHONE);
+        propertyId = new PropertyId(DEFAULT_PROPERTY_ID);
+        bidderId = new BidderId(DEFAULT_BIDDER_ID);
+        venue = new Venue(DEFAULT_VENUE);
         time = new Time(DEFAULT_TIME);
-        venue = new Venue(DEFAULT_ID_PREFIX);
     }
 
     /**

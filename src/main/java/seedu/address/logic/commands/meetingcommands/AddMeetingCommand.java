@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EntityType;
@@ -40,7 +41,8 @@ public class AddMeetingCommand extends Command {
     private final Meeting toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Constructor for an AddMeetingCommand object.
+     * @param meeting meeting to be added to meetingbook.
      */
     public AddMeetingCommand(Meeting meeting) {
         requireNonNull(meeting);
@@ -51,6 +53,9 @@ public class AddMeetingCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (model.hasMeeting(toAdd)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_MEETING);
+        }
 
         model.addMeeting(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setEntity(EntityType.MEETING);
