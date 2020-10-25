@@ -321,7 +321,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-***Use case: UC03 - Adding a Comment on staff***
+***Use Case UC03 - Edit a Record of staff***
+
+
+***Use case: UC04 - Adding a Comment on staff***
 
 **MSS**
 
@@ -357,7 +360,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case resumes from step 2.
     
 
-***Use case: UC04 - Deleting a Comment on staff***
+***Use case: UC05 - Deleting a Comment on staff***
 
 **MSS**
 
@@ -392,7 +395,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1c1-1c3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-***Use case: UC05 - Adding a leave record to staff***
+***Use case: UC06 - Adding a leave record to staff***
 
 **MSS**
 
@@ -429,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-***Use case: UC06 - Deleting a leave record from staff***
+***Use case: UC07 - Deleting a leave record from staff***
 
 **MSS**
 
@@ -466,7 +469,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1a1-1a3 are repeated until the data entered are correct.
     Use case resumes from step 2.
 
-***Use case: UC07 - Adding a record of applicant***
+***Use case: UC08 - Adding a record of applicant***
 
 **MSS**
 
@@ -495,7 +498,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
     
-***Use case: UC08 - Deleting a Record of Applicant***
+***Use case: UC09 - Deleting a Record of Applicant***
 
 **MSS**
 
@@ -523,31 +526,49 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Steps 1b1-1b3 are repeated until the data entered are correct.
     Use case resumes from step 2.
     
-***Use case: UC09 - Adding an applicant to record***
+***Use Case UC10 - Edit a Record of applicant***
+
+
+***Use Case UC11 - Set the application status of an applicant***
+
+
+***Use case: UC12 - Adding an applicant to record quickly***
 
 Similar to Use Case 01, except that instead of s-, key in a-.
 
 Example: `add a- n/<applicantname> a/address e/<email> p/<phoneno> c/<comments>`
 
-***Use case: UC10 - Deleting an applicant from record***
+***Use case: UC13 - Deleting an applicant from record quickly***
 
 Similar to Use Case 02, except that instead of s-, key in a-.
 
 Example: `delete <index_of_applicant> a-`
     
-***Use case: UC11 - Adding a Comment on applicant***
+***Use case: UC14 - Adding a Comment on applicant quickly***
 
 Similar to Use Case 03, just that instead of s-, key in a-.
 
 Example: `add <index_of_staff> s- c- t:<title> d:<date> desc:<description_of_comment>`    
 
-***Use case: UC12 - Deleting a Comment on applicant***
+***Use case: UC15 - Deleting a Comment on applicant quickly***
 
 Similar to Use Case 04 except that instead of s-, key in a-.
 
 Example: `delete <index_of_applicant> a- c- t:<title>`
 
-***Use case: UC13 - Adding an application to a staff***
+***Use case: UC16 - Adding a staff to record quickly***
+
+
+***Use case: UC17 - Deleting a staff to record quickly***
+
+
+***Use case: UC18 - Adding a Comment on staff quickly***
+
+
+***Use case: UC19 - Deleting a Comment on staff quickly***
+
+
+***Use case: UC20 - Adding an application to a applicant***
 
 **MSS**
 
@@ -562,7 +583,11 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
     * 1a1. Eva informs the user that the file cannot be found.
     Use case ends
     
-***Use case: UC14 - list all staff records***
+
+***Use case: UC21 - Deleting an application from an applicant***
+
+
+***Use case: UC22 - list all staff records***
 
 **MSS**
 
@@ -577,7 +602,21 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
     * 1a1. Eva informs the user that no records exist.
     Use case ends
 
-***Use case: UC15 - Exiting the program***
+***Use case: UC23 - list all applicant records***
+
+***Use case: UC24 - find staff records by name***
+
+***Use case: UC25 - find applicant records by name***
+
+***Use case: UC26 - viewing staff profile***
+
+***Use case: UC27 - viewing applicant profile***
+
+***Use case: UC28 - help***
+
+***Use case: UC29 - clear***
+
+***Use case: UC30 - Exiting the program***
 
 **MSS**
 
