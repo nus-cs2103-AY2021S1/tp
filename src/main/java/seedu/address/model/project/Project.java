@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -43,6 +44,7 @@ public class Project {
     private final HashMap<GitUserName, Participation> listOfParticipations = new HashMap<>();
     private Predicate<Task> taskFilter = SHOW_ALL_TASKS_PREDICATE;
     private Predicate<Meeting> meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
+    private Comparator<Task> taskComparator;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
     // Display helper
@@ -118,6 +120,9 @@ public class Project {
 
     public void showAllTasks() {
         this.taskFilter = SHOW_ALL_TASKS_PREDICATE;
+    }
+    public void updateTaskComparator(Comparator<Task> comparator) {
+        this.taskComparator = comparator;
     }
 
     public void updateMeetingFilter(Predicate<Meeting> predicate) {
