@@ -5,7 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
+import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
 
@@ -14,10 +16,8 @@ import seedu.expense.model.expense.UniqueExpenseList;
  * Duplicates are not allowed (by .isSameExpense comparison)
  */
 public class ExpenseBook implements ReadOnlyExpenseBook {
-
-
-    private final UniqueCategoryBudgetList budgets;
-    private final UniqueExpenseList expenses;
+    protected final UniqueCategoryBudgetList budgets;
+    protected final UniqueExpenseList expenses;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -35,7 +35,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     }
 
     /**
-     * Creates an ExpenseBook using the Expenses in the {@code toBeCopied}
+     * Creates an ExpenseBook using the Expenses and Budgets in the {@code toBeCopied}
      */
     public ExpenseBook(ReadOnlyExpenseBook toBeCopied) {
         this();
@@ -71,6 +71,20 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     @Override
     public UniqueCategoryBudgetList getBudgets() {
         return budgets;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueCategoryBudgetList#asUnmodifiableObservableList()
+     */
+    @Override
+    public ObservableList<CategoryBudget> getBudgetList() {
+        return budgets.asUnmodifiableObservableList();
+    }
+
+    public void topupBudget(Amount amount) {
+        budgets.topupBudget(amount);
     }
 
     //// expense-level operations
@@ -119,6 +133,26 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     @Override
     public double tallyExpenses() {
         return expenses.tallyExpenses();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueCategoryBudgetList#tallyAmounts()
+     */
+    @Override
+    public double tallyBudgets() {
+        return budgets.tallyAmounts();
+    }
+
+    /**
+     * Tallies the balance of budgets and expenses in the expense book.
+     *
+     * @return tallied balance of the expense book
+     */
+    @Override
+    public double tallyBalance() {
+        return tallyBudgets() - tallyExpenses();
     }
 
     //// util methods

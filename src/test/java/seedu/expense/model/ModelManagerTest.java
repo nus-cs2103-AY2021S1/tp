@@ -10,12 +10,11 @@ import static seedu.expense.testutil.TypicalExpenses.GRAB_HOME;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.expense.commons.core.GuiSettings;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.testutil.ExpenseBookBuilder;
 
 public class ModelManagerTest {
@@ -98,10 +97,11 @@ public class ModelManagerTest {
         ExpenseBook expenseBook = new ExpenseBookBuilder().withExpense(FEL_BDAY).withExpense(GRAB_HOME).build();
         ExpenseBook differentExpenseBook = new ExpenseBook();
         UserPrefs userPrefs = new UserPrefs();
+        AliasMap aliasMap = new AliasMap();
 
         // same values -> returns true
-        modelManager = new ModelManager(expenseBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(expenseBook, userPrefs);
+        modelManager = new ModelManager(expenseBook, userPrefs, aliasMap);
+        ModelManager modelManagerCopy = new ModelManager(expenseBook, userPrefs, aliasMap);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +114,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different expenseBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentExpenseBook, userPrefs)));
-
-        // different filteredList -> returns false
-        String[] keywords = FEL_BDAY.getDescription().fullDescription.split("\\s+");
-        modelManager.updateFilteredExpenseList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(expenseBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentExpenseBook, userPrefs, aliasMap)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
@@ -127,6 +122,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setExpenseBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(expenseBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(expenseBook, differentUserPrefs, aliasMap)));
     }
 }

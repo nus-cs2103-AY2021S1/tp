@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
+participant ":UniqueExpenseList" as UniqueExpenseList MODEL_COLOR
+end box
+
+[-> Model : sortExpenses(c)
+activate Model
+
+Model -> ExpenseBook : sort(c)
+activate ExpenseBook
+
+ExpenseBook -> UniqueExpenseList : sort(c)
+activate UniqueExpenseList
+
+UniqueExpenseList --> ExpenseBook
+deactivate UniqueExpenseList
+
+ExpenseBook --> Model
+deactivate ExpenseBook
+
+[<-- Model
+deactivate Model
+
+@enduml

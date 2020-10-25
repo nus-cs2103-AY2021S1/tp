@@ -6,7 +6,10 @@ import static seedu.expense.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.expense.commons.core.LogsCenter;
+import seedu.expense.logic.LogicManager;
 import seedu.expense.logic.commands.AddCommand;
+import seedu.expense.logic.commands.AliasCommand;
 import seedu.expense.logic.commands.ClearCommand;
 import seedu.expense.logic.commands.Command;
 import seedu.expense.logic.commands.DeleteCommand;
@@ -16,8 +19,10 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
 import seedu.expense.logic.commands.RemarkCommand;
+import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.commands.TopupCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
+import seedu.expense.model.alias.AliasMap;
 
 /**
  * Parses user input.
@@ -37,13 +42,31 @@ public class ExpenseBookParser {
      * @throws ParseException if the user input does not conform the expected format
      */
     public Command parseCommand(String userInput) throws ParseException {
+        return parseCommand(userInput, null);
+    }
+
+    /**
+     * Parses user input into command for execution.
+     * Accepts an aliasMap as a dictionary to translate aliases into COMMAND_WORD.
+     *
+     * @param userInput full user input string
+     * @param aliasMap alias dictionary
+     * @return the command based on the user input
+     * @throws ParseException if the user input does not conform the expected format
+     */
+    public Command parseCommand(String userInput, AliasMap aliasMap) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        String commandWord = matcher.group("commandWord");
+        if (aliasMap != null && aliasMap.hasAlias(commandWord)) {
+            commandWord = aliasMap.getValue(commandWord);
+        }
         final String arguments = matcher.group("arguments");
+        LogsCenter.getLogger(LogicManager.class).info(
+                "----------------[USER COMMAND][" + commandWord + " " + arguments + "]");
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -76,9 +99,14 @@ public class ExpenseBookParser {
         case TopupCommand.COMMAND_WORD:
             return new TopupCommandParser().parse(arguments);
 
+        case SwitchCommand.COMMAND_WORD:
+            return new SwitchCommandParser().parse(arguments);
+
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

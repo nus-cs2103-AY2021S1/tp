@@ -15,10 +15,14 @@ import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
+import seedu.expense.model.alias.AliasEntry;
+import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 
 public class TopupCommandTest {
 
@@ -118,6 +122,11 @@ public class TopupCommandTest {
         }
 
         @Override
+        public ReadOnlyExpenseBook getCategoryExpenseBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasExpense(Expense expense) {
             throw new AssertionError("This method should not be called.");
         }
@@ -143,6 +152,16 @@ public class TopupCommandTest {
         }
 
         @Override
+        public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateCategoryExpenseBook(Tag category) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Budget getTotalBudget() {
             return budgets;
         }
@@ -150,6 +169,46 @@ public class TopupCommandTest {
         @Override
         public void topupBudget(Amount amount) {
             budgets.topupBudget(amount);
+        }
+
+        @Override
+        public boolean hasCategory(Tag toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchCategory(Tag category) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAlias(AliasEntry prev, AliasEntry next) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAliasMap(AliasMap map) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AliasMap getAliasMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(AliasEntry entry) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAlias(AliasEntry entry) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAlias(AliasEntry entry) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 }

@@ -32,6 +32,13 @@ public interface Logic {
     ReadOnlyExpenseBook getExpenseBook();
 
     /**
+     * Returns the CategoryExpenseBook.
+     *
+     * @see seedu.expense.model.Model#getCategoryExpenseBook()
+     */
+    ReadOnlyExpenseBook getCategoryExpenseBook();
+
+    /**
      * Returns an unmodifiable view of the filtered list of expenses
      */
     ObservableList<Expense> getFilteredExpenseList();
