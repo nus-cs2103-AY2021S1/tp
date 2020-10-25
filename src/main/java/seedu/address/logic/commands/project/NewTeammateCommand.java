@@ -51,9 +51,9 @@ public class NewTeammateCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        logger.log(Level.INFO, "New Teammate added");
         toAdd.addProject(project);
         project.addParticipation(toAdd);
+        logger.log(Level.INFO, "New Teammate added");
 
         return new CommandResult(String.format(MESSAGE_ASSIGN_TEAMMATE_SUCCESS, toAdd.getGitUserNameString()));
     }

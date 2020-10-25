@@ -49,7 +49,7 @@ Given below are my contributions to the project.
   * Changes made: 
     * Tests added to increase path coverage for Teammate classes
 
-* **Project management**:
+* **Documentation**: {22/10/20}: Rewrite entire UG to improve clarity  
 
 
 

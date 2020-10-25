@@ -11,64 +11,68 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
  a traditional point and click interface.
 
 ## Contents
-
-- Features in global scope
+- **Quickstart**
+- **Features in global scope**
   - Get help `help` 
   - Exit application `exit`
-  - Features associated with initialising project 
-    - Creating new project `new project `
-    - Start working on an existing project `start `
-  
-- Features in project scope
+  - Start working on an existing project `start `
+  - Add a new project to the catalogue `add `
+  - Delete a project from the catalogue `delete `
+  - List all projects `list `
+  - Locate projects with matching keywords `find ` 
+  - Edit details of a project `edit `
+
+- **Features in project scope**
   - Task related features
-    - Check the project dashboard `dashboard `
-    - List all tasks `list`
-    - Delete a task `delete `
-    - Locate tasks by keyword `find `
-    - Give a task a certain level of priority `prioritise `
-    - Viewing tasks allocated to a team member `viewtask `
-    - Assign task to a team member `assign `
-    - Filter tasks by assignee/deadline/task name `filter `
-  - Teammate related features 
-    - Create new teammate `new teammate `
-    - Add existing teammates of other projects to participate in this project `involves `
-    - Update teammate details (person portfolio) `updatetm teammate `
-    - Update participation details (tasks and project-specific information) `updatept participation `
-    - Remove a teammate in the project `remove teammate `
-    - View tasks allocated to a particular teammate `task participants `
-  - Scoping related features 
-    - Return to main catalogue `leave`
+    - Add a task to a project `addtask `
+    - Assign a task to a teammate `assign `
+    - Edit a task `edittask `
+    - Filter tasks by various aspects `filtert `
+    - View details of a task `viewtask `
+    - List all tasks `allt `
+    - Return to project view from task view `leaveTaskView `
+  - Teammate related features
+    - Create a new teammate in a project `newteammate `
+    - Edit a teammate's details `editteammate `
+    - View a teammate's details `viewteammate `
+    - Return to project view from teammate view `leaveTeammateView `
+- **Summary**
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
 1. Ensure that you have Java `11` or above installed in your Computer.
 
-1. Download the latest `Taskmania.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-3/tp).
+2. Download the latest `Taskmania.jar` from [here](https://github.com/AY2021S1-CS2103T-W10-3/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your TaskMania.
+3. Copy the file to the folder you want to use as the _home folder_ for your TaskMania.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how
- the app contains some sample data.<br>
+4. Double-click the file to start the app. The window that appears will be similar to the below should appear in a few seconds. Note how
+ the app contains some sample information.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
  open the help window.<br>
    Some commands you can try:
 
-   * **`list`** : Lists all projects.
+   * **`start 1 `** : Opens the first project
 
    * **`exit`** : Exits the app.
 
-1. Refer to the Features below for details of each command.
+6. Refer to the Features below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+
+* One and only one Item in parenthesis should be supplied by the user
+  e.g. `(ta/ASSIGNEE NAME) (td/DEADLINE) (tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020 10:00:00" or "".
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [tg/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -79,17 +83,14 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
   
-* One and only one Item in parenthesis should be supplied by user
-
-  e.g. `(ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020 10:00:00" or "".
-
 **:information_source: Notes about scoping:**<br>
 
 The hierarchy of command scoping is as follows:
 * `CATALOGUE` (i.e. global)
   * `PROJECT`
     * `TASK`
-  * `PERSON`
+    * `Meeting`
+  * `TEAMMATE`
 
 <br>A lower-level scope always belongs to any parent scopes. For example, if the app is currently in `PROJECT`
 scope, it is also in the `CATALOGUE` scope. However, it is not necessarily in `TASK` scope because `TASK` is
@@ -97,7 +98,9 @@ a child level of `PROJECT` and it is definitely not in `PERSON` scope because `P
 
 </div>
 
-## **Features** in global scope
+--------------------------------------------------------------------------------------------------------------------
+
+# **Features** in global scope
 
 ### Viewing help : `help`
 
@@ -107,206 +110,228 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Creating a new project `add project `
-Adds a project to the project list.
+### Exit application : `exit`
 
-Format: `add project n/NAME d/DUEDATE t/TEAM`
-TEAM is any number of names separated by “ “ spaces.
+Closes the application for the user.
 
-Examples: `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas Jiayu` Adds a new project with the projectName Taskmania, due date 9 Sep 2020 with team members, Niaaz, Lucas and Jiayu.
+Format: `exit
 
-### Starting work on an existing project `start `
+### Start work on an existing project `start `
 Initialises the project specified.
 
-Format: `start INDEX`
+Format: `start (INDEX)`
 - Initialises the project at the specified INDEX.
 - The index refers to the index number shown in the displayed project list.
 - The index must be a positive integer 1, 2, 3, …​
 
 Examples: `start 2` Initialises the second project in the project list.
 
-## **Features** in project scope
+### Add a new project to the catalogue `add `
+Adds a project to the project list.
 
-### **Task**-related features
-#### Check the project dashboard `dashboard `
-Shows a summary of the important information regarding the project.
+Format: `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `
+  - The fields can be entered in any order, as long as the prefixes are matched correctly
+  - Project Name can be any alphanumeric value (containing only alphabets and / or numbers).
+  - Repo URL must be a valid link
+  - Description can be anything, as long as it is not blank.
+  - Any number of tags can be added, separated by space " ".
 
-Format: `dashboard`
+Example: `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` 
 
-#### List all tasks `list`
+Adds a new project with the 
+- projectName Blair project 
+- deadline of 29 February 2020 midnight 
+- URL for the team repository 
+- Coding in Greenwich as the description 
+- 2 tags "challenging" and "hell".
 
-Shows a list of all tasks in the task list sorted by priority.
+### Delete a project from the catalogue `delete `
 
-Format: `list`
+Deletes a project and all associated information from the project catalogue
 
-Instruction:
+Format: `delete (INDEX) `
+- Initialises the project at the specified INDEX.
+- The index refers to the index number shown in the displayed project list.
+- The index must be a positive integer 1, 2, 3, …​
 
-1. Type the command 'list' into the command line.
+Examples: `delete 2` deletes the second project from the catalogue.
 
-Outcome: A list of tasks will be shown. 
+### List all projects in the catalogue `list `
 
-#### Delet a task `delete `
+List all projects currently in the project catalogue
 
-Deletes the specified task from your task list.
+Format: `list `
+- Lists all projects if there are projects in the catalogue
 
-Format: `delete INDEX`
+Example: `list ` lists all projects in the catalogue to the user.
 
-- Deletes the task at the specified `INDEX`.
-- The index refers to the index number shown in the displayed task list.
-- The index must be a positive integer 1, 2, 3, …
+#### Locate projects by keyword `find `
 
-Instruction:
+Finds projects whose names contain the given keywords.
 
-1. List out the list of tasks(Use `list` command) to look for the number of task to be deleted.
-
-1. Type the command `delete` with the number of the task to be deleted. (eg. `delete 2` deletes the 2nd task in the task list.)
-
-1. List out the list of tasks to see the new list of tasks without the deleted tasks.
-
-Outcome: The task is removed from the list.
-
-#### Locate tasks by keyword `find `
-
-Finds tasks whose descriptions contain the given keyword.
-
-Format: `find KEYWORD`
-
+Format: `find [KEYWORD...]`
 - The search is case-insensitive. e.g run will match Run.
-- Only the description is searched.
+- Only the name of the projects are searched.
+- Can be multiple words.
 
-Instruction: 
+Example: `find scare` would return the **Scare House** and **Easily scare Night** projects.
 
-1. Type the command `find` with the `KEYWORD` which might be found in the projectName of the task that the user is looking for.(eg. `find read` to find  the task 'todo reading')
+Outcome: The projects with matching names will be shown to the user.
 
-Outcome: List of tasks with the projectName containing the keyword will be shown.
+### Edits details of a project `edit `
 
-#### Give a task a certain level of priority `prioritise `
+Updates the details of a project.
 
-Assigns a level of priority to the specified task.
+Format: `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] `
+  - Any combination of the fields above can be entered.
+  - The information entered will replace all the data in each respective field.
+  - Project Name can be any alphanumeric value (containing only alphabets and / or numbers).
+  - Repo URL must be a valid link
+  - Description can be anything, as long as it is not blank.
+  - Any number of tags can be added, separated by space " ".
 
-Format: `prioritise INDEX1, INDEX2`
+Example: `edit n/Resident Evil project /d new horror` changes the name of the project to **Evil project**, and the description to **new horror**`
 
-- Assigns a priority level of `INDEX2` to the task at specified `INDEX1`.
-- `INDEX1` refers to the index number shown in the displayed task list.
-- Both `INDEX1` and `INDEX2` must be a positive integer 1, 2, 3, …
+# **Features** in project scope
 
-Instruction:
+## **Task** related features
 
-1. List out the list of tasks(Use `list` command) to look for the number of task to be assigned with a priority level.
+### Add task to a project `addtask `
 
-1. Type the command `prioritise` with the number of task which the user wants to assign a priority level to it, followed by a `,` , then the number of the priority level.(eg. `prioritise 2,3` to assign the second task in the task list with a priority level of 3.
+Creates a new task and adds it to the current project.
 
-Outcome: The task is assigned with the priority level.
+Format: `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) `
+  - All fields above are required
+  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
+  - Task status is simply *true* to signify the task is completed or *false* otherwise.
+  - Task progress is a percentage value indicating how much of the task is done.
+  - Task deadline is indicated by a date and time with format *DD-MM-YYYY hh:mm:ss* 
 
-#### View tasks allocated to a team member `view `
-Displays a list of tasks allocated to the specified members.
+Example: `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` creates a task named Do User Guide, 30% completed, is completed, and has a deadline of 29th Feb 2020, midnight.
 
-Format: `view NAME`
-- `NAME` refers to the projectName of the team member when it was first input during project creation.
+### Assign a task to a teammate `assign `
 
-Example: `view Niaaz` Displays a list of tasks allocated to Niaaz.
+Assigns a task to a teammate within a project
 
-#### Assign tasks to a team member `assign `
-Assigns a task to a team member. A task can be assigned to multiple members, and a member can have multiple tasks.
+Format: `assign TASKINDEX TEAMMATE_GIT_USERNAME  ` (teammate git username is the unique name of each teammate)
 
-Format: `assign INDEX NAME`
-- `INDEX` refers to the task index in the current displaying list of tasks.
-- `NAME` refers to the projectName of the team member.
+Example: `assign 3 Lucas98` assigns task number 3 in the list to user *Lucas98*.
 
-Example: `assign 1 Niaaz` Assigns the task currently with index 1 to Niaaz.
+### Edit task to a project `addtask `
 
-#### Filter tasks by assignee/deadline/task name `filtert `
+Creates a new task and adds it to the current project.
 
-Filters tasks by assignee, deadline, task name, progress, or whether they are completed. 
+Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] `
+  - INDEX field is necessary to include.
+  - Any combination and any number of the subsequent fields above can be entered.
+  - The information entered will replace all the data in each respective field.
+  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
+  - Task status is simply *true* to signify the task is completed or *false* otherwise.
+  - Task progress is a percentage value indicating how much of the task is done.
+  - Task deadline is indicated by a date and time with format *DD-MM-YYYY hh:mm:ss* 
 
-Format: ``filtert (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)||(tp/PROGRESS)||(done/ISDONE)`
+Example: `edittask 3 tn/Finish project status/true` changes the name of task 3 in the list to Finish project, and the done status to true, indicating the task is completed.
 
-- `filtert (ta/ASSIGNEE NAME)` retrieves all tasks that have assignee named `ASSIGNEE NAME`
-- `filtert (td/DEADLINE)` retrieves all the tasks whose deadlines are`DEADLINE`
-- `filtert (tn/TASK NAME)` retrieves all the tasks whose task names contain `TASK NAME`
-- `filtert (tn/PROGRESS)` retrieves all the tasks whose progress match the `PROGESS`
-- `filtert (done/ISDONE)` retrieves all the completed tasks when `ISDONE` is true, or all the unfinished tasks when `ISDONE` is false.
+### Filter tasks `filtert `
 
-Example: 
+Filters tasks in the task list by various predicates:
+  - by assignee's name
+  - by deadline
+  - by done status
+  - by progress
+  - by task's name
 
-1. `filtert ta/Alice` displays the filtered list of tasks that have assignee named Alice.
-2. `filtert td/31-12-2020 10:00:00` displays the filtered list of tasks whose deadlines are at 10am on 31/12/2020.
-3. `filtert tn/group meeting` displays the filtered list of tasks whose task names contain "group meeting".
-4. `filtert tn/50` displays the filtered list of tasks that are 50% complete.
-5. `filtert done/false` displays the filtered list of all the unfinished tasks.
+Format: `filtert [ta/TASK_ASSIGNEE_NAME] [td/DEADLINE] [done/ DONE_STATUS] [tp/TASK PROGRESS] [tn/TASK_NAME]` 
+  - User may choose one predicate to filter tasks by
+  - Assignee name is the name of the Teammate who is assigned to the task
+  - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
+  - Task status is simply *true* to signify the task is completed or *false* otherwise.
+  - Task progress is a percentage value indicating how much of the task is done.
+  - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
+-  
 
-#### Show all the tasks `allt `
+Example: `filtert done/true` filters all the tasks that are done, and displays the done tasks to the user.
 
-Displays all the tasks in the current project.
+### View details of a task `viewtask `
 
-Format: `allt`
+View all the details of a task, beyond the little information given in the project view.
 
-Outcome: All the tasks in the current project will be shown in the task list
+Format: `viewtask INDEX `
+  - View all the information of the task specified by the INDEX. 
+  - Index has to be a valid number that is in the range of tasks displayed on screen.
 
-#### Show all the meetings `allm `
+Example: `viewtask 4` displays all information from task number 4 in the list.
 
-Displays all the meetings in the current project.
+### List all tasks `allt `
 
-Format: `allm`
+List all tasks in the task list of a project
 
-Outcome: All the meetings in the current project will be shown in the meeting list
+Enters the Task scope.
 
---------------------------------------------------------------------------------------------------------------------
+Format: `allt `
 
-### **Teammate**-related features
-#### Create new teammate `new teammate `
-Adds a new teammate to a project
+Example: `allt` displays all tasks in the task list.
 
-Format: `new NAME p/PHONE_NUMBER e/EMAIL`
-- `NAME` refers to the projectName of the teammate
-- `PHONE_NUMBER` refers to the teammate's contact number
-- `EMAIL` refers to the teammate's repoUrl
+### Return to project view from task view `leaveTaskView`
 
-Example: `new Lucas p/94311421 e/lucastai98@gmail.com` Instantiates teammate Lucas with the specified contact number and repoUrl
+Change the view on the screen to project view, when previously on task view.
 
-#### Add existing teammates of other projects to participate in this project `involves `
-Involves an existing teammate in other projects to the current project
+Format: `leaveTaskView`
 
-Format: `involves NAME`
-- `NAME` refers to the projectName of the teammate; by this, we should guarantee that teammates of all projects have different names if they are different people
+Example: `leaveTaskView` leaves the view of tasks, and reenters the project view.
 
-Example: `involves Lucas` for `Lucas` that participates in another existing project
+## **Teammate** related features
 
-#### Update teammate details (person portfolio) `updatetm teammate `
-Updates person particulars of person portfolio of a teammate
+### Create a new teammate in a project `newteammate`
 
-Format: `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]`
+Creates a new teammate in a project with all the relevant fields contained in it.
 
-Example: `updatetm Lucas p/12345678` Resets the contact number of `Lucas` to `12345678`
+Format: `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)`
+  - All fields are necessary to fill in
+  - Teammate name has to be 1 or more words consisting only of letters.
+  - The Git User name has to be a unique Github registered User Name
+  - The phone number has to be a minimum of 3 and maximum of 16 numbers.
+  - The email has to have a proper prefix and proper domain name consisting of at least 2 letters.
+  - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank.
 
-#### Update participation details (tasks and project-specific information) `update participation `
-Updates the participation details of the teammate, such as his/her role
 
-Format: `updatept NAME [r/ROLE]`
-- `ROLE` refers to the role of the teammate in the project, i.e., team member or leader
+Example: `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road` creates a new teamamte in the respective project with:
+  - name Lucas
+  - Git name of Lucas98
+  - phone number of 93824823
+  - email of lucas@gmail.com
+  - address of 18 Evelyn road
+  
+### Edit a teammate’s details `editteammate`
 
-Example: `updatept Lucas r/LEADER` Sets the existing teammate in the project, `Lucas`, as the leader of the project.
+Update the information of a teammate.
 
-#### Remove a teammate in the project `remove teammate `
-Removes an existing teammate in the project
+Format: `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]`
+  - Any combination or number of fields can be filled in.
+  - Teammate name has to be 1 or more words consisting only of letters.
+  - The Git User name cannot be changes, but is required to identify the teammate to edit.
+  - The phone number has to be a minimum of 3 and maximum of 16 numbers.
+  - The email has to have a proper prefix and proper domain name consisting of at least 2 letters.
+  - Address can be any amount of letters, symbols and numbers, the only constraint is that it cannot be blank.
 
-Format: `removetm NAME`
 
-Example: `removetm Lucas` Removes the existing teammate in the project, `Lucas`, from the current project
+Example: `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way` changes the name of the teammate to GeNiaaz and the address of said teammate to 5 Hacker Way.
 
-#### View teammates participated in a particular task `task participants `
-Views the information of all teammates participating in a particular task
+### View a teammate’s details `viewteammate`
 
-Format: `task participants TASK_NUMBER`
-- `TASK_NUMBER` refers to the task number in the project
+View all of a specific teammate's details
 
-Example: `task participants 1` Displays the teammates that are assigned to do task 1
+Format: `viewteammate GIT_USER_NAME`
 
-### **Scoping**-related features
-#### Return to main catalogue `leave`
-Switch to the scope of a level of higher hierarchy.
+Example: `viewteammate Lucas98` displays all the information about the teammate with the Git User Name Lucas 98 to the user.
 
-Format: `leave`
+### Return to project view from teammate view `leaveTeammateView`
+
+Change the view on the screen to project view, when previously on teammate view.
+
+Format: `leaveTeammateView`
+
+Example: `leaveTeammateView` leaves the view of teammates, and reenters the project view.
 
 ## FAQ
 
@@ -314,29 +339,26 @@ Format: `leave`
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that 
 contains the data of your previous Taskmania home folder.
 
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
+## Summary
 
 Action | Format, Examples | Scope
 --------|------------------|-------
 **Get Help** | `help` | global scope
-**Add Project** | `add project n/NAME d/DUEDATE t/TEAM` <br> e.g., `add project n/Taskmania d/2020-09-09 t/Niaaz Lucas` | global scope
+**Exit application** | `exit` | global scope
 **Start** | `start INDEX`<br> e.g., `start 3` | global scope
-**List Out The List Of Tasks** | `list` | project scope
-**Delete Task** | `delete INDEX` <br> eg. `delete 2` | project scope
-**Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | project scope
-**Give A Task A Priority Level** | `prioritise INDEX1, INDEX2` <br> eg. `prioritise 2,3` | project scope 
+**Add** | `add (n/PROJECT NAME) (dl/DEADLINE) (ru/REPO URL) (d/PROJECT DESCRIPTION) [tg/TAGS...] `   eg, `add n/Blair project dl/29-02-2020 00:00:00 ru/http://github.com/a/b.git d/Coding in Greenwich tg/challenging hell` | global scope
+**Delete project** | `delete INDEX` <br> eg. `delete 2` | global scope
+**Show all projects** | `list` | global scope 
+**Find KEYWORD** | `find KEYWORD` <br> eg. `find read` | global scope
+**edit** | `edit [n/PROJECT NAME] [dl/DEADLINE] [ru/REPO URL] [d/PROJECT DESCRIPTION] [tg/TAGS...] ` eg, `edit n/Resident Evil project /d new horror`| global scope
+**Add Task** | `addtask (n/TASK NAME) (tp/TASK PROGRESS (done/TASK STATUS) (td/TASK DEADLINE) ` eg, `addtask n/Do User Guide tp/30 done/done td/29-02-2020 00:00:00` | project scope
 **Assign A Task To A Teammate** | `assign INDEX NAME` <br> e.g. `assign 1 Niaaz` | project scope
-**Filter Tasks by Assignee/Deadline/Task Name** | ``filtert (ta/ASSIGNEE NAME)||(td/DEADLINE)||(tn/TASK NAME)||(tp/PROGRESS)||(done/ISDONE)``<br>e.g. `filtert ta/Alice` | project scope
-**Show all the tasks** | `allt` | project scope 
-**Show all the meetings** | `allm` | project scope 
+**Edit task details** | `edittask (INDEX) [n/TASK_NAME[ [tp/TASK_PROGRESS] [done/TASK_STATUS] [td/TASK_DEADLINE] ` eg, `edittask 3 tn/Finish project status/true` | project scope
+**Filter Tasks by Assignee/Deadline/Task Name** | ``filtert (ta/ASSIGNEE NAME) **OR** (td/DEADLINE) **OR** (tn/TASK NAME) **OR** (tp/PROGRESS) **OR** (done/ISDONE)``<br>e.g. `filtert ta/Alice` | project scope
 **View Details of A Task** | `viewtask INDEX` <br> eg. `viewtask 1` | project scope
-**New Teammate** | `new NAME p/PHONE_NUMBER e/EMAIL` <br> e.g., `new Lucas p/94311421 e/lucastai98@gmail.com` | project scope
-**Involve Teammate** | `involves NAME` <br> e.g., `involves Lucase` | project scope
-**Update Teammate** | `updatetm NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `updatetm Lucas p/12345678` | project scope
-**Update Participation** | `updatept NAME [r/ROLE]` <br> e.g., `updatept Lucas r/LEADER` | project scope
-**Remove Teammate** | `removetm NAME` <br> e.g., `removetm Lucas` | project scope
-**View Teammates of Task** | `task participants TASK_NUMBER` <br> e.g., `task participants 1` | project scope
-**Return To Catalogue Page** | `leave` | project scope
-
+**Show all the tasks** | `allt` | project scope 
+**Leave Task view to go to Project view** | `leavetaskview` | project scope
+**Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
+**Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`
+**View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
+**Leave Teammate view to go to Project view** | `leaveteammateview` | project scope
