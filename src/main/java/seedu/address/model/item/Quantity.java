@@ -9,7 +9,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Quantity {
 
-
     public static final String MESSAGE_CONSTRAINTS =
             "Quantity should only contain numbers, and it should be at least 1 digit long";
     public static final String VALIDATION_REGEX = "\\d+";
@@ -24,6 +23,13 @@ public class Quantity {
         requireNonNull(quantity);
         checkArgument(isValidQuantity(quantity), MESSAGE_CONSTRAINTS);
         value = quantity;
+    }
+
+    /**
+     * Returns the numerical value for ease of access
+     */
+    public int getNumber() {
+        return Integer.parseInt(value);
     }
 
     /**

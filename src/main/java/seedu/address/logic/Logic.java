@@ -72,5 +72,4 @@ public interface Logic {
      * Returns the relevant inventory list to be displayed.
      */
     ArrayList<InventoryComponent> getInventoryList(DisplayedInventoryType inventoryType);
-
 }

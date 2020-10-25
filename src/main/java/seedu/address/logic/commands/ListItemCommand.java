@@ -20,7 +20,7 @@ public class ListItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.resetItemFilters();
+
         if (model.getFilteredItemList().isEmpty()) {
             return new CommandResult(MESSAGE_NO_ITEMS, false, false, DisplayedInventoryType.ITEMS);
         } else {

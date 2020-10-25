@@ -6,7 +6,7 @@ import seedu.address.model.Model;
 import seedu.address.model.RecipeList;
 
 /**
- * Clears the item list.
+ * Clears the recipe list.
  */
 public class ClearRecipeCommand extends Command {
 

@@ -201,7 +201,10 @@ public class InventoryMainWindow extends UiPart<Stage> {
                 inventoryType = DisplayedInventoryType.DETAILED_ITEM;
                 break;
             case UNCHANGED:
-                // inventoryType stays the same
+                // change back to regular item view from detailed item
+                if (inventoryType.equals(DisplayedInventoryType.DETAILED_ITEM)) {
+                    inventoryType = DisplayedInventoryType.ITEMS;
+                }
                 break;
             default:
                 throw new IllegalStateException("This inventoryType is not valid");

@@ -41,10 +41,9 @@ public class DeleteItemCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         List<Item> itemList = new ArrayList<>(model.getFilteredItemList());
 
-        // filter to only get matching and not deleted items
+        // filter to only get matching items
         itemList.removeIf(x -> !x.getName().equals(productName));
         if (itemList.isEmpty()) {
             throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
