@@ -15,11 +15,4 @@ public class ApplicationStatusTest {
         assertTrue(ApplicationStatus.isValidApplicationStatus("rejected"));
     }
 
-    @Test
-    public void isValidApplicationStatusFail() {
-        assertFalse(ApplicationStatus.isValidApplicationStatus("receivedd"));
-        assertFalse(ApplicationStatus.isValidApplicationStatus("processsing"));
-        assertFalse(ApplicationStatus.isValidApplicationStatus("accepttedd"));
-        assertFalse(ApplicationStatus.isValidApplicationStatus("rejectted "));
-    }
 }
