@@ -29,6 +29,10 @@ public class DeleteMeetingCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Constructor for DeleteMeetingCommand Object.
+     * @param targetIndex index for specific meeting to be removed from meeting book.
+     */
     public DeleteMeetingCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }

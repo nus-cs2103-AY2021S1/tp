@@ -70,30 +70,51 @@ public class Meeting {
         }
     }
 
+    /**
+     * Getter for the bidder id associated with the meeting.
+     */
     public BidderId getBidderId() {
         return this.bidderId;
     }
 
+    /**
+     * Getter for the property id associated with the meeting.
+     */
     public PropertyId getPropertyId() {
         return this.propertyId;
     }
 
+    /**
+     * Getter for the time associated with the meeting.
+     */
     public Time getTime() {
         return this.time;
     }
 
+    /**
+     * Getter for the venue associated with the meeting.
+     */
     public Venue getVenue() {
         return this.venue;
     }
 
+    /**
+     * Checks if the meeting type is of a viewing.
+     */
     public boolean isViewing() {
         return this.isViewing;
     }
 
+    /**
+     * Checks if the meeting type is of paperwork.
+     */
     public boolean isPaperWork() {
         return this.isPaperWork;
     }
 
+    /**
+     * Checks if the meeting type is of administration.
+     */
     public boolean isAdmin() {
         return this.isAdmin;
     }
