@@ -162,15 +162,15 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedPerson);
     }
 
-    @Override
-    public ReadOnlyMeetingBook getMeetingBook() {
-        return meetingBook;
-    }
-
     //=========== Meetings ===================================================================================
     @Override
     public void setMeetingBook(ReadOnlyMeetingBook meetingBook) {
         this.meetingBook.resetData(meetingBook);
+    }
+
+    @Override
+    public ReadOnlyMeetingBook getMeetingBook() {
+        return meetingBook;
     }
 
     @Override
@@ -212,10 +212,12 @@ public class ModelManager implements Model {
         filteredMeetings.stream().filter(meeting -> meeting.getParticipants()
                 .contains(personToUpdate)).forEach(meeting -> {
                     Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
+                    logger.fine("Removing contact from relevant meeting.");
                     updatedMembers.remove(personToUpdate);
                     if (isReplacement) {
                         assert persons.length == 2;
                         Person editedPerson = persons[1];
+                        logger.fine("Adding edited contact to relevant meeting.");
                         updatedMembers.add(editedPerson);
                     }
                     Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
