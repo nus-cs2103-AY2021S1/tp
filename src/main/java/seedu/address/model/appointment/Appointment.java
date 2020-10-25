@@ -42,6 +42,10 @@ public class Appointment {
         return startTime.compareTo(endTime) < 0;
     }
 
+    public static int compare(Appointment appointment1, Appointment appointment2) {
+        return appointment1.getStartTime().compareTo(appointment2.getStartTime());
+    }
+
     public Name getPatientName() {
         return patientName;
     }

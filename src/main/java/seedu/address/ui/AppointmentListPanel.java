@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -25,7 +26,7 @@ public class AppointmentListPanel extends UiPart<Region> {
      */
     public AppointmentListPanel(ObservableList<Appointment> appointmentList) {
         super(FXML);
-        appointmentListView.setItems(appointmentList);
+        appointmentListView.setItems(new SortedList<>(appointmentList, Appointment::compare));
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
 
