@@ -81,7 +81,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-![help message](images/helpMessage.png)
+    ![help message](images/helpMessage.png)
 
 ### Creating a new flashcard
 You can add a new flashcard to the list.
@@ -90,9 +90,9 @@ You can create a flashcard that contains an open ended question which will be ad
 
 1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
 For example, you can enter`add q/Sample Question ans/Sample Answer`
-![addOpenEnded](images/addOpenEnded.png)
+    ![addOpenEnded](images/addOpenEnded.png)
 2. You have successfully created a flashcard with an open ended question and it will be saved immediately in the list.
-![addOpenEnded2](images/addOpenEnded2.png)
+    ![addOpenEnded2](images/addOpenEnded2.png)
 
 <div class="alert alert-danger">
 You cannot add a flashcard with empty question and empty answer.
@@ -103,9 +103,9 @@ You can create a flashcard that contains a multiple choice question which will b
 
 1. You can use the addmcq command to add a flashcard with a multiple choice question which will be added to the list.
 For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sample Choice 2`
-![addMCQ](images/addMCQ.png)
+    ![addMCQ](images/addMCQ.png)
 2. You have successfully created a flashcard with a multiple choice question and it will be saved immediately in the list.
-![addMCQ2](images/addMCQ2.png)
+    ![addMCQ2](images/addMCQ2.png)
 
 <div class="alert alert-danger">
 You cannot add flashcard with missing question or missing answer or missing choice.
@@ -228,7 +228,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionAndTagsStep1](./images/FindQuestionAndTagsStep1.png)
 	
-2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `TCPforLife` in the displayed list and the keyword `What`, you can enter `find t/TCPforLife q/What`.
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `TCPforLife` and the keyword `What` in the question, you can enter `find t/TCPforLife q/What`.
 
 	![FindQuestionAndTagsStep2](./images/FindQuestionAndTagsStep2.png)
 	
@@ -310,11 +310,11 @@ The index <b>must be a positive integer</b> 1, 2, 3, ...
 You can test yourself with a flashcard containing open-ended question by specifying an answer.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![TestStep1](./images/TestStep1.png)
+    ![TestStep1](./images/TestStep1.png)
 2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the answer `a computer organization module`, you can enter `test 2 ans/a computer organization module`.
-![TestOpenStep2](./images/TestOpenStep2.png)
+    ![TestOpenStep2](./images/TestOpenStep2.png)
 3. Press enter and QuickCache will tell you whether you got the question right.
-![TestOpenStep3](./images/TestOpenStep3.png)
+    ![TestOpenStep3](./images/TestOpenStep3.png)
 
 You have successfully tested yourself on an open-ended question!
 
@@ -327,13 +327,13 @@ The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
 You can also test yourself a flashcard containing a multiple choice question by specifying an option.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![TestStep1](./images/TestStep1.png)
+    ![TestStep1](./images/TestStep1.png)
 2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 1`.
-![TestMCQStep2](./images/TestMCQStep2.png)
+    ![TestMCQStep2](./images/TestMCQStep2.png)
 3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 2nd option, you can enter `test 1 o/2`.
-![TestMCQStep3](./images/TestMCQStep3.png)
+    ![TestMCQStep3](./images/TestMCQStep3.png)
 4. Press enter and QuickCache will tell you whether you got the question right.
-![TestMCQStep4](./images/TestMCQStep4.png)
+    ![TestMCQStep4](./images/TestMCQStep4.png)
 You have successfully tested yourself on a multiple choice question!
 
 ### Displaying statistics:
@@ -379,11 +379,11 @@ You can also display the statistics of multiple flashcards in a Pie Chart by spe
 
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
 
-![StatsTagsStep1](./images/StatsTagsStep1.png)
+    ![StatsTagsStep1](./images/StatsTagsStep1.png)
 
 2. Press enter and QuickCache will display the statistics of the flashcards containing the specified tags.
 
-![StatsTagsStep2](./images/StatsTagsStep2.png)
+    ![StatsTagsStep2](./images/StatsTagsStep2.png)
 
 You have successfully displayed the statistics of all flashcards containing the specified tags!
 
@@ -401,7 +401,7 @@ To clear the statistics of a flashcard you can use the clearstats command.
 
 	![ClearstatsIndexStep1](./images/ClearstatsIndexStep1.png)
 	
-	<div markdown="block" class="alert alert-dark">
+	<div markdown="block" class="alert alert-info">
 	<Strong>Optional Step:</Strong>
 	You can first check the statistics of the flashcard you want to clear the statistics of.
 	
@@ -417,7 +417,7 @@ To clear the statistics of a flashcard you can use the clearstats command.
 
 	![ClearstatsIndexStep3](./images/ClearstatsIndexStep3.png)
 	
-	<div markdown="block" class="alert alert-dark">
+	<div markdown="block" class="alert alert-info">
 	<Strong>Optional Step:</Strong>
 	You can check that the statistics of the flashcard has been cleared.
 	
@@ -438,13 +438,13 @@ You have successfully cleared the statistics of a flashcard!
 You can export all flashcards from the last displayed list into a file named `FILE_NAME` for backup or sharing with your friends.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![ExportStep1](./images/ExportStep1.png)
+    ![ExportStep1](./images/ExportStep1.png)
 2. In the user input box, enter the `export` command together with the `FILE_NAME` you would like to save the flashcards into. For example, if you would like the file to be named as `josiah-flashcard.json`, you can enter `export josiah-flashcard.json`.
-![ExportStep2](./images/ExportStep2.png)
+    ![ExportStep2](./images/ExportStep2.png)
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
-![ExportStep3a](./images/ExportStep3a.png)
-![ExportStep3b](./images/ExportStep3b.png)
-![ExportStep3c](./images/ExportStep3c.png)
+    ![ExportStep3a](./images/ExportStep3a.png)
+    ![ExportStep3b](./images/ExportStep3b.png)
+    ![ExportStep3c](./images/ExportStep3c.png)
 
 Voila! You have successfully exported your flashcards into a file.
 
@@ -457,13 +457,13 @@ Voila! You have successfully exported your flashcards into a file.
 You can import external flashcards into your local QuickCache as well. 
 
 1. Create an `import` folder in the same directory as where `QuickCache.jar` is located.
-![ImportStep1](./images/ImportStep1.png)
+    ![ImportStep1](./images/ImportStep1.png)
 2. Place the file that you want to import in the `import` folder.
-![ImportStep2](./images/ImportStep2.png)
+    ![ImportStep2](./images/ImportStep2.png)
 3. In the user input box, enter the `import` command together with the name of the file you would like to import the flashcards from. For example, if the file to import from is named `joshua-flashcard.json`, you can enter `import joshua-flashcard.json`.
-![ImportStep3](./images/ImportStep3.png)
+    ![ImportStep3](./images/ImportStep3.png)
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
-![ImportStep4](./images/ImportStep4.png)
+    ![ImportStep4](./images/ImportStep4.png)
 
 Good job! You have successfully imported flashcards from an external file.
 
