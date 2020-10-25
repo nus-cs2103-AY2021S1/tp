@@ -5,34 +5,32 @@ import static seedu.taskmaster.logic.parser.CliSyntax.*;
 
 import java.util.stream.Stream;
 
-import seedu.taskmaster.logic.commands.NewSessionCommand;
+import seedu.taskmaster.logic.commands.ChangeSessionCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
-import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
 
 /**
- * Parses input arguments and creates a new NewSessionCommand object
+ * Parses input arguments and creates a new ChangeSessionCommand object
  */
-public class NewSessionCommandParser implements Parser<NewSessionCommand> {
+public class ChangeSessionCommandParser implements Parser<ChangeSessionCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the
-     * NewSessionCommand and returns an NewSessionCommand object for execution.
+     * ChangeSessionCommand and returns a ChangeSessionCommand object for execution.
      * @throws ParseException if the user input does not conform to the expected format
      */
-    public NewSessionCommand parse(String args) throws ParseException {
+    public ChangeSessionCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer
-                        .tokenize(args, PREFIX_SESSION_NAME, PREFIX_SESSION_DATE_TIME);
+                        .tokenize(args, PREFIX_SESSION_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_SESSION_NAME, PREFIX_SESSION_DATE_TIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_SESSION_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewSessionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ChangeSessionCommand.MESSAGE_USAGE));
         }
 
         SessionName sessionName = ParserUtil.parseSessionName(argMultimap.getValue(PREFIX_SESSION_NAME).get());
-        SessionDateTime sessionDateTime = ParserUtil.parseSessionDateTime(argMultimap.getValue(PREFIX_SESSION_DATE_TIME).get());
-        return new NewSessionCommand(sessionName, sessionDateTime);
+        return new ChangeSessionCommand(sessionName);
     }
 
     /**
