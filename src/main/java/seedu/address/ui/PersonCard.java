@@ -3,11 +3,21 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import seedu.address.model.person.Person;
+
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -15,6 +25,7 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
+    private static final double BORDER_SIZE = 5;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -44,6 +55,10 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane priority;
     @FXML
     private FlowPane clientSources;
+    @FXML
+    private Region fillerShape;
+    @FXML
+    private HBox priorityShape;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -76,6 +91,40 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(clientSource -> clientSources.getChildren().add(
                         new Label(clientSource.clientSourceName)
                 ));
+
+        setPriorityShape(person);
+    }
+
+    private void setPriorityShape(Person person) {
+        switch (person.getPriority().value) {
+        case "low":
+            priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.TURQUOISE_BORDER,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
+            priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.TURQUOISE, CornerRadii.EMPTY,
+                    Insets.EMPTY)));
+            break;
+        case "medium":
+            priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.ORANGE_BORDER,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
+            priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.ORANGE, CornerRadii.EMPTY,
+                    Insets.EMPTY)));
+            break;
+        case "high":
+            priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.RED_BORDER,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
+            priorityShape.setBackground(new Background(new BackgroundFill(ColorPicker.RED, CornerRadii.EMPTY,
+                    Insets.EMPTY)));
+            break;
+        case "undefined":
+            priorityShape.setBorder(new Border(new BorderStroke(ColorPicker.WHITE_BORDER,
+                    BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(BORDER_SIZE))));
+            priorityShape.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY,
+                    Insets.EMPTY)));
+            break;
+        default:
+            assert false : "priority shape UI cannot find priority keyword";
+            break;
+        }
     }
 
     @Override
