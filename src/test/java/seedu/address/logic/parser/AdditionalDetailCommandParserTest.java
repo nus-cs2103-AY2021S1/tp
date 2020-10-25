@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_DETAIL_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -26,7 +26,7 @@ public class AdditionalDetailCommandParserTest {
     @Test
     public void parseAdditionalDetailCommand_add() throws Exception {
         String userInput = String.format("add %s %s%s", INDEX_FIRST_PERSON.getOneBased(),
-                PREFIX_DETAIL_TEXT, VALID_ADDITIONAL_DETAILS_AMY);
+                PREFIX_TEXT, VALID_ADDITIONAL_DETAILS_AMY);
         AddAdditionalDetailCommand command = (AddAdditionalDetailCommand) parser
                 .parseAdditionalDetailCommand(userInput);
         assertEquals(new AddAdditionalDetailCommand(INDEX_FIRST_PERSON,
@@ -36,7 +36,7 @@ public class AdditionalDetailCommandParserTest {
     @Test
     public void parseAdditionalDetailCommand_delete() throws Exception {
         String userInput = String.format("delete %s %s%s", INDEX_FIRST_PERSON.getOneBased(),
-                PREFIX_DETAIL_INDEX, INDEX_FIRST_PERSON.getOneBased());
+                PREFIX_INDEX, INDEX_FIRST_PERSON.getOneBased());
         DeleteAdditionalDetailCommand command = (DeleteAdditionalDetailCommand) parser
                 .parseAdditionalDetailCommand(userInput);
         assertEquals(new DeleteAdditionalDetailCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON), command);
@@ -45,8 +45,8 @@ public class AdditionalDetailCommandParserTest {
     @Test
     public void parseAdditionalDetailCommand_edit() throws Exception {
         String userInput = String.format("edit %s %s%s %s%s", INDEX_FIRST_PERSON.getOneBased(),
-                PREFIX_DETAIL_INDEX, INDEX_FIRST_PERSON.getOneBased(),
-                PREFIX_DETAIL_TEXT, VALID_ADDITIONAL_DETAILS_AMY);
+                PREFIX_INDEX, INDEX_FIRST_PERSON.getOneBased(),
+                PREFIX_TEXT, VALID_ADDITIONAL_DETAILS_AMY);
         EditAdditionalDetailCommand command = (EditAdditionalDetailCommand) parser
                 .parseAdditionalDetailCommand(userInput);
         assertEquals(new EditAdditionalDetailCommand(INDEX_FIRST_PERSON, INDEX_FIRST_PERSON,

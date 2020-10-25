@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
@@ -79,8 +79,8 @@ public class CommandTestUtil {
 
     public static final String QUESTION_DESC_AMY = " " + PREFIX_DETAILS + VALID_QUESTION_AMY;
 
-    public static final String ADDITIONAL_DETAIL_DESC_AMY = " " + PREFIX_DETAIL_TEXT + VALID_ADDITIONAL_DETAILS_AMY;
-    public static final String ADDITIONAL_DETAIL_DESC_BOB = " " + PREFIX_DETAIL_TEXT + VALID_ADDITIONAL_DETAILS_BOB;
+    public static final String ADDITIONAL_DETAIL_DESC_AMY = " " + PREFIX_TEXT + VALID_ADDITIONAL_DETAILS_AMY;
+    public static final String ADDITIONAL_DETAIL_DESC_BOB = " " + PREFIX_TEXT + VALID_ADDITIONAL_DETAILS_BOB;
 
     public static final String QUESTION_MATH = "What is 1 + 1?";
     public static final String QUESTION_PHYSICS = "How does Newton's Second Law work?";

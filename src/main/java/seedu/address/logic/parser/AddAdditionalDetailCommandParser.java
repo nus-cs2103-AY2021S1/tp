@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.AddAdditionalDetailCommand.MESSAGE_USAGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddAdditionalDetailCommand;
@@ -20,16 +20,16 @@ public class AddAdditionalDetailCommandParser implements Parser<AddAdditionalDet
     @Override
     public AddAdditionalDetailCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DETAIL_TEXT);
+                ArgumentTokenizer.tokenize(args, PREFIX_TEXT);
 
-        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_DETAIL_TEXT)) {
+        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_TEXT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         Index index = getIndex(argMultimap);
 
         AdditionalDetail additionalDetail = ParserUtil.parseAdditionalDetail(argMultimap
-                .getValue(PREFIX_DETAIL_TEXT).get());
+                .getValue(PREFIX_TEXT).get());
 
         return new AddAdditionalDetailCommand(index, additionalDetail);
     }

@@ -21,9 +21,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_SOLVE_QUESTION = new Prefix("s/");
     public static final Prefix PREFIX_DELETE_QUESTION = new Prefix("d/");
 
-    /* Prefix for additionalDetail commands */
-    public static final Prefix PREFIX_DETAIL_INDEX = new Prefix("i/");
-    public static final Prefix PREFIX_DETAIL_TEXT = new Prefix("d/");
+    /* Prefix for detail and question commands */
+    public static final Prefix PREFIX_INDEX = new Prefix("i/");
+    public static final Prefix PREFIX_TEXT = new Prefix("t/");
 
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
         PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME, PREFIX_FEE, PREFIX_PAYMENT};
@@ -34,9 +34,6 @@ public class CliSyntax {
     public static final Prefix[] FIND_SUPPORTED_PREFIXES =
             new Prefix[] {PREFIX_NAME, PREFIX_SCHOOL, PREFIX_YEAR};
 
-    public static final Prefix[] QUESTION_COMMAND_PREFIXES =
-            new Prefix[] {PREFIX_ADD_QUESTION, PREFIX_SOLVE_QUESTION, PREFIX_DELETE_QUESTION};
-
-    public static final Prefix[] ADDITIONAL_DETAIL_COMMAND_PREFIXES =
-            new Prefix[] {PREFIX_DETAIL_INDEX, PREFIX_DETAIL_TEXT};
+    public static final Prefix[] COMMAND_PREFIXES =
+            new Prefix[] {PREFIX_INDEX, PREFIX_TEXT};
 }

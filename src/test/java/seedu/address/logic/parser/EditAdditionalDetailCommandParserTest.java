@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_DETAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -22,7 +22,7 @@ public class EditAdditionalDetailCommandParserTest {
     public void parse_allFieldsPresent_success() {
         Index targetStudentIndex = INDEX_SECOND_PERSON;
         Index targetDetailIndex = INDEX_SECOND_PERSON;
-        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_DETAIL_INDEX, targetDetailIndex.getOneBased());
+        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_INDEX, targetDetailIndex.getOneBased());
         String userInput = targetStudentIndex.getOneBased() + targetDetailIndexDesc + ADDITIONAL_DETAIL_DESC_AMY;
 
         EditAdditionalDetailCommand expectedCommand = new EditAdditionalDetailCommand(targetStudentIndex,
@@ -37,7 +37,7 @@ public class EditAdditionalDetailCommandParserTest {
 
         Index targetStudentIndex = INDEX_SECOND_PERSON;
         Index targetDetailIndex = INDEX_SECOND_PERSON;
-        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_DETAIL_INDEX, targetDetailIndex.getOneBased());
+        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_INDEX, targetDetailIndex.getOneBased());
 
         // missing 3 arguments
         assertParseFailure(parser, " ", expectedMessage);
@@ -56,7 +56,7 @@ public class EditAdditionalDetailCommandParserTest {
                 expectedMessage);
 
         // wrong detail index
-        assertParseFailure(parser, targetStudentIndex.getOneBased() + " " + PREFIX_DETAIL_INDEX + "0"
+        assertParseFailure(parser, targetStudentIndex.getOneBased() + " " + PREFIX_INDEX + "0"
                 + ADDITIONAL_DETAIL_DESC_AMY, expectedMessage);
     }
 

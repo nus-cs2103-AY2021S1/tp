@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.EditAdditionalDetailCommand.MESSAGE_USAGE;
-import static seedu.address.logic.parser.CliSyntax.ADDITIONAL_DETAIL_COMMAND_PREFIXES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.COMMAND_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 
 import java.util.stream.Stream;
 
@@ -24,16 +24,16 @@ public class EditAdditionalDetailCommandParser implements Parser<EditAdditionalD
     @Override
     public EditAdditionalDetailCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, ADDITIONAL_DETAIL_COMMAND_PREFIXES);
+                ArgumentTokenizer.tokenize(args, COMMAND_PREFIXES);
 
-        if (!areRequiredPrefixesPresent(argMultimap, ADDITIONAL_DETAIL_COMMAND_PREFIXES)) {
+        if (!areRequiredPrefixesPresent(argMultimap, COMMAND_PREFIXES)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         Index studentIndex = getStudentIndex(argMultimap);
         Index detailIndex = getDetailIndex(argMultimap);
         AdditionalDetail additionalDetail = ParserUtil.parseAdditionalDetail(argMultimap
-                .getValue(PREFIX_DETAIL_TEXT).get());
+                .getValue(PREFIX_TEXT).get());
 
         return new EditAdditionalDetailCommand(studentIndex, detailIndex, additionalDetail);
     }
@@ -52,7 +52,7 @@ public class EditAdditionalDetailCommandParser implements Parser<EditAdditionalD
 
     private Index getDetailIndex(ArgumentMultimap argMultimap) throws ParseException {
         try {
-            return ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DETAIL_INDEX).get());
+            return ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
         }

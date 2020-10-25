@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.DeleteAdditionalDetailCommand.MESSAGE_USAGE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteAdditionalDetailCommand;
@@ -19,9 +19,9 @@ public class DeleteAdditionalDetailCommandParser implements Parser<DeleteAdditio
     @Override
     public DeleteAdditionalDetailCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DETAIL_INDEX);
+                ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
 
-        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_DETAIL_INDEX)) {
+        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
@@ -45,7 +45,7 @@ public class DeleteAdditionalDetailCommandParser implements Parser<DeleteAdditio
 
     private Index getDetailIndex(ArgumentMultimap argMultimap) throws ParseException {
         try {
-            return ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DETAIL_INDEX).get());
+            return ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
         }
