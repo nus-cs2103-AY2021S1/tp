@@ -60,8 +60,10 @@ public class OpenDocumentCommand extends OpenCommand {
         }
 
         try {
+            logger.info("Document successfully opened");
             FileUtil.openFile(reference.getPath());
         } catch (IOException e) {
+            logger.warning("Error opening document");
             throw new CommandException(Messages.MESSAGE_ERROR_OPENING_FILE);
         }
 
