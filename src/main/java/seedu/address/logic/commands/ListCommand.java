@@ -1,24 +1,24 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.ExerciseModel.PREDICATE_SHOW_ALL_EXERCISE;
 
-import seedu.address.model.Model;
+import seedu.address.model.ExerciseModel;
 
 /**
  * Lists all persons in the address book to the user.
  */
-public class ListCommand extends Command {
+public class ListCommand extends CommandForExercise {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all persons";
+    public static final String MESSAGE_SUCCESS = "Listed all exercises";
 
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(ExerciseModel model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
