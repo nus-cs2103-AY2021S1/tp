@@ -199,6 +199,10 @@ public class ModelManager implements Model {
         return this.addressBook.getVendorIndex();
     }
 
+    @Override
+    public boolean isSelected() {
+        return this.addressBook.getVendorIndex() != -1;
+    }
     //=========== MenuManager ================================================================================
 
     @Override
