@@ -19,14 +19,18 @@ public class VersionedPivot extends Pivot {
         return pivotRedoHistory.size() != 0;
     }
 
+    /**
+     * Add the current Pivot state into the undo history, and purge the redo history.
+     * @param pivot Current Pivot state.
+     */
     public void commit(ReadOnlyPivot pivot) {
         pivotUndoHistory.push(pivot);
         pivotRedoHistory.clear();
     }
 
     /**
-     * Undoes the previous pivot state.
-     * @return Previous pivot state.
+     * Undoes the previous Pivot state.
+     * @return Previous Pivot state.
      */
     public ReadOnlyPivot undo() {
         ReadOnlyPivot undonePivot = pivotUndoHistory.pop();
