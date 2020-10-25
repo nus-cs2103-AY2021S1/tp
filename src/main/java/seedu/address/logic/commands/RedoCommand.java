@@ -11,7 +11,7 @@ public class RedoCommand extends Command {
 
     public static final String COMMAND_WORD = "redo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " :redoes previous change";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " :redoes undone change";
 
     public static final String MESSAGE_SUCCESS = "Redo successful.";
     public static final String MESSAGE_FAILURE = "No undone command found.";
