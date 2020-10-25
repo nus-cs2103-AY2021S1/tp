@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":OneShelfBookParser" as AddressBookParser LOGIC_COLOR
 participant ":ItemFindCommandParser" as ItemFindCommandParser LOGIC_COLOR
-participant "predicate:ItemContainsKeywordsPredicate" as ItemContainsKeywordsPredicate LOGIC_COLOR
+participant "predicate:SupplierContainsKeywordsPredicate" as SupplierContainsKeywordsPredicate LOGIC_COLOR
 participant "result:ItemFindCommand" as ItemFindCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -33,15 +33,15 @@ activate ItemFindCommandParser
 
 ref over ItemFindCommandParser : tokenize arguements
 
-create ItemContainsKeywordsPredicate
-ItemFindCommandParser -> ItemContainsKeywordsPredicate : ItemContainsKeywordsPredicate("NTUC",s/)
-activate ItemContainsKeywordsPredicate
+create SupplierContainsKeywordsPredicate
+ItemFindCommandParser -> SupplierContainsKeywordsPredicate : SupplierContainsKeywordsPredicate("NTUC",s/)
+activate SupplierContainsKeywordsPredicate
 
-ItemContainsKeywordsPredicate --> ItemFindCommandParser : predicate
-deactivate ItemContainsKeywordsPredicate
+SupplierContainsKeywordsPredicate --> SupplierFindCommandParser : predicate
+deactivate SupplierContainsKeywordsPredicate
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-ItemContainsKeywordsPredicate -[hidden]-> ItemFindCommandParser
-destroy ItemContainsKeywordsPredicate
+SupplierContainsKeywordsPredicate -[hidden]-> ItemFindCommandParser
+destroy SupplierContainsKeywordsPredicate
 
 create ItemFindCommand
 ItemFindCommandParser -> ItemFindCommand : ItemFindCommand(predicate)

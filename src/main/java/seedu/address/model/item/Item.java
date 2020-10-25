@@ -110,16 +110,21 @@ public class Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Quantity: ")
+        builder.append("Name: ")
+                .append(getName())
+                .append("\n")
+                .append("Quantity: ")
                 .append(getQuantity())
-                .append(" Supplier: ")
+                .append("\n")
+                .append("Supplier: ")
                 .append(getSupplier())
-                .append(" Tags: ");
+                .append("\n")
+                .append("Tags: ");
         getTags().forEach(builder::append);
         if (maxQuantity.isPresent()) {
-            builder.append(" Max Quantity: ")
-                   .append(getMaxQuantity().get().value);
+            builder.append("\n")
+                    .append("Max Quantity: ")
+                    .append(getMaxQuantity().get().value);
         }
 
         return builder.toString();

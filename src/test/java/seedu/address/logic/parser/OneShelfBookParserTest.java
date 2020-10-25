@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
@@ -29,9 +28,9 @@ import seedu.address.logic.commands.itemcommand.ItemListCommand;
 import seedu.address.logic.commands.itemcommand.ItemRemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.delivery.Delivery;
-import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
+import seedu.address.model.delivery.predicate.DeliveryNameContainsKeywordsPredicate;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import seedu.address.model.item.predicate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.DeliveryBuilder;
 import seedu.address.testutil.DeliveryUtil;
 import seedu.address.testutil.EditDeliveryDescriptorBuilder;
@@ -99,13 +98,13 @@ public class OneShelfBookParserTest {
         List<String> keywords = Collections.singletonList("CHICKEN");
         ItemFindCommand command = (ItemFindCommand) parser.parseCommand(
                 ItemFindCommand.COMMAND_WORD + " " + "n/chicken");
-        assertEquals(new ItemFindCommand(new ItemContainsKeywordsPredicate(keywords, PREFIX_NAME)), command);
+        assertEquals(new ItemFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
 
         List<String> deliveryKeywords = Collections.singletonList("KELVIN");
         DeliveryFindCommand deliveryCommand = (DeliveryFindCommand) parser.parseCommand(
                 DeliveryFindCommand.COMMAND_WORD + " " + "n/Kelvin");
         assertEquals(new DeliveryFindCommand(
-                new DeliveryContainsKeywordsPredicate(deliveryKeywords, PREFIX_NAME)), deliveryCommand);
+                new DeliveryNameContainsKeywordsPredicate(deliveryKeywords)), deliveryCommand);
     }
 
     @Test
