@@ -174,7 +174,7 @@ You can delete a flashcard based on the index shown in the last displayed list.
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
+:information_source: The INDEX refers to the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
 
 </div>
 
