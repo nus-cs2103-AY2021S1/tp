@@ -186,6 +186,7 @@ Below is the sequence diagram when user pressing the arrow up button with `Comma
 
 ![CommandHistoryTraversalSequenceDiagram](images/CommandHistoryTraversalSequenceDiagram.png)
 
+The previous command by the user will be reflected in the GUI.
 
 ### Finding Items and Delivery
 OneShelf is capable of storing many items and pending deliveries. 
