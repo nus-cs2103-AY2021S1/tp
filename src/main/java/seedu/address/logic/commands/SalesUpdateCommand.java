@@ -44,7 +44,7 @@ public class SalesUpdateCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.overwrite(sales);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, model.getSalesBook()));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

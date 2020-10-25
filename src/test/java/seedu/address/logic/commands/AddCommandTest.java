@@ -25,6 +25,7 @@ import seedu.address.model.ReadOnlyIngredientBook;
 import seedu.address.model.ReadOnlySalesBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.SalesBook;
+import seedu.address.model.SalesRecordEntry;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 import seedu.address.model.person.Person;
@@ -126,7 +127,21 @@ public class AddCommandTest {
         }
 
         @Override
+        public Path getSalesBookFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setSalesBookFilePath(Path ingredientBookFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
         public void addPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addSalesRecordEntry(SalesRecordEntry salesRecordEntry) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -211,7 +226,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<SalesRecordEntry> getFilteredSalesRecordList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredSalesList(Predicate<SalesRecordEntry> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
