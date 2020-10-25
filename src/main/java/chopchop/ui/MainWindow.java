@@ -131,7 +131,7 @@ public class MainWindow extends UiPart<Stage> {
         Region commandBoxDisplay = commandBox.getRoot();
         commandBoxPlaceholder.getChildren().setAll(commandBoxDisplay);
         primaryStage.addEventFilter(KeyEvent.ANY, event -> {
-            if(event.getEventType() == KeyEvent.KEY_TYPED) {
+            if (event.getEventType() == KeyEvent.KEY_TYPED) {
                 commandBoxDisplay.requestFocus();
             }
         });
