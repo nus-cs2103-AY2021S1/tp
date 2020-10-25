@@ -47,13 +47,26 @@ public class CasePersonCard extends UiPart<Region> {
         gender.setText("(" + casePerson.getGender().toString() + ")");
 
         String checkPhone = casePerson.getPhone().toString();
-        phone.setText(checkPhone.isBlank() ? "" : "Phone: " + casePerson.getPhone().toString());
+        if (!checkPhone.isBlank()) {
+            phone.setText("Phone: " + casePerson.getPhone().toString());
+        } else {
+            phone.setManaged(false);
+        }
 
         String checkEmail = casePerson.getEmail().toString();
-        email.setText(checkEmail.isBlank() ? "" : "Email: " + casePerson.getEmail().toString());
+        if (!checkEmail.isBlank()) {
+            email.setText("Email: " + casePerson.getEmail().toString());
+        } else {
+            email.setManaged(false);
+        }
 
         String checkAddress = casePerson.getAddress().toString();
-        address.setText(checkAddress.isBlank() ? "" : "Address: " + casePerson.getAddress().toString());
+        if (!checkAddress.isBlank()) {
+            address.setText("Address: " + casePerson.getAddress().toString());
+        } else {
+            address.setManaged(false);
+        }
+
     }
 
     @Override

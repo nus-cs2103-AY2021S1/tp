@@ -1,12 +1,13 @@
 package seedu.pivot.logic.commands.suspectcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -62,8 +63,8 @@ public class AddSuspectCommand extends AddCommand {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        assert(StateManager.atCasePage()) : "Program should be at case page";
-        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
+        assert(index.getZeroBased() < lastShownList.size()) : ASSERT_VALID_INDEX;
 
         Case openCase = lastShownList.get(index.getZeroBased());
         List<Suspect> updatedSuspects = openCase.getSuspects();
@@ -79,7 +80,6 @@ public class AddSuspectCommand extends AddCommand {
                 openCase.getTags());
 
         model.setCase(openCase, updatedCase);
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
         return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
     }
 

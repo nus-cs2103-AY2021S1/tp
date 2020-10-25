@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
@@ -89,7 +89,7 @@ public class DeleteDocumentCommandTest {
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
         DeleteCommand command = new DeleteDocumentCommand(DEFAULT_CASE_INDEX, invalidIndex);
         assertThrows(CommandException.class,
-                Messages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX, () -> command.execute(modelStub));
+                UserMessages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX, () -> command.execute(modelStub));
         StateManager.resetState();
     }
 

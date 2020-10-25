@@ -1,7 +1,7 @@
 package seedu.pivot.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;

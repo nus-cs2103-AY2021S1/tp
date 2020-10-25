@@ -1,6 +1,7 @@
 package seedu.pivot.logic.commands.casecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_TITLE;
 
@@ -52,7 +53,7 @@ public class AddCaseCommand extends AddCommand {
         logger.info("Adding case to PIVOT...");
         requireNonNull(model);
 
-        assert(StateManager.atMainPage()) : "Program should be at main page";
+        assert(StateManager.atMainPage()) : ASSERT_MAIN_PAGE;
 
         if (model.hasCase(investigationCase)) {
             logger.warning("Failed to add case: Tried to add a case that exists in PIVOT");

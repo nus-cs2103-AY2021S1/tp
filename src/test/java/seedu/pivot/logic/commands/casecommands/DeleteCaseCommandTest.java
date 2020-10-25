@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
@@ -77,7 +77,7 @@ public class DeleteCaseCommandTest {
         ModelStub modelStub = new ModelStubWithCaseList(caseList);
         DeleteCommand deleteCommand = new DeleteCaseCommand(index);
         assertThrows(CommandException.class,
-                Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX, () -> deleteCommand.execute(modelStub));
+                UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX, () -> deleteCommand.execute(modelStub));
     }
 
     /**

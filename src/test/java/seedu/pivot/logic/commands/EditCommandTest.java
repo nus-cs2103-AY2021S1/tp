@@ -15,7 +15,7 @@ import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.EditCommand.EditCaseDescriptor;
 import seedu.pivot.model.Model;
@@ -128,7 +128,7 @@ public class EditCommandTest {
         EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }
 
     /**
@@ -145,7 +145,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }
 
     @Test

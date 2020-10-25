@@ -70,6 +70,7 @@ public class AddDocumentCommandIntegrationTest {
 
         String expectedMessage = String.format(AddDocumentCommand.MESSAGE_ADD_DOCUMENT_SUCCESS, DEFAULT_DOCUMENT);
         ModelManager expectedModel = new ModelManager((model.getPivot()), new UserPrefs());
+        showCaseAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setCase(caseToUpdate, expectedCase);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

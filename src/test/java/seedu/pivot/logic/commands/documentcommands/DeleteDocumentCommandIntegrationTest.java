@@ -8,7 +8,7 @@ import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
@@ -45,7 +45,7 @@ public class DeleteDocumentCommandIntegrationTest {
         Index invalidDocIndex = Index.fromOneBased(model.getFilteredCaseList().get(0).getDocuments().size() + 1);
         DeleteCommand command = new DeleteDocumentCommand(INDEX_FIRST_PERSON, invalidDocIndex);
 
-        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX);
+        assertCommandFailure(command, model, UserMessages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX);
         StateManager.resetState();
     }
 
@@ -71,7 +71,7 @@ public class DeleteDocumentCommandIntegrationTest {
         Index invalidDocIndex = Index.fromOneBased(model.getFilteredCaseList().get(0).getDocuments().size() + 1);
         DeleteCommand command = new DeleteDocumentCommand(INDEX_FIRST_PERSON, invalidDocIndex);
 
-        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX);
+        assertCommandFailure(command, model, UserMessages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX);
         StateManager.resetState();
     }
 

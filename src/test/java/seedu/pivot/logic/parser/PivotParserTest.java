@@ -2,8 +2,8 @@ package seedu.pivot.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;

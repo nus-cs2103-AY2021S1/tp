@@ -68,6 +68,7 @@ public class AddDescriptionCommandIntegrationTest {
 
         String expectedMessage = String.format(AddDescriptionCommand.MESSAGE_ADD_DESCRIPTION_SUCCESS, description);
         ModelManager expectedModel = new ModelManager((model.getPivot()), new UserPrefs());
+        showCaseAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setCase(caseToUpdate, expectedCase);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

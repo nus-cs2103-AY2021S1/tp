@@ -2,19 +2,19 @@ package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 
 /**
- * Finds and lists all cases in PIVOT whose name contains any of the argument keywords.
+ * Finds and lists all cases in PIVOT whose details contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all cases whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all cases whose details contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
@@ -30,7 +30,7 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredCaseList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_CASES_LISTED_OVERVIEW, model.getFilteredCaseList().size()));
+                String.format(UserMessages.MESSAGE_CASES_LISTED_OVERVIEW, model.getFilteredCaseList().size()));
     }
 
     @Override

@@ -1,6 +1,6 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.INVALID_TAG_DESC;
