@@ -94,9 +94,9 @@ public class EditTaskCommand extends Command {
 
         Task editedTask = new Task(name);
 
-        if (taskToEdit.getTag().isPresent() || editTaskDescriptor.getTags().isPresent()) {
+        if (taskToEdit.getTags().isPresent() || editTaskDescriptor.getTags().isPresent()) {
             Set<Tag> updatedTag = editTaskDescriptor.getTags()
-                    .orElse(taskToEdit.getTag().get());
+                    .orElse(taskToEdit.getTags().get());
             editedTask = editedTask.setTags(updatedTag);
         }
 

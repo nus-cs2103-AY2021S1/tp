@@ -160,7 +160,7 @@ public class Task {
 
         Task otherTask = (Task) other;
         return otherTask.getName().equals(getName())
-            && otherTask.getTag().equals(getTag())
+            && otherTask.getTags().equals(getTags())
             && otherTask.getPriority().equals(getPriority())
             && otherTask.getDate().equals(getDate())
             && otherTask.getStatus().equals(getStatus());
@@ -174,7 +174,7 @@ public class Task {
                 .append(getName())
                 .append("\n")
                 .append(" *Tags: ")
-                .append(getTag())
+                .append(getTags())
                 .append("\n")
                 .append(" *Priority: ")
                 .append(getPriority())
