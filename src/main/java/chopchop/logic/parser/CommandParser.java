@@ -16,8 +16,10 @@ import chopchop.logic.commands.Command;
 import chopchop.logic.commands.QuitCommand;
 
 import static chopchop.logic.parser.commands.AddCommandParser.parseAddCommand;
+import static chopchop.logic.parser.commands.EditCommandParser.parseEditCommand;
 import static chopchop.logic.parser.commands.HelpCommandParser.parseHelpCommand;
 import static chopchop.logic.parser.commands.ListCommandParser.parseListCommand;
+import static chopchop.logic.parser.commands.FilterCommandParser.parseFilterCommand;
 import static chopchop.logic.parser.commands.FindCommandParser.parseFindCommand;
 import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
 import static chopchop.logic.parser.commands.MakeCommandParser.parseMakeCommand;
@@ -106,6 +108,7 @@ public class CommandParser {
                 switch (args.getCommand()) {
 
                 case Strings.COMMAND_ADD:       return parseAddCommand(args);
+                case Strings.COMMAND_EDIT:      return parseEditCommand(args);
                 case Strings.COMMAND_HELP:      return parseHelpCommand(args);
                 case Strings.COMMAND_FIND:      return parseFindCommand(args);
                 case Strings.COMMAND_LIST:      return parseListCommand(args);
@@ -114,6 +117,7 @@ public class CommandParser {
                 case Strings.COMMAND_VIEW:      return parseViewCommand(args);
                 case Strings.COMMAND_UNDO:      return Result.of(new UndoCommand());
                 case Strings.COMMAND_REDO:      return Result.of(new RedoCommand());
+                case Strings.COMMAND_FILTER:    return parseFilterCommand(args);
                 case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
 
                 default:

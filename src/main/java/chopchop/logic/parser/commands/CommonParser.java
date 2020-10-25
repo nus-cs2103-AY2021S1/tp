@@ -28,6 +28,20 @@ public class CommonParser {
     }
 
     /**
+     * Finds the first augmented argument in the given {@code args} and returns it (optionally), so
+     * we can print a nice error message. The intended use of this function is to parse commands
+     * that don't take augmented arguments (which is all commands except EDIT).
+     */
+    public static Optional<ArgName> getFirstAugmentedComponent(CommandArguments args) {
+
+        return args.getAllArguments()
+            .stream()
+            .filter(arg -> !arg.fst().getComponents().isEmpty())
+            .map(p -> p.fst())
+            .findFirst();
+    }
+
+    /**
      * Gets the 'target' of a command, which is either 'ingredient' or 'recipe'. Returns either an error
      * if the target was invalid or empty, or a pair consisting of the {@code CommandTarget}, and the
      * rest of the unnamed arguments.

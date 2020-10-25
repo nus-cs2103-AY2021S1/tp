@@ -10,9 +10,7 @@ import java.time.format.DateTimeParseException;
 import chopchop.commons.util.Result;
 
 public class ExpiryDate implements Comparable<ExpiryDate> {
-
-    public static final String MESSAGE_CONSTRAINTS =
-        "Expiry date should be of the form yyyy-MM-dd";
+    public static final String MESSAGE_CONSTRAINTS = "Expiry date should be of the form yyyy-MM-dd";
     // TODO: Accept a wider range of date/time formats
     public static final DateTimeFormatter FORMAT = DateTimeFormatter.ISO_LOCAL_DATE;
     private final LocalDate date;
@@ -66,9 +64,9 @@ public class ExpiryDate implements Comparable<ExpiryDate> {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-            || (other instanceof ExpiryDate // instanceof handles nulls
-            && this.date.equals(((ExpiryDate) other).date));
+        return other == this
+                || (other instanceof ExpiryDate
+                && this.date.equals(((ExpiryDate) other).date));
     }
 
     @Override
