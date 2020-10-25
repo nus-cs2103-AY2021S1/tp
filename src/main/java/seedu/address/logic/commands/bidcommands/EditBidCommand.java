@@ -47,8 +47,8 @@ public class EditBidCommand extends Command {
     private final EditBidDescriptor editBidDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editBidDescriptor details to edit the person with
+     * @param index of the person in the filtered bid list to edit
+     * @param editBidDescriptor details to edit the bid with
      */
     public EditBidCommand(Index index, EditBidDescriptor editBidDescriptor) {
         requireNonNull(index);

@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.meeting.Meeting;
@@ -118,10 +119,19 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     /** Returns the BidBook */
     ReadOnlyBidBook getBidBook();
 
+    /** Returns the filtered version of BidBook */
     ObservableList<Bid> getFilteredBidList();
 
+    /**
+     * updates the Bid book with the new predicate
+     * @param predicate predicate useed to determine what is filtered
+     */
     void updateFilteredBidList(Predicate<Bid> predicate);
 
+    /**
+     * adds a bid to the BidBook
+     * @param bid to add to the BidBook
+     */
     void addBid(Bid bid);
 
     /**
@@ -129,7 +139,24 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      */
     boolean hasBid(Bid bid);
 
+    /**
+     * return true if all parameters of the bid are valid
+     * @param bid
+     * @return
+     */
+    void isValidBid(Bid bid) throws CommandException;
+
+    /**
+     * deleted a bid from the BidBook
+     * @param target
+     */
     void deleteBid(Bid target);
+
+    /**
+     * Updates the comparator of the sorted bid list to sort by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedBidList(Comparator<Bid> comparator);
 
     /**
      * Replaces the given bid {@code target} with {@code editedBid}.
@@ -189,5 +216,7 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedMeetingList(Comparator<Meeting> comparator);
+
+    //=========== MeetingManager ================================================================================
 
 }

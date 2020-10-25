@@ -31,7 +31,13 @@ public class Price {
         return test > 0;
     }
 
-
+    /**
+     * retrieves price from an object
+     * @return price in the double form
+     */
+    public double getPrice() {
+        return this.price;
+    }
     @Override
     public String toString() {
         return String.format("$%.2f", price);

@@ -51,7 +51,11 @@ public class UniqueBidList implements Iterable<Bid> {
     }
 
 
-
+    /**
+     * replaces a bid at the specific index in the list
+     * @param target bid to be replaced
+     * @param editedBid bid to replace target
+     */
     public void setBid(Bid target, Bid editedBid) {
         requireAllNonNull(target, editedBid);
 
@@ -67,11 +71,19 @@ public class UniqueBidList implements Iterable<Bid> {
         internalBidList.set(index, editedBid);
     }
 
+    /**
+     * replaces the entire list with a new list
+     * @param replacement bid list to replace the current list
+     */
     public void setBids(UniqueBidList replacement) {
         requireNonNull(replacement);
         internalBidList.setAll(replacement.internalBidList);
     }
 
+    /**
+     * replaces the entire list with a new list
+     * @param bids bid list to replace the current list
+     */
     public void setBids(List<Bid> bids) {
         requireAllNonNull(bids);
         if (!bidsAreUnique(bids)) {
@@ -81,8 +93,26 @@ public class UniqueBidList implements Iterable<Bid> {
         internalBidList.setAll(bids);
     }
 
+    /**
+     * provides an unmodifiable list that can only be observed
+     * @return an observable list of type Bid
+     */
     public ObservableList<Bid> asUnmodifiableObservableBidList() {
         return internalUnmodifiableBidList;
+    }
+
+    /**
+     * Returns true if {@code persons} contains only unique persons.
+     */
+    private boolean bidsAreUnique(List<Bid> bids) {
+        for (int i = 0; i < bids.size() - 1; i++) {
+            for (int j = i + 1; j < bids.size(); j++) {
+                if (bids.get(i).isSameBid(bids.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     @Override
@@ -100,19 +130,5 @@ public class UniqueBidList implements Iterable<Bid> {
     @Override
     public int hashCode() {
         return internalBidList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code persons} contains only unique persons.
-     */
-    private boolean bidsAreUnique(List<Bid> bids) {
-        for (int i = 0; i < bids.size() - 1; i++) {
-            for (int j = i + 1; j < bids.size(); j++) {
-                if (bids.get(i).isSameBid(bids.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }

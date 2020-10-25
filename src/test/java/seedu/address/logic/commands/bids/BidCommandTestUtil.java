@@ -1,5 +1,7 @@
 package seedu.address.logic.commands.bids;
 
+import seedu.address.model.id.PropertyId;
+
 public class BidCommandTestUtil {
 
 
@@ -11,6 +13,8 @@ public class BidCommandTestUtil {
 
     public static final double VALID_BID_AMOUNT_BID_A = 10000.20;
     public static final double VALID_BID_AMOUNT_BID_B = 123450.20;
+
+    public static final PropertyId DEFAULT_PROPERTY_ID = new PropertyId("P1");
 
 }
 

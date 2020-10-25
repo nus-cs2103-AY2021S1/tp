@@ -2,7 +2,7 @@ package seedu.address.logic.commands.bids;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
+import static seedu.address.logic.commands.bids.BidCommandTestUtil.DEFAULT_PROPERTY_ID;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
@@ -18,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bid.BidComparator;
 import seedu.address.testutil.bids.BidBuilder;
 
 public class AddBidCommandIntegrationTest {
@@ -36,7 +37,7 @@ public class AddBidCommandIntegrationTest {
         Bid validBid = new BidBuilder()
                 .withPropertyId(DEFAULT_PROPERTY_ID.toString())
                 .build();
-
+        BidComparator comparator = new BidComparator();
         Model expectedModel = new ModelManager(
                 model.getAddressBook(),
                 new UserPrefs(),
@@ -47,6 +48,8 @@ public class AddBidCommandIntegrationTest {
                 model.getMeetingBook()
         );
         expectedModel.addBid(validBid);
+        expectedModel.updateSortedBidList(comparator);
+        model.updateSortedBidList(comparator);
 
         assertCommandSuccess(new AddBidCommand(validBid), model,
                 String.format(AddBidCommand.MESSAGE_SUCCESS, validBid), expectedModel);
