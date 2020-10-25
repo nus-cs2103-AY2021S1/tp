@@ -47,22 +47,22 @@ public class AddCommandParser {
         assert args.getCommand().equals(Strings.COMMAND_ADD);
 
         return getCommandTarget(args)
-            .then(target -> {
-                if (target.snd().isEmpty()) {
-                    return Result.error("recipe or ingredient name cannot be empty");
-                }
+                .then(target -> {
+                    if (target.snd().isEmpty()) {
+                        return Result.error("recipe or ingredient name cannot be empty");
+                    }
 
-                switch (target.fst()) {
-                case RECIPE:
-                    return parseAddRecipeCommand(target.snd().strip(), args);
+                    switch (target.fst()) {
+                    case RECIPE:
+                        return parseAddRecipeCommand(target.snd().strip(), args);
 
-                case INGREDIENT:
-                    return parseAddIngredientCommand(target.snd().strip(), args);
+                    case INGREDIENT:
+                        return parseAddIngredientCommand(target.snd().strip(), args);
 
-                default:
-                    return Result.error("can only add recipes or ingredients ('%s' invalid)", target.fst());
-                }
-            });
+                    default:
+                        return Result.error("can only add recipes or ingredients ('%s' invalid)", target.fst());
+                    }
+                });
     }
 
     /**
@@ -73,10 +73,15 @@ public class AddCommandParser {
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
-            Strings.ARG_EXPIRY, Strings.ARG_TAG))).isPresent()) {
+                Strings.ARG_EXPIRY, Strings.ARG_TAG))).isPresent()) {
 
             return Result.error("'add ingredient' command doesn't support '%s'\n%s",
-                foo.get(), AddIngredientCommand.MESSAGE_USAGE);
+                    foo.get(), AddIngredientCommand.MESSAGE_USAGE);
+        }
+
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add ingredient' command doesn't support edit-arguments\n%s",
+                    AddIngredientCommand.MESSAGE_USAGE);
         }
 
         if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
@@ -107,15 +112,15 @@ public class AddCommandParser {
         // looks weird, but basically this extracts the /qty and /expiry arguments (if present),
         // then constructs the command from it -- while returning any intermediate error messages.
         return Result.transpose(qtys
-            .stream()
-            .findFirst()
-            .map(Quantity::parse))
-            .then(qty -> Result.transpose(exps
                 .stream()
                 .findFirst()
-                .map(e -> Result.of(e)))
-                .then(exp -> createAddIngredientCommand(name, qty, exp, tagSet))
-            );
+                .map(Quantity::parse))
+                .then(qty -> Result.transpose(exps
+                        .stream()
+                        .findFirst()
+                        .map(e -> Result.of(e)))
+                        .then(exp -> createAddIngredientCommand(name, qty, exp, tagSet))
+                );
     }
 
     /**
@@ -126,10 +131,15 @@ public class AddCommandParser {
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY,
-            Strings.ARG_INGREDIENT, Strings.ARG_STEP, Strings.ARG_TAG))).isPresent()) {
+                Strings.ARG_INGREDIENT, Strings.ARG_STEP, Strings.ARG_TAG))).isPresent()) {
 
             return Result.error("'add recipe' command doesn't support '%s'\n%s",
-                foo.get(), AddRecipeCommand.MESSAGE_USAGE);
+                    foo.get(), AddRecipeCommand.MESSAGE_USAGE);
+        }
+
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add recipe' command doesn't support edit-arguments\n%s",
+                    AddRecipeCommand.MESSAGE_USAGE);
         }
 
         if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
@@ -153,6 +163,7 @@ public class AddCommandParser {
                         .collect(Collectors.toList()),
                     tagSet)
             );
+
     }
 
     /**
@@ -197,7 +208,7 @@ public class AddCommandParser {
 
             } else if (p.fst().equals(Strings.ARG_QUANTITY)) {
                 return Result.error("'%s' without ingredient in argument %d [/qty %s...]",
-                    Strings.ARG_QUANTITY, i + 1, new StringView(p.snd()).take(4));
+                        Strings.ARG_QUANTITY, i + 1, new StringView(p.snd()).take(4));
             } else {
                 // do nothing.
             }
@@ -223,7 +234,6 @@ public class AddCommandParser {
 
     private static AddRecipeCommand createAddRecipeCommand(String name,
         List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
-
         return new AddRecipeCommand(new Recipe(
             name, ingredients, steps, tags
         ));
@@ -232,7 +242,6 @@ public class AddCommandParser {
 
     private static Result<AddIngredientCommand> createAddIngredientCommand(String name, Optional<Quantity> qty,
         Optional<String> expiry, Set<Tag> tags) {
-
         return Result.transpose(expiry
             .map(ExpiryDate::of))
             .map(exp -> new AddIngredientCommand(new Ingredient(name,

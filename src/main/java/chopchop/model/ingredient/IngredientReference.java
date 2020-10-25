@@ -3,8 +3,14 @@ package chopchop.model.ingredient;
 import static java.util.Objects.requireNonNull;
 
 import chopchop.model.Entry;
+import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Quantity;
 import chopchop.commons.util.Result;
+import chopchop.model.attributes.Tag;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * A reference to an ingredient. Not the actual {@code Ingredient}, and knows nothing about it.
@@ -46,6 +52,21 @@ public class IngredientReference extends Entry {
     @Override
     public String toString() {
         return String.format("%s (%s)", this.name, this.quantity);
+    }
+
+    @Override
+    public Set<Tag> getTags() {
+        return null;
+    }
+
+    @Override
+    public Optional<ExpiryDate> getExpiryDate() {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<List<ExpiryDate>> getExpiryDates() {
+        return Optional.empty();
     }
 
     @Override

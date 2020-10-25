@@ -1,12 +1,14 @@
 package chopchop.model.ingredient;
 
-import java.util.HashSet;
+import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.Optional;
-import java.util.Comparator;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.Entry;
@@ -15,8 +17,6 @@ import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
 import chopchop.commons.util.Pair;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an Ingredient in the recipe manager.
@@ -109,6 +109,10 @@ public class Ingredient extends Entry {
 
         // just return the first expiry date.
         return this.sets.firstKey();
+    }
+
+    public Optional<List<ExpiryDate>> getExpiryDates() {
+        return null;
     }
 
     public TreeMap<Optional<ExpiryDate>, Quantity> getIngredientSets() {
