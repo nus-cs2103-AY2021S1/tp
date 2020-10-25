@@ -224,7 +224,7 @@ By using `ArgumentMultimap`, we are able to record the searching criteria togeth
 The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the 
 predicate on the existing filteredList.
 
-Below is a usage example
+Below is a usage example:
 
 Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
 Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a 
@@ -232,7 +232,7 @@ value <br>
 Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
 Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
 
-Below is a sequence diagram of the above
+You can refer to the sequence diagram as shown below:
 
 ![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
 
@@ -318,6 +318,42 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
+
+### Help Window
+There are 2 types of help window: `help summary` and `help start`.
+The `logic` behind help command is similar to other commands in terms of `parsing`.
+In this section, we will only discuss the main differences in `Logic` component of `Help Window` as compared to 
+other features' implementation.
+
+Refer to the code snippet shown below which is related to `help summary` command:
+```
+    // HelpSummaryCommand class
+    public CommandResult execute(Models models) {
+        return new HelpCommandResult(SHOWING_HELP_MESSAGE, false, true, false, "", HELP_SUMMARY);
+    }
+
+    // Constructor of HelpCommandResult
+    public HelpCommandResult(String feedbackToUser, boolean showHelp,
+                             boolean showPreview, boolean exit, String dataToUser,
+                             String popUpContent) {
+        super(feedbackToUser, showHelp, showPreview, exit);
+        this.dataToUser = requireNonNull(dataToUser);
+        this.popUpContent = requireNonNull(popUpContent);
+    }
+```
+After parsing of help command has been done *(Refer to Figure 6 for similar sequence diagram)*, `execute(Models)` 
+method in `HelpSummaryCommand` will override `isShowPreview` 
+field from `CommandResult` to be true *(Refer to the constructor of CommandResult)*.
+This method returns `HelpCommandResult` which will interact with `Ui` component to display 
+the result in the user interface. Similar to this, the only difference for `help start` is that isShowHelp is
+the field to be overridden as true. <br>
+Also notice that the `execute(Models)` method in HelpSummaryCommand takes in `HELP_SUMMARY` as the `popUpContent`.
+If there is a need for any changes in the help message, `HELP_SUMMARY` can be found in `Message` class inside
+`commons/core` package.
+
+
+ 
+
 
 ### \[Proposed\] Data archiving
 
