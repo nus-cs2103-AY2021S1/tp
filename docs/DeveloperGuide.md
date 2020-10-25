@@ -6,6 +6,17 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+Welcome to OneShelf. This developer guide aims to introduce potential developers to the structure and implementation of
+OneShelf, so that you can contribute too! <br>
+
+This guide uses a top-down approach design which covers from higher-level design to lower-level design, and
+discusses the implementation of key features as well as the rationale behind certain design decisions with 
+possible alternatives in code design. Next, there are also links to guides for the tools used in Documentation, Logging,
+Testing, Configuration and DevOps. Lastly, appendices are provided to specify the product scope, requirements, glossary and 
+instructions for manual testing.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -14,20 +25,22 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+This section shows the design of **OneShelf**.
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+Figure 1. Architecture Diagram
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T12-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -49,21 +62,18 @@ Each of the four components,
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+Figure 2. Class Diagram of Logic Component
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+Figure 3. Sequence Diagram of `delete 1` command
 
 The sections below give more details of each component.
 
 ### UI component
-
-![Structure of the UI Component](images/UiClassDiagram.png)
-
-**API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItemListPanel`, `DeliveryListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -74,19 +84,28 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+The following diagram illustrates the structure of the `UI` component:
+
+![Structure of the UI Component](images/UiClassDiagram.png)
+Figure 4: Class Diagram of UI Component
+
+**API** :
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+
 ### Logic component
 
+1. `Logic` uses the `Parser` API to parse the user command.
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. adding an item).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+
+The following class diagram illustrated the structure of `Logic` component:
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
-
-1. `Logic` uses the `Parser` API to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding an item).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
-
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-i 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
@@ -95,6 +114,9 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 </div>
 
 ### Model component
+The Model component corresponds to all the data-related logic that the user works with.
+
+The following class diagram illustrates the structure of the `Model` component:
 
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
 Structure of the Model Component
@@ -102,7 +124,6 @@ Structure of the Model Component
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 `Models`,
-
 
 * stores a map of Models(eg. InventoryModel and DeliveryModel)
 * Each model stores the current state of the Book(eg. InventoryModel stores the current state of the InventoryBook)
@@ -134,7 +155,9 @@ Structure of Items Object
 Structure of Delivery Object
 
 ### Storage component
+Storage component is responsible to save the data of inventory and delivery book into the hard disk.
 
+The following diagram illustrated the structure of `Storage` component:
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
@@ -145,7 +168,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
