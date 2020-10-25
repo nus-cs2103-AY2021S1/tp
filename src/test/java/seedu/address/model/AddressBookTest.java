@@ -26,8 +26,8 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.ModuleBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.builders.ModuleBuilder;
+import seedu.address.testutil.builders.PersonBuilder;
 
 public class AddressBookTest {
 
