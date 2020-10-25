@@ -10,6 +10,7 @@ import chopchop.commons.core.LogsCenter;
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ReadOnlyUserPrefs;
+import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
@@ -23,8 +24,8 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private final IngredientBookStorage ingredientBookStorage;
     private final RecipeBookStorage recipeBookStorage;
-    private final UsageStorage<JsonAdaptedRecipeUsage, RecipeUsage> recipeUsageStorage;
-    private final UsageStorage<JsonAdaptedIngredientUsage, IngredientUsage> ingredientUsageStorage;
+    private final UsageStorage<RecipeUsage, RecipeUsage> recipeUsageStorage;
+    private final UsageStorage<IngredientUsage, IngredientUsage> ingredientUsageStorage;
     private final UserPrefsStorage userPrefsStorage;
 
     /**
@@ -32,8 +33,8 @@ public class StorageManager implements Storage {
      * {@code UserPrefStorage}.
      */
     public StorageManager(RecipeBookStorage recipeBookStorage, IngredientBookStorage ingredientBookStorage,
-                          UsageStorage<JsonAdaptedRecipeUsage, RecipeUsage> recipeUsageStorage,
-                          UsageStorage<JsonAdaptedIngredientUsage, IngredientUsage> ingredientUsageStorage,
+                          UsageStorage<RecipeUsage, RecipeUsage> recipeUsageStorage,
+                          UsageStorage<IngredientUsage, IngredientUsage> ingredientUsageStorage,
                           UserPrefsStorage userPrefsStorage) {
         this.recipeBookStorage = recipeBookStorage;
         this.ingredientBookStorage = ingredientBookStorage;
@@ -156,12 +157,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveRecipeUsages(List<JsonAdaptedRecipeUsage> usages) throws IOException {
+    public void saveRecipeUsages(UsageList<RecipeUsage> usages) throws IOException {
         this.saveRecipeUsages(usages, this.getRecipeUsageFilePath());
     }
 
     @Override
-    public void saveRecipeUsages(List<JsonAdaptedRecipeUsage> usages, Path filePath) throws IOException {
+    public void saveRecipeUsages(UsageList<RecipeUsage> usages, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         this.recipeUsageStorage.saveUsages(usages, filePath);
     }
@@ -182,12 +183,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveIngredientUsages(List<JsonAdaptedIngredientUsage> usages) throws IOException {
+    public void saveIngredientUsages(UsageList<IngredientUsage> usages) throws IOException {
         this.saveIngredientUsages(usages, this.getIngredientUsageFilePath());
     }
 
     @Override
-    public void saveIngredientUsages(List<JsonAdaptedIngredientUsage> usages, Path filePath) throws IOException {
+    public void saveIngredientUsages(UsageList<IngredientUsage> usages, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         this.ingredientUsageStorage.saveUsages(usages, filePath);
     }

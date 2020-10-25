@@ -4,7 +4,6 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -221,6 +220,22 @@ public class ModelManager implements Model {
     public void updateFilteredIngredientList(Predicate<? super Ingredient> predicate) {
         requireNonNull(predicate);
         this.filteredIngredients.setPredicate(predicate);
+    }
+
+    /**
+     * Returns the ReadOnlyIngredientBook
+     */
+    @Override
+    public UsageList<RecipeUsage> getRecipeUsageList() {
+        return this.recipeUsageList;
+    }
+
+    /**
+     * Returns the ReadOnlyIngredientBook
+     */
+    @Override
+    public UsageList<IngredientUsage> getIngredientUsageList() {
+        return null;
     }
 
     @Override

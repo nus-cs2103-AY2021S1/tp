@@ -14,9 +14,10 @@ import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.commons.util.FileUtil;
 import chopchop.commons.util.JsonUtil;
+import chopchop.model.UsageList;
 import chopchop.model.usage.IngredientUsage;
 
-public class JsonIngredientUsageStorage implements UsageStorage<JsonAdaptedIngredientUsage, IngredientUsage> {
+public class JsonIngredientUsageStorage implements UsageStorage<IngredientUsage, IngredientUsage> {
     private static final Logger logger = LogsCenter.getLogger(JsonIngredientUsageStorage.class);
 
     private final Path filePath;
@@ -57,12 +58,12 @@ public class JsonIngredientUsageStorage implements UsageStorage<JsonAdaptedIngre
     }
 
     @Override
-    public void saveUsages(List<JsonAdaptedIngredientUsage> usages) throws IOException {
+    public void saveUsages(UsageList<IngredientUsage> usages) throws IOException {
         this.saveUsages(usages, this.filePath);
     }
 
     @Override
-    public void saveUsages(List<JsonAdaptedIngredientUsage> usages, Path filePath) throws IOException {
+    public void saveUsages(UsageList<IngredientUsage> usages, Path filePath) throws IOException {
         requireAllNonNull(usages, filePath);
 
         FileUtil.createIfMissing(filePath);

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import chopchop.commons.exceptions.DataConversionException;
+import chopchop.model.UsageList;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
 
@@ -20,9 +21,9 @@ public interface Storage extends IngredientBookStorage, RecipeBookStorage, UserP
 
     public Optional<List<RecipeUsage>> readRecipeUsages(Path filePath) throws DataConversionException;
 
-    public void saveRecipeUsages(List<JsonAdaptedRecipeUsage> usages) throws IOException;
+    public void saveRecipeUsages(UsageList<RecipeUsage> usages) throws IOException;
 
-    public void saveRecipeUsages(List<JsonAdaptedRecipeUsage> usages, Path filePath) throws IOException;
+    public void saveRecipeUsages(UsageList<RecipeUsage> usages, Path filePath) throws IOException;
 
     public Path getIngredientUsageFilePath();
 
@@ -30,7 +31,7 @@ public interface Storage extends IngredientBookStorage, RecipeBookStorage, UserP
 
     public Optional<List<IngredientUsage>> readIngredientUsages(Path filePath) throws DataConversionException;
 
-    public void saveIngredientUsages(List<JsonAdaptedIngredientUsage> usages) throws IOException;
+    public void saveIngredientUsages(UsageList<IngredientUsage> usages) throws IOException;
 
-    public void saveIngredientUsages(List<JsonAdaptedIngredientUsage> usages, Path filePath) throws IOException;
+    public void saveIngredientUsages(UsageList<IngredientUsage> usages, Path filePath) throws IOException;
 }
