@@ -87,7 +87,7 @@ The `UI` component,
 The following diagram illustrates the structure of the `UI` component:
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
-Figure 4: Class Diagram of `UI` Component
+Figure 4: Structure of the `UI` Component
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
@@ -99,11 +99,12 @@ by instructing `Ui`, and modifies `Model` and/or `Storage` component depending o
 
 The following class diagram illustrated the structure of `Logic` component:
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
-Figure 5: Class Diagram of `Logic` Component
+Figure 5: Structure of the `Logic` Component
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
+The `Logic` component does the following:
 1. `Logic` uses the `Parser` API to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
 3. The command execution can affect the `Model` (e.g. adding an item).
@@ -124,7 +125,7 @@ The Model component corresponds to all the data-related logic that the user work
 The following class diagram illustrates the structure of the `Model` component:
 
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
-Figure 7: Class Diagram of `Model` Component
+Figure 7: Structure of the `Model` Component
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
@@ -154,10 +155,10 @@ Figure 7: Class Diagram of `Model` Component
 We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
 
 ![Structure of the Item Component](images/ItemClassDiagram.png) <br>
-Figure 8: Class Diagram of `Item`
+Figure 8: Structure of the `Item`
 
 ![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
-Figure 9: Class Diagram of `Delivery`
+Figure 9: Structure of the `Delivery`
 
 ### Storage component
 Storage component is responsible to save the data of inventory and delivery book into the hard disk.
