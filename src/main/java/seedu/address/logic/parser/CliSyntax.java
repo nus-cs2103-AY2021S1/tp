@@ -16,11 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PAYMENT = new Prefix("d/");
     public static final Prefix PREFIX_DETAILS = new Prefix("a/");
 
-    /* Prefix for question commands */
-    public static final Prefix PREFIX_ADD_QUESTION = new Prefix("a/");
-    public static final Prefix PREFIX_SOLVE_QUESTION = new Prefix("s/");
-    public static final Prefix PREFIX_DELETE_QUESTION = new Prefix("d/");
-
     /* Prefix for additionalDetail commands */
     public static final Prefix PREFIX_DETAIL_INDEX = new Prefix("i/");
     public static final Prefix PREFIX_DETAIL_TEXT = new Prefix("d/");
@@ -33,9 +28,6 @@ public class CliSyntax {
 
     public static final Prefix[] FIND_SUPPORTED_PREFIXES =
             new Prefix[] {PREFIX_NAME, PREFIX_SCHOOL, PREFIX_YEAR};
-
-    public static final Prefix[] QUESTION_COMMAND_PREFIXES =
-            new Prefix[] {PREFIX_ADD_QUESTION, PREFIX_SOLVE_QUESTION, PREFIX_DELETE_QUESTION};
 
     public static final Prefix[] ADDITIONAL_DETAIL_COMMAND_PREFIXES =
             new Prefix[] {PREFIX_DETAIL_INDEX, PREFIX_DETAIL_TEXT};

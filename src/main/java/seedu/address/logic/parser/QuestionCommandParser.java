@@ -67,6 +67,16 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
         }
     }
 
+    private Index getQuestionIndex(ArgumentMultimap argumentMultimap) throws ParseException {
+        try {
+            return ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_DETAIL_INDEX).get());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
+        }
+    }
+
+    //======Parsers=====//
+
     private AddQuestionCommand parseAddQuestionCommand(String input) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(input, PREFIX_DETAIL_TEXT);
@@ -90,7 +100,7 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
         }
 
         Index studentIndex = getStudentIndex(argMultimap);
-        Index questionIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DETAIL_INDEX).get());
+        Index questionIndex = getQuestionIndex(argMultimap);
         String solution = ParserUtil.parseSolution(argMultimap.getValue(PREFIX_DETAIL_TEXT).get());
 
         return new SolveQuestionCommand(studentIndex, questionIndex, solution);
@@ -105,7 +115,7 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
         }
 
         Index studentIndex = getStudentIndex(argMultimap);
-        Index questionIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DETAIL_INDEX).get());
+        Index questionIndex = getQuestionIndex(argMultimap);
 
         return new DeleteQuestionCommand(studentIndex, questionIndex);
     }
