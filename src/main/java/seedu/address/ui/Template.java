@@ -1,5 +1,12 @@
 package seedu.address.ui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.Scanner;
+
 public class Template {
     public String name;
     public String description;
@@ -42,5 +49,23 @@ public class Template {
                 ", description:'" + description + '\'' +
                 ", calories:" + calories +
                 '}';
+    }
+
+    public String parseToArgument() {
+        return "n/" + getName() + " d/" + getDescription() + " c/" + getCalories();
+    }
+
+
+    public static void writeToFile(List<Template> lists) throws IOException {
+        FileWriter fw = new FileWriter("data/template.txt");
+        String textToAdd = "";
+
+        for (int i = 0; i < lists.size(); i++) {
+            Template template = lists.get(i);
+            textToAdd = textToAdd + template.parseToArgument() + System.lineSeparator();
+        }
+
+        fw.write(textToAdd);
+        fw.close();
     }
 }

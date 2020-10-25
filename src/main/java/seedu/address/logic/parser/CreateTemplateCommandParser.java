@@ -38,6 +38,25 @@ public class CreateTemplateCommandParser implements ExerciseParser<CreateTemplat
         return new CreateTemplateCommand(template);
     }
 
+    public Template parseTemp(String args) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES)
+            /*|| !argMultimap.getPreamble().isEmpty()*/) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    CreateTemplateCommand.MESSAGE_USAGE));
+        }
+
+        Name name = ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
+
+        Template template = new Template(name.fullName, description.value, parseInt(calories.value));
+
+        return template;
+    }
+
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());

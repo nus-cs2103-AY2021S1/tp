@@ -1,7 +1,13 @@
 package seedu.address.ui;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import seedu.address.logic.parser.CreateTemplateCommandParser;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TemplateList {
     public static Template pushUp = new Template("push up", "half an hour", 100);
@@ -24,5 +30,37 @@ public class TemplateList {
 
     public static void addTemplate(Template template) {
         list.add(template);
+    }
+
+
+    public static void load() {
+        String filePath = "data/template.txt";
+        File f = new File(filePath);
+        if (f.exists()) {
+            try {
+                Scanner s = new Scanner(f);
+                readTask(f);
+            } catch (FileNotFoundException e) {
+                new File("data").mkdir();
+            }
+        } else {
+            new File("data").mkdir();
+        }
+    }
+
+    public static void readTask(File f) {
+        list = new ArrayList<>();
+        CreateTemplateCommandParser parser = new CreateTemplateCommandParser();
+        try {
+            Scanner s = new Scanner(f);
+            while (s.hasNext()) {
+                String string = s.nextLine();
+                list.add(parser.parseTemp("create " + string));
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

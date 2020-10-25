@@ -6,10 +6,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.io.IOException;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.ui.Template;
+import seedu.address.ui.TemplateList;
 
 public class CreateTemplateCommand extends CommandForExercise {
     public static final String COMMAND_WORD = "create";
@@ -33,17 +36,22 @@ public class CreateTemplateCommand extends CommandForExercise {
     }
 
     @Override
-    public CommandResult execute(ExerciseModel model) throws CommandException {
+    public CommandResult execute(ExerciseModel model) throws CommandException, IOException {
         requireNonNull(model);
 
-        model.createTemplate(toCreate);
+        TemplateList.load(); // load from the file
+        model.createTemplate(toCreate);  // add to list
+        Template.writeToFile(TemplateList.getList()); // write to file
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
     }
 
-//    @Override
-//    public boolean equals(Object other) {
-//        return other == this // short circuit if same object
-//                || (other instanceof AddCommand // instanceof handles nulls
-//                && toCreate.equals(((AddCommandForExercise) other).toAdd)); // state check
-//    }
+    @Override
+    public boolean equals(Object other) {
+        Template template = (Template) other;
+        return other == toCreate // short circuit if same object
+                || (template.getName().equals(toCreate.getName()) &&
+                template.getDescription().equals(toCreate.getDescription()) &&
+                template.getCalories().equals(toCreate.getCalories())); // state check
+    }
 }
