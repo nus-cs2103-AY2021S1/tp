@@ -14,6 +14,7 @@ import seedu.address.model.ReadOnlyWishfulShrinking;
 import seedu.address.model.WishfulShrinking;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
+import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.model.tag.Tag;
@@ -36,7 +37,7 @@ public class SampleDataUtil {
         Scanner sc = new Scanner(file);
         int index = 0;
         Name recipeName = null;
-        String recipeInstructions = "";
+        ArrayList<Instruction> recipeInstructions = new ArrayList<>();
         String recipeImage = "";
         HashSet<Tag> tag = new HashSet<>();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -77,12 +78,20 @@ public class SampleDataUtil {
         return str.substring(10, str.length() - 2);
     }
 
-    private static String getTag(String str) {
-        return str.substring(8, str.length() - 3);
+    private static ArrayList<Instruction> getRecipeInstructions(String instruction) {
+        String instrString = instruction.substring(17, instruction.length() - 2);
+        String[] instructions = instrString.split("\\.");
+        ArrayList<Instruction> instructionList = new ArrayList<>();
+        int index = 1;
+        for (String instr : instructions) {
+            instructionList.add(new Instruction((index) + ") " + instr.trim()));
+            index = index + 1;
+        }
+        return instructionList;
     }
 
-    private static String getRecipeInstructions(String str) {
-        return str.substring(17, str.length() - 2);
+    private static String getTag(String str) {
+        return str.substring(8, str.length() - 3);
     }
 
     private static ArrayList<Ingredient> getRecipeIngredients(String str) {
@@ -129,7 +138,11 @@ public class SampleDataUtil {
 
     private static Recipe getFallbackRecipe() {
         Name name = new Name("Tahini cake");
-        String instructions = "Heat oven. Cream butter, add flour";
+        Instruction instruction1 = new Instruction("1) Heat oven");
+        Instruction instruction2 = new Instruction("2) Add flour");
+        ArrayList<Instruction> instructionList = new ArrayList<>();
+        instructionList.add(instruction1);
+        instructionList.add(instruction2);
         String recipeImage = "https://i.guim.co.uk/img/media/0a07b58d3e8a5c67901c90c7b3b25885095597e6"
                 + "/84_2248_5678_6000/master/5678.jpg?width=620&quality=85&auto=format&fit=max&s=b20e33f"
                 + "7054827278dbd2b9d8a2e7616";
@@ -137,11 +150,11 @@ public class SampleDataUtil {
         Ingredient ingredient2 = new Ingredient("flour", "2 cups");
         ArrayList<Ingredient> ingredientList = new ArrayList<>();
         ingredientList.add(ingredient1);
-        ingredientList.add(ingredient1);
+        ingredientList.add(ingredient2);
         Calories calories = new Calories(100);
         HashSet<Tag> tags = new HashSet<>();
         tags.add(new Tag("healthy"));
-        return new Recipe(name, instructions, recipeImage, ingredientList, calories, tags);
+        return new Recipe(name, instructionList, recipeImage, ingredientList, calories, tags);
     }
 
     public static ReadOnlyWishfulShrinking getSampleWishfulShrinking() {
