@@ -290,7 +290,6 @@ Step 8: The `RemoveCommand` is executed and one quantity of the first item in th
 * There are two VendorCommand classes in SupperStrikers.
 * `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from.
 * `VendorCommand`, deselects the vendor to the default unintialized value.
-<<<<<<< HEAD
 * If the vendor does not exist, a `Command Exception` will be thrown
 * If the vendor selected is different from the current vendor, the model will clear the current order.
 
@@ -298,7 +297,6 @@ The following activity diagram summarises the process when the SwitchVendorComma
 ![SwitchVendorActivityDiagram](diagrams/SwitchVendorCommandActivityDiagram.puml)
 
 
-=======
 * `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from,
 * If the vendor does not exist, a `Command Exception` will be thrown.
 * If the vendor selected is different from the current vendor, the model will clear the current order.
