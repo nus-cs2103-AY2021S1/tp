@@ -164,7 +164,7 @@ In this case 2 items are considered the same if they have the same `Name` and `S
 The other variables such as:
 
 a) `Metric` `MaxQuantity`
-- Are not allowed to be defined if there exist the same item inside InventoryBook.
+- Are not allowed to be defined if there exists the same item inside InventoryBook.
 
 b) `Tags`
 - Will be combined together if there exist the same item inside InventoryBook.
