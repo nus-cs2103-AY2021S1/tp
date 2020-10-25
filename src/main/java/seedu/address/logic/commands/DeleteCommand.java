@@ -32,6 +32,12 @@ public class DeleteCommand extends Command {
         this.targetIndexes = targetIndexes;
     }
 
+    private static boolean containsDuplicates(List<Index> targetIndexes) {
+        long distinctIndexes = targetIndexes.stream().distinct().count();
+        long lengthOfIndexesList = targetIndexes.size();
+        return distinctIndexes < lengthOfIndexesList;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -39,14 +45,20 @@ public class DeleteCommand extends Command {
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
         List<Assignment> deletedAssignments = new ArrayList<>();
 
+        if (containsDuplicates(targetIndexes)) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
+        }
+
         for (Index targetIndex : targetIndexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
-            } else {
-                Assignment assignmentToDelete = lastShownList.get(targetIndex.getZeroBased());
-                deletedAssignments.add(assignmentToDelete);
-                model.deleteAssignment(assignmentToDelete);
             }
+        }
+
+        for (Index targetIndex : targetIndexes) {
+            Assignment assignmentToDelete = lastShownList.get(targetIndex.getZeroBased());
+            deletedAssignments.add(assignmentToDelete);
+            model.deleteAssignment(assignmentToDelete);
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, deletedAssignments));
