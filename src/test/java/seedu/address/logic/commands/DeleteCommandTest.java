@@ -40,7 +40,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validDeleteExpense_success() throws CommandException {
         CommandResult commandResult = new DeleteCommand(INDEX_FIRST_ENTRY, expense).execute(modelStub, activeAccount);
-        assertEquals(String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, expense),
+        assertEquals(String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, BUY_FLOWER_POTS),
                 commandResult.getFeedbackToUser());
         assertFalse(activeAccount.hasExpense(BUY_FLOWER_POTS));
     }
@@ -48,7 +48,7 @@ public class DeleteCommandTest {
     @Test
     public void execute_validDeleteRevenue_success() throws CommandException {
         CommandResult commandResult = new DeleteCommand(INDEX_FIRST_ENTRY, revenue).execute(modelStub, activeAccount);
-        assertEquals(String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, revenue),
+        assertEquals(String.format(DeleteCommand.MESSAGE_DELETE_ENTRY_SUCCESS, SELL_FLOWER_POTS),
                 commandResult.getFeedbackToUser());
         assertFalse(activeAccount.hasRevenue(SELL_FLOWER_POTS));
     }
