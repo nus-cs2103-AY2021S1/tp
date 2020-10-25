@@ -14,6 +14,7 @@ import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
     private final FilteredList<StudentRecord> filteredStudentRecords;
+    private final FilteredList<Session> filteredSessions;
 
     /**
      * Initializes a ModelManager with the given taskmaster and userPrefs.
@@ -41,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
         filteredStudentRecords = new FilteredList<>(this.taskmaster.getStudentRecordList());
+        filteredSessions = new FilteredList<>(this.taskmaster.getSessionList());
     }
 
     public ModelManager() {
@@ -92,6 +95,18 @@ public class ModelManager implements Model {
     @Override
     public ReadOnlyTaskmaster getTaskmaster() {
         return taskmaster;
+    }
+
+    @Override
+    public boolean hasSession(Session session) {
+        requireNonNull(session);
+        return taskmaster.hasSession(session);
+    }
+
+    @Override
+    public void addSession(Session session) {
+        taskmaster.addSession(session);
+        updateFilteredSessionList(PREDICATE_SHOW_ALL_SESSIONS);
     }
 
     @Override
@@ -171,6 +186,17 @@ public class ModelManager implements Model {
     public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
         requireNonNull(predicate);
         filteredStudentRecords.setPredicate(predicate);
+    }
+
+    @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return filteredSessions;
+    }
+
+    @Override
+    public void updateFilteredSessionList(Predicate<Session> predicate) {
+        requireNonNull(predicate);
+        filteredSessions.setPredicate(predicate);
     }
 
     @Override

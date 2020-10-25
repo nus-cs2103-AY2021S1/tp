@@ -8,8 +8,11 @@ import javafx.collections.ObservableList;
 import seedu.taskmaster.commons.core.GuiSettings;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
+import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * The API of the Model component.
@@ -20,6 +23,9 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<StudentRecord> PREDICATE_SHOW_ALL_STUDENT_RECORDS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Session> PREDICATE_SHOW_ALL_SESSIONS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -60,6 +66,17 @@ public interface Model {
     ReadOnlyTaskmaster getTaskmaster();
 
     /**
+     * Returns true if {@code session} exists in the session list.
+     */
+    boolean hasSession(Session session);
+
+    /**
+     * Adds the given session.
+     * {@code session} must not already exist in the session list.
+     */
+    void addSession(Session session);
+
+    /**
      * Returns true if a student with the same identity as {@code student} exists in the student list.
      */
     boolean hasStudent(Student student);
@@ -90,6 +107,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered attendance list */
     ObservableList<StudentRecord> getFilteredStudentRecordList();
 
+    ObservableList<Session> getFilteredSessionList();
+
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -101,6 +120,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate);
+
+    void updateFilteredSessionList(Predicate<Session> predicate);
 
     /**
      * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.

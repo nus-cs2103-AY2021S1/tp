@@ -82,6 +82,16 @@ public class Taskmaster implements ReadOnlyTaskmaster {
                 StudentRecordListManager.of(newData.getStudentList()));
     }
 
+    /* Session-Level Operations */
+
+    /**
+     * Returns true if {@code session} exists in the session list.
+     */
+    public boolean hasSession(Session session) {
+        requireNonNull(session);
+        return sessions.contains(session);
+    }
+
     /* Student-Level Operations */
 
     /**
@@ -90,6 +100,14 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     public boolean hasStudent(Student student) {
         requireNonNull(student);
         return students.contains(student);
+    }
+
+    /**
+     * Adds a session to the session list.
+     * The session must not already exist in the session list.
+     */
+    public void addSession(Session session) {
+        sessions.add(session);
     }
 
     /**
@@ -158,6 +176,11 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     public ObservableList<StudentRecord> getStudentRecordList() {
         return currentSession.getStudentRecords();
+    }
+
+    @Override
+    public ObservableList<Session> getSessionList() {
+        return sessions.asUnmodifiableObservableList();
     }
 
     /**

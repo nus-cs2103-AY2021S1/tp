@@ -6,6 +6,13 @@ import java.util.List;
 
 public interface SessionList extends Iterable<Session> {
 
+    /**
+     * Returns true if the session list contains {@code session}.
+     */
+    boolean contains(Session session);
+
+    void add(Session toAdd);
+
     void setSessions(SessionListManager replacement);
 
     /**
