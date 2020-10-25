@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Comparator;
+import java.util.ConcurrentModificationException;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -153,6 +154,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredContactList(Predicate<Contact> predicate);
+
+    /** Returns an unmodifiable view of the filtered contact list */
+    ObservableList<Contact> getSortedContactList();
+
+    /**
+     * Updates the filter of the filtered contact list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateSortedContactList(Comparator<Contact> comparator);
 
     /**
      * Returns the file path of the contact list.
