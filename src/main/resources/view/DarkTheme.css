@@ -412,3 +412,31 @@
 }
 
 
+.pane-with-border-notes {
+    -fx-background-color: derive(#323232, 0%);
+    -fx-border-color: derive(#323232, 0%);
+    -fx-border-top-width: 0px;
+    -fx-background-radius: 5;
+}
+
+.note-list-panel-vbox .list-cell:filled:even {
+    -fx-background-color: #8ABAFF;
+}
+
+.note-list-panel-vbox .list-cell:filled:odd {
+    -fx-background-color: #FF8A9E;
+}
+
+.note-list-panel-vbox .list-cell:filled:selected:even {
+    -fx-background-color: #B9D6FF;
+    -fx-border-color: #363c43;
+    -fx-border-width: 3;
+}
+
+.note-list-panel-vbox .list-cell:filled:selected:odd {
+    -fx-background-color: #FFDCE2;
+    -fx-border-color: #363c43;
+    -fx-border-width: 3;
+}
+
+
