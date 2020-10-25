@@ -61,9 +61,13 @@ public class AddItemCommand extends Command {
         }
 
         model.addItem(itemToAdd);
+
+        model.commitInventory();
+
         if (hasNonDefaultParams(itemToAdd)) {
             return new CommandResult(String.format(MESSAGE_WARNING, itemToAdd));
         }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, itemToAdd));
     }
 

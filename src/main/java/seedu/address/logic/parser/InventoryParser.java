@@ -22,6 +22,8 @@ import seedu.address.logic.commands.FindItemCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListItemCommand;
 import seedu.address.logic.commands.ListRecipeCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.ViewDetailsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -85,6 +87,12 @@ public class InventoryParser {
             return new ListRecipeCommandParser().parse(arguments);
         case ClearRecipeCommand.COMMAND_WORD:
             return new ClearRecipeCommand();
+
+        // Utility commands start here
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

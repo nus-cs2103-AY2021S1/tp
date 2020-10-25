@@ -325,9 +325,9 @@ The `FindItemCommand` object facilitates this feature. The search keys are parse
 The following sequence diagram illustrates how the find items command works.
 ![FindItemSequenceDiagram](images/commandseqdiagrams/FindItemSequenceDiagram.png)
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
 `VersionedInventory` facilitates the proposed undo/redo feature. It extends `Inventory`, with
 comprises: `ItemList`, `LocationList` and `RecipeList` and contains the entire `Inventory`'s undo/redo history,
@@ -372,8 +372,8 @@ once to the left, pointing it to the previous inventory state, and restores the 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
 **Note:** If the `currentStatePointer` is at index 0, pointing to the initial `Inventory` state, then there are 
-no previous `Inventory` states to restore. The `undo` command uses `Model#canUndoinventory()` to check if this
-is the case. If so, it will return an error to the user rather than attempting to perform the undo.
+no previous `Inventory` states to restore. The `undo` command checks if this is the case. If so, it will return 
+an error to the user rather than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
@@ -385,8 +385,8 @@ The `redo` command does the opposite — it calls `Model#redoInventory()`, w
 once to the right, pointing to the previously undone state, and restores the inventory to that state.
 
 **Note:** If the `currentStatePointer` is at index `inventoryStateList.size() - 1`, pointing to the
-latest inventory state, then there are no undone `Inventory` states to restore. The `redo` command uses
-`Model#canRedoInventory()` to check if this is the case. If so, it will return an error to the user
+latest inventory state, then there are no undone `Inventory` states to restore. The `redo` command checks if this 
+is the case. If so, it will return an error to the user
 rather than attempting to perform the redo.
 
 Step 5. The user then decides to execute the command `listi`. Commands that do not modify the inventory, such as 
