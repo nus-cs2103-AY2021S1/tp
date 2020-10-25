@@ -6,7 +6,6 @@ import chopchop.model.recipe.Recipe;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -46,7 +45,7 @@ public class DisplayController extends UiPart<Region> {
         recipeObservableList.addListener((ListChangeListener<Recipe>) c -> {
             c.next();
 
-            /**
+            /*
              * Check if a recipe was replaced in the recipe book, with an extra check to account for
              * updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES).
              */
