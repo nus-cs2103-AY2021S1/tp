@@ -33,7 +33,6 @@ public class AddAppointmentCommand extends AppointmentCommand {
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPT = "This appointment already exists in the calendar.";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private Appointment toAdd;
     private final Index targetIndex;
