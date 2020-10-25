@@ -53,8 +53,10 @@ public class NoteCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+
         model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> allStocks = model.getFilteredStockList();
+
         Optional<Stock> stockToAddNote = Optional.empty();
         // Find the stock to add note to
         for (Stock currentStock : allStocks) {

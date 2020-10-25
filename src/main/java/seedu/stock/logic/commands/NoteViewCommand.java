@@ -46,6 +46,7 @@ public class NoteViewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
 
         Optional<Stock> stockToViewNotes = Optional.empty();

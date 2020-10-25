@@ -57,7 +57,10 @@ public class NoteDeleteCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
+
         Optional<Stock> stockToDeleteNote = Optional.empty();
         // Find the stock to add note to
         for (Stock currentStock : lastShownStocks) {
