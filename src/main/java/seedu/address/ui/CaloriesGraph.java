@@ -1,15 +1,23 @@
 package seedu.address.ui;
 
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Objects;
+
 import javafx.fxml.FXML;
+import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 
 public class CaloriesGraph extends UiPart<Region> {
+    private static final int DAY_TO_DISPLAY = 7;
     private static final String FXML = "CaloriesGraph.fxml";
 
     @FXML
@@ -18,25 +26,43 @@ public class CaloriesGraph extends UiPart<Region> {
     /**
      * Creates a {@code CaloriesGraph} with the given {@code HashMap}.
      */
-    public CaloriesGraph() {
+    public CaloriesGraph(HashMap<String, Integer> dayCalories) {
         super(FXML);
-        fillInfo();
+        fillInfo(dayCalories);
     }
 
-    private void fillInfo() {
-        NumberAxis xAxis = new NumberAxis();
+    private void fillInfo(HashMap<String, Integer> dayCalories) {
+        CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
-        LineChart<Number, Number> lineChart = new LineChart<Number, Number>(xAxis, yAxis);
+        LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
 
-        Series<Number, Number> series = new Series<Number, Number>();
-        series.setName("No of schools in an year");
-        series.getData().add(new XYChart.Data(1970, 15));
-        series.getData().add(new XYChart.Data(1980, 30));
-        series.getData().add(new XYChart.Data(1990, 60));
-        series.getData().add(new XYChart.Data(2000, 120));
-        series.getData().add(new XYChart.Data(2013, 240));
-        series.getData().add(new XYChart.Data(2014, 300));
+        Series<String, Number> series = new Series<String, Number>();
+        String[] dates = generatePastDates();
+        String date;
+        Integer calories;
+        for (int i = 0; i < DAY_TO_DISPLAY; i++) {
+            //Get X,Y cordinates for a point which corresponds to
+            //the date, and the amount of calories burnt on that date
+            date = dates[i];
+            calories = dayCalories.get(date);
+            if (Objects.isNull(calories)) {
+                calories = 0;
+            }
+            series.getData().add(new Data(date, calories));
+        }
+
         lineChart.getData().add(series);
         pane.getChildren().add(lineChart);
+    }
+
+    private String[] generatePastDates() {
+        String[] dates = new String[DAY_TO_DISPLAY];
+        LocalDate today = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        for (int i = 0; i < DAY_TO_DISPLAY; i++ ) {
+            //the dates should be in the order of earlies to latest
+            dates[i] = today.minus(Period.ofDays(DAY_TO_DISPLAY - 1 - i)).format(formatter);
+        }
+        return dates;
     }
 }

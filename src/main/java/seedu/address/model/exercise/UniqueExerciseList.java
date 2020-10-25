@@ -3,6 +3,7 @@ package seedu.address.model.exercise;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final HashMap<String, Integer> caloriesByDay = new HashMap<>();
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -39,6 +41,12 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         return internalList.stream().anyMatch(toCheck::isSameExercise);
     }
 
+    /**
+     * Returns the HashMap that contains the amount of calories burnt per day.
+     */
+    public HashMap<String, Integer> getCaloriesByDay() {
+        return caloriesByDay;
+    }
 
     /**
      * Adds a exercise to the list.
@@ -50,6 +58,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
             throw new DuplicateExerciseException();
         }
         internalList.add(toAdd);
+        addCaloriesForDay(toAdd);
     }
 
     /**
@@ -70,6 +79,8 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         }
 
         internalList.set(index, editedExercise);
+        minusCaloriesForDay(target);
+        addCaloriesForDay(editedExercise);
     }
 
     /**
@@ -81,11 +92,13 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         if (!internalList.remove(toRemove)) {
             throw new ExerciseNotFoundException();
         }
+        minusCaloriesForDay(toRemove);
     }
 
     public void setExercises(UniqueExerciseList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        recalculateDayCalories();
     }
 
     /**
@@ -100,6 +113,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         }
 
         internalList.setAll(exercises);
+        recalculateDayCalories();
     }
 
     /**
@@ -140,4 +154,28 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         return true;
     }
 
+    private void addCaloriesForDay(Exercise newEntry) {
+        String stringDate = newEntry.getDate().value;
+        Integer intCalories = Integer.parseInt(newEntry.getCalories().value);
+        if (caloriesByDay.containsKey(stringDate)) {
+            Integer newCalories = caloriesByDay.get(stringDate) + intCalories;
+            caloriesByDay.put(stringDate, newCalories);
+        } else {
+            caloriesByDay.put(stringDate, intCalories);
+        }
+    }
+
+    private void minusCaloriesForDay(Exercise oldEntry) {
+        String stringDate = oldEntry.getDate().value;
+        Integer intCalories = Integer.parseInt(oldEntry.getCalories().value);
+        assert caloriesByDay.containsKey(stringDate) : "Input for minusCaloriesForDay() is wrong";
+        Integer newCalories = caloriesByDay.get(stringDate) + intCalories;
+        caloriesByDay.put(stringDate, newCalories);
+    }
+
+    private void recalculateDayCalories() {
+        for (Exercise e : internalList ) {
+            addCaloriesForDay(e);
+        }
+    }
 }

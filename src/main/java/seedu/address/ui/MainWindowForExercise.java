@@ -129,7 +129,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        caloriesGraph = new CaloriesGraph();
+        caloriesGraph = new CaloriesGraph(logic.getCaloriesByDay());
         caloriesGraphPlaceholder.getChildren().add(caloriesGraph.getRoot());
     }
 
