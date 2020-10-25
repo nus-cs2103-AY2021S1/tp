@@ -15,7 +15,7 @@
     <scene>
         <Scene>
                 <stylesheets>
-                    <URL value="@DarkTheme.css"/>
+                    <URL value="@LightTheme.css"/>
                 </stylesheets>
                 <PieChart fx:id="statisticsPieChart" minHeight="600.0" minWidth="700.0"
                           xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
