@@ -1,24 +1,19 @@
 Common Cents is your convenient at-hand expense-tracking tool, meant for anyone who runs a small-scale business. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
 
-* Quick Start
-* Features
-  <!--* Viewing help: `help`-->
-  * Adding an entry: `add`
-  * Deleting an entry: `delete`
-  * Editing an entry: `edit`
-  * Finding entries by a keyword: `find`
-  * Exiting the program: `exit`
-* Command Summary
+* Table of Contents
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
+# How to identify notations
+These blocks are a few examples of notations that will be used in this document. Each block and icon 
+has a different meaning so do look out for them under our features.
 
 <div markdown="block" class="alert alert-info"> 
 
-:information_source: **Note:**
+:information_source: **Note:** 
 
-Explains the rationale behind our design. 
-
+Important notes to read regarding the feature. 
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -27,30 +22,21 @@ Explains the rationale behind our design.
 
 :bulb: **Tip:**
 
-Good to learn, but not necessary to know to use FitEgo. 
-</div>
-
-
-<div markdown="block" class="alert alert-warning">
-
-:star: **Feature:**
-
-Important to know.
+Ways to better your experience with Common Cents.
 </div>
 
 <div markdown="block" class="alert alert-success">
 
 :heavy_check_mark: **Example:**
 
-An example to follow. 
-
+An example, or multiple examples to follow.
 </div>
 
 <div markdown="block" class="alert alert-danger">
 
 :warning: **Warning:**
 
-May have irreversible effect when used. Backup and caution is recommended.
+Important cautions that needs to be known before using the feature.
 </div>
 
 
@@ -113,10 +99,11 @@ UI component | Description
 * Parameters can be in any order.<br>
   e.g. if the command specifies `c/CATEGORY d/DESCRIPTION...`, `d/DESCRIPTION c/CATEGORY...` is also acceptable.
 
-
+The commands are separated into three categories: App-Level commands, Entry-Level commands and Account-Level Commands
 </div>
 
 ## App-Level Commands
+App-Level commands deals with interactions with the app, Common Cents, itself.
 
 ### Viewing help : `help`
 
@@ -134,6 +121,7 @@ Exits the program.
 Format: `exit`
 
 ## Entry-Level Commands
+Entry-Level commands involves managing the entries which are either expenses or revenues in an account. 
 
 ### Adding an entry: `add`
 
@@ -151,7 +139,7 @@ Examples:
 
 
 
-### Deleting entries : `delete`
+### Deleting entries: `delete`
 
 Removes an entry (expense/revenue) from the tracker.
 
@@ -166,7 +154,7 @@ Example:
 * `delete 2 c/revenue`
 
 
-### Editing an entry (expense/revenue) : `edit`
+### Editing an entry: `edit`
 
 Edits an entry in the tracker.
 
@@ -239,17 +227,174 @@ list, with the updated `ENTRY INDEX`.
 
 ### Calculating net profits based on expenses and revenues: `profit` 
 
+### Undoing Entry-level commands: `undo`
+You can use this command to return to the state of entries prior to previous command.
+ 
+Format: `undo`
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `undo`: Returns the state of expenses and revenues prior to the previous command. For example, if the 
+[`add`](#adding-an-entry-add) command was used, using `undo` returns account to the state before the 
+[`add`](#adding-an-entry-add) command was used as shown in the Figures below.
+
+</div>
+
+*(Add screenshots for before and after the undo, pointing to the entries)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+Do note that the `undo` command can only undo  [`add`](#adding-an-entry-add), [`delete`](#deleting-entries-delete),
+[`edit`](#editing-an-entry-edit) and [`clear`](#clearing-all-expenses-or-revenue-clear) commands at the entry-level. 
+Account-level commands cannot be reverted using the `undo` command.
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+There is no `redo` command to revert your `undo` command. Do use the `undo` command with caution!
+
+</div>
+
 ## Account-level Commands
+Account-Level commands involves managing the different accounts in the app. 
 
 ### Add new Account: `newacc`
+You can create a new account to manage a different set of entries with this command. Once the account is created, 
+you can check it via [`listacc`](#listing-accounts-you-have-listacc) or switch to it via [`switchacc`](#switching-accounts-switchacc). 
+
+Format: `newacc n/NAME`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `newacc n/My Flower Shop`: adds a new account, `My Flower Shop`, with no expenses or revenues.
+* `newacc n/$uper $avers`: adds a new account, `$uper $avers`, with no expenses or revenues. 
+</div>
+
+*(Insert screenshot here for the second example, pointing to the feedback)*
 
 ### Deleting an account: `deleteacc`
+You can remove the account using this command. This command is useful for clearing accounts that you might not be using
+anymore.
 
-### Editing the current account: `editacc`
+Format: `deleteacc INDEX`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `deletacc 1`: Deletes first account based on list generated by [`listacc`](#listing-accounts-you-have-listacc).
+
+</div>
+
+*(Insert screenshot here, pointing to the feedback)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+Do note that Common Cents prevents you from deleting the account if you are currently on that account
+or if the account is your only account left.
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+If you are unsure of the account index, use [`listacc`](#listing-accounts-you-have-listacc) to check the index!
+</div>
+
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+Deleting your account means all the data on entries in the account is lost as well. Also, deleting is an 
+irreversible action and cannot be undone. Do delete your account with caution!
+
+</div>
+
+### Editing the name current account: `editacc`
+You can edit the name of the current account you are on using this command.
+
+Format: `editacc n/NAME`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `editacc n/Bob's Bakery`: Replaces the name of the current account, `Default Account 1` to `Bob's Bakery` as shown in the Figure below
+
+</div>
+
+*(Insert screenshot here, point to the feedback and the account name)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+Do note that you cannot edit account names other than the account you are currently on. To edit the name
+of another account, you can use [`switchacc`](#switching-accounts-switchacc) to switch to the other account
+and edit the name from there.
+
+</div>
 
 ### Listing accounts you have: `listacc`
+You can check the accounts you have in the app by using this command. Each account will be numbered with an index and 
+displayed as their names.
+
+Format: `listacc`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `listacc`: Shows a numbered list of the account names as a message.
+
+</div>
+
+*(Insert screenshot here, pointing to the feedback)*
 
 ### Switching accounts: `switchacc`
+You can use this command to switch to the desired account. This is useful if you want to manage entries in the 
+account or edit the name of the desired account.
+
+Format: `switchacc INDEX`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `switchacc 1`: Switches to the first account based on list generated by [`listacc`](#listing-accounts-you-have-listacc).
+
+</div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+If you are unsure of the account index, use [`listacc`](#listing-accounts-you-have-listacc) to check the index!
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+Once you use the `switchacc` command, all the previous states for the [`undo`](#undoing-entry-level-commands-undo) will
+be lost. This would mean that if you choose to switch back to the account, you cannot undo the previous entry-level
+commands anymore. Do confirm your changes to the entries in the account before you switch account!
+
+</div>
+
 
 --------------------------------------------------------------------------------------------------------------------
 
