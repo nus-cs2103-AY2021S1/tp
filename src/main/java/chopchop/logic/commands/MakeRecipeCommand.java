@@ -91,6 +91,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
             } else {
                 model.setIngredient(ingredient.fst(), ingredient.snd());
             }
+            model.addIngredientUsage(ingredient.fst());
         }
 
         model.setRecipe(this.recipe, this.recipe.addUsage());
@@ -107,6 +108,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
             } else {
                 model.setIngredient(ingredient.snd(), ingredient.fst());
             }
+            model.removeIngredientUsage(ingredient.fst());
         }
 
         this.ingredients.clear();

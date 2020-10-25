@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.UsageList;
-import chopchop.model.ingredient.Ingredient;
 import chopchop.model.usage.IngredientUsage;
 
 public class JsonSerializableIngredientUsageList {
