@@ -91,6 +91,9 @@ We will follow the following convention for each command's format:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add -n NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
+  
+* Prefixes that precede parameters represent flags that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as flag-less parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
+  e.g. in `find example -t lunch`, `example` represents a flag-less parameter while `-t lunch` is referred as a parameter with flag `-t` and parameter input `lunch`.
 
 * Items in square brackets are optional.<br>
   e.g `-n NAME [-f FATS]` can be used as `-n bacon -f 10` or as `-n bacon`.
