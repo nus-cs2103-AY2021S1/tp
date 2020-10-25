@@ -115,6 +115,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setCliniCal(ReadOnlyCliniCal cliniCal) {
             throw new AssertionError("This method should not be called.");
         }
@@ -136,6 +141,21 @@ public class AddCommandTest {
 
         @Override
         public void setPatient(Patient target, Patient editedPatient) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAppointment(Appointment appointment) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAppointment(Appointment target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAppointment(Appointment target, Appointment editedAppointment) {
             throw new AssertionError("This method should not be called.");
         }
 

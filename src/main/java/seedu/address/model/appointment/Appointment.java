@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
 
 
@@ -15,18 +16,20 @@ import seedu.address.model.patient.Name;
  */
 public class Appointment {
 
-    private final Name patientName;
-    private final AppointmentDateTime startTime;
-    private final AppointmentDateTime endTime;
+    private Name patientName;
+    private AppointmentDateTime startTime;
+    private AppointmentDateTime endTime;
+    private IcNumber icNumber;
 
     /**
      * Patient name, appointment time must be present and not null.
      */
-    public Appointment(Name patientName, AppointmentDateTime startTime, AppointmentDateTime end) {
+    public Appointment(Name patientName, IcNumber icNumber, AppointmentDateTime startTime, AppointmentDateTime end) {
         requireAllNonNull(patientName, startTime, end);
         checkArgument(isValidStartEnd(startTime, end), MESSAGE_INVALID_APPOINTMENT_START_END);
         // should also check whether a patient is inside the patient database
         this.patientName = patientName;
+        this.icNumber = icNumber;
         this.startTime = startTime;
         this.endTime = end;
     }
@@ -48,6 +51,10 @@ public class Appointment {
 
     public Name getPatientName() {
         return patientName;
+    }
+
+    public IcNumber getIcNumber() {
+        return icNumber;
     }
 
     public AppointmentDateTime getStartTime() {
@@ -72,6 +79,7 @@ public class Appointment {
         }
         Appointment otherAppointment = (Appointment) other;
         return otherAppointment.getPatientName().equals(getPatientName())
+                && otherAppointment.getIcNumber().equals(getIcNumber())
                 && otherAppointment.getStartTime().equals(getStartTime())
                 && otherAppointment.getEndTime().equals(getEndTime());
     }
@@ -108,18 +116,6 @@ public class Appointment {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(patientName, startTime, endTime);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append("Patient: ")
-                .append(getPatientName())
-                .append(" Start: ")
-                .append(getStartTime())
-                .append(" End: ")
-                .append(getEndTime());
-        return builder.toString();
     }
 
 }

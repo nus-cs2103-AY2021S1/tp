@@ -19,6 +19,7 @@ public class UndoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // Defensive programming
         if (!model.canUndoCliniCal()) {
             throw new CommandException(MESSAGE_FAILURE);
         }

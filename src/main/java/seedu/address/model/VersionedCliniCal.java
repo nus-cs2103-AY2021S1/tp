@@ -34,6 +34,7 @@ public class VersionedCliniCal extends CliniCal {
      * Saves the current CliniCal application state in its history, after purging redundant states.
      */
     public void commit(ReadOnlyCliniCal currentCliniCal, String command) {
+        assert currentStatePointer > -1;
         if (currentStatePointer != clinicalStateList.size() - 1) {
             clinicalStateList.subList(currentStatePointer + 1, clinicalStateList.size()).clear();
             commandList.subList(currentStatePointer + 1, commandList.size()).clear();
