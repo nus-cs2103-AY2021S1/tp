@@ -68,4 +68,13 @@ public class Template {
         fw.write(textToAdd);
         fw.close();
     }
+
+    @Override
+    public boolean equals(Object toCreate) {
+        Template template = (Template) toCreate;
+        return toCreate == this // short circuit if same object
+                || (this.getName().equals(template.getName()) &&
+                this.getDescription().equals(template.getDescription()) &&
+                this.getCalories().equals(template.getCalories())); // state check
+    }
 }

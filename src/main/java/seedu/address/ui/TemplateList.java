@@ -63,4 +63,14 @@ public class TemplateList {
             e.printStackTrace();
         }
     }
+
+    public static boolean checkEqual(Template template) {
+        for (int i = 0; i < list.size(); i++) {
+            if (template.equals(list.get(i))) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

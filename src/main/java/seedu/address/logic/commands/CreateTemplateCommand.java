@@ -40,18 +40,13 @@ public class CreateTemplateCommand extends CommandForExercise {
         requireNonNull(model);
 
         TemplateList.load(); // load from the file
+        if (TemplateList.checkEqual(toCreate)) {
+            throw new CommandException("The template already exists.");
+        }
         model.createTemplate(toCreate);  // add to list
         Template.writeToFile(TemplateList.getList()); // write to file
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
     }
 
-    @Override
-    public boolean equals(Object other) {
-        Template template = (Template) other;
-        return other == toCreate // short circuit if same object
-                || (template.getName().equals(toCreate.getName()) &&
-                template.getDescription().equals(toCreate.getDescription()) &&
-                template.getCalories().equals(toCreate.getCalories())); // state check
-    }
 }
