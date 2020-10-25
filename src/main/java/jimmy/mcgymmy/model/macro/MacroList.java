@@ -29,6 +29,7 @@ public class MacroList {
 
     /**
      * Creates a new MacroList with pre-populated values.
+     *
      * @param macros list of macros to populate this with.
      * @throws DuplicateMacroException If there are any duplicate macros.
      */
@@ -54,6 +55,7 @@ public class MacroList {
 
     /**
      * Returns a new MacroList with the new macro.
+     *
      * @param newMacro the macro to add.
      * @throws DuplicateMacroException if the macro's name has already been taken.
      */
@@ -70,4 +72,6 @@ public class MacroList {
     public List<Macro> getAsList() {
         return new ArrayList<>(this.macros.values());
     }
+
+    // NOTE: not overriding Object.equals() because MacroList is immutable.
 }
