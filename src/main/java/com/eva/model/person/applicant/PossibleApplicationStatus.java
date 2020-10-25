@@ -23,7 +23,8 @@ public enum PossibleApplicationStatus {
         } else if (status.equals(REJECTED.status)) {
             return REJECTED;
         } else {
-            assert false; // should not reach here
+            assert false;
+            // should not reach here
             throw new IllegalArgumentException();
         }
     }
