@@ -113,14 +113,31 @@ the link to clipboard and paste it in your web browser. <br>
 
 **Format**: `help`
 
+
 ![helpMessage](images/helpMessage.png)
 <p align="center"> <sub> <b>Figure</b>: Help message </sub> </p>
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `help`: Returns help prompt.
+
+</div>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `exit`: Returns exit message then quits the program.
+
+</div>
 
 ## Entry-Level Commands
 Entry-Level commands involves managing the entries which are either expenses or revenues in an account. 
@@ -131,14 +148,26 @@ Adds an entry (expense/revenue) to the tracker.
 
 Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce`
+* `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
+
+</div>
+
+*(Add screenshot showing the profit message)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
 * Adds an entry to either category.
 * The category refers to the classification of the entry in the entry lists.
 * The category must be either 'expense' or 'revenue'.
 
-Examples:
-* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce`
-* `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
-
+</div>
 
 
 ### Deleting entries: `delete`
@@ -147,32 +176,58 @@ Removes an entry (expense/revenue) from the tracker.
 
 Format: `delete ENTRY_INDEX c/CATEGORY`
 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `delete 1 c/expense` : deletes first entry in expense category
+* `delete 2 c/revenue` : deletes second entry in the revenue category
+
+</div>
+
+*(Add screenshot showing the profit message)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
 * Deletes the entry at the specified INDEX.
 * The index refers to the index number shown in the displayed entry lists.
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10)
 
-Example:
-* `delete 1 c/expense`
-* `delete 2 c/revenue`
-
+</div>
 
 ### Editing an entry: `edit`
 
 Edits an entry in the tracker.
 
-* Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified
-* The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT
-* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
-
 Formats:
-* `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG
-   edit 2 c/CATEGORY d/DESCRIPTION
-   edit 3 c/CATEGORY a/AMOUNT`
+* `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG`
+* `edit 2 c/CATEGORY d/DESCRIPTION`
+* `edit 3 c/CATEGORY a/AMOUNT`
 
-Example:
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
 * `edit 2 c/expense n/buy McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
 * `edit 2 c/revenue n/sell McNuggets` changes the name of entry 2 to `sell McNuggets`
 * `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
+
+</div>
+
+*(Add screenshot showing the profit message)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+* Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified
+* The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT
+* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries 
+(e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
+
+</div>
 
 
 ### Locating entries by description: `find`
@@ -188,10 +243,8 @@ is no expense or revenue found, the respective list will be empty.
 
 * `find c/expense k/watercolours canvas` : finds all expenses with keywords `watercolours` and/or `canvas` in their 
 description.
-
 * `find c/revenue k/phone` : finds all revenues with keyword `phone` in their 
 description.
-
 * `find k/canvas earrings` : finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
 description (Figure).
  
@@ -217,20 +270,87 @@ description (Figure).
 
 [comment]: <> (This only appears in Github CSS)
 
-:bulb: **Tip:** Finding the correct index to delete an entry can be troublesome, especially when there are a lot of entries.
-Fret not, you can use `find k/KEYWORDS` to search for the entry in the list and use `delete ENTRY_INDEX` to remove it from the updated
+:bulb: **Tip:** When there are a lot of entries, and you want to delete something, 
+you can use `find` to search for it in the list and use `delete ENTRY_INDEX` to remove it from the updated
 list, with the updated `ENTRY INDEX`.
+
 </div>
 
 
 ### Listing all entries: `list`
 
+Lists all entries in the current account.
+
+Format: `list`
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `list`: Returns the latest list of all entries
+
+</div>
+
+
 ### Clearing all expenses or revenue: `clear`
+
+If for whatever reason you would like to clear all entries from a particular category, 
+you can use this command to do so.
+ 
+Format: `clear`
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `clear c/expense`: clears all entries in expenses by setting the state to an empty one.
+
+* `clear c/revenue`: clears all entries in revenues by setting the state to an empty one.
+
+</div>
+
+*(Add screenshots for before and after clear.)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+The `clear` command will clear all entries in the stipulated category. If you would like to delete selected
+entries, use the `delete` command instead.
+
+</div>
+
+<div markdown="block" class="alert alert-danger">
+
 
 ### Calculating net profits based on expenses and revenues: `profit` 
 
+If you wish to calculate the profits you have currently, you may use this command to do so.
+ 
+Format: `profit`
+ 
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:**
+
+* `profit`: Returns the profits by taking the difference between the expenses and revenues.
+
+</div>
+
+*(Add screenshot showing the profit message)*
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+The `profit` function will show deficits as a negative number should expenses be greater than revenue.
+</div>
+
+
 ### Undoing Entry-level commands: `undo`
+
 You can use this command to return to the state of entries prior to previous command.
+
  
 Format: `undo`
  
@@ -268,6 +388,7 @@ There is no `redo` command to revert your `undo` command. Do use the `undo` comm
 Account-Level commands involves managing the different accounts in the app. 
 
 ### Add new Account: `newacc`
+
 You can create a new account to manage a different set of entries with this command. Once the account is created, 
 you can check it via [`listacc`](#listing-accounts-you-have-listacc) or switch to it via [`switchacc`](#switching-accounts-switchacc). 
 
@@ -284,6 +405,7 @@ Format: `newacc n/NAME`
 *(Insert screenshot here for the second example, pointing to the feedback)*
 
 ### Deleting an account: `deleteacc`
+
 You can remove the account using this command. This command is useful for clearing accounts that you might not be using
 anymore.
 
@@ -325,6 +447,7 @@ irreversible action and cannot be undone. Do delete your account with caution!
 </div>
 
 ### Editing the name current account: `editacc`
+
 You can edit the name of the current account you are on using this command.
 
 Format: `editacc n/NAME`
@@ -337,7 +460,7 @@ Format: `editacc n/NAME`
 
 </div>
 
-*(Insert screenshot here, point to the feedback and the account name)*
+*(Insert screenshot here, point to the feedback, and the account name)*
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -350,6 +473,7 @@ and edit the name from there.
 </div>
 
 ### Listing accounts you have: `listacc`
+
 You can check the accounts you have in the app by using this command. Each account will be numbered with an index and 
 displayed as their names.
 
@@ -366,6 +490,7 @@ Format: `listacc`
 *(Insert screenshot here, pointing to the feedback)*
 
 ### Switching accounts: `switchacc`
+
 You can use this command to switch to the desired account. This is useful if you want to manage entries in the 
 account or edit the name of the desired account.
 
@@ -405,9 +530,19 @@ commands anymore. Do confirm your changes to the entries in the account before y
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
+**Exit** | `exit`
 **Add** | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 **Delete** | `delete ENTRY_INDEX c/CATEGORY`
-**Exit** | `exit`
+**Edit** | `edit 1 c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
+**Find** | `find k/KEYWORD [MORE_KEYWORDS]`
+**List** | `list`
+**Clear** | `clear c/CATEGORY`
+**Profit** | `profit`
+**New Account** | `newacc n/NAME`
+**Delete Account** | `deleteacc INDEX`
+**Edit Account** | `editacc n/NAME`
+**List Account** | `listacc`
+**Switch Account** | `switchacc INDEX`
 
 <!-- **Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT` -->
 <!-- **Find** | `find KEYWORD [MORE_KEYWORDS]` -->
