@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.bid.Bid;
@@ -16,8 +18,8 @@ import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
-import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -45,8 +47,9 @@ public class ModelManager implements Model {
     private final FilteredList<Seller> filteredSellers;
     private final FilteredList<Bidder> filteredBidders;
     private final FilteredList<Bid> filteredBids;
-    private final FilteredList<CalendarMeeting> filteredMeetings;
+    private final FilteredList<Meeting> filteredMeetings;
     private final FilteredList<Property> filteredProperties;
+    private final SortedList<Meeting> sortedMeetings;
 
     /**
      * Initializes a ModelManager with the given addressBook, userPrefs, bidBook, meetingManager and propertyBook.
@@ -54,7 +57,7 @@ public class ModelManager implements Model {
 
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyBidBook bidBook,
                         ReadOnlyPropertyBook propertyBook, ReadOnlyBidderAddressBook bidderAddressBook,
-                        ReadOnlySellerAddressBook sellerAddressBook, ReadOnlyMeetingManager meetingManager) {
+                        ReadOnlySellerAddressBook sellerAddressBook, ReadOnlyMeetingBook meetingManager) {
         super();
         requireAllNonNull(addressBook, userPrefs, bidBook, propertyBook,
                 bidderAddressBook, sellerAddressBook, meetingManager);
@@ -81,6 +84,7 @@ public class ModelManager implements Model {
         filteredBids = new FilteredList<>(this.bidBook.getBidList());
         filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
+        sortedMeetings = new SortedList<>(this.meetingBook.getMeetingList());
 
     }
 
@@ -317,42 +321,53 @@ public class ModelManager implements Model {
     //=========== MeetingManager ================================================================================
 
     @Override
-    public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
+    public void setMeetingManager(ReadOnlyMeetingBook meetingManager) {
         this.meetingBook.resetData(meetingManager);
     }
 
     @Override
-    public ReadOnlyMeetingManager getMeetingManager() {
+    public ReadOnlyMeetingBook getMeetingBook() {
         return meetingBook;
     }
 
     @Override
-    public boolean hasMeeting(CalendarMeeting meeting) {
+    public boolean hasMeeting(Meeting meeting) {
         requireNonNull(meeting);
         return meetingBook.hasMeetings(meeting);
     }
 
     @Override
-    public void deleteMeeting(CalendarMeeting target) {
+    public void deleteMeeting(Meeting target) {
         meetingBook.removeMeeting(target);
     }
 
     @Override
-    public void addMeeting(CalendarMeeting meeting) {
+    public void addMeeting(Meeting meeting) {
         meetingBook.addMeeting(meeting);
         updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
     }
 
     @Override
-    public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
 
         meetingBook.setMeeting(target, editedMeeting);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Meeting} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
     @Override
-    public void sortMeeting() {
-        //filteredMeetings.sortMeeting();
+    public ObservableList<Meeting> getSortedMeetingList() {
+        return sortedMeetings;
+    }
+
+    @Override
+    public void updateSortedMeetingList(Comparator<Meeting> comparator) {
+        requireAllNonNull(comparator);
+        sortedMeetings.setComparator(comparator);
+        meetingBook.setMeetings(sortedMeetings);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -362,12 +377,12 @@ public class ModelManager implements Model {
      * {@code versionedMeetingBook}
      */
     @Override
-    public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+    public ObservableList<Meeting> getFilteredMeetingList() {
         return filteredMeetings;
     }
 
     @Override
-    public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireNonNull(predicate);
         filteredMeetings.setPredicate(predicate);
     }

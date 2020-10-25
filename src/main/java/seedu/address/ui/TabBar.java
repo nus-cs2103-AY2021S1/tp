@@ -21,7 +21,6 @@ public class TabBar extends UiPart<Region> {
     private static final String FXML4 = "BidderListPanel.fxml";
     private static final String FXML5 = "SellerListPanel.fxml";
     private static final String FXML6 = "property/PropertyListPanel.fxml";
-    private static final String FXML7 = "CalendarListPanel.fxml";
 
     private Logic logic;
 
@@ -38,9 +37,6 @@ public class TabBar extends UiPart<Region> {
     private Tab bidTab;
 
     @FXML
-    private Tab calenderTab;
-
-    @FXML
     private Tab propertyTab;
 
     @FXML
@@ -51,9 +47,6 @@ public class TabBar extends UiPart<Region> {
 
     @FXML
     private StackPane bidListPanelPlaceholder;
-
-    @FXML
-    private StackPane meetingListPanelPlaceholder;
 
     @FXML
     private StackPane propertyListPanelPlaceholder;
@@ -77,7 +70,6 @@ public class TabBar extends UiPart<Region> {
         bidderTab.setText("Bidders");
         sellerTab.setText("Sellers");
         propertyTab.setText("Properties");
-        calenderTab.setText("Calendar");
         tabBar.setTabMinWidth(335);
         tabBar.setTabMaxWidth(335);
     }
@@ -87,12 +79,10 @@ public class TabBar extends UiPart<Region> {
      */
     private void populateTab() {
         BidListPanel bidListPanel = new BidListPanel(logic.getFilteredBidList());
-        CalendarListPanel calendarListPanel = new CalendarListPanel(logic.getFilteredMeetingList());
         PropertyListPanel propertyListPanel = new PropertyListPanel(logic.getFilteredPropertyList());
         BidderListPanel bidderListPanel = new BidderListPanel(logic.getFilteredBidderList());
         SellerListPanel sellerListPanel = new SellerListPanel(logic.getFilteredSellerList());
         bidListPanelPlaceholder.getChildren().add(bidListPanel.getRoot());
-        meetingListPanelPlaceholder.getChildren().add(calendarListPanel.getRoot());
         bidderListPanelPlaceholder.getChildren().add(bidderListPanel.getRoot());
         sellerListPanelPlaceholder.getChildren().add(sellerListPanel.getRoot());
         propertyListPanelPlaceholder.getChildren().add(propertyListPanel.getRoot());
@@ -112,7 +102,7 @@ public class TabBar extends UiPart<Region> {
             tabBar.getSelectionModel().select(propertyTab);
         }
         if (entityType == EntityType.MEETING) {
-            tabBar.getSelectionModel().select(calenderTab);
+            // tabBar.getSelectionModel().select(calenderTab);
         }
     }
 }

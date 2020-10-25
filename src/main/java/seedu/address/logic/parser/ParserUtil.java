@@ -11,8 +11,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.calendar.CalendarTime;
-import seedu.address.model.calendar.CalendarVenue;
+import seedu.address.model.meeting.Time;
+import seedu.address.model.meeting.Venue;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.price.Price;
@@ -104,31 +104,31 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code venue} is invalid.
      */
-    public static CalendarVenue parseCalendarVenue(String venue) throws ParseException {
+    public static Venue parseMeetingVenue(String venue) throws ParseException {
         requireNonNull(venue);
         String trimmedVenue = venue.trim();
-        return new CalendarVenue(trimmedVenue);
+        return new Venue(trimmedVenue);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String time} into a {@code time}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code time} is invalid.
      */
-    public static CalendarTime parseCalendarTime(String time) throws ParseException {
+    public static Time parseMeetingTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedTime = time.trim();
-        return new CalendarTime(trimmedTime);
+        return new Time(trimmedTime);
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
+     * Parses a {@code String type} into a {@code type}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code phone} is invalid.
+     * @throws ParseException if the given {@code type} is invalid.
      */
-    public static String parseCalendarType(String type) throws ParseException {
+    public static String parseMeetingType(String type) throws ParseException {
         requireNonNull(type);
         String trimmedType = type.trim();
         return trimmedType;
@@ -140,13 +140,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
-    public static CalendarTime parseTime(String time) throws ParseException {
+    public static Time parseTime(String time) throws ParseException {
         String trimmedTime = time.trim();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         try {
             Date date = formatter.parse(trimmedTime);
             String dateString = formatter.format(date);
-            return new CalendarTime(dateString);
+            return new Time(dateString);
         } catch (java.text.ParseException e) {
             throw new ParseException(MESSAGE_INVALID_TIME);
         }
@@ -169,6 +169,23 @@ public class ParserUtil {
             return new Price(doublePrice);
         } catch (NumberFormatException e) {
             throw new ParseException(Price.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String order} into a boolean option.
+     * True is returned when order is ascending.
+     * False is returned when order is descending or null
+     *
+     * @throws ParseException if the given {@code order} is invalid.
+     */
+    public static Boolean parseOrder(String order) throws ParseException {
+        if (order == null || order.trim().equalsIgnoreCase("dsc")) {
+            return false;
+        } else if (order.trim().equalsIgnoreCase("asc")) {
+            return true;
+        } else {
+            throw new ParseException("Order can only be 'asc' or 'dsc'");
         }
     }
 }

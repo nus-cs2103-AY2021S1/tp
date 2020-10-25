@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -8,8 +9,8 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
-import seedu.address.model.calendar.CalendarMeeting;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
@@ -72,47 +73,52 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setMeetingManager(ReadOnlyMeetingManager meetingManager) {
+    public void setMeetingManager(ReadOnlyMeetingBook meetingManager) {
 
     }
 
     @Override
-    public ReadOnlyMeetingManager getMeetingManager() {
+    public ReadOnlyMeetingBook getMeetingBook() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public boolean hasMeeting(CalendarMeeting meeting) {
+    public boolean hasMeeting(Meeting meeting) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void deleteMeeting(CalendarMeeting target) {
+    public void deleteMeeting(Meeting target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void addMeeting(CalendarMeeting meeting) {
+    public void addMeeting(Meeting meeting) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setMeeting(CalendarMeeting target, CalendarMeeting editedMeeting) {
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public ObservableList<CalendarMeeting> getFilteredMeetingList() {
+    public ObservableList<Meeting> getFilteredMeetingList() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void updateFilteredMeetingList(Predicate<CalendarMeeting> predicate) {
+    public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void sortMeeting() {
+    public ObservableList<Meeting> getSortedMeetingList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void updateSortedMeetingList(Comparator<Meeting> comparator) {
         throw new AssertionError("This method should not be called.");
     }
 

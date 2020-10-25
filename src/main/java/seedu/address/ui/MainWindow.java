@@ -18,6 +18,7 @@ import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.bid.BidListPanel;
+import seedu.address.ui.meeting.MeetingListPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -49,6 +50,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane personAndBidTabPanePlaceholder;
+
+    @FXML
+    private StackPane calendarListPanePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -118,6 +122,9 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        MeetingListPanel meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
+        calendarListPanePlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
