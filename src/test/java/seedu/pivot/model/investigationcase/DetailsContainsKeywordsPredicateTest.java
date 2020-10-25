@@ -44,15 +44,8 @@ public class DetailsContainsKeywordsPredicateTest {
 
     @Test
     public void test_caseContainsKeywords_returnsTrue() {
-        // One keyword
         DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
                 Collections.singletonList("Bank"));
-        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
-
-        // Multiple keywords, one field
-        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Bank", "Robbery"));
-        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
-
         // Multiple keywords, muliple fields
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank").withDescription("Robbery").build()));
 
@@ -67,9 +60,51 @@ public class DetailsContainsKeywordsPredicateTest {
         // Mixed-case keywords, multiple fields
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("bAnK", "roBerRy"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank").withDescription("Robbery").build()));
+    }
 
+    @Test
+    public void test_caseTitleContainsKeywords_returnsTrue() {
+        // One keyword
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Collections.singletonList("Bank"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
+
+        // Multiple keywords, one field
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Bank", "Robbery"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
+    }
+
+    @Test
+    public void test_caseStatusContainsKeywords_returnsTrue() {
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Collections.singletonList("ACTIVE"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").withStatus("ACTIVE").build()));
+    }
+
+    @Test
+    public void test_caseDescriptionContainsKeywords_returnsTrue() {
+        // One keyword
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Collections.singletonList("Bank"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Robbery")
+                .withDescription("Million dollars in XXX bank").build()));
+    }
+
+    @Test
+    public void test_caseDocumentsContainsKeywords_returnsTrue() {
+        // Keywords match some fields in documents
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Arrays.asList("12345", "alice@email.com", "evidence1.txt"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
+                .withDocument("Evidence found at Scene", "evidence1.txt")
+                .build()));
+    }
+
+    @Test
+    public void test_casePersonContainsKeywords_returnsTrue() {
         // Keywords match some fields in victims
-        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
                 .withVictims(new CasePersonBuilder().withName("Janice").withGender("F")
                         .withEmail("alice@email.com").withAddress("123 Main Street").buildVictim())
@@ -87,13 +122,6 @@ public class DetailsContainsKeywordsPredicateTest {
         assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
                 .withSuspects(new CasePersonBuilder().withName("Janice").withGender("F")
                         .withEmail("alice@email.com").withAddress("123 Main Street").buildSuspect())
-                .build()));
-
-        // Keywords match some fields in documents
-        predicate = new DetailsContainsKeywordsPredicate(
-                Arrays.asList("12345", "alice@email.com", "./references/evidence1.txt"));
-        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
-                .withDocument("Evidence found at Scene", "evidence1.txt")
                 .build()));
     }
 
