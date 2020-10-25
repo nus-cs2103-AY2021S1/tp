@@ -1,7 +1,7 @@
 package com.eva.model.person.applicant.application;
 
 import static com.eva.commons.util.AppUtil.checkArgument;
-import static java.util.Objects.requireNonNull;
+import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -26,9 +26,7 @@ public class Education {
      * @param schoolName The name of the institution.
      */
     public Education(String startDate, String endDate, String schoolName) {
-        requireNonNull(startDate);
-        requireNonNull(endDate);
-        requireNonNull(schoolName);
+        requireAllNonNull(startDate, endDate, schoolName);
         checkArgument(isValidDate(startDate), MESSAGE_CONSTRAINTS);
         checkArgument(isValidDate(endDate), MESSAGE_CONSTRAINTS);
         this.startDate = parseDate(startDate);
@@ -79,9 +77,9 @@ public class Education {
         final StringBuilder builder = new StringBuilder();
         builder.append(getSchoolName())
                 .append("\nFrom: ")
-                .append(getStartDate())
+                .append(DateUtil.dateToString(this.startDate))
                 .append(" To: ")
-                .append(getEndDate())
+                .append(DateUtil.dateToString(this.endDate))
                 .append("\n");
         return builder.toString();
     }

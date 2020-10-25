@@ -1,7 +1,7 @@
 package com.eva.model.person.applicant.application;
 
 import static com.eva.commons.util.AppUtil.checkArgument;
-import static java.util.Objects.requireNonNull;
+import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DateTimeException;
 import java.time.LocalDate;
@@ -29,9 +29,7 @@ public class Experience {
      * @param description The description of the job.
      */
     public Experience(String startDate, String endDate, String companyName, String position, String description) {
-        requireNonNull(startDate);
-        requireNonNull(endDate);
-        requireNonNull(companyName);
+        requireAllNonNull(startDate, endDate, companyName);
         checkArgument(isValidDate(startDate), MESSAGE_CONSTRAINTS);
         checkArgument(isValidDate(endDate), MESSAGE_CONSTRAINTS);
         this.startDate = parseDate(startDate);
@@ -89,9 +87,9 @@ public class Experience {
                 .append("\nRole: ")
                 .append(getPosition())
                 .append("\nFrom: ")
-                .append(getStartDate())
+                .append(DateUtil.dateToString(this.startDate))
                 .append("\nTo: ")
-                .append(getEndDate())
+                .append(DateUtil.dateToString(this.endDate))
                 .append("\nDescription: ")
                 .append(getDescription())
                 .append("\n");
