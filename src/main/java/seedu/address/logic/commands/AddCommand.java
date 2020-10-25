@@ -40,7 +40,9 @@ public class AddCommand extends Command {
             + PREFIX_PRIORITY + " H ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the client list";
+    public static final String MESSAGE_DUPLICATE_PERSON =
+            "This person already exists in the client list\n"
+            + "Check the archive if you do not see the client in the active list";
     public static final String MESSAGE_DISABLE_IN_ARCHIVE_MODE =
             "This command is disabled in archive mode\n"
             + "To add a new client, switch to active mode with the list command, then call the add command\n"
