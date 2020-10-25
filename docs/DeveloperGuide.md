@@ -60,15 +60,16 @@ Each of the four components,
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<br>
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png) <br>
 Figure 2. Class Diagram of Logic Component
 
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-i 1`.
-
+<br>
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<br>
 Figure 3. Sequence Diagram of delete-i 1 command
 
 The sections below give more details of each component.
@@ -85,8 +86,8 @@ The `UI` component,
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
 The following diagram illustrates the structure of the `UI` component:
-
-![Structure of the UI Component](images/UiClassDiagram.png)
+<br>
+![Structure of the UI Component](images/UiClassDiagram.png) <br>
 Figure 4: Structure of the `UI` Component
 
 **API** :
@@ -98,7 +99,7 @@ The logic component is responsible for all the necessary parsing logic of comman
 by instructing `Ui`, and modifies `Model` and/or `Storage` component depending on the command by user.
 
 The following class diagram illustrated the structure of `Logic` component:
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+<br> ![Structure of the Logic Component](images/LogicClassDiagram.png) <br> 
 Figure 5: Structure of the `Logic` Component
 
 **API** :
@@ -112,8 +113,9 @@ The `Logic` component does the following:
 5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-i 1")` API call.
-
+<br>
 ![Interactions Inside the Logic Component for the `delete-i 1` Command](images/DeleteSequenceDiagram.png)
+<br>
 Figure 6: Sequence Diagram of `delete-i 1`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ItemDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -123,7 +125,7 @@ Figure 6: Sequence Diagram of `delete-i 1`
 The Model component corresponds to all the data-related logic that the user works with.
 
 The following class diagram illustrates the structure of the `Model` component:
-
+<br> 
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
 Figure 7: Structure of the `Model` Component
 
@@ -159,21 +161,21 @@ its corresponding objects within its composition will also get deleted. An `Item
 0 or 1 `Supplier`, `MaxQuantity`, `Metric` and 0 or more `Tag` objects.
 
 You may also refer to Figure 8 as shown below:
-![Structure of the Item Component](images/ItemClassDiagram.png) <br>
+<br> ![Structure of the Item Component](images/ItemClassDiagram.png) <br>
 Figure 8: Structure of the `Item`
 
 
 A `Delivery` consists of one `DeliveryName`, `Phone`, `Address`, `Order`. 
 
 You may also refer to Figure 9 as shown below:
-![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
+<br> ![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
 Figure 9: Structure of the `Delivery`
 
 ### Storage component
 Storage component is responsible to save the data of inventory and delivery book into the hard disk.
 
 The following diagram illustrated the structure of `Storage` component:
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+<br> ![Structure of the Storage Component](images/StorageClassDiagram.png)
 Figure 10: Class Diagram of `Storage` Component
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
