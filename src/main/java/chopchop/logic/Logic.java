@@ -92,11 +92,6 @@ public interface Logic {
     List<String> getInputHistory(String prefix);
 
     /**
-     * Returns a list of usage records.
-     */
-    ObservableList<Pair<String, LocalDateTime>> getRecordList();
-
-    /**
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);

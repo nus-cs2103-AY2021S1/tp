@@ -54,8 +54,8 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new EntryBook<>(), new EntryBook<>(), new UsageList<RecipeUsage>(),
-            new UsageList<IngredientUsage>(), new UserPrefs());
+        this(new EntryBook<>(), new EntryBook<>(), new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(),
+            new UserPrefs());
     }
 
     @Override

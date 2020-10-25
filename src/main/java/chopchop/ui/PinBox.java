@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
@@ -22,7 +21,6 @@ import javafx.scene.layout.Region;
 public class PinBox extends UiPart<Region> {
     private static final String EMPTY_PROMPT = "You haven't cooked anything yet.";
     private static final String FXML = "PinBox.fxml";
-    private ObservableList<Pair<String, LocalDateTime>> observableRecords;
 
     @FXML
     private TextArea pins;
@@ -42,18 +40,18 @@ public class PinBox extends UiPart<Region> {
     /**
      * Creates a {@code PinBox}.
      */
-    public PinBox(ObservableList<Pair<String, LocalDateTime>> records) {
+    public PinBox(String output) {
         super(FXML);
-        this.observableRecords = records;
         pins.setText("Statistics\n");
         header1.setText("Recently cooked recipe:");
-        if (records.isEmpty()) {
+        if (output.isEmpty()) {
             body1.setText(EMPTY_PROMPT);
         } else {
-            body1.setText(formatRecords(observableRecords));
+            body1.setText("");
         }
         header2.setText("Ingredients expiring soon:");
         body2.setText("To be implemented");
+        /*
         observableRecords.addListener(new ListChangeListener<Pair<String, LocalDateTime>>() {
             @Override
             public void onChanged(Change<? extends Pair<String, LocalDateTime>> c) {
@@ -61,6 +59,7 @@ public class PinBox extends UiPart<Region> {
                 setStatisticsToUser(formatRecords(observableRecords), "To be implemented");
             }
         });
+         */
     }
 
     private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {

@@ -118,7 +118,8 @@ public class MainWindow extends UiPart<Stage> {
         this.commandOutput = commandOutput;
         commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
-        PinBox pinBox = new PinBox(logic.getRecordList());
+        //todo: pinbox will now return stats command output. Default recently cooked recipe.
+        PinBox pinBox = new PinBox("Stats command result");
         pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
 
         DisplayController displayController = new DisplayController(logic);
