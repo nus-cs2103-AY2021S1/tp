@@ -29,20 +29,35 @@ public class SetDefaultCommand extends Command {
         requireNonNull(model);
 
         IngredientBook defaultIngredientBook = new IngredientBook();
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Milk")),
+        IngredientBook filledBook = executeHelper(defaultIngredientBook);
+
+        filledBook.setIngredient(new Ingredient(new IngredientName("Milk")),
                 new Ingredient(new IngredientName("Milk"), new Amount("50")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Pearl")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Pearl")),
                 new Ingredient(new IngredientName("Pearl"), new Amount("20")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Boba")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Boba")),
                 new Ingredient(new IngredientName("Boba"), new Amount("20")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Oolong Tea")),
                 new Ingredient(new IngredientName("Oolong Tea"), new Amount("50")));
-        defaultIngredientBook.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
+        filledBook.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
                 new Ingredient(new IngredientName("Brown Sugar"), new Amount("20")));
 
-        ReadOnlyIngredientBook defaultReadOnlyIngredientBook = defaultIngredientBook;
+        ReadOnlyIngredientBook defaultReadOnlyFilledBook = filledBook;
 
-        model.setIngredientBook(defaultReadOnlyIngredientBook);
+        model.setIngredientBook(defaultReadOnlyFilledBook);
+        model.updateFilteredIngredientList(Model.PREDICATE_SHOW_ALL_INGREDIENTS);
+
         return new CommandResult(MESSAGE_SUCCESS);
+    }
+
+    private static IngredientBook executeHelper(IngredientBook tempBook) {
+
+        tempBook.addIngredient(new Ingredient(new IngredientName("Milk")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Pearl")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Boba")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Oolong Tea")));
+        tempBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar")));
+        return tempBook;
+
     }
 }

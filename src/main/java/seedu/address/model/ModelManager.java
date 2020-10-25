@@ -30,16 +30,18 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Ingredient> filteredIngredients;
+    private final FilteredList<SalesRecordEntry> filteredSalesRecordList;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, SalesBook salesBook,
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlySalesBook salesBook,
                         ReadOnlyIngredientBook ingredientBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(addressBook, salesBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " sales book: " + salesBook
+        logger.fine("Initializing with address book: " + addressBook
+                + " sales book: " + salesBook
                 + " Ingredients book: " + ingredientBook
                 + " and user prefs" + " " + userPrefs);
 
@@ -52,6 +54,8 @@ public class ModelManager implements Model {
                 Model.PREDICATE_SHOW_ALL_ACTIVE_PERSONS);
         filteredIngredients = new FilteredList<>(this.ingredientBook.getIngredientList(),
                 Model.PREDICATE_SHOW_ALL_INGREDIENTS);
+        filteredSalesRecordList = new FilteredList<>(this.salesBook.getSalesRecord(),
+                Model.PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
     }
 
     /**
@@ -92,6 +96,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getSalesBookFilePath() {
+        return userPrefs.getSalesBookFilePath();
+    }
+
+    @Override
     public Path getIngredientBookFilePath() {
         return userPrefs.getIngredientBookFilePath();
     }
@@ -100,6 +109,12 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public void setSalesBookFilePath(Path salesBookFilePath) {
+        requireNonNull(salesBookFilePath);
+        userPrefs.setSalesBookFilePath(salesBookFilePath);
     }
 
     @Override
@@ -186,6 +201,12 @@ public class ModelManager implements Model {
         }
     }
 
+    @Override
+    public void addSalesRecordEntry(SalesRecordEntry salesRecordEntry) {
+        salesBook.addSalesRecordEntry(salesRecordEntry);
+        updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
+    }
+
     //=========== IngredientBook ==================================================================================
 
     @Override
@@ -209,7 +230,7 @@ public class ModelManager implements Model {
     }
 
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
@@ -219,6 +240,7 @@ public class ModelManager implements Model {
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
+
     /**
      * Returns an unmodifiable view of the list of {@code Ingredient} backed by the internal list of
      * {@code versionedAddressBook}
@@ -229,9 +251,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<SalesRecordEntry> getFilteredSalesRecordList() {
+        return filteredSalesRecordList;
+    }
+
+    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredSalesList(Predicate<SalesRecordEntry> predicate) {
+        requireNonNull(predicate);
+        filteredSalesRecordList.setPredicate(predicate);
     }
 
     @Override
