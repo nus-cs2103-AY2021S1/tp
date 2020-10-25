@@ -25,18 +25,30 @@
 
 Trackr is suited for teaching assistants (TAs) who prefer to use a desktop application for managing their student records. It is optimized for Command Line Interface (CLI), while still retaining the benefits of a Graphical User Interface (GUI). If you are a TA with a fast typing speed, Trackr is the app for you. Head over to (Section 2, "Quick Start") and get started!
 
-## 2. Quick Start
+## 3. Getting Started
 
-Get started by installing our app with the following steps:
+### 3.1 Setting Up
+Get started by installing __Trackr__ with the following steps:
 
-1. Ensure you have Java 11 or above installed.
-2. Download the latest trackr.jar [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases).
-3. Copy the file to a folder you wish to use as your home folder.
-4. Double-click the file to start the app. The GUI should appear in a few seconds. Shown below is an example with some user commands and the app's responses.
+1. Ensure you have Java 11 or above installed. The latest version of _java_ can be found [here](https://www.java.com/en/download/).
+2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases). Look for the file _trackr.jar_.
+3. Copy the file to a folder you wish to use as your home folder for __Trackr__
+4. Double-click _trackr.jar_ to start the app. The GUI should appear in a few seconds.
+
+
+### 3.2 Using Trackr
+__Trackr__ boasts many useful features to make using the app seamless and smooth. These include
+commands to add or delete modules, tutorial groups, or students you are teaching. To use a feature, simply
+type the command into the command box (see Figure 1) and press _Enter_ to execute it. Further explanations of 
+all the commands are listed below [Section 5]().
 
 ![Ui](images/Ui.png)
 
-5. Type your command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+## 4. Glossary
+* __Command Line Interface (CLI)__: An interface that processes commands to a computer program in the form of lines of text.
+* __Tutorial Group__: The specific class being taught under a given module.
+* __Student__: An individual who is enrolled in a given module.
+
 
 ## 3. Features
 
