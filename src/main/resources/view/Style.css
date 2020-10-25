@@ -27,6 +27,23 @@
 .tab-button:pressed {
     -fx-background-color: #ffcc80;
 }
+.tab-button-selected {
+    -fx-padding: 2 2 2 2;
+    -fx-background-radius: 4;
+    -fx-background-color: ffe0b2;
+    -fx-font-family: "Helvetica";
+    -fx-font-size: 12pt;
+    -fx-text-fill: #000000;
+    -fx-background-insets: 0 -1 1 0, 0, 1, 2;
+    -fx-focus-color: #ffe0b2;
+    -fx-faint-focus-color: #ffe0b2;
+}
+.tab-button-selected:hover {
+    -fx-background-color: #ffe0b2;
+}
+.tab-button-selected:pressed {
+    -fx-background-color: #ffe0b2;
+}
 .recipe-button {
     -fx-padding: 2;
     -fx-border-color: #795548;
@@ -99,7 +116,7 @@
     -fx-background-radius: 6;
     -fx-border-color: #ff7043;
     -fx-border-radius: 6;
-    -fx-padding: 8 4;
+    -fx-padding: 8 12;
 }
 #displayBox .scroll-pane {
     -fx-background-color: transparent;

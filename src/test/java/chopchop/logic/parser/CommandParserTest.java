@@ -80,8 +80,19 @@ public class CommandParserTest {
         var parser = new CommandParser();
 
         var tests = Map.of(
-            "add", new CommandArguments("add"),
-            "add /stuff kekw", new CommandArguments("add", List.of(Pair.of(new ArgName("stuff"), "kekw")))
+            "add",
+                new CommandArguments("add"),
+
+            "add /stuff kekw",
+                new CommandArguments("add", List.of(Pair.of(new ArgName("stuff"), "kekw"))),
+
+            "add some\\/stuff\\/here",
+                new CommandArguments("add", "some/stuff/here"),
+
+            "add some\\/step\\/here /step \\/owo here\\/is\\/a\\/step\\/",
+                new CommandArguments("add", "some/step/here",
+                    List.of(Pair.of(new ArgName("step"), "/owo here/is/a/step/"))
+                )
         );
 
         tests.forEach((k, v) -> {

@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
-import chopchop.commons.core.Messages;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Entry;
 import chopchop.model.Model;
@@ -16,7 +15,7 @@ import chopchop.ui.DisplayNavigator;
  * Filters and lists all ingredients in ingredient book that match all filtering criteria.
  * Keyword matching is case insensitive.
  */
-public class FilterIngredientCommand extends FilterCommand {
+public class FilterIngredientCommand extends Command {
 
     public static final String COMMAND_WORD = "filter ingredient";
 
@@ -59,16 +58,16 @@ public class FilterIngredientCommand extends FilterCommand {
             DisplayNavigator.loadIngredientPanel();
         }
 
-        return new CommandResult(String.format(Messages.MESSAGE_INGREDIENTS_LISTED_OVERVIEW,
-            model.getFilteredIngredientList().size()));
+        var sz = model.getFilteredIngredientList().size();
+        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s");
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterIngredientCommand // instanceof handles nulls
-                && tagPredicates.equals(((FilterIngredientCommand) other).tagPredicates)
-                && expPredicate.equals(((FilterIngredientCommand) other).expPredicate)); // state check
+            || (other instanceof FilterIngredientCommand // instanceof handles nulls
+            && tagPredicates.equals(((FilterIngredientCommand) other).tagPredicates)
+            && expPredicate.equals(((FilterIngredientCommand) other).expPredicate)); // state check
     }
 
 }

@@ -130,6 +130,11 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand, this.logic);
         this.commandBox = commandBox;
         commandBoxPlaceholder.getChildren().setAll(commandBox.getRoot());
+        primaryStage.addEventFilter(KeyEvent.ANY, event -> {
+            if (event.getEventType() == KeyEvent.KEY_TYPED) {
+                commandBox.setFocus(event.getCharacter());
+            }
+        });
     }
 
     /**
@@ -180,23 +185,25 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            this.commandOutput.setFeedbackToUser(commandResult.getFeedbackToUser());
-            this.statsOutput.setBoxContent(commandResult.getFeedbackToUser());
+            logger.info("Result: " + commandResult.getMessage());
 
-            if (commandResult.isShowHelp()) {
+            this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
+
+            if (commandResult.shouldShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.isExit()) {
+            if (commandResult.shouldExit()) {
                 handleExit();
             }
 
             return commandResult;
+
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            commandOutput.setFeedbackToUser(e.getMessage());
             this.statsOutput.setBoxContent(e.getMessage());
+
+            commandOutput.setFeedbackToUser(e.getMessage(), /* isError: */ true);
             throw e;
         }
     }

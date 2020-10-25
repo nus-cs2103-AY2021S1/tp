@@ -7,10 +7,12 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+
 
 /**
  * Controller class for the swappable display region.
@@ -31,17 +33,29 @@ public class DisplayController extends UiPart<Region> {
     @FXML
     private StackPane displayAreaPlaceholder;
 
+    @FXML
+    private Button recipeButton;
+
+    @FXML
+    private Button ingredientButton;
+
+    @FXML
+    private Button recommendationButton;
+
+    @FXML
+    private Button favouriteButton;
+
     /**
      * Creates a {@code DisplayController} with the given {@code Logic}.
      * @param logic
      */
     public DisplayController(Logic logic) {
         super(FXML);
+        this.getRoot().getStylesheets().add("/view/Style.css");
         textDisplay = new TextDisplay(WELCOME_MESSAGE);
         notificationWindow = new NotificationWindow();
         recipeObservableList = logic.getFilteredRecipeList();
         ingredientObservableList = logic.getFilteredIngredientList();
-
         recipeObservableList.addListener((ListChangeListener<Recipe>) c -> {
             c.next();
 
@@ -60,6 +74,7 @@ public class DisplayController extends UiPart<Region> {
         displayAreaPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode().equals(KeyCode.ESCAPE)) {
                 displayWelcomeMessage();
+                resetButtons();
             }
         });
         if (!logic.getFilteredRecipeList().isEmpty()) {
@@ -84,6 +99,7 @@ public class DisplayController extends UiPart<Region> {
     protected void displayRecipeList() {
         RecipeViewPanel recipeViewPanel = new RecipeViewPanel(recipeObservableList);
         displayAreaPlaceholder.getChildren().setAll(recipeViewPanel.getRoot());
+        selectRecipeButton();
     }
 
     /**
@@ -92,6 +108,7 @@ public class DisplayController extends UiPart<Region> {
     protected void displayRecipe(Recipe recipe) {
         RecipeDisplay recipeDisplay = new RecipeDisplay(recipe);
         displayAreaPlaceholder.getChildren().setAll(recipeDisplay.getRoot());
+        selectRecipeButton();
     }
 
     /**
@@ -100,6 +117,9 @@ public class DisplayController extends UiPart<Region> {
     protected void displayIngredientList() {
         IngredientViewPanel ingredientViewPanel = new IngredientViewPanel(ingredientObservableList);
         displayAreaPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
+        resetButtons();
+        ingredientButton.getStyleClass().clear();
+        ingredientButton.getStyleClass().add("tab-button-selected");
     }
 
     /**
@@ -111,6 +131,29 @@ public class DisplayController extends UiPart<Region> {
         } else {
             notificationWindow.focus();
         }
+    }
+
+    /**
+     * Resets buttons in navigation bar to default style.
+     */
+    private void resetButtons() {
+        recipeButton.getStyleClass().clear();
+        recipeButton.getStyleClass().add("tab-button");
+        ingredientButton.getStyleClass().clear();
+        ingredientButton.getStyleClass().add("tab-button");
+        recommendationButton.getStyleClass().clear();
+        recommendationButton.getStyleClass().add("tab-button");
+        favouriteButton.getStyleClass().clear();
+        favouriteButton.getStyleClass().add("tab-button");
+    }
+
+    /**
+     * Changes the recipe button style to selected.
+     */
+    private void selectRecipeButton() {
+        resetButtons();
+        recipeButton.getStyleClass().clear();
+        recipeButton.getStyleClass().add("tab-button-selected");
     }
 
     /**

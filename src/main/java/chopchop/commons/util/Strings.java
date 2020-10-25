@@ -35,6 +35,7 @@ public class Strings {
     public static final String COMMAND_UNDO         = "undo";
     public static final String COMMAND_REDO         = "redo";
     public static final String COMMAND_STATS        = "stats";
+    public static final String COMMAND_VIEW         = "view";
 
 
     public static final List<String> COMMAND_NAMES = List.of(
@@ -49,7 +50,8 @@ public class Strings {
         COMMAND_MAKE,
         COMMAND_UNDO,
         COMMAND_REDO,
-        COMMAND_STATS
+        COMMAND_STATS,
+        COMMAND_VIEW
     );
 
     // command targets

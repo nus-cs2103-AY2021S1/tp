@@ -45,7 +45,7 @@ public class StatsRecipeDateCommand extends Command {
             output = model.getRecipeUsageList().getUsagesBetween(before, after).toString();
         }
 
-        return new CommandResult(String.format("Here is the list of recipes %s", output));
+        return CommandResult.message(String.format("Here is the list of recipes %s", output));
     }
 
     @Override

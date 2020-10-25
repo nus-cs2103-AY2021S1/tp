@@ -25,8 +25,8 @@ public class FindCommandParser {
 
     /**
      * Parses a 'find' command. Syntax(es):
-     * {@code delete recipe (keywords)+}
-     * {@code delete ingredient (keywords)+}
+     * {@code find recipe (keywords)+}
+     * {@code find ingredient (keywords)+}
      *
      * @param args the parsed command arguments from the {@code CommandParser}.
      * @return     a FindCommand, if the input was valid.
@@ -37,8 +37,7 @@ public class FindCommandParser {
         // we expect no named arguments. note we don't need to check for augments.
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
-            return Result.error("'find' command doesn't support '%s'\n%s",
-                foo.get(), FindRecipeCommand.MESSAGE_USAGE);
+            return Result.error("'find' command doesn't support '%s'", foo.get());
         }
 
         return getCommandTarget(args)

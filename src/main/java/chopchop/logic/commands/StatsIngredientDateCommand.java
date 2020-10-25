@@ -45,7 +45,7 @@ public class StatsIngredientDateCommand extends Command {
             output = model.getIngredientUsageList().getUsagesBetween(before, after).toString();
         }
 
-        return new CommandResult(String.format("Here is the list of ingredient %s", output));
+        return CommandResult.message(String.format("Here is the list of ingredient %s", output));
     }
 
     @Override

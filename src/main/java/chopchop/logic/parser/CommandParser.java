@@ -24,6 +24,7 @@ import static chopchop.logic.parser.commands.FindCommandParser.parseFindCommand;
 import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
 import static chopchop.logic.parser.commands.MakeCommandParser.parseMakeCommand;
 import static chopchop.logic.parser.commands.StatsCommandParser.parseStatsCommand;
+import static chopchop.logic.parser.commands.ViewCommandParser.parseViewCommand;
 
 public class CommandParser {
 
@@ -34,18 +35,19 @@ public class CommandParser {
 
             if (input.find('/') != 0) {
                 break;
+            } else if (input.size() == 1) {
+                return Result.error("expected argument name after '/'");
             }
 
-            // TODO: this won't handle things like slashes in dates. ideally we want to
-            // split based on " /" (ie. there must be a leading space before the slash),
-            // but that requires changing StringView::bisect. later.
-            var currentArg = input.drop(1).bisect('/', input);
+            var pair = splitUntilNextSlash(input.drop(1));
+            var self = new StringView(pair.fst());
+            input = pair.snd();
 
             {
-                var argName = new StringView("");
-                var argValue = new StringView("");
 
-                currentArg.bisect(argName, ' ', argValue);
+                var argValue = new StringView("");
+                var argName = self.bisect(' ', argValue);
+
                 if (argName.isEmpty()) {
                     return Result.error("expected argument name after '/'");
                 }
@@ -56,8 +58,6 @@ public class CommandParser {
             if (input.isEmpty()) {
                 break;
             }
-
-            input = input.undrop(1);
         }
 
         return Result.of(ret);
@@ -78,19 +78,12 @@ public class CommandParser {
         var x = new StringView("");
         var xs = new StringView("");
 
-        sv.bisect(x, ' ', xs);
+        var command = sv.bisect(' ', xs).toString().strip();
 
-        var command = x.toString().strip();
+        var p = splitUntilNextSlash(xs);
+        var theRest = p.fst();
 
-        xs.bisect(x, '/', xs);
-        var theRest = x.toString().strip();
-
-        if (input.indexOf("/") != -1) {
-            xs = xs.undrop(1);
-            assert xs.at(0) == '/';
-        }
-
-        return this.parseNamedArguments(xs)
+        return this.parseNamedArguments(p.snd())
             .map(args -> new CommandArguments(command, theRest, args));
     }
 
@@ -114,9 +107,10 @@ public class CommandParser {
                 case Strings.COMMAND_LIST:      return parseListCommand(args);
                 case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
                 case Strings.COMMAND_MAKE:      return parseMakeCommand(args);
+                case Strings.COMMAND_VIEW:      return parseViewCommand(args);
+                case Strings.COMMAND_FILTER:    return parseFilterCommand(args);
                 case Strings.COMMAND_UNDO:      return Result.of(new UndoCommand());
                 case Strings.COMMAND_REDO:      return Result.of(new RedoCommand());
-                case Strings.COMMAND_FILTER:    return parseFilterCommand(args);
                 case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
                 case Strings.COMMAND_STATS:     return parseStatsCommand(args);
 
@@ -124,5 +118,26 @@ public class CommandParser {
                     return Result.error("unknown command '%s'", args.getCommand());
                 }
             });
+    }
+
+
+
+    private Pair<String, StringView> splitUntilNextSlash(StringView input) {
+
+        int i = 0;
+        var sb = new StringBuilder();
+
+        for (; i < input.size(); i++) {
+            if (i + 1 < input.size() && input.at(i) == '\\' && input.at(i + 1) == '/') {
+                i += 1;
+                sb.append("/");
+            } else if (input.at(i) == '/') {
+                break;
+            } else {
+                sb.append(input.at(i));
+            }
+        }
+
+        return Pair.of(sb.toString().strip(), input.drop(i));
     }
 }

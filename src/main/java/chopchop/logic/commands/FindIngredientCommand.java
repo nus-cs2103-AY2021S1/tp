@@ -2,7 +2,6 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import chopchop.commons.core.Messages;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
@@ -41,8 +40,8 @@ public class FindIngredientCommand extends Command {
             DisplayNavigator.loadIngredientPanel();
         }
 
-        return new CommandResult(String.format(Messages.MESSAGE_INGREDIENTS_LISTED_OVERVIEW,
-            model.getFilteredIngredientList().size()));
+        var sz = model.getFilteredIngredientList().size();
+        return CommandResult.message("Found %d ingredient%s", sz, sz == 1 ? "" : "s");
     }
 
     @Override

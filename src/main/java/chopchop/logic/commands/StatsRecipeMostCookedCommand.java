@@ -17,7 +17,7 @@ public class StatsRecipeMostCookedCommand extends Command {
 
         String output;
         output = model.getRecipeUsageList().getMostUsed().toString();
-        return new CommandResult(String.format("The most used recipes are %s", output));
+        return CommandResult.message(String.format("The most used recipes are %s", output));
     }
 
     @Override

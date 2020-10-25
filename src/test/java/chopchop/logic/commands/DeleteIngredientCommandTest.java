@@ -1,6 +1,5 @@
 package chopchop.logic.commands;
 
-import chopchop.commons.core.Messages;
 import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
@@ -31,13 +30,12 @@ public class DeleteIngredientCommandTest {
         var indToDelete = model.getFilteredIngredientList().get(INDEXED_FIRST.getZeroIndex());
         var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
 
-        String expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS, indToDelete);
 
         var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(),
             new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.deleteIngredient(indToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, expectedModel);
     }
 
     @Test
@@ -45,7 +43,7 @@ public class DeleteIngredientCommandTest {
         var outOfBoundIndex = ItemReference.ofOneIndex(model.getFilteredIngredientList().size() + 1);
         var deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model);
     }
 
     @Test
@@ -55,14 +53,12 @@ public class DeleteIngredientCommandTest {
         var indToDelete = model.getFilteredIngredientList().get(INDEXED_FIRST.getZeroIndex());
         var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
 
-        var expectedMessage = String.format(DeleteIngredientCommand.MESSAGE_DELETE_INGREDIENT_SUCCESS, indToDelete);
-
         var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UsageList<RecipeUsage>(),
             new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.deleteIngredient(indToDelete);
         showNoIngredient(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, expectedModel);
     }
 
     @Test
@@ -73,9 +69,9 @@ public class DeleteIngredientCommandTest {
         // ensures that outOfBoundIndex is still in bounds of ingredient book list
         assertTrue(outOfBoundIndex.getZeroIndex() < model.getIngredientBook().getEntryList().size());
 
-        DeleteIngredientCommand deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
+        var deleteCommand = new DeleteIngredientCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INGREDIENT_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model);
     }
 
     @Test

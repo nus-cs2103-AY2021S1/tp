@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
-import chopchop.commons.core.Messages;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
@@ -16,7 +15,7 @@ import chopchop.ui.DisplayNavigator;
  * Filters and lists all recipes in recipe book that match all filtering criteria.
  * Keyword matching is case insensitive.
  */
-public class FilterRecipeCommand extends FilterCommand {
+public class FilterRecipeCommand extends Command {
 
     public static final String COMMAND_WORD = "filter recipe";
 
@@ -58,16 +57,16 @@ public class FilterRecipeCommand extends FilterCommand {
             DisplayNavigator.loadRecipePanel();
         }
 
-        return new CommandResult(String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW,
-            model.getFilteredRecipeList().size()));
+        var sz = model.getFilteredRecipeList().size();
+        return CommandResult.message("Found %d recipe%s", sz, sz == 1 ? "" : "s");
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FilterRecipeCommand // instanceof handles nulls
-                && tagPredicates.equals(((FilterRecipeCommand) other).tagPredicates)
-                && ingredientPredicates.equals(((FilterRecipeCommand) other).ingredientPredicates)); // state check
+            || (other instanceof FilterRecipeCommand // instanceof handles nulls
+            && tagPredicates.equals(((FilterRecipeCommand) other).tagPredicates)
+            && ingredientPredicates.equals(((FilterRecipeCommand) other).ingredientPredicates)); // state check
     }
 
 }
