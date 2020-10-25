@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -14,6 +16,8 @@ import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.Note;
+import seedu.stock.model.stock.Stock;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -30,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StockListPanel stockListPanel;
+    private NoteListPanel noteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
@@ -39,6 +44,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane stockListPanelPlaceholder;
+
+    @FXML
+    private StackPane noteListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -110,6 +118,11 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handleShowStockNotes(Stock stockToShowNotes) {
+
+    }
+
     /**
      * Opens the statisticsWindow or focuses on it if it's already opened.
      */
@@ -155,9 +168,19 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            stockListPanel = new StockListPanel(logic.getFilteredStockList());
+            stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowNotes()) {
+                Stock stockToShowNotes = commandResult.getStockToShowNotes();
+                ObservableList<Note> internalNoteList = FXCollections.observableArrayList();
+                internalNoteList.addAll(stockToShowNotes.getNotes());
+                noteListPanel = new NoteListPanel(internalNoteList);
+                stockListPanelPlaceholder.getChildren().add(noteListPanel.getRoot());
             }
 
             if (commandResult.isShowStatistics()) {

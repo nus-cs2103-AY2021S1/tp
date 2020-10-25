@@ -35,6 +35,6 @@ public class SourceStatisticsCommand extends StatisticsCommand {
         //array of size 1, index 0 is statistics type
         String[] otherStatisticsDetails = {"source"};
         logger.log(Level.INFO, "Valid input.");
-        return new CommandResult(MESSAGE_SUCCESS, sourceData, false, true, otherStatisticsDetails, false);
+        return new CommandResult(MESSAGE_SUCCESS, sourceData, false, false, null, true, otherStatisticsDetails, false);
     }
 }
