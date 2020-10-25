@@ -10,17 +10,21 @@ public class RemoveMacroCommand extends Command {
     public static final String SHORT_DESCRIPTION = "Remove a macro in McGymmy.";
     public static final String MESSAGE_SUCCESS = "Macro successfully removed: \n%1$s";
 
-    private final Parameter<String> specificCommand = this.addParameter(
+    private Parameter<String> commandNameParameter = this.addParameter(
             "which",
             "",
             "Delete the specific macro",
             "deleteMatching"
     );
 
+    void setParameters(Parameter<String> commandNameParameter) {
+        this.commandNameParameter = commandNameParameter;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         MacroList macroList = model.getMacroList();
-        String macroName = specificCommand.consume();
+        String macroName = commandNameParameter.consume();
 
         if (!macroList.hasMacro(macroName)) {
             throw new CommandException(macroName + " is not an existing macro.");

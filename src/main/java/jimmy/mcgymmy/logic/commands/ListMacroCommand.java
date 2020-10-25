@@ -10,22 +10,26 @@ public class ListMacroCommand extends Command {
     public static final String COMMAND_WORD = "listmacro";
     public static final String SHORT_DESCRIPTION = "List all macros in McGymmy.";
 
-    private final OptionalParameter<String> specificCommand = this.addOptionalParameter(
+    private OptionalParameter<String> commandNameParameter = this.addOptionalParameter(
             "which",
             "",
             "List details of a specific macro",
             "deleteMatching"
     );
 
+    void setParameters(OptionalParameter<String> commandNameParameter) {
+        this.commandNameParameter = commandNameParameter;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         MacroList macroList = model.getMacroList();
 
-        if (specificCommand.getValue().isEmpty()) {
+        if (commandNameParameter.getValue().isEmpty()) {
             return new CommandResult(listAllMacros(macroList));
         }
 
-        String macroName = specificCommand.getValue().get();
+        String macroName = commandNameParameter.getValue().get();
 
         if (!macroList.hasMacro(macroName)) {
             throw new CommandException(macroName + " is not an existing macro.");
