@@ -23,6 +23,8 @@ class JsonSerializableMainCatalogue {
 
     public static final String MESSAGE_DUPLICATE_PROJECT = "Projects list contains duplicate project(s).";
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PARTICIPATION =
+            "Participations list contains duplicate participation(s).";
 
     private final List<JsonAdaptedProject> projects = new ArrayList<>();
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
@@ -77,10 +79,11 @@ class JsonSerializableMainCatalogue {
         }
         for (JsonParticipation jsonParticipation : participations) {
             Participation participation = jsonParticipation.toModelType();
-            if (mainCatalogue.has(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (mainCatalogue.hasParticipation(participation)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PARTICIPATION);
             }
-            mainCatalogue.addPerson(person);
+            participation.getProject().addParticipation(participation);
+            mainCatalogue.addParticipation(participation);
         }
         return mainCatalogue;
     }

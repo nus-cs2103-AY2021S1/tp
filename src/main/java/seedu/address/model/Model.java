@@ -19,6 +19,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Participation> PREDICATE_SHOW_ALL_PARTICIPATION = unused -> true;
     //Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     //Predicate<Person> PREDICATE_SHOW_ALL_TEAMMATES = unused -> true;
 
@@ -110,6 +111,12 @@ public interface Model {
      * {@code person} must not already exist in the main catalogue.
      */
     void addPerson(Person person);
+
+    /**
+     * Adds the given participation.
+     * {@code person} must not already exist in the main catalogue.
+     */
+    void addParticipation(Participation participation);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

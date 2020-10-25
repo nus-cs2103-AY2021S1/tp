@@ -9,7 +9,9 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.project.exceptions.DuplicateParticipationException;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
+import seedu.address.model.project.exceptions.ParticipationNotFoundException;
 import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
@@ -68,28 +70,28 @@ public class UniqueParticipationList implements Iterable<Participation> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new ProjectNotFoundException();
+            throw new ParticipationNotFoundException();
         }
 
-        if (!target.isSameProject(editedProject) && contains(editedProject)) {
-            throw new DuplicateProjectException();
+        if (!target.isSameParticipation(editedParticipation) && contains(editedParticipation)) {
+            throw new DuplicateParticipationException();
         }
 
-        internalList.set(index, editedProject);
+        internalList.set(index, editedParticipation);
     }
 
     /**
      * Removes the equivalent project from the list.
      * The project must exist in the list.
      */
-    public void remove(Project toRemove) {
+    public void remove(Participation toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new ProjectNotFoundException();
+            throw new ParticipationNotFoundException();
         }
     }
 
-    public void setProjects(UniqueProjectList replacement) {
+    public void setParticipations(UniqueParticipationList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -98,24 +100,24 @@ public class UniqueParticipationList implements Iterable<Participation> {
      * Replaces the contents of this list with {@code projects}.
      * {@code projects} must not contain duplicate projects.
      */
-    public void setProjects(List<Project> projects) {
-        requireAllNonNull(projects);
-        if (!projectsAreUnique(projects)) {
+    public void setParticipations(List<Participation> participations) {
+        requireAllNonNull(participations);
+        if (!participationsAreUnique(participations)) {
             throw new DuplicateProjectException();
         }
 
-        internalList.setAll(projects);
+        internalList.setAll(participations);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Project> asUnmodifiableObservableList() {
+    public ObservableList<Participation> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<Project> iterator() {
+    public Iterator<Participation> iterator() {
         return internalList.iterator();
     }
 
@@ -127,9 +129,9 @@ public class UniqueParticipationList implements Iterable<Participation> {
         //        }
 
         return other == this // short circuit if same object
-                || (other instanceof UniqueProjectList // instanceof handles nulls
+                || (other instanceof UniqueParticipationList // instanceof handles nulls
                 //                        && test);
-                && internalList.equals(((UniqueProjectList) other).internalList));
+                && internalList.equals(((UniqueParticipationList) other).internalList));
     }
 
     @Override
@@ -140,10 +142,10 @@ public class UniqueParticipationList implements Iterable<Participation> {
     /**
      * Returns true if {@code projects} contains only unique projects.
      */
-    private boolean projectsAreUnique(List<Project> projects) {
-        for (int i = 0; i < projects.size() - 1; i++) {
-            for (int j = i + 1; j < projects.size(); j++) {
-                if (projects.get(i).isSameProject(projects.get(j))) {
+    private boolean participationsAreUnique(List<Participation> participations) {
+        for (int i = 0; i < participations.size() - 1; i++) {
+            for (int j = i + 1; j < participations.size(); j++) {
+                if (participations.get(i).isSameParticipation(participations.get(j))) {
                     return false;
                 }
             }
