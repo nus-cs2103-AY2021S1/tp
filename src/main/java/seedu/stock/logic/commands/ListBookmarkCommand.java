@@ -17,13 +17,13 @@ public class ListBookmarkCommand extends ListCommand {
 
     public static final String MESSAGE_SUCCESS = "Listing all bookmarked stocks in inventory";
 
-    public static final Predicate<Stock> isBookmarked = new BookmarkedPredicate();
+    public static final Predicate<Stock> IS_BOOKMARKED = new BookmarkedPredicate();
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStockList(isBookmarked);
+        model.updateFilteredStockList(IS_BOOKMARKED);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

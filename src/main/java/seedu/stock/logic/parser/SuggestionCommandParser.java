@@ -9,7 +9,6 @@ import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_VIEW_COMMAND_WORD;
-
 import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UNBOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
