@@ -3,12 +3,14 @@ package jimmy.mcgymmy.model;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
-import java.util.Stack;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.util.Pair;
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.core.index.Index;
@@ -23,13 +25,13 @@ import jimmy.mcgymmy.model.macro.MacroList;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final Stack<ReadOnlyMcGymmy> mcGymmyStack = new Stack<>();
-    private final Stack<MacroList> macroListStack = new Stack<>();
+    private final History history = new History();
 
     private MacroList macroList;
     private final McGymmy mcGymmy;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoodItems;
+    private Predicate<Food> filterPredicate;
 
     /**
      * Initializes a ModelManager with the given mcGymmy and userPrefs and macroList.
@@ -44,6 +46,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.macroList = macroList;
         filteredFoodItems = new FilteredList<>(this.mcGymmy.getFoodList());
+        filterPredicate = PREDICATE_SHOW_ALL_FOODS;
+        filteredFoodItems.setPredicate(filterPredicate);
     }
 
     /**
@@ -66,7 +70,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setMacroList(MacroList replacement) {
-        addCurrentStateToHistory();
+        saveCurrentStateToHistory();
         this.macroList = replacement;
     }
 
@@ -112,10 +116,15 @@ public class ModelManager implements Model {
         return mcGymmy;
     }
 
+    /**
+     * Sets McGymmy and saves the current state to the history
+     * @param mcGymmy
+     */
     @Override
     public void setMcGymmy(ReadOnlyMcGymmy mcGymmy) {
-        addCurrentStateToHistory();
+        saveCurrentStateToHistory();
         this.mcGymmy.resetData(mcGymmy);
+        updateFilterPredicate(PREDICATE_SHOW_ALL_FOODS);
     }
 
     @Override
@@ -124,49 +133,82 @@ public class ModelManager implements Model {
         return mcGymmy.hasFood(food);
     }
 
+    /**
+     * Deletes the given food and saves the current state to the history
+     * The index must be valid
+     *
+     * @param index
+     */
     @Override
     public void deleteFood(Index index) {
-        addCurrentStateToHistory();
+        logger.fine("Delete food at index: " + index.getOneBased());
+        saveCurrentStateToHistory();
         mcGymmy.removeFood(index);
     }
 
+    /**
+     * Adds the given food and saves the current state to the history
+     */
     @Override
     public void addFood(Food food) {
-        addCurrentStateToHistory();
+        logger.fine("Add food:\n" + food.toString());
+        saveCurrentStateToHistory();
         mcGymmy.addFood(food);
-        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+        updateFilterPredicate(PREDICATE_SHOW_ALL_FOODS);
     }
 
+    /**
+     * Replaces the given food {@code target} with {@code editedFood}, and saves the current state to the history
+     * The index must be valid
+     */
     @Override
     public void setFood(Index index, Food editedFood) {
         CollectionUtil.requireAllNonNull(index, editedFood);
-        addCurrentStateToHistory();
+        logger.fine("Change food at index " + index.getOneBased() + "to food:\n" + editedFood.toString());
+        saveCurrentStateToHistory();
         mcGymmy.setFood(index, editedFood);
-        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+        updateFilterPredicate(PREDICATE_SHOW_ALL_FOODS);
     }
 
     @Override
     public boolean canUndo() {
-        return !mcGymmyStack.empty() && !macroListStack.empty();
+        return !history.empty();
     }
 
     /**
-     * Undo the previous change to mcGymmy
+     * Undo the previous change to mcGymmy, remove that state from history
      */
     @Override
     public void undo() {
         if (canUndo()) {
-            assert mcGymmyStack.size() > 0 : "McGymmyStack is empty";
-            assert macroListStack.size() > 0 : "MacroListStack is empty";
-            mcGymmy.resetData(mcGymmyStack.pop());
-            this.macroList = macroListStack.pop();
-            updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
+            assert !history.empty() : "McGymmyStack is empty";
+            McGymmy prevMcGymmy = history.getMcGymmy();
+            Predicate<Food> prevPredicate = history.getPredicate();
+            MacroList macroList = history.getMacroList();
+            history.pop();
+            mcGymmy.resetData(prevMcGymmy);
+            updateFilterPredicate(prevPredicate);
+            this.macroList = macroList;
         }
     }
 
-    private void addCurrentStateToHistory() {
-        mcGymmyStack.push(new McGymmy(mcGymmy));
-        macroListStack.push(macroList);
+    private void saveCurrentStateToHistory() {
+        history.save(this);
+    }
+
+    @Override
+    public void clearFilteredFood() {
+        saveCurrentStateToHistory();
+        List<Food> lst = new ArrayList<>();
+        // prevent traversal error
+        for (Food filteredFood : mcGymmy.getFoodList()) {
+            if (!filterPredicate.test(filteredFood)) {
+                lst.add(filteredFood);
+            }
+        }
+        mcGymmy.setFoodItems(lst);
+
+        filteredFoodItems.clear();
     }
 
     //=========== Filtered Food List Accessors =============================================================
@@ -183,7 +225,20 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
-        filteredFoodItems.setPredicate(predicate);
+        logger.fine("Update predicate for filtered food list");
+        if (!predicate.equals(filterPredicate)) {
+            saveCurrentStateToHistory();
+            updateFilterPredicate(predicate);
+        }
+    }
+
+    private void updateFilterPredicate(Predicate<Food> predicate) {
+        filterPredicate = predicate;
+        filteredFoodItems.setPredicate(filterPredicate);
+    }
+
+    Predicate<Food> getFilterPredicate() {
+        return filterPredicate;
     }
 
     @Override

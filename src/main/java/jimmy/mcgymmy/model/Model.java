@@ -64,7 +64,7 @@ public interface Model {
     ReadOnlyMcGymmy getMcGymmy();
 
     /**
-     * Set McGymmy
+     * Sets McGymmy
      */
     void setMcGymmy(ReadOnlyMcGymmy mcGymmy);
 
@@ -76,13 +76,13 @@ public interface Model {
     /**
      * Deletes the given food.
      * The index must be valid
+     *
      * @param index
      */
     void deleteFood(Index index);
 
     /**
      * Adds the given food.
-     * {@code food} must not already exist in mcgymmy.
      */
     void addFood(Food food);
 
@@ -93,7 +93,12 @@ public interface Model {
     void setFood(Index index, Food editedFood);
 
     /**
-     * Check if mcGymmy can undo
+     * Removes all filtered food from Fridge and clears filtered food list
+     */
+    void clearFilteredFood();
+
+    /**
+     * Check if McGymmy can undoi
      */
     boolean canUndo();
 

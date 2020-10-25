@@ -124,6 +124,12 @@ public class AddCommandTest {
      * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
+
+        @Override
+        public void clearFilteredFood() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public MacroList getMacroList() {
             throw new AssertionError("This method should not be called.");

@@ -3,7 +3,9 @@ package jimmy.mcgymmy.model.food;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 import jimmy.mcgymmy.model.date.Date;
@@ -21,6 +23,8 @@ public class Food {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    private static final Logger logger = LogsCenter.getLogger(Food.class);
 
     // Identity field names
     private final Name name;
@@ -43,6 +47,18 @@ public class Food {
         this.fat = fat;
         this.tags.addAll(tags);
         this.date = date;
+        // logging
+        logger.finer("Creating food item: ");
+        logger.finer("With name: " + name.toString());
+        logger.finer("With protein: " + protein.toString());
+        logger.finer("With fat: " + fat.toString());
+        logger.finer("With carbs: " + carbs.toString());
+        logger.finer("With date: " + date.toString());
+        logger.finer("With tag(s): ");
+        for (Tag tag : tags) {
+            logger.finer(tag.toString());
+        }
+        logger.finer("==============[Create food done]==============");
     }
 
     // Constructor for convenience
@@ -110,12 +126,32 @@ public class Food {
         return Collections.unmodifiableSet(tags);
     }
 
-    public void addTag(Tag tag) {
-        tags.add(tag);
+    /**
+     * Adds a new tag to food
+     * @return A new Food with the tag
+     */
+    public Food addTag(Tag tag) {
+        Set<Tag> newTags = new HashSet<>(tags);
+        newTags.add(tag);
+        return new Food(name, protein, fat, carbs, newTags, date);
     }
 
-    public void removeTag(Tag tag) {
-        tags.remove(tag);
+    /**
+     * Removes a tag from food
+     * @return A new Food without the tag
+     */
+    public Food removeTag(Tag tag) {
+        Set<Tag> newTags = new HashSet<>(tags);
+        newTags.remove(tag);
+        return new Food(name, protein, fat, carbs, newTags, date);
+    }
+
+    /**
+     * Check if this food is already tagged with this tag
+     * @return True if this food is already tagged with this tag
+     */
+    public boolean hasTag(Tag tag) {
+        return tags.contains(tag);
     }
 
     public Date getDate() {
