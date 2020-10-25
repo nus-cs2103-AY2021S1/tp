@@ -505,7 +505,7 @@ Format: `exit`
 
 ### Saving the data <a name="save"></a>
 
-QuickCache data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+All flashcard data in QuickCache is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
