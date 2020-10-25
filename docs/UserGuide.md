@@ -79,30 +79,29 @@ Format: `help`
 
 ![help message](images/helpMessage.png)
 
-### Creating a new flashcard : You can add a new flashcard to the list.
-#### Creating a flashcard with open ended question: `add`
+### Creating a new flashcard
+You can add a new flashcard to the list.
+#### Creating a flashcard with open ended question: `add q/QUESTION ans/ANSWER`
 You can create a flashcard that contains an open ended question which will be added to the list.
 
-Format: `add q/QUESTION ans/ANSWER`
-
-Examples:
-* `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
-
+1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
+For example, you can enter`add q/Sample Question ans/Sample Answer`
 ![addOpenEnded](images/addOpenEnded.png)
+2. You have successfully created a flashcard with an open ended question and it will be saved immediately in the list.
+![addOpenEnded2](images/addOpenEnded2.png)
 
 <div class="alert alert-danger">
 You cannot add a flashcard with empty question and empty answer.
 </div>
 
-#### Creating a flashcard with multiple choice question: `addmcq`
+#### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
 You can create a flashcard that contains a multiple choice question which will be added to the list.
 
-Format: `addmcq q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
-
-Examples:
-* `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
-
+1. You can use the addmcq command to add a flashcard with a multiple choice question which will be added to the list.
+For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sample Choice 2`
 ![addMCQ](images/addMCQ.png)
+2. You have successfully created a flashcard with a multiple choice question and it will be saved immediately in the list.
+![addMCQ2](images/addMCQ2.png)
 
 <div class="alert alert-danger">
 You cannot add flashcard with missing question or missing answer or missing choice.
@@ -134,16 +133,19 @@ To view a flashcard you can open it by its index.
 	
 You have successfully opened a flashcard!
 
-### Editing a flashcard: `edit`
+### Editing a flashcard: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
 
 You can edit a flashcard that you have created previously.
 
-Format: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..`
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+![edit](images/Edit.png)
+2. Using the indices of the displayed list, enter the edit command followed by the index of the flashcard you want to edit. 
+For example, if you want to edit the 3rd flashcard in the displayed list, you can enter `edit 3 q/Updated Question`.
+![edit2](images/Edit2.png)
+3. Press enter and QuickCache will edit the flashcard specified by the index.
+![edit3](images/Edit3.png)
 
-Examples:
-* `edit 1 q/Plants give out ___ when they photosynthesise? ans/2 c/Oxygen c/Carbon c/Carbon dioxide`
-
-![edit](images/edit.png)
+You have successfully edited a flashcard.
 
 <div class="alert alert-danger">
 You must have at least one edited field which is different from the previous flashcard.
@@ -230,33 +232,61 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionAndTagsStep3](./images/FindQuestionAndTagsStep3.png)
 
-### Deleting a flashcard : You can delete the flashcard from the list.
+### Deleting a flashcard
 
-<div class="alert alert-danger">
-You can only delete based on index or based on tags but not both!
+To delete a flashcard, you can either delete it by its index or based off its tags.
+
+<div markdown="block" class="alert alert-danger">
+
+:exclamation: You can only delete based on index or based on tags but not both!
+
 </div>
 
-#### Deleting by index: `delete`
-You can delete a flashcard based on the index from the last displayed list.
-Format: `delete INDEX` 
+#### Deleting by index : `delete INDEX`
 
-* Deletes the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+You can delete a flashcard based on the index shown in the last displayed list.
 
-Examples:
 
-* `list` followed by `delete 3` deletes the 3rd flashcard in the list.
-![deleteIndex](images/deleteIndex.png)
+<div markdown="block" class="alert alert-info">
 
-#### Deleting by tags : `delete`
-Format: `delete t/TAG1 TAG2`
+:information_source: The INDEX refers to the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
 
-* Deletes all flashcards with the tags `TAG1` and `TAG2`
+</div>
 
-Examples:
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
-* `delete t/MCQ` will delete all flashcards with the tag `MCQ`
+	![DeleteIndexStep1](./images/DeleteIndexStep1.png)
+	
+2. Using the indices of the displayed list, enter the delete command followed by the index of the flashcard you want to delete. For example, if you want to delete the 4th flashcard in the displayed list, you can enter `delete 4`.
+
+	![DeleteIndexStep2](./images/DeleteIndexStep2.png)
+	
+3. Press enter and QuickCache will delete the flashcard specified by the index. 
+
+	![DeleteIndexStep3](./images/DeleteIndexStep3.png)
+	
+You have successfully deleted a flashcard!
+
+#### Delete by tags : `delete t/TAG1`
+
+You can delete a group of flashcards based on a specified tag. All flashcards that have this specified tag will be deleted.
+
+<div markdown="block" class="alert alert-info">
+
+:bulb: You can specify more than one tag to be used when deleting flashcards. Any flashcard with **at least one** of these specified tags will be deleted.
+
+</div>
+
+1. In the user input box, enter in the delete command together with the tags that you want to use as the criteria. For example, if you want to delete all flashcards with the tag `SolarSystem`, type `delete t/SolarSystem`.
+
+	![DeleteTagStep1](./images/DeleteTagStep1.png)
+
+2. Press enter and QuickCache will delete the flashcards accordingly.
+
+	![DeleteTagStep2](./images/DeleteTagStep2.png)
+
+All flashcards with your specified tag(s) are now deleted!
+
 #### Clearing all entries : `clear`
 Clears all entries from QuickCache.
 
