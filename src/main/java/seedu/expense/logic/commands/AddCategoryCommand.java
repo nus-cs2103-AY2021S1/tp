@@ -41,4 +41,11 @@ public class AddCategoryCommand extends Command {
         model.addCategory(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toString()));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || other instanceof AddCategoryCommand // instanceof handles nulls
+                && toAdd.equals(((AddCategoryCommand) other).toAdd);
+    }
 }
