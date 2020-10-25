@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -22,7 +24,7 @@ public class ModelManager implements Model {
     private final ClientList clientList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private boolean isArchiveMode;
+    private final BooleanProperty isArchiveMode;
 
     /**
      * Initializes a ModelManager with the given clientList and userPrefs.
@@ -36,7 +38,8 @@ public class ModelManager implements Model {
         this.clientList = new ClientList(clientList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.clientList.getPersonList());
-        isArchiveMode = false;
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_ACTIVE); // initialised to show all active persons
+        isArchiveMode = new SimpleBooleanProperty(false);
     }
 
     public ModelManager() {
@@ -153,12 +156,17 @@ public class ModelManager implements Model {
     //=========== Archive Mode =============================================================
 
     @Override
-    public boolean getArchiveMode() {
+    public boolean getIsArchiveMode() {
+        return isArchiveMode.get();
+    }
+
+    @Override
+    public BooleanProperty getIsArchiveModeProperty() {
         return isArchiveMode;
     }
 
     @Override
-    public void setArchiveMode(boolean isArchiveMode) {
-        this.isArchiveMode = isArchiveMode;
+    public void setIsArchiveMode(boolean isArchiveMode) {
+        this.isArchiveMode.set(isArchiveMode);
     }
 }

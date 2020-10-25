@@ -41,6 +41,11 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the client list";
+    public static final String MESSAGE_DISABLE_IN_ARCHIVE_MODE =
+            "This command is disabled in archive mode\n"
+            + "To add a new client, switch to active mode with the list command, then call the add command\n"
+            + "To archive an existing client, switch to active mode with the list command, "
+            + "then call the archive command";
 
     private final Person toAdd;
 
@@ -55,6 +60,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getIsArchiveMode()) {
+            throw new CommandException(MESSAGE_DISABLE_IN_ARCHIVE_MODE);
+        }
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

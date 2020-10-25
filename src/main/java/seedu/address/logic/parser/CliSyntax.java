@@ -13,5 +13,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_CLIENTSOURCE = new Prefix("s/");
     public static final Prefix PREFIX_NOTE = new Prefix("o/");
     public static final Prefix PREFIX_PRIORITY = new Prefix("l/");
+    public static final Prefix PREFIX_ARCHIVE = new Prefix("r/");
 
 }

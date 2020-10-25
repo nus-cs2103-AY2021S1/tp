@@ -3,8 +3,10 @@ package seedu.address.model;
 import java.nio.file.Path;
 import java.util.function.Predicate;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.IsArchivePredicate;
 import seedu.address.model.person.Person;
 
 /**
@@ -13,6 +15,12 @@ import seedu.address.model.person.Person;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+
+    /** {@code Predicate} that filters active persons */
+    Predicate<Person> PREDICATE_SHOW_ALL_ACTIVE = new IsArchivePredicate().negate();
+
+    /** {@code Predicate} that filters archived persons */
+    Predicate<Person> PREDICATE_SHOW_ALL_ARCHIVE = new IsArchivePredicate();
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,11 +97,17 @@ public interface Model {
      * Returns the archive mode.
      * @return Archive mode.
      */
-    boolean getArchiveMode();
+    BooleanProperty getIsArchiveModeProperty();
+
+    /**
+     * Returns the boolean value of the archive mode.
+     * @return Boolean value of archive mode.
+     */
+    boolean getIsArchiveMode();
 
     /**
      * Sets the archive mode.
      * @param isArchiveMode Archive mode to be set.
      */
-    void setArchiveMode(boolean isArchiveMode);
+    void setIsArchiveMode(boolean isArchiveMode);
 }
