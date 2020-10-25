@@ -30,7 +30,7 @@ deactivate FlashcardDeckParser
 LogicManager -> SortCommand : execute()
 activate SortCommand
 
-SortCommand -> Model : updateSortedFlashcardList()
+SortCommand -> Model : sortFilteredFlashcardList(comparator)
 activate Model
 
 Model --> SortCommand

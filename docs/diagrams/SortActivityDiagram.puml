@@ -6,12 +6,14 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if () then ([sort by leastReviewed])
-    :Updates filteredFlashcardList sorted by least reviewed;
-elseif () then ([sort by mostReviewed])
-       :Updates filteredFlashcardList sorted by most reviewed;
-else ([sort by leastCorrect])
-    :Updates filteredFlashcardList sorted by least correct;
+if () then ([sort by least to most reviewed])
+    :Updates filteredFlashcardList sorted by least to most reviewed;
+elseif () then ([sort by most to least reviewed])
+       :Updates filteredFlashcardList sorted by most to least reviewed;
+elseif () then ([sort by lowest to highest success rate])
+    :Updates filteredFlashcardList sorted by lowest to highest success rate;
+else
+    :Updates filteredFlashcardList sorted by highest to lowest success rate;
 endif
 stop
 @enduml
