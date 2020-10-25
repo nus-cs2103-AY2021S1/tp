@@ -242,6 +242,13 @@ public class ModelManager implements Model {
     //        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
     }
 
+    @Override
+    public void setFood(Food target, Food editedFood, int index) {
+        requireAllNonNull(target, editedFood);
+        menuManagers.get(index).setFood(target, editedFood);
+    }
+
+
     //=========== OrderManager ================================================================================
 
     @Override
