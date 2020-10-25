@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ANSWER + "ANSWER] "
             + "[" + PREFIX_CHOICE + "CHOICE]...\n"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_DIFFICULTY + "DIFFICULTY]...\n"
+            + "[" + PREFIX_DIFFICULTY + "DIFFICULTY]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUESTION + "New Question "
             + PREFIX_ANSWER + "New Answer";
