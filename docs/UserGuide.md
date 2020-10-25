@@ -157,9 +157,9 @@ Edits an entry in the tracker.
 * The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
 
 Formats:
-* `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG
-   edit 2 c/CATEGORY d/DESCRIPTION
-   edit 3 c/CATEGORY a/AMOUNT`
+* `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG`
+* `edit 2 c/CATEGORY d/DESCRIPTION`
+* `edit 3 c/CATEGORY a/AMOUNT`
 
 Example:
 * `edit 2 c/expense n/buy McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
@@ -245,9 +245,19 @@ Example:
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
+**Exit** | `exit`
 **Add** | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 **Delete** | `delete ENTRY_INDEX c/CATEGORY`
-**Exit** | `exit`
+**Edit** | `edit 1 c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
+**Find** | `find k/KEYWORD [MORE_KEYWORDS]`
+**List** |
+**Clear** |
+**Profit** |
+**New Account** |
+**Delete Account** |
+**Edit Account** |
+**List Account** |
+**Switch Account** |
 
 <!-- **Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT` -->
 <!-- **Find** | `find KEYWORD [MORE_KEYWORDS]` -->
