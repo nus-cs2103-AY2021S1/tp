@@ -204,25 +204,26 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updatePersonInMeetingBook(Person ...persons) {
+    public void updatePersonInMeetingBook(Person... persons) {
         requireNonNull(persons);
         Person personToUpdate = persons[0];
         boolean isReplacement = persons.length > 1;
 
-        filteredMeetings.stream().filter(meeting -> meeting.getMembers().contains(personToUpdate)).forEach(meeting -> {
-            Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
-            logger.fine("Removing contact from relevant meeting.");
-            updatedMembers.remove(personToUpdate);
-            if (isReplacement) {
-                assert persons.length == 2;
-                Person editedPerson = persons[1];
-                logger.fine("Adding edited contact to relevant meeting.");
-                updatedMembers.add(editedPerson);
-            }
-            Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
-                    meeting.getTime(), updatedMembers);
-            meetingBook.setMeeting(meeting, updatedMeeting);
-        });
+        filteredMeetings.stream().filter(meeting -> meeting.getParticipants()
+                .contains(personToUpdate)).forEach(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
+                    logger.fine("Removing contact from relevant meeting.");
+                    updatedMembers.remove(personToUpdate);
+                    if (isReplacement) {
+                        assert persons.length == 2;
+                        Person editedPerson = persons[1];
+                        logger.fine("Adding edited contact to relevant meeting.");
+                        updatedMembers.add(editedPerson);
+                    }
+                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
+                            meeting.getDate(), meeting.getTime(), updatedMembers);
+                    meetingBook.setMeeting(meeting, updatedMeeting);
+                });
     }
 
     //=========== Modules ===================================================================================

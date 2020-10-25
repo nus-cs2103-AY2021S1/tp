@@ -14,12 +14,14 @@ import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
 public class JsonAdaptedMeeting {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
+    private final JsonAdaptedModule module;
     private final String meetingName;
     private final String date;
     private final String time;
@@ -29,9 +31,12 @@ public class JsonAdaptedMeeting {
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedMeeting(@JsonProperty("meeting name") String meetingName, @JsonProperty("date") String date,
+    public JsonAdaptedMeeting(@JsonProperty("module") JsonAdaptedModule module,
+                              @JsonProperty("meeting name") String meetingName,
+                              @JsonProperty("date") String date,
                               @JsonProperty("time") String time,
                               @JsonProperty("members") List<JsonAdaptedPerson> memberList) {
+        this.module = module;
         this.meetingName = meetingName;
         this.date = date;
         this.time = time;
@@ -44,10 +49,11 @@ public class JsonAdaptedMeeting {
      * Constructs a {@code JsonAdaptedMeeting} with the given meeting details.
      */
     public JsonAdaptedMeeting(Meeting source) {
+        module = new JsonAdaptedModule(source.getModule());
         meetingName = source.getMeetingName().meetingName;
         date = source.getDate().value;
         time = source.getTime().value;
-        memberList.addAll(source.getMembers().stream()
+        memberList.addAll(source.getParticipants().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
     }
@@ -62,6 +68,8 @@ public class JsonAdaptedMeeting {
         for (JsonAdaptedPerson person : memberList) {
             members.add(person.toModelType());
         }
+
+        Module modelModule = module.toModelType();
 
         if (meetingName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -90,7 +98,7 @@ public class JsonAdaptedMeeting {
 
         final Set<Person> modelMembers = new HashSet<>(members);
 
-        return new Meeting(modelName, modelDate, modelTime, modelMembers);
+        return new Meeting(modelModule, modelName, modelDate, modelTime, modelMembers);
     }
 
 }
