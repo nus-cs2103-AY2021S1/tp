@@ -16,7 +16,7 @@ public class InventoryRecord {
     private final int quantity;
     private final String itemName;
     private int financeId;
-    private String id;
+    private String UiUsableIndex;
 
     /**
      * Constructs an InventoryRecord.
@@ -27,7 +27,7 @@ public class InventoryRecord {
         this.quantity = 0;
         this.dateTime = LocalDateTime.now();
         this.financeId = -1;
-        this.id = "" + id;
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     /**
@@ -40,7 +40,7 @@ public class InventoryRecord {
         this.quantity = quantity;
         this.dateTime = LocalDateTime.now();
         this.financeId = -1;
-        this.id = "" + id;
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     /**
@@ -54,7 +54,7 @@ public class InventoryRecord {
         this.quantity = quantity;
         this.dateTime = dateTime;
         this.financeId = -1;
-        this.id = "" + id;
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     /**
@@ -69,7 +69,7 @@ public class InventoryRecord {
         this.quantity = quantity;
         this.dateTime = dateTime;
         this.financeId = financeId;
-        this.id = "" + id;
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     public void setFinanceRecord(FinanceRecord financeRecord) {
@@ -103,8 +103,12 @@ public class InventoryRecord {
         return financeId;
     }
 
-    public String getId() {
-        return this.id;
+    public String getUiUsableIndex() {
+        return this.UiUsableIndex;
+    }
+
+    public void setUiUsableIndex(int i) {
+        this.UiUsableIndex = "" + i;
     }
 
     @Override
@@ -121,7 +125,5 @@ public class InventoryRecord {
                 + ": " + itemName + ", " + quantity + " in stock";
     }
 
-    public void setId(int i) {
-        this.id = "" + i;
-    }
+
 }
