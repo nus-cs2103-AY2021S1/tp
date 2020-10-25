@@ -43,6 +43,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return parseCasePage(matcher);
         }
 
+        // Might be Dead code, above if conditions are binary
         throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 

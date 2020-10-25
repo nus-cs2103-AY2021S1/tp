@@ -97,9 +97,9 @@ public class AddCaseCommandParserTest {
                 Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        // TODO: for "add case t:TITLE", this test case may not be so relevant bc only one value
-        // but might be relevant for "add case t:TITLE d:DESCRIPTION" <-- can KIV for future use?
-        assertParseFailure(parser, INVALID_NAME_DESC, Title.MESSAGE_CONSTRAINTS);
+        // Is relevant for "add case t:TITLE s:STATUS" or any number of invalid fields
+        // Using 2 invalid Fields Title and Status
+        assertParseFailure(parser, INVALID_NAME_DESC + INVALID_STATUS_DESC, Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
