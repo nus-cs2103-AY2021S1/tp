@@ -39,7 +39,9 @@ public class ContactListParser implements FeatureParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
+
         case AddContactCommand.COMMAND_WORD:
             return new AddContactParser().parse(arguments);
 
@@ -63,9 +65,6 @@ public class ContactListParser implements FeatureParser {
 
         case HelpContactCommand.COMMAND_WORD:
             return new HelpContactCommand();
-
-        //case AddAssignmentCommand.COMMAND_WORD:
-            //return new AddAssignmentParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
