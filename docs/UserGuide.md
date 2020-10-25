@@ -21,11 +21,22 @@ If you are a student who can type fast and loves organizing your study materials
     4. [Editing a flashcard](#editing-a-flashcard)
     5. [Listing all flashcards](#listing-all-flashcards)
     6. [Finding flashcards](#finding-flashcards)
+        1. [Finding by question](#finding-by-question)
+        2. [Finding by tags](#finding-by-tags)
     7. [Deleting flashcards](#deleting-flashcards)
+        1. [Deleting by index](#deleting-by-index)
+        2. [Deleting by tags](#deleting-by-tags)
+        3. [Clearing all entries](#clear)
     8. [Testing a flashcard](#testing-flashcard)
+        1. [Containing an open-ended question](#testing-oeq)
+        2. [Containing a multiple choice question](#testing-mcq)
     9. [Displaying statistics](#displaying-statistics)
+        1. [Statistics by index](#stats-by-index)
+        2. [Statistics by tags](#stats-by-tags)
     10. [Clearing a flashcard's statistics](#clearing-a-flashcards-statistics)
     11. [Sharing flashcards](#sharing-flashcards)
+        1. [Exporting a set of flashcards](#export)
+        2. [Importing a set of flashcards](#import)
     12. [Exiting the program](#exit)
     13. [Saving the data](#save)
 3. [FAQ](#faq)
@@ -33,7 +44,7 @@ If you are a student who can type fast and loves organizing your study materials
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start <a name="quickstart"></a> <a name="clearing-a-flashcards-statistics"></a>
+## Quick start <a name="quickstart"></a>
 Here is a quick start on how you can start using our app in your own computer. 
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -190,7 +201,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 </div>
 
-#### Finding by question: `find q/KEYWORD1 q/KEYWORD2 ..`
+#### Finding by question: `find q/KEYWORD1 q/KEYWORD2 ..` <a name="finding-by-question"></a>
 	
 <div markdown="block" class="alert alert-info">
 
@@ -212,7 +223,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 
 	![FindQuestionStep3](./images/FindQuestionStep3.png)
 
-#### Finding by tags: `find t/TAG1 t/TAG2 ..`
+#### Finding by tags: `find t/TAG1 t/TAG2 ..` <a name="finding-by-tags"></a>
 	
 <div markdown="block" class="alert alert-info">
 
@@ -265,7 +276,7 @@ To delete a flashcard, you can either delete it by its index or based off its ta
 
 </div>
 
-#### Deleting by index : `delete INDEX`
+#### Deleting by index : `delete INDEX` <a name="deleting-by-index"></a>
 
 You can delete a flashcard based on the index shown in the last displayed list.
 
@@ -290,7 +301,7 @@ You can delete a flashcard based on the index shown in the last displayed list.
 	
 You have successfully deleted a flashcard!
 
-#### Delete by tags : `delete t/TAG1`
+#### Deleting by tags : `delete t/TAG1` <a name="deleting-by-tags"></a>
 
 You can delete a group of flashcards based on a specified tag. All flashcards that have this specified tag will be deleted.
 
@@ -310,14 +321,14 @@ You can delete a group of flashcards based on a specified tag. All flashcards th
 
 All flashcards with your specified tag(s) are now deleted!
 
-#### Clearing all entries : `clear`
+#### Clearing all entries : `clear` <a name="clear"></a>
 Clears all entries from QuickCache.
 
 Format: `clear`
 
 ### Testing a flashcard <a name="testing-flashcard"></a>
 
-#### Containing an open-ended question : `test INDEX ans/ANSWER`
+#### Containing an open-ended question : `test INDEX ans/ANSWER` <a name="testing-oeq"></a>
 
 <div markdown="block" class="alert alert-info">
 :bulb: Answer is <b>case insensitive</b>.
@@ -337,7 +348,7 @@ You can test yourself with a flashcard containing open-ended question by specify
 
 You have successfully tested yourself on an open-ended question!
 
-#### Containing a multiple choice question : `test INDEX o/OPTION` 
+#### Containing a multiple choice question : `test INDEX o/OPTION` <a name="testing-mcq"></a>
 
 <div markdown="block" class="alert alert-danger">
 The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
@@ -366,7 +377,7 @@ Statistics include:
 * The number of times and the percentage the user answers all flashcards containing the specified tag(s) correctly.
 * The number of times and the percentage the user answers all flashcards containing the specified tag(s) incorrectly.
 
-#### Statistics by index: `stats INDEX`
+#### Statistics by index: `stats INDEX` <a name="stats-by-index"></a>
 
 You can display the statistics of a specified flashcard in a Pie Chart based on the last displayed list.
 
@@ -388,7 +399,7 @@ You can display the statistics of a specified flashcard in a Pie Chart based on 
 	
 You have successfully displayed the statistics of a flashcard!
 
-#### Statistics by tags: `stats t/TAG1 TAG2`
+#### Statistics by tags: `stats t/TAG1 TAG2` <a name="stats-by-tags"></a>
 
 You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags. 
 
@@ -448,7 +459,7 @@ You have successfully cleared the statistics of a flashcard!
 
 ### Sharing flashcards <a name="sharing-flashcards"></a>
 
-#### Exporting a set of flashcards : `export FILE_NAME`
+#### Exporting a set of flashcards : `export FILE_NAME` <a name="export"></a>
 
 <div markdown="block" class="alert alert-info">
 :bulb: The filename specified includes the file format extension e.g. file.json
@@ -467,7 +478,7 @@ You can export all flashcards from the last displayed list into a file named `FI
 
 Voila! You have successfully exported your flashcards into a file.
 
-#### Importing a set of flashcards : `import FILE_NAME`
+#### Importing a set of flashcards : `import FILE_NAME` <a name="import"></a>
 
 <div markdown="block" class="alert alert-info">
 :bulb: The filename specified includes the file format extension e.g. file.json and duplicate flashcards will be ignored.
