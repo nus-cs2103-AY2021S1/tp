@@ -7,12 +7,15 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
+# How to identify notations
+These blocks are a few examples of notations that will be used in this document. Each block and icon 
+has a different meaning so do look out for them under our features.
 
 <div markdown="block" class="alert alert-info"> 
 
-:information_source: **Note:**
+:information_source: **Note:** 
 
-Important notes to read to understand our features. 
+Important notes to read regarding the feature. 
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -28,14 +31,14 @@ Ways to better your experience with Common Cents.
 
 :heavy_check_mark: **Example:**
 
-An example to follow.
+An example, or multiple examples to follow.
 </div>
 
 <div markdown="block" class="alert alert-danger">
 
 :warning: **Warning:**
 
-Features to be used with caution as using them may have irreversible effects.
+Important cautions that needs to be known before using the feature.
 </div>
 
 
@@ -60,6 +63,26 @@ Features to be used with caution as using them may have irreversible effects.
    * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+# User Interface Overview
+Figure shows the default user interface (UI) of Common Cents. You can find the description for each UI components in the 
+table below.<br> 
+![annotatedUi](images/commands/annotatedUi.PNG)
+<p align="center"> <sub> <b>Figure</b>: Default user interface of Common Cents </sub> </p>
+
+UI component | Description
+--------|------------------
+*Menu bar* | Displays the menu bar of Common Cents. You can use this to access the User Guide or exit the application. 
+*Active account name* | Displays the account you are currently on.
+*Display picture* | Displays the default display picture of the application.
+*Command box* | Displays a text field for you to type the commands.
+*Result display* | Displays the result of your command. If the command is invalid, an error message will be displayed to prompt and guide you to input valid correct command.
+*Account summary chart* | Displays the total expenses and revenues in your current account in a pie chart.
+*Chart legend* | Displays the legend for the account summary chart.
+*Status bar* | Displays the current date.
+*Expense list* | Displays all the expenses in your current account in a panel.
+*Revenue list* | Displays all the revenues in your current account in a panel.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -88,7 +111,7 @@ Features to be used with caution as using them may have irreversible effects.
 Shows a message explaining how to access the help page (Figure). You can click on the `Copy URL ` button to copy
 the link to clipboard and paste it 
 <br>![Ui](images/helpMessage.png)
-<p align="center"> <i>Figure: Help message</i> </p>
+<p align="center"> <sub> <b>Figure</b>: Help message </sub> </p>
 
 Format: `help`
 
@@ -172,7 +195,7 @@ description (Figure).
  
 </div>
 
-<br>![findCommand](images/command/findCommand.png)
+<br>![findCommand](images/commands/findCommand.PNG)
 <p align="center"> <sub> <b>Figure</b>: Find command successfully executed </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
@@ -184,24 +207,19 @@ description (Figure).
 * The search does not match partial words. e.g. `food` will match `food` and `fast food` but not `fastfood`.
 * Entries matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker food`, 
 `Restaurant Food`.
-* The category is optional.
+* The `c/CATEGORY` is optional.
+
+</div>
 
 <div markdown="block" class="alert alert-primary">
 
 [comment]: <> (This only appears in Github CSS)
 
-:bulb: **Tip:**
-
-Good to learn, but not necessary to know to use FitEgo. 
+:bulb: **Tip:** When there are a lot of entries and you want to delete something, 
+you can use `find` to search for it in the list and use `delete ENTRY_INDEX` to remove it from the updated
+list, with the updated `ENTRY INDEX`.
 </div>
 
-</div>
-
-Format:
-* `find k/KEYWORD [MORE_KEYWORDS]`
-
-Example:
-* `find k/food`: Finds expenses with the keyword `food`.
 
 ### Listing all entries: `list`
 
