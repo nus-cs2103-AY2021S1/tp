@@ -33,6 +33,8 @@ public class JsonInventoryStorage implements InventoryStorage {
      * @param filePath file path to storage file.
      */
     public JsonInventoryStorage(Path filePath) {
+        assert filePath != null : "File path for finance account storage is null!";
+
         this.filePath = filePath;
     }
 
@@ -54,7 +56,6 @@ public class JsonInventoryStorage implements InventoryStorage {
     public Optional<ReadOnlyInventory> readInventory(Path filePath) throws DataConversionException, IOException {
         requireNonNull(filePath);
 
-        // TODO: THIS LINE IS CAUSING A LOADING ERROR
         Optional<JsonSerializableInventory> jsonInventory = JsonUtil.readJsonFile(
                 filePath, JsonSerializableInventory.class);
 

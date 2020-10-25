@@ -272,7 +272,7 @@ Steps to migrate data:
 
 ### 6.2. How do I combine data from two devices?
 
-Currently, NUStorage does not support the merging of data between different devices. NUStorage only supports moving of data from one device to another. Please see FAQ 5.2 regarding how to migrate data.
+Currently, NUStorage does not support the merging of data between different devices. NUStorage only supports moving of data from one device to another. Please see FAQ 6.1 regarding how to migrate data.
 
 ### 6.3. Can I directly modify the storage file?
 

@@ -8,8 +8,9 @@ public class FinanceRecord {
     private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
 
     private final int id;
-    private LocalDateTime datetime;
+    private LocalDateTime dateTime;
     private double amount;
+    private String UiUsableIndex;
 
     /**
      * Constructs a {@code Finance Record}.
@@ -19,19 +20,21 @@ public class FinanceRecord {
     public FinanceRecord(double amount) {
         id = this.hashCode();
         this.amount = amount;
-        this.datetime = LocalDateTime.now();
+        this.dateTime = LocalDateTime.now();
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     /**
      * Constructs a {@code Finance Record}.
      *
      * @param amount Amount of the transaction.
-     * @param datetime Date of the transaction.
+     * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(double amount, LocalDateTime datetime) {
+    public FinanceRecord(double amount, LocalDateTime dateTime) {
         id = this.hashCode();
         this.amount = amount;
-        this.datetime = datetime;
+        this.dateTime = dateTime;
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     /**
@@ -39,12 +42,13 @@ public class FinanceRecord {
      *
      * @param id ID of the transaction.
      * @param amount Amount of the transaction.
-     * @param datetime Date of the transaction.
+     * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(int id, double amount, LocalDateTime datetime) {
+    public FinanceRecord(int id, double amount, LocalDateTime dateTime) {
         this.id = id;
         this.amount = amount;
-        this.datetime = datetime;
+        this.dateTime = dateTime;
+        this.UiUsableIndex = "" + UiUsableIndex;
     }
 
     public int getID() {
@@ -55,12 +59,20 @@ public class FinanceRecord {
         return amount;
     }
 
-    public LocalDateTime getDatetime() {
-        return datetime;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     public String getDatetimeString() {
-        return DATETIME_FORMAT.format(datetime);
+        return DATETIME_FORMAT.format(dateTime);
+    }
+
+    public String getUiUsableIndex() {
+        return UiUsableIndex;
+    }
+
+    public void setUiUsableIndex(int i) {
+        this.UiUsableIndex = "" + i;
     }
 
     /**
@@ -69,7 +81,7 @@ public class FinanceRecord {
      * @param obj Object to compare with
      * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
      */
-    public boolean equalsWithoutID(Object obj) {
+    public boolean hasSameData(Object obj) {
         if (obj instanceof FinanceRecord) {
             return ((FinanceRecord) obj).amount == this.amount
                     && ((FinanceRecord) obj).getDatetimeString().equals(this.getDatetimeString());
@@ -77,11 +89,24 @@ public class FinanceRecord {
         return false;
     }
 
+    /**
+     * Compares if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     *
+     * @param obj Object to compare with
+     * @return True if {@code obj} is a {@code Finance Record} and has the same amount and datetime value.
+     */
+    public boolean isSameRecord(Object obj) {
+        if (obj instanceof FinanceRecord) {
+            return this.id == ((FinanceRecord) obj).id;
+        }
+        return false;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof FinanceRecord) {
-            return ((FinanceRecord) obj).id == this.id
-                    && this.equalsWithoutID(obj);
+            return this.isSameRecord(obj)
+                    && this.hasSameData(obj);
         }
         return false;
     }
@@ -93,4 +118,6 @@ public class FinanceRecord {
                 getDatetimeString(),
                 amount);
     }
+
+
 }

@@ -5,12 +5,12 @@ import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
-import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import nustorage.commons.core.index.Index;
 import nustorage.model.person.exceptions.PersonNotFoundException;
+import nustorage.model.record.exceptions.DuplicateFinanceRecordException;
+import nustorage.model.record.exceptions.FinanceRecordNotFoundException;
 
 public class FinanceRecordList implements Iterable<FinanceRecord> {
 
@@ -23,7 +23,7 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
      */
     public boolean contains(FinanceRecord toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameRecord);
     }
 
     /**
@@ -32,6 +32,9 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
      */
     public void add(FinanceRecord toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateFinanceRecordException();
+        }
         internalList.add(toAdd);
     }
 
@@ -55,12 +58,13 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
-    public Optional<FinanceRecord> remove(Index targetIndex) {
-        requireNonNull(targetIndex);
-        if (targetIndex.getZeroBased() >= internalList.size()) {
-            return Optional.empty();
+    public void remove(FinanceRecord toRemove) {
+        requireNonNull(toRemove);
+
+        if (!internalList.contains(toRemove)) {
+            throw new FinanceRecordNotFoundException();
         }
-        return Optional.of(internalList.remove(targetIndex.getZeroBased()));
+        internalList.remove(toRemove);
     }
 
     public void setFinanceRecords(FinanceRecordList replacement) {
