@@ -171,7 +171,8 @@ b) `Tags`
 
 Note: Deliveries are all considered unique. Reason being the same person can make multiple delivery orders.
 
-For example, `John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
+<div markdown="span" class="alert alert-info">:information_source: **For example:**`John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
+</div>
 
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
@@ -399,7 +400,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to update item.
-2. OneShelf updates the item accordingly.
+2. OneShelf adds the item accordingly.
 
    Use case ends.
 
@@ -513,7 +514,7 @@ if there is no existing same item. If there is an existing same item,
        Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added 
        
     1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
-       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added if there is no existing same item. 
+       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added when there is no existing same item. 
 
 ### Adding to an existing item
 
