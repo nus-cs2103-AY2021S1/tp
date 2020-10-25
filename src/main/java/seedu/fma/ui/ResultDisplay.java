@@ -34,6 +34,25 @@ public class ResultDisplay extends UiPart<Region> {
         this.commandSuggestionList = commandMessageUsage;
     }
 
+    public static String getAutoCompleteResult(String input, List<String> commandSuggestionList) {
+        String feedback = "";
+        String[] inputArr = input.split(" ");
+        String prefix = inputArr[0];
+
+        if (inputArr.length == 1) {
+            for (String suggestion : commandSuggestionList) {
+                if (suggestion.startsWith(prefix.toLowerCase())) {
+                    feedback += suggestion + "\n";
+                }
+            }
+        } else {
+            feedback = commandSuggestionList.stream()
+                    .filter(suggestion -> prefix.equals(suggestion.split(" ")[0])).findFirst().orElse("");
+        }
+
+        return feedback.trim();
+    }
+
     /**
      * Show autocomplete result to user.
      * @param input input of the user
@@ -45,13 +64,6 @@ public class ResultDisplay extends UiPart<Region> {
             return;
         }
 
-        String feedback = "";
-        input = input.split(" ")[0];
-        for (String suggestion : commandSuggestionList) {
-            if (suggestion.startsWith(input.toLowerCase())) {
-                feedback += suggestion + "\n";
-            }
-        }
-        resultDisplay.setText(feedback.trim());
+        resultDisplay.setText(getAutoCompleteResult(input, commandSuggestionList));
     }
 }
