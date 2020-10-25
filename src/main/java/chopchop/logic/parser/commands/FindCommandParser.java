@@ -56,7 +56,7 @@ public class FindCommandParser {
                     return Result.of(new FindIngredientCommand(new NameContainsKeywordsPredicate(words)));
 
                 default:
-                    return Result.error("can only find recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("Can only find recipes or ingredients ('%s' invalid)", target.fst());
                 }
             });
     }

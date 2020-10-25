@@ -41,7 +41,7 @@ public class Mass implements Quantity {
     @Override
     public Result<Mass> add(Quantity qty) {
         if (!(qty instanceof Mass)) {
-            return Result.error("cannot add '%s' to '%s' (incompatible units)", qty, this);
+            return Result.error("Cannot add '%s' to '%s' (incompatible units)", qty, this);
         } else {
             var mass = (Mass) qty;
             var newval = this.value + (mass.value * (mass.ratio / this.ratio));
@@ -61,10 +61,15 @@ public class Mass implements Quantity {
     }
 
     @Override
+    public boolean compatibleWith(Quantity qty) {
+        return qty instanceof Mass;
+    }
+
+    @Override
     public int compareTo(Quantity other) {
         if (!(other instanceof Mass)) {
             throw new IncompatibleIngredientsException(
-                    String.format("cannot compare '%s' with '%s' (incompatible units)", other, this));
+                    String.format("Cannot compare '%s' with '%s' (incompatible units)", other, this));
         }
 
         return Double.compare(this.value * this.ratio, ((Mass) other).value * ((Mass) other).ratio);
@@ -108,7 +113,7 @@ public class Mass implements Quantity {
         case "mg":  return Result.of(milligrams(value));
         case "g":   return Result.of(grams(value));
         case "kg":  return Result.of(kilograms(value));
-        default:    return Result.error("invalid unit '%s'", unit);
+        default:    return Result.error("Invalid unit '%s'", unit);
         }
     }
 

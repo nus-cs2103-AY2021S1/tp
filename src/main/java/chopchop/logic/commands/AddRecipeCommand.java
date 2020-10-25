@@ -66,13 +66,30 @@ public class AddRecipeCommand extends Command implements Undoable {
             return CommandResult.error("Recipe '%s' already exists", this.name);
         }
 
-        // first, ensure that the ingredients are unique.
+        // validate the ingredients.
         {
             var seenIngredients = new HashSet<String>();
             for (var ingr : this.ingredients) {
-                if (seenIngredients.contains(ingr.getName())) {
 
+                // check it's not a dupe
+                if (seenIngredients.contains(ingr.getName())) {
                     return CommandResult.error("Ingredient '%s' was specified twice", ingr.getName());
+                }
+
+                // check that it exists
+                var opt = model.findIngredientWithName(ingr.getName());
+                if (opt.isEmpty()) {
+                    return CommandResult.error("Referenced ingredient '%s' does not exist", ingr.getName());
+                }
+
+                var existing = opt.get();
+                // and check that they're compatible.
+                if (!existing.getQuantity().compatibleWith(ingr.getQuantity())) {
+                    return CommandResult.error(
+                        "Ingredient '%s' has different, incompatible units (%s) than specified (%s)",
+                        existing.getQuantity(),
+                        ingr.getQuantity()
+                    );
                 }
 
                 seenIngredients.add(ingr.getName());

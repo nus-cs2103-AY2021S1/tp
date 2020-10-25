@@ -164,7 +164,7 @@ public class AddCommandParser {
 
                 var name = p.snd();
                 if (name.isEmpty()) {
-                    return Result.error("ingredient name cannot be empty");
+                    return Result.error("Ingredient name cannot be empty");
                 }
 
                 Optional<Quantity> quantity = Optional.empty();

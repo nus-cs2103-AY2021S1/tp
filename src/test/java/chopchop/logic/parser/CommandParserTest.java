@@ -63,9 +63,9 @@ public class CommandParserTest {
         tests.put("find ingredient cake cucumber", "Result(FindIngredientCommand(keywords: [cake, cucumber]))");
 
         tests.put("find recipe", "Error('find' command requires at least one search term)");
-        tests.put("add recipe cake /", "Error(expected argument name after '/')");
+        tests.put("add recipe cake /", "Error(Expected argument name after '/')");
 
-        tests.put("OWO", "Error(unknown command 'OWO')");
+        tests.put("OWO", "Error(Unknown command 'OWO')");
 
         tests.forEach((k, v) -> {
             var x = parser.parse(k);
