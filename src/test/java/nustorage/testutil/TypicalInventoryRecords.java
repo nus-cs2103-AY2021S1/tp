@@ -1,19 +1,21 @@
 package nustorage.testutil;
 
+
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_A;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_B;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_C;
+import static nustorage.logic.commands.CommandTestUtil.ID_A;
+import static nustorage.logic.commands.CommandTestUtil.ID_B;
+import static nustorage.logic.commands.CommandTestUtil.ID_C;
 import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_1;
 import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_2;
 import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_3;
 import static nustorage.logic.commands.CommandTestUtil.QUANTITY_1;
 import static nustorage.logic.commands.CommandTestUtil.QUANTITY_2;
 import static nustorage.logic.commands.CommandTestUtil.QUANTITY_3;
-import static nustorage.logic.commands.CommandTestUtil.ID_A;
-import static nustorage.logic.commands.CommandTestUtil.ID_B;
-import static nustorage.logic.commands.CommandTestUtil.ID_C;
 
 import nustorage.model.record.InventoryRecord;
+
 
 public class TypicalInventoryRecords {
 
