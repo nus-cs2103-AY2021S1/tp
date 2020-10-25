@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-import chopchop.commons.core.Messages;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.edit.EditOperationType;
 import chopchop.logic.edit.RecipeEditDescriptor;
@@ -59,20 +58,12 @@ public class EditRecipeCommand extends Command implements Undoable {
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         requireNonNull(model);
 
-        if (this.item.isIndexed()) {
-            var lastShownList = model.getFilteredRecipeList();
-
-            if (this.item.getZeroIndex() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_RECIPE_DISPLAYED_INDEX);
-            }
-
-            this.recipe = lastShownList.get(this.item.getZeroIndex());
-        } else {
-            this.recipe = model
-                    .findRecipeWithName(this.item.getName())
-                    .orElseThrow(() -> new CommandException(String.format(MESSAGE_RECIPE_NOT_FOUND,
-                            this.item.getName())));
+        var res = resolveRecipeReference(this.item, model);
+        if (res.isError()) {
+            return CommandResult.error(res.getError());
         }
+
+        this.recipe = res.getValue();
 
         var name = recipeEditDescriptor.getNameEdit().orElse(this.recipe.getName());
         var ingredients = new ArrayList<>(this.recipe.getIngredients());
@@ -153,7 +144,7 @@ public class EditRecipeCommand extends Command implements Undoable {
         this.editedRecipe = new Recipe(name, ingredients, steps, tags);
 
         model.setRecipe(this.recipe, this.editedRecipe);
-        return new CommandResult(String.format(MESSAGE_EDIT_RECIPE_SUCCESS, this.editedRecipe));
+        return CommandResult.message(MESSAGE_EDIT_RECIPE_SUCCESS, this.editedRecipe);
     }
 
     @Override
@@ -161,7 +152,7 @@ public class EditRecipeCommand extends Command implements Undoable {
         requireNonNull(model);
 
         model.setRecipe(this.editedRecipe, this.recipe);
-        return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.recipe));
+        return CommandResult.message(MESSAGE_UNDO_SUCCESS, this.recipe);
     }
 
     @Override

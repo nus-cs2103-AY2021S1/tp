@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.function.Predicate;
 
-import chopchop.commons.core.Messages;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
@@ -58,8 +57,7 @@ public class FilterRecipeCommand extends FilterCommand {
             DisplayNavigator.loadRecipePanel();
         }
 
-        return new CommandResult(String.format(Messages.MESSAGE_RECIPES_LISTED_OVERVIEW,
-            model.getFilteredRecipeList().size()));
+        return CommandResult.message("Found %d recipes", model.getFilteredRecipeList().size());
     }
 
     @Override
