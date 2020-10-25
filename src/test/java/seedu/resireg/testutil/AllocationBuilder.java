@@ -2,15 +2,8 @@ package seedu.resireg.testutil;
 
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Floor;
-import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNumber;
-import seedu.resireg.model.student.*;
-import seedu.resireg.model.student.faculty.Faculty;
-import seedu.resireg.model.tag.Tag;
-import seedu.resireg.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
+import seedu.resireg.model.student.StudentId;
 
 /**
  * A utility class to help with building Allocation objects.

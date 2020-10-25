@@ -1,5 +1,21 @@
 package seedu.resireg.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.resireg.logic.commands.CommandTestUtil.showRoomAtIndex;
+import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static seedu.resireg.testutil.TypicalAllocations.getTypicalAddressBook;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIFTH_ROOM;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_FOURTH_ROOM;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_ROOM;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
@@ -10,13 +26,6 @@ import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.resireg.logic.commands.CommandTestUtil.*;
-import static seedu.resireg.testutil.TypicalAllocations.getTypicalAddressBook;
-import static seedu.resireg.testutil.TypicalIndexes.*;
 
 /**
  * Contains unit tests for {@code ReallocateCommand}.

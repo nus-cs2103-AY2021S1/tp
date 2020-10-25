@@ -5,15 +5,15 @@ import static seedu.resireg.storage.JsonAdaptedRoom.MISSING_FIELD_MESSAGE_FORMAT
 import static seedu.resireg.testutil.Assert.assertThrows;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_ONE;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 import seedu.resireg.commons.exceptions.IllegalValueException;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 class JsonAdaptedRoomTest {
     private static final String INVALID_FLOOR = "08";
