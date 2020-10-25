@@ -74,7 +74,7 @@ public class CommandBox extends UiPart<Region> {
                 // now, we can change the cursor position accordingly.
                 cursor = completion.length();
 
-                commandTextField.setText(completion);
+                commandTextField.setText(completion + snd);
                 commandTextField.positionCaret(cursor);
                 event.consume();
 

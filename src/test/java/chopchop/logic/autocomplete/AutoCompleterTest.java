@@ -66,7 +66,8 @@ public class AutoCompleterTest {
 
         // ingredient name completion
         tests.put("add recipe cake /ingredient a",          "add recipe cake /ingredient Apricot");
-        tests.put("add recipe cake /ingredient b",          "add recipe cake /ingredient Banana");
+        tests.put("add recipe cake /ingredient ban",        "add recipe cake /ingredient Banana");
+        tests.put("add recipe cake /ingredient baked b",    "add recipe cake /ingredient Baked beans");
         tests.put("delete ingredient a",                    "delete ingredient Apricot");
 
         // recipe name completion
@@ -112,7 +113,8 @@ public class AutoCompleterTest {
             this.ingredients.setAll(List.of(
                 TypicalIngredients.APRICOT,
                 TypicalIngredients.BANANA,
-                TypicalIngredients.CUSTARD
+                TypicalIngredients.CUSTARD,
+                TypicalIngredients.BAKED_BEANS
             ));
         }
 
