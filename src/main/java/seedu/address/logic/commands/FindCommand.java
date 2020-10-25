@@ -1,6 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.ExerciseModel;
@@ -14,10 +19,20 @@ public class FindCommand extends CommandForExercise {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exercises whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "push up";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all exercises whose details are matched to the "
+            + "given ones (case-sensitive) and whose names contain any of the specified keywords (case-insensitive) "
+            + "and displays them as a list with index numbers.\n"
+            + "Parameters: " + "[" + PREFIX_NAME + "EXERCISE] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DATE + "DATE] "
+            + "[" + PREFIX_CALORIES + "CALORIES]"
+            + "[" + PREFIX_KEYWORD + "KEYWORDS...]\n"
+            + "Example: " + COMMAND_WORD
+            + PREFIX_NAME + "Push Up"
+            + PREFIX_DESCRIPTION + "30"
+            + PREFIX_DATE + "09-07-2020"
+            + PREFIX_CALORIES + "260"
+            + PREFIX_KEYWORD + "up";
 
     private final PropertiesMatchPredicateForExercise predicate;
 
