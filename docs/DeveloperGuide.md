@@ -302,6 +302,24 @@ The following activity diagram summarises the flow of events when `DeleteQuestio
 
 Figure \___. Activity diagram for `DeleteQuestionCommand` execution
 
+### 5.3 Student Find Command
+
+This is an explanation of how `FindCommand` works.
+
+This is an activity diagram showing the high level idea of how `FindCommand` is executed.
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+
+This is a sequence diagram together with an explanation of the implementation.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+ 1. After the `FindCommand`  is created by parsing user input, `FindCommand::execute` is called.
+ 2. The method then calls `getPredicates()` of the `FindStudentDescriptor` stored within `FindCommand` to obtain a `List<Predicate>` to search with.
+ 3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicate`.
+ 4. The `FilteredList<Student>` within the `Model` is then updated using `Model#updateFilteredPersonList(Predicate predicate)` for display.
+ 5. A new `CommandResult` will be returned with the success message.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -562,7 +580,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC08: Finding all students with overdue tuition fees**
+**UC07: Finding all students with overdue tuition fees**
 
 **MSS**
 
