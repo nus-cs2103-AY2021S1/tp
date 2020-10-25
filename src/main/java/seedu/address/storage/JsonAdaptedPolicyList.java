@@ -1,15 +1,16 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonRootName;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.policy.Policy;
-import seedu.address.model.policy.PolicyList;
-
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.PolicyList;
 
 /**
  * An immutable PolicyList that is serializable to JSON format.
@@ -37,7 +38,7 @@ public class JsonAdaptedPolicyList {
     public JsonAdaptedPolicyList(PolicyList source) {
         Hashtable<String, Policy> policies = source.getHashtableCopy();
 
-        for(Policy p : policies.values()) {
+        for (Policy p : policies.values()) {
             policyList.add(new JsonAdaptedPolicy(p));
         }
     }
@@ -47,7 +48,7 @@ public class JsonAdaptedPolicyList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public PolicyList toModelType() throws IllegalValueException{
+    public PolicyList toModelType() throws IllegalValueException {
         PolicyList policies = new PolicyList();
         for (JsonAdaptedPolicy p : policyList) {
             Policy policy = p.toModelType();

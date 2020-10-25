@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.PolicyDescription;
@@ -42,7 +43,8 @@ public class JsonAdaptedPolicy {
      */
     public Policy toModelType() throws IllegalValueException {
         if (policyName == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PolicyName.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PolicyName.class.getSimpleName()));
         }
         if (!PolicyName.isValidPolicyName(policyName)) {
             throw new IllegalValueException(PolicyName.MESSAGE_CONSTRAINTS);
@@ -50,7 +52,8 @@ public class JsonAdaptedPolicy {
         final PolicyName modelPolicyName = new PolicyName(policyName);
 
         if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, PolicyDescription.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    PolicyDescription.class.getSimpleName()));
         }
         if (!PolicyDescription.isValidPolicyDescription(description)) {
             throw new IllegalValueException(PolicyName.MESSAGE_CONSTRAINTS);

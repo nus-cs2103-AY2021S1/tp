@@ -6,6 +6,6 @@ package seedu.address.model.person.exceptions;
  */
 public class DuplicatePolicyException extends RuntimeException {
     public DuplicatePolicyException() {
-       super("Operation will result in a duplicate Policy");
+        super("Operation will result in a duplicate Policy");
     }
 }
