@@ -1,5 +1,6 @@
 package com.eva.logic;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
@@ -10,7 +11,7 @@ import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
-import com.eva.logic.parser.AddressBookParser;
+import com.eva.logic.parser.EvaParser;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.Model;
 import com.eva.model.ReadOnlyEvaDatabase;
@@ -32,7 +33,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final EvaParser evaParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,15 +41,15 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        evaParser = new EvaParser();
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, FileNotFoundException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = evaParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {

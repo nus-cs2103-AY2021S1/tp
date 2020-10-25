@@ -19,6 +19,7 @@ import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -295,6 +296,11 @@ public class ModelManager implements Model {
     public void addApplicant(Applicant applicant) {
         applicantDatabase.addPerson(applicant);
         updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+    }
+
+    @Override
+    public void addApplicantApplication(Applicant target, Application toAdd) {
+        target.setApplication(toAdd);
     }
 
     @Override

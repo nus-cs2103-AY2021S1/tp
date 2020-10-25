@@ -9,6 +9,7 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.tag.Tag;
 
 
@@ -18,6 +19,7 @@ import com.eva.model.tag.Tag;
 public class Applicant extends Person {
     private Optional<InterviewDate> interviewDate;
     private ApplicationStatus applicationStatus;
+    private Application application;
 
     /**
      * Creates of an applicant object with a fixed interview date.
@@ -33,6 +35,7 @@ public class Applicant extends Person {
         super(name, phone, email, address, tags, comments);
         this.interviewDate = interviewDate;
         this.applicationStatus = status;
+        this.application = new Application();
     }
 
     /**
@@ -48,6 +51,7 @@ public class Applicant extends Person {
         super(name, phone, email, address, tags, comments);
         this.interviewDate = Optional.empty();
         this.applicationStatus = status;
+        this.application = new Application();
     }
 
     /**
@@ -59,6 +63,7 @@ public class Applicant extends Person {
     public Applicant(Person person, InterviewDate interviewDate, ApplicationStatus status) {
         this(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
                 person.getTags(), person.getComments(), Optional.ofNullable(interviewDate), status);
+        this.application = new Application();
     }
 
     /**
@@ -95,6 +100,15 @@ public class Applicant extends Person {
 
     public ApplicationStatus getApplicationStatus() {
         return applicationStatus;
+    }
+
+    public void setApplication(Application application) {
+        assert application != null;
+        this.application = application;
+    }
+
+    public Application getApplication() {
+        return application;
     }
 
     @Override

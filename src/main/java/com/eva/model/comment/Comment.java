@@ -7,8 +7,8 @@ import java.util.Objects;
 public class Comment {
 
     public final LocalDate date;
-    public final String description;
     public final Title title;
+    private String description;
 
     /**
      * Create comment object
@@ -60,6 +60,10 @@ public class Comment {
 
     public Title getTitle() {
         return this.title;
+    }
+
+    public void update(String description) {
+        this.description = description;
     }
 
     public String toString() {
