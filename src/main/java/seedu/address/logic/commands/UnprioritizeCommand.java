@@ -58,7 +58,7 @@ public class UnprioritizeCommand extends NegateCommand {
             throw new CommandException(MESSAGE_UNPRIORITIZE_ASSIGNMENT);
         }
 
-        assert(assignmentToUnprioritize.isReminded());
+        assert(assignmentToUnprioritize.hasPriority());
         Assignment unprioritisedAssignment = createUnprioritizedAssignment(assignmentToUnprioritize);
 
         model.setAssignment(assignmentToUnprioritize, unprioritisedAssignment);
