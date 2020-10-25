@@ -17,14 +17,23 @@ If you are a student who can type fast and loves organizing your study materials
     2. [Creating a new flashcard](#creating-a-new-flashcard)
         1. [Open ended question](#oeq)
         2. [Multiple choice question](#mcq)
-    3. [Open a flashcard](#open-a-flashcard)
+    3. [Opening a flashcard](#opening-a-flashcard)
     4. [Editing a flashcard](#editing-a-flashcard)
+    5. [Listing all flashcards](#listing-all-flashcards)
+    6. [Finding flashcards](#finding-flashcards)
+    7. [Deleting flashcards](#deleting-flashcards)
+    8. [Testing a flashcard](#testing-flashcard)
+    9. [Displaying statistics](#displaying-statistics)
+    10. [Clearing a flashcard's statistics](#clearing-a-flashcards-statistics)
+    11. [Sharing flashcards](#sharing-flashcards)
+    12. [Exiting the program](#exit)
+    13. [Saving the data](#save)
 3. [FAQ](#faq)
 4. [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start <a name="quickstart"></a>
+## Quick start <a name="quickstart"></a> <a name="clearing-a-flashcards-statistics"></a>
 Here is a quick start on how you can start using our app in your own computer. 
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -91,7 +100,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-![help message](images/helpMessage.png)
+    ![help message](images/helpMessage.png)
 
 ### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
 You can add a new flashcard to the list.
@@ -100,9 +109,9 @@ You can create a flashcard that contains an open ended question which will be ad
 
 1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
 For example, you can enter`add q/Sample Question ans/Sample Answer`
-![addOpenEnded](images/addOpenEnded.png)
+    ![addOpenEnded](images/addOpenEnded.png)
 2. You have successfully created a flashcard with an open ended question and it will be saved immediately in the list.
-![addOpenEnded2](images/addOpenEnded2.png)
+    ![addOpenEnded2](images/addOpenEnded2.png)
 
 <div class="alert alert-danger">
 You cannot add a flashcard with empty question and empty answer.
@@ -113,9 +122,9 @@ You can create a flashcard that contains a multiple choice question which will b
 
 1. You can use the addmcq command to add a flashcard with a multiple choice question which will be added to the list.
 For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sample Choice 2`
-![addMCQ](images/addMCQ.png)
+    ![addMCQ](images/addMCQ.png)
 2. You have successfully created a flashcard with a multiple choice question and it will be saved immediately in the list.
-![addMCQ2](images/addMCQ2.png)
+    ![addMCQ2](images/addMCQ2.png)
 
 <div class="alert alert-danger">
 You cannot add flashcard with missing question or missing answer or missing choice.
@@ -123,18 +132,29 @@ You cannot add flashcard with missing question or missing answer or missing choi
 You should have at least two choices.
 </div>
 
-### Open a flashcard: `open` <a name="open-a-flashcard"></a>
+### Opening a flashcard: `open INDEX` <a name="opening-a-flashcard"></a>
 
-Opens a specified flashcard from the list .
+To view a flashcard you can open it by its index.
 
-Format: `open INDEX`
+<div markdown="block" class="alert alert-info">
 
-* Opens the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+:information_source: The INDEX refers to the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
 
-Examples:
-* `list` followed by `open 2` opens the 2nd flashcard in the list.
+</div>
+
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+
+	![OpenIndexStep1](./images/OpenIndexStep1.png)
+	
+2. Using the indices of the displayed list, enter the open command followed by the index of the flashcard you want to open. For example, if you want to open the 1st flashcard in the displayed list, you can enter `open 1`.
+
+	![OpenIndexStep2](./images/OpenIndexStep2.png)
+	
+3. Press enter and QuickCache will open the flashcard specified by the index.
+
+	![OpenIndexStep3](./images/OpenIndexStep3.png)
+	
+You have successfully opened a flashcard!
 
 ### Editing a flashcard: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..` <a name="editing-a-flashcard"></a>
 
@@ -154,26 +174,88 @@ You have successfully edited a flashcard.
 You must have at least one edited field which is different from the previous flashcard.
 </div>
 
-### Listing all flashcards : `list`
+### Listing all flashcards : `list` <a name="listing-all-flashcards"></a>
 
 Shows a list of all flashcards currently created.
 
 Format: `list`
 
-### Finding Flashcards by their tags and/or question: `find`
+### Finding flashcards <a name="finding-flashcards"></a>
 
-Finds all Flashcards based on their tags and/or question.
+To find flashcards, you can find them by specifying keywords within their questions and/or specifying their tags.
 
-Format: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
+<div markdown="block" class="alert alert-info">
 
-* Do not need to use both `t/` and `q/` when finding a flashcard.
-* Tags are case-sensitive.
-* Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.
-* Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.
+:information_source: The .. refers to any number of tags and/or keywords
 
-Example: `find t/MCQ q/What CS2103T q/is t/GoodQuestion` where `MCQ` and `GoodQuestion` are tags and `What`, `CS2103T` and `is` are keywords.
+</div>
 
-### Deleting a flashcard
+#### Finding by question: `find q/KEYWORD1 q/KEYWORD2 ..`
+	
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+- Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.<br>
+- Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.
+
+</div>
+
+1. Use the `list` command to first list all the flashcards.
+
+	![FindQuestionStep1](./images/FindQuestionStep1.png)
+	
+2. Enter the find command followed by `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the keyword `CS2103T` in their question in the displayed list, you can enter `find q/CS2103T`.
+
+	![FindQuestionStep2](./images/FindQuestionStep2.png)
+	
+3. Press enter and QuickCache will display all the flashcards with the keyword `CS2103T` in their question.
+
+	![FindQuestionStep3](./images/FindQuestionStep3.png)
+
+#### Finding by tags: `find t/TAG1 t/TAG2 ..`
+	
+<div markdown="block" class="alert alert-info">
+
+:information_source: Tags are case-sensitive.
+
+</div>
+
+1. Use the `list` command to first list all the flashcards.
+
+	![FindTagsStep1](./images/FindTagsStep1.png)
+	
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. For example, if you want to find flashcards with the tag `Assembly` in the displayed list, you can enter `find t/Assembly`.
+
+	![FindTagsStep2](./images/FindTagsStep2.png)
+	
+3. Press enter and QuickCache will display all the flashcards with the tag `Assembly`.
+
+	![FindTagsStep3](./images/FindTagsStep3.png)
+	
+#### Finding by tags and keywords: `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:<br>
+- Words in spaced keywords will be treated as individual keywords. Example, the keyword `what is` will be treated as two keywords: `what` and `is`.<br>
+- Keywords do not need to match exact word. Example, the keyword `Wha` will pick up questions containing `What` as a word.<br>
+- Tags are case-sensitive.
+
+</div>
+
+1. Use the `list` command to first list all the flashcards.
+
+	![FindQuestionAndTagsStep1](./images/FindQuestionAndTagsStep1.png)
+	
+2. Enter the find command followed by `t/` and the tag of the flashcards you want to find. Proceed to include `q/` and the keyword in the question of the flashcards you want to find. For example, if you want to find flashcards with the tag `TCPforLife` and the keyword `What` in the question, you can enter `find t/TCPforLife q/What`.
+
+	![FindQuestionAndTagsStep2](./images/FindQuestionAndTagsStep2.png)
+	
+3. Press enter and QuickCache will display all the flashcards with the tag `TCPforLife ` and the keyword `What` in their question.
+
+	![FindQuestionAndTagsStep3](./images/FindQuestionAndTagsStep3.png)
+
+### Deleting flashcards <a name="deleting-flashcards"></a>
 
 To delete a flashcard, you can either delete it by its index or based off its tags.
 
@@ -233,7 +315,7 @@ Clears all entries from QuickCache.
 
 Format: `clear`
 
-### Testing a flashcard :
+### Testing a flashcard <a name="testing-flashcard"></a>
 
 #### Containing an open-ended question : `test INDEX ans/ANSWER`
 
@@ -247,11 +329,11 @@ The index <b>must be a positive integer</b> 1, 2, 3, ...
 You can test yourself with a flashcard containing open-ended question by specifying an answer.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![TestStep1](./images/TestStep1.png)
+    ![TestStep1](./images/TestStep1.png)
 2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the answer `a computer organization module`, you can enter `test 2 ans/a computer organization module`.
-![TestOpenStep2](./images/TestOpenStep2.png)
+    ![TestOpenStep2](./images/TestOpenStep2.png)
 3. Press enter and QuickCache will tell you whether you got the question right.
-![TestOpenStep3](./images/TestOpenStep3.png)
+    ![TestOpenStep3](./images/TestOpenStep3.png)
 
 You have successfully tested yourself on an open-ended question!
 
@@ -264,20 +346,25 @@ The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
 You can also test yourself a flashcard containing a multiple choice question by specifying an option.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![TestStep1](./images/TestStep1.png)
+    ![TestStep1](./images/TestStep1.png)
 2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 1`.
-![TestMCQStep2](./images/TestMCQStep2.png)
+    ![TestMCQStep2](./images/TestMCQStep2.png)
 3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 2nd option, you can enter `test 1 o/2`.
-![TestMCQStep3](./images/TestMCQStep3.png)
+    ![TestMCQStep3](./images/TestMCQStep3.png)
 4. Press enter and QuickCache will tell you whether you got the question right.
-![TestMCQStep4](./images/TestMCQStep4.png)
+    ![TestMCQStep4](./images/TestMCQStep4.png)
 You have successfully tested yourself on a multiple choice question!
 
-### Displaying statistics:
+### Displaying statistics <a name="displaying-statistics"></a>
 
 <div class="alert alert-danger">
 You can only show statistics based on index or based on tags but not both!
 </div>
+
+Statistics include:
+
+* The number of times and the percentage the user answers all flashcards containing the specified tag(s) correctly.
+* The number of times and the percentage the user answers all flashcards containing the specified tag(s) incorrectly.
 
 #### Statistics by index: `stats INDEX`
 
@@ -287,17 +374,18 @@ You can display the statistics of a specified flashcard in a Pie Chart based on 
 :information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
 </div>
 
-Statistics include:
-
-* The number of times and the percentage the user answers the question associated with the flashcard correctly.
-* The number of times and the percentage the user answers the question associated with the flashcard incorrectly.
-
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![StatsIndexStep1](./images/StatsIndexStep1.png)
-2. Using the indices of the displayed list, enter the stats command followed by the index of the flashcard you want to reveal the statistics of. For example, if you want to display the statistics of the 2nd flashcard in the displayed list, you can enter `stats 2`.
-![StatsIndexStep2](./images/StatsIndexStep2.png)
+
+	![StatsIndexStep1](./images/StatsIndexStep1.png)
+	
+2. Using the indices of the displayed list, enter the stats command followed by the index of the flashcard you want to view the statistics of. For example, if you want to view the statistics of the first flashcard in the displayed list, you can enter `stats 1`.
+
+	![StatsIndexStep2](./images/StatsIndexStep2.png)
+	
 3. Press enter and QuickCache will display the statistics of the flashcard specified by the index.
-![StatsIndexStep3](./images/StatsIndexStep3.png)
+
+	![StatsIndexStep3](./images/StatsIndexStep3.png)
+	
 You have successfully displayed the statistics of a flashcard!
 
 #### Statistics by tags: `stats t/TAG1 TAG2`
@@ -308,31 +396,57 @@ You can also display the statistics of multiple flashcards in a Pie Chart by spe
 :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation in the aggregation in the aggregation in the aggregation.
 </div>
 
-Statistics include:
-
-* The number of times and the percentage the user answers all flashcards containing the specified tag(s) correctly.
-* The number of times and the percentage the user answers all flashcards containing the specified tag(s) incorrectly.
-
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
-![StatsTagsStep1](./images/StatsTagsStep1.png)
+
+    ![StatsTagsStep1](./images/StatsTagsStep1.png)
+
 2. Press enter and QuickCache will display the statistics of the flashcards containing the specified tags.
-![StatsTagsStep2](./images/StatsTagsStep2.png)
+
+    ![StatsTagsStep2](./images/StatsTagsStep2.png)
+
 You have successfully displayed the statistics of all flashcards containing the specified tags!
 
-### Clearing a flashcard's statistics : `clearstats`
+### Clearing a flashcard's statistics : `clearstats INDEX` <a name="clearing-a-flashcards-statistics"></a>
 
-Clears the specified flashcard's statistics.
+To clear the statistics of a flashcard you can use the clearstats command.
 
-Format: `clearstats INDEX`
+<div markdown="block" class="alert alert-info">
 
-* Clears the statistics of the flashcard at the specified `INDEX`.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
+:information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
 
-Examples:
-* `list` followed by `clearstats 2` clears the statistics of the 2nd flashcard in the list.
+</div>
 
-### Sharing flashcards:
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+
+	![ClearstatsIndexStep1](./images/ClearstatsIndexStep1.png)
+	
+	<div markdown="block" class="alert alert-info">
+	<Strong>Optional Step:</Strong>
+	You can first check the statistics of the flashcard you want to clear the statistics of.
+	
+	<img src="./images/ClearstatsIndexStepOptional1.png">
+		
+	</div>
+	
+2. Using the indices of the displayed list, enter the clearstats command followed by the index of the flashcard you want to clear the statistics of. For example, if you want to clear the statistics of the first flashcard in the displayed list, you can enter `clearstats 1`.
+
+	![ClearstatsIndexStep2](./images/ClearstatsIndexStep2.png)
+	
+3. Press enter and QuickCache will clear the statistics of the flashcard specified by the index.
+
+	![ClearstatsIndexStep3](./images/ClearstatsIndexStep3.png)
+	
+	<div markdown="block" class="alert alert-info">
+	<Strong>Optional Step:</Strong>
+	You can check that the statistics of the flashcard has been cleared.
+	
+	<img src="./images/ClearstatsIndexStepOptional2.png">
+	
+	</div>
+	
+You have successfully cleared the statistics of a flashcard!
+
+### Sharing flashcards <a name="sharing-flashcards"></a>
 
 #### Exporting a set of flashcards : `export FILE_NAME`
 
@@ -343,13 +457,13 @@ Examples:
 You can export all flashcards from the last displayed list into a file named `FILE_NAME` for backup or sharing with your friends.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![ExportStep1](./images/ExportStep1.png)
+    ![ExportStep1](./images/ExportStep1.png)
 2. In the user input box, enter the `export` command together with the `FILE_NAME` you would like to save the flashcards into. For example, if you would like the file to be named as `josiah-flashcard.json`, you can enter `export josiah-flashcard.json`.
-![ExportStep2](./images/ExportStep2.png)
+    ![ExportStep2](./images/ExportStep2.png)
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
-![ExportStep3a](./images/ExportStep3a.png)
-![ExportStep3b](./images/ExportStep3b.png)
-![ExportStep3c](./images/ExportStep3c.png)
+    ![ExportStep3a](./images/ExportStep3a.png)
+    ![ExportStep3b](./images/ExportStep3b.png)
+    ![ExportStep3c](./images/ExportStep3c.png)
 
 Voila! You have successfully exported your flashcards into a file.
 
@@ -362,23 +476,23 @@ Voila! You have successfully exported your flashcards into a file.
 You can import external flashcards into your local QuickCache as well. 
 
 1. Create an `import` folder in the same directory as where `QuickCache.jar` is located.
-![ImportStep1](./images/ImportStep1.png)
+    ![ImportStep1](./images/ImportStep1.png)
 2. Place the file that you want to import in the `import` folder.
-![ImportStep2](./images/ImportStep2.png)
+    ![ImportStep2](./images/ImportStep2.png)
 3. In the user input box, enter the `import` command together with the name of the file you would like to import the flashcards from. For example, if the file to import from is named `joshua-flashcard.json`, you can enter `import joshua-flashcard.json`.
-![ImportStep3](./images/ImportStep3.png)
+    ![ImportStep3](./images/ImportStep3.png)
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
-![ImportStep4](./images/ImportStep4.png)
+    ![ImportStep4](./images/ImportStep4.png)
 
 Good job! You have successfully imported flashcards from an external file.
 
-### Exiting the program : `exit`
+### Exiting the program : `exit` <a name="exit"></a>
 
 Exits the program.
 
 Format: `exit`
 
-### Saving the data
+### Saving the data <a name="save"></a>
 
 QuickCache data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
@@ -390,22 +504,215 @@ QuickCache data are saved in the hard disk automatically after any command that 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous QuickCache home folder.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Command summary <a name="command-summary"></a>
 
-Action | Format, Examples
---------|------------------
-**Open**| `open INDEX` <br> e.g., `open 3`
-**Add** | `add q/QUESTION ans/ANSWER` <br> e.g., `add q/Plants give out ___ when they photosynthesise? ans/Oxygen`
-**Addmcq** | `addmcq q/Plants give out ___ when they photosynthesise? ans/1 c/Oxygen c/Carbon c/Carbon dioxide`
-**Test** | `test INDEX ans/ANSWER` (open-ended question)<br> e.g., `test 2 a/lorem ipsum` <br> `test INDEX o/OPTION` (multiple choice question)<br> e.g., `test 3 o/1`
-**Stats** | `stats INDEX` or `stats t/TAG1`<br> e.g., `stats 3` or `stats t/MCQ`
-**Clear** | `clear`
-**ClearStats** | `clearstats INDEX`
-**Delete** | `delete INDEX` or `delete t/TAG1`<br> e.g., `delete 3` or `delete t/MCQ`
-**List** | `list`
-**Find** | `find t/TAG1 t/TAG2 .. q/KEYWORD1 q/KEYWORD2 ..` <br> e.g., `find t/MCQ q/What CS2103T q/is t/GoodQuestion`
-**Help** | `help`
-**Export** | `export FILE_NAME` <br> e.g., `export science-questions.json`
-**Import** | `import FILE_NAME` <br> e.g., `import science-questions.json`
-**Exit** | `exit`
+<table>
+    <thead>
+        <tr>
+            <th>Action</th>
+            <th>Command</th>
+            <th>Format</th>
+            <th>Example</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan=2>
+            	<Strong>Creating a flashcard</Strong>
+            </td>
+            <td rowspan=1>add</td>
+            <td rowspan=1>
+            	<code>add q/QUESTION ans/ANSWER</code>
+            </td>
+            <td rowspan=1>
+            	<code>add q/Sample Question? ans/A</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>addmcq</td>
+            <td rowspan=1>
+            	<code>addmcq q/QUESTION ans/ANSWER <br>
+            	c/FIRST_CHOICE c/SECOND_CHOICE ..</code>
+            </td>
+            <td rowspan=1>
+            	<code>addmcq q/Sample Question? ans/1 c/A c/B c/C</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>
+            	<Strong>Opening a flashcard</Strong></td>
+            <td>open</td>
+            <td rowspan=1>
+            	<code>open INDEX</code>
+            </td>
+            <td rowspan=1>
+            	<code>open 1</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>
+            	<Strong>Editing a flashcard</Strong></td>
+            <td>edit</td>
+            <td rowspan=1>
+            	<code>edit INDEX q/QUESTION ans/ANSWER <br>
+            	c/FIRST_CHOICE c/SECOND_CHOICE ..</code>
+            </td>
+            <td rowspan=1>
+            	<code>edit 1 q/Sample Question? ans/2 c/A c/C c/B</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>
+            	<Strong>Listing flashcards</Strong></td>
+            <td>list</td>
+            <td rowspan=1>
+            	<code>list</code>
+            </td>
+            <td rowspan=1>
+            	<code>list</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=3>
+            	<Strong>Finding flashcards</Strong></td>
+            <td rowspan=3>find</td>
+            <td rowspan=1>
+            	<code>find q/KEYWORD1 q/KEYWORD2 ..</code>
+            </td>
+            <td rowspan=1>
+            	<code>find q/CS2103T q/What q/is</code>
+            </td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<code>find t/TAG1 t/TAG2 ..</code>
+        	</td>
+          <td rowspan=1>
+            	<code>find t/Assembly t/MCQ</code>
+         	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<code>find t/TAG1 t/TAG2 .. <br>
+        		q/KEYWORD1 q/KEYWORD2 ..</code>
+        	</td>
+          <td rowspan=1>
+            	<code>find t/Assembly t/MCQ q/CS2100 q/What</code>
+         	</td>
+        </tr>
+        <tr>
+            <td rowspan=3>
+            	<Strong>Deleting flashcard(s)</Strong></td>
+            <td rowspan=2>delete</td>
+            <td rowspan=1>
+            	<code>delete INDEX</code>
+            </td>
+            <td rowspan=1>
+            	<code>delete 1</code>
+            </td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<code>delete t/TAG1</code>
+        	</td>
+          <td rowspan=1>
+            	<code>delete t/Assembly</code>
+         	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>clear</td>
+          <td rowspan=1>
+            	<code>clear</code>
+         	</td>
+          <td rowspan=1>
+            	<code>clear</code>
+         	</td>
+        </tr>
+        <tr>
+        	<td rowspan=2>
+        		<Strong>Testing a flashcard</Strong>
+        	</td>
+        	<td rowspan=2>test</td>
+        	<td rowspan=1>
+        		Open Ended: <code>test INDEX a/ANSWER</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>test 2 a/lorem ipsum</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		MCQ: <code>test INDEX o/OPTION</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>test 3 o/1</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=2>
+        		<Strong>Flashcard Statistics</Strong>
+        	</td>
+        	<td rowspan=1>stats</td>
+        	<td rowspan=1>
+        		Display statistics:<code>stats INDEX </code>
+        	</td>
+        	<td rowspan=1>
+        		<code>stats 1</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>clearstats</td>
+        	<td rowspan=1>
+        		Clear statistics:<code>clearstats INDEX</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>clearstats 1</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=2>
+        		<Strong>Import and Export</Strong>
+        	</td>
+        	<td rowspan=1>import</td>
+        	<td rowspan=1>
+        		<code>import FILE_NAME</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>import science-questions.json</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>export</td>
+        	<td rowspan=1>
+        		<code>export FILE_NAME</code>
+        	</td>
+        	<td rowspan=1>
+        		<code>export science-questions.json</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<Strong>Get user guide URL</Strong>
+        	</td>
+        	<td>help</td>
+        	<td>
+        		<code>help</code>
+        	</td>
+        	<td>
+        		<code>help</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<Strong>Exit QuickCache</Strong>
+        	</td>
+        	<td>exit</td>
+        	<td>
+        		<code>exit</code>
+        	</td>
+        	<td>
+        		<code>exit</code>
+        	</td>
+        </tr>
+    </tbody>
+</table>
