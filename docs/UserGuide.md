@@ -28,7 +28,7 @@ as well as summary commands.
 
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
-   <br> ![Ui](images/Ui.png) <br>
+   <br> ![Ui](images/UiWithAnnotation.png) <br>
    Figure 1: Introduction to OneShelf User Interface
 
 5. Type the command `help start` in the command box and press Enter to execute it. <br>
@@ -88,7 +88,7 @@ Alternatives:
 * Press `F2` at any point in the usage of the app
 * GUI navigation menu at the top left
 
-![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
+<br> ![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
 Figure 3: Help Summary Window
 
 
@@ -335,7 +335,7 @@ Notify the user if a certain stock is below threshold
 |**Add to Inventory**    | `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
 |**Clear from Inventory**  | `clear-i`                                                                                             |
 |**Delete from Inventory** | `delete-i INDEX`<br> e.g., `delete 3`                                                                 |
-|**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
+|**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1r n/Chicken q/50`                |
 |**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`                                       |
 |**List Inventory**   | `list-i` |
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |
