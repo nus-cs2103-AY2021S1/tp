@@ -11,8 +11,10 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
     - Features
         - Adding a flashcard: `add`
         - Deleting a flashcard: `delete`
+        - Editing a flashcard: `edit`
         - Listing all flashcards: `list`
         - Review all flashcards : `review`
+        - Sort all flashcards: `sort`
         - Favourite a flashcard : `fav`
         - Unfavourite a flashcard: `unfav`
         - Exiting the program: `exit`
@@ -45,6 +47,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
    * **`review`** : Reviews the current list of flashcards.
    
+   * **`sort reviewed -d`** : Sorts the list of flashcards according to review frequency in descending order.
+   
    * **`fav 1`** : Favourite the 1st flashcard in the current list.
       
    * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
@@ -72,6 +76,9 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
+  
+* Items in angle brackets are either/or options. Each option is delineated by a | . 
+  e.g <success|reviewed> can be used as success or reviewed but not both.
 
 </div>
 
@@ -159,6 +166,19 @@ Examples:
     - `[left key]` returns the previous flashcard
     - `q` quits review mode
     
+### Sort all flashcards : `sort`
+
+Sorts a list of all flashcards according to the criteria given.
+
+Format: `sort <success|reviewed> <-a|-d>`
+
+Examples: 
+* sort followed by:
+    - `reviewed -a` shows a list of all flashcards sorted according to review frequency in ascending order
+    - `reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
+    - `success -a` shows a list of all flashcards sorted according to success rate in ascending order
+    - `success -d` shows a list of all flashcards sorted according to success rate in descending order
+    
 ### Favourite a flashcard  : `fav`
 
 Favourites the specified flashcard.
@@ -212,6 +232,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **List** | `list`
 **Review** | `review`
+**Sort** | `sort <success&#124;reviewed> <-a&#124;-d>` <br> e.g. sort success -a
 **Fav** | `fav INDEX` <br> e.g., `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g., `unfav 1`
 **View** | `view INDEX` <br> e.g., `view 1`
