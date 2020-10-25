@@ -1,7 +1,10 @@
 package chopchop.ui;
 
 import chopchop.logic.Logic;
+import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -22,8 +25,9 @@ public class DisplayController extends UiPart<Region> {
             + "\nNote that [] denoted optional arguments.";
 
     private final TextDisplay textDisplay;
-    private Logic logic;
     private NotificationWindow notificationWindow;
+    private ObservableList<Recipe> recipeObservableList;
+    private ObservableList<Ingredient> ingredientObservableList;
 
     @FXML
     private StackPane displayAreaPlaceholder;
@@ -34,15 +38,29 @@ public class DisplayController extends UiPart<Region> {
      */
     public DisplayController(Logic logic) {
         super(FXML);
-        this.logic = logic;
         textDisplay = new TextDisplay(WELCOME_MESSAGE);
         notificationWindow = new NotificationWindow();
-        displayAreaPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (event.getCode().equals(KeyCode.ESCAPE)) {
-                    displayWelcomeMessage();
-                }
+        recipeObservableList = logic.getFilteredRecipeList();
+        ingredientObservableList = logic.getFilteredIngredientList();
+
+        recipeObservableList.addListener((ListChangeListener<Recipe>) c -> {
+            c.next();
+
+            /**
+             * Check if a recipe was replaced in the recipe book, with an extra check to account for
+             * updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES).
+             */
+            if (c.wasReplaced() && !c.getAddedSubList().equals(c.getRemoved())) {
+                displayRecipe(c.getAddedSubList().get(0));
+            } else {
+                displayRecipeList();
+            }
+        });
+        ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> displayIngredientList());
+
+        displayAreaPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode().equals(KeyCode.ESCAPE)) {
+                displayWelcomeMessage();
             }
         });
         if (!logic.getFilteredRecipeList().isEmpty()) {
@@ -65,7 +83,7 @@ public class DisplayController extends UiPart<Region> {
      * Displays the RecipeViewPanel on the swappable display region.
      */
     protected void displayRecipeList() {
-        RecipeViewPanel recipeViewPanel = new RecipeViewPanel(logic.getFilteredRecipeList());
+        RecipeViewPanel recipeViewPanel = new RecipeViewPanel(recipeObservableList);
         displayAreaPlaceholder.getChildren().setAll(recipeViewPanel.getRoot());
     }
 
@@ -81,7 +99,7 @@ public class DisplayController extends UiPart<Region> {
      * Displays the IngredientViewPanel on the swappable display region.
      */
     protected void displayIngredientList() {
-        IngredientViewPanel ingredientViewPanel = new IngredientViewPanel(logic.getFilteredIngredientList());
+        IngredientViewPanel ingredientViewPanel = new IngredientViewPanel(ingredientObservableList);
         displayAreaPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
     }
 

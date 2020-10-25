@@ -34,12 +34,7 @@ public class RecipeViewPanel extends UiPart<Region> {
         super(FXML);
         textDisplay = new TextDisplay(EMPTY_PROMPT);
         recipeObservableList = recipeList;
-        recipeObservableList.addListener(new ListChangeListener<Recipe>() {
-            @Override
-            public void onChanged(Change<? extends Recipe> c) {
-                fillDisplay();
-            }
-        });
+        recipeObservableList.addListener((ListChangeListener<Recipe>) c -> fillDisplay());
         fillDisplay();
     }
 
