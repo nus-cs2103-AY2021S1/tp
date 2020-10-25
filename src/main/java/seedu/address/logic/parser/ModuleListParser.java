@@ -13,7 +13,6 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
 import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
