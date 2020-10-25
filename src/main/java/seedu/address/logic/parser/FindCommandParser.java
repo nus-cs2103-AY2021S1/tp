@@ -1,24 +1,19 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
-import java.util.Arrays;
-import java.util.function.Predicate;
-
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
-import seedu.address.model.exercise.EqualPropertiesPredicateForExercise;
+import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -48,7 +43,7 @@ public class FindCommandParser implements ExerciseParser<FindCommand> {
         Description description = null;
         Date date = null;
         Calories calories = null;
-        String keyword = null;
+        String[] keywords = null;
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
                 PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_CALORIES, PREFIX_KEYWORD);
@@ -66,10 +61,10 @@ public class FindCommandParser implements ExerciseParser<FindCommand> {
             calories = new Calories(argMultimap.getValue(PREFIX_CALORIES).get());
         }
         if (argMultimap.getValue(PREFIX_KEYWORD).isPresent()) {
-            keyword = argMultimap.getValue(PREFIX_KEYWORD).get();
+            keywords = argMultimap.getValue(PREFIX_KEYWORD).get().split("\\s+");
         }
 
-        return new FindCommand(new EqualPropertiesPredicateForExercise(name, description, date, calories));
+        return new FindCommand(new PropertiesMatchPredicateForExercise(name, description, date, calories, keywords));
     }
 
 }

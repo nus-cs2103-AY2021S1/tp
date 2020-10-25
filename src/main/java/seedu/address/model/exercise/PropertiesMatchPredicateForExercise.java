@@ -1,18 +1,22 @@
 package seedu.address.model.exercise;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
-public class EqualPropertiesPredicateForExercise implements Predicate<Exercise> {
+public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> {
     private final Name name;
     private final Description description;
     private final Date date;
     private final Calories calories;
+    private final String[] keywords;
 
-    public EqualPropertiesPredicateForExercise(Name name, Description description, Date date, Calories calories) {
+    public PropertiesMatchPredicateForExercise(Name name, Description description,
+                                               Date date, Calories calories, String[] keywords) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.calories = calories;
+        this.keywords = keywords;
     }
 
     @Override
@@ -30,6 +34,9 @@ public class EqualPropertiesPredicateForExercise implements Predicate<Exercise> 
         }
         if (calories != null) {
             result = result && (calories.equals(exercise.getCalories()));
+        }
+        if (keywords != null) {
+            result = result && new NameContainsKeywordsPredicateForExercise(Arrays.asList(keywords)).test(exercise);
         }
 
         return result;
