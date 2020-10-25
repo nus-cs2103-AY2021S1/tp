@@ -21,4 +21,5 @@ public class ListCommand extends Command {
         model.updateFilteredLogList(PREDICATE_SHOW_ALL_LOGS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
 }

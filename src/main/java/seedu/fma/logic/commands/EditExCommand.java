@@ -23,6 +23,10 @@ public class EditExCommand extends Command {
 
     public static final String COMMAND_WORD = "editex";
 
+    public static final String AC_SUGGESTION = COMMAND_WORD + " <index> "
+            + PREFIX_E + "<exercise> "
+            + PREFIX_C + "<calories>";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the exercise identified "
             + "by the index number used in the displayed exercise list. "
             + "Existing values will be overwritten by the input values.\n"
@@ -177,4 +181,5 @@ public class EditExCommand extends Command {
         return index.equals(e.index)
                 && editExDescriptor.equals(e.editExDescriptor);
     }
+
 }

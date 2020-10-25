@@ -1,12 +1,14 @@
 package seedu.fma.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.fma.commons.core.Messages.MESSAGE_INVALID_LOG_DISPLAYED_INDEX;
 import static seedu.fma.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.fma.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -85,6 +87,23 @@ public class LogicManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredLogList().remove(0));
     }
 
+
+    @Test
+    public void getCommandSuggestionList_containsAllCommands_success() {
+        List<String> commandSuggestionList = logic.getCommandSuggestionList();
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("add")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("addex")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("clear")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("delete")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("deleteex")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("edit")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("editex")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("exit")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("find")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("help")));
+        assertTrue(commandSuggestionList.stream().anyMatch(suggestion -> suggestion.contains("exit")));
+    }
+
     /**
      * Executes the command and confirms that
      * - no exceptions are thrown <br>
@@ -151,4 +170,5 @@ public class LogicManagerTest {
             throw DUMMY_IO_EXCEPTION;
         }
     }
+
 }

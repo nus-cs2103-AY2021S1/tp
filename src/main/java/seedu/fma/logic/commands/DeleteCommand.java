@@ -17,6 +17,8 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
+    public static final String AC_SUGGESTION = COMMAND_WORD + " <index>";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the log identified by the index number used in the displayed log list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
@@ -50,4 +52,5 @@ public class DeleteCommand extends Command {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
+
 }
