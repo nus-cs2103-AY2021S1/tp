@@ -47,7 +47,7 @@ Important cautions that needs to be known before using the feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Quick start
+# Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -117,10 +117,6 @@ the link to clipboard and paste it in your web browser. <br>
 
 **Format**: `help`
 
-
-![helpMessage](images/helpMessage.png)
-<p align="center"> <sub> <b>Figure</b>: Help message </sub> </p>
- 
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
@@ -129,6 +125,9 @@ the link to clipboard and paste it in your web browser. <br>
 
 </div>
 
+![helpMessage](images/helpMessage.png)
+<p align="center"> <sub> <b>Figure</b>: Help message </sub> </p>
+ 
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -174,7 +173,7 @@ Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 </div>
 
 
-### Deleting entries: `delete`
+### Deleting an entry: `delete`
 
 Removes an entry (expense/revenue) from the tracker.
 
@@ -275,7 +274,7 @@ description (Figure).
 [comment]: <> (This only appears in Github CSS)
 
 :bulb: **Tip:** When there are a lot of entries, and you want to delete something, 
-you can use `find` to search for it in the list and use `delete ENTRY_INDEX` to remove it from the updated
+you can use `find` to search for it in the list and use [`delete ENTRY_INDEX`](#deleting-an-entry-delete) to remove it from the updated
 list, with the updated `ENTRY INDEX`.
 
 </div>
@@ -298,8 +297,7 @@ Format: `list`
 
 ### Clearing all expenses or revenue: `clear`
 
-If for whatever reason you would like to clear all entries from a particular category, 
-you can use this command to do so.
+You can use this command to clear all entries from a particular category.
  
 Format: `clear`
  
@@ -307,9 +305,9 @@ Format: `clear`
 
 :green_book: **Example:**
 
-* `clear c/expense`: Clears all entries in expenses by setting the state to an empty one.
 
-* `clear c/revenue`: Clears all entries in revenues by setting the state to an empty one.
+* `clear c/expense`: clears all entries in expenses by setting the state to an empty one.
+* `clear c/revenue`: clears all entries in revenues by setting the state to an empty one.
 
 </div>
 
@@ -335,11 +333,12 @@ Format: `profit`
 
 :green_book: **Example:**
 
-* `profit`: Returns the profits by taking the difference between the expenses and revenues.
+* `profit`: Returns the profits (**Figure**) by taking the difference between the expenses and revenues.
 
 </div>
 
-*(Add screenshot showing the profit message)*
+![profitCommand](images/commands/profitCommand.PNG)
+<p align="center"> <sub> <b>Figure</b>: Profit command successfully executed </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -361,12 +360,16 @@ Format: `undo`
 :green_book: **Example:**
 
 * `undo`: Returns the state of expenses and revenues prior to the previous command. For example, if the 
-[`add`](#adding-an-entry-add) command was used, using `undo` returns account to the state before the 
-[`add`](#adding-an-entry-add) command was used as shown in the Figures below.
+[`delete`](#deleting-an-entry-delete) command was used (**Figure**), using `undo` returns account to the state before the 
+[`delete`](#deleting-an-entry-delete) command was used (**Figure**).
 
 </div>
 
-*(Add screenshots for before and after the undo, pointing to the entries)*
+![deleteCommand](images/commands/deleteCommand.png)
+<p align="center"> <sub> <b>Figure</b>: Before the undo command, an expense was deleted </sub> </p>
+
+![undoCommand](images/commands/undoCommand.png)
+<p align="center"> <sub> <b>Figure</b>: After the undo command, the deleted expense is added again </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -412,10 +415,9 @@ You can use this command to do calculate the total expenses or revenues in your 
 ## Account-level Commands
 Account-Level commands involves managing the different accounts in the app. 
 
-### Add new Account: `newacc`
+### Adding new account: `newacc`
 
-You can create a new account to manage a different set of entries with this command. Once the account is created, 
-you can check it via [`listacc`](#listing-accounts-you-have-listacc) or switch to it via [`switchacc`](#switching-accounts-switchacc). 
+You can create a new account to manage a different set of entries with this command. 
 
 Format: `newacc n/NAME`
 
@@ -423,11 +425,22 @@ Format: `newacc n/NAME`
 
 :green_book: **Example:**
 
-* `newacc n/My Flower Shop`: Adds a new account, `My Flower Shop`, with no expenses or revenues.
-* `newacc n/$uper $avers`: Adds a new account, `$uper $avers`, with no expenses or revenues. 
+* `newacc n/My Flower Shop`: adds a new account, `My Flower Shop`, with no expenses or revenues.
+* `newacc n/$uper $avers`: adds a new account, `$uper $avers`, with no expenses or revenues (**Figure**). 
+
 </div>
 
-*(Insert screenshot here for the second example, pointing to the feedback)*
+![addAccountCommand](images/commands/addAccountCommand.png)
+<p align="center"> <sub> <b>Figure</b>: A new account called $uper $avers is added </sub> </p>
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+Do note that app does not automatically switch to the new account. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
+or switch to it via [`switchacc`](#switching-accounts-switchacc). 
+
+</div>
 
 ### Deleting an account: `deleteacc`
 
@@ -440,11 +453,12 @@ Format: `deleteacc INDEX`
 
 :green_book: **Example:**
 
-* `deletacc 1`: Deletes first account based on list generated by [`listacc`](#listing-accounts-you-have-listacc).
+* `deleteacc 3`: Deletes third account based on list generated by [`listacc`](#listing-accounts-you-have-listacc) (**Figure**).
 
 </div>
 
-*(Insert screenshot here, pointing to the feedback)*
+![deleteAccountCommand](images/commands/deleteAccountCommand.png)
+<p align="center"> <sub> <b>Figure</b>: An account called My Flower Shop is deleted </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -481,11 +495,12 @@ Format: `editacc n/NAME`
 
 :green_book: **Example:**
 
-* `editacc n/Bob's Bakery`: Replaces the name of the current account, `Default Account 1` to `Bob's Bakery` as shown in the Figure below
+* `editacc n/Bob's Bakery`: Replaces the name of the current account, `Default Account 1` to `Bob's Bakery` (**Figure**).
 
 </div>
 
-*(Insert screenshot here, point to the feedback, and the account name)*
+![editAccNameCommand](images/commands/editAccNameCommand.png)
+<p align="center"> <sub> <b>Figure</b>: The currently active account, "Default Account 1", is renamed to "Bob's Bakery" </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -508,11 +523,12 @@ Format: `listacc`
 
 :green_book: **Example:**
 
-* `listacc`: Shows a numbered list of the account names as a message.
+* `listacc`: Shows a numbered list of the account names as a message (**Figure**).
 
 </div>
 
-*(Insert screenshot here, pointing to the feedback)*
+![listAccCommand](images/commands/listAccCommand.png)
+<p align="center"> <sub> <b>Figure</b>: All the accounts are listed in the Result Display </sub> </p>
 
 ### Switching accounts: `switchacc`
 
@@ -525,9 +541,13 @@ Format: `switchacc INDEX`
 
 :green_book: **Example:**
 
-* `switchacc 1`: Switches to the first account based on list generated by [`listacc`](#listing-accounts-you-have-listacc).
+* `switchacc 2`: Switches to the second account based on list generated by 
+[`listacc`](#listing-accounts-you-have-listacc) (**Figure**).
 
 </div>
+
+![switchAccCommand](images/commands/switchAccCommand.png)
+<p align="center"> <sub> <b>Figure</b>: Current account has been switched to "Default account 2" </sub> </p>
 
 <div markdown="block" class="alert alert-primary">
 
