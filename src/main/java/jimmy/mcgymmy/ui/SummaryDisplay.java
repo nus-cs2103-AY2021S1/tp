@@ -25,6 +25,7 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
         pieChart.setClockwise(true);
         pieChart.setLabelLineLength(25);
         pieChart.setLabelsVisible(true);
+        pieChart.setLegendVisible(false);
     }
 
     public void setTotalMacronutrients(int totalCalories, int totalProtein, int totalCarbs, int totalFats) {
