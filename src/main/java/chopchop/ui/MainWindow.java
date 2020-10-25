@@ -178,21 +178,24 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            this.commandOutput.setFeedbackToUser(commandResult.getFeedbackToUser());
+            logger.info("Result: " + commandResult.getMessage());
 
-            if (commandResult.isShowHelp()) {
+            this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
+
+            if (commandResult.shouldShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.isExit()) {
+            if (commandResult.shouldExit()) {
                 handleExit();
             }
 
             return commandResult;
+
         } catch (CommandException | ParseException e) {
-            logger.info("Invalid command: " + commandText);
-            commandOutput.setFeedbackToUser(e.getMessage());
+            // logger.info("Invalid command: " + commandText);
+
+            commandOutput.setFeedbackToUser(e.getMessage(), /* isError: */ true);
             throw e;
         }
     }

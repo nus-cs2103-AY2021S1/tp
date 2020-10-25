@@ -115,9 +115,9 @@ public class CommandParser {
                 case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
                 case Strings.COMMAND_MAKE:      return parseMakeCommand(args);
                 case Strings.COMMAND_VIEW:      return parseViewCommand(args);
+                case Strings.COMMAND_FILTER:    return parseFilterCommand(args);
                 case Strings.COMMAND_UNDO:      return Result.of(new UndoCommand());
                 case Strings.COMMAND_REDO:      return Result.of(new RedoCommand());
-                case Strings.COMMAND_FILTER:    return parseFilterCommand(args);
                 case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
 
                 default:
