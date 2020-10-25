@@ -217,8 +217,9 @@ list, with the updated `ENTRY INDEX`.
 
 ### Listing all entries: `list`
 
-### Calculating net profits based on expenses and revenues: `profit` 
+### Clearing all expenses or revenue: `clear`
 
+### Calculating net profits based on expenses and revenues: `profit` 
 
 ## Account-level Commands
 
