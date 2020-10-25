@@ -153,6 +153,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding Items and Delivery
+OneShelf is capable of adding items and deliveries.
+Adding Items and Delivery both are done similarly which will be illustrated with an AddItemActivityDiagram below.
+
+![AddItemActivityDiagram](images/AddItemActivityDiagram.png)
+
+We've repurposed the `Add` command from AB3 to add on to existing item's quantity instead of throwing an error.
+In this case 2 items are considered the same if they have the same `Name` and `Supplier`.
+The other variables such as:
+
+a) `Metric` `MaxQuantity`
+- Are not allowed to be defined if there exist the same item inside InventoryBook.
+
+b) `Tags`
+- Will be combined together if there exist the same item inside InventoryBook.
+
+Note: No 2 deliveries are considered the same. Reason being the same person can make multiple delivery orders.
+
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
 There is a `History` interface that is implemented by `HistoryManager` class which stores `commandHistory` up to its `lengthLimit`
@@ -163,6 +181,10 @@ method call to return `commandHistory`'s 2nd last command instead of the last co
 
 With `addToHistory(String command)`, `previousCommand()`, `nextCommand()` and `currentCommand()` implemented, a simple `setOnKeyPressed` under `CommandBox` class which checks
 for user's input of arrow up (which calls previousCommand()) and arrow down (which calls nextCommand()) would suffice for GUI implementation.
+
+Below is the sequence diagram when user pressing the arrow up button with `CommandBox` selected on GUI.
+
+![CommandHistoryTraversalSequenceDiagram](images/CommandHistoryTraversalSequenceDiagram.png)
 
 
 ### Finding Items and Delivery

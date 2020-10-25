@@ -1,0 +1,10 @@
+@startuml
+(*)  --> "User Executes AddItemCommand"
+If "Item exists in InventoryBook" then
+--> [True] "Adds on quantity"
+-->(*)
+else
+--> [False] "Create new item and\nstore into InventoryBook"
+Endif
+-->(*)
+@enduml
