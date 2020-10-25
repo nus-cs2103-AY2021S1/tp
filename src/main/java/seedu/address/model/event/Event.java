@@ -19,8 +19,8 @@ public class Event {
     private static String INVALID_EVENT_START_END_TIME_MSG = "Event start time is after end time";
 
     private String eventName;
-    private LocalDateTime eventStartTime;
-    private LocalDateTime eventEndTime;
+    private LocalDateTime eventStartDateTime;
+    private LocalDateTime eventEndDateTime;
     private String description;
     private String uniqueIdentifier; // uid for iCalendarAgenda use
     private EventRecurrence recurrence;
@@ -28,20 +28,20 @@ public class Event {
     /**
      * Creates an Event object that will be link to the user's schedule.
      * @param eventName
-     * @param eventStartTime
-     * @param eventEndTime
+     * @param eventStartDateTime
+     * @param eventEndDateTime
      * @param description
      * @param uniqueIdentifier
      * @param recurrence
      */
-    public Event(String eventName, LocalDateTime eventStartTime, LocalDateTime eventEndTime,
+    public Event(String eventName, LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime,
                  String description, String uniqueIdentifier, EventRecurrence recurrence) {
-        requireAllNonNull(eventName, eventStartTime, eventEndTime, description, uniqueIdentifier, recurrence);
+        requireAllNonNull(eventName, eventStartDateTime, eventEndDateTime, description, uniqueIdentifier, recurrence);
         checkArgument(isValidEventName(eventName));
-        checkArgument(isValidEventStartAndEndTime(eventStartTime, eventEndTime));
+        checkArgument(isValidEventStartAndEndTime(eventStartDateTime, eventEndDateTime));
         this.eventName = eventName;
-        this.eventStartTime = eventStartTime;
-        this.eventEndTime = eventEndTime;
+        this.eventStartDateTime = eventStartDateTime;
+        this.eventEndDateTime = eventEndDateTime;
         this.description = description;
         this.uniqueIdentifier = uniqueIdentifier;
         this.recurrence = recurrence;
@@ -64,12 +64,12 @@ public class Event {
         return eventName;
     }
 
-    public LocalDateTime getEventStartTime() {
-        return eventStartTime;
+    public LocalDateTime getEventStartDateTime() {
+        return eventStartDateTime;
     }
 
-    public LocalDateTime getEventEndTime() {
-        return eventEndTime;
+    public LocalDateTime getEventEndDateTime() {
+        return eventEndDateTime;
     }
 
     public String getDescription() {
@@ -86,7 +86,7 @@ public class Event {
 
     @Override
     public int hashCode() {
-        return Objects.hash(eventName, eventStartTime, eventEndTime, description, uniqueIdentifier, recurrence);
+        return Objects.hash(eventName, eventStartDateTime, eventEndDateTime, description, uniqueIdentifier, recurrence);
     }
 
     /**
@@ -105,8 +105,8 @@ public class Event {
 
         Event otherEvent = (Event) obj;
         return otherEvent.eventName.equals(eventName)
-                && otherEvent.eventStartTime.equals(eventStartTime)
-                && otherEvent.eventEndTime.equals(eventEndTime)
+                && otherEvent.eventStartDateTime.equals(eventStartDateTime)
+                && otherEvent.eventEndDateTime.equals(eventEndDateTime)
                 && otherEvent.description.equals(description)
                 && otherEvent.uniqueIdentifier.equals(uniqueIdentifier)
                 && otherEvent.recurrence.equals(recurrence);
@@ -118,9 +118,9 @@ public class Event {
         builder.append("Event name: ")
                 .append(eventName)
                 .append("Timing: ")
-                .append(eventStartTime)
+                .append(eventStartDateTime)
                 .append(" - ")
-                .append(eventEndTime)
+                .append(eventEndDateTime)
                 .append("Description: ")
                 .append(description);
 
