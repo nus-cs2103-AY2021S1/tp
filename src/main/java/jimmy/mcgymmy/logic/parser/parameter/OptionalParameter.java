@@ -37,5 +37,10 @@ public class OptionalParameter<T> extends AbstractParameter {
         super.setValue(rawValue);
         this.value = Optional.of(converter.apply(rawValue));
     }
+
+    @Override
+    public boolean isRequired() {
+        return false;
+    }
 }
 
