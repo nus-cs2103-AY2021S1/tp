@@ -41,7 +41,8 @@ public class ViewMeetingCommand extends Command {
                 .filter(meeting -> meeting.isSameMeetingName(targetMeetingName)).collect(Collectors.toList());
         Meeting meetingToView = filteredMeetingList.get(0);
         model.setSelectedMeeting(meetingToView);
-        return new CommandResult(String.format(MESSAGE_VIEW_MEETING_SUCCESS, meetingToView));
+        return new CommandResult(String.format(MESSAGE_VIEW_MEETING_SUCCESS, meetingToView), false, false,
+                true);
     }
 
     @Override

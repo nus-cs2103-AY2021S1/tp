@@ -97,9 +97,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Meeting> getSelectedMeeting() {
-        return model.getSelectedMeeting();
-    }
+    public Meeting getSelectedMeeting() {
+        return model.getSelectedMeeting(); }
 
     @Override
     public ReadOnlyModuleBook getModuleBook() {

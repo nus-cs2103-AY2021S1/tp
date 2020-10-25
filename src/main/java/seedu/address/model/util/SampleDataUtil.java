@@ -30,11 +30,11 @@ public class SampleDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                getTagSet("friends")),
+                getTagSet("prof")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
-                getTagSet("neighbours")),
+                getTagSet("ta")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
@@ -48,7 +48,7 @@ public class SampleDataUtil {
         return new Meeting[] {
             new Meeting(new MeetingName("CS2103 Weekly Meeting"), new Date("2020-09-20"),
                 new Time("10:00"), getPersonSet("Alex Yeoh", "Bernice Yu")),
-            new Meeting(new MeetingName("CS2040 Project Meeting"), new Date("2020-10-19"),
+            new Meeting(new MeetingName("CS2040 Consult"), new Date("2020-09-07"),
                 new Time("17:30"), getPersonSet("Charlotte Oliveiro", "David Li", "Irfan Ibrahim")),
             new Meeting(new MeetingName("CS2103 Emergency Meeting"), new Date("2020-10-10"),
                 new Time("16:00"), getPersonSet("Bernice Yu", "Roy Balakrishnan", "David Li")),

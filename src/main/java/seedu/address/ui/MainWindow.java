@@ -21,7 +21,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
-public class MainWindow extends UiPart<Stage> {
+public class MainWindow extends UiPart<Stage> implements Observer {
 
     private static final String FXML = "MainWindow.fxml";
 
@@ -57,6 +57,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane selectedMeetingPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -135,6 +138,11 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        //todo remove
+        MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getFilteredMeetingList().get(0),
+                1);
+        selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
     }
 
     /**
@@ -158,6 +166,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    @Override
+    public void update() {
+        logger.info("UI update triggered");
+        MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
+                logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
+        if (selectedMeetingPlaceholder.getChildren().size() == 1) {
+            selectedMeetingPlaceholder.getChildren().set(0, selectedMeeting.getRoot());
+        } else {
+            selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
         }
     }
 
@@ -198,6 +218,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isTriggerUpdate()) {
+                update();
             }
 
             return commandResult;

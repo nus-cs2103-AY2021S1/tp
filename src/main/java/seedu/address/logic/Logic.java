@@ -54,7 +54,7 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getSelectedMeeting()
      */
-    ObservableList<Meeting> getSelectedMeeting();
+    Meeting getSelectedMeeting();
 
     /** Returns an unmodifiable view of the filtered list of meetings */
     ObservableList<Meeting> getFilteredMeetingList();

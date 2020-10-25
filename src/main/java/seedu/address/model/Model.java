@@ -159,7 +159,7 @@ public interface Model {
     /**
      * Returns a selected Meeting in an observable list.
      */
-    ObservableList<Meeting> getSelectedMeeting();
+    Meeting getSelectedMeeting();
 
     /** Returns an unmodifiable view of the filtered meeting list */
     ObservableList<Meeting> getFilteredMeetingList();
