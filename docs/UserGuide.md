@@ -10,11 +10,16 @@ title: User Guide
 If you are a student who can type fast and loves organizing your study materials, QuickCache can get your flashcard management tasks done faster than any traditional GUI appplication.
 
 * Table of Contents
-{:toc}
+
+1. [Quick start](#quickstart)
+2. [Features](#features)
+    1. [Viewing help](#help)
+3. [FAQ](#faq)
+4. [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## Quick start <a name="quickstart"></a>
 Here is a quick start on how you can start using our app in your own computer. 
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -61,7 +66,7 @@ Here is a quick start on how you can start using our app in your own computer.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## Features <a name="features"></a>
 
 <div markdown="block" class="alert alert-info">
 
@@ -75,7 +80,7 @@ Here is a quick start on how you can start using our app in your own computer.
 
 </div>
 
-### Viewing help : `help`
+### Viewing help : `help` <a name="help"></a>
 
 Shows a message explaning how to access the help page.
 
@@ -374,14 +379,14 @@ QuickCache data are saved in the hard disk automatically after any command that 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## FAQ <a name="faq"></a>
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous QuickCache home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## Command summary <a name="command-summary"></a>
 
 Action | Format, Examples
 --------|------------------
