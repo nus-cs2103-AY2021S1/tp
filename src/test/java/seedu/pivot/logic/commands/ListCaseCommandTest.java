@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands;
 
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.pivot.logic.commands.CommandTestUtil.showCaseAtIndex;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -34,7 +34,7 @@ public class ListCaseCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
         assertCommandSuccess(new ListCaseCommand(), model, ListCaseCommand.MESSAGE_LIST_CASE_SUCCESS, expectedModel);
     }
 }

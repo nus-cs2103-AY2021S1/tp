@@ -58,10 +58,10 @@ public class CaseBuilder {
         title = caseToCopy.getTitle();
         description = caseToCopy.getDescription();
         status = caseToCopy.getStatus();
-        documents = new ArrayList<>(caseToCopy.getDocuments());
+        documents = caseToCopy.getDocuments();
         suspects = caseToCopy.getSuspects();
         victims = caseToCopy.getVictims();
-        witnesses = new ArrayList<>(caseToCopy.getWitnesses());
+        witnesses = caseToCopy.getWitnesses();
         tags = new HashSet<>(caseToCopy.getTags());
     }
 

@@ -11,21 +11,24 @@ import org.junit.jupiter.api.Test;
 
 import seedu.pivot.testutil.CaseBuilder;
 
-public class NameContainsKeywordsPredicateTest {
+public class CaseTitleContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        NameContainsKeywordsPredicate firstPredicate = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
+        CaseTitleContainsKeywordsPredicate firstPredicate =
+                new CaseTitleContainsKeywordsPredicate(firstPredicateKeywordList);
+        CaseTitleContainsKeywordsPredicate secondPredicate =
+                new CaseTitleContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
+        CaseTitleContainsKeywordsPredicate firstPredicateCopy =
+                new CaseTitleContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -41,30 +44,31 @@ public class NameContainsKeywordsPredicateTest {
     @Test
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        CaseTitleContainsKeywordsPredicate predicate =
+                new CaseTitleContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
 
         // Multiple keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
+        predicate = new CaseTitleContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
 
         // Only one matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
+        predicate = new CaseTitleContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Alice Carol").build()));
 
         // Mixed-case keywords
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
+        predicate = new CaseTitleContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
     }
 
     @Test
     public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(Collections.emptyList());
+        CaseTitleContainsKeywordsPredicate predicate = new CaseTitleContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new CaseBuilder().withTitle("Alice").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carol"));
+        predicate = new CaseTitleContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
 
 
@@ -72,7 +76,7 @@ public class NameContainsKeywordsPredicateTest {
 
         // TODO: Might need testing for keywords matching other fields but not name in the future.
         // Keywords match email and address, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate = new CaseTitleContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new CaseBuilder().withTitle("Alice")
                 .build()));
     }

@@ -8,7 +8,7 @@ import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.pivot.logic.commands.CommandTestUtil.showCaseAtIndex;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -86,7 +86,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
 
         Case caseInFilteredList = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
         Case editedCase = new CaseBuilder(caseInFilteredList).withTitle(VALID_NAME_BOB).build();
@@ -112,7 +112,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
         Case caseInList = model.getPivot().getCaseList().get(INDEX_SECOND_PERSON.getZeroBased());
@@ -137,7 +137,7 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPivot().getCaseList().size());

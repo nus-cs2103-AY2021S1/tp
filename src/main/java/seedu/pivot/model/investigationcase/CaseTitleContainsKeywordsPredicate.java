@@ -6,12 +6,12 @@ import java.util.function.Predicate;
 import seedu.pivot.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Case}'s {@code Title} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Case> {
+public class CaseTitleContainsKeywordsPredicate implements Predicate<Case> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public CaseTitleContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -25,8 +25,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Case> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof CaseTitleContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((CaseTitleContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }

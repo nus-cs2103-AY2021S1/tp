@@ -47,7 +47,7 @@ public class AddCaseCommandTest {
     public void execute_duplicateCase_throwsCommandException() {
         Case validCase = new CaseBuilder().build();
         AddCommand addCommand = new AddCaseCommand(validCase);
-        ModelStub modelStub = new ModelStubWithPerson(validCase);
+        ModelStub modelStub = new ModelStubWithCase(validCase);
 
         assertThrows(CommandException.class,
                 AddCaseCommand.MESSAGE_DUPLICATE_CASE, () -> addCommand.execute(modelStub));
@@ -155,10 +155,10 @@ public class AddCaseCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithCase extends ModelStub {
         private final Case investigationCase;
 
-        ModelStubWithPerson(Case investigationCase) {
+        ModelStubWithCase(Case investigationCase) {
             requireNonNull(investigationCase);
             this.investigationCase = investigationCase;
         }

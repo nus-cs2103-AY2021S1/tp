@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.pivot.logic.commands.FindCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
-import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
+import seedu.pivot.model.investigationcase.CaseTitleContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +27,7 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new CaseTitleContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
 }

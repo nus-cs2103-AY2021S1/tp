@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.GuiSettings;
-import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
+import seedu.pivot.model.investigationcase.CaseTitleContainsKeywordsPredicate;
 import seedu.pivot.testutil.PivotBuilder;
 
 public class ModelManagerTest {
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getTitle().getAlphaNum().split("\\s+");
-        modelManager.updateFilteredCaseList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredCaseList(new CaseTitleContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(pivot, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

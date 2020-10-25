@@ -28,7 +28,7 @@ import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.pivot.logic.commands.casecommands.ListCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
+import seedu.pivot.model.investigationcase.CaseTitleContainsKeywordsPredicate;
 import seedu.pivot.testutil.CaseBuilder;
 import seedu.pivot.testutil.CaseUtil;
 import seedu.pivot.testutil.EditCaseDescriptorBuilder;
@@ -78,7 +78,7 @@ public class PivotParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new CaseTitleContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test
