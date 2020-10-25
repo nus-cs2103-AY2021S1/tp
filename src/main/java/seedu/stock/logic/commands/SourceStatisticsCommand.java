@@ -13,7 +13,7 @@ import seedu.stock.model.stock.Stock;
 public class SourceStatisticsCommand extends StatisticsCommand {
 
     public static final String STATISTICS_TYPE = "source";
-    private static final String MESSAGE_SUCCESS = "Opened statistics for source window\n"
+    public static final String MESSAGE_SUCCESS = "Opened statistics for source window\n"
                     + "WARNING: Diagram shown may not be optimal for certain quantities";
 
     private static final Logger logger = LogsCenter.getLogger(SourceStatisticsCommand.class);
@@ -36,5 +36,11 @@ public class SourceStatisticsCommand extends StatisticsCommand {
         String[] otherStatisticsDetails = {"source"};
         logger.log(Level.INFO, "Valid input.");
         return new CommandResult(MESSAGE_SUCCESS, sourceData, false, false, null, true, otherStatisticsDetails, false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SourceStatisticsCommand);
     }
 }

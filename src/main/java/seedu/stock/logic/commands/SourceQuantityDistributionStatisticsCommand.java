@@ -56,8 +56,15 @@ public class SourceQuantityDistributionStatisticsCommand extends StatisticsComma
                 false, null, true, otherStatisticsDetails, false);
     }
 
-
     public String getTargetSource() {
         return targetSource;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SourceQuantityDistributionStatisticsCommand // instanceof handles nulls
+                && targetSource.equals(((
+                        SourceQuantityDistributionStatisticsCommand) other).targetSource)); // state check
     }
 }
