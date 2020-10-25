@@ -24,7 +24,6 @@ import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.RedoCommand;
 import seedu.address.logic.commands.modulelistcommands.UndoCommand;
-
 import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
 import seedu.address.logic.parser.contactlistparsers.AddContactParser;
 import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
