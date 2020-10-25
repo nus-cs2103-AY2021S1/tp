@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -20,11 +21,19 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the assignment identified by the index number(s) used in the displayed assignment list.\n"
-            + "Parameters: INDEX [MORE INDEXES] (must be a positive integer, must not contain duplicates and cannot be greater than the size of the current"
+            + "Parameters: INDEX [MORE INDEXES] (must be a positive integer, "
+            + "must not contain duplicates and cannot be greater than the size of the current "
             + "assignment list)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Assignment(s): %1$s";
+    public static final String MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX = "Duplicated indexes found.";
+
+    private static final Comparator<Index> compareIndexes = (firstIndex, secondIndex) -> {
+        int firstIndexValue = firstIndex.getZeroBased();
+        int secondIndexValue = secondIndex.getZeroBased();
+        return secondIndexValue - firstIndexValue; // sort by descending order
+    };
 
     private final List<Index> targetIndexes;
 
@@ -44,12 +53,18 @@ public class DeleteCommand extends Command {
         boolean containsDuplicates = distinctIndexes < lengthOfIndexesList;
 
         if (containsDuplicates) {
-            throw new CommandException(Messages.MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX);
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand
+                            .MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX));
         }
     }
 
     private static void checkForInvalidIndexes(List<Index> targetIndexes, Model model) throws CommandException {
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
+        if (targetIndexes.isEmpty()) {
+            throw new CommandException(
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+        }
         for (Index targetIndex : targetIndexes) {
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
@@ -63,6 +78,8 @@ public class DeleteCommand extends Command {
 
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
         List<Assignment> deletedAssignments = new ArrayList<>();
+
+        targetIndexes.sort(compareIndexes);
 
         checkForDuplicatedIndexes(targetIndexes);
         checkForInvalidIndexes(targetIndexes, model);

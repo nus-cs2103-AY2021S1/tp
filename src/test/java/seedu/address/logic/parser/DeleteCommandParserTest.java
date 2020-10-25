@@ -37,11 +37,10 @@ public class DeleteCommandParserTest {
         List<Index> parsedIndexes = new ArrayList<>();
         Index indexOne = ParserUtil.parseIndex("1");
         Index indexTwo = ParserUtil.parseIndex("2");
-        Index indexThree = ParserUtil.parseIndex("3");
         parsedIndexes.add(indexOne);
         parsedIndexes.add(indexTwo);
-        parsedIndexes.add(indexThree);
-        assertParseSuccess(parser, "1 2 3", new DeleteCommand(parsedIndexes));
+
+        assertParseSuccess(parser, "1 2", new DeleteCommand(parsedIndexes));
     }
 
     @Test
