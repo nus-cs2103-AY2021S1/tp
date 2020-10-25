@@ -1,15 +1,14 @@
-// EditCommandParser.java
+package chopchop.logic.parser.commands;
 
 import java.util.Optional;
 import java.util.ArrayList;
 
+import chopchop.logic.commands.EditRecipeCommand;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
-import chopchop.commons.util.Pair;
 import chopchop.commons.util.Result;
 import chopchop.commons.util.Strings;
 
-import chopchop.logic.edit.EditDescriptor;
 import chopchop.logic.edit.EditOperationType;
 import chopchop.logic.edit.IngredientEditDescriptor;
 import chopchop.logic.edit.RecipeEditDescriptor;
@@ -19,16 +18,10 @@ import chopchop.logic.edit.TagEditDescriptor;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.ItemReference;
 import chopchop.logic.parser.CommandArguments;
-import chopchop.logic.parser.commands.CommandTarget;
 
 import chopchop.logic.commands.Command;
 
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
-
-import chopchop.model.Model;
-import chopchop.logic.commands.CommandResult;
-import chopchop.logic.commands.exceptions.CommandException;
-import chopchop.logic.history.HistoryManager;
 
 public class EditCommandParser {
 
@@ -54,7 +47,10 @@ public class EditCommandParser {
             })
             .then(item -> {
 
-                var edits = new ArrayList<Result<EditDescriptor>>();
+                Optional<String> editedName = Optional.empty();
+                var tagEdits = new ArrayList<Result<TagEditDescriptor>>();
+                var stepEdits = new ArrayList<Result<StepEditDescriptor>>();
+                var ingrEdits = new ArrayList<Result<IngredientEditDescriptor>>();
 
                 for (int i = 0; i < args.getAllArguments().size(); i++) {
 
@@ -62,17 +58,27 @@ public class EditCommandParser {
                     var argName = arg.fst();
                     var argValue = arg.snd();
 
-                    if (argName.getComponents().isEmpty()) {
+                    if (!argName.name().equals(Strings.ARG_NAME.name()) && argName.getComponents().isEmpty()) {
                         return Result.error("'%s' needs an edit-argument in an edit command", argName);
                     }
 
-                    if (argName.name().equals(Strings.ARG_TAG.name())) {
+                    if (argName.name().equals(Strings.ARG_NAME.name())) {
 
-                        edits.add(parseTagEdit(argName, argValue));
+                        if (argValue.isEmpty()) {
+                            return Result.error("expected a name after '/name'");
+                        } else if (editedName.isPresent()) {
+                            return Result.error("only one '/name' should be provided");
+                        }
+
+                        editedName = Optional.of(argValue);
+
+                    } else if (argName.name().equals(Strings.ARG_TAG.name())) {
+
+                        tagEdits.add(parseTagEdit(argName, argValue));
 
                     } else if (argName.name().equals(Strings.ARG_STEP.name())) {
 
-                        edits.add(parseStepEdit(argName, argValue));
+                        stepEdits.add(parseStepEdit(argName, argValue));
 
                     } else if (argName.name().equals(Strings.ARG_INGREDIENT.name())) {
 
@@ -93,49 +99,36 @@ public class EditCommandParser {
                             }
                         }
 
-                        edits.add(parseIngredientEdit(argName, argValue, qty));
+                        ingrEdits.add(parseIngredientEdit(argName, argValue, qty));
 
                     } else {
                         return Result.error("'edit' command doesn't support '%s'", argName);
                     }
                 }
 
-                return Result.of(Pair.of(item, edits));
-            })
-            .map(pair -> pair.mapSnd(x -> Result.sequence(x)))
-            .then(pair -> {
+                // ugly AF, but i don't care at the moment.
+                var tes = Result.sequence(tagEdits);
+                var ses = Result.sequence(stepEdits);
+                var ies = Result.sequence(ingrEdits);
 
-                var ingrEdits = new ArrayList<IngredientEditDescriptor>();
-                var stepEdits = new ArrayList<StepEditDescriptor>();
-                var tagEdits = new ArrayList<TagEditDescriptor>();
-
-                if (pair.snd().isError()) {
-                    return Result.error(pair.snd().getError());
+                if (tes.isError()) {
+                    return Result.error(tes.getError());
+                } else if (ses.isError()) {
+                    return Result.error(ses.getError());
+                } else if (ies.isError()) {
+                    return Result.error(ies.getError());
                 }
 
-                var list = pair.snd().getValue();
-                for (var item : list) {
-                    if (item instanceof TagEditDescriptor) {
-                        tagEdits.add((TagEditDescriptor) item);
-                    } else if (item instanceof StepEditDescriptor) {
-                        stepEdits.add((StepEditDescriptor) item);
-                    } else if (item instanceof IngredientEditDescriptor) {
-                        ingrEdits.add((IngredientEditDescriptor) item);
-                    } else {
-                        // unreachable
-                        assert false : "invalid edit descriptor";
-                    }
-                }
-
-                return Result.of(new EditCommandStub(pair.fst(),
-                    new RecipeEditDescriptor(ingrEdits, stepEdits, tagEdits)));
+                return Result.of(new EditRecipeCommand(item,
+                    new RecipeEditDescriptor(editedName, ies.getValue(), ses.getValue(), tes.getValue())
+                ));
             });
     }
 
 
 
 
-    private static Result<EditDescriptor> parseIngredientEdit(ArgName argName, String ingredientName,
+    private static Result<IngredientEditDescriptor> parseIngredientEdit(ArgName argName, String ingredientName,
         Optional<Quantity> qty) {
 
         var components = argName.getComponents();
@@ -163,7 +156,7 @@ public class EditCommandParser {
 
 
 
-    private static Result<EditDescriptor> parseTagEdit(ArgName argName, String argValue) {
+    private static Result<TagEditDescriptor> parseTagEdit(ArgName argName, String argValue) {
 
         var components = argName.getComponents();
 
@@ -174,7 +167,7 @@ public class EditCommandParser {
 
         if (argValue.isEmpty()) {
             return Result.error("expected tag name after /tag:add or /tag:delete");
-        } else if (!Tag.isValidTagName(argValue)) {
+        } else if (!Tag.isValidTag(argValue)) {
             return Result.error(Tag.MESSAGE_CONSTRAINTS);
         }
 
@@ -184,7 +177,7 @@ public class EditCommandParser {
         ));
     }
 
-    private static Result<EditDescriptor> parseStepEdit(ArgName argName, String argValue) {
+    private static Result<StepEditDescriptor> parseStepEdit(ArgName argName, String argValue) {
 
         var components = argName.getComponents();
 
@@ -272,23 +265,6 @@ public class EditCommandParser {
         } else {
             return Result.error("expected either /%s:add, /%s:edit, or /%s:delete",
                 editor, editor, editor);
-        }
-    }
-
-
-    static class EditCommandStub extends Command {
-
-        private final ItemReference recipe;
-        private final RecipeEditDescriptor edit;
-
-        public EditCommandStub(ItemReference recipe, RecipeEditDescriptor edit) {
-            this.recipe = recipe;
-            this.edit = edit;
-        }
-
-        @Override
-        public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
-            return new CommandResult("");
         }
     }
 }

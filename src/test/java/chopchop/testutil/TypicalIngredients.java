@@ -32,11 +32,19 @@ public class TypicalIngredients {
         .withDate(VALID_INGREDIENT_EXPIRY_BANANA)
         .withQuantity(Count.of(VALID_INGREDIENT_QTY_BANANA))
         .build();
+
     public static final Ingredient CUSTARD = new IngredientBuilder()
         .withName(VALID_INGREDIENT_NAME_CUSTARD)
         .withDate(VALID_INGREDIENT_EXPIRY_CUSTARD)
         .withQuantity(Count.of(VALID_INGREDIENT_QTY_CUSTARD))
         .build();
+
+    public static final Ingredient BAKED_BEANS = new IngredientBuilder()
+        .withName("Baked beans")
+        .withDate("2020-12-25")
+        .withQuantity(Count.of(40))
+        .build();
+
 
     public static final IngredientReference APRICOT_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_APRICOT,
@@ -51,6 +59,11 @@ public class TypicalIngredients {
     public static final IngredientReference CUSTARD_REF = new IngredientReference(
         VALID_INGREDIENT_NAME_CUSTARD,
         Count.of(VALID_INGREDIENT_QTY_CUSTARD)
+    );
+
+    public static final IngredientReference BAKED_BEANS_REF = new IngredientReference(
+        "Baked beans",
+        Count.of(10)
     );
 
     /**

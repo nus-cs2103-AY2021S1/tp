@@ -26,16 +26,15 @@ public class CommandParserTest {
         var tests = new HashMap<String, String>();
 
         tests.put("add ingredient squid /qty 30g /expiry 2020-12-24",
-            "Result(AddIngredientCommand: squid (30g) expires: 2020-12-24 \nTags: \nNo tags attached)");
+            "Result(AddIngredientCommand: squid (30g) <Expiry Date: 2020-12-24>)");
 
         tests.put("add ingredient milk /qty 600ml",
-            "Result(AddIngredientCommand: milk (600ml) \nTags: \nNo tags attached)");
+            "Result(AddIngredientCommand: milk (600ml))");
 
         tests.put("add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
-            + "/ingredient egg /qty 7 /step mix /step bake /step eat",
-            "Result(AddRecipeCommand: cake Ingredients: milk (400ml), flour (500g), "
-                    + "egg (7) Steps: 1. mix, 2. bake, 3. eat Tags: No tags attached)"
-        );
+                + "/ingredient egg /qty 7 /step mix /step bake /step eat",
+            "Result(AddRecipeCommand: cake <Ingredients: milk (400ml), flour (500g), "
+                + "egg (7)> <Steps: 1. mix, 2. bake, 3. eat>)");
 
         tests.put("delete recipe cake", "Result(DeleteRecipeCommand(cake))");
         tests.put("delete recipe #4", "Result(DeleteRecipeCommand(#4))");

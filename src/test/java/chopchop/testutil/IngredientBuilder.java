@@ -1,5 +1,7 @@
 package chopchop.testutil;
 
+import java.util.HashSet;
+
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.ingredient.Ingredient;
@@ -60,7 +62,7 @@ public class IngredientBuilder {
     }
 
     public Ingredient build() {
-        return new Ingredient(name, qty, expDate, null);
+        return new Ingredient(name, qty, expDate, new HashSet<>());
     }
 
 }

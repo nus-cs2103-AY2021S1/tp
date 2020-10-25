@@ -1,22 +1,27 @@
 package chopchop.model.ingredient;
 
-import java.util.HashSet;
+import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.Optional;
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
+import java.util.StringJoiner;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import chopchop.commons.exceptions.IllegalValueException;
+import chopchop.commons.util.Pair;
 import chopchop.model.Entry;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
+import chopchop.model.attributes.units.Count;
 import chopchop.model.exceptions.IncompatibleIngredientsException;
-import chopchop.commons.util.Pair;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an Ingredient in the recipe manager.
@@ -39,40 +44,28 @@ public class Ingredient extends Entry {
     private final Set<Tag> tags;
 
     /**
-     * Every field must be present and not null. Use this constructor if expiry date is not present.
-     * Guarantees: details are present and not null, field values are validated, immutable.
-     */
-    public Ingredient(String name, Quantity quantity) {
-        this(name, quantity, null, null);
-    }
-
-    public Ingredient(String name, Quantity quantity, Set<Tag> tags) {
-        this(name, quantity, null, tags);
-    }
-
-    public Ingredient(String name, Quantity quantity, ExpiryDate expiryDate) {
-        this(name, quantity, expiryDate, null);
-    }
-
-    /**
-     * Every field(less tag) must be present and not null. If expiry date is not present, use other constructor.
-     * Guarantees: details(less tag) are present and not null, field values are validated, immutable.
+     * Every field (less expiry date) must be present and not null.
+     * Guarantees: details (less expiry date) are present and not null, field values are validated, immutable.
      */
     public Ingredient(String name, Quantity quantity, ExpiryDate expiryDate, Set<Tag> tags) {
         super(name);
-        requireNonNull(quantity);
+        requireAllNonNull(quantity, tags);
 
         this.sets = new TreeMap<>(SET_COMPARATOR);
         this.sets.put(Optional.ofNullable(expiryDate), quantity);
-        if (tags == null) {
-            this.tags = new HashSet<>();
-        } else {
-            this.tags = new HashSet<>(tags);
-        }
+        this.tags = new HashSet<>(tags);
     }
 
-    public Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets) {
-        this(name, sets, null);
+    /**
+     * Constructor that accepts optionals for quantity and expiry date for convenience.
+     */
+    public Ingredient(String name, Optional<Quantity> quantity, Optional<ExpiryDate> expiryDate, Set<Tag> tags) {
+        super(name);
+        requireAllNonNull(quantity, expiryDate, tags);
+
+        this.sets = new TreeMap<>(SET_COMPARATOR);
+        this.sets.put(expiryDate, quantity.orElse(Count.of(1)));
+        this.tags = new HashSet<>(tags);
     }
 
     /**
@@ -80,10 +73,11 @@ public class Ingredient extends Entry {
      */
     public Ingredient(String name, TreeMap<Optional<ExpiryDate>, Quantity> sets, Set<Tag> tags) {
         super(name);
-        this.sets = sets;
-        this.tags = (tags == null
-            ? new HashSet<>()
-            : new HashSet<>(tags));
+        requireAllNonNull(sets, tags);
+
+        this.sets = new TreeMap<>(SET_COMPARATOR);
+        this.sets.putAll(sets);
+        this.tags = new HashSet<>(tags);
     }
 
     public Quantity getQuantity() {
@@ -111,6 +105,10 @@ public class Ingredient extends Entry {
         return this.sets.firstKey();
     }
 
+    public Optional<List<ExpiryDate>> getExpiryDates() {
+        return null;
+    }
+
     public TreeMap<Optional<ExpiryDate>, Quantity> getIngredientSets() {
         // i want const correctness dammit
         var ret = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
@@ -120,23 +118,7 @@ public class Ingredient extends Entry {
     }
 
     public Set<Tag> getTags() {
-        return new HashSet<>(this.tags);
-    }
-
-    public String getTagList() {
-        if (this.tags.isEmpty()) {
-            return "No tags attached";
-        }
-        StringBuilder sb = new StringBuilder();
-        int index = 1;
-        for (var tag : this.tags) {
-            sb.append(index)
-                .append(" : ")
-                .append(tag.getTagName())
-                .append("\n");
-            index++;
-        }
-        return sb.toString();
+        return Collections.unmodifiableSet(this.tags);
     }
 
     /**
@@ -222,8 +204,8 @@ public class Ingredient extends Entry {
             secondSets.put(splitKey, remainingQuantity);
         }
 
-        return new Pair<>(new Ingredient(this.name.toString(), firstSets),
-                new Ingredient(this.name.toString(), secondSets));
+        return new Pair<>(new Ingredient(this.name.toString(), firstSets, this.tags),
+                new Ingredient(this.name.toString(), secondSets, this.tags));
     }
 
     @Override
@@ -240,21 +222,23 @@ public class Ingredient extends Entry {
                 && this.name.equals(((Ingredient) other).name)
                 && this.sets.equals(((Ingredient) other).sets))
                 && this.tags.equals(((Ingredient) other).tags);
-
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, this.sets, this.tags);
+        return Objects.hash(this.name, this.sets, this.tags);
     }
 
     @Override
     public String toString() {
-        return String.format("%s (%s)%s \nTags: \n%s",
-            this.getName(),
-            this.getQuantity(),
-            this.getExpiryDate().map(d -> String.format(" expires: %s", d))
-                .orElse(""),
-            getTagList());
+        var tagJoiner = new StringJoiner(", ", "<Tags: ", ">");
+        tagJoiner.setEmptyValue("");
+        this.getTags().forEach(tag -> tagJoiner.add(tag.toString()));
+
+        return Stream.of(String.format("%s (%s)", this.getName(), this.getQuantity()),
+                this.getExpiryDate().map(expiryDate -> String.format("<Expiry Date: %s>", expiryDate)).orElse(""),
+                tagJoiner.toString())
+                .filter(field -> !field.isEmpty())
+                .collect(Collectors.joining(" "));
     }
 }

@@ -17,6 +17,7 @@ public class Strings {
     public static final ArgName ARG_QUANTITY        = new ArgName("qty");
     public static final ArgName ARG_EXPIRY          = new ArgName("expiry");
     public static final ArgName ARG_TAG             = new ArgName("tag");
+    public static final ArgName ARG_NAME            = new ArgName("name");
 
     // command names
     public static final String COMMAND_ADD          = "add";
@@ -24,6 +25,7 @@ public class Strings {
     public static final String COMMAND_LIST         = "list";
     public static final String COMMAND_EDIT         = "edit";
     public static final String COMMAND_FIND         = "find";
+    public static final String COMMAND_FILTER       = "filter";
     public static final String COMMAND_QUIT         = "quit";
     public static final String COMMAND_DELETE       = "delete";
     public static final String COMMAND_MAKE         = "make";
@@ -36,6 +38,7 @@ public class Strings {
         COMMAND_HELP,
         COMMAND_LIST,
         COMMAND_FIND,
+        COMMAND_FILTER,
         COMMAND_EDIT,
         COMMAND_QUIT,
         COMMAND_DELETE,

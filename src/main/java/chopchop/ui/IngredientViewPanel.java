@@ -34,12 +34,7 @@ public class IngredientViewPanel extends UiPart<Region> {
         super(FXML);
         ingredientObservableList = ingredientList;
         textDisplay = new TextDisplay(EMPTY_PROMPT);
-        ingredientObservableList.addListener(new ListChangeListener<Ingredient>() {
-            @Override
-            public void onChanged(Change<? extends Ingredient> c) {
-                fillDisplay();
-            }
-        });
+        ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> fillDisplay());
         fillDisplay();
     }
 

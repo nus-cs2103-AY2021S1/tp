@@ -2,12 +2,14 @@ package chopchop.model.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.stream.Collectors;
 
 import chopchop.model.EntryBook;
 import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Step;
+import chopchop.model.attributes.Tag;
 import chopchop.model.attributes.units.Count;
 import chopchop.model.attributes.units.Mass;
 import chopchop.model.attributes.units.Volume;
@@ -18,9 +20,9 @@ import chopchop.model.recipe.Recipe;
 public class SampleDataUtil {
     public static Ingredient[] getSampleIngredients() {
         return new Ingredient[] {
-            new Ingredient("Apple", Mass.grams(10), new ExpiryDate("2020-04-04"), null),
-            new Ingredient("Blueberry", Count.of(5)),
-            new Ingredient("Custard", Volume.millilitres(200.5)),
+            new Ingredient("Apple", Mass.grams(10), new ExpiryDate("2020-04-04"), new HashSet<>()),
+            new Ingredient("Blueberry", Count.of(5), null, new HashSet<>()),
+            new Ingredient("Custard", Volume.millilitres(200.5), null, new HashSet<>()),
         };
     }
 
@@ -40,14 +42,16 @@ public class SampleDataUtil {
                     .collect(Collectors.toList()),
                 new ArrayList<>(Arrays.asList(new Step("Put them on a table."),
                     new Step("Cut and chop them."),
-                    new Step("Mix them.")))),
+                    new Step("Mix them."))),
+                new HashSet<>(Arrays.asList(new Tag("fruit"), new Tag("simple")))),
             new Recipe("Blue custard cream",
                 Arrays.stream(getSampleIngredients())
                     .map((x)-> new IngredientReference(x.getName(), x.getQuantity()))
                     .collect(Collectors.toList()),
                 new ArrayList<>(Arrays.asList(new Step("Blend them."),
                     new Step("Stir them well."),
-                    new Step("Leave it in the refrigerator for 8 hours"))))
+                    new Step("Leave it in the refrigerator for 8 hours"))),
+                new HashSet<>(Arrays.asList(new Tag("sweet"), new Tag("cold"))))
         };
     }
 

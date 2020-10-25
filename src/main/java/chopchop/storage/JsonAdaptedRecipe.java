@@ -1,8 +1,9 @@
 package chopchop.storage;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -11,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.attributes.Name;
 import chopchop.model.attributes.Step;
+import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 
@@ -20,8 +22,7 @@ public class JsonAdaptedRecipe {
     private final String name;
     private final List<JsonAdaptedIngredientReference> ingredients;
     private final List<String> steps;
-    private final JsonAdaptedTagSet tags;
-    private final JsonAdaptedUsageList usages;
+    private final List<String> tags;
 
     /**
      * Constructs a {@code JsonAdaptedRecipe} with the given recipe details.
@@ -30,13 +31,11 @@ public class JsonAdaptedRecipe {
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
                              @JsonProperty("ingredients") List<JsonAdaptedIngredientReference> ingredients,
                              @JsonProperty("steps") List<String> steps,
-                             @JsonProperty("tags") JsonAdaptedTagSet tags,
-                             @JsonProperty("usages") JsonAdaptedUsageList usages) {
+                             @JsonProperty("tags") List<String> tags) {
         this.name = name;
         this.ingredients = ingredients == null ? null : new ArrayList<>(ingredients);
         this.steps = steps == null ? null : new ArrayList<>(steps);
-        this.tags = tags;
-        this.usages = usages;
+        this.tags = tags == null ? null : new ArrayList<>(tags);
     }
 
     /**
@@ -45,12 +44,9 @@ public class JsonAdaptedRecipe {
     public JsonAdaptedRecipe(Recipe source) {
         this.name = source.getName();
         this.ingredients = source.getIngredients().stream().map(JsonAdaptedIngredientReference::new)
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
         this.steps = source.getSteps().stream().map(Step::toString).collect(Collectors.toList());
-        this.tags = new JsonAdaptedTagSet(source.getTags());
-        this.usages = new JsonAdaptedUsageList(source.getUsages().stream()
-            .map(LocalDateTime::toString)
-            .collect(Collectors.toList()));
+        this.tags = source.getTags().stream().map(Tag::toString).collect(Collectors.toList());
     }
 
     /**
@@ -61,7 +57,7 @@ public class JsonAdaptedRecipe {
     public Recipe toModelType() throws IllegalValueException {
         if (this.name == null) {
             throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
-                    Name.class.getSimpleName()));
+                Name.class.getSimpleName()));
         }
         if (!Name.isValidName(this.name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -85,7 +81,15 @@ public class JsonAdaptedRecipe {
             modelSteps.add(new Step(step));
         }
 
-        return new Recipe(this.name, modelIngredients, modelSteps, this.tags.toModelType(),
-            this.usages.toModelType());
+        if (this.tags == null) {
+            throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
+                Tag.class.getSimpleName()));
+        }
+        Set<Tag> modelTags = new HashSet<>();
+        for (String tag : this.tags) {
+            modelTags.add(new Tag(tag));
+        }
+
+        return new Recipe(this.name, modelIngredients, modelSteps, modelTags);
     }
 }

@@ -21,7 +21,7 @@ import chopchop.model.recipe.Recipe;
  * removing the ingredients used.
  */
 public class MakeRecipeCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "make recipe";
+    public static final String COMMAND_WORD = "make";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Makes a dish according to the recipe identified by the index number or name used in the displayed "
@@ -88,12 +88,13 @@ public class MakeRecipeCommand extends Command implements Undoable {
         for (var ingredient : this.ingredients) {
             if (ingredient.snd().getIngredientSets().isEmpty()) {
                 model.deleteIngredient(ingredient.fst());
+                model.addIngredientUsage(ingredient.fst());
             } else {
                 model.setIngredient(ingredient.fst(), ingredient.snd());
+                model.addIngredientUsage(ingredient.snd());
             }
-            model.addIngredientUsage(ingredient.fst());
-        }
 
+        }
         model.setRecipe(this.recipe, this.recipe.addUsage());
         model.addRecipeUsage(this.recipe);
         return new CommandResult(String.format(MESSAGE_MAKE_RECIPE_SUCCESS, this.recipe));

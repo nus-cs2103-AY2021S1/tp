@@ -34,12 +34,7 @@ public class RecipeViewPanel extends UiPart<Region> {
         super(FXML);
         textDisplay = new TextDisplay(EMPTY_PROMPT);
         recipeObservableList = recipeList;
-        recipeObservableList.addListener(new ListChangeListener<Recipe>() {
-            @Override
-            public void onChanged(Change<? extends Recipe> c) {
-                fillDisplay();
-            }
-        });
+        recipeObservableList.addListener((ListChangeListener<Recipe>) c -> fillDisplay());
         fillDisplay();
     }
 
@@ -67,7 +62,8 @@ public class RecipeViewPanel extends UiPart<Region> {
         int col = START_COL;
         for (int i = 0; i < recipeObservableList.size(); i++) {
             Recipe recipe = recipeObservableList.get(i);
-            RecipeCard recipeCard = new RecipeCard(recipe);
+            // Change from 0 based index to 1 based index
+            RecipeCard recipeCard = new RecipeCard(recipe, i + 1);
             row = calculate_row(i);
             if (row == 0) {
                 col++;
