@@ -20,7 +20,6 @@ import com.eva.model.tag.Tag;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
 /**
  * Jackson-friendly version of {@link Applicant}.
  */
@@ -36,6 +35,7 @@ class JsonAdaptedApplicant {
     private final String status;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedComment> comments = new ArrayList<>();
+    private final JsonAdaptedApplication application;
 
     /**
      * Constructs a {@code JsonAdaptedStaff} with the given person details.
@@ -49,7 +49,8 @@ class JsonAdaptedApplicant {
             @JsonProperty("interviewDate") String interviewDate,
             @JsonProperty("status") String status,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-            @JsonProperty("comments") List<JsonAdaptedComment> comments
+            @JsonProperty("comments") List<JsonAdaptedComment> comments,
+            @JsonProperty("application") JsonAdaptedApplication application
     ) {
         this.name = name;
         this.phone = phone;
@@ -63,6 +64,7 @@ class JsonAdaptedApplicant {
         if (comments != null) {
             this.comments.addAll(comments);
         }
+        this.application = application;
     }
 
     /**
@@ -83,6 +85,8 @@ class JsonAdaptedApplicant {
         comments.addAll(source.getComments().stream()
                 .map(JsonAdaptedComment::new)
                 .collect(Collectors.toList()));
+        application = new JsonAdaptedApplication(source.getApplication());
+
     }
 
     /**
@@ -150,8 +154,11 @@ class JsonAdaptedApplicant {
                 interviewDate.isEmpty() ? null : new InterviewDate(interviewDate);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Comment> modelComments = new HashSet<>(personComments);
-        return new Applicant(modelName, modelPhone, modelEmail, modelAddress,
+
+        Applicant newApplicant = new Applicant(modelName, modelPhone, modelEmail, modelAddress,
                 modelTags, modelComments, Optional.ofNullable(modelInterviewDate), modelStatus);
+        newApplicant.setApplication(application.toModelType());
+        return newApplicant;
     }
 
 }

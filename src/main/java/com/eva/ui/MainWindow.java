@@ -1,5 +1,6 @@
 package com.eva.ui;
 
+import java.io.FileNotFoundException;
 import java.util.logging.Logger;
 
 import com.eva.commons.core.GuiSettings;
@@ -185,7 +186,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see com.eva.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException,
+            FileNotFoundException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -200,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | FileNotFoundException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
