@@ -62,8 +62,9 @@ public class ProjectDashboard extends UiPart<Region> {
         repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
         header1.setText("Teammates: ");
         this.project.getTeammates().stream()
-                .forEach(participation -> teammates.getChildren().add(new Label(participation.getPerson().getPersonName().toString()
-                        + " (" + participation.getPerson().getGitUserNameString() + ")")));
+                .forEach(participation -> teammates.getChildren().add(new Label(
+                        participation.getPerson().getPersonName().toString() + " ("
+                                + participation.getPerson().getGitUserNameString() + ")")));
         String headerOfListOfTasks = "Filtered List Of Tasks: ";
         if (this.project.isFullListOfTasks()) {
             headerOfListOfTasks = "All Tasks: ";
