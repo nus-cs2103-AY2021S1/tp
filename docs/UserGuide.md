@@ -119,7 +119,7 @@ the link to clipboard and paste it in your web browser. <br>
 
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `help`: Returns help prompt.
 
@@ -136,7 +136,7 @@ Format: `exit`
  
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `exit`: Returns exit message then quits the program.
 
@@ -153,7 +153,7 @@ Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce`
 * `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
@@ -181,10 +181,10 @@ Format: `delete ENTRY_INDEX c/CATEGORY`
 
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
-* `delete 1 c/expense` : deletes first entry in expense category
-* `delete 2 c/revenue` : deletes second entry in the revenue category
+* `delete 1 c/expense` : Deletes first entry in expense category
+* `delete 2 c/revenue` : Deletes second entry in the revenue category
 
 </div>
 
@@ -211,11 +211,11 @@ Formats:
 
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
-* `edit 2 c/expense n/buy McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
-* `edit 2 c/revenue n/sell McNuggets` changes the name of entry 2 to `sell McNuggets`
-* `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
+* `edit 2 c/expense n/buy McSpicy a/8.60`: Changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
+* `edit 2 c/revenue n/sell McNuggets`: Changes the name of entry 2 to `sell McNuggets`
+* `edit 2 c/expense a/5.50`: Changes the amount of entry 2 to `$5.50`
 
 </div>
 
@@ -244,11 +244,11 @@ is no expense or revenue found, the respective list will be empty.
 
 :green_book: **Example:** 
 
-* `find c/expense k/watercolours canvas` : finds all expenses with keywords `watercolours` and/or `canvas` in their 
+* `find c/expense k/watercolours canvas`: Finds all expenses with keywords `watercolours` and/or `canvas` in their 
 description.
-* `find c/revenue k/phone` : finds all revenues with keyword `phone` in their 
+* `find c/revenue k/phone`: Finds all revenues with keyword `phone` in their 
 description.
-* `find k/canvas earrings` : finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
+* `find k/canvas earrings`: Finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
 description (Figure).
  
 </div>
@@ -288,7 +288,7 @@ Format: `list`
  
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `list`: Returns the latest list of all entries
 
@@ -303,7 +303,8 @@ Format: `clear`
  
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
+
 
 * `clear c/expense`: clears all entries in expenses by setting the state to an empty one.
 * `clear c/revenue`: clears all entries in revenues by setting the state to an empty one.
@@ -330,7 +331,7 @@ Format: `profit`
  
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `profit`: Returns the profits (**Figure**) by taking the difference between the expenses and revenues.
 
@@ -390,6 +391,27 @@ before you exit the app!
 
 </div>
 
+### Calculating total expenses or revenues in an account: `total`
+
+You can use this command to do calculate the total expenses or revenues in your current account.
+
+**Format:** `total c/CATEGORY`
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**
+
+* `total c/expense`: Returns the sum of all the expenses.
+* `total c/revenue`: Returns the sum of all the revenues.
+
+</div>
+
+(add screenshots to show the total expense/revenue message)
+
+
+
+
+
 ## Account-level Commands
 Account-Level commands involves managing the different accounts in the app. 
 
@@ -405,6 +427,7 @@ Format: `newacc n/NAME`
 
 * `newacc n/My Flower Shop`: adds a new account, `My Flower Shop`, with no expenses or revenues.
 * `newacc n/$uper $avers`: adds a new account, `$uper $avers`, with no expenses or revenues (**Figure**). 
+
 </div>
 
 ![addAccountCommand](images/commands/addAccountCommand.png)
@@ -560,6 +583,8 @@ Action | Format, Examples
 **List** | `list`
 **Clear** | `clear c/CATEGORY`
 **Profit** | `profit`
+**Undo** | `undo`
+**Total** | `total c/CATEGORY`
 **New Account** | `newacc n/NAME`
 **Delete Account** | `deleteacc INDEX`
 **Edit Account** | `editacc n/NAME`
