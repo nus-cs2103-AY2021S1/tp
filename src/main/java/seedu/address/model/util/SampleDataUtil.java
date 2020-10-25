@@ -5,9 +5,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
+import seedu.address.model.Drink;
 import seedu.address.model.IngredientBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyIngredientBook;
+import seedu.address.model.ReadOnlySalesBook;
+import seedu.address.model.SalesBook;
+import seedu.address.model.SalesRecordEntry;
 import seedu.address.model.ingredient.Amount;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
@@ -57,12 +61,32 @@ public class SampleDataUtil {
         };
     }
 
+    public static SalesRecordEntry[] getSampleSales() {
+        return new SalesRecordEntry[]{
+            new SalesRecordEntry(Drink.BSBM, 0),
+            new SalesRecordEntry(Drink.BSBBT, 0),
+            new SalesRecordEntry(Drink.BSBGT, 0),
+            new SalesRecordEntry(Drink.BSPM, 0),
+            new SalesRecordEntry(Drink.BSPBT, 0),
+            new SalesRecordEntry(Drink.BSPGT, 0)
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+
+
+    public static ReadOnlySalesBook getSampleSalesBook() {
+        SalesBook sampleSb = new SalesBook();
+        for (SalesRecordEntry sampleSalesRecordEntry : getSampleSales()) {
+            sampleSb.addSalesRecordEntry(sampleSalesRecordEntry);
+        }
+        return sampleSb;
     }
 
     public static Ingredient[] getSampleIngredients() {

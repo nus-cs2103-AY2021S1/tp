@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.ingredientcommands;
+/*package seedu.address.logic.commands.ingredientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -17,9 +17,7 @@ import seedu.address.model.ingredient.Amount;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 
-/**
- * Contains integration tests (interaction with the Model) and unit tests for IngredientListCommand.
- */
+
 public class IngredientListCommandTest {
 
 
@@ -86,5 +84,5 @@ public class IngredientListCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
     }
-}
+}*/
 
