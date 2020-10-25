@@ -33,7 +33,7 @@ public class ProjectUtil {
     public static String getProjectDetails(Project project) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_PROJECT_NAME + project.getProjectName().fullProjectName + " ");
-        sb.append(PREFIX_DEADLINE + project.getDeadline().value + " ");
+        sb.append(PREFIX_DEADLINE + project.getDeadline().toString() + " ");
         sb.append(PREFIX_REPOURL + project.getRepoUrl().value + " ");
         sb.append(PREFIX_PROJECT_DESCRIPTION + project.getProjectDescription().value + " ");
         project.getProjectTags().stream().forEach(
@@ -52,7 +52,8 @@ public class ProjectUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getProjectName().ifPresent(name -> sb.append(PREFIX_PROJECT_NAME).append(name.fullProjectName)
             .append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
+        descriptor.getDeadline().ifPresent(
+            deadline -> sb.append(PREFIX_DEADLINE).append(deadline.toString()).append(" "));
         descriptor.getRepoUrl().ifPresent(email -> sb.append(PREFIX_REPOURL).append(email.value).append(" "));
         descriptor.getProjectDescription().ifPresent(address -> sb.append(PREFIX_PROJECT_DESCRIPTION).append(
             address.value).append(" "));
