@@ -56,7 +56,7 @@ public class Inventory extends UiPart<Region> {
         });
         financeIdCol.setCellValueFactory(item -> {
             SimpleStringProperty property = new SimpleStringProperty();
-            property.setValue(String.valueOf(item.getValue().getFinanceID()));
+            property.setValue(String.valueOf(item.getValue().getFinanceId()));
             return property;
         });
     }
