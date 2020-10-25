@@ -14,7 +14,7 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Provides additional notes and constraints for certain information.**<br>
+**:information_source: Provides additional notes and constraints for certain information.**
 
 </div>
 
@@ -63,7 +63,7 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 </div>
 
-### Adding an animal : `add`
+### Adding an animal: `add`
 
 Adds an animal under the care of the user.
 
@@ -79,7 +79,7 @@ Examples:
 
 ---
 
-### Appending information to an animal's fields : `append`
+### Appending information to an animal's fields: `append`
 
 Appends information to the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
@@ -94,7 +94,7 @@ Examples:
 
 ---
 
-### Clearing all entries : `clear`
+### Clearing all entries: `clear`
 
 Clears all entries from the app.
 
@@ -102,7 +102,7 @@ Format: `clear`
 
 ---
 
-### Deleting an animal : `delete`
+### Deleting an animal: `delete`
 
 Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
@@ -113,7 +113,7 @@ Example:
 
 ---
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -121,7 +121,7 @@ Format: `exit`
 
 ---
 
-### Finding animals by their fields : `find`
+### Finding animals by their fields: `find`
 
 Finds and lists all animals in the `ZooKeep` book whose fields contain any of the specified argument keywords.
 
@@ -136,7 +136,7 @@ Example:
 
 ---
 
-### Viewing help : `help`
+### Viewing help: `help`
 
 Shows a message explaining how you can access the help page.
 
@@ -146,7 +146,7 @@ Format: `help`
 
 ---
 
-### Listing all animals : `list`
+### Listing all animals: `list`
 
 Lists all animals under the care of the user.
 
@@ -154,7 +154,7 @@ Format: `list`
 
 ---
 
-### Redoing an undo : `redo`
+### Redoing an undo: `redo`
 
 Redoes the previous undo. No changes if no previous state exists.
 
@@ -162,7 +162,7 @@ Format: `redo`
 
 ---
 
-### Replacing an animal's fields : `replace`
+### Replacing an animal's fields: `replace`
 
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
@@ -177,7 +177,7 @@ Examples:
 
 ---
 
-### Sorting animals : `sort`
+### Sorting animals: `sort`
 
 Sorts the animals by the given category in a specific order and updates the list of animals accordingly.
 
@@ -190,7 +190,7 @@ Examples:
 
 ---
 
-### Saving a snapshot of animal data : `snap`
+### Saving a snapshot of animal data: `snap`
 
 Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name.
 
@@ -214,7 +214,7 @@ Example:
 
 ---
 
-### Undoing a command : `undo`
+### Undoing a command: `undo`
 
 Undoes the most recently used command. No changes if no previous state exists.
 
@@ -237,10 +237,10 @@ There is no need to save manually, though you can create a copy of the current d
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ZooKeep home folder.
 
-**Q**: Can I record the feeding times of a specific animal in any order I prefer?
+**Q**: Can I record the feeding times of a specific animal in any order I prefer?<br>
 **A**: The feeding time will be arranged in chronological order regardless of the order entered for easier reference.
 
-**Q**: Can I search for animals based on a certain alphabet or half specified keywords?
+**Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
 **A**: The find feature will only list animals with the exact specified keyword provided.
 
 ## Command summary
