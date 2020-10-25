@@ -107,18 +107,11 @@ Example commands:
 * `delete 4 5`
 * `delete 2 3 1`
 
-<div class="panel panel-info">
 **Pointers to note:**
-{: .panel-heading}
-<div class="panel-body">
-
 * At least one index must be **present**. For example, `delete` without any index will not work.
 * The indexes **must be a positive integer** 1, 2, 3, …​
 * The indexes **must be found in your assignment list**.
 * The indexes **must not be duplicated**. For example, `delete 3 3` will not work.
-
-</div>
-</div>
 
 
 ### Importing your timetable : `import`
@@ -141,29 +134,21 @@ You can list your assignments altogether with just typing `list`. Alternatively,
 
 You can key in a `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon! (with deadlines nearing).
 For example, `list 2` will show you assignments that are due 2 days (48 hours) from the current date (and current time).
-{: .alert .alert-gitlab-purple}
 
 Examples: 
 - `list` lists all your assignments.
 - `list 3` lists all your assignments with deadline 3 days (72 hours) from the current date (and current time). For example, If the current date and time is 24/10/2020 12:00 pm, all assignments due from this date and time to 27/10/2020 12:00PM will be displayed.
  
-
-<div class="panel panel-info">
 **Pointers to note:**
-{: .panel-heading}
-<div class="panel-body">
-
 * `NUMBER_OF_DAYS` **must be a positive integer** 1, 2, 3, …​
 * **Only one** number can be keyed in. For example, `list 1 2` will not work. 
 
-</div>
-</div>
 
 ### Finding assignments : `find`
 
 You can find your assignments based on keywords (and prefixes) you enter. The types of keywords are the name, module code, deadline and priority level of assignments. You can find assignments with multiple keywords of the same type.
 
-Here is the table of prefixes that is used:
+Here is the table of prefixes used:
 <style type="text/css">
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
@@ -211,25 +196,14 @@ Here is the table of prefixes that is used:
 
 Format: `find PREFIX/ KEYWORD [MORE KEYWORDS]`
 
+Here is an example of a usage scenario:
+1) You want to find assignments from the modules CS2100 and ST2334.
+2) You can simply key in `find mod/CS2100 ST2334` to view these assignments quickly.
 
+**Points to note:**
+* `DATE_OR_TIME_OF_ASSIGNMENT` must have dates in the format **dd-MM-yyyy** or times in the format **HHmm** (24 hour).
+* You can only **find assignments with keywords of the same type**. For example, `find n/Assignment d/23-10-2020` will not work.
 
-Parameters are:
-- n/ NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENTS] to find by name of assignment.
-- d/ DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] to find by the deadline (date or time) of assignment.
-- mod/ MODULE_CODE [MORE MODULE_CODE] to find by module code of assignment.
-- priority/ PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] to find by priority of assignment.
-
-- Finds assignments in your schedule by name, module code, deadline (date or time) or priority.
-- DATE_OR_TIME_OF_ASSIGNMENT is in the format dd-MM-yyyy or HHmm to enable searching by time and date of assignment separately.
-- Only one field can be searched at a time.
-- You can find assignments with multiple keywords of the same field.
-
-
-Examples: 
-- `find n/Assignment Homework Lab` Finds all your assignments with names that has Assignment, Homework or Lab.
-- `find mod/CS2100` Finds all your assignments from the module CS2100. 
-- `find d/1200 24-10-2020` Finds all your assignments with due date of 24-10-2020 or with due time 1200.
-- `find priority/HIGH` Finds all assignments with high priority.
 
 ### Setting reminders for assignments : `remind`
 
