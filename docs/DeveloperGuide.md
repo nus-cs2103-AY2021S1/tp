@@ -255,6 +255,35 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Friendly Syntax
+
+The friendly syntax allows users to type in just the prefix of a command to execute it.
+
+The following diagram summarizes the sequence when the RemoveCommand is executed from the user input of `r 1`.
+
+![Friendly_Syntax_Architecture_Diagram](images/Friendly_Syntax_Architecture_Diagram.png)
+
+Given below is an example usage scenario and how the friendly syntax behaves at the parse stage.
+
+Step 1: The user launches the application for the first time and enters the vendor command `vendor 1`.
+
+Step 2: SupperStrikers loads the menu of the 1<sup>st</sup> vendor into the GUI.
+
+Step 3: The user enters the add command `add 1 3` 
+
+Step 4:  SupperStrikers adds 3 of the 1<sup>st</sup> item into the order
+
+Step 5: The user enters the command `r 1 1`.
+
+Step 6: The `LogicManager#execute` is executed to call the `AddressBookParser#parseCommand` method.
+
+Step 7: `AddressBookParser#parseCommand` checks if the inputted command word is a prefix of one and only one of the valid commands by filtering the list of valid commands based on whether they start with the user inputted prefix. The `r` in this case maps to the `remove` keyword.
+
+Step 8: The `RemoveCommand` is executed and one quantity of the first item in the order is removed.  
+
+- If there is no command with the given prefix, an `Parse Exception` will be thrown.
+- If the inputted prefix exists for more than 1 command, a `Parse Exception` will be thrown.
+- If there is a command which is a prefix for another command, it can no longer be executed.
 
 ### Vendor Command
 
@@ -287,19 +316,6 @@ Step 8: `Model#resetOrder()` creates a new empty order for the i<sup>th</sup> ve
 
 The following diagram summarises the sequence when the SwitchVendorCommmand is executed.
 ![VendorSequendeDiagram](images/VendorCommandSequenceDiagram.png)
-
-
-Given below is the example usage scenario of the VendorCommand
-
-Step 1: The user has already selected a vendor using the SwitchVendorCommand.
-
-Step 2: The user enters the vendor command `vendor`.
-
-Step 3: `Model#setVendorIndex(-1)` is executed to set the vendor index to its default value.
-
-Step 4: The UI component showing the menu UI component
-         is hidden and the UI component showing the vendor list is displayed to the user by calling
-        `MainWindow#displayMenu()`.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -446,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
     
 * 1c. The given quantity is invalid.
-     
+  
      * 1c1. SupperStrikers shows an error message.
 
       Use case ends.

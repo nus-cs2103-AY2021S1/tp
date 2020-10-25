@@ -89,7 +89,7 @@ public class AddressBookTest {
 
     @Test
     public void selectVendorIndex_validIndex_success() {
-        assertEquals(addressBook.getVendorIndex(), 0);
+        assertEquals(addressBook.getVendorIndex(), -1);
         AddressBook addressBook = getTypicalAddressBook();
         addressBook.selectVendor(1);
         assertEquals(addressBook.getVendorIndex(), 1);
