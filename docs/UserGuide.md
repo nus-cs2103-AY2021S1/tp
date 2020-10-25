@@ -256,24 +256,23 @@ Just type in the `help` command!
 
 ### How do I transfer my data to another Computer?
 1. Download the JAR file (`resireg.jar`) on your new computer. 
-2. Navigate to where the JAR file is.  
+2. Navigate to where the JAR file is.
 3. Double click on `resireg.jar`
 4. Delete the `resireg.json` file in the folder
 5. Copy over the `resireg.json` file <em>residing in  your previous **ResiReg** home folder</em> that contains data of your previous **ResiReg** session.
 
 ## Command Summary
-Action   | Format, Examples
----------|--------------------
-*list rooms*    | <code>rooms [--allocated &#124; --vacant]</code>
-*allocate room* | `allocate si/<student_index> ri/<room_index>` e.g. `allocate si/1 ri/1`
-*deallocate room* | `deallocate si/<student_index> ri/<room_index>` e.g. `deallocate si/1 ri/1`
-*edit allocation* | `reallocate si/<student_index> ri/<room_index>` e.g. `reallocate si/1 ri/2`
-*list students* | `students`
-*add student* | `add n/<student_name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [t/<tag_name>]...` e.g.`add  n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC`
-*edit student* | `edit <index> [n/<student_name>] [i/<student_id>] [p/<8_digit_phone_no>] [e/<email>] [f/<faculty>] [t/<tag_name>]…` e.g.`edit 1 n/Jet New`
-*find student* | `find <keyword> [<more_keywords>]... ` e.g.`find John`
-*delete student* | `delete <student_index>` e.g.`delete 2`
-*help* | `help [command]` e.g. `help` or `help rooms`
-*clear* | `clear`
-*exit* | `exit`
-
+| Action            | Format, Examples                                                                                               |
+|-------------------|----------------------------------------------------------------------------------------------------------------|
+| *list rooms*      | `rooms [--allocated \| --vacant]`                                                                              |
+| *allocate room*   | `allocate si/ ri/` e.g. `allocate si/1 ri/1`                                                                   |
+| *deallocate room* | `deallocate si/ ri/` e.g. `deallocate si/1 ri/1`                                                               |
+| *edit allocation* | `reallocate si/ ri/` e.g. `reallocate si/1 ri/2`                                                               |
+| *list students*   | `students`                                                                                                     |
+| *add student*     | `add n/ i/ p/<8_digit_phone_no> e/ f/ [t/]...` e.g.`add  n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` |
+| *edit student*    | `edit  [n/] [i/] [p/<8_digit_phone_no>] [e/] [f/] [t/]…` e.g.`edit 1 n/Jet New`                                |
+| *find student*    | `find  []... ` e.g.`find John`                                                                                 |
+| *delete student*  | `delete ` e.g.`delete 2`                                                                                       |
+| *help*            | `help [command]` e.g. `help` or `help rooms`                                                                   |
+| *clear*           | `clear`                                                                                                        |
+| *exit*            | `exit`                                                                                                         |
