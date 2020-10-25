@@ -5,7 +5,8 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
-import static com.eva.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
+import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collections;
@@ -25,6 +26,11 @@ import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Person;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
+import com.eva.model.person.applicant.InterviewDate;
+import com.eva.model.person.staff.Staff;
+import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
 
@@ -51,7 +57,10 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
+    public static final String MESSAGE_NO_APPLICANTORSTAFF = "Please key in s- or a- to indicate "
+            + "if you want to edit applicant or staff";
 
+    private String personType;
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -59,18 +68,25 @@ public class EditCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor,
+                       String personType) {
         requireNonNull(index);
         requireNonNull(editPersonDescriptor);
 
         this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.personType = personType;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<? extends Person> lastShownList;
+        if (this.personType.equals("staff")) {
+            lastShownList = model.getFilteredStaffList();
+        } else {
+            lastShownList = model.getFilteredApplicantList();
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -83,8 +99,13 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        if (this.personType.equals("staff")) {
+            model.setStaff((Staff) personToEdit, (Staff) editedPerson);
+            model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+        } else {
+            model.setApplicant((Applicant) personToEdit, (Applicant) editedPerson);
+            model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        }
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 
@@ -100,9 +121,30 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        Set<Comment> updatedComments = editPersonDescriptor.getComments().orElse(personToEdit.getComments());
+        Set<Comment> editedComments = editPersonDescriptor.getComments();
+        Set<Comment> currentComments = personToEdit.getComments();
+        if (editedComments != null) {
+            for (Comment comment: currentComments) {
+                for (Comment editedComment : editedComments) {
+                    if (editedComment.getTitle().equals(comment.getTitle())
+                            && editedComment.getDate().equals(comment.getDate())) {
+                        comment.update(editedComment.getDescription());
+                    }
+                }
+            }
+        }
+        if (personToEdit instanceof Staff) {
+            Set<Leave> updatedLeaves = ((Staff) personToEdit).getLeaves();
+            return new Staff(updatedName, updatedPhone, updatedEmail,
+                    updatedAddress, updatedTags, updatedLeaves, currentComments);
+        } else if (personToEdit instanceof Applicant) {
+            ApplicationStatus applicationStatus = ((Applicant) personToEdit).getApplicationStatus();
+            Optional<InterviewDate> updatedInterviewDate = editPersonDescriptor.getInterviewDate();
+            return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
+                    updatedTags, currentComments, updatedInterviewDate, applicationStatus);
+        }
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, currentComments);
     }
 
     @Override
@@ -134,6 +176,9 @@ public class EditCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Set<Comment> comments;
+        private Set<Leave> leaves;
+        private Optional<InterviewDate> interviewDate;
+        private ApplicationStatus applicationStatus;
 
         public EditPersonDescriptor() {}
 
@@ -148,13 +193,17 @@ public class EditCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setComments(toCopy.comments);
+            setLeaves(toCopy.leaves);
+            setInterviewDate(toCopy.interviewDate);
+            setApplicationStatus(toCopy.applicationStatus);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, comments,
+                    leaves, applicationStatus, interviewDate);
         }
 
         public void setName(Name name) {
@@ -210,6 +259,39 @@ public class EditCommand extends Command {
             this.comments = (comments != null) ? new HashSet<>(comments) : null;
         }
 
+        public Set<Comment> getComments() {
+            return (comments != null) ? comments : null;
+        }
+
+
+        public void setLeaves(Set<Leave> leaves) {
+            this.leaves = (leaves != null) ? new HashSet<>(leaves) : null;
+        }
+
+        public Set<Leave> getLeaves() {
+            return (leaves != null) ? leaves : new HashSet<>();
+        }
+
+        public void setInterviewDate(Optional<InterviewDate> interviewDate) {
+            if (interviewDate == null) {
+                this.interviewDate = Optional.empty();
+            } else {
+                this.interviewDate = interviewDate;
+            }
+        }
+
+        public Optional<InterviewDate> getInterviewDate() {
+            return this.interviewDate;
+        }
+
+        public void setApplicationStatus(ApplicationStatus applicationStatus) {
+            this.applicationStatus = applicationStatus;
+        }
+
+        public ApplicationStatus getApplicationStatus() {
+            return this.applicationStatus;
+        }
+
 
         @Override
         public boolean equals(Object other) {
@@ -231,10 +313,6 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags());
-        }
-
-        public Optional<Set<Comment>> getComments() {
-            return (comments != null) ? Optional.of(Collections.unmodifiableSet(comments)) : Optional.empty();
         }
     }
 }
