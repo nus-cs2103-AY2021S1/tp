@@ -8,6 +8,7 @@ import static seedu.resireg.testutil.TypicalRooms.ROOM_ONE;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.exceptions.IllegalValueException;

@@ -15,6 +15,7 @@ import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_ROOM;
 
 import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.core.Messages;
