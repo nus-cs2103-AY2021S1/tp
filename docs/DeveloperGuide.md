@@ -462,13 +462,10 @@ The following activity diagram summarizes what happens when feeding times are ad
 * is reasonably comfortable using CLI apps
 
 **Value proposition**: 
-*  Zookeepers have to account for a large number of animals and their statuses (health, feeding times etc).
-
-*   It is easy to lose track without a structured database.
-
-*   We have thus decided to morph the app into a tracker for an individual zookeeper.
-
-*   Easier to transfer a large amount of animal information when zookeepers change shifts.
+* Zookeepers have to account for a large number of animals and their statuses (health, feeding times etc).
+* It is easy to lose track without a structured database.
+* We have thus decided to morph the app into a tracker for an individual zookeeper.
+* Easier to transfer a large amount of animal information when zookeepers change shifts.
 * Manage animals faster than a typical mouse/GUI driven app.
 
 ### User stories
