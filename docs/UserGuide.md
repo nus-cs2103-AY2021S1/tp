@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-Welcome to the Wishful Shrinking User Guide! This user guide provides in-depth documentation on the installation process, step-by-step instructions for each feature and troubleshooting recommendations. Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
+Welcome to the Wishful Shrinking User Guide! This user guide provides in-depth documentation on the installation process, step-by-step instructions for each feature and troubleshooting recommendations. Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.<br><br>
 
 
 ## Introducing Wishful Shrinking
@@ -62,7 +62,7 @@ Choose a topic from the table of contents to get started on your Wishful Shrinki
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `addR n/salad`.
 
 * Items in square brackets are optional.<br>
@@ -115,7 +115,7 @@ Format: `addR n/TITLE i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]
 Examples:
 * `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy`
 * `addR n/sandwiches i/breads, cheese -2 slices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/Cook. Eat.`
-<br><br>
+<br><br><br>
 
 ### Listing all recipes : `recipes`
 
@@ -124,7 +124,7 @@ Shows a list of all recipes in the Recipe list.
 ![list recipes](images/ListRecipesImage.png)
 
 Format: `recipes`
-<br><br>
+<br><br><br>
 
 ### Selecting a single recipe : `selectR`
 
@@ -140,7 +140,7 @@ Format: `selectR INDEX`
 
 Examples:
 * `selectR 1` shows the 1st recipe in full view (left drawer), as well as in the command result box on the right.
-<br><br>
+<br><br><br>
 
 ### Closing the recipe drawer : `close`
 
@@ -151,7 +151,7 @@ Closes the left drawer (if opened after selecting a recipe).
 Format: `close`
 
 * This command closes the left drawer that is opened after you have selected a recipe.
-<br><br>
+<br><br><br>
 
 ### Deleting a recipe : `deleteR`
 
@@ -168,7 +168,7 @@ Format: `deleteR INDEX`
 Examples:
 * `recipes` followed by `deleteR 2` deletes the 2nd recipe in Recipe list.
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the result of the `searchR` command.
-<br><br>
+<br><br><br>
 
 ### Editing a recipe: `editR`
 
@@ -189,7 +189,7 @@ Format: `editR INDEX [n/TITLE] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -
 
 Examples:
 * `editR 2 n/Apple salad i/apple` will update the name of the 2nd recipe in the displayed recipe list to Apple salad and the ingredients to contain an apple ingredient.
-<br><br>
+<br><br><br>
 
 ### Getting a recipe to edit: `editR`
 
@@ -205,7 +205,7 @@ Format: `editR INDEX`
 
 Examples:
 * `editR 2` followed by `Enter` will insert the information of the 2nd recipe in the displayed recipe list into the command box.
-<br><br>
+<br><br><br>
 
 ### Searching for a recipe: `searchR`
 
@@ -224,20 +224,19 @@ Examples:
 * `searchR i/lettuce tomato` returns `salad` that has both ingredients `lettuce` and `tomato`
 * `searchR n/salad` returns `salad` and `ham salad`
 * `searchR t/healthy` returns `salad` with tag `healthy`
-<br><br>
+<br><br><br>
 
 ### Recommending recipes : `recommend`
 
-Shows a list of all recipes in the Recipes list that can be made with the ingredients in the user's
- fridge.
+Shows a list of all recipes in the Recipe list that can be made with the ingredients in your fridge.
 
 ![recommend recipe](images/RecommendImage.png)
 
 Format: `recommend`
 
 Examples:
-* `recommend` returns the recipe `salad` with ingredients `lettuce`, `onion` and `tomato` **only if** the user has all `lettuce`, `onion` and `tomato` in their fridge
-<br><br>
+* `recommend` returns the recipe `salad` with ingredients `lettuce`, `onion` and `tomato` **only if** you have all `lettuce`, `onion` and `tomato` in your fridge
+<br><br><br>
 
 ### Clearing all recipes : `clearR`
 
@@ -246,7 +245,7 @@ Clears all the recipes in the Recipe list.
 ![clear recipes](images/ClearRecipeImage.png)
 
 Format: `clearR`
-<br><br>
+<br><br><br>
 
 ## Fridge
 
@@ -265,7 +264,7 @@ Examples:
 * `addF i/peanut`
 * `addF i/tomato -1 kg`
 * `addF i/banana -3/4 cups, green peas -200g, salmon fish`
-<br><br>
+<br><br><br>
 
 ### Listing all ingredients : `fridge`
 
@@ -274,7 +273,7 @@ Shows a list of all ingredients in the Fridge.
 ![list ingredient](images/ListIngredientsImage.png)
 
 Format: `fridge`
-<br><br>
+<br><br><br>
 
 ### Deleting an ingredient : `deleteF`
 
@@ -291,7 +290,7 @@ Format: `deleteF INDEX`
 Examples:
 * `fridge` followed by `deleteF 4` deletes the 4th ingredient in the fridge.
 * `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `searchF` command.
-<br><br>
+<br><br><br>
 
 ### Editing an ingredient: `editF`
 
@@ -311,7 +310,7 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 
 Examples:
 * `editF 2 i/apple` will update the value of the 2nd recipe in the displayed ingredient list to apple.
-<br><br>
+<br><br><br>
 
 ### Getting an ingredient to edit: `editF`
 
@@ -327,7 +326,7 @@ Format: `editF INDEX`
 
 Examples:
 * `editF 1` followed by `Enter` will insert the information of the 1st ingredient in the displayed ingredient list into the command box.
-<br><br>
+<br><br><br>
 
 ### Searching for an Ingredient: `searchF`
 
@@ -343,7 +342,7 @@ Format: `searchF KEYWORD [MORE_KEYWORDS]`
 
 Examples:
 * `searchF peanut` returns `peanut` and `peanut butter`
-<br><br>
+<br><br><br>
 
 ### Clearing all ingredients : `clearF`
 
@@ -352,7 +351,7 @@ Clears all the ingredients in the Fridge.
 ![clear fridge](images/ClearFridgeImage.png)
 
 Format: `clearF`
-<br><br>
+<br><br><br>
 
 ## Consumption
 
@@ -371,16 +370,16 @@ Format: `eatR INDEX`
 Examples:
 * `recipes` followed by `eatR 2` adds the 2nd recipe in the displayed recipe list into the Consumption list.
 * `searchR n/salad` followed by `eatR 1` adds the 1st recipe in the results of the `searchR` command into the Consumption list.
-<br><br>
+<br><br><br>
 
 ### Listing all recipes eaten : `calories`
 
-Shows a list of all recipes that have been eaten by the user.
+Shows a list of all recipes that have been eaten by you.
 
 ![calories](images/CaloriesImage.png)
 
 Format: `calories`
-<br><br>
+<br><br><br>
 
 ### Deleting a recipe eaten: `deleteC`
 
@@ -396,7 +395,7 @@ Format: `deleteC INDEX`
 
 Examples:
 * `calories` followed by `deleteC 2` deletes the 2nd recipe in Consumption List.
-<br><br>
+<br><br><br>
 
 ### Clearing all consumed recipes in consumption : `clearC`
 
@@ -405,7 +404,7 @@ Clears all the recipes that have been eaten in the daily consumption list.
 ![clear consumption](images/ClearConsumptionImage.png)
 
 Format: `clearC`
-<br><br>
+<br><br><br>
 
 ## Saving the data
 
@@ -427,10 +426,10 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 
 # Glossary
 **Wishful Shrinking**: Can refer to name of the application as a whole or to the app’s storage file<br>
-**Fridge**: A personalised storage that contains all the ingredients that a user has<br>
+**Fridge**: A personalised storage that contains all the ingredients that you have<br>
 **Recipe**: A set of cooking instructions that describes how to prepare a meal and the ingredients required<br>
 **Ingredient**: Food that can be used to prepare a particular dish according to a recipe<br>
-**Consumption**: A counter which calculates and displays the calorie intake of a user based on the recipes consumed as well as a list of recipes consumed<br>
+**Consumption**: A counter which calculates and displays your calorie intake based on the recipes you have consumed as well as a list of recipes consumed<br>
 **Drawer**: Page that layers above left section of the window when the `select` command runs and closes when the `close` command runs<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
