@@ -9,7 +9,6 @@ import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.Undoable;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.model.Model;
-import chopchop.model.stats.StatsManager;
 
 /**
  * The HistoryManager of the main LogicManager.
@@ -17,7 +16,6 @@ import chopchop.model.stats.StatsManager;
 public class HistoryManager {
     public static final String MESSAGE_CANNOT_UNDO = "No commands to undo";
     public static final String MESSAGE_CANNOT_REDO = "No commands to redo";
-    private final StatsManager statsManager;
     private final List<Undoable> commandHistory;
     private final List<String> inputHistory;
     private int currentIndex;
@@ -25,10 +23,9 @@ public class HistoryManager {
     /**
      * Constructs a {@code HistoryManager}.
      */
-    public HistoryManager(StatsManager statsManager) {
+    public HistoryManager() {
         this.commandHistory = new ArrayList<>();
         this.inputHistory = new ArrayList<>();
-        this.statsManager = statsManager;
         this.currentIndex = 0;
     }
 

@@ -130,15 +130,15 @@ public class MainApp extends Application {
                 .orElseGet(FXCollections::observableArrayList));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
-                    + " IngredientBook");
+                    + " IngredientBook and their usage files");
             initialRecipeData = new EntryBook<>();
             initialIngredientData = new EntryBook<>();
-            initialRecipeUsageData = new UsageList<RecipeUsage>(FXCollections.observableArrayList());
-            initialIngredientUsageData = new UsageList<IngredientUsage>(FXCollections.observableArrayList());
+            initialRecipeUsageData = new UsageList<RecipeUsage>();
+            initialIngredientUsageData = new UsageList<IngredientUsage>();
         }
 
-        return new ModelManager(initialRecipeData, initialIngredientData,
-            initialRecipeUsageData, initialIngredientUsageData, userPrefs);
+        return new ModelManager(initialRecipeData, initialIngredientData, initialRecipeUsageData,
+            initialIngredientUsageData, userPrefs);
     }
 
     private void initLogging(Config config) {
