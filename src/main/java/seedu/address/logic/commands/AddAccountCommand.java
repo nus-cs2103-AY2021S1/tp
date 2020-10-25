@@ -21,7 +21,7 @@ public class AddAccountCommand extends Command {
             + "Example: " + PREFIX_NAME + "ACCOUNT NAME ";
 
     public static final String MESSAGE_SUCCESS = "New account added! %1$s";
-    private static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the app!";
+    public static final String MESSAGE_DUPLICATE_ACCOUNT = "This account already exists in the app!";
 
     private final Account account;
 
@@ -40,7 +40,6 @@ public class AddAccountCommand extends Command {
         if (model.hasAccount(this.account)) {
             throw new CommandException(MESSAGE_DUPLICATE_ACCOUNT);
         }
-
         model.addAccount(this.account);
         return CommandResultFactory
             .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_SUCCESS, this.account));
