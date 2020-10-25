@@ -417,7 +417,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `OneShelf` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete an item**
+**Use case: UC01 - Delete an item**
 
 **MSS**
 
@@ -440,7 +440,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Adding existing item's quantity or tags**
+**Use case: UC02 - Adding existing item's quantity or tags**
 
 **MSS**
 
@@ -466,7 +466,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
  * 1c. InventoryBook detects existing item name and supplier.
     * 1c1. InventoryBook adds on existing item name and supplier's with input quantity.
 
-**Use case: Editing an item**
+**Use case: UC03 - Editing an item**
 
 **MSS**
 
@@ -500,6 +500,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3c1. OneShelf shows an error message.
 
         Use case resumes at step 2.
+        
+**Use case: UC04 - User opens help window**
+
+**MSS**
+
+1. User requests to open up help start window.
+2. OneShelf opens up new Help Start window.
+3. User requests to open up help Summary window.
+4. OneShelf opens up new Help Summary window.
+
+    Use Case ends.
+
+**Extensions**
+
+* 3a. User requests to open up Help Start window.
+
+  * 3a1. OneShelf does **not** open a new Help Start Window.
+  
+  Use case ends.
+    
+    
 
 ### Non-Functional Requirements
 
