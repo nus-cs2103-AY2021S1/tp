@@ -28,12 +28,13 @@ public class SampleDataUtil {
         menu1.add(new Food("Cup noodles", 1.15, new HashSet<>()));
         Menu menu2 = new Menu();
         HashSet<Tag> tagList = new HashSet<>();
-        tagList.add(new Tag("Yums"));
+        tagList.add(new Tag("Egg"));
+        tagList.add(new Tag("Cheese"));
         menu2.add(new Food("Prata", 1.0, tagList));
         menu2.add(new Food("Water", 3, new HashSet<>()));
         Menu menu3 = new Menu();
         HashSet<Tag> tagList2 = new HashSet<>();
-        //tagList2.add(new Tag("No ice"));
+        tagList2.add(new Tag("No ice"));
         menu3.add(new Food("Steak", 16.90, new HashSet<>()));
         menu3.add(new Food("Hamburger", 4.20, new HashSet<>()));
         menu3.add(new Food("Lemon tea", 1.2, tagList2));
