@@ -45,13 +45,17 @@ public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> 
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof PropertiesMatchPredicateForExercise // instanceof handles nulls
-                && name.equals(((PropertiesMatchPredicateForExercise) other).name)
-                && description.equals(((PropertiesMatchPredicateForExercise) other).description)
-                && date.equals(((PropertiesMatchPredicateForExercise) other).date)
-                && calories.equals(((PropertiesMatchPredicateForExercise) other).calories)
-                && keywords.equals(((PropertiesMatchPredicateForExercise) other).keywords)); // state check
+        if (other == this) {
+            return true;
+        } else if (other instanceof PropertiesMatchPredicateForExercise) {
+            PropertiesMatchPredicateForExercise predicate = (PropertiesMatchPredicateForExercise) other;
+            return (name == predicate.name || name.equals(predicate.name)) // name is null or names are equal
+                    && (description == predicate.description || description.equals(predicate.description))
+                    && (date == predicate.date || date.equals(predicate.date))
+                    && (calories == predicate.calories || calories.equals(predicate.calories))
+                    && (keywords == predicate.keywords || keywords.equals(predicate.keywords));
+        }
+        return false;
     }
 
 }

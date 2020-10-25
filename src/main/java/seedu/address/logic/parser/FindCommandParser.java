@@ -30,43 +30,43 @@ public class FindCommandParser implements ExerciseParser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        requireNonNull(args);
-
-        Name name = null;
-        Description description = null;
-        Date date = null;
-        Calories calories = null;
-        String[] keywords = null;
-
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_CALORIES, PREFIX_KEYWORD);
-
         try {
-            assert !args.isEmpty();
+            String trimmedArgs = args.trim();
+            assert !trimmedArgs.isEmpty();
+
+            Name name = null;
+            Description description = null;
+            Date date = null;
+            Calories calories = null;
+            String[] keywords = null;
+
+            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
+                    PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_CALORIES, PREFIX_KEYWORD);
+
             assert argMultimap.getPreamble().isEmpty();
+
+            if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+                name = new Name(argMultimap.getValue(PREFIX_NAME).get());
+            }
+            if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+                description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+            }
+            if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+                date = new Date(argMultimap.getValue(PREFIX_DATE).get());
+            }
+            if (argMultimap.getValue(PREFIX_CALORIES).isPresent()) {
+                calories = new Calories(argMultimap.getValue(PREFIX_CALORIES).get());
+            }
+            if (argMultimap.getValue(PREFIX_KEYWORD).isPresent()) {
+                keywords = argMultimap.getValue(PREFIX_KEYWORD).get().split("\\s+");
+            }
+
+            return new FindCommand(new PropertiesMatchPredicateForExercise(name, description, date, calories,
+                    keywords == null ? null : Arrays.asList(keywords)));
         } catch (AssertionError e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
-        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            name = new Name(argMultimap.getValue(PREFIX_NAME).get());
-        }
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        }
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            date = new Date(argMultimap.getValue(PREFIX_DATE).get());
-        }
-        if (argMultimap.getValue(PREFIX_CALORIES).isPresent()) {
-            calories = new Calories(argMultimap.getValue(PREFIX_CALORIES).get());
-        }
-        if (argMultimap.getValue(PREFIX_KEYWORD).isPresent()) {
-            keywords = argMultimap.getValue(PREFIX_KEYWORD).get().split("\\s+");
-        }
-
-        return new FindCommand(new PropertiesMatchPredicateForExercise(name, description, date, calories,
-                keywords == null? null : Arrays.asList(keywords)));
     }
 
 }
