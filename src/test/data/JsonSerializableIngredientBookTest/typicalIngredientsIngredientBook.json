@@ -9,7 +9,10 @@
     "ingredientName" : "Boba",
     "amount" : "0"
   }, {
-    "ingredientName" : "Oolong Tea",
+    "ingredientName" : "Black Tea",
+    "amount" : "0"
+  }, {
+    "ingredientName" : "Green Tea",
     "amount" : "0"
   }, {
     "ingredientName" : "Brown Sugar",

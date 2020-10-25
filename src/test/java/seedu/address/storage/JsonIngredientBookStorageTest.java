@@ -1,4 +1,4 @@
-/*package seedu.address.storage;
+package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -99,4 +99,4 @@ public class JsonIngredientBookStorageTest {
         assertThrows(NullPointerException.class, () -> saveIngredientBook(new IngredientBook(), null));
     }
 
-}*/
+}
