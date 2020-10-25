@@ -1,7 +1,7 @@
 package seedu.address;
 
 import static seedu.address.model.util.SampleDataUtil.getSampleModuleList;
-import static seedu.address.model.util.SampleDataUtil.getSampleStudentList;
+//import static seedu.address.model.util.SampleDataUtil.getSampleStudentList;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -101,10 +101,10 @@ public class MainApp extends Application {
         }
          */
 
-        ReadOnlyTrackr<Student> initialStudentData = getSampleStudentList();
+        //ReadOnlyTrackr<Student> initialStudentData = getSampleStudentList();
         ReadOnlyTrackr<Module> initalModuleData = getSampleModuleList();
 
-        return new ModelManager(initialStudentData, initalModuleData, userPrefs);
+        return new ModelManager(initalModuleData, userPrefs);
     }
 
     private void initLogging(Config config) {

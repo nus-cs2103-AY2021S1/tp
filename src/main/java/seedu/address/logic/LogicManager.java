@@ -14,8 +14,10 @@ import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTrackr;
+
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.storage.Storage;
 
 /**
@@ -55,14 +57,19 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
-    @Override
-    public ReadOnlyTrackr<Student> getStudentList() {
-        return model.getStudentList();
-    }
+    //    @Override
+    //    public ReadOnlyTrackr<Student> getStudentList() {
+    //        return model.getStudentList();
+    //    }
 
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return model.getFilteredStudentList();
+    }
+
+    @Override
+    public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
+        return model.getFilteredTutorialGroupList();
     }
 
     @Override

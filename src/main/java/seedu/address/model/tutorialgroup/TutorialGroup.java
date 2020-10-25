@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import seedu.address.model.person.Showable;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
 
@@ -13,11 +14,13 @@ public class TutorialGroup {
 
     // Identity fields
     private final TutorialGroupId tutorialGroupId;
+    private Module module;
+    private HashMap<StudentId, Student> studentList;
     private LocalTime startTime;
     private LocalTime endTime;
 
     // Data fields
-    private HashMap<StudentId, Student> studentList;
+    //private HashMap<StudentId, Student> studentList;
 
     //
 
@@ -123,7 +126,7 @@ public class TutorialGroup {
      * @param otherTutorialGroup to check against
      * @return true if same, false if not
      */
-    public boolean isSameTutorialGroup(TutorialGroup otherTutorialGroup) {
+    public boolean isSame(TutorialGroup otherTutorialGroup) {
         if (otherTutorialGroup == this) {
             return true;
         }
