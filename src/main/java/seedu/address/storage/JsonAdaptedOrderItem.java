@@ -1,5 +1,7 @@
 package seedu.address.storage;
 
+import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -12,8 +14,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
 
 /**
  * Jackson-friendly version of {@link seedu.address.model.order.OrderItem}.

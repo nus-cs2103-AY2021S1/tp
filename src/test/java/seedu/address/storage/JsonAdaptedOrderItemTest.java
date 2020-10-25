@@ -1,20 +1,20 @@
 package seedu.address.storage;
 
-
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.order.OrderItem;
-import seedu.address.model.vendor.Name;
-import seedu.address.testutil.OrderItemBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
+import static seedu.address.storage.JsonAdaptedOrderItem.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
-import static seedu.address.storage.JsonAdaptedOrderItem.MISSING_FIELD_MESSAGE_FORMAT;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.order.OrderItem;
+import seedu.address.model.vendor.Name;
+import seedu.address.testutil.OrderItemBuilder;
 
 public class JsonAdaptedOrderItemTest {
     public static final OrderItem EGG_PRATA = new OrderItemBuilder().withName("Egg Prata")
@@ -37,14 +37,14 @@ public class JsonAdaptedOrderItemTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedOrderItem orderItem = new JsonAdaptedOrderItem(null, VALID_PRICE, VALID_TAGS,3);
+        JsonAdaptedOrderItem orderItem = new JsonAdaptedOrderItem(null, VALID_PRICE, VALID_TAGS, 3);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, orderItem::toModelType);
     }
 
     @Test
     public void toModelType_invalidPrice_throwsIllegalValueException() {
-        JsonAdaptedOrderItem orderItem = new JsonAdaptedOrderItem(VALID_NAME, INVALID_PRICE, VALID_TAGS,3);
+        JsonAdaptedOrderItem orderItem = new JsonAdaptedOrderItem(VALID_NAME, INVALID_PRICE, VALID_TAGS, 3);
         assertThrows(IllegalValueException.class, INVALID_PRICE_FORMAT, orderItem::toModelType);
     }
 
@@ -54,14 +54,14 @@ public class JsonAdaptedOrderItemTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedOrderItem orderItem =
-                new JsonAdaptedOrderItem(VALID_NAME, VALID_PRICE, invalidTags,3);
+                new JsonAdaptedOrderItem(VALID_NAME, VALID_PRICE, invalidTags, 3);
         assertThrows(IllegalValueException.class, orderItem::toModelType);
     }
 
     @Test
     public void toModelType_invalidQuantity_throwsIllegalValueException() {
         JsonAdaptedOrderItem orderItem =
-                new JsonAdaptedOrderItem(VALID_NAME, VALID_PRICE, VALID_TAGS,-1);
+                new JsonAdaptedOrderItem(VALID_NAME, VALID_PRICE, VALID_TAGS, -1);
         assertThrows(IllegalValueException.class, orderItem::toModelType);
     }
 
