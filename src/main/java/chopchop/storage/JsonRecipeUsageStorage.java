@@ -35,12 +35,12 @@ public class JsonRecipeUsageStorage implements UsageStorage<RecipeUsage, RecipeU
     }
 
     @Override
-    public Optional<List<RecipeUsage>> readUsages() throws DataConversionException {
+    public Optional<UsageList<RecipeUsage>> readUsages() throws DataConversionException {
         return this.readUsages(this.filePath);
     }
 
     @Override
-    public Optional<List<RecipeUsage>> readUsages(Path filePath) throws DataConversionException {
+    public Optional<UsageList<RecipeUsage>> readUsages(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableRecipeUsageList> jsonUsageList = JsonUtil.readJsonFile(

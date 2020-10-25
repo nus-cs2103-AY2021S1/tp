@@ -18,7 +18,7 @@ public class JsonSerializableRecipeUsageList {
      * Constructs a {@code JsonSerializableRecipeBook} with the given recipes.
      */
     @JsonCreator
-    public JsonSerializableRecipeUsageList(@JsonProperty("recipeUsages") List<JsonAdaptedRecipeUsage> records) {
+    public JsonSerializableRecipeUsageList(@JsonProperty("usages") List<JsonAdaptedRecipeUsage> records) {
         this.usages = new ArrayList<>(records);
     }
 
@@ -36,12 +36,12 @@ public class JsonSerializableRecipeUsageList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public List<RecipeUsage> toType() throws IllegalValueException {
+    public UsageList<RecipeUsage> toType() throws IllegalValueException {
         List<RecipeUsage> recordList = new ArrayList<>();
         for (JsonAdaptedRecipeUsage jsonAdaptedRecord : this.usages) {
             RecipeUsage record = jsonAdaptedRecord.toType();
             recordList.add(record);
         }
-        return recordList;
+        return new UsageList<RecipeUsage>(recordList);
     }
 }

@@ -94,13 +94,13 @@ public class MakeRecipeCommand extends Command implements Undoable {
         }
 
         model.setRecipe(this.recipe, this.recipe.addUsage());
+        model.addRecipeUsage(this.recipe);
         return new CommandResult(String.format(MESSAGE_MAKE_RECIPE_SUCCESS, this.recipe));
     }
 
     @Override
     public CommandResult undo(Model model) {
         requireNonNull(model);
-
         for (var ingredient : this.ingredients) {
             if (ingredient.snd().getIngredientSets().isEmpty()) {
                 model.addIngredient(ingredient.fst());
@@ -111,6 +111,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
 
         this.ingredients.clear();
         model.setRecipe(this.recipe, this.recipe.removeUsage());
+        model.removeRecipeUsage(this.recipe);
         return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.recipe));
     }
 

@@ -3,6 +3,7 @@ package chopchop.model.usage;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import chopchop.model.attributes.Quantity;
 
@@ -20,5 +21,12 @@ public class IngredientUsage extends Usage {
 
     public Quantity getQty() {
         return this.qty;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s [%s] Qty: %s", this.getName(),
+            this.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yy, HH:mm")),
+            this.getQty());
     }
 }

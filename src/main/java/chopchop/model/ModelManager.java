@@ -4,6 +4,7 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -238,7 +239,30 @@ public class ModelManager implements Model {
      */
     @Override
     public UsageList<IngredientUsage> getIngredientUsageList() {
-        return null;
+        return this.ingredientUsageList;
+    }
+
+    @Override
+    public void addRecipeUsage(Recipe recipe) {
+        RecipeUsage usage = new RecipeUsage(recipe.getName(), LocalDateTime.now());
+        this.recipeUsageList.add(usage);
+    }
+
+    @Override
+    public void removeRecipeUsage(Recipe recipe) {
+        this.recipeUsageList.pop(recipe.getName());
+    }
+
+    @Override
+    public void addIngredientUsage(Ingredient ingredient) {
+        IngredientUsage usage = new IngredientUsage(ingredient.getName(), LocalDateTime.now(),
+            ingredient.getQuantity());
+        this.ingredientUsageList.add(usage);
+    }
+
+    @Override
+    public void removeIngredientUsage(Ingredient ingredient) {
+        this.ingredientUsageList.pop(ingredient.getName());
     }
 
     @Override

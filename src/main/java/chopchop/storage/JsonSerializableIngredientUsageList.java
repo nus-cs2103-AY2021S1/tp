@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.model.UsageList;
+import chopchop.model.ingredient.Ingredient;
 import chopchop.model.usage.IngredientUsage;
 
 public class JsonSerializableIngredientUsageList {
@@ -18,7 +19,7 @@ public class JsonSerializableIngredientUsageList {
      * Constructs a {@code JsonSerializableIngredientBook} with the given ingredients.
      */
     @JsonCreator
-    public JsonSerializableIngredientUsageList(@JsonProperty("ingredientUsages") List<JsonAdaptedIngredientUsage> u) {
+    public JsonSerializableIngredientUsageList(@JsonProperty("usages") List<JsonAdaptedIngredientUsage> u) {
         this.usages = new ArrayList<>(u);
     }
 
@@ -36,12 +37,12 @@ public class JsonSerializableIngredientUsageList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public List<IngredientUsage> toType() throws IllegalValueException {
+    public UsageList<IngredientUsage> toType() throws IllegalValueException {
         List<IngredientUsage> recordList = new ArrayList<>();
         for (JsonAdaptedIngredientUsage jsonAdaptedRecord : this.usages) {
             IngredientUsage record = jsonAdaptedRecord.toType();
             recordList.add(record);
         }
-        return recordList;
+        return new UsageList<IngredientUsage>(recordList);
     }
 }

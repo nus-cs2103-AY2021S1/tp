@@ -2,7 +2,6 @@ package chopchop.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 
 import chopchop.commons.exceptions.DataConversionException;
@@ -17,9 +16,9 @@ public interface Storage extends IngredientBookStorage, RecipeBookStorage, UserP
 
     public Path getRecipeUsageFilePath();
 
-    public Optional<List<RecipeUsage>> readRecipeUsages() throws DataConversionException;
+    public Optional<UsageList<RecipeUsage>> readRecipeUsages() throws DataConversionException;
 
-    public Optional<List<RecipeUsage>> readRecipeUsages(Path filePath) throws DataConversionException;
+    public Optional<UsageList<RecipeUsage>> readRecipeUsages(Path filePath) throws DataConversionException;
 
     public void saveRecipeUsages(UsageList<RecipeUsage> usages) throws IOException;
 
@@ -27,9 +26,9 @@ public interface Storage extends IngredientBookStorage, RecipeBookStorage, UserP
 
     public Path getIngredientUsageFilePath();
 
-    public Optional<List<IngredientUsage>> readIngredientUsages() throws DataConversionException;
+    public Optional<UsageList<IngredientUsage>> readIngredientUsages() throws DataConversionException;
 
-    public Optional<List<IngredientUsage>> readIngredientUsages(Path filePath) throws DataConversionException;
+    public Optional<UsageList<IngredientUsage>> readIngredientUsages(Path filePath) throws DataConversionException;
 
     public void saveIngredientUsages(UsageList<IngredientUsage> usages) throws IOException;
 

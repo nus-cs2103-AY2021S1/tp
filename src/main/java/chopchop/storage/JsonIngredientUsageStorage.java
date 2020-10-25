@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -35,12 +34,12 @@ public class JsonIngredientUsageStorage implements UsageStorage<IngredientUsage,
     }
 
     @Override
-    public Optional<List<IngredientUsage>> readUsages() throws DataConversionException {
+    public Optional<UsageList<IngredientUsage>> readUsages() throws DataConversionException {
         return this.readUsages(this.filePath);
     }
 
     @Override
-    public Optional<List<IngredientUsage>> readUsages(Path filePath) throws DataConversionException {
+    public Optional<UsageList<IngredientUsage>> readUsages(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableIngredientUsageList> jsonUsageList = JsonUtil.readJsonFile(

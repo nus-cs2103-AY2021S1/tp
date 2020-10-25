@@ -29,14 +29,26 @@ public class UsageList<T extends Usage> {
         return this.usages;
     }
 
+    public void add(T item) {
+        requireAllNonNull(item);
+        this.usages.add(item);
+    }
+
     /**
      * Returns the latest usage.
      */
-    public Optional<LocalDateTime> pop() {
-        if (this.usages.size() == 0) {
-            return Optional.empty();
+    public void pop(String item) {
+        requireNonNull(item);
+        int len = this.usages.size();
+        if (len == 0) {
+            return;
         }
-        return Optional.of(this.usages.get(this.usages.size() - 1).getDate());
+        for (int i = len - 1; i >= 0; i--) {
+            if (this.usages.get(i).getName().equals(item)) {
+                this.usages.remove(i);
+                return;
+            }
+        }
     }
 
     public int getUsageCount() {

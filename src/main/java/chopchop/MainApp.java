@@ -2,7 +2,6 @@ package chopchop;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -71,7 +70,7 @@ public class MainApp extends Application {
                 new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
         JsonRecipeUsageStorage recipeUsageStorage = new JsonRecipeUsageStorage(userPrefs.getRecipeUsageFilePath());
         JsonIngredientUsageStorage ingredientUsageStorage =
-            new JsonIngredientUsageStorage(userPrefs.getRecipeUsageFilePath());
+            new JsonIngredientUsageStorage(userPrefs.getIngredientUsageFilePath());
         storage = new StorageManager(recipeBookStorage, ingredientBookStorage, recipeUsageStorage,
             ingredientUsageStorage, userPrefsStorage);
 
@@ -94,8 +93,8 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyEntryBook<Recipe>> recipeBookOptional;
         Optional<ReadOnlyEntryBook<Ingredient>> ingredientBookOptional;
-        Optional<List<RecipeUsage>> recipeUsageOptional;
-        Optional<List<IngredientUsage>> ingredientUsageOptional;
+        Optional<UsageList<RecipeUsage>> recipeUsageOptional;
+        Optional<UsageList<IngredientUsage>> ingredientUsageOptional;
         ReadOnlyEntryBook<Recipe> initialRecipeData;
         ReadOnlyEntryBook<Ingredient> initialIngredientData;
         UsageList<RecipeUsage> initialRecipeUsageData;
@@ -125,9 +124,10 @@ public class MainApp extends Application {
 
             initialRecipeData = recipeBookOptional.orElseGet(SampleDataUtil::getSampleRecipeBook);
             initialIngredientData = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
-            initialRecipeUsageData = new UsageList<>(recipeUsageOptional.orElseGet(FXCollections::observableArrayList));
-            initialIngredientUsageData = new UsageList<>(ingredientUsageOptional
-                .orElseGet(FXCollections::observableArrayList));
+            initialRecipeUsageData = recipeUsageOptional.isEmpty() ? new UsageList<RecipeUsage>()
+                                                                    : recipeUsageOptional.get();
+            initialIngredientUsageData = ingredientUsageOptional.isEmpty() ? new UsageList<IngredientUsage>()
+                                                                            : ingredientUsageOptional.get();
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
                     + " IngredientBook and their usage files");

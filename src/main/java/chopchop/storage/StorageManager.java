@@ -146,12 +146,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<List<RecipeUsage>> readRecipeUsages() throws DataConversionException {
+    public Optional<UsageList<RecipeUsage>> readRecipeUsages() throws DataConversionException {
         return this.readRecipeUsages(this.getRecipeUsageFilePath());
     }
 
     @Override
-    public Optional<List<RecipeUsage>> readRecipeUsages(Path filePath) throws DataConversionException {
+    public Optional<UsageList<RecipeUsage>> readRecipeUsages(Path filePath) throws DataConversionException {
         logger.fine("Attempting to read data from file: " + filePath);
         return this.recipeUsageStorage.readUsages(filePath);
     }
@@ -173,12 +173,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<List<IngredientUsage>> readIngredientUsages() throws DataConversionException {
+    public Optional<UsageList<IngredientUsage>> readIngredientUsages() throws DataConversionException {
         return this.readIngredientUsages(this.getIngredientUsageFilePath());
     }
 
     @Override
-    public Optional<List<IngredientUsage>> readIngredientUsages(Path filePath) throws DataConversionException {
+    public Optional<UsageList<IngredientUsage>> readIngredientUsages(Path filePath) throws DataConversionException {
         return this.ingredientUsageStorage.readUsages(filePath);
     }
 
