@@ -228,9 +228,9 @@ Examples:
 
 By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit) patients by including the `mr/MEDICAL_RECORD_URL` field. Now, let us explore how we can make use of this feature to edit patients' medical record.
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
-:bulb: **Tip:**<br>
+**:information_source: Note on choice of medical record url:**<br>
 
 * It is helpful to generate the medical record url before adding or editing a patient.
 
