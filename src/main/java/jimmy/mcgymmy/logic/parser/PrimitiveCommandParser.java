@@ -25,6 +25,7 @@ import jimmy.mcgymmy.logic.commands.FindCommand;
 import jimmy.mcgymmy.logic.commands.ImportCommand;
 import jimmy.mcgymmy.logic.commands.ListCommand;
 import jimmy.mcgymmy.logic.commands.ListMacroCommand;
+import jimmy.mcgymmy.logic.commands.RemoveMacroCommand;
 import jimmy.mcgymmy.logic.commands.TagCommand;
 import jimmy.mcgymmy.logic.commands.UnTagCommand;
 import jimmy.mcgymmy.logic.commands.UndoCommand;
@@ -55,6 +56,7 @@ public class PrimitiveCommandParser {
         addCommand(ImportCommand.COMMAND_WORD, ImportCommand.SHORT_DESCRIPTION, ImportCommand::new);
         addCommand(ExportCommand.COMMAND_WORD, ExportCommand.SHORT_DESCRIPTION, ExportCommand::new);
         addCommand(ListMacroCommand.COMMAND_WORD, ListMacroCommand.SHORT_DESCRIPTION, ListMacroCommand::new);
+        addCommand(RemoveMacroCommand.COMMAND_WORD, RemoveMacroCommand.SHORT_DESCRIPTION, RemoveMacroCommand::new);
     }
 
     /**
