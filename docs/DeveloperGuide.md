@@ -350,14 +350,9 @@ the field to be overridden as true. <br>
 Also notice that the `execute(Models)` method in HelpSummaryCommand takes in `HELP_SUMMARY` as the `popUpContent`.
 If there is a need for any changes in the help message, `HELP_SUMMARY` can be found in `Message` class inside
 `commons/core` package.
-
-
- 
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
+<br>
+You may refer to the Help Activity Diagram shown below:
+![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
