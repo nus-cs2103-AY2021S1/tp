@@ -25,11 +25,11 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
         pieChart.setClockwise(true);
         pieChart.setLabelLineLength(25);
         pieChart.setLabelsVisible(true);
-        pieChart.setLegendVisible(false);
     }
 
     public void setTotalMacronutrients(long totalCalories, long totalProtein, long totalCarbs, long totalFats) {
         requireAllNonNull(totalCalories, totalProtein, totalCarbs, totalFats);
+        assert totalCalories > 0 : "Total Calories is negative";
         pieChart.setTitle(String.format(TOTAL_CALORIES_TEXT, totalCalories));
 
         //Reset the data
@@ -39,9 +39,6 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
         addData(TOTAL_CARBOHYDRATE_TEXT, totalCarbs);
         addData(TOTAL_PROTEIN_TEXT, totalProtein);
         addData(TOTAL_FAT_TEXT, totalFats);
-
-        //Hide the graph if it is not visible
-        pieChart.setVisible(totalCalories != 0);
     }
 
     private void addData(String formatString, long count) {
