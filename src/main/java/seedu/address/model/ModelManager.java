@@ -94,6 +94,7 @@ public class ModelManager implements Model {
     }
 
     //=========== Patient ==================================================================================
+
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);

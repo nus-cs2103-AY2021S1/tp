@@ -15,6 +15,4 @@ public class Messages {
             + " Starting time of the appointment should be earlier than ending time.";
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
             "The appointment index provided is invalid";
-    public static final String MESSAGE_MISSING_PATIENT_IN_APPOINTMENT = "Appointment should involve a patient.";
-
 }

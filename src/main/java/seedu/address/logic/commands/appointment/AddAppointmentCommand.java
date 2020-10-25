@@ -19,7 +19,7 @@ import seedu.address.model.patient.Patient;
 
 public class AddAppointmentCommand extends AppointmentCommand {
 
-    public static final String COMMAND_WORD = "newappt";
+    public static final String COMMAND_WORD = "addapp";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds appointment to the appointment list.\n"
             + "Parameters: "
@@ -28,8 +28,8 @@ public class AddAppointmentCommand extends AppointmentCommand {
             + PREFIX_APPT_DURATION + "DURATION_IN_MINUTES\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + PREFIX_APPT_STARTTIME + "2020-10-23T21:00 "
-            + PREFIX_APPT_DURATION + "60";
+            + PREFIX_APPT_STARTTIME + "2020-10-10 10:00 "
+            + PREFIX_APPT_DURATION + "15";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPT = "This appointment already exists in the calendar.";
