@@ -618,7 +618,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: UC01 - Delete a patient
+##### Use case: UC01 - Delete a patient
 
 **MSS**
 
@@ -641,7 +641,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Use case: UC02 - Add a patient
+##### Use case: UC02 - Add a patient
 
 **MSS**
 
@@ -657,7 +657,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-### Use case: UC03 - Edit a patient
+##### Use case: UC03 - Edit a patient
 
 **MSS**
 
@@ -680,7 +680,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at Step 3.
 
-### Use case: UC04 - Add a patient's profile picture using command line interface
+##### Use case: UC04 - Add a patient's profile picture using command line interface
 
 **MSS**
 
@@ -697,7 +697,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
   
-### Use case: UC05 - Add a patient's profile picture using drag and drop
+##### Use case: UC05 - Add a patient's profile picture using drag and drop
   
   **MSS**
   
@@ -720,7 +720,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
      
     Use case resumes at step 1.
          
-### Use case: UC06 - Undo a command
+##### Use case: UC06 - Undo a command
 
 **MSS**
    
@@ -734,7 +734,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a. There are no more previous commands to undo.<br>
     Use case ends.
 
-### Use case: UC07 - Redo a command
+##### Use case: UC07 - Redo a command
 
 **MSS**
    
@@ -748,7 +748,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a. There are no more commands to redo.<br>
   Use case ends.
 
-### Use case: UC08 - View command history
+##### Use case: UC08 - View command history
 
 **MSS**
 
@@ -762,7 +762,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The command history is empty.<br>
     Use case ends.
       
-### Use case: UC09 - Clear command history
+##### Use case: UC09 - Clear command history
 
 **MSS**
 
@@ -795,7 +795,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### F.1 Launch and shutdown
+##### F.1 Launch and shutdown
 
 1. Initial launch
 
@@ -812,7 +812,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### F.2 Adding a patient
+##### F.2 Adding a patient
 
 1. Adding a new patient to the list
 
@@ -824,7 +824,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### F.3 Deleting a patient
+##### F.3 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -841,7 +841,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### F.4 Saving data
+##### F.4 Saving data
 
 1. Dealing with missing/corrupted data files
 
