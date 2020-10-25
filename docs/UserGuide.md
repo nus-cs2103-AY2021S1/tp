@@ -3,7 +3,19 @@ layout: page
 title: User Guide
 ---
 
-Wishful Shrinking is a **desktop app for managing your diet, keeping track of your on-hand ingredients, recipes, as well as the food you’ve eaten (along with their calories)**. It is optimized for fast and efficient typist as it uses a **Command Line Interface (CLI)** with the added beauty of a Graphical User Interface (GUI).
+Welcome to the Wishful Shrinking User Guide! This user guide provides in-depth documentation on the installation process, step-by-step instructions for each feature and troubleshooting recommendations. Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.
+
+
+## Introducing Wishful Shrinking
+Wishful Shrinking your desktop diet manager. It is an app that helps you manage your on-hand ingredients, organise personal recipes and track your diet. Wishful Shrinking facilitates a healthier diet in three main ways: 
+1. Provide a source of healthy, customizable recipes 
+2. Recommend recipes to improve ease of home cooking 
+3. Track daily food and calorie intake
+
+Wishful Shrinking targets busy office workers who tend to discount healthy eating. Office workers are also more familiar with desktop applications and typing and correspondingly, Wishful Shrinking is optimized for fast and efficient typers as it uses a Command Line Interface (CLI) with the added beauty of a Graphical User Interface (GUI).
+
+Choose a topic from the table of contents to get started on your Wishful Shrinking journey. 
+
 
 * Table of Contents
 {:toc}
@@ -74,29 +86,31 @@ Format: `exit`
 
 ### Adding a recipe: `addR`
 
-Adds a recipe to Recipes Collection.
+Adds a recipe to Recipes list.
 
-Format: `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...`
+Format: `addR n/TITLE i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES img/IMAGE inst
+/INSTRUCTION... [t/TAG]...`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
-    * there is a compulsory space before `-` 
+    * there is a mandatory space before `-` 
 * `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
+* Each `INSTRUCTION` is separated by a `.` e.g. instr/Cook. Eat.
 
 Examples:
-* `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/1. Cook 2. Eat`
-* `addR n/sandwiches i/breads, cheese -2 sclices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/1. Cook 2. Eat`
+* `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat.`
+* `addR n/sandwiches i/breads, cheese -2 sclices c/80 img/https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg instr/Cook. Eat.`
 
 
 ### Listing all recipes : `recipes`
 
-Shows a list of all recipes in the Recipes Collection.
+Shows a list of all recipes in the Recipes list.
 
 Format: `recipes`
 
 
 ### Deleting a recipe : `deleteR`
 
-Deletes the specified recipe from Recipes Collection.
+Deletes the specified recipe from Recipes list.
 
 Format: `deleteR INDEX`
 
@@ -105,9 +119,38 @@ Format: `deleteR INDEX`
 * The index **must be a positive integer** 1, 2, 3......
 
 Examples:
-* `list` followed by `deleteR 2` deletes the 2nd recipe in Recipe Collection.
+* `list` followed by `deleteR 2` deletes the 2nd recipe in Recipe list.
 * `searchR n/salad` followed by `deleteR 1` deletes the 1st recipe in the results of the `search` command.
 
+### Edit a recipe: `editR`
+
+Edits the specified recipe from Recipes list.
+
+Format: `editR INDEX [n/TITLE] i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] [c/CALORIES] [img/IMAGE] 
+[inst/INSTRUCTION...] [t/TAG]...`
+
+* Edits the recipe at the specified `INDEX`.
+* The index refers to the index number shown in the displayed recipe list.
+* The index **must be a positive integer** 1, 2, 3......
+* Note: All fields are optional
+* Note: Not allowed to edit a recipe into another recipe already in the recipe list
+* Note: Use carefully as this command will override the existing values with the new values
+* Tip: Use `editR INDEX` to directly modify from the existing recipe
+
+Examples:
+* `editR 2` followed by `n/Apple salad i/apple` will edit the update the name of this recipe to Apple
+ and the ingredients to contain an apple ingredient.
+
+### Get a recipe to edit: `editR`
+
+Set the edit existing recipe command into the command box for editing purposes.
+
+Format: `editR INDEX`
+
+* Get the edit recipe command with the recipe at the specified `INDEX`
+
+Examples:
+* `editR 2`
 
 ### Searching for a recipe: `searchR`
 
@@ -127,7 +170,8 @@ Examples:
 
 ### Recommending recipes : `recommend`
 
-Shows a list of all recipes in the Recipes Collection that can be made with the ingredients in the user's fridge.
+Shows a list of all recipes in the Recipes list that can be made with the ingredients in the user's
+ fridge.
 
 Format: `recommend`
 
@@ -136,7 +180,7 @@ Examples:
 
 ### Clearing all recipes : `clearR'
 
-Clear all the recipes in the Recipe Collection.
+Clear all the recipes in the Recipe list.
 
 Format: `clearR`
 
@@ -146,11 +190,11 @@ Format: `clearR`
 
 Adds an ingredient to fridge.
 
-Format: `addF i/INGREDIENTS`
+Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 Examples:
 * `addF i/peanut`
-* `addF i/banana, green peas, salmon fish`
+* `addF i/banana -3/4 cups, green peas -200g, salmon fish`
 
 
 ### Listing all ingredients : `fridge`
@@ -174,6 +218,33 @@ Examples:
 * `list` followed by `deleteF 2` deletes the 2nd ingredient in the fridge.
 * `searchF peanut` followed by `deleteF 1` deletes the 1st ingredient in the results of the `search` command.
 
+### Edit an ingredient: `editF`
+
+Edits the specified ingredient from Ingredient list.
+
+Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
+
+* Edits the ingredient at the specified `INDEX`.
+* The index refers to the index number shown in the displayed ingredient list.
+* The index **must be a positive integer** 1, 2, 3......
+* Note: All fields are optional
+* Note: Not allowed to edit an ingredient into another ingredient already in the ingredient list
+* Note: Use carefully as this command will override the existing values with the new values
+* Tip: Use `editF INDEX` to directly modify the existing ingredient
+
+Examples:
+* `editF 2` followed by `i/apple` will edit the update the ingredient value to apple.
+
+### Get an ingredient to edit: `editF`
+
+Set the edit existing ingredient command into the command box for editing purposes.
+
+Format: `editF INDEX`
+
+* Get the edit ingredient command with the ingredient at the specified `INDEX`
+
+Examples:
+* `editF 2`
 
 ### Searching for an Ingredient: `searchF`
 
@@ -199,16 +270,16 @@ Format: `clearF`
 
 ### Eating a recipe : `eatR`
 
-Add the specified recipe to the Consumption Collection from Recipes Collection.
+Add the specified recipe to the Consumption list from Recipes list.
 
 Format: `eatR INDEX`
 
-* Add the recipe at the specified `INDEX` to the Consumption Collection.
+* Add the recipe at the specified `INDEX` to the Consumption list.
 * The index refers to the index number shown in the displayed recipe list.
 * The index **must be a positive integer** 1, 2, 3......
 
 Examples:
-* `list` followed by `eatR 2` deletes the 2nd recipe in Recipe Collection.
+* `list` followed by `eatR 2` deletes the 2nd recipe in Recipe list.
 * `searchR n/salad` followed by `eatR 1` deletes the 1st recipe in the results of the `search` command.
 
 
@@ -275,15 +346,25 @@ _{give a remark to the recipe}_
 
 --------------------------------------------------------------------------------------------------------------------
 
+# Glossary
+**Wishful Shrinking**: can refer to name of the application as a whole or to app’s storage file
+**Consumption**: stores a list of recipes that a user has marked as consumed 
+
+--------------------------------------------------------------------------------------------------------------------
+
 # Command summary
 
 Features | Format, Examples
 --------|------------------
-**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g., `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
-**Add Ingredient to the fridge** | `addF i/INGREDIENTS` <br> e.g., `addF i/banana, green peas, salmon fish`
+**Add recipe** | `addR n/TITLE i/INGREDIENT[, MORE INGREDIENT] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...` <br> e.g. `addR n/salad i/lettuce, tomato, olive oil c/40 inst/mix everything img/image/Salad.png`
+**Add Ingredient to the fridge** | `addF i/INGREDIENTS [ -QUANTITY]` <br> e.g., `addF i/banana, green peas, salmon fish`
 **Delete recipe** | `deleteR INDEX`<br> e.g., `deleteR 3`
 **Delete Ingredient from the fridge** | `deleteF INDEX`<br> e.g., `deleteF 3`
 **Delete recipe eaten**| `deleteC INDEX` <br> e.g., `deleteC 3`
+**Edit Recipe** | `editR INDEX [n/TITLE] [i/INGREDIENT[, MORE INGREDIENT]] [c/CALORIES] [img/IMAGE] [inst/INSTRUCTION...] [t/TAG]...` <br> e.g. `editR n/apple salad`
+**Edit Ingredient** | `editF INDEX i/INGREDIENTS [ -QUANTITY]` <br> e.g. `editF 3 i/apple sauce -20.0g`
+**Get Edit Recipe** | `editR INDEX` <br> e.g. `editR 2`
+**Get Edit Ingredient** | `editF INDEX` <br> e.g. `editF 2`
 **Search recipe** | `searchR i/INGREDIENT` OR `searchR n/TITLE` OR `searchR t/TAG` <br> e.g. `searchR i/lettuce`, `searchR n/salad`, `searchR t/healthy`
 **Search Ingredient in the fridge** | `searchF KEYWORD`<br> e.g., `searchF avocado`
 **List recipe** | `recipeS`
