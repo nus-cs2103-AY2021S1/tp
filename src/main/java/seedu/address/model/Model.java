@@ -133,13 +133,6 @@ public interface Model {
     void addFood(Food food, int index);
 
     /**
-     * Replaces the given food {@code target} with {@code editedFood}.
-     * {@code target} must exist in the menu manager.
-     * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
-     */
-    void setFood(Food target, Food editedFood, int index);
-
-    /**
      * Replaces address book data with the data in {@code orderManager}.
      */
     void setOrderManager(ReadOnlyOrderManager orderManager);

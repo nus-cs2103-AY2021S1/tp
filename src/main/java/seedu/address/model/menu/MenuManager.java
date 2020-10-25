@@ -83,17 +83,6 @@ public class MenuManager implements ReadOnlyMenuManager {
     }
 
     /**
-     * Replaces the given food {@code target} in the list with {@code editedFood}.
-     * {@code target} must exist in the address book.
-     * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
-     */
-    public void setFood(Food target, Food editedFood) {
-        requireNonNull(editedFood);
-
-        menu.setFood(target, editedFood);
-    }
-
-    /**
      * Removes {@code key} from this {@code MenuManager}.
      * {@code key} must exist in the address book.
      */

@@ -13,6 +13,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.storage.JsonAdaptedFood.INVALID_PRICE_FORMAT;
+
 /**
  * Jackson-friendly version of {@link seedu.address.model.order.OrderItem}.
  */
@@ -52,6 +54,7 @@ class JsonAdaptedOrderItem {
                 .collect(Collectors.toList()));
     }
 
+
     /**
      * Converts this Jackson-friendly adapted orderItem object into the model's {@code OrderItem} object.
      *
@@ -68,7 +71,7 @@ class JsonAdaptedOrderItem {
         }
 
         if (!OrderItem.isValidPrice(price)) {
-            throw new IllegalValueException("Price must be a double.");
+            throw new IllegalValueException(INVALID_PRICE_FORMAT);
         }
 
         if (!OrderItem.isValidQuantity(quantity)) {
