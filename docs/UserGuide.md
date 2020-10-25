@@ -307,9 +307,9 @@ Examples:
 
 ![GUI import command example](images/CommandImagesForUG/ImportGUI.png)
 
-### Exporting your save file to a folder `export`
+### Exporting your save file to a folder: `export`
 
-Imports a previously saved file into McGymmy
+Imports a previously saved file to a folder
 
 Format: `import DIRPATH [-o FILENAME]`
 
@@ -331,9 +331,10 @@ Examples:
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** For those who are more inclined to use a gui to export:
-* Click on file
-* Click on Export
+* Click on `file` option in the menubar above the command box
+* Click on `Export` button to open the directory selector
 * Navigate using the GUI to the save file
+* Click on select folder when done
 
 </div>
 
