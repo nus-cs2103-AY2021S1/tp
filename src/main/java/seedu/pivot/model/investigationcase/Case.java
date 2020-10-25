@@ -10,6 +10,11 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.pivot.model.investigationcase.caseperson.Address;
+import seedu.pivot.model.investigationcase.caseperson.Email;
+import seedu.pivot.model.investigationcase.caseperson.Gender;
+import seedu.pivot.model.investigationcase.caseperson.Name;
+import seedu.pivot.model.investigationcase.caseperson.Phone;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
 import seedu.pivot.model.investigationcase.caseperson.Witness;
@@ -132,24 +137,100 @@ public class Case {
                             suspects, victims, witnesses, tags);
     }
 
+    /**
+     * Combines all fields into one String to be used for FindCommand
+     * @return String containing all words from all fields
+     */
+    public String toStringAllWords() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getTitle()).append(" ");
+        builder.append(getDescription()).append(" ");
+        builder.append(getStatus()).append(" ");
+
+        for (Document doc : getDocuments()) {
+            builder.append(doc.getName()).append(" ");
+            builder.append(doc.getReference()).append(" ");
+        }
+
+        for (Suspect suspect : getSuspects()) {
+            appendPersonDetails(builder, suspect.getName(), suspect.getGender(),
+                    suspect.getPhone(), suspect.getEmail(), suspect.getAddress());
+        }
+
+        for (Victim victim : getVictims()) {
+            appendPersonDetails(builder, victim.getName(), victim.getGender(),
+                    victim.getPhone(), victim.getEmail(), victim.getAddress());
+        }
+
+        for (Witness witness : getWitnesses()) {
+            appendPersonDetails(builder, witness.getName(), witness.getGender(),
+                    witness.getPhone(), witness.getEmail(), witness.getAddress());
+        }
+
+        return builder.toString();
+    }
+
+    private void appendPersonDetails(StringBuilder builder, Name name, Gender gender,
+                               Phone phone, Email email, Address address) {
+        builder.append(name).append(" ");
+        builder.append(gender).append(" ");
+        builder.append(phone).append(" ");
+        builder.append(email).append(" ");
+        builder.append(address).append(" ");
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append(" Description: ")
-                .append(getDescription())
-                .append(" Status: ")
-                .append(getStatus())
-                .append(" Documents: ");
-        getDocuments().forEach(builder::append);
-        builder.append(" Suspects: ");
-        getSuspects().forEach(builder::append);
-        builder.append(" Victims: ");
-        getVictims().forEach(builder::append);
-        builder.append(" Witnesses: ");
-        getWitnesses().forEach(builder::append);
-        builder.append(" Tags: ");
-        getTags().forEach(builder::append);
+        builder.append(getTitle()).append("\n")
+                .append(" Description: ").append(getDescription()).append("\n")
+                .append(" Status: ").append(getStatus()).append("\n");
+
+        // Documents
+        if (!getDocuments().isEmpty()) {
+            builder.append("\n");
+            builder.append(" Documents: ");
+        }
+        for (Document doc : getDocuments()) {
+            builder.append(doc.getName()).append(",");
+        }
+
+        // Suspects
+        if (!getSuspects().isEmpty()) {
+            builder.append("\n");
+            builder.append(" Suspects: ");
+        }
+        for (Suspect suspect : getSuspects()) {
+            builder.append(suspect.getName()).append(",");
+        }
+
+        // Victims
+        if (!getVictims().isEmpty()) {
+            builder.append("\n");
+            builder.append(" Victims: ");
+        }
+        for (Victim victim : getVictims()) {
+            builder.append(victim.getName()).append(",");
+        }
+
+        // Witnesses
+        if (!getWitnesses().isEmpty()) {
+            builder.append("\n");
+            builder.append(" Witnesses: ");
+        }
+        for (Witness witness : getWitnesses()) {
+            builder.append(witness.getName()).append(",");
+        }
+
+        // Tags
+        if (!getTags().isEmpty()) {
+            builder.append("\n");
+            builder.append(" Tags: ");
+        }
+        for (Tag tag : getTags()) {
+            builder.append(tag.tagName);
+        }
+
         return builder.toString();
     }
 

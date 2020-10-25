@@ -6,7 +6,6 @@ import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -79,7 +78,6 @@ public class AddSuspectCommand extends AddCommand {
                 openCase.getTags());
 
         model.setCase(openCase, updatedCase);
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
         return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
     }
 

@@ -8,25 +8,25 @@ import seedu.pivot.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Case> {
+public class DetailsContainsKeywordsPredicate implements Predicate<Case> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public DetailsContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Case investigationCase) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(investigationCase.getTitle().getAlphaNum(),
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(investigationCase.toStringAllWords(),
                         keyword));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof DetailsContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((DetailsContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
