@@ -3,17 +3,21 @@ layout: page
 title: User Guide
 ---
 ---
+
 <h2>Warenager’s User Guide</h2>
+
 This user guide introduces our inventory application, Warenager, and provides support
 for the usage of its functionalities. For quick reference, we have provided a summarised table of commands
 and their usage formats at the end of this guide.
 
 <h3>About Warenager</h3>
+
 Warenager is an **inventory application** to help warehouse managers of small scale companies
 keep track of items in their warehouse. It **optimizes management tasks** for warehouse managers including but not
 exhaustive of updating, searching and sorting via Command Line Interface (CLI).
 
 <h3>Table of Contents</h3>
+
 * Table of Contents
 {:toc}
 
@@ -76,7 +80,9 @@ This section provides support for the commands required to perform desired actio
 ### Viewing help : `help`
 
 Displays the list of command instructions for features in Warenager and how to use the command.
+
 <h5>Format</h5>
+
 `help`
 
 ### Adding new stock: `add`
@@ -88,6 +94,7 @@ Adds a new stock into the inventory. A unique serial number for the new stock wi
     4. Location in warehouse
 
 <h5>Format</h5>
+
 The header fields can be in any order:<br>
 `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br>
 `add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`
@@ -97,7 +104,9 @@ e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid co
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
+
 <h5>Format</h5>
+
 `list`, followed by one of the following:
 
 **Command to append** | **What the list shows**
@@ -114,6 +123,7 @@ Deletes the stock(s) using the stock's serial number from the inventory. Multipl
     1. Serial number of product
 
 <h5>Format</h5>
+
 * Single: `delete sn/<serial number>`
 * Multiple: `delete sn/<serial number> sn/<serial number 2> ...`
 
@@ -129,6 +139,7 @@ specified in ANY one of fields searched.
     * Source of the stock
 
 <h5>Format</h5> 
+
 Any combination of 1,2,3 or 4 of the fields: <br>
 * Single:
     * `find n/<name keyword(s) to be searched in stock name>` <br>
@@ -142,6 +153,7 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 e.g. `find n/banana n/apple` is not a valid command.
 
 <h5>Search criteria</h5>
+
 * Only stocks that contain all the search keywords for a field will be displayed. <br>
     e.g. `find n/ChickenNuggets` will not match stock with Name: Chick. <br>
     e.g. `find n/ChickenNuggets abcdef` will not match stock with Name: ChickenNuggets. <br>
@@ -171,6 +183,7 @@ Displays a list of stocks found in the inventory that contains all keywords spec
     * Source of the stock
 
 <h5>Format</h5>
+
 Any combination of 1,2,3 or 4 of the fields: <br>
 * Single:
     * `findexact n/<name keyword(s) to be searched in stock name>` <br>
@@ -227,6 +240,7 @@ Prefixes:
 * `s/<new source>`
 
 <h5>Format</h5>
+
 * Any combination of the prefixes may be passed in and updated at once.
 * Only at most one of `iq/` or `nq/` may be passed.
 * User may pass in more than one serial number to update all at once.
@@ -316,9 +330,11 @@ Deletes a note, specified by the note's index, from the stock specified by its s
 To delete ALL notes from a stock, note index to specify is 0.
 
 <h5>Format</h5>
+
 `notedelete sn/<serial number> ni/<note index>`
 
 <h5>Example usages</h5>
+
 * Before: <br>
 
 ![before notes](images/add_note1_to_banana.png)
@@ -371,6 +387,7 @@ Removes bookmark from the desired stock
     1. Serial number of stock
 
 <h5>Format</h5>
+
 `unbookmark sn/<serial number>`
 
 ### Sorting inventory: `sort`
@@ -437,6 +454,7 @@ to sort the stock in their preferred order before converting it into the csv fil
 to `[root directory]/data/stocks.csv` after successfully executing the command.
 
 <h5>Format</h5>
+
 Single: `print`
 
 <h5>Example usages</h5>
@@ -471,6 +489,7 @@ The set of used serial number sources is automatically saved to
 Terminates the program.
 
 <h5>Format</h5>
+
 `exit`
 
 --------------------------------------------------------------------------------------------------------------------
