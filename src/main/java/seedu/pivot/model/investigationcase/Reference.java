@@ -24,7 +24,7 @@ public class Reference {
     private final String fileName;
 
     /**
-     * Constructs a {@code Reference}.
+     * Constructs a { @code Reference }.
      *
      * @param fileName A valid file name in the default folder.
      */
@@ -67,6 +67,10 @@ public class Reference {
     @Override
     public int hashCode() {
         return Objects.hash(path);
+    }
+
+    public Path getPath() {
+        return this.path;
     }
 
     public String getFileName() {
