@@ -175,7 +175,7 @@ Figure 9: Structure of the `Delivery`
 Storage component is responsible to save the data of inventory and delivery book into the hard disk.
 
 The following diagram illustrated the structure of `Storage` component:
-<br> ![Structure of the Storage Component](images/StorageClassDiagram.png)
+<br> ![Structure of the Storage Component](images/StorageClassDiagram.png) <br>
 Figure 10: Class Diagram of `Storage` Component
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
