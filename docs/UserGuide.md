@@ -364,9 +364,9 @@ Adds a macro to run several commands in succession.
 *__WARNING:__* this is an advanced feature!
 
 Arguments to the macro can be substituted in the commands using the syntax:
-\ARGUMENT_NAME.
+`\ARGUMENT_NAME`.
 
-Unnamed arguments can be substituted using the syntax: \$
+Unnamed arguments can be substituted using the syntax: `\$`
 
 Format: `macro SHORTCUT ARGUMENT_1 ARGUMENT_2 ... ; COMMAND_1 ARGUMENTS_TO_COMMAND \REUSED_ARGUMENT; [COMMAND_2; ...]` <br>
 
