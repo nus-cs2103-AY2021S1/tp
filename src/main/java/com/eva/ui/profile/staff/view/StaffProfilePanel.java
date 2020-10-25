@@ -4,7 +4,7 @@ import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 import static com.eva.commons.util.DateUtil.dateToString;
 
 import com.eva.commons.core.PanelState;
-import com.eva.model.CurrentView;
+import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.ui.UiPart;
@@ -22,17 +22,14 @@ public class StaffProfilePanel extends UiPart<Region> {
 
     private static final String FXML = "StaffProfilePanel.fxml";
 
-    public final CurrentView<Staff> staff;
+    public final CurrentViewStaff staff;
 
     private BasicInfoDisplay basicInfoDisplay;
+    private LeaveInfoDisplay leaveInfoDisplay;
     // private CommentListPanel commentListPanel;
 
     @FXML
     private HBox cardPane;
-    @FXML
-    private FlowPane comments;
-    @FXML
-    private FlowPane tags;
     @FXML
     private FlowPane leaves;
 
@@ -44,14 +41,10 @@ public class StaffProfilePanel extends UiPart<Region> {
     /**
      * Creates a {@code StaffProfilePanel} with the given {@code Staff}.
      */
-    public StaffProfilePanel(CurrentView<Staff> staff) {
+    public StaffProfilePanel(CurrentViewStaff staff) {
         super(FXML);
         this.staff = staff;
-        // tags.getChildren().add(new Label("staff"));
         /*
-        staff.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         staff.getLeaves().stream()
                 .sorted(Comparator.comparing(leave -> leave.startDate))
                 .forEach(leave -> leaves.getChildren().add(leaveToDisplay(leave)));

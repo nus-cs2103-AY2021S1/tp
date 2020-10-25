@@ -12,9 +12,10 @@ import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.AddressBookParser;
 import com.eva.logic.parser.exceptions.ParseException;
-import com.eva.model.CurrentView;
 import com.eva.model.Model;
 import com.eva.model.ReadOnlyEvaDatabase;
+import com.eva.model.current.view.CurrentViewApplicant;
+import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
@@ -108,8 +109,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public CurrentView<Staff> getCurrentViewStaff() {
+    public CurrentViewStaff getCurrentViewStaff() {
         return model.getCurrentViewStaff();
+    }
+
+    @Override
+    public CurrentViewApplicant getCurrentViewApplicant() {
+        return model.getCurrentViewApplicant();
     }
 
     @Override

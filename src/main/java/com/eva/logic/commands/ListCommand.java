@@ -8,7 +8,7 @@ import com.eva.commons.core.PanelState;
 import com.eva.model.Model;
 
 /**
- * Lists all persons in the eva database to the user.
+ * Lists all staffs or applicants in the eva database to the user.
  */
 public class ListCommand extends Command {
 
@@ -27,6 +27,11 @@ public class ListCommand extends Command {
         this.isStaffList = isStaffList;
     }
 
+    /**
+     * Executes the command and returns the command result.
+     *
+     * @param model {@code Model} which the command should operate on.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);

@@ -14,6 +14,8 @@ import java.util.logging.Logger;
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
 import com.eva.commons.core.PanelState;
+import com.eva.model.current.view.CurrentViewApplicant;
+import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
@@ -35,8 +37,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Staff> filteredStaffs;
     private final FilteredList<Applicant> filteredApplicants;
-    private CurrentView<Staff> currentViewStaff;
-    private CurrentView<Applicant> currentViewApplicant;
+    private CurrentViewStaff currentViewStaff;
+    private CurrentViewApplicant currentViewApplicant;
 
 
     /**
@@ -60,8 +62,8 @@ public class ModelManager implements Model {
         filteredStaffs = new FilteredList<>(this.staffDatabase.getPersonList());
         filteredApplicants = new FilteredList<>(this.applicantDatabase.getPersonList());
 
-        this.currentViewStaff = new CurrentView<>();
-        this.currentViewApplicant = new CurrentView<>();
+        this.currentViewStaff = new CurrentViewStaff();
+        this.currentViewApplicant = new CurrentViewApplicant();
     }
 
     public ModelManager() {
@@ -103,18 +105,18 @@ public class ModelManager implements Model {
     }
 
     @Override
-    @SuppressWarnings("unchecked")
-    public void setCurrentView(CurrentView currentView) {
-        if (currentView.getCurrentView().isPresent()) {
-            if (currentView.getCurrentView().get() instanceof Staff) {
-                this.currentViewStaff = currentView;
-                // this.currentViewApplicant = new CurrentView<>();
-            } else if (currentView.getCurrentView().get() instanceof Applicant) {
-                this.currentViewApplicant = currentView;
-                // this.currentViewStaff = new CurrentView<>();
-            } else {
-                throw new IllegalArgumentException(); // placeholder exception
-            }
+    public void setCurrentViewStaff(CurrentViewStaff currentViewStaff) {
+        if (currentViewStaff.getCurrentView().isPresent()) {
+            this.currentViewStaff = currentViewStaff;
+        } else {
+            throw new IllegalArgumentException(); // placeholder exception
+        }
+    }
+
+    @Override
+    public void setCurrentViewApplicant(CurrentViewApplicant currentViewApplicant) {
+        if (currentViewApplicant.getCurrentView().isPresent()) {
+            this.currentViewApplicant = currentViewApplicant;
         } else {
             throw new IllegalArgumentException(); // placeholder exception
         }
@@ -318,7 +320,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public CurrentView<Staff> getCurrentViewStaff() {
+    public CurrentViewStaff getCurrentViewStaff() {
         return currentViewStaff;
     }
 
@@ -337,6 +339,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Applicant> getFilteredApplicantList() {
         return filteredApplicants;
+    }
+
+    @Override
+    public CurrentViewApplicant getCurrentViewApplicant() {
+        return currentViewApplicant;
     }
 
     @Override

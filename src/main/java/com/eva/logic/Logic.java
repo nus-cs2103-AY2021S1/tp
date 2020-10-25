@@ -7,8 +7,9 @@ import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
-import com.eva.model.CurrentView;
 import com.eva.model.ReadOnlyEvaDatabase;
+import com.eva.model.current.view.CurrentViewApplicant;
+import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
@@ -73,7 +74,12 @@ public interface Logic {
     /**
      * Returns the current staff being viewed.
      */
-    CurrentView<Staff> getCurrentViewStaff();
+    CurrentViewStaff getCurrentViewStaff();
+
+    /**
+     * Returns the current staff being viewed.
+     */
+    CurrentViewApplicant getCurrentViewApplicant();
 
     /**
      * Set the user prefs' GUI settings.

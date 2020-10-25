@@ -1,10 +1,13 @@
 package com.eva.ui.profile;
 
+import java.util.Comparator;
+
 import com.eva.model.person.Person;
 import com.eva.ui.UiPart;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -23,6 +26,8 @@ public class BasicInfoDisplay extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
+    @FXML
+    private FlowPane tags;
 
     /**
      * Creates a {@code BasicInfoDisplay} with the given {@code Person}.
@@ -34,6 +39,10 @@ public class BasicInfoDisplay extends UiPart<Region> {
         phone.setText(this.person.getPhone().value);
         address.setText(this.person.getAddress().value);
         email.setText(this.person.getEmail().value);
+        tags.getChildren().add(new Label("staff"));
+        person.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

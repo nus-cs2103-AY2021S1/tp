@@ -7,6 +7,8 @@ import java.util.function.Predicate;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.PanelState;
+import com.eva.model.current.view.CurrentViewApplicant;
+import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
@@ -48,9 +50,30 @@ public interface Model {
      */
     PanelState getPanelState();
 
+    /**
+     * Sets the current panelState according to what the user is viewing.
+     */
     void setPanelState(PanelState panelState);
 
-    void setCurrentView(CurrentView currentView);
+    /**
+     * Sets the currentViewStaff to the staff the user is currently viewing.
+     */
+    void setCurrentViewStaff(CurrentViewStaff currentViewStaff);
+
+    /**
+     * Sets the currentViewApplicant to the applicant the user is currently viewing.
+     */
+    void setCurrentViewApplicant(CurrentViewApplicant currentViewStaff);
+
+    /**
+     * Returns the current staff being viewed.
+     */
+    CurrentViewStaff getCurrentViewStaff();
+
+    /**
+     * Returns the current applicant being viewed.
+     */
+    CurrentViewApplicant getCurrentViewApplicant();
 
     /**
      * Returns the user prefs' persons data file path.
@@ -126,7 +149,6 @@ public interface Model {
 
     /**
      * Returns true if a staff with the same identity as {@code staff} has the same leave as {@code leave}.
-     * @return
      */
     Optional<Leave> hasLeaveDate(Staff target, LocalDate date);
 
@@ -160,8 +182,8 @@ public interface Model {
     boolean hasStaff(Staff person);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the eva database.
+     * Deletes the given staff.
+     * The staff must exist in the eva database.
      */
     void deleteStaff(Staff target);
 
@@ -182,11 +204,6 @@ public interface Model {
      * Returns an unmodifiable view of the filtered person list.
      */
     ObservableList<Staff> getFilteredStaffList();
-
-    /**
-     * Returns the current staff being viewed.
-     */
-    CurrentView<Staff> getCurrentViewStaff();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
