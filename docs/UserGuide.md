@@ -124,6 +124,14 @@ and the `student_index` refers to the index number shown in the displayed studen
 Examples:
 * `reallocate si/1 ri/2` first deallocates the room currently allocated to student with index 1, then  allocates the room at index 2 to the student.
 
+#### 7. Archiving a Semester
+
+Archives the previous semester's data into an archival folder, and adjusts the application to operate on the succeeding semester. 
+
+Format: `archive`
+
+* Moves the previous semester's allocation data to `AY[YEAR]S[SEMESTER]/archive.json`. For example, if the previous semester was 2019 Semester 2, the allocation data will be moved to `AY2019S2/archive.json`.
+* The rooms and students are still preserved in the system.
 ### II. Student Management
 
 >**ResiReg** allows you to manage students in the Residential College.
@@ -262,17 +270,18 @@ Just type in the `help` command!
 5. Copy over the `resireg.json` file <em>residing in  your previous **ResiReg** home folder</em> that contains data of your previous **ResiReg** session.
 
 ## Command Summary
-| Action            | Format, Examples                                                                                               |
-|-------------------|----------------------------------------------------------------------------------------------------------------|
-| *list rooms*      | `rooms [--allocated \| --vacant]`                                                                              |
-| *allocate room*   | `allocate si/ ri/` e.g. `allocate si/1 ri/1`                                                                   |
-| *deallocate room* | `deallocate si/ ri/` e.g. `deallocate si/1 ri/1`                                                               |
-| *edit allocation* | `reallocate si/ ri/` e.g. `reallocate si/1 ri/2`                                                               |
-| *list students*   | `students`                                                                                                     |
-| *add student*     | `add n/ i/ p/<8_digit_phone_no> e/ f/ [t/]...` e.g.`add  n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` |
-| *edit student*    | `edit  [n/] [i/] [p/<8_digit_phone_no>] [e/] [f/] [t/]…` e.g.`edit 1 n/Jet New`                                |
-| *find student*    | `find  []... ` e.g.`find John`                                                                                 |
-| *delete student*  | `delete ` e.g.`delete 2`                                                                                       |
-| *help*            | `help [command]` e.g. `help` or `help rooms`                                                                   |
-| *clear*           | `clear`                                                                                                        |
-| *exit*            | `exit`                                                                                                         |
+| Action             | Format, Examples                                                                                               |
+|--------------------|----------------------------------------------------------------------------------------------------------------|
+| *list rooms*       | `rooms [--allocated \| --vacant]`                                                                              |
+| *allocate room*    | `allocate si/ ri/` e.g. `allocate si/1 ri/1`                                                                   |
+| *deallocate room*  | `deallocate si/ ri/` e.g. `deallocate si/1 ri/1`                                                               |
+| *edit allocation*  | `reallocate si/ ri/` e.g. `reallocate si/1 ri/2`                                                               |
+| *list students*    | `students`                                                                                                     |
+| *add student*      | `add n/ i/ p/<8_digit_phone_no> e/ f/ [t/]...` e.g.`add  n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` |
+| *edit student*     | `edit  [n/] [i/] [p/<8_digit_phone_no>] [e/] [f/] [t/]…` e.g.`edit 1 n/Jet New`                                |
+| *find student*     | `find  []... ` e.g.`find John`                                                                                 |
+| *delete student*   | `delete ` e.g.`delete 2`                                                                                       |
+| *help*             | `help [command]` e.g. `help` or `help rooms`                                                                   |
+| *archive semester* | `archive`                                                                                                      |
+| *clear*            | `clear`                                                                                                        |
+| *exit*             | `exit`                                                                                                         |
