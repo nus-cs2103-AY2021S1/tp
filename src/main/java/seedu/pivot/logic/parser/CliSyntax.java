@@ -5,12 +5,18 @@ package seedu.pivot.logic.parser;
  */
 public class CliSyntax {
 
-    /* Prefix definitions */
+    /* Prefix definitions for Case */
     public static final Prefix PREFIX_TITLE = new Prefix("t:");
-    public static final Prefix PREFIX_NAME = new Prefix("n:");
     public static final Prefix PREFIX_REFERENCE = new Prefix("r:");
     public static final Prefix PREFIX_STATUS = new Prefix("s:");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_DESC = new Prefix("d:");
+
+    /* Prefix definitions for CasePerson */
+    public static final Prefix PREFIX_NAME = new Prefix("n:");
+    public static final Prefix PREFIX_GENDER = new Prefix("g:");
+    public static final Prefix PREFIX_PHONE = new Prefix("p:");
+    public static final Prefix PREFIX_EMAIL = new Prefix("e:");
+    public static final Prefix PREFIX_ADDRESS = new Prefix("a:");
 
 }

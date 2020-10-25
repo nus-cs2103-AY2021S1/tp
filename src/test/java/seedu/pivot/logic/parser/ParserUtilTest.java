@@ -14,8 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.parser.exceptions.ParseException;
-import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Title;
+import seedu.pivot.model.investigationcase.caseperson.Name;
 import seedu.pivot.model.tag.Tag;
 
 public class ParserUtilTest {

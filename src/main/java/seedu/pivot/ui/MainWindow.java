@@ -25,7 +25,7 @@ import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.CasePerson;
+import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 
 /**
  * The Main Window. Provides the basic application layout containing
