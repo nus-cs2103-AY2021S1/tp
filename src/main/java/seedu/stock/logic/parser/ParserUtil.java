@@ -134,11 +134,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String serialNumber} into an {@code SerialNumber}.
->>>>>>> f61876ad704f51cf5c2fb7459d32d3b2cb2aa62d
+     * Parses a {@code String serialNumbers} into an {@code Set<SerialNumber>}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code serialNumber} is invalid.
+     * @throws ParseException if the given {@code serialNumbers} is invalid.
      */
     public static Set<SerialNumber> parseSerialNumbers(String serialNumbers) throws ParseException {
         requireNonNull(serialNumbers);
