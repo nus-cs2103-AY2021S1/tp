@@ -27,6 +27,7 @@ public class JsonAdaptedAssignmentTest {
     private static final boolean VALID_NOT_SCHEDULED = false;
     private static final String VALID_SUGGESTED_START_TIME = "27-03-2000 0505";
     private static final String VALID_SUGGESTED_END_TIME = "12-12-2020 2359";
+    private static final boolean VALID_IS_MARKED_DONE = true;
 
     private static final String NO_PRIORITY = "NONE";
 
@@ -40,7 +41,8 @@ public class JsonAdaptedAssignmentTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment =
                 new JsonAdaptedAssignment(INVALID_NAME, VALID_DEADLINE, VALID_MODULE_CODE, VALID_IS_REMINDED,
-                        VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME, NO_PRIORITY);
+                        VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME, NO_PRIORITY,
+                        VALID_IS_MARKED_DONE);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
@@ -49,7 +51,7 @@ public class JsonAdaptedAssignmentTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment = new JsonAdaptedAssignment(null, VALID_DEADLINE, VALID_MODULE_CODE,
                 VALID_IS_REMINDED, VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME,
-                NO_PRIORITY);
+                NO_PRIORITY, VALID_IS_MARKED_DONE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
@@ -58,7 +60,7 @@ public class JsonAdaptedAssignmentTest {
     public void toModelType_invalidDeadline_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment = new JsonAdaptedAssignment(VALID_NAME, INVALID_DEADLINE, VALID_MODULE_CODE,
                 VALID_IS_REMINDED, VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME,
-                NO_PRIORITY);
+                NO_PRIORITY, VALID_IS_MARKED_DONE);
         String expectedMessage = Deadline.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
@@ -67,7 +69,7 @@ public class JsonAdaptedAssignmentTest {
     public void toModelType_nullDeadline_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment = new JsonAdaptedAssignment(VALID_NAME, null, VALID_MODULE_CODE,
                 VALID_IS_REMINDED, VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME,
-                NO_PRIORITY);
+                NO_PRIORITY, VALID_IS_MARKED_DONE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
@@ -76,7 +78,7 @@ public class JsonAdaptedAssignmentTest {
     public void toModelType_invalidModuleCode_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment = new JsonAdaptedAssignment(VALID_NAME, VALID_DEADLINE, INVALID_MODULE_CODE,
                 VALID_IS_REMINDED, VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME,
-                NO_PRIORITY);
+                NO_PRIORITY, VALID_IS_MARKED_DONE);
         String expectedMessage = ModuleCode.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }
@@ -85,7 +87,7 @@ public class JsonAdaptedAssignmentTest {
     public void toModelType_nullModuleCode_throwsIllegalValueException() {
         JsonAdaptedAssignment assignment = new JsonAdaptedAssignment(VALID_NAME, VALID_DEADLINE, null,
                 VALID_IS_REMINDED, VALID_IS_SCHEDULED, VALID_SUGGESTED_START_TIME, VALID_SUGGESTED_END_TIME,
-                NO_PRIORITY);
+                NO_PRIORITY, VALID_IS_MARKED_DONE);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, assignment::toModelType);
     }

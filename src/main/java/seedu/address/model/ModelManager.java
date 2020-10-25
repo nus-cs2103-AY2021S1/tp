@@ -82,6 +82,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
+        preUpdateModel();
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
     }
@@ -101,6 +102,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
+        preUpdateModel();
         this.addressBook.resetData(addressBook);
     }
 
@@ -111,6 +113,7 @@ public class ModelManager implements Model {
 
     @Override
     public void importTimetable(TimetableData data) {
+        preUpdateModel();
         addressBook.importTimetable(data);
     }
 
