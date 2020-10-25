@@ -3,16 +3,16 @@ layout: page
 title: User Guide
 ---
 
-McGymmy (MG) is a **desktop app for Software Engineers who need help managing their diet, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). While we are primarily targetting software engineers who are familiar with the CLI, those who spend a large amount of time at their desk can still benefit from this application by saving time as opposed to the more traditional caloric tracker applications. <br>
-If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. MG aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow.
+McGymmy is a **desktop app for Software Engineers who need help managing their diet, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). While we are primarily targetting software engineers who are familiar with the CLI, those who spend a large amount of time at their desk can still benefit from this application by saving time as opposed to the more traditional caloric tracker applications. <br>
+If you can type fast, McGymmy can log your food intake faster than traditional GUI apps. McGymmy aims to help users track their caloric and macronutrient intake in an efficient way that does not interfere with one's workflow.
 
-This document aims to showcase all of MG's commands.
+This document aims to showcase all of McGymmy's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
 
 ##  Icon Legend
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** This indicates that the following text consists of tips to better utilise MG
+:bulb: **Tip:** This indicates that the following text consists of tips to better utilise McGymmy
 
 </div>
 
@@ -24,9 +24,9 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 
 ## A little note from the developers
 
-Thank you for using MG. We sincerely hope that MG plays apart to help you achieve a healthier lifestyle.
-We understand that MG may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
-Thus we recommend you to start by first understanding how MG works at a high level at the Quick start section. Then, explore the Features section.
+Thank you for using McGymmy. We sincerely hope that McGymmy plays apart to help you achieve a healthier lifestyle.
+We understand that McGymmy may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
+Thus we recommend you to start by first understanding how McGymmy works at a high level at the Quick start section. Then, explore the Features section.
 
 <div markdown="block" class="alert alert-info">
 
@@ -91,6 +91,9 @@ We will follow the following convention for each command's format:
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add -n NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
+  
+* Prefixes that precede parameters represent flags that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as flag-less parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
+  e.g. in `find example -t lunch`, `example` represents a flag-less parameter while `-t lunch` is referred as a parameter with flag `-t` and parameter input `lunch`.
 
 * Items in square brackets are optional.<br>
   e.g `-n NAME [-f FATS]` can be used as `-n bacon -f 10` or as `-n bacon`.
@@ -137,9 +140,9 @@ Examples:
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
-### Clearing all food items : `clear`
+### Clearing all food items shown : `clear`
 
-Removes all food items in McGymmy.
+Removes all food items shown in McGymmy.
 
 Format: `clear`
 
@@ -194,13 +197,19 @@ Format: `untag INDEX -t TAG_NAME`
 
 Finds food items based on the keywords supplied.
 
-Format: `find KEYWORDS`
+Format: `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]`
+
+Examples:
+* `find` - finds all food items
+* `find -n Sushi -d 20/04/2020` - finds all food items with name "Sushi" and date "20/04/2020"
+* `find -t lunch dinner` - finds all food items with tag "lunch" and/or tag "dinner"
+* `find sushi lunch` - finds all food items that have the keywords "sushi" and/or "lunch" in their name and/or tag
 
 <div markdown="block" class="alert alert-info">
 
 :information_source:
 
-* Filters the displayed list of food items to only include food items containing the supplied keywords.
+* Filters the displayed list of food items to only include food items corresponding to the provided parameters.
 
 </div>
 
@@ -381,6 +390,27 @@ Examples:
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
+### Undoing the previous command : `undo`
+
+Undoes the change made by the previous command
+
+Format: `undo`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:
+
+* Undo command can be called multiple times.
+* Help command will be ignored when undoing. 
+For example, if the user calls the following commands in sequence:
+`add -n Burger`, `help edit`, `undo`, the undo command will undo the adding operation, not the help one.
+* Calling `undo` after 2 or more consecutive `list` calls only undoes the listing operation once.
+* Calling `undo` after 2 or more consecutive `find` calls with the same sequence of keyword only undoes the find operation once.
+* All additional input after the *command word* `undo` will be ignored. E.g. `undo` and `undo 123` will have the same effect.
+
+![Undo command example](images/CommandImagesForUG/Undo.png)
+
+</div>
 
 ### Saving the data
 
