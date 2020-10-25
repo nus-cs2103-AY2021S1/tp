@@ -54,7 +54,8 @@ public class AutoCompleter {
         }
 
         var args = res.getValue();
-        switch (getRequiredCompletion(args, orig)) {
+        var req = getRequiredCompletion(args, orig);
+        switch (req) {
 
         case COMMAND_NAME:
             return completeCommand(args, orig);
@@ -66,10 +67,11 @@ public class AutoCompleter {
             return completeArgument(args, orig);
 
         case RECIPE_NAME:
-            return completeRecipe(model, orig);
+            return completeRecipe(req, model, args, orig);
 
-        case INGREDIENT_NAME:
-            return completeIngredient(model, orig);
+        case INGREDIENT_NAME: // fallthrough
+        case INGREDIENT_NAME_IN_ARG:
+            return completeIngredient(req, model, args, orig);
 
         // TODO: tags
         case TAG_NAME:
@@ -169,14 +171,40 @@ public class AutoCompleter {
 
 
 
-    private <T extends Entry> Optional<String> completeNamedItem(String orig, List<T> entries) {
+    private <T extends Entry> Optional<String> completeNamedItem(RequiredCompletion req, CommandArguments args,
+        String orig, List<T> entries) {
 
         var words = new StringView(orig).words();
         assert !words.isEmpty();
 
-        // the partial item name.
-        var partial = words.get(words.size() - 1).toLowerCase();
+        String partial = "";
+        if (req == RequiredCompletion.RECIPE_NAME_IN_ARG || req == RequiredCompletion.INGREDIENT_NAME_IN_ARG) {
+
+            // get the last argument.
+            var arglist = args.getAllArguments();
+            if (arglist.isEmpty()) {
+                return Optional.empty();
+            }
+
+            var last = arglist.get(arglist.size() - 1);
+            partial = last.snd();
+
+        } else {
+
+            if (commandRequiresTarget(args.getCommand())) {
+                var split = new StringView(args.getRemaining()).bisect(' ');
+                if (split.snd().isEmpty()) {
+                    return Optional.empty();
+                }
+
+                partial = split.snd().toString();
+            } else {
+                partial = args.getRemaining();
+            }
+        }
+
         assert !partial.isEmpty();
+
 
         // the entire command string *except* the partial item name.
         var allExceptLast = orig.stripTrailing().substring(0,
@@ -226,18 +254,18 @@ public class AutoCompleter {
     /**
      * Returns a completion for the recipe name only.
      */
-    private String completeRecipe(Model model, String orig) {
+    private String completeRecipe(RequiredCompletion req, Model model, CommandArguments args, String orig) {
 
-        return completeNamedItem(orig, model.getRecipeBook().getEntryList())
+        return completeNamedItem(req, args, orig, model.getRecipeBook().getEntryList())
             .orElse(orig);
     }
 
     /**
      * Returns a completion for the ingredient name only.
      */
-    private String completeIngredient(Model model, String orig) {
+    private String completeIngredient(RequiredCompletion req, Model model, CommandArguments args, String orig) {
 
-        return completeNamedItem(orig, model.getIngredientBook().getEntryList())
+        return completeNamedItem(req, args, orig, model.getIngredientBook().getEntryList())
             .orElse(orig);
     }
 
@@ -280,6 +308,7 @@ public class AutoCompleter {
                             return RequiredCompletion.NONE;
                         }
                     }).orElse(RequiredCompletion.NONE);
+
             } else if (commandRequiresItemReference(cmd)) {
 
                 if (cmd.equals(Strings.COMMAND_MAKE)) {
@@ -305,7 +334,7 @@ public class AutoCompleter {
 
                 // now we should check what the name is.
                 if (lastArg.equals(Strings.ARG_INGREDIENT)) {
-                    return RequiredCompletion.INGREDIENT_NAME;
+                    return RequiredCompletion.INGREDIENT_NAME_IN_ARG;
                 } else if (lastArg.equals(Strings.ARG_TAG)) {
                     return RequiredCompletion.TAG_NAME;
                 } else {
@@ -349,6 +378,8 @@ public class AutoCompleter {
         ARGUMENT_NAME,
         RECIPE_NAME,
         INGREDIENT_NAME,
+        RECIPE_NAME_IN_ARG,
+        INGREDIENT_NAME_IN_ARG,
         TAG_NAME
     }
 }
