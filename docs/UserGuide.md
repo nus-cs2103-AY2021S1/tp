@@ -390,6 +390,14 @@ Examples:
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
 
+<div markdown="block" class="alert alert-info">
+
+:information_source: When using it with conjunction with the undo command, macro will only undo the commands one at a time within the chain of macro commands<br>
+
+</div>
+
+
+
 ### Undoing the previous command : `undo`
 
 Undoes the change made by the previous command
