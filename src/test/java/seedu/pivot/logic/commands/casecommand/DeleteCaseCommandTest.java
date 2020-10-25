@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands;
+package seedu.pivot.logic.commands.casecommand;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -14,6 +14,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.Messages;
 import seedu.pivot.commons.core.index.Index;
+import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;

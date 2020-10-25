@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands;
+package seedu.pivot.logic.commands.casecommand;
 
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;

@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands;
+package seedu.pivot.logic.commands.casecommand;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,6 +11,8 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.pivot.logic.commands.AddCommand;
+import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.casecommands.AddCaseCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
