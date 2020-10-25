@@ -25,7 +25,7 @@ import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.ModelsManager;
 import seedu.address.model.delivery.Delivery;
-import seedu.address.model.delivery.DeliveryContainsKeywordsPredicate;
+import seedu.address.model.delivery.predicate.DeliveryNameContainsKeywordsPredicate;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.DeliveryModel;
 import seedu.address.model.deliverymodel.DeliveryModelManager;
@@ -33,7 +33,7 @@ import seedu.address.model.inventorymodel.InventoryBook;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
 import seedu.address.model.item.Item;
-import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import seedu.address.model.item.predicate.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditDeliveryDescriptorBuilder;
 import seedu.address.testutil.EditItemDescriptorBuilder;
 
@@ -267,7 +267,7 @@ public class CommandTestUtil {
         Item item = inventoryModel.getFilteredAndSortedItemList().get(targetIndex.getZeroBased());
         final String[] splitName = item.getName().fullName.split("\\s+");
         inventoryModel.updateItemListFilter(
-                new ItemContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
+                new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, inventoryModel.getFilteredAndSortedItemList().size());
     }
@@ -282,7 +282,7 @@ public class CommandTestUtil {
         Delivery delivery = deliveryModel.getFilteredDeliveryList().get(targetIndex.getZeroBased());
         final String[] splitName = delivery.getName().fullName.split("\\s+");
         deliveryModel.updateFilteredDeliveryList(
-                new DeliveryContainsKeywordsPredicate(Arrays.asList(splitName[0]), PREFIX_NAME));
+                new DeliveryNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, deliveryModel.getFilteredDeliveryList().size());
     }

@@ -28,14 +28,14 @@ as well as summary commands.
 
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
-   <br> ![Ui](images/Ui.png) <br>
+   <br> ![Ui](images/UiWithAnnotation.png) <br>
    Figure 1: Introduction to OneShelf User Interface
 
 5. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below (Figure 2) should appear on your desktop.
    <br> ![Help Window](images/UiHelpStart.png) <br>
    Figure 2: Help Start Window
-   
+
 
 6. Refer to the [Features](#features) below for details of each command.
 
@@ -88,7 +88,7 @@ Alternatives:
 * Press `F2` at any point in the usage of the app
 * GUI navigation menu at the top left
 
-![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
+<br> ![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
 Figure 3: Help Summary Window
 
 
@@ -124,7 +124,7 @@ Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 Removes a specified quantity of an existing item from OneShelf.
 
 Format: `remove-i INDEX q/QUANTITY`
-* Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`. 
+* Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`.
 The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
@@ -176,13 +176,27 @@ Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 * Only full words will be matched e.g. `chicke` will not match `chicken`
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chicken steak` will return `chicken steak`, `steak beef`
+* More than one Prefix can be specified (i.e. `AND` search).
+  e.g. 'find-i n/Chicken s/NTUC' will return items matching name and supplier.
 
 Examples:
 * `find-i n/Chicken` returns `chicken` and `chicken salad` items.
+* `find-i s/Cold Storage t/meat` returns item with supplier of Cold Storage and tags of meat.
 
 
 Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
 
+
+* The search is case-insensitive. e.g `john` will match `JOHN`
+* The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
+* Name, Phone, Address, Order can be searched
+* Only full words for name will be matched e.g. `Bob` will not match `Bobby`
+* Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
+* Items matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
+* More than one Prefix can be specified (i.e. `AND` search).
+  e.g. 'find-d n/Bernice p/85783742' will return delivery matching name and phone.
+ 
 Examples:
 * `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
 
@@ -190,8 +204,8 @@ Examples:
 
 #### 3.1.6 Listing all items : `list-i` or `list-d`
 
-After entering `find-i` or `find-d`, the placeholder in your application will only show the items or deliveries 
-that match your find KEYWORD. If you would like to show **all** the items and deliveries again, 
+After entering `find-i` or `find-d`, the placeholder in your application will only show the items or deliveries
+that match your find KEYWORD. If you would like to show **all** the items and deliveries again,
 `list-i` or `list-d` command would be useful.
 
 Format: `list-i` or `list-d`
@@ -263,13 +277,13 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 
 #### 3.2.2 Scroll through command history
 
-OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.  
+OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.
 
 
 
 #### 3.2.3 Sorting items
 
-* Inventory items are sorted based on percentage of quantity in ascending order. 
+* Inventory items are sorted based on percentage of quantity in ascending order.
 * If the maximum quantity does not exist for that particular item then it the item will be located at the end of the list.
 * If 2 items have the same quantity, they are then sorted lexicographically.
 
@@ -323,7 +337,7 @@ Notify the user if a certain stock is below threshold
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
 |**Get help to start off**    | `help start` or press `F1` or use GUI help menu at the top left |
-|**Get help summary**    | `help summary` or press `F2` or use GUI help menu at the top left |
+|**Get help summary**    | `help summary` or press `F2` or use GUI help menu at the top left |   
 |**Undo last command**   | `undo`  |
 |**Redo last undone command**   | `redo`  |
 |**Exit command** | `exit` |

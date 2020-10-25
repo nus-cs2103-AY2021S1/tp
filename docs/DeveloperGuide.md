@@ -207,35 +207,42 @@ for user's input of arrow up (which calls previousCommand()) and arrow down (whi
 
 
 ### Finding Items and Delivery
-OneShelf is capable of storing many items and pending deliveries. 
+
+OneShelf is capable of storing many items and pending deliveries.
 Therefore, it is of utmost importance to have the ability to find items
-and deliveries based on different fields. There could also be many similar items and 
+and deliveries based on different fields. There could also be many similar items and
 this will definitely aid the user in finding them quickly. <br>
 
-We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` 
-and `TAGS` for items using `find-i`. Similarly, for deliveries, it is also possible 
+We have modified the `find` command to be able to search for `NAME`, `SUPPLIER`
+and `TAGS` for items using `find-i`. Similarly, for deliveries, it is also possible
 to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`.
 Note that the implementation of `find-i` and `find-d` are relatively similar and in this example, we will only show
 `find-i`.
 
-By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass
- this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements 
- `Predicate<Item>`.
-The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the 
-predicate on the existing filteredList.
+By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create a Predicate that matches the specified field object which implements `Predicate<Item>`.
+The predicate is then combined and passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
 
 Below is a usage example:
 
 Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
-Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a 
+Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a
 value <br>
 Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
 Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
 
-You can refer to the sequence diagram as shown below:
 
+<div markdown="block" class="alert alert-info">
+There is a slight difference in `ADDRESS`, `PHONE`, `ORDER` predicate. The original implementation of predicates will only return true if there is an exact match.
+The issue comes with that these field might be too long and logically do not make sense to search the whole content of the field.
+Hence, we have modified it to allow the predicate to match the substrings of the whole content.
+</div>
+
+You can refer to the sequence diagram as shown below:
 ![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a `find` command:
+
+![FindCommandActivityDiagram](images/FindActivityDiagram.png)
 
 ### Undo/Redo Command
 
@@ -256,7 +263,7 @@ Step 1. The user launches the application for the first time. Each `Model` will 
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete-i 5` command to delete the 5th item in the inventory book. The `delete-i` command calls `Models#commit()`, causing the modified state of the inventory and delivery books after the `delete-i 5` command executes to be saved in the `inventoryBookStateList`, `deliveryBookStateList`, 
+Step 2. The user executes `delete-i 5` command to delete the 5th item in the inventory book. The `delete-i` command calls `Models#commit()`, causing the modified state of the inventory and delivery books after the `delete-i 5` command executes to be saved in the `inventoryBookStateList`, `deliveryBookStateList`,
 and the `inventoryBookStatePointer`, `deliveryBookStatePointer` are shifted to the newly inserted books state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -462,7 +469,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. OneShelf adds a new item into the inventory.
 
   Use case ends.
-  
+
  * 1c. InventoryBook detects existing item name and supplier.
     * 1c1. InventoryBook adds on existing item name and supplier's with input quantity.
 
