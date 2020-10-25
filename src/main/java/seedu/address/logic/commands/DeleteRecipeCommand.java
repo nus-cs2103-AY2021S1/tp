@@ -45,21 +45,22 @@ public class DeleteRecipeCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Recipe> recipelist = new ArrayList<>(model.getFilteredRecipeList());
+        List<Recipe> recipeList = new ArrayList<>(model.getFilteredRecipeList());
 
-        // filter to only get matching and not deleted recipes
-        recipelist.removeIf(x -> !x.getProductName().equals(productName));
-        if (recipelist.isEmpty()) {
+        // filter to only get matching recipes
+        recipeList.removeIf(x -> !x.getProductName().equals(productName));
+        if (recipeList.isEmpty()) {
             throw new CommandException(MESSAGE_RECIPE_NOT_FOUND);
         }
 
         Recipe recipeToDelete;
         try {
-            recipeToDelete = recipelist.get(index.getZeroBased());
+            recipeToDelete = recipeList.get(index.getZeroBased());
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INDEX_NOT_FOUND); //index out of range
+            throw new CommandException(MESSAGE_INDEX_NOT_FOUND);
         }
 
+        // delete the recipe id from the ingredients
         int recipeId = recipeToDelete.getId();
         for (Item i : model.getFilteredItemList()) {
             if (i.getRecipeIds().contains(recipeId)) {

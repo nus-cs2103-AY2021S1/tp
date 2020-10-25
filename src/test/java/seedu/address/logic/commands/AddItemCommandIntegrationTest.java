@@ -23,6 +23,7 @@ public class AddItemCommandIntegrationTest {
     public void setUp() {
         model = new ModelManager(new ItemList(), getTypicalLocationsList(),
                 new RecipeList(), new UserPrefs());
+        Item.setIdCounter(0);
     }
 
     @Test

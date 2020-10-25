@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalTags.getTypicalTagSet;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,7 +16,7 @@ public class ItemPrecursorBuilder {
     public static final String DEFAULT_QUANTITY = "25";
     public static final String DEFAULT_DESCRIPTION = "Rare drop from Bob";
     public static final Set<String> DEFAULT_LOCATIONS = new HashSet<>();
-    public static final Set<Tag> DEFAULT_TAGS = new HashSet<>(getTypicalTagSet());
+    public static final Set<Tag> DEFAULT_TAGS = new HashSet<>();
 
     private String name;
     private Quantity quantity;
@@ -47,7 +45,8 @@ public class ItemPrecursorBuilder {
         Set<String> locationSet = new HashSet<>();
         locationSet.addAll(itemToCopy.getLocationNames());
         locations = locationSet;
-        tags = itemToCopy.getTags();
+        tags = new HashSet<>();
+        tags.addAll(itemToCopy.getTags());
     }
 
     /**

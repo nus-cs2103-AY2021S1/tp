@@ -5,7 +5,7 @@ title: CommandSequenceDiagrams
 * Table of Contents
 {:toc}
 
-#Command Implementation Details
+# Command Implementation Details
 This will detail the planned sequence flow for commands, and help the developer
 understand what is going on under the hood.
 

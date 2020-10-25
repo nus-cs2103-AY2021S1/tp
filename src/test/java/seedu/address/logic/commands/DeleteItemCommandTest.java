@@ -26,6 +26,7 @@ import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.RecipeList;
 import seedu.address.model.item.Item;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.testutil.ItemBuilder;
 
 
 public class DeleteItemCommandTest {
@@ -69,7 +70,7 @@ public class DeleteItemCommandTest {
      */
     @Test
     public void execute_itemDeletion_success() {
-        Item itemToDelete = APPLE;
+        Item itemToDelete = new ItemBuilder(APPLE).build();
         DeleteItemCommand deleteItemCommand = new DeleteItemCommand(itemToDelete.getName());
         String expectedMessage = String.format(DeleteItemCommand.MESSAGE_SUCCESS, itemToDelete);
 

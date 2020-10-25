@@ -212,7 +212,15 @@ public interface Model {
      */
     void updateRecipeNames(String originalName, String updatedName);
 
+    /**
+     * Resets the filter to show all items in the item list.
+     */
     void resetItemFilters();
+
+    /**
+     * Resets the filter to show all recipes in the recipe list.
+     */
+    void resetRecipeFilters();
 
     void setLocationList(LocationList locationList);
 }

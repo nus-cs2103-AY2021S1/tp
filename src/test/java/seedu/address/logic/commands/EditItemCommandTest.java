@@ -51,10 +51,11 @@ public class EditItemCommandTest {
         EditItemCommand.EditItemDescriptor descriptor = new EditItemCommand.EditItemDescriptor();
         descriptor.setQuantity(new Quantity(VALID_ITEM_QUANTITY_BANANA));
         EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
-        // expected model should contain the edited apple
+        // expected model should contain the edited apple, edited item is the message success
         Item editedApple = new ItemBuilder(APPLE).withQuantity(VALID_ITEM_QUANTITY_BANANA).build();
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedApple);
+
         expectedItemList.addItem(editedApple);
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 
@@ -74,7 +75,6 @@ public class EditItemCommandTest {
         descriptor.setDescription(VALID_ITEM_DESCRIPTION_BANANA);
         descriptor.setTags(getTypicalTagSet());
         EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, descriptor);
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, apple);
 
         // expected model should contain the edited apple
         Item editedApple = new ItemBuilder(APPLE)
@@ -82,6 +82,7 @@ public class EditItemCommandTest {
                 .withDescription(VALID_ITEM_DESCRIPTION_BANANA)
                 .withTags(getTypicalTagSet())
                 .build();
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedApple);
 
         expectedItemList.addItem(editedApple);
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
@@ -101,7 +102,8 @@ public class EditItemCommandTest {
         expectedModelStub = new ModelStubWithItemList(expectedItemList);
 
         // edit command has empty descriptor with no fields specified
-        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE, new EditItemCommand.EditItemDescriptor());
+        EditItemCommand eic = new EditItemCommand(VALID_ITEM_NAME_APPLE,
+                new EditItemCommand.EditItemDescriptor());
 
         assertThrows(CommandException.class, () -> eic.execute(modelStub),
                 EditItemCommand.MESSAGE_NOT_EDITED);

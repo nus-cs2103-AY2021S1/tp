@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRecipes.APPLE_PIE;
+import static seedu.address.testutil.TypicalRecipes.BANANA_PIE;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -40,8 +40,8 @@ public class DeleteRecipeCommandTest {
     @Test
     public void execute_success() throws CommandException {
         DeleteRecipeCommand drc = new DeleteRecipeCommand("Apple", Index.fromOneBased(1));
-        expectedModelStub.deleteRecipe(APPLE_PIE);
-        String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_SUCCESS, APPLE_PIE);
+        expectedModelStub.deleteRecipe(BANANA_PIE);
+        String expectedMessage = String.format(DeleteRecipeCommand.MESSAGE_SUCCESS, BANANA_PIE);
         CommandResult commandResult = drc.execute(modelStub);
         assertEquals(new CommandResult(expectedMessage), commandResult);
         assertEquals(expectedModelStub, modelStub);

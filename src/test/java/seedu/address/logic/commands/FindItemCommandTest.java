@@ -25,7 +25,6 @@ import seedu.address.ui.DisplayedInventoryType;
  * Contains integration tests (interaction with the Model) for {@code FindItemCommand}.
  */
 public class FindItemCommandTest {
-    // TODO update tests after command implementation.
 
     private Model model = new ModelManager(getTypicalItemList(), new LocationList(),
             new RecipeList(), new UserPrefs());
@@ -76,7 +75,7 @@ public class FindItemCommandTest {
 
     @Test
     public void execute_multipleKeywords_multipleItemsFound() {
-        String expectedMessage = String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, 3);
 
         NameMatchesKeywordsPredicate predicate = preparePredicate("Apple Banana Carrot");
         FindItemCommand command = new FindItemCommand(predicate);
@@ -86,7 +85,8 @@ public class FindItemCommandTest {
         CommandResult expectedResult = new CommandResult(expectedMessage,
                 false, false, DisplayedInventoryType.ITEMS);
         assertCommandSuccess(command, model, expectedResult, expectedModel);
-        assertEquals(Arrays.asList(TypicalItems.APPLE, TypicalItems.BANANA), expectedModel.getFilteredItemList());
+        assertEquals(Arrays.asList(TypicalItems.APPLE, TypicalItems.BANANA, TypicalItems.APPLE_PIE_ITEM),
+                expectedModel.getFilteredItemList());
     }
 
     /**
