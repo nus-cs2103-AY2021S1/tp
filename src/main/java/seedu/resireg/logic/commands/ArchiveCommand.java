@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.logging.Logger;
 
 import seedu.resireg.commons.core.LogsCenter;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
@@ -23,7 +24,7 @@ public class ArchiveCommand extends Command {
     private final Logger logger = LogsCenter.getLogger(ArchiveCommand.class);
 
     @Override
-    public CommandResult execute(Model model, Storage storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
         requireAllNonNull(model, storage);
         // Create the new semester
         ReadOnlyResiReg resiReg = model.getResiReg();

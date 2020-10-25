@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_COMMAND;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.alias.CommandWordAlias;
@@ -36,7 +37,7 @@ public class DeleteAliasCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasCommandWordAlias(toDelete)) {

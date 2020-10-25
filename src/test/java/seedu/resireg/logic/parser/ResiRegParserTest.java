@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.Command;
 import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.exceptions.CommandException;
@@ -28,7 +29,7 @@ public class ResiRegParserTest {
         }
 
         @Override
-        public CommandResult execute(Model model, Storage storage) throws CommandException {
+        public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
             throw new CommandException("unimplemented stub method");
         }
 

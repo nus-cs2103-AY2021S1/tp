@@ -7,6 +7,7 @@ import java.util.List;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.allocation.Allocation;
@@ -41,7 +42,7 @@ public class DeallocateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownListStudent = model.getFilteredStudentList();
         List<Allocation> lastShownListAllocation = model.getFilteredAllocationList();

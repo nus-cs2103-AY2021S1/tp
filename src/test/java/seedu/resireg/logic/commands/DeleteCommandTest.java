@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
@@ -25,6 +26,8 @@ import seedu.resireg.storage.Storage;
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
+
+    private CommandHistory history = new CommandHistory();
 
     private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
     private Storage storage = null;
@@ -40,7 +43,7 @@ public class DeleteCommandTest {
         expectedModel.deleteStudent(studentToDelete);
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
@@ -48,7 +51,7 @@ public class DeleteCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -65,7 +68,7 @@ public class DeleteCommandTest {
         expectedModel.saveStateResiReg();
         showNoStudent(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
@@ -78,7 +81,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -90,15 +93,15 @@ public class DeleteCommandTest {
         expectedModel.saveStateResiReg();
 
         // delete -> first student deleted
-        deleteCommand.execute(model, storage);
+        deleteCommand.execute(model, storage, history);
 
         // undo -> reverts resireg back to previous state
         expectedModel.undoResiReg();
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, history, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // redo -> same first student deleted again
         expectedModel.redoResiReg();
-        assertCommandSuccess(new RedoCommand(), model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new RedoCommand(), model, history, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -107,11 +110,11 @@ public class DeleteCommandTest {
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         // execution failed -> state not added to model
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // single resireg state in model -> undo and redo failures
-        assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_FAILURE);
-        assertCommandFailure(new RedoCommand(), model, RedoCommand.MESSAGE_FAILURE);
+        assertCommandFailure(new UndoCommand(), model, history, UndoCommand.MESSAGE_FAILURE);
+        assertCommandFailure(new RedoCommand(), model, history, RedoCommand.MESSAGE_FAILURE);
     }
 
     /**
@@ -133,12 +136,12 @@ public class DeleteCommandTest {
         expectedModel.saveStateResiReg();
 
         // delete -> deletes second student in unfiltered student list, first student in filtered student list
-        deleteCommand.execute(model, storage);
+        deleteCommand.execute(model, storage, history);
 
         // undo -> reverts resireg back to previous state, keeps filtering
         expectedModel.undoResiReg();
         showStudentAtIndex(expectedModel, INDEX_SECOND_PERSON);
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, history, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // remove filtering
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
@@ -147,7 +150,7 @@ public class DeleteCommandTest {
         assertNotEquals(toDelete, model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()));
         // redo -> delete same second student in unfiltered student list
         expectedModel.redoResiReg();
-        assertCommandSuccess(new RedoCommand(), model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new RedoCommand(), model, history, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

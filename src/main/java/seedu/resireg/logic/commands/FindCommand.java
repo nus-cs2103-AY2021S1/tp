@@ -3,6 +3,7 @@ package seedu.resireg.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.resireg.commons.core.Messages;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
 import seedu.resireg.storage.Storage;
@@ -27,7 +28,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) {
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(

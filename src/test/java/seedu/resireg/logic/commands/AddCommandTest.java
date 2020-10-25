@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.exceptions.DataConversionException;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelPredicate;
@@ -36,6 +37,8 @@ import seedu.resireg.testutil.StudentBuilder;
 
 public class AddCommandTest {
 
+    private CommandHistory history = new CommandHistory();
+
     @Test
     public void constructor_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
@@ -47,7 +50,7 @@ public class AddCommandTest {
         StorageStub storageStub = new StorageStub();
         Student validStudent = new StudentBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub, storageStub);
+        CommandResult commandResult = new AddCommand(validStudent).execute(modelStub, storageStub, history);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getName().fullName,
             validStudent.getStudentId().value), commandResult.getFeedbackToUser());
@@ -62,7 +65,7 @@ public class AddCommandTest {
         StorageStub storageStub = new StorageStub();
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () ->
-            addCommand.execute(modelStub, storageStub));
+            addCommand.execute(modelStub, storageStub, history));
     }
 
     @Test

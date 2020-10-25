@@ -8,11 +8,14 @@ import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
 
 class UndoCommandTest {
+
+    private CommandHistory history = new CommandHistory();
 
     private final Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalResiReg(), new UserPrefs());
@@ -31,13 +34,13 @@ class UndoCommandTest {
     void execute() {
         // multiple undoable states in model
         expectedModel.undoResiReg();
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, history, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // single undoable state in model
         expectedModel.undoResiReg();
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, history, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // no undoable states remaining
-        assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_FAILURE);
+        assertCommandFailure(new UndoCommand(), model, history, UndoCommand.MESSAGE_FAILURE);
     }
 }
