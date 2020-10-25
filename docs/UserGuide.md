@@ -66,15 +66,15 @@ May have irreversible effect when used. Backup and caution is recommended.
 
 1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample expenses and income.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample expenses and revenues.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`add c/expense d/buy lunch a/5.20 t/food`** : Adds an expense named "buy lunch" to the expense list.
-   * **`delete 1 c/expense`** : Deletes the 1st entry in the expense list.
-   * **`exit`** : Exits the app.
+   * `add c/expense d/buy lunch a/5.20 t/food` : Adds an expense named "buy lunch" to the expense list.
+   * `delete 1 c/expense` : Deletes the 1st entry in the expense list.
+   * `exit` : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -102,9 +102,10 @@ May have irreversible effect when used. Backup and caution is recommended.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
-
-{Insert help screenshot}
+Shows a message explaining how to access the help page (Figure). You can click on the `Copy URL ` button to copy
+the link to clipboard and paste it 
+<br>![Ui](images/helpMessage.png)
+<p align="center"> <i>Figure: Help message</i> </p>
 
 Format: `help`
 
@@ -166,13 +167,52 @@ Example:
 * `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
 
 
-### Locating entries by name: `find`
+### Locating entries by description: `find`
 
-Find expenses that have the given keyword in their names.
+You can use this command to list expenses and/or revenues that have the given keyword(s) in their description. If there
+is no expense or revenue found, the respective list will be empty.
 
-* The search is case-sensitive. e.g `grocery` will match `grocery` but not `Grocery`.
-* Only the expense name is searched.
-* Expenses matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker Food`, `Restaurant Food`
+**Format:** `find [c/CATEGORY] k/KEYWORDS`
+
+<div markdown="block" class="alert alert-success">
+
+:heavy_check_mark: **Example:** 
+
+`find c/expense k/watercolours canvas` : finds all expenses with keywords `watercolours` and/or `canvas` in their 
+description.
+
+`find c/revenue k/phone` : finds all revenues with keyword `phone` in their 
+description.
+
+`find k/canvas earrings` : finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
+description (Figure).
+ 
+</div>
+
+<br>![findCommand](images/command/findCommand.png)
+<p align="center"> <sub> <b>Figure</b>: Find command successfully executed </sub> </p>
+
+<div markdown="block" class="alert alert-info"> 
+
+:information_source: **Note:**
+
+* The search is case-insensitive. e.g. `grocery` will match `grocery` and `Grocery`.
+* Only the entry's description is searched.
+* The search does not match partial words. e.g. `food` will match `food` and `fast food` but not `fastfood`.
+* Entries matching at least one keyword will be returned (i.e. OR search). e.g. `Food` will return `Hawker food`, 
+`Restaurant Food`.
+* The category is optional.
+
+<div markdown="block" class="alert alert-primary">
+
+[comment]: <> (This only appears in Github CSS)
+
+:bulb: **Tip:**
+
+Good to learn, but not necessary to know to use FitEgo. 
+</div>
+
+</div>
 
 Format:
 * `find k/KEYWORD [MORE_KEYWORDS]`
