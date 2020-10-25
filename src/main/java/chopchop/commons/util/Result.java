@@ -5,8 +5,9 @@ package chopchop.commons.util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * The Result class is used to encapsulate the result of some computation
@@ -322,6 +323,48 @@ public class Result<T> extends Either<String, T> {
         }
 
         return Result.of(ret);
+    }
+
+    /**
+     * Returns the first errored result from the given list.This function should be used to check
+     * that all the given result types were valid (so you can unconditionally getValue() them).
+     *
+     * In addition, unlike {@code Result::sequence()}, this supports heterogenous result types.
+     *
+     * @param results the list of results to validate
+     * @return        the first error, or an empty optional if all the results were valid
+     */
+    @SafeVarargs
+    public static Optional<String> firstError(Result... results) {
+        for (Result<?> result : results) {
+            if (result.isError()) {
+                return Optional.of(result.getError());
+            }
+        }
+
+        return Optional.empty();
+    }
+
+    /**
+     * Collapses the given list of results into either the first error, or, if all the results
+     * were valid, returns the result from the supplier. This function should be used to check
+     * that all the given result types were valid (so you can unconditionally geValue() them).
+     *
+     * In addition, unlike {@code Result::sequence()}, this supports heterogenous result types.
+     *
+     * @param sup     the supplier to get the result from if all the inputs were valid
+     * @param results the list of results to validate
+     * @return        the result
+     */
+    @SafeVarargs
+    public static <T> Result<T> allOf(Supplier<Result<T>> sup, Result... results) {
+        for (Result<?> result : results) {
+            if (result.isError()) {
+                return Result.error(result.getError());
+            }
+        }
+
+        return sup.get();
     }
 
     /**

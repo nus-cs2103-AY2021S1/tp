@@ -5,5 +5,10 @@ package chopchop.logic.edit;
 public enum EditOperationType {
     ADD,
     EDIT,
-    DELETE
+    DELETE;
+
+    @Override
+    public String toString() {
+        return super.toString().toLowerCase();
+    }
 }
