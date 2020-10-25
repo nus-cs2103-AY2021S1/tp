@@ -17,6 +17,9 @@ public class UsageList<T extends Usage> {
 
     public UsageList() {}
 
+    /**
+     * Constructs a {@code UsageList} based on the usages.
+     */
     public UsageList(List<T> usages) {
         requireAllNonNull(usages);
         this.usages.setAll(usages);
@@ -26,6 +29,9 @@ public class UsageList<T extends Usage> {
         return this.usages;
     }
 
+    /**
+     * Returns the latest usage.
+     */
     public Optional<LocalDateTime> pop() {
         if (this.usages.size() == 0) {
             return Optional.empty();

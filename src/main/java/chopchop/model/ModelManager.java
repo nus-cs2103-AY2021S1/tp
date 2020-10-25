@@ -52,6 +52,9 @@ public class ModelManager implements Model {
         this.ingredientUsageList = ingredientUsageList;
     }
 
+    /**
+     * Constructs an empty {@code ModelManger}.
+     */
     public ModelManager() {
         this(new EntryBook<>(), new EntryBook<>(), new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(),
             new UserPrefs());

@@ -1,7 +1,6 @@
 package chopchop.model;
 
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -10,8 +9,6 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
-import chopchop.storage.JsonAdaptedIngredientUsage;
-import chopchop.storage.JsonAdaptedRecipeUsage;
 import javafx.collections.ObservableList;
 
 /**
