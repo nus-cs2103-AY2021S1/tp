@@ -66,7 +66,8 @@ public class NoteViewCommand extends Command {
             throw new CommandException(MESSAGE_STOCK_HAS_NO_NOTE);
         }
 
-        return new CommandResult(generateSuccessMessage(stockToViewNotes.get()));
+        return new CommandResult(generateSuccessMessage(stockToViewNotes.get()), null,
+                false, true, stockToViewNotes.get(), false, null, false);
     }
 
     /**

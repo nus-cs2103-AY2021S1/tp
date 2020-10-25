@@ -1,7 +1,7 @@
 package seedu.stock.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.stock.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.stock.model.Model.PREDICATE_SHOW_ALL_STOCKS;
 
 import seedu.stock.model.Model;
 
@@ -22,7 +22,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStockList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStockList(PREDICATE_SHOW_ALL_STOCKS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

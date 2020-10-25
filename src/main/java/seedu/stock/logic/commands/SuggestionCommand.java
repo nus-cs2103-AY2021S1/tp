@@ -23,7 +23,7 @@ public class SuggestionCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) {
-        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         return new CommandResult(toBeDisplayed);
     }
 }

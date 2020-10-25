@@ -4,15 +4,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
-import seedu.stock.model.stock.Stock;
+import seedu.stock.model.stock.Note;
 
 /**
  * An UI component that displays information of a {@code Stock}.
  */
-public class NotesCard extends UiPart<Region> {
+public class NoteCard extends UiPart<Region> {
 
-    private static final String FXML = "StockListCard.fxml";
+    private static final String FXML = "NoteListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -22,31 +21,23 @@ public class NotesCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Stock stock;
+    public final Note note;
 
     @FXML
     private HBox cardPane;
     @FXML
-    private Label notes;
+    private Label id;
     @FXML
-    private VBox notesBox;
+    private Label noteText;
 
     /**
-     * Creates a {@code StockCard} with the given {@code Stock} and index to display.
+     * Creates a {@code NoteCard} with the given {@code Note} and index to display.
      */
-    public NotesCard(Stock stock, int displayedIndex) {
+    public NoteCard(Note note, int displayedIndex) {
         super(FXML);
-        this.stock = stock;
-
-        if (stock.getNotes().size() != 0) {
-            StringBuilder notesAppended = new StringBuilder();
-            for (int i = 0; i < stock.getNotes().size(); i++) {
-                notesAppended.append(i + 1).append(". ")
-                        .append(stock.getNotes().get(i)).append("\n");
-            }
-            notes.setText(notesAppended.toString());
-        }
-
+        this.note = note;
+        id.setText(displayedIndex + ".");
+        noteText.setText(note.value);
     }
 
     @Override
@@ -57,12 +48,12 @@ public class NotesCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StockCard)) {
+        if (!(other instanceof NoteCard)) {
             return false;
         }
 
         // state check
-        NotesCard card = (NotesCard) other;
-        return notes.equals(card.notes) && stock.equals(card.stock);
+        NoteCard card = (NoteCard) other;
+        return note.equals(card.note);
     }
 }

@@ -110,7 +110,7 @@ public class ModelManager implements Model {
     @Override
     public void addStock(Stock stock) {
         stockBook.addStock(stock);
-        updateFilteredStockList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredStockList(PREDICATE_SHOW_ALL_STOCKS);
     }
 
     @Override

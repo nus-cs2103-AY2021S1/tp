@@ -7,6 +7,7 @@ import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_DELETE_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.NOTE_VIEW_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.SORT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
@@ -39,6 +40,7 @@ import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.NoteDeleteCommand;
+import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
@@ -165,6 +167,10 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
         case NoteDeleteCommand.COMMAND_WORD:
             generateDeleteNoteSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case NoteViewCommand.COMMAND_WORD:
+            generateNoteViewSuggestion(toBeDisplayed, argMultimap);
             break;
 
         case PrintCommand.COMMAND_WORD:
@@ -382,6 +388,29 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             toBeDisplayed.append("\n" + bodyErrorMessage);
         } else {
             toBeDisplayed.append("\n" + NoteDeleteCommand.MESSAGE_USAGE);
+        }
+    }
+
+    /**
+     * Generates suggestion for faulty noteview command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateNoteViewSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER);
+        toBeDisplayed.append(NOTE_VIEW_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            toBeDisplayed.append(" ").append(currentPrefix)
+                    .append(CliSyntax.getDefaultDescription(currentPrefix));
+        }
+
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + NoteViewCommand.MESSAGE_USAGE);
         }
     }
 

@@ -1,9 +1,13 @@
 package seedu.stock.ui;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javafx.beans.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -14,6 +18,7 @@ import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.Note;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -31,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StockListPanel stockListPanel;
+    private NoteListPanel noteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
@@ -40,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane stockListPanelPlaceholder;
+
+    @FXML
+    private StackPane noteListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -161,6 +170,8 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            stockListPanel = new StockListPanel(logic.getFilteredStockList());
+            stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -168,7 +179,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowNotes()) {
                 Stock stockToShowNotes = commandResult.getStockToShowNotes();
-                handleShowStockNotes(stockToShowNotes);
+                ObservableList<Note> internalNoteList = FXCollections.observableArrayList();
+                internalNoteList.addAll(stockToShowNotes.getNotes());
+                noteListPanel = new NoteListPanel(internalNoteList);
+                stockListPanelPlaceholder.getChildren().add(noteListPanel.getRoot());
             }
 
             if (commandResult.isShowStatistics()) {
