@@ -1,7 +1,7 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

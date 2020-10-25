@@ -1,7 +1,7 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INCORRECT_CASE_PAGE;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_CASE_PAGE;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.logic.commands.Command.TYPE_DOC;
 import static seedu.pivot.logic.parser.PivotParser.BASIC_COMMAND_FORMAT;
@@ -50,10 +50,6 @@ public class OpenCommandParser implements Parser<OpenCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
         }
 
-
     }
-
-
-
 
 }

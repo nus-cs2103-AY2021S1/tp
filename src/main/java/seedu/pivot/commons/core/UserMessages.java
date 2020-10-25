@@ -3,7 +3,7 @@ package seedu.pivot.commons.core;
 /**
  * Container for user visible messages.
  */
-public class Messages {
+public class UserMessages {
 
     // Common messages
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";

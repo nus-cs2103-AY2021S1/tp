@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.pivot.commons.core.LogsCenter;
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.OpenCommand;
@@ -42,7 +42,7 @@ public class OpenCaseCommand extends OpenCommand {
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             logger.info("Invalid index: " + targetIndex.getOneBased());
-            throw new CommandException(Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+            throw new CommandException(UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
         }
 
         Case caseToOpen = lastShownList.get(targetIndex.getZeroBased());

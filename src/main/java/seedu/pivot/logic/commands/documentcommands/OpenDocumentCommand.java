@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.pivot.commons.core.LogsCenter;
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.FileUtil;
 import seedu.pivot.logic.commands.CommandResult;
@@ -47,7 +47,7 @@ public class OpenDocumentCommand extends OpenCommand {
         //check valid document index
         if (targetIndex.getZeroBased() >= existingDocuments.size()) {
             logger.info("Invalid index: " + targetIndex.getOneBased());
-            throw new CommandException(Messages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX);
+            throw new CommandException(UserMessages.MESSAGE_INVALID_DOCUMENT_DISPLAYED_INDEX);
         }
 
         //open the document
@@ -56,7 +56,7 @@ public class OpenDocumentCommand extends OpenCommand {
         if (!reference.isExists()) {
             logger.warning("Reference does not exist");
             throw new CommandException(String.format(
-                    Messages.MESSAGE_REFERENCE_DOES_NOT_EXIST, docToOpen.getReference()));
+                    UserMessages.MESSAGE_REFERENCE_DOES_NOT_EXIST, docToOpen.getReference()));
         }
 
         try {
@@ -64,7 +64,7 @@ public class OpenDocumentCommand extends OpenCommand {
             FileUtil.openFile(reference.getPath());
         } catch (IOException e) {
             logger.warning("Error opening document");
-            throw new CommandException(Messages.MESSAGE_ERROR_OPENING_FILE);
+            throw new CommandException(UserMessages.MESSAGE_ERROR_OPENING_FILE);
         }
 
         return new CommandResult(String.format(MESSAGE_OPEN_DOCUMENT_SUCCESS, docToOpen));
