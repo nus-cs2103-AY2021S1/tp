@@ -499,6 +499,15 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding an item
+1. Adding an item
+    1. Test Case: `add-i n/Chicken q/123 s/NTUC`
+       Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added if there is no existing same item. If there is an existing same item, `Quantity` will combine, `MaxQuantity` `Tags` `Metric` will be adopted from existing item.
+       
+    1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
+       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added if there is no existing same item. 
+       If there is an existing item the user will receive an error message as `MaxQuantity` or `Metric` should not be defined when adding to existing item.
+
 ### Deleting an item
 
 1. Deleting an item while all items are being shown
