@@ -11,7 +11,9 @@
     }, {
       "instructions" : "4) Lay cheese and ham on the mustard half; lay avocado, onion slices, tomato slices, egg salad, and lettuce on the other half"
     } ],
-    "recipeImage": "images/sandwich.jpeg",
+    "recipeImage" : {
+      "imagePath" : "images/sandwich.jpeg"
+    },
     "ingredients": [ {
       "value" : "Kaiser Rolls Or Other Bread ",
       "quantity" : "2 whole "
@@ -43,7 +45,9 @@
     }, {
       "instructions" : "11) Serve immediately"
     }  ],
-    "recipeImage": "images/pesto1.jpg",
+    "recipeImage" : {
+      "imagePath" : "images/pesto1.jpg"
+    },
     "ingredients": [ {
       "value" : "Pasta ",
       "quantity" : "12 ounces "
@@ -65,7 +69,9 @@
     }, {
       "instructions" : "6) When pork has come to temperature, remove and let rest, tented with foil, for at least five minutes to lock in juices"
     }],
-    "recipeImage": "images/pork.jpeg",
+    "recipeImage" : {
+      "imagePath" : "images/pork.jpeg"
+    },
     "ingredients": [ {
       "value" : "Pork Tenderloins ",
       "quantity" : "2 whole "
@@ -101,7 +107,9 @@
     }, {
       "instructions" : "13) Add plenty of Parmesan shavings and toss to combine"
     } ],
-    "recipeImage": "images/florentine1.jpeg",
+    "recipeImage" : {
+      "imagePath" : "images/florentine1.jpeg"
+    },
     "ingredients": [ {
       "value" : "Penne ",
       "quantity" : "1 pound "
@@ -117,7 +125,9 @@
     }, {
       "instructions" : "3) In the oven (on a baking sheet) or microwave, melt cheese all over the top of each tortilla so that it covers most of the surface area"
     } ],
-    "recipeImage": "images/enchilada1.jpeg",
+    "recipeImage" : {
+      "imagePath" : "images/enchilada1.jpeg"
+    },
     "ingredients": [ {
       "value" : "Green Enchilada Sauce ",
       "quantity" : "15 Ounce "
@@ -145,7 +155,9 @@
     }, {
       "instructions" : "9) ) Gently release the rice cereal egg from the mold, decorate with your choice of sprinkles and set aside in egg crate until set"
     } ],
-    "recipeImage": "images/easter.jpeg",
+    "recipeImage" : {
+      "imagePath" : "images/easter.jpeg"
+    },
     "ingredients": [ {
       "value" : "Small Chocolate Easter Eggs ",
       "quantity" : "20 pieces "
@@ -169,7 +181,9 @@
     }, {
       "instructions" : "7) Assemble patty melts"
     } ],
-    "recipeImage": "images/party.jpeg",
+    "recipeImage" : {
+      "imagePath" : "images/party.jpeg"
+    },
     "ingredients": [ {
       "value" : "Rye Bread ",
       "quantity" : "8 slices "

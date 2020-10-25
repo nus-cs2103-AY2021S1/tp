@@ -19,7 +19,7 @@ public class Instruction {
     public final String instructions;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Instruction}.
      *
      * @param instructions A valid instruction.
      */

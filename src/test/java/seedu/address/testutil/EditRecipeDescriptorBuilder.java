@@ -11,6 +11,7 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -85,7 +86,7 @@ public class EditRecipeDescriptorBuilder {
      * Parses the {@code image} of a {@code EditRecipeDescriptorBuilder} that we are building.
      */
     public EditRecipeDescriptorBuilder withImage(String image) {
-        descriptor.setRecipeImage(image);
+        descriptor.setRecipeImage(new RecipeImage(image));
         return this;
     }
 

@@ -12,6 +12,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Name;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -143,16 +144,16 @@ public class ParserUtil {
     /**
      *  Parses a {@code String instruction} into a {@code Image}.
      *  Leading and trailing whitespaces will be trimmed.
-     *  
+     *
      *  @throws ParseException if the given {@code image} is invalid.
      */
-    public static String parseImage(String imgPath) throws ParseException {
+    public static RecipeImage parseImage(String imgPath) throws ParseException {
         requireNonNull(imgPath);
         String trimmedPath = imgPath.trim();
-        //if (!isValid(trimmedPath)) {
-            //throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        //}
-        return trimmedPath;
+        if (!RecipeImage.isValidImage(trimmedPath)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new RecipeImage(trimmedPath);
     }
 
 }

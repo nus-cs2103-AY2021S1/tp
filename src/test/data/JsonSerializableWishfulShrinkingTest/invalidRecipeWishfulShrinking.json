@@ -6,7 +6,9 @@
       }, {
         "instructions" : "2) Halve the rolls and spread one half with Dijon, the other half with mayonnaise"
       } ],
-      "recipeImage": "images/sandwich.jpeg",
+    "recipeImage" : {
+      "imagePath" : "images/sandwich.jpeg"
+    },
       "ingredients": [ {
         "value" : "",
         "quantity" : "2 whole "

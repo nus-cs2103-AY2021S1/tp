@@ -58,7 +58,7 @@ public class RecipeUtil {
         sb.append(PREFIX_INSTRUCTION + newInstrList.stream()
                 .map(item -> item.toString() + ". ")
                 .reduce("", (a, b) -> a + b).trim() + " ");
-        sb.append(PREFIX_RECIPE_IMAGE + recipe.getRecipeImage() + " ");
+        sb.append(PREFIX_RECIPE_IMAGE + recipe.getRecipeImage().getValue() + " ");
         recipe.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();
     }
