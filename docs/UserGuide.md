@@ -189,7 +189,7 @@ description (Figure).
  
 </div>
 
-<br>![findCommand](images/command/findCommand.png)
+<br>![findCommand](images/commands/findCommand.png)
 <p align="center"> <sub> <b>Figure</b>: Find command successfully executed </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
@@ -203,22 +203,17 @@ description (Figure).
 `Restaurant Food`.
 * The category is optional.
 
+</div>
+
 <div markdown="block" class="alert alert-primary">
 
 [comment]: <> (This only appears in Github CSS)
 
-:bulb: **Tip:**
-
-Good to learn, but not necessary to know to use FitEgo. 
+:bulb: **Tip:** When there are a lot of entries and you want to delete something, 
+you can use `find` to search for it in the list and use `delete ENTRY_INDEX` to remove it from the updated
+list, with the updated `ENTRY INDEX`.
 </div>
 
-</div>
-
-Format:
-* `find k/KEYWORD [MORE_KEYWORDS]`
-
-Example:
-* `find k/food`: Finds expenses with the keyword `food`.
 
 ### Listing all entries: `list`
 
