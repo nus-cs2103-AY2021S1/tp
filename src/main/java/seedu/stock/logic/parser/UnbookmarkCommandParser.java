@@ -20,7 +20,7 @@ public class UnbookmarkCommandParser implements Parser<UnbookmarkCommand> {
      */
     public UnbookmarkCommand parse(String args) throws ParseException {
         try {
-            Set<SerialNumber> serialNumberSet = ParserUtil.parseSerialNumberSet(args);
+            Set<SerialNumber> serialNumberSet = ParserUtil.parseSerialNumbers(args);
             return new UnbookmarkCommand(serialNumberSet);
         } catch (ParseException pe) {
             throw new ParseException(

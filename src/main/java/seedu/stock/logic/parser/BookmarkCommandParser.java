@@ -20,7 +20,7 @@ public class BookmarkCommandParser implements Parser<BookmarkCommand> {
      */
     public BookmarkCommand parse(String args) throws ParseException {
         try {
-            Set<SerialNumber> serialNumberSet = ParserUtil.parseSerialNumberSet(args);
+            Set<SerialNumber> serialNumberSet = ParserUtil.parseSerialNumbers(args);
             return new BookmarkCommand(serialNumberSet);
         } catch (ParseException pe) {
             throw new ParseException(

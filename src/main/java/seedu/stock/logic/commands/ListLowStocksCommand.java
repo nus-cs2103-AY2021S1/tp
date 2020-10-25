@@ -17,13 +17,13 @@ public class ListLowStocksCommand extends ListCommand {
 
     public static final String MESSAGE_SUCCESS = "Listing all stocks in inventory that are low in quantity";
 
-    public static final Predicate<Stock> isLowStock = new LowStocksPredicate();
+    public static final Predicate<Stock> IS_LOW_STOCK = new LowStocksPredicate();
 
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredStockList(isLowStock);
+        model.updateFilteredStockList(IS_LOW_STOCK);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

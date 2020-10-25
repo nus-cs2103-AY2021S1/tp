@@ -122,8 +122,7 @@ public class UnbookmarkCommand extends Command {
             String result = String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks))
                     + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));
             return new CommandResult(result);
-        }
-        else {
+        } else {
             String result = String.format(MESSAGE_NOT_BOOKMARKED , stocksAsString(notUpdatedStocks))
                     + "\n" + String.format(MESSAGE_SERIAL_NUMBER_NOT_FOUND , arrayAsString(stocksNotFound))
                     + "\n" + String.format(MESSAGE_UNBOOKMARK_STOCK_SUCCESS , stocksAsString(updatedStocks));

@@ -28,9 +28,14 @@ public class TypicalStocks {
             .withSerialNumber("BengawanSolo1").withSource("BengawanSolo")
             .withQuantity("123").withLocation("Tart Section, Subsection A")
             .build();
+    public static final Stock ORANGE = new StockBuilder().withName("Orange")
+            .withSerialNumber("Giant1").withSource("Giant")
+            .withQuantity("111").withLocation("Fruit Section, Subsection X")
+            .build();
     public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = APPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = PINEAPPLE.getSerialNumber();
+    public static final SerialNumber SERIAL_NUMBER_FOURTH_STOCK = ORANGE.getSerialNumber();
 
     public static final String RESERVED_NON_EXISTENCE_SOURCE = "$NON-EXISTENT-SOURCE";
 
@@ -48,7 +53,7 @@ public class TypicalStocks {
     }
 
     public static List<Stock> getTypicalStocks() {
-        return new ArrayList<>(Arrays.asList(APPLE, BANANA, PINEAPPLE));
+        return new ArrayList<>(Arrays.asList(APPLE, BANANA, ORANGE));
     }
 
     public static SerialNumberSetsBook getTypicalSerialNumberSetsBook() {
