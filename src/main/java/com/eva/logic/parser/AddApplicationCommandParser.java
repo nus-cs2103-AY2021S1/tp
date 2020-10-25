@@ -23,7 +23,7 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
      */
     @Override
     public AddApplicationCommand parse(String userInput) throws ParseException, FileNotFoundException {
-
+        assert userInput != null;
         try {
             String[] substrings = userInput.split(" ");
             if (substrings.length <= 1) {
