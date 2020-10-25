@@ -23,7 +23,7 @@ public class DisplayNavigator {
      * Loads the RecipeDisplay onto the swappable display region.
      * @param recipe
      */
-    protected static void loadRecipeDisplay(Recipe recipe) {
+    public static void loadRecipeDisplay(Recipe recipe) {
         displayController.displayRecipe(recipe);
     }
 

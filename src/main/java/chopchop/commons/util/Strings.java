@@ -31,6 +31,7 @@ public class Strings {
     public static final String COMMAND_MAKE         = "make";
     public static final String COMMAND_UNDO         = "undo";
     public static final String COMMAND_REDO         = "redo";
+    public static final String COMMAND_VIEW         = "view";
 
 
     public static final List<String> COMMAND_NAMES = List.of(

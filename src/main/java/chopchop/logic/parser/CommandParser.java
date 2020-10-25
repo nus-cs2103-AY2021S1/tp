@@ -23,6 +23,7 @@ import static chopchop.logic.parser.commands.FilterCommandParser.parseFilterComm
 import static chopchop.logic.parser.commands.FindCommandParser.parseFindCommand;
 import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
 import static chopchop.logic.parser.commands.MakeCommandParser.parseMakeCommand;
+import static chopchop.logic.parser.commands.ViewCommandParser.parseViewCommand;
 
 public class CommandParser {
 
@@ -113,6 +114,7 @@ public class CommandParser {
                 case Strings.COMMAND_LIST:      return parseListCommand(args);
                 case Strings.COMMAND_DELETE:    return parseDeleteCommand(args);
                 case Strings.COMMAND_MAKE:      return parseMakeCommand(args);
+                case Strings.COMMAND_VIEW:      return parseViewCommand(args);
                 case Strings.COMMAND_UNDO:      return Result.of(new UndoCommand());
                 case Strings.COMMAND_REDO:      return Result.of(new RedoCommand());
                 case Strings.COMMAND_FILTER:    return parseFilterCommand(args);
