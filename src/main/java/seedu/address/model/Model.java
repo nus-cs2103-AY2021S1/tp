@@ -228,6 +228,8 @@ public interface Model {
 
     void undoOrder();
 
+    boolean isSelected();
+
     /**
      * Updates the filter of the filtered orderItem list at the
      * corresponding index to filter by the given {@code predicate}.
