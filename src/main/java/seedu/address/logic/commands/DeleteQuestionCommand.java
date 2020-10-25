@@ -22,6 +22,7 @@ public class DeleteQuestionCommand extends QuestionCommand {
 
     public static final String MESSAGE_SUCCESS = "Question removed from %1$s: %2$s";
     public static final String MESSAGE_BAD_QUESTION_INDEX = "There is no question at this index";
+    public static final String COMMAND_WORD = "delete";
 
     private static Logger logger = Logger.getLogger("Delete Question Log");
 
