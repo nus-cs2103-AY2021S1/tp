@@ -22,21 +22,18 @@ import seedu.pivot.logic.state.StateManager;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeleteCaseCommandParserTest {
+public class DeleteCommandParserMainPageTest {
+
+    private final String VALID_INDEX = " " + "1";
+    public final String TYPE_CASE = "case";
+
+    private static Index caseIndex = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
 
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCaseCommand() {
-        assertParseSuccess(parser, "case 1", new DeleteCaseCommand(INDEX_FIRST_PERSON));
-    }
-
-    @Test
-    public void parse_invalidArgsMainPage_throwsParseException() {
-        assertParseFailure(parser, "case a",
-                           String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE_MAIN_PAGE));
-        assertParseFailure(parser, "0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteCommand.MESSAGE_USAGE_MAIN_PAGE));
+        assertParseSuccess(parser, TYPE_CASE + VALID_INDEX, new DeleteCaseCommand(caseIndex));
     }
 
 }

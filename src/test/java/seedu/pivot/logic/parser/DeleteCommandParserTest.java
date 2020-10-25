@@ -31,7 +31,6 @@ public class DeleteCommandParserTest {
 
     private DeleteCommandParser parser = new DeleteCommandParser();
 
-
     @AfterAll
     public static void setStateNull() {
         StateManager.resetState();
