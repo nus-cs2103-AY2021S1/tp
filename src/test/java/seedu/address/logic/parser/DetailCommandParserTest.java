@@ -23,6 +23,7 @@ import seedu.address.model.student.admin.Detail;
 
 public class DetailCommandParserTest {
 
+    //@@author VaishakAnand
     private static final String ADD_DETAIL_DESC = AddDetailCommand.COMMAND_WORD + " ";
     private static final String EDIT_DETAIL_DESC = EditDetailCommand.COMMAND_WORD + " ";
     private static final String DELETE_DETAIL_DESC = DeleteDetailCommand.COMMAND_WORD + " ";
@@ -139,5 +140,6 @@ public class DetailCommandParserTest {
         assertThrows(ParseException.class, MESSAGE_UNKNOWN_DETAIL_COMMAND, () ->
                 parser.parse("unknownCommand"));
     }
+    //@@author
 
 }
