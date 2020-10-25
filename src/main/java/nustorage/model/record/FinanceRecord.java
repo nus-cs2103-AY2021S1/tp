@@ -8,7 +8,7 @@ public class FinanceRecord {
     private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
 
     private final int id;
-    private LocalDateTime datetime;
+    private LocalDateTime dateTime;
     private double amount;
     private String UiUsableIndex;
 
@@ -20,7 +20,7 @@ public class FinanceRecord {
     public FinanceRecord(double amount) {
         id = this.hashCode();
         this.amount = amount;
-        this.datetime = LocalDateTime.now();
+        this.dateTime = LocalDateTime.now();
         this.UiUsableIndex = "" + UiUsableIndex;
     }
 
@@ -28,12 +28,12 @@ public class FinanceRecord {
      * Constructs a {@code Finance Record}.
      *
      * @param amount Amount of the transaction.
-     * @param datetime Date of the transaction.
+     * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(double amount, LocalDateTime datetime) {
+    public FinanceRecord(double amount, LocalDateTime dateTime) {
         id = this.hashCode();
         this.amount = amount;
-        this.datetime = datetime;
+        this.dateTime = dateTime;
         this.UiUsableIndex = "" + UiUsableIndex;
     }
 
@@ -42,12 +42,12 @@ public class FinanceRecord {
      *
      * @param id ID of the transaction.
      * @param amount Amount of the transaction.
-     * @param datetime Date of the transaction.
+     * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(int id, double amount, LocalDateTime datetime) {
+    public FinanceRecord(int id, double amount, LocalDateTime dateTime) {
         this.id = id;
         this.amount = amount;
-        this.datetime = datetime;
+        this.dateTime = dateTime;
         this.UiUsableIndex = "" + UiUsableIndex;
     }
 
@@ -59,12 +59,12 @@ public class FinanceRecord {
         return amount;
     }
 
-    public LocalDateTime getDatetime() {
-        return datetime;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
     public String getDatetimeString() {
-        return DATETIME_FORMAT.format(datetime);
+        return DATETIME_FORMAT.format(dateTime);
     }
 
     public String getUiUsableIndex() {
