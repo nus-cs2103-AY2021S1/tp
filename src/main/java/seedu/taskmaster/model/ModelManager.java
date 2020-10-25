@@ -28,7 +28,6 @@ public class ModelManager implements Model {
     private final Taskmaster taskmaster;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
-    private final FilteredList<StudentRecord> filteredStudentRecords;
     private final FilteredList<Session> filteredSessions;
 
     /**
@@ -43,7 +42,6 @@ public class ModelManager implements Model {
         this.taskmaster = new Taskmaster(taskmaster);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taskmaster.getStudentList());
-        filteredStudentRecords = new FilteredList<>(this.taskmaster.getStudentRecordList());
         filteredSessions = new FilteredList<>(this.taskmaster.getSessionList());
     }
 
@@ -148,14 +146,12 @@ public class ModelManager implements Model {
     public void markStudent(Student target, AttendanceType attendanceType) {
         requireAllNonNull(target, attendanceType);
         taskmaster.markStudent(target, attendanceType);
-        updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
     }
 
     @Override
     public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
         requireAllNonNull(nusnetId, attendanceType);
         taskmaster.markStudentWithNusnetId(nusnetId, attendanceType);
-        updateFilteredStudentRecordList(PREDICATE_SHOW_ALL_STUDENT_RECORDS);
     }
 
     @Override
@@ -191,13 +187,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<StudentRecord> getFilteredStudentRecordList() {
-        return filteredStudentRecords;
-    }
-
-    @Override
-    public void updateFilteredStudentRecordList(Predicate<StudentRecord> predicate) {
-        requireNonNull(predicate);
-        filteredStudentRecords.setPredicate(predicate);
+        return new FilteredList<>(this.taskmaster.getStudentRecordList());
     }
 
     @Override

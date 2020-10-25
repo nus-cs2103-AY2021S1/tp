@@ -83,7 +83,14 @@ public class StoreAttendanceCommandTest {
         storeCommand.initialiseStorage(storage);
         String successMessage = StoreAttendanceCommand.MESSAGE_SAVE_SUCCESS_NEWFILE;
         CommandResult expectedCommandResult = new CommandResult(String.format(successMessage, filename));
+
         assertCommandSuccess(storeCommand, model, expectedCommandResult, expectedModel);
+        boolean isExistingFileAgain = Files.exists(filepath);
+        if (isExistingFileAgain) {
+            File file = new File(filepath.toString());
+            file.delete();
+        }
+        assert(!Files.exists(filepath));
     }
 
 }
