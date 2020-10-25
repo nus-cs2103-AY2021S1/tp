@@ -28,7 +28,9 @@ public class FindCommandParser implements ExerciseParser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
-        if (args.isEmpty()) {
+        try {
+            assert !args.isEmpty();
+        } catch (AssertionError e) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
