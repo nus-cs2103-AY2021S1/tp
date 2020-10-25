@@ -3,8 +3,10 @@
 package chopchop.logic.autocomplete;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
@@ -73,6 +75,9 @@ public class AutoCompleter {
         case INGREDIENT_NAME_IN_ARG:
             return completeIngredient(req, model, args, orig);
 
+        case COMPONENT_NAME:
+            return completeArgComponent(args, orig);
+
         // TODO: tags
         case TAG_NAME:
             return orig;
@@ -105,18 +110,11 @@ public class AutoCompleter {
      */
     private String completeTarget(CommandArguments args, String orig) {
 
-        var target = args.getFirstWordFromRemaining();
+        var partial = args.getFirstWordFromRemaining();
 
-        for (var t : CommandTarget.values()) {
-            var ts = t.toString();
-            if (ts.equals(target)) {
-                return orig;
-            } else if (ts.startsWith(target)) {
-                return orig + ts.substring(target.length()) + " ";
-            }
-        }
-
-        return orig;
+        return tryCompletionUsing(Arrays.stream(CommandTarget.values()).map(x -> x.toString())
+                .collect(Collectors.toList()), orig, partial)
+            .orElse(orig);
     }
 
     /**
@@ -126,7 +124,7 @@ public class AutoCompleter {
         assert args.getAllArguments().size() > 0;
 
         var lastArg = args.getAllArguments().get(args.getAllArguments().size() - 1);
-        var argName = lastArg.fst().name();
+        var partial = lastArg.fst().name();
 
         // we could complete all arguments for you, but we can do something a little smarter
         // by looking at the current command+target combo to get the valid arguments.
@@ -152,55 +150,69 @@ public class AutoCompleter {
             }
         } else if (cmd.equals(Strings.COMMAND_EDIT)) {
             if (tgt.equals(CommandTarget.RECIPE.toString())) {
-                return completeEditRecipeArguments(args, argName, orig);
+                return completeEditRecipeArguments(args, partial, orig);
             }
         }
 
-        for (var validArg : validArguments) {
-            var va = validArg.name();
-
-            if (va.equals(argName)) {
-                return orig;
-            } else if (va.startsWith(argName)) {
-                return orig + va.substring(argName.length()) + " ";
-            }
-        }
-
-        return orig;
+        return tryCompletionUsing(getArgNames(validArguments), orig, partial)
+            .orElse(orig);
     }
 
 
-    private List<String> getValidEditOps(ArgName arg) {
-        if (arg.equals(Strings.ARG_INGREDIENT) || arg.equals(Strings.ARG_STEP)) {
+    private List<String> getValidEditOps(String arg) {
+        if (Strings.ARG_INGREDIENT.nameEquals(arg) || Strings.ARG_STEP.nameEquals(arg)) {
             return List.of("add", "edit", "delete");
-        } else if (arg.equals(Strings.ARG_TAG)) {
+        } else if (Strings.ARG_TAG.nameEquals(arg)) {
             return List.of("add", "delete");
         } else {
             return List.of();
         }
     }
 
-    private String completeEditRecipeArguments(CommandArguments args, String arg, String orig) {
+    private String completeArgComponent(CommandArguments args, String orig) {
+        assert args.getAllArguments().size() > 0;
 
-        // oof.
-        // just check manually i guess.
-        if (Strings.ARG_NAME.name().startsWith(arg)) {
-            if (Strings.ARG_NAME.name().equals(arg)) {
-                return orig;
-            } else {
-                return orig + Strings.ARG_NAME.name().substring(arg.length()) + " ";
-            }
-        } else if (Strings.ARG_TAG) {
+        var last = args.getAllArguments().get(args.getAllArguments().size() - 1);
+        var comps = last.fst().getComponents();
+        var argname = last.fst();
 
+        // for now, there's only 2 components max, and the last component is always the index.
+        if (comps.isEmpty() || comps.size() > 1) {
+            return orig;
         }
 
-                // validArguments.add(Strings.ARG_INGREDIENT);
-                // validArguments.add(Strings.ARG_QUANTITY);
-                // validArguments.add(Strings.ARG_STEP);
-                // validArguments.add(Strings.ARG_NAME);
-                // validArguments.add(Strings.ARG_TAG);
+        var partial = comps.get(comps.size() - 1);
 
-        return orig;
+        var valids = getValidEditOps(argname.name());
+        return tryCompletionUsing(valids, orig, partial, /* appending: */ "")
+            .map(comp -> {
+                if (comp.endsWith(":")) {
+                    return comp;
+                }
+
+                if (argname.nameEquals(Strings.ARG_STEP)) {
+                    if (comp.endsWith("edit") || comp.endsWith("delete")) {
+                        return comp + ":";
+                    }
+                }
+
+                return comp + " ";
+
+            })
+            .orElse(orig);
+    }
+
+    private String completeEditRecipeArguments(CommandArguments args, String partial, String orig) {
+
+        // oof.
+        var opt = tryCompletionUsing(getArgNames(Strings.ARG_NAME, Strings.ARG_QUANTITY), orig, partial);
+        if (opt.isPresent()) {
+            return opt.get();
+        }
+
+        return tryCompletionUsing(getArgNames(Strings.ARG_TAG, Strings.ARG_INGREDIENT, Strings.ARG_STEP),
+            orig, partial, /* appending: */ ":")
+        .orElse(orig);
     }
 
 
@@ -360,7 +372,7 @@ public class AutoCompleter {
         } else {
 
             // get the last argument.
-            // congratulations, it's 2020 and you're dumb langauge collection library
+            // congratulations, it's 2020 and your dumb langauge collection library
             // has neither a front() nor back() method.
             var last = args.getAllArguments().get(args.getAllArguments().size() - 1);
             var lastArg = last.fst();
@@ -369,13 +381,14 @@ public class AutoCompleter {
             if (!lastVal.isEmpty()) {
 
                 // now we should check what the name is.
-                if (lastArg.equals(Strings.ARG_INGREDIENT)) {
+                if (lastArg.nameEquals(Strings.ARG_INGREDIENT)) {
                     return RequiredCompletion.INGREDIENT_NAME_IN_ARG;
-                } else if (lastArg.equals(Strings.ARG_TAG)) {
+                } else if (lastArg.nameEquals(Strings.ARG_TAG)) {
                     return RequiredCompletion.TAG_NAME;
                 } else {
                     return RequiredCompletion.NONE;
                 }
+
             } else if (orig.endsWith(" ")) {
 
                 // a bit dirty, but if the last char in the raw input was a space,
@@ -384,25 +397,43 @@ public class AutoCompleter {
                 return RequiredCompletion.NONE;
 
             } else {
-                // complete the argument name.
-                return RequiredCompletion.ARGUMENT_NAME;
+
+                // check if the argument had components
+                if (lastArg.getComponents().size() > 0) {
+                    return RequiredCompletion.COMPONENT_NAME;
+                } else {
+                    // complete the argument name.
+                    return RequiredCompletion.ARGUMENT_NAME;
+                }
             }
         }
     }
 
-    private String canCompleteUsing(ArgName arg, String orig, String input) {
+    private Optional<String> tryCompletionUsing(List<String> candidates, String orig, String partial,
+        String appending) {
 
-        var va = arg.name();
-
-        // for (var validArg : validArguments) {
-            var va = validArg.name();
-
-            if (va.equals(argName)) {
-                return orig;
-            } else if (va.startsWith(argName)) {
-                return orig + va.substring(argName.length()) + " ";
+        for (var arg : candidates) {
+            if (arg.equals(partial)) {
+                return Optional.of(orig);
+            } else if (arg.startsWith(partial)) {
+                return Optional.of(orig + arg.substring(partial.length()) + appending);
             }
-        // }
+        }
+
+        return Optional.empty();
+    }
+
+    private Optional<String> tryCompletionUsing(List<String> candidates, String orig, String partial) {
+        return tryCompletionUsing(candidates, orig, partial, " ");
+    }
+
+    @SafeVarargs
+    private List<String> getArgNames(ArgName... args) {
+        return Arrays.stream(args).map(ArgName::name).collect(Collectors.toList());
+    }
+
+    private List<String> getArgNames(List<ArgName> args) {
+        return args.stream().map(ArgName::name).collect(Collectors.toList());
     }
 
     private boolean commandRequiresTarget(String commandName) {
@@ -434,6 +465,7 @@ public class AutoCompleter {
         INGREDIENT_NAME,
         RECIPE_NAME_IN_ARG,
         INGREDIENT_NAME_IN_ARG,
+        COMPONENT_NAME,
         TAG_NAME
     }
 }

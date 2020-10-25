@@ -74,4 +74,18 @@ public class ArgName {
             && ((ArgName) obj).name.equals(this.name)
             && ((ArgName) obj).components.equals(this.components);
     }
+
+    /**
+     * Returns true iff the name of the argument matches.
+     */
+    public boolean nameEquals(String s) {
+        return this.name.equals(s);
+    }
+
+    /**
+     * Returns true iff the name of the two arguments matche.
+     */
+    public boolean nameEquals(ArgName s) {
+        return this.name.equals(s.name);
+    }
 }
