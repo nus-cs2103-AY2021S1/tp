@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -20,174 +21,181 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.util.ProfileUtil;
+import seedu.address.commons.util.PatientProfileUtil;
 import seedu.address.logic.Logic;
+import seedu.address.model.allergy.Allergy;
+import seedu.address.model.patient.Address;
+import seedu.address.model.patient.BloodType;
+import seedu.address.model.patient.Email;
+import seedu.address.model.patient.IcNumber;
+import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
+import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
+import seedu.address.model.patient.Sex;
 import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
 
 
 /**
- * Panel containing detailed information of the specified {@code Person} including
- * the usual details on {@code PersonCard}, and also associated {@code VisitReport} information.
+ * Popup window displaying patient's parameters.
  */
 public class ProfileWindow extends UiPart<Stage> {
     private static final String FXML = "ProfileWindow.fxml";
     private static final Logger logger = LogsCenter.getLogger(ProfileWindow.class);
 
     private Logic logic;
-    private Patient person;
+    private Patient patient;
 
     @FXML
-    private TextArea nameField;
+    private TextArea name;
 
     @FXML
-    private TextArea allergyField;
+    private TextArea allergy;
 
     @FXML
-    private TextArea phoneField;
+    private TextArea phone;
 
     @FXML
-    private TextArea emailField;
+    private TextArea email;
 
     @FXML
-    private TextArea addressField;
+    private TextArea address;
 
     @FXML
-    private ListView<Visit> profileVisitList;
+    private ListView<Visit> visitHistory;
 
     @FXML
-    private TextArea icNumberField;
+    private TextArea icNumber;
 
     @FXML
-    private TextArea sexField;
+    private TextArea sex;
 
     @FXML
-    private TextArea bloodTypeField;
+    private TextArea bloodType;
 
     @FXML
-    private ImageView profilePictureField;
+    private ImageView profilePicture;
 
     /**
-     * Instantiates a ProfileWindow object.
-     */
-    public ProfileWindow(Stage root) {
-        super(FXML, root);
-        populateVisitList(FXCollections.observableArrayList());
-    }
-
-    /**
-     * Creates a new {@code ProfilePanel}.
+     * Creates a ProfileWindow object.
      */
     public ProfileWindow() {
         this(new Stage());
-
-        /*
-         * [IMPORTANT]
-         * Makes Profile Window monopolize the application focus.
-         * Fixes previous concurrency issues when modifying Person while Profile Window is open.
-         */
         this.getRoot().initModality(Modality.APPLICATION_MODAL);
 
-        // Add handlers to ProfileWindow for user actions.
-        // (esc, q - Exit), (p - Generate .txt for user Profile)
         getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            if (KeyCode.ESCAPE == event.getCode()) {
-                logger.info("User pressed 'esc'. Closing Profile Panel..");
+            KeyCode userInput = event.getCode();
+            if (userInput == KeyCode.ESCAPE) {
+                logger.info("User pressed 'ESC'. Profile Panel closing..");
                 getRoot().hide();
-                logger.info("Profile Panel Closed.");
-            } else if (KeyCode.Q == event.getCode()) {
-                logger.info("User pressed 'q'. Closing Profile Panel.");
-                getRoot().hide();
-                logger.info("Profile Panel Closed.");
+                logger.info("Profile Panel successfully closed.");
             }
         }
         );
     }
 
     /**
-     * Initializes the Profile Window with the particulars from the Person instance.
-     *
-     * @param person Person instance to show in the Profile Window
+     * Creates a ProfileWindow object.
      */
-    public void setup(Patient person, Logic logic) {
+    public ProfileWindow(Stage root) {
+        super(FXML, root);
+        populateVisitList(FXCollections.observableArrayList());
+    }
+
+    @FXML
+    void mouseClickClose(MouseEvent e) {
+        Label exitLabel = (Label) e.getSource();
+        exitLabel.setUnderline(true);
+    }
+
+    @FXML
+    void mouseExit(MouseEvent e) {
+        Label exitLabel = (Label) e.getSource();
+        exitLabel.setUnderline(false);
+    }
+
+    @FXML
+    void mouseEnterClose(MouseEvent e) {
+        logger.info("User pressed 'close'. Profile Panel closing..");
+        getRoot().hide();
+        logger.info("Profile Panel successfully closed.");
+    }
+
+    /**
+     * Fills the Profile Window with the parameters from the specified patient.
+     *
+     * @param patient Patient to display in the Profile Window
+     */
+    public void setup(Patient patient, Logic logic) {
         this.logic = logic;
-        this.person = person;
+        this.patient = patient;
 
-        // Set Person Particulars into relevant fields
-        nameField.setText(ProfileUtil.stringifyName(person.getName()));
-        allergyField.setText(ProfileUtil.stringifyTags(person.getAllergies()));
-        phoneField.setText(ProfileUtil.stringifyPhone(person.getPhone()));
-        emailField.setText(ProfileUtil.stringifyEmail(person.getEmail()));
-        addressField.setText(ProfileUtil.stringifyAddress(person.getAddress()));
-        bloodTypeField.setText(ProfileUtil.stringifyBloodType(person.getBloodType()));
-        sexField.setText(ProfileUtil.stringifySex(person.getSex()));
-        icNumberField.setText(ProfileUtil.stringifyIcNumber(person.getIcNumber()));
+        Name patientName = patient.getName();
+        Set<Allergy> patientAllergy = patient.getAllergies();
+        Phone patientPhone = patient.getPhone();
+        Email patientEmail = patient.getEmail();
+        Address patientAddress = patient.getAddress();
+        BloodType patientBloodType = patient.getBloodType();
+        Sex patientSex = patient.getSex();
+        IcNumber patientIcNumber = patient.getIcNumber();
 
-        ProfilePicture thisProfilePic = person.getProfilePicture();
+        name.setText(PatientProfileUtil.convertNameToString(patientName));
+        allergy.setText(PatientProfileUtil.convertAllergiesToString(patientAllergy));
+        phone.setText(PatientProfileUtil.convertPhoneToString(patientPhone));
+        email.setText(PatientProfileUtil.convertEmailToString(patientEmail));
+        address.setText(PatientProfileUtil.convertAddressToString(patientAddress));
+        bloodType.setText(PatientProfileUtil.convertBloodTypeToString(patientBloodType));
+        sex.setText(PatientProfileUtil.convertSexToString(patientSex));
+        icNumber.setText(PatientProfileUtil.convertIcToString(patientIcNumber));
+
+        ProfilePicture thisProfilePic = patient.getProfilePicture();
         File profilePic = new File(thisProfilePic.toString());
         try {
             assert profilePic != null : "Profile picture cannot be null";
             FileInputStream fileInputStream = new FileInputStream(profilePic);
             Image finalProfilePic = new Image(fileInputStream);
-            profilePictureField.setImage(finalProfilePic);
+            profilePicture.setImage(finalProfilePic);
         } catch (IOException error) {
             error.getMessage();
         }
 
-        // Set Person Visits into ListView
-        populateVisitList(person.getVisitHistory().getObservableVisits());
+        VisitHistory visitHistory = patient.getVisitHistory();
+        ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
+        populateVisitList(observableHistory);
     }
 
     /**
-     * Populates the ProfileWindow's ListView with the ProfileVisitListCells representing the VisitReport
-     * instances contained within an ObservableList&lt;VisitReport&gt; instance.
+     * Fills profile window with patient's visit history.
+     * @param observableHistory Observable list of patient's visit history.
      *
-     * @param visitList ObservableList&lt;VisitReport&gt; instance containing the VisitReports to be
-     *                  visualized.
      */
-    public void populateVisitList(ObservableList<Visit> visitList) {
-        profileVisitList.setItems(visitList);
-        profileVisitList.setCellFactory(listView -> new ProfileVisitListCell());
+    public void populateVisitList(ObservableList<Visit> observableHistory) {
+        visitHistory.setItems(observableHistory);
+        visitHistory.setCellFactory(listView -> new ProfileVisitHistoryCell());
     }
 
-
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code VisitReport} using a {@code ProfileVisitCard}.
+     * Class to display {@code Visit} using a {@code ProfileVisitCard}.
      */
-    class ProfileVisitListCell extends ListCell<Visit> {
+    class ProfileVisitHistoryCell extends ListCell<Visit> {
         @Override
-        protected void updateItem(Visit report, boolean empty) {
-            super.updateItem(report, empty);
+        protected void updateItem(Visit visit, boolean empty) {
+            super.updateItem(visit, empty);
 
-            if (empty || report == null) {
+            if (visit == null || empty) {
                 setGraphic(null);
                 setText(null);
             } else {
-                ProfileVisitCard card = new ProfileVisitCard(report);
-                setGraphic(card.getRoot());
+                ProfileVisitCard visitPanel = new ProfileVisitCard(visit);
+                setGraphic(visitPanel.getRoot());
             }
         }
     }
 
     /**
-     * Shows the Profile Panel.
+     * Displays the Profile Panel.
      *
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code ProfileWindow} is already showing.
-     *     </li>
-     * </ul>
      */
     public void show() {
         logger.info("Showing Profile Panel");
@@ -196,43 +204,24 @@ public class ProfileWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the Profile panel is currently being shown.
+     * Checks if ProfileWindow is being displayed.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the Profile panel.
+     * Hides the ProfileWindow.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the Profile panel.
+     * Focuses on ProfileWindow.
      */
     public void focus() {
         getRoot().requestFocus();
-    }
-
-    @FXML
-    void mouseEnterExit(MouseEvent e) {
-        Label exitLabel = (Label) e.getSource();
-        exitLabel.setUnderline(true);
-    }
-
-    @FXML
-    void mouseLeaveExit(MouseEvent e) {
-        Label exitLabel = (Label) e.getSource();
-        exitLabel.setUnderline(false);
-    }
-
-    @FXML
-    void mouseClickExit(MouseEvent e) {
-        logger.info("User pressed 'close'. Closing Profile Panel..");
-        getRoot().hide();
-        logger.info("Profile Panel Closed.");
     }
 }
 

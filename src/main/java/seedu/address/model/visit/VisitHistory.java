@@ -28,6 +28,7 @@ public class VisitHistory {
     public ObservableList<Visit> getObservableVisits() {
         return FXCollections.observableArrayList(this.visits);
     }
+
     /**
      * Adds a new visit to the visit history.
      */
@@ -87,11 +88,11 @@ public class VisitHistory {
     @Override
     public String toString() {
         if (visits.isEmpty()) {
-            return "No visit history";
+            return "This patient has no prior visits.";
         }
         final StringBuilder builder = new StringBuilder();
-        builder.append("Visit History:\n");
-        this.visits.forEach(builder::append);
+        builder.append("Most recent visit date: ");
+        builder.append(visits.get(0).toString());
         return builder.toString();
     }
 }

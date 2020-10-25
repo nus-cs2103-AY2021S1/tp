@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Patient;
 import seedu.address.model.visit.Visit;
 
 /**
@@ -77,12 +78,12 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         visitWindow = new VisitRecordWindow(windowEvent -> {
-            resultDisplay.setFeedbackToUser(visitWindow.getMessage());
-            visitWindow.clearFields();
+            resultDisplay.setFeedbackToUser(visitWindow.getFeedbackMessage());
+            visitWindow.flushParameters();
         });
+        profilePanel = new ProfileWindow();
         visitListPanel = new VisitListPanel();
         emptyVisitList = new EmptyVisitList();
-        profilePanel = new ProfileWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -172,7 +173,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Closes the application.
+     * Exits the application.
      */
     @FXML
     private void handleExit() {
@@ -187,13 +188,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the visit form or focuses on it if it's already opened.
+     * Displays the visit window.
+     * If it is already open, focus on the visit window.
      */
     @FXML
-    public void handleShowVisitForm() {
+    public void handleDisplayVisit() {
         if (visitListPanel.isShowing()) {
             visitListPanel.hide();
         }
+
         if (!visitWindow.isShowing()) {
             visitWindow.show();
         } else {
@@ -202,10 +205,11 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the empty visit list prompt window or focuses on it if it's already opened.
+     * Displays the empty visit window.
+     * If it is already open, focus on the empty visit window.
      */
     @FXML
-    public void handleEmptyVisitList() {
+    public void handleEmptyVisitHistory() {
         if (!emptyVisitList.isShowing()) {
             emptyVisitList.show();
         } else {
@@ -214,7 +218,8 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Opens the profile panel or focuses on it if it's already opened.
+     * Displays the patient profile panel.
+     * If it is already open, focus on the profile panel.
      */
     @FXML
     public void handleProfilePanel() {
@@ -223,23 +228,6 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             profilePanel.focus();
         }
-    }
-
-    /**
-     * Opens the visit form or focuses on it if it's already opened.
-     */
-    @FXML
-    public void handleShowVisitList() {
-        if (!visitListPanel.isShowing()) {
-            visitListPanel.show();
-            primaryStage.requestFocus();
-        } else {
-            visitListPanel.focus();
-        }
-    }
-
-    public PatientListPanel getPatientListPanel() {
-        return patientListPanel;
     }
 
     /**
@@ -252,6 +240,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            int patientIndex = commandResult.getPatientIndex();
+            String visitDate = commandResult.getVisitDate();
+            int visitIndex = commandResult.getVisitIndex();
+            Visit previousVisit = commandResult.getPreviousVisit();
+            ObservableList<Visit> observableHistory = commandResult.getObservableVisitHistory();
+            Patient patient = commandResult.getPatientProfile();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -262,31 +256,30 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isAddVisit()) {
-                visitWindow.setReportInfo(commandResult.getIdx(), commandResult.getDate(), logic);
-                handleShowVisitForm();
+                visitWindow.setVisitDetails(logic, visitDate, patientIndex);
+                handleDisplayVisit();
             }
 
             if (commandResult.isEditVisit()) {
-                visitWindow.setOldReportInfo(commandResult.getIdx(), commandResult.getReportIdx(),
-                        commandResult.getOldReport(), logic);
+                visitWindow.setPreviousVisitDetails(logic, previousVisit, visitIndex, patientIndex);
                 if (visitListPanel.isShowing()) {
                     visitListPanel.hide();
                 }
-                handleShowVisitForm();
+                handleDisplayVisit();
             }
 
-            if (commandResult.isShowVisitList()) {
-                ObservableList<Visit> visits = commandResult.getObservableVisitHistory();
+            if (commandResult.isDisplayVisitHistory()) {
+                ObservableList<Visit> visits = observableHistory;
                 if (visits.isEmpty()) {
                     if (visitListPanel.isShowing()) {
                         visitListPanel.hide();
                     }
-                    handleEmptyVisitList();
+                    handleEmptyVisitHistory();
                 }
             }
 
-            if (commandResult.isShowProfile()) {
-                profilePanel.setup(commandResult.getProfilePerson(), logic);
+            if (commandResult.isDisplayProfile()) {
+                profilePanel.setup(patient, logic);
                 handleProfilePanel();
             }
 

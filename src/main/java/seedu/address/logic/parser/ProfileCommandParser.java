@@ -21,14 +21,15 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
-        Index index;
+        Index patientIndex;
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ProfileCommand.MESSAGE_USAGE), ive);
+            patientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (IllegalValueException exception) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ProfileCommand.MESSAGE_USAGE),
+                                     exception);
         }
 
-        return new ProfileCommand(index);
+        return new ProfileCommand(patientIndex);
     }
 }
 

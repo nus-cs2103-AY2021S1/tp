@@ -194,34 +194,35 @@ public class ParserUtil {
     }
 
     /**
-     * Trims a {@code date} into a {@code trimmedDate}.
-     *
-     * @throws ParseException if the given {@code date} is invalid.
-     */
-    public static String parseVisitReport(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedDate = date.trim();
-        if (!Visit.isValidVisitDate(trimmedDate)) {
-            throw new ParseException(Visit.MESSAGE_CONSTRAINTS);
-        }
-        return trimmedDate;
-    }
-
-    /**
-     * Checks if {@code index} is a valid number.
+     * Validates {@code index} as a valid number.
      *
      * @throws ParseException if the given {@code index} is invalid.
      */
-    public static int parseVisitReportIndex(String index) throws ParseException {
-        if (index.equals(MESSAGE_EMPTY_VISIT_INDEX)) {
-            return MESSAGE_EMPTY_VISIT_INDICATOR;
-        } else {
-            int reportIdx = Integer.parseInt(index);
-            if (reportIdx < 1) {
-                throw new ParseException(Messages.MESSAGE_INVALID_VISIT_DISPLAYED_INDEX);
+    public static int parseVisitIndex(String index) throws ParseException {
+        if (!index.equals(MESSAGE_EMPTY_VISIT_INDEX)) {
+            if (Integer.parseInt(index) < 1) {
+                throw new ParseException(Messages.MESSAGE_INVALID_VISIT_INDEX);
             } else {
-                return reportIdx;
+                return Integer.parseInt(index);
             }
+        } else {
+            return MESSAGE_EMPTY_VISIT_INDICATOR;
         }
+    }
+
+    /**
+     * Validates {@code date} and  returns a  trimmed {@code trimmedDate}.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static String parseVisit(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (Visit.isValidVisitDate(trimmedDate)) {
+            // Do nothing.
+        } else {
+            throw new ParseException(Visit.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDate;
     }
 }

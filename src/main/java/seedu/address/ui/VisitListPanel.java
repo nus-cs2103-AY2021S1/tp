@@ -21,10 +21,10 @@ public class VisitListPanel extends UiPart<Stage> {
     private final Logger logger = LogsCenter.getLogger(PatientListPanel.class);
 
     @FXML
-    private ListView<Visit> visitListView;
+    private ListView<Visit> visitHistoryView;
 
     /**
-     * Instantiates a VisitListPanel object.
+     * Creates a VisitListPanel object.
      */
     public VisitListPanel(Stage root) {
         super(FXML, root);
@@ -32,61 +32,45 @@ public class VisitListPanel extends UiPart<Stage> {
     }
 
     /**
-     * Creates a new panel.
+     * Creates a new visit history panel.
      */
     public VisitListPanel() {
         this(new Stage());
 
     }
 
-    public void setup(ObservableList<Visit> visitList) {
-        visitListView.setItems(visitList);
-        visitListView.setCellFactory(listView -> new VisitListViewCell());
+    public void setup(ObservableList<Visit> visitHistory) {
+        visitHistoryView.setItems(visitHistory);
+        visitHistoryView.setCellFactory(listView -> new VisitHistoryViewCell());
     }
 
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Class to display {@code Visit} using {@code VisitHistoryViewCell}.
      */
-    class VisitListViewCell extends ListCell<Visit> {
+    class VisitHistoryViewCell extends ListCell<Visit> {
         @Override
-        protected void updateItem(Visit report, boolean empty) {
-            super.updateItem(report, empty);
+        protected void updateItem(Visit visit, boolean empty) {
+            super.updateItem(visit, empty);
 
-            if (empty || report == null) {
+            if (visit == null || empty) {
                 setGraphic(null);
                 setText(null);
-            } else {
-                setGraphic(new VisitCard(report, getIndex() + 1).getRoot());
             }
         }
     }
 
     /**
-     * Shows the help window.
-     * @throws IllegalStateException
-     * <ul>
-     *     <li>
-     *         if this method is called on a thread other than the JavaFX Application Thread.
-     *     </li>
-     *     <li>
-     *         if this method is called during animation or layout processing.
-     *     </li>
-     *     <li>
-     *         if this method is called on the primary stage.
-     *     </li>
-     *     <li>
-     *         if {@code dialogStage} is already showing.
-     *     </li>
-     * </ul>
+     * Displays the VisitListPanel window.
      */
     public void show() {
-        logger.fine("Showing report form.");
+        logger.fine("Displaying visitation log.");
         getRoot().show();
         getRoot().setAlwaysOnTop(true);
         getRoot().centerOnScreen();
         getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
-            if (KeyCode.ESCAPE == event.getCode()) {
+            KeyCode userInput = event.getCode();
+            if (userInput == KeyCode.ESCAPE) {
                 this.hide();
             }
         });
@@ -94,24 +78,23 @@ public class VisitListPanel extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Checks if the VisitListPanel window is being displayed.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the VisitListPanel window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the VisitListPanel window.
      */
     public void focus() {
         getRoot().requestFocus();
     }
-
 }

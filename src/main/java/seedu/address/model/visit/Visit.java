@@ -55,16 +55,55 @@ public class Visit implements Comparable<Visit> {
         return patientName;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
     public String getDiagnosis() {
         return diagnosis;
     }
 
     public String getPrescription() {
         return prescription;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    /**
+     * Sets patient parameters in profile window.
+     */
+    public void setParameters(String diagnosis, String prescription, String comment) {
+        this.diagnosis = diagnosis;
+        this.prescription = prescription;
+        this.comment = comment;
+    }
+
+    /**
+     * Sets patient name.
+     */
+    public void setPatientName(Name patientName) {
+        this.patientName = patientName;
+    }
+
+    /**
+     * Validates visit date in DD/MM/YYYY format.
+     * YYYY must be 19xx or 2xxx.
+     */
+    public static boolean isValidVisitDate(String input) {
+        DateTimeFormatter dateFormatAs19xx =
+                DateTimeFormatter.ofPattern("dd/MM/19uu").withResolverStyle(ResolverStyle.STRICT);
+
+        DateTimeFormatter dateFormatAs2xxx =
+                DateTimeFormatter.ofPattern("dd/MM/2uuu").withResolverStyle(ResolverStyle.STRICT);
+
+        try {
+            LocalDate.parse(input, dateFormatAs19xx);
+        } catch (DateTimeParseException exception) {
+            try {
+                LocalDate.parse(input, dateFormatAs2xxx);
+            } catch (DateTimeParseException exception2) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -105,48 +144,7 @@ public class Visit implements Comparable<Visit> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("-----------------\n")
-            .append("Date: ")
-            .append(getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")))
-            .append("\nDiagnosis: ")
-            .append(getDiagnosis())
-            .append("\nPrescription: ")
-            .append(getPrescription())
-            .append("\nComment: ")
-            .append(getComment()).append("\n\n");
+        builder.append(getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
         return builder.toString();
-    }
-
-    /**
-     * Returns true if visit date is valid.
-     */
-    public static boolean isValidVisitDate(String input) {
-
-        //make sure month and day are valid and year is 2xxx or 19xx
-        DateTimeFormatter dateFormatter1 =
-            DateTimeFormatter.ofPattern("dd/MM/2uuu").withResolverStyle(ResolverStyle.STRICT);
-
-        DateTimeFormatter dateFormatter2 =
-            DateTimeFormatter.ofPattern("dd/MM/19uu").withResolverStyle(ResolverStyle.STRICT);
-        try {
-            LocalDate.parse(input, dateFormatter1);
-        } catch (DateTimeParseException e) {
-            try {
-                LocalDate.parse(input, dateFormatter2);
-            } catch (DateTimeParseException e2) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void setFields(String diagnosis, String prescription, String comment) {
-        this.diagnosis = diagnosis;
-        this.prescription = prescription;
-        this.comment = comment;
-    }
-
-    public void setPatientName(Name patientName) {
-        this.patientName = patientName;
     }
 }
