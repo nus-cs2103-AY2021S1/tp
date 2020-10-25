@@ -3,7 +3,9 @@ package com.eva.logic.parser;
 import java.util.Arrays;
 
 import com.eva.commons.core.Messages;
+import com.eva.logic.commands.FindApplicantCommand;
 import com.eva.logic.commands.FindCommand;
+import com.eva.logic.commands.FindStaffCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.person.NameContainsKeywordsPredicate;
 
@@ -23,10 +25,16 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
-
         String[] nameKeywords = trimmedArgs.split("\\s+");
-
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        String[] shiftedNameKeywords = Arrays.copyOfRange(nameKeywords, 1, nameKeywords.length);
+        switch (nameKeywords[0]) {
+        case "-a":
+            return new FindApplicantCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(shiftedNameKeywords)));
+        case "-s":
+            return new FindStaffCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(shiftedNameKeywords)));
+        default:
+            return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)));
+        }
     }
 
 }
