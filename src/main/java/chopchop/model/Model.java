@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
@@ -161,7 +162,7 @@ public interface Model {
 
     void removeRecipeUsage(Recipe recipe);
 
-    void addIngredientUsage(Ingredient ingredient);
+    void addIngredientUsage(IngredientReference ingredient);
 
-    void removeIngredientUsage(Ingredient ingredient);
+    void removeIngredientUsage(IngredientReference ingredient);
 }

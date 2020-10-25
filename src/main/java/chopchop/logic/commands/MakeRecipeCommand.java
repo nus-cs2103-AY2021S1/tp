@@ -80,6 +80,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
 
             try {
                 this.ingredients.add(new Pair<>(ingredient, ingredient.split(ingredientRef.getQuantity()).snd()));
+                model.addIngredientUsage(ingredientRef);
             } catch (IncompatibleIngredientsException | IllegalValueException e) {
                 throw new CommandException(String.format(MESSAGE_MAKE_RECIPE_ERROR, ingredient.getName()));
             }
@@ -88,14 +89,11 @@ public class MakeRecipeCommand extends Command implements Undoable {
         for (var ingredient : this.ingredients) {
             if (ingredient.snd().getIngredientSets().isEmpty()) {
                 model.deleteIngredient(ingredient.fst());
-                model.addIngredientUsage(ingredient.fst());
             } else {
                 model.setIngredient(ingredient.fst(), ingredient.snd());
-                model.addIngredientUsage(ingredient.snd());
             }
 
         }
-        model.setRecipe(this.recipe, this.recipe.addUsage());
         model.addRecipeUsage(this.recipe);
         return new CommandResult(String.format(MESSAGE_MAKE_RECIPE_SUCCESS, this.recipe));
     }
@@ -109,11 +107,13 @@ public class MakeRecipeCommand extends Command implements Undoable {
             } else {
                 model.setIngredient(ingredient.snd(), ingredient.fst());
             }
-            model.removeIngredientUsage(ingredient.fst());
+        }
+
+        for (var ingredientRef : this.recipe.getIngredients()) {
+            model.removeIngredientUsage(ingredientRef);
         }
 
         this.ingredients.clear();
-        model.setRecipe(this.recipe, this.recipe.removeUsage());
         model.removeRecipeUsage(this.recipe);
         return new CommandResult(String.format(MESSAGE_UNDO_SUCCESS, this.recipe));
     }

@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
@@ -254,14 +255,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addIngredientUsage(Ingredient ingredient) {
+    public void addIngredientUsage(IngredientReference ingredient) {
         IngredientUsage usage = new IngredientUsage(ingredient.getName(), LocalDateTime.now(),
             ingredient.getQuantity());
         this.ingredientUsageList.add(usage);
     }
 
     @Override
-    public void removeIngredientUsage(Ingredient ingredient) {
+    public void removeIngredientUsage(IngredientReference ingredient) {
         this.ingredientUsageList.pop(ingredient.getName());
     }
 
