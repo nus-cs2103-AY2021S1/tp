@@ -541,26 +541,42 @@ The following sequence diagram shows how the up down arrow key mechanism works:
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation**
+
+This section highlights the documentation outline used for this software project. 
+
 Refer to the guide: [_Documentation Guide_](Documentation.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **5. Testing**
+
+This section highlights the kind of test cases that are included in CliniCal's codebase. It also shows 
+how these test cases can be run on IntelliJ.
+
 Refer to the guide: [_Testing guide_](Testing.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **6. Logging**
+
+This section highlights the method of logging used in CliniCal's codebase.
+
 Refer to the guide: [_Logging guide_](Logging.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **7. Configuration**
+
+This section highlights how certain properties of CliniCal can be controlled via the configuration file.
+
 Refer to the guide: [_Configuration guide_](Configuration.md)
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **8. Dev-ops**
+
+This section highlights the tools used to build and release updated versions of CliniCal.
+
 Refer to the guide: [_DevOps guide_](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
