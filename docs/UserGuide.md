@@ -7,12 +7,15 @@ Common Cents is your convenient at-hand expense-tracking tool, meant for anyone 
 
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
+# How to identify notations
+These blocks are a few examples of notations that will be used in this document. Each block and icon 
+has a different meaning so do look out for them under our features.
 
 <div markdown="block" class="alert alert-info"> 
 
-:information_source: **Note:**
+:information_source: **Note:** 
 
-Important notes to read to understand our features. 
+Important notes to read regarding the feature. 
 </div>
 
 <div markdown="block" class="alert alert-primary">
@@ -28,14 +31,14 @@ Ways to better your experience with Common Cents.
 
 :heavy_check_mark: **Example:**
 
-An example to follow.
+An example, or multiple examples to follow.
 </div>
 
 <div markdown="block" class="alert alert-danger">
 
 :warning: **Warning:**
 
-Features to be used with caution as using them may have irreversible effects.
+Important cautions that needs to be known before using the feature.
 </div>
 
 
