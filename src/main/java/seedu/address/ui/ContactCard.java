@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.contact.Contact;
 
+import java.util.Comparator;
+
 
 /**
  * An UI component that displays information of a {@code Contact}.
@@ -40,9 +42,9 @@ public class ContactCard extends UiPart<Region> {
         name.setText(contact.getName().fullName);
         email.setText(contact.getEmail().value);
         telegram.setText(contact.getTelegramUsername().telegramUsername);
-        //contact.getTags().stream()
-        //        .sorted(Comparator.comparing(tag -> tag.tagName))
-        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        contact.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override
