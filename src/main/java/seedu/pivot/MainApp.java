@@ -46,6 +46,7 @@ public class MainApp extends Application {
     protected Model model;
     protected Config config;
 
+
     @Override
     public void init() throws Exception {
         logger.info("=============================[ Initializing PIVOT ]===========================");
@@ -96,6 +97,7 @@ public class MainApp extends Application {
     private void initLogging(Config config) {
         LogsCenter.init(config);
     }
+
 
     /**
      * Returns a {@code Config} using the file at {@code configFilePath}. <br>
