@@ -24,12 +24,14 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX [MORE INDEXES] (must be a positive integer, "
             + "must not contain duplicates and cannot be greater than the size of the current "
             + "assignment list)\n"
-            + "Example: " + COMMAND_WORD + " 1 2";
+            + "Examples: \n"
+            + COMMAND_WORD + " 1\n"
+            + COMMAND_WORD + " 1 2\n";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Assignment(s): %1$s";
     public static final String MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX = "Duplicated indexes found.";
 
-    private static final Comparator<Index> compareIndexes = (firstIndex, secondIndex) -> {
+    private final Comparator<Index> indexComparator = (firstIndex, secondIndex) -> {
         int firstIndexValue = firstIndex.getZeroBased();
         int secondIndexValue = secondIndex.getZeroBased();
         return secondIndexValue - firstIndexValue; // sort by descending order
@@ -41,7 +43,7 @@ public class DeleteCommand extends Command {
         this.targetIndexes = targetIndexes;
     }
 
-    private static void checkForDuplicatedIndexes(List<Index> targetIndexes) throws CommandException {
+    private void checkForDuplicatedIndexes(List<Index> targetIndexes) throws CommandException {
         List<Integer> zeroBasedIndexes = new ArrayList<>();
         for (Index targetIndex : targetIndexes) {
             int zeroBasedIndex = targetIndex.getZeroBased();
@@ -59,7 +61,7 @@ public class DeleteCommand extends Command {
         }
     }
 
-    private static void checkForInvalidIndexes(List<Index> targetIndexes, Model model) throws CommandException {
+    private void checkForInvalidIndexes(List<Index> targetIndexes, Model model) throws CommandException {
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
         if (targetIndexes.isEmpty()) {
             throw new CommandException(
@@ -79,7 +81,7 @@ public class DeleteCommand extends Command {
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
         List<Assignment> deletedAssignments = new ArrayList<>();
 
-        targetIndexes.sort(compareIndexes);
+        targetIndexes.sort(indexComparator);
 
         checkForDuplicatedIndexes(targetIndexes);
         checkForInvalidIndexes(targetIndexes, model);
