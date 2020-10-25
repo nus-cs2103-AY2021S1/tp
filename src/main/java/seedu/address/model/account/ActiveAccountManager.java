@@ -80,8 +80,6 @@ public class ActiveAccountManager implements ActiveAccount {
         previousState.ifPresent((prevState) -> {
             Account prevStateAccount = prevState.getAccount();
             setActiveAccount(prevStateAccount);
-            //filteredExpenses = new FilteredList<>(activeAccount.getExpenseList());
-            //filteredRevenues = new FilteredList<>(activeAccount.getRevenueList());
             previousState = prevState.getPreviousState();
         });
     }
