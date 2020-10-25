@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPT_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPT_STARTTIME;
 
-import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -42,10 +41,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
             }
 
             int duration = Integer.parseInt(durationString);
-            LocalDateTime startTime = LocalDateTime.parse(startTimeString);
             AppointmentDateTime startApptTime = new AppointmentDateTime(startTimeString);
-            LocalDateTime endTime = startTime.plusMinutes(duration);
-            AppointmentDateTime endApptTime = new AppointmentDateTime(endTime.toString());
+            AppointmentDateTime endApptTime = new AppointmentDateTime(startTimeString, duration);
             return new AddAppointmentCommand(index, startApptTime, endApptTime);
         } catch (ParseException pe) {
             throw new ParseException(

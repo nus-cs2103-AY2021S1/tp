@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.AppointmentDateTime;
+import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
 
 /**
@@ -10,10 +11,12 @@ import seedu.address.model.patient.Name;
 public class AppointmentBuilder {
 
     public static final String DEFAULT_NAME = "Danny Williams";
+    public static final String DEFAULT_IC = "S1234567A";
     public static final String DEFAULT_START_TIME = "2020-02-02 14:20";
     public static final String DEFAULT_END_TIME = "2020-02-02 14:35";
 
     private Name patientName;
+    private IcNumber patientIC;
     private AppointmentDateTime startTime;
     private AppointmentDateTime endTime;
 
@@ -22,6 +25,7 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder() {
         patientName = new Name(DEFAULT_NAME);
+        patientIC = new IcNumber(DEFAULT_IC);
         startTime = new AppointmentDateTime(DEFAULT_START_TIME);
         endTime = new AppointmentDateTime(DEFAULT_END_TIME);
     }
@@ -31,6 +35,7 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
         patientName = appointmentToCopy.getPatientName();
+        patientIC = appointmentToCopy.getIcNumber();
         startTime = appointmentToCopy.getStartTime();
         endTime = appointmentToCopy.getEndTime();
     }
@@ -40,6 +45,14 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder withPatientName(String patientName) {
         this.patientName = new Name(patientName);
+        return this;
+    }
+
+    /**
+     * Sets the {@code patientIC} of the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withPatientIC(String patientIC) {
+        this.patientIC = new IcNumber(patientIC);
         return this;
     }
 
@@ -63,7 +76,7 @@ public class AppointmentBuilder {
      * Builds {@code Appointment} with the given fields.
      */
     public Appointment build() {
-        return new Appointment(patientName, startTime, endTime);
+        return new Appointment(patientName, patientIC, startTime, endTime);
     }
 
 }

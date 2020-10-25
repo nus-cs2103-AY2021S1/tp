@@ -16,6 +16,7 @@ public class AppointmentDateTime {
     // rather than a regex.
 
     public final LocalDateTime dateTime;
+    private int duration;
 
     /**
      * Constructs a {@code AppointmentDateTime}.
@@ -26,6 +27,21 @@ public class AppointmentDateTime {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, FORMATTER);
+    }
+
+    /**
+     * Constructs a {@code AppointmentDateTime}.
+     *
+     * @param dateTime a valid dateTime string to be parsed by LocalDateTime.
+     * @param duration a valid duration to add on
+     */
+    public AppointmentDateTime(String dateTime, int duration) {
+        assert duration > 0 : "Invalid duration";
+        requireNonNull(dateTime);
+        requireNonNull(duration);
+        checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
+        this.duration = duration;
+        this.dateTime = LocalDateTime.parse(dateTime, FORMATTER).plusMinutes(this.duration);
     }
 
     /**

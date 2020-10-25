@@ -10,8 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.ConflictingAppointmentException;
-import seedu.address.model.patient.IcNumber;
-import seedu.address.model.patient.Name;
 
 /**
  * A list of appointments that prevents time conflicts between its elements and does not allow nulls.
@@ -30,17 +28,6 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalList = FXCollections.observableArrayList();
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-
-    /**
-     * Sample Appointment
-     */
-    public UniqueAppointmentList() {
-        super();
-        add(new Appointment(new Name("Kim Test"),
-                new IcNumber("S1234567A"),
-                new AppointmentDateTime("2020-10-24T15:40"),
-                new AppointmentDateTime("2020-10-24T15:55")));
-    }
 
     /**
      * Returns true if the list contains an appointment that clashes with the given appointment.
