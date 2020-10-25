@@ -44,7 +44,7 @@ public class Task {
     /**
      * name, progress, and isDone should be present and not null. description and deadline can be null.
      */
-    public Task(String taskName, String description, String deadline, double progress, boolean isDone) {
+    public Task(String taskName, String description, Deadline deadline, double progress, boolean isDone) {
         requireAllNonNull(taskName, progress, isDone);
         this.taskName = taskName;
         this.description = description;
@@ -52,7 +52,7 @@ public class Task {
         if (deadline == null) {
             this.deadline = null;
         } else {
-            this.deadline = new Deadline(deadline);
+            this.deadline = deadline;
         }
         this.progress = progress;
         this.isDone = isDone;
