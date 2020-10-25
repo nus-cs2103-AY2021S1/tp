@@ -543,14 +543,22 @@ The following sequence diagram shows how the up down arrow key mechanism works:
 ## **4. Documentation**
 Refer to the guide: [_Documentation Guide_](Documentation.md)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **5. Testing**
 Refer to the guide: [_Testing guide_](Testing.md)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **6. Logging**
 Refer to the guide: [_Logging guide_](Logging.md)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **7. Configuration**
 Refer to the guide: [_Configuration guide_](Configuration.md)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **8. Dev-ops**
 Refer to the guide: [_DevOps guide_](DevOps.md)
@@ -568,7 +576,6 @@ Refer to the guide: [_DevOps guide_](DevOps.md)
 * prefer to check schedule on desktop application instead of relying on physical calendar
 
 **Value proposition**: provide a platform for doctors to manage their upcoming appointments and access patient's medical records more easily
-
 
 ## **Appendix B: User stories**
 
@@ -762,8 +769,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Patient records**: Extensive collection of patients’ private information (not meant to be shared) and medical histories.
 * **Main window**: Application’s opening window which displays a command bar and the list of patients.
-
---------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix F: Instructions for manual testing**
 
