@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import seedu.address.model.IngredientBook;
@@ -20,7 +21,9 @@ public class TypicalIngredients {
             new Amount("70"));
     public static final Ingredient BOBA = new Ingredient(new IngredientName("Boba"),
             new Amount("0"));
-    public static final Ingredient OOLONG_TEA = new Ingredient(new IngredientName("Oolong Tea"),
+    public static final Ingredient BLACK_TEA = new Ingredient(new IngredientName("Black Tea"),
+            new Amount("0"));
+    public static final Ingredient GREEN_TEA = new Ingredient(new IngredientName("Green Tea"),
             new Amount("0"));
     public static final Ingredient BROWN_SUGAR = new Ingredient(new IngredientName("Brown Sugar"),
             new Amount("0"));
@@ -39,6 +42,6 @@ public class TypicalIngredients {
     }
 
     public static List<Ingredient> getTypicalIngredients() {
-        return new ArrayList<>(Arrays.asList(MILK, PEARL, BOBA, OOLONG_TEA, BROWN_SUGAR));
+        return new ArrayList<>(Arrays.asList(MILK, PEARL, BOBA, BLACK_TEA, GREEN_TEA, BROWN_SUGAR));
     }
 }

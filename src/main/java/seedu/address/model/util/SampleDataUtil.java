@@ -70,7 +70,8 @@ public class SampleDataUtil {
             new Ingredient(new IngredientName("Milk"), new Amount("0")),
             new Ingredient(new IngredientName("Pearl"), new Amount("0")),
             new Ingredient(new IngredientName("Boba"), new Amount("0")),
-            new Ingredient(new IngredientName("Oolong Tea"), new Amount("0")),
+            new Ingredient(new IngredientName("Black Tea"), new Amount("0")),
+            new Ingredient(new IngredientName("Green Tea"), new Amount("0")),
             new Ingredient(new IngredientName("Brown Sugar"), new Amount("0"))
         };
     }

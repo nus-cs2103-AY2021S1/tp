@@ -102,5 +102,8 @@ public class JsonIngredientBookStorageTest {
         assertThrows(NullPointerException.class, () -> saveIngredientBook(new IngredientBook(), null));
     }
 
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 }

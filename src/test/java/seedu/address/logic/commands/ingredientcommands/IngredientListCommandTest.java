@@ -33,7 +33,8 @@ public class IngredientListCommandTest {
         defaultBook.addIngredient(new Ingredient(new IngredientName("Milk"), amount));
         defaultBook.addIngredient(new Ingredient(new IngredientName("Pearl"), amount));
         defaultBook.addIngredient(new Ingredient(new IngredientName("Boba"), amount));
-        defaultBook.addIngredient(new Ingredient(new IngredientName("Oolong Tea"), amount));
+        defaultBook.addIngredient(new Ingredient(new IngredientName("Black Tea"), amount));
+        defaultBook.addIngredient(new Ingredient(new IngredientName("Green Tea"), amount));
         defaultBook.addIngredient(new Ingredient(new IngredientName("Brown Sugar"), amount));
         ReadOnlyIngredientBook readOnlyIngredientBook = defaultBook;
 
@@ -43,7 +44,8 @@ public class IngredientListCommandTest {
         original.addIngredient(new Ingredient(new IngredientName("Milk"), amount));
         original.addIngredient(new Ingredient(new IngredientName("Pearl"), amount));
         original.addIngredient(new Ingredient(new IngredientName("Boba"), amount));
-        original.addIngredient(new Ingredient(new IngredientName("Oolong Tea"), amount));
+        original.addIngredient(new Ingredient(new IngredientName("Black Tea"), amount));
+        original.addIngredient(new Ingredient(new IngredientName("Green Tea"), amount));
         original.addIngredient(new Ingredient(new IngredientName("Brown Sugar"), amount));
         ReadOnlyIngredientBook defaultReadOnlyIngredientBook = original;
 
