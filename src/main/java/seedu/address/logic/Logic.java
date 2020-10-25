@@ -9,8 +9,10 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTrackr;
+
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * API of the Logic component
@@ -25,15 +27,18 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    /**
-     * Returns the student list.
-     *
-     * @see Model#getStudentList()
-     */
-    ReadOnlyTrackr<Student> getStudentList();
+    //    /**
+    //     * Returns the student list.
+    //     *
+    //     * @see Model#getStudentList()
+    //     */
+    //    ReadOnlyTrackr<Student> getStudentList();
 
     /** Returns an unmodifiable view of the filtered list of students */
     ObservableList<Student> getFilteredStudentList();
+
+    /** Returns an unmodifiable view of the filtered list of tutorial groups */
+    ObservableList<TutorialGroup> getFilteredTutorialGroupList();
 
     /**
      * Returns the module list.

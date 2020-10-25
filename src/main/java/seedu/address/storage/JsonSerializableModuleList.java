@@ -41,14 +41,14 @@ public class JsonSerializableModuleList {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public Trackr<Module> toModelType() throws IllegalValueException {
-        Trackr<Module> moduleList = new Trackr<>();
+    public Trackr toModelType() throws IllegalValueException {
+        Trackr moduleList = new Trackr();
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (moduleList.hasObject(module)) {
+            if (moduleList.hasModule(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            moduleList.addObject(module);
+            moduleList.addModule(module);
         }
         return moduleList;
     }

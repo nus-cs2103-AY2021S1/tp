@@ -41,8 +41,8 @@ public class JsonAdaptedTutorialGroup {
      */
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
         tutorialGroupId = source.getId().toString();
-        startTime = source.getStartTime().toString();
-        endTime = source.getEndTime().toString();
+//        startTime = source.getStartTime().toString();
+//        endTime = source.getEndTime().toString();
         this.students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
     }
