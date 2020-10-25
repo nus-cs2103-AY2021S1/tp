@@ -69,6 +69,8 @@ public class Reference {
         return Objects.hash(path);
     }
 
+    public Path getPath() { return this.path; }
+
     public String getFileName() {
         return this.fileName;
     }

@@ -1,5 +1,7 @@
 package seedu.pivot.commons.util;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
@@ -88,5 +90,18 @@ public class FileUtil {
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
     }
+
+    /**
+     * Opens a document at the specified path. Path should already be valid.
+     *
+     */
+    public static void openFile(Path file) throws IOException {
+        assert (isFileExists(file)) : "file should exist";
+        File doc = file.toFile();
+        Desktop desktop = Desktop.getDesktop();
+        desktop.open(doc);
+    }
+
+
 
 }
