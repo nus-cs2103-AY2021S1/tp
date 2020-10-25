@@ -69,7 +69,6 @@ public class IngredientReference extends Entry {
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof IngredientReference
-                && this.name.equals(((IngredientReference) other).name)
-                && this.quantity.equals(((IngredientReference) other).quantity));
+                && this.name.equals(((IngredientReference) other).name));
     }
 }
