@@ -169,7 +169,9 @@ a) `Metric` `MaxQuantity`
 b) `Tags`
 - Will be combined together if there exist the same item inside InventoryBook.
 
-Note: No 2 deliveries are considered the same. Reason being the same person can make multiple delivery orders.
+Note: Deliveries are all considered unique. Reason being the same person can make multiple delivery orders.
+
+For example, `John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
 
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
@@ -186,7 +188,9 @@ Below is the sequence diagram when user pressing the arrow up button with `Comma
 
 ![CommandHistoryTraversalSequenceDiagram](images/CommandHistoryTraversalSequenceDiagram.png)
 
-The previous command by the user will be reflected in the GUI.
+When the user, while having the `CommandBox` selected, pressing the arrow up key, it'll prompt the GUI to call `CommandBox`'s `handleHistoryNavigation(Event)` which will call `HistoryManager`'s `previousCommand()` method.
+`previousCommand()` will attempt to return the previous command entered by user, if any. Then `CommandBox` will call `TextField`'s `setText(String)` on the return value of `previousCommand()` which will set the text for the User 
+in the GUI.
 
 ### Finding Items and Delivery
 OneShelf is capable of storing many items and pending deliveries. 
@@ -500,14 +504,25 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+if there is no existing same item. If there is an existing same item, 
+
 ### Adding an item
+
 1. Adding an item
     1. Test Case: `add-i n/Chicken q/123 s/NTUC`
-       Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added if there is no existing same item. If there is an existing same item, `Quantity` will combine, `MaxQuantity` `Tags` `Metric` will be adopted from existing item.
+       Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added 
        
     1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
        Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added if there is no existing same item. 
-       If there is an existing item the user will receive an error message as `MaxQuantity` or `Metric` should not be defined when adding to existing item.
+
+### Adding to an existing item
+
+1. Adding to an existing item
+    1. Test Case: `add-i n/Chicken q/123 s/NTUC`
+       Expected: Item with `Name` of Chicken and `Supplier` of NTUC will have it's `Quantity` combine with input item's `Quantity`. `MaxQuantity` `Tags` `Metric` will be adopted from the existing item.
+       
+    1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
+       Expected: User will receive an error message as `MaxQuantity` or `Metric` should not be defined when adding to existing item.
 
 ### Deleting an item
 

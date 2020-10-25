@@ -1,10 +1,14 @@
 @startuml
-(*)  --> "User Executes AddItemCommand"
-If "Item exists in InventoryBook" then
---> [True] "Adds on quantity"
--->(*)
-else
---> [False] "Create new item and\nstore into InventoryBook"
-Endif
--->(*)
+start
+:User executes AddItemCommand;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([Item exists in InventoryBook])
+    :Adds on quantity;
+else ([else])
+    : Create new item and stores into InventoryBook;
+endif
+stop
 @enduml
