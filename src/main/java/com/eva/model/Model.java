@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import com.eva.commons.core.GuiSettings;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 
@@ -209,6 +210,12 @@ public interface Model {
      * {@code person} must not already exist in the eva database.
      */
     void addApplicant(Applicant person);
+
+    /**
+     * Adds the given leave to the given staff.
+     * {@code leave} must not already exist in the staff's {@code leaves}.
+     */
+    void addApplicantApplication(Applicant target, Application toAdd);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.

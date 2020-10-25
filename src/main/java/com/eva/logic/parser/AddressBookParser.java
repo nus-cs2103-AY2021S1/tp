@@ -1,10 +1,12 @@
 package com.eva.logic.parser;
 
+import java.io.FileNotFoundException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.eva.commons.core.Messages;
 import com.eva.logic.commands.AddApplicantCommand;
+import com.eva.logic.commands.AddApplicationCommand;
 import com.eva.logic.commands.AddCommand;
 import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.commands.AddStaffCommand;
@@ -41,7 +43,7 @@ public class AddressBookParser {
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput) throws ParseException, FileNotFoundException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
@@ -92,6 +94,10 @@ public class AddressBookParser {
 
         case AddApplicantCommand.COMMAND_WORD:
             return new AddApplicantCommandParser().parse(arguments);
+
+        case AddApplicationCommand
+                .COMMAND_WORD:
+            return new AddApplicationCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
