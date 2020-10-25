@@ -28,7 +28,7 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
         pieChart.setLegendVisible(false);
     }
 
-    public void setTotalMacronutrients(int totalCalories, int totalProtein, int totalCarbs, int totalFats) {
+    public void setTotalMacronutrients(long totalCalories, long totalProtein, long totalCarbs, long totalFats) {
         requireAllNonNull(totalCalories, totalProtein, totalCarbs, totalFats);
         pieChart.setTitle(String.format(TOTAL_CALORIES_TEXT, totalCalories));
 
@@ -44,7 +44,7 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
         pieChart.setVisible(totalCalories != 0);
     }
 
-    private void addData(String formatString, int count) {
+    private void addData(String formatString, long count) {
 
         //If the count for the data is <= 0, do not show the data value
         if (count <= 0) {
