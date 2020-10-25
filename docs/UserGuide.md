@@ -43,7 +43,7 @@ ProductiveNUS is a **desktop application for managing and scheduling your academ
 
    * **`remind`**`3` : Sets reminders for the 3rd assignment which will be displayed in `Your Reminders` section.
    
-   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section).
+   * **`unremind`**`3` : Removes the 3rd assignment from `Your Reminders` section.
 
    * **`prioritize`**`3 priority/HIGH` : Sets a "HIGH" priority tag for the 3rd assignment.
    
@@ -155,26 +155,39 @@ Examples:
 
 ### Setting reminders for assignments : `remind`
 
-Sets reminders for the specified assignment which will be displayed in `Your Reminders` section.
-
 Format: `remind INDEX`
 
-* Sets reminders for the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+You can set reminders for specific assignments which will be displayed in `Your Reminders` section (Highlighted in red in the figure below).
 
-Examples:
-* `list` followed by `remind 2` sets reminders for the 2nd assignment in the assignment list.
+   ![UserGuideYourReminders](images/UserGuideYourReminders.png)
+
+You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
+
+For example, `remind 1` will set reminders for the first assignment in your assignment list ("CS1231S Homework" as shown in the figure below) and adds it to `Your Reminders`.
+
+      ---------------------------Figure of GUI with CS1231S Homework (Highlighted red) added into Your Reminders----------------------------
+
+**Pointers to note:**
+* At least one `INDEX` must be present. For example, `remind` will not work.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` must be found in your assignment list.
 
 ### Removing reminders for assignments : `unremind`
 
-Removes reminders set for the specified assignment (assignment will be removed from `Your Reminders` section)
-
 Format: `unremind INDEX`
 
-* Removes reminders set for the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+You can remove your reminded assignments from `Your Reminders` by specifying the `INDEX` of the assignment as shown in your **reminded assignments list**. 
+
+For example, `unremind 1` will remove the first assignment in `Your Reminders` ("CS2106 Lab" as shown in the figure below).
+
+      ---------------------------------Figure of GUI before CS2106 Lab is removed from Your Reminders---------------------------------
+
+      ---------------------------------Figure of GUI after CS2106 Lab is removed from Your Reminders----------------------------------
+
+**Pointers to note:**
+* At least one `INDEX` must be present. For example, `unremind` will not work.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` must be found in `Your Reminders`.
 
 ### Setting priority for assignments : `prioritize`
 
