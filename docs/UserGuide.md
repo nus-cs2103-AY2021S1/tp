@@ -307,9 +307,9 @@ Examples:
 
 ![GUI import command example](images/CommandImagesForUG/ImportGUI.png)
 
-### Exporting your save file to a folder `export`
+### Exporting your save file to a folder: `export`
 
-Imports a previously saved file into McGymmy
+Imports a previously saved file to a folder
 
 Format: `import DIRPATH [-o FILENAME]`
 
@@ -331,9 +331,10 @@ Examples:
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** For those who are more inclined to use a gui to export:
-* Click on file
-* Click on Export
+* Click on `file` option in the menubar above the command box
+* Click on `Export` button to open the directory selector
 * Navigate using the GUI to the save file
+* Click on `Select Folder` when done
 
 </div>
 
@@ -364,9 +365,9 @@ Adds a macro to run several commands in succession.
 *__WARNING:__* this is an advanced feature!
 
 Arguments to the macro can be substituted in the commands using the syntax:
-\ARGUMENT_NAME.
+`\ARGUMENT_NAME`.
 
-Unnamed arguments can be substituted using the syntax: \$
+Unnamed arguments can be substituted using the syntax: `\$`
 
 Format: `macro SHORTCUT ARGUMENT_1 ARGUMENT_2 ... ; COMMAND_1 ARGUMENTS_TO_COMMAND \REUSED_ARGUMENT; [COMMAND_2; ...]` <br>
 
@@ -389,6 +390,14 @@ Examples:
     * The following commands will be executed by the macro: `add -n Ice Cream` and `add -n Ice Cream With Fries`.
 
 ![Macro command example](images/CommandImagesForUG/Macro.png)
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: When using it with conjunction with the undo command, macro will only undo the commands one at a time within the chain of macro commands<br>
+
+</div>
+
+
 
 ### Undoing the previous command : `undo`
 
