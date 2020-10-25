@@ -14,7 +14,7 @@ import seedu.address.model.project.Project;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code StartCommand}.
+ * {@code StartProjectCommand}.
  */
 public class LeaveCommandTest {
 
