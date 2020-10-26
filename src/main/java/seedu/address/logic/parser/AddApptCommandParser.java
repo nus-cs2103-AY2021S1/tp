@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +31,7 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
         logger.log(Level.INFO, "Start parsing");
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT, PREFIX_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT);
 
         Index index;
 
@@ -50,10 +49,6 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     Appointment.MISSING_TIMING));
-        }
-
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
-            appointment.setDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
 
         assert !appointment.equals(new Appointment()) : "Appointment should not be empty!";

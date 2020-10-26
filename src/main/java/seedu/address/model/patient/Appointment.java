@@ -93,10 +93,10 @@ public class Appointment {
     /**
      * Returns true if appointment time is ahead of the current local time.
      *
-     * @param currentTime current local time.
+     * @param givenTime current local time.
      */
-    public static boolean isPassed(LocalDateTime currentTime) {
-        return currentTime.compareTo(java.time.LocalDateTime.now()) < 0;
+    public static boolean isPassed(LocalDateTime givenTime) {
+        return givenTime.compareTo(java.time.LocalDateTime.now()) < 0;
     }
 
     @Override

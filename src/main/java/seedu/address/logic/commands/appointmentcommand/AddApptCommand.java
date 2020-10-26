@@ -40,7 +40,7 @@ public class AddApptCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "APPOINTMENT DESCRIPTION]"
             + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT + "28/09/2022 20:00"
+            + PREFIX_APPOINTMENT + "28/09/2022 20:00 "
             + PREFIX_DESCRIPTION + "revisit";
 
     public static final String MESSAGE_ADD_APPT_SUCCESS = "Added appointment successfully!";
