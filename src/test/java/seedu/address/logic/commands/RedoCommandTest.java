@@ -24,12 +24,13 @@ import seedu.address.model.animal.AnimalComparator;
 import seedu.address.model.animal.Id;
 import seedu.address.testutil.AnimalBuilder;
 
-public class UndoCommandTest {
-
+public class RedoCommandTest {
     @Test
-    public void execute_undoSuccessful() throws Exception {
+    public void execute_redoSuccessful() throws Exception {
         HistoryStack historyStack = HistoryStack.getHistoryStack();
         historyStack.clearHistory();
+        historyStack.clearRedo();
+
         ZooKeepBook bookA = new ZooKeepBook();
         bookA.addAnimal(new AnimalBuilder().withName("Bob").build());
 
@@ -42,18 +43,19 @@ public class UndoCommandTest {
 
         ModelStub modelStub = new ModelStub();
 
-        CommandResult commandResult = new UndoCommand().execute(modelStub);
+        CommandResult testResult = new UndoCommand().execute(modelStub);
+        CommandResult commandResult = new RedoCommand().execute(modelStub);
 
-        assertEquals(UndoCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
-        assertEquals(historyStack.getHistorySize(), 1);
+        assertEquals(RedoCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());
+        assertEquals(historyStack.getRedoSize(), 0);
     }
 
     @Test
-    public void execute_noUndoAvailable_throwsCommandException() {
-        UndoCommand undoCommand = new UndoCommand();
+    public void execute_noRedoAvailable_throwsCommandException() {
+        RedoCommand redoCommand = new RedoCommand();
         ModelStub modelStub = new ModelStub();
 
-        assertThrows(CommandException.class, UndoCommand.MESSAGE_NO_UNDO, () -> undoCommand.execute(modelStub));
+        assertThrows(CommandException.class, RedoCommand.MESSAGE_NO_REDO, () -> redoCommand.execute(modelStub));
     }
 
     @Test
@@ -64,20 +66,20 @@ public class UndoCommandTest {
         book.addAnimal(new AnimalBuilder().withName("Bob").build());
         historyStack.addToHistory(book);
 
-        UndoCommand undoCommand = new UndoCommand();
+        RedoCommand redoCommand = new RedoCommand();
 
         // same object -> returns true
-        assertTrue(undoCommand.equals(undoCommand));
+        assertTrue(redoCommand.equals(redoCommand));
 
         // same values -> returns true
-        UndoCommand undoCommandCopy = new UndoCommand();
-        assertTrue(undoCommand.equals(undoCommandCopy));
+        RedoCommand redoCommandCopy = new RedoCommand();
+        assertTrue(redoCommand.equals(redoCommandCopy));
 
         // different types -> returns false
-        assertFalse(undoCommand.equals(1));
+        assertFalse(redoCommand.equals(1));
 
         // null -> returns false
-        assertFalse(undoCommand.equals(null));
+        assertFalse(redoCommand.equals(null));
 
     }
 
@@ -165,5 +167,4 @@ public class UndoCommandTest {
             throw new AssertionError("This method should not be called.");
         }
     }
-
 }

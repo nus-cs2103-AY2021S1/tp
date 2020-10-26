@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -121,5 +122,13 @@ public class Animal {
      */
     public Set<FeedTime> getFeedTimes() {
         return Collections.unmodifiableSet(feedTimes);
+    }
+
+    /**
+     * Returns the earliest feedtime if present.
+     * @return Earliest feedtime in set.
+     */
+    public Optional<FeedTime> getEarliestFeedTime() {
+        return feedTimes.stream().findFirst();
     }
 }

@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.animal.Animal;
+import seedu.address.model.animal.AnimalComparator;
 import seedu.address.model.animal.Id;
 
 /**
@@ -123,6 +124,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedAnimal);
 
         zooKeepBook.setAnimal(target, editedAnimal);
+    }
+
+    @Override
+    public void sortAnimals(AnimalComparator animalComparator) {
+        zooKeepBook.sortAnimals(animalComparator);
+        updateFilteredAnimalList(PREDICATE_SHOW_ALL_ANIMALS);
     }
 
     //=========== Filtered Animal List Accessors =============================================================

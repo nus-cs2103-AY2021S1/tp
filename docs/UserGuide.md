@@ -82,14 +82,54 @@ Format: `list`
 
 ---
 
+### Sorting animals: `sort`
+
+Sorts the animals by the given field in lexicographical order.
+
+Format: `sort fieldname`
+
+Example: `sort name` sorts all animals by name in alphabetical order.
+
+---
+
+### Replacing an animal's fields: `replace`
+
+Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
+
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feeding times (including 0).
+</div>
+
+Examples:
+* `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
+* `replace 1307 i/2910 n/Jirachi` replaces the ID of animal 1307 with 2910 and the name with "Jirachi".
+
+---
+
+### Appending information to an animal's fields: `append`
+
+Appends information to the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
+
+Format: `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feeding times (including 0).
+</div>
+
+Examples:
+* `append 1307 f/1900` appends a feeding time of 1900 to the animal identified by ID 1307..
+* `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
+
+---
+
 ### Deleting an animal: `delete`
 
 Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `delete i/ID`
+Format: `delete ID`
 
 Example:
-* `delete i/193` deletes the individual animal with id 193.
+* `delete 193` deletes the individual animal with id 193.
 
 ---
 
@@ -101,11 +141,19 @@ Format: `clear`
 
 ---
 
-### Exiting the program : `exit`
+### Undoing a command: `undo`
 
-Exits the program.
+Undoes the most recently used command. No changes if no previous state exists.
 
-Format: `exit`
+Format: `undo`
+
+---
+
+### Redoing an undo: `redo`
+
+Redoes the previous undo. No changes if no previous state exists.
+
+Format: `redo`
 
 ---
 
@@ -113,7 +161,7 @@ Format: `exit`
 
 Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Constraints:**<br>
 
@@ -133,6 +181,14 @@ Example:
 
 ---
 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+---
+
 #### Manually saving data
 
 Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
@@ -148,10 +204,16 @@ There is no need to save manually, though a copy of the current data can be crea
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
-**Clear** | `clear`
-**Delete** | `delete i/ID` <br> e.g. `delete i/193`
-**Exit** | `exit`
 **Help** | `help`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
 **List** | `list`
+**Sort** | `sort fieldname` <br> e.g. `sort name` 
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…` 
+**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…`
+**Delete** | `delete ID` <br> e.g. `delete 193` 
+**Clear** | `clear`
+**Undo** | `undo`
+**Redo** | `redo`
 **Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
+**Exit** | `exit`
+

@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes redo command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([exists at least one future state])
+    :Retrieve future state from redo;
+    :Set ZooKeepBook to future state;
+    :Remove this future state from redo;
+else ([else])
+    :Return error message
+    (redo unsuccessful);
+endif
+stop
+@enduml

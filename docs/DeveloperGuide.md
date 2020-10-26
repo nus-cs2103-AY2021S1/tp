@@ -19,41 +19,49 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
+The ***Architecture Diagram*** given above explains the high-level design of the App. 
+Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the 
+[diagrams](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/docs/diagrams/) folder. Refer 
+to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) 
+to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/MainApp.java). 
+It is responsible for the following situations:
+
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of four components:
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
-* [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`Storage`**](#storage-component): Reads data from and writes data to the hard disk.
 
-Each of the four components,
+Each of the four components
 
 * defines its *API* in an `interface` with the same name as the Component.
-* exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
+* exposes its functionality using a concrete `{Component Name}Manager` class 
+(which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For example, the `Logic` component (see the class diagram given below) defines its API 
+in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class 
+which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
-**How the architecture components interact with each other**
+The *Sequence Diagram* below shows how the components interact with each other for the 
+scenario where the user issues the command `delete 123`.
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![Sequence Diagram of delete command](images/ArchitectureSequenceDiagram.png)
 
 The sections below give more details of each component.
 
@@ -62,11 +70,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,7 +86,7 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
@@ -97,7 +105,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
 The `Model`,
 
@@ -117,7 +125,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -139,7 +147,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The undo feature is facilitated by a stack data structure.
 
-The `HistoryStack` class wraps a stack designed to hold 'ReadOnlyZooKeepBook' objects.
+The `HistoryStack` class wraps a stack designed to hold `ReadOnlyZooKeepBook` objects.
 
 The Singleton Pattern is employed here since only one history instance should exist in the running of the application.
 
@@ -157,6 +165,10 @@ The undo feature also depends on the following existing methods:
 The following classes reference the above methods:
 * `UndoCommand`
 * `LogicManager`
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Classes pertaining to the Redo command also refer to these methods, but will be excluded here and explained in the section below instead.
+
+</div>
 
 Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
@@ -181,7 +193,7 @@ Step 4. The user now decides that deleting the person was a mistake, and decides
 
 ![UndoState3](images/UndoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `HistoryStack` only contains a single state, then there is no previous state to restore. The `undo` command uses `HistoryStack#getSize()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `HistoryStack` only contains a single state, then there is no previous state to restore. The `undo` command uses `HistoryStack#getHistorySize()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -215,21 +227,223 @@ New command | Undo command
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
+
+### Redo feature (by Jun Cheng)
+
+#### Implementation
+
+The Redo feature was added as a complement to the Undo feature which was done earlier. The addition of this
+feature required the integration of the `RedoCommand` class, which extends from the `Command` class like all other commands.
+The `HistoryStack` class also has new key features to support the `redo` command:
+
+* `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` - Adds a given state of the ZooKeep book into the redo stack.
+* `HistoryStack#removeRecentRedo()` - Removes the most 'recent' update of the ZooKeep book from the redo stack.
+* `HistoryStack#viewRecentRedo()` - Returns (but does not remove) the most 'recent' update of the ZooKeep book.
+* `HistoryStack#clearRedo()` - Clears the future updates of the ZooKeep book stored in the redo stack.
+
+The `RedoCommand` class references some of these methods to accomplish the feature required. Given below is an example
+usage scenario and how the redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The ZooKeep book is initialised with the initial state
+given in `data/zookeepbook.json`, and the `HistoryStack` consists of 2 stacks; the history stack and the redo stack,
+each in their respective initial states.
+
+![RedoState0](images/RedoState0.png)
+
+Step 2. The user executes `add n/Harambe...` to add a new animal into the ZooKeep book. The `LogicManager` calls
+`Model#getZooKeepBook()` to retrieve the new state of the book and calls `HistoryStack#addToHistory(ReadOnlyZooKeepBook)`
+as per normal undo protocol.
+
+![RedoState1](images/RedoState1.png)
+
+Step 3. The user then executes `delete 567` which deletes the animal in the book with an ID of 567. Similar to step 2, 
+`LogicManager` will call `Model#getZooKeepBook()` to retrieve the new state of the book and then calls 
+`HistoryStack#addToHistory(ReadOnlyZooKeepBook)` to store this state into the history stack.
+
+![RedoState2](images/RedoState2.png)
+
+Step 4. Now the user thinks that deleting that animal was a mistake and restores the previous state by 
+executing `undo` (explained in the previous section). However, before the current state is deleted and replaced with 
+the previous one, `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` is called to store the current state into the redo 
+stack for further use.
+
+![RedoState3](images/RedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If `UndoCommand` is never executed, the 
+redo stack will remain empty and calling `RedoCommand` will do nothing, since there are no future states recorded in
+the stack for retrieval. 
+
+</div>
+
+Step 5. However, now the user decides that deleting that animal was the correct decision after all, and now executes 
+`redo` which calls `HistoryStack#viewRecentRedo()` to retrieve the future state of the ZooKeep book where the animal
+was deleted. The future state is then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
+Lastly, `HistoryStack#removeRecentRedo()` is called to delete that state from redo stack. 
+
+![RedoState4](images/RedoState4.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If commands which alter the state of the 
+ZooKeep book (e.g. add or delete) are executed after an undo command, the redo stack will be emptied since the 
+immediate future has been altered and the future states previously stored in the redo stack are now invalid. Hence 
+executing redo now will do nothing.
+
+</div>
+
+
+The following sequence diagram illustrates how the `Redo` operation is performed:
+
+![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RedoCommand` should end 
+at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following 2 activity diagrams summarise what happens when a user executes the `undo` and `redo` commands:
+
+Undo command | Redo command
+:-------------------------:|:-------------------------:
+![UndoCommandWithRedoActivityDiagram](images/UndoCommandWithRedoActivityDiagram.png) | ![RedoCommandActivityDiagram](images/RedoCommandActivityDiagram.png)
+
+
+#### Design consideration:
+
+##### Aspect: How redo executes
+
+* **Alternative 1 (current choice):** Saves the entire ZooKeep book as a state.
+  * Pros: Easy to implement, works with all commands immediately.
+  * Cons: May have performance issues in terms of memory usage as product scales.
+
+* **Alternative 2:** Individual command knows how to redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+
 ### Snapshot feature (by Aizat)
 
 #### Implementation
 
-The snapshot feature is implemented by the `SnapCommand` and `SnapCommandParser` classes. `SnapCommandParser`
-parses the user's input as a file name and then creates a `SnapCommand` object with the file name as a parameter.
+The snapshot feature is implemented by the `SnapCommand` and `SnapCommandParser` classes. 
+`SnapCommandParser` parses the user's input as a file name and then creates a `SnapCommand` 
+object with a `Path` object representing the save destination and file name as parameters.
 
 `SnapCommand` executes by copying the current state of the zookeep book and then utilising
-`StorageManager`'s save method to save the zookeep book with the specified file name.
+`StorageManager`'s save method to save the copied zookeep book with the user specified file name.
+
+The following sequence diagram illustrates the creation and execution of a `SnapCommand`:
+
+![SnapCommandSequenceDiagram](images/SnapCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifelines for `SnapCommandParser`, `SnapCommand`, `StorageManager` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 #### Design considerations:
-
+##### Aspect: Overwriting files
 * We chose to prevent users from creating a snapshot if the specified file name already exists
 as overwriting a file is irreversible and would be disastrous for zookeepers if done unintentionally
 
+### Sort feature (by Malcolm)
+
+#### Implementation
+
+This section explains the implementation of the Sort command feature in the ZooKeepBook. This feature is used to sort the animals based on the different categories: **name, id or feedtime**.
+
+* For the animal name, it will be in alphabetical order.
+* For the animal id, it will be in increasing order.
+* For the animal feed time, it will be from earliest to latest. 
+
+The following sequence diagram shows the Logic and Model Components when a sort command is being executed:
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+In the **Logic** Component,
+After the user keys in "sort name" as input, these key methods are called:
+* `LogicManager#execute("sort name")`: The `LogicManager` takes in a command text string ("sort name/id/feedtime").
+* `ZooKeepBookParser#parseCommand("sort name")`: The `ZooKeepBookParser` parses the user input into a command word ("sort") and arguments ("name"). Using the command word, a `SortCommandParser` is created. 
+* `SortCommandParser#parse("name")`: The `SortCommandParser` takes in the argument("name") and parses it. An `AnimalComparator` is created and contains the specific static comparator required to sort the animals according to the category provided. A `SortCommand` is created with the `AnimalComparator` as an attribute.
+	* The `AnimalComparator` contains 3 different static comparators to be used for sorting: `ANIMAL_NAME_COMPARATOR`,  `ANIMAL_ID_COMPARATOR` and `ANIMAL_FEEDTIME_COMPARATOR`.
+	* In this case, the `ANIMAL_NAME_COMPARATOR` is taken.
+* `SortCommand#execute(model)`: The `SortCommand` uses the `AnimalComparator` to sort the animals and returns a `CommandResult` object which represents the result of a command execution. 
+
+In the **Model** Component,
+The in-memory model of the ZooKeepBook data sorts and updates the animal list. The following key methods are used: 
+* `Model#sortAnimals(animalComparator)`: sorts the animals in the `ZooKeepBook` using the given `AnimalComparator` object.
+* `ZooKeepBook#sortAnimals(animalComparator)` : Retrieves the static comparator in the `AnimalComparator` object and creates a `SortedList` object. The `UniqueAnimalList` in the `ZooKeepBook` is then replaced by this `SortedList` object.
+* `ZooKeepBook#updateFilteredAnimalList(predicate)`: Updates the filter of the filtered animal list to filter by the given predicate, which will be true here so that the sorted list will be displayed once sorted.
+
+Upon the completion of the user command, a success message (Sorted all animals by name) and the updated sorted list is displayed below the message.
+
+The following activity diagram summarises what happens when a user executes a sort command.
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
+#### Design Consideration  
+##### Aspect: Sorting based on different categories  
+We chose to allow the user to sort not only based on animal names but also by their id and feedtime to ease the convenience of the user when he needs data to be sorted in other ways.
+
+
+### Feeding times feature (by Jeremy)
+
+#### Implementation
+
+The feeding time feature utilizes a TreeSet with a custom comparator.
+
+Each Animal object has a `FeedTimes` TreeSet.
+
+The custom comparator `FeedTimeComparator` compares the integer values of the feeding times, returning them in ascending order.
+
+The feeding times feature allows for the following functionality:
+
+* Add multiple feeding times to each animal listing.
+* Ensure feeding times are always displayed in chronological order.
+
+The following notable methods are used for the feeding times feature:
+* `ParserUtil#parseFeedTimes(Collection<String>)` - returns a Set of `FeedTime` objects from user input
+* `FeedTime#isValidFeedTime(String)` - validates the feeding time to ensure it is in the HHmm format
+
+The parsing and displaying of feeding times were adapted from the Medical Condition field.
+
+Given below is a sequence diagram shows how the operation of adding feeding times works.
+
+![FeedTimesSequenceDiagram](images/FeedTimesSequenceDiagram.png)
+
+Step 1. The user inputs an add command, specifying feeding times to be added for an Animal (eg. add n/Pikachu i/1307 s/Pokemon f/1234 f/0001 f/2200)
+
+Step 2. The `ZooKeepBook` class receives the user input. `AddCommand.COMMAND_WORD` is used to identify the type of command.
+
+Step 3. The `AddCommandParser` class receives the arguments in the user input. The `ArgumentTokenizer` class is called with the `PREFIX_FEED_TIME` variable.
+
+Step 4. The `ArgumentTokenizer` class returns the feeding times found in the users input. A set of `FeedTime` objects is created by the `parseFeedTimes` method in the `ParserUtil` class.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** A ParseException is thrown by parseFeedTimes if the feeding time input does not match the defined format.
+</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The TreeSet created by parseFeedTimes utilizes the FeedTimeComparator, ensuring that the set is returned in chronological order.
+</div>
+
+Step 5. An `Animal` object is created with the Set of `FeedTime` objects.
+
+
+The following activity diagram summarizes what happens when feeding times are added to an Animal:
+
+![FeedTimesActivityDiagram](images/FeedTimesActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How chronological order is maintained
+
+* **Alternative 1 (current choice):** Store the feeding times in chronological order
+  * Pros: Quick to display when retrieving information
+  * Cons: Initial creation and storage of feeding times takes longer
+
+* **Alternative 2:** Sort the feeding times when information is retrieved
+  itself.
+  * Pros: Quick during the initial creation of Animal objects
+  * Cons: Additional processing time required when displaying each Animal object
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -249,20 +463,17 @@ as overwriting a file is irreversible and would be disastrous for zookeepers if 
 
 **Target user profile**:
 
-* has a need to manage a significant number of animals
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* Has a need to manage a significant number of animals
+* Prefers desktop apps over other types
+* Can type fast
+* Prefers typing to mouse interactions
+* Is reasonably comfortable using CLI apps
 
 **Value proposition**: 
-*  Zookeepers have to account for a large number of animals and their statuses (health, feeding times etc).
-
-*   It is easy to lose track without a structured database.
-
-*   We have thus decided to morph the app into a tracker for an individual zookeeper.
-
-*   Easier to transfer a large amount of animal information when zookeepers change shifts.
+* Zookeepers have to account for a large number of animals and their statuses (health, feeding times etc).
+* It is easy to lose track without a structured database.
+* We have thus decided to morph the app into a tracker for an individual zookeeper.
+* Easier to transfer a large amount of animal information when zookeepers change shifts.
 * Manage animals faster than a typical mouse/GUI driven app.
 
 ### User stories
@@ -287,17 +498,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AnimalBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `ZooKeepBook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add an animal**
 
 **MSS**
 
-1. User specifies the add command with name, species and ID of animal
+1. User specifies the add command with name, ID and species of animal
 
-2. AnimalBook adds the animal
+2. ZooKeepBook adds the animal
 
-3. AnimalBook refreshes to show the updated list
+3. ZooKeepBook shows the new animal added
+
+4. ZooKeepBook refreshes to show the updated list
 
    Use case ends
 
@@ -305,15 +518,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  AnimalBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 * 2a. The given ID is already taken
 
-  AnimalBook shows an error message
+  * 2a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 **Use case: Delete an animal**
 
@@ -321,9 +534,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the delete command with ID of animal
 
-2. AnimalBook deletes the animal
+2. ZooKeepBook deletes the animal
 
-3. AnimalBook refreshes to show the updated list
+3. ZooKeepBook shows the deleted animal
+
+4. ZooKeepBook refreshes to show the updated list
 
    Use case ends
 
@@ -331,15 +546,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The command is incorrectly formatted
 
-  AnimalBook shows an error message
+  * 1a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 * 2a. The given ID does not exist
 
-  AnimalBook shows an error message
+  * 2a1. ZooKeepBook shows an error message
 
-  Use case resumes at step 1
+  * Use case resumes at step 1
 
 **Use case: List all animals**
 
@@ -347,7 +562,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the list command
 
-2. AnimalBook displays list of all existing animals
+2. ZooKeepBook displays list of all existing animals
 
    Use case ends
 
@@ -357,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the exit command
 
-2. AnimalBook quits
+2. ZooKeepBook quits
 
    Use case ends
 
@@ -367,10 +582,94 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User specifies the help command
 
-2. AnimalBook displays list of all available commands
+2. ZooKeepBook displays list of all available commands
+
+   Use case ends
+   
+
+**Use case: Find animals based on keywords**
+
+**MSS**
+
+1. User specifies the keywords (case-insensitive) regarding an animal's name, id, species, medical condition or feed time
+
+2. ZooKeepBook searches for all animals with any of the exact keywords
+
+3. ZooKeepBook shows the list of animals with any of those keywords
 
    Use case ends
 
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+  
+
+**Use case: Sort all animals**
+
+**MSS**
+
+1. User specifies the sort command and the specific category (name, id or feedtime)
+
+2. ZooKeepBook sorts the animals according to the category
+
+3. ZooKeepBook shows a success message
+
+4. ZooKeepBook refreshes to show the sorted list
+
+   Use case ends
+
+**Extensions**
+
+* 1a. The command is incorrectly formatted
+
+  * 1a1. ZooKeepBook shows an error message
+
+  * Use case resumes at step 1
+
+**Use case: Undo last command**
+
+**MSS**
+
+1. User enters undo command.
+
+2. ZooKeepBook reverts to the state before last command was made.
+
+3. ZooKeepBook shows a success message
+
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no previous state to revert to.
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case ends
+
+**Use case: Redo last undo**
+
+**MSS**
+
+1. User enters redo command.
+
+2. ZooKeepBook reverts to the state before undo command was made.
+
+3. ZooKeepBook shows a success message
+
+   Use case ends
+
+**Extensions**
+
+* 2a. There is no previous state to revert to.
+
+  * 2a1. ZooKeepBook shows an error message
+
+  * Use case ends
+  
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

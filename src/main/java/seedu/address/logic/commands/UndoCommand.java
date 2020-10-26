@@ -6,6 +6,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.HistoryStack;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyZooKeepBook;
+import seedu.address.model.ZooKeepBook;
 
 /**
  * Undoes the most recently performed action.
@@ -30,9 +31,13 @@ public class UndoCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (historyStack.getSize() <= 1) {
+        if (historyStack.getHistorySize() <= 1) {
             throw new CommandException(MESSAGE_NO_UNDO);
         }
+
+        // add current state to redo stack before deleting it
+        ReadOnlyZooKeepBook currentState = historyStack.viewRecentHistory();
+        historyStack.addToRedo(new ZooKeepBook(currentState));
 
         historyStack.removeRecentHistory();
         ReadOnlyZooKeepBook lastState = historyStack.viewRecentHistory();
