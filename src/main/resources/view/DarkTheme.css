@@ -152,6 +152,12 @@
     -fx-text-fill: #010504;
 }
 
+.done_label {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 13px;
+    -fx-text-fill: #00ff6e !important;
+}
+
 .cell_small_label_blue_text {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
