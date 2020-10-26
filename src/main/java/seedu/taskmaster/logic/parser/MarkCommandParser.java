@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
 import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.logic.commands.MarkCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
-import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.record.AttendanceType;
 
 /**
  * Parses input arguments and creates a new MarkCommand object
