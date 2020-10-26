@@ -153,24 +153,25 @@ public class Patient {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" NRIC: ")
-                .append(getIcNumber())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Sex: ")
-                .append(getSex())
-                .append(" Blood Type: ")
-                .append(getBloodType())
-                .append(" ColorTag: ")
-                .append(getColorTag())
-                .append(" Visit History: ")
-                .append(getVisitHistory())
-                .append(" Allergies: ");
+        builder.append("Name: ")
+                .append(getName() + "\n")
+                .append("Phone: ")
+                .append(getPhone() + "\n")
+                .append("NRIC: ")
+                .append(getIcNumber() + "\n")
+                .append("Address: ")
+                .append(getAddress() + "\n")
+                .append("Email: ")
+                .append(getEmail() + "\n")
+                .append("Sex: ")
+                .append(getSex() + "\n")
+                .append("Blood Type: ")
+                .append(getBloodType() + "\n")
+                .append("ColorTag: ")
+                .append(getColorTag() + "\n")
+                .append("Visit History: ")
+                .append(getVisitHistory() + "\n")
+                .append("Allergies: ");
         getAllergies().forEach(builder::append);
         return builder.toString();
     }
