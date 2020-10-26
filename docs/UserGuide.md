@@ -35,12 +35,16 @@ Get started by installing __Trackr__ with the following steps:
 3. Copy the file to a folder you wish to use as your home folder for __Trackr__
 4. Double-click _trackr.jar_ to start the app. The GUI should appear in a few seconds.
 
-
 ### 3.2 Using Trackr
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
 commands to add or delete modules, tutorial groups, or students you are teaching. To use a feature, simply
 type the command into the command box (see Figure 1) and press _Enter_ to execute it. Further explanations of 
-all the commands are listed below [Section 5]().
+all the commands are listed down below in [Section 5]().
+
+### 3.3 Switching Views
+__Trackr__ allows you to switch the current view from `Modules` (Figure 2) to `Tutorial Groups` (Figure 3) 
+to `Students` (Figure 4) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
+The correct syntax for these commands are further elaborated down below in [Section 5]().
 
 ![Ui](images/Ui.png)
 
