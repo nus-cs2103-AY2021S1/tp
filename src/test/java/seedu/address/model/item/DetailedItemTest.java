@@ -7,6 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_BANAN
 import static seedu.address.testutil.TypicalItems.APPLE;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.testutil.ItemBuilder;
 import seedu.address.ui.DisplayedInventoryType;
 

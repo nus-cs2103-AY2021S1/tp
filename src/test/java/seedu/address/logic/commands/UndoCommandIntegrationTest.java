@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.ItemList;
 import seedu.address.model.LocationList;
 import seedu.address.model.Model;
@@ -39,7 +40,9 @@ public class UndoCommandIntegrationTest {
 
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(modifiedModel);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignored
+        }
 
         Model modifiedCopy = new ModelManager(modifiedModel.getItemList(), new LocationList(),
                 new RecipeList(), new UserPrefs());

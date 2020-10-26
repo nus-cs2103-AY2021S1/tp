@@ -58,7 +58,8 @@ public class ItemPrecursorTest {
         assertFalse(APPLE_PRECURSOR.isSameItem(null));
 
         // different quantity and description -> returns true
-        ItemPrecursor editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR).withQuantity(VALID_ITEM_QUANTITY_BANANA)
+        ItemPrecursor editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR)
+                .withQuantity(VALID_ITEM_QUANTITY_BANANA)
                 .withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
         assertTrue(APPLE_PRECURSOR.isSameItem(editedApplePrecursor));
 
@@ -67,11 +68,13 @@ public class ItemPrecursorTest {
         assertFalse(APPLE_PRECURSOR.isSameItem(editedApplePrecursor));
 
         // same name, same quantity -> returns true
-        editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR).withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
+        editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR)
+                .withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
         assertTrue(APPLE_PRECURSOR.isSameItem(editedApplePrecursor));
 
         // same name, same description -> returns true
-        editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR).withQuantity(VALID_ITEM_QUANTITY_BANANA).build();
+        editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR)
+                .withQuantity(VALID_ITEM_QUANTITY_BANANA).build();
         assertTrue(APPLE_PRECURSOR.isSameItem(editedApplePrecursor));
     }
 }
