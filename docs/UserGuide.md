@@ -9,7 +9,7 @@ title: User Guide
 ---------------
 ## Introduction
 
-ChopChop is a food recipe management system, which aims to make it easier for people to manage their recipes and ingredients in an easy and effective manner. It is a *desktop app*, optimised for use through typing textual commands, rather than with a point-and-click GUI. For fast typists, ChopChop will be able to manage your recipes more efficiently than other applications.
+ChopChop is a food recipe management system, which aims to make it easier for people to manage their recipes and ingredients in an easy and effective manner. It is a *desktop app*, optimised for use through typing textual commands, rather than with a point-and-click graphical user interface (GUI). For fast typists, ChopChop will be able to manage your recipes more efficiently than other applications.
 
 However, ChopChop also features a graphical interface to display ingredients and recipes in an interactive form.
 
@@ -135,7 +135,7 @@ Usage: `list recipes`
 
 
 ### Adding Recipes — **`add`**`recipe`
-This command adds a recipe to the recipe manager, specifying zero or more ingredients, each with an optional quantity, and zero or more steps. After a recipe is added, you will be able to see it immediately in the application.
+This command adds a recipe to ChopChop, specifying zero or more ingredients, each with an optional quantity, and zero or more steps. After a recipe is added, you will be able to see it immediately in the application.
 
 If an ingredient is specified without a quantity, it is treated *as if* you used `/qty 1`. This works for counted ingredients (eg. eggs), but it will cause errors for other ingredients (eg. volume of milk).
 
@@ -186,7 +186,7 @@ Figure 3.3: <i>The newly created recipe in the recipe list</i>
 
 
 
- 
+
 
 ### Editing Recipes — **`edit`**`recipe`
 Edits a specific recipe from ChopChop. The `edit recipe` command allows for different actions on the name, ingredients, steps and tags, as specified below.
@@ -234,7 +234,7 @@ Examples:
 
 
 ### Deleting Recipes — **`delete`**`recipe`
-This command deletes a specific recipe from ChopChop.
+This command deletes a specific recipe from ChopChop. You can either use the name or the number of the recipe to refer to it.
 
 Usage: `delete recipe <#REF>`
 
@@ -244,12 +244,25 @@ Examples:
 - `delete recipe pancakes` <br />
 	This deletes the recipe named 'pancakes'. Note that the name here is case insensitive.
 
+To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe (in this case, the Pancake recipe added in the `add recipe` guide above).
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
+Figure 4: <i>The recipe number (circled) can be used to refer to an item as well</i>
+</div>
+
+
+
+
 
 
 ### Finding Recipes — **`find`**`recipe`
-Finds all recipes containing the given keywords in the name; at least one search term must be given.
+This command finds all recipes containing the given keywords in the name.
 
 Usage: `find recipe <KEYWORD_ONE> [<KEYWORD_TWO>]...`
+
+Constraints:
+- At least one search keyword must be given
 
 Only the recipe name is searched, and only full words are matched, case-insensitively. In the case of multiple search keywords, recipes containing any of those words will be returned.
 
@@ -257,17 +270,33 @@ Examples:
 - `find recipe cake` will match **Chocolate Cake** and **Strawberry Cake**, but *not* **Pancakes**.
 - `find recipe milk cake` will match **Milk Tea** and **Carrot Cake**.
 
+To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/find_recipe_1.png" width="75%" /> <br />
+Figure 5.1: <i>The starting state of the application</i>
+</div>
 
+After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list.
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/find_recipe_2.png" width="75%" /> <br />
+Figure 5.2: <i>The recipes containing 'cake'</i>
+</div>
 
+To go back to the full recipe view (resetting the search filter), you can either click the Recipes button at the bottom, or run the `list recipes` command:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/find_recipe_3.png" width="75%" /> <br />
+Figure 5.3: <i>Back to the main recipe list</i>
+</div>
 
 
 
 ### Listing Ingredients — **`list`**`ingredients`
-Shows a list of all ingredients in ChopChop.
+This command shows a list of all recipes in ChopChop. As with the `list recipes` command, you can use this command to switch between panes without clicking, or to reset any filters.
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** For convenience, this command accepts `list ingredients` as well as `list ingredient`.
+:bulb: **Tip:** For convenience, you can use either `list ingredients` or `list ingredient`.
 </div>
 
 Usage: `list ingredients`
@@ -276,7 +305,7 @@ Usage: `list ingredients`
 
 
 ### Adding Ingredients — **`add`**`ingredient`
-Adds an ingredient to the recipe manager, with an optional quantity and expiry date. If the quantity is not specified, ChopChop will infer a single unitless ingredient, like eggs.
+This command adds an ingredient to ChopChop, with an optional quantity and expiry date. If the quantity is not specified, ChopChop will infer a single unitless ingredient, like eggs. If the expiry date is not specified, it is assumed that the ingredient (eg. salt) does not expire.
 
 As mentioned in the overview above, an ingredient can consist of multiple sets; the `add ingredient` command will intelligently *combine* ingredients as appropriate.
 
@@ -290,37 +319,105 @@ Examples:
 - `add ingredient milk /qty 1l /expiry 2020-11-09` adds one litre of milk that expires on the 9th of November.
 - `add ingredient egg /expiry 2020-12-25` adds one egg that expires on Christmas day.
 
+Suppose you just finished a grocery run, and want to add the items to ChopChop. First, you have 2 cartons of milk:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_ingredient_1.png" width="75%" /> <br />
+Figure 6.1: <i>Adding 2 litres of milk</i>
+</div>
+
+Since ChopChop did not know about 'milk' previously, a new ingredient entry is created for it:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_ingredient_2.png" width="75%" /> <br />
+Figure 6.2: <i>The newly added milk ingredient</i>
+</div>
+
+Next, suppose you also bought 24 blueberries:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_ingredient_3.png" width="75%" /> <br />
+Figure 6.3: <i>Adding 24 blueberries</i>
+</div>
+
+This time, since ChopChop already knew about blueberries, our previous 5 blueberries now become 29:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
+Figure 6.4: <i>You now have 29 blueberries</i>
+</div>
+
+If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_ingredient_5.png" width="75%" /> <br />
+Figure 6.5: <i>Ingredients must have compatible units to be combined</i>
+</div>
 
 
 
 ### Deleting Ingredients — **`delete`**`ingredient`
-Deletes a specific ingredient from ChopChop. If a quantity is specified, the given quantity of the ingredient is removed.
 
-If an ingredient consists of multiple sets, the `delete ingredient` command will intelligently remove the earliest expiring ingredients first.
+Usage: `delete ingredient <#REF> [/qty <QUANTITY>]`
+
+This command deletes a specific ingredient from ChopChop. Similar to the `add ingredient` command, this command also allows you to delete quantities of ingredients instead of the whole ingredient. In this scenario, ChopChop will intelligently remove the earliest-expiring ingredients first.
+
+If `/qty` is not specified, then the behaviour of this command is to completely remove the ingredient from ChopChop. Worry not: if you accidentally delete something, you can always `undo` it.
 
 <div markdown="span" class="alert alert-primary">
 :information_source: **Note:** If specified, the quantity needs to have compatible units with the existing ingredient; see [this section](#quantities-and-units) for how it works.
 </div>
 
-Usage: `delete ingredient <#REF> [/qty <QUANTITY>]`
+Usage: `delete ingredient <#REF> [/qty <QUANTITY_TO_REMOVE>]`
 
 Examples:
 - `delete ingredient #4` <br />
 	This deletes the fourth ingredient currently shown in the GUI's view.
-- `delete ingredient milk` <br />
-	This deletes the ingredient named 'milk'. Note that the name here is case insensitive.
 - `delete ingredient milk /qty 500ml` <br />
-    This removes 500ml of the ingredient named 'milk'.
+	This removes 500ml of milk from ChopChop's inventory.
+
+To illustrate, suppose that you poured yourself a glass of cold milk to drink, without making a recipe. To tell ChopChop that there is less milk in the fridge, you would use this command:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
+Figure 7.1: <i>Removing 250ml of milk</i>
+</div>
+
+Notice how the amount of milk decreased from 2 litres to 1.75 litres:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
+Figure 7.2: <i>You now only have 1.75 litres of milk left</i>
+</div>
+
+
 
 
 
 
 ### Finding Ingredients — **`find`**`ingredient`
-Finds all ingredients containing the given keywords in the name; at least one search term must be given.
+This command finds all ingredients containing the given keywords in the name, and it works identically to the `find recipe` command [above](#finding-recipes--findrecipe).
+
+Constraints:
+- At least one search keyword must be given
 
 Usage: `find ingredient <KEYWORD_ONE> [<KEYWORD_TWO>]...`
 
-The semantics of this command are the same as `find recipe`, which you can see [above](#finding-recipes--findrecipe).
+For example, suppose you wanted to find all ingredients containing fish (not in the literal sense, but only in their name):
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/find_ingredient_1.png" width="75%" /> <br />
+Figure 8.1: <i>The complete ingredient list</i>
+</div>
+
+Now, only the matching ingredients are shown:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/find_ingredient_2.png" width="75%" /> <br />
+Figure 8.2: <i>Only ingredients containing 'fish' in their name are shown</i>
+</div>
+
+Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
 
 
 
