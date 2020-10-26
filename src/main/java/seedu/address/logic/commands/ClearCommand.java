@@ -1,15 +1,11 @@
 package seedu.address.logic.commands;
 
-import static java.util.Objects.isNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_EXPENSES;
-import static seedu.address.model.account.ActiveAccount.PREDICATE_SHOW_ALL_REVENUE;
 
 import seedu.address.commons.core.category.Category;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
-
 
 /**
  * Clears all entries in the specified revenue/expense list of the account.
@@ -19,42 +15,62 @@ public class ClearCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears all entries in the specified entry (expense/revenue) list.\n"
-            + "Parameters: c/CATEGORY\n"
+            + "Example: " + COMMAND_WORD + "\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + "expense" + "\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + "revenue";
 
-    public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Cleared: %1$s" + "s";
+    public static final String MESSAGE_CLEAR_ENTRY_SUCCESS = "Cleared all %1$s" + "s";
+
+    public static final String MESSAGE_CLEAR_BOTH_CATEGORY_SUCCESS = "Cleared all expenses and revenues";
+
+    private static final Category NO_CATEGORY = null;
 
     private final Category category;
 
     /**
-     * Creates an ClearCommand to add the specified {@code Entry}
+     * Creates an ClearCommand to clear expenses or revenues based on {@code Category}.
      */
     public ClearCommand(Category category) {
         this.category = category;
     }
 
+    /**
+     * Creates an ClearCommand to clear all expenses and revenues.
+     */
+    public ClearCommand() {
+        this.category = null;
+    }
+
     @Override
     public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
-        assert(!isNull(model));
-
-        boolean isExpense = this.category.isExpense();
-        boolean isRevenue = this.category.isRevenue();
-
+        boolean hasNoCategory = category == NO_CATEGORY;
         activeAccount.setPreviousState();
-        if (isExpense) {
+
+        if (hasNoCategory) {
             activeAccount.clearExpenses();
-        } else {
-            assert isRevenue;
             activeAccount.clearRevenues();
+        } else {
+            boolean isExpense = this.category.isExpense();
+            boolean isRevenue = this.category.isRevenue();
+            if (isExpense) {
+                activeAccount.clearExpenses();
+            } else {
+                assert isRevenue;
+                activeAccount.clearRevenues();
+            }
         }
 
-        activeAccount.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
-        activeAccount.updateFilteredRevenueList(PREDICATE_SHOW_ALL_REVENUE);
-
         model.setAccount(activeAccount.getAccount());
-        return CommandResultFactory
-            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category));
+        if (hasNoCategory) {
+            return CommandResultFactory
+                    .createCommandResultForEntryListChangingCommand(
+                            MESSAGE_CLEAR_BOTH_CATEGORY_SUCCESS);
+        } else {
+            return CommandResultFactory
+                    .createCommandResultForEntryListChangingCommand(
+                            String.format(MESSAGE_CLEAR_ENTRY_SUCCESS, category));
+        }
     }
 
     @Override

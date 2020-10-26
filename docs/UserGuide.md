@@ -4,7 +4,11 @@ title: User Guide
 ---
 
 ### About
-Common Cents is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you! You can even keep our expenses in multiple, separate accounts for seamless organisation. Amalgamating the features of a Command Line Interface (CLI) with a Graphical User Interface (GUI), Common Cents is meant to be functional, intuitive and faster than most traditional GUI expense-trackers out there!
+**Common Cents** is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. 
+With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you! 
+You can even keep our expenses in multiple, separate accounts for seamless organisation. Amalgamating the features of a 
+Command Line Interface (CLI) with a Graphical User Interface (GUI), Common Cents is meant to be functional, intuitive and 
+faster than most traditional GUI expense-trackers out there!
 
 ### User Guide Overview
 This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with Common Cents and clarify most doubts that you may have.
