@@ -579,15 +579,13 @@ commands anymore. Do confirm your changes to the entries in the account before y
 --------------------------------------------------------------------------------------------------------------------
 # Frequently Asked Questions (FAQ)
 
+This section contains a few frequently asked questions with regard to Common Cents.
+
 **Question:** How do I transfer my data to another Computer?<br>
 **Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CommonCents home folder.
 
-</div>
-
 **Question:** Where can I make bug reports?<br>
 **Answer:** You may submit a bug report directly to our team [here].
-
-</div>
 
 **Question:** What happens if I forget my account names?<br>
 **Answer:** You may use the `listacc` command to see a full list of your existing accounts.
