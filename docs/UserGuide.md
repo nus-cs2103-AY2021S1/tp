@@ -7,12 +7,14 @@ title: User Guide
 * Table of Contents
 {:toc}
 
+--------------------------------------------------------------------------------------------------------------------
 ## Introduction
+
 ### Warenager’s User Guide
 
 This user guide introduces our inventory application, Warenager, and provides support
-for the usage of its functionalities. For quick reference, we have provided a [summarised table of commands]
-(https://ay2021s1-cs2103t-t15-3.github.io/tp/UserGuide.html#command-summary) and their usage formats
+for the usage of its functionalities. For quick reference, we have provided a [summarised table of commands](#command-summary)
+and their usage formats
 at the end of this guide.
 
 ### About Warenager
@@ -137,7 +139,7 @@ The header fields can be in any order:<br>
 `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br>
 `add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:warning:**
 Each specific fields specified in the `add` command should only be entered once.<br>
@@ -191,7 +193,7 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 * Multiple:
     * `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:warning:**
 Each specific fields specified in the `find` command should only be entered once.<br>
@@ -239,7 +241,7 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 * Multiple:
     * `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:warning:**
 Each specific fields specified in the `findexact` command should only be entered once.<br>
@@ -309,7 +311,7 @@ Prefixes:
 
 `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>`
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:warning:**
 If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
@@ -343,7 +345,7 @@ to `50`.
 Adds a note to the stock specified, displayed in the notes column for that stock.
 Multiple notes can be added to the stock and each note will be indexed. <br>
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:warning:**
 If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
@@ -384,7 +386,7 @@ Deletes a note, specified by the note's index, from the stock specified by its s
     1. Serial number of stock
     2. Note index of note to delete
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:warning:**
 Note index must be an integer.
@@ -495,7 +497,7 @@ Sometimes user will type in wrong commands. Warenager will help such user by sug
 of the command if the command word is valid. If the command word is invalid, then Warenager will try to predict
 and suggest the closest command to whatever the user has typed.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-warning">
 
 **:warning:**
 The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
