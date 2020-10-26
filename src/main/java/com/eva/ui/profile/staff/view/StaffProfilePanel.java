@@ -37,6 +37,8 @@ public class StaffProfilePanel extends UiPart<Region> {
     private StackPane basicInfoPlaceholder;
     // @FXML
     // private StackPane commentListPanelPlaceholder;
+    @FXML
+    private StackPane leaveInfoPlaceholder;
 
     /**
      * Creates a {@code StaffProfilePanel} with the given {@code Staff}.
@@ -70,6 +72,9 @@ public class StaffProfilePanel extends UiPart<Region> {
             Staff currentStaff = this.staff.getCurrentView().get();
             basicInfoDisplay = new BasicInfoDisplay(currentStaff);
             basicInfoPlaceholder.getChildren().add(basicInfoDisplay.getRoot());
+
+            leaveInfoDisplay = new LeaveInfoDisplay(staff.getLeaveList());
+            leaveInfoPlaceholder.getChildren().add(leaveInfoDisplay.getRoot());
 
             // commentListPanel = new CommentListPanel(currentStaff.getComments());
         }

@@ -5,6 +5,9 @@
 <?import javafx.scene.control.SplitPane?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <VBox>
-        <StackPane fx:id="basicInfoPlaceholder" VBox.vgrow="NEVER" />
+        <SplitPane>
+            <StackPane fx:id="basicInfoPlaceholder" VBox.vgrow="NEVER" />
+            <StackPane fx:id="leaveInfoPlaceholder" VBox.vgrow="NEVER" />
+        </SplitPane>
     </VBox>
 </HBox>
