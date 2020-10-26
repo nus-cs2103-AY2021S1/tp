@@ -1,5 +1,6 @@
 package chopchop.ui;
 
+
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
@@ -45,11 +46,13 @@ public class StatsBox extends UiPart<Region> {
     public StatsBox() {
         super(FXML);
         pins.setText("Statistics\n");
-        /*
         ArrayList<String> testList = new ArrayList<>(
             Arrays.asList("recipe 1 2020-02-13", "recipe 2 2020-02-12"));
-        body1.set = renderList(testList);
-         */
+        renderList(testList);
+
+    }
+
+    public void setContent() {
         final ObservableList<String> names = FXCollections.observableArrayList();
         final ObservableList<String> data = FXCollections.observableArrayList();
         this.listView = new ListView(data);
@@ -66,7 +69,6 @@ public class StatsBox extends UiPart<Region> {
         }
         listView.setItems(data);
         listView.setCellFactory(ComboBoxListCell.forListView(names));
-        listView.setPlaceholder(pins);
     }
 
     private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
@@ -87,18 +89,19 @@ public class StatsBox extends UiPart<Region> {
      * A vertical scrollable list. Useful for showing a bunch of Strings wrapped in each
      * panel.
      */
-    private ListView<String> renderList(List<String> inputList) {
-        /*
-        ListView<String> list = new ListView<>();
+    private void renderList(List<String> inputList) {
         ObservableList<String> items = FXCollections.observableArrayList(inputList);
-        list.setItems(items);
-*/
-        //code I got online
+        listView.setItems(items);
+
+
+        //-------------------------------style-----------------------------------------
+        listView.setPrefWidth(100);
+        listView.setPrefHeight(120);
+        /*
         final ObservableList names =
             FXCollections.observableArrayList();
         final ObservableList data =
             FXCollections.observableArrayList();
-        final ListView listView = new ListView(data);
         listView.setPrefSize(200, 250);
         listView.setEditable(true);
         names.addAll(
@@ -112,17 +115,12 @@ public class StatsBox extends UiPart<Region> {
         }
         listView.setItems(data);
         listView.setCellFactory(ComboBoxListCell.forListView(names));
-        //-------------------------------style-----------------------------------------
-        //list.setPrefWidth(100);
-        //list.setPrefHeight(120);
-
-        return listView;
+         */
     }
 
     /**
      * A bar graph for showing the quantities.
      */
-    /*
     private XYChart renderChart(List<Pair<String, Integer>> inputList, String xLabel,
                                 String yLabel) {
         CategoryAxis xAxis = new CategoryAxis();
@@ -139,5 +137,5 @@ public class StatsBox extends UiPart<Region> {
     public void setBoxContent(String boxContent) {
         requireNonNull(boxContent);
     }
-     */
+
 }

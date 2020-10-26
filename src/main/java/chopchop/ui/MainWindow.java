@@ -188,7 +188,6 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getMessage());
 
             this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
-
             if (commandResult.shouldShowHelp()) {
                 handleHelp();
             }
@@ -201,7 +200,6 @@ public class MainWindow extends UiPart<Stage> {
 
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            //this.statsOutput.setBoxContent(e.getMessage());
 
             commandOutput.setFeedbackToUser(e.getMessage(), /* isError: */ true);
             throw e;
