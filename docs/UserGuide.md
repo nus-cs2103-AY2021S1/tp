@@ -44,11 +44,13 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
    
    * **`edit 2 q/What is a revision control software? a/It is the software tool that automate the process of Revision Control`**: Edits the 2nd flashcard in the current list with the specified attributes.
 
+   * **`filter c/OOP`** : Filters out flashcard(s) belonging to the OOP category. 
+   
    * **`fav 1`** : Favourite the 1st flashcard in the current list.
      
    * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
    
-   * **`find general`**: Find all flashcards containing general
+   * **`find general`**: Find all flashcards containing general.
 
    * **`list`** : Lists all flashcards.
 
@@ -138,7 +140,7 @@ Examples:
 
 ### Filtering out flashcards  : `filter`
 
-Filters the specified flashcard based on the field input(s) by the user. 
+Filters for specific flashcard(s) based on the field input(s) by the user. 
 This will return all the flashcards whose fields match all the fields specified by the user.
 
 Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
@@ -259,6 +261,7 @@ Action | Format, Examples
 **Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
 **Delete** | `delete INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Filter** | `filter [c/CATEGORY] [r/RATING] [f/FAVOURITE] [t/TAG]...`
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
 **Find** | `find keyword...` <br>  e.g. `find general important`
