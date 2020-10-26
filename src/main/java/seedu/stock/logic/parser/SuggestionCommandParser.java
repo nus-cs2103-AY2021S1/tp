@@ -208,11 +208,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + BookmarkCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, BookmarkCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -233,11 +229,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + UnbookmarkCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, UnbookmarkCommand.MESSAGE_USAGE);
     }
 
 
@@ -260,11 +252,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + FindExactCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, FindExactCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -314,11 +302,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + UpdateCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, UpdateCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -339,11 +323,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + FindCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, FindCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -363,11 +343,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                     .append(CliSyntax.getDefaultDescription(currentPrefix));
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + NoteCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, NoteCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -387,11 +363,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                     .append(CliSyntax.getDefaultDescription(currentPrefix));
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + NoteDeleteCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, NoteDeleteCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -410,11 +382,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                     .append(CliSyntax.getDefaultDescription(currentPrefix));
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + NoteViewCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, NoteViewCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -440,11 +408,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + DeleteCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, DeleteCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -468,11 +432,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + StatisticsCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, StatisticsCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -500,11 +460,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + AddCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, AddCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -516,11 +472,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.LIST_COMMAND_WORD);
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + ListCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, ListCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -532,11 +484,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     private void generateHelpSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.HELP_COMMAND_WORD);
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + HelpCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, HelpCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -557,5 +505,19 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generatePrintSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.PRINT_COMMAND_WORD);
+    }
+
+    /**
+     * Generates the suggestion body message to be displayed to the user
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param messageUsage The body message.
+     */
+    private void generateBodyMessage(StringBuilder toBeDisplayed, String messageUsage) {
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + messageUsage);
+        }
     }
 }
