@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_DETAIL_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_DETAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
@@ -15,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddDetailCommand;
 import seedu.address.logic.commands.DeleteDetailCommand;
+import seedu.address.logic.commands.DetailCommand;
 import seedu.address.logic.commands.EditDetailCommand;
-import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.admin.Detail;
 
@@ -131,14 +130,14 @@ public class DetailCommandParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                HelpCommand.MESSAGE_USAGE), () -> parser.parse(""));
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailCommand.MESSAGE_USAGE);
+        assertThrows(ParseException.class, expectedMessage, () -> parser.parse(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_DETAIL_COMMAND, () ->
-                parser.parse("unknownCommand"));
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DetailCommand.MESSAGE_USAGE);
+        assertThrows(ParseException.class, expectedMessage, () -> parser.parse("unknownCommand"));
     }
     //@@author
 

@@ -11,7 +11,7 @@ public abstract class DetailCommand extends Command {
     public static final String COMMAND_WORD = "detail";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds, edits or deletes an Additional Detail "
-            + "from a student in Reeve. ";
+            + "from a student in Reeve. \n" + "SUPPORTED COMMANDS: add, edit, delete";
 
     /**
      * Creates a new Student, with the provided additional detail.
