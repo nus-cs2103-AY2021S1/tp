@@ -3,6 +3,8 @@ package seedu.address.model.account;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -17,8 +19,8 @@ import seedu.address.model.account.entry.Revenue;
  */
 public class ActiveAccountManager implements ActiveAccount {
     private final Account activeAccount;
-    private FilteredList<Expense> filteredExpenses;
-    private FilteredList<Revenue> filteredRevenues;
+    private final FilteredList<Expense> filteredExpenses;
+    private final FilteredList<Revenue> filteredRevenues;
     private Optional<ActiveAccount> previousState;
 
     /**
@@ -158,15 +160,31 @@ public class ActiveAccountManager implements ActiveAccount {
 
     @Override
     public void clearExpenses() {
-        activeAccount.clearExpenses();
+        //activeAccount.clearExpenses();
+        List<Expense> copiedFilteredExpenses = copyFilteredExpenses();
+        for (Expense expense : copiedFilteredExpenses) {
+            deleteExpense(expense);
+        }
     }
 
     @Override
     public void clearRevenues() {
-        activeAccount.clearRevenues();
+        //activeAccount.clearRevenues();
+        List<Revenue> copiedFilteredRevenues = copyFilteredRevenue();
+        for (Revenue revenue : copiedFilteredRevenues) {
+            deleteRevenue(revenue);
+        }
     }
 
     //=========== Filtered Account List Accessors =============================================================
+
+    private List<Expense> copyFilteredExpenses() {
+        return new ArrayList<>(filteredExpenses);
+    }
+
+    private List<Revenue> copyFilteredRevenue() {
+        return new ArrayList<>(filteredRevenues);
+    }
 
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {

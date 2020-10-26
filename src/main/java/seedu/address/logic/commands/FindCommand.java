@@ -1,9 +1,10 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
 import seedu.address.model.account.entry.ExpenseDescriptionContainsKeywordsPredicate;
@@ -13,6 +14,7 @@ import seedu.address.model.account.entry.RevenueDescriptionContainsKeywordsPredi
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String EMPTY_KEYWORD_LIST_MESSAGE = "Keyword list cannot be empty! Here are some examples\n"
+        + "Parameters: " + PREFIX_KEYWORDS + "KEYWORDS " + "[" + PREFIX_CATEGORY + "CATEGORY" + "]" + "\n"
         + "Example 1: " + COMMAND_WORD + " k/canvas cases\n"
         + "Example 2: " + COMMAND_WORD + " k/canvas c/expense\n"
         + "Example 3: " + COMMAND_WORD + " k/cases c/revenue\n";
@@ -22,6 +24,10 @@ public class FindCommand extends Command {
         + "Example 1: " + COMMAND_WORD + " k/canvas cases\n"
         + "Example 2: " + COMMAND_WORD + " k/canvas c/expense\n"
         + "Example 3: " + COMMAND_WORD + " k/cases c/revenue\n";
+
+    public static final String PREFIXES = PREFIX_KEYWORDS + "KEYWORDS\n" + "["
+            + PREFIX_CATEGORY + "CATEGORY" + "]" + "\n";
+
 
     private final ExpenseDescriptionContainsKeywordsPredicate expensePredicate;
     private final RevenueDescriptionContainsKeywordsPredicate revenuePredicate;
@@ -52,7 +58,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
+    public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
         assert (activeAccount != null);
 
@@ -63,14 +69,14 @@ public class FindCommand extends Command {
             activeAccount.updateFilteredRevenueList(revenuePredicate);
         }
 
-        boolean noExpenseFoundWithExpensePredicate =
-            activeAccount.getFilteredExpenseList().size() == 0 && expensePredicate != null;
-        boolean noRevenueFoundWithRevenuePredicate =
-            activeAccount.getFilteredRevenueList().size() == 0 && revenuePredicate != null;
+        boolean noExpenseFoundWithOnlyExpensePredicate =
+            activeAccount.getFilteredExpenseList().size() == 0 && expensePredicate != null && revenuePredicate == null;
+        boolean noRevenueFoundWithOnlyRevenuePredicate =
+            activeAccount.getFilteredRevenueList().size() == 0 && revenuePredicate != null && expensePredicate == null;
         boolean noEntryFound = activeAccount.getFilteredExpenseList().size() == 0
                             && activeAccount.getFilteredRevenueList().size() == 0;
 
-        if (noEntryFound || noExpenseFoundWithExpensePredicate || noRevenueFoundWithRevenuePredicate) {
+        if (noEntryFound || noExpenseFoundWithOnlyExpensePredicate || noRevenueFoundWithOnlyRevenuePredicate) {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_EMPTY_FILTERED_LIST);
         } else {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_UPDATED);
