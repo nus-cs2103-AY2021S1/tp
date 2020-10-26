@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -259,11 +260,6 @@ public class ModelManager implements Model {
         requireNonNull(persons);
         Person personToUpdate = persons[0];
         boolean isReplacement = persons.length > 1;
-<<<<<<< HEAD
-=======
-
-
->>>>>>> f849fbe9b9f7c88f9ef6111b93b6c251a0976844
         filteredModules.stream()
                 .filter(module -> module.getClassmates().contains(personToUpdate))
                 .forEach(module -> {
@@ -281,37 +277,42 @@ public class ModelManager implements Model {
                 });
     }
 
-<<<<<<< HEAD
     @Override
     public void updateModuleInMeetingBook(Module... modules) {
         requireNonNull(modules);
         Module moduleToUpdate = modules[0];
         boolean isReplacement = modules.length > 1;
 
-        filteredMeetings.stream().filter(meeting -> meeting.getModule()
-                .equals(moduleToUpdate)).forEach(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>();
-                    if (isReplacement) {
-                        assert modules.length == 2;
-                        Module editedmodule = modules[1];
-                        for (Person person : editedmodule.getClassmates()) {
-                            if (meeting.getParticipants().contains(person)) {
-                                updatedMembers.add(person);
-                            }
-                        }
+        List<Meeting> meetingList = filteredMeetings.stream().filter(meeting -> meeting.getModule()
+                .equals(moduleToUpdate)).collect(Collectors.toList());
+        for (Meeting filteredMeeting: meetingList) {
+            Set<Person> updatedMembers = new HashSet<>();
+            if (isReplacement) {
+                assert modules.length == 2;
+                Module editedmodule = modules[1];
+                for (Person person : editedmodule.getClassmates()) {
+                    if (filteredMeeting.getParticipants().contains(person)) {
+                        updatedMembers.add(person);
                     }
-                    if (updatedMembers.size() == 0) {
-                        meetingBook.removeMeeting(meeting);
-                    } else {
-                        Meeting updatedMeeting = new Meeting(modules[1], meeting.getMeetingName(),
-                                meeting.getDate(), meeting.getTime(), updatedMembers);
-                        meetingBook.setMeeting(meeting, updatedMeeting);
-                    }
-                });
+                }
+            }
+            if (updatedMembers.size() == 0) {
+                meetingBook.removeMeeting(filteredMeeting);
+            } else {
+                Meeting updatedMeeting = new Meeting(modules[1], filteredMeeting.getMeetingName(),
+                        filteredMeeting.getDate(), filteredMeeting.getTime(), updatedMembers);
+                meetingBook.setMeeting(filteredMeeting, updatedMeeting);
+            }
+        }
     }
 
-=======
->>>>>>> f849fbe9b9f7c88f9ef6111b93b6c251a0976844
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        moduleBook.setModule(target, editedModule);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -411,7 +412,6 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
-
 
     @Override
     public boolean equals(Object obj) {

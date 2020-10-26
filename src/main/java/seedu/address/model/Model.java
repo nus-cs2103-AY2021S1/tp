@@ -202,7 +202,7 @@ public interface Model {
      * second argument is the edited person who will replace the deleted person.
      */
     void updatePersonInModuleBook(Person ...persons);
-    
+
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
@@ -216,5 +216,13 @@ public interface Model {
      * second argument is the edited module who will replace the deleted module.
      */
     void updateModuleInMeetingBook(Module ...modules);
+
+    /**
+     * Replaces the given module {@code target} with {@code editedModule}.
+     * {@code target} must exist in the module book.
+     * The module identity of {@code editedModule} must not be the same
+     * as another existing module in the module book.
+     */
+    void setModule(Module target, Module editedModule);
 
 }

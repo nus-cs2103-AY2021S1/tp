@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.ArrayList;
@@ -78,9 +79,10 @@ public class EditModuleCommand extends Command {
         if (moduleToEdit.isSameModule(editedModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
-        model.updateModuleInMeetingBook(moduleToEdit, editedModule);
         model.setModule(moduleToEdit, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.updateModuleInMeetingBook(moduleToEdit, editedModule);
+        model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 
