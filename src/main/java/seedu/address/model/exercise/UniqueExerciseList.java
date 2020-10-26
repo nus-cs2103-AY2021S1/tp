@@ -169,7 +169,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         String stringDate = oldEntry.getDate().value;
         Integer intCalories = Integer.parseInt(oldEntry.getCalories().value);
         assert caloriesByDay.containsKey(stringDate) : "Input for minusCaloriesForDay() is wrong";
-        Integer newCalories = caloriesByDay.get(stringDate) + intCalories;
+        Integer newCalories = caloriesByDay.get(stringDate) - intCalories;
         caloriesByDay.put(stringDate, newCalories);
     }
 

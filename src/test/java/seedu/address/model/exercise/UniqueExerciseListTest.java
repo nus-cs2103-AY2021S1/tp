@@ -159,4 +159,32 @@ class UniqueExerciseListTest {
         assertThrows(UnsupportedOperationException.class, ()
                 -> uniqueExerciseList.asUnmodifiableObservableList().remove(0));
     }
+
+    @Test
+    public void checkCaloriesForDay_emptyList_returnFalse() {
+        UniqueExerciseList uniqueExerciseList = new UniqueExerciseList();
+        assertFalse(uniqueExerciseList.getCaloriesByDay().containsKey(PUSH_UP.getDate().value));
+    }
+
+    @Test
+    public void addExercise_checkCaloriesByDay() {
+        UniqueExerciseList uniqueExerciseList = new UniqueExerciseList();
+        assertFalse(uniqueExerciseList.getCaloriesByDay().containsKey(PUSH_UP.getDate().value));
+        uniqueExerciseList.add(PUSH_UP);
+        assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(PUSH_UP.getDate().value));
+        assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value),
+                Integer.parseInt(PUSH_UP.getCalories().value));
+    }
+
+    @Test
+    public void setExercise_checkCaloriesByDay() {
+        UniqueExerciseList uniqueExerciseList = new UniqueExerciseList();
+        uniqueExerciseList.add(PUSH_UP);
+        uniqueExerciseList.setExercise(PUSH_UP, SIT_UP);
+        assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(PUSH_UP.getDate().value));
+        assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value), 0);
+        assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(SIT_UP.getDate().value));
+        assertEquals(uniqueExerciseList.getCaloriesByDay().get(SIT_UP.getDate().value),
+                Integer.parseInt(SIT_UP.getCalories().value));
+    }
 }
