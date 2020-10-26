@@ -90,7 +90,7 @@ public class FindItemCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code NameMatchesKeywordsPredicate}.
      */
     private NameMatchesKeywordsPredicate preparePredicate(String userInput) {
         return new NameMatchesKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
