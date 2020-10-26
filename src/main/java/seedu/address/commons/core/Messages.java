@@ -10,8 +10,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_MODULES_LISTED = "%1$d modules listed!";
-    public static final String MESSAGE_MODULE_DOES_NOT_EXIST = "This module does not exist in FaculType";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in FaculType";
+    public static final String MESSAGE_MODULE_DOES_NOT_EXIST = "This module does not exist in the active semester";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the active semester";
     public static final String MESSAGE_DUPLICATE_MODULE_CODE = "Duplicate module code specified: %s";
     public static final String MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED = "This instructor is already assigned to %s";
     public static final String MESSAGE_INSTRUCTOR_DOES_NOT_EXIST = "This instructor is not assigned to %s";

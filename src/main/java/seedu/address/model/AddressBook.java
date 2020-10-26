@@ -21,7 +21,9 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueModuleList modules;
+    private UniqueModuleList modules;
+    private final UniqueModuleList semOneModules;
+    private final UniqueModuleList semTwoModules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,7 +34,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        modules = new UniqueModuleList();
+        semOneModules = new UniqueModuleList();
+        semTwoModules = new UniqueModuleList();
+        modules = semOneModules;
     }
 
     public AddressBook() {}
@@ -139,7 +143,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// module-level operations
     /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the active module list.
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
@@ -147,7 +151,23 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Returns true if a module with the same module code as {@code moduleCode} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the semester one module list.
+     */
+    public boolean hasSemOneModule(Module module) {
+        requireNonNull(module);
+        return semOneModules.contains(module);
+    }
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the semester two module list.
+     */
+    public boolean hasSemTwoModule(Module module) {
+        requireNonNull(module);
+        return semTwoModules.contains(module);
+    }
+
+    /**
+     * Returns true if a module with the same module code as {@code moduleCode} exists in the active module list.
      */
     public boolean hasModuleCode(ModuleCode moduleCode) {
         requireNonNull(moduleCode);
@@ -156,16 +176,32 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     /**
      * Adds a module to the address book.
-     * The module must not already exist in the address book.
+     * The module must not already exist in the active module list.
      */
     public void addModule(Module m) {
         modules.add(m);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedModule}.
+     * Adds a module to the semester one module list.
+     * The module must not already exist in the semester one module list.
+     */
+    public void addSemOneModule(Module m) {
+        semOneModules.add(m);
+    }
+
+    /**
+     * Adds a module to the semester two module list.
+     * The module must not already exist in the semester two module list.
+     */
+    public void addSemTwoModule(Module m) {
+        semTwoModules.add(m);
+    }
+
+    /**
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedModule} must not be the same as another existing person in the address book.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the address book.
      */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
@@ -218,6 +254,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return modules.moduleCodeHasInstructor(moduleCode, instructor);
     }
 
+    /**
+     * Switches the active module list.
+     * */
+    public void switchModuleList() {
+        modules = (modules.equals(semOneModules) ? semTwoModules : semOneModules);
+    }
+
     //// util methods
 
     @Override
@@ -231,9 +274,20 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
+    @Override
     public UniqueModuleList getModuleList() {
         // Currently no support for "contains" method for observable list
         return modules;
+    }
+
+    @Override
+    public UniqueModuleList getSemOneModuleList() {
+        return semOneModules;
+    }
+
+    @Override
+    public UniqueModuleList getSemTwoModuleList() {
+        return semTwoModules;
     }
 
     @Override

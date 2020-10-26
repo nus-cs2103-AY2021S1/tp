@@ -160,4 +160,9 @@ public abstract class ModelStub implements Model {
     public void unassignInstructorFromAll(Person instructor) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void switchModuleList() {
+        throw new AssertionError("This method should not be called.");
+    }
 }

@@ -191,6 +191,10 @@ public class ModelManager implements Model {
         return addressBook.moduleCodeHasInstructor(moduleCode, instructor);
     }
 
+    @Override
+    public void switchModuleList() {
+        addressBook.switchModuleList();
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

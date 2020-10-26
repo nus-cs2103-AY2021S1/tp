@@ -173,6 +173,16 @@ public class AddressBookTest {
         public UniqueModuleList getModuleList() {
             return modules;
         }
+
+        @Override
+        public UniqueModuleList getSemOneModuleList() {
+            return modules;
+        }
+
+        @Override
+        public UniqueModuleList getSemTwoModuleList() {
+            return modules;
+        }
     }
 
 }

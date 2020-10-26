@@ -149,11 +149,22 @@ public interface Model {
      */
     void unassignInstructor(Person instructor, ModuleCode moduleCode);
 
+    /**
+     * Unassigns an {@code instructor} from all modules.
+     */
     void unassignInstructorFromAll(Person instructor) throws CommandException;
 
+    /**
+     * Returns true if the module with the given {@code moduleCode} has {@code instructor}.
+     */
     boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Switches the active module list.
+     * */
+    void switchModuleList();
+
+    /** Returns an unmodifiable view of the filtered person list. */
     ObservableList<Module> getFilteredModuleList();
 
     /**
