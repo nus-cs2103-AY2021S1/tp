@@ -120,8 +120,11 @@ You can create a flashcard that contains an open ended question which will be ad
 
 1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
 For example, you can enter`add q/Sample Question ans/Sample Answer`
+
     ![addOpenEnded](images/addOpenEnded.png)
+    
 2. You have successfully created a flashcard with an open ended question and it will be saved immediately in the list.
+
     ![addOpenEnded2](images/addOpenEnded2.png)
 
 <div class="alert alert-danger">
@@ -133,8 +136,11 @@ You can create a flashcard that contains a multiple choice question which will b
 
 1. You can use the addmcq command to add a flashcard with a multiple choice question which will be added to the list.
 For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sample Choice 2`
+
     ![addMCQ](images/addMCQ.png)
+    
 2. You have successfully created a flashcard with a multiple choice question and it will be saved immediately in the list.
+
     ![addMCQ2](images/addMCQ2.png)
 
 <div class="alert alert-danger">
@@ -172,12 +178,17 @@ You have successfully opened a flashcard!
 You can edit a flashcard that you have created previously.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![edit](images/Edit.png)
+
+    ![edit](images/Edit.png)
+    
 2. Using the indices of the displayed list, enter the edit command followed by the index of the flashcard you want to edit. 
 For example, if you want to edit the 3rd flashcard in the displayed list, you can enter `edit 3 q/Updated Question`.
-![edit2](images/Edit2.png)
+
+    ![edit2](images/Edit2.png)
+    
 3. Press enter and QuickCache will edit the flashcard specified by the index.
-![edit3](images/Edit3.png)
+
+    ![edit3](images/Edit3.png)
 
 You have successfully edited a flashcard.
 
@@ -474,7 +485,9 @@ You can export all flashcards from the last displayed list into a file named `FI
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
     ![ExportStep3a](./images/ExportStep3a.png)
     ![ExportStep3b](./images/ExportStep3b.png)
+    ![ExportStep3bW](./images/ExportStep3bW.png)
     ![ExportStep3c](./images/ExportStep3c.png)
+    ![ExportStep3cW](./images/ExportStep3cW.png)
 
 Voila! You have successfully exported your flashcards into a file.
 
@@ -488,8 +501,10 @@ You can import external flashcards into your local QuickCache as well.
 
 1. Create an `import` folder in the same directory as where `QuickCache.jar` is located.
     ![ImportStep1](./images/ImportStep1.png)
+    ![ImportStep1W](./images/ImportStep1W.png)
 2. Place the file that you want to import in the `import` folder.
     ![ImportStep2](./images/ImportStep2.png)
+    ![ImportStep2W](./images/ImportStep2W.png)
 3. In the user input box, enter the `import` command together with the name of the file you would like to import the flashcards from. For example, if the file to import from is named `joshua-flashcard.json`, you can enter `import joshua-flashcard.json`.
     ![ImportStep3](./images/ImportStep3.png)
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
