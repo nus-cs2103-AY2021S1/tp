@@ -479,15 +479,24 @@ You have successfully cleared the statistics of a flashcard!
 You can export all flashcards from the last displayed list into a file named `FILE_NAME` for backup or sharing with your friends.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+    
     ![ExportStep1](./images/ExportStep1.png)
+    
 2. In the user input box, enter the `export` command together with the `FILE_NAME` you would like to save the flashcards into. For example, if you would like the file to be named as `josiah-flashcard.json`, you can enter `export josiah-flashcard.json`.
+    
     ![ExportStep2](./images/ExportStep2.png)
+    
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
     ![ExportStep3a](./images/ExportStep3a.png)
+    
     ![ExportStep3b](./images/ExportStep3b.png)
+    
     ![ExportStep3bW](./images/ExportStep3bW.png)
+    
     ![ExportStep3c](./images/ExportStep3c.png)
+    
     ![ExportStep3cW](./images/ExportStep3cW.png)
+    
 
 Voila! You have successfully exported your flashcards into a file.
 
