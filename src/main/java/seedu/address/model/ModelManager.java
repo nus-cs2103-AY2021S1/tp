@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
@@ -187,6 +188,7 @@ public class ModelManager implements Model {
     @Override
     public void selectVendor(int vendorIndex) {
         this.addressBook.selectVendor(vendorIndex);
+        this.filteredFoods = new FilteredList<>(this.menuManagers.get(vendorIndex).getFoodList());
     }
 
     @Override
@@ -330,7 +332,7 @@ public class ModelManager implements Model {
 
     @Override
     public int getFilteredFoodListSize() {
-        return getFilteredFoodList().size();
+        return filteredFoods == null ? 0 : getFilteredFoodList().size();
     }
 
     @Override

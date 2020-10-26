@@ -27,4 +27,11 @@ public class PriceCommand extends Command {
                 String.format(Messages.MESSAGE_FOOD_LISTED_PRICE_CONTEXT,
                         model.getFilteredFoodListSize(), predicate), false, false, true);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PriceCommand // instanceof handles nulls
+                && predicate.equals(((PriceCommand) other).predicate)); // state check
+    }
 }
