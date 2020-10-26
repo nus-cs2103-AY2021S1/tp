@@ -4,6 +4,7 @@ import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
+import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 
@@ -60,8 +61,8 @@ public class EditStudentDescriptorBuilder {
     /**
      * Sets the {@code Year} of the {@code EditStudentDescriptor} that we are building.
      */
-    public EditStudentDescriptorBuilder withYear(String year) {
-        descriptor.setYear(new Year(year));
+    public EditStudentDescriptorBuilder withYear(SchoolType schoolType, Integer level) {
+        descriptor.setYear(new Year(schoolType, level));
         return this;
     }
 

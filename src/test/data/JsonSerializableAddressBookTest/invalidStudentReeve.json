@@ -3,13 +3,18 @@
     "name": "Hans Muster",
     "phone": "9482424!invalid",
     "school": "NUS High School",
-    "year": "Year 6",
+    "year": "JC 2",
     "admin" : {
       "classVenue": "123, Jurong West Ave 6, #08-111",
       "classTime": "1 1500-1700",
       "fee": "21.00",
       "paymentDate": "21/05/2020",
       "additionalDetails": ["Clever"]
-    }
+    },
+    "questions": [ {
+      "status" : false,
+      "question" : " ",
+      "solution" : ""
+    } ]
   } ]
 }

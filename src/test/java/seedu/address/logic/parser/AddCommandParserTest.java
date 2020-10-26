@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_DETAILS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_DETAILS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CLASS_TIME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CLASS_TIME_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CLASS_VENUE_DESC_AMY;
@@ -25,6 +27,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -51,62 +55,73 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedStudent = new StudentBuilder(BOB).build();
+        Student expectedStudent = new StudentBuilder(BOB).withQuestions().build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
                 + SCHOOL_DESC_BOB + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_BOB, new AddCommand(expectedStudent));
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
                 + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_BOB , new AddCommand(expectedStudent));
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + SCHOOL_DESC_BOB
                 + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_BOB, new AddCommand(expectedStudent));
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
 
         // multiple emails - last school accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_AMY + SCHOOL_DESC_BOB
                 + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_BOB, new AddCommand(expectedStudent));
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
 
         // multiple years - last year accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
                 + YEAR_DESC_AMY + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_BOB, new AddCommand(expectedStudent));
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
 
         //multiple venues - last venue accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
                 + YEAR_DESC_BOB + CLASS_VENUE_DESC_AMY + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_BOB, new AddCommand(expectedStudent));
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
 
         //multiple times - last time accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
                 + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_AMY + CLASS_TIME_DESC_BOB + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_BOB, new AddCommand(expectedStudent));
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
 
         //multiple fees - last fee accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
                 + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_AMY + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_BOB, new AddCommand(expectedStudent));
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
 
         //multiple payment dates - last date accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
-                + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB
-                + PAYMENT_DATE_DESC_AMY + PAYMENT_DATE_DESC_BOB, new AddCommand(expectedStudent));
+                + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB + PAYMENT_DATE_DESC_AMY
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB, new AddCommand(expectedStudent));
+
+        //multiple details - all details accepted
+        expectedStudent = new StudentBuilder(BOB)
+                .withDetails(VALID_ADDITIONAL_DETAILS_BOB, VALID_ADDITIONAL_DETAILS_AMY)
+                .withQuestions()
+                .build();
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
+                + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB + PAYMENT_DATE_DESC_AMY
+                + PAYMENT_DATE_DESC_BOB + ADDITIONAL_DETAILS_DESC_BOB + ADDITIONAL_DETAILS_DESC_AMY,
+                new AddCommand(expectedStudent));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero additional details
-        Student expectedStudent = new StudentBuilder(AMY).build();
+        Student expectedStudent = new StudentBuilder(AMY).withQuestions().withDetails().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + SCHOOL_DESC_AMY + YEAR_DESC_AMY
                         + CLASS_VENUE_DESC_AMY + CLASS_TIME_DESC_AMY + FEE_DESC_AMY + PAYMENT_DATE_DESC_AMY,
                 new AddCommand(expectedStudent));
     }
+
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);

@@ -3,15 +3,18 @@ package seedu.address.model.student.admin;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
  * Represents a ClassTime in Reeve.
  * Guarantees: immutable; is valid as declared in {@link #isValidClassTime(String)}
  */
-public class ClassTime {
+public class ClassTime implements Comparable<ClassTime> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Class Time should follow the following format: {int: day_of_week} {int: start_time}-{int: end_time}";
@@ -26,9 +29,10 @@ public class ClassTime {
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HHm");
     public static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("HHmm");
 
-    public final Integer dayOfWeek;
+    public final DayOfWeek dayOfWeek;
     public final LocalTime startTime;
     public final LocalTime endTime;
+
 
     /**
      * Constructs a {@code ClassTime}.
@@ -51,9 +55,9 @@ public class ClassTime {
         return test.matches(VALIDATION_REGEX);
     }
 
-    private static int extractDay(String input) {
+    private static DayOfWeek extractDay(String input) {
         char day = input.charAt(0);
-        return Integer.parseInt(String.valueOf(day));
+        return DayOfWeek.of(Integer.parseInt(String.valueOf(day)));
     }
 
     private static LocalTime extractStartTime(String input) {
@@ -64,6 +68,10 @@ public class ClassTime {
     private static LocalTime extractEndTime(String input) {
         String endTime = input.substring(7);
         return LocalTime.parse(endTime, TIME_FORMATTER);
+    }
+
+    public boolean isSameDay(DayOfWeek otherDay) {
+        return this.dayOfWeek.equals(otherDay);
     }
 
     /**
@@ -84,7 +92,7 @@ public class ClassTime {
     public String convertClassTimeToUserInputString() {
         String startTimeString = this.startTime.format(OUTPUT);
         String endTimeString = this.endTime.format(OUTPUT);
-        String dayOfWeek = this.dayOfWeek.toString();
+        int dayOfWeek = this.dayOfWeek.getValue();
         final StringBuilder builder = new StringBuilder();
         builder.append(dayOfWeek)
                 .append(" ")
@@ -96,10 +104,11 @@ public class ClassTime {
 
     @Override
     public String toString() {
-        return String.format("Day of week: %s, Start time: %s, End Time: %s",
-                this.dayOfWeek,
-                this.startTime.format(TIME_FORMATTER),
-                this.endTime.format(TIME_FORMATTER));
+        String dayDisplayName = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+        return String.format("%1$s (%2$s - %3$s)",
+                dayDisplayName,
+                this.startTime.format(OUTPUT),
+                this.endTime.format(OUTPUT));
     }
 
     @Override
@@ -116,4 +125,19 @@ public class ClassTime {
         return Objects.hash(dayOfWeek, startTime, endTime);
     }
 
+    @Override
+    public int compareTo(ClassTime o) {
+        // same dayOfWeek => need to compare specific time
+        if (this.dayOfWeek.equals(o.dayOfWeek)) {
+
+            if (this.startTime.isBefore(o.startTime)) {
+                return -1; // start time is earlier
+            }
+            // Here we are assuming there are no overlapping classTimes
+            // i.e. there are no clash
+            return 1; // start time is later
+
+        }
+        return this.dayOfWeek.getValue() - o.dayOfWeek.getValue();
+    }
 }

@@ -1,8 +1,11 @@
 package seedu.address.model.student.admin;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+
+import java.time.DayOfWeek;
 
 import org.junit.jupiter.api.Test;
 
@@ -58,6 +61,17 @@ public class ClassTimeTest {
     }
 
     @Test
+    public void isSameDay() {
+        ClassTime t1 = new ClassTime("2 1000-2230");
+        DayOfWeek daySameAst1 = DayOfWeek.TUESDAY;
+        DayOfWeek dayDifferentFromt1 = DayOfWeek.MONDAY;
+
+        assertTrue(t1.isSameDay(daySameAst1));
+        assertFalse(t1.isSameDay(dayDifferentFromt1));
+        assertFalse(t1.isSameDay(null)); // equals method on null should return false
+    }
+
+    @Test
     public void isValidStartAndEndTime() {
         // invalid start and end times
         assertFalse(ClassTime.isValidStartAndEndTime("2 0900-0100")); // end time before start time
@@ -66,5 +80,20 @@ public class ClassTimeTest {
         // valid start and end times
         assertTrue(ClassTime.isValidStartAndEndTime("2 0900-1200"));
         assertTrue(ClassTime.isValidStartAndEndTime("4 1100-1600"));
+
+    }
+
+    @Test
+    public void compareTo() {
+        ClassTime time = new ClassTime("2 1500-1700");
+        ClassTime laterDayOfWeek = new ClassTime("3 1500-1700");
+        ClassTime sameDayOfWeekEarlierTime = new ClassTime("2 1400-1500");
+
+        assertEquals(-1, time.compareTo(laterDayOfWeek)); // earlier dayOfWeek
+
+        assertEquals(1, time.compareTo(sameDayOfWeekEarlierTime)); // same dayOfWeek but later time
+
+        assertThrows(NullPointerException.class, () -> time.compareTo(null)); // null throws exception
+
     }
 }

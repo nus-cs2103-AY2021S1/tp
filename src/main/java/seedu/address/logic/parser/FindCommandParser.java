@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -15,6 +14,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
 import seedu.address.model.student.SchoolContainsKeywordsPredicate;
+import seedu.address.model.student.Year;
 import seedu.address.model.student.YearMatchPredicate;
 
 /**
@@ -42,20 +42,19 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String name = argMultimap.getValue(PREFIX_NAME).get();
             String[] nameKeywords = name.split("\\s+");
-            List<String> nameKeywordsList = Arrays.asList(nameKeywords);
+            List<String> nameKeywordsList = List.of(nameKeywords);
             findStudentDescriptor.setNamePredicate(new NameContainsKeywordsPredicate(nameKeywordsList));
         }
         if (argMultimap.getValue(PREFIX_SCHOOL).isPresent()) {
             String school = argMultimap.getValue(PREFIX_SCHOOL).get();
             String[] schoolKeywords = school.split("\\s+");
-            List<String> schoolKeywordsList = Arrays.asList(schoolKeywords);
+            List<String> schoolKeywordsList = List.of(schoolKeywords);
             findStudentDescriptor.setSchoolPredicate(new SchoolContainsKeywordsPredicate(schoolKeywordsList));
         }
         if (argMultimap.getValue(PREFIX_YEAR).isPresent()) {
-            String year = argMultimap.getValue(PREFIX_YEAR).get();
-            String[] yearKeywords = year.split("\\s+");
-            List<String> yearKeywordsList = Arrays.asList(yearKeywords);
-            findStudentDescriptor.setYearPredicate(new YearMatchPredicate(yearKeywordsList));
+            String stringYear = argMultimap.getValue(PREFIX_YEAR).get();
+            Year year = ParserUtil.parseYear(stringYear);
+            findStudentDescriptor.setYearPredicate(new YearMatchPredicate(year));
         }
 
         if (!findStudentDescriptor.isAnyPredicatePresent()) {

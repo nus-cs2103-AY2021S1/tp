@@ -2,9 +2,10 @@ package seedu.address.model.student.admin;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Represents all administrative details of a Student in Reeve.
@@ -13,30 +14,17 @@ import java.util.Set;
  */
 public class Admin {
 
-    /*
-     * A placeholder Admin object until it has been fully integrated.
-     * To remove when no longer needed.
-     */
-    private static Admin placeholder;
-    static {
-        ClassVenue venue = new ClassVenue("Placeholder venue");
-        ClassTime time = new ClassTime("1 0000-2359");
-        Fee fee = new Fee("123");
-        PaymentDate date = new PaymentDate("1/1/01");
-        placeholder = new Admin(venue, time, fee, date, new HashSet<>());
-    }
-
     private final ClassVenue classVenue;
     private final ClassTime classTime;
     private final Fee fee;
     private final PaymentDate paymentDate;
-    private final Set<AdditionalDetail> details = new HashSet<>();
+    private final List<Detail> details = new ArrayList<>();
 
     /**
      * venue, time, fee, date and details are not null.
      */
     public Admin(ClassVenue venue, ClassTime time, Fee fee, PaymentDate date,
-                 Set<AdditionalDetail> details) {
+                 List<Detail> details) {
         requireAllNonNull(venue, time, fee, date, details);
         this.classVenue = venue;
         this.classTime = time;
@@ -61,12 +49,20 @@ public class Admin {
         return paymentDate;
     }
 
-    public Set<AdditionalDetail> getDetails() {
+    public List<Detail> getDetails() {
         return details;
     }
 
-    public static Admin getPlaceholder() {
-        return placeholder;
+    /**
+     * Get additional details of student formatted for GUI use.
+     * @return formatted additional details.
+     */
+    public String getFormattedDetails() {
+        String result = "";
+        for (Detail detail: details) {
+            result = result + "- " + detail.toString() + "\n";
+        }
+        return result;
     }
 
     @Override
@@ -95,16 +91,22 @@ public class Admin {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(" Class Venue: ")
+        builder.append("\nClass Venue: ")
                 .append(classVenue)
-                .append(" Lesson Times: ")
+                .append("\nLesson Times: ")
                 .append(classTime)
-                .append(" Fee: ")
+                .append("\nFee: ")
                 .append(fee)
-                .append(" Last Paid: ")
-                .append(paymentDate)
-                .append(" Notes: ");
-        details.forEach(builder::append);
+                .append("\nLast Paid: ")
+                .append(paymentDate);
+
+        if (!details.isEmpty()) {
+            builder.append("\nDetails:\n");
+            String detailList = details.stream()
+                    .map(detail -> String.format("- %s", detail))
+                    .collect(Collectors.joining("\n"));
+            builder.append(detailList);
+        }
         return builder.toString();
     }
 }

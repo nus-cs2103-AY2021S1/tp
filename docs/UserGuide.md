@@ -2,7 +2,7 @@
 
 **Welcome to Reeve!**
 
-Reeve is a desktop app for **private tutors to manage the details of their students**, optimised for use via a 
+Reeve is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a
 **Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.
 
 * Table of Contents
@@ -26,7 +26,7 @@ Reeve is a desktop app for **private tutors to manage the details of their stude
 
    * **`list`** : Lists all contacts.
 
-   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+   * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
    t/1 1430-1630 f/25 d/12/12/2020` : Adds a student named `Alex` to Reeve.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
@@ -67,9 +67,9 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
-### Adding a student: `add`
+### Adding a student: `add` (By: Alex and Hogan)
 
-Adds a student to Reeve. (Written by: Alex and Hogan)
+Adds a student to Reeve.
 
 Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
 
@@ -79,10 +79,10 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/L
 
 </div>
 
-Example:
-* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214 
+Examples:
+* `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
 t/1 1430-1630 f/25 d/12/12/2020`
-* `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 
+* `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347
 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 ### Listing all students : `list`
@@ -91,13 +91,11 @@ Shows a list of all students in Reeve.
 
 Format: `list`
 
+### Editing a student : `edit` (By: Vaishak)
 
+Edits an existing student in Reeve.
 
-### Editing a student : `edit`
-
-Edits an existing student in Reeve (Written by: Vaishak).
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] [a/ADDITIONAL_DETAILS] `
+Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
 
 <div markdown="block" class="alert alert-info">
 
@@ -114,9 +112,8 @@ Examples:
 *  `edit 1 n/Alex p/99999999 s/Meridian Junior College` Edits the name, phone number and school of the 1st student to be `Alex`, `99999999` and `Meridian Junior College` respectively.
 *  `edit 3 sb/Mathematics v/Blk 33 West Coast Rd #21-214 t/1 1430-1630` Edits the subject, venue and time of the third student to be `Mathematics`, `Blk 33 West Coast Rd #21-214` and `1 1430-1630` respectively.
 
-### Locating students: `find`
+### Locating students: `find` (By: Choon Siong)
 
-(Written by: Ying Gao)
 Finds students who satisfy the given search criteria.
 
 Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
@@ -130,7 +127,6 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 * For the year, students with a year that contains any keywords specified for the year will be considered to match for the year.
 * Only students matching all criteria specified will be returned (i.e `AND` search).
 
-(Written by: Choon Siong)
 Examples:
 * `find n/Alex david` matches `Alex David`, `alex david` and `Alex david`.
 * `find n/Alex david` does not match `Alexis Davinder`.
@@ -139,7 +135,91 @@ Examples:
 * `find y/sec 3` matches `sec 3`, `Secondary 3`
 * `find y/sec 3` matches `sec 4`
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
-* 
+
+### Finding students with overdue fees: `overdue` (By: Ying Gao)
+
+Finds students whose date of last payment is more than a month ago.
+
+Format: `unpaid`
+
+### Recording questions from a student: `question` (By: Ying Gao) 
+
+Adds, resolves or remove questions from a specified student.
+
+General Format: `question COMMAND_WORD INDEX DETAILS`
+
+* The `COMMAND_WORD` field accepts either `add`, `solve` or `delete`.
+* The command affects the student at the specified `INDEX`.
+* The index **must be a positive integer** 1, 2, 3, …​
+* The format of `DETAILS` varies with each command word as explained below.
+
+#### Adding a question: `add`
+
+Adds a new question to the student.
+
+Format: `question add INDEX t/QUESTION`
+
+* This records a new unresolved question to a student.
+* `QUESTION` must not be empty.
+
+Example:
+* `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in Reeve.
+
+#### Resolving a question: `solve`
+
+Marks a student's question as resolved.
+
+Format: `question solve INDEX i/QUESTION_INDEX t/SOLUTION`
+
+* This resolves the question at the specified `QUESTION_INDEX`.
+* `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
+* `SOLUTION` must not be empty.
+
+Example:
+* `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in Reeve as answered.
+
+#### Deleting a question: `delete`
+
+Deletes a student's question.
+
+Format: `question delete INDEX i/QUESTION_INDEX`
+
+* This deletes the question at the specified `QUESTION_INDEX`.
+* `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `question delete 1 i/1` deletes the 1st question of the 1st student in Reeve.
+
+### Listing lessons schedule on a particular date: `schedule` (By: Alex)
+
+List the students that the user has class with on the given date.
+
+Format: `schedule DATE`
+
+* Date must be in the format of **dd/mm/yyyy**.
+
+Examples:
+* `schedule 20/11/2020` outputs a list of students who has lessons with the user on that date
+
+### Managing additional details for a student: `detail` (By: Vaishak) 
+
+Adds, edits or deletes an additional detail for a specified student.
+
+Format: `detail [add] [edit] [delete] STUDENT_INDEX [i/DETAIL_INDEX] [d/DETAIL_TEXT]`
+
+* Exactly one of the following fields must be present: `[add]`, `[edit]` or `[delete]`
+* The student index and detail index **must be positive integers** 1, 2, 3, …​
+* `detail add` adds the given additional detail to the student at the specified `STUDENT_INDEX`.
+* `detail add` requires the following optional field: `[d/DETAIL_TEXT]`.
+* `detail edit` edits the additional detail at the specified `DETAIL_INDEX`, for the student at the specified `STUDENT_INDEX`
+* `detail edit` requires the following optional fields: `[i/DETAIL_INDEX] [d/DETAIL_TEXT]`.
+* `detail delete` deletes the additional detail at the specified `DETAIL_INDEX`, for the student at the specified `STUDENT_INDEX`
+* `detail delete` requires the following optional field: `[i/DETAIL_INDEX]`.
+
+Examples:  
+* `detail add 1 d/Smart` adds the "Smart" detail to the 1st student in Reeve.
+* `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in Reeve, to "Handsome".
+* `detail delete 1 i/3` deletes the 3rd detail for the 1st student in Reeve.
 
 ### Deleting a student : `delete`
 
@@ -154,6 +234,36 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in Reeve.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
+
+### Adding an exam record to a student: `exam add`
+
+Adds an exam to a specified student in Reeve.
+
+Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
+
+* Adds the given exam to the student at the specified `INDEX`.
+* The format of EXAM_DATE is dd/mm/yyyy (e.g. 08/12/2020).
+* The format of EXAM_SCORE is x/y where x and y are both whole numbers and x has to be less than or equal to y (e.g. 30/50).
+
+Examples:
+* `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam  with date 8 Dec 2020 and 
+score 40/60 to the first student in Reeve.
+
+* `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam  with date 12 May 2020 and 
+score 67/100 to the fifth student in Reeve.
+
+### Deleting an exam record to a student: `exam delete`
+
+Deletes an exam from a specified student in Reeve.
+
+Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
+
+* Deletes the an exam at `EXAM_INDEX` in the specified student's exam list.
+* The specified student is chosen based on `STUDENT_INDEX` of Reeve. 
+
+Examples:
+* `exam delete 1 i/1` deletes the first exam from the first student in Reeve.
+* `exam delete 2 i/5` deletes the fifth exam from the second student in Reeve.
 
 ### Clearing all entries : `clear`
 
@@ -170,10 +280,6 @@ Format: `exit`
 ### Saving the data
 
 Reeve data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Archiving data files `[coming in v2.0]`
-
-_{explain the feature here}_
 
 --------------------------------------------------------------------------------------------------------------------
 

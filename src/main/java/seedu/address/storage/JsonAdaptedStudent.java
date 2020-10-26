@@ -1,15 +1,22 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.question.Question;
 
 /**
  * Jackson-friendly version of {@link Student}.
@@ -22,8 +29,15 @@ class JsonAdaptedStudent {
     private final String phone;
     private final String school;
     private final String year;
+
     @JsonProperty("admin")
     private final JsonAdaptedAdmin jsonAdaptedAdmin;
+
+    @JsonProperty("questions")
+    private final List<JsonAdaptedQuestion> jsonAdaptedQuestions = new ArrayList<>();
+
+    @JsonProperty("exams")
+    private final ArrayList<JsonAdaptedExam> jsonAdaptedExams = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -31,12 +45,20 @@ class JsonAdaptedStudent {
     @JsonCreator
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("school") String school, @JsonProperty("year") String year,
-                              @JsonProperty("admin") JsonAdaptedAdmin admin) {
+                              @JsonProperty("admin") JsonAdaptedAdmin admin,
+                              @JsonProperty("questions") List<JsonAdaptedQuestion> questions,
+                              @JsonProperty("exams") ArrayList<JsonAdaptedExam> exams) {
         this.name = name;
         this.phone = phone;
         this.school = school;
         this.year = year;
         this.jsonAdaptedAdmin = admin;
+        if (questions != null) {
+            this.jsonAdaptedQuestions.addAll(questions);
+        }
+        if (exams != null) {
+            this.jsonAdaptedExams.addAll(exams);
+        }
     }
 
     /**
@@ -46,8 +68,16 @@ class JsonAdaptedStudent {
         name = source.getName().fullName;
         phone = source.getPhone().value;
         school = source.getSchool().school;
-        year = String.valueOf(source.getYear().year);
+        year = String.valueOf(source.getYear().toString());
         jsonAdaptedAdmin = new JsonAdaptedAdmin(source.getAdmin());
+
+        jsonAdaptedQuestions.addAll(source.getQuestions().stream()
+                .map(JsonAdaptedQuestion::new)
+                .collect(Collectors.toList()));
+
+        jsonAdaptedExams.addAll(source.getExams().stream()
+                .map(JsonAdaptedExam::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -89,10 +119,21 @@ class JsonAdaptedStudent {
         if (!Year.isValidYear(year)) {
             throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
         }
-        final Year modelYear = new Year(year);
+        final Year modelYear = ParserUtil.parseYear(year);
 
         Admin admin = jsonAdaptedAdmin.toModelType();
-        return new Student(modelName, modelPhone, modelSchool, modelYear, admin);
+
+        List<Question> questions = new ArrayList<>();
+        for (JsonAdaptedQuestion question : jsonAdaptedQuestions) {
+            questions.add(question.toModelType());
+        }
+
+        ArrayList<Exam> exams = new ArrayList<>();
+        for (JsonAdaptedExam exam : jsonAdaptedExams) {
+            exams.add(exam.toModelType());
+        }
+
+        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, questions, exams);
     }
 
 }

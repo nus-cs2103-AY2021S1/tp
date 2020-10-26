@@ -1,0 +1,15 @@
+@startuml
+start
+:User executes find command;
+:Parses the command;
+if () then ([command is valid])
+    :Obtain list of predicates;
+    :Combines predicates;
+    :Update Reeve model;
+
+else ([command has no or invalid parameters])
+    :Show parse error message;
+
+endif
+end
+@enduml

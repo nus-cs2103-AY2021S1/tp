@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
@@ -9,10 +10,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.admin.Detail;
 
 
 /**
@@ -32,18 +37,29 @@ public class StudentUtil {
      */
     public static String getStudentDetails(Student student) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + student.getName().fullName + " ");
-        sb.append(PREFIX_PHONE + student.getPhone().value + " ");
-        sb.append(PREFIX_SCHOOL + student.getSchool().school + " ");
-        sb.append(PREFIX_YEAR + String.valueOf(student.getYear().year) + " ");
-        sb.append(PREFIX_VENUE + student.getAdmin().getClassVenue().venue + " ");
-        //There needs to be a way to convert back and forth for the admin details
-        sb.append(PREFIX_TIME + student.getAdmin().getClassTime().dayOfWeek.toString()
-                + " " + student.getAdmin().getClassTime().startTime.toString().replace(":", "")
-                + "-" + student.getAdmin().getClassTime().endTime.toString().replace(":", "") + " ");
-        sb.append(PREFIX_FEE + String.valueOf(student.getAdmin().getFee().amount) + " ");
-        sb.append(PREFIX_PAYMENT + "01/01/2001" + " ");
-        System.out.println(sb);
+        sb.append(PREFIX_NAME + student.getName().fullName + " ")
+                .append(PREFIX_PHONE + student.getPhone().value + " ")
+                .append(PREFIX_SCHOOL + student.getSchool().school + " ")
+                .append(PREFIX_YEAR + String.valueOf(student.getYear()) + " ")
+                .append(getAdminDetails(student.getAdmin()));
+        return sb.toString();
+    }
+
+    private static String getAdminDetails(Admin admin) {
+        StringBuilder sb = new StringBuilder();
+        String venue = PREFIX_VENUE + admin.getClassVenue().venue + " ";
+        String time = PREFIX_TIME + String.valueOf(admin.getClassTime().dayOfWeek.getValue())
+                + " " + admin.getClassTime().startTime.toString().replace(":", "")
+                + "-" + admin.getClassTime().endTime.toString().replace(":", "") + " ";
+        String fee = PREFIX_FEE + String.valueOf(admin.getFee().amount) + " ";
+        String date = PREFIX_PAYMENT + admin.getPaymentDate()
+                .lastPaid
+                .format(DateTimeFormatter.ofPattern("d/M/yy")) + " ";
+        sb.append(venue).append(time).append(fee).append(date);
+
+        for (Detail detail : admin.getDetails()) {
+            sb.append(PREFIX_DETAILS + detail.detail + " ");
+        }
         return sb.toString();
     }
 
@@ -55,7 +71,7 @@ public class StudentUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getSchool().ifPresent(school -> sb.append(PREFIX_SCHOOL).append(school.school).append(" "));
-        descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year.year).append(" "));
+        descriptor.getYear().ifPresent(year -> sb.append(PREFIX_YEAR).append(year).append(" "));
 
         return sb.toString();
     }
@@ -75,11 +91,8 @@ public class StudentUtil {
                     .reduce("", (x, y) -> x + " " + y);
             sb.append(PREFIX_SCHOOL).append(stringSchool).append(" ");
         });
-        descriptor.getYearPredicate().ifPresent(predicate -> {
-            String stringYear = predicate.keywords.stream() // Convert the keywords list in predicate into a string
-                    .reduce("", (x, y) -> x + " " + y);
-            sb.append(PREFIX_YEAR).append(stringYear).append(" ");
-        });
+        descriptor.getYearPredicate().ifPresent(predicate ->
+                sb.append(PREFIX_YEAR).append(predicate.year).append(" "));
 
         return sb.toString();
     }
