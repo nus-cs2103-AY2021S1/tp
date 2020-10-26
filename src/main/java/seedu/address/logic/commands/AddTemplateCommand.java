@@ -37,13 +37,13 @@ public class AddTemplateCommand extends CommandForExercise {
     public CommandResult execute(ExerciseModel model) throws CommandException, IOException {
         requireNonNull(model);
 
-        TemplateList.load(); // load from the file
+        TemplateList.load();
         if (TemplateList.checkEqual(toCreate)) {
             throw new CommandException("The template already exists.");
         }
 
-        model.addTemplate(toCreate);  // add to list
-        Template.writeToFile(TemplateList.getList()); // write to file
+        model.addTemplate(toCreate);
+        Template.writeToFile(TemplateList.getList());
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));
     }

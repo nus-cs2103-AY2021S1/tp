@@ -16,6 +16,13 @@ import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.Template;
 
 public class AddTemplateCommandParser implements ExerciseParser<AddTemplateCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddTemplateCommand
+     * and returns an AddTemplateCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddTemplateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);
@@ -35,6 +42,12 @@ public class AddTemplateCommandParser implements ExerciseParser<AddTemplateComma
         return new AddTemplateCommand(template);
     }
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddTemplateCommand
+     * and returns an template object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public Template parseTemp(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);

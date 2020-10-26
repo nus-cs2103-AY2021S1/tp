@@ -64,7 +64,11 @@ public class Template {
         return "n/" + getName() + " d/" + getDescription() + " c/" + getCalories();
     }
 
-
+    /**
+     * Write the template list to the file
+     * @param lists template list
+     * @throws IOException
+     */
     public static void writeToFile(List<Template> lists) throws IOException {
         FileWriter fw = new FileWriter("data/template.txt");
         String textToAdd = "";

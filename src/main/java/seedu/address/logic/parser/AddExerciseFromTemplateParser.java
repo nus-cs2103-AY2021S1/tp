@@ -18,10 +18,8 @@ import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
 
 
-/**
- * Parse input arguments and creates a new AddExerciseFromTemplate object
- */
 public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand> {
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddExerciseFromTemplateCommand
      * and returns an AddExerciseFromTemplateCommand object for execution.
