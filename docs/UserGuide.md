@@ -319,13 +319,13 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 **Step 1**: Input `addvisit 1 vd/10/12/2020` into the command box and press <kbd>Enter</kbd>.
 
-**Step 2**: A window displaying the three parameters - Prescription, Diagnosis and Remarks will be shown. Type in relevant
+**Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in relevant
             details in each text box.
 
-   * You may press <kbd>TAB</kbd> on your keyboard to move to the next text box. 
-   * You may press <kbd>SHIFT</kbd> on your keyboard to move to the previous text box. 
+   * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box. 
+   * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box. 
    
-**Step 3**: Click on the 'Save' button or press <kbd>F1</kbd> on your keyboard to save the visitation log.
+**Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully saved.
    
@@ -359,10 +359,13 @@ Format: `editvisit INDEX ev/VISIT_INDEX`
 
 **Step 1**: Input `editvisit 2 ev/1` into the command box and press <kbd>Enter</kbd>.
 
-**Step 2**: A window displaying the three parameters - Prescription, Diagnosis and Remarks will be shown. Type in the updated
+**Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in updated
             details in each text box.
-            
-**Step 3**: Click on the 'Save' button or press <kbd>F1</kbd> on your keyboard to save the visitation log.
+       
+   * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box. 
+   * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box. 
+               
+**Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
 
