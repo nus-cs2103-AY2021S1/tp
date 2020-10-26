@@ -16,7 +16,6 @@ import chopchop.model.Model;
 public class HistoryManager {
     public static final String MESSAGE_CANNOT_UNDO = "No commands to undo";
     public static final String MESSAGE_CANNOT_REDO = "No commands to redo";
-
     private final List<Undoable> commandHistory;
     private final List<String> inputHistory;
     private int currentIndex;

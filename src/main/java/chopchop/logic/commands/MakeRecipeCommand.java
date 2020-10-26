@@ -42,8 +42,13 @@ public class MakeRecipeCommand extends Command implements Undoable {
         this.ingredients = new ArrayList<>();
     }
 
+    public Recipe getRecipe() {
+        return recipe;
+    }
+
     @Override
-    public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
+    public CommandResult execute(Model model, HistoryManager historyManager)
+        throws CommandException {
         requireNonNull(model);
 
         var res = resolveRecipeReference(this.item, model);
@@ -64,6 +69,7 @@ public class MakeRecipeCommand extends Command implements Undoable {
 
             try {
                 this.ingredients.add(new Pair<>(ingredient, ingredient.split(ingredientRef.getQuantity()).snd()));
+                model.addIngredientUsage(ingredientRef);
 
             } catch (IncompatibleIngredientsException | IllegalValueException e) {
                 return CommandResult.error("Could not make recipe '%s' (caused by ingredient '%s'): %s",
@@ -77,15 +83,15 @@ public class MakeRecipeCommand extends Command implements Undoable {
             } else {
                 model.setIngredient(ingredient.fst(), ingredient.snd());
             }
-        }
 
+        }
+        model.addRecipeUsage(this.recipe);
         return CommandResult.message("Made recipe '%s'", this.recipe.getName());
     }
 
     @Override
     public CommandResult undo(Model model) {
         requireNonNull(model);
-
         for (var ingredient : this.ingredients) {
             if (ingredient.snd().getIngredientSets().isEmpty()) {
                 model.addIngredient(ingredient.fst());
@@ -94,7 +100,12 @@ public class MakeRecipeCommand extends Command implements Undoable {
             }
         }
 
+        for (var ingredientRef : this.recipe.getIngredients()) {
+            model.removeIngredientUsage(ingredientRef);
+        }
+
         this.ingredients.clear();
+        model.removeRecipeUsage(this.recipe);
         return CommandResult.message("Undo: unmade recipe '%s'", this.recipe.getName());
     }
 

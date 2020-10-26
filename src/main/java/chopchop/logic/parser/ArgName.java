@@ -8,7 +8,7 @@ import java.util.List;
 import chopchop.commons.util.StringView;
 
 /**
- * A helper class to abtract away the menial task of handling '/' when printing argument names
+ * A helper class to abstract away the menial task of handling '/' when printing argument names
  */
 public class ArgName {
 
@@ -73,5 +73,19 @@ public class ArgName {
         return (obj instanceof ArgName)
             && ((ArgName) obj).name.equals(this.name)
             && ((ArgName) obj).components.equals(this.components);
+    }
+
+    /**
+     * Returns true iff the name of the argument matches.
+     */
+    public boolean nameEquals(String s) {
+        return this.name.equals(s);
+    }
+
+    /**
+     * Returns true iff the name of the two arguments matche.
+     */
+    public boolean nameEquals(ArgName s) {
+        return this.name.equals(s.name);
     }
 }

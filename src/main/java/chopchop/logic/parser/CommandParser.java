@@ -23,6 +23,7 @@ import static chopchop.logic.parser.commands.FilterCommandParser.parseFilterComm
 import static chopchop.logic.parser.commands.FindCommandParser.parseFindCommand;
 import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
 import static chopchop.logic.parser.commands.MakeCommandParser.parseMakeCommand;
+import static chopchop.logic.parser.commands.StatsCommandParser.parseStatsCommand;
 import static chopchop.logic.parser.commands.ViewCommandParser.parseViewCommand;
 
 public class CommandParser {
@@ -34,6 +35,8 @@ public class CommandParser {
 
             if (input.find('/') != 0) {
                 break;
+            } else if (input.size() == 1) {
+                return Result.error("expected argument name after '/'");
             }
 
             var pair = splitUntilNextSlash(input.drop(1));
@@ -49,41 +52,12 @@ public class CommandParser {
                     return Result.error("expected argument name after '/'");
                 }
 
-                System.err.printf("arg = %s, val = %s\n", argName, argValue);
                 ret.add(Pair.of(new ArgName(argName.trim().toString()), argValue.trim().toString()));
             }
 
             if (input.isEmpty()) {
                 break;
             }
-
-
-
-            /*
-
-            // TODO: this won't handle things like slashes in dates. ideally we want to
-            // split based on " /" (ie. there must be a leading space before the slash),
-            // but that requires changing StringView::bisect. later.
-            var currentArg = input.drop(1).bisect('/', input);
-
-            {
-                var argName = new StringView("");
-                var argValue = new StringView("");
-
-                currentArg.bisect(argName, ' ', argValue);
-                if (argName.isEmpty()) {
-                    return Result.error("expected argument name after '/'");
-                }
-
-                ret.add(Pair.of(new ArgName(argName.trim().toString()), argValue.trim().toString()));
-            }
-
-            if (input.isEmpty()) {
-                break;
-            }
-
-            input = input.undrop(1);
-            */
         }
 
         return Result.of(ret);
@@ -138,6 +112,7 @@ public class CommandParser {
                 case Strings.COMMAND_UNDO:      return Result.of(new UndoCommand());
                 case Strings.COMMAND_REDO:      return Result.of(new RedoCommand());
                 case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
+                case Strings.COMMAND_STATS:     return parseStatsCommand(args);
 
                 default:
                     return Result.error("unknown command '%s'", args.getCommand());

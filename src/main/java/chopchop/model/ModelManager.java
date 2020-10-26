@@ -4,6 +4,7 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -11,7 +12,10 @@ import java.util.logging.Logger;
 import chopchop.commons.core.GuiSettings;
 import chopchop.commons.core.LogsCenter;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -26,11 +30,14 @@ public class ModelManager implements Model {
     private final EntryBook<Ingredient> ingredientBook;
     private final FilteredList<Recipe> filteredRecipes;
     private final FilteredList<Ingredient> filteredIngredients;
+    private final UsageList<RecipeUsage> recipeUsageList;
+    private final UsageList<IngredientUsage> ingredientUsageList;
 
     /**
      * Initializes a ModelManager with the given RecipeBook, IngredientBook and userPrefs.
      */
     public ModelManager(ReadOnlyEntryBook<Recipe> recipeBook, ReadOnlyEntryBook<Ingredient> ingredientBook,
+                        UsageList<RecipeUsage> recipeUsageList, UsageList<IngredientUsage> ingredientUsageList,
                         ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(recipeBook, ingredientBook, userPrefs);
@@ -41,13 +48,18 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.recipeBook = new EntryBook<>(recipeBook);
         this.ingredientBook = new EntryBook<>(ingredientBook);
-
         this.filteredRecipes = new FilteredList<>(this.recipeBook.getEntryList());
         this.filteredIngredients = new FilteredList<>(this.ingredientBook.getEntryList());
+        this.recipeUsageList = recipeUsageList;
+        this.ingredientUsageList = ingredientUsageList;
     }
 
+    /**
+     * Constructs an empty {@code ModelManger}.
+     */
     public ModelManager() {
-        this(new EntryBook<>(), new EntryBook<>(), new UserPrefs());
+        this(new EntryBook<>(), new EntryBook<>(), new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(),
+            new UserPrefs());
     }
 
     @Override
@@ -213,6 +225,45 @@ public class ModelManager implements Model {
     public void updateFilteredIngredientList(Predicate<? super Ingredient> predicate) {
         requireNonNull(predicate);
         this.filteredIngredients.setPredicate(predicate);
+    }
+
+    /**
+     * Returns the ReadOnlyIngredientBook
+     */
+    @Override
+    public UsageList<RecipeUsage> getRecipeUsageList() {
+        return this.recipeUsageList;
+    }
+
+    /**
+     * Returns the ReadOnlyIngredientBook
+     */
+    @Override
+    public UsageList<IngredientUsage> getIngredientUsageList() {
+        return this.ingredientUsageList;
+    }
+
+    @Override
+    public void addRecipeUsage(Recipe recipe) {
+        RecipeUsage usage = new RecipeUsage(recipe.getName(), LocalDateTime.now());
+        this.recipeUsageList.add(usage);
+    }
+
+    @Override
+    public void removeRecipeUsage(Recipe recipe) {
+        this.recipeUsageList.pop(recipe.getName());
+    }
+
+    @Override
+    public void addIngredientUsage(IngredientReference ingredient) {
+        IngredientUsage usage = new IngredientUsage(ingredient.getName(), LocalDateTime.now(),
+            ingredient.getQuantity());
+        this.ingredientUsageList.add(usage);
+    }
+
+    @Override
+    public void removeIngredientUsage(IngredientReference ingredient) {
+        this.ingredientUsageList.pop(ingredient.getName());
     }
 
     @Override
