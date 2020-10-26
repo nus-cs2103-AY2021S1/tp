@@ -5,15 +5,15 @@ title: User Guide
 
 ### About
 **Common Cents** is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. 
-With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you! 
+With just a few commands, _Common Cents_ will keep track, categorise and calculate your income and expenditure for you! 
 You can even keep our expenses in multiple, separate accounts for seamless organisation. Amalgamating the features of a 
-Command Line Interface (CLI) with a Graphical User Interface (GUI), Common Cents is meant to be functional, intuitive and 
+Command Line Interface (CLI) with a Graphical User Interface (GUI), _Common Cents_ is meant to be functional, intuitive and 
 faster than most traditional GUI expense-trackers out there!
 
 ### User Guide Overview
-This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with Common Cents and clarify most doubts that you may have.
+This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with _Common Cents_ and clarify most doubts that you may have.
 
-The Common Cents interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
+The _Common Cents_ interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
 * `Application` level commands deal with interactions with the app itself.<br>
 * `Account` level commands deal with managing the different accounts in the app.<br>
 * `Entry` level commands deal with managing the entries which are either expenses or revenues in an account.
@@ -39,7 +39,7 @@ Important notes to read regarding the feature.
 
 :bulb: **Tip:**
 
-Ways to better your experience with Common Cents.
+Ways to better your experience with _Common Cents_.
 </div>
 
 <div markdown="block" class="alert alert-success">
@@ -71,7 +71,7 @@ Important cautions that needs to be known before using the feature.
 Note how the app contains some sample expenses and revenues.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `add c/expense d/buy lunch a/5.20 t/food` : Adds an expense named "buy lunch" to the expense list.
@@ -82,15 +82,15 @@ Note how the app contains some sample expenses and revenues.<br>
 
 --------------------------------------------------------------------------------------------------------------------
 # User Interface Overview
-As you can see, **figure** below shows the default user interface (UI) of *Common Cents* with its components.  
+As you can see, **figure** below shows the default user interface (UI) of *_Common Cents_* with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
-<p align="center"> <sub> <b>Figure</b>: Default user interface of Common Cents </sub> </p>
+<p align="center"> <sub> <b>Figure</b>: Default user interface of _Common Cents_ </sub> </p>
 
 You can find the description for each UI component shown in the table below.<br> 
 
 UI component | Description
 --------|------------------
-*Menu bar* | Displays the menu bar of Common Cents. You can use this to access the User Guide or exit the application. 
+*Menu bar* | Displays the menu bar of _Common Cents_. You can use this to access the User Guide or exit the application. 
 *Active account name* | Displays the account you are currently on.
 *Display picture* | Displays the default display picture of the application.
 *Command box* | Displays a text field for you to type the commands.
@@ -115,8 +115,12 @@ UI component | Description
 * Items in square brackets are optional.<br>
   e.g `...a/AMOUNT [t/TAG]` can be used as `...a/50.10 t/Supplies` or as `...a/50.10`.
 
-* Parameters can be in any order.<br>
+* Parameters **preceded by a prefix** can be in any order.<br>
   e.g. if the command specifies `c/CATEGORY d/DESCRIPTION...`, `d/DESCRIPTION c/CATEGORY...` is also acceptable.
+
+* **Numeric** parameters (e.g. `ENTRY_INDEX`) must be in the correct order.<br>
+  e.g. if the command specifies `ENTRY_INDEX c/CATEGORY`, only `ENTRY_INDEX c/CATEGORY` is acceptable 
+  and `c/CATEGORY ENTRY_INDEX` is invalid. 
 
 </div>
 
@@ -125,11 +129,11 @@ Each level interacts with _Common Cents_ differently to maximise your experience
 found in its own section below.  
 
 ## App-Level Commands
-App-Level commands deals with interactions with the app, Common Cents, itself.
+App-Level commands deals with interactions with the app, _Common Cents_, itself.
 
 ### Viewing help : `help`
 
-This command can be used when you are at a lost or want to view an overview of how to use the application.
+You can use this command when you are at a lost or want to view an overview of how to use the application.
 This command will return a message explaining how to access the help page (Figure). 
 You can click on the `Copy URL ` button to copy the link to clipboard and paste it in your web browser. <br> 
 
@@ -197,7 +201,8 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 
 ### Deleting an entry: `delete`
 
-You can use this command when you want to remove an entry (expense/revenue) from the tracker.
+You can use this command to remove an entry (expense/revenue) from the tracker when you do not want to keep track of 
+it anymore.
 
 **Format:** `delete ENTRY_INDEX c/CATEGORY`
 
@@ -225,7 +230,7 @@ You can use this command when you want to remove an entry (expense/revenue) from
 
 ### Editing an entry: `edit`
 
-You can use this command when you want to make edits to any existing entries in the tracker.
+You can use this to make edits to any existing entries in the tracker when the entry's details are wrongly keyed.
 
 **Format:**
 * `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG`
@@ -311,7 +316,7 @@ list, with the updated `ENTRY INDEX`.
 
 ### Listing all entries: `list`
 
-Lists all entries in the current account.
+You can use this command to list all entries in the current account when you want to have an overview of you account.
 
 **Format:** `list`
  
@@ -467,7 +472,7 @@ You can create a new account to manage a different set of entries with this comm
 
 :information_source: **Note:**
 
-Do note that Common Cents does not automatically switch to the new account. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
+Do note that _Common Cents_ does not automatically switch to the new account. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
 or switch to it via [`switchacc`](#switching-accounts-switchacc). 
 
 </div>
@@ -494,7 +499,7 @@ anymore.
 
 :information_source: **Note:**
 
-Do note that Common Cents prevents you from deleting the account if you are currently on that account
+Do note that _Common Cents_ prevents you from deleting the account if you are currently on that account
 or if the account is your only account left.
 </div>
 
@@ -600,7 +605,7 @@ commands anymore. Do confirm your changes to the entries in the account before y
 --------------------------------------------------------------------------------------------------------------------
 # Frequently Asked Questions (FAQ)
 
-This section contains a few frequently asked questions with regard to Common Cents.
+This section contains a few frequently asked questions with regard to _Common Cents_.
 
 **Question:** How do I transfer my data to another Computer?<br>
 **Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CommonCents home folder.
@@ -615,7 +620,7 @@ This section contains a few frequently asked questions with regard to Common Cen
 
 # Command summary
 
-The table below summarises the above commands in alphabetical order for your reference. 
+The table below summarises the above commands in the order of appearance in this User Guide for your reference. 
 
 Action | Format, Examples
 --------|------------------
@@ -623,7 +628,7 @@ Action | Format, Examples
 [**Exit**](#exiting-the-program--exit) | `exit`
 [**Add**](#adding-an-entry-add) | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 [**Delete**](#deleting-an-entry-delete) | `delete ENTRY_INDEX c/CATEGORY`
-[**Edit**](#editing-an-entry-edit) | `edit 1 c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
+[**Edit**](#editing-an-entry-edit) | `edit ENTRY_INDEX c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
 [**Find**](#locating-entries-by-description-find) | `find k/KEYWORD [MORE_KEYWORDS]`
 [**List**](#listing-all-entries-list) | `list`
 [**Clear**](#clearing-all-expenses-or-revenue-clear) | `clear c/CATEGORY`
@@ -635,3 +640,10 @@ Action | Format, Examples
 [**Edit Account's Name**](#editing-the-name-of-the-current-account-editacc) | `editacc n/NAME`
 [**List Account**](#listing-accounts-you-have-listacc) | `listacc`
 [**Switch Account**](#switching-accounts-switchacc) | `switchacc INDEX`
+
+--------------------------------------------------------------------------------------------------------------------
+
+#Acknowledgement
+
+* The project is a brown-field project, based on AddressBook-Level3 by the [SE-EDU initiative](https://se-education.org/).
+* The background image is [Designed by Freepik](http://www.freepik.com) 
