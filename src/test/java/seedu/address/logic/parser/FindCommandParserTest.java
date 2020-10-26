@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
 import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
 
 public class FindCommandParserTest {
@@ -25,7 +24,8 @@ public class FindCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new PropertiesMatchPredicateForExercise(null, null, null, null, Arrays.asList("Push", "Walk")));
+                new FindCommand(new PropertiesMatchPredicateForExercise(null, null, null,
+                        null, Arrays.asList("Push", "Walk")));
         assertParseSuccess(parser, " k/Push Walk", expectedFindCommand);
 
         // multiple whitespaces between keywords

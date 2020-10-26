@@ -24,7 +24,6 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
 import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
 
 /**
@@ -41,9 +40,11 @@ public class FindCommandTest {
         Date date = new Date("10-10-2020");
         Calories calories = new Calories("224");
         PropertiesMatchPredicateForExercise firstPredicate =
-                new PropertiesMatchPredicateForExercise(name, description, date, calories, Collections.singletonList("first"));
+                new PropertiesMatchPredicateForExercise(name, description, date,
+                        calories, Collections.singletonList("first"));
         PropertiesMatchPredicateForExercise secondPredicate =
-                new PropertiesMatchPredicateForExercise(name, description, date, calories, Collections.singletonList("second"));
+                new PropertiesMatchPredicateForExercise(name, description, date,
+                        calories, Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);

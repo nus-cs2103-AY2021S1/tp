@@ -6,7 +6,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +17,6 @@ import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.NameContainsKeywordsPredicateForExercise;
 import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
 import seedu.address.testutil.ExerciseBuilder;
 
