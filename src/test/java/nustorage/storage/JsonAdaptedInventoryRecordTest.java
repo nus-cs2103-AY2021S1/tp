@@ -1,7 +1,10 @@
 package nustorage.storage;
 
+
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_A;
 import static nustorage.logic.commands.CommandTestUtil.DATE_TIME_B;
+import static nustorage.logic.commands.CommandTestUtil.ID_A;
+import static nustorage.logic.commands.CommandTestUtil.ID_B;
 import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_1;
 import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_2;
 import static nustorage.logic.commands.CommandTestUtil.ITEM_NAME_3;
@@ -18,6 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import nustorage.commons.exceptions.IllegalValueException;
 import nustorage.model.record.InventoryRecord;
+
 
 class JsonAdaptedInventoryRecordTest {
 
@@ -48,8 +52,8 @@ class JsonAdaptedInventoryRecordTest {
     @Test
     void toModelType_validDetails1_returnsInventoryRecord() throws Exception {
         JsonAdaptedInventoryRecord testInventoryRecord =
-                new JsonAdaptedInventoryRecord(ITEM_NAME_1, QUANTITY_1, DATE_TIME_A);
-        assertEquals(new InventoryRecord(ITEM_NAME_1, QUANTITY_1, DATE_TIME_A),
+                new JsonAdaptedInventoryRecord(ITEM_NAME_1, QUANTITY_1, DATE_TIME_A, ID_A);
+        assertEquals(new InventoryRecord(ITEM_NAME_1, QUANTITY_1, DATE_TIME_A, ID_A),
                 testInventoryRecord.toModelType());
     }
 
@@ -57,8 +61,8 @@ class JsonAdaptedInventoryRecordTest {
     @Test
     void toModelType_validDetails2_returnsInventoryRecord() throws Exception {
         JsonAdaptedInventoryRecord testInventoryRecord =
-                new JsonAdaptedInventoryRecord(ITEM_NAME_2, QUANTITY_2, DATE_TIME_B);
-        assertEquals(new InventoryRecord(ITEM_NAME_2, QUANTITY_2, DATE_TIME_B),
+                new JsonAdaptedInventoryRecord(ITEM_NAME_2, QUANTITY_2, DATE_TIME_B, ID_B);
+        assertEquals(new InventoryRecord(ITEM_NAME_2, QUANTITY_2, DATE_TIME_B, ID_B),
                 testInventoryRecord.toModelType());
     }
 
@@ -66,7 +70,7 @@ class JsonAdaptedInventoryRecordTest {
     @Test
     void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedInventoryRecord testInventoryRecord =
-                new JsonAdaptedInventoryRecord(null, QUANTITY_1, DATE_TIME_A);
+                new JsonAdaptedInventoryRecord(null, QUANTITY_1, DATE_TIME_A, ID_A);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "item name");
         assertThrows(IllegalValueException.class, expectedMessage, testInventoryRecord::toModelType);
     }
@@ -75,7 +79,7 @@ class JsonAdaptedInventoryRecordTest {
     @Test
     void toModelType_invalidQuantity_throwsIllegalValueException() {
         JsonAdaptedInventoryRecord testInventoryRecord =
-                new JsonAdaptedInventoryRecord(ITEM_NAME_2, -1, DATE_TIME_B);
+                new JsonAdaptedInventoryRecord(ITEM_NAME_2, -1, DATE_TIME_B, ID_B);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "quantity");
         assertThrows(IllegalValueException.class, expectedMessage, testInventoryRecord::toModelType);
     }
@@ -84,7 +88,7 @@ class JsonAdaptedInventoryRecordTest {
     @Test
     void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedInventoryRecord testInventoryRecord =
-                new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, null);
+                new JsonAdaptedInventoryRecord(ITEM_NAME_3, QUANTITY_3, null, ID_A);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, "dateTime");
         assertThrows(IllegalValueException.class, expectedMessage, testInventoryRecord::toModelType);
     }
