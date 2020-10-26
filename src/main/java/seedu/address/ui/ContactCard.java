@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -43,9 +45,9 @@ public class ContactCard extends UiPart<Region> {
         email.setText(contact.getEmail().value);
         telegram.setText(contact.getTelegramUsername().telegramUsername);
         isImportant.setText(contact.getIsImportantForUi());
-        //contact.getTags().stream()
-        //        .sorted(Comparator.comparing(tag -> tag.tagName))
-        //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        contact.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
 
     @Override

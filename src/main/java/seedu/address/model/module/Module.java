@@ -195,26 +195,14 @@ public class Module {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> bdf206181bef4a2bb9f0c4672fc8eef26adb4a1b
->>>>>>> de528d3b017ec53b005699d0a99b6975ca2fcf8b
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
     /**
-<<<<<<< HEAD
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-=======
-     * Returns true if both modules have the same name.
->>>>>>> c9a1e5c416a3d9bbe3b30949159ec3f43e463528
-=======
      * Adds a grade to the GradeTracker of the module.
      *
      * @param grade grade to add to grade tracker.
@@ -231,7 +219,6 @@ public class Module {
 
     /**
      * Returns true if both modules have the same name.
->>>>>>> de528d3b017ec53b005699d0a99b6975ca2fcf8b
      * This defines a weaker notion of equality between two modules.
      */
     public boolean isSameModule(Module otherModule) {
