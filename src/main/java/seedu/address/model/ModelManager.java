@@ -187,6 +187,9 @@ public class ModelManager implements Model {
     @Override
     public void selectVendor(int vendorIndex) {
         this.addressBook.selectVendor(vendorIndex);
+
+        filteredFoods = new FilteredList<>(menuManagers.get(vendorIndex).getFoodList());
+        filteredOrderItems = new FilteredList<>(this.orderManager.getOrderItemList());
     }
 
     @Override
@@ -320,7 +323,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Food> getFilteredFoodList() {
-        //todo the filteredFoods need to be changed and this whole class needs to be updated
+        //TODO: the filteredFoods need to be changed and this whole class needs to be updated
         if (filteredFoods == null || changeVendor) {
             changeVendor = false;
             updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
