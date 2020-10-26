@@ -54,10 +54,10 @@ public class CommandTestUtil {
     public static final String DATE_DESC_SIT_UP = " " + PREFIX_DATE + VALID_DATE_SIT_UP;
     public static final String CALORIES_DESC_SIT_UP = " " + PREFIX_CALORIES + VALID_CALORIES_SIT_UP;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DESCRIPTION_DESC = "";
-    public static final String INVALID_DATE_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_CALORIES_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "run&"; // '&' not allowed in names
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // description should not be empty
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020-10-10"; // date of incorrect format
+    public static final String INVALID_CALORIES_DESC = " " + PREFIX_CALORIES + "abc"; // calories should be numbers
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
