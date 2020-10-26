@@ -2,56 +2,84 @@
 
 1. [Introduction](#1-introduction)<br>
 2. [About This Document](#2-about-this-document)<br>
+    2.1 [Glossary](#21-glossary)
+	2.2 [Formatting](#22-formatting)
+	2.3 [Command format](#23-command-format)<br>
 3. [Getting Started](#3-getting-started)<br>
     3.1 [Setting Up](#31-setting-up)<br>
     3.2 [Using Trackr](#32-using-trackr)<br>
     3.3 [Switching Views](#33-switching-views)<br>
-4. [Glossary](#4-glossary)<br>
-5. [Features](#5-features)<br>
-   5.1 [Command format](#51-command-format)<br>
-   5.2 [View help: `help`](#52-view-help-help)<br>
-   5.3 [Module features](#53-module-features)<br>
-   --- 5.3.1 [Add a module: `addMod`](#531-add-a-module-addmod)<br>
-   --- 5.3.2 [Delete a module: `deleteMod`](#532-delete-a-module-deletemod)<br>
-   --- 5.3.3 [Find a module: `findMod`](#533-find-a-module-findmod)<br>
-   --- 5.3.4 [Edit a module: `editMod` [coming in v1.4]](534-edit-a-module-editmod-coming-in-v14)<br>
-   5.4 [Tutorial group features](#54-tutorial-group-features)<br>
-   --- 5.4.1 [View all tutorial groups in a module: `viewTG`](#541-view-a-tg-viewTG)<br>
-   --- 5.4.2 [Add a tutorial group to a module: `addTG`](#542-add-a-tg-addtg)<br>
-   --- 5.4.3 [Delete a tutorial group from a module: `deleteTG`](#543-delete-a-tg-deletetg)<br>
-   --- 5.4.4 [Find a tutorial group: `findTG`](#544-find-a-tg-findtg)<br>
-   5.5 [Student features](#55-student-features)<br>
-   --- 5.5.1 [Add a student: `addStudent`](#551-add-a-student-addstudent)<br>
-   --- 5.5.2 [Delete a student: `deleteStudent`](#552-delete-a-student-deletestudent)<br>
-   --- 5.5.3 [Find a student: `findStudent`](#553-find-a-student-findstudent)<br>
-   --- 5.5.4 [Edit a student: `editStudent` [coming in v1.4]](554-edit-a-student-editstudent-coming-in-v14)<br>
-6. [FAQ](#6-faq)<br>
-7. [Command Summary](#7-command-summary)<br>
-   7.1 [Module commands](#71-module-commands)<br>
-   7.2 [Tutorial group commands](#72-tutorial-group-commands)<br>
-   7.3 [Student commands](#73-student-commands)<br>
+4. [Features](#4-features)<br>
+   4.1 [View help: `help`](#41-view-help-help)<br>
+   4.2 [Module features](#42-module-features)<br>
+   --- 4.2.1 [Add a module: `addMod`](#421-add-a-module-addmod)<br>
+   --- 4.2.2 [Delete a module: `deleteMod`](#422-delete-a-module-deletemod)<br>
+   --- 4.2.3 [Find a module: `findMod`](#423-find-a-module-findmod)<br>
+   --- 4.2.4 [Edit a module: `editMod` [coming in v1.4]](#424-edit-a-module-editmod-coming-in-v14)<br>
+   4.3 [Tutorial group features](#43-tutorial-group-features)<br>
+   --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
+   --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
+   --- 4.3.3 [Find a tutorial group: `findTG`](#433-find-a-tutorial-group-findtg)<br>
+   --- 4.3.4 [Delete a tutorial group from a module: `deleteTG`](#434-delete-a-tutorial-group-from-a-module-deletetg)<br>
+   4.4 [Student features](#44-student-features)<br>
+   --- 4.4.1 [Add a student: `addStudent`](#441-add-a-student-addstudent)<br>
+   --- 4.4.2 [Delete a student: `deleteStudent`](#442-delete-a-student-deletestudent)<br>
+   --- 4.4.3 [Find a student: `findStudent`](#443-find-a-student-findstudent)<br>
+   --- 4.4.4 [Edit a student: `editStudent` [coming in v1.4]](#444-edit-a-student-editstudent-coming-in-v14)<br>
+5. [FAQ](#5-faq)<br>
+6. [Command Summary](#6-command-summary)<br>
+   6.1 [Module commands](#61-module-commands)<br>
+   6.2 [Tutorial group commands](#62-tutorial-group-commands)<br>
+   6.3 [Student commands](#63-student-commands)<br>
 
 ## 1. Introduction
 
-__Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User Interface (GUI). If you are a TA with a fast typing speed, Trackr is the app for you! Head over to (Section 2, "Quick Start") to get started!
+__Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User Interface (GUI). If you are a TA with a fast typing speed, Trackr is the app for you! You can start by familiarising yourself with the information regarding how this document is designed in [Section 2, "About this document"](#2-about-this-document).
+
+
 
 ## 2. About this document
 
 Welcome to the __Trackr__ User Guide! In this document you will be able to learn the features that __Trackr__ can provide to make your TA experience less troublesome. This section will provide information regarding the use of this document, namely how to navigate through this document, what the technical terms mean and how to interpret the formatting used.
 
-### 2.1 Formatting
+### 2.1 Glossary
+
+The table below explains certain terms used in the document to describe different parts or aspects of the application.
+
+| Term                           | Meaning                                                      |
+| ------------------------------ | ------------------------------------------------------------ |
+| Graphical User Interface (GUI) | An interface through which users interact with electronic devices via visual indicator representations. |
+| Command Line Interface (CLI)   | An interface that processes commands to a computer program in the form of lines of text. |
+| Command                        | An instruction typed by you, the user for **Trackr** to perform. |
+| Field                          | A segment of a command that requires information to be filled into. |
+| Parameter                      | The information filled by you, the user, into the field of a command. |
+| Prefix                         | A short word that is typed right before you, the user, writes the parameter into the command. It always starts with a slash (/) and typically is an abbreviation of the name of the field. |
+| Tutorial Group                 | The specific class being taught under a given module.        |
+| Student                        | An individual who is enrolled in a given module.             |
+
+### 2.2 Formatting
 
 This document is written in a manner where formatting is applied to text in order to convey different meanings. The table below will explain what these formatting uses are, what they look like, and what they mean in the context of the document.
 
 | Formatting    | Meaning                                                      |
 | ------------- | ------------------------------------------------------------ |
 | `code`        | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
-| `FULL_CAPS`   | Words in 'code' format in upper case refer to parameters that have to be provided by you, the user. |
-| *Italics*     | Words in italics refer to example parameters, which is what you, the user could type in place of the `FULL_CAPS` parameter that needs to be provided. |
+| *Italics*     | Words in italics refer to example parameters, which is what you, the user could type as the parameter that needs to be provided. |
 | [Underline]() | Words that are underlined refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
 | **Bold**      | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
 
+### 2.3 Command Format
 
+Commands in the command line are typed in a specific way and follow specific rules. These are the rules you have to follow when typing commands for **Trackr** to read:
+
+-   Words in UPPER_CASE are the parameters to be supplied by the user.
+    e.g. in add n/NAME, NAME is a parameter which can be used as add n/John Doe.
+-   Items in square brackets are optional.
+    e.g n/NAME [t/TAG] can be used as n/John Doe t/friend or as n/John Doe.
+-   Items with …  after them can be used multiple times including zero times.
+    e.g. [t/TAG]…  can be used as (i.e. 0 times), t/friend, t/friend t/family etc.
+-   Parameters can be in any order.
+    e.g. if the command specifies n/NAME p/PHONE_NUMBER, p/PHONE_NUMBER n/NAME is also acceptable.
 
 
 
@@ -91,37 +119,20 @@ Figure 3.32 Tutorial Group View
 ![StudentView]() <br>
 Figure 3.33 Student view
 
-## 4. Glossary
-* __Graphical User Interface (GUI)__: An interface through which users interact with electronic devices via visual indicator representations.
-* __Command Line Interface (CLI)__: An interface that processes commands to a computer program in the form of lines of text.
-* __Tutorial Group__: The specific class being taught under a given module.
-* __Student__: An individual who is enrolled in a given module.
 
+## 4. Features
 
-## 5. Features
-
-### 5.1 Command format
-
--   Words in UPPER_CASE are the parameters to be supplied by the user.
-    e.g. in add n/NAME, NAME is a parameter which can be used as add n/John Doe.
--   Items in square brackets are optional.
-    e.g n/NAME [t/TAG] can be used as n/John Doe t/friend or as n/John Doe.
--   Items with …  after them can be used multiple times including zero times.
-    e.g. [t/TAG]…  can be used as (i.e. 0 times), t/friend, t/friend t/family etc.
--   Parameters can be in any order.
-    e.g. if the command specifies n/NAME p/PHONE_NUMBER, p/PHONE_NUMBER n/NAME is also acceptable.
-
-### 5.2 View help: `help`
+### 4.1 View help: `help`
 
 Shows a message explaining how to access the user guide.
 
 Format: `help`
 
-### 5.3 Module features
+### 4.2 Module features
 
 Note: You should perform the following features while in the Module view.
 
-#### 5.3.1 Add a module: `addMod`
+#### 4.2.1 Add a module: `addMod`
 
 Adds a module to the module list.
 
@@ -144,7 +155,7 @@ Expected Outcome:
 
     New module added: CS2100
     
-#### 5.3.2 Delete a module: `deleteMod`
+#### 4.2.2 Delete a module: `deleteMod`
 
 Deletes a module based on the given `INDEX`
 
@@ -168,7 +179,7 @@ Expected Outcome:
 
     Module deleted: module at index 2
 
-#### 5.3.3 Find a module: `findMod`
+#### 4.2.3 Find a module: `findMod`
 
 Finds and lists all modules in the current Module view whose field contains any of the given keywords.
 
@@ -191,13 +202,13 @@ Expected Outcome:
 
 - From the example given above, the Module view will display the modules matching the criteria:
 
-#### 5.3.4 Edit a module: `editMod` [coming in v1.4]
+#### 4.2.4 Edit a module: `editMod` [coming in v1.4]
 
 Edits a module with the provided details.
 
-### 5.4 Tutorial Group features
+### 4.3 Tutorial Group features
 
-#### 5.4.1 - View all Tutorial Groups in a Module: `viewTG`
+#### 4.3.1 View all Tutorial Groups in a Module: `viewTG`
 You can display all Tutorial Groups in a Module with this command. You can indicate which Module's Tutorial Groups to view by entering its index in the current list.
 
 Format: `viewTG MODULE_INDEX`
@@ -209,7 +220,7 @@ You can also use this command to return to the view of all Tutorial Groups in a 
 
 Format: `viewTG`
 
-#### 5.4.2 - Add a Tutorial Group to a Module: `addTG`
+#### 4.3.2 Add a Tutorial Group to a Module: `addTG`
 You can add a Tutorial Group to the Module you are viewing using this command.
 
 > You can only use this command when you are viewing all Tutorial Groups of the Module you intend to add the Tutorial Group to.
@@ -219,7 +230,7 @@ Format: `addTG tg/TG_CODE`
 
 Example: `addTG tg/T03`
 
-#### 5.4.3 - Find a Tutorial Group: `findTG`
+#### 4.3.3 Find a Tutorial Group: `findTG`
 If you need to quickly find a Tutorial from a list of Tutorials, use this command.
 
 > You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
@@ -231,7 +242,7 @@ Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
 Example: `findTG B014`
 To search for a Tutorial Group with code B014
 
-#### 5.4.4 - Delete a Tutorial Group from a Module: `deleteTG`
+#### 4.3.4 Delete a Tutorial Group from a Module: `deleteTG`
 You can use this command to delete a Tutorial Group you have previously added to a Module.
 > You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
 > Refer to 4.2.1 - View all Tutorial Groups in a Module
@@ -244,11 +255,11 @@ To delete Tutorial Group with the index 2 in the currently displayed list.
 
 These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
 
-### 5.5 Student features
+### 4.4 Student features
 
 Note: You should perform the following features while in the Student view.
 
-#### 5.5.1 Add a student: `addStudent`
+#### 4.4.1 Add a student: `addStudent`
 
 Adds a student with your provided details.
 
@@ -277,7 +288,7 @@ Expected Outcome:
 
 {insert screenshot of addStudent with the above parameters}
 
-#### 5.5.2 Delete a student: `deleteStudent`
+#### 4.4.2 Delete a student: `deleteStudent`
 
 Deletes a student based on the given `INDEX`.
 
@@ -305,7 +316,7 @@ Expected Outcome:
 
 {insert screenshot of deleteStudent with the above parameters}
 
-#### 5.5.3 Find a student: `findStudent`
+#### 4.4.3 Find a student: `findStudent`
 
 Finds and lists all students in the current Student view whose field contains any of the given keywords.
 
@@ -331,11 +342,11 @@ Expected Outcome:
 
 {insert screenshot of findStudent with the above parameters}
 
-#### 5.5.4 Edit a student: `editStudent` [coming in v1.4]
+#### 4.4.4 Edit a student: `editStudent` [coming in v1.4]
 
 Edits a student with the provided details.
 
-## 6. FAQ
+## 5. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br> 
 __A:__ This happens when the input command is of the wrong syntax or doesn't exist. U may go to the [Command Summary](#5-command-summary) to 
 view the list of commands and their accepted formats.
@@ -348,9 +359,9 @@ __Q:__ How do I exit the app safely? <br>
 __A:__ To close the app, simply click the red X on the top right for Windows users, on the top left
 for MacOS and Linux users.
 
-## 7. Command Summary
+## 6. Command Summary
 
-### 7.1 Module commands
+### 6.1 Module commands
 
 Command | Summary
 --------|--------
@@ -358,7 +369,7 @@ Command | Summary
 `deleteMod INDEX` | Deletes a module from the current Module view
 `findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view
 
-### 7.2 Tutorial Group commands
+### 6.2 Tutorial Group commands
 
 Command | Summary
 --------|--------
@@ -367,7 +378,7 @@ Command | Summary
 `findTG TARGET_TG_CODE` | Find a Tutorial Group
 `deleteTG TG_INDEX` | Delete a Tutorial Group from a Module
 
-### 7.3 Student commands
+### 6.3 Student commands
 
 Command | Summary
 --------|--------
