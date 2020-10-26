@@ -7,10 +7,13 @@ import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+import seedu.address.logic.parser.exceptions.ParseException;
+
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format of DD-MM-YYYY";
     public final String value;
+    public java.util.Date actualDate;
 
     /**
      * Constructs a {@code Date}.
@@ -21,6 +24,12 @@ public class Date {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = date;
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            actualDate = formatter.parse(value);
+        } catch (java.text.ParseException e) {
+            actualDate = null;
+        }
     }
 
     /**
@@ -38,14 +47,7 @@ public class Date {
     }
 
     public boolean isBefore(Date other) {
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            java.util.Date thisDate = formatter.parse(value);
-            java.util.Date otherDate = formatter.parse(other.value);
-            return thisDate.before(otherDate);
-        } catch (java.text.ParseException e) {
-            return false;
-        }
+        return actualDate.before(other.actualDate);
     }
 
     @Override
