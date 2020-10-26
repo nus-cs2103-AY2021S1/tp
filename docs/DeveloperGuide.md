@@ -398,7 +398,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in addleave <index> l/d:DATE \[d:DATE\]
+1.  User types in `addleave <index> l/d/DATE [d/DATE]`
 2.  Eva adds in the leave to staff record based on index
 3.  Eva displays the updated staff to User
     Use case ends.
@@ -435,7 +435,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in deleteleave <index> d:DATE
+1.  User types in `deleteleave <index> d/DATE`
 2.  Eva deletes the leave containing specified date from index specified staff record
 3.  Eva displays the updated staff to User
     Use case ends.
@@ -444,7 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. Eva detects missing fields or more fields than expected.
 
-    * 1a1. Eva shows the correct format to key in data.
+    * 1a1. Eva shows the correct format to key in command.
     * 1a2. Eva requests the user to add in data again.
     * 1a3  User enters new data.
 
@@ -454,15 +454,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. Eva detects invalid date.
 
     * 1b1. Eva shows the valid format to key in the relevant field.
-    * 1b2. Eva requests the user to add in data again.
-    * 1b3. User enters new data.
+    * 1b2. Eva requests the user to add in command again.
+    * 1b3. User enters new command.
 
-    Steps 1b1-1b3 are repeated until the data entered are correct.
+    Steps 1b1-1b3 are repeated until the command entered is correct.
     Use case resumes from step 2.
     
 * 1c. Eva detects no leave in index specified staff record containing specified date.
 
-    * 1a1. Eva informs the user that there are no exiting record containing specified date.
+    * 1a1. Eva informs the user that there are no exiting leave records containing specified date.
     * 1a2. Eva requests the user to type the command in again. 
     * 1a3  User types in a new leave date.
     Steps 1a1-1a3 are repeated until the data entered are correct.
@@ -607,7 +607,7 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
 
 **MSS**
 
-1. User types in list
+1. User types in `list -staff`
 2. Eva shows all staff records with indexes beside.
     Use case ends.
 
@@ -616,9 +616,22 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
 * 1a. Eva does not find any staff records.
 
     * 1a1. Eva informs the user that no records exist.
-    Use case ends
+    Use case ends.
 
 ***Use case: UC23 - list all applicant records***
+
+**MSS**
+
+1. User types in `list -applicant`
+2. Eva shows all applicant records with indexes beside.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find any applicant records.
+
+    * 1a1. Eva informs the user that no records exist.
+    Use case ends.
 
 ***Use case: UC24 - find staff records by name***
 
@@ -626,7 +639,25 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
 
 ***Use case: UC26 - viewing staff profile***
 
+1. User <u>opens staff list (UC22)<u/>
+2. User types in `view 1`
+3. Eva shows Staff profile of staff at index 1 on staff list.
+    Use case ends.
+
+**Extensions**
+
+* 1a. Eva detect invalid index.
+
+    * 1a1. Eva shows the valid format to key in index.
+    * 1a2. Eva requests the user to type in command again.
+    * 1a3. User enters new command.
+
+    Steps 1a1-1a3 are repeated until the command entered is correct.
+    Use case resumes from step 3.
+
 ***Use case: UC27 - viewing applicant profile***
+
+Similar to UC26, except that User <u>opens applicant list (UC23)<u/> in step 1.
 
 ***Use case: UC28 - help***
 
@@ -655,7 +686,7 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
 ### 5.4 Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 records of staff and applications without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 total records of staff, applicants, comments, leave and applications without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands in Eva than using the mouse.
 
 *{More to be added}*
@@ -694,7 +725,7 @@ testers are expected to do more *exploratory* testing.
 
 ### 6.2 Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person while all persons are being shown.
 
    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
