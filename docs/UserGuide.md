@@ -2,11 +2,14 @@
 layout: page
 title: User Guide
 ---
-
+// TODO ** add authorship for grading purposes **
 ## Introduction
+// TODO shift to the right
 ![inventoryinator](images/inventoryinator.jpg)
 
-Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
+// TODO longer intro
+// TODO personalise intro, don't bother with CLI GUI copypasta
+**Inventoryinator** is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
 
@@ -28,9 +31,9 @@ in this document.
 1. Copy the file to the folder you want to use as the _home folder_ for your Inventoryinator.
 
 1. Double-click the file to start the app. The GUI like below should appear in a few seconds. Note how the app contains some sample data.<br>
-   
+   //TODO smaller diagram for quickstart, taking up too much space
    ![Ui](images/Ui.png)
-
+// TODO better use of whitespaces
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    
    Some example commands you can try:
@@ -66,6 +69,8 @@ term | Command/variable term<br>
 default | If no parameter is given as input, this will be the input parameter.
 
 ___________________________________________________________________
+// TODO made Recipe definition clear, add glossary?
+
 
 ## Command summary
 
@@ -87,9 +92,9 @@ Action | Format
 
 
 ## Features
-
+// TODO add more to the preface under the features heading
 Inventoryinator's features and their descriptions, as of v1.2.
-
+// TODO in general, descriptions for features too short, need to explain what it does for the user and not just what it does
 ### Adding an item: `addi`
 
 **NAME:**
