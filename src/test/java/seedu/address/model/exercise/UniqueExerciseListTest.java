@@ -12,6 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 
 import seedu.address.model.exercise.exceptions.DuplicateExerciseException;
 import seedu.address.model.exercise.exceptions.ExerciseNotFoundException;
@@ -143,9 +144,9 @@ class UniqueExerciseListTest {
         uniqueExerciseList.add(PUSH_UP);
         List<Exercise> exerciseList = Collections.singletonList(SIT_UP);
         uniqueExerciseList.setExercises(exerciseList);
-        UniqueExerciseList expecteduniqueExerciseList = new UniqueExerciseList();
-        expecteduniqueExerciseList.add(SIT_UP);
-        assertEquals(expecteduniqueExerciseList, uniqueExerciseList);
+        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
+        expectedUniqueExerciseList.add(SIT_UP);
+        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
 
     @Test
@@ -156,8 +157,8 @@ class UniqueExerciseListTest {
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-                -> uniqueExerciseList.asUnmodifiableObservableList().remove(0));
+        Executable supplier = () -> uniqueExerciseList.asUnmodifiableObservableList().remove(0);
+        assertThrows(UnsupportedOperationException.class, supplier);
     }
 
     @Test
