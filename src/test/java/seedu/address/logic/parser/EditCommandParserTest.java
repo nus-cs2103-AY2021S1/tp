@@ -14,8 +14,11 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_ROSES;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SUNFLOWERS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_EXPENSE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_AMOUNT_REVENUE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_EXPENSE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_REVENUE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_EXPENSE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_REVENUE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ROSES;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -25,7 +28,6 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.category.Category;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
@@ -87,7 +89,7 @@ public class EditCommandParserTest {
 
         //valid category, followed by valid description, followed by invalid description
         assertParseFailure(parser, "1" + CATEGORY_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE
-                + INVALID_DESCRIPTION_DESC, String.format(Messages.MESSAGE_MULTIPLE_PREFIXES, EditCommand.PREFIXES));
+                + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Entry} being edited,
         // parsing it together with a valid tag results in error
@@ -144,28 +146,41 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedFields_failure() {
+    public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased() + CATEGORY_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE
                 + AMOUNT_DESC_EXPENSE + TAG_DESC_ROSES + CATEGORY_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE
                 + AMOUNT_DESC_EXPENSE + TAG_DESC_ROSES + CATEGORY_DESC_REVENUE + DESCRIPTION_DESC_REVENUE
                 + AMOUNT_DESC_REVENUE + TAG_DESC_ROSES;
 
-        assertParseFailure(parser, userInput, String.format(Messages.MESSAGE_MULTIPLE_PREFIXES, EditCommand.PREFIXES));
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withCategory(VALID_CATEGORY_REVENUE)
+                .withDescription(VALID_DESCRIPTION_REVENUE).withAmount(VALID_AMOUNT_REVENUE)
+                .withTags(VALID_TAG_ROSES).build();
+
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
-    public void parse_invalidOptionalValueFollowedByValidValue_failure() {
+    public void parse_invalidOptionalValueFollowedByValidValue_success() {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased() + CATEGORY_DESC_EXPENSE + INVALID_DESCRIPTION_DESC
                 + DESCRIPTION_DESC_EXPENSE;
-        assertParseFailure(parser, userInput, String.format(Messages.MESSAGE_MULTIPLE_PREFIXES, EditCommand.PREFIXES));
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder()
+                .withCategory(VALID_CATEGORY_EXPENSE).withDescription(VALID_DESCRIPTION_EXPENSE).build();
+        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
         userInput = targetIndex.getOneBased() + CATEGORY_DESC_EXPENSE + INVALID_DESCRIPTION_DESC
                 + AMOUNT_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE;
-        assertParseFailure(parser, userInput, String.format(Messages.MESSAGE_MULTIPLE_PREFIXES, EditCommand.PREFIXES));
+        descriptor = new EditEntryDescriptorBuilder().withCategory(VALID_CATEGORY_EXPENSE)
+                .withDescription(VALID_DESCRIPTION_EXPENSE)
+                .withAmount(VALID_AMOUNT_EXPENSE).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test

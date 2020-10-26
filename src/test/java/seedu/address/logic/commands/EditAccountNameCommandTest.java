@@ -2,7 +2,6 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -42,18 +41,6 @@ public class EditAccountNameCommandTest {
                 newName.toString());
 
         assertCommandSuccess(editAccountNameCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_editDuplicatedName_failure() {
-        Name currentName = GENERAL_ACCOUNT.getName();
-        Name newName = new Name("new Name");
-        model.addAccount(new Account(newName));
-        EditAccountNameCommand editAccountNameCommand = new EditAccountNameCommand(newName);
-
-        String expectedMessage = EditAccountNameCommand.MESSAGE_DUPLICATED_NAME;
-
-        assertCommandFailure(editAccountNameCommand, model, expectedMessage);
     }
 
     @Test

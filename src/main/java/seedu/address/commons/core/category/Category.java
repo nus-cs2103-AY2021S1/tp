@@ -8,12 +8,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidCategory(String)}
  */
 public class Category {
-    public static final String MESSAGE_CONSTRAINTS = "Category can only be e, r, expense or revenue and "
-            + "its not case sensitive.";
-    private static final String VALIDATION_REGEX =
-            "([Ee]([Xx][Pp][Ee][Nn][Ss][Ee])?|([Rr]([Ee][Vv][Ee][Nn][Uu][Ee])?))";
-    private static final String EXPENSE_REGEX = "[Ee]([Xx][Pp][Ee][Nn][Ss][Ee])?";
-    private static final String REVENUE_REGEX = "([Rr]([Ee][Vv][Ee][Nn][Uu][Ee])?)";
+    public static final String MESSAGE_CONSTRAINTS = "Category can only be expense or revenue";
+    public static final String VALIDATION_REGEX = "(expense)|(revenue)";
+    public static final String EXPENSE_STRING = "expense";
+    public static final String REVENUE_STRING = "revenue";
     private final String value;
 
 
@@ -36,11 +34,11 @@ public class Category {
     }
 
     public boolean isExpense() {
-        return value.matches(EXPENSE_REGEX);
+        return value.matches(EXPENSE_STRING);
     }
 
     public boolean isRevenue() {
-        return value.matches(REVENUE_REGEX);
+        return value.matches(REVENUE_STRING);
     }
 
     @Override

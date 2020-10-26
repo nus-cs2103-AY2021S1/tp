@@ -29,7 +29,7 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Money Maker123";
-    private static final String VALID_CATEGORY = "eXpEnSe";
+    private static final String VALID_CATEGORY = "expense";
     private static final String VALID_DESCRIPTION = "bought cooking utensils";
     private static final String VALID_AMOUNT = "1000.39";
     private static final String VALID_TAG_1 = "friend";

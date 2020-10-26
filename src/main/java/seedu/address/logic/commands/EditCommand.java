@@ -36,7 +36,7 @@ public class EditCommand extends Command {
             + "by the index number used in the expense/revenue list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_CATEGORY + "CATEGORY "
+            + "[" + PREFIX_CATEGORY + "CATEGORY] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_AMOUNT + "AMOUNT] "
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -45,9 +45,6 @@ public class EditCommand extends Command {
             + PREFIX_DESCRIPTION + "selling clothes "
             + PREFIX_AMOUNT + "20";
 
-    public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY\n"
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]\n"
-            + "[" + PREFIX_AMOUNT + "AMOUNT]\n";
     public static final String MESSAGE_SUCCESS = "Edited Entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     private Index index;

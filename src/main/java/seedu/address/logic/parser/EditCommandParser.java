@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_PREFIXES;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
@@ -38,7 +37,6 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         Index index;
 
-        // Parsing index
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -46,40 +44,21 @@ public class EditCommandParser implements Parser<EditCommand> {
                     EditCommand.MESSAGE_USAGE), pe);
         }
 
-        // Check if there is category
-        boolean isCategoryPrefixPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
-        if (!isCategoryPrefixPresent) {
+        EditEntryDescriptor editEntryDescriptor = new EditEntryDescriptor();
+        if (argMultimap.getValue(PREFIX_CATEGORY).isPresent()) {
+            editEntryDescriptor.setCategory(ParserUtil.parseCategory(argMultimap
+                    .getValue(PREFIX_CATEGORY).get()));
+        } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE));
         }
-
-        // Check if category prefix is only used once
-        boolean isNumberOfCategoryPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_CATEGORY);
-
-        // Check if optional prefixes are only used once or none
-        boolean isNumberOfOtherPrefixCorrect =
-                ParserUtil.areNumberOfPrefixesOneOrNone(argMultimap, PREFIX_DESCRIPTION, PREFIX_AMOUNT);
-
-        if (!isNumberOfCategoryPrefixCorrect || !isNumberOfOtherPrefixCorrect) {
-            throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, EditCommand.PREFIXES));
-        }
-
-        // Parse category
-        EditEntryDescriptor editEntryDescriptor = new EditEntryDescriptor();
-        editEntryDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
-
-        // Parse description if have
-        if (ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editEntryDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
         }
-
-        // Parse amount if have
-        if (ParserUtil.arePrefixesPresent(argMultimap, PREFIX_AMOUNT)) {
+        if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
             editEntryDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
-
-        // Parse tags if have
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editEntryDescriptor::setTags);
 
         if (!editEntryDescriptor.isAnyFieldEdited()) {

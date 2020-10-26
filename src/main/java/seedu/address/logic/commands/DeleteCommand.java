@@ -27,8 +27,6 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) c/CATEGORY\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CATEGORY + "revenue";
 
-    public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY";
-
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: [%1$s]";
 
     private final Index targetIndex;
