@@ -2,19 +2,26 @@
 layout: page
 title: ProductiveNUS User Guide
 ---
-## What is ProductiveNUS?
-ProductiveNUS is a desktop application for **managing and scheduling your academic tasks** via a **Graphical User Interface** (GUI). It uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a Command Box. 
-You can **keep track of all your assignments and lessons efficiently** and **view them in this single application**. It offers a scheduling function for your assignments that you can use to **plan your personal timetable quickly**.
---------------------------------------------------------------------------------------------------------------------
-
 ## Table of Contents
-1. Getting started
-2. Features
-3. FAQ
+1. Introduction
+2. How to use?
+3. Getting started
 4. Summary of commands supported
+5. Features
 
 --------------------------------------------------------------------------------------------------------------------
+## 1. Introduction
+As a **student from the School of Computing (SoC) in National University of Singapore (NUS)**, you may probably be suffering from a **high workload** and be **facing difficulties in managing your academic schedule**. With possible **poor organisational skills** and a **lack of planning**, you may often find yourself **leaving assignments to be done at the last minute**. When the deadlines for your assignments are nearing, you feel **overwhelmed** and start to look back at your **disorganised timeline**.
 
+**ProductiveNUS is desktop application made for you to manage and schedule your academic tasks** via a **Graphical User Interface (GUI)**; 
+which provides you with an intuitive interface and immediate visual feedback. It uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your academic tasks more efficiently via this Command Box.
+
+
+--------------------------------------------------------------------------------------------------------------------
+## 2. How to use?
+
+
+--------------------------------------------------------------------------------------------------------------------
 ## Getting started
 
 1. Ensure you have Java `11` or above installed in your Computer.
