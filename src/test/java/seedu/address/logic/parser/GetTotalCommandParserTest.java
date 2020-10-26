@@ -25,7 +25,7 @@ class GetTotalCommandParserTest {
 
     @Test
     public void parse_validRevenues_returnsGetTotalCommandSuccess() {
-        assertParseSuccess(parser, "total c/revenue", new GetTotalCommand(revenue));
+        assertParseSuccess(parser, " c/revenue", new GetTotalCommand(revenue));
     }
 
     @Test

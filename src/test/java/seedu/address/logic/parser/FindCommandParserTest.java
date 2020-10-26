@@ -1,8 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.category.Category.EXPENSE_STRING;
-import static seedu.address.commons.core.category.Category.REVENUE_STRING;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
@@ -20,6 +18,8 @@ import seedu.address.model.account.entry.RevenueDescriptionContainsKeywordsPredi
 public class FindCommandParserTest {
     private static final String WHITE_SPACE = " ";
     private static final String KEYWORDS = "pots flower rent";
+    private static final String EXPENSE_STRING = "expense";
+    private static final String REVENUE_STRING = "revenue";
     private static final String INVALID_USER_INPUT_NO_KEYWORDS = WHITE_SPACE + PREFIX_KEYWORDS + WHITE_SPACE;
     private static final String VALID_USER_INPUT_NO_CATEGORY = WHITE_SPACE + PREFIX_KEYWORDS + KEYWORDS;
     private static final String VALID_USER_INPUT_WITH_EXPENSE_CATEGORY =
