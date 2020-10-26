@@ -200,8 +200,8 @@ public class ModelManager implements Model {
         requireNonNull(category);
 
         if (category.equals(new Tag("Default"))) {
-            updateFilteredBudgetList(budget -> true);
-            updateFilteredExpenseList(expense -> true);
+            updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
+            updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
         } else {
             updateFilteredBudgetList(budget -> budget.getTag().equals(category));
             updateFilteredExpenseList(expense -> expense.getTags().contains(category));
@@ -209,12 +209,18 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Checks if the given Tag is present in any of the category budget.
-     * @see CategoryExpenseBook#containsCategory(Tag)
+     * Checks if the given Tag is present in the expense book.
+     * @see ExpenseBook#containsCategory(Tag)
      */
     @Override
     public boolean hasCategory(Tag toCheck) {
-        return categoryExpenseBook.containsCategory(toCheck);
+        return expenseBook.containsCategory(toCheck);
+    }
+
+    @Override
+    public void addCategory(Tag tag) {
+        expenseBook.addCategory(tag);
+        updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
     }
 
     /**

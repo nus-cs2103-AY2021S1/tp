@@ -27,57 +27,57 @@ import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
-import seedu.expense.testutil.ExpenseBuilder;
 
-public class AddCommandTest {
+public class AddCategoryCommandTest {
 
     @Test
-    public void constructor_nullExpense_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullTag_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddCategoryCommand(null));
     }
 
     @Test
-    public void execute_expenseAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingExpenseAdded modelStub = new ModelStubAcceptingExpenseAdded();
-        Expense validExpense = new ExpenseBuilder().build();
+    public void execute_categoryAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
+        Tag validTag = new Tag("Valid");
 
-        CommandResult commandResult = new AddCommand(validExpense).execute(modelStub);
+        CommandResult commandResult = new AddCategoryCommand(validTag).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validExpense), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validExpense), modelStub.expensesAdded);
+        assertEquals(String.format(AddCategoryCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTag), modelStub.tagsAdded);
     }
 
     @Test
-    public void execute_duplicateExpense_throwsCommandException() {
-        Expense validExpense = new ExpenseBuilder().build();
-        AddCommand addCommand = new AddCommand(validExpense);
-        ModelStub modelStub = new ModelStubWithExpense(validExpense);
+    public void execute_duplicateTag_throwsCommandException() {
+        Tag validTag = new Tag("Valid");
+        AddCategoryCommand addCategoryCommand = new AddCategoryCommand(validTag);
+        ModelStub modelStub = new ModelStubWithTag(validTag);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_EXPENSE, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                AddCategoryCommand.MESSAGE_DUPLICATE_CATEGORY, () -> addCategoryCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Expense alice = new ExpenseBuilder().withDescription("Alice").build();
-        Expense bob = new ExpenseBuilder().withDescription("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Tag aTag = new Tag("A");
+        Tag bTag = new Tag("B");
+        AddCategoryCommand addACommand = new AddCategoryCommand(aTag);
+        AddCategoryCommand addBCommand = new AddCategoryCommand(bTag);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addACommand.equals(addACommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCategoryCommand addACopy = new AddCategoryCommand(aTag);
+        assertTrue(addACommand.equals(addACopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addACommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addACommand.equals(null));
 
-        // different expense -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different values -> returns false
+        assertFalse(addACommand.equals(addBCommand));
     }
 
     /**
@@ -226,39 +226,39 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single expense.
+     * A Model stub that contains a single tag.
      */
-    private class ModelStubWithExpense extends ModelStub {
-        private final Expense expense;
+    private class ModelStubWithTag extends ModelStub {
+        private final Tag tag;
 
-        ModelStubWithExpense(Expense expense) {
-            requireNonNull(expense);
-            this.expense = expense;
+        ModelStubWithTag(Tag tag) {
+            requireNonNull(tag);
+            this.tag = tag;
         }
 
         @Override
-        public boolean hasExpense(Expense expense) {
-            requireNonNull(expense);
-            return this.expense.isSameExpense(expense);
+        public boolean hasCategory(Tag toCheck) {
+            return this.tag.equals(toCheck);
         }
     }
+
 
     /**
      * A Model stub that always accept the expense being added.
      */
-    private class ModelStubAcceptingExpenseAdded extends ModelStub {
-        final ArrayList<Expense> expensesAdded = new ArrayList<>();
+    private class ModelStubAcceptingTagAdded extends ModelStub {
+        final ArrayList<Tag> tagsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasExpense(Expense expense) {
-            requireNonNull(expense);
-            return expensesAdded.stream().anyMatch(expense::isSameExpense);
+        public boolean hasCategory(Tag toCheck) {
+            requireNonNull(toCheck);
+            return tagsAdded.stream().anyMatch(toCheck::equals);
         }
 
         @Override
-        public void addExpense(Expense expense) {
-            requireNonNull(expense);
-            expensesAdded.add(expense);
+        public void addCategory(Tag tag) {
+            requireNonNull(tag);
+            tagsAdded.add(tag);
         }
 
         @Override
@@ -266,5 +266,4 @@ public class AddCommandTest {
             return new ExpenseBook();
         }
     }
-
 }
