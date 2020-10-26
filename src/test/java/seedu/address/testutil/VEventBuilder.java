@@ -10,7 +10,7 @@ import jfxtras.icalendarfx.components.VEvent;
  */
 public class VEventBuilder {
 
-    public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public static final String DEFAULT_NAME = "Danny Williams";
     public static final String DEFAULT_START_TIME = "2020-02-02 14:20";
     public static final String DEFAULT_END_TIME = "2020-02-02 14:35";
@@ -33,8 +33,9 @@ public class VEventBuilder {
      */
     public VEventBuilder(VEvent vEventToCopy) {
         patientName = vEventToCopy.getSummary().getValue();
-        startTime = LocalDateTime.parse(vEventToCopy.getDateTimeStart().getValue().toString()).format(FORMATTER);
-        endTime = LocalDateTime.parse(vEventToCopy.getDateTimeEnd().getValue().toString()).format(FORMATTER);
+        startTime = LocalDateTime.parse(vEventToCopy.getDateTimeStart().getValue().toString())
+                .format(DATE_TIME_FORMATTER);
+        endTime = LocalDateTime.parse(vEventToCopy.getDateTimeEnd().getValue().toString()).format(DATE_TIME_FORMATTER);
     }
 
     /**
@@ -67,8 +68,8 @@ public class VEventBuilder {
     public VEvent build() {
         VEvent resultVEvent = new VEvent();
         resultVEvent.setSummary(patientName);
-        resultVEvent.setDateTimeStart(LocalDateTime.parse(startTime, FORMATTER));
-        resultVEvent.setDateTimeEnd(LocalDateTime.parse(endTime, FORMATTER));
+        resultVEvent.setDateTimeStart(LocalDateTime.parse(startTime, DATE_TIME_FORMATTER));
+        resultVEvent.setDateTimeEnd(LocalDateTime.parse(endTime, DATE_TIME_FORMATTER));
         return resultVEvent;
     }
 
