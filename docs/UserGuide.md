@@ -63,12 +63,15 @@ This user guide takes you through the basics of Eva and helps you get moving str
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+   
    <div markdown="block" class="alert alert-info">
    
    **:information_source: Note:**
    Eva launches into the Staff List Panel.
+   
    </div>
+   
+   Some example commands you can try:
 
    * **`list -applicant`** : Lists all applicants.
    
@@ -80,7 +83,7 @@ This user guide takes you through the basics of Eva and helps you get moving str
 
    * **`delstaff`**`3` : Deletes the 3rd staff shown in the staff list.
    
-   * **`addleave`**`2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020` : Adds two leave records with dates `08/10/2020 to 10/10/2020` and `20/10/2020` to the 2nd staff shown in the current list.
+   * **`addleave`**`2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020` : Adds two leave records with dates `08/10/2020 to 10/10/2020` and `20/10/2020` to the 2nd staff shown in the current list.
 
    * **`deleteleave`**`1 10/10/2020` : Deletes the leave record containing the date `10/10/2020` from the 1st person in the current list.
 
@@ -275,7 +278,7 @@ Format: `add <index_of_applicant> a- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<D
 
 #### 3.5.5. Add leave to staff in application: `add <index> l/ `
 
-Format: `add <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
+Format: `add <index_of_staff> l/ d/<DATE IN DD/MM/YYYY>`
 
 ### 3.6. Centralised Delete (Experienced Users): `delete`
 
@@ -297,7 +300,7 @@ Format: `delete <index_of_applicant> a- c- t:<TITLE>`
 
 #### 3.6.5. Delete leave from staff in application: `delete <index> l/ `
 
-Format: `delete <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
+Format: `delete <index_of_staff> l/ d/<DATE IN DD/MM/YYYY>`
 
 ### 3.7. Archiving data files `[coming in v2.0]`
 

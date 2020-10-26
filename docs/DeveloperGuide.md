@@ -399,7 +399,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in addleave <index> l/d:DATE \[d:DATE\]
+1.  User types in addleave <index> l/d/DATE \[d/DATE\]
 2.  Eva adds in the leave to staff record based on index
 3.  Eva displays the updated staff to User
     Use case ends.
@@ -436,7 +436,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types in deleteleave <index> d:DATE
+1.  User types in deleteleave <index> d/DATE
 2.  Eva deletes the leave containing specified date from index specified staff record
 3.  Eva displays the updated staff to User
     Use case ends.
