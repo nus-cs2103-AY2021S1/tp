@@ -23,7 +23,7 @@ public class IngredientRestockCommand extends Command {
             + " ingredients that need to be restocked."
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Here is the list of all ingredients that should be restocked: \n";
+    public static final String MESSAGE_SUCCESS = "Here is the list of all ingredients that should be restocked: \n\n";
 
     public static final String MESSAGE_NO_NEED_TO_RESTOCK = "All Ingredients has not fallen below restock levels.";
 
@@ -54,7 +54,7 @@ public class IngredientRestockCommand extends Command {
         for (Ingredient i : ingredientInShortage) {
             ingredientList += i.toString() + LINE_SEPARATOR;
         }
-        return new CommandResult(MESSAGE_SUCCESS + LINE_SEPARATOR + ingredientList);
+        return new CommandResult(MESSAGE_SUCCESS + ingredientList);
     }
 
     @Override

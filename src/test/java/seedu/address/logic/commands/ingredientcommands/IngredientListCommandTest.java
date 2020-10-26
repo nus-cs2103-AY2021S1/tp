@@ -1,4 +1,4 @@
-/*package seedu.address.logic.commands.ingredientcommands;
+package seedu.address.logic.commands.ingredientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,7 +19,6 @@ import seedu.address.model.ingredient.IngredientName;
 
 
 public class IngredientListCommandTest {
-
 
     @Test
     public void execute_viewIngredient_success() {
@@ -49,8 +48,6 @@ public class IngredientListCommandTest {
 
         expectedModel.setIngredientBook(defaultReadOnlyIngredientBook);
 
-        IngredientViewSingleCommand.ViewIngredientDescriptor descriptor = new
-                IngredientViewSingleCommand.ViewIngredientDescriptor();
         final IngredientListCommand standardCommand = new
                 IngredientListCommand();
         String ingredientList = "";
@@ -84,5 +81,5 @@ public class IngredientListCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
     }
-}*/
+}
 

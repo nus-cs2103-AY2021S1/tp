@@ -168,7 +168,7 @@ Example:
 
 * Unit of measurement for ingredients:<br>
     * - Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
-    * - Unit for liquids (Milk and Oolong Tea) : **L**<br>
+    * - Unit for liquids (Milk, Black Tea and Green Tea) : **L**<br>
 
 * All ingredients' levels are set to 0.<br>
 
@@ -180,7 +180,8 @@ Example:
     * - Milk<br>
     * - Pearl<br>
     * - Boba<br>
-    * - Oolong Tea<br>
+    * - Black Tea<br>
+    * - Green Tea<br>
     * - Brown Sugar<br>
 
 </div>
@@ -219,24 +220,29 @@ Format: `i-set-default`
 Example:
 * `i-set-default`
 
-#### 3.4 Viewing a single ingredient's level : `i-view-single`
-Shows the ingredient's level of a particular type of ingredient which is specified by the user’s command.
-
-Format: `i-view-single i/INGREDIENT_NAME`
-
-Example:
-* `i-view-single i/Milk`
-Shows the amount of milk which is recorded by tCheck.
-
-#### 3.5 Resetting all ingredients' levels to zero : `i-reset-all`
-Sets all ingredients' levels to zero.
-
-Format: `i-reset-all`
-
-#### 3.6 Listing all ingredients' levels : `i-list`
-Shows the ingredient's levels of all ingredient types.
+#### 3.4 Listing all ingredients' levels : `i-list`
+Lists the ingredient's levels of all ingredient types.
 
 Format: `i-list`
+
+#### 3.5 Viewing a single ingredient's level : `i-view-single`
+Shows the ingredient's level of a particular type of ingredient that is specified by the user’s command.
+
+Format: `i-view-single i/INGREDIENTNAME`
+
+Example:
+* `i-view-single i/Green Tea`
+Shows the amount of green tea recorded by tCheck.
+
+#### 3.7 Resetting all ingredients' levels to zero : `i-reset-all`
+Resets all types of ingredients' levels to zero in tCheck.
+
+Format: `i-resetall`
+
+#### 3.6 Listing all ingredients that user should restock : `i-restock`
+Lists the ingredient's levels of all ingredient types that require the user to restock.
+
+Format: `i-restock`
 
 ### 4. Commands - Contact details <a name="commands-contact-details"></a>
 
