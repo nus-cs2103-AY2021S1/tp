@@ -1,4 +1,4 @@
-package seedu.pivot.model.investigationcase;
+package seedu.pivot.model.investigationcase.caseperson;
 
 /**
  * Represents a Witness in the investigation case.
@@ -11,8 +11,8 @@ public class Witness extends CasePerson {
      *
      * @param name A valid name.
      */
-    public Witness(Name name) {
-        super(name);
+    public Witness(Name name, Gender gender, Phone phone, Email email, Address address) {
+        super(name, gender, phone, email, address);
     }
 
     /**
@@ -30,7 +30,11 @@ public class Witness extends CasePerson {
         }
 
         Witness otherWitness = (Witness) other;
-        return otherWitness.getName().equals(getName());
+        return otherWitness.getName().equals(getName())
+                && otherWitness.getGender().equals(getGender())
+                && otherWitness.getPhone().equals(getPhone())
+                && otherWitness.getEmail().equals(getEmail())
+                && otherWitness.getAddress().equals(getAddress());
     }
 
 }

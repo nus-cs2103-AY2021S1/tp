@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.pivot.model.investigationcase.CasePerson;
+import seedu.pivot.model.investigationcase.caseperson.CasePerson;
 
 public class CasePersonCard extends UiPart<Region> {
 
@@ -26,6 +26,14 @@ public class CasePersonCard extends UiPart<Region> {
     private Label name;
     @FXML
     private Label id;
+    @FXML
+    private Label gender;
+    @FXML
+    private Label phone;
+    @FXML
+    private Label email;
+    @FXML
+    private Label address;
 
 
     /**
@@ -36,6 +44,29 @@ public class CasePersonCard extends UiPart<Region> {
         this.casePerson = casePerson;
         id.setText(displayedIndex + ". ");
         name.setText(casePerson.getName().toString());
+        gender.setText("(" + casePerson.getGender().toString() + ")");
+
+        String checkPhone = casePerson.getPhone().toString();
+        if (!checkPhone.isBlank()) {
+            phone.setText("Phone: " + casePerson.getPhone().toString());
+        } else {
+            phone.setManaged(false);
+        }
+
+        String checkEmail = casePerson.getEmail().toString();
+        if (!checkEmail.isBlank()) {
+            email.setText("Email: " + casePerson.getEmail().toString());
+        } else {
+            email.setManaged(false);
+        }
+
+        String checkAddress = casePerson.getAddress().toString();
+        if (!checkAddress.isBlank()) {
+            address.setText("Address: " + casePerson.getAddress().toString());
+        } else {
+            address.setManaged(false);
+        }
+
     }
 
     @Override

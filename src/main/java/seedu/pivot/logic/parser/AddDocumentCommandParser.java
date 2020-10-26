@@ -1,6 +1,6 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_REFERENCE;
@@ -10,8 +10,8 @@ import seedu.pivot.logic.commands.documentcommands.AddDocumentCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.Document;
-import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Reference;
+import seedu.pivot.model.investigationcase.caseperson.Name;
 
 public class AddDocumentCommandParser implements Parser<AddDocumentCommand> {
 

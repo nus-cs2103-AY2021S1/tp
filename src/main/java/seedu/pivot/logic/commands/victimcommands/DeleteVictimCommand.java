@@ -1,13 +1,15 @@
 package seedu.pivot.logic.commands.victimcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
 
 import seedu.pivot.commons.core.LogsCenter;
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.DeleteCommand;
@@ -15,7 +17,7 @@ import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
 
 /**
  * Deletes a case identified using it's displayed index from PIVOT.
@@ -45,8 +47,8 @@ public class DeleteVictimCommand extends DeleteCommand {
         requireNonNull(model);
         List<Case> lastShownList = model.getFilteredCaseList();
 
-        assert(StateManager.atCasePage()) : "Program should be at case page";
-        assert(caseIndex.getZeroBased() < lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
+        assert(caseIndex.getZeroBased() < lastShownList.size()) : ASSERT_VALID_INDEX;
 
         Case stateCase = lastShownList.get(caseIndex.getZeroBased());
         List<Victim> updatedVictims = stateCase.getVictims();
@@ -54,7 +56,7 @@ public class DeleteVictimCommand extends DeleteCommand {
         // invalid victim index
         if (victimIndex.getZeroBased() >= updatedVictims.size()) {
             logger.info("Invalid index: " + victimIndex.getOneBased());
-            throw new CommandException(Messages.MESSAGE_INVALID_VICTIM_DISPLAYED_INDEX);
+            throw new CommandException(UserMessages.MESSAGE_INVALID_VICTIM_DISPLAYED_INDEX);
         }
 
         Victim victimToDelete = updatedVictims.get(victimIndex.getZeroBased());

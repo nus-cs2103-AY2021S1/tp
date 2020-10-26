@@ -9,7 +9,11 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 
 /**
@@ -17,6 +21,14 @@ import seedu.pivot.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Case {
+
+    private static final String DESCRIPTION_HEADER = " Description: ";
+    private static final String STATUS_HEADER = " Status: ";
+    private static final String DOCUMENTS_HEADER = " Documents: ";
+    private static final String SUSPECTS_HEADER = " Suspects: ";
+    private static final String VICTIMS_HEADER = " Victims: ";
+    private static final String WITNESSES_HEADER = " Witnesses: ";
+    private static final String TAGS_HEADER = " Tags: ";
 
     // Identity fields
     private final Title title;
@@ -132,21 +144,51 @@ public class Case {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
-                .append(" Description: ")
-                .append(getDescription())
-                .append(" Status: ")
-                .append(getStatus())
-                .append(" Documents: ");
-        getDocuments().forEach(builder::append);
-        builder.append(" Suspects: ");
-        getSuspects().forEach(builder::append);
-        builder.append(" Victims: ");
-        getVictims().forEach(builder::append);
-        builder.append(" Witnesses: ");
-        getWitnesses().forEach(builder::append);
-        builder.append(" Tags: ");
-        getTags().forEach(builder::append);
+        builder.append(getTitle()).append("\n")
+                .append(DESCRIPTION_HEADER).append(getDescription()).append("\n")
+                .append(STATUS_HEADER).append(getStatus()).append("\n");
+
+        // Documents
+        if (!getDocuments().isEmpty()) {
+            builder.append("\n");
+            builder.append(DOCUMENTS_HEADER);
+        }
+        Stream<String> docs = getDocuments().stream().map(x -> x.getName().toString());
+        builder.append(docs.collect(Collectors.joining(", ")));
+
+        // Suspects
+        if (!getSuspects().isEmpty()) {
+            builder.append("\n");
+            builder.append(SUSPECTS_HEADER);
+        }
+        Stream<String> suspects = getSuspects().stream().map(x -> x.getName().toString());
+        builder.append(suspects.collect(Collectors.joining(", ")));
+
+        // Victims
+        if (!getVictims().isEmpty()) {
+            builder.append("\n");
+            builder.append(VICTIMS_HEADER);
+        }
+        Stream<String> victims = getVictims().stream().map(x -> x.getName().toString());
+        builder.append(victims.collect(Collectors.joining(", ")));
+
+        // Witnesses
+        if (!getWitnesses().isEmpty()) {
+            builder.append("\n");
+            builder.append(WITNESSES_HEADER);
+        }
+        Stream<String> witnesses = getWitnesses().stream().map(x -> x.getName().toString());
+        builder.append(witnesses.collect(Collectors.joining(", ")));
+
+        // Tags
+        if (!getTags().isEmpty()) {
+            builder.append("\n");
+            builder.append(TAGS_HEADER);
+        }
+        for (Tag tag : getTags()) {
+            builder.append(tag.tagName);
+        }
+
         return builder.toString();
     }
 

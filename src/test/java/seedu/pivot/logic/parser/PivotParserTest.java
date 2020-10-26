@@ -2,8 +2,8 @@ package seedu.pivot.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -28,7 +28,7 @@ import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
 import seedu.pivot.logic.commands.casecommands.ListCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
+import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 import seedu.pivot.testutil.CaseBuilder;
 import seedu.pivot.testutil.CaseUtil;
 import seedu.pivot.testutil.EditCaseDescriptorBuilder;
@@ -78,7 +78,7 @@ public class PivotParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new DetailsContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

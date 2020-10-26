@@ -1,4 +1,6 @@
-package seedu.pivot.model.investigationcase;
+package seedu.pivot.model.investigationcase.caseperson;
+
+import seedu.pivot.model.investigationcase.Alphanumeric;
 
 /**
  * Represents a Person's name in the PIVOT.
