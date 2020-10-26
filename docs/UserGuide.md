@@ -131,7 +131,36 @@ This command quits ChopChop. Your recipe data is already saved whenever a comman
 Usage: `quit`
 
 
+### Undoing commands — **`redo`**
+Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
 
+Usage: `redo`
+
+
+
+### Viewing Recipes — **`view`**
+This command displays a specific recipe from ChopChop. You can either use the name or the number of the recipe to refer to it.
+
+Usage: `view <#REF>`
+
+Examples:
+- `view #4` <br />
+	This displays the fourth recipe currently shown in the GUI's recipe view.
+- `view pancakes` <br />
+	This displays the recipe named 'pancakes'. Note that the name here is case insensitive.
+
+To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe (in this case, the Pancake recipe added in the `add recipe` guide below).
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/view_recipe_1.png" width="75%" /> <br />
+Figure 3.1: <i>The recipe detail view</i>
+</div>
+
+After pressing enter, you will see this view, showing the recipe you wish to view:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_recipe_2.png" width="75%" /> <br />
+Figure 3.2: <i>The recipe detail view</i>
+</div>
 
 
 ### Listing Recipes — **`list`**`recipes`
@@ -172,21 +201,21 @@ add recipe Pancakes
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_1.png" width="75%" /> <br />
-Figure 3.1: <i>The add recipe command</i>
+Figure 4.1: <i>The add recipe command</i>
 </div>
 
 After pressing enter, you will see this view, showing your newly created recipe:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_2.png" width="75%" /> <br />
-Figure 3.2: <i>The recipe detail view</i>
+Figure 4.2: <i>The recipe detail view</i>
 </div>
 
 If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_3.png" width="75%" /> <br />
-Figure 3.3: <i>The newly created recipe in the recipe list</i>
+Figure 4.3: <i>The newly created recipe in the recipe list</i>
 </div>
 
 
@@ -279,67 +308,67 @@ To illustrate how to use this powerful command, let us recreate the Pancake reci
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_1.png" width="75%" /> <br />
-Figure 4.1: <i>The empty recipe</i>
+Figure 5.1: <i>The empty recipe</i>
 </div>
 
 Now, let's add our ingredients. First, 400 grams of flour:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_2.png" width="75%" /> <br />
-Figure 4.2: <i>The command to add a new ingredient to the recipe</i>
+Figure 5.2: <i>The command to add a new ingredient to the recipe</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_3.png" width="75%" /> <br />
-Figure 4.3: <i>The recipe is now updated with the ingredient</i>
+Figure 5.3: <i>The recipe is now updated with the ingredient</i>
 </div>
 
 Next, adding the eggs and milk in one go:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
-Figure 4.4: <i>The edit command supports multiple operations at once</i>
+Figure 5.4: <i>The edit command supports multiple operations at once</i>
 </div>
 
 Oops, that's too many eggs, so let's edit the quantity:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
-Figure 4.5: <i>Editing an ingredient to change its quantity</i>
+Figure 5.5: <i>Editing an ingredient to change its quantity</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
-Figure 4.6: <i>The recipe now uses only 3 eggs</i>
+Figure 5.6: <i>The recipe now uses only 3 eggs</i>
 </div>
 
 Now let's add the steps:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
-Figure 4.7: <i>Adding the first step</i>
+Figure 5.7: <i>Adding the first step</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_8.png" width="75%" /> <br />
-Figure 4.8: <i>Adding steps 2 and 3</i>
+Figure 5.8: <i>Adding steps 2 and 3</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_9.png" width="75%" /> <br />
-Figure 4.9: <i>The completed recipe</i>
+Figure 5.9: <i>The completed recipe</i>
 </div>
 
 Oh no, if we bake the pancakes (are pancakes baked?) like that, they'll get burnt, so let's fix it:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
-Figure 4.10: <i>Editing the second step</i>
+Figure 5.10: <i>Editing the second step</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_11.png" width="75%" /> <br />
-Figure 4.11: <i>The actual completed recipe</i>
+Figure 5.11: <i>The actual completed recipe</i>
 </div>
 
 And now the pancake recipe is complete.
@@ -370,7 +399,7 @@ To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
-Figure 5: <i>The recipe number (circled) can be used to refer to an item as well</i>
+Figure 6: <i>The recipe number (circled) can be used to refer to an item as well</i>
 </div>
 
 
@@ -395,21 +424,21 @@ Examples:
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_1.png" width="75%" /> <br />
-Figure 6.1: <i>The starting state of the application</i>
+Figure 7.1: <i>The starting state of the application</i>
 </div>
 
 After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_2.png" width="75%" /> <br />
-Figure 6.2: <i>The recipes containing 'cake'</i>
+Figure 7.2: <i>The recipes containing 'cake'</i>
 </div>
 
 To go back to the full recipe view (resetting the search filter), you can either click the Recipes button at the bottom, or run the `list recipes` command:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_3.png" width="75%" /> <br />
-Figure 6.3: <i>Back to the main recipe list</i>
+Figure 7.3: <i>Back to the main recipe list</i>
 </div>
 
 
@@ -449,35 +478,35 @@ Suppose you just finished a grocery run, and want to add the items to ChopChop. 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_1.png" width="75%" /> <br />
-Figure 7.1: <i>Adding 2 litres of milk</i>
+Figure 8.1: <i>Adding 2 litres of milk</i>
 </div>
 
 Since ChopChop did not know about 'milk' previously, a new ingredient entry is created for it:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_2.png" width="75%" /> <br />
-Figure 7.2: <i>The newly added milk ingredient</i>
+Figure 8.2: <i>The newly added milk ingredient</i>
 </div>
 
 Next, suppose you also bought 24 blueberries:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_3.png" width="75%" /> <br />
-Figure 7.3: <i>Adding 24 blueberries</i>
+Figure 8.3: <i>Adding 24 blueberries</i>
 </div>
 
 This time, since ChopChop already knew about blueberries, our previous 5 blueberries now become 29:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
-Figure 7.4: <i>You now have 29 blueberries</i>
+Figure 8.4: <i>You now have 29 blueberries</i>
 </div>
 
 If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_5.png" width="75%" /> <br />
-Figure 7.5: <i>Ingredients must have compatible units to be combined</i>
+Figure 8.5: <i>Ingredients must have compatible units to be combined</i>
 </div>
 
 
@@ -506,14 +535,14 @@ To illustrate, suppose that you poured yourself a glass of cold milk to drink, w
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
-Figure 8.1: <i>Removing 250ml of milk</i>
+Figure 9.1: <i>Removing 250ml of milk</i>
 </div>
 
 Notice how the amount of milk decreased from 2 litres to 1.75 litres:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
-Figure 8.2: <i>You now only have 1.75 litres of milk left</i>
+Figure 9.2: <i>You now only have 1.75 litres of milk left</i>
 </div>
 
 
@@ -533,14 +562,14 @@ For example, suppose you wanted to find all ingredients containing fish (not in 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_1.png" width="75%" /> <br />
-Figure 9.1: <i>The complete ingredient list</i>
+Figure 10.1: <i>The complete ingredient list</i>
 </div>
 
 Now, only the matching ingredients are shown:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_2.png" width="75%" /> <br />
-Figure 9.2: <i>Only ingredients containing 'fish' in their name are shown</i>
+Figure 10.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
 Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
@@ -553,27 +582,6 @@ Undoes the last undoable command. Undoable commands are commands that involve ch
 
 Usage: `undo`
 
-
-
-
-### Undoing commands — **`redo`**
-Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
-
-Usage: `redo`
-
-
-### Viewing Recipes — **`view`**
-This command displays a specific recipe from ChopChop. You can either use the name or the number of the recipe to refer to it.
-
-Usage: `view <#REF>`
-
-Examples:
-- `view #4` <br />
-	This displays the fourth recipe currently shown in the GUI's recipe view.
-- `view pancakes` <br />
-	This displays the recipe named 'pancakes'. Note that the name here is case insensitive.
-
-To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe (in this case, the Pancake recipe added in the `add recipe` guide above).
 
 -----------------------
 ## Quantities and Units
