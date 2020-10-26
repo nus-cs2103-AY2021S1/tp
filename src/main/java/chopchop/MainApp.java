@@ -2,8 +2,8 @@ package chopchop;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.function.Supplier;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import chopchop.commons.core.Config;
@@ -19,22 +19,15 @@ import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.ReadOnlyEntryBook;
-import chopchop.model.ReadOnlyUserPrefs;
 import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.recipe.Recipe;
-import chopchop.model.usage.IngredientUsage;
-import chopchop.model.usage.RecipeUsage;
 import chopchop.model.usage.Usage;
 import chopchop.model.util.SampleDataUtil;
-import chopchop.storage.IngredientBookStorage;
 import chopchop.storage.JsonIngredientBookStorage;
 import chopchop.storage.JsonIngredientUsageStorage;
 import chopchop.storage.JsonRecipeBookStorage;
 import chopchop.storage.JsonRecipeUsageStorage;
 import chopchop.storage.JsonUserPrefsStorage;
-import chopchop.storage.RecipeBookStorage;
 import chopchop.storage.Storage;
 import chopchop.storage.StorageManager;
 import chopchop.storage.UserPrefsStorage;
@@ -186,95 +179,6 @@ public class MainApp extends Application {
             return new UsageList<T>();
         }
     }
-
-
-
-
-    /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s ingredient and recipe book and
-     * {@code userPrefs}. <br>
-     * The data from the sample ingredient or recipe book will be used instead if {@code storage}'s ingredient or
-     * recipe book is not found, or an empty ingredient or recipe book will be used instead if errors occur when
-     * reading {@code storage}'s ingredient or recipe book.
-     */
-//     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-// <<<<<<< HEAD
-//         Optional<ReadOnlyEntryBook<Recipe>> recipeBookOptional;
-//         Optional<ReadOnlyEntryBook<Ingredient>> ingredientBookOptional;
-//         Optional<UsageList<RecipeUsage>> recipeUsageOptional;
-//         Optional<UsageList<IngredientUsage>> ingredientUsageOptional;
-// =======
-// >>>>>>> abdfe936... Split the loading of recipe and ingredient books
-//         ReadOnlyEntryBook<Recipe> initialRecipeData;
-//         ReadOnlyEntryBook<Ingredient> initialIngredientData;
-//         UsageList<RecipeUsage> initialRecipeUsageData;
-//         UsageList<IngredientUsage> initialIngredientUsageData;
-
-//         try {
-// <<<<<<< HEAD
-//             recipeBookOptional = storage.readRecipeBook();
-//             ingredientBookOptional = storage.readIngredientBook();
-//             recipeUsageOptional = storage.readRecipeUsages();
-//             ingredientUsageOptional = storage.readIngredientUsages();
-
-//             if (recipeBookOptional.isEmpty()) {
-//                 logger.info("Data file for recipe book not found. Will be starting with a sample RecipeBook");
-// =======
-//             var opt = storage.readRecipeBook();
-//             if (opt.isEmpty()) {
-//                 logger.info("Data file for recipe book not found; starting with sample recipes");
-// >>>>>>> abdfe936... Split the loading of recipe and ingredient books
-//             }
-
-//             initialRecipeData = opt.orElseGet(SampleDataUtil::getSampleRecipeBook);
-
-// <<<<<<< HEAD
-//             if (recipeUsageOptional.isEmpty()) {
-//                 logger.info("Data file for recipe usage list not found. Will be starting with an empty list");
-//             }
-
-//             if (ingredientUsageOptional.isEmpty()) {
-//                 logger.info("Data file for ingredient usage list not found. Will be starting with an empty list");
-//             }
-
-//             initialRecipeData = recipeBookOptional.orElseGet(SampleDataUtil::getSampleRecipeBook);
-//             initialIngredientData = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
-//             initialRecipeUsageData = recipeUsageOptional.isEmpty() ? new UsageList<RecipeUsage>()
-//                                                                     : recipeUsageOptional.get();
-//             initialIngredientUsageData = ingredientUsageOptional.isEmpty() ? new UsageList<IngredientUsage>()
-//                                                                             : ingredientUsageOptional.get();
-//         } catch (DataConversionException e) {
-//             logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
-//                     + " IngredientBook and their usage files");
-// =======
-//         } catch (DataConversionException e) {
-
-//             logger.warning("Recipe book was not in the correct format; starting with an empty recipe book");
-// >>>>>>> abdfe936... Split the loading of recipe and ingredient books
-//             initialRecipeData = new EntryBook<>();
-//         }
-
-
-
-//         try {
-//             var opt = storage.readIngredientBook();
-//             if (opt.isEmpty()) {
-//                 logger.info("Data file for ingredient book not found; starting with sample ingredients");
-//             }
-
-//             initialIngredientData = opt.orElseGet(SampleDataUtil::getSampleIngredientBook);
-
-//         } catch (DataConversionException e) {
-
-//             logger.warning("Ingredient book was not in the correct format; starting with an empty ingredient book");
-//             initialIngredientData = new EntryBook<>();
-//             initialRecipeUsageData = new UsageList<RecipeUsage>();
-//             initialIngredientUsageData = new UsageList<IngredientUsage>();
-//         }
-
-//         return new ModelManager(initialRecipeData, initialIngredientData, initialRecipeUsageData,
-//             initialIngredientUsageData, userPrefs);
-//     }
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
