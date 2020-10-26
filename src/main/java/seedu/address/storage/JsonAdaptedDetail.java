@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Detail;
 
 /**
- * Jackson-friendly version of {@link AdditionalDetail}.
+ * Jackson-friendly version of {@link Detail}.
  */
-class JsonAdaptedAdditionalDetail {
+class JsonAdaptedDetail {
 
     private final String detail;
 
@@ -17,14 +17,14 @@ class JsonAdaptedAdditionalDetail {
      * Constructs a {@code JsonAdaptedAdditionalDetail} with the given {@code detail}.
      */
     @JsonCreator
-    public JsonAdaptedAdditionalDetail(String detail) {
+    public JsonAdaptedDetail(String detail) {
         this.detail = detail;
     }
 
     /**
      * Converts a given {@code AdditionalDetail} into this class for Jackson use.
      */
-    public JsonAdaptedAdditionalDetail(AdditionalDetail source) {
+    public JsonAdaptedDetail(Detail source) {
         detail = source.detail;
     }
 
@@ -38,11 +38,11 @@ class JsonAdaptedAdditionalDetail {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted detail.
      */
-    public AdditionalDetail toModelType() throws IllegalValueException {
-        if (!AdditionalDetail.isValidAdditionalDetail(detail)) {
-            throw new IllegalValueException(AdditionalDetail.MESSAGE_CONSTRAINTS);
+    public Detail toModelType() throws IllegalValueException {
+        if (!Detail.isValidAdditionalDetail(detail)) {
+            throw new IllegalValueException(Detail.MESSAGE_CONSTRAINTS);
         }
-        return new AdditionalDetail(detail);
+        return new Detail(detail);
     }
 
 }

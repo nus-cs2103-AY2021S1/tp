@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
@@ -15,18 +15,18 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Detail;
 
-public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
+public class DeleteDetailCommand extends DetailCommand {
 
     public static final String COMMAND_WORD = "delete";
-    public static final String MESSAGE_USAGE = AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": deletes an Additional Detail in the student identified"
             + " by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_DETAIL_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
-            + "Example: " + AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
-            + PREFIX_DETAIL_INDEX + "1";
+            + PREFIX_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
+            + "Example: " + DetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
+            + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = "Detail removed from %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
@@ -41,7 +41,7 @@ public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
      * @param studentIndex
      * @param detailIndex
      */
-    public DeleteAdditionalDetailCommand(Index studentIndex, Index detailIndex) {
+    public DeleteDetailCommand(Index studentIndex, Index detailIndex) {
         requireAllNonNull(studentIndex, detailIndex);
         this.studentIndex = studentIndex;
         this.detailIndex = detailIndex;
@@ -72,8 +72,8 @@ public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
             throw new CommandException(MESSAGE_BAD_DETAIL_INDEX);
         }
 
-        List<AdditionalDetail> details = new ArrayList<>(studentToAddDetail.getDetails());
-        AdditionalDetail removedDetail = details.remove(detailIndex.getZeroBased());
+        List<Detail> details = new ArrayList<>(studentToAddDetail.getDetails());
+        Detail removedDetail = details.remove(detailIndex.getZeroBased());
 
         Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);
 
@@ -89,11 +89,11 @@ public class DeleteAdditionalDetailCommand extends AdditionalDetailCommand {
             return true;
         }
 
-        if (!(obj instanceof DeleteAdditionalDetailCommand)) {
+        if (!(obj instanceof DeleteDetailCommand)) {
             return false;
         }
 
-        DeleteAdditionalDetailCommand other = (DeleteAdditionalDetailCommand) obj;
+        DeleteDetailCommand other = (DeleteDetailCommand) obj;
         return studentIndex.equals(other.studentIndex) && detailIndex.equals(other.detailIndex);
     }
 }

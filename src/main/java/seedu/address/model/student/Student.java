@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 import seedu.address.model.student.academic.exam.Exam;
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.question.Question;
 
 /**
@@ -25,14 +25,14 @@ public class Student {
     private final Year year;
     private final Admin admin;
     private final List<Question> questions = new ArrayList<>();
-    private final ArrayList<Exam> exams = new ArrayList<>();
+    private final List<Exam> exams = new ArrayList<>();
 
     /**
      *  name, phone, school, year, must be present and not null.
      *  exams is empty when a student is first initialised.
      */
     public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin, List<Question> questions, ArrayList<Exam> exams) {
+                   Admin admin, List<Question> questions, List<Exam> exams) {
         requireAllNonNull(name, phone, school, year, admin);
         this.name = name;
         this.phone = phone;
@@ -78,7 +78,7 @@ public class Student {
         return List.copyOf(questions);
     }
 
-    public ArrayList<Exam> getExams() {
+    public List<Exam> getExams() {
         return exams;
     }
 
@@ -96,7 +96,7 @@ public class Student {
         return result;
     }
 
-    public List<AdditionalDetail> getDetails() {
+    public List<Detail> getDetails() {
         return admin.getDetails();
     }
 
