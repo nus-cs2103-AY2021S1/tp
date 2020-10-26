@@ -315,34 +315,34 @@ _{explain the feature here}_
 ## 5. Command summary
 
 ### 5.1. Common
-| Action | Format, Examples |
-|--------|------------------|
-|**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`|
-|**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`|
-|**List** | `list`<br> e.g., `list -staff`|
-|**View** | `view INDEX`<br> e.g., `view 2`|
+| Action   | Format, Examples                                                                                                           |
+|----------|----------------------------------------------------------------------------------------------------------------------------|
+| **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
+| **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                 |
+| **List** | `list`<br> e.g., `list -staff`                                                                                             |
+| **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
 
 ### 5.2. General
-|Action | Format, Examples|
-|--------|------------------|
-|**Clear** | `clear`|
-|**Help** | `help` |
-|**Exit** | `exit`|
+| Action    | Format, Examples   |
+|-----------|--------------------|
+| **Clear** | `clear`            |
+| **Help**  | `help`             |
+| **Exit**  | `exit`             |
 
 ### 5.3. Staff
-|Action | Format, Examples|
-|--------|------------------|
-|**AddStaff** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`|
-|**DeleteStaff** | `delstaff INDEX`<br> e.g., `delstaff 1`|
-|**AddLeave** | `addleave INDEX l/d/DATE [d/DATE]` <br> e.g., `addleave 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`|
-|**DeleteLeave** | `deleteleave INDEX d/DATE`<br> e.g., `deleteleave 1 d/10/10/2020`|
+| Action          | Format, Examples                                                                                                                                        |
+|-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **AddStaff**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **DeleteStaff** | `delstaff INDEX`<br> e.g., `delstaff 1`                                                                                                                 |
+| **AddLeave**    | `addleave INDEX l/d/DATE [d/DATE]` <br> e.g., `addleave 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`                                                   |
+| **DeleteLeave** | `deleteleave INDEX d/DATE`<br> e.g., `deleteleave 1 d/10/10/2020`                                                                                       |
 
 ### 5.4. Applicant
-|Action | Format, Examples|
-|--------|------------------|
-|**AddApplicant** | `to be updated` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`|
-|**DeleteApplicant** | `to be updated` <br> e.g., `addleave 2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`|
-|**AddApplication** | `addapplication INDEX [filepath]` <br> e.g., `addapplication 1 C:\Users\Public\Downloads\resume.txt`|
-|**DeleteApplication** | `deleteapplication INDEX` <br> e.g., `deleteapplication 1`|
+| Action                | Format, Examples                                                                                                 |
+|-----------------------|------------------------------------------------------------------------------------------------------------------|
+| **AddApplicant**      | `to be updated` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **DeleteApplicant**   | `to be updated` <br> e.g., `addleave 2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`                               |
+| **AddApplication**    | `addapplication INDEX [filepath]` <br> e.g., `addapplication 1 C:\Users\Public\Downloads\resume.txt`             |
+| **DeleteApplication** | `deleteapplication INDEX` <br> e.g., `deleteapplication 1`                                                       |
 
 
