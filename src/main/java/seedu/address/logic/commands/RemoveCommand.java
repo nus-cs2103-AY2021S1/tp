@@ -61,7 +61,7 @@ public class RemoveCommand extends Command {
             throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
-        ObservableList<OrderItem> order = model.getFilteredOrderItemList();
+        ObservableList<OrderItem> order = model.getObservableOrderItemList();
         int index = targetIndex.getZeroBased();
 
         if (order.size() <= index) {

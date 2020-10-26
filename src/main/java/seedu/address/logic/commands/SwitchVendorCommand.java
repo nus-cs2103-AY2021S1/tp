@@ -43,11 +43,10 @@ public class SwitchVendorCommand extends VendorCommand {
         }
 
         int oldIndex = model.getVendorIndex();
-        model.setVendorIndex(index);
+        model.selectVendor(index);
 
         if (oldIndex != index) {
             model.resetOrder();
-            model.updateVendor();
         }
 
         return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()),
