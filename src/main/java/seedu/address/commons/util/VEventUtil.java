@@ -15,7 +15,7 @@ public class VEventUtil {
     /**
      * Maps all appointments in @param appointments to a list of vEvents
      */
-    public static ArrayList<VEvent> appsToVEventsMapper(List<Appointment> appointments) {
+    public static ArrayList<VEvent> appsToVEventsMapper(List<? extends Appointment> appointments) {
         ArrayList<VEvent> resultVEventList = new ArrayList<>();
         for (Appointment appointment : appointments) {
             resultVEventList.add(appToVEventMapper(appointment));
