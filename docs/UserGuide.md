@@ -3,30 +3,60 @@ layout: page
 title: User Guide
 ---
 
-Hospify is a desktop app for a digital medical record management solution.
-
 * Table of Contents
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+Hello, fellow clinic administrative staff.
+
+Welcome to **Hospify**, a desktop application for a digital medical record management solution. With **Hospify**, you will be able to add, edit, find, delete and sort (and more!) patients' medical record and even appointment details. In this user guide, you will learn more about how to get started with **Hospify** and how you can use the key features of the application.
+
+**Hospify** is primarily optimized for use via a Command Line Interface (CLI), which means most features can be used by just typing a single line of command! If you can type fast, you will be able to manage medical records much more efficiently. However, if you are new to **Hospify**, fret not! Read on to find out what **Hospify** can offer.
+
+Before we move on to how to install **Hospify**, let us understand how the user guide works!
+
+To navigate around this user guide, you may use the hyperlinks provided at the top of the page to jump to a particular section that you are interested in. This user guide is divided into 4 major sections: Quick Start, Features (contains sub section, each representing a feature of **Hospify**), Frequently Asked Questions (FAQ) and Command Summary. The following explains the key notations used in this user guide:
+
+1. `text in box` - represents a command, action, input, output or file
+
+1. **:information_source: Notes:** - represents noteworthy important information
+
+1. **:bulb: Tip:** - represents a useful tip
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+Ensure you have Java `11` or above installed in your Computer. If not, you may download Java `11`from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
 
-1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3.trial).
+<div markdown="block" class="alert alert-info">
 
-1. Copy the file to the folder you want to use as the _home folder_ for the Hospify app.
+**:information_source: Note on installing Java `11`:**<br>
+There are many versions of Java `11` listed. Select the correct version based on your computer's operating system.
+</div>
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Download the latest `hospify.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-3/tp/releases/tag/v1.3.trial). Click on `hospify.jar` to start the download as shown in figure 1.1 below. <br>
+    
+    ![Hospify download page](images/Hospify%20download%20page.png)
+    Figure 1.1 **Hospify** download page
+
+1. Copy the file to the folder you want to use as the _home folder_ for the **Hospify** app.
+
+1. Double-click the file to start the app. A Graphical User Interface (GUI) similar to the one as shown in figure 1.2 below should appear in a few seconds. Notice that **Hospify** came listed with some sample patients.<br>
+   
    ![Ui](images/Ui.png)
+   Figure 1.2 Start up UI showing list of sample patients
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-   Some example commands you can try:
+1. You can now try typing your very first command in the command box and press `Enter` to execute it! Not sure what to type? Try typing **`help`** and pressing `Enter`. A help window as shown in figure 1.3 below should appear.<br>
+    
+    ![Help window](images/Help%20window.PNG)
+    Figure 1.3 Help window
+    
+   Now, you can try out some other commands:
 
    * **`list`** : Lists all patients.
 
-   * **`add`**`n/John Doe ic/S1234567A p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a patient named `John Doe` to Hospify.
+   * **`add`**`n/John Doe ic/S1234567A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 mr/www.samplerecord.com/01`: Adds a patient named `John Doe` to **Hospify**.
 
    * **`delete`**`3` : Deletes the 3rd patient shown in the current list.
 
@@ -34,7 +64,7 @@ Hospify is a desktop app for a digital medical record management solution.
 
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. You can refer to the [Features](#features) below for a list of all the commands available and the details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -44,51 +74,84 @@ Hospify is a desktop app for a digital medical record management solution.
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters that you have to provide when typing a command.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+* Items in square brackets are optional parameters.<br>
+  e.g `n/NAME [t/ALLERGIES]` can be used as `n/John Doe t/shellfish` or as `n/John Doe`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* Items with `…`​ after them can be used multiple times (including zero times).<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/shellfish`, `t/shellfish t/grass` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
-
+  e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
 </div>
 
-### Displaying usage instructions : `help`
+### Displaying usage instructions: `help`
 
-Shows a list of basic commands (and their usages) supported by Hospify.
+Shows a list of basic commands (and their usages) supported by **Hospify**.
 
 ![tp_help_command](images/helpMessage.png)
 
 Format: `help`
 
-### Adding a patient : `add`
+### Adding a patient: `add` (by Cedric Lim Jun Wei)
 
-Adds a patient to Hospify
+This is a core and basic feature of **Hospify**. This command allows you to add a new patient to **Hospify**. Start by typing the command word `add`, followed by the following items:
 
-Format: `add n/NAME ic/S1234567A p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+1. `n/NAME` : Name of patient
+
+2. `ic/NRIC` : Nric of patient
+
+3. `p/PHONE_NUMBER` : Phone number of patient
+
+4. `e/EMAIL` : Email of patient
+
+5. `a/ADDRESS` : Home address of patient
+
+6. `mr/MEDICAL_RECORD_URL` : Url to the patient's online medical record
+
+7. `t/ALLERGIES` : Known allergies of the patient
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Recall:**<br>
+
+* Items 1 to 6 are compulsory fields that you have to provide. Missing any one of those fields will trigger an error.
+
+* Item 7 is an optional item that you may choose to exclude. In addition, you may choose to include more than one of such item by using `t/ALLERGIES` again.
+</div>
+
+Let us summarise the information above to a single line of command in the following format.
+
+Format: `add n/NAME ic/NRIC p/PHONE_NUMBER e/EMAIL a/ADDRESS mr/MEDICAL_RECORD_URL [t/ALLERGIES]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A patient can have any number of allergies (including 0)
 </div>
 
+Let us use some examples (as shown below) to see how this command can actually be used.
+
 Examples:
-* `add n/John Doe ic/S1234567A p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe ic/S9425431A t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe ic/S1234567A p/98765432 e/johnd@example.com a/John street, block 123, #01-01 mr/www.samplerecord.com/11`
+* `add n/Betsy Crowe ic/S9425431A t/shellfish e/betsycrowe@example.com a/Newgate Prison p/1234567 t/grass mr/www.samplerecord.com/02`
 
-### Listing all patients : `list`
+When a patient is successfully added to **Hospify**, a success message will appear in the message box, and the patient is shown at the bottom of the list as shown in figure 2.1 below. <br>
 
-Shows a list of all patients in Hospify.
+![Add patient](images/Add%20patient.PNG)
+Figure 2.1 Adding a patient (success scenario)
+
+### Listing all patients: `list` (by Cedric Lim Jun Wei)
+
+This command allows you to display the complete list of patients recorded in **Hospify**. This may be useful after you have used the [`find`](#locating-patients-by-name-find) command (which displays a partial list of patients) and you wish to revert back to the complete list of patients again.
+
+To use the command, simply type in `list` on the command line with no additional parameters.
 
 Format: `list`
 
-### Editing a patient : `edit`
+### Editing a patient: `edit`
 
-Edits an existing patient in Hospify.
+Edits an existing patient in **Hospify**.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -125,9 +188,9 @@ Examples:
 * `find bernice s0000003a` returns `Bernice Yu`, `Charlotte Oliveiro`
   ![result for 'find bernice s0000003a'](images/findbernices0000003aResult.png)
 
-### Deleting a patient : `delete`
+### Deleting a patient: `delete`
 
-Deletes the specified patient from Hospify.
+Deletes the specified patient from **Hospify**.
 
 Format: `delete INDEX`<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `delete NRIC`
@@ -140,19 +203,19 @@ Format: `delete INDEX`<br>
 * Only full `NRIC`s will be matched e.g. `S12345` will **not** match `S1234567A`
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in Hospify.
+* `list` followed by `delete 2` deletes the 2nd patient in **Hospify**.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
 * `delete S7654321A` deletes `Tom Lee` (whose NRIC is S7654321A).
 
-### Counting total number of patients : `count`
+### Counting total number of patients: `count`
 
-Shows total number of patients recorded in Hospify.
+Shows total number of patients recorded in **Hospify**.
 
 Format: `count`
 
-### Sorting the patients : `sort`
+### Sorting the patients: `sort`
 
-Sorts the patients in Hospify based on either name or NRIC in ascending order.
+Sorts the patients in **Hospify** based on either name or NRIC in ascending order.
 
 Format: `sort name`<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `sort NRIC`
@@ -161,13 +224,48 @@ Examples:
 * `sort name` would result in the patients to be sorted by their name in ascending order.
 * `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order.
 
-### Clearing all entries : `clear`
+### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
-Clears all entries from Hospify.
+By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit) patients by including the `mr/MEDICAL_RECORD_URL` field. Now, let us explore how we can make use of this feature to edit patients' medical record.
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on choice of medical record url:**<br>
+
+* It is helpful to generate the medical record url before adding or editing a patient.
+
+* We recommend using a secure online documenting software to store the patients' medical record for privacy purposes.
+</div>
+
+In the following example, we will be using [Google Docs](https://docs.google.com) to store the medical record of patient `John Doe`.
+
+1. First, we add patient `John Doe` using [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) as shown in figure 2.2.1 below.<br>
+    
+    ![medical record example 1](images/Medical%20record%20example%20(1).png)
+    Figure 2.2.1 Adding patient John Doe
+    
+1. Next, to copy the medical record url of patient `John Doe` that we have just added, locate the patient in the list and click on the `MR URL` button located on the bottom right corner as shown in figure 2.2.2 below. A `Link Copied!` success message should appear once clicked, indicating that the link has been copied to the system clipboard.<br>
+    
+    ![medical record example 2](images/Medical%20record%20example%20(2).png)
+    Figure 2.2.2 Copying medical record url of John Doe
+    
+1. Then, open the web browser of your choice and paste the medical record url onto the search bar as shown in figure 2.2.3 below.<br>
+    
+    ![medical record example 3](images/Medical%20record%20example%20(3).png)
+    Figure 2.2.3 Pasting medical record url of John Doe onto search bar
+    
+1. Finally, you can access the medical record of the patient and make edits if applicable. A sample medical record is shown in figure 2.2.4 below for your reference.<br>
+    
+    ![medical record example 4](images/Medical%20record%20example%20(4).png)
+    Figure 2.2.4 Sample medical record of John Doe on Google Docs
+
+### Clearing all entries: `clear`
+
+Clears all entries from **Hospify**.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 Exits the program.
 
@@ -175,7 +273,7 @@ Format: `exit`
 
 ### Saving the data
 
-Hospify data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+**Hospify** data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -186,7 +284,7 @@ _{explain the feature here}_
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Hospify home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Hospify** home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
