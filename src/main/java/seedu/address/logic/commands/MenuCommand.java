@@ -11,11 +11,10 @@ public class MenuCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        if (!model.isSelected()) {	
-            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);	
+        if (!model.isSelected()) {
+            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
         model.showDefaultMenu();
-
         return new CommandResult(
                 Messages.MESSAGE_MENU_LIST, false, false, true);
     }
