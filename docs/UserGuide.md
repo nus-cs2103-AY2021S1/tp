@@ -64,12 +64,19 @@ This user guide takes you through the basics of Eva and helps you get moving str
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
+   <div markdown="block" class="alert alert-info">
+   
+   **:information_source: Note:**
+   Eva launches into the Staff List Panel.
+   </div>
 
-   * **`list`** : Lists all staffs and applicants.
+   * **`list -applicant`** : Lists all applicants.
+   
+   * **`addapplicant`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
+   
+   * **`list -staff`** : Lists all staffs.
 
    * **`addstaff`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
-
-   * **`addapplicant`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a staff named `John Doe` to the application.
 
    * **`delstaff`**`3` : Deletes the 3rd staff shown in the staff list.
    
@@ -110,13 +117,24 @@ Note: Once any change is made to the data from the commands below, the data is s
 There is no need to save manually.
 ### 3.1. Common Commands
 
-#### 3.1.1. View
+#### 3.1.1. View : `view`
+
+Brings user to the profile panel of the staff, if on the staff list, or applicant, if on the applicant list, at the specified index. 
+
+Format: `view INDEX`
+
+Examples:
+* `view 1`
 
 #### 3.1.2. Listing all persons : `list`
 
 Shows a list of all persons in the application.
 
-Format: `list`
+Format: `list -LIST_TYPE`
+
+Examples:
+* `list -staff`
+* `list -applicant`
 
 #### 3.1.3. Find
 
@@ -168,31 +186,32 @@ Examples:
 #### 3.3.3. Record leave taken by staff: `addleave`
 
 Records leave taken by a staff that is in the eva database.
-Format: `addleave INDEX l/d:DATE [d:DATE]`
+Format: `addleave INDEX l/d/DATE [d/DATE]`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).
+* Dates can be input in any order. Eva will sort the leaves and dates according to which date comes first.
+
 </div>
 
 Examples:
-* `list` followed by `addleave 2 l/d:20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
-* `find Betsy` followed by `addleave 1 l/d:20/10/2020` adds the leave to the 1st person in the results of the `find` command.
-* `addleave 1 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
-* `addleave 2 l/d:10/10/2020 d:08/10/2020 l/d:09/09/2020`
+* `list` followed by `addleave 2 l/d/20/10/2020` adds the leave record with the given date(s) to the 2nd person in the shown list.
+* `find Betsy` followed by `addleave 1 l/d/20/10/2020` adds the leave to the 1st person in the results of the `find` command.
+* `addleave 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
+* `addleave 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`
 
 #### 3.3.4. Delete leave taken by staff: `deleteleave`
 
 Removes record of leave taken by staff.
-Format: `deleteleave INDEX d:DATE`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Addition of multiple leaves using the same command is supported. A leave can have either one (single day) or two dates (start and end inclusive).
-</div>
+Format: `deleteleave INDEX d/DATE`
 
 Examples:
-* `list` followed by `deleteleave 2 d:09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
-* `find Betsy` followed by `delete 1` deletes the leave from the 1st person in the results of the `find` command.
-* `deleteleave 2 d:09/09/2020`
+* `list` followed by `deleteleave 2 d/09/09/2020` deletes the leave record of which the given date coincides with from the 2nd person in shown list.
+* `find Betsy` followed by `deleteleave 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find` command.
+* `deleteleave 2 d/09/09/2020`
 
 #### 3.3.5. Edit leave taken by staff: `editleave`
 
@@ -296,37 +315,34 @@ _{explain the feature here}_
 ## 5. Command summary
 
 ### 5.1. Common
-Action | Format, Examples
---------|------------------
-**To be updated** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-**AddStaff** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-**AddLeave** | `addleave INDEX l/d:DATE [d:DATE]` <br> e.g., `addleave 2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
-**Clear** | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**DeleteLeave** | `deleteleave INDEX d:DATE`<br> e.g., `deleteleave 1 10/10/2020`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
-**List** | `list`
-**Help** | `help`
+| Action | Format, Examples |
+|--------|------------------|
+|**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`|
+|**Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`|
+|**List** | `list`<br> e.g., `list -staff`|
+|**View** | `view INDEX`<br> e.g., `view 2`|
 
 ### 5.2. General
-Action | Format, Examples
---------|------------------
-**Clear** | `clear`
-**Help** | `help` 
-**Exit** | `exit`
+|Action | Format, Examples|
+|--------|------------------|
+|**Clear** | `clear`|
+|**Help** | `help` |
+|**Exit** | `exit`|
 
 ### 5.3. Staff
-Action | Format, Examples
---------|------------------
-**DeleteStaff** | `delstaff INDEX`<br> e.g., `delstaff 1`
+|Action | Format, Examples|
+|--------|------------------|
+|**AddStaff** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`|
+|**DeleteStaff** | `delstaff INDEX`<br> e.g., `delstaff 1`|
+|**AddLeave** | `addleave INDEX l/d/DATE [d/DATE]` <br> e.g., `addleave 2 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`|
+|**DeleteLeave** | `deleteleave INDEX d/DATE`<br> e.g., `deleteleave 1 d/10/10/2020`|
 
 ### 5.4. Applicant
-Action | Format, Examples
---------|------------------
-**AddApplicant** | `to be updated` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-**DeleteApplicant** | `to be updated` <br> e.g., `addleave 2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`
-**AddApplication** | `addapplication INDEX [filepath]` <br> e.g., `addapplication 1 C:\Users\Public\Downloads\resume.txt`
-**DeleteApplication** | `deleteapplication INDEX` <br> e.g., `deleteapplication 1`
+|Action | Format, Examples|
+|--------|------------------|
+|**AddApplicant** | `to be updated` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`|
+|**DeleteApplicant** | `to be updated` <br> e.g., `addleave 2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`|
+|**AddApplication** | `addapplication INDEX [filepath]` <br> e.g., `addapplication 1 C:\Users\Public\Downloads\resume.txt`|
+|**DeleteApplication** | `deleteapplication INDEX` <br> e.g., `deleteapplication 1`|
 
 
