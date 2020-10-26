@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_PREFIXES;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
 import java.util.stream.Stream;
@@ -20,13 +22,23 @@ public class GetTotalCommandParser implements Parser<GetTotalCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the GetTotalCommand
      * and returns a GetTotalCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format
      */
     public GetTotalCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)) {
+        boolean isPrefixPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
+        boolean isPreambleEmpty = argMultimap.isPreambleEmpty();
+
+        if (!isPrefixPresent || !isPreambleEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GetTotalCommand.MESSAGE_USAGE));
+        }
+
+        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_CATEGORY);
+
+        if (!areNumberOfPrefixCorrect) {
+            throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, GetTotalCommand.PREFIXES));
         }
 
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());

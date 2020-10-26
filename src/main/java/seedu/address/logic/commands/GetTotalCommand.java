@@ -18,6 +18,7 @@ public class GetTotalCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_CATEGORY + "expense";
 
+    public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY\n";
     public static final String MESSAGE_SUCCESS = "Total %1$s" + "s: $";
 
     private final Category category;
@@ -45,5 +46,12 @@ public class GetTotalCommand extends Command {
 
         return CommandResultFactory.createDefaultCommandResult(String.format(MESSAGE_SUCCESS, category)
             + String.format("%.2f", totalSum));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof GetTotalCommand) // instanceof handles nulls
+            && category.equals(((GetTotalCommand) other).category); // state check
     }
 }
