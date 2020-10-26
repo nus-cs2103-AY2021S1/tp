@@ -198,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.setResizable(true);
-        primaryStage.setWidth(800);
+        primaryStage.setWidth(1000);
         primaryStage.setHeight(600);
         primaryStage.setX(500);
         primaryStage.setY(100);

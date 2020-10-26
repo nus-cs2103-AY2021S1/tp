@@ -17,7 +17,7 @@ public class SearchRecipeCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all recipes that contains all the specified "
             + "ingredients OR whose names OR tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
+            + "Parameters: [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]\n"
             + "Example: " + COMMAND_WORD + " n/salad"
             + " OR " + COMMAND_WORD + " i/butter cheese"
             + " OR " + COMMAND_WORD + " t/healthy";
