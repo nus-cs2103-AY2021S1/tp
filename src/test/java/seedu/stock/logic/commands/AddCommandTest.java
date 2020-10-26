@@ -7,7 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.testutil.Assert.assertThrows;
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.BANANA;
-import static seedu.stock.testutil.TypicalStocks.ORANGE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
