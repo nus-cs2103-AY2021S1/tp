@@ -155,7 +155,7 @@ public class EditCommand extends Command {
                 }
             }
         }
-        return editedComments;
+        return currentComments;
     }
 
     @Override
