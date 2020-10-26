@@ -28,7 +28,7 @@ To start using and experimenting with ChopChop, here are the steps you can follo
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/sample_data.png" width="75%" /> <br />
-Figure 1: <i>The initial state of ChopChop, including sample data</i>
+Figure 1.1: <i>The initial state of ChopChop, including sample data</i>
 </div>
 
 
@@ -64,11 +64,15 @@ A recipe consists of a list of used ingredients (and their quantities), as well 
 --------------------------------
 ## Navigating the User Interface
 
-<h1>WE NEED A PROPERLY LABELLED PICTURE</h1>
+This is what ChopChop looks like:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/UI_description.png" width="75%" /> <br />
+Figure 1.2: <i>The graphical user interface for ChopChop</i>
+</div>
 
-![Ui](images/Ui.png)
 
-<h3>insert the various parts of the GUI and talk about it.</h3>
+
+<h3>.</h3>
 
 
 
