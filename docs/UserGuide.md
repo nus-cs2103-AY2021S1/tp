@@ -274,7 +274,7 @@ Example:
 
 #### 3.3.2 Recording exams of a student: `exam` (By: Hogan)
 
-Adds or deletes exams from a specified student.
+You can add or delete an exam to/from a specified student.
 
 General Format: `exam COMMAND_WORD_EXAM INDEX PARAMETERS`
 
@@ -295,7 +295,8 @@ Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of EXAM_SCORE is as follows:
-* x/y where x and y are both whole numbers and x has to be less than or equal to y (e.g. 30/50).
+* x/y where x and y are both whole numbers 
+* x has to be less than or equal to y (e.g. 30/50).
 
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam  with date 8 Dec 2020 and 
