@@ -20,8 +20,8 @@ public class Reference {
                     + "Please only enter the non-blank file name with its extension.";
 
     private static final String DEFAULT_FILEPATH = "./references/";
-    private final Path path;
-    private final String fileName;
+    protected final Path path;
+    protected final String fileName;
 
     /**
      * Constructs a { @code Reference }.
@@ -31,8 +31,15 @@ public class Reference {
     public Reference(String fileName) {
         requireNonNull(fileName);
         checkArgument(isValidReference(fileName), MESSAGE_CONSTRAINTS);
-        this.path = Paths.get(DEFAULT_FILEPATH + fileName);
+        this.path = Paths.get(getFilePath() + fileName);
         this.fileName = fileName;
+    }
+
+    /**
+     * Returns the directory path used to store the references.
+     */
+    public String getFilePath() {
+        return DEFAULT_FILEPATH;
     }
 
     /**

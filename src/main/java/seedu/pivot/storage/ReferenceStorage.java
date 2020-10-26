@@ -11,9 +11,10 @@ public class ReferenceStorage {
     private static final Path DEFAULT_DIRECTORY = Paths.get("./references/");
     private static final Path TEST_FILE_PATH = Paths.get("./references/test1.txt");
 
-    protected ReferenceStorage() throws IOException {
+    public ReferenceStorage() throws IOException {
         FileUtil.createDirectories(DEFAULT_DIRECTORY);
     }
+
 
     protected void addTestFile() throws IOException {
         FileUtil.createIfMissing(TEST_FILE_PATH);
