@@ -26,6 +26,7 @@ public class AddInventoryRecordCommand extends Command {
             + "[" + PREFIX_ITEM_COST + "ITEM_COST]";
 
     public static final String MESSAGE_SUCCESS = "New Inventory record added: %1$s";
+    public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This item already exists in the Inventory";
     private final InventoryRecord newInventoryRecord;
     private final Optional<FinanceRecord> newFinanceRecord;
 
@@ -43,6 +44,11 @@ public class AddInventoryRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.hasInventoryRecord(newInventoryRecord)) {
+            throw new CommandException(MESSAGE_DUPLICATE_INVENTORY_RECORD);
+        }
+
         model.addInventoryRecord(newInventoryRecord);
         if (newFinanceRecord.isPresent()) {
             newInventoryRecord.setFinanceRecord(newFinanceRecord.get());
@@ -52,4 +58,10 @@ public class AddInventoryRecordCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, newInventoryRecord));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AddInventoryRecordCommand // instanceof handles nulls
+                && newInventoryRecord.equals(((AddInventoryRecordCommand) other).newInventoryRecord));
+    }
 }

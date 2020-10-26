@@ -40,7 +40,7 @@ public class Inventory extends UiPart<Region> {
         super(FXML);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
         tableView.getItems().setAll(parseInventoryList(logic));
-        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("UiUsableIndex"));
         itemNameCol.setCellValueFactory(new PropertyValueFactory<>("itemName"));
         quantityCol.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -56,7 +56,7 @@ public class Inventory extends UiPart<Region> {
         });
         financeIdCol.setCellValueFactory(item -> {
             SimpleStringProperty property = new SimpleStringProperty();
-            property.setValue(String.valueOf(item.getValue().getFinanceID()));
+            property.setValue(String.valueOf(item.getValue().getFinanceId()));
             return property;
         });
     }
@@ -69,7 +69,7 @@ public class Inventory extends UiPart<Region> {
     private List<InventoryRecord> parseInventoryList(Logic logic) {
         List<InventoryRecord> list = new ArrayList<>();
         for (int i = 0; i < logic.getFilteredInventory().size(); i++) {
-            logic.getFilteredInventory().get(i).setId(i + 1);
+            logic.getFilteredInventory().get(i).setUiUsableIndex(i + 1);
             list.add(logic.getFilteredInventory().get(i));
         }
         return list;
