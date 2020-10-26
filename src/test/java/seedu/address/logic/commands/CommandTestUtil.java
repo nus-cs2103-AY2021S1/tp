@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OLD_TAG_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -23,7 +24,6 @@ import seedu.address.model.tag.TagNameContainsKeywordsPredicate;
  */
 public class CommandTestUtil {
 
-    // TODO: All of these needs to be updated!
     public static final String VALID_TAG_NAME_CS2103 = "cs2103";
     public static final String VALID_TAG_NAME_CS2101 = "cs2101";
     public static final String INVALID_TAG_NAME = "&";
@@ -39,12 +39,15 @@ public class CommandTestUtil {
     public static final String OLD_TAG_DESC_CS2103 = " " + PREFIX_OLD_TAG_NAME + VALID_TAG_NAME_CS2103;
     public static final String TAG_DESC_CS2103 = " " + PREFIX_TAG_NAME + VALID_TAG_NAME_CS2103;
     public static final String TAG_DESC_CS2101 = " " + PREFIX_TAG_NAME + VALID_TAG_NAME_CS2101;
+    public static final String VALID_LABEL_DESC = " " + PREFIX_LABEL_NAME + VALID_LABEL;
+
 
     public static final String FILE_ADDRESS_DESC_CS2103 = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_CS2103;
     public static final String FILE_ADDRESS_DESC_CS2101 = " " + PREFIX_FILE_ADDRESS + VALID_FILE_ADDRESS_CS2101;
 
     public static final String INVALID_OLD_TAG_DESC = " " + PREFIX_OLD_TAG_NAME + INVALID_TAG_NAME;
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG_NAME + INVALID_TAG_NAME;
+    public static final String INVALID_LABEL_DESC = " " + PREFIX_LABEL_NAME + INVALID_LABEL;
     // empty string not allowed for addresses
     public static final String INVALID_FILE_ADDRESS_DESC = " " + PREFIX_FILE_ADDRESS;
 

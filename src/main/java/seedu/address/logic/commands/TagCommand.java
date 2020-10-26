@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
 import java.io.File;
@@ -22,11 +22,11 @@ public class TagCommand extends Command {
             + "\nParameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
             + PREFIX_FILE_ADDRESS + "FILE_ADDRESS "
-            + "[" + PREFIX_LABEL + "LABEL" + "]...\n"
+            + "[" + PREFIX_LABEL_NAME + "LABEL_NAME" + "]...\n"
             + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 "
             + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T "
-            + PREFIX_LABEL + "CS2103T";
+            + PREFIX_LABEL_NAME + "CS2103T";
     public static final String TAG_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>"
             + " " + PREFIX_FILE_ADDRESS + "<FILEPATH>";
     public static final String MESSAGE_SUCCESS = "New tag added: %1$s";
