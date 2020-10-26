@@ -39,8 +39,8 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CalendarDisplay calendarDisplay;
     private ProfileWindow profilePanel;
-    private VisitRecordWindow visitWindow;
-    private VisitListPanel visitListPanel;
+    private VisitFormWindow visitWindow;
+    private ProfileVisitPanel profileVisitPanel;
     private EmptyVisitList emptyVisitList;
 
     @FXML
@@ -77,12 +77,12 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        visitWindow = new VisitRecordWindow(windowEvent -> {
+        visitWindow = new VisitFormWindow(windowEvent -> {
             resultDisplay.setFeedbackToUser(visitWindow.getFeedbackMessage());
             visitWindow.flushParameters();
         });
         profilePanel = new ProfileWindow();
-        visitListPanel = new VisitListPanel();
+        profileVisitPanel = new ProfileVisitPanel();
         emptyVisitList = new EmptyVisitList();
     }
 
@@ -184,7 +184,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
         profilePanel.hide();
         visitWindow.hide();
-        visitListPanel.hide();
+        profileVisitPanel.hide();
     }
 
     /**
@@ -193,8 +193,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleDisplayVisit() {
-        if (visitListPanel.isShowing()) {
-            visitListPanel.hide();
+        if (profileVisitPanel.isShowing()) {
+            profileVisitPanel.hide();
         }
 
         if (!visitWindow.isShowing()) {
@@ -262,17 +262,16 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isEditVisit()) {
                 visitWindow.setPreviousVisitDetails(logic, previousVisit, visitIndex, patientIndex);
-                if (visitListPanel.isShowing()) {
-                    visitListPanel.hide();
+                if (profileVisitPanel.isShowing()) {
+                    profileVisitPanel.hide();
                 }
                 handleDisplayVisit();
             }
 
             if (commandResult.isDisplayVisitHistory()) {
-                ObservableList<Visit> visits = observableHistory;
-                if (visits.isEmpty()) {
-                    if (visitListPanel.isShowing()) {
-                        visitListPanel.hide();
+                if (observableHistory.isEmpty()) {
+                    if (profileVisitPanel.isShowing()) {
+                        profileVisitPanel.hide();
                     }
                     handleEmptyVisitHistory();
                 }

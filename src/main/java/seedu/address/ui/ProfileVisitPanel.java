@@ -16,8 +16,8 @@ import seedu.address.model.visit.Visit;
 /**
  * Panel containing the list of Visit Reports.
  */
-public class VisitListPanel extends UiPart<Stage> {
-    private static final String FXML = "VisitListPanel.fxml";
+public class ProfileVisitPanel extends UiPart<Stage> {
+    private static final String FXML = "ProfileVisitPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PatientListPanel.class);
 
     @FXML
@@ -26,7 +26,7 @@ public class VisitListPanel extends UiPart<Stage> {
     /**
      * Creates a VisitListPanel object.
      */
-    public VisitListPanel(Stage root) {
+    public ProfileVisitPanel(Stage root) {
         super(FXML, root);
         setup(FXCollections.observableArrayList());
     }
@@ -34,7 +34,7 @@ public class VisitListPanel extends UiPart<Stage> {
     /**
      * Creates a new visit history panel.
      */
-    public VisitListPanel() {
+    public ProfileVisitPanel() {
         this(new Stage());
 
     }
