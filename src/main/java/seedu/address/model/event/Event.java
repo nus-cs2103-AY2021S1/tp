@@ -1,8 +1,7 @@
 package seedu.address.model.event;
 
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -15,8 +14,8 @@ import java.util.Objects;
  */
 public class Event {
 
-    private static String INVALID_EVENT_NAME_MSG = "Event name cannot be blank";
-    private static String INVALID_EVENT_START_END_TIME_MSG = "Event start time is after end time";
+    public static final String INVALID_EVENT_NAME_MSG = "Event name cannot be blank";
+    public static final String INVALID_EVENT_START_END_TIME_MSG = "Event start time is after end time";
 
     private String eventName;
     private LocalDateTime eventStartDateTime;
@@ -52,11 +51,11 @@ public class Event {
      * @param eventName
      * @return
      */
-    public boolean isValidEventName(String eventName) {
+    public static boolean isValidEventName(String eventName) {
         return !eventName.isBlank();
     }
 
-    public boolean isValidEventStartAndEndTime(LocalDateTime eventStartTime, LocalDateTime eventEndTime) {
+    public static boolean isValidEventStartAndEndTime(LocalDateTime eventStartTime, LocalDateTime eventEndTime) {
         return eventStartTime.isBefore(eventEndTime);
     }
 
