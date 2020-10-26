@@ -194,7 +194,7 @@ public class ModelManager implements Model {
     @Override
     public void switchModuleList() {
         filteredModules = new FilteredList<>(addressBook.switchModuleList().getInternalList());
-        System.out.println(filteredModules.get(1).getModuleCode().moduleCode);
+        System.out.println(filteredModules.get(0).getModuleCode().moduleCode);
     }
 
     @Override
