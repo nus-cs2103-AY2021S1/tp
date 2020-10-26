@@ -1,14 +1,10 @@
 package nustorage.logic;
 
-import java.nio.file.Path;
-
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.logic.commands.CommandResult;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.logic.parser.exceptions.ParseException;
-import nustorage.model.ReadOnlyAddressBook;
-import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
@@ -25,24 +21,9 @@ public interface Logic {
      */
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
-    /**
-     * Returns the AddressBook.
-     *
-     * @see nustorage.model.Model#getAddressBook()
-     */
-    ReadOnlyAddressBook getAddressBook();
-
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
-
     ObservableList<InventoryRecord> getFilteredInventory();
 
     ObservableList<FinanceRecord> getFilteredFinanceList();
-
-    /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getAddressBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

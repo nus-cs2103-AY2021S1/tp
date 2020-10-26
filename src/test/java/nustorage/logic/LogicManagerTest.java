@@ -14,14 +14,11 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import nustorage.logic.commands.CommandResult;
-import nustorage.logic.commands.ListCommand;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.Model;
 import nustorage.model.ModelManager;
-import nustorage.model.ReadOnlyAddressBook;
 import nustorage.model.UserPrefs;
-import nustorage.storage.JsonAddressBookStorage;
 import nustorage.storage.JsonFinanceAccountStorage;
 import nustorage.storage.JsonInventoryStorage;
 import nustorage.storage.JsonUserPrefsStorage;
@@ -41,9 +38,7 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+                JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
 
         JsonFinanceAccountStorage financeAccountStorage =
                 new JsonFinanceAccountStorage(temporaryFolder.resolve("financeAccount.json"));
@@ -68,12 +63,6 @@ public class LogicManagerTest {
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
-
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    }
 
     // @Test
     // public void execute_storageThrowsIoException_throwsCommandException() {
@@ -141,12 +130,11 @@ public class LogicManagerTest {
      *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
-    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
+     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
                                       String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
-
 
     /**
      * Executes the command and confirms that
@@ -161,23 +149,4 @@ public class LogicManagerTest {
         assertThrows(expectedException, expectedMessage, () -> logic.execute(inputCommand));
         assertEquals(expectedModel, model);
     }
-
-
-    /**
-     * A stub class to throw an {@code IOException} when the save method is called.
-     */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
-        }
-
-
-        @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
-            throw DUMMY_IO_EXCEPTION;
-        }
-
-    }
-
 }
