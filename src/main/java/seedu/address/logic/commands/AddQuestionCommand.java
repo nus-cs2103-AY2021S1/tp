@@ -22,6 +22,7 @@ public class AddQuestionCommand extends QuestionCommand {
 
     public static final String MESSAGE_SUCCESS = "New question added to student %1$s: %2$s";
     public static final String MESSAGE_DUPLICATE_QUESTION = "This student has already asked this question";
+    public static final String COMMAND_WORD = "add";
 
     private static Logger logger = Logger.getLogger("Add Question Log");
 

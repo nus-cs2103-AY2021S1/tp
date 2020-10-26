@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AdditionalDetailCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DetailCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExamCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -31,7 +31,7 @@ public class ReeveParser {
     /**
      * Used for initial separation of command word and args.
      */
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
+    public static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
@@ -87,8 +87,8 @@ public class ReeveParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
-        case AdditionalDetailCommand.COMMAND_WORD:
-            return new AdditionalDetailCommandParser().parseAdditionalDetailCommand(arguments);
+        case DetailCommand.COMMAND_WORD:
+            return new DetailCommandParser().parse(arguments);
 
         case ExamCommand.COMMAND_WORD:
             return new ExamCommandParser().parseExamCommand(arguments);
