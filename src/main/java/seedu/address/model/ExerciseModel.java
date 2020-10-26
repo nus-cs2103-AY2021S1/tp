@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exercise.Exercise;
-import seedu.address.ui.Template;
+import seedu.address.model.exercise.Template;
 
 /**
  * The API of the Model component.

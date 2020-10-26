@@ -1,11 +1,8 @@
-package seedu.address.ui;
+package seedu.address.model.exercise;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
-import java.util.Scanner;
 
 public class Template {
     public String name;

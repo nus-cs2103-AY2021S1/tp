@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.model.exercise;
 
 import java.io.File;
 import java.io.FileNotFoundException;
