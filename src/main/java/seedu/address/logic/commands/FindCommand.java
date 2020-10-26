@@ -1,9 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.address.model.Model;
 import seedu.address.model.task.TitleContainsKeywordsPredicate;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Finds and lists all tasks in ScheDar whose title contains any of the argument keywords.
@@ -24,7 +24,7 @@ public class FindCommand extends Command {
 
 //    private final DescriptionContainsKeywordsPredicate descriptionPredicate;  //for upgrade
 
-    public FindCommand(TitleContainsKeywordsPredicate titlePredicate){
+    public FindCommand(TitleContainsKeywordsPredicate titlePredicate) {
         this.titlePredicate = titlePredicate;
     }
 
