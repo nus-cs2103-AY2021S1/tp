@@ -15,6 +15,7 @@ import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
+import seedu.expense.model.Statistics;
 import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
@@ -122,7 +123,7 @@ public class TopupCommandTest {
         }
 
         @Override
-        public ReadOnlyExpenseBook getCategoryExpenseBook() {
+        public Statistics getStatistics() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -157,7 +158,7 @@ public class TopupCommandTest {
         }
 
         @Override
-        public void updateCategoryExpenseBook(Tag category) {
+        public void updateExpenseBookCategory(Tag category) {
             throw new AssertionError("This method should not be called.");
         }
 
