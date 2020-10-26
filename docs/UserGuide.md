@@ -97,7 +97,7 @@ Alternatives:
 * Press `F2` at any point in the usage of the app
 * GUI navigation menu at the top left
 
-<br> ![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
+<br>![Help Summary Screenshot](images/HelpSummaryWindow.png)<br>
 Figure 3: Help Summary Window
 
 
