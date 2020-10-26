@@ -83,8 +83,8 @@ must be specified exactly.
 * Parameters can be in any order.<br>
   e.g. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
   
-* Items in angle brackets are either/or options. Each option is delineated by a | . 
-  e.g <success|reviewed> can be used as success or reviewed but not both.
+* Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` . 
+  e.g `<success|reviewed>` can be used as `success` or `reviewed` but not both.
 
 </div>
 
