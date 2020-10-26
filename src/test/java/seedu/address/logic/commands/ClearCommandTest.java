@@ -16,7 +16,7 @@ import seedu.address.model.order.OrderManager;
 
 public class ClearCommandTest {
 
-    public void setOrderManager(Model model) {
+    private void setOrderManager(Model model) {
         OrderItem item1 = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
         OrderItem item2 = new OrderItem(new Food("Milo", 1.50, new HashSet<>()), 2);
         OrderItem item3 = new OrderItem(new Food("Cheese Prata", 2, new HashSet<>()), 3);
@@ -25,10 +25,18 @@ public class ClearCommandTest {
         model.addOrderItem(item3);
     }
 
+    private Model initialiseModel() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model.selectVendor(0);
+        return model;
+    }
+
+
     @Test
     public void clear_emptyOrder_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = initialiseModel();
+        Model expectedModel = initialiseModel();
+        expectedModel.selectVendor(0);
         expectedModel.setOrderManager(new OrderManager());
         model.setOrderManager(new OrderManager());
         OrderItem orderItem = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
@@ -39,9 +47,10 @@ public class ClearCommandTest {
 
     @Test
     public void clear_nonEmptyOrder_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = initialiseModel();
         setOrderManager(model);
+        
+        Model expectedModel = initialiseModel();
         expectedModel.setOrderManager(new OrderManager());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);

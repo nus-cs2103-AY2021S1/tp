@@ -39,6 +39,11 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!model.isSelected()) {
+            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+        }
+
         switch (sortedBy) {
         case NAME:
             model.sortFoodByName(ascending);
