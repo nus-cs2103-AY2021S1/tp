@@ -6,14 +6,14 @@ title: User Guide
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 ## 1. Introduction
-OneShelf is a desktop application for you to manage restaurant inventories and pending deliveries.
+**OneShelf** is a desktop application for you to manage your restaurant inventories. Additionally, you can also
+keep track of deliveries that has yet to be delivered to customers.
 It is easy to build and customise your inventories and deliveries by using
-only Command Line Interface. If you are a fast-typist restaurant manager
+only Command Line Interface. If you are a restaurant manager
 who prefers to use the Command Line Interface and needs to keep
-track of inventory items and pending deliveries, OneShelf is for you!
+track of inventory items and pending deliveries, **OneShelf** is for you.
 <br><br>
-This User Guide document will provide a general overview of installation, existing features, coming-up features
-as well as summary commands.
+This User Guide will provide a general overview of installation, existing features, and a sneak peek for upcoming features.
 
 
 
@@ -24,30 +24,30 @@ as well as summary commands.
 
 2. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your Inventory Book.
+3. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
+4. Double-click the file to start the app. Similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
    <br> ![Ui](images/UiWithAnnotation.png) <br>
    Figure 1: Introduction to OneShelf User Interface
 
 5. Type the command `help start` in the command box and press Enter to execute it. <br>
-   A new help window shown below (Figure 2) should appear on your desktop.
+   A new help window shown below (Figure 2) should appear on your desktop and you are welcomed to follow the
+   guide given in the Help Start Window.
    <br> ![Help Window](images/UiHelpStart.png) <br>
    Figure 2: Help Start Window
-
 
 6. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. Features
 
-OneShelf has 2 main features that it is able to store, namely are:
+OneShelf has 2 main components, namely are:
 1. Inventory items
 2. Pending deliveries
 
 From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
-*You may want to refer to Figure 1 above.*
+*You may want to refer to Figure 1 above to see the placement of each component.*
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the item command format:**<br>
@@ -72,21 +72,31 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
 
 #### 3.1.1 Viewing help : `help`
 
+##### Help Start
+
 Format: `help start`
 If you are a first time user, we strongly encourage you to enter `help start` and follow the guide to kick-start your journey in OneShelf.
 
-Alternatives:
+To open up `help start` window, you can also do the following:
 * Press `F1` at any point in the usage of the app
-* GUI navigation menu at the top left
+* 1. Click on `Help` located at the top toolbar
+  1. Click on `Start F1`
+
+A new help window similar to Figure 1 should appear on your desktop.
+
+##### Help Summary
 
 Format: `help summary`
 
 We understand that even if you are not a first time user, it is not easy to remember all the commands within a single session.
 Should you need a list of summary commands, you can enter `help summary` and a new window similar to Figure 3 should appear.
 
-Alternatives:
+To open up `help summary` window, you can also do the following:
 * Press `F2` at any point in the usage of the app
-* GUI navigation menu at the top left
+* 1. Click on `Help` located at the top toolbar
+  1. Click on `Summary F2`
+    
+A new help window similar to Figure 3 below should appear on your desktop.
 
 <br> ![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
 Figure 3: Help Summary Window
@@ -223,9 +233,11 @@ Format: `delete-i INDEX` or `delete-d INDEX`
 * The index refers to the index number shown in the displayed item/ delivery list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
-Examples:
-* `list-i` followed by `delete-i 2` deletes the 2nd item in the inventory book.
-* `find-i Duck` followed by `delete-i 1` deletes the 1st item in the results of the `find-i` command.
+Example 1:
+1. `list-i` followed by `delete-i 2` deletes the 2nd item in the inventory book.
+
+Example 2:
+1. `find-d n/DAMITH` followed by `delete-d 1` deletes the 1st item in the results of the `find-d` command.
 
 
 
@@ -356,6 +368,7 @@ Notify the user if a certain stock is below threshold
 
 
 #### 5.3 Delivery summary
+
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
 |**Add to Delivery**    | `add-d` <br> e.g `add-d n/Alex Yeoh p/87438807 a/Blk 30 Geylang Street 29, #06-40 o/2x Chicken Rice, 1x Ice Milo` |
