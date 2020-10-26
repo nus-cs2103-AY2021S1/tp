@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * What it does: Allows the user to delete the specified appointment from a patient's list of appointments.
     * Justification: This feature allows the user to get rid of old appointments that have passed.
     * Highlights: The implementation does not require changes to existing commands.
-  * Added the ability to `edit` an appointment of a patient. (Pull request [\#128]())
+  * Added the ability to `edit` an appointment of a patient. (Pull requests [\#128](), [\#158]())
     * What it does: Allows the user to edit the specified appointment of a patient.
     * Justification: This feature allows the user to reschedule a patient's appointment.
     * Highlights: The implementation does not require changes to existing commands.
@@ -43,7 +43,7 @@ Given below are my contributions to the project.
   * User Guide:
     * Updated `find` command to include new find by `NRIC` functionality (Pull request [\#71]())
     * Updated `delete` command to include new delete by `NRIC` functionality (Pull request [\#71]())
-    * Updated product screenshots and included some new screenshots (Pull request [\#71]())
+    * Updated product screenshots and included some new screenshots (Pull requests [\#71](), [\#157]())
 
 * **Contributions to the Developer Guide**:
   * Developer Guide: (Pull requests [\#21](), [\#141]())

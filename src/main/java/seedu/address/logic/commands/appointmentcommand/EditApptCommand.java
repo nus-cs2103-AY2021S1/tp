@@ -1,7 +1,8 @@
 package seedu.address.logic.commands.appointmentcommand;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_NEW;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_OLD;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
@@ -35,11 +36,11 @@ public class EditApptCommand extends Command {
             + "specified time for the patient specified "
             + "by the index number used in the displayed person list. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_APPOINTMENT + "OLD APPOINTMENT TIME] "
-            + "[" + PREFIX_APPOINTMENT + "NEW APPOINTMENT TIME] \n"
+            + "[" + PREFIX_APPOINTMENT_OLD + "OLD APPOINTMENT TIME] "
+            + "[" + PREFIX_APPOINTMENT_NEW + "NEW APPOINTMENT TIME] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT + "28/09/2020 20:00 "
-            + PREFIX_APPOINTMENT + "30/09/2020 15:00";
+            + PREFIX_APPOINTMENT_OLD + "28/09/2020 20:00 "
+            + PREFIX_APPOINTMENT_NEW + "30/09/2020 15:00";
 
     public static final String MESSAGE_EDIT_APPT_SUCCESS = "Edited appointment successfully!";
     public static final String MESSAGE_MISSING_APPOINTMENT =

@@ -282,11 +282,13 @@ The following activity diagram summarizes what happens when a user adds a new pa
   * Pros: Independent from external and online platforms (fully integrated within the application).
   * Cons: Harder to implement and less freedom to edit medical records.
 
-### Appointment feature:
+
+### Appointment feature (by Gabriel Teo Yu Xiang)
 
 The appointment feature will enable clinics to manage patient's appointments within Hospify, thus avoiding the need for spreadsheets.
 Users have the ability to show, add, delete, edit appointments within the app. 
 
+#### Implementation
 
 #### Overview:
 
@@ -344,7 +346,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix: Requirements** (by Gabriel Teo Yu Xiang)
 
 ### Product scope
 
@@ -352,7 +354,7 @@ _{more aspects and alternatives to be added}_
 
 * Administrative staff in clinics
 * has a need to manage a significant number of patients and their respective medical records
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps

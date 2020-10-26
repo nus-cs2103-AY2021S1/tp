@@ -166,14 +166,14 @@ Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
 
-### Locating patients by name: `find`
+### Locating patients by name or Nric: `find` (by Gabriel Teo Yu Xiang)
 
 Finds patients whose names contain any of the given keywords or NRICs.
 
 Format: `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`, and `s1234567a` will match `S1234567A`
-* The order of the keywords and NRICs does not matter. e.g. `Hans Bo` will match `Bo Hans`
+* The order of the keywords or NRICs does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Both the name and NRIC are searched.
 * Only full words will be matched e.g. `Han` will not match `Hans`
 * Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
