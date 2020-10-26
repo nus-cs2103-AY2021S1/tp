@@ -13,8 +13,6 @@ import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BlendMode;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -30,14 +28,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 /**
- * UI component that is displayed. Adapted from https://github.com/AY1920S2-CS2103T-T10-3/main
+ * UI component that is displayed. Heavily adapted from https://github.com/AY1920S2-CS2103T-T10-3/main
  */
 public class CalendarView extends UiPart<Region> {
 
     private static final String FXML = "CalendarView.fxml";
-    private static final String[] MONTHS = {"January", "February", "March", "April", "May", "June",
-            "July", "August", "September", "October", "November", "December"};
     private static final int[] DAYS_IN_MONTH = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    private static final String[] MONTHS = {"January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"};
 
     private int[] simulateGridPane = new int[42];
     private int day;
@@ -52,11 +50,6 @@ public class CalendarView extends UiPart<Region> {
     private int nextMonthBalance;
     private int thisMonthBalance;
     private final int dayOfTheMonthForToday;
-
-    private Image leftArrow = new Image(this.getClass().getResourceAsStream("/images/left_icon.png"),
-            30, 20, true, true);
-    private Image rightArrow = new Image(this.getClass().getResourceAsStream("/images/right_icon.png"),
-            30, 20, true, true);
 
     private CommandBox.CommandExecutor commandExecutor;
 
@@ -78,6 +71,9 @@ public class CalendarView extends UiPart<Region> {
     @FXML
     private Button rightButton;
 
+    /**
+     * Constructor for the calendar view in PropertyFree
+     */
     public CalendarView(CommandBox.CommandExecutor commandExecutor) {
         super(FXML);
         this.todayDate = LocalDate.now();
