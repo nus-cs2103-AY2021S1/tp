@@ -100,6 +100,30 @@ UI component | Description
 *Revenue list* | Displays all the revenues in your current account in a panel.
 
 --------------------------------------------------------------------------------------------------------------------
+# Components
+This section describes the various components that comprises Common Cents, mainly Account and Entries. If you
+are new to Common Cents, do not fret as this section will guide you step by step in understanding the components
+available! This will better your experience with Common Cents and your usage of features!
+
+## Accounts
+
+### Name
+
+### Expense List
+
+### Revenue List
+
+## Entries
+
+### Category
+
+### Description
+
+### Amount 
+
+### Tags
+
+--------------------------------------------------------------------------------------------------------------------
 
 # Features
 
@@ -115,9 +139,10 @@ UI component | Description
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `c/CATEGORY d/DESCRIPTION...`, `d/DESCRIPTION c/CATEGORY...` is also acceptable.
-
-The commands are separated into three categories: App-Level commands, Entry-Level commands and Account-Level Commands
+* For `c/CATEGORY`, the parameter can be any of the following: `e`, `r`, `expense`. `revenue`
 </div>
+
+The commands are separated into three categories: App-Level commands, Entry-Level commands and Account-Level Commands.
 
 ## App-Level Commands
 App-Level commands deals with interactions with the app, Common Cents, itself.
@@ -450,8 +475,9 @@ Format: `newacc n/NAME`
 
 :information_source: **Note:**
 
-Do note that app does not automatically switch to the new account. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
+* The app does not automatically switch to the new account. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
 or switch to it via [`switchacc`](#switching-accounts-switchacc). 
+* You cannot create a account with the same name of an existing account.
 
 </div>
 
@@ -519,9 +545,10 @@ Format: `editacc n/NAME`
 
 :information_source: **Note:**
 
-Do note that you cannot edit account names other than the account you are currently on. To edit the name
+* You cannot edit account names other than the account you are currently on. To edit the name
 of another account, you can use [`switchacc`](#switching-accounts-switchacc) to switch to the other account
 and edit the name from there.
+* You cannot edit the account name to a name of another existing account.
 
 </div>
 
