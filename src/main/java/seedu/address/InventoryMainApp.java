@@ -83,7 +83,8 @@ public class InventoryMainApp extends Application {
      * The data from the sample item list will be used instead if {@code storage}'s item list is not found,
      * or an empty item list will be used instead if errors occur when reading {@code storage}'s address book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs)
+            throws IOException, DataConversionException {
         ReadOnlyItemList initialItemList = initItemList(storage);
         ReadOnlyLocationList initialLocationList = initLocationList(storage);
         ReadOnlyRecipeList initialRecipeList = initRecipeList(storage);
@@ -109,7 +110,7 @@ public class InventoryMainApp extends Application {
         return initialItemList;
     }
 
-    private ReadOnlyLocationList initLocationList(Storage storage) {
+    private ReadOnlyLocationList initLocationList(Storage storage) throws IOException, DataConversionException {
         Optional<ReadOnlyLocationList> locationListOptional;
         ReadOnlyLocationList initialLocationList;
         locationListOptional = storage.readLocationList();
