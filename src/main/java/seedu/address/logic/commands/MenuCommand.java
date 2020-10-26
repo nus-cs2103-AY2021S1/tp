@@ -13,13 +13,10 @@ public class MenuCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-
         if (!model.isSelected()) {
             throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
-
-        model.updateFilteredFoodList(food -> true);
-
+        model.showDefaultMenu();
         return new CommandResult(
                 Messages.MESSAGE_MENU_LIST, false, false, true);
     }

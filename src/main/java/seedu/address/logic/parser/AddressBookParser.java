@@ -12,11 +12,9 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MenuCommand;
 import seedu.address.logic.commands.PriceCommand;
 import seedu.address.logic.commands.RemoveCommand;
@@ -55,14 +53,12 @@ public class AddressBookParser {
 
         String[] commands = {
             AddCommand.COMMAND_WORD,
-            EditCommand.COMMAND_WORD,
             RemoveCommand.COMMAND_WORD,
             SortCommand.COMMAND_WORD,
             ClearCommand.COMMAND_WORD,
             FindCommand.COMMAND_WORD,
             PriceCommand.COMMAND_WORD,
             MenuCommand.COMMAND_WORD,
-            ListCommand.COMMAND_WORD,
             TotalCommand.COMMAND_WORD,
             SubmitCommand.COMMAND_WORD,
             UndoCommand.COMMAND_WORD,
@@ -85,9 +81,6 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
 
@@ -105,9 +98,6 @@ public class AddressBookParser {
 
         case MenuCommand.COMMAND_WORD:
             return new MenuCommand();
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case TotalCommand.COMMAND_WORD:
             return new TotalCommand();

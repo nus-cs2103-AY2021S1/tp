@@ -15,7 +15,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.vendor.Vendor;
-import seedu.address.testutil.EditVendorDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -53,18 +52,6 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditVendorDescriptor DESC_AMY;
-    public static final EditCommand.EditVendorDescriptor DESC_BOB;
-
-    static {
-        DESC_AMY = new EditVendorDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditVendorDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
-
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -101,11 +88,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
-        List<Vendor> expectedFilteredList = new ArrayList<>(actualModel.getFilteredVendorList());
+        List<Vendor> expectedFilteredList = new ArrayList<>(actualModel.getObservableVendorList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
-        assertEquals(expectedFilteredList, actualModel.getFilteredVendorList());
+        assertEquals(expectedFilteredList, actualModel.getObservableVendorList());
     }
     //    /**
     //     * Updates {@code model}'s filtered list to show only the vendor at the given {@code targetIndex} in the

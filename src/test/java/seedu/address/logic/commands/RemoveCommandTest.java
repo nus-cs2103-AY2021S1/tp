@@ -68,7 +68,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Model model = initialiseModel();
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getObservableVendorList().size() + 1);
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
         assertCommandFailure(removeCommand, model, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
@@ -96,12 +96,4 @@ public class RemoveCommandTest {
         assertFalse(removeFirstCommand.equals(removeSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoVendor(Model model) {
-        model.updateFilteredVendorList(p -> false);
-
-        assertTrue(model.getFilteredVendorList().isEmpty());
-    }
 }

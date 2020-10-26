@@ -54,16 +54,6 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getMenuManagerFolderPath();
-
-    /**
-     * Sets the user prefs' address book file path.
-     */
-    void setMenuManagerFolderPath(Path menuManagerFolderPath);
-
-    /**
      * Replaces menu manager data with the data in {@code menuManager}.
      */
 
@@ -97,6 +87,7 @@ public interface Model {
      */
     void selectVendor(int vendorIndex);
 
+    ObservableList<Vendor> getObservableVendorList();
 
     /**
      * Replaces the given vendor {@code target} with {@code editedVendor}.
@@ -139,9 +130,9 @@ public interface Model {
      */
     void setFood(Food target, Food editedFood, int index);
 
-    void sortFoodByName(boolean ascending);
+    void sortFoodBy(String sortedBy, boolean ascending, boolean toggle);
 
-    void sortFoodByPrice(boolean ascending);
+    void showDefaultMenu();
 
     /**
 
@@ -178,19 +169,6 @@ public interface Model {
      * must not be the same as another existing orderItem in the address book.
      */
     void setOrderItem(OrderItem target, OrderItem editedOrderItem);
-
-    /**
-     * Returns an unmodifiable view of the filtered vendor list
-     */
-    ObservableList<Vendor> getFilteredVendorList();
-
-
-    /**
-     * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredVendorList(Predicate<Vendor> predicate);
 
     /**
      * Returns an unmodifiable view of the filtered food list at the corresponding index
