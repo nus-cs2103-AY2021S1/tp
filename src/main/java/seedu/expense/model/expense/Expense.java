@@ -1,6 +1,7 @@
 package seedu.expense.model.expense;
 
 import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
 import java.util.Objects;
 
@@ -53,6 +54,10 @@ public class Expense {
         return tag;
     }
 
+    public Expense resetTag() {
+        return new Expense(description, amount, date, remark, DEFAULT_TAG);
+    }
+
     /**
      * Returns true if both expenses of the same description have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two expenses.
@@ -84,14 +89,13 @@ public class Expense {
         Expense otherExpense = (Expense) other;
         return otherExpense.getDescription().equals(getDescription())
                 && otherExpense.getAmount().equals(getAmount())
-                && otherExpense.getDate().equals(getDate())
-                && otherExpense.getTag().equals(getTag());
+                && otherExpense.getDate().equals(getDate());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, amount, date, tag);
+        return Objects.hash(description, amount, date);
     }
 
     @Override

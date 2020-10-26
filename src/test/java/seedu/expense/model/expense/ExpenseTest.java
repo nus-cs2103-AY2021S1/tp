@@ -77,9 +77,5 @@ public class ExpenseTest {
         // different date -> returns false
         editedAlice = new ExpenseBuilder(FEL_BDAY).withDate(VALID_DATE_BUS).build();
         assertFalse(FEL_BDAY.equals(editedAlice));
-
-        // different tags -> returns false
-        editedAlice = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT).build();
-        assertFalse(FEL_BDAY.equals(editedAlice));
     }
 }

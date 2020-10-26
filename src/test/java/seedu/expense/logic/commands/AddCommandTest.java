@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import static seedu.expense.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -248,6 +249,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingExpenseAdded extends ModelStub {
         final ArrayList<Expense> expensesAdded = new ArrayList<>();
+        final Tag tag = DEFAULT_TAG;
 
         @Override
         public boolean hasExpense(Expense expense) {
@@ -259,6 +261,11 @@ public class AddCommandTest {
         public void addExpense(Expense expense) {
             requireNonNull(expense);
             expensesAdded.add(expense);
+        }
+
+        @Override
+        public boolean hasCategory(Tag toCheck) {
+            return toCheck.equals(tag);
         }
 
         @Override

@@ -27,11 +27,12 @@ public class AddCommand extends Command {
             + PREFIX_DESCRIPTION + "Uniqlo Jacket "
             + PREFIX_AMOUNT + "59.90 "
             + PREFIX_DATE + "04-10-2020 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_TAG + "friends ";
 
     public static final String MESSAGE_SUCCESS = "New expense added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXPENSE = "This expense already exists in the expense book";
+    public static final String MESSAGE_DEFAULT = "The category '%s' does not exist yet"
+            + " -- tagging as 'Default' instead";
 
     private final Expense toAdd;
 
@@ -49,6 +50,12 @@ public class AddCommand extends Command {
 
         if (model.hasExpense(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EXPENSE);
+        }
+
+        if (!model.hasCategory(toAdd.getTag())) {
+            Expense expense = toAdd.resetTag();
+            model.addExpense(expense);
+            return new CommandResult(String.format(MESSAGE_DEFAULT, expense));
         }
 
         model.addExpense(toAdd);
