@@ -26,9 +26,6 @@ The architecture diagram given below shows the high-level design of the software
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-<div markdown="span" class="alert alert-primary">
-
-</div>
 
 Given below is a quick overview of each of the components.
 
