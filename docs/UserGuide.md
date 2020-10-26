@@ -127,7 +127,7 @@ Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#bruiima
 <br>
 <br>
 
-Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#bruiimagesuiwithannotationpng-br) as a base.
+Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#bruiimagesuiwithannotationpng-br) as the starting point.
 
 1. Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
 <br>
