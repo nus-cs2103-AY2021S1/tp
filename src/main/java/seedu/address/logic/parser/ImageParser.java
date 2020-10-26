@@ -36,38 +36,42 @@ public class ImageParser {
     public RecipeImage parse(String imagePath) throws IOException, URISyntaxException {
         requireNonNull(imagePath);
         String filename = "";
-        if (imagePath.length() > 4 && imagePath.substring(0, 4).equals("http")) {
-            for (int i = imagePath.length() - 1; i >= 0; i--) {
-                if (imagePath.charAt(i) == '/') {
-                    filename = imagePath.substring(i + 1);
-                    break;
+        try {
+            if (imagePath.length() > 4 && imagePath.substring(0, 4).equals("http")) {
+                for (int i = imagePath.length() - 1; i >= 0; i--) {
+                    if (imagePath.charAt(i) == '/') {
+                        filename = imagePath.substring(i + 1);
+                        break;
+                    }
                 }
-            }
-            URL url = new URL(imagePath);
-            InputStream in = new BufferedInputStream(url.openStream());
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            byte[] buf = new byte[1024];
-            int n = 0;
-            while (-1 != (n = in.read(buf))) {
-                out.write(buf, 0, n);
-            }
-            out.close();
-            in.close();
-            byte[] response = out.toByteArray();
+                URL url = new URL(imagePath);
+                InputStream in = new BufferedInputStream(url.openStream());
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                byte[] buf = new byte[1024];
+                int n = 0;
+                while (-1 != (n = in.read(buf))) {
+                    out.write(buf, 0, n);
+                }
+                out.close();
+                in.close();
+                byte[] response = out.toByteArray();
 
-            //imagePath = AddRecipeCommandParser.class.getResource("/images").getPath() + "/" + filename;
-            imagePath = "data/" + filename;
+                //imagePath = AddRecipeCommandParser.class.getResource("/images").getPath() + "/" + filename;
+                imagePath = "data/" + filename;
 
-            //imagePath = getPathsFromResourceJAR("data") + "/" + filename;
-            FileOutputStream fos = new FileOutputStream(imagePath);
-            URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
-            URL data = new URL(jarLocation, "data/" + filename);
-            imagePath = data.toURI().getPath();
-            fos.write(response);
-            fos.close();
-            //File file = FileHelp.from("file:///" + imagePath, filename);
-            //imagePath = file.getPath();
-            imagePath = "file://" + imagePath;
+                //imagePath = getPathsFromResourceJAR("data") + "/" + filename;
+                FileOutputStream fos = new FileOutputStream(imagePath);
+                URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
+                URL data = new URL(jarLocation, "data/" + filename);
+                imagePath = data.toURI().getPath();
+                fos.write(response);
+                fos.close();
+                //File file = FileHelp.from("file:///" + imagePath, filename);
+                //imagePath = file.getPath();
+                imagePath = "file://" + imagePath;
+            }
+        } catch (IOException | URISyntaxException e) {
+            imagePath = "images/default.jpg";
         }
 
         //return new RecipeImage("images/" + filename);

@@ -304,9 +304,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException | IOException | URISyntaxException e) {
+        } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        } catch (IOException | URISyntaxException e) {
+            resultDisplay.setFeedbackToUser("URL is invalid! or WIFI is needed to download the image!");
             throw e;
         }
     }
