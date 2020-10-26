@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.beans.EventHandler;
 import java.util.Comparator;
 import java.util.Set;
 
@@ -8,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -53,6 +55,7 @@ public class PatientCard extends UiPart<Region> {
     private Button copyButton;
     @FXML
     private Label copyButtonNotification;
+
 
     /**
      * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
@@ -109,4 +112,12 @@ public class PatientCard extends UiPart<Region> {
         url.putString(patient.getMedicalRecord().value);
         clipboard.setContent(url);
     }
+
+    @FXML
+    private void onDoubleClick() {
+        AppointmentWindow appointmentWindow = new AppointmentWindow();
+        appointmentWindow.setAppointmentWindow(patient);
+        appointmentWindow.show();
+    }
+
 }
