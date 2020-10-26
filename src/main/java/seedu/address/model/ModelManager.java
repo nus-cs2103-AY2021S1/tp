@@ -313,6 +313,11 @@ public class ModelManager implements Model {
         moduleBook.setModule(target, editedModule);
     }
 
+    @Override
+    public void deleteModule(Module target) {
+        moduleBook.removeModule(target);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -412,6 +417,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredModules.setPredicate(predicate);
     }
+
 
     @Override
     public boolean equals(Object obj) {

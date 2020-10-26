@@ -225,4 +225,10 @@ public interface Model {
      */
     void setModule(Module target, Module editedModule);
 
+    /**
+     * Deletes the given module.
+     * The module must exist in the module book.
+     */
+    void deleteModule(Module target);
+
 }

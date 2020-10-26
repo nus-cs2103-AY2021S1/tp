@@ -78,8 +78,7 @@ public class Module {
         }
 
         Module otherModule = (Module) other;
-        return otherModule.getModuleName().equals(getModuleName())
-                && otherModule.getClassmates().equals(getClassmates());
+        return otherModule.getModuleName().equals(getModuleName());
     }
 
     @Override

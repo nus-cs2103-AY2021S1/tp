@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListModuleCommand;
@@ -42,6 +43,8 @@ public class ModuleBookParser {
             return new ListModuleCommandParser().parse(arguments);
         case EditModuleCommand.COMMAND_WORD:
             return new EditModuleCommandParser().parse(arguments);
+        case DeleteModuleCommand.COMMAND_WORD:
+            return new DeleteModuleCommandParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
