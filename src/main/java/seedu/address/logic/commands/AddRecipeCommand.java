@@ -25,6 +25,7 @@ public class AddRecipeCommand extends Command {
             + PREFIX_NAME + "NAME "
             + PREFIX_INGREDIENT + "INGREDIENT "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
+            + "[, MORE INGREDIENTS [ -QUANTITY]] "
             + PREFIX_CALORIES + "CALORIES "
             + PREFIX_INSTRUCTION + "INSTRUCTIONS "
             + PREFIX_RECIPE_IMAGE + "IMAGE "
@@ -33,7 +34,7 @@ public class AddRecipeCommand extends Command {
             + PREFIX_NAME + "Chicken salad "
             + PREFIX_INGREDIENT + "chicken - 100g, lettuce - a bit, tomato "
             + PREFIX_CALORIES + "100 "
-            + PREFIX_INSTRUCTION + "Cook. Eat."
+            + PREFIX_INSTRUCTION + "Cook. Eat. "
             + PREFIX_RECIPE_IMAGE + "images/salad.jpg "
             + PREFIX_TAG + "healthy "
             + PREFIX_TAG + "delicious";

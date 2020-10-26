@@ -14,7 +14,9 @@ import seedu.address.model.recipe.Recipe;
 public class EatRecipeCommand extends Command {
     public static final String COMMAND_WORD = "eatR";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a recipe to the daily consumption. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a recipe identified by the index number used in the displayed recipe"
+            + " list to the daily consumption.\n"
             + "Parameters:  INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
