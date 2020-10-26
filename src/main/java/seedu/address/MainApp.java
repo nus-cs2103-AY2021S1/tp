@@ -104,6 +104,8 @@ public class MainApp extends Application {
             initialPolicyData = new PolicyList();
         }
 
+        initialClientData.updateClientListWithPolicyList(initialPolicyData);
+
         return new ModelManager(initialClientData, userPrefs, initialPolicyData);
     }
 

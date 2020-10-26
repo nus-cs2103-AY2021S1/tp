@@ -16,6 +16,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.PolicyList;
+import seedu.address.model.policy.PolicyName;
 
 /**
  * Represents the in-memory model of the client list data.
@@ -202,7 +203,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPolicy(PolicyName policyName) {
+        return policyList.contains(policyName);
+    }
+
+    @Override
     public void clearPolicyList() {
+        clientList.clearPolicy();
         policyList.clear();
     }
 }

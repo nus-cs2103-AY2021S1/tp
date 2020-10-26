@@ -1,13 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTSOURCE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.Set;
@@ -22,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.PolicyName;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -43,7 +38,8 @@ public class AddCommandParser implements Parser<AddCommand> {
                         PREFIX_ADDRESS,
                         PREFIX_CLIENTSOURCE,
                         PREFIX_NOTE,
-                        PREFIX_PRIORITY);
+                        PREFIX_PRIORITY,
+                        PREFIX_POLICY_NAME);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -59,8 +55,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(null));
         Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).orElse(null));
 
-        Person person = new Person(name, phone, email, address, clientSourceList, note, priority);
+        Person person = new Person(name, phone, email, address, clientSourceList, note, priority, null);
 
-        return new AddCommand(person);
+        PolicyName policyName = ParserUtil.parsePolicyName(argMultimap.getValue(PREFIX_POLICY_NAME).orElse(null));
+
+        return new AddCommand(person, policyName);
     }
 }

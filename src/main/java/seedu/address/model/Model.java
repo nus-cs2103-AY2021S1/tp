@@ -10,6 +10,7 @@ import seedu.address.model.person.IsArchivePredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.PolicyList;
+import seedu.address.model.policy.PolicyName;
 
 /**
  * The API of the Model component.
@@ -138,7 +139,13 @@ public interface Model {
     boolean hasPolicy(Policy policy);
 
     /**
+     * Returns true if a policy with the same policy name as {@code policy} exists in the policy list.
+     */
+    boolean hasPolicy(PolicyName policyName);
+
+    /**
      * Clear policy list data.
+     * Additionally, clears all policy field in client list.
      */
     void clearPolicyList();
 }

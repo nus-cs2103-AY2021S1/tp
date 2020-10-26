@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.PolicyDescription;
 import seedu.address.model.policy.PolicyName;
 
@@ -169,7 +170,9 @@ public class ParserUtil {
     }
 
     public static PolicyName parsePolicyName(String name) throws ParseException {
-        requireNonNull(name);
+       if(name == null) {
+           return null;
+       }
         String trimmedName = name.trim();
         if (!PolicyName.isValidPolicyName(trimmedName)) {
             throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
@@ -178,9 +181,11 @@ public class ParserUtil {
     }
 
     public static PolicyDescription parsePolicyDescription(String description) throws ParseException {
-        requireNonNull(description);
+        if(description == null) {
+            return null;
+        }
         String trimmedDescription = description.trim();
-        if (!PolicyName.isValidPolicyName(trimmedDescription)) {
+        if (!PolicyDescription.isValidPolicyDescription(trimmedDescription)) {
             throw new ParseException(PolicyDescription.MESSAGE_CONSTRAINTS);
         }
         return new PolicyDescription(trimmedDescription);
