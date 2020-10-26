@@ -28,11 +28,12 @@ public class ImageParser {
     private static final String DIRECTORY_NAME = "data/";
 
     /**
-     * Parses a String of image path
-     * check validity
-     * convert them to RecipeImage object to be returned
-     * @param imagePath String of image path (local or url)
-     * @return RecipeImage of String objects of the ingredients in the parameter
+     * Parses a String of image path to
+     * check validity and
+     * convert them to RecipeImage object to be returned.
+     * 
+     * @param imagePath String of image path (local or url).
+     * @return RecipeImage of String objects of the ingredients in the parameter.
      * @throws ParseException
      */
     public RecipeImage parse(String imagePath) throws ParseException, IOException, URISyntaxException {
@@ -62,8 +63,6 @@ public class ImageParser {
                 File directory = new File(DIRECTORY_NAME);
                 if (!directory.exists()) {
                     directory.mkdir();
-                    // If you require it to make the entire directory path including parents,
-                    // use directory.mkdirs(); here instead.
                 }
                 FileOutputStream fos = new FileOutputStream(imagePath);
                 URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
@@ -86,6 +85,7 @@ public class ImageParser {
 
     /**
      * Get all paths from a folder that inside the JAR file.
+     * 
      * @param folder Name of folder.
      * @return List of paths from a folder.
      */
