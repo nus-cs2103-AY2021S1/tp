@@ -2,6 +2,7 @@ package seedu.address.logic.commands.appointmentcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.HashSet;
@@ -35,9 +36,12 @@ public class AddApptCommand extends Command {
             + ": Adds an appointment for the patient specified "
             + "by the index number used in the displayed person list. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] \n"
+            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] "
+            + "[" + PREFIX_DESCRIPTION + "APPOINTMENT DESCRIPTION]"
+            + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT + "28/09/2020 20:00";
+            + PREFIX_APPOINTMENT + "28/09/2022 20:00 "
+            + PREFIX_DESCRIPTION + "revisit";
 
     public static final String MESSAGE_ADD_APPT_SUCCESS = "Added appointment successfully!";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =

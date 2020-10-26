@@ -1,5 +1,7 @@
 package seedu.address.model.patient;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -47,6 +49,14 @@ public class Appointment {
     }
 
     /**
+     * @param description An appointment description.
+     * @return An Appointment object with description specified by the given String.
+     */
+    public Appointment setDescription(String description) {
+        return new Appointment(description, this.time);
+    }
+
+    /**
      * Returns appointment description.
      */
     public String getAppointmentDescription() {
@@ -85,16 +95,16 @@ public class Appointment {
     /**
      * Returns true if appointment time is ahead of the current local time.
      *
-     * @param currentTime current local time.
+     * @param givenTime current local time.
      */
-    public static boolean isPassed(LocalDateTime currentTime) {
-        return currentTime.compareTo(java.time.LocalDateTime.now()) < 0;
+    public static boolean isPassed(LocalDateTime givenTime) {
+        return givenTime.compareTo(java.time.LocalDateTime.now()) < 0;
     }
 
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
-        return time.format(formatter);
+        return time.format(formatter) + " " + PREFIX_DESCRIPTION + description;
     }
 
     @Override
