@@ -28,16 +28,19 @@ as well as summary commands.
 
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
-
-    #<br>![Ui](images/UiWithAnnotation.png) <br>
+    <br>
+    #![Ui](images/UiWithAnnotation.png) 
     Figure 1: Introduction to OneShelf User Interface
 
+    <br>
+    
 5. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below (Figure 2) should appear on your desktop.
-
-    #<br>![Help Window](images/UiHelpStart.png) <br>
+    <br>
+    #![Help Window](images/UiHelpStart.png) 
     Figure 2: Help Start Window
-
+    
+    <br>
 
 6. Refer to the [Features](#3-features) below for details of each command.
 
@@ -111,9 +114,9 @@ An item is uniquely identified by its `NAME` and `SUPPLIER`.
 * Note 1: `MAX_QUANTITY` denotes the ideal stock level of that particular item.
 * Note 2: `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
-Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#bruiimagesuiwithannotationpng-br) as a base.
+Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` using [Figure 1](#uiimagesuiwithannotationpng) as the starting point.
 
-1. Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG`.
+1. Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food`.
 <br>
 ![add-i example one step one](images/add-i%20example%20one%20step%20one.PNG)
 <br>
@@ -127,7 +130,7 @@ Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#bruiima
 <br>
 <br>
 
-Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#bruiimagesuiwithannotationpng-br) as the starting point.
+Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#uiimagesuiwithannotationpng) as the starting point.
 
 1. Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
 <br>
@@ -323,7 +326,9 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 
 #### 3.2.2 Scrolling through command history
 
-OneShelf commands are traversable (up to 20 commands) much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.
+OneShelf commands are traversable (up to 20 commands) much like Window's command prompt. 
+By pressing the arrow up key traversing you're able to traverse previous commands and 
+by pressing the arrow down key you're able to traverse into next commands.
 
 
 
