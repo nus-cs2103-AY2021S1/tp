@@ -161,7 +161,7 @@ Format: `redo`
 
 Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Constraints:**<br>
 
