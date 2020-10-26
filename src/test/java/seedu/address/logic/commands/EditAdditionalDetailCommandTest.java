@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.testutil.StudentBuilder;
@@ -33,7 +34,7 @@ public class EditAdditionalDetailCommandTest {
     private static final String TEST_CORRECT_DETAIL = "eats flies";
     private static final String TEST_WRONG_DETAIL = "drinks flies";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -75,7 +76,7 @@ public class EditAdditionalDetailCommandTest {
         String expectedMessage = String.format(EditAdditionalDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), additionalDetail);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
         expectedModel.setPerson(clone, expectedStudent);
 
         assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);
@@ -116,7 +117,7 @@ public class EditAdditionalDetailCommandTest {
         String expectedMessage = String.format(EditAdditionalDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), additionalDetail);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
         expectedModel.setPerson(clone, expectedStudent);
 
         assertCommandSuccess(editAdditionalDetailCommand, model, expectedMessage, expectedModel);

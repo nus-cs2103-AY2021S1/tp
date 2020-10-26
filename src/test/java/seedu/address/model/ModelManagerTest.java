@@ -15,7 +15,9 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ReeveBuilder;
 
 public class ModelManagerTest {
@@ -27,6 +29,7 @@ public class ModelManagerTest {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new Reeve(), new Reeve(modelManager.getReeve()));
+        assertEquals(new Scheduler(), modelManager.getSchedule());
     }
 
     @Test
@@ -98,10 +101,11 @@ public class ModelManagerTest {
         Reeve reeve = new ReeveBuilder().withPerson(AMY).withPerson(BOB).build();
         Reeve differentReeve = new Reeve();
         UserPrefs userPrefs = new UserPrefs();
+        Scheduler scheduler = new Scheduler();
 
         // same values -> returns true
-        modelManager = new ModelManager(reeve, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(reeve, userPrefs);
+        modelManager = new ModelManager(reeve, userPrefs, scheduler);
+        ModelManager modelManagerCopy = new ModelManager(reeve, userPrefs, scheduler);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +118,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different addressBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentReeve, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentReeve, userPrefs, scheduler)));
 
         // different filteredList -> returns false
         String[] keywords = AMY.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(reeve, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(reeve, userPrefs, scheduler)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +131,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(reeve, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(reeve, differentUserPrefs, scheduler)));
+
     }
 }

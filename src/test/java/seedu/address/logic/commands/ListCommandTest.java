@@ -5,12 +5,14 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
+import com.sun.javafx.css.SubCssMetaData;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Scheduler;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -22,8 +24,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
+        expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
     }
 
     @Test

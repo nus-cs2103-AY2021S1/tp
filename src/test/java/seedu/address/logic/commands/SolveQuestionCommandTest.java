@@ -24,13 +24,14 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
 public class SolveQuestionCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
 
     @Test
     void constructor_null_throwsNullPointerException() {
@@ -54,7 +55,7 @@ public class SolveQuestionCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS, solved);
 
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
         expectedModel.setPerson(clone, expectedStudent);
 
         assertCommandSuccess(solveCommand, model, expectedMessage, expectedModel);
@@ -82,7 +83,7 @@ public class SolveQuestionCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS, solved);
 
         SolveQuestionCommand solveCommand = new SolveQuestionCommand(INDEX_FIRST_PERSON, question);
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
         expectedModel.setPerson(clone, expectedStudent);
 
         assertCommandSuccess(solveCommand, model, expectedMessage, expectedModel);

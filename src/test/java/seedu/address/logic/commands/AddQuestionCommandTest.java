@@ -20,6 +20,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Question;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
@@ -28,7 +29,7 @@ public class AddQuestionCommandTest {
 
     private static final String TEST_QUESTION = "What is 1 + 1?";
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new Scheduler());
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -53,7 +54,7 @@ public class AddQuestionCommandTest {
 
         String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS, question);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
         expectedModel.setPerson(clone, expectedStudent);
 
         assertCommandSuccess(addQuestionCommand, model, expectedMessage, expectedModel);
@@ -93,7 +94,7 @@ public class AddQuestionCommandTest {
 
         String expectedMessage = String.format(AddQuestionCommand.MESSAGE_SUCCESS, question);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), new Scheduler());
         expectedModel.setPerson(clone, expectedStudent);
 
         assertCommandSuccess(addQuestionCommand, model, expectedMessage, expectedModel);

@@ -88,7 +88,7 @@ public class ReeveParserTest {
                 FindCommand.COMMAND_WORD + " " + StudentUtil.getFindStudentDescriptorDetails(descriptor));
         assertEquals(new FindCommand(descriptor), command);
     }
-
+/*
     @Test
     public void parseCommand_schedule() throws Exception {
         LocalDate date = LocalDate.of(2020, 9, 27);
@@ -96,6 +96,8 @@ public class ReeveParserTest {
                 ScheduleCommand.COMMAND_WORD + " " + "27/09/2020");
         assertEquals(new ScheduleCommand(date), command);
     }
+
+ */
 
     @Test
     public void parseCommand_question() throws Exception {
