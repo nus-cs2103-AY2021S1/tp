@@ -18,7 +18,7 @@ public class ArgumentMultimapUtil {
      * @return  true if only one of the prefixes is present, and false otherwise
      */
     public static boolean isOnlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        if (argumentMultimap.size() != 1) {
+        if (argumentMultimap.numOfPrefixes() != 1) {
             return false;
         }
         return Stream.of(prefixes)
@@ -33,8 +33,9 @@ public class ArgumentMultimapUtil {
      * @param prefix2  the second prefix to check
      * @return  true if the given two prefixes are the only prefixes presented, and false otherwise
      */
-    public static boolean areOnlyTheseTwoPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix prefix1, Prefix prefix2) {
-        if (argumentMultimap.size() != 2) {
+    public static boolean areOnlyTheseTwoPrefixesPresent(ArgumentMultimap argumentMultimap,
+                                                         Prefix prefix1, Prefix prefix2) {
+        if (argumentMultimap.numOfPrefixes() != 2) {
             return false;
         }
         if (argumentMultimap.getValue(prefix1).isPresent()

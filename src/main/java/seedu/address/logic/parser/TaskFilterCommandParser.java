@@ -38,9 +38,9 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
                 PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE,
                 PREFIX_START_DATE, PREFIX_END_DATE);
 
-        if (!areOnlyTheseTwoPrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)
-            || !isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_ASSIGNEE,
-            PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE)) {
+        if (!(areOnlyTheseTwoPrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)
+            || isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_ASSIGNEE,
+            PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskFilterCommand.MESSAGE_USAGE));
         }
 

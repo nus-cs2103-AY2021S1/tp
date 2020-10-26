@@ -59,9 +59,15 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns the size of the ArgumentMultimap.
+     * Returns the number of Prefixes in the ArgumentMultimap.
      */
-    public int size() {
-        return argMultimap.size();
+    public int numOfPrefixes() {
+        int count = 0;
+        for (Prefix prefix : argMultimap.keySet()) {
+            if (!prefix.getPrefix().isEmpty()) {
+                count++;
+            }
+        }
+        return count;
     }
 }

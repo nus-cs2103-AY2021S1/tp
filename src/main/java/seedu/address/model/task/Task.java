@@ -17,13 +17,13 @@ import seedu.address.model.project.Participation;
  */
 public class Task {
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     public static final String NAME_MESSAGE_CONSTRAINTS =
-            "Task names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Task name can be any values, and it should not be blank";
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
-            "Task descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Task description can be any values, and it should not be blank";
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
             "Publish date should only be in the format of dd-MM-yyyy";
     public static final String DEADLINE_MESSAGE_CONSTRAINTS =
