@@ -74,6 +74,7 @@ public class AssignCommandTest {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         project.addParticipation(ALICE);
+        model.addParticipation(project.getParticipation(ALICE.getGitUserNameString()));
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
         Task taskToAssign = project.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
@@ -102,6 +103,7 @@ public class AssignCommandTest {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         project.addParticipation(ALICE);
+        model.addParticipation(project.getParticipation(ALICE.getGitUserNameString()));
         project.updateTaskFilter(x -> true);
         Task taskToAssign = project.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         Participation assignee = project.getParticipation(ALICE.getGitUserNameString());

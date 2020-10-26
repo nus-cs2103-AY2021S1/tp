@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import seedu.address.model.project.exceptions.DuplicateParticipationException;
 import seedu.address.model.project.exceptions.DuplicateProjectException;
 import seedu.address.model.project.exceptions.ParticipationNotFoundException;
-import seedu.address.model.project.exceptions.ProjectNotFoundException;
 
 /**
  * A list of projects that enforces uniqueness between its elements and does not allow nulls.
