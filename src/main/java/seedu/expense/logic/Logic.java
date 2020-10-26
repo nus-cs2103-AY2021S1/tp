@@ -8,6 +8,7 @@ import seedu.expense.logic.commands.CommandResult;
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.ReadOnlyExpenseBook;
+import seedu.expense.model.Statistics;
 import seedu.expense.model.expense.Expense;
 
 /**
@@ -32,11 +33,11 @@ public interface Logic {
     ReadOnlyExpenseBook getExpenseBook();
 
     /**
-     * Returns the CategoryExpenseBook.
+     * Returns the Statistics.
      *
-     * @see seedu.expense.model.Model#getCategoryExpenseBook()
+     * @see seedu.expense.model.Model#getStatistics()
      */
-    ReadOnlyExpenseBook getCategoryExpenseBook();
+    Statistics getStatistics();
 
     /**
      * Returns an unmodifiable view of the filtered list of expenses

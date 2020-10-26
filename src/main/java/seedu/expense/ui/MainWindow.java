@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        budgetDisplay = new BudgetDisplay(logic.getCategoryExpenseBook());
+        budgetDisplay = new BudgetDisplay(logic.getStatistics());
         budgetDisplayPlaceholder.getChildren().add(budgetDisplay.getRoot());
     }
 
