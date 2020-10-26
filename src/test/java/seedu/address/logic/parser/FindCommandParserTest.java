@@ -12,13 +12,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.FindCommand;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.Status;
+import seedu.address.model.task.deadline.Status;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
 
 public class FindCommandParserTest {
 
@@ -55,7 +54,6 @@ public class FindCommandParserTest {
         // throw error if argument is empty
         assertParseFailure(parser, " title:", MESSAGE_EMPTY_SEARCH_PHRASE);
         assertParseFailure(parser, " desc:", MESSAGE_EMPTY_SEARCH_PHRASE);
-        assertParseFailure(parser, " type:", MESSAGE_EMPTY_SEARCH_PHRASE);
         assertParseFailure(parser, " status:", MESSAGE_EMPTY_SEARCH_PHRASE);
         assertParseFailure(parser, " date:", MESSAGE_EMPTY_SEARCH_PHRASE);
 
@@ -71,10 +69,9 @@ public class FindCommandParserTest {
         // throw error if argument is invalid
         assertParseFailure(parser, " title:@@", Title.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " desc:@@", Description.SEARCH_CONSTRAINTS);
-        assertParseFailure(parser, " type:123", Type.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " status:comple", Status.SEARCH_CONSTRAINTS);
-        assertParseFailure(parser, " date:01-01-202", DateTime.SEARCH_CONSTRAINTS);
-        assertParseFailure(parser, " date:13", DateTime.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " date:01-01-202", DateUtil.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " date:13", DateUtil.SEARCH_CONSTRAINTS);
 
         // one of the attribute is invalid
         assertParseFailure(parser, " title:abc# date: desc:edf", Title.SEARCH_CONSTRAINTS);

@@ -18,7 +18,6 @@ import seedu.address.model.Model;
 import seedu.address.model.Planus;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
-import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -64,18 +63,7 @@ public class CommandTestUtil {
     public static final String VALID_END_TIME_CS2103T = "14:00";
     public static final String VALID_START_DATE_CS2103T = "01-01-2020";
     public static final String VALID_END_DATE_CS2103T = "01-05-2020";
-
-    public static final EditCommand.EditTaskDescriptor DESC_AMY;
-    public static final EditCommand.EditTaskDescriptor DESC_BOB;
-
-    static {
-        DESC_AMY = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_AMY)
-                .withDateTime(VALID_DATE_TIME_AMY).withDescription(VALID_DESCRIPTION_AMY).withType(VALID_TYPE_AMY)
-                .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditTaskDescriptorBuilder().withTitle(VALID_TITLE_BOB)
-                .withDateTime(VALID_DATE_TIME_BOB).withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    }
+    public static final String VALID_TAG = "CS2103T";
 
     /**
      * Executes the given {@code command}, confirms that <br>

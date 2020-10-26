@@ -112,7 +112,7 @@ public class Deadline extends Task {
      * mark the task as done by updating the status, duration and done time.
      */
     public Deadline markAsDone(int durationInMinutes) {
-        return new Deadline(title, deadlineDateTime, description, tag, Status.createIncompleteStatus(),
+        return new Deadline(title, deadlineDateTime, description, tag, Status.createCompleteStatus(),
                 new Duration(durationInMinutes), DoneDateTime.createDoneNow());
     }
 

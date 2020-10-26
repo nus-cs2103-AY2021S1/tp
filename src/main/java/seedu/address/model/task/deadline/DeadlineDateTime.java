@@ -35,7 +35,7 @@ public class DeadlineDateTime extends DateTime {
 
     @Override
     public String toString() {
-        if (isFilled) {
+        if (!isFilled) {
             return "";
         } else {
             return value.format(DateUtil.DATETIME_FORMATTER);
