@@ -29,7 +29,7 @@ public class ClearCommandTest {
     @Test
     public void execute_validClearExpense_success() throws CommandException {
         CommandResult commandResult = new ClearCommand(expense).execute(modelStub, activeAccount);
-        assertEquals(String.format(ClearCommand.MESSAGE_DELETE_ENTRY_SUCCESS, expense),
+        assertEquals(String.format(ClearCommand.MESSAGE_CLEAR_ENTRY_SUCCESS, expense),
                 commandResult.getFeedbackToUser());
         assertFalse(activeAccount.hasExpense(BUY_FLOWER_POTS));
         assertTrue(activeAccount.getFilteredExpenseList().isEmpty());
@@ -38,7 +38,7 @@ public class ClearCommandTest {
     @Test
     public void execute_validClearRevenue_success() throws CommandException {
         CommandResult commandResult = new ClearCommand(revenue).execute(modelStub, activeAccount);
-        assertEquals(String.format(ClearCommand.MESSAGE_DELETE_ENTRY_SUCCESS, revenue),
+        assertEquals(String.format(ClearCommand.MESSAGE_CLEAR_ENTRY_SUCCESS, revenue),
                 commandResult.getFeedbackToUser());
         assertFalse(activeAccount.hasRevenue(SELL_FLOWER_POTS));
         assertTrue(activeAccount.getFilteredRevenueList().isEmpty());
