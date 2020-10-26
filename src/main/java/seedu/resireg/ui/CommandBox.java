@@ -1,5 +1,7 @@
 package seedu.resireg.ui;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -27,6 +29,8 @@ public class CommandBox extends UiPart<Region> {
             new KeyCodeCombination(KeyCode.Y, KeyCombination.CONTROL_DOWN);
 
     private final CommandExecutor commandExecutor;
+    private final List<String> history;
+    private ListPtr iterator;
 
     @FXML
     private TextField commandTextField;
@@ -34,22 +38,39 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, List<String> history) {
         super(FXML);
         this.commandExecutor = commandExecutor;
+        this.history = history;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        iterator = new ListPtr(history);
     }
 
     @FXML
     private void handleOnKeyPressed(KeyEvent event) {
 
         if (undo.match(event)) {
+            event.consume();
             handleCommandEntered("undo");
         }
 
         if (redo.match(event)) {
+            event.consume();
             handleCommandEntered("redo");
+        }
+
+        switch (event.getCode()) {
+        case UP:
+            event.consume();
+            navigateToPrevInput();
+            break;
+        case DOWN:
+            event.consume();
+            navigateToNextInput();
+            break;
+        default:
+
         }
     }
 
@@ -68,7 +89,10 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandTextField.getText());
             commandTextField.setText("");
+            initHistory();
+            iterator.next();
         } catch (CommandException | ParseException e) {
+            initHistory();
             setStyleToIndicateCommandFailure();
         }
     }
@@ -80,9 +104,56 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            initHistory();
+            iterator.next();
         } catch (CommandException | ParseException e) {
+            initHistory();
             setStyleToIndicateCommandFailure();
         }
+    }
+
+    /**
+     * Updates the text field with the previous input in {@code iterator},
+     * if there exists a previous input in {@code iterator}
+     */
+    private void navigateToPrevInput() {
+        assert iterator != null;
+        if (!iterator.hasPrevious()) {
+            return;
+        }
+
+        replaceText(iterator.previous());
+    }
+
+    /**
+     * Updates the text field with the next input in {@code historySnapshot},
+     * if there exists a next input in {@code historySnapshot}
+     */
+    private void navigateToNextInput() {
+        assert iterator != null;
+        if (!iterator.hasNext()) {
+            return;
+        }
+
+        replaceText(iterator.next());
+    }
+
+    /**
+     * Sets {@code CommandBox}'s text field with {@code text} and
+     * positions the caret to the end of the {@code text}.
+     */
+    private void replaceText(String text) {
+        commandTextField.setText(text);
+        commandTextField.positionCaret(commandTextField.getText().length());
+    }
+
+    /**
+     * Initializes the iterator
+     */
+    private void initHistory() {
+        iterator = new ListPtr(history);
+        // add empty string to represent most recent end of iterator
+        iterator.add("");
     }
 
     /**

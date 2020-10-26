@@ -21,10 +21,10 @@ public enum CommandWordEnum {
     TOGGLE_MAIN_PANEL_COMMAND("toggleview"),
     RESTORE_COMMAND("restore"),
     LIST_BIN_COMMAND("bin"),
-    SET_BIN_EXPIRY_COMMAND("set-bin-expiry");
+    SET_BIN_EXPIRY_COMMAND("set-bin-expiry"),
+    HISTORY_COMMAND("history");
 
     private String commandWord;
-
 
     CommandWordEnum(String commandWord) {
         this.commandWord = commandWord;

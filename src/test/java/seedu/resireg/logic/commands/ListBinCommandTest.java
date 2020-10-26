@@ -6,6 +6,7 @@ import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
@@ -17,6 +18,7 @@ public class ListBinCommandTest {
 
     private Model model;
     private Model expectedModel;
+    private CommandHistory history = new CommandHistory();
 
     @BeforeEach
     public void setUp() {
@@ -26,6 +28,6 @@ public class ListBinCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListBinCommand(), model, ListBinCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListBinCommand(), model, history, ListBinCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

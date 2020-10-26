@@ -10,6 +10,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.exceptions.DataConversionException;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
@@ -20,6 +21,8 @@ import seedu.resireg.storage.Storage;
 
 class ArchiveCommandTest {
 
+    private CommandHistory history = new CommandHistory();
+
     @Test
     public void execute_archivalSuccessResiReg_success() {
         Model model = new ModelManager();
@@ -28,7 +31,7 @@ class ArchiveCommandTest {
 
         PassingStorageStub storageStub = new PassingStorageStub();
         try {
-            CommandResult result = new ArchiveCommand().execute(model, storageStub);
+            CommandResult result = new ArchiveCommand().execute(model, storageStub, history);
             assertEquals(new CommandResult(ArchiveCommand.MESSAGE_SUCCESS), result);
             assertEquals(expectedModel, model);
         } catch (CommandException ce) {
@@ -43,7 +46,7 @@ class ArchiveCommandTest {
         expectedModel.saveStateResiReg();
 
         FailingStorageStub storageStub = new FailingStorageStub();
-        assertThrows(CommandException.class, () -> new ArchiveCommand().execute(model, storageStub));
+        assertThrows(CommandException.class, () -> new ArchiveCommand().execute(model, storageStub, history));
     }
 
     /**

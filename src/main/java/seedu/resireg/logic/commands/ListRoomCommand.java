@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelPredicate;
 import seedu.resireg.model.room.Floor;
@@ -46,7 +47,7 @@ public class ListRoomCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) {
         requireNonNull(model);
 
         model.updateFilteredRoomList(filter.getRoomPredicate());

@@ -6,7 +6,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
+import seedu.resireg.commons.util.InvalidationListenerList;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.allocation.UniqueAllocationList;
 import seedu.resireg.model.bin.BinItem;
@@ -30,6 +32,7 @@ public class ResiReg implements ReadOnlyResiReg {
     private final UniqueRoomList rooms;
     private final UniqueAllocationList allocations;
     private final UniqueBinItemList binItems;
+    private final InvalidationListenerList listenerList = new InvalidationListenerList();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -65,6 +68,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void setSemester(Semester semester) {
         this.semester = semester;
+        indicateModified();
     }
 
     public static ResiReg getNextSemesterResiReg(ReadOnlyResiReg toBeCopied) {
@@ -94,6 +98,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
+        indicateModified();
     }
 
     /**
@@ -102,6 +107,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void setRooms(List<Room> rooms) {
         this.rooms.setRooms(rooms);
+        indicateModified();
     }
 
     /**
@@ -110,6 +116,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void setAllocations(List<Allocation> allocations) {
         this.allocations.setAllocations(allocations);
+        indicateModified();
     }
 
     /**
@@ -150,8 +157,8 @@ public class ResiReg implements ReadOnlyResiReg {
     public void addStudent(Student student) {
         assert !hasStudent(student) : "Student must not already exist in ResiReg!";
         students.add(student);
+        indicateModified();
     }
-
 
     /**
      * Adds a student to ResiReg.
@@ -161,6 +168,7 @@ public class ResiReg implements ReadOnlyResiReg {
         assert !hasStudent(student) : "Student must not already exist in ResiReg!";
         if (isFront) {
             students.add(0, student);
+            indicateModified();
         } else {
             addStudent(student);
         }
@@ -175,6 +183,7 @@ public class ResiReg implements ReadOnlyResiReg {
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
         students.setStudent(target, editedStudent);
+        indicateModified();
     }
 
     /**
@@ -183,6 +192,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+        indicateModified();
     }
 
     /**
@@ -210,6 +220,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void addRoom(Room r) {
         rooms.add(r);
+        indicateModified();
     }
 
     /**
@@ -229,6 +240,7 @@ public class ResiReg implements ReadOnlyResiReg {
     public void setRoom(Room target, Room editedRoom) {
         requireNonNull(editedRoom);
         rooms.setRoom(target, editedRoom);
+        indicateModified();
     }
 
     /**
@@ -237,6 +249,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void removeRoom(Room key) {
         rooms.remove(key);
+        indicateModified();
     }
 
 
@@ -295,6 +308,7 @@ public class ResiReg implements ReadOnlyResiReg {
     public void addAllocation(Allocation allocation) {
         requireNonNull(allocation);
         allocations.add(allocation);
+        indicateModified();
     }
 
     /**
@@ -314,6 +328,7 @@ public class ResiReg implements ReadOnlyResiReg {
     public void setAllocation(Allocation target, Allocation editedAllocation) {
         requireNonNull(editedAllocation);
         allocations.setAllocation(target, editedAllocation);
+        indicateModified();
     }
 
     /**
@@ -322,6 +337,23 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void removeAllocation(Allocation key) {
         allocations.remove(key);
+        indicateModified();
+    }
+
+    //// methods related to listeners
+    public void addListener(InvalidationListener listener) {
+        listenerList.addListener(listener);
+    }
+
+    public void removeListener(InvalidationListener listener) {
+        listenerList.removeListener(listener);
+    }
+
+    /**
+     * Notifies listeners that there are modifications to resireg.
+     */
+    protected void indicateModified() {
+        listenerList.callListeners(this);
     }
 
     //// util methods

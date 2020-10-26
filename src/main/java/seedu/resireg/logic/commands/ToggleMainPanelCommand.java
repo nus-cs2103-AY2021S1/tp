@@ -1,5 +1,7 @@
 package seedu.resireg.logic.commands;
 
+import seedu.resireg.logic.CommandHistory;
+import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.storage.Storage;
 
@@ -15,7 +17,7 @@ public class ToggleMainPanelCommand extends Command {
             "Toggles the main panel layout between a tabbed view and a split view.");
 
     @Override
-    public CommandResult execute(Model model, Storage storage) {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
         return new ToggleMainPanelCommandResult(MESSAGE_SUCCESS);
     }
 }

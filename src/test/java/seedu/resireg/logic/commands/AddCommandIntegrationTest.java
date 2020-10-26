@@ -7,6 +7,7 @@ import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
@@ -17,6 +18,8 @@ import seedu.resireg.testutil.StudentBuilder;
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
 public class AddCommandIntegrationTest {
+
+    private CommandHistory history = new CommandHistory();
 
     private Model model;
 
@@ -33,7 +36,7 @@ public class AddCommandIntegrationTest {
         expectedModel.addStudent(validStudent);
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(new AddCommand(validStudent), model,
+        assertCommandSuccess(new AddCommand(validStudent), model, history,
                 String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getNameAsString(),
                     validStudent.getStudentId().value), expectedModel);
     }
@@ -41,7 +44,7 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicateStudent_throwsCommandException() {
         Student studentInList = model.getResiReg().getStudentList().get(0);
-        assertCommandFailure(new AddCommand(studentInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCommand(studentInList), model, history, AddCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

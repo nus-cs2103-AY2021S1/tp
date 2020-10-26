@@ -2,6 +2,7 @@ package seedu.resireg.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.storage.Storage;
@@ -31,7 +32,7 @@ public class SetBinExpiryCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
         model.setDaysStoredInBin(daysStoredInBin);

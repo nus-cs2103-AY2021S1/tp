@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelPredicate;
@@ -33,6 +34,8 @@ import seedu.resireg.testutil.CommandWordAliasBuilder;
 
 public class AddAliasCommandTest {
 
+    private CommandHistory history = new CommandHistory();
+
     @Test
     public void constructor_nullAlias_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddAliasCommand(null));
@@ -44,7 +47,7 @@ public class AddAliasCommandTest {
         CommandWordAlias validAlias = new CommandWordAliasBuilder().build();
         Storage storageStub = null;
 
-        CommandResult commandResult = new AddAliasCommand(validAlias).execute(modelStub, storageStub);
+        CommandResult commandResult = new AddAliasCommand(validAlias).execute(modelStub, storageStub, history);
 
         assertEquals(String.format(AddAliasCommand.MESSAGE_SUCCESS, validAlias), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAlias), modelStub.aliasesAdded);
@@ -58,7 +61,7 @@ public class AddAliasCommandTest {
         Storage storageStub = null;
 
         assertThrows(CommandException.class,
-            AddAliasCommand.MESSAGE_DUPLICATE_ALIAS, () -> addAliasCommand.execute(modelStub, storageStub));
+            AddAliasCommand.MESSAGE_DUPLICATE_ALIAS, () -> addAliasCommand.execute(modelStub, storageStub, history));
     }
 
     @Test

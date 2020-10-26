@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.allocation.Allocation;
@@ -32,6 +33,7 @@ import seedu.resireg.model.student.Student;
 public class DeallocateCommandTest {
 
     private Model model = new ModelManager(getTypicalResiReg(), getTypicalUserPrefs());
+    private CommandHistory history = new CommandHistory();
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -55,14 +57,14 @@ public class DeallocateCommandTest {
         expectedModel.removeAllocation(toDeallocate);
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(deallocateCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deallocateCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexStudentUnfilteredList_throwsCommandException() {
         Index outOfBoundIndexStudent = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         DeallocateCommand deallocateCommand = new DeallocateCommand(outOfBoundIndexStudent);
-        assertCommandFailure(deallocateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -72,7 +74,7 @@ public class DeallocateCommandTest {
         // ensures that outOfBoundIndex is still in bounds of ResiReg list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getStudentList().size());
         DeallocateCommand deallocateCommand = new DeallocateCommand(outOfBoundIndex);
-        assertCommandFailure(deallocateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test

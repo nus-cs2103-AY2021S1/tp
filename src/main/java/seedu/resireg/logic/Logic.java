@@ -50,6 +50,12 @@ public interface Logic {
     ObservableList<BinItem> getFilteredBinItemList();
 
     /**
+     * Returns an unmodifiable view of the list of commands entered by the user.
+     * The list is ordered in reverse chronological order.
+     */
+    ObservableList<String> getHistory();
+
+    /**
      * Returns the user prefs' ResiReg file path.
      */
     Path getResiRegFilePath();

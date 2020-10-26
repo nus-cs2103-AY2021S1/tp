@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
@@ -34,6 +35,8 @@ import seedu.resireg.model.student.Student;
  * is free to be allocated.
  */
 public class ReallocateCommandTest {
+
+    private CommandHistory history = new CommandHistory();
 
     private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
 
@@ -62,21 +65,21 @@ public class ReallocateCommandTest {
         expectedModel.setAllocation(toReallocate, editedAllocate);
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(allocateCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(allocateCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexStudentUnfilteredList_throwsCommandException() {
         Index outOfBoundIndexStudent = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         ReallocateCommand reallocateCommand = new ReallocateCommand(outOfBoundIndexStudent, INDEX_FOURTH_ROOM);
-        assertCommandFailure(reallocateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidIndexRoomUnfilteredList_throwsCommandException() {
         Index outOfBoundIndexRoom = Index.fromOneBased(model.getFilteredRoomList().size() + 1);
         ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, outOfBoundIndexRoom);
-        assertCommandFailure(reallocateCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
     }
 
     @Test
@@ -86,7 +89,7 @@ public class ReallocateCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getStudentList().size());
         ReallocateCommand reallocateCommand = new ReallocateCommand(outOfBoundIndex, INDEX_FOURTH_ROOM);
-        assertCommandFailure(reallocateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -96,7 +99,7 @@ public class ReallocateCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getRoomList().size());
         ReallocateCommand reallocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
-        assertCommandFailure(reallocateCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        assertCommandFailure(reallocateCommand, model, history, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
     }
 
     @Test
