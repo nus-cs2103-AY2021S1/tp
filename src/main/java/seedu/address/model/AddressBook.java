@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
@@ -60,11 +61,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code modules}.
+     * Replaces the contents of the active module list with {@code modules}.
      * {@code modules} must not contain duplicate modules.
      */
     public void setModules(UniqueModuleList modules) {
         this.modules.setModules(modules);
+    }
+
+    /**
+     * Replaces the contents of the semester one list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setSemOneModules(UniqueModuleList modules) {
+        this.semOneModules.setModules(modules);
+    }
+
+    /**
+     * Replaces the contents of the semester two list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setSemTwoModules(UniqueModuleList modules) {
+        this.semTwoModules.setModules(modules);
     }
 
     /**
@@ -74,7 +91,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setModules(newData.getModuleList());
+        setSemOneModules(newData.getSemOneModuleList());
+        setSemTwoModules(newData.getSemTwoModuleList());
     }
 
 
@@ -255,10 +273,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Switches the active module list.
-     */
-    public void switchModuleList() {
+     * Switches the active module list and returns the new active list.
+     * */
+    public UniqueModuleList switchModuleList() {
         modules = (modules.equals(semOneModules) ? semTwoModules : semOneModules);
+        UniqueModuleList moduleList = new UniqueModuleList();
+        moduleList.setModules(modules);
+        return moduleList;
     }
 
     /**
