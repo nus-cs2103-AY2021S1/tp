@@ -1,6 +1,11 @@
 package seedu.address.logic.commands.ingredientcommands;
 
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -8,10 +13,6 @@ import seedu.address.model.ReadOnlyIngredientBook;
 import seedu.address.model.ingredient.Amount;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
-
-import java.util.List;
-
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 
 public class IngredientRestockCommandTest {
 

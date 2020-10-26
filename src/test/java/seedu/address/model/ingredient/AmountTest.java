@@ -38,7 +38,7 @@ class AmountTest {
     }
 
     @Test
-    public void IsAmountBelowRestockLevel() {
+    public void isAmountBelowRestockLevel() {
         Amount testAmount1 = new Amount("1");
         Amount testAmount2 = new Amount("2");
         Amount testAmount4 = new Amount("4");

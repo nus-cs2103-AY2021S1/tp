@@ -228,7 +228,7 @@ Format: `i-list`
 #### 3.5 Viewing a single ingredient's level : `i-view-single`
 Shows the ingredient's level of a particular type of ingredient that is specified by the user’s command.
 
-Format: `i-view-single i/INGREDIENTNAME`
+Format: `i-view-single i/INGREDIENT_NAME`
 
 Example:
 * `i-view-single i/Green Tea`
@@ -237,7 +237,7 @@ Shows the amount of green tea recorded by tCheck.
 #### 3.7 Resetting all ingredients' levels to zero : `i-reset-all`
 Resets all types of ingredients' levels to zero in tCheck.
 
-Format: `i-resetall`
+Format: `i-reset-all`
 
 #### 3.6 Listing all ingredients that user should restock : `i-restock`
 Lists the ingredient's levels of all ingredient types that require the user to restock.
