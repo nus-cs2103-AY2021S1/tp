@@ -414,7 +414,7 @@ Format: `newacc n/NAME`
 
 :information_source: **Note:**
 
-Do note that app does not automatically switch to the new account. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
+Do note that Common Cents does not automatically switch to the new account. Once the account is created, you can check it via [`listacc`](#listing-accounts-you-have-listacc) 
 or switch to it via [`switchacc`](#switching-accounts-switchacc). 
 
 </div>
