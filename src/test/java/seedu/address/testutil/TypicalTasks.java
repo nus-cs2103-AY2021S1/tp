@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Planus;
-import seedu.address.model.task.State;
+import seedu.address.model.task.deadline.status;
 import seedu.address.model.task.Task;
 
 /**
