@@ -35,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
     private UiLogic uiLogic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private Inventory inventory;
@@ -181,10 +180,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
