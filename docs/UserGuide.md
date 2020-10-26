@@ -104,8 +104,6 @@ For example, the **add ingredient** command is specified like this: `add ingredi
 
 This command shows a message with a link to this user guide; you can use this to easily access this page from the application. Note that you can also access this help dialog from the menubar at the top, under `Help` -> `Docs`.
 
-![help message](images/helpMessage.png)
-
 Usage: `help`
 
 <div style="text-align: center; padding-bottom: 2em">
@@ -545,11 +543,7 @@ Usage: `undo`
 
 
 
-<<<<<<< HEAD
 #### Redoing commands — **`redo`**
-=======
-### Undoing commands — **`redo`**
->>>>>>> 3e5cf586730dc2e1381994cc8de9d93ecef71089
 Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
 
 Usage: `redo`
