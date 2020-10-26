@@ -11,8 +11,9 @@ title: User Guide
 ### Warenager’s User Guide
 
 This user guide introduces our inventory application, Warenager, and provides support
-for the usage of its functionalities. For quick reference, we have provided a summarised table of commands
-and their usage formats at the end of this guide.
+for the usage of its functionalities. For quick reference, we have provided a [summarised table of commands]
+(https://ay2021s1-cs2103t-t15-3.github.io/tp/UserGuide.html#command-summary) and their usage formats
+at the end of this guide.
 
 ### About Warenager
 
