@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -18,6 +19,8 @@ public interface LogicForExercise {
     public ReadOnlyExerciseBook getExerciseBook();
 
     public ObservableList<Exercise> getFilteredExerciseList();
+
+    public HashMap<String, Integer> getCaloriesByDay();
 
     public Path getExerciseBookFilePath();
 

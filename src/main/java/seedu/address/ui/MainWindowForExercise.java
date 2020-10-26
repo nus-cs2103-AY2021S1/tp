@@ -35,6 +35,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
     private ExerciseListPanel exerciseListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CaloriesGraph caloriesGraph;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -53,6 +54,9 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane caloriesGraphPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -111,7 +115,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
     }
 
     /**
-     * Fil  ls up all the placeholders of this window.
+     * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
         exerciseListPanel = new ExerciseListPanel(logic.getFilteredExerciseList());
@@ -125,6 +129,9 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        caloriesGraph = new CaloriesGraph(logic.getCaloriesByDay());
+        caloriesGraphPlaceholder.getChildren().add(caloriesGraph.getRoot());
     }
 
     /**
@@ -181,6 +188,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            caloriesGraph.generateGraph();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

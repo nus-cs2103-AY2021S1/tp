@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -82,7 +83,7 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
      */
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireNonNull(editedExercise);
-        exercises.setExercise(target, editedExercise);
+        exercises.updateExercise(target, editedExercise);
     }
 
     /**
@@ -99,6 +100,11 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     public String toString() {
         return exercises.asUnmodifiableObservableList().size() + " exercises";
         // TODO: refine later
+    }
+
+    @Override
+    public HashMap<String, Integer> getCaloriesByDay() {
+        return exercises.getCaloriesByDay();
     }
 
     @Override

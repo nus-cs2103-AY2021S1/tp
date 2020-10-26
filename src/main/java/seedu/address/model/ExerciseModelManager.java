@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -133,7 +134,12 @@ public class ExerciseModelManager implements ExerciseModel {
      */
     @Override
     public ObservableList<Exercise> getFilteredExerciseList() {
+
         return filteredExercises;
+    }
+
+    public HashMap<String, Integer> getCaloriesByDay() {
+        return exerciseBook.getCaloriesByDay();
     }
 
     @Override

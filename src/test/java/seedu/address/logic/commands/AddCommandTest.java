@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -135,6 +136,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public HashMap<String, Integer> getCaloriesByDay() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Exercise> getFilteredExerciseList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -150,6 +156,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingExerciseAdded extends ModelStub {
         final ArrayList<Exercise> exercisesAdded = new ArrayList<>();
+        final HashMap<String, Integer> caloriesByDay = new HashMap<>();
 
         @Override
         public boolean hasExercise(Exercise exercise) {
@@ -160,7 +167,24 @@ public class AddCommandTest {
         @Override
         public void addExercise(Exercise exercise) {
             requireNonNull(exercise);
+            addCaloriesForDay(exercise);
             exercisesAdded.add(exercise);
+        }
+
+        private void addCaloriesForDay(Exercise newEntry) {
+            String stringDate = newEntry.getDate().value;
+            Integer intCalories = Integer.parseInt(newEntry.getCalories().value);
+            if (caloriesByDay.containsKey(stringDate)) {
+                Integer newCalories = caloriesByDay.get(stringDate) + intCalories;
+                caloriesByDay.put(stringDate, newCalories);
+            } else {
+                caloriesByDay.put(stringDate, intCalories);
+            }
+        }
+
+        @Override
+        public HashMap<String, Integer> getCaloriesByDay() {
+            return caloriesByDay;
         }
 
         @Override
