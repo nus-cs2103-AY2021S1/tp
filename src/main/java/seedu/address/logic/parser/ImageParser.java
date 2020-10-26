@@ -60,12 +60,16 @@ public class ImageParser {
 
             //imagePath = getPathsFromResourceJAR("data") + "/" + filename;
             FileOutputStream fos = new FileOutputStream(imagePath);
-            //URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
-            //URL data = new URL(jarLocation, "data/" + filename);
-            //imagePath = data.toURI().getPath();
+            URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
+            URL data = new URL(jarLocation, "data/" + filename);
+            imagePath = data.toURI().getPath();
             fos.write(response);
             fos.close();
+            //File file = FileHelp.from("file:///" + imagePath, filename);
+            //imagePath = file.getPath();
+            imagePath = "file://" + imagePath;
         }
+
         //return new RecipeImage("images/" + filename);
         return new RecipeImage(imagePath);
     }
