@@ -31,11 +31,11 @@ Choose a topic from the table of contents to get started on your Wishful Shrinki
 3. Copy the file to an empty folder you want to use as the _home folder_.
 
 4. **Double-click** the jar file to start the app OR start the app using **CLI** and type `java -jar <jar file name>.jar`.<br>
-   The app should look similar to the one shows below:<br>
-   ![Ui](images/Ui.png)
+   The app should look similar to the one shown below:<br>
+   <img src="images/Ui.png" width="550" height="300">
 
 5. Below is a brief explanation of Wishful Shrinking's components.<br>
-   ![UiExplained](images/UiExplained.png)
+   <img src="images/UiExplained.png" width="550" height="300">
    * List of recipes/ingredients/consumption: The left window will display either a list of recipes, a list of ingredients or the consumption list depending on your input. In the image above, it is displaying the recipe list.
    * Command Result: The Command Result box will show the result of your input into the Command Box.
    * Command Box: Here is where you will type all your commands.
@@ -52,7 +52,7 @@ Choose a topic from the table of contents to get started on your Wishful Shrinki
    * **`exit`** : Exits the app.
 
 7. Refer to the [Features](#features) below for details of each command.
-
+<br><br>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -72,12 +72,17 @@ Choose a topic from the table of contents to get started on your Wishful Shrinki
   e.g `n/NAME [t/TAG]` can be used as `n/Salad t/healthy` or as `n/Salad`.
 
 * Items with `…`​ after them can be used more than 1 times.<br>
-  e.g. `[t/TAG]…​` can be used as `t/healthy`, `t/healthy t/low calories` etc.
+  e.g. `[t/TAG]…​` can be used as `t/healthy` or `t/healthy t/low calories`.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME i/INGREDIENTS`, `i/INGREDIENTS n/NAME` is also acceptable.
 </div>
-<br>
+<br><br>
+
+## Main Commands
+
+The main commands include `help` and `exit`. They are the main commands you can use in Wishful Shrinking that are separate from the Recipes, Fridge and Consumption list.
+<br><br><br>
 
 ### Viewing help : `help`
 
@@ -86,34 +91,37 @@ Shows a message explaining how to access the help page.
 ![help message](images/helpMessage.png)
 
 Format: `help`
-<br><br>
+<br><br><br>
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
-<br><br>
+<br><br><br>
 
-## Recipe
+## Recipe-related Commands
+
+The Recipe-related commands include `addR`, `recipes`, `selectR`, `close`, `deleteR`, `editR`, `searchR`, `recommend` and `clearR`. These are the commands in Wishful Shrinking that are relevant only to the Recipes.
+<br><br><br>
 
 ### Adding a recipe: `addR`
 
 Adds a recipe to Recipe list.
 
-![add recipe](images/AddRecipeImage.png)
+<img src="images/AddRecipeImage.png" width="550" height="300">
 
 Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] c/CALORIES img/IMAGE inst/INSTRUCTION... [t/TAG]...`
 
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
-    * there is a mandatory space before `-` 
+* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+    * Note: there is a mandatory space before `-`.
 * `CALORIES` **must be a positive integer** e.g. 100, 200, 300......
 * `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
-   * If you want to use an image that has been saved in your computer, you have to copy that image into Wishful Shrinking's data folder. Then, replace IMAGE in img/IMAGE with the file name of your image, e.g. img/myimage.png.
-   * If you want to use a url as the image, make sure that you are connected to the internet on your computer, and that the url is the **image address** (starting with https:// and ending with .jpg/jpeg/png).
-   * If you input an invalid file path, or input a url while there is no internet, Wishful Shrinking will replace the image with a default image.
+   * Note: If you want to use an image that has been saved in your computer, you have to copy that image into Wishful Shrinking's data folder. Then, replace IMAGE in img/IMAGE with the file name of your image, e.g. img/myimage.png.
+   * Note: If you want to use a url as the image, make sure that you are connected to the internet on your computer, and that the url is the **image address** (starting with https:// and ending with .jpg/jpeg/png).
+   * Note: If you input an invalid file path, or input a url while there is no internet, Wishful Shrinking will replace the image with a default image.
 * Each `INSTRUCTION` is separated by a `.` e.g. instr/Cook. Eat.
-   * You don't have to number the steps, Wishful Shrinking will number each instruction after separating by `.`
+   * Tip: You don't have to number the steps. Wishful Shrinking will number each instruction after separating by `.`
 
 Examples:
 * `addR n/salad i/lettuce, tomato, olive oil c/40 img/images/healthy1.jpg instr/Cook. Eat. t/fast t/easy`
@@ -124,7 +132,7 @@ Examples:
 
 Shows a list of all recipes in the Recipe list.
 
-![list recipes](images/ListRecipesImage.png)
+<img src="images/ListRecipesImage.png" width="550" height="300">
 
 Format: `recipes`
 <br><br><br>
@@ -133,13 +141,13 @@ Format: `recipes`
 
 Displays the information of a single recipe in full view.
 
-![select recipe](images/SelectRecipeImage.png)
+<img src="images/SelectRecipeImage.png" width="550" height="300">
 
 Format: `selectR INDEX`
 
 * Selects the recipe at the specified `INDEX` to show its full information.
-* The index refers to the index number shown in the displayed recipe list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Note: The index refers to the index number shown in the displayed recipe list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 
 Examples:
 * `selectR 1` shows the 1st recipe in full view (left drawer), as well as in the command result box on the right.
@@ -149,24 +157,25 @@ Examples:
 
 Closes the left drawer (if opened after selecting a recipe).
 
-![close recipe](images/CloseRecipeImage.png)
+<img src="images/CloseRecipeImage.png" width="550" height="300">
 
 Format: `close`
 
 * This command closes the left drawer that is opened after you have selected a recipe.
+* Note: Nothing will happen if you use this command when the left drawer is not opened.
 <br><br><br>
 
 ### Deleting a recipe : `deleteR`
 
 Deletes the specified recipe from the Recipe list.
 
-![delete recipes](images/DeleteRecipeImage.png)
+<img src="images/DeleteRecipeImage.png" width="550" height="300">
 
 Format: `deleteR INDEX`
 
 * Deletes the recipe at the specified `INDEX`.
-* The index refers to the index number shown in the displayed recipe list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Note: The index refers to the index number shown in the displayed recipe list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 
 Examples:
 * `recipes` followed by `deleteR 2` deletes the 2nd recipe in Recipe list.
@@ -177,18 +186,18 @@ Examples:
 
 Edits the specified recipe from the Recipe list.
 
-![edit recipe](images/EditRecipeImage.png)
+<img src="images/EditRecipeImage.png" width="550" height="300">
 
 Format: `editR INDEX [n/NAME] [i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]] [c/CALORIES] [img/IMAGE] 
 [inst/INSTRUCTION...] [t/TAG]...`
 
 * Edits the recipe at the specified `INDEX`.
-* The index refers to the index number shown in the displayed recipe list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Note: The index refers to the index number shown in the displayed recipe list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 * Note: All fields are optional, but **at least one** of the fields must be present. There can be any number of fields to edit.
-* Note: You are not allowed to edit a recipe into another recipe that is already in the recipe list
-* Note: Use carefully as this command will override the existing values with the new values
-* Tip: Typing `editR INDEX` and then hitting `Enter` will insert the information of the recipe at the specified `INDEX` into the command box, letting you directly modify the existing recipe
+* Note: You are not allowed to edit a recipe into another recipe that is already in the recipe list.
+* Note: Use carefully as this command will override the existing values with the new values.
+* Tip: Typing `editR INDEX` and then hitting `Enter` will insert the information of the recipe at the specified `INDEX` into the command box, letting you directly modify the existing recipe.
 
 Examples:
 * `editR 2 n/Apple salad i/apple` will update the name of the 2nd recipe in the displayed recipe list to Apple salad and the ingredients to contain an apple ingredient.
@@ -198,13 +207,13 @@ Examples:
 
 Adds the information of the specified recipe to the edit command into the command box for editing purposes.
 
-![edit recipe get](images/EditRecipeGetImage.png)
+<img src="images/EditRecipeGetImage.png" width="550" height="300">
 
 Format: `editR INDEX`
 
-* Gets the information of the recipe at the specified `INDEX` and adds it behind the edit recipe command in the command box
-* The index refers to the index number shown in the displayed recipe list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Gets the information of the recipe at the specified `INDEX` and adds it behind the edit recipe command in the command box.
+* Note: The index refers to the index number shown in the displayed recipe list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 
 Examples:
 * `editR 2` followed by `Enter` will insert the information of the 2nd recipe in the displayed recipe list into the command box.
@@ -214,54 +223,59 @@ Examples:
 
 Finds recipes in the Recipe list that contains all the specified ingredients OR whose name OR tags contain any of the given keywords.
 
-![search recipe](images/SearchRecipeImage.png)
+<img src="images/SearchRecipeImage.png" width="550" height="300">
 
 Format: `searchR [i/INGREDIENT [MORE_INGREDIENT]] [n/NAME [MORE_NAME]] [t/TAG [MORE_TAG]]`
 
-* The search is case-insensitive. e.g `salad` will match `Salad`
-* Note: All fields are optional, but **only one** of the fields must be present. You can only search by the recipe ingredient OR recipe name OR recipe tag.
-* The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham
-* Ingredient are separated by a space
+* The search is case-insensitive. e.g `salad` will match `Salad`.
+* The order of the keywords does not matter. e.g. Ham Salad will match Salad with Ham.
+* Ingredients are separated by a space.
+* Note: All fields are optional, but **only one** of the fields must be present. You can only search by the recipe ingredient(s) OR recipe name OR recipe tag(s).
 
 Examples:
-* `searchR i/lettuce tomato` returns `salad` that has both ingredients `lettuce` and `tomato`
-* `searchR n/salad` returns `salad` and `ham salad`
-* `searchR t/healthy` returns `salad` with tag `healthy`
+* `searchR i/lettuce tomato` returns `salad` that has both ingredients `lettuce` and `tomato`.
+* `searchR n/salad` returns `salad` and `ham salad`.
+* `searchR t/healthy` returns `salad` with tag `healthy`.
 <br><br><br>
 
 ### Recommending recipes : `recommend`
 
 Shows a list of all recipes in the Recipe list that can be made with the ingredients in your fridge.
 
-![recommend recipe](images/RecommendImage.png)
+<img src="images/RecommendImage.png" width="550" height="300">
 
 Format: `recommend`
 
+* Note: Recipes will only be recommend if you have all the ingredients in the recipe with the exact same name in your fridge.
+
 Examples:
-* `recommend` returns the recipe `salad` with ingredients `lettuce`, `onion` and `tomato` **only if** you have all `lettuce`, `onion` and `tomato` in your fridge
+* `recommend` returns the recipe `salad` with ingredients `lettuce`, `onion` and `tomato` **only if** you have all `lettuce`, `onion` and `tomato` in your fridge.
 <br><br><br>
 
 ### Clearing all recipes : `clearR`
 
 Clears all the recipes in the Recipe list.
 
-![clear recipes](images/ClearRecipeImage.png)
+<img src="images/ClearRecipeImage.png" width="550" height="300">
 
 Format: `clearR`
 <br><br><br>
 
-## Fridge
+## Fridge-related Commands
+
+The Fridge-related commands include `addF`, `fridge`, `deleteF`, `editF`, `searchF` and `clearF`. These are the commands in Wishful Shrinking that are relevant only to the Fridge.
+<br><br><br>
 
 ### Adding an ingredient: `addF`
 
 Adds an ingredient to the Fridge.
 
-![add ingredient](images/AddIngredientImage.png)
+<img src="images/AddIngredientImage.png" width="550" height="300">
 
 Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
-* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole
-    * there is a mandatory space before `-` 
+* `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
+    * Note: there is a mandatory space before `-`.
 
 Examples:
 * `addF i/peanut`
@@ -273,7 +287,7 @@ Examples:
 
 Shows a list of all ingredients in the Fridge.
 
-![list ingredient](images/ListIngredientsImage.png)
+<img src="images/ListIngredientsImage.png" width="550" height="300">
 
 Format: `fridge`
 <br><br><br>
@@ -282,13 +296,13 @@ Format: `fridge`
 
 Deletes the specified ingredient from the Fridge.
 
-![delete ingredient](images/DeleteIngredientImage.png)
+<img src="images/DeleteIngredientImage.png" width="550" height="300">
 
 Format: `deleteF INDEX`
 
 * Deletes the ingredient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed ingredient list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Note: The index refers to the index number shown in the displayed ingredient list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 
 Examples:
 * `fridge` followed by `deleteF 4` deletes the 4th ingredient in the fridge.
@@ -299,17 +313,17 @@ Examples:
 
 Edits the specified ingredient from Fridge.
 
-![edit ingredient](images/EditIngredientImage.png)
+<img src="images/EditIngredientImage.png" width="550" height="300">
 
 Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 
 * Edits the ingredient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed ingredient list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Note: The index refers to the index number shown in the displayed ingredient list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 * Note: All fields are optional, but **at least one** of the fields must be present.
-* Note: You are not allowed to edit an ingredient into another ingredient that is already in the ingredient list
-* Note: Use carefully as this command will override the existing values with the new values
-* Tip: Typing `editF INDEX` and then hitting `Enter` will insert the information of the ingredient at the specified `INDEX` into the command box, letting you directly modify the existing ingredient
+* Note: You are not allowed to edit an ingredient into another ingredient that is already in the ingredient list.
+* Note: Use carefully as this command will override the existing values with the new values.
+* Tip: Typing `editF INDEX` and then hitting `Enter` will insert the information of the ingredient at the specified `INDEX` into the command box, letting you directly modify the existing ingredient.
 
 Examples:
 * `editF 2 i/apple` will update the value of the 2nd recipe in the displayed ingredient list to apple.
@@ -319,13 +333,13 @@ Examples:
 
 Adds the information of the specified ingredient to the edit command into the command box for editing purposes.
 
-![edit ingredient get](images/EditIngredientGetImage.png)
+<img src="images/EditIngredientGetImage.png" width="550" height="300">
 
 Format: `editF INDEX`
 
-* Gets the information of the ingredient at the specified `INDEX` and adds it behind the edit ingredient command in the command box
-* The index refers to the index number shown in the displayed ingredient list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Gets the information of the ingredient at the specified `INDEX` and adds it behind the edit ingredient command in the command box.
+* Note: The index refers to the index number shown in the displayed ingredient list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 
 Examples:
 * `editF 1` followed by `Enter` will insert the information of the 1st ingredient in the displayed ingredient list into the command box.
@@ -335,40 +349,43 @@ Examples:
 
 Finds ingredients in the Fridge that contain any of the given keywords.
 
-![search ingredient](images/SearchIngredientImage.png)
+<img src="images/SearchIngredientImage.png" width="550" height="300">
 
 Format: `searchF KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `peanut` will match `Peanut`
+* The search is case-insensitive. e.g `peanut` will match `Peanut`.
 * Only the ingredient name is searched.
-* The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut
+* The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut.
 
 Examples:
-* `searchF peanut` returns `peanut` and `peanut butter`
+* `searchF peanut` returns `peanut` and `peanut butter`.
 <br><br><br>
 
 ### Clearing all ingredients : `clearF`
 
 Clears all the ingredients in the Fridge.
 
-![clear fridge](images/ClearFridgeImage.png)
+<img src="images/ClearFridgeImage.png" width="550" height="300">
 
 Format: `clearF`
 <br><br><br>
 
-## Consumption
+## Consumption-related Commands
+
+The Consumption-related commands include `eatR`, `calories`, `deleteC`, and `clearC`. These are the commands in Wishful Shrinking that are relevant only to the Consumption list.
+<br><br><br>
 
 ### Eating a recipe : `eatR`
 
 Adds the specified recipe in the Recipe list into the Consumption list.
 
-![eat recipe](images/EatRecipeImage.png)
+<img src="images/EatRecipeImage.png" width="550" height="300">
 
 Format: `eatR INDEX`
 
 * Adds the recipe at the specified `INDEX` into the Consumption list.
-* The index refers to the index number shown in the displayed recipe list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Note: The index refers to the index number shown in the displayed recipe list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 
 Examples:
 * `recipes` followed by `eatR 2` adds the 2nd recipe in the displayed recipe list into the Consumption list.
@@ -377,9 +394,9 @@ Examples:
 
 ### Listing all recipes eaten : `calories`
 
-Shows a list of all recipes that have been eaten by you.
+Shows a list of all recipes that you have eaten, as well as each recipe's calories and the total calories consumed.
 
-![calories](images/CaloriesImage.png)
+<img src="images/CaloriesImage.png" width="550" height="300">
 
 Format: `calories`
 <br><br><br>
@@ -388,23 +405,23 @@ Format: `calories`
 
 Deletes the specified recipe from consumption list.
 
-![delete calories](images/DeleteCalorieImage.png)
+<img src="images/DeleteCalorieImage.png" width="550" height="300">
 
 Format: `deleteC INDEX`
 
 * Deletes the recipe at the specified `INDEX`.
-* The index refers to the index number shown in the displayed consumption list.
-* The index **must be a positive integer** e.g. 1, 2, 3......
+* Note: The index refers to the index number shown in the displayed consumption list.
+* Note: The index **must be a positive integer** e.g. 1, 2, 3......
 
 Examples:
-* `calories` followed by `deleteC 2` deletes the 2nd recipe in Consumption List.
+* `calories` followed by `deleteC 2` deletes the 2nd recipe in the Consumption List.
 <br><br><br>
 
-### Clearing all consumed recipes in consumption : `clearC`
+### Clearing all consumed recipes : `clearC`
 
 Clears all the recipes that have been eaten in the daily consumption list.
 
-![clear consumption](images/ClearConsumptionImage.png)
+<img src="images/ClearConsumptionImage.png" width="550" height="300">
 
 Format: `clearC`
 <br><br><br>
@@ -428,12 +445,17 @@ Wishful Shrinking's data is saved in the hard disk automatically after any comma
 --------------------------------------------------------------------------------------------------------------------
 
 # Glossary
-**Wishful Shrinking**: Can refer to name of the application as a whole or to the app’s storage file<br>
-**Fridge**: A personalised storage that contains all the ingredients that you have<br>
-**Recipe**: A set of cooking instructions that describes how to prepare a meal and the ingredients required<br>
-**Ingredient**: Food that can be used to prepare a particular dish according to a recipe<br>
-**Consumption**: A counter which calculates and displays your calorie intake based on the recipes you have consumed as well as a list of recipes consumed<br>
-**Drawer**: Page that layers above left section of the window when the `select` command runs and closes when the `close` command runs<br><br>
+
+Term | Explanation
+--------|------------------
+**Wishful Shrinking** | Can refer to name of the application as a whole or to the app’s storage file.<br>
+**Fridge** | A personalised storage that contains all the ingredients that you have.<br>
+**Recipe** | A set of cooking instructions that describes how to prepare a meal and the ingredients required.<br>
+**Ingredient** | Food that can be used to prepare a particular dish according to a recipe.<br>
+**Consumption** | A counter which calculates and displays your calorie intake based on the recipes you have consumed as well as a list of recipes consumed.<br>
+**Drawer** | Page that layers above left section of the window when the `selectR` command runs and closes when the `close` command runs.
+**CLI** | A Command Line Interface (CLI) is a text-based user interface that allows users to type text commands instructing the program to do specific tasks.
+**GUI** | A Graphical User Interface (GUI) is a form of user interface that allows users to interact with the program through graphical icons instead of text-based user interfaces.
 
 --------------------------------------------------------------------------------------------------------------------
 
