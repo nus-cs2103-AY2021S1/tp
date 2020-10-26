@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.ArgumentMultimapUtil.isOnlyOnePrefixPresent;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.isOnlyOneGivenPrefixPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASCENDING_SORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCENDING_SORT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
@@ -33,8 +33,8 @@ public class TaskSorterCommandParser implements Parser<TaskSorterCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT,
                 PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
 
-        if (!(isOnlyOnePrefixPresent(argMultimap, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT)
-            && isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME,
+        if (!(isOnlyOneGivenPrefixPresent(argMultimap, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT)
+            && isOnlyOneGivenPrefixPresent(argMultimap, PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME,
             PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskSorterCommand.MESSAGE_USAGE));
         }

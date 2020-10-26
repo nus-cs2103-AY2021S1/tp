@@ -12,22 +12,30 @@ public class ArgumentMultimapUtil {
     }
 
     /**
-     * Checks there is only one of the given prefixes is present.
+     * Returns true if only one of the given prefixes is present.
      * @param argumentMultimap  the map containing the prefixes and the corresponding Strings
      * @param prefixes  prefixes to check
-     * @return  true if only one of the prefixes is present, and false otherwise
      */
-    public static boolean isOnlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        if (argumentMultimap.numOfPrefixes() != 1) {
-            return false;
-        }
+    public static boolean isOnlyOneGivenPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes)
             .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
             .count() == 1;
     }
 
     /**
-     * Checks if the given two prefixes are the only prefixes presented.
+     * Returns true if there is one and only one prefix in the argumentMultimap,
+     * and that prefix is one of the given prefixes.
+     * @param argumentMultimap  the map containing the prefixes and the corresponding Strings
+     * @param prefixes  prefixes to check
+     */
+    public static boolean isOnlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        if (argumentMultimap.numOfPrefixes() != 1) {
+            return false;
+        }
+        return isOnlyOneGivenPrefixPresent(argumentMultimap, prefixes);
+    }
+    /**
+     * Checks if the given two prefixes are the only prefixes that are present.
      * @param argumentMultimap  the map containing the prefixes and the corresponding Strings
      * @param prefix1  the first prefix to check
      * @param prefix2  the second prefix to check
