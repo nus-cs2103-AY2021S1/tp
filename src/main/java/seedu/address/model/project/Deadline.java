@@ -3,7 +3,10 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+
+import seedu.address.model.task.Date;
 
 /**
  * Represents a Project's deadline in the main catalogue.
@@ -58,43 +61,14 @@ public class Deadline implements Comparable<Deadline> {
         boolean isValidTime = false;
         if (test.matches(VALIDATION_REGEX)) {
             String[] dateTime = test.split(" ");
-            isValidDate = isValidDate(dateTime[0]);
+            isValidDate = Date.isValidDate(dateTime[0]);
             isValidTime = isValidTime(dateTime[1]);
         }
         return isValidDate && isValidTime;
     }
 
     /**
-     * Return true if a given string is a valid date.
-     */
-    public static boolean isValidDate(String date) {
-        String[] strings = date.split("-");
-        int day = Integer.parseInt(strings[0]);
-        int month = Integer.parseInt(strings[1]);
-        int year = Integer.parseInt(strings[2]);
-        boolean isValidDay = day <= 31 && day >= 1;
-        boolean isValidMonth = month <= 12 && month >= 1;
-        //year is always valid because it matches the regex as 4 digits of integers (1000 - 9999)
-        if (day == 29 && month == 2) {
-            if (year % 400 == 0) {
-                return true;
-            } else if (year % 100 == 0) {
-                return false;
-            } else {
-                return year % 4 == 0;
-            }
-        } else if ((day == 30 || day == 31) && month == 2) {
-            return false;
-        } else if (day == 31 && (month == 4 || month == 6
-                || month == 9 || month == 11)) {
-            return false;
-        } else {
-            return isValidDay && isValidMonth;
-        }
-    }
-
-    /**
-     * Return true if a given string is a valid time.
+     * Returns true if a given string is a valid time.
      */
     private static boolean isValidTime(String time) {
         String[] strings = time.split(":");
@@ -109,6 +83,20 @@ public class Deadline implements Comparable<Deadline> {
     public LocalDateTime getDateTime() {
         return this.dateTime;
     }
+
+    /**
+     * Checks if the deadline is within the time range set by the input start date and end date.
+     * @param start     the start date of the time range
+     * @param end       the start date of the time range
+     * @return  true if the he deadline is within the time range set by the start date and end date
+     */
+    public boolean isWithinTimeRange(Date start, Date end) {
+        LocalDateTime startDate = start.atStartOfDay();
+        LocalDateTime endDate = end.atStartOfDay();
+        return (dateTime.isAfter(startDate) || dateTime.isEqual(startDate))
+            && (dateTime.isBefore(endDate) || dateTime.isEqual(endDate));
+    }
+
 
     @Override
     public String toString() {
