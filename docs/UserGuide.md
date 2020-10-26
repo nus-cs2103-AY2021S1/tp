@@ -33,20 +33,31 @@ Get started by installing __Trackr__ with the following steps:
 1. Ensure you have Java 11 or above installed. The latest version of _java_ can be found [here](https://www.java.com/en/download/).
 2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases). Look for the file _trackr.jar_.
 3. Copy the file to a folder you wish to use as your home folder for __Trackr__
-4. Double-click _trackr.jar_ to start the app. The GUI should appear in a few seconds.
+4. Double-click _trackr.jar_ to start the app. The GUI (Figure 3.1) should appear in a few seconds.
+
+![Ui](images/Ui.png)
+_Figure 3.1 Track Gui_
 
 ### 3.2 Using Trackr
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
 commands to add or delete modules, tutorial groups, or students you are teaching. To use a feature, simply
-type the command into the command box (see Figure 1) and press _Enter_ to execute it. Further explanations of 
+type the command into the command box (see Figure 3.2) and press _Enter_ to execute it. Further explanations of 
 all the commands are listed down below in [Section 5]().
 
+![CommandExample](images/CommandExample.png)
+_Figure 3.2 Command example_
+
 ### 3.3 Switching Views
-__Trackr__ allows you to switch the current view from `Modules` (Figure 2) to `Tutorial Groups` (Figure 3) 
-to `Students` (Figure 4) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
+__Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to `Tutorial Groups` (Figure 3.32) 
+to `Students` (Figure 3.33) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
 The correct syntax for these commands are further elaborated down below in [Section 5]().
 
-![Ui](images/Ui.png)
+![ModuleView](images/ModuleView.png)
+_Figure 3.31 Module view_
+
+![TutorialGroupView](images/TutorialGroupView.png)
+_Figure 3.32 TutorialGroupView.png_
+
 
 ## 4. Glossary
 * __Command Line Interface (CLI)__: An interface that processes commands to a computer program in the form of lines of text.
