@@ -86,15 +86,16 @@ public class Deadline implements Comparable<Deadline> {
 
     /**
      * Checks if the deadline is within the time range set by the input start date and end date.
+     * The time range is from the 00:00 of the start date to 23:59 of the end date, both inclusive.
      * @param start     the start date of the time range
-     * @param end       the start date of the time range
+     * @param end       the end date of the time range
      * @return  true if the he deadline is within the time range set by the start date and end date
      */
     public boolean isWithinTimeRange(Date start, Date end) {
         LocalDateTime startDate = start.atStartOfDay();
-        LocalDateTime endDate = end.atStartOfDay();
+        LocalDateTime endDate = end.atStartOfDay().plusDays(1);
         return (dateTime.isAfter(startDate) || dateTime.isEqual(startDate))
-            && (dateTime.isBefore(endDate) || dateTime.isEqual(endDate));
+            && dateTime.isBefore(endDate);
     }
 
 

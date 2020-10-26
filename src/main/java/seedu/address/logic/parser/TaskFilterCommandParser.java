@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.areOnlyTheseTwoPrefixesPresent;
 import static seedu.address.logic.parser.ArgumentMultimapUtil.isOnlyOnePrefixPresent;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_ASSIGNEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
@@ -14,6 +17,7 @@ import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.project.Deadline;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Task;
 
 /**
@@ -31,9 +35,11 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
     public TaskFilterCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args, PREFIX_TASK_ASSIGNEE,
-                PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
+                PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE,
+                PREFIX_START_DATE, PREFIX_END_DATE);
 
-        if (!isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_ASSIGNEE,
+        if (!areOnlyTheseTwoPrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)
+            || !isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_ASSIGNEE,
             PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskFilterCommand.MESSAGE_USAGE));
         }
@@ -61,7 +67,11 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
             Boolean isDone = ParserUtil.parseDoneStatus(argMultimap.getValue(PREFIX_TASK_IS_DONE).get());
             predicate = task -> task.isDone().equals(isDone);
         }
-
+        if (areOnlyTheseTwoPrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)) {
+            Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
+            Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
+            predicate = task -> task.getDeadline().isWithinTimeRange(startDate, endDate);
+        }
         return new TaskFilterCommand(predicate);
     }
 }

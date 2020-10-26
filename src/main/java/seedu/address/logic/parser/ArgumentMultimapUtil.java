@@ -18,6 +18,9 @@ public class ArgumentMultimapUtil {
      * @return  true if only one of the prefixes is present, and false otherwise
      */
     public static boolean isOnlyOnePrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        if (argumentMultimap.size() != 1) {
+            return false;
+        }
         return Stream.of(prefixes)
             .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
             .count() == 1;

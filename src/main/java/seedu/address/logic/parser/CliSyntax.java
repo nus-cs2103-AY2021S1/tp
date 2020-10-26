@@ -19,9 +19,12 @@ public class CliSyntax {
     public static final Prefix PREFIX_TASK_DEADLINE = new Prefix("td/");
     public static final Prefix PREFIX_TASK_PROGRESS = new Prefix("tp/");
     public static final Prefix PREFIX_TASK_IS_DONE = new Prefix("done/");
-    // Prefixes related to Sorter
+    // Prefixes related to Task Sorter
     public static final Prefix PREFIX_ASCENDING_SORT = new Prefix("sa/");
     public static final Prefix PREFIX_DESCENDING_SORT = new Prefix("sd/");
+    // Prefixes related to Task Filter
+    public static final Prefix PREFIX_START_DATE = new Prefix("start/");
+    public static final Prefix PREFIX_END_DATE = new Prefix("end/");
     // Prefixes related to meeting filters
     public static final Prefix PREFIX_MEETING_FILTER_BY_NAME = new Prefix("mtn");
     // Prefixes related to Teammate
