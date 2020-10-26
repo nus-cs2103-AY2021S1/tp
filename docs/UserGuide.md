@@ -213,7 +213,7 @@ Upon entering review mode, the following user input will be recognised:
 
 Format: `review`
 
-<div markdown="span" class="alert alert-primary">:memo: **Note:**
+<div markdown="span" class="alert alert-primary">:memo: Note:
 The review and success frequency of a flashcard is not affected by review mode.
 </div>
     
@@ -230,15 +230,12 @@ Examples:
     - `success -a` shows a list of all flashcards sorted according to success rate in ascending order
     - `success -d` shows a list of all flashcards sorted according to success rate in descending order
 
-<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequency of a flashcard is only noted during quiz mode.
+<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequency of a flashcard is only affected by quiz mode.
 </div>
     
 ### Views a flashcard  : `view`
 
-View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.  
-
-<div markdown="span" class="alert alert-primary">:memo: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
-</div>
+View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.
 
 Format: `view INDEX [a/]`
 
@@ -246,6 +243,9 @@ Format: `view INDEX [a/]`
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
 *  If `a/` is specified, the answer and notes of the flashcard will be shown too.
+
+<div markdown="span" class="alert alert-primary">:memo: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -268,9 +268,9 @@ Action | Format, Examples
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
-**Find** | `find keyword...` <br>  e.g. `find general important`
+**Find** | `find KEYWORD...` <br>  e.g. `find general important`
 **List** | `list`
 **Review** | `review`
 **Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> e.g. `sort success -a`
-**View** | `view INDEX` <br> e.g. `view 1`
+**View** | `view INDEX [a/]` <br> e.g. `view 1`
 **Exit** | `exit`
