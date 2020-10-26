@@ -28,15 +28,15 @@ as well as summary commands.
 
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
-   ##### Figure 1: Introduction to OneShelf User Interface
-   ![Ui](images/UiWithAnnotation.png)
-   
+
+    #<br>![Ui](images/UiWithAnnotation.png) <br>
+    Figure 1: Introduction to OneShelf User Interface
 
 5. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below (Figure 2) should appear on your desktop.
-    ##### Figure 2: Help Start Window
-   ![Help Window](images/UiHelpStart.png)
 
+    #<br>![Help Window](images/UiHelpStart.png) <br>
+    Figure 2: Help Start Window
 
 
 6. Refer to the [Features](#3-features) below for details of each command.
@@ -111,7 +111,7 @@ An item is uniquely identified by its `NAME` and `SUPPLIER`.
 * Note 1: `MAX_QUANTITY` denotes the ideal stock level of that particular item.
 * Note 2: `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
-Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#figure-1-introduction-to-oneshelf-user-interface) as a base.
+Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#bruiimagesuiwithannotationpng-br) as a base.
 
 1. Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG`.
 <br>
@@ -127,7 +127,7 @@ Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#figure-
 <br>
 <br>
 
-Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#figure-1-introduction-to-oneshelf-user-interface) as a base.
+Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#bruiimagesuiwithannotationpng-br) as a base.
 
 1. Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
 <br>
