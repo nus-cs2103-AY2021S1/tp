@@ -21,7 +21,8 @@ public class ViewTeammateCommand extends Command {
     public static final String COMMAND_WORD = "viewteammate";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the details of the teammate identified "
-            + "by the index number used in the displayed teammate list. ";
+            + "by the index number used in the displayed teammate list.\n"
+            + "example: viewteammate 2 ";
 
     public static final String MESSAGE_VIEW_TEAMMATE_SUCCESS = "Started TEAMMATE: %1$s";
 

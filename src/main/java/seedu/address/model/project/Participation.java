@@ -133,6 +133,10 @@ public class Participation {
         return meetings;
     }
 
+    public void setPerson(Person person) {
+        this.person = person.getGitUserNameString();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -149,7 +153,6 @@ public class Participation {
                 && otherParticipation.getMeetings().equals(getMeetings())
                 && otherParticipation.getRole().equals(getRole())
                 && otherParticipation.getTasks().equals(getTasks());
-
     }
 
     /**
