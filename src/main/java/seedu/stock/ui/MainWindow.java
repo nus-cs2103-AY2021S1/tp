@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.GuiSettings;
@@ -40,6 +41,9 @@ public class MainWindow extends UiPart<Stage> {
     private StatisticsWindow statisticsWindow;
 
     @FXML
+    private Scene scene;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
@@ -69,6 +73,8 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         statisticsWindow = new StatisticsWindow();
+        //custom fonts
+        scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
     }
 
     public Stage getPrimaryStage() {
