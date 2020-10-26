@@ -104,7 +104,7 @@ public class Patient {
     }
 
     /**
-     * Returns true if both patients of the same name have the same IC number.
+     * Returns true if both patients have the same name, IC, and phone number.
      * This defines a weaker notion of equality between two patients.
      */
     public boolean isSamePatient(Patient otherPatient) {
@@ -114,7 +114,8 @@ public class Patient {
 
         return otherPatient != null
                 && otherPatient.getName().equals(getName())
-                && otherPatient.getIcNumber().equals(getIcNumber());
+                && otherPatient.getIcNumber().equals(getIcNumber())
+                && otherPatient.getPhone().equals(getPhone());
     }
 
     /**

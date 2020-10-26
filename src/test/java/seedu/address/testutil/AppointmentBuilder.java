@@ -35,7 +35,7 @@ public class AppointmentBuilder {
      */
     public AppointmentBuilder(Appointment appointmentToCopy) {
         patientName = appointmentToCopy.getPatientName();
-        patientIC = appointmentToCopy.getIcNumber();
+        patientIC = appointmentToCopy.getPatientIc();
         startTime = appointmentToCopy.getStartTime();
         endTime = appointmentToCopy.getEndTime();
     }
