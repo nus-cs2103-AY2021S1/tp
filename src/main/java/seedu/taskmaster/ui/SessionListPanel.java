@@ -59,7 +59,7 @@ public class SessionListPanel extends UiPart<Region> {
             if (empty || session == null) {
                 setGraphic(null);
                 setText(null);
-             } else {
+            } else {
                 SessionName sessionName = session.getSessionName();
                 button.setText(sessionName.name + "\n [" + session.getSessionDateTime().displayDateTime() + "]");
                 button.setMinSize(100, 50);
