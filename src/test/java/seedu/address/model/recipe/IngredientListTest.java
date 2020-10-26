@@ -9,13 +9,13 @@ import static seedu.address.testutil.TypicalIngredients.INGREDIENT_2;
 import static seedu.address.testutil.TypicalIngredients.getTypicalIngredientList;
 import static seedu.address.testutil.TypicalIngredients.getTypicalSecondIngredientList;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.recipe.exceptions.DuplicateIngredientException;
 import seedu.address.testutil.TypicalIngredients;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class IngredientListTest {
     /**

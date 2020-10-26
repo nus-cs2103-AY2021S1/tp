@@ -1,7 +1,11 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.ItemList;
 import seedu.address.model.LocationList;
 import seedu.address.model.Model;
@@ -11,10 +15,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.testutil.ItemPrecursorBuilder;
 
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-
-public class RedoCommandIntegrationTest {
+public class  RedoCommandIntegrationTest {
     private Model model;
 
     @BeforeEach
@@ -35,7 +36,9 @@ public class RedoCommandIntegrationTest {
     public void execute_redoAfterOneCommand_failure() {
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(model);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignored
+        }
 
         CommandResult expectedResult = new CommandResult(RedoCommand.MESSAGE_FAILURE);
 
@@ -46,15 +49,21 @@ public class RedoCommandIntegrationTest {
     public void execute_redoAfterCommandAfterUndo_failure() {
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(model);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignored
+        }
 
         try {
             new UndoCommand().execute(model);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignored
+        }
 
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(model);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignored
+        }
 
         CommandResult expectedResult = new CommandResult(RedoCommand.MESSAGE_FAILURE);
 
@@ -69,14 +78,18 @@ public class RedoCommandIntegrationTest {
 
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(modifiedModel);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignored
+        }
 
         Model modifiedCopy = new ModelManager(modifiedModel.getItemList(), new LocationList(),
                 new RecipeList(), new UserPrefs());
 
         try {
             new UndoCommand().execute(modifiedModel);
-        } catch (Exception ignored) { }
+        } catch (Exception ignored) {
+            // ignored
+        }
 
         CommandResult expectedResult = new CommandResult(RedoCommand.MESSAGE_SUCCESS);
 
