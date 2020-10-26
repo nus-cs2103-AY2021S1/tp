@@ -11,7 +11,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of tutorial groups.
  */
 public class TutorialGroupListPanel extends UiPart<Region> {
     private static final String FXML = "TutorialGroupListPanel.fxml";

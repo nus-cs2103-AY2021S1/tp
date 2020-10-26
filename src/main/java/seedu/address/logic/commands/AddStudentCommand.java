@@ -11,6 +11,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 
+import java.util.List;
+
 
 public class AddStudentCommand extends Command {
 
@@ -46,8 +48,13 @@ public class AddStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        // todo: implement add here
-        throw new CommandException("command not yet implemented");
+        List<Student> lastShownList = model.getFilteredStudentList();
+        if (lastShownList.contains(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
+        }
+
+        model.addStudent(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
