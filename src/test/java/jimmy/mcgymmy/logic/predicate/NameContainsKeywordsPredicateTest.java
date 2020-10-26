@@ -69,8 +69,8 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new FoodBuilder().withName(new Name("Apple Banana")).build()));
 
         // Keywords match protein, fat and carbs, but does not match name
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("12345", "54321", "67", "89"));
-        assertFalse(predicate.test(new FoodBuilder().withName(new Name("Apple")).withProtein("12345")
-                .withFat("54321").withCarb("6789").build()));
+        predicate = new NameContainsKeywordsPredicate(Arrays.asList("123", "541", "67", "8"));
+        assertFalse(predicate.test(new FoodBuilder().withName(new Name("Apple")).withProtein("123")
+                .withFat("541").withCarb("678").build()));
     }
 }

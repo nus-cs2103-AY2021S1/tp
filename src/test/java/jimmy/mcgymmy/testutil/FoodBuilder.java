@@ -18,9 +18,9 @@ import jimmy.mcgymmy.model.util.SampleDataUtil;
 public class FoodBuilder {
 
     public static final String DEFAULT_NAME = "Chicken Rice";
-    public static final Integer DEFAULT_PROTEIN = 123456;
-    public static final Integer DEFAULT_FAT = 123456;
-    public static final Integer DEFAULT_CARB = 123456;
+    public static final Integer DEFAULT_PROTEIN = 123;
+    public static final Integer DEFAULT_FAT = 123;
+    public static final Integer DEFAULT_CARB = 123;
 
     private Name name;
     private Protein protein;

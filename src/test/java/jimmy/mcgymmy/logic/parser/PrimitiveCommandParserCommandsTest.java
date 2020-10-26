@@ -73,8 +73,8 @@ public class PrimitiveCommandParserCommandsTest {
     @Test
     public void parseCommand_add() throws Exception {
         String nameString = "michale json";
-        String proteinString = "9912629";
-        String fatString = "9993";
+        String proteinString = "929";
+        String fatString = "999";
         String carbString = "555";
         String commandString = String.format("%s -n %s -p %s -f %s -c %s",
                 AddCommand.COMMAND_WORD,

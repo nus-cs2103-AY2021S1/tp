@@ -4,8 +4,8 @@ import jimmy.mcgymmy.commons.util.AppUtil;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
-    public static final String MESSAGE_CONSTRAINTS = "values should only contain positive numbers";
-    private static final String VALIDATION_REGEX = "(\\d)+";
+    public static final String MESSAGE_CONSTRAINTS = "values should only contain positive numbers below 1000";
+    private static final String VALIDATION_REGEX = "(\\d){1,3}";
     private final int amount;
     private final int caloricMultiplier;
     private final int totalCalories;
@@ -42,7 +42,7 @@ public abstract class Macronutrient {
     }
 
     private boolean isValidAmount(int amount) {
-        return amount >= 0;
+        return amount >= 0 && amount < 1000;
     }
 
     private String getMessageConstraint() {
@@ -51,8 +51,7 @@ public abstract class Macronutrient {
 
     @Override
     public String toString() {
-        String res = this.getMacronutrientType() + ": " + this.getAmount() + "\n";
-        return res;
+        return this.getMacronutrientType() + ": " + this.getAmount() + "\n";
     }
 
     @Override

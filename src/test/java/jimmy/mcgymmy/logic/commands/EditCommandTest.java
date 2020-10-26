@@ -25,14 +25,14 @@ import jimmy.mcgymmy.testutil.FoodBuilder;
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
  */
 public class EditCommandTest {
-    private static final String VALID_NAME_BOB = "Robert Donald";
-    private static final String VALID_PROTEIN_BOB = "99999999";
+    private static final String VALID_NAME_FOOD = "McSpicy";
+    private static final String VALID_PROTEIN_FOOD = "999";
     private static final String VALID_DATE = "12-04-2020";
     private final Model model = new ModelManager(getTypicalMcGymmy(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Food editedFood = new FoodBuilder().withTags("friends").build();
+        Food editedFood = new FoodBuilder().withTags("lunch").build();
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
@@ -58,7 +58,7 @@ public class EditCommandTest {
         Food lastFood = model.getFilteredFoodList().get(indexLastFood.getZeroBased());
 
         FoodBuilder foodInList = new FoodBuilder(lastFood);
-        Food editedFood = foodInList.withName(new Name(VALID_NAME_BOB)).withProtein(VALID_PROTEIN_BOB).build();
+        Food editedFood = foodInList.withName(new Name(VALID_NAME_FOOD)).withProtein(VALID_PROTEIN_FOOD).build();
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
@@ -126,7 +126,7 @@ public class EditCommandTest {
         showFoodAtIndex(model, INDEX_FIRST_FOOD);
 
         Food foodInFilteredList = model.getFilteredFoodList().get(INDEX_FIRST_FOOD.getZeroBased());
-        Food editedFood = new FoodBuilder(foodInFilteredList).withName(new Name(VALID_NAME_BOB)).build();
+        Food editedFood = new FoodBuilder(foodInFilteredList).withName(new Name(VALID_NAME_FOOD)).build();
 
         EditCommand editCommand = new EditCommand();
         editCommand.setParameters(
