@@ -3,12 +3,15 @@ layout: page
 title: User Guide
 ---
 // TODO ** add authorship for grading purposes **
+
 ## Introduction
 // TODO shift to the right
 ![inventoryinator](images/inventoryinator.jpg)
 
 // TODO longer intro
+
 // TODO personalise intro, don't bother with CLI GUI copypasta
+
 **Inventoryinator** is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
@@ -93,8 +96,11 @@ Action | Format
 
 ## Features
 // TODO add more to the preface under the features heading
+
 Inventoryinator's features and their descriptions, as of v1.2.
+
 // TODO in general, descriptions for features too short, need to explain what it does for the user and not just what it does
+
 ### Adding an item: `addi`
 
 **NAME:**
