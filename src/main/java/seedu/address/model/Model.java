@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -121,6 +122,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate);
+
+    ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate,
+                                                        List<ModuleName> modules) throws CommandException;
+
     boolean hasMeeting(Meeting meeting);
 
     void addMeeting(Meeting meeting);
@@ -191,31 +197,9 @@ public interface Model {
     void getPersonsInModule(ModuleName moduleName) throws CommandException;
 
     /**
-     * Replaces the given meeting {@code target} with {@code editedModule}.
-     * {@code target} must exist in the module book.
-     * The module identity of {@code editedModule} must not be the same
-     * as another existing module in the module book.
-     */
-    void setModule(Module target, Module editedModule);
-
-    /**
      * Updates all modules in the module book if the required person was part of any module.
      * @param persons First argument is the person to update which is either deleted or replaced. If replaced,
      * second argument is the edited person who will replace the deleted person.
      */
     void updatePersonInModuleBook(Person ...persons);
-
-    /**
-     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredModuleList(Predicate<Module> predicate);
-
-    /**
-     * Updates all meetings in the module book if the required module was part of any meetings. Will delete the meeting
-     * if all the members of the new module are not in the meeting or if the module is deleted.
-     * @param modules First argument is the module to update which is either deleted or replaced. If replaced,
-     * second argument is the edited module who will replace the deleted module.
-     */
-    void updateModuleInMeetingBook(Module ...modules);
 }

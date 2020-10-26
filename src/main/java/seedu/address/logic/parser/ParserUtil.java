@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -54,7 +55,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> names} into a {@code Set<String>}.
      */
     public static Set<String> parseAllNames(Collection<String> names) throws ParseException {
         requireNonNull(names);
@@ -112,6 +113,9 @@ public class ParserUtil {
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
+        if (tags.contains(Tag.PROF_TAG_NAME) && tags.contains(Tag.TA_TAG_NAME)) {
+            throw new ParseException(Tag.UNIQUE_CONSTRAINT);
+        }
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
             tagSet.add(parseTag(tagName));
@@ -147,6 +151,20 @@ public class ParserUtil {
             throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
         }
         return new ModuleName(trimmedName);
+    }
+
+    /**
+     * Parses {@code Collection<String> modules} into a {@code Set<ModuleName>}.
+     */
+    public static Set<ModuleName> parseAllModules(Collection<String> modules) throws ParseException {
+        requireNonNull(modules);
+        boolean isValid = modules.stream()
+                .allMatch(name -> ModuleName.isValidModuleName(name.trim()));
+        if (!isValid) {
+            throw new ParseException(ModuleName.MESSAGE_CONSTRAINTS);
+        }
+
+        return modules.stream().map(ModuleName::new).collect(Collectors.toSet());
     }
 
     /**

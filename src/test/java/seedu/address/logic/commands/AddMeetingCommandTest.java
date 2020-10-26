@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -165,6 +166,17 @@ public class AddMeetingCommandTest {
         }
 
         @Override
+        public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate,
+                                                                   List<ModuleName> modules) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setMeetingBook(ReadOnlyMeetingBook newData) {
             throw new AssertionError("This method should not be called.");
         }
@@ -262,6 +274,11 @@ public class AddMeetingCommandTest {
 
         @Override
         public void getPersonsInModule(ModuleName moduleName) throws CommandException {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePersonInModuleBook(Person ...persons) {
             throw new AssertionError("This method should not be called.");
         }
     }
