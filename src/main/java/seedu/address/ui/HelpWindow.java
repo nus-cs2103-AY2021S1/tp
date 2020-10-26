@@ -23,6 +23,8 @@ public class HelpWindow extends UiPart<Stage> {
             + "|--------------------------------------------------------------------|\n"
             + "|    help    | help                                                  |\n"
             + "|--------------------------------------------------------------------|\n"
+            + "|    list    | list                                                  |\n"
+            + "|--------------------------------------------------------------------|\n"
             + "|    event   | event title:TITLE [desc:DESCRIPTION] date:DATE        |\n"
             + "|            | from:TIME to:TIME tag:MODULE_CODE                     |\n"
             + "|            | e.g. event title:meeting date:23-10-2020 from:20:00   |\n"
