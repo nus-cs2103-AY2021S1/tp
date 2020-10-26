@@ -59,10 +59,6 @@ public class Quantity {
         return Integer.parseInt(quantity) <= Integer.parseInt(lowQuantity);
     }
 
-    public String getLowQuantity() {
-        return lowQuantity;
-    }
-
     public Quantity updateLowQuantity(String newLowQuantity) {
         return new Quantity(quantity, newLowQuantity);
     }

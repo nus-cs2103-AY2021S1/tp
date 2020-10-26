@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -36,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_SOURCE_BANANA = "Fairprice";
     public static final String VALID_QUANTITY_APPLE = "2000";
     public static final String VALID_QUANTITY_BANANA = "1000";
+    public static final String VALID_LOW_QUANTITY_APPLE = "0";
+    public static final String VALID_LOW_QUANTITY_BANANA = "2200";
     public static final String VALID_LOCATION_APPLE = "Fruit Section, Subsection C";
     public static final String VALID_LOCATION_BANANA = "Fruits section, Subsection B";
 
@@ -48,6 +51,8 @@ public class CommandTestUtil {
     public static final String SOURCE_DESC_BANANA = " " + PREFIX_SOURCE + VALID_SOURCE_BANANA;
     public static final String QUANTITY_DESC_APPLE = " " + PREFIX_QUANTITY + VALID_QUANTITY_APPLE;
     public static final String QUANTITY_DESC_BANANA = " " + PREFIX_QUANTITY + VALID_QUANTITY_BANANA;
+    public static final String LOW_QUANTITY_DESC_APPLE = " " + PREFIX_LOW_QUANTITY + VALID_LOW_QUANTITY_APPLE;
+    public static final String LOW_QUANTITY_DESC_BANANA = " " + PREFIX_LOW_QUANTITY + VALID_LOW_QUANTITY_BANANA;
     public static final String NEW_QUANTITY_DESC_APPLE = " " + PREFIX_NEW_QUANTITY + VALID_QUANTITY_APPLE;
     public static final String NEW_QUANTITY_DESC_BANANA = " " + PREFIX_NEW_QUANTITY + VALID_QUANTITY_BANANA;
     public static final String INCREMENT_QUANTITY_DESC_APPLE = " " + PREFIX_INCREMENT_QUANTITY + VALID_QUANTITY_APPLE;
@@ -64,6 +69,8 @@ public class CommandTestUtil {
     public static final String INVALID_INCREMENT_QUANTITY_DESC = " " + PREFIX_INCREMENT_QUANTITY + "two";
     public static final String INVALID_NEW_QUANTITY_DESC = " " + PREFIX_NEW_QUANTITY + "-100";
     public static final String INVALID_NEW_QUANTITY_DESC2 = " " + PREFIX_NEW_QUANTITY + "two";
+    public static final String INVALID_LOW_QUANTITY_DESC = " " + PREFIX_LOW_QUANTITY + "-100";
+    public static final String INVALID_LOW_QUANTITY_DESC2 = " " + PREFIX_LOW_QUANTITY + "two";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
