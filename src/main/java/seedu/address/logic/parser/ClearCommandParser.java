@@ -23,12 +23,11 @@ public class ClearCommandParser implements Parser<ClearCommand> {
      */
     public ClearCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
 
         boolean ifNoCategory = !arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
         if (ifNoCategory) {
-            boolean areInvalidArgs = !argMultimap.getPreamble().isEmpty();
+            boolean areInvalidArgs = !argMultimap.isPreambleEmpty();
 
             if (areInvalidArgs) {
                 throw new ParseException(
@@ -36,6 +35,13 @@ public class ClearCommandParser implements Parser<ClearCommand> {
             }
 
             return new ClearCommand();
+        }
+
+        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_CATEGORY);
+
+        if (!areNumberOfPrefixCorrect) {
+            throw new ParseException(
+                    String.format(Messages.MESSAGE_MULTIPLE_PREFIXES, ClearCommand.PREFIXES));
         }
 
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());

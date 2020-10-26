@@ -18,6 +18,7 @@ public class GetTotalCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_CATEGORY + "expense";
 
+    public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY\n";
     public static final String MESSAGE_SUCCESS = "Total %1$s" + "s: $";
 
     private final Category category;
