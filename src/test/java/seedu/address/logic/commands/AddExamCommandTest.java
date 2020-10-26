@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -20,72 +20,80 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.academic.exam.Score;
 import seedu.address.testutil.StudentBuilder;
 
-public class AddAdditionalDetailCommandTest {
-
-    private static final String TEST_DETAIL = "eats flies";
-
+/**
+ * Contains integration tests (interaction with the Model, AddExamCommand and DeleteExamCommand)
+ * and unit tests for ExamCommand
+ */
+public class AddExamCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Exam dummyExam = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        Index testIndex = INDEX_FIRST_PERSON;
+    public void constructors_null_throwsNullPointerException() {
 
         // both arguments null
         assertThrows(NullPointerException.class, () ->
-                new AddAdditionalDetailCommand(null, null));
+                new AddExamCommand(null, null));
+
+        assertThrows(NullPointerException.class, () ->
+                new DeleteExamCommand(null, null));
 
         // one argument null
         assertThrows(NullPointerException.class, () ->
-                new AddAdditionalDetailCommand(testIndex, null));
+                new AddExamCommand(INDEX_FIRST_PERSON, null));
         assertThrows(NullPointerException.class, () ->
-                new AddAdditionalDetailCommand(null, new AdditionalDetail(TEST_DETAIL)));
+                new AddExamCommand(null, dummyExam));
+
+        assertThrows(NullPointerException.class, () ->
+                new DeleteExamCommand(null, INDEX_FIRST_PERSON));
+        assertThrows(NullPointerException.class, () ->
+                new DeleteExamCommand(INDEX_FIRST_PERSON, null));
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withDetails().build();
-        AdditionalDetail additionalDetail = new AdditionalDetail(TEST_DETAIL);
-        AddAdditionalDetailCommand addAdditionalDetailCommand =
-                new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, additionalDetail);
-        Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_DETAIL).build();
+        Student clone = new StudentBuilder(asker).withExams().build();
+        AddExamCommand addExamCommand =
+                new AddExamCommand(INDEX_FIRST_PERSON, dummyExam);
+        Student expectedStudent = new StudentBuilder(ALICE).withExams(dummyExam).build();
         model.setStudent(asker, clone);
 
-        String expectedMessage = String.format(AddAdditionalDetailCommand.MESSAGE_SUCCESS, clone.getName(),
-                additionalDetail);
+        String expectedMessage = String.format(AddExamCommand.MESSAGE_EXAM_ADDED_SUCCESS, expectedStudent.getName(),
+                dummyExam);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
-        assertCommandSuccess(addAdditionalDetailCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addExamCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        AddAdditionalDetailCommand command = new AddAdditionalDetailCommand(outOfBounds,
-                new AdditionalDetail(TEST_DETAIL));
+        AddExamCommand command = new AddExamCommand(outOfBounds,
+                dummyExam);
 
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
-    public void execute_validIndexFilteredList_throwsCommandException() {
+    public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
-        Student clone = new StudentBuilder(asker).withDetails().build();
+        Student clone = new StudentBuilder(asker).withExams().build();
         model.setStudent(asker, clone);
 
-        AddAdditionalDetailCommand command = new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, detail);
-        Student expectedStudent = new StudentBuilder(BENSON).withDetails(TEST_DETAIL).build();
+        AddExamCommand command = new AddExamCommand(INDEX_FIRST_PERSON, dummyExam);
+        Student expectedStudent = new StudentBuilder(BENSON).withExams(dummyExam).build();
 
-        String expectedMessage = String.format(AddAdditionalDetailCommand.MESSAGE_SUCCESS,
-                clone.getName(), detail);
+        String expectedMessage = String.format(AddExamCommand.MESSAGE_EXAM_ADDED_SUCCESS,
+                expectedStudent.getName(), dummyExam);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
@@ -98,33 +106,30 @@ public class AddAdditionalDetailCommandTest {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Index outOfBounds = INDEX_SECOND_PERSON;
-        AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
-        AddAdditionalDetailCommand invalidCommand = new AddAdditionalDetailCommand(outOfBounds, detail);
+        AddExamCommand invalidCommand = new AddExamCommand(outOfBounds, dummyExam);
 
         assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        AdditionalDetail testDetail = new AdditionalDetail(TEST_DETAIL);
-        AddAdditionalDetailCommand addAdditionalDetailCommand =
-                new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, testDetail);
+        AddExamCommand addExamCommand =
+                new AddExamCommand(INDEX_FIRST_PERSON, dummyExam);
 
         // same object -> return true;
-        assertTrue(addAdditionalDetailCommand.equals(addAdditionalDetailCommand));
+        assertEquals(addExamCommand, addExamCommand);
 
         // different object -> return false;
-        assertFalse(addAdditionalDetailCommand.equals("hello"));
+        assertNotEquals("hello", addExamCommand);
 
         // same fields -> return true;
-        assertTrue(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, testDetail)));
+        assertEquals(addExamCommand, new AddExamCommand(INDEX_FIRST_PERSON, dummyExam));
 
         // different index -> return false;
-        assertFalse(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_SECOND_PERSON, testDetail)));
+        assertNotEquals(addExamCommand, new AddExamCommand(INDEX_SECOND_PERSON, dummyExam));
 
-        // different detail -> return false;
-        AdditionalDetail altDetail = new AdditionalDetail("he watches birds");
-        assertFalse(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, altDetail)));
+        // different exam -> return false;
+        Exam altExam = new Exam("Alt Exam", "12/12/2020", new Score("1/1"));
+        assertNotEquals(addExamCommand, new AddExamCommand(INDEX_FIRST_PERSON, altExam));
     }
-
 }

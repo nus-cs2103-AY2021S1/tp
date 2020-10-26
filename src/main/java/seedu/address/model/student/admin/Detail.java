@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an additional detail in Reeve.
  * Guarantees: immutable; detail is valid as declared in {@link #isValidAdditionalDetail(String)}
  */
-public class AdditionalDetail {
+public class Detail {
 
     public static final String MESSAGE_CONSTRAINTS = "Additional details should be alphanumeric";
     public static final String VALIDATION_REGEX = "^[\\s]*[a-zA-Z0-9][a-zA-Z0-9\\s]*$";
@@ -19,7 +19,7 @@ public class AdditionalDetail {
      *
      * @param detail A valid detail.
      */
-    public AdditionalDetail(String detail) {
+    public Detail(String detail) {
         requireNonNull(detail);
         checkArgument(isValidAdditionalDetail(detail), MESSAGE_CONSTRAINTS);
         this.detail = detail;
@@ -35,8 +35,8 @@ public class AdditionalDetail {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AdditionalDetail // instanceof handles nulls
-                && detail.equals(((AdditionalDetail) other).detail)); // state check
+                || (other instanceof Detail // instanceof handles nulls
+                && detail.equals(((Detail) other).detail)); // state check
     }
 
     @Override

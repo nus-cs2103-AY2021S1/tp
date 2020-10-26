@@ -24,6 +24,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
@@ -133,7 +134,9 @@ public class EditCommand extends Command {
 
         // Questions should not be edited through this command
         List<Question> questions = studentToEdit.getQuestions();
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions);
+        // Exams should not be edited through this command
+        List<Exam> exams = studentToEdit.getExams();
+        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions, exams);
     }
 
     @Override
