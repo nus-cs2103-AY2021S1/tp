@@ -14,6 +14,7 @@ import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UNBOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LIST_TYPE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
@@ -46,8 +47,6 @@ import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
-import seedu.stock.logic.commands.SourceQuantityDistributionStatisticsCommand;
-import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
@@ -102,7 +101,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY,
                         PREFIX_SORT_ORDER, PREFIX_SORT_FIELD, PREFIX_NOTE, PREFIX_NOTE_INDEX,
-                        PREFIX_STATISTICS_TYPE
+                        PREFIX_STATISTICS_TYPE, PREFIX_LIST_TYPE
                 );
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
@@ -580,6 +579,25 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.LIST_COMMAND_WORD);
+
+        Prefix typePrefix = PREFIX_LIST_TYPE;
+        String[] typeDescriptions = new String[]{"all", "bookmark", "low"};
+
+        if (!argMultimap.getValue(typePrefix).isPresent()) {
+            toBeDisplayed.append(" " + typePrefix + CliSyntax.getDefaultDescription(typePrefix));
+        } else {
+            String description = argMultimap.getValue(typePrefix).get();
+            String suggestedDescription = description;
+            int bestEditDistanceSoFar = Integer.MAX_VALUE;
+            for (String typeDescription : typeDescriptions) {
+                int currentEditDistance = SuggestionUtil.minimumEditDistance(description, typeDescription);
+                if (currentEditDistance < bestEditDistanceSoFar) {
+                    bestEditDistanceSoFar = currentEditDistance;
+                    suggestedDescription = typeDescription;
+                }
+            }
+            toBeDisplayed.append(" " + typePrefix + suggestedDescription);
+        }
 
         generateBodyMessage(toBeDisplayed, ListCommand.MESSAGE_USAGE);
     }

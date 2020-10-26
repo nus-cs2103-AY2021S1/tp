@@ -28,7 +28,7 @@ public class CliSyntax {
     public static final String PREFIX_NAME_DESCRIPTION = "<name>";
     public static final String PREFIX_SOURCE_DESCRIPTION = "<source>";
     public static final String PREFIX_LOCATION_DESCRIPTION = "<location>";
-    public static final String PREFIX_LIST_TYPE_DESCRIPTION = "list type";
+    public static final String PREFIX_LIST_TYPE_DESCRIPTION = "<list type>";
     public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
     public static final String PREFIX_SERIAL_NUMBER_DESCRIPTION = "<serial number>";
     public static final String PREFIX_NOTE_DESCRIPTION = "<note>";
