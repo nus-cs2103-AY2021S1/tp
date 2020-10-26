@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 
+/**
+ * A meeting object where the type if of viewing.
+ */
 public class Viewing extends Meeting {
 
     private static final String PREFIX = "v";

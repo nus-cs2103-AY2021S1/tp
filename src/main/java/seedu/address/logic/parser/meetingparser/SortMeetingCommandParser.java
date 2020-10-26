@@ -14,10 +14,16 @@ import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.meeting.MeetingTimeComparator;
 
-
+/**
+ * Parses input arguments and creates a new SortMeetingCommand object
+ */
 public class SortMeetingCommandParser implements Parser<SortMeetingCommand> {
 
-    @Override
+    /**
+     * Parses the given string of arguments in the context of the SortMeetingCommand
+     * and returns a SortMeetingCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public SortMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEETING_ORDER);
 

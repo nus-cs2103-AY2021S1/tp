@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 
+/**
+ * A meeting object where the type of it is of paperwork.
+ */
 public class Paperwork extends Meeting {
 
     /**
