@@ -10,7 +10,7 @@ public class FinanceRecord {
     private final int id;
     private LocalDateTime dateTime;
     private double amount;
-    private String UiUsableIndex;
+    private String uiUsableIndex;
 
     /**
      * Constructs a {@code Finance Record}.
@@ -21,7 +21,7 @@ public class FinanceRecord {
         id = this.hashCode();
         this.amount = amount;
         this.dateTime = LocalDateTime.now();
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     /**
@@ -34,7 +34,7 @@ public class FinanceRecord {
         id = this.hashCode();
         this.amount = amount;
         this.dateTime = dateTime;
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     /**
@@ -48,7 +48,7 @@ public class FinanceRecord {
         this.id = id;
         this.amount = amount;
         this.dateTime = dateTime;
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     public int getID() {
@@ -68,11 +68,11 @@ public class FinanceRecord {
     }
 
     public String getUiUsableIndex() {
-        return UiUsableIndex;
+        return uiUsableIndex;
     }
 
     public void setUiUsableIndex(int i) {
-        this.UiUsableIndex = "" + i;
+        this.uiUsableIndex = "" + i;
     }
 
     /**
