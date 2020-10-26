@@ -53,14 +53,13 @@ public class ReferenceTest {
     @Test
     public void constructor_invalidReference_throwsIllegalArgumentException()
             throws NoSuchFieldException, IllegalAccessException {
-        String invalidReference = " ";
+        String invalidReference = "";
         assertThrows(IllegalArgumentException.class, () -> new Reference(invalidReference));
     }
 
     @Test
     public void isValidReference() {
         assertFalse(Reference.isValidReference(""));
-        assertFalse(Reference.isValidReference(" "));
         assertFalse(Reference.isValidReference("invalid :across ?/\0 OS"));
         assertTrue(Reference.isValidReference("fileWithExtension.txt"));
     }
