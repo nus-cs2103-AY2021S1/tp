@@ -1,7 +1,7 @@
 // Placeholder to allow defining custom styles that override everything else.
 // (Use `_sass/minima/custom-variables.scss` to override variable defaults)
 h2, h3, h4, h5, h6 {
-  color: #e46c0a;
+  color: #FF6F6F;
 }
 
 // Bootstrap style alerts
@@ -11,6 +11,10 @@ h2, h3, h4, h5, h6 {
   margin-bottom: $alert-margin-bottom;
   border: $alert-border-width solid transparent;
   order-radius : $alert-border-radius;
+}
+
+.alert .alert-warning{
+  color: #FF6060;
 }
 
 // Headings for larger alerts
