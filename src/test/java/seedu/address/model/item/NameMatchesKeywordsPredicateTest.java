@@ -60,7 +60,7 @@ public class NameMatchesKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_nameContainsKeywords_returnsFalse() {
         // Zero keywords
         NameMatchesKeywordsPredicate predicate = new NameMatchesKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
