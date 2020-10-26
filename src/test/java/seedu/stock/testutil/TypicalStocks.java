@@ -37,6 +37,7 @@ public class TypicalStocks {
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = PINEAPPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_FOURTH_STOCK = ORANGE.getSerialNumber();
+    public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown");
 
     public static final String RESERVED_NON_EXISTENCE_SOURCE = "$NON-EXISTENT-SOURCE";
 
