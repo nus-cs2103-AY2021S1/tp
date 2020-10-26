@@ -72,7 +72,7 @@ public class CliniCal implements ReadOnlyCliniCal {
     //// patient-level operations
 
     /**
-     * Returns true if a patient with the same identity as {@code patient} exists in the address book.
+     * Returns true if a patient with the same identity as {@code patient} exists in the patient database.
      */
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -80,8 +80,8 @@ public class CliniCal implements ReadOnlyCliniCal {
     }
 
     /**
-     * Adds a patient to the address book.
-     * The patient must not already exist in the address book.
+     * Adds a patient to the patient database.
+     * The patient must not already exist in the database.
      */
     public void addPatient(Patient p) {
         patients.add(p);
@@ -89,9 +89,9 @@ public class CliniCal implements ReadOnlyCliniCal {
 
     /**
      * Replaces the given patient {@code target} in the list with {@code editedPatient}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the patient database.
      * The patient identity of {@code editedPatient} must not be the same as another existing
-     * patient in the address book.
+     * patient in the database.
      */
     public void setPatient(Patient target, Patient editedPatient) {
         requireNonNull(editedPatient);
@@ -101,7 +101,7 @@ public class CliniCal implements ReadOnlyCliniCal {
 
     /**
      * Removes {@code key} from this {@code CliniCal}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the patient database.
      */
     public void removePatient(Patient key) {
         patients.remove(key);
@@ -114,7 +114,7 @@ public class CliniCal implements ReadOnlyCliniCal {
      */
     public boolean hasAppointment(Appointment appointment) {
         requireNonNull(appointment);
-        return appointments.contains(appointment);
+        return appointments.clashes(appointment);
     }
 
     /**

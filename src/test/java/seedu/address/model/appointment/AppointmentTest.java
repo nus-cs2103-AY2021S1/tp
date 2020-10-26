@@ -17,18 +17,18 @@ public class AppointmentTest {
     @Test
     public void isSameAppointment() {
         // same object -> returns true
-        assertTrue(FIRST_APP.isSameAppointment(FIRST_APP));
+        assertTrue(FIRST_APP.isSameAppointmentTime(FIRST_APP));
 
         // null -> returns false
-        assertFalse(FIRST_APP.isSameAppointment(null));
+        assertFalse(FIRST_APP.isSameAppointmentTime(null));
 
-        // different patient name -> returns false
+        // different patient name -> returns true
         Appointment editedFirst = new AppointmentBuilder(FIRST_APP).withPatientName(VALID_PATIENT_NAME_SECOND).build();
-        assertFalse(FIRST_APP.isSameAppointment(editedFirst));
+        assertTrue(FIRST_APP.isSameAppointmentTime(editedFirst));
 
-        // same patient name and different time -> returns true
+        // same patient name and different time -> returns false
         editedFirst = new AppointmentBuilder(FIRST_APP).withEndTime(VALID_END_TIME_SECOND).build();
-        assertTrue(FIRST_APP.isSameAppointment(editedFirst));
+        assertFalse(FIRST_APP.isSameAppointmentTime(editedFirst));
 
     }
 

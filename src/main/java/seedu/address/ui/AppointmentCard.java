@@ -21,6 +21,8 @@ public class AppointmentCard extends UiPart<Region> {
     @FXML
     private Label name;
     @FXML
+    private Label icNumber;
+    @FXML
     private Label startTime;
     @FXML
     private Label duration;
@@ -34,6 +36,7 @@ public class AppointmentCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(appointment.getPatientName().fullName);
+        icNumber.setText(appointment.getPatientIc().value);
         startTime.setText(appointment.getStartTime().toString()); //TODO: make more natural
         duration.setText(
                 ChronoUnit.MINUTES.between(appointment.getStartTime().dateTime, appointment.getEndTime().dateTime)

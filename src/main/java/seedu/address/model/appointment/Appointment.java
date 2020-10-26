@@ -17,21 +17,22 @@ import seedu.address.model.patient.Name;
 public class Appointment {
 
     private Name patientName;
-    private IcNumber icNumber;
+    private IcNumber patientIc;
     private AppointmentDateTime startTime;
     private AppointmentDateTime endTime;
 
     /**
      * Patient name, appointment time must be present and not null.
      */
-    public Appointment(Name patientName, IcNumber icNumber, AppointmentDateTime startTime, AppointmentDateTime end) {
-        requireAllNonNull(patientName, startTime, end);
-        checkArgument(isValidStartEnd(startTime, end), MESSAGE_INVALID_APPOINTMENT_START_END);
+    public Appointment(Name patientName, IcNumber patientIc, AppointmentDateTime startTime,
+                       AppointmentDateTime endTime) {
+        requireAllNonNull(patientName, startTime, endTime);
+        checkArgument(isValidStartEnd(startTime, endTime), MESSAGE_INVALID_APPOINTMENT_START_END);
         // should also check whether a patient is inside the patient database
         this.patientName = patientName;
-        this.icNumber = icNumber;
+        this.patientIc = patientIc;
         this.startTime = startTime;
-        this.endTime = end;
+        this.endTime = endTime;
     }
 
     /**
@@ -53,8 +54,8 @@ public class Appointment {
         return patientName;
     }
 
-    public IcNumber getIcNumber() {
-        return icNumber;
+    public IcNumber getPatientIc() {
+        return patientIc;
     }
 
     public AppointmentDateTime getStartTime() {
@@ -79,22 +80,23 @@ public class Appointment {
         }
         Appointment otherAppointment = (Appointment) other;
         return otherAppointment.getPatientName().equals(getPatientName())
-                && otherAppointment.getIcNumber().equals(getIcNumber())
+                && otherAppointment.getPatientIc().equals(getPatientIc())
                 && otherAppointment.getStartTime().equals(getStartTime())
                 && otherAppointment.getEndTime().equals(getEndTime());
     }
 
     /**
-     * Returns true if both appointments have the same name.
+     * Returns true if both appointments have the same appointment time.
      * This defines a weaker notion of equality between two appointments.
      */
-    public boolean isSameAppointment(Appointment other) {
+    public boolean isSameAppointmentTime(Appointment other) {
         if (other == this) {
             return true;
         }
 
         return other != null
-                && other.getPatientName().equals(getPatientName());
+                && other.getStartTime().equals(getStartTime())
+                && other.getEndTime().equals(getEndTime());
     }
 
     /**
@@ -103,10 +105,15 @@ public class Appointment {
     public boolean hasTimeConflict(Appointment other) {
         int startDiff = this.getStartTime().compareTo(other.getStartTime());
         int endDiff = this.getEndTime().compareTo(other.getEndTime());
-        if (startDiff == 0 || endDiff == 0) {
+        int startEndDiff = this.getStartTime().compareTo(other.getEndTime());
+        int endStartDiff = this.getEndTime().compareTo(other.getStartTime());
+        if (startDiff * endDiff <= 0) {
             return true;
         }
-        if (startDiff * endDiff < 0) {
+        if (startDiff * startEndDiff < 0) {
+            return true;
+        }
+        if (endDiff * endStartDiff < 0) {
             return true;
         }
         return false;

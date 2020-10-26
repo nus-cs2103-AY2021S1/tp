@@ -1,8 +1,8 @@
 package seedu.address.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPT_DURATION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPT_STARTTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_STARTTIME;
 
 import java.util.List;
 
@@ -24,15 +24,16 @@ public class AddAppointmentCommand extends AppointmentCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds appointment to the appointment list.\n"
             + "Parameters: "
             + "PATIENT_INDEX "
-            + PREFIX_APPT_STARTTIME + "START_TIME "
-            + PREFIX_APPT_DURATION + "DURATION_IN_MINUTES\n"
+            + PREFIX_APP_STARTTIME + "START_TIME "
+            + PREFIX_APP_DURATION + "DURATION_IN_MINUTES\n"
             + "Example: " + COMMAND_WORD + " "
             + "1 "
-            + PREFIX_APPT_STARTTIME + "2020-10-10 10:00 "
-            + PREFIX_APPT_DURATION + "15";
+            + PREFIX_APP_STARTTIME + "2020-10-10 10:00 "
+            + PREFIX_APP_DURATION + "15";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPT = "This appointment already exists in the calendar.";
+    public static final String MESSAGE_CONFLICTING_APP =
+            "This appointment clashes with another appointment in your schedule.";
 
     private Appointment toAdd;
     private final Index targetIndex;
@@ -40,7 +41,7 @@ public class AddAppointmentCommand extends AppointmentCommand {
     private final AppointmentDateTime endTime;
 
     /**
-     * Creates an AddAppointmentCommand to add the specified {@code Patient}
+     * Creates an AddAppointmentCommand to add the specified {@code Appointment}
      */
     public AddAppointmentCommand(Index targetIndex, AppointmentDateTime startTime, AppointmentDateTime endTime) {
         this.targetIndex = targetIndex;
@@ -61,14 +62,18 @@ public class AddAppointmentCommand extends AppointmentCommand {
         Name patientName = patient.getName();
         IcNumber patientIC = patient.getIcNumber();
 
-        Appointment toAdd = new Appointment(patientName, patientIC, startTime, endTime);
+        toAdd = new Appointment(patientName, patientIC, startTime, endTime);
 
-        if (model.getFilteredAppointmentList().contains(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPT);
-        } else {
-            model.addAppointment(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        if (model.hasAppointment(toAdd)) {
+            throw new CommandException(MESSAGE_CONFLICTING_APP);
         }
+
+        //        if (model.getFilteredAppointmentList().contains(toAdd)) {
+        //            throw new CommandException(MESSAGE_CONFLICTING_APP);
+        //        }
+
+        model.addAppointment(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override

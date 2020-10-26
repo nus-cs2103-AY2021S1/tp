@@ -42,7 +42,7 @@ class JsonAdaptedAppointment {
      */
     public JsonAdaptedAppointment(Appointment source) {
         patientName = source.getPatientName().fullName;
-        patientIcNumber = source.getIcNumber().value;
+        patientIcNumber = source.getPatientIc().value;
         startTime = source.getStartTime().toString();
         endTime = source.getEndTime().toString();
     }
