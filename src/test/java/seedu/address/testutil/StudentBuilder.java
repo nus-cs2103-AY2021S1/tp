@@ -59,7 +59,7 @@ public class StudentBuilder {
     private List<Question> questions = new ArrayList<>();
 
     //Academic details
-    private ArrayList<Exam> exams = new ArrayList<>();
+    private List<Exam> exams = new ArrayList<>();
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -84,7 +84,7 @@ public class StudentBuilder {
                 .map(UnsolvedQuestion::new)
                 .forEach(questions::add);
 
-        exams = new ArrayList<>(Arrays.asList(DEFAULT_EXAM_MYE));
+        exams = Arrays.asList(DEFAULT_EXAM_MYE);
     }
 
     /**

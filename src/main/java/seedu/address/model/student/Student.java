@@ -25,14 +25,14 @@ public class Student {
     private final Year year;
     private final Admin admin;
     private final List<Question> questions = new ArrayList<>();
-    private final ArrayList<Exam> exams = new ArrayList<>();
+    private final List<Exam> exams = new ArrayList<>();
 
     /**
      *  name, phone, school, year, must be present and not null.
      *  exams is empty when a student is first initialised.
      */
     public Student(Name name, Phone phone, School school, Year year,
-                   Admin admin, List<Question> questions, ArrayList<Exam> exams) {
+                   Admin admin, List<Question> questions, List<Exam> exams) {
         requireAllNonNull(name, phone, school, year, admin);
         this.name = name;
         this.phone = phone;

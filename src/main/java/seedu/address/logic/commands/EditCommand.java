@@ -11,7 +11,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -136,7 +135,7 @@ public class EditCommand extends Command {
         // Questions should not be edited through this command
         List<Question> questions = studentToEdit.getQuestions();
         // Exams should not be edited through this command
-        ArrayList<Exam> exams = studentToEdit.getExams();
+        List<Exam> exams = studentToEdit.getExams();
         return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions, exams);
     }
 
