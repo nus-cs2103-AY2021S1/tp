@@ -294,15 +294,17 @@ Users have the ability to show, add, delete, edit appointments within the app.
 * A new prefix `appt/` to be used with the new `Appointment` field.
 * 4 new commands specifically for managing patients' appointments, `showAppt`, `addAppt`, `editAppt` and `deleteAppt`.
 
-Given below is an example usage scenario.
+Given below is an example usage scenario using a Patient with `NRIC` **S1234567A**.
 
-Step 1. The user executes `addAppt 1 /appt 28/09/2020 20:00` command to add an appointment with the specified time to patient with `index` number `1` shown in the displayed person list.
+Step 1. The user executes `addAppt S1234567A /appt 28/09/2020 20:00` command to add an appointment with the
+ specified time to the patient with `NRIC`of S1234567A.
 
-Step 2. The user shows the app
+Step 2. The user shows the appointment of the patient by **clicking** on the patient using the `GUI` or 
+using the command `showAppt S1234567A`.
 
-Step 3. The user now decides to edit the appointment of patient of `index 1` and executes `editAppt 1 /appt 05/10/2020 20:00` to change the appointment timing accordingly.
+Step 3. The user now decides to edit the appointment of patient of `NRIC` S1234567A and executes `editAppt S1234567A /appt 05/10/2020 20:00` to change the appointment timing accordingly.
 
-Step 4. The user then decides to delete the appointment of patient of `index 1` and executes `deleteAppt 1 /appt 05/10/2020 20:00` to delete the specified appointment.
+Step 4. The user then decides to delete the appointment of patient of `NRIC` S1234567A and executes `deleteAppt S1234567A /appt 05/10/2020 20:00` to delete the specified appointment.
 
 The following activity diagram summarizes what happens when a user adds a new appointment:
 
