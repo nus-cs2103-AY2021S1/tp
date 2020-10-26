@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,10 +14,10 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
 import seedu.address.model.student.question.Question;
@@ -87,9 +86,9 @@ public class SampleDataUtil {
     /**
      * Returns a {@code AdditionalDetail} list containing the list of given strings.
      */
-    public static List<AdditionalDetail> getDetailList(String... strings) {
+    public static List<Detail> getDetailList(String... strings) {
         return Arrays.stream(strings)
-                .map(AdditionalDetail::new)
+                .map(Detail::new)
                 .collect(Collectors.toList());
     }
 
@@ -111,8 +110,8 @@ public class SampleDataUtil {
                 .collect(Collectors.toList());
     }
 
-    public static ArrayList<Exam> getExams(Exam... exams) {
-        return new ArrayList<>(Arrays.asList(exams));
+    public static List<Exam> getExams(Exam... exams) {
+        return Arrays.asList(exams);
     }
 
 }

@@ -18,9 +18,9 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
 import seedu.address.model.student.academic.exam.Score;
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
 import seedu.address.model.student.question.Question;
@@ -304,14 +304,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseAdditionalDetail_validValue_returnsAdditionalDetail() throws Exception {
-        AdditionalDetail expectedDetail = new AdditionalDetail(VALID_ADDITIONAL_DETAIL_WEEB);
+        Detail expectedDetail = new Detail(VALID_ADDITIONAL_DETAIL_WEEB);
         assertEquals(expectedDetail, ParserUtil.parseAdditionalDetail(VALID_ADDITIONAL_DETAIL_WEEB));
     }
 
     @Test
     public void parseAdditionalDetail_validValueWithWhiteSpace_returnsTrimmedDetail() throws Exception {
         String detailWithWhiteSpace = WHITESPACE + VALID_ADDITIONAL_DETAIL_WEEB + WHITESPACE;
-        AdditionalDetail expectedDetail = new AdditionalDetail(VALID_ADDITIONAL_DETAIL_WEEB);
+        Detail expectedDetail = new Detail(VALID_ADDITIONAL_DETAIL_WEEB);
         assertEquals(expectedDetail, ParserUtil.parseAdditionalDetail(detailWithWhiteSpace));
     }
 
@@ -329,8 +329,8 @@ public class ParserUtilTest {
     @Test
     public void parseAdditionalDetails_validDetails_returnsDetails() throws Exception {
         List<String> validList = List.of(VALID_ADDITIONAL_DETAIL_CONVICT, VALID_ADDITIONAL_DETAIL_WEEB);
-        List<AdditionalDetail> expectedSet = validList.stream()
-                .map(AdditionalDetail::new)
+        List<Detail> expectedSet = validList.stream()
+                .map(Detail::new)
                 .collect(Collectors.toList());
         assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validList));
     }
@@ -341,8 +341,8 @@ public class ParserUtilTest {
         List<String> validList = baseList.stream()
                 .map(string -> WHITESPACE + string + WHITESPACE)
                 .collect(Collectors.toList());
-        List<AdditionalDetail> expectedSet = baseList.stream()
-                .map(AdditionalDetail::new)
+        List<Detail> expectedSet = baseList.stream()
+                .map(Detail::new)
                 .collect(Collectors.toList());
         assertEquals(expectedSet, ParserUtil.parseAdditionalDetails(validList));
     }
