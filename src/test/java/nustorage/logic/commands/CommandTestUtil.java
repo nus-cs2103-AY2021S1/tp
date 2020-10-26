@@ -2,9 +2,7 @@ package nustorage.logic.commands;
 
 import static nustorage.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
-import static nustorage.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

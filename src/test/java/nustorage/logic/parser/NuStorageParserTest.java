@@ -3,7 +3,6 @@ package nustorage.logic.parser;
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static nustorage.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static nustorage.testutil.Assert.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;

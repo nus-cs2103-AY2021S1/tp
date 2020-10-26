@@ -4,7 +4,6 @@ import static nustorage.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static nustorage.testutil.Assert.assertThrows;
 import static nustorage.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 

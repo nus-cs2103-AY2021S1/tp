@@ -35,10 +35,9 @@ public class LogicManagerTest {
     private Model model = new ModelManager();
     private Logic logic;
 
-
     @BeforeEach
     public void setUp() {
-                JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
+        JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
 
         JsonFinanceAccountStorage financeAccountStorage =
                 new JsonFinanceAccountStorage(temporaryFolder.resolve("financeAccount.json"));
@@ -124,14 +123,13 @@ public class LogicManagerTest {
         assertCommandFailure(inputCommand, CommandException.class, expectedMessage);
     }
 
-
     /**
      * Executes the command, confirms that the exception is thrown and that the result message is correct.
      *
      * @see #assertCommandFailure(String, Class, String, Model)
      */
-     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
-                                      String expectedMessage) {
+    private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
+                                       String expectedMessage) {
         Model expectedModel = new ModelManager(new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
