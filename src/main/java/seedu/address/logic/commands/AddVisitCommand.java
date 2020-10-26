@@ -20,9 +20,9 @@ public class AddVisitCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a visit record to the patient "
             + "by specifying the patient's index in the list of patients. \n"
-            + "Parameters: INDEX (must be a positive integer) ["
+            + "Parameters: INDEX (must be a positive number) ["
             + PREFIX_VISIT_DATE + "DATE]\n"
-            + "Input DATE as DD/MM/YYYY. Input YYYY as 19xx to 2xxx.\n"
+            + "Input DATE as DD/MM/YYYY. Input YYYY as 19xx to 2xxx.\n\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + "[" + PREFIX_VISIT_DATE + "10/10/2020]";
 
@@ -51,7 +51,7 @@ public class AddVisitCommand extends Command {
 
         Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-
+        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD, patientToEdit));
         return new CommandResult(String.format(MESSAGE_POPUP_PROMPT, patientToEdit),
                                  visitDate, patientIndex.getOneBased());
     }
