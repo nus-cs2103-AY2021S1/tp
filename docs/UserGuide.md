@@ -53,7 +53,7 @@ This guide serves to provide a reference for first-time users to get familiar wi
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Hershey`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Healthy` or as `n/Hershey`.
+  e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[f/FEED TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
@@ -112,7 +112,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 Examples:
 * `add n/Hershey s/Rufous Hummingbird i/193`
-* `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
+* `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
 
 ---
 
