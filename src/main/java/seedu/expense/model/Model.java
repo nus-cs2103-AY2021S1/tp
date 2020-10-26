@@ -22,6 +22,8 @@ public interface Model {
      */
     Predicate<Expense> PREDICATE_SHOW_ALL_EXPENSES = unused -> true;
 
+    Predicate<CategoryBudget> PREDICATE_SHOW_ALL_BUDGETS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -144,6 +146,11 @@ public interface Model {
      * Checks if the given Tag is present in any of the category budget.
      */
     boolean hasCategory(Tag toCheck);
+
+    /**
+     * Adds the given Tag to the expense book.
+     */
+    void addCategory(Tag tag);
 
     /**
      * Switches the category expense book into the one that matches the given Tag.

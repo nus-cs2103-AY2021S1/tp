@@ -2,12 +2,14 @@ package seedu.expense.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.expense.model.tag.exceptions.DefaultTagException;
 import seedu.expense.model.tag.exceptions.DuplicateTagException;
 import seedu.expense.model.tag.exceptions.TagNotFoundException;
 
@@ -31,7 +33,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return toCheck.equals(DEFAULT_TAG) || internalList.stream().anyMatch(toCheck::equals);
     }
 
     /**
@@ -40,6 +42,11 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void add(Tag toAdd) {
         requireNonNull(toAdd);
+
+        if (toAdd.equals(DEFAULT_TAG)) {
+            throw new DefaultTagException();
+        }
+
         if (contains(toAdd)) {
             throw new DuplicateTagException();
         }
@@ -54,9 +61,17 @@ public class UniqueTagList implements Iterable<Tag> {
     public void setTag(Tag target, Tag editedTag) {
         requireAllNonNull(target, editedTag);
 
+        if (target.equals(DEFAULT_TAG)) {
+            throw new DefaultTagException();
+        }
+
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new TagNotFoundException();
+        }
+
+        if (editedTag.equals(DEFAULT_TAG)) {
+            throw new DefaultTagException();
         }
 
         if (!target.equals(editedTag) && contains(editedTag)) {
@@ -72,6 +87,11 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void remove(Tag toRemove) {
         requireNonNull(toRemove);
+
+        if (toRemove.equals(DEFAULT_TAG)) {
+            throw new DefaultTagException();
+        }
+
         if (!internalList.remove(toRemove)) {
             throw new TagNotFoundException();
         }
@@ -88,6 +108,11 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public void setTags(List<Tag> tags) {
         requireAllNonNull(tags);
+
+        if (tags.contains(DEFAULT_TAG)) {
+            throw new DefaultTagException();
+        }
+
         if (!tagsAreUnique(tags)) {
             throw new DuplicateTagException();
         }

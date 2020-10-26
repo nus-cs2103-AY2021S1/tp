@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.logic.LogicManager;
+import seedu.expense.logic.commands.AddCategoryCommand;
 import seedu.expense.logic.commands.AddCommand;
 import seedu.expense.logic.commands.AliasCommand;
 import seedu.expense.logic.commands.ClearCommand;
@@ -98,6 +99,9 @@ public class ExpenseBookParser {
 
         case TopupCommand.COMMAND_WORD:
             return new TopupCommandParser().parse(arguments);
+
+        case AddCategoryCommand.COMMAND_WORD:
+            return new AddCategoryCommandParser().parse(arguments);
 
         case SwitchCommand.COMMAND_WORD:
             return new SwitchCommandParser().parse(arguments);
