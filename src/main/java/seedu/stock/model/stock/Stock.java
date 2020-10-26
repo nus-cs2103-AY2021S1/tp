@@ -118,7 +118,7 @@ public class Stock {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < notes.size(); i++) {
-            builder.append(i + 1).append(". ").append(notes.get(i)).append(" ");
+            builder.append(i + 1).append(". ").append(notes.get(i)).append("\n");
         }
 
         return builder.toString();

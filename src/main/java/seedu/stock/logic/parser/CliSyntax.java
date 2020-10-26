@@ -23,6 +23,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_STATISTICS_TYPE = new Prefix("st/");
     public static final Prefix PREFIX_SORT_FIELD = new Prefix("by/");
     public static final Prefix PREFIX_SORT_ORDER = new Prefix("o/");
+    public static final Prefix PREFIX_FILE_NAME = new Prefix("fn/");
 
 
     /* Prefix values descriptions */
@@ -40,6 +41,7 @@ public class CliSyntax {
     public static final String PREFIX_INCREMENT_QUANTITY_DESCRIPTION = "<increment value>";
     public static final String PREFIX_SORT_FIELD_DESCRIPTION = "<field>";
     public static final String PREFIX_SORT_ORDER_DESCRIPTION = "<order>";
+    public static final String PREFIX_FILE_NAME_DESCRIPTION = "<file name>";
 
     /**
      * Returns a list containing all possible prefixes.
@@ -62,6 +64,7 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_STATISTICS_TYPE);
         allPrefixes.add(PREFIX_SORT_FIELD);
         allPrefixes.add(PREFIX_SORT_ORDER);
+        allPrefixes.add(PREFIX_FILE_NAME);
         return allPrefixes;
     }
 
@@ -111,6 +114,8 @@ public class CliSyntax {
             return PREFIX_SORT_FIELD_DESCRIPTION;
         } else if (prefix.equals(PREFIX_SORT_ORDER)) {
             return PREFIX_SORT_ORDER_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_FILE_NAME)) {
+            return PREFIX_FILE_NAME_DESCRIPTION;
         } else {
             return "";
         }
