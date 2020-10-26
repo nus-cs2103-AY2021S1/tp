@@ -9,6 +9,7 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.recipe.Recipe;
+import chopchop.ui.DisplayNavigator;
 
 /**
  * Adds a recipe to the recipe book.
@@ -47,6 +48,11 @@ public class AddRecipeCommand extends Command implements Undoable {
         }
 
         model.addRecipe(this.recipe);
+
+        if (DisplayNavigator.hasDisplayController()) {
+            DisplayNavigator.loadRecipeDisplay(recipe);
+        }
+
         return CommandResult.message("Added recipe '%s'", this.recipe.getName());
     }
 
