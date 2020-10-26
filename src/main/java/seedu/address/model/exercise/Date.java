@@ -26,6 +26,7 @@ public class Date {
             SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
             actualDate = formatter.parse(value);
         } catch (java.text.ParseException e) {
+            // actually ParseException will never be thrown because we already check if the input is valid.
             actualDate = null;
         }
     }
