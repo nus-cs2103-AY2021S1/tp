@@ -13,7 +13,7 @@ import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 
 /**
- * Reset important mark from a contact.
+ * Resets important mark from a contact.
  */
 public class ResetContactCommand extends Command {
 

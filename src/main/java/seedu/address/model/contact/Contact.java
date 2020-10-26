@@ -71,16 +71,41 @@ public class Contact {
                 && otherPerson.getTelegramUsername().equals(getTelegramUsername());
     }
 
+    /**
+     * Marks the contact as important
+     *
+     * @return a new contact.
+     */
     public Contact markAsImportant() {
         return new Contact(this.name, this.email, this.telegramUsername, true);
     }
 
+    /**
+     * Marks the contact as not important
+     *
+     * @return a new contact.
+     */
     public Contact markAsNotImportant() {
         return new Contact(this.name, this.email, this.telegramUsername, false);
     }
 
+    /**
+     * Checks if this contact is important.
+     *
+     * @return true if this contact is important.
+     */
     public boolean isImportant() {
         return this.isImportant;
+    }
+
+    /**
+     * Returns String to represent the improtance of this contact.
+     * This method is created to avoid having some logic in the UI.
+     *
+     * @return a String that will be displayed in the Ui.
+     */
+    public String getIsImportantForUi() {
+        return isImportant ? "Important" : "Not important";
     }
 
     /**
@@ -120,7 +145,7 @@ public class Contact {
                 .append(getTelegramUsername())
                 .append(" Tags: ")
                 .append(" Important: ")
-                .append(isImportant ? "YES" : "NO");
+                .append(isImportant ? "Yes" : "No");
         getTags().forEach(builder::append);
         return builder.toString();
     }

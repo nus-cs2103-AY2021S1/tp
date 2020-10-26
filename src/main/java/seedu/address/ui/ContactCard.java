@@ -29,6 +29,8 @@ public class ContactCard extends UiPart<Region> {
     private Label telegram;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label isImportant;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -40,6 +42,7 @@ public class ContactCard extends UiPart<Region> {
         name.setText(contact.getName().fullName);
         email.setText(contact.getEmail().value);
         telegram.setText(contact.getTelegramUsername().telegramUsername);
+        isImportant.setText(contact.getIsImportantForUi());
         //contact.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
