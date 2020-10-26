@@ -3,8 +3,11 @@ package chopchop.logic.commands;
 import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
+import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
 import chopchop.logic.parser.ItemReference;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 
 import org.junit.jupiter.api.Test;
 
@@ -19,14 +22,17 @@ import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 
 public class DeleteIngredientCommandTest {
 
-    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
+    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UsageList<RecipeUsage>(),
+        new UsageList<IngredientUsage>(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         var indToDelete = model.getFilteredIngredientList().get(INDEXED_FIRST.getZeroIndex());
         var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
 
-        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UserPrefs());
+
+        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(),
+            new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.deleteIngredient(indToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedModel);
@@ -47,7 +53,8 @@ public class DeleteIngredientCommandTest {
         var indToDelete = model.getFilteredIngredientList().get(INDEXED_FIRST.getZeroIndex());
         var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
 
-        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UserPrefs());
+        var expectedModel = new ModelManager(new EntryBook<>(), model.getIngredientBook(), new UsageList<RecipeUsage>(),
+            new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.deleteIngredient(indToDelete);
         showNoIngredient(expectedModel);
 

@@ -23,6 +23,7 @@ import static chopchop.logic.parser.commands.FilterCommandParser.parseFilterComm
 import static chopchop.logic.parser.commands.FindCommandParser.parseFindCommand;
 import static chopchop.logic.parser.commands.DeleteCommandParser.parseDeleteCommand;
 import static chopchop.logic.parser.commands.MakeCommandParser.parseMakeCommand;
+import static chopchop.logic.parser.commands.StatsCommandParser.parseStatsCommand;
 import static chopchop.logic.parser.commands.ViewCommandParser.parseViewCommand;
 
 public class CommandParser {
@@ -111,6 +112,7 @@ public class CommandParser {
                 case Strings.COMMAND_UNDO:      return Result.of(new UndoCommand());
                 case Strings.COMMAND_REDO:      return Result.of(new RedoCommand());
                 case Strings.COMMAND_QUIT:      return Result.of(new QuitCommand());
+                case Strings.COMMAND_STATS:     return parseStatsCommand(args);
 
                 default:
                     return Result.error("unknown command '%s'", args.getCommand());

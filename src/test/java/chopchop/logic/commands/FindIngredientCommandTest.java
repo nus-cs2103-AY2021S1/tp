@@ -14,12 +14,17 @@ import chopchop.model.EntryBook;
 import org.junit.jupiter.api.Test;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
+import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 
 public class FindIngredientCommandTest {
-    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
+    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UsageList<RecipeUsage>(),
+        new UsageList<IngredientUsage>(), new UserPrefs());
+    private Model expectedModel = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(),
+        new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
 
     @Test
     public void equals() {

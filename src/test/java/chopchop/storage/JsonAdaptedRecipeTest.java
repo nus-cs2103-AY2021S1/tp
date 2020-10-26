@@ -34,7 +34,7 @@ public class JsonAdaptedRecipeTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedRecipe recipe =
-                new JsonAdaptedRecipe(INVALID_NAME, VALID_REFS,  VALID_STEPS, null);
+                new JsonAdaptedRecipe(INVALID_NAME, VALID_REFS, VALID_STEPS, null);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, recipe::toModelType);
     }

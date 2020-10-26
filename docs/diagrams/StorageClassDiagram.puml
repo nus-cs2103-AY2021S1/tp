@@ -8,16 +8,22 @@ Interface Storage <<interface>>
 Interface UserPrefsStorage <<interface>>
 Interface RecipeBookStorage <<interface>>
 Interface IngredientBookStorage <<interface>>
+Interface UsageStorage <<interface>>
+
 
 Class StorageManager
 Class JsonUserPrefsStorage
 Class JsonRecipeBookStorage
 Class JsonIngredientBookStorage
+Class JsonRecipeUsageStorage
+Class JsonIngredientUsageStorage
+
 
 StorageManager .left.|> Storage
 StorageManager o-up-> UserPrefsStorage
 StorageManager o-right-> RecipeBookStorage
 StorageManager o-down-> IngredientBookStorage
+StorageManager o-right-> UsageStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
 JsonRecipeBookStorage .left.|> RecipeBookStorage
@@ -27,6 +33,8 @@ JsonSerializableRecipe .right.> JsonAdaptedRecipe
 JsonAdaptedRecipe .down.> JsonAdaptedIngredientReference
 JsonIngredientBookStorage .left.|> IngredientBookStorage
 JsonIngredientBookStorage .down.> JsonSerializableIngredientBookStorage
+JsonRecipeUsageStorage .left.|> UsageStorage
+JsonIngredientUsageStorage .left.|> UsageStorage
 JsonSerializableIngredientBookStorage .right.> JsonSerializableIngredient
 JsonSerializableIngredient .right.> JsonAdaptedIngredient
 JsonAdaptedIngredient .up.> JsonAdaptedIngredientSet

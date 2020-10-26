@@ -148,7 +148,7 @@ public class EditCommandParser {
             return Result.error("Expected ingredient name after /ingredient:%s", op);
         }
 
-        return ensureNoArgsForDeleteAndGetOperationType("ingredient", op, qty.isEmpty())
+        return ensureNoArgsForDeleteAndGetOperationType("quantity", op, qty.isEmpty())
             .map(kind -> new IngredientEditDescriptor(kind, ingredientName, qty));
     }
 
@@ -249,14 +249,14 @@ public class EditCommandParser {
 
         if (op.equals("add")) {
             if (argIsEmpty) {
-                return Result.error("Expected non-empty step after /%s:%s", editor, op);
+                return Result.error("Expected non-empty %s after /%s:%s", editor, editor, op);
             }
 
             return Result.of(EditOperationType.ADD);
 
         } else if (op.equals("edit")) {
             if (argIsEmpty) {
-                return Result.error("Expected non-empty step after /%s:%s", editor, op);
+                return Result.error("Expected non-empty %s after /%s:%s", editor, editor, op);
             }
 
             return Result.of(EditOperationType.EDIT);

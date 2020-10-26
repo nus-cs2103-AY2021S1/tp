@@ -89,8 +89,8 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new chopchop.model.UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(recipeBook, ingredientBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(recipeBook, ingredientBook, userPrefs);
+        modelManager = new ModelManager(recipeBook, ingredientBook,  null, null, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(recipeBook, ingredientBook, null, null, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -104,21 +104,21 @@ public class ModelManagerTest {
 
         // different ingredientBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(
-            recipeBook, differentIngredientBook, userPrefs)));
+            recipeBook, differentIngredientBook, null, null, userPrefs)));
 
         // different recipeBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(
-            differentRecipeBook, ingredientBook, userPrefs)));
+            differentRecipeBook, ingredientBook, null, null, userPrefs)));
 
         // different filteredIngredientList -> returns false
         final String[] indKeywords = APRICOT.getName().split("\\s+");
         modelManager.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(indKeywords)));
-        assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, null, null, userPrefs)));
 
         // different filteredRecipeList -> returns false
         final String[] recKeywords = APRICOT_SALAD.getName().split("\\s+");
         modelManager.updateFilteredRecipeList(new NameContainsKeywordsPredicate(Arrays.asList(recKeywords)));
-        assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(recipeBook, ingredientBook, null, null, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredIngredientList(PREDICATE_SHOW_ALL_ENTRIES);

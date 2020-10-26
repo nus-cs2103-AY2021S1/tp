@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private CommandBox commandBox;
     private CommandOutput commandOutput;
+    private StatsBox statsOutput;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -118,8 +119,9 @@ public class MainWindow extends UiPart<Stage> {
         this.commandOutput = commandOutput;
         commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
-        PinBox pinBox = new PinBox();
-        pinBoxPlaceholder.getChildren().add(pinBox.getRoot());
+        StatsBox statsOutput = new StatsBox();
+        this.statsOutput = statsOutput;
+        pinBoxPlaceholder.getChildren().add(statsOutput.getRoot());
 
         DisplayController displayController = new DisplayController(logic);
         DisplayNavigator.setDisplayController(displayController);
@@ -198,7 +200,8 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
 
         } catch (CommandException | ParseException e) {
-            // logger.info("Invalid command: " + commandText);
+            logger.info("Invalid command: " + commandText);
+            this.statsOutput.setBoxContent(e.getMessage());
 
             commandOutput.setFeedbackToUser(e.getMessage(), /* isError: */ true);
             throw e;

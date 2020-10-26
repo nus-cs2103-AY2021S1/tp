@@ -76,18 +76,18 @@ public class Recipe extends Entry {
     @Override
     public boolean isSame(Entry other) {
         return other == this
-                || (other instanceof Recipe
-                && this.name.equals(((Recipe) other).name));
+            || (other instanceof Recipe
+            && this.name.equals(((Recipe) other).name));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
-                || (other instanceof Recipe
-                && this.name.equals(((Recipe) other).name)
-                && this.ingredients.equals(((Recipe) other).ingredients)
-                && this.steps.equals(((Recipe) other).steps))
-                && this.tags.equals(((Recipe) other).tags);
+            || (other instanceof Recipe
+            && this.name.equals(((Recipe) other).name)
+            && this.ingredients.equals(((Recipe) other).ingredients)
+            && this.steps.equals(((Recipe) other).steps))
+            && this.tags.equals(((Recipe) other).tags);
     }
 
     @Override
@@ -111,8 +111,7 @@ public class Recipe extends Entry {
         this.getTags().forEach(tag -> tagJoiner.add(tag.toString()));
 
         return Stream.of(this.getName(), ingredientJoiner.toString(), stepJoiner.toString(), tagJoiner.toString())
-                .filter(field -> !field.isEmpty())
-                .collect(Collectors.joining(" "));
+            .filter(field -> !field.isEmpty())
+            .collect(Collectors.joining(" "));
     }
 }
-

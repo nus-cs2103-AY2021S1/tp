@@ -68,6 +68,8 @@ public class LogicManager implements Logic {
         }
 
         try {
+            this.storage.saveRecipeUsages(this.model.getRecipeUsageList());
+            this.storage.saveIngredientUsages(this.model.getIngredientUsageList());
             this.storage.saveIngredientBook(this.model.getIngredientBook());
             this.storage.saveRecipeBook(this.model.getRecipeBook());
         } catch (IOException ioe) {

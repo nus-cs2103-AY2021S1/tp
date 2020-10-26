@@ -44,7 +44,7 @@ public class JsonAdaptedRecipe {
     public JsonAdaptedRecipe(Recipe source) {
         this.name = source.getName();
         this.ingredients = source.getIngredients().stream().map(JsonAdaptedIngredientReference::new)
-                .collect(Collectors.toList());
+            .collect(Collectors.toList());
         this.steps = source.getSteps().stream().map(Step::toString).collect(Collectors.toList());
         this.tags = source.getTags().stream().map(Tag::toString).collect(Collectors.toList());
     }
@@ -57,7 +57,7 @@ public class JsonAdaptedRecipe {
     public Recipe toModelType() throws IllegalValueException {
         if (this.name == null) {
             throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
-                    Name.class.getSimpleName()));
+                Name.class.getSimpleName()));
         }
         if (!Name.isValidName(this.name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
@@ -65,7 +65,7 @@ public class JsonAdaptedRecipe {
 
         if (this.ingredients == null) {
             throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
-                    IngredientReference.class.getSimpleName()));
+                IngredientReference.class.getSimpleName()));
         }
         List<IngredientReference> modelIngredients = new ArrayList<>();
         for (JsonAdaptedIngredientReference ingredient : this.ingredients) {
@@ -74,7 +74,7 @@ public class JsonAdaptedRecipe {
 
         if (this.steps == null) {
             throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
-                    Step.class.getSimpleName()));
+                Step.class.getSimpleName()));
         }
         List<Step> modelSteps = new ArrayList<>();
         for (String step : this.steps) {
@@ -83,7 +83,7 @@ public class JsonAdaptedRecipe {
 
         if (this.tags == null) {
             throw new IllegalValueException(String.format(RECIPE_MISSING_FIELD_MESSAGE_FORMAT,
-                    Tag.class.getSimpleName()));
+                Tag.class.getSimpleName()));
         }
         Set<Tag> modelTags = new HashSet<>();
         for (String tag : this.tags) {
