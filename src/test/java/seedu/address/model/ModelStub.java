@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
@@ -333,17 +332,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void isValidBid(Bid bid) throws CommandException {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void deleteBid(Bid target) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateSortedBidList(Comparator<Bid> comparator) {
         throw new AssertionError("This method should not be called.");
     }
 

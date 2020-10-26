@@ -13,12 +13,12 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.bidcommands.AddBidCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bid.Bid;
-import seedu.address.model.bid.BidComparator;
 import seedu.address.testutil.bids.BidBuilder;
 
 public class AddBidCommandIntegrationTest {
@@ -33,11 +33,10 @@ public class AddBidCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newBid_success() {
+    public void execute_newBid_success() throws CommandException {
         Bid validBid = new BidBuilder()
                 .withPropertyId(DEFAULT_PROPERTY_ID.toString())
                 .build();
-        BidComparator comparator = new BidComparator();
         Model expectedModel = new ModelManager(
                 model.getAddressBook(),
                 new UserPrefs(),
@@ -48,9 +47,6 @@ public class AddBidCommandIntegrationTest {
                 model.getMeetingBook()
         );
         expectedModel.addBid(validBid);
-        expectedModel.updateSortedBidList(comparator);
-        model.updateSortedBidList(comparator);
-
         assertCommandSuccess(new AddBidCommand(validBid), model,
                 String.format(AddBidCommand.MESSAGE_SUCCESS, validBid), expectedModel);
     }

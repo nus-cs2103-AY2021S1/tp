@@ -1,14 +1,17 @@
 package seedu.address.logic.commands.bids;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.bidcommands.AddBidCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ModelStub;
@@ -24,7 +27,7 @@ public class AddBidCommandTest {
     public void constructor_nullBid_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddBidCommand(null));
     }
-    /*
+
     @Test
     public void execute_bidAcceptedByModel_addSuccessful() throws Exception {
         seedu.address.logic.commands.bids.AddBidCommandTest.ModelStubAcceptingBidAdded modelStub =
@@ -32,12 +35,11 @@ public class AddBidCommandTest {
         Bid validBid = new BidBuilder().build();
 
         CommandResult commandResult = new AddBidCommand(validBid).execute(modelStub);
-
         assertEquals(String.format(AddBidCommand.MESSAGE_SUCCESS, validBid), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBid), modelStub.bidsAdded);
     }
 
- */
+
 
     @Test
     public void execute_duplicateBid_throwsCommandException() {

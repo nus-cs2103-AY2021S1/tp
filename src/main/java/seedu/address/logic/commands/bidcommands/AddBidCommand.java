@@ -57,9 +57,7 @@ public class AddBidCommand extends Command {
         if (model.hasBid(bid)) {
             throw new CommandException(MESSAGE_DUPLICATE_BID);
         }
-        model.isValidBid(bid);
         model.addBid(bid);
-        model.updateSortedBidList(bidComparator);
         return new CommandResult(String.format(MESSAGE_SUCCESS, bid)).setEntity(EntityType.BID);
 
     }

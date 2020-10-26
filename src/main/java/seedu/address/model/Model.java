@@ -132,7 +132,7 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * adds a bid to the BidBook
      * @param bid to add to the BidBook
      */
-    void addBid(Bid bid);
+    void addBid(Bid bid) throws CommandException;
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -140,23 +140,10 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     boolean hasBid(Bid bid);
 
     /**
-     * return true if all parameters of the bid are valid
-     * @param bid
-     * @return
-     */
-    void isValidBid(Bid bid) throws CommandException;
-
-    /**
      * deleted a bid from the BidBook
      * @param target
      */
     void deleteBid(Bid target);
-
-    /**
-     * Updates the comparator of the sorted bid list to sort by the given {@code comparator}.
-     * @throws NullPointerException if {@code comparator} is null.
-     */
-    void updateSortedBidList(Comparator<Bid> comparator);
 
     /**
      * Replaces the given bid {@code target} with {@code editedBid}.

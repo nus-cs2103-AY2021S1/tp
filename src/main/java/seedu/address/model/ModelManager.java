@@ -19,6 +19,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bid.BidComparator;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
@@ -40,6 +41,7 @@ import seedu.address.model.selleraddressbook.SellerAddressBook;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
+    private static final BidComparator bidComparator = new BidComparator();
 
     private final BidBook bidBook;
     private final AddressBook addressBook;
@@ -207,8 +209,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addBid(Bid bid) {
+    public void addBid(Bid bid) throws CommandException {
+        isValidBid(bid);
         bidBook.addBid(bid);
+        updateSortedBidList(bidComparator);
         updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
     }
 
@@ -224,8 +228,12 @@ public class ModelManager implements Model {
         return bidBook.hasBid(bid);
     }
 
-    @Override
-    public void isValidBid(Bid bid) throws CommandException {
+    /**
+     * checks a bid against the property and bidder list to see if the ids exists and if bid amount is valid
+     * @param bid bid to validate
+     * @throws CommandException
+     */
+    private void isValidBid(Bid bid) throws CommandException {
         requireNonNull(bid);
         if (!containsPropertyId(bid.getPropertyId())) {
             throw new CommandException(MESSAGE_INVALID_PROPERTY_ID);
@@ -238,8 +246,11 @@ public class ModelManager implements Model {
         }
     }
 
-    @Override
-    public void updateSortedBidList(Comparator<Bid> comparator) {
+    /**
+     * sorts the list using the comparator
+     * @param comparator predicate to use to compare
+     */
+    private void updateSortedBidList(Comparator<Bid> comparator) {
         requireAllNonNull(comparator);
         sortedBids.setComparator(comparator);
         bidBook.setBids(sortedBids);
