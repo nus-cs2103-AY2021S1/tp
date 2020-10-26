@@ -26,6 +26,7 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
+import chopchop.model.usage.Usage;
 import chopchop.model.util.SampleDataUtil;
 import chopchop.storage.IngredientBookStorage;
 import chopchop.storage.JsonIngredientBookStorage;
@@ -72,29 +73,20 @@ public class MainApp extends Application {
         var recipeBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
         var ingredientBookStorage = new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
 
+        var recipeUsageStorage = new JsonRecipeUsageStorage(userPrefs.getRecipeUsageFilePath());
+        var ingredientUsageStorage = new JsonIngredientUsageStorage(userPrefs.getIngredientUsageFilePath());
 
-        this.storage = new StorageManager(recipeBookStorage, ingredientBookStorage, userPrefsStorage);
-        this.model = new ModelManager(new EntryBook<>(), new EntryBook<>(), userPrefs);
+        this.storage = new StorageManager(
+            recipeBookStorage, ingredientBookStorage,
+            recipeUsageStorage, ingredientUsageStorage,
+            userPrefsStorage);
+
+        this.model = new ModelManager(new EntryBook<>(), new EntryBook<>(),
+            new UsageList<>(), new UsageList<>(), userPrefs);
+
         this.logic = new LogicManager(this.model, this.storage);
         this.ui = new UiManager(this.logic);
     }
-
-
-
-// <<<<<<< HEAD
-//         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
-//         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-//         RecipeBookStorage recipeBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
-//         IngredientBookStorage ingredientBookStorage =
-//                 new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
-//         JsonRecipeUsageStorage recipeUsageStorage = new JsonRecipeUsageStorage(userPrefs.getRecipeUsageFilePath());
-//         JsonIngredientUsageStorage ingredientUsageStorage =
-//             new JsonIngredientUsageStorage(userPrefs.getIngredientUsageFilePath());
-//         storage = new StorageManager(recipeBookStorage, ingredientBookStorage, recipeUsageStorage,
-//             ingredientUsageStorage, userPrefsStorage);
-// =======
-// >>>>>>> 508da5ca... Fix #162, displaying both command output and a modal alert box
-
 
     private void loadEntries() {
 
@@ -111,13 +103,23 @@ public class MainApp extends Application {
             SampleDataUtil::getSampleIngredientBook,
             this.storage.getIngredientBookFilePath()
         ));
+
+        this.model.setRecipeUsageList(this.loadUsages("recipe",
+            this.storage::readRecipeUsages,
+            this.storage.getRecipeUsageFilePath()
+        ));
+
+        this.model.setIngredientUsageList(this.loadUsages("ingredient",
+            this.storage::readIngredientUsages,
+            this.storage.getIngredientUsageFilePath()
+        ));
     }
 
     /**
      * Populates the model with the recipe book loaded from disk. If the json was not found, then
      * sample data is loaded; if the json was invalid, then no data is loaded.
      */
-    private <T extends Entry> ReadOnlyEntryBook<T> loadEntryBook(String entryKind,
+    private <T extends Entry> ReadOnlyEntryBook<T> loadEntryBook(String kind,
         EntryBookSupplier<T> loader, Supplier<ReadOnlyEntryBook<T>> sampleData, Path path) {
 
         try {
@@ -126,10 +128,10 @@ public class MainApp extends Application {
             if (opt.isEmpty()) {
 
                 logger.info(String.format("Data file for %s book not found; starting with sample recipes",
-                    entryKind.toLowerCase()));
+                    kind));
 
                 this.ui.showCommandOutput(
-                    String.format("Could not find existing %ss, loading sample data", entryKind),
+                    String.format("Could not find existing %ss, loading sample data", kind),
                     /* isError: */ false
                 );
 
@@ -140,17 +142,48 @@ public class MainApp extends Application {
 
         } catch (DataConversionException e) {
             logger.severe(String.format("Data file for %s book was invalid; starting with an empty book",
-                entryKind));
+                kind));
 
             this.ui.showCommandOutput(
-                String.format("Existing %ss were corrupted; starting with empty data.", entryKind),
+                String.format("Existing %ss were corrupted; starting with empty data.", kind),
                 /* isError: */ true
             );
 
             this.ui.displayModalDialog(AlertType.ERROR, "Data Loading Error",
-                String.format("Failed to load %ss (from '%s')", entryKind, path),
-                String.format("Note that making any changes here will overwrite any existing %ss", entryKind));
+                String.format("Failed to load %ss (from '%s')", kind, path),
+                String.format("Note that making any changes here will overwrite any existing %ss", kind));
             return new EntryBook<T>();
+        }
+    }
+
+
+    private <T extends Usage> UsageList<T> loadUsages(String kind, UsageListSupplier<T> loader, Path path) {
+
+        try {
+            var opt = loader.get();
+            if (opt.isEmpty()) {
+
+                logger.info(String.format("Data file for %s usage list not found", kind));
+
+                return new UsageList<>();
+            } else {
+                return opt.get();
+            }
+
+        } catch (DataConversionException e) {
+            logger.severe(String.format("Data file for %s usage list was invalid; starting with an empty list",
+                kind));
+
+            this.ui.showCommandOutput(
+                String.format("Existing %s usages were corrupted; starting with empty data.", kind),
+                /* isError: */ true
+            );
+
+            this.ui.displayModalDialog(AlertType.ERROR, "Data Loading Error",
+                String.format("Failed to load %s usages (from '%s')", kind, path),
+                String.format("Note that making any changes here will overwrite any existing %ss", kind));
+
+            return new UsageList<T>();
         }
     }
 
@@ -341,5 +374,10 @@ public class MainApp extends Application {
     @FunctionalInterface
     private static interface EntryBookSupplier<T extends Entry> {
         Optional<ReadOnlyEntryBook<T>> get() throws DataConversionException;
+    }
+
+    @FunctionalInterface
+    private static interface UsageListSupplier<T extends Usage> {
+        Optional<UsageList<T>> get() throws DataConversionException;
     }
 }
