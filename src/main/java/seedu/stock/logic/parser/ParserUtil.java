@@ -72,6 +72,14 @@ public class ParserUtil {
         return new Quantity(trimmedQuantity);
     }
 
+    /**
+     * Parses a {@code Optional<String> lowQuantity} into a {@code Quantity}.
+     * Updates lowQuantity in quantity if lowQuantity is present and returns original
+     * quantity otherwise.
+     * Leading and trailing whitespaces will be trimmed if lowQuantity is present.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
     public static Quantity parseLowQuantity(Quantity quantity, Optional<String> lowQuantity) throws ParseException {
         if (lowQuantity.isEmpty()) {
             return quantity;
