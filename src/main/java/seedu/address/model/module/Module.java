@@ -7,14 +7,13 @@ import java.util.Collections;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.Showable;
 import seedu.address.model.Task;
 import seedu.address.model.TaskList;
 import seedu.address.model.UniqueTutorialGroupList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 
-public class Module implements Showable<Module> {
+public class Module {
 
     private final ModuleId moduleId;
     private UniqueTutorialGroupList tutorialGroups;
