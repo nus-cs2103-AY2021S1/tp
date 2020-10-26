@@ -201,7 +201,7 @@ public class MainWindow extends UiPart<Stage> {
 
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            this.statsOutput.setBoxContent(e.getMessage());
+            //this.statsOutput.setBoxContent(e.getMessage());
 
             commandOutput.setFeedbackToUser(e.getMessage(), /* isError: */ true);
             throw e;

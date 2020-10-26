@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,6 +19,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.Region;
 
 /**
@@ -35,7 +37,7 @@ public class StatsBox extends UiPart<Region> {
     private TextArea header1;
 
     @FXML
-    private TextArea body1;
+    private ListView<String> listView;
 
     /**
      * Creates a {@code PinBox}.
@@ -43,8 +45,28 @@ public class StatsBox extends UiPart<Region> {
     public StatsBox() {
         super(FXML);
         pins.setText("Statistics\n");
-        //header1.setText("COMMAND_LINE");
-        body1.setText(EMPTY_PROMPT);
+        /*
+        ArrayList<String> testList = new ArrayList<>(
+            Arrays.asList("recipe 1 2020-02-13", "recipe 2 2020-02-12"));
+        body1.set = renderList(testList);
+         */
+        final ObservableList<String> names = FXCollections.observableArrayList();
+        final ObservableList<String> data = FXCollections.observableArrayList();
+        this.listView = new ListView(data);
+        listView.setPrefSize(200, 250);
+        listView.setEditable(true);
+        names.addAll(
+            "Adam", "Alex", "Alfred", "Albert",
+            "Brenda", "Connie", "Derek", "Donny",
+            "Lynne", "Myrtle", "Rose", "Rudolph",
+            "Tony", "Trudy", "Williams", "Zach"
+        );
+        for (int i = 0; i < 18; i++) {
+            data.add("anonym");
+        }
+        listView.setItems(data);
+        listView.setCellFactory(ComboBoxListCell.forListView(names));
+        listView.setPlaceholder(pins);
     }
 
     private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
@@ -66,19 +88,41 @@ public class StatsBox extends UiPart<Region> {
      * panel.
      */
     private ListView<String> renderList(List<String> inputList) {
+        /*
         ListView<String> list = new ListView<>();
         ObservableList<String> items = FXCollections.observableArrayList(inputList);
         list.setItems(items);
-
+*/
+        //code I got online
+        final ObservableList names =
+            FXCollections.observableArrayList();
+        final ObservableList data =
+            FXCollections.observableArrayList();
+        final ListView listView = new ListView(data);
+        listView.setPrefSize(200, 250);
+        listView.setEditable(true);
+        names.addAll(
+            "Adam", "Alex", "Alfred", "Albert",
+            "Brenda", "Connie", "Derek", "Donny",
+            "Lynne", "Myrtle", "Rose", "Rudolph",
+            "Tony", "Trudy", "Williams", "Zach"
+        );
+        for (int i = 0; i < 18; i++) {
+            data.add("anonym");
+        }
+        listView.setItems(data);
+        listView.setCellFactory(ComboBoxListCell.forListView(names));
         //-------------------------------style-----------------------------------------
+        //list.setPrefWidth(100);
+        //list.setPrefHeight(120);
 
-
-        return list;
+        return listView;
     }
 
     /**
      * A bar graph for showing the quantities.
      */
+    /*
     private XYChart renderChart(List<Pair<String, Integer>> inputList, String xLabel,
                                 String yLabel) {
         CategoryAxis xAxis = new CategoryAxis();
@@ -94,6 +138,6 @@ public class StatsBox extends UiPart<Region> {
 
     public void setBoxContent(String boxContent) {
         requireNonNull(boxContent);
-        body1.setText(boxContent);
     }
+     */
 }

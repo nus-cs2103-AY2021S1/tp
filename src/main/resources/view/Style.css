@@ -282,3 +282,33 @@
 #commandOutputPlaceholder {
     -fx-padding: 5;
 }
+#listView {
+    -fx-background-color: #fafafa;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #212121;
+    -fx-prompt-text-fill: #212121;
+    -fx-background-radius: 20 20 20 20;
+}
+#listView {
+    -fx-background-color: #f1f8e9;
+    -fx-background-radius: 6;
+    -fx-border-color: #8bc34a;
+    -fx-border-radius: 6;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #212121;
+    -fx-padding: 6;
+}
+#listView .scroll-pane {
+    -fx-background-color: #f1f8e9;
+    -fx-background-radius: 6;
+}
+#listView .scroll-pane .viewport {
+    -fx-background-color: #f1f8e9;
+    -fx-background-radius: 6;
+}
+#listView .scroll-pane .content{
+    -fx-background-color: #f1f8e9;
+    -fx-background-radius: 6;
+}
