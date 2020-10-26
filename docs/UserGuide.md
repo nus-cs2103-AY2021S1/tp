@@ -98,7 +98,7 @@ Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM]`
 * `DIAGRAM` can be defined by a valid relative or absolute path.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If the category is not specified, the flashcard will have the `General` category.
+If the category is not specified, the flashcard will have the <b>General</b> category.
 </div>
 
 Examples:
