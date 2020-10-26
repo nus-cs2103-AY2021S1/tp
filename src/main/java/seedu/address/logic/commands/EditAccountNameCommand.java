@@ -24,6 +24,8 @@ public class EditAccountNameCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Name for account changed from %1$s -> %2$s!";
 
+    public static final String MESSAGE_DUPLICATED_NAME = "There is already another account with this name!";
+
     public final Name name;
 
     /**
@@ -39,6 +41,10 @@ public class EditAccountNameCommand extends Command {
         requireAllNonNull(model, activeAccount);
         Account previousAccount = activeAccount.getAccount();
 
+        Account accountForCheck = new Account(name);
+        if (model.hasAccount(accountForCheck)) {
+            throw new CommandException(MESSAGE_DUPLICATED_NAME);
+        }
         activeAccount.setName(name);
         Account newAccount = activeAccount.getAccount();
         model.setAccount(previousAccount, newAccount);
