@@ -12,7 +12,7 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 ## Legend
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 
 **:information_source: Provides additional notes and constraints for certain information.**
 
@@ -41,9 +41,9 @@ This guide serves to provide a reference for first-time users to get familiar wi
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. You can refer to the [Features](#features) below for the details of each command. The features are categorised in alphabetical order for easier reference.
+1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic Features](#basic features) are listed first, followed by additional [Advanced Features](#advanced features) which may be useful for the user.
 
-## Features
+## Basic Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -63,6 +63,40 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 </div>
 
+### Viewing help: `help`
+
+Shows a message explaining how you can access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
+
+---
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
+---
+
+### Listing all animals: `list`
+
+Lists all animals under the care of the user.
+
+Format: `list`
+
+---
+
+### Clearing all entries: `clear`
+
+Clears all entries from the app.
+
+Format: `clear`
+
+---
+
 ### Adding an animal: `add`
 
 Adds an animal under the care of the user.
@@ -79,6 +113,35 @@ Examples:
 
 ---
 
+### Deleting an animal: `delete`
+
+Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
+
+Format: `delete ID`
+
+Example:
+* `delete 193` deletes the individual animal with id 193.
+
+---
+
+### Undoing a command: `undo`
+
+Undoes the most recently used command. No changes if no previous state exists.
+
+Format: `undo`
+
+---
+
+### Redoing an undo: `redo`
+
+Redoes the previous undo. No changes if no previous state exists.
+
+Format: `redo`
+
+---
+
+## Advanced Features
+
 ### Appending information to an animal's fields: `append`
 
 Appends information to the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
@@ -94,30 +157,18 @@ Examples:
 
 ---
 
-### Clearing all entries: `clear`
+### Replacing an animal's fields: `replace`
 
-Clears all entries from the app.
+Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `clear`
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feeding times (including 0).
+</div>
 
----
-
-### Deleting an animal: `delete`
-
-Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
-
-Format: `delete ID`
-
-Example:
-* `delete 193` deletes the individual animal with id 193.
-
----
-
-### Exiting the program: `exit`
-
-Exits the program.
-
-Format: `exit`
+Examples:
+* `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
+* `replace 1307 i/2910 n/Jirachi` replaces the ID of animal 1307 with 2910 and the name with "Jirachi".
 
 ---
 
@@ -133,47 +184,6 @@ Keyword matching is case insensitive.
 Example:
 * `find Ahmeng Buttercup Coco` finds all animals with the fields (name) containing any of the specified keywords.
 * `find 1200` finds all animals with the field (id or feeding time) containing the specified keyword.
-
----
-
-### Viewing help: `help`
-
-Shows a message explaining how you can access the help page.
-
-![help message](images/helpMessage.png)
-
-Format: `help`
-
----
-
-### Listing all animals: `list`
-
-Lists all animals under the care of the user.
-
-Format: `list`
-
----
-
-### Redoing an undo: `redo`
-
-Redoes the previous undo. No changes if no previous state exists.
-
-Format: `redo`
-
----
-
-### Replacing an animal's fields: `replace`
-
-Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
-
-Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
-</div>
-
-Examples:
-* `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
-* `replace 1307 i/2910 n/Jirachi` replaces the ID of animal 1307 with 2910 and the name with "Jirachi".
 
 ---
 
@@ -214,14 +224,6 @@ Example:
 
 ---
 
-### Undoing a command: `undo`
-
-Undoes the most recently used command. No changes if no previous state exists.
-
-Format: `undo`
-
----
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Note for manually saving data:**<br>
@@ -247,18 +249,19 @@ There is no need to save manually, though you can create a copy of the current d
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
-**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…`
-**Clear** | `clear`
-**Delete** | `delete ID` <br> e.g. `delete 193`
-**Exit** | `exit`
-**Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
 **Help** | `help`
+**Exit** | `exit`
 **List** | `list`
+**Clear** | `clear`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
+**Delete** | `delete ID` <br> e.g. `delete 193`
+**Undo** | `undo`
 **Redo** | `redo`
+**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…`
 **Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…` 
+**Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
 **Sort** | `sort CATEGORY` <br> e.g. `sort name` 
 **Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
-**Undo** | `undo`
+
 
 
