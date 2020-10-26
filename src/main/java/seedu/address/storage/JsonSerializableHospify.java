@@ -46,15 +46,15 @@ class JsonSerializableHospify {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public HospifyBook toModelType() throws IllegalValueException {
-        HospifyBook addressBook = new HospifyBook();
+        HospifyBook hospifyBook = new HospifyBook();
         for (JsonAdaptedPatient jsonAdaptedPatient : persons) {
             Patient patient = jsonAdaptedPatient.toModelType();
-            if (addressBook.hasPatient(patient)) {
+            if (hospifyBook.hasPatient(patient)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPatient(patient);
+            hospifyBook.addPatient(patient);
         }
-        return addressBook;
+        return hospifyBook;
     }
 
 }

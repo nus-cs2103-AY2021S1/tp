@@ -1,5 +1,7 @@
 package seedu.address.model.patient;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -102,7 +104,7 @@ public class Appointment {
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
-        return time.format(formatter);
+        return time.format(formatter) + " " + PREFIX_DESCRIPTION + description;
     }
 
     @Override
