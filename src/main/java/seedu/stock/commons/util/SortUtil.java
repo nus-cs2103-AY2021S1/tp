@@ -82,14 +82,11 @@ public class SortUtil {
                     pointsB += 2;
                 }
 
-                int quantityA = Integer.valueOf(a.getQuantity().toString());
-                int quantityB = Integer.valueOf(b.getQuantity().toString());
-
-                if (quantityA <= 50) {
+                if (a.getQuantity().isLowOnQuantity()) {
                     pointsA++;
                 }
 
-                if (quantityB <= 50) {
+                if (b.getQuantity().isLowOnQuantity()) {
                     pointsB++;
                 }
 

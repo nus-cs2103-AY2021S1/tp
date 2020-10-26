@@ -12,6 +12,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_SOURCE = new Prefix("s/");
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/");
+    public static final Prefix PREFIX_LOW_QUANTITY = new Prefix("lq/");
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
     public static final Prefix PREFIX_LIST_TYPE = new Prefix("lt/");
     public static final Prefix PREFIX_SERIAL_NUMBER = new Prefix("sn/");
@@ -30,6 +31,7 @@ public class CliSyntax {
     public static final String PREFIX_LOCATION_DESCRIPTION = "<location>";
     public static final String PREFIX_LIST_TYPE_DESCRIPTION = "list type";
     public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
+    public static final String PREFIX_LOW_QUANTITY_DESCRIPTION = "<low quantity>";
     public static final String PREFIX_SERIAL_NUMBER_DESCRIPTION = "<serial number>";
     public static final String PREFIX_NOTE_DESCRIPTION = "<note>";
     public static final String PREFIX_NOTE_INDEX_DESCRIPTION = "<note index>";
@@ -49,6 +51,7 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_NAME);
         allPrefixes.add(PREFIX_SOURCE);
         allPrefixes.add(PREFIX_QUANTITY);
+        allPrefixes.add(PREFIX_LOW_QUANTITY);
         allPrefixes.add(PREFIX_LOCATION);
         allPrefixes.add(PREFIX_LIST_TYPE);
         allPrefixes.add(PREFIX_SERIAL_NUMBER);
@@ -90,6 +93,8 @@ public class CliSyntax {
             return PREFIX_LIST_TYPE_DESCRIPTION;
         } else if (prefix.equals(PREFIX_QUANTITY)) {
             return PREFIX_QUANTITY_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_LOW_QUANTITY)) {
+            return PREFIX_LOW_QUANTITY_DESCRIPTION;
         } else if (prefix.equals(PREFIX_SERIAL_NUMBER)) {
             return PREFIX_SERIAL_NUMBER_DESCRIPTION;
         } else if (prefix.equals(PREFIX_NOTE)) {
