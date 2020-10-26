@@ -65,7 +65,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
             // check if any of the collections are empty (no text after prefixes)
             if ((nameSet.size() == 1 && nameSet.contains("")) || tagSet.isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
             }
             return new CopyCommand(
                     new PersonHasTagsAndNamePredicate(new ArrayList<>(nameSet), new ArrayList<>(tagSet)),

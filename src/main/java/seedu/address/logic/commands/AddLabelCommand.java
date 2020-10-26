@@ -14,7 +14,6 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -72,21 +71,12 @@ public class AddLabelCommand extends Command {
         }
 
         model.setPerson(personToLabel, labelledPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // update meeting book
-        List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getParticipants().contains(personToLabel)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
-                    updatedMembers.remove(personToLabel);
-                    updatedMembers.add(labelledPerson);
-                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
-                            meeting.getDate(), meeting.getTime(), updatedMembers);
-                    model.setMeeting(meeting, updatedMeeting);
-                    return updatedMeeting;
-                }).collect(Collectors.toList());
+        model.updatePersonInMeetingBook(personToLabel, labelledPerson);
 
-        // todo update module book
+        // update module book
+        model.updatePersonInModuleBook(personToLabel, labelledPerson);
 
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, labelledPerson));
     }

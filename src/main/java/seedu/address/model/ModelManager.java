@@ -254,6 +254,29 @@ public class ModelManager implements Model {
         this.moduleBook.resetData(newBook);
     }
 
+    @Override
+    public void updatePersonInModuleBook(Person ...persons) {
+        requireNonNull(persons);
+        Person personToUpdate = persons[0];
+        boolean isReplacement = persons.length > 1;
+
+        filteredModules.stream()
+                .filter(module -> module.getClassmates().contains(personToUpdate))
+                .forEach(module -> {
+                    Set<Person> updatedClassmates = new HashSet<>(module.getClassmates());
+                    logger.fine("Removing contact from relevant module.");
+                    updatedClassmates.remove(personToUpdate);
+                    if (isReplacement) {
+                        assert persons.length == 2;
+                        Person editedPerson = persons[1];
+                        logger.fine("Adding edited contact to relevant module.");
+                        updatedClassmates.add(editedPerson);
+                    }
+                    Module updatedModule = new Module(module.getModuleName(), updatedClassmates);
+                    moduleBook.setModule(module, updatedModule);
+                });
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

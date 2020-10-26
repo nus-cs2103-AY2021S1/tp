@@ -5,13 +5,11 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -45,22 +43,14 @@ public class ClearLabelCommand extends Command {
                 .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
         Person personToClear = filteredList.get(0);
         Person clearedPerson = createClearedPerson(personToClear); // clears all labels from Person
+
         model.setPerson(personToClear, clearedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         // update meeting book
-        List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getParticipants().contains(personToClear)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
-                    updatedMembers.remove(personToClear);
-                    updatedMembers.add(clearedPerson);
-                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
-                            meeting.getDate(), meeting.getTime(), updatedMembers);
-                    model.setMeeting(meeting, updatedMeeting);
-                    return updatedMeeting;
-                }).collect(Collectors.toList());
+        model.updatePersonInMeetingBook(personToClear, clearedPerson);
 
-        // todo update module book
+        // update module book
+        model.updatePersonInModuleBook(personToClear, clearedPerson);
 
         return new CommandResult(String.format("All labels of person '%s' have been cleared!", targetName.toString()));
     }

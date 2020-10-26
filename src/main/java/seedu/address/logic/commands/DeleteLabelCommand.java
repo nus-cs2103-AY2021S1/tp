@@ -58,19 +58,11 @@ public class DeleteLabelCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
 
-        // Update meeting book
-        List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getParticipants().contains(personToEdit)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
-                    updatedMembers.remove(personToEdit);
-                    updatedMembers.add(editedPerson);
-                    Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
-                            meeting.getDate(), meeting.getTime(), updatedMembers);
-                    model.setMeeting(meeting, updatedMeeting);
-                    return updatedMeeting;
-                }).collect(Collectors.toList());
+        // update meeting book
+        model.updatePersonInMeetingBook(personToEdit, editedPerson);
 
-        // todo update module book
+        // update module book
+        model.updatePersonInModuleBook(personToEdit, editedPerson);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, editedPerson));
     }

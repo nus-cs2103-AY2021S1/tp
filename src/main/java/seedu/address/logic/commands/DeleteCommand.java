@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -51,46 +52,24 @@ public class DeleteCommand extends Command {
         List<Person> people;
         if (moduleNames.isEmpty()) {
             // finds Persons that match the predicate only
-            people = model.getUpdatedFilteredPersonList(predicate);
+            people = new ArrayList<>(model.getUpdatedFilteredPersonList(predicate));
         } else {
             // finds Persons that match the predicate and Persons that have the given Modules
-            people = model.getUpdatedFilteredPersonList(predicate, moduleNames);
+            people = new ArrayList<>(model.getUpdatedFilteredPersonList(predicate, moduleNames));
         }
+        List<Person> peopleCopy = new ArrayList<>(people);
 
         // Update address book
-        people.stream().forEach(
-                p -> {
-                    List<Person> filteredList = model.getFilteredPersonList().stream()
-                            .filter(person -> person.isSameName(p.getName())).collect(Collectors.toList());
-                    assert filteredList.size() == 1;
-                    Person personToDelete = filteredList.get(0);
-                    model.deletePerson(personToDelete);
-                    List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                            .filter(meeting -> meeting.getParticipants().contains(personToDelete)).map(meeting -> {
-                                Set<Person> updatedMembers = new HashSet<>(meeting.getParticipants());
-                                updatedMembers.remove(personToDelete);
-                                Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
-                                        meeting.getDate(), meeting.getTime(), updatedMembers);
-                                model.setMeeting(meeting, updatedMeeting);
-                                return updatedMeeting;
-                            }).collect(Collectors.toList());
-                    model.updatePersonInMeetingBook(personToDelete);
-                }
-        );
+        people.stream().forEach(p -> {
+            model.deletePerson(p); // delete in AddressBook
+            model.updatePersonInMeetingBook(p); // delete in MeetingBook
+            model.updatePersonInModuleBook(p); // delete in ModuleBook
+        });
 
-        String deletedNames = people.stream()
+        String deletedNames = peopleCopy.stream()
                 .map(p -> p.getName().toString())
-                .reduce("", (x, y) -> x + y + " ");
-
-        // todo update module book
-        //        List<Meeting> filteredModuleList = model.getFilteredModuleList().stream()
-        //                .filter(module -> module.getClassmates().contains(personToDelete)).map(module -> {
-        //                    Set<Person> updatedClassmates = new HashSet<>(module.getClassmates());
-        //                    updatedClassmates.remove(personToDelete);
-        //                    Module updatedModule = new Module(module.getModuleName(), updatedClassmates);
-        //                    model.setModule(module, updatedModule);
-        //                    return updatedModule;
-        //                }).collect(Collectors.toList());
+                .reduce("", (x, y) -> x + y + ", ");
+        deletedNames = deletedNames.substring(0, deletedNames.length() - 2);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames));
     }
