@@ -549,6 +549,8 @@ For your convenience, QuickCache data are saved in the hard disk automatically a
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary <a name="command-summary"></a>
 
+If you need to quickly look up a command, we have added a table below to summarize all the commands offered by QuickCache.
+
 <table>
     <thead>
         <tr>
