@@ -143,8 +143,8 @@ add recipe Pancakes
 
  
 
-### Editing Recipes -- **`edit`**`recipe`
-Edits a specific recipe from ChopChop. The `edit recipe` command allows for different actions on name, ingredients, steps and tags, as specified below.
+### Editing Recipes — **`edit`**`recipe`
+Edits a specific recipe from ChopChop. The `edit recipe` command allows for different actions on the name, ingredients, steps and tags, as specified below.
 
 #### Name
 To edit a recipe's name, use the `/name` parameter (e.g. `/name new recipe name`).
@@ -276,6 +276,22 @@ Finds all ingredients containing the given keywords in the name; at least one se
 Usage: `find ingredient <KEYWORD_ONE> [<KEYWORD_TWO>]...`
 
 The semantics of this command are the same as `find recipe`, which you can see [above](#finding-recipes--findrecipe).
+
+
+
+
+#### Undoing commands — **`undo`**
+Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
+
+Usage: `undo`
+
+
+
+
+#### Undoing commands — **`redo`**
+Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
+
+Usage: `redo`
 
 -----------------------
 ## Quantities and Units
