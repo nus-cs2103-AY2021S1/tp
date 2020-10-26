@@ -52,7 +52,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, ActiveAccount activeAccount) throws CommandException {
+    public CommandResult execute(Model model, ActiveAccount activeAccount) {
         requireAllNonNull(model, activeAccount);
         assert (activeAccount != null);
 
