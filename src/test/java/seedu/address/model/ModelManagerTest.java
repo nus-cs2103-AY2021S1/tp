@@ -16,6 +16,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.policy.PolicyList;
+import seedu.address.model.util.SamplePolicyDataUtil;
 import seedu.address.testutil.ClientListBuilder;
 
 public class ModelManagerTest {
@@ -98,10 +100,11 @@ public class ModelManagerTest {
         ClientList clientList = new ClientListBuilder().withPerson(ALICE).withPerson(BENSON).build();
         ClientList differentClientList = new ClientList();
         UserPrefs userPrefs = new UserPrefs();
+        PolicyList policyList = SamplePolicyDataUtil.getSamplePolicyList();
 
         // same values -> returns true
-        modelManager = new ModelManager(clientList, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(clientList, userPrefs);
+        modelManager = new ModelManager(clientList, userPrefs, policyList);
+        ModelManager modelManagerCopy = new ModelManager(clientList, userPrefs, policyList);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +117,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different clientList -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentClientList, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentClientList, userPrefs, policyList)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(clientList, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(clientList, userPrefs, policyList)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +130,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setClientListFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(clientList, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(clientList, differentUserPrefs, policyList)));
     }
 }

@@ -23,6 +23,8 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyClientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.PolicyList;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -172,6 +174,36 @@ public class AddCommandTest {
 
         @Override
         public void setIsArchiveMode(boolean isArchiveMode) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Path getPolicyListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPolicyListFilePath(Path path) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PolicyList getPolicyList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPolicy(Policy policy) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPolicy(Policy policy) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearPolicyList() {
             throw new AssertionError("This method should not be called.");
         }
     }
