@@ -4,8 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACTIVE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARCHIVE;
 
-import java.util.List;
-
 import seedu.address.model.Model;
 
 /**

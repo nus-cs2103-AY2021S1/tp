@@ -65,7 +65,7 @@ public class UnarchiveCommand extends Command {
 
     private static Person createUnarchivedPerson(Person personToUnarchive) {
         assert personToUnarchive != null;
-        assert personToUnarchive.getIsArchive() : "Person to archive should not already be in archive";
+        assert personToUnarchive.getIsArchive() : "Person to unarchive should not already be active";
 
         Name unarchivedName = personToUnarchive.getName();
         Phone unarchivedPhone = personToUnarchive.getPhone();

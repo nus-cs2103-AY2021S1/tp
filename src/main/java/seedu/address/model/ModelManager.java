@@ -134,6 +134,25 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Archive Mode =============================================================
+
+    @Override
+    public boolean getIsArchiveMode() {
+        return isArchiveMode.get();
+    }
+
+    @Override
+    public BooleanProperty getIsArchiveModeProperty() {
+        return isArchiveMode;
+    }
+
+    @Override
+    public void setIsArchiveMode(boolean isArchiveMode) {
+        this.isArchiveMode.set(isArchiveMode);
+    }
+
+    //=========== Equals =============================================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -154,20 +173,4 @@ public class ModelManager implements Model {
                 && (isArchiveMode.get() == other.isArchiveMode.get());
     }
 
-    //=========== Archive Mode =============================================================
-
-    @Override
-    public boolean getIsArchiveMode() {
-        return isArchiveMode.get();
-    }
-
-    @Override
-    public BooleanProperty getIsArchiveModeProperty() {
-        return isArchiveMode;
-    }
-
-    @Override
-    public void setIsArchiveMode(boolean isArchiveMode) {
-        this.isArchiveMode.set(isArchiveMode);
-    }
 }

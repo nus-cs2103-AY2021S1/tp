@@ -29,6 +29,7 @@ import seedu.address.model.UserPrefs;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
+ * Note that integration tests with FindCommand are not done here.
  */
 public class ListCommandTest {
 
