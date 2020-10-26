@@ -11,7 +11,7 @@
   }, {
     "title" : "Assignment 3",
     "deadlineDateTime" : "02-02-2020 12:59",
-    "description" : "15 pages reading",
+    "description" : "important",
     "doneDateTime" : "24-10-2020 04:07",
     "duration" : 20,
     "tagged" : "CS2102",
@@ -19,7 +19,7 @@
   }, {
     "title" : "GEQ Readings",
     "deadlineDateTime" : "01-01-1000 00:00",
-    "description" : "",
+    "description" : "15 pages reading",
     "doneDateTime" : "01-01-1000 00:00",
     "duration" : -1,
     "tagged" : "GEQ1000",
@@ -33,8 +33,27 @@
     "tagged" : "CS1101S",
     "status" : "incomplete"
   } ],
-  "events" : [
-
-  ],
+  "events" : [{
+      "title" : "Project meeting",
+      "startDateTime" : "05-05-2020 12:00",
+      "endDateTime" : "05-05-2020 14:00",
+      "description" : "discuss v1.3 content",
+      "isLesson" : false,
+      "tag" : "CS2103T"
+    }, {
+    "title" : "Project meeting2",
+    "startDateTime" : "05-05-2020 14:00",
+    "endDateTime" : "05-05-2020 16:00",
+    "description" : "discuss project database diagram",
+    "isLesson" : false,
+    "tag" : "CS2102"
+  }, {
+    "title" : "Project meeting3",
+    "startDateTime" : "05-05-2020 18:00",
+    "endDateTime" : "05-05-2020 20:00",
+    "description" : "discuss v1.3 content",
+    "isLesson" : false,
+    "tag" : "CS2103T"
+  }],
   "lessons" : [ ]
 }

@@ -41,7 +41,6 @@ public class DoneDateTime extends DateTime {
     }
 
     public static DoneDateTime createDoneNow() {
-        LocalDateTime lt = LocalDateTime.now();
         return new DoneDateTime(LocalDateTime.now());
     }
 

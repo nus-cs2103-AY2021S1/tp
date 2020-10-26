@@ -44,6 +44,11 @@ public class Status {
     public static boolean isComplete(String status) {
         return status.equals(COMPLETE_TEXT);
     }
+
+    public static boolean isValidStatus(String test) {
+        return test == COMPLETE_TEXT || test == INCOMPLETE_TEXT;
+    }
+
     @Override
     public String toString() {
         if (isCompleted) {

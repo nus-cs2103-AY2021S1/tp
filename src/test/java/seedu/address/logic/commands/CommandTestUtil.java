@@ -58,7 +58,7 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_CS2103T = "CS2103T Lecture";
     public static final String VALID_DESC_CS2103T = "Best lecture ever!";
-    public static final String VALID_DAY_CS2103T = "Mon";
+    public static final String VALID_DAY_CS2103T = "Monday";
     public static final String VALID_START_TIME_CS2103T = "12:00";
     public static final String VALID_END_TIME_CS2103T = "14:00";
     public static final String VALID_START_DATE_CS2103T = "01-01-2020";

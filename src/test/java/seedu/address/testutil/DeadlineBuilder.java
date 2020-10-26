@@ -18,7 +18,7 @@ public class DeadlineBuilder {
     public static final String DEFAULT_DEADLINE_DATE_TIME = "01-01-2020 12:00";
     public static final String DEFAULT_DESCRIPTION = "6 midterms next week.";
     public static final String DEFAULT_DONE_DATE_TIME = "02-01-2020 12:00";
-    public static final int DEFAULT_DURATION = 60;
+    public static final int DEFAULT_DURATION = -1;
     public static final boolean DEFAULT_STATUS = true;
     public static final String DEFAULT_TAG = "CS2100";
 
@@ -138,6 +138,7 @@ public class DeadlineBuilder {
      */
     public DeadlineBuilder withIncompleteStatus() {
         this.status = Status.createIncompleteStatus();
+        this.duration = Duration.createNullDuration();
         return this;
     }
 

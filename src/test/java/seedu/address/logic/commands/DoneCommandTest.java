@@ -50,8 +50,8 @@ public class DoneCommandTest {
 
     @Test
     public void execute_manyValidIndexUnfilteredList_success() {
-        Index[] indexes = {INDEX_FIRST_TASK, INDEX_SECOND_TASK};
-        int[] durations = {INDEX_FIRST_DURATION, INDEX_SECOND_DURATION};
+        Index[] indexes = {INDEX_FIRST_TASK, INDEX_THIRD_TASK};
+        int[] durations = {INDEX_FIRST_DURATION, INDEX_THIRD_DURATION};
         Deadline[] tasksToDone = new Deadline[indexes.length];
         for (int i = 0; i < indexes.length; i++) {
             tasksToDone[i] = (Deadline) model.getFilteredTaskList().get(indexes[i].getZeroBased());
@@ -89,8 +89,8 @@ public class DoneCommandTest {
 
     @Test
     public void execute_incorrectStatusTask_throwsCommandException() {
-        Index[] indexes = {INDEX_THIRD_TASK};
-        int[] durations = {INDEX_THIRD_DURATION};
+        Index[] indexes = {INDEX_SECOND_TASK};
+        int[] durations = {INDEX_SECOND_DURATION};
 
         DoneCommand doneCommand = new DoneCommand(indexes, durations);
 

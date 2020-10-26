@@ -48,7 +48,7 @@ class JsonSerializablePlanus {
         deadlines.addAll(source.getTaskList().stream().filter(task -> task instanceof Deadline).map(task -> (Deadline) task)
                 .map(JsonAdaptedDeadline::new).collect(Collectors.toList()));
         events.addAll(source.getTaskList().stream().filter(task -> task instanceof Event).map(task -> (Event) task)
-                .filter(event -> event.isLesson()).map(JsonAdaptedEvent::new).collect(Collectors.toList()));
+                .filter(event -> !event.isLesson()).map(JsonAdaptedEvent::new).collect(Collectors.toList()));
         lessons.addAll(source.getLessonList().stream().map(JsonAdaptedLesson::new).collect(Collectors.toList()));
     }
 

@@ -81,7 +81,11 @@ public class Deadline extends Task {
 
     @Override
     public boolean isSameTask(Task otherTask) {
-        return false;
+        if (otherTask instanceof Deadline) {
+            return isSameDeadline((Deadline) otherTask);
+        } else {
+            return false;
+        }
     }
 
     public Status getStatus() {

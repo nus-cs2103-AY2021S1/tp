@@ -24,25 +24,26 @@ public class TypicalTasks {
 
     public static final Deadline DEADLINE1 = new DeadlineBuilder().withTitle("Submit Developer Guide")
             .withDescription("Submit through luminus")
-            .withDeadlineDateTime("01-01-2020 12:00")
+            .withDeadlineDateTime("01-01-2020 12:00").withIncompleteStatus()
             .withTag("CS2103T").build();
     public static final Deadline DEADLINE2 = new DeadlineBuilder().withTitle("Assignment 3")
             .withDeadlineDateTime("02-02-2020 12:59").withTag("CS2102").withCompleteStatus()
-            .withDuration(20).withDoneDateTime("24-10-2020 04:07").build();
+            .withDuration(20).withDescription("important").withDoneDateTime("24-10-2020 04:07").build();
     public static final Deadline DEADLINE3 = new DeadlineBuilder().withTitle("GEQ Readings")
-            .withNullDeadlineDateTime().withDescription("15 pages reading").withTag("GEQ1000").build();
+            .withNullDeadlineDateTime().withDescription("15 pages reading")
+            .withIncompleteStatus().withTag("GEQ1000").build();
     public static final Deadline DEADLINE4 = new DeadlineBuilder().withTitle("Grade Mission")
-            .withDeadlineDateTime("04-04-2020 12:00")
+            .withDeadlineDateTime("04-04-2020 12:00").withIncompleteStatus()
             .withDescription("grading all student mission").withTag("CS1101S").build();
     public static final Event EVENT1 = new EventBuilder().withTitle("Project meeting")
             .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
-            .withDescription("dicuss v1.3 content").withTag("CS2103T").build();
+            .withDescription("discuss v1.3 content").withTag("CS2103T").build();
     public static final Event EVENT2 = new EventBuilder().withTitle("Project meeting2")
-            .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
-            .withDescription("dicuss project database diagram").withTag("CS2102").build();
+            .withStartDateTime("05-05-2020 14:00").withEndDateTime("05-05-2020 16:00")
+            .withDescription("discuss project database diagram").withTag("CS2102").build();
     public static final Event EVENT3 = new EventBuilder().withTitle("Project meeting3")
-            .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
-            .withDescription("dicuss v1.3 content").withTag("CS2103T").build();
+            .withStartDateTime("05-05-2020 18:00").withEndDateTime("05-05-2020 20:00")
+            .withDescription("discuss v1.3 content").withTag("CS2103T").build();
 
 
     // Manually added
