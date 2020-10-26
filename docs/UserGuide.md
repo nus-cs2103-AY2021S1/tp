@@ -190,16 +190,51 @@ Format: `question delete INDEX i/QUESTION_INDEX`
 Example:
 * `question delete 1 i/1` deletes the 1st question of the 1st student in Reeve.
 
-### Listing lessons schedule on a particular date: `schedule` (By: Alex)
+### Scheduling: `schedule`
 
-List the students that the user has class with on the given date.
+### Viewing personal schedule on a Timetable: `view`  (By: Alex)
 
-Format: `schedule DATE`
+List the events that the user has on a timetable. The classes that user has with students will also be included.
 
-* Date must be in the format of **dd/mm/yyyy**.
+Format: `schedule view [mode/View_Mode] [date/Date_To_View]`
 
-Examples:
-* `schedule 20/11/2020` outputs a list of students who has lessons with the user on that date
+* mode can be either **weekly** or **daily**. The case of the letters does not matter.
+* Date must be in the format of **yyyy-mm-dd**.
+* Both mode and date are optional. If it is not provided, the timetable would be dafult in the weekly mode and showing the current date.
+
+Example: (To include screenshot)
+
+### Adding events to the schedule: `add`
+
+Adds a new event to the schedule.
+
+Format: `schedule add [eventName/Event_Name] [startDateTime/Start_Date_Time] [endDateTime/End_Date_Time] [description/Event_Description] [recurrence/Event_recurrence]`
+
+* All fields are compulsory.
+* Event_Name has no restriction and can be of any form.
+* Start_Date_Time and End_Date_Time must be of the format yyyy-mm-ddTHH:mm
+* Event_recurrence can only be one of these cases: `none`, `daily`, or `weekly`
+
+Example:
+`schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
+creates a meeting event from 10am - 11am on 25th October 2020, this is a non-recurring event.
+
+###  List events: `list`
+
+Lists events.
+
+Format: `schedule list`
+
+* Outputs a list of events on the same panel as the student list. 
+
+### Delete events on the schedule: `delete`
+
+Deletes an event on the schedule.
+
+Format: `schedule delete EVENT_INDEX`
+
+* EVENT_INDEX is the index of the event to be deleted.
+* User has to first call the `schedule list` command in order to find out the index of the event being deleted.
 
 ### Managing additional details for a student: `detail` (By: Vaishak) 
 
