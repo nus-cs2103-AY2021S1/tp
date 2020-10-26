@@ -30,9 +30,9 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
-    private static final String VALID_PROTEIN = "156";
-    private static final String VALID_FAT = "105";
-    private static final String VALID_CARB = "234";
+    private static final String VALID_PROTEIN = "123456";
+    private static final String VALID_FAT = "1230505";
+    private static final String VALID_CARB = "2134";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
