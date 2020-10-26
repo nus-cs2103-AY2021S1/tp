@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
 import java.util.Comparator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -35,7 +37,8 @@ public class TaskSorterCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_ASCENDING_SORT
         + PREFIX_TASK_NAME;
-    public static final String MESSAGE_FILTER_TASK_SUCCESS = "Here is the sorted task list:";
+    public static final String MESSAGE_SORT_TASK_SUCCESS = "Here is the sorted task list:";
+    private static final Logger logger = Logger.getLogger("TaskSorterCommandLogger");
     private final Comparator<Task> comparator;
 
     /**
@@ -53,7 +56,8 @@ public class TaskSorterCommand extends Command {
         assert model.getProjectToBeDisplayedOnDashboard().isPresent();
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         project.updateTaskComparator(comparator);
-        return new CommandResult(String.format(MESSAGE_FILTER_TASK_SUCCESS));
+        logger.log(Level.INFO, "Task list sorted using new comparator");
+        return new CommandResult(String.format(MESSAGE_SORT_TASK_SUCCESS));
     }
 
 }

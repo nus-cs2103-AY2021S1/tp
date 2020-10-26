@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
@@ -33,6 +35,7 @@ public class TaskFilterCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_TASK_ASSIGNEE + "T-Fang\n";
     public static final String MESSAGE_FILTER_TASK_SUCCESS = "Here are the filtered tasks:";
+    private static final Logger logger = Logger.getLogger("TaskFilterCommandLogger");
     private final Predicate<Task> predicate;
 
     /**
@@ -50,6 +53,7 @@ public class TaskFilterCommand extends Command {
         assert model.getProjectToBeDisplayedOnDashboard().isPresent();
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
         project.updateTaskFilter(predicate);
+        logger.log(Level.INFO, "Task list filtered using new predicate");
         return new CommandResult(String.format(MESSAGE_FILTER_TASK_SUCCESS));
     }
 
