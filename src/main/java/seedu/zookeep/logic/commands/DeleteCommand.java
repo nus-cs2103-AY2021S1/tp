@@ -33,9 +33,9 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Animal> lastShownList = model.getFilteredAnimalList();
+        List<Animal> animalList = model.getZooKeepBook().getAnimalList();
         Animal animalToDelete = null;
-        for (Animal animal : lastShownList) {
+        for (Animal animal : animalList) {
             if (animal.getId().equals(targetID)) {
                 animalToDelete = animal;
                 break;
