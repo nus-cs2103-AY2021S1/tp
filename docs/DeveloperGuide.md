@@ -171,7 +171,7 @@ Only when a recipe is made are the references are resolved to their actual ingre
 ---------------------
 ### Storage Component
 
-The storage component is responsible for the saving and loading of both the user preferences, and more importantly the recipe and ingredient data, to and from disk. Both pieces of data are stored in Javascript Object Notation (JSON) files, which is a human-readable (and editable) plain-text format.
+The storage component is responsible for the saving and loading of the usage data for recipe and ingredient, the user preferences, and more importantly the recipe and ingredient data, to and from disk. Both pieces of data are stored in Javascript Object Notation (JSON) files, which is a human-readable (and editable) plain-text format.
 
 Currently, the Jackson library is used for (de)serialisation.
 
@@ -187,11 +187,14 @@ Figure 8: <i>The class diagram of the Storage component</i>
 As mentioned above, the `Storage` component:
 * Saves and loads `UserPref`.
 * Saves and loads the *Recipe Book* and the *Ingredient Book*.
+* Saves and loads the *Recipe Usage List* and the *Ingredient Usage List*.
 
+Each component is saved in a separate file with its file path specified in UserPref.
 Each entity (eg. `Recipe`, `IngredientSet`) that needs to be saved has a corresponding `JsonAdapted{X}` class in the `chopchop.storage` package. This adapter class is responsible for converting, using Jackson, the 'normal' objects to a string representation (or to another adapter class), and to convert this string representation back to a 'normal' object.
 
 For example, the `Ingredient` class has a corresponding `JsonAdaptedIngredient` that saves and loads the ingredient's name, quantities, and expiry dates.
-
+It can also be multi-level.
+For example, the `JsonSerializableIngredientUsageList` contains `JsonAdaptedUsageList` and `JsonAdaptedUsageList` in turn contains a list of `JsonAdaptedIngredientUsage`.
 
 
 ------------------
