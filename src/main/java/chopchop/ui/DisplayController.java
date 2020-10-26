@@ -77,6 +77,9 @@ public class DisplayController extends UiPart<Region> {
                 resetButtons();
             }
         });
+
+        resetButtons();
+
         if (!logic.getFilteredRecipeList().isEmpty()) {
             displayRecipeList();
         } else if (!logic.getFilteredIngredientList().isEmpty()) {
