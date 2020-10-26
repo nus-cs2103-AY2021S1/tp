@@ -215,6 +215,40 @@ Note: Deliveries are all considered unique. Reason being the same person can mak
 <div markdown="span" class="alert alert-info">:information_source: **For example:**`John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
 </div>
 
+### Editing Items and Delivery
+OneShelf is capable of editing the current items and deliveries in the list.
+Editing Items and Deliveries both are done similarly which will be illustrated below.
+
+<div markdown="span" class="alert alert-info">:information_source: **For this purpose:**
+`ItemEditCommand` and `DeliveryEditCommand` will be referred as `EditCommand`, similarly to `EditDescriptor` and `EditCommandParser`
+</div>
+
+The following is a class diagram for the `EditCommand`. It takes in an `Index` and a `EditDescriptor` class respectively, which contains of the changes to be made.
+
+![EditClassDiagram](images/EditClassDiagram.png)
+Figure x: Class Diagram of EditCommand
+
+The following is an activity diagram for the `EditCommand`.
+Once the user enters a valid `EditCommand`, `EditCommandParser` will utilise `ArguementMultiMap` to capture the data of the field to be edited.
+It will then create an `EditDescriptor`, which stores the new data to its respective field, and passed it back to `EditCommand` together with the `Index` that the user has specified.
+`EditCommand` will retrieve the Item/Delivery using the `Index` based on the current list and updates the relevant field.
+
+![EditActivityDiagram](images/EditActivityDiagram.png)
+Figure x: EditCommand Activity Diagram
+
+Below is a usage example of editing an Item:
+
+Step 1: User executes `edit-i 1 s/Cold Storage`  to edit the supplier from `Index` 1 of the current list. <br>
+Step 2: `ItemEditCommandParser` is called and `ArguementMultiMap` maps "Cold Storage" to `Prefix` "/s". `EditItemDescriptor` will also be created, storing the "Cold Storage" under `Supplier` field. `EditItemDescriptor` and `Index` will then be passed to `ItemEditCommand`.
+<br>
+Step 3: `ItemEditCommand` retrieve the `Item` to be edited from current list. `ItemEditCommand#createEditedItem` will be called to create the new `Item` with the replaced field. <br>
+Step 4: `ItemEditCommand` replaces the existing `Item` to the new `Item` created. <br>
+
+Below is a sequence diagram of the above usage.
+
+![ItemEditCommandSequenceDiagram](images/ItemEditCommandSequenceDiagram.png)
+Figure x: ItemEditCommand Sequence Diagram
+
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
 There is a `History` interface that is implemented by `HistoryManager` class which stores `commandHistory` up to its `lengthLimit`
@@ -247,13 +281,17 @@ to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`
 Note that the implementation of `find-i` and `find-d` are relatively similar and in this example, we will only show
 `find-i`.
 
+The following activity diagram summarizes what happens when a user executes a `find` command:
+
+![FindCommandActivityDiagram](images/FindActivityDiagram.png)
+
 By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create a Predicate that matches the specified field object which implements `Predicate<Item>`.
 The predicate is then combined and passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
 
 Below is a usage example:
 
 Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
-Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a
+Step 2: `ItemFindCommandParser` is called and `ArguementMultiMap` maps each prefix to their values and checks which prefix has a
 value <br>
 Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
 Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
@@ -267,10 +305,6 @@ Hence, we have modified it to allow the predicate to match the substrings of the
 
 You can refer to the sequence diagram as shown below:
 ![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a `find` command:
-
-![FindCommandActivityDiagram](images/FindActivityDiagram.png)
 
 ### Undo/Redo Command
 
