@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.notes.AddNoteCommand;
+import seedu.address.logic.commands.notes.DeleteNoteCommand;
 import seedu.address.logic.commands.notes.EditNoteCommand;
 import seedu.address.logic.commands.notes.NoteCommand;
 import seedu.address.logic.parser.Parser;
@@ -44,6 +45,9 @@ public class NotebookParser implements Parser<NoteCommand> {
 
         case EditNoteCommand.COMMAND_WORD:
             return new EditNoteCommandParser().parse(arguments);
+
+        case DeleteNoteCommand.COMMAND_WORD:
+            return new DeleteNoteCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
