@@ -174,7 +174,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     private void recalculateDayCalories() {
-        for (Exercise e : internalList ) {
+        for (Exercise e : internalList) {
             addCaloriesForDay(e);
         }
     }

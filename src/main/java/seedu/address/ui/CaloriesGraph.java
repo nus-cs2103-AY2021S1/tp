@@ -66,7 +66,7 @@ public class CaloriesGraph extends UiPart<Region> {
         String[] dates = new String[DAY_TO_DISPLAY];
         LocalDate today = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        for (int i = 0; i < DAY_TO_DISPLAY; i++ ) {
+        for (int i = 0; i < DAY_TO_DISPLAY; i++) {
             //the dates should be in the order of earlies to latest
             dates[i] = today.minus(Period.ofDays(DAY_TO_DISPLAY - 1 - i)).format(formatter);
         }
