@@ -120,7 +120,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        archiveModeBox = new ArchiveModeBox(false);
+        archiveModeBox = new ArchiveModeBox(logic.getIsArchiveModeProperty());
         archiveModePlaceholder.getChildren().add(archiveModeBox.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getClientListFilePath());
