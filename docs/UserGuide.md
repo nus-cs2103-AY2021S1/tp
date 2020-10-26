@@ -37,7 +37,7 @@ as well as summary commands.
    Figure 2: Help Start Window
 
 
-6. Refer to the [Features](#Features) below for details of each command.
+6. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. Features
