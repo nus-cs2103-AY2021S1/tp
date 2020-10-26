@@ -20,8 +20,8 @@ comment:
   require_changes: no
 
 ignore:
-  "**/*.md"
-  "docs"
-  "data"
-  ".github"
-  "config"
+  - "**/*.md"
+  - "docs"
+  - "data"
+  - ".github"
+  - "config"

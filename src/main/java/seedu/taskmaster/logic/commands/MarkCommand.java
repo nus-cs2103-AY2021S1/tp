@@ -9,7 +9,7 @@ import seedu.taskmaster.commons.core.Messages;
 import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
-import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.student.Student;
 
 /**
@@ -27,8 +27,8 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as %2$s";
 
+    protected final AttendanceType attendanceType;
     private final Index targetIndex;
-    private final AttendanceType attendanceType;
 
     /**
      * @param targetIndex of the student in the filtered student list to mark
@@ -52,5 +52,24 @@ public class MarkCommand extends Command {
         Student studentToMark = lastShownList.get(index);
         model.markStudent(studentToMark, attendanceType);
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentToMark, attendanceType));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof MarkCommand)) {
+            return false;
+        }
+
+        // state check
+        MarkCommand m = (MarkCommand) other;
+
+        return targetIndex.equals(m.targetIndex)
+                && attendanceType.equals(m.attendanceType);
     }
 }

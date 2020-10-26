@@ -1,4 +1,4 @@
-package seedu.taskmaster.model.session;
+package seedu.taskmaster.model.record;
 
 import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
@@ -7,12 +7,12 @@ import seedu.taskmaster.model.student.NusnetId;
  * Represents a record of a student in a session.
  */
 public class StudentRecord {
-    private static final String STRING_FORMAT = "%s|%s";
+    private static final String STRING_FORMAT = "%s|%s|%s";
 
     private final Name name;
     private final NusnetId nusnetId;
-    private AttendanceType attendanceType;
-    private ClassParticipation classParticipation;
+    private final AttendanceType attendanceType;
+    private final ClassParticipation classParticipation;
 
     /**
      * The student is represented by their {@code nusnetId} and initially marked with {@code NO_RECORD}.
@@ -27,11 +27,12 @@ public class StudentRecord {
     /**
      * Creates an StudentRecord object with the AttendanceType already specified.
      */
-    public StudentRecord(Name name, NusnetId nusnetId, AttendanceType attendanceType) {
+    public StudentRecord(Name name, NusnetId nusnetId, AttendanceType attendanceType,
+                         ClassParticipation classParticipation) {
         this.name = name;
         this.nusnetId = nusnetId;
         this.attendanceType = attendanceType;
-        this.classParticipation = new ClassParticipation();
+        this.classParticipation = classParticipation;
     }
 
     public Name getName() {
@@ -50,17 +51,9 @@ public class StudentRecord {
         return classParticipation;
     }
 
-    public void setAttendanceType(AttendanceType attendanceType) {
-        this.attendanceType = attendanceType;
-    }
-
-    public void setClassParticipation(ClassParticipation classParticipation) {
-        this.classParticipation = classParticipation;
-    }
-
     @Override
     public String toString() {
-        return String.format(STRING_FORMAT, nusnetId, attendanceType.name());
+        return String.format(STRING_FORMAT, nusnetId, attendanceType.name(), classParticipation);
     }
 
     @Override

@@ -8,7 +8,7 @@ import java.util.Optional;
 import seedu.taskmaster.commons.exceptions.DataConversionException;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.Taskmaster;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
 
 /**
  * Represents a storage for {@link Taskmaster}.
