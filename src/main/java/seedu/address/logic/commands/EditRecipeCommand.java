@@ -116,7 +116,7 @@ public class EditRecipeCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        RecipeImage updatedRecipeRecipeImage =
+        RecipeImage updatedRecipeImage =
                 editRecipeDescriptor.getRecipeImage().orElse(recipeToEdit.getRecipeImage());
         ArrayList<Instruction> updatedInstruction =
                 editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
@@ -125,7 +125,7 @@ public class EditRecipeCommand extends Command {
         Calories updatedCalories = editRecipeDescriptor.getCalories().orElse(recipeToEdit.getCalories());
         Set<Tag> updatedTags = editRecipeDescriptor.getTags().orElse(recipeToEdit.getTags());
 
-        return new Recipe(updatedName, updatedInstruction, updatedRecipeRecipeImage, updatedIngredient, updatedCalories,
+        return new Recipe(updatedName, updatedInstruction, updatedRecipeImage, updatedIngredient, updatedCalories,
                 updatedTags);
     }
 

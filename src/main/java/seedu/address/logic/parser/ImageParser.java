@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-//import static java.util.Objects.requireNonNull;
-
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
@@ -35,7 +33,6 @@ public class ImageParser {
      * @throws ParseException
      */
     public RecipeImage parse(String imagePath) throws ParseException, IOException, URISyntaxException {
-        //requireNonNull(imagePath);
         String filename = "";
         try {
             if (imagePath.length() > 4 && imagePath.substring(0, 4).equals("http")) {

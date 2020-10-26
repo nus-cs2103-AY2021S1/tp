@@ -75,11 +75,6 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
             String recipeImageString = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
             ImageParser imageParser = new ImageParser();
             RecipeImage recipeImage = imageParser.parse(recipeImageString);
-            //if (recipeImage.length() < 13) {
-            //  recipeImage = "images/default.jpg";
-            //} else if (!recipeImage.substring(0, 6).equals("images") && !recipeImage.substring(0, 4).equals("http")) {
-            //    recipeImage = "images/default.jpg";
-            //}
             editRecipeDescriptor.setRecipeImage(recipeImage);
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
