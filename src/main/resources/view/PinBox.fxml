@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 
+<?import javafx.scene.text.TextFlow?>
 <StackPane alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
         <URL value="@Style.css" />
@@ -12,8 +13,9 @@
     <children>
         <VBox alignment="TOP_CENTER" fx:id="statsBox">
             <children>
-                <TextArea fx:id="pins" maxHeight="30.0" maxWidth="120.0" text="\$pins" editable="false" style="-fx-font-weight: bold"/>
-                <ListView fx:id="listView" maxHeight="262.0" maxWidth="245.0" prefHeight="320.0" prefWidth="290.0" />
+                <TextArea fx:id="pins" maxHeight="26" maxWidth="120.0" text="\$pins" editable="false" style="-fx-font-weight: bold"/>
+                <TextFlow fx:id="header1" prefHeight="72.0" maxWidth="245.0"/>
+                <ListView fx:id="listView" maxHeight="280.0" maxWidth="245.0" prefHeight="320.0" prefWidth="290.0" />
             </children>
         </VBox>
     </children>

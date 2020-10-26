@@ -1,12 +1,9 @@
 package chopchop.ui;
 
-
-import static java.util.Objects.requireNonNull;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,14 +11,15 @@ import chopchop.commons.util.Pair;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.NumberAxis;
-import javafx.scene.chart.XYChart;
+import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
 
 /**
@@ -30,13 +28,15 @@ import javafx.util.Callback;
  */
 public class StatsBox extends UiPart<Region> {
     private static final String EMPTY_PROMPT = "You haven't cooked anything.";
+    private static final ArrayList<Pair<String, String>> EMPTY_RESULT =
+        new ArrayList<>(Collections.singletonList(new Pair<>("No results found", "")));
     private static final String FXML = "PinBox.fxml";
 
     @FXML
     private TextArea pins;
 
     @FXML
-    private TextArea header1;
+    private TextFlow header1;
 
     @FXML
     private ListView<Pair<String, String>> listView;
@@ -47,12 +47,7 @@ public class StatsBox extends UiPart<Region> {
     public StatsBox() {
         super(FXML);
         pins.setText("Statistics\n");
-        ArrayList<Pair<String, String>> testList = new ArrayList<>(
-            Arrays.asList(new Pair<>("recipe 1 2020-02-13", "recipe 2 2020-02-12") ,
-                new Pair<>("recipe 1 2020-02-13", "recipe 2 2020-02-12"),
-                new Pair<>("recipe 1 2020-02-13", "recipe 2 2020-02-12"),
-                new Pair<>("recipe 1 2020-02-13", "recipe 2 2020-02-12")));
-        renderList(testList);
+        renderList(EMPTY_RESULT);
 
     }
 
@@ -80,27 +75,59 @@ public class StatsBox extends UiPart<Region> {
 
         //-------------------------------style-----------------------------------------
         listView.setPrefWidth(100);
-        listView.setPrefHeight(200);
-        listView.setEditable(true);
+        listView.setPrefHeight(240);
 
         listView.setCellFactory(new Callback<ListView<Pair<String, String>>, ListCell<Pair<String, String>>>() {
             @Override
             public ListCell<Pair<String, String>> call(ListView<Pair<String, String>> param) {
-                return new myListCell();
+                return new PairListCell();
             }
         });
-
-        /*
-
-        for (int i = 0; i < 18; i++) {
-            data.add("anonym");
-        }
-        listView.setItems(data);
-        listView.setCellFactory(ComboBoxListCell.forListView(names));
-         */
     }
 
-    public class myListCell extends ListCell<Pair<String, String>> {
+    public void setStatsMessage(String msg) {
+        var content = this.header1.getChildren();
+        content.add(new Text(msg));
+    }
+
+    public static class PairListCell extends ListCell<Pair<String, String>> {
+        private static final String PAIR_NAME = "pair-name";
+        private static final String PAIR_SECOND = "pair-second";
+
+        private GridPane grid = new GridPane();
+        private Label name = new Label();
+        private Label second = new Label();
+
+        /**
+         * Constructs {@code PairListCell}.
+         */
+        public PairListCell() {
+            configureGrid();
+            configureName();
+            configureSecond();
+            addControlsToGrid();
+        }
+
+        private void configureGrid() {
+            grid.setHgap(8);
+            grid.setVgap(4);
+            grid.setPadding(new Insets(0, 10, 0, 8));
+        }
+
+        private void configureName() {
+            //for CSS
+            name.getStyleClass().add(PAIR_NAME);
+        }
+
+        private void configureSecond() {
+            second.getStyleClass().add(PAIR_SECOND);
+        }
+
+        private void addControlsToGrid() {
+            grid.add(name, 1, 0);
+            grid.add(second, 1, 1);
+        }
+
         @Override
         public void updateItem(Pair<String, String> item, boolean empty) {
             super.updateItem(item, empty);
@@ -108,32 +135,11 @@ public class StatsBox extends UiPart<Region> {
                 setText(null);
                 setGraphic(null);
             } else {
-                setText(item.fst() + " (" + item.snd() + " )");
-                setGraphic(null);
+                setText(null);
+                name.setText(item.fst());
+                second.setText(item.snd());
+                setGraphic(grid);
             }
         }
     }
-
-    /**
-     * A bar graph for showing the quantities.
-     */
-    private XYChart renderChart(List<Pair<String, Integer>> inputList, String xLabel,
-                                String yLabel) {
-        CategoryAxis xAxis = new CategoryAxis();
-        xAxis.setCategories(FXCollections.<String>observableArrayList(
-            inputList.stream().map(Pair::fst).collect(Collectors.toList())
-        ));
-        xAxis.setLabel(xLabel);
-        NumberAxis yAxis = new NumberAxis();
-        yAxis.setLabel(yLabel);
-        LineChart lineChart = new LineChart(xAxis, yAxis);
-        return lineChart;
-    }
-
-    public void setBoxContent(String boxContent) {
-        requireNonNull(boxContent);
-    }
-
-
-
 }

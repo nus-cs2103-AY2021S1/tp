@@ -188,7 +188,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getMessage());
 
             this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
-            //this.statsOutput.renderList();
+            this.statsOutput.setStatsMessage(commandResult.getMessage());
             if (commandResult.shouldShowHelp()) {
                 handleHelp();
             }
