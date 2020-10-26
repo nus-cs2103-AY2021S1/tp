@@ -17,8 +17,8 @@ public class AddAccountCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Account to "
             + "Common Cents\n"
-            + "Parameters: "
-            + "Example: " + PREFIX_NAME + "ACCOUNT NAME";
+            + "Parameters: " + PREFIX_NAME + "ACCOUNT NAME"
+            + "Example: " + PREFIX_NAME + "My Non-Biz Account";
     public static final String PREFIXES = PREFIX_NAME + "ACCOUNT NAME";
 
 
