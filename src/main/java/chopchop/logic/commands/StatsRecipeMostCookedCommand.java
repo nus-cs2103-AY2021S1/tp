@@ -22,7 +22,9 @@ public class StatsRecipeMostCookedCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this;
+        return other == this
+            || (other instanceof StatsIngredientDateCommand
+            && this.equals(other));
     }
 
     @Override
