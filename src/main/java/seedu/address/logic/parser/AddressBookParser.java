@@ -9,22 +9,7 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.MenuCommand;
-import seedu.address.logic.commands.PriceCommand;
-import seedu.address.logic.commands.RemoveCommand;
-import seedu.address.logic.commands.SortCommand;
-import seedu.address.logic.commands.SubmitCommand;
-import seedu.address.logic.commands.TotalCommand;
-import seedu.address.logic.commands.UndoCommand;
-import seedu.address.logic.commands.VendorCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,21 +39,22 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
 
         String[] commands = {
-            AddCommand.COMMAND_WORD,
-            EditCommand.COMMAND_WORD,
-            RemoveCommand.COMMAND_WORD,
-            SortCommand.COMMAND_WORD,
-            ClearCommand.COMMAND_WORD,
-            FindCommand.COMMAND_WORD,
-            PriceCommand.COMMAND_WORD,
-            MenuCommand.COMMAND_WORD,
-            ListCommand.COMMAND_WORD,
-            TotalCommand.COMMAND_WORD,
-            SubmitCommand.COMMAND_WORD,
-            UndoCommand.COMMAND_WORD,
-            ExitCommand.COMMAND_WORD,
-            HelpCommand.COMMAND_WORD,
-            VendorCommand.COMMAND_WORD,
+                AddCommand.COMMAND_WORD,
+                EditCommand.COMMAND_WORD,
+                RemoveCommand.COMMAND_WORD,
+                SortCommand.COMMAND_WORD,
+                ClearCommand.COMMAND_WORD,
+                FindCommand.COMMAND_WORD,
+                PriceCommand.COMMAND_WORD,
+                MenuCommand.COMMAND_WORD,
+                ListCommand.COMMAND_WORD,
+                TotalCommand.COMMAND_WORD,
+                SubmitCommand.COMMAND_WORD,
+                UndoCommand.COMMAND_WORD,
+                ExitCommand.COMMAND_WORD,
+                HelpCommand.COMMAND_WORD,
+                VendorCommand.COMMAND_WORD,
+                PresetCommand.COMMAND_WORD,
         };
 
         ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));
@@ -82,55 +68,57 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            case EditCommand.COMMAND_WORD:
+                return new EditCommandParser().parse(arguments);
 
-        case RemoveCommand.COMMAND_WORD:
-            return new RemoveCommandParser().parse(arguments);
+            case RemoveCommand.COMMAND_WORD:
+                return new RemoveCommandParser().parse(arguments);
 
-        case SortCommand.COMMAND_WORD:
-            return new SortCommandParser().parse(arguments);
+            case SortCommand.COMMAND_WORD:
+                return new SortCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommandParser().parse(arguments);
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
 
-        case PriceCommand.COMMAND_WORD:
-            return new PriceCommandParser().parse(arguments);
+            case PriceCommand.COMMAND_WORD:
+                return new PriceCommandParser().parse(arguments);
 
-        case MenuCommand.COMMAND_WORD:
-            return new MenuCommand();
+            case MenuCommand.COMMAND_WORD:
+                return new MenuCommand();
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            case ListCommand.COMMAND_WORD:
+                return new ListCommand();
 
-        case TotalCommand.COMMAND_WORD:
-            return new TotalCommand();
+            case TotalCommand.COMMAND_WORD:
+                return new TotalCommand();
 
-        case SubmitCommand.COMMAND_WORD:
-            return new SubmitCommand();
+            case SubmitCommand.COMMAND_WORD:
+                return new SubmitCommand();
 
-        case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        case VendorCommand.COMMAND_WORD:
-            return new VendorCommandParser().parse(arguments);
+            case VendorCommand.COMMAND_WORD:
+                return new VendorCommandParser().parse(arguments);
 
-        default:
-            throw matchingCommands.size() == 0
-                    ? new ParseException(MESSAGE_UNKNOWN_COMMAND)
-                    : new ParseException(String.format(MESSAGE_AMBIGUOUS_COMMAND, matchingCommands));
+            case PresetCommand.COMMAND_WORD:
+                return new PresetCommand();
+            default:
+                throw matchingCommands.size() == 0
+                        ? new ParseException(MESSAGE_UNKNOWN_COMMAND)
+                        : new ParseException(String.format(MESSAGE_AMBIGUOUS_COMMAND, matchingCommands));
         }
     }
 

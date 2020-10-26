@@ -222,16 +222,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-//    /**
-//     * Updates the UI to display the menu of the selected vendor.
-//     */
-//    @FXML
-//    public void handleVendor() {
-//        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
-//        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
-//        updateMenu();
-//    }
-
     public VendorListPanel getVendorListPanel() {
         return vendorListPanel;
     }
@@ -264,4 +254,6 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+
 }

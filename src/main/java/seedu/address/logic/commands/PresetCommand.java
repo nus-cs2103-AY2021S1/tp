@@ -24,6 +24,6 @@ public class PresetCommand extends Command {
             throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
 
-        return new CommandResult(Messages.MESSAGE_PRESET_COMMAND_SUCCESS, false, false, false);
+        return new CommandResult(Messages.MESSAGE_PRESET_COMMAND_SUCCESS, false, false, true);
     }
 }

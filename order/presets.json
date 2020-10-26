@@ -1,0 +1,13 @@
+{
+  "orderItems" : [ {
+    "name" : "Prata",
+    "price" : 1.0,
+    "tagged" : [ "Yums" ],
+    "quantity" : 2
+  }, {
+    "name" : "Water",
+    "price" : 3.0,
+    "tagged" : [ ],
+    "quantity" : 2
+  } ]
+}
