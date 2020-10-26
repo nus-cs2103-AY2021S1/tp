@@ -1,7 +1,6 @@
 package seedu.taskmaster.ui;
 
 import java.util.logging.Logger;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -121,7 +120,8 @@ public class MainWindow extends UiPart<Stage> {
         fillWithStudents(bool);
         viewListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
-        SessionListPanel sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(), this::changeSessionAndFill, this::handleStudent);
+        SessionListPanel sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(),
+                this::changeSessionAndFill, this::handleStudent);
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
