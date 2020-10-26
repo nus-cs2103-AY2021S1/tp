@@ -34,11 +34,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgsMultipleInputs_returnsDeleteCommand() throws ParseException {
-        List<Index> parsedIndexes = new ArrayList<>();
-        Index indexOne = ParserUtil.parseIndex("1");
-        Index indexTwo = ParserUtil.parseIndex("2");
-        parsedIndexes.add(indexOne);
-        parsedIndexes.add(indexTwo);
+        List<Index> parsedIndexes = ParserUtil.parseIndexes("1 2");
 
         assertParseSuccess(parser, "1 2", new DeleteCommand(parsedIndexes));
     }

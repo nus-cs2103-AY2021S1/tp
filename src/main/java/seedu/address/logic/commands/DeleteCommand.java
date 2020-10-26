@@ -3,7 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -29,12 +28,6 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Assignment(s): %1$s";
 
-    private final Comparator<Index> indexComparator = (firstIndex, secondIndex) -> {
-        int firstIndexValue = firstIndex.getZeroBased();
-        int secondIndexValue = secondIndex.getZeroBased();
-        return secondIndexValue - firstIndexValue; // sort by descending order
-    };
-
     private final List<Index> targetIndexes;
 
     /**
@@ -54,7 +47,7 @@ public class DeleteCommand extends Command {
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
         List<Assignment> deletedAssignments = new ArrayList<>();
 
-        targetIndexes.sort(indexComparator);
+        targetIndexes.sort(CommandLogic.INDEX_COMPARATOR);
 
         CommandLogic.checkForDuplicatedIndexes(targetIndexes);
         CommandLogic.checkForInvalidIndexes(targetIndexes, model, DeleteCommand.MESSAGE_USAGE);

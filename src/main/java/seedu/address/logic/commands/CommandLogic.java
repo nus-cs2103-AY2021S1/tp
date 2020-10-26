@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
@@ -10,6 +11,12 @@ import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
 
 public class CommandLogic {
+    static final Comparator<Index> INDEX_COMPARATOR = (firstIndex, secondIndex) -> {
+        int firstIndexValue = firstIndex.getZeroBased();
+        int secondIndexValue = secondIndex.getZeroBased();
+        return secondIndexValue - firstIndexValue; // sort by descending order
+    };
+
     static void checkForDuplicatedIndexes(List<Index> targetIndexes) throws CommandException {
         List<Integer> zeroBasedIndexes = new ArrayList<>();
         for (Index targetIndex : targetIndexes) {
