@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -21,7 +22,9 @@ public class AddAttendanceCommand extends AttendanceCommand {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = "";
     public static final String MESSAGE_SUCCESS = "Attendance added for %s: %s";
-
+    public static final String MESSAGE_INVALID_ATTENDANCE_DATE =
+            "There is already an existing attendance for the entered date! Please use another date, or delete the "
+            + "existing attendance before adding a new one.";
     private static Logger logger = Logger.getLogger("Add Attendance Log");
 
     private final Index index;
@@ -56,15 +59,28 @@ public class AddAttendanceCommand extends AttendanceCommand {
         }
         Student studentToAddAttendance = lastShownList.get(index.getZeroBased());
 
-        List<Attendance> attendances = new ArrayList<>(studentToAddAttendance.getAttendance());
-        attendances.add(attendanceToAdd);
+        List<Attendance> attendanceList = new ArrayList<>(studentToAddAttendance.getAttendance());
+        this.updateAttendanceList(attendanceList);
 
-        Student updatedStudent = super.updateStudentAttendance(studentToAddAttendance, attendances);
+        Student updatedStudent = super.updateStudentAttendance(studentToAddAttendance, attendanceList);
 
         model.setStudent(studentToAddAttendance, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), attendanceToAdd));
+    }
+
+    private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) throws CommandException {
+        boolean containsAttendanceAtDate = attendanceList
+                .stream()
+                .anyMatch(attendance -> attendance.lessonDate.equals(attendance.lessonDate));
+
+        if (containsAttendanceAtDate) {
+            throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
+        }
+        attendanceList.add(attendanceToAdd);
+        return attendanceList;
     }
 
     @Override

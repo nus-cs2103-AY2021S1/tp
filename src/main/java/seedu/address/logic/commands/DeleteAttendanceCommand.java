@@ -18,27 +18,25 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.academic.Attendance;
 
-public class EditAttendanceCommand extends AttendanceCommand {
+public class DeleteAttendanceCommand extends AttendanceCommand {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "delete";
     public static final String MESSAGE_USAGE = "";
-    public static final String MESSAGE_SUCCESS = "Attendance edited for %s: %s";
+    public static final String MESSAGE_SUCCESS = "Attendance deleted for %s for the date of %s";
     public static final String MESSAGE_INVALID_ATTENDANCE_DATE = "There is no existing attendance for the entered date";
 
-    private static Logger logger = Logger.getLogger("Edit Attendance Log");
+    private static Logger logger = Logger.getLogger("Delete Attendance Log");
 
     private final Index index;
-    private final Attendance updatedAttendance;
     private final LocalDate attendanceDate;
 
     /**
      * Creates an EditAdditionalDetailCommand to add the specified {@code AdditionalDetail} to the student
      * at the specified {@code Index}.
      */
-    public EditAttendanceCommand(Index index, Attendance updatedAttendance, LocalDate attendanceDate) {
-        requireAllNonNull(index, updatedAttendance, attendanceDate);
+    public DeleteAttendanceCommand(Index index, LocalDate attendanceDate) {
+        requireAllNonNull(index, attendanceDate);
         this.index = index;
-        this.updatedAttendance = updatedAttendance;
         this.attendanceDate = attendanceDate;
     }
 
@@ -59,17 +57,18 @@ public class EditAttendanceCommand extends AttendanceCommand {
             logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
-        Student studentToEditAttendance = lastShownList.get(index.getZeroBased());
+        Student studentToDeleteAttendance = lastShownList.get(index.getZeroBased());
 
-        List<Attendance> attendanceList = new ArrayList<>(studentToEditAttendance.getAttendance());
+        List<Attendance> attendanceList = new ArrayList<>(studentToDeleteAttendance.getAttendance());
         List<Attendance> updatedAttendanceList = this.updateAttendanceList(attendanceList);
 
-        Student updatedStudent = super.updateStudentAttendance(studentToEditAttendance, updatedAttendanceList);
+        Student updatedStudent = super.updateStudentAttendance(studentToDeleteAttendance, updatedAttendanceList);
 
-        model.setStudent(studentToEditAttendance, updatedStudent);
+        model.setStudent(studentToDeleteAttendance, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), updatedAttendance));
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), attendanceDate));
     }
 
     private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) throws CommandException {
@@ -83,9 +82,8 @@ public class EditAttendanceCommand extends AttendanceCommand {
 
         Stream<Attendance> matchingAttendance =  attendanceList.stream()
                 .filter(attendance -> attendance.lessonDate.equals(attendanceDate));
-        Attendance attendanceToUpdate = matchingAttendance.findFirst().get();
-        int attendanceIndex = attendanceList.indexOf(attendanceToUpdate);
-        attendanceList.set(attendanceIndex, updatedAttendance);
+        Attendance attendanceToDelete = matchingAttendance.findFirst().get();
+        attendanceList.remove(attendanceToDelete);
 
         return attendanceList;
     }
@@ -96,11 +94,11 @@ public class EditAttendanceCommand extends AttendanceCommand {
             return true;
         }
 
-        if (!(obj instanceof EditAttendanceCommand)) {
+        if (!(obj instanceof DeleteAttendanceCommand)) {
             return false;
         }
 
-        EditAttendanceCommand other = (EditAttendanceCommand) obj;
-        return index.equals(other.index) && updatedAttendance.equals(other.updatedAttendance);
+        DeleteAttendanceCommand other = (DeleteAttendanceCommand) obj;
+        return index.equals(other.index) && attendanceDate.equals(other.attendanceDate);
     }
 }

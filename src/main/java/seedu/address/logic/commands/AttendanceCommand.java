@@ -11,6 +11,7 @@ import java.util.List;
 public abstract class AttendanceCommand extends Command {
 
     public static final String COMMAND_WORD = "attendance";
+    public static final String MESSAGE_USAGE = "";
 
     /**
      * Creates a new Student, with the provided attendance.

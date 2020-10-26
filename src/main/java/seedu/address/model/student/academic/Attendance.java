@@ -61,4 +61,9 @@ public class Attendance {
         }
         return testDate != null;
     }
+
+    public LocalDate getLessonDate() {
+        return lessonDate;
+    }
+    
 }

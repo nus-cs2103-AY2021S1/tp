@@ -28,7 +28,7 @@ public class CliSyntax {
 
     /* Prefix for attendance commands */
     public static final Prefix PREFIX_ATTENDANCE_DATE = new Prefix("d/");
-    public static final Prefix PREFIX_ATTENDANCE_ATTENDED = new Prefix("a/");
+    public static final Prefix PREFIX_ATTENDANCE_STATUS = new Prefix("a/");
     public static final Prefix PREFIX_ATTENDANCE_FEEDBACK = new Prefix("f/");
 
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
@@ -45,4 +45,7 @@ public class CliSyntax {
 
     public static final Prefix[] EXAM_COMMAND_PREFIXES =
             new Prefix[] {PREFIX_EXAM_NAME, PREFIX_EXAM_DATE, PREFIX_SCORE};
+
+    public static final Prefix[] ATTENDANCE_COMMAND_PREFIXES =
+            new Prefix[] {PREFIX_ATTENDANCE_DATE, PREFIX_ATTENDANCE_STATUS, PREFIX_ATTENDANCE_FEEDBACK};
 }
