@@ -72,7 +72,7 @@ Example: `addMod CS2103T`
 #### 3.3.2 Add a tutorial group: `addTG`
 
 Adds a tutorial group to the current module in view.
-    
+
 Format: `addTG GROUP_CODE`
 
 Example: `addTG T03`
