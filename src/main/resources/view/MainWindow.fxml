@@ -20,6 +20,7 @@
     <Scene>
       <stylesheets>
         <URL value="@DarkTheme.css" />
+<!--        <URL value="@TrackrTheme.css"/>-->
         <URL value="@Extensions.css" />
       </stylesheets>
 
