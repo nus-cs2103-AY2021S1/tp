@@ -70,7 +70,7 @@ public class PatientCard extends UiPart<Region> {
         Set<Appointment> appointmentList = patient.getAppointments();
         int numOfAppts = 0;
         for (Appointment appt : appointmentList) {
-            if (Appointment.isPassed(appt.getAppointmentTime())) {
+            if (!Appointment.isPassed(appt.getAppointmentTime())) {
                 numOfAppts++;
             }
         }
