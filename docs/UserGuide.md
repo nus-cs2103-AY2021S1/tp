@@ -25,7 +25,12 @@ To start using and experimenting with ChopChop, here are the steps you can follo
 3. Copy the file to the folder you want to use as the _home folder_ for your ChopChop.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. The app starts with some sample data for you to experiment with.<br>
-   ![Ui](images/Ui.png)
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/sample_data.png" width="75%" /> <br />
+Figure 1: <i>The initial state of ChopChop, including sample data</i>
+</div>
+
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -46,7 +51,7 @@ ChopChop manages two key components — ingredients and recipes, and they will b
 Names for both ingredients and recipes are case insensitive, so `pAnCakes` and `Pancakes` refer to the same recipe. Note that you cannot have duplicate recipes nor ingredients in ChopChop; items are duplicates if their names are the same.
 
 ### Ingredients
-An ingredient consists has a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, exipring on a certain date.
+An ingredient consists of a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, exipring on a certain date.
 
 For example, you might have `500 ml` of milk that you bought last week that expires tomorrow, while you have another `1.5 l` of milk that you bought today, expiring two weeks from now. ChopChop will track both these *sets*, and will intelligently use the earliest-expiring set when doing its accounting.
 
@@ -97,15 +102,20 @@ For example, the **add ingredient** command is specified like this: `add ingredi
 
 ### Viewing Help : **`help`**
 
-Shows a message explaning how to access the help page.
-
-![help message](images/helpMessage.png)
+This command shows a message with a link to this user guide; you can use this to easily access this page from the application. Note that you can also access this help dialog from the menubar at the top, under `Help` -> `Docs`.
 
 Usage: `help`
 
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/help_message.png" width="75%" /> <br />
+Figure 2: <i>The help dialog</i>
+</div>
+
+
+
 
 ### Quitting ChopChop **`quit`**
-Quits the program.
+This command quits ChopChop. Your recipe data is already saved whenever a command is executed, so you do not need to save it manually before quitting.
 
 Usage: `quit`
 
@@ -114,10 +124,10 @@ Usage: `quit`
 
 
 ### Listing Recipes — **`list`**`recipes`
-Shows a list of all recipes in ChopChop.
+This command shows a list of all recipes in ChopChop. This can be used to switch panes (between recipes and ingredients) without using the mouse, as well as to clear any filters that might have been applied due to previous commands (eg. `find` and `filter`).
 
 <div markdown="span" class="alert alert-primary">
-:bulb: **Tip:** For convenience, this command accepts `list recipes` as well as `list recipe`.
+:bulb: **Tip:** For convenience, you can use either `list recipes` or `list recipe`.
 </div>
 
 Usage: `list recipes`
@@ -125,11 +135,18 @@ Usage: `list recipes`
 
 
 ### Adding Recipes — **`add`**`recipe`
-Adds a recipe to the recipe manager, specifying zero or more ingredients, each with an optional quantity, and at least one step.
+This command adds a recipe to the recipe manager, specifying zero or more ingredients, each with an optional quantity, and zero or more steps. After a recipe is added, you will be able to see it immediately in the application.
 
-Usage: `add recipe <NAME> [/ingredient <INGREDIENT_NAME> [/qty <QUANTITY>]]... /step <STEP_ONE> [/step <STEP_TWO>]...`
+If an ingredient is specified without a quantity, it is treated *as if* you used `/qty 1`. This works for counted ingredients (eg. eggs), but it will cause errors for other ingredients (eg. volume of milk).
 
-Examples (separated into lines for clarity, but you should type them as one line):
+Usage: `add recipe <NAME> [/ingredient <INGREDIENT_NAME> [/qty <QUANTITY>]]... (/step <STEP>)...`
+
+Constraints:
+- Recipe name should not be empty
+- Ingredient names should not be empty
+- Steps should not be empty
+
+For example, suppose you wanted to add a recipe for pancakes using flour, eggs, and milk, you would type this:
 ```
 add recipe Pancakes
 /ingredient flour /qty 400g
@@ -139,6 +156,34 @@ add recipe Pancakes
 /step Bake for 30 minutes at 400 celsius
 /step Pour syrup and serve
 ```
+(note that this is displayed on separate lines for clarity, but you should type this in one go)
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_recipe_1.png" width="75%" /> <br />
+Figure 3.1: <i>The add recipe command</i>
+</div>
+
+After pressing enter, you will see this view, showing your newly created recipe:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_recipe_2.png" width="75%" /> <br />
+Figure 3.2: <i>The recipe detail view</i>
+</div>
+
+If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_recipe_3.png" width="75%" /> <br />
+Figure 3.3: <i>The newly created recipe in the recipe list</i>
+</div>
+
+
+
+
+
+
+
+
 
 
  
@@ -189,7 +234,7 @@ Examples:
 
 
 ### Deleting Recipes — **`delete`**`recipe`
-Deletes a specific recipe from ChopChop.
+This command deletes a specific recipe from ChopChop.
 
 Usage: `delete recipe <#REF>`
 
@@ -305,7 +350,7 @@ In order to keep track of ingredients correctly, ChopChop needs to know about th
 - `tbsp` — metric tablespoon (15ml)
 - `g` — gram
 - `mg` — milligram (0.001g)
-— `kg` — kilogram (1000g)
+- `kg` — kilogram (1000g)
 
 Additionally, quantities without a unit are assumed to be dimensionless 'counts'; for example, **3 eggs**.
 
