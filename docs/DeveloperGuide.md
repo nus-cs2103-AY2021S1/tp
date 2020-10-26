@@ -318,7 +318,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### 3.2.1 Implementation
 
-This feature allows users to add image files to serve as the patient's profile picture. The mechanism utilises the `StorageManager#addPictureToProfile`
+This feature allows users to add image files to serve as the patient's profile picture. The mechanism utilises the `StorageManager#addPicture`
 method to update the patients' profile pictures.
 
 This feature comprises the `AddProfilePictureCommand` class. Given below is an example usage scenario and how the mechanism behaves at each step.
@@ -333,7 +333,7 @@ Step 1. User input is parsed to obtain the patient index and file path of the de
 
 Step 2. After successful parsing of user input, the `AddProfilePictureCommand#execute(Model model)` method is called. 
 
-Step 3. The `StorageManager#addPictureToProfile` method is then called which adds the desired profile picture to the specified patient.
+Step 3. The `StorageManager#addPicture` method is then called which adds the desired profile picture to the specified patient.
 
 Step 4. Next, the patient's profile picture is updated in the `Model` by calling the `Model#setPatient` method.
 
@@ -541,18 +541,42 @@ The following sequence diagram shows how the up down arrow key mechanism works:
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation**
+
+This section highlights the documentation outline used for this software project. 
+
 Refer to the guide: [_Documentation Guide_](Documentation.md)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **5. Testing**
+
+This section highlights the kind of test cases that are included in CliniCal's codebase. It also shows 
+how these test cases can be run on IntelliJ.
+
 Refer to the guide: [_Testing guide_](Testing.md)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **6. Logging**
+
+This section highlights the method of logging used in CliniCal's codebase.
+
 Refer to the guide: [_Logging guide_](Logging.md)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **7. Configuration**
+
+This section highlights how certain properties of CliniCal can be controlled via the configuration file.
+
 Refer to the guide: [_Configuration guide_](Configuration.md)
 
+--------------------------------------------------------------------------------------------------------------------
+
 ## **8. Dev-ops**
+
+This section highlights the tools used to build and release updated versions of CliniCal.
+
 Refer to the guide: [_DevOps guide_](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -568,7 +592,6 @@ Refer to the guide: [_DevOps guide_](DevOps.md)
 * prefer to check schedule on desktop application instead of relying on physical calendar
 
 **Value proposition**: provide a platform for doctors to manage their upcoming appointments and access patient's medical records more easily
-
 
 ## **Appendix B: User stories**
 
@@ -595,7 +618,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `CliniCal` and the **Actor** is the `user`, unless specified otherwise)
 
-### Use case: UC01 - Delete a patient
+##### Use case: UC01 - Delete a patient
 
 **MSS**
 
@@ -618,7 +641,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-### Use case: UC02 - Add a patient
+##### Use case: UC02 - Add a patient
 
 **MSS**
 
@@ -634,7 +657,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case resumes at step 1.
 
-### Use case: UC03 - Edit a patient
+##### Use case: UC03 - Edit a patient
 
 **MSS**
 
@@ -657,7 +680,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at Step 3.
 
-### Use case: UC04 - Add a patient's profile picture using command line interface
+##### Use case: UC04 - Add a patient's profile picture using command line interface
 
 **MSS**
 
@@ -674,7 +697,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 1.
   
-### Use case: UC05 - Add a patient's profile picture using drag and drop
+##### Use case: UC05 - Add a patient's profile picture using drag and drop
   
   **MSS**
   
@@ -697,7 +720,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
      
     Use case resumes at step 1.
          
-### Use case: UC06 - Undo a command
+##### Use case: UC06 - Undo a command
 
 **MSS**
    
@@ -711,7 +734,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a. There are no more previous commands to undo.<br>
     Use case ends.
 
-### Use case: UC07 - Redo a command
+##### Use case: UC07 - Redo a command
 
 **MSS**
    
@@ -725,7 +748,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1a. There are no more commands to redo.<br>
   Use case ends.
 
-### Use case: UC08 - View command history
+##### Use case: UC08 - View command history
 
 **MSS**
 
@@ -739,7 +762,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The command history is empty.<br>
     Use case ends.
       
-### Use case: UC09 - Clear command history
+##### Use case: UC09 - Clear command history
 
 **MSS**
 
@@ -763,8 +786,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Patient records**: Extensive collection of patients’ private information (not meant to be shared) and medical histories.
 * **Main window**: Application’s opening window which displays a command bar and the list of patients.
 
---------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix F: Instructions for manual testing**
 
 Given below are instructions to test the app manually.
@@ -774,7 +795,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### F.1 Launch and shutdown
+##### F.1 Launch and shutdown
 
 1. Initial launch
 
@@ -791,7 +812,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### F.2 Adding a patient
+##### F.2 Adding a patient
 
 1. Adding a new patient to the list
 
@@ -803,7 +824,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### F.3 Deleting a patient
+##### F.3 Deleting a patient
 
 1. Deleting a patient while all patients are being shown
 
@@ -820,7 +841,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### F.4 Saving data
+##### F.4 Saving data
 
 1. Dealing with missing/corrupted data files
 

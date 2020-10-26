@@ -31,18 +31,18 @@ Welcome to CliniCal! If you are new to our software, this quick start guide will
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing **`help`** and pressing <kbd>Enter</kbd> will open the help window.<br>
+1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all your patients.
+   * `list` : Lists all your patients.
 
-   * **`add`**`n/John Doe p/98765432 i/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
+   * `add``n/John Doe p/98765432 i/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
 
-   * **`delete`**`3` : Deletes the 3rd patient shown in the patient list.
+   * `delete``3` : Deletes the 3rd patient shown in the patient list.
 
-   * **`clear`** : Deletes all your patients.
+   * `clear` : Deletes all your patients.
 
-   * **`exit`** : Exits the app.
+   * `exit` : Exits the app.
 
 1. Refer to the [**Features**](#3-features) below for details of each command.
 
@@ -132,7 +132,7 @@ Examples:
 :bulb: <span style="font-weight:bold">Tips:</span>
 
 * A patient can have any number of allergies (including 0).
-* The color tag can be any standard HTML color name, such as red, green or orange.
+* The color tag can be any standard HTML color name, such as <span style="color:red">red</span>, <span style="color:green">green</span> or <span style="color:orange">orange</span>.
 * Check out <a href="https://www.w3schools.com/colors/colors_names.asp">this link</a> for an extensive list.
 
 </div>
@@ -142,7 +142,7 @@ Examples:
 **:information_source: Note about color coding patients:**<br>
 
  * When your patient is tagged with a color tag, the background of the patient will be styled to show that color. The color tags can be used for a variety of purposes.
- * For example, you may color code patients at risk of terminal diseases as <span style="color:red;font-weight:bold">red</span>, for easier reference.
+ * For example, you may color code patients at risk of terminal diseases as <span style="color:red">red</span>, for easier reference.
 
 </div>
 
