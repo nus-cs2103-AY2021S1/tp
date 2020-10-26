@@ -126,6 +126,7 @@ public class ExerciseModelManager implements ExerciseModel {
      */
     @Override
     public ObservableList<Exercise> getFilteredExerciseList() {
+
         return filteredExercises;
     }
 

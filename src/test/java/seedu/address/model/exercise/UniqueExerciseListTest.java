@@ -50,17 +50,17 @@ class UniqueExerciseListTest {
 
     @Test
     public void setExercise_nullTargetExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.setExercise(null, PUSH_UP));
+        assertThrows(NullPointerException.class, () -> uniqueExerciseList.updateExercise(null, PUSH_UP));
     }
 
     @Test
     public void setExercise_nullEditedExercise_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueExerciseList.setExercise(PUSH_UP, null));
+        assertThrows(NullPointerException.class, () -> uniqueExerciseList.updateExercise(PUSH_UP, null));
     }
 
     @Test
     public void setExercise_targetExerciseNotInList_throwsExerciseNotFoundException() {
-        assertThrows(ExerciseNotFoundException.class, () -> uniqueExerciseList.setExercise(PUSH_UP, PUSH_UP));
+        assertThrows(ExerciseNotFoundException.class, () -> uniqueExerciseList.updateExercise(PUSH_UP, PUSH_UP));
     }
 
     /*
@@ -89,7 +89,7 @@ class UniqueExerciseListTest {
     @Test
     public void setExercise_editedExerciseHasDifferentIdentity_success() {
         uniqueExerciseList.add(PUSH_UP);
-        uniqueExerciseList.setExercise(PUSH_UP, SIT_UP);
+        uniqueExerciseList.updateExercise(PUSH_UP, SIT_UP);
         UniqueExerciseList expecteduniqueExerciseList = new UniqueExerciseList();
         expecteduniqueExerciseList.add(SIT_UP);
         assertEquals(expecteduniqueExerciseList, uniqueExerciseList);
@@ -99,7 +99,7 @@ class UniqueExerciseListTest {
     public void setExercise_editedExerciseHasNonUniqueIdentity_throwsDuplicateExerciseException() {
         uniqueExerciseList.add(PUSH_UP);
         uniqueExerciseList.add(SIT_UP);
-        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList.setExercise(PUSH_UP, SIT_UP));
+        assertThrows(DuplicateExerciseException.class, () -> uniqueExerciseList.updateExercise(PUSH_UP, SIT_UP));
     }
 
     @Test
@@ -181,7 +181,7 @@ class UniqueExerciseListTest {
     public void setExercise_checkCaloriesByDay() {
         UniqueExerciseList uniqueExerciseList = new UniqueExerciseList();
         uniqueExerciseList.add(PUSH_UP);
-        uniqueExerciseList.setExercise(PUSH_UP, SIT_UP);
+        uniqueExerciseList.updateExercise(PUSH_UP, SIT_UP);
         assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(PUSH_UP.getDate().value));
         assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value), 0);
         assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(SIT_UP.getDate().value));

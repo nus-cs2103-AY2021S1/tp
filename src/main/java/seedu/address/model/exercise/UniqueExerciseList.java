@@ -31,7 +31,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     private final ObservableList<Exercise> internalList = FXCollections.observableArrayList();
     private final ObservableList<Exercise> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
-    private final HashMap<String, Integer> caloriesByDay = new HashMap<>();
+    private HashMap<String, Integer> caloriesByDay = new HashMap<>();
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -65,7 +65,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
      * Replaces the exercise {@code target} in the list with {@code editedExercise}.
      * {@code target} must exist in the list.
      */
-    public void setExercise(Exercise target, Exercise editedExercise) {
+    public void updateExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
 
         int index = internalList.indexOf(target);
@@ -98,7 +98,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     public void setExercises(UniqueExerciseList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
-        recalculateDayCalories();
+        caloriesByDay = replacement.getCaloriesByDay();
     }
 
     /**
@@ -113,7 +113,15 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         }
 
         internalList.setAll(exercises);
-        recalculateDayCalories();
+        calculateExercise(exercises);
+    }
+
+    private void calculateExercise(List<Exercise> exercises) {
+        HashMap<String, Integer> newCaloriesByDay = new HashMap<>();
+        for (Exercise e: exercises) {
+            addCaloriesForDay(e, newCaloriesByDay);
+        }
+        caloriesByDay = newCaloriesByDay;
     }
 
     /**
@@ -155,13 +163,17 @@ public class UniqueExerciseList implements Iterable<Exercise> {
     }
 
     private void addCaloriesForDay(Exercise newEntry) {
+        addCaloriesForDay(newEntry, caloriesByDay);
+    }
+
+    private void addCaloriesForDay(Exercise newEntry, HashMap<String, Integer> currentCaloriesByDay) {
         String stringDate = newEntry.getDate().value;
         Integer intCalories = Integer.parseInt(newEntry.getCalories().value);
-        if (caloriesByDay.containsKey(stringDate)) {
-            Integer newCalories = caloriesByDay.get(stringDate) + intCalories;
-            caloriesByDay.put(stringDate, newCalories);
+        if (currentCaloriesByDay.containsKey(stringDate)) {
+            Integer newCalories = currentCaloriesByDay.get(stringDate) + intCalories;
+            currentCaloriesByDay.put(stringDate, newCalories);
         } else {
-            caloriesByDay.put(stringDate, intCalories);
+            currentCaloriesByDay.put(stringDate, intCalories);
         }
     }
 
