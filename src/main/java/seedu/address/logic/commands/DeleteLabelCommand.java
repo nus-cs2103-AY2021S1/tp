@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
@@ -22,7 +21,7 @@ public class DeleteLabelCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the given tag(s) from the person identified by the name used in the displayed person list.\n"
             + "Parameters: NAME (must be name of person existing in ModDuke) "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_TAG + "TAG\n"
             + "Example: " + COMMAND_WORD + " "
             + "Roy "
             + PREFIX_TAG + "classmate";
@@ -58,19 +57,11 @@ public class DeleteLabelCommand extends Command {
 
         model.setPerson(personToEdit, editedPerson);
 
-        // Update meeting book
-        List<Meeting> filteredMeetingList = model.getFilteredMeetingList().stream()
-                .filter(meeting -> meeting.getMembers().contains(personToEdit)).map(meeting -> {
-                    Set<Person> updatedMembers = new HashSet<>(meeting.getMembers());
-                    updatedMembers.remove(personToEdit);
-                    updatedMembers.add(editedPerson);
-                    Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
-                            meeting.getTime(), updatedMembers, meeting.getAgendas(), meeting.getNotes());
-                    model.setMeeting(meeting, updatedMeeting);
-                    return updatedMeeting;
-                }).collect(Collectors.toList());
+        // update meeting book
+        model.updatePersonInMeetingBook(personToEdit, editedPerson);
 
-        // todo update module book
+        // update module book
+        model.updatePersonInModuleBook(personToEdit, editedPerson);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, editedPerson));
     }

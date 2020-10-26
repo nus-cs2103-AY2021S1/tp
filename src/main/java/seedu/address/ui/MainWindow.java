@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -71,6 +72,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         this.primaryStage = primaryStage;
         this.logic = logic;
 
+
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
 
@@ -136,7 +138,13 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        AutocompleteCommandBox commandBox = new AutocompleteCommandBox(this::executeCommand);
+        commandBox.setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
+                .map(p -> p.getName().fullName).collect(Collectors.toList()));
+        commandBox.setupAutocompletionListeners("mdname/", () -> logic.getFilteredModuleList().stream()
+                .map(m -> m.getModuleName().getModuleName()).collect(Collectors.toList()));
+        commandBox.setupAutocompletionListeners("mtname/", () -> logic.getFilteredMeetingList().stream()
+                .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         //todo remove

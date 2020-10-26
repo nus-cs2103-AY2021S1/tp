@@ -75,14 +75,16 @@ Example:
 
 ### Deleting a contact : `contact delete`
 
-Deletes the specified contact from Modduke.
+Delete contacts with the given criteria from Modduke.
 
-Format: `contact delete CONTACT_NAME`
+Format: `contact delete [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
 
-* Deletes the contact with the specified name.
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* At least one of the optional fields must be provided.
 
 Examples:
-* `contact delete Roy` deletes `Roy` contact from Modduke.
+* `contact delete n/Roy n/Jake` delete contacts `Roy` and `Jake` from Modduke.
+* `contact delete m/CS2103 t/classmates` deletes all contacts in `CS2103` module or have `classmates` tag
 
 ### Editing a contact : `contact edit`
 
@@ -121,41 +123,63 @@ Note: A Module can have more than 1 member separated by “,” but can only hav
 
 ### Adding a tag to a user : `label add`
 
-Adds a label to a contact
+Adds the given labels to a contact
 
-Format: ` label add c/CONTACT_NAME [t/TAG_NAMES]…`
+Format: ` label add CONTACT_NAME t/TAG_NAME`
 
 * Only 1 contact name can be used at a time but multiple tags can be added.
-* Tag names are to be separated by a ",".
 
 Examples:
-* `label add c/Jay t/2103, teamproject`
+* `label add Jay t/classmate t/friend`
+
+### Deleting a tag from a user : `label delete`
+
+Deletes the given labels from a contact
+
+Format: ` label delete CONTACT_NAME t/TAG_NAMES`
+
+* Only 1 contact name can be used at a time but multiple tags can be deleted.
+* The contact has to have the given tag.
+
+Examples:
+* `label delete Jay t/friend`
+
+### Clear tags of a user : `label clear`
+
+Deletes all labels of a contact
+
+Format: ` label clear CONTACT_NAME`
+
+* Only 1 contact name can be used at a time.
+
+Examples:
+* `label clear Jay`
 
 ### Adding a meeting: `meeting add`
 
 Adds a meeting at a given date and time with specified members, and a provided meeting name
 
-Format: `meeting add n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME m/MEMBERS`
+Format: `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS`
 
-* Creates a meeting with the provided meeting name
+* Creates a meeting with the provided meeting name for the given module
 * All the fields must be provided
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
 * There can be multiple members separated by a ","
-* Members added need to be contacts that are already existing in the address book
+* Participants added need to be contacts that are exist in the given module
 
 Examples:
-*  `meeting add n/CS2103 weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, Ekam`
+*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, Ekam`
 
 ### Deleting a meeting : `meeting delete`
 
 Deletes the specified meeting from Modduke.
 
-Format: `contact meeting MEETING_NAME`
+Format: `contact meeting m/MODULE n/MEETING_NAME`
 
-* Deletes the meeting with the specified meeting name.
+* Deletes the meeting with the specified meeting name in the given module.
 
 Examples:
-* `meeting delete CS2103 Weekly Meeting` deletes `CS2103 Weekly Meeting` meeting from Modduke.
+* `meeting delete n/CS2103 n/Weekly Meeting` deletes `Weekly Meeting` meeting from the module `CS2103`.
 
 ### Editing a meeting: `meeting edit`
 
@@ -165,17 +189,17 @@ Edits a given meeting. Listed below are the meeting details that can be changed:
 3. Time
 4. Contacts
 
-Format: `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [m/NEW_MEMBERS]…`
+Format: `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [m/NEW_MEMBERS]…`
 
-* Edits any of the details of the meeting 
-* `n/NEW_NAME`, `d/NEW_DATE`, `t/NEW_TIME` and `m/NEW_MEMBERS` are all optional fields, but at least one of the optional fields must be provided
+* Edits any of the details of the specified meeting from the given module
+* `nN/NEW_NAME`, `d/NEW_DATE`, `t/NEW_TIME` and `m/NEW_MEMBERS` are all optional fields, but at least one of the optional fields must be provided
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
 * If there is more than one member to edit, they should be separated by “,”
 * All the newly provided fields will override previous fields
 
 Examples:
-* `meeting edit CS2103 Meeting d/2020-09-27 t/14:00` edits the date and time of CS2103 Meeting to be `2020-09-27` and `14:00` respectively
-* `meeting edit CS2103 Meeting n/CS2103 Group Discussion' edits the name of CS2103 Meeting to be `CS2103 Group Discussion`
+* `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00` edits the date and time of Meeting in the module CS2103 to be `2020-09-27` and `14:00` respectively
+* `meeting edit m/CS2103 n/Meeting nN/Group Discussion' edits the name of Meeting to be `Group Discussion` in the module CS2103
 
 ### Listing all Meetings : `meeting list`
 
@@ -210,6 +234,32 @@ View all the existing consults
 
 Format: `consult list`
 
+### Copy email address of contacts : `copy email`
+
+Copies email address of contacts with the given criteria to your clipboard.
+
+Format: `copy email [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* At least one of the optional fields must be provided.
+
+Examples:
+* `copy email n/Roy n/Ekam`
+* `copy email m/CS2103 t/classmate n/Tom n/Jerryl`
+
+### Copy phone numbers of contacts : `copy phone`
+
+Copies phone numbers of contacts with the given criteria to your clipboard.
+
+Format: `copy phone [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* At least one of the optional fields must be provided.
+
+Examples:
+* `copy phone m/CS2103`
+* `copy phone m/CS1010 t/classmate n/Bob n/Roy`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -219,6 +269,24 @@ Format: `exit`
 ### Saving the data
 
 AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+
+### Autocompletion
+
+Currently Modduke will support autocompletion for the following fields in v1.3.(and their associated trigger phrases)
+
+* Contact Name -  Triggered using `cname/`
+* Module Name -  Triggered using `mdname/`
+* Meeting Name -  Triggered using `mtname/`
+
+Typing in these trigger phrases will turn the text yellow to show that CommandBox has entered Autocompletion Mode. 
+Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions. 
+
+* Note that while in Autocomplete mode you cannot edit suggestions unless you iterated back to your own input or you press `Backspace`.
+* Pressing `Enter` will lock in your current selection and take you out of Autocomplete mode.
+
+### Command Line Shortcuts
+
+`Ctrl-U` --- Clears CommandBox
 
 ### Archiving data files `[coming in v2.0]`
 

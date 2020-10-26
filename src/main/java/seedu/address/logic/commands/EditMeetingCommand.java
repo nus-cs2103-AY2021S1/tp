@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEWNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
@@ -26,6 +28,8 @@ import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -36,12 +40,14 @@ public class EditMeetingCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the meeting identified "
             + "by the name of the meeting in the displayed meeting list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: MEETINGNAME (must be name of meeting existing in ModDuke) "
-            + "[" + PREFIX_NAME + "NEW_MEETINGNAME] "
+            + "Parameters: "
+            + PREFIX_MODULE + "MODULE "
+            + PREFIX_NAME + "MEETING NAME "
+            + "[" + PREFIX_NEWNAME + "NEW_MEETINGNAME] "
             + "[" + PREFIX_DATE + "NEW_DATE] "
             + "[" + PREFIX_TIME + "NEW_TIME] "
-            + "[" + PREFIX_MEMBER + "NEW_MEMBERS]...\n"
-            + "Example: " + COMMAND_WORD + " CS2103 Project Meeting "
+            + "[" + PREFIX_PARTICIPANT + "NEW_MEMBERS]...\n"
+            + "Example: " + COMMAND_WORD + " m/CS2103 n/Project Meeting "
             + PREFIX_DATE + "2020-10-10 "
             + PREFIX_TIME + "11:30"
             + PREFIX_AGENDA + "Discuss project direction"
@@ -52,34 +58,52 @@ public class EditMeetingCommand extends Command {
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
     public static final String MESSAGE_NONEXISTENT_PERSON = "The following person(s): %s are not in your contacts";
 
-    private final MeetingName meetingName;
+    private final ModuleName targetModuleName;
+    private final MeetingName targetMeetingName;
     private final EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor;
 
     /**
-     * @param meetingName of the meeting in the filtered meeting list to edit
+     * @param targetModuleName name of the module that the soon to be edited meeting belongs to
+     * @param targetMeetingName name of the soon to be edited meeting
      * @param editMeetingDescriptor details to edit the meeting with
      */
-    public EditMeetingCommand(MeetingName meetingName, EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
-        requireNonNull(meetingName);
+    public EditMeetingCommand(ModuleName targetModuleName, MeetingName targetMeetingName,
+                              EditMeetingCommand.EditMeetingDescriptor editMeetingDescriptor) {
+        requireNonNull(targetModuleName);
+        requireNonNull(targetMeetingName);
         requireNonNull(editMeetingDescriptor);
 
-        this.meetingName = meetingName;
+        this.targetModuleName = targetModuleName;
+        this.targetMeetingName = targetMeetingName;
         this.editMeetingDescriptor = new EditMeetingCommand.EditMeetingDescriptor(editMeetingDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Meeting> lastShownList = model.getFilteredMeetingList();
 
-        boolean isValidMeeting = model.hasMeetingName(meetingName);
+        boolean isValidModule = model.hasModuleName(targetModuleName);
+        if (!isValidModule) {
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED);
+        }
+
+        List<Module> filteredMeetingList = model.getFilteredModuleList().stream()
+                .filter(module -> module.isSameName(targetModuleName)).collect(Collectors.toList());
+        Module module = filteredMeetingList.get(0);
+
+        boolean isValidMeeting = false;
+        Meeting meetingToEdit = null;
+        for (Meeting meeting : model.getFilteredMeetingList()) {
+            if (meeting.getModule().equals(module) && meeting.getMeetingName().equals(targetMeetingName)) {
+                isValidMeeting = true;
+                meetingToEdit = meeting;
+            }
+        }
         if (!isValidMeeting) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED);
         }
 
-        List<Meeting> filteredList = lastShownList.stream()
-                .filter(meeting -> meeting.isSameMeetingName(meetingName)).collect(Collectors.toList());
-        Meeting meetingToEdit = filteredList.get(0);
+        assert meetingToEdit != null;
 
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor, model);
 
@@ -109,7 +133,8 @@ public class EditMeetingCommand extends Command {
         Set<SpecialName> updatedNotes = editMeetingDescriptor.getNotes().orElse(null);
         Set<Person> updatedMembers = getUpdatedMembers(meetingToEdit, updatedMemberNames, model);
 
-        return new Meeting(updatedMeetingName, updatedDate, updatedTime, updatedMembers, updatedAgendas, updatedNotes);
+        return new Meeting(meetingToEdit.getModule(), updatedMeetingName, updatedDate, updatedTime, updatedMembers,
+                updatedAgendas, updatedNotes);
     }
 
     private static Set<Person> getUpdatedMembers(Meeting meetingToEdit,
@@ -140,7 +165,7 @@ public class EditMeetingCommand extends Command {
                 updatedMembers.addAll(filteredList);
             }
         } else {
-            updatedMembers = meetingToEdit.getMembers();
+            updatedMembers = meetingToEdit.getParticipants();
         }
         assert updatedMembers != null;
         return updatedMembers;
@@ -160,7 +185,8 @@ public class EditMeetingCommand extends Command {
 
         // state check
         EditMeetingCommand e = (EditMeetingCommand) other;
-        return meetingName.equals(e.meetingName)
+        return targetModuleName.equals(e.targetModuleName)
+                && targetMeetingName.equals(e.targetMeetingName)
                 && editMeetingDescriptor.equals(e.editMeetingDescriptor);
     }
 

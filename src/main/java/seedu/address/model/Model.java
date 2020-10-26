@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -121,6 +122,11 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate);
+
+    ObservableList<Person> getUpdatedFilteredPersonList(Predicate<Person> predicate,
+                                                        List<ModuleName> modules) throws CommandException;
+
     boolean hasMeeting(Meeting meeting);
 
     void addMeeting(Meeting meeting);
@@ -199,4 +205,11 @@ public interface Model {
     ObservableList<Module> getFilteredModuleList();
 
     void getPersonsInModule(ModuleName moduleName) throws CommandException;
+
+    /**
+     * Updates all modules in the module book if the required person was part of any module.
+     * @param persons First argument is the person to update which is either deleted or replaced. If replaced,
+     * second argument is the edited person who will replace the deleted person.
+     */
+    void updatePersonInModuleBook(Person ...persons);
 }

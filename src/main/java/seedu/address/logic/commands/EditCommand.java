@@ -90,7 +90,8 @@ public class EditCommand extends Command {
         // update meeting book
         model.updatePersonInMeetingBook(personToEdit, editedPerson);
 
-        // todo update module book
+        // update module book
+        model.updatePersonInModuleBook(personToEdit, editedPerson);
 
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }

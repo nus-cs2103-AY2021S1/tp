@@ -1,15 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Name;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.PersonPredicate;
 
 /**
  * Deletes a person identified using it's displayed index from the address book.
@@ -20,53 +23,58 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the name used in the displayed person list.\n"
-            + "Parameters: NAME (must be a valid name)\n"
-            + "Example: " + COMMAND_WORD + " Roy";
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_MODULE + "MODULE] "
+            + "[" + PREFIX_TAG + "TAG]\n"
+            + "Example: " + COMMAND_WORD + " n/Roy t/friend";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted People: %1$s";
 
-    private final Name targetName;
+    private final PersonPredicate predicate;
+    private final List<ModuleName> moduleNames;
 
-    public DeleteCommand(Name targetName) {
-        this.targetName = targetName;
+    /**
+     * @param predicate the predicate based on the names, modules and tags given
+     */
+    public DeleteCommand(PersonPredicate predicate, List<ModuleName> moduleNames) {
+        this.predicate = predicate;
+        this.moduleNames = moduleNames;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        boolean isValidContact = model.hasPersonName(targetName);
-
-        if (!isValidContact) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED);
+        List<Person> people;
+        if (moduleNames.isEmpty()) {
+            // finds Persons that match the predicate only
+            people = new ArrayList<>(model.getUpdatedFilteredPersonList(predicate));
+        } else {
+            // finds Persons that match the predicate and Persons that have the given Modules
+            people = new ArrayList<>(model.getUpdatedFilteredPersonList(predicate, moduleNames));
         }
+        List<Person> peopleCopy = new ArrayList<>(people);
 
         // Update address book
-        List<Person> filteredList = model.getFilteredPersonList().stream()
-                .filter(person -> person.isSameName(targetName)).collect(Collectors.toList());
-        assert filteredList.size() == 1;
-        Person personToDelete = filteredList.get(0);
-        model.deletePerson(personToDelete);
+        people.stream().forEach(p -> {
+            model.deletePerson(p); // delete in AddressBook
+            model.updatePersonInMeetingBook(p); // delete in MeetingBook
+            model.updatePersonInModuleBook(p); // delete in ModuleBook
+        });
 
-        // Update meeting book
-        model.updatePersonInMeetingBook(personToDelete);
+        String deletedNames = peopleCopy.stream()
+                .map(p -> p.getName().toString())
+                .reduce("", (x, y) -> x + y + ", ");
+        deletedNames = deletedNames.substring(0, deletedNames.length() - 2);
 
-        // todo update module book
-        //        List<Meeting> filteredModuleList = model.getFilteredModuleList().stream()
-        //                .filter(module -> module.getClassmates().contains(personToDelete)).map(module -> {
-        //                    Set<Person> updatedClassmates = new HashSet<>(module.getClassmates());
-        //                    updatedClassmates.remove(personToDelete);
-        //                    Module updatedModule = new Module(module.getModuleName(), updatedClassmates);
-        //                    model.setModule(module, updatedModule);
-        //                    return updatedModule;
-        //                }).collect(Collectors.toList());
-
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetName.equals(((DeleteCommand) other).targetName)); // state check
+                && predicate.equals(((DeleteCommand) other).predicate)
+                && moduleNames.equals(((DeleteCommand) other).moduleNames)); // state check
     }
 }

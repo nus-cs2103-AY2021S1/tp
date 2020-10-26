@@ -6,7 +6,6 @@ import static seedu.address.logic.commands.CommandTestUtil.LABEL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.LABEL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingBook;
@@ -43,8 +42,6 @@ public class AddLabelCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person labelledPerson = new PersonBuilder(personInFilteredList).withTags("professor").build();
         AddLabelCommand labelCommand = new AddLabelCommand(labelledPerson.getName(),
@@ -61,6 +58,9 @@ public class AddLabelCommandTest {
                                                 new ModuleBook(model.getModuleBook()),
                                                 new UserPrefs());
         expectedModel.setPerson(personInFilteredList, finalPerson);
+        expectedModel.updatePersonInMeetingBook(personInFilteredList, finalPerson);
+        expectedModel.updatePersonInModuleBook(personInFilteredList, finalPerson);
+        expectedModel.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         assertCommandSuccess(labelCommand, model, expectedMessage, expectedModel);
     }
