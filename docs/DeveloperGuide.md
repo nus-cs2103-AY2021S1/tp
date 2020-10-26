@@ -14,6 +14,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+This section describes the high-level components that make up ZooKeep.
 
 ### Architecture
 
@@ -448,6 +449,7 @@ The following activity diagram summarizes what happens when feeding times are ad
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
+This section provides guides for developers wishing to take on this framework for extension or morphing.
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -458,6 +460,7 @@ The following activity diagram summarizes what happens when feeding times are ad
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+This section lists the target requirements for ZooKeep.
 
 ### Product scope
 
@@ -699,8 +702,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
-
-Given below are instructions to test the app manually.
+This section provides instructions for testing the application manually.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
