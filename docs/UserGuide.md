@@ -3,11 +3,19 @@ layout: page
 title: User Guide
 ---
 
-Common Cents is your convenient at-hand expense-tracking tool, meant for anyone who runs a small-scale business. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
+### About
+Common Cents is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you! You can even keep our expenses in multiple, separate accounts for seamless organisation. Amalgamating the features of a Command Line Interface (CLI) with a Graphical User Interface (GUI), Common Cents is meant to be functional, intuitive and faster than most traditional GUI expense-trackers out there!
+
+### User Guide Overview
+This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with Common Cents and clarify most doubts that users may have.
+</div>
+The Common Cents interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
+* `Application` level commands deal with interactions with the app itself.<br>
+* `Account` level commands deal with managing the different accounts in the app.<br>
+* `Entry` level commands deal with managing the entries which are either expenses or revenues in an account.
 
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
 # How to identify notations
@@ -567,6 +575,21 @@ commands anymore. Do confirm your changes to the entries in the account before y
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+# Frequently Asked Questions (FAQ)
+
+**Question:** How do I transfer my data to another Computer?<br>
+**Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CommonCents home folder.
+
+</div>
+
+**Question:** Where can I make bug reports?<br>
+**Answer:** You may submit a bug report directly to our team [here].
+
+</div>
+
+**Question:** What happens if I forget my account names?<br>
+**Answer:** You may use the `listacc` command to see a full list of your existing accounts.
 
 --------------------------------------------------------------------------------------------------------------------
 
