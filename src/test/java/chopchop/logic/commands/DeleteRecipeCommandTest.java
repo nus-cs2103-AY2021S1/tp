@@ -24,7 +24,7 @@ public class DeleteRecipeCommandTest {
     @Test
     public void execute_validIndexUnfilteredList_success() {
         var recToDelete = model.getFilteredRecipeList().get(INDEXED_FIRST.getZeroIndex());
-        var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
+        var deleteCommand = new DeleteRecipeCommand(INDEXED_FIRST);
 
         var expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UserPrefs());
         expectedModel.deleteRecipe(recToDelete);

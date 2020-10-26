@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
+
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -42,7 +43,7 @@ public class FindRecipeCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        //different recipe -> returns false
+        //different values -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
