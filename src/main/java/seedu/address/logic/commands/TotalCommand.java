@@ -19,7 +19,7 @@ public class TotalCommand extends Command {
         }
 
         Order order = new Order();
-        order.setOrderItems(model.getFilteredOrderItemList());
+        order.setOrderItems(model.getObservableOrderItemList());
         double total = order.getTotal();
         return new CommandResult(String.format(MESSAGE_RESULT, total));
     }

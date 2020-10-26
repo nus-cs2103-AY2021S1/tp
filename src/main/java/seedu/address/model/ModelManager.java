@@ -35,9 +35,7 @@ public class ModelManager implements Model {
 
     private final UserPrefs userPrefs;
     private ObservableList<Food> filteredFoods;
-    private ObservableList<OrderItem> filteredOrderItems;
 
-    private boolean changeVendor = false;
     private boolean isSortedAsc = false;
 
     /**
@@ -134,31 +132,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteVendor(Vendor target) {
-        addressBook.removeVendor(target);
-    }
-
-    @Override
-    public void addVendor(Vendor vendor) {
-        addressBook.addVendor(vendor);
-    }
-
-    @Override
-    public void setVendor(Vendor target, Vendor editedVendor) {
-        requireAllNonNull(target, editedVendor);
-
-        addressBook.setVendor(target, editedVendor);
-    }
-
-    @Override
     public void selectVendor(int vendorIndex) {
         this.addressBook.selectVendor(vendorIndex);
-        this.filteredFoods = new FilteredList<>(this.menuManagers.get(vendorIndex).getFoodList());
-    }
-
-    @Override
-    public void setVendorIndex(int vendorIndex) {
-        this.addressBook.selectVendor(vendorIndex);
+        if (vendorIndex != -1) {
+            this.filteredFoods = new FilteredList<>(this.menuManagers.get(vendorIndex).getFoodList());
+        }
     }
 
     @Override
@@ -205,56 +183,21 @@ public class ModelManager implements Model {
         default:
             throw new IllegalStateException("Unexpected value: " + sortedBy);
         }
-        if (toggle) {
-            if (isSortedAsc) {
-                filteredFoods = filteredFoods.sorted(foodComparator.reversed());
-                isSortedAsc = false;
-            } else {
-                filteredFoods = filteredFoods.sorted(foodComparator);
-                isSortedAsc = true;
-            }
-        } else {
-            if (ascending) {
-                filteredFoods = filteredFoods.sorted(foodComparator);
-                isSortedAsc = true;
-            } else {
-                filteredFoods = filteredFoods.sorted(foodComparator.reversed());
-                isSortedAsc = false;
-            }
+
+        filteredFoods = filteredFoods.sorted(foodComparator);
+        if ((toggle && isSortedAsc) || (!toggle && !ascending)) {
+            filteredFoods = filteredFoods.sorted(foodComparator.reversed());
         }
+        isSortedAsc = toggle ? !isSortedAsc : ascending;
     }
 
     /**
      * Shows the current menu at the default state.
      */
     public void showDefaultMenu() {
-        updateFilteredFoodList(food -> true);
+        filteredFoods = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
         isSortedAsc = false;
     }
-
-    @Override
-    public boolean hasFood(Food food, int index) {
-        requireNonNull(food);
-        return menuManagers.get(index).hasFood(food);
-    }
-
-    @Override
-    public void deleteFood(Food target, int index) {
-        menuManagers.get(index).removeFood(target);
-    }
-
-    @Override
-    public void addFood(Food food, int index) {
-    //        menuManagers.get(index).addFood(food);
-    //        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
-    }
-
-    @Override
-    public void setFood(Food target, Food editedFood, int index) {
-        requireAllNonNull(target, editedFood);
-        menuManagers.get(index).setFood(target, editedFood);
-    }
-
 
     //=========== OrderManager ================================================================================
 
@@ -276,19 +219,14 @@ public class ModelManager implements Model {
 
     @Override
     public void removeOrderItem(OrderItem target) {
+        requireNonNull(target);
         orderManager.removeOrderItem(target);
     }
 
     @Override
     public void addOrderItem(OrderItem orderItem) {
+        requireNonNull(orderItem);
         orderManager.addOrderItem(orderItem);
-        updateFilteredOrderItemList(PREDICATE_SHOW_ALL_ORDERITEMS);
-    }
-
-    @Override
-    public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {
-        requireAllNonNull(target, editedOrderItem);
-        orderManager.setOrderItem(target, editedOrderItem);
     }
 
     @Override
@@ -306,23 +244,6 @@ public class ModelManager implements Model {
         orderManager.undoChanges();
     }
 
-    //=========== Filtered Food List Accessors =============================================================
-
-    @Override
-    public ObservableList<Food> getFilteredFoodList() {
-        //todo the filteredFoods need to be changed and this whole class needs to be updated
-        if (filteredFoods == null || changeVendor) {
-            changeVendor = false;
-            updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
-        }
-        return filteredFoods;
-    }
-
-    @Override
-    public int getFilteredFoodListSize() {
-        return filteredFoods == null ? 0 : getFilteredFoodList().size();
-    }
-
     @Override
     public void clearOrder() {
         orderManager.setOrder(new ArrayList<>());
@@ -334,8 +255,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateVendor() {
-        changeVendor = true;
+    public int getOrderSize() {
+        return orderManager.getOrderItemList().size();
+    }
+
+    @Override
+    public ObservableList<OrderItem> getObservableOrderItemList() {
+        return orderManager.getOrderItemList();
+    }
+
+    //=========== Filtered Food List Accessors =============================================================
+
+    @Override
+    public ObservableList<Food> getFilteredFoodList() {
+        return filteredFoods;
+    }
+
+    @Override
+    public int getFilteredFoodListSize() {
+        return filteredFoods == null ? 0 : getFilteredFoodList().size();
     }
 
     @Override
@@ -346,29 +284,7 @@ public class ModelManager implements Model {
             return;
         }
         // not suppose to modify menumanager's menus
-        FilteredList<Food> list = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
-        list.setPredicate(predicate);
-        filteredFoods = list;
-    }
-
-    //=========== Filtered OrderItem List Accessors =============================================================
-
-    @Override
-    public ObservableList<OrderItem> getFilteredOrderItemList() {
-        if (filteredOrderItems == null) {
-            updateFilteredOrderItemList(PREDICATE_SHOW_ALL_ORDERITEMS);
-        }
-        return filteredOrderItems;
-    }
-
-    @Override
-    public void updateFilteredOrderItemList(Predicate<OrderItem> predicateindex) {
-        filteredOrderItems = new FilteredList<>(this.orderManager.getOrderItemList());
-    }
-
-    @Override
-    public int getOrderSize() {
-        return filteredOrderItems.size();
+        filteredFoods = filteredFoods.filtered(predicate);
     }
 
     @Override

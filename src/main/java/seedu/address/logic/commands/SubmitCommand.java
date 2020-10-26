@@ -18,7 +18,7 @@ public class SubmitCommand extends Command {
         }
 
         Order order = new Order();
-        order.setOrderItems(model.getFilteredOrderItemList());
+        order.setOrderItems(model.getObservableOrderItemList());
         StringBuilder text = new StringBuilder();
         for (OrderItem orderItem: order) {
             text.append(String.format("%s x %d\n", orderItem.getName(), orderItem.getQuantity()));

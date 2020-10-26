@@ -41,7 +41,7 @@ public class RemoveCommandTest {
         Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
         RemoveCommand removeCommand = new RemoveCommand(first);
-        List<OrderItem> lastShownList = model.getFilteredOrderItemList();
+        List<OrderItem> lastShownList = model.getObservableOrderItemList();
         OrderItem orderItemToRemove = lastShownList.get(first.getZeroBased());
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, orderItemToRemove);
 

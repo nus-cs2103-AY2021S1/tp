@@ -9,7 +9,7 @@ public class VendorCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        model.setVendorIndex(-1);
+        model.selectVendor(-1);
         model.clearOrder();
         return new CommandResult(MESSAGE_RESET_VENDOR_SUCCESS,
                 false, false, true);

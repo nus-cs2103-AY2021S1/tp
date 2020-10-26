@@ -99,7 +99,7 @@ public class VendorCommandTest {
     @Test
     public void execute_noIndexProvided_success() {
         Model model = initialiseModel();
-        model.setVendorIndex(3);
+        model.selectVendor(3);
 
         VendorCommand vendorCommand = new VendorCommand();
         Model expectedModel = initialiseModel();

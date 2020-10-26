@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 
 /**
@@ -21,8 +22,8 @@ public class SortCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Menu successfully sorted!";
 
     private final String sortedBy;
-    private boolean ascending;
-    private boolean toggle;
+    private final boolean ascending;
+    private final boolean toggle;
 
 
     /**
@@ -45,6 +46,9 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (!model.isSelected()) {
+            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+        }
         model.sortFoodBy(sortedBy, ascending, toggle);
         return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
