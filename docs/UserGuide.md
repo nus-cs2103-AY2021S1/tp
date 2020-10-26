@@ -67,9 +67,12 @@ Important cautions that needs to be known before using the feature.
 
 1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
 
-1. Double-click the file to start the app. You should see the GUI similar to the one below in a few seconds. 
+1. Double-click the file to start the app. You should see the  Graphical User Interface (GUI) similar 
+to the one below in a few seconds. 
 Note how the app contains some sample expenses and revenues.<br>
-   ![Ui](images/Ui.png)
+
+ ![Ui](images/Ui.png)
+ <p align="center"> <sub> <b>Figure</b>: Default GUI </sub> </p>
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -82,9 +85,9 @@ Note how the app contains some sample expenses and revenues.<br>
 
 --------------------------------------------------------------------------------------------------------------------
 # User Interface Overview
-As you can see, **figure** below shows the default user interface (UI) of *_Common Cents_* with its components.  
+As you can see, **figure** below shows the default user interface (UI) of _Common Cents_ with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
-<p align="center"> <sub> <b>Figure</b>: Default user interface of _Common Cents_ </sub> </p>
+<p align="center"> <sub> <b>Figure</b>: Default user interface of <i>Common Cents</i> </sub> </p>
 
 You can find the description for each UI component shown in the table below.<br> 
 
@@ -331,7 +334,7 @@ You can use this command to list all entries in the current account when you wan
 
 ### Clearing all expenses or revenue: `clear`
 
-You can use this command to clear all entries from a particular category.
+You can use this command to clear all entries from a particular category when you do not need to track them anymore.
  
 **Format:** `clear`
  
@@ -643,7 +646,7 @@ Action | Format, Examples
 
 --------------------------------------------------------------------------------------------------------------------
 
-#Acknowledgement
+# Acknowledgement
 
 * The project is a brown-field project, based on AddressBook-Level3 by the [SE-EDU initiative](https://se-education.org/).
-* The background image is [Designed by Freepik](http://www.freepik.com) 
+* The background image is [Designed by Freepik](http://www.freepik.com). 
