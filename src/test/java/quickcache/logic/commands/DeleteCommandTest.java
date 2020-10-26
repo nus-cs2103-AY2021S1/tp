@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +16,6 @@ import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;
 import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalFlashcards;

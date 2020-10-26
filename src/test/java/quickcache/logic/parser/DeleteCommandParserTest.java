@@ -5,16 +5,12 @@ import static quickcache.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import quickcache.logic.commands.DeleteCommand;
-import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalTags;
