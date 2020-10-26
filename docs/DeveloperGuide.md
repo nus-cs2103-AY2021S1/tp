@@ -7,13 +7,29 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+Hello, fellow developers.
+
+Welcome to **Hospify**, a desktop application for a digital medical record management solution. In this developer guide, you will learn more about how this application is implemented and the design choices behind them.
+
+**Hospify** is primarily adapted from the [AddressBook Level-3](https://github.com/nus-cs2103-AY2021S1/tp) program, which is subsequently modified to serve as a medical record storage solution targeted at administrative staff in clinics to reduce their dependency on printed medical records. The software provides basic functionalities required on a daily basis by clinic administrative staff, including adding, editing, finding, deleting and sorting medical records, as well as medical appointments of patients.
+
+For easy navigation around this developer guide, hyperlinks to individual implementations have been provided at the top of the page. For ease of reading, we will be discussing the high-level implementation details first before zooming in to each design component and the implementation details.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+Please refer to the guide [_Setting up and getting started_](SettingUp.md) for more information about how to set up and configure the project in your computer.
+
+You may also wish to refer to the source code [here](https://github.com/AY2021S1-CS2103T-W15-3/tp).
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+
+In this section, we will be discussing the general design of the software. We will begin with its overall architecture to understand the high-level design of **Hospify**, followed by a closer look into each of the four major components, namely [`UI`](#ui-component), [`Logic`](#logic-component), [`Model`](#model-component) and [`Storage`](#storage-component).
 
 ### Architecture
 
@@ -131,7 +147,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+In this section, we will be highlighting some key features and how they are being implemented. Example usage scenarios are provided to showcase how the features can be used. Lastly we will also be looking at other design choices and the rationale behind the current implementations.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -217,21 +233,36 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### \[Proposed\] Medical Record feature
+### Medical Record feature (by Cedric Lim Jun Wei)
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed feature will enable users to add medical records of patients by specifying a url containing his/her online medical record document. The following are the additions required for this feature:
+This feature enables users to add medical records of patients by specifying a url containing his/her online medical record document. The following are the additions required for this feature:
 
-* A `MedicalRecord` class will be added under `patient` package.
-* A new prefix `mr/` to be used with the `add` command to allow users to specify the url.
-* A new `Copy MR url` button which allows users to copy the medical record url onto the clipboard.
+* A `MedicalRecord` class is added under the `patient` package.
+* A new prefix `mr/` is created to be used with the `add` and `edit` command to allow users to specify the url.
+* A new `MR URL` button is added to individual patient's tab to allow users to copy the medical record url onto the system clipboard.
 
 Given below is an example usage scenario.
 
-Step 1. The user executes `add n/John Doe …​ mr/www.medicalrecorddoc.com/patients1234567` command to add patient John Doe in Hospify.
+Step 1. The user executes `add n/John Doe …​ mr/www.medicalrecorddoc.com/patients1234567` command to add patient John Doe in Hospify. The sequence diagram below illustrates how the operation of adding a patient works.
 
-Step 2. The user now decides to access the medical record of patient John Doe and can then do so by clicking on the `Copy MR url` button located at the bottom right corner of the patient's tab.
+![AddSequenceDiagramMR](images/UML_Diagrams/AddSequenceDiagramMR.png)<br>
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on sequence diagram:**<br>
+
+* The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+* For simplicity, the complete user input for the `add` command is omitted, showing only the `mr/www.medicalrecorddoc.com/patients1234567` portion, which is further simplified to `mr/MR_URL` in the sequence diagram.
+
+* The `Patient` object created is shown as `toAdd` in the sequence diagram.
+</div>
+
+Step 2. The user now decides to access the medical record of patient John Doe and can then do so by clicking on the `MR URL` button located at the bottom right corner of the patient's tab.
+
+In doing so, the `PatientCard#copyUrl()` is called on the mouse click and the link to the medical record url is copied to the system clipboard.
 
 Step 3. The user opens his/her preferred web browser and paste the url that was copied in step 2.
 
@@ -251,11 +282,9 @@ The following activity diagram summarizes what happens when a user adds a new pa
   * Pros: Independent from external and online platforms (fully integrated within the application).
   * Cons: Harder to implement and less freedom to edit medical records.
 
-_{more aspects and alternatives to be added}_
+### Appointment feature (by Gabriel Teo Yu Xiang)
 
-### \[Proposed\] Appointment feature
-
-#### Proposed Implementation
+#### Implementation
 
 The proposed feature will enable users to add appointments for patients, as well as edit and delete them. The following are the additions required for this feature:
 
@@ -305,7 +334,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix: Requirements** (by Gabriel Teo Yu Xiang)
 
 ### Product scope
 
@@ -313,7 +342,7 @@ _{more aspects and alternatives to be added}_
 
 * Administrative staff in clinics
 * has a need to manage a significant number of patients and their respective medical records
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
@@ -465,9 +494,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Should be able to hold up to 1000 patients without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4.  The system should work on both 32-bit and 64-bit environments.
-5.  The system should respond within two seconds.
-6.  The product does not support printing of reports (patient details).
-7.  The product does not support syncing data with other clinics’ patients’ details.
+5.  The system should respond within two seconds to user inputs.
+6.  The system should be user-friendly to new users and easy to learn.
+7.  The system should be backward compatible with older versions of the product.
+8.  The system is expected to be able to save and load user input data from the hard drive.
+9.  The system is expected to be able to `sort` patients according to their `name`, `NRIC` or `appointment`.
+10.  The system does not support printing of reports (patient details).
+11.  The system does not support syncing data with other clinics’ patients’ details.
 
 *{More to be added}*
 

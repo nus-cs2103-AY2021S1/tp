@@ -39,8 +39,9 @@ public class AddCommand extends Command {
             + PREFIX_ALLERGY + "friends "
             + PREFIX_ALLERGY + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in Hospify";
+    public static final String MESSAGE_SUCCESS = "New patient added: %1$s";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Hospify";
+    public static final String MESSAGE_DUPLICATE_NRIC = "This NRIC already belongs to an existing patient in Hospify";
 
     private final Patient toAdd;
 
@@ -57,7 +58,9 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPatient(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+        } else if (model.hasPatientWithNric(toAdd.getNric())) {
+            throw new CommandException(MESSAGE_DUPLICATE_NRIC);
         }
 
         model.addPatient(toAdd);

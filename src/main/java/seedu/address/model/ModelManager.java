@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -93,6 +94,12 @@ public class ModelManager implements Model {
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
         return hospifyBook.hasPatient(patient);
+    }
+
+    @Override
+    public boolean hasPatientWithNric(Nric nric) {
+        requireNonNull(nric);
+        return hospifyBook.hasPatientWithNric(nric);
     }
 
     @Override

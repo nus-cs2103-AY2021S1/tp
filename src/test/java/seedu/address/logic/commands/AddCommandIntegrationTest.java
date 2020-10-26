@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
-//import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -39,7 +39,14 @@ public class AddCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Patient patientInList = model.getHospifyBook().getPatientList().get(0);
-        assertCommandFailure(new AddCommand(patientInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCommand(patientInList), model, AddCommand.MESSAGE_DUPLICATE_PATIENT);
+    }
+
+    @Test
+    public void execute_duplicateNric_throwsCommandException() {
+        Patient patientInList = model.getHospifyBook().getPatientList().get(0);
+        Patient patientWithDuplicateNric = new PersonBuilder().withNric(patientInList.getNric().value).build();
+        assertCommandFailure(new AddCommand(patientWithDuplicateNric), model, AddCommand.MESSAGE_DUPLICATE_NRIC);
     }
 
 }

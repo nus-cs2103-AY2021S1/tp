@@ -20,6 +20,7 @@ import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
 
+
 /**
  * Jackson-friendly version of {@link Patient}.
  */

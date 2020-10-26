@@ -36,11 +36,11 @@ public class EditCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Patient editedPatient = new PersonBuilder().build();
+        Patient editedPatient = new PersonBuilder().withNric("S0000009A").build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPatient).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(new HospifyBook(model.getHospifyBook()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
@@ -55,13 +55,13 @@ public class EditCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPatient);
         Patient editedPatient = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withAllergies(VALID_ALLERGY_POLLEN).build();
+                .withAllergies(VALID_ALLERGY_POLLEN).withNric("S0000009A").build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_ALLERGY_POLLEN).build();
+                .withPhone(VALID_PHONE_BOB).withTags(VALID_ALLERGY_POLLEN).withNric("S0000009A").build();
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(new HospifyBook(model.getHospifyBook()), new UserPrefs());
         expectedModel.setPatient(lastPatient, editedPatient);
@@ -74,7 +74,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
         Patient editedPatient = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(new HospifyBook(model.getHospifyBook()), new UserPrefs());
 
@@ -86,11 +86,12 @@ public class EditCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Patient patientInFilteredList = model.getFilteredPatientList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Patient editedPatient = new PersonBuilder(patientInFilteredList).withName(VALID_NAME_BOB).build();
+        Patient editedPatient = new PersonBuilder(patientInFilteredList).withName(VALID_NAME_BOB)
+                .withNric("S0000009A").build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).withNric("S0000009A").build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient);
 
         Model expectedModel = new ModelManager(new HospifyBook(model.getHospifyBook()), new UserPrefs());
         expectedModel.setPatient(model.getFilteredPatientList().get(0), editedPatient);
@@ -104,7 +105,7 @@ public class EditCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPatient).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test
@@ -116,7 +117,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(patientInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PATIENT);
     }
 
     @Test
