@@ -1,6 +1,5 @@
 package seedu.address.model.exercise;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -11,6 +10,9 @@ public class PropertiesMatchPredicateForExercise implements Predicate<Exercise> 
     private final Calories calories;
     private final List<String> keywords;
 
+    /**
+     * Creates a predicate to find exercises with matched properties.
+     */
     public PropertiesMatchPredicateForExercise(Name name, Description description,
                                                Date date, Calories calories, List<String> keywords) {
         this.name = name;
