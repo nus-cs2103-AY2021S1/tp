@@ -138,16 +138,21 @@ Examples:
 
 ### Filtering out flashcards  : `filter`
 
-Filters the specified flashcard based on category input(s) by user.
+Filters the specified flashcard based on the field input(s) by the user. 
+This will return all the flashcards whose fields match all the fields specified by the user.
 
-Format: `filter c/CATEGORY`
+Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 
-* Filters the specified flashcard based on category.
-* Supports filtering of one or more categories. For example:
-* `filter c/SDLC c/Revision History`
+* Filters the specified flashcard based on category, rating, favourite status or tags.
+* Supports filtering of one or more different fields. For example:
+    - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
+* Although all fields are optional, a minimum of one field has to be given.
 
 Examples:
 *  `filter` followed by `c/SDLC` filters and lists all flashcards belonging n the SDLC category.
+*  `filter` followed by `t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
+*  `filter` followed by `r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
+
 
 ### Favourite a flashcard  : `fav`
 
