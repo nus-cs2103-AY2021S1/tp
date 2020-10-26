@@ -24,9 +24,9 @@ import seedu.address.model.visit.Visit;
  * Instantiates a window for logging visit details.
  *
  */
-public class VisitRecordWindow extends UiPart<Stage> {
+public class VisitFormWindow extends UiPart<Stage> {
 
-    private static final String FXML = "VisitRecordForm.fxml";
+    private static final String FXML = "VisitFormWindow.fxml";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final int INVALID_VISIT_INDEX = -1;
 
@@ -54,7 +54,7 @@ public class VisitRecordWindow extends UiPart<Stage> {
      * @param root Stage to use for VisitRecordWindow
      */
 
-    public VisitRecordWindow(EventHandler<WindowEvent> e, Stage root) {
+    public VisitFormWindow(EventHandler<WindowEvent> e, Stage root) {
         super(FXML, root);
         root.setOnHidden(e);
         setup();
@@ -63,7 +63,7 @@ public class VisitRecordWindow extends UiPart<Stage> {
     /**
      * Instantiates VisitRecordWindow.
      */
-    public VisitRecordWindow(EventHandler<WindowEvent> e) {
+    public VisitFormWindow(EventHandler<WindowEvent> e) {
         this(e, new Stage());
     }
 
