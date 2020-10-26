@@ -10,6 +10,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.testutil.CaseBuilder;
+import seedu.pivot.testutil.CasePersonBuilder;
 
 public class DetailsContainsKeywordsPredicateTest {
 
@@ -18,17 +19,17 @@ public class DetailsContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        DetailsContainsKeywordsPredicate firstPredicate =
-                new DetailsContainsKeywordsPredicate(firstPredicateKeywordList);
-        DetailsContainsKeywordsPredicate secondPredicate =
-                new DetailsContainsKeywordsPredicate(secondPredicateKeywordList);
+        DetailsContainsKeywordsPredicate firstPredicate = new DetailsContainsKeywordsPredicate(
+                firstPredicateKeywordList);
+        DetailsContainsKeywordsPredicate secondPredicate = new DetailsContainsKeywordsPredicate(
+                secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        DetailsContainsKeywordsPredicate firstPredicateCopy =
-                new DetailsContainsKeywordsPredicate(firstPredicateKeywordList);
+        DetailsContainsKeywordsPredicate firstPredicateCopy = new DetailsContainsKeywordsPredicate(
+                firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,27 +43,90 @@ public class DetailsContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_titleContainsKeywords_returnsTrue() {
-        // One keyword
-        DetailsContainsKeywordsPredicate predicate =
-                new DetailsContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
+    public void test_caseContainsKeywords_returnsTrue() {
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Collections.singletonList("Bank"));
+        // Multiple keywords, muliple fields
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank").withDescription("Robbery").build()));
 
-        // Multiple keywords
-        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
+        // Only one matching keyword, one field
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Bank", "Robbery"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank murder").build()));
 
-        // Only one matching keyword
-        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new CaseBuilder().withTitle("Alice Carol").build()));
+        // Mixed-case keywords, one field
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("bAnK", "roBerRy"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
 
-        // Mixed-case keywords
-        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
+        // Mixed-case keywords, multiple fields
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("bAnK", "roBerRy"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank").withDescription("Robbery").build()));
     }
 
     @Test
-    public void test_titleDoesNotContainKeywords_returnsFalse() {
+    public void test_caseTitleContainsKeywords_returnsTrue() {
+        // One keyword
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Collections.singletonList("Bank"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
+
+        // Multiple keywords, one field
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Bank", "Robbery"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").build()));
+    }
+
+    @Test
+    public void test_caseStatusContainsKeywords_returnsTrue() {
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Collections.singletonList("ACTIVE"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery").withStatus("ACTIVE").build()));
+    }
+
+    @Test
+    public void test_caseDescriptionContainsKeywords_returnsTrue() {
+        // One keyword
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Collections.singletonList("Bank"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Robbery")
+                .withDescription("Million dollars in XXX bank").build()));
+    }
+
+    @Test
+    public void test_caseDocumentsContainsKeywords_returnsTrue() {
+        // Keywords match some fields in documents
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Arrays.asList("12345", "alice@email.com", "evidence1.txt"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
+                .withDocument("Evidence found at Scene", "evidence1.txt")
+                .build()));
+    }
+
+    @Test
+    public void test_casePersonContainsKeywords_returnsTrue() {
+        // Keywords match some fields in victims
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(
+                Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
+                .withVictims(new CasePersonBuilder().withName("Janice").withGender("F")
+                        .withEmail("alice@email.com").withAddress("123 Main Street").buildVictim())
+                .build()));
+
+        // Keywords match some fields in witness
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
+                .withWitnesses(new CasePersonBuilder().withName("Janice").withGender("F")
+                        .withEmail("alice@email.com").withAddress("123 Main Street").buildWitness())
+                .build()));
+
+        // Keywords match some fields in suspect
+        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        assertTrue(predicate.test(new CaseBuilder().withTitle("Bank Robbery")
+                .withSuspects(new CasePersonBuilder().withName("Janice").withGender("F")
+                        .withEmail("alice@email.com").withAddress("123 Main Street").buildSuspect())
+                .build()));
+    }
+
+    @Test
+    public void test_caseDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new CaseBuilder().withTitle("Alice").build()));
@@ -70,14 +134,11 @@ public class DetailsContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new CaseBuilder().withTitle("Alice Bob").build()));
-
+        assertFalse(predicate.test(new CaseBuilder().withTitle("Alice Bob").withDescription("Riots")
+                .withStatus("CLOSED").withVictims(
+                        new CasePersonBuilder().withName("Janice").withGender("F").buildVictim())
+                .build()));
 
         //TODO: Possible test issue, mention of email here.
-
-        // TODO: Might need testing for keywords matching other fields but not name in the future.
-        // Keywords match email and address, but does not match name
-        predicate = new DetailsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
-        assertFalse(predicate.test(new CaseBuilder().withTitle("Alice")
-                .build()));
     }
 }
