@@ -5,18 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_ITEMS_LISTED_OVERVIEW;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.UserPrefs;
 import seedu.address.model.inventorymodel.InventoryModel;
 import seedu.address.model.inventorymodel.InventoryModelManager;
-import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import seedu.address.model.item.Item;
+import seedu.address.model.item.predicate.NameContainsKeywordsPredicate;
+import seedu.address.model.item.predicate.SupplierContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code ItemFindCommand}.
@@ -29,10 +31,10 @@ public class ItemFindCommandTest {
 
     @Test
     public void equals() {
-        ItemContainsKeywordsPredicate firstPredicate =
-                new ItemContainsKeywordsPredicate(Collections.singletonList("first"), PREFIX_NAME);
-        ItemContainsKeywordsPredicate secondPredicate =
-                new ItemContainsKeywordsPredicate(Collections.singletonList("second"), PREFIX_NAME);
+        NameContainsKeywordsPredicate firstPredicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
+        NameContainsKeywordsPredicate secondPredicate =
+                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
         ItemFindCommand findFirstCommand = new ItemFindCommand(firstPredicate);
         ItemFindCommand findSecondCommand = new ItemFindCommand(secondPredicate);
@@ -57,17 +59,38 @@ public class ItemFindCommandTest {
     @Test
     public void execute_zeroKeywords_noItemFound() {
         String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 0);
-        ItemContainsKeywordsPredicate predicate = preparePredicate(" ");
+        NameContainsKeywordsPredicate predicate = prepareNamePredicate(" ");
         ItemFindCommand command = new ItemFindCommand(predicate);
         expectedInventoryModel.updateItemListFilter(predicate);
         assertCommandSuccess(command, inventoryModel, expectedMessage, expectedInventoryModel);
         assertEquals(Collections.emptyList(), inventoryModel.getFilteredAndSortedItemList());
     }
 
+    @Test
+    public void execute_twoFieldSpecified_itemFound() {
+        String expectedMessage = String.format(MESSAGE_ITEMS_LISTED_OVERVIEW, 1);
+        Predicate<Item> predicate = prepareNamePredicate("Chicken")
+                .and(prepareSupplierPredicate("GIANT"));
+        ItemFindCommand command = new ItemFindCommand(predicate);
+        expectedInventoryModel.updateItemListFilter(predicate);
+        assertCommandSuccess(command, inventoryModel, expectedMessage, expectedInventoryModel);
+        assertEquals(expectedInventoryModel.getFilteredAndSortedItemList(),
+                inventoryModel.getFilteredAndSortedItemList());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private ItemContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new ItemContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")), PREFIX_NAME);
+    private NameContainsKeywordsPredicate prepareNamePredicate(String userInput) {
+        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
+
+    /**
+     * Parses {@code userInput} into a {@code SupplierContainsKeywordsPredicate}.
+     */
+    private SupplierContainsKeywordsPredicate prepareSupplierPredicate(String userInput) {
+        return new SupplierContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    }
+
+
 }

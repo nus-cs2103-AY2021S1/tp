@@ -2,11 +2,13 @@ package seedu.address.logic.commands.itemcommand;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.inventorymodel.InventoryModel;
-import seedu.address.model.item.ItemContainsKeywordsPredicate;
+import seedu.address.model.item.Item;
 
 /**
  * Finds and lists all items in inventory book whose name contains any of the argument keywords.
@@ -22,9 +24,9 @@ public class ItemFindCommand extends ItemCommand {
             + "Parameters: " + "PREFIX " + "KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " n/chicken";
 
-    private final ItemContainsKeywordsPredicate predicate;
+    private final Predicate<Item> predicate;
 
-    public ItemFindCommand(ItemContainsKeywordsPredicate predicate) {
+    public ItemFindCommand(Predicate<Item> predicate) {
         this.predicate = predicate;
     }
 
@@ -35,7 +37,6 @@ public class ItemFindCommand extends ItemCommand {
 
         InventoryModel inventoryModel = models.getInventoryModel();
         inventoryModel.updateItemListFilter(predicate);
-
         return new CommandResult(
                 String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW,
                         inventoryModel.getFilteredAndSortedItemList().size()));

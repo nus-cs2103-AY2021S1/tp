@@ -6,6 +6,17 @@ title: Developer Guide
 {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction**
+Welcome to OneShelf. This developer guide aims to introduce potential developers to the structure and implementation of
+OneShelf, so that you can contribute too! <br>
+
+This guide uses a top-down approach design which covers from higher-level design to lower-level design, and
+discusses the implementation of key features as well as the rationale behind certain design decisions with 
+possible alternatives in code design. Next, there are also links to guides for the tools used in Documentation, Logging,
+Testing, Configuration and DevOps. Lastly, appendices are provided to specify the product scope, requirements, glossary and 
+instructions for manual testing.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -14,16 +25,18 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
+This section shows the design of **OneShelf**.
 
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
+Figure 1. Architecture Diagram
 
 The ***Architecture Diagram*** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-T12-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -47,23 +60,21 @@ Each of the four components,
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
 For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
-
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
+<br>
+![Class Diagram of the Logic Component](images/LogicClassDiagram.png) <br>
+Figure 2. Class Diagram of Logic Component
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
-
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete-i 1`.
+<br>
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<br>
+Figure 3. Sequence Diagram of delete-i 1 command
 
 The sections below give more details of each component.
 
 ### UI component
-
-![Structure of the UI Component](images/UiClassDiagram.png)
-
-**API** :
-[`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ItemListPanel`, `DeliveryListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
@@ -74,35 +85,53 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+The following diagram illustrates the structure of the `UI` component:
+<br>
+![Structure of the UI Component](images/UiClassDiagram.png) <br>
+Figure 4: Structure of the `UI` Component
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)
+**API** :
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+
+
+### Logic component
+The logic component is responsible for all the necessary parsing logic of command, displaying command result 
+by instructing `Ui`, and modifies `Model` and/or `Storage` component depending on the command by user.
+
+The following class diagram illustrated the structure of `Logic` component:
+<br> ![Structure of the Logic Component](images/LogicClassDiagram.png) <br> 
+Figure 5: Structure of the `Logic` Component
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
+The `Logic` component does the following:
 1. `Logic` uses the `Parser` API to parse the user command.
-1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding an item).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+2. This results in a `Command` object which is executed by the `LogicManager`.
+3. The command execution can affect the `Model` (e.g. adding an item).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+5. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete-i 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+<br>
+![Interactions Inside the Logic Component for the `delete-i 1` Command](images/DeleteSequenceDiagram.png)
+<br>
+Figure 6: Sequence Diagram of `delete-i 1`
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ItemDeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
+The Model component corresponds to all the data-related logic that the user works with.
 
+The following class diagram illustrates the structure of the `Model` component:
+<br> 
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
-Structure of the Model Component
+Figure 7: Structure of the `Model` Component
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 `Models`,
-
 
 * stores a map of Models(eg. InventoryModel and DeliveryModel)
 * Each model stores the current state of the Book(eg. InventoryModel stores the current state of the InventoryBook)
@@ -127,15 +156,27 @@ Structure of the Model Component
 
 We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
 
-![Structure of the Item Component](images/ItemClassDiagram.png) <br>
-Structure of Items Object
+An `Item` consists of `Name`, `Quantity`, `Supplier`, `MaxQuantity`, `Metric` and `Tag`. Once an `item` is deleted,
+its corresponding objects within its composition will also get deleted. An `Item` must have 1 `Name` and `Quantity`, 
+0 or 1 `Supplier`, `MaxQuantity`, `Metric` and 0 or more `Tag` objects.
 
-![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
-Structure of Delivery Object
+You may also refer to Figure 8 as shown below:
+<br> ![Structure of the Item Component](images/ItemClassDiagram.png) <br>
+Figure 8: Structure of the `Item`
+
+
+A `Delivery` consists of one `DeliveryName`, `Phone`, `Address`, `Order`. 
+
+You may also refer to Figure 9 as shown below:
+<br> ![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
+Figure 9: Structure of the `Delivery`
 
 ### Storage component
+Storage component is responsible to save the data of inventory and delivery book into the hard disk.
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)
+The following diagram illustrated the structure of `Storage` component:
+<br> ![Structure of the Storage Component](images/StorageClassDiagram.png) <br>
+Figure 10: Class Diagram of `Storage` Component
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -145,13 +186,34 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Adding Items and Delivery
+OneShelf is capable of adding items and deliveries.
+Adding Items and Delivery both are done similarly which will be illustrated with an AddItemActivityDiagram below.
+
+![AddItemActivityDiagram](images/AddItemActivityDiagram.png)
+
+Apart from adding a new Item, should there be an existing item in the Inventory Book, `Add` will be able to increase the quantity of that particular Item.
+In this case 2 items are considered the same if they have the same `Name` and `Supplier`.
+The other variables such as:
+
+a) `Metric` `MaxQuantity`
+- Are not allowed to be defined if there exists the same item inside InventoryBook.
+
+b) `Tags`
+- Will be combined together if there exist the same item inside InventoryBook.
+
+Note: Deliveries are all considered unique. Reason being the same person can make multiple delivery orders.
+
+<div markdown="span" class="alert alert-info">:information_source: **For example:**`John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
+</div>
 
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
@@ -164,26 +226,51 @@ method call to return `commandHistory`'s 2nd last command instead of the last co
 With `addToHistory(String command)`, `previousCommand()`, `nextCommand()` and `currentCommand()` implemented, a simple `setOnKeyPressed` under `CommandBox` class which checks
 for user's input of arrow up (which calls previousCommand()) and arrow down (which calls nextCommand()) would suffice for GUI implementation.
 
+Below is the sequence diagram when user pressing the arrow up button with `CommandBox` selected on GUI.
+
+![CommandHistoryTraversalSequenceDiagram](images/CommandHistoryTraversalSequenceDiagram.png)
+
+When the user, while having the `CommandBox` selected, pressing the arrow up key, it'll prompt the GUI to call `CommandBox`'s `handleHistoryNavigation(Event)` which will call `HistoryManager`'s `previousCommand()` method.
+`previousCommand()` will attempt to return the previous command entered by user, if any. Then `CommandBox` will call `TextField`'s `setText(String)` on the return value of `previousCommand()` which will set the text for the User 
+in the GUI.
 
 ### Finding Items and Delivery
-OneShelf is capable of storing many items and deliveries. Therefore, there is an utmost importance to have the ability to be able to find item and delivery based on different fields. There could also be many similar item and this will definitely benefit the user to find it quickly. <br>
 
-We have modified the `find` command to be able to search for `NAME`, `SUPPLIER` and `TAGS` for items using `find-i` Similarly, for deliveries, it is also possible to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`
+OneShelf is capable of storing many items and pending deliveries.
+Therefore, it is of utmost importance to have the ability to find items
+and deliveries based on different fields. There could also be many similar items and
+this will definitely aid the user in finding them quickly. <br>
 
-By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create an `ItemContainsKeywordsPredicate` object which implements `Predicate<Item>`.
-The predicate is then passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
+We have modified the `find` command to be able to search for `NAME`, `SUPPLIER`
+and `TAGS` for items using `find-i`. Similarly, for deliveries, it is also possible
+to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`.
+Note that the implementation of `find-i` and `find-d` are relatively similar and in this example, we will only show
+`find-i`.
 
-Below is a usage example
+By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create a Predicate that matches the specified field object which implements `Predicate<Item>`.
+The predicate is then combined and passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
 
-Step 1: User execute `find s/NTUC` command to search the list of items by Supplier <br>
-Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a value <br>
+Below is a usage example:
+
+Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
+Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a
+value <br>
 Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
 Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
 
-Below is a sequence diagram of the above
 
+<div markdown="block" class="alert alert-info">
+There is a slight difference in `ADDRESS`, `PHONE`, `ORDER` predicate. The original implementation of predicates will only return true if there is an exact match.
+The issue comes with that these field might be too long and logically do not make sense to search the whole content of the field.
+Hence, we have modified it to allow the predicate to match the substrings of the whole content.
+</div>
+
+You can refer to the sequence diagram as shown below:
 ![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
 
+The following activity diagram summarizes what happens when a user executes a `find` command:
+
+![FindCommandActivityDiagram](images/FindActivityDiagram.png)
 
 ### Undo/Redo Command
 
@@ -204,7 +291,7 @@ Step 1. The user launches the application for the first time. Each `Model` will 
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete-i 5` command to delete the 5th item in the inventory book. The `delete-i` command calls `Models#commit()`, causing the modified state of the inventory and delivery books after the `delete-i 5` command executes to be saved in the `inventoryBookStateList`, `deliveryBookStateList`, 
+Step 2. The user executes `delete-i 5` command to delete the 5th item in the inventory book. The `delete-i` command calls `Models#commit()`, causing the modified state of the inventory and delivery books after the `delete-i 5` command executes to be saved in the `inventoryBookStateList`, `deliveryBookStateList`,
 and the `inventoryBookStatePointer`, `deliveryBookStatePointer` are shifted to the newly inserted books state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
@@ -267,9 +354,41 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Help Window
+There are 2 types of help window: `help summary` and `help start`.
+The `logic` behind help command is similar to other commands in terms of `parsing`.
+In this section, we will only discuss the main difference of `Help Window` as compared to 
+other features' implementation.
 
-_{Explain here how the data archiving feature will be implemented}_
+Refer to the code snippet shown below which is related to `help summary` command:
+```
+    // HelpSummaryCommand class
+    public CommandResult execute(Models models) {
+        return new HelpCommandResult(SHOWING_HELP_MESSAGE, false, true, false, "", HELP_SUMMARY);
+    }
+
+    // Constructor of HelpCommandResult
+    public HelpCommandResult(String feedbackToUser, boolean showHelp,
+                             boolean showPreview, boolean exit, String dataToUser,
+                             String popUpContent) {
+        super(feedbackToUser, showHelp, showPreview, exit);
+        this.dataToUser = requireNonNull(dataToUser);
+        this.popUpContent = requireNonNull(popUpContent);
+    }
+```
+After parsing of help command has been done *(Refer to Figure 6 for similar sequence diagram)*,
+`HelpSummaryCommand#execute(Model)` will override `isShowPreview` 
+field from `CommandResult` to be true.
+This method returns `HelpCommandResult` which will interact with `Ui` component to display 
+the result in the user interface. Similar to this, the only difference for `help start` is that isShowHelp is
+the field to be overridden as true. <br>
+Also notice that `HelpSummaryCommand#execute(Models)` takes in `HELP_SUMMARY` as the `popUpContent`, 
+which is the message that will be shown to users in the new window.
+If there is a need for any changes in the help message, `HELP_SUMMARY` can be found in `Message` class inside
+`commons/core` package.
+<br>
+You may refer to the Help Activity Diagram shown below:
+![HelpActivityDiagram](images/HelpActivityDiagram.png)
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -288,18 +407,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**: Business Owners who needs to keep track of their stock inventory
-
-* needs to manage table reservations
-* needs to handle pending deliveries
+**Target user profile**: Restaurant owners
+* needs to keep track of pending deliveries
 * needs to manage purchasing appropriate amounts of raw materials based on usage
 * wants to be updated on raw materials stock level on a daily basis
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI commands
 
-**Value proposition**: manage inventory faster than a typical mouse/GUI driven app
+**Value proposition**: manage inventory and pending delivery faster than a typical mouse/GUI driven app
 
 
 ### User stories
@@ -335,7 +452,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `OneShelf` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete an item**
+**Use case: UC01 - Delete an item**
 
 **MSS**
 
@@ -358,12 +475,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Adding existing item's quantity or tags**
+**Use case: UC02 - Adding existing item's quantity or tags**
 
 **MSS**
 
 1. User request to update item.
-2. OneShelf updates the item accordingly.
+2. OneShelf adds the item accordingly.
 
    Use case ends.
 
@@ -380,11 +497,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 1b1. OneShelf adds a new item into the inventory.
 
   Use case ends.
-  
+
  * 1c. InventoryBook detects existing item name and supplier.
     * 1c1. InventoryBook adds on existing item name and supplier's with input quantity.
 
-**Use case: Editing an item**
+**Use case: UC03 - Editing an item**
 
 **MSS**
 
@@ -418,6 +535,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3c1. OneShelf shows an error message.
 
         Use case resumes at step 2.
+        
+**Use case: UC04 - User opens help window**
+
+**MSS**
+
+1. User requests to open up help start window.
+2. OneShelf opens up new Help Start window.
+3. User requests to open up help Summary window.
+4. OneShelf opens up new Help Summary window.
+
+    Use Case ends.
+
+**Extensions**
+
+* 3a. User requests to open up Help Start window.
+
+  * 3a1. OneShelf does **not** open a new Help Start Window.
+  
+  Use case ends.
+    
+    
 
 ### Non-Functional Requirements
 
@@ -439,6 +577,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
+* **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
+*(i.e milk, cheese)*
+* **Delivery**: Delivery order that has yet to be delivered out from the restaurant
+* **Book**: There are 2 types of book, namely: Inventory Book and Delivery Book which stores the data of your 
+inventory items and pending deliveries respectively
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -459,18 +603,30 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
-1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+if there is no existing same item. If there is an existing same item, 
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
+### Adding an item
 
-1. _{ more test cases …​ }_
+1. Adding an item
+    1. Test Case: `add-i n/Chicken q/123 s/NTUC`
+       Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added 
+       
+    1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
+       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added when there is no existing same item. 
 
-### Deleting a item
+### Adding to an existing item
 
-1. Deleting a item while all items are being shown
+1. Adding to an existing item
+    1. Test Case: `add-i n/Chicken q/123 s/NTUC`
+       Expected: Item with `Name` of Chicken and `Supplier` of NTUC will have it's `Quantity` combine with input item's `Quantity`. `MaxQuantity` `Tags` `Metric` will be adopted from the existing item.
+       
+    1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
+       Expected: User will receive an error message as `MaxQuantity` or `Metric` should not be defined when adding to existing item.
+
+### Deleting an item
+
+1. Deleting an item while all items are being shown
 
    1. Prerequisites: List all items using the `list-i` command. Multiple items in the list.
 
@@ -480,10 +636,10 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete-i 0`<br>
       Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size or 
+   x is a negative number)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
 
 ### Saving data
 
@@ -500,4 +656,3 @@ testers are expected to do more *exploratory* testing.
       Expected: OneShelf will load a new empty json file respectively
 
 
-1. _{ more test cases …​ }_
