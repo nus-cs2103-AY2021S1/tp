@@ -120,8 +120,9 @@ App-Level commands deals with interactions with the app, Common Cents, itself.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page (Figure). You can click on the `Copy URL ` button to copy
-the link to clipboard and paste it in your web browser. <br> 
+This command can be used when you are at a lost or want to view an overview of how to use the application.
+This command will return a message explaining how to access the help page (Figure). 
+You can click on the `Copy URL ` button to copy the link to clipboard and paste it in your web browser. <br> 
 
 **Format**: `help`
 
@@ -138,7 +139,7 @@ the link to clipboard and paste it in your web browser. <br>
  
 ### Exiting the program : `exit`
 
-Exits the program.
+You can use this command when you are done with what you need to do and want to close the application.
 
 Format: `exit`
  
@@ -155,7 +156,7 @@ Entry-Level commands involves managing the entries which are either expenses or 
 
 ### Adding an entry: `add`
 
-Adds an entry (expense/revenue) to the tracker.
+You can use this command when you want to add an entry (expense/revenue) to the tracker.
 
 Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
@@ -183,7 +184,7 @@ Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
 ### Deleting an entry: `delete`
 
-Removes an entry (expense/revenue) from the tracker.
+You can use this command when you want to remove an entry (expense/revenue) from the tracker.
 
 Format: `delete ENTRY_INDEX c/CATEGORY`
 
@@ -210,7 +211,7 @@ Format: `delete ENTRY_INDEX c/CATEGORY`
 
 ### Editing an entry: `edit`
 
-Edits an entry in the tracker.
+You can use this command when you want to make edits to any existing entries in the tracker.
 
 Formats:
 * `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG`
