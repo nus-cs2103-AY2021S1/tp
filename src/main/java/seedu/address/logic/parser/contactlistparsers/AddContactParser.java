@@ -43,7 +43,7 @@ public class AddContactParser implements Parser<AddContactCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
 
-        Contact contact = new Contact(name, email, telegram);
+        Contact contact = new Contact(name, email, telegram, false);
 
         return new AddContactCommand(contact);
     }

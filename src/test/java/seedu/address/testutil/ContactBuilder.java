@@ -77,7 +77,7 @@ public class ContactBuilder {
     }
 
     public Contact build() {
-        return new Contact(name, email, telegram);
+        return new Contact(name, email, telegram, false);
     }
 
 }

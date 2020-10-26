@@ -7,9 +7,9 @@ import java.util.stream.Collectors;
 import seedu.address.model.ModuleList;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
-import seedu.address.model.contact.Telegram;
+// import seedu.address.model.contact.Email;
+// import seedu.address.model.contact.Name;
+// import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -18,6 +18,7 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Contact[] getSamplePersons() {
         return new Contact[] {
+            /*
             new Contact(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"),
                 new Telegram("@alexyeoh")),
             // getTagSet("friends")),
@@ -36,6 +37,7 @@ public class SampleDataUtil {
             new Contact(new Name("Roy Balakrishnan"), new Email("royb@example.com"),
                 new Telegram("@roybala"))
                 // getTagSet("colleagues"))
+            */
         };
     }
 

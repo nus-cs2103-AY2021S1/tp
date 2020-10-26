@@ -19,6 +19,7 @@ public class JsonAdaptedContact {
     private final String name;
     private final String email;
     private final String telegram;
+    private final boolean isImportant;
     // private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -26,10 +27,12 @@ public class JsonAdaptedContact {
      */
     @JsonCreator
     public JsonAdaptedContact(@JsonProperty("name") String name, @JsonProperty("email") String email,
-                              @JsonProperty("telegram") String telegram) {
+                              @JsonProperty("telegram") String telegram, @JsonProperty("isImportant")
+                              boolean isImportant) {
         this.name = name;
         this.email = email;
         this.telegram = telegram;
+        this.isImportant = isImportant;
         // if (tagged != null) {
         //     this.tagged.addAll(tagged);
         // }
@@ -42,6 +45,7 @@ public class JsonAdaptedContact {
         name = source.getName().fullName;
         email = source.getEmail().value;
         telegram = source.getTelegramUsername().telegramUsername;
+        isImportant = source.isImportant();
         // tagged.addAll(source.getTags().stream()
         //        .map(JsonAdaptedTag::new)
         //        .collect(Collectors.toList()));
@@ -84,7 +88,7 @@ public class JsonAdaptedContact {
         final Telegram modelTelegram = new Telegram(telegram);
 
         // final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Contact(modelName, modelEmail, modelTelegram);
+        return new Contact(modelName, modelEmail, modelTelegram, isImportant);
     }
 
 }

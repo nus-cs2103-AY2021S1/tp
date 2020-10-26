@@ -19,6 +19,7 @@ public class Contact {
     private final Name name;
     private final Email email;
     private final Telegram telegramUsername;
+    private final boolean isImportant;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -26,11 +27,12 @@ public class Contact {
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Email email, Telegram telegramUsername) {
+    public Contact(Name name, Email email, Telegram telegramUsername, boolean isImportant) {
         requireAllNonNull(name, email, telegramUsername);
         this.name = name;
         this.email = email;
         this.telegramUsername = telegramUsername;
+        this.isImportant = isImportant;
         // this.tags.addAll(tags);
     }
 
@@ -69,6 +71,18 @@ public class Contact {
                 && otherPerson.getTelegramUsername().equals(getTelegramUsername());
     }
 
+    public Contact markAsImportant() {
+        return new Contact(this.name, this.email, this.telegramUsername, true);
+    }
+
+    public Contact markAsNotImportant() {
+        return new Contact(this.name, this.email, this.telegramUsername, false);
+    }
+
+    public boolean isImportant() {
+        return this.isImportant;
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
@@ -104,7 +118,9 @@ public class Contact {
                 .append(getEmail())
                 .append(" Telegram: ")
                 .append(getTelegramUsername())
-                .append(" Tags: ");
+                .append(" Tags: ")
+                .append(" Important: ")
+                .append(isImportant ? "YES" : "NO");
         getTags().forEach(builder::append);
         return builder.toString();
     }
