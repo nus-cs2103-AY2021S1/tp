@@ -91,6 +91,79 @@ Format: `help`
 
 ### 5.3 Module features
 
+Note: You should perform the following features while in the Module view.
+
+#### 5.3.1 Add a module: `addMod`
+
+Adds a module to the module list.
+
+Format: `addMod MODULE_CODE`
+
+Note: 
+
+- Modules should not share the same name.
+- It is recommended to use the exact code of the module.
+
+Example:
+
+- Adds a module _CS2100_ to the module list.
+    - `addMod CS2100`
+    
+Expected Outcome:
+
+- From the example above, the result box will display the following message:
+
+    New module added: CS2100
+    
+#### 5.3.2 Delete a module: `deleteMod`
+
+Deletes a module based on the given `INDEX`
+
+Format: `deleteMod INDEX`
+
+Note: 
+
+- `INDEX` refers to the index number shown in the Module view.
+- `INDEX` must be a positive integer starting from 1.
+- Deleting a module is **irreversible**.
+
+Example:
+
+- Deletes a module at index _2_ in the module list.
+    - `deleteMod 2`
+    
+Expected Outcome:
+
+- From the example above, the result box will display the following message:
+
+    Module deleted: _module at index 2_
+
+#### 5.3.3 Find a module: `findMod`
+
+Finds and lists all modules in the current Module view whose field contains any of the given keywords.
+
+Format: `findMod KEYWORD`
+
+Note:
+
+- `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
+- The search will look for matches in the module's code.
+- If no module matching the keyword is found, the Module view will be empty.
+
+Example:
+
+- Finds a module with `KEYWORD` _cs2100_.
+
+    - `findMod cs2100`
+    
+Expected Outcome:
+
+- From the example given above, the Module view will display the modules matching the criteria:
+
+#### 5.3.4 Edit a module: `editMod` [coming in v1.4]
+
+Edits a module with the provided details.
+
 ### 5.4 Tutorial Group features
 
 #### 5.4.1 - View all Tutorial Groups in a Module: `viewTG`
