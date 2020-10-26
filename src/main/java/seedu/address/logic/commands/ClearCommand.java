@@ -16,9 +16,8 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Clears all entries in the specified entry (expense/revenue) list.\n"
             + "Example: " + COMMAND_WORD + "\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + "expense" + "\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + "revenue";
-
+            + "Example: " + COMMAND_WORD + " " + PREFIX_CATEGORY + "CATEGORY";
+    public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY";
     public static final String MESSAGE_CLEAR_ENTRY_SUCCESS = "Cleared all %1$s" + "s";
 
     public static final String MESSAGE_CLEAR_BOTH_CATEGORY_SUCCESS = "Cleared all expenses and revenues";

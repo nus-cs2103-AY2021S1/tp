@@ -29,11 +29,12 @@ public class AddAccountCommandParser implements Parser<AddAccountCommand> {
 
         boolean isPrefixPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_NAME);
         boolean isPreambleEmpty = argMultimap.isPreambleEmpty();
-        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesCorrect(argMultimap, PREFIX_NAME);
 
         if (!isPrefixPresent || !isPreambleEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAccountCommand.MESSAGE_USAGE));
         }
+
+        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesCorrect(argMultimap, PREFIX_NAME);
 
         if (!areNumberOfPrefixCorrect) {
             throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, AddAccountCommand.PREFIXES));

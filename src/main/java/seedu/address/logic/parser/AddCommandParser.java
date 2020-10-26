@@ -39,12 +39,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         boolean arePrefixPresent = ParserUtil.arePrefixesPresent(argMultimap,
                 PREFIX_CATEGORY, PREFIX_DESCRIPTION, PREFIX_AMOUNT);
         boolean isPreambleEmpty = argMultimap.isPreambleEmpty();
-        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesCorrect(argMultimap, PREFIX_CATEGORY,
-                PREFIX_DESCRIPTION, PREFIX_AMOUNT);
 
         if (!arePrefixPresent || !isPreambleEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
+
+        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesCorrect(argMultimap, PREFIX_CATEGORY,
+                PREFIX_DESCRIPTION, PREFIX_AMOUNT);
 
         if (!areNumberOfPrefixCorrect) {
             throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, AddCommand.PREFIXES));
