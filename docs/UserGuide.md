@@ -349,7 +349,7 @@ Format: `exit`
 
 ## 4. Command summary
 
-This section provides a summary of all the commands in **Reeve**.
+This following table provides a summary of all the commands in **Reeve**.
 
 Action | Format, Examples
 --------|------------------
