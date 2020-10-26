@@ -1,12 +1,10 @@
 package seedu.address.logic.commands;
 
+import java.util.List;
+
 import seedu.address.model.student.Student;
 import seedu.address.model.student.academic.Academic;
 import seedu.address.model.student.academic.Attendance;
-import seedu.address.model.student.admin.Admin;
-import seedu.address.model.student.admin.Detail;
-
-import java.util.List;
 
 public abstract class AttendanceCommand extends Command {
 

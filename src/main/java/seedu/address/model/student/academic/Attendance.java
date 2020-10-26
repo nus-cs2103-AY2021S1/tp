@@ -9,20 +9,26 @@ import java.time.format.DateTimeParseException;
 
 public class Attendance {
 
+    public static final String DATE_CONSTRAINTS =
+            "Attendance dates should be valid and in the form dd/mm/yy, and should not be blank";
+    public static final String STATUS_CONSTRAINTS =
+            "Attendance status should be either 'attended' or 'unattended'.";
     private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
     private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy");
     private static final String ATTENDED_STATUS = "attended";
     private static final String UNATTENDED_STATUS = "unattended";
-    public static final String DATE_CONSTRAINTS =
-            "Attendance dates should be valid and in the form dd/mm/yy, and should not be blank";
-    public static final String STATUS_CONSTRAINTS =
-            "Attendance status should be either 'attended' or 'unattended'.";
 
-    public LocalDate lessonDate;
-    public boolean hasAttended;
-    public Feedback feedback;
+    private LocalDate lessonDate;
+    private boolean hasAttended;
+    private Feedback feedback;
 
+    /**
+     * Constructs a {@code Attendance} object.
+     * @param date date of lesson
+     * @param hasAttended whether student has attended lesson
+     * @param feedback feedback for lesson
+     */
     public Attendance(String date, String hasAttended, Feedback feedback) {
         requireAllNonNull(date, hasAttended, feedback);
         checkArgument(isValidDate(date), DATE_CONSTRAINTS);
@@ -33,6 +39,11 @@ public class Attendance {
         this.feedback = feedback;
     }
 
+    /**
+     * Parses userinput into a proper date.
+     * @param input user input date String
+     * @return date understood by Reeve
+     */
     public static LocalDate parseDate(String input) {
         LocalDate date;
         try {

@@ -13,6 +13,10 @@ public class Academic {
 
     private final List<Attendance> attendance;
 
+    /**
+     * Builds an Academic object.
+     * @param attendance list of attendance for student.
+     */
     public Academic(List<Attendance> attendance) {
         requireAllNonNull(attendance);
         this.attendance = attendance;

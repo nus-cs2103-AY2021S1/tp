@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Stream;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -74,7 +73,7 @@ public class AddAttendanceCommand extends AttendanceCommand {
     private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) throws CommandException {
         boolean containsAttendanceAtDate = attendanceList
                 .stream()
-                .anyMatch(attendance -> attendance.lessonDate.equals(attendance.lessonDate));
+                .anyMatch(attendance -> attendance.getLessonDate().equals(attendance.getLessonDate()));
 
         if (containsAttendanceAtDate) {
             throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);

@@ -1,14 +1,15 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.academic.Academic;
-import seedu.address.model.student.academic.Attendance;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.student.academic.Academic;
+import seedu.address.model.student.academic.Attendance;
 
 public class JsonAdaptedAcademic {
 
@@ -16,6 +17,10 @@ public class JsonAdaptedAcademic {
 
     private final List<JsonAdaptedAttendance> attendanceList = new ArrayList<>();
 
+    /**
+     * Constructs a {@code JsonAdaptedAcademic} with academic details.
+     * @param attendanceList
+     */
     @JsonCreator
     public JsonAdaptedAcademic(@JsonProperty("attendanceList") List<JsonAdaptedAttendance> attendanceList) {
         if (attendanceList != null) {
@@ -23,6 +28,9 @@ public class JsonAdaptedAcademic {
         }
     }
 
+    /**
+     * Converts a given {@code Academic} into this class for Jackson use.
+     */
     public JsonAdaptedAcademic(Academic source) {
         attendanceList.addAll(source.getAttendance().stream()
                 .map(JsonAdaptedAttendance::new)

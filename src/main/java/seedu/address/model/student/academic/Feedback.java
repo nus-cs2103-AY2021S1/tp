@@ -8,8 +8,12 @@ public class Feedback {
     public static final String MESSAGE_CONSTRAINTS = "Feedback should be alphanumeric";
     public static final String VALIDATION_REGEX = "^[\\s]*[a-zA-Z0-9][a-zA-Z0-9\\s]*$";
 
-    public String feedback;
+    private String feedback;
 
+    /**
+     * Constructs a {@code Feedback} object.
+     * @param feedback feedback for student.
+     */
     public Feedback(String feedback) {
         requireNonNull(feedback);
         checkArgument(isValidFeedback(feedback), MESSAGE_CONSTRAINTS);

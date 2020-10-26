@@ -74,14 +74,14 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
     private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) throws CommandException {
         boolean containsAttendanceAtDate = attendanceList
                 .stream()
-                .anyMatch(attendance -> attendance.lessonDate.equals(attendanceDate));
+                .anyMatch(attendance -> attendance.getLessonDate().equals(attendanceDate));
 
         if (!containsAttendanceAtDate) {
             throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
         }
 
-        Stream<Attendance> matchingAttendance =  attendanceList.stream()
-                .filter(attendance -> attendance.lessonDate.equals(attendanceDate));
+        Stream<Attendance> matchingAttendance = attendanceList.stream()
+                .filter(attendance -> attendance.getLessonDate().equals(attendanceDate));
         Attendance attendanceToDelete = matchingAttendance.findFirst().get();
         attendanceList.remove(attendanceToDelete);
 
