@@ -10,9 +10,7 @@
 Are you looking for a one-stop application that can handle all your private tutoring needs? Then you are in luck!
 
 **Reeve** is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a
-**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information.
-
-In addition, **Reeve** comes with a customisable personal scheduler to assist you keeping track of your classes. **Reeve** also allows you to set timely reminders for yourself. 
+**Command Line Interface (CLI)** for receiving inputs while still having the benefits of a **Graphical User Interface (GUI)** for displaying information. In addition, **Reeve** comes with a customisable personal scheduler to assist you keeping track of your classes. **Reeve** also allows you to set timely reminders for yourself. 
 
 Get to experience all the above without even having to move your mouse at all! 
  
@@ -100,17 +98,18 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/L
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: Format of TIME:
-* The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}.
-* The format of day_of_week is any number from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
-* The format of start_time and end_time follows the 24-hr clock format (e.g. 1pm refers to 1300).
+:information_source: The format of TIME is as follows:
+* {int: day_of_week} {int: start_time}-{int: end_time}.
+* day_of_week is any number from 1 to 7, where 1 refers to Monday while 7 refers to Sunday.
+* start_time and end_time follows the 24-hr clock format (e.g. 1pm refers to 1300).
 
-:information_source: The format of LAST_PAYMENT_DATE is d/m/yyyy or dd/mm/yyyy (e.g. both 03/02/2020 and 3/2/2020 are acceptable).
+:information_source: The format of LAST_PAYMENT_DATE is as follows:
+* d/m/yyyy or dd/mm/yyyy (e.g. both 03/02/2020 and 3/2/2020 are acceptable).
 
-:information_source: Format of YEAR:
-* The format of YEAR is TYPE_OF_SCHOOL LEVEL (e.g. y/Primary 2 and y/p 2 are the same and both acceptable).
-* TYPE_OF_SCHOOL can be Primary(pri, p), Secondary(sec, s) or JC(jc). 
-* LEVEL has to correspond with the TYPE_OF_SCHOOL (e.g. Primary 1 - Primary 6, Secondary 1 - Secondary 5, JC 1 - JC 2)
+:information_source: The format of YEAR is as follows:
+* TYPE_OF_SCHOOL LEVEL (e.g. y/primary 2 and y/p 2 are the same and both acceptable).
+* TYPE_OF_SCHOOL can be primary(pri, p), secondary(sec, s) or jc. 
+* LEVEL has to correspond with the TYPE_OF_SCHOOL (e.g. primary 1 - primary 6, secondary 1 - secondary 5, jc 1 - jc 2)
 <br>
 
 </div>
@@ -291,8 +290,12 @@ You can add an exam record to a specified student in Reeve.
 Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
 * Adds the given exam to the student at the specified `INDEX`.
-* The format of EXAM_DATE is dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
-* The format of EXAM_SCORE is x/y where x and y are both whole numbers and x has to be less than or equal to y (e.g. 30/50).
+
+:information_source: The format of EXAM_DATE is as follows:
+* dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
+
+:information_source: The format of EXAM_SCORE is as follows:
+* x/y where x and y are both whole numbers and x has to be less than or equal to y (e.g. 30/50).
 
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam  with date 8 Dec 2020 and 
