@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -34,6 +36,8 @@ public class ModelManager implements Model {
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
     private final SortedList<Task> sortedTasks;
+    private int accessPointer;
+    private List<Integer> accessSequence;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -57,6 +61,9 @@ public class ModelManager implements Model {
         filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
         filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
         sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
+        accessPointer = 0;
+        accessSequence = new ArrayList<>();
+        accessSequence.add(0);
     }
 
     public ModelManager() {
@@ -136,20 +143,29 @@ public class ModelManager implements Model {
 
     @Override
     public void commitModuleList() {
+        assert accessPointer >= 0;
+        accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
         versionedModuleList.commit(moduleList);
+        accessSequence.add(1);
+        accessPointer += 1;
     }
 
     @Override
     public void undoModuleList() {
+        assert accessPointer >= 0;
         versionedModuleList.undo();
         setModuleList(versionedModuleList.getCurrentModuleList());
-    };
+        //accessSequence.add(1);
+    }
 
     @Override
     public void redoModuleList() {
+        assert accessPointer >= 0;
         versionedModuleList.redo();
         setModuleList(versionedModuleList.getCurrentModuleList());
-    };
+        //accessSequence.add(1);
+        //accessPointer += 1;
+    }
 
     //=========== Contact List ================================================================================
 
@@ -194,20 +210,28 @@ public class ModelManager implements Model {
 
     @Override
     public void commitContactList() {
+        assert accessPointer >= 0;
+        accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
         versionedContactList.commit(contactList);
+        accessSequence.add(2);
+        accessPointer += 1;
     }
 
     @Override
     public void undoContactList() {
+        assert accessPointer >= 0;
         versionedContactList.undo();
         setContactList(versionedContactList.getCurrentContactList());
-    };
+        //accessSequence.add(2);
+    }
 
     @Override
     public void redoContactList() {
+        assert accessPointer >= 0;
         versionedContactList.redo();
         setContactList(versionedContactList.getCurrentContactList());
-    };
+        //accessSequence.add(2);
+    }
 
     //=========== Todo List =============================================================
 
@@ -247,20 +271,64 @@ public class ModelManager implements Model {
 
     @Override
     public void commitTodoList() {
+        assert accessPointer >= 0;
+        accessSequence.subList(this.accessPointer + 1, accessSequence.size()).clear();
         versionedTodoList.commit(todoList);
+        accessSequence.add(3);
+        accessPointer += 1;
     }
 
     @Override
     public void undoTodoList() {
+        assert accessPointer >= 0;
         versionedTodoList.undo();
         setTodoList(versionedTodoList.getCurrentTodoList());
-    };
+        //accessSequence.add(3);
+    }
 
     @Override
     public void redoTodoList() {
+        assert accessPointer >= 0;
         versionedTodoList.redo();
         setTodoList(versionedTodoList.getCurrentTodoList());
-    };
+        //accessSequence.add(3);
+    }
+
+    //=========== General =============================================================
+    @Override
+    public void commit(int type) {
+        if (type == 1) {
+            commitModuleList();
+        } else if (type == 2) {
+            commitContactList();
+        } else {
+            commitTodoList();
+        }
+    }
+    @Override
+    public void undo() {
+        int pointer = accessSequence.get(accessPointer);
+        if (pointer == 1) {
+            undoModuleList();
+        } else if (pointer == 2) {
+            undoContactList();
+        } else {
+            undoTodoList();
+        }
+        accessPointer -= 1;
+    }
+    @Override
+    public void redo() {
+        int pointer = accessSequence.get(accessPointer + 1);
+        if (pointer == 1) {
+            redoModuleList();
+        } else if (pointer == 2) {
+            redoContactList();
+        } else {
+            redoTodoList();
+        }
+        accessPointer += 1;
+    }
 
     //=========== Filtered Module List Accessors =============================================================
 

@@ -22,7 +22,8 @@ public class RedoCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.redoModuleList();
+        model.redo();
+        //model.redoModuleList();
         return new CommandResult(MESSAGE_REDO_COMMAND_SUCCESS);
     }
 

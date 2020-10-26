@@ -228,7 +228,7 @@ public interface Model {
     void updateSortedTodoList(Comparator<Task> comparator);
 
     /**
-     * Saves the current module list state in history.
+     * Saves the current todo list state in history.
      */
     void commitTodoList();
 
@@ -241,4 +241,19 @@ public interface Model {
      * Restores the previously undone todo list state from history.
      */
     void redoTodoList();
+
+    /**
+     * Saves the current CAP5Buddy list state in history.
+     */
+    void commit(int type);
+
+    /**
+     * Restores the previous CAP5Buddy state from history.
+     */
+    void undo();
+
+    /**
+     * Restores the previously undone CAP5Buddy state from history.
+     */
+    void redo();
 }
