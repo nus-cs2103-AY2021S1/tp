@@ -35,7 +35,7 @@ Get started by installing __Trackr__ with the following steps:
 3. Copy the file to a folder you wish to use as your home folder for __Trackr__
 4. Double-click _trackr.jar_ to start the app. The GUI (Figure 3.1) should appear in a few seconds.
 
-![Ui](images/Ui.png)
+![Ui](images/Ui.png) <br>
 _Figure 3.1 Track Gui_
 
 ### 3.2 Using Trackr
@@ -44,7 +44,7 @@ commands to add or delete modules, tutorial groups, or students you are teaching
 type the command into the command box (see Figure 3.2) and press _Enter_ to execute it. Further explanations of 
 all the commands are listed down below in [Section 5]().
 
-![CommandExample](images/CommandExample.png)
+![CommandExample](images/CommandExample.png) <br>
 _Figure 3.2 Command example_
 
 ### 3.3 Switching Views
@@ -52,14 +52,16 @@ __Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to
 to `Students` (Figure 3.33) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
 The correct syntax for these commands are further elaborated down below in [Section 5]().
 
-![ModuleView](images/ModuleView.png)
-_Figure 3.31 Module view_
+![ModuleView](images/ModuleView.png) <br>
+_Figure 3.31 Module View_
 
-![TutorialGroupView](images/TutorialGroupView.png)
-_Figure 3.32 TutorialGroupView.png_
+![TutorialGroupView](images/TutorialGroupView.png) <br>
+_Figure 3.32 Tutorial Group View_
 
-
+![StudentView]() <br>
+_Figure 3.33 Student view_
 ## 4. Glossary
+* __Graphical User Interface (GUI)__: An interface through which users interact with electronic devices via visual indicator representations.
 * __Command Line Interface (CLI)__: An interface that processes commands to a computer program in the form of lines of text.
 * __Tutorial Group__: The specific class being taught under a given module.
 * __Student__: An individual who is enrolled in a given module.
@@ -201,5 +203,13 @@ Marking a reminder as done | `done TASK_NUMBER`
 
 ## 7. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br> 
-__A:__ This happens when the input command is of the wrong syntax or doesn't exist. U may go to the [Command Summary]() to 
+__A:__ This happens when the input command is of the wrong syntax or doesn't exist. U may go to the [Command Summary](#5-command-summary) to 
 view the list of commands and their accepted formats.
+
+__Q:__ How do I save my data? <br>
+__A:__ When you issue a new command, __Trackr__ automatically updates the local save file immediately. This ensures that
+no data will be lost when you close the app or even in the event of a crash.
+
+__Q:__ How do I exit the app safely? <br>
+__A:__ To close the app, simply click the red _X_ on the top right for Windows users, on the top left
+for MacOS and Linux users.
