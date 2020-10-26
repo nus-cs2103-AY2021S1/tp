@@ -3,14 +3,11 @@ package nustorage.model.record;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Class to record movement in the Inventory.
  */
 public class InventoryRecord {
-
-    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
 
     private final LocalDateTime dateTime;
     private final int quantity;
