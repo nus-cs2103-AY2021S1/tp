@@ -48,7 +48,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             break;
         default:
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_SORT_CATEGORY, SortCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_INVALID_SORT_CATEGORY));
         }
         return new SortCommand(animalComparator);
     }
