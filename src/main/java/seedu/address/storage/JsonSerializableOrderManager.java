@@ -10,24 +10,23 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.OrderItem;
-import seedu.address.model.order.OrderManager;
 import seedu.address.model.order.ReadOnlyOrderManager;
 
 /**
  * An Immutable OrderManager that is serializable to JSON format.
  */
-@JsonRootName(value = "orderManager")
+@JsonRootName(value = "presets")
 public class JsonSerializableOrderManager {
     public static final String MESSAGE_DUPLICATE_ORDERITEM = "Order contains duplicate orderItems.";
 
-    private final List<JsonAdaptedOrderItem> orderItems = new ArrayList<>();
+    private final List<List<JsonAdaptedOrderItem>> presets = new ArrayList<>(new ArrayList<>());
 
     /**
      * Constructs a {@code JsonSerializableOrderManager} with the given orderItems.
      */
     @JsonCreator
-    public JsonSerializableOrderManager(@JsonProperty("orderItems") List<JsonAdaptedOrderItem> orderItems) {
-        this.orderItems.addAll(orderItems);
+    public JsonSerializableOrderManager(@JsonProperty("orderItems") List<List<JsonAdaptedOrderItem>> orderItems) {
+        this.presets.addAll(orderItems);
     }
 
     /**
@@ -35,13 +34,24 @@ public class JsonSerializableOrderManager {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableOrderManager}.
      */
-    public JsonSerializableOrderManager(ReadOnlyOrderManager source) {
+    public JsonSerializableOrderManager(ReadOnlyOrderManager source, int index) {
+        List<JsonAdaptedOrderItem> orderItems = new ArrayList<>();
         orderItems.addAll(
                 source.getOrderItemList()
                         .stream()
                         .map(JsonAdaptedOrderItem::new)
                         .collect(Collectors.toList())
         );
+        try {
+            List<JsonAdaptedOrderItem> prevPreset = this.presets.get(index);
+            prevPreset.addAll(orderItems);
+            this.presets.set(index,orderItems);
+        } catch(IndexOutOfBoundsException ioe) {
+            for (int i = 0; i < index; i++) {
+                this.presets.add(new ArrayList<>());
+            }
+            this.presets.add(index, orderItems);
+        }
     }
 
     /**
@@ -49,16 +59,21 @@ public class JsonSerializableOrderManager {
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public OrderManager toModelType() throws IllegalValueException {
-        OrderManager orderManager = new OrderManager();
-        for (JsonAdaptedOrderItem jsonAdaptedOrderItem : orderItems) {
-            OrderItem orderItem = jsonAdaptedOrderItem.toModelType();
-            if (orderManager.hasOrderItem(orderItem)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_ORDERITEM);
+    public List<List<OrderItem>> toModelType() throws IllegalValueException {
+        List<List<OrderItem>> orderItemsList = new ArrayList<>();
+        for (List<JsonAdaptedOrderItem> jsonAdaptedOrderItems: presets) {
+            List<OrderItem> orderItems = new ArrayList<>();
+            for (JsonAdaptedOrderItem jsonAdaptedOrderItem : jsonAdaptedOrderItems) {
+                OrderItem orderItem = jsonAdaptedOrderItem.toModelType();
+                if (orderItems.contains(orderItem)) {
+                    throw new IllegalValueException(MESSAGE_DUPLICATE_ORDERITEM);
+                }
+                orderItems.add(orderItem);
             }
-            orderManager.addOrderItem(orderItem);
+            orderItemsList.add(orderItems);
         }
-        return orderManager;
+        return orderItemsList;
     }
 
 }
+

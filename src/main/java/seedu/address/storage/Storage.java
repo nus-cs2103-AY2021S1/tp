@@ -2,12 +2,14 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.ReadOnlyOrderManager;
 
 /**
@@ -34,9 +36,9 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, OrderMana
     Path getOrderManagerFilePath();
 
     @Override
-    Optional<ReadOnlyOrderManager> readOrderManager() throws DataConversionException, IOException;
+    Optional<List<List<OrderItem>>> readOrderManager() throws DataConversionException, IOException;
 
     @Override
-    void saveOrderManager(ReadOnlyOrderManager orderManager) throws IOException;
+    void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException;
 
 }

@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -10,6 +11,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.ReadOnlyOrderManager;
 
 /**
@@ -90,25 +92,25 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyOrderManager> readOrderManager() throws DataConversionException, IOException {
+    public Optional<List<List<OrderItem>>> readOrderManager() throws DataConversionException, IOException {
         return readOrderManager(orderManagerStorage.getOrderManagerFilePath());
     }
 
     @Override
-    public Optional<ReadOnlyOrderManager> readOrderManager(Path filePath) throws DataConversionException, IOException {
+    public Optional<List<List<OrderItem>>> readOrderManager(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return orderManagerStorage.readOrderManager(filePath);
     }
 
     @Override
-    public void saveOrderManager(ReadOnlyOrderManager orderManager) throws IOException {
-        saveOrderManager(orderManager, orderManagerStorage.getOrderManagerFilePath());
+    public void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException {
+        saveOrderManager(orderManager, orderManagerStorage.getOrderManagerFilePath(), index);
     }
 
     @Override
-    public void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath) throws IOException {
+    public void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        orderManagerStorage.saveOrderManager(orderManager, filePath);
+        orderManagerStorage.saveOrderManager(orderManager, filePath, index);
     }
 
 
