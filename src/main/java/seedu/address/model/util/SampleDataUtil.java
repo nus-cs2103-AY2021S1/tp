@@ -148,6 +148,11 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Generates a task from a String list describing the attributes of the task
+     * @param s the String list describing the attributes of the task
+     * @return  the task corresponds to the input String list
+     */
     public static Task generateTask(List<String> s) {
         return new Task(s.get(0),
             s.get(1),
