@@ -152,7 +152,7 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public void commitPivot() {
+        public void commitPivot(String command) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -162,7 +162,7 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public void redoPivot() {
+        public String redoPivot() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -172,7 +172,7 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public void undoPivot() {
+        public String undoPivot() {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -214,9 +214,7 @@ public class AddCaseCommandTest {
         }
 
         @Override
-        public void commitPivot() {
-
-        }
+        public void commitPivot(String command) {}
 
         @Override
         public ReadOnlyPivot getPivot() {

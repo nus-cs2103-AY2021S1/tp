@@ -47,7 +47,7 @@ public class DeleteCaseCommand extends DeleteCommand {
 
         Case caseToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteCase(caseToDelete);
-        model.commitPivot();
+        model.commitPivot(String.format(MESSAGE_DELETE_CASE_SUCCESS, caseToDelete));
         return new CommandResult(String.format(MESSAGE_DELETE_CASE_SUCCESS, caseToDelete));
     }
 

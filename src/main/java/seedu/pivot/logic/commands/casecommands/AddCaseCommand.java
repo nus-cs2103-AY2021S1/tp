@@ -61,7 +61,8 @@ public class AddCaseCommand extends AddCommand {
         }
 
         model.addCase(investigationCase);
-        model.commitPivot();
+        model.commitPivot(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase));
+
         return new CommandResult(String.format(MESSAGE_ADD_CASE_SUCCESS, investigationCase));
     }
 

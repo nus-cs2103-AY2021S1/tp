@@ -118,8 +118,8 @@ public class ModelManager implements Model {
 
     //=========== Versioned Pivot ===========================================================================
     @Override
-    public void commitPivot() {
-        this.versionedPivot.commit(new Pivot(this.pivot));
+    public void commitPivot(String command) {
+        this.versionedPivot.commit(new Pivot(this.pivot), command);
     }
 
     @Override
@@ -128,9 +128,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void redoPivot() {
+    public String redoPivot() {
         ReadOnlyPivot pivot = this.versionedPivot.redo();
         this.setPivot(pivot);
+        return this.versionedPivot.getStateCommand();
     }
 
     @Override
@@ -139,9 +140,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoPivot() {
+    public String undoPivot() {
+        String command = this.versionedPivot.getStateCommand();
         ReadOnlyPivot pivot = this.versionedPivot.undo();
         this.setPivot(pivot);
+        return command;
     }
 
     //=========== Filtered Case List Accessors =============================================================
