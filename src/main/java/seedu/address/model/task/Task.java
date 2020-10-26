@@ -2,8 +2,10 @@ package seedu.address.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -165,6 +167,42 @@ public class Task {
             && otherTask.getPriority().equals(getPriority())
             && otherTask.getDate().equals(getDate())
             && otherTask.getStatus().equals(getStatus());
+    }
+
+    public String getNameForUi() {
+        assert this.name != null;
+        return this.name.toString();
+    }
+
+    public Set<Tag> getTagsForUi() {
+        if (this.tags == null) {
+            HashSet<Tag> defaultTags = new HashSet<>();
+            defaultTags.add(new Tag("Tags not provided"));
+            return defaultTags;
+        } else {
+            return this.tags;
+        }
+    }
+
+    public String getPriorityForUi() {
+        if (this.priority == null) {
+            return "Priority not provided";
+        } else {
+            return this.priority.toString();
+        }
+    }
+
+    public String getDateForUi() {
+        if (this.date == null) {
+            return "Date not provided";
+        } else {
+            return this.date.toString();
+        }
+    }
+
+    public String getStatusForUi() {
+        assert this.status != null;
+        return this.status.toString();
     }
 
     @Override
