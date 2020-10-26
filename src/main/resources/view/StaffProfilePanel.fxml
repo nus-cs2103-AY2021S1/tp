@@ -7,4 +7,7 @@
     <VBox>
         <StackPane fx:id="basicInfoPlaceholder" VBox.vgrow="NEVER" />
     </VBox>
+    <VBox>
+        <StackPane fx:id="commentListPanelPlaceholder" VBox.vgrow="NEVER" />
+    </VBox>
 </HBox>

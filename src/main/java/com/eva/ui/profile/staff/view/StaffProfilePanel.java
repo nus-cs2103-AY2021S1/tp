@@ -10,6 +10,7 @@ import com.eva.model.person.staff.leave.Leave;
 import com.eva.ui.UiPart;
 import com.eva.ui.profile.BasicInfoDisplay;
 
+import com.eva.ui.profile.CommentListPanel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -26,7 +27,7 @@ public class StaffProfilePanel extends UiPart<Region> {
 
     private BasicInfoDisplay basicInfoDisplay;
     private LeaveInfoDisplay leaveInfoDisplay;
-    // private CommentListPanel commentListPanel;
+    private CommentListPanel commentListPanel;
 
     @FXML
     private HBox cardPane;
@@ -35,8 +36,8 @@ public class StaffProfilePanel extends UiPart<Region> {
 
     @FXML
     private StackPane basicInfoPlaceholder;
-    // @FXML
-    // private StackPane commentListPanelPlaceholder;
+    @FXML
+    private StackPane commentListPanelPlaceholder;
 
     /**
      * Creates a {@code StaffProfilePanel} with the given {@code Staff}.
@@ -70,8 +71,8 @@ public class StaffProfilePanel extends UiPart<Region> {
             Staff currentStaff = this.staff.getCurrentView().get();
             basicInfoDisplay = new BasicInfoDisplay(currentStaff);
             basicInfoPlaceholder.getChildren().add(basicInfoDisplay.getRoot());
-
-            // commentListPanel = new CommentListPanel(currentStaff.getComments());
+            commentListPanel = new CommentListPanel(staff.getCommentList());
+            commentListPanelPlaceholder.getChildren().add(commentListPanel.getRoot());
         }
     }
 

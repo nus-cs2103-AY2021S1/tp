@@ -3,14 +3,17 @@ package com.eva.model.person;
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import com.eva.model.comment.Comment;
 import com.eva.model.comment.CommentNotFoundException;
 import com.eva.model.comment.DuplicateCommentException;
 import com.eva.model.person.exceptions.DuplicatePersonException;
 
+import com.eva.model.person.staff.leave.Leave;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -56,7 +59,7 @@ public class UniqueCommentsList implements Iterable<Comment> {
      * {@code target} must exist in the list.
      * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
      */
-    public void setPerson(Comment target, Comment editedComment) {
+    public void setComment(Comment target, Comment editedComment) {
         requireAllNonNull(target, editedComment);
 
         int index = internalList.indexOf(target);
@@ -91,7 +94,7 @@ public class UniqueCommentsList implements Iterable<Comment> {
      * Replaces the contents of this list with {@code persons}.
      * {@code persons} must not contain duplicate persons.
      */
-    public void setPersons(List<Comment> comments) {
+    public void setComments(List<Comment> comments) {
         requireAllNonNull(comments);
         if (!commentsAreUnique(comments)) {
             throw new DuplicatePersonException();
@@ -136,5 +139,15 @@ public class UniqueCommentsList implements Iterable<Comment> {
             }
         }
         return true;
+    }
+
+    /**
+     * Fills the contents of this list with {@code leaveSet}.
+     */
+    public void fill(Set<Comment> commentSet) {
+        List<Comment> comments = new ArrayList<>(commentSet);
+        for (Comment comment : comments) {
+            add(comment);
+        }
     }
 }

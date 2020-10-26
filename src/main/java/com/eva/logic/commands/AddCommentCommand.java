@@ -89,7 +89,7 @@ public class AddCommentCommand extends CommentCommand {
         Set<Comment> updatedComments = personToEdit.getComments();
         for (Comment comment: updatedCommentsCommands) {
             updatedComments.add(new Comment(comment.getDate(),
-                    comment.getDescription(), comment.getTitle().getTitle()));
+                    comment.getDescription(), comment.getTitle().getTitleDescription()));
         }
 
         if (personToEdit instanceof Staff) {
