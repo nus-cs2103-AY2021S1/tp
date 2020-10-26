@@ -266,17 +266,9 @@ __Exit programme__ | `exit`
 
 ---
 
-## 6. Glossary
+## 6. FAQs
 
-1. `CLI`: command line interface.
-2. `GUI`: graphical user interface.
-3. `.jar`: The file type that NUStorage is released in. This is similar to the `.exe` files in Windows and `.app` files in MacOS.
-
----
-
-## 7. FAQs
-
-### 7.1. How do I migrate the data to another computer?
+### 6.1. How do I migrate the data to another computer?
 
 WARNING: doing so will overwrite the existing data you may have on the other device. Please make sure you make a backup before migrating data.
 
@@ -287,12 +279,20 @@ Steps to migrate data:
 3. Place the two files under the directory `./data`.
 4. Restart NUStorage on the other device to load the data.
 
-### 7.2. How do I combine data from two devices?
+### 6.2. How do I combine data from two devices?
 
 Currently, NUStorage does not support the merging of data between different devices. NUStorage only supports moving of data from one device to another. Please see FAQ 6.1 regarding how to migrate data.
 
-### 7.3. Can I directly modify the storage file?
+### 6.3. Can I directly modify the storage file?
 
 Modifying the storage file is possible but NOT RECOMMENDED! Doing so may result in a complete data loss.
+
+---
+
+## 7. Glossary and Terms
+
+1. `CLI`: command line interface.
+2. `GUI`: graphical user interface.
+3. `.jar`: The file type that NUStorage is released in. This is similar to the `.exe` files in Windows and `.app` files in MacOS.
 
 ---
