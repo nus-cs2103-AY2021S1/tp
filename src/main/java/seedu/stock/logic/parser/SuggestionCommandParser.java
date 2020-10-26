@@ -99,7 +99,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY,
-                        PREFIX_SORT_ORDER, PREFIX_SORT_FIELD
+                        PREFIX_SORT_ORDER, PREFIX_SORT_FIELD, PREFIX_NOTE
                 );
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
@@ -393,10 +393,26 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 PREFIX_SERIAL_NUMBER, PREFIX_NOTE);
         toBeDisplayed.append(NOTE_COMMAND_WORD);
 
-        for (int i = 0; i < allowedPrefixes.size(); i++) {
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        for (String serialNumber : keywords) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+        }
+
+        for (int i = 1; i < allowedPrefixes.size(); i++) {
             Prefix currentPrefix = allowedPrefixes.get(i);
-            toBeDisplayed.append(" ").append(currentPrefix)
-                    .append(CliSyntax.getDefaultDescription(currentPrefix));
+            String description = "";
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                description = argMultimap.getValue(currentPrefix).get();
+            }
+            boolean isEmpty = description.equals("");
+            if (isEmpty) {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+            } else {
+                toBeDisplayed.append(" " + currentPrefix + description);
+            }
         }
 
         generateBodyMessage(toBeDisplayed, NoteCommand.MESSAGE_USAGE);
