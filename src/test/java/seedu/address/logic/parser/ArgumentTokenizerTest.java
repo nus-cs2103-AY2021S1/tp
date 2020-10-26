@@ -108,9 +108,6 @@ public class ArgumentTokenizerTest {
         ArgumentMultimap map1 = tokenizer1.tokenize();
         assertPreamblePresent(map1, "addmodule");
         assertArgumentPresent(map1, PREFIX_NAME, "hello");
-        // ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash);
-        // assertPreamblePresent(argMultimap, "Some preamble string");
-        // assertArgumentPresent(argMultimap, pSlash, "Argument value");
 
         // No preamble
         argString = " n/bye";
@@ -131,50 +128,40 @@ public class ArgumentTokenizerTest {
         assertArgumentAbsent(argMultimap, PREFIX_ADD_NEW_ASSIGNMENT);
 
         // All three arguments are present
-        argsString = "Different Preamble String ^Q111 -t dashT-Value p/pSlash value";
-        // argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
-        // assertPreamblePresent(argMultimap, "Different Preamble String");
-        // assertArgumentPresent(argMultimap, pSlash, "pSlash value");
-        // assertArgumentPresent(argMultimap, dashT, "dashT-Value");
-        // assertArgumentPresent(argMultimap, hatQ, "111");
-
-        /* Also covers: Reusing of the tokenizer multiple times */
-
-        // Reuse tokenizer on an empty string to ensure ArgumentMultimap is correctly reset
-        // (i.e. no stale values from the previous tokenizing remain)
-        argsString = "";
-        // argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
-        // assertPreambleEmpty(argMultimap);
-        // assertArgumentAbsent(argMultimap, pSlash);
+        argsString = "SomePreambleString n/CS2103T l/www.example.com mc/4.0";
+        ArgumentTokenizer tokenizer2 = new ArgumentTokenizer(argsString, PREFIX_NAME, PREFIX_ZOOM_LINK, PREFIX_MODULAR_CREDITS);
+        ArgumentMultimap argMultimap2 = tokenizer2.tokenize();
+        assertArgumentPresent(argMultimap2, PREFIX_NAME, "CS2103T");
+        assertArgumentPresent(argMultimap2, PREFIX_ZOOM_LINK, "www.example.com");
+        assertArgumentPresent(argMultimap2, PREFIX_MODULAR_CREDITS, "4.0");
 
         /* Also covers: testing for prefixes not specified as a prefix */
 
         // Prefixes not previously given to the tokenizer should not return any values
-        argsString = unknownPrefix + "some value";
-        // argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
-        // assertArgumentAbsent(argMultimap, unknownPrefix);
-        // assertPreamblePresent(argMultimap, argsString); // Unknown prefix is taken as part of preamble
+        argsString = "addmodule n/test l/www.example.com";
+        ArgumentTokenizer tokenizer3 = new ArgumentTokenizer(argsString, PREFIX_NAME);
+        ArgumentMultimap argMultiMap3 = tokenizer3.tokenize();
+        assertArgumentAbsent(argMultiMap3, PREFIX_ZOOM_LINK); // prefix not added into tokenizer should be absent
+        assertArgumentPresent(argMultiMap3, PREFIX_NAME, "test l/www.example.com");
     }
 
     @Test
-    public void tokenize_multipleArgumentsWithRepeats() {
-        // Two arguments repeated, some have empty values
-        String argsString = "SomePreambleString -t dashT-Value ^Q ^Q -t another dashT value p/ pSlash value -t";
-        // ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
-        // assertPreamblePresent(argMultimap, "SomePreambleString");
-        // assertArgumentPresent(argMultimap, pSlash, "pSlash value");
-        // assertArgumentPresent(argMultimap, dashT, "dashT-Value", "another dashT value", "");
-        // assertArgumentPresent(argMultimap, hatQ, "", "");
+    public void tokenize_multipleArgumentsWithRepeats() throws ParseException {
+        // Two arguments repeated
+        String argsString = "addmodule n/test1 n/test2";
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(argsString, PREFIX_NAME);
+        ArgumentMultimap argMultiMap = tokenizer.tokenize();
+        assertArgumentPresent(argMultiMap, PREFIX_NAME, "test1", "test2");
+        assertPreamblePresent(argMultiMap, "addmodule");
     }
 
     @Test
-    public void tokenize_multipleArgumentsJoined() {
-        String argsString = "SomePreambleStringp/ pSlash joined-tjoined -t not joined^Qjoined";
-        // ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(argsString, pSlash, dashT, hatQ);
-        // assertPreamblePresent(argMultimap, "SomePreambleStringp/ pSlash joined-tjoined");
-        // assertArgumentAbsent(argMultimap, pSlash);
-        // assertArgumentPresent(argMultimap, dashT, "not joined^Qjoined");
-        // assertArgumentAbsent(argMultimap, hatQ);
+    public void tokenize_multipleArgumentsJoined() throws ParseException {
+        String argsString = "addmodule n/matthiasn/jonas";
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(argsString, PREFIX_NAME);
+        ArgumentMultimap argMultiMap = tokenizer.tokenize();
+        assertPreamblePresent(argMultiMap, "addmodule");
+        assertArgumentPresent(argMultiMap, PREFIX_NAME, "matthiasn/jonas");
     }
 
     @Test
