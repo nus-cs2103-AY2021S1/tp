@@ -90,6 +90,10 @@ public class MainApp extends Application {
             initialData = new ResiReg();
         }
 
+        // delete expired items on start up
+        ModelManager modelManager = new ModelManager(initialData, userPrefs);
+        modelManager.deleteExpiredBinItems();
+
         return new ModelManager(initialData, userPrefs);
     }
 

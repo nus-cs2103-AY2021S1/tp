@@ -8,6 +8,7 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.student.Student;
@@ -50,7 +51,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
         requireNonNull(model);
 
         if (model.hasStudent(toAdd)) {
@@ -59,7 +60,7 @@ public class AddCommand extends Command {
 
         model.addStudent(toAdd);
         model.saveStateResiReg();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName().fullName, toAdd.getStudentId().value));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getNameAsString(), toAdd.getStudentId().value));
     }
 
     @Override

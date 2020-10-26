@@ -5,6 +5,7 @@ import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.ResiReg;
@@ -12,13 +13,15 @@ import seedu.resireg.model.UserPrefs;
 
 public class ClearCommandTest {
 
+    private CommandHistory history = new CommandHistory();
+
     @Test
     public void execute_emptyResiReg_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, history, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -28,7 +31,7 @@ public class ClearCommandTest {
         expectedModel.setResiReg(new ResiReg());
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, history, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

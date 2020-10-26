@@ -6,9 +6,13 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.ObservableList;
+import seedu.resireg.commons.util.InvalidationListenerList;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.allocation.UniqueAllocationList;
+import seedu.resireg.model.bin.BinItem;
+import seedu.resireg.model.bin.UniqueBinItemList;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.UniqueRoomList;
 import seedu.resireg.model.semester.Semester;
@@ -27,6 +31,8 @@ public class ResiReg implements ReadOnlyResiReg {
     private final UniqueStudentList students;
     private final UniqueRoomList rooms;
     private final UniqueAllocationList allocations;
+    private final UniqueBinItemList binItems;
+    private final InvalidationListenerList listenerList = new InvalidationListenerList();
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -43,6 +49,7 @@ public class ResiReg implements ReadOnlyResiReg {
         students = new UniqueStudentList();
         rooms = new UniqueRoomList();
         allocations = new UniqueAllocationList();
+        binItems = new UniqueBinItemList();
     }
 
     public ResiReg() {}
@@ -61,12 +68,14 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void setSemester(Semester semester) {
         this.semester = semester;
+        indicateModified();
     }
 
     public static ResiReg getNextSemesterResiReg(ReadOnlyResiReg toBeCopied) {
         ResiReg newResiReg = new ResiReg();
         newResiReg.setStudents(toBeCopied.getStudentList());
         newResiReg.setRooms(toBeCopied.getRoomList());
+        newResiReg.setBinItems(toBeCopied.getBinItemList());
 
         Semester currentSemester = toBeCopied.getSemester();
         newResiReg.semester = Semester.getNextSemester(currentSemester);
@@ -89,6 +98,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void setStudents(List<Student> students) {
         this.students.setStudents(students);
+        indicateModified();
     }
 
     /**
@@ -97,6 +107,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void setRooms(List<Room> rooms) {
         this.rooms.setRooms(rooms);
+        indicateModified();
     }
 
     /**
@@ -105,6 +116,15 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void setAllocations(List<Allocation> allocations) {
         this.allocations.setAllocations(allocations);
+        indicateModified();
+    }
+
+    /**
+     * Replaces the contents of the room list with {@code rooms}.
+     * {@code rooms} must not contain duplicate rooms
+     */
+    public void setBinItems(List<BinItem> binItems) {
+        this.binItems.setBinItems(binItems);
     }
 
     /**
@@ -117,6 +137,7 @@ public class ResiReg implements ReadOnlyResiReg {
         setStudents(newData.getStudentList());
         setRooms(newData.getRoomList());
         setAllocations(newData.getAllocationList());
+        setBinItems(newData.getBinItemList());
     }
 
     //// student-level operations
@@ -133,8 +154,24 @@ public class ResiReg implements ReadOnlyResiReg {
      * Adds a student to ResiReg.
      * The student must not already exist in ResiReg.
      */
-    public void addStudent(Student p) {
-        students.add(p);
+    public void addStudent(Student student) {
+        assert !hasStudent(student) : "Student must not already exist in ResiReg!";
+        students.add(student);
+        indicateModified();
+    }
+
+    /**
+     * Adds a student to ResiReg.
+     * The student must not already exist in ResiReg.
+     */
+    public void addStudent(Student student, boolean isFront) {
+        assert !hasStudent(student) : "Student must not already exist in ResiReg!";
+        if (isFront) {
+            students.add(0, student);
+            indicateModified();
+        } else {
+            addStudent(student);
+        }
     }
 
     /**
@@ -146,6 +183,7 @@ public class ResiReg implements ReadOnlyResiReg {
     public void setStudent(Student target, Student editedStudent) {
         requireNonNull(editedStudent);
         students.setStudent(target, editedStudent);
+        indicateModified();
     }
 
     /**
@@ -154,6 +192,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void removeStudent(Student key) {
         students.remove(key);
+        indicateModified();
     }
 
     /**
@@ -181,6 +220,7 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void addRoom(Room r) {
         rooms.add(r);
+        indicateModified();
     }
 
     /**
@@ -200,6 +240,7 @@ public class ResiReg implements ReadOnlyResiReg {
     public void setRoom(Room target, Room editedRoom) {
         requireNonNull(editedRoom);
         rooms.setRoom(target, editedRoom);
+        indicateModified();
     }
 
     /**
@@ -208,6 +249,54 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void removeRoom(Room key) {
         rooms.remove(key);
+        indicateModified();
+    }
+
+
+    /**
+     * Adds a room to ResiReg.
+     * The room must not already exist in ResiReg.
+     */
+    public void addBinItem(BinItem b) {
+        binItems.add(b);
+    }
+
+    /**
+     * Returns true if a room with the same identity as {@code room} exists in ResiReg.
+     */
+    public boolean hasBinItem(BinItem binItem) {
+        requireNonNull(binItem);
+        return binItems.contains(binItem);
+    }
+
+    /**
+     * Removes {@code key} from this {@code ResiReg}.
+     * {@code key} must exist in ResiReg.
+     */
+    public void removeBinItem(BinItem key) {
+        binItems.remove(key);
+    }
+
+    /**
+     * Removes {@code key} from this {@code ResiReg}.
+     * {@code key} must exist in ResiReg.
+     */
+    public void setBinItem(BinItem target, BinItem editedItem) {
+        requireNonNull(editedItem);
+        binItems.setBinItem(target, editedItem);
+    }
+
+    /**
+     * Deletes all items older than {@code daysStoredInBin} in bin from this {@code ResiReg}.
+     * {@code daysStoredInBin} must be a positive integer.
+     */
+    public void deleteExpiredBinItems(int daysStoredInBin) {
+        assert daysStoredInBin > 0 : "Days Stored in bin should be a positive integer";
+        for (BinItem binItem : binItems) {
+            if (binItem.isExpired(daysStoredInBin)) {
+                binItems.remove(binItem);
+            }
+        }
     }
 
     //// allocation-level operations
@@ -219,6 +308,7 @@ public class ResiReg implements ReadOnlyResiReg {
     public void addAllocation(Allocation allocation) {
         requireNonNull(allocation);
         allocations.add(allocation);
+        indicateModified();
     }
 
     /**
@@ -238,6 +328,7 @@ public class ResiReg implements ReadOnlyResiReg {
     public void setAllocation(Allocation target, Allocation editedAllocation) {
         requireNonNull(editedAllocation);
         allocations.setAllocation(target, editedAllocation);
+        indicateModified();
     }
 
     /**
@@ -246,14 +337,33 @@ public class ResiReg implements ReadOnlyResiReg {
      */
     public void removeAllocation(Allocation key) {
         allocations.remove(key);
+        indicateModified();
+    }
+
+    //// methods related to listeners
+    public void addListener(InvalidationListener listener) {
+        listenerList.addListener(listener);
+    }
+
+    public void removeListener(InvalidationListener listener) {
+        listenerList.removeListener(listener);
+    }
+
+    /**
+     * Notifies listeners that there are modifications to resireg.
+     */
+    protected void indicateModified() {
+        listenerList.callListeners(this);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return students.asUnmodifiableObservableList().size() + " students";
-        // TODO: refine later
+        return students.asUnmodifiableObservableList().size() + " students, "
+            + rooms.asUnmodifiableObservableList().size() + " rooms, "
+            + allocations.asUnmodifiableObservableList().size() + " allocs, "
+            + binItems.asUnmodifiableObservableList().size() + " bin items";
     }
 
     @Override
@@ -277,16 +387,22 @@ public class ResiReg implements ReadOnlyResiReg {
     }
 
     @Override
+    public ObservableList<BinItem> getBinItemList() {
+        return binItems.asUnmodifiableObservableList();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ResiReg // instanceof handles nulls
                 && students.equals(((ResiReg) other).students)
                 && rooms.equals(((ResiReg) other).rooms)
-                && allocations.equals(((ResiReg) other).allocations));
+                && allocations.equals(((ResiReg) other).allocations))
+                && binItems.equals(((ResiReg) other).binItems);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(students, rooms, allocations);
+        return Objects.hash(students, rooms, allocations, binItems);
     }
 }

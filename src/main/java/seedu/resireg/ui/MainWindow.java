@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         SemesterDisplay semesterDisplay = new SemesterDisplay(logic.getSemester());
         semesterDisplayPlaceholder.getChildren().add(semesterDisplay.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand, logic.getHistory());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         commandBox.requestFocus(); // so the user can start entering commands right away
     }

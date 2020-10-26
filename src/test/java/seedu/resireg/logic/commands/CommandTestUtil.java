@@ -11,6 +11,8 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.resireg.testutil.Assert.assertThrows;
+import static seedu.resireg.testutil.TypicalStudents.AMY;
+import static seedu.resireg.testutil.TypicalStudents.BOB;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -22,12 +24,14 @@ import java.util.Optional;
 
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.commons.exceptions.DataConversionException;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
+import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNameContainsKeywordPairsPredicate;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
@@ -66,6 +70,12 @@ public class CommandTestUtil {
     public static final String VALID_TAG_RENOVATED = "renovated";
     public static final String VALID_TAG_DAMAGED = "damaged";
 
+    // Valid bin items
+    public static final String VALID_DATE_DELETED_A = "2020-10-26";
+    public static final String VALID_DATE_DELETED_B = "2019-10-21";
+    public static final Binnable VALID_ITEM_A = AMY;
+    public static final Binnable VALID_ITEM_B = BOB;
+
     // Valid command word aliases
     public static final String VALID_COMMAND_ROOMS_RO = "rooms";
     public static final String VALID_COMMAND_STUDENTS_ST = "students";
@@ -101,6 +111,9 @@ public class CommandTestUtil {
     public static final String INVALID_ROOM_NUMBER = "asdfj";
     public static final String INVALID_ROOM_TYPE = "asdfjk";
 
+    public static final String INVALID_DATE = "asfdj";
+
+
     public static final String INVALID_COMMAND_DESC = " " + PREFIX_COMMAND + "71ndn"; // command word doesn't exist
     // alias cant be a command word
     public static final String INVALID_ALIAS_DESC = " " + PREFIX_ALIAS + ListRoomCommand.COMMAND_WORD;
@@ -126,12 +139,14 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
+     * - the {@code actualHistory} remains unchanged
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualHistory,
+                                            CommandResult expectedCommandResult,
                                             Model expectedModel) {
         StorageStub storageStub = new StorageStub();
         try {
-            CommandResult result = command.execute(actualModel, storageStub);
+            CommandResult result = command.execute(actualModel, storageStub, actualHistory);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -140,13 +155,14 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandHistory, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandHistory actualHistory,
+                                            String expectedMessage,
                                             Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+        assertCommandSuccess(command, actualModel, actualHistory, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -154,10 +170,11 @@ public class CommandTestUtil {
      * - the returned {@link ToggleCommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertToggleCommandSuccess(Command command, Model actualModel, String expectedMessage,
+    public static void assertToggleCommandSuccess(Command command, Model actualModel, CommandHistory actualHistory,
+                                                  String expectedMessage,
                                                   Model expectedModel, TabView tabView) {
         ToggleCommandResult expectedCommandResult = new ToggleCommandResult(expectedMessage, tabView);
-        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+        assertCommandSuccess(command, actualModel, actualHistory, expectedCommandResult, expectedModel);
     }
 
     /**
@@ -165,15 +182,18 @@ public class CommandTestUtil {
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
      * - the rest of the model, filtered student list and selected student in {@code actualModel} remain unchanged
+     * - {@code actualHistory} remains unchanged.
      */
-    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+    public static void assertCommandFailure(Command command, Model actualModel, CommandHistory actualHistory,
+                                            String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         ResiReg expectedResiReg = new ResiReg(actualModel.getResiReg());
         List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
         StorageStub storageStub = new StorageStub();
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, storageStub));
+        assertThrows(CommandException.class, expectedMessage, () ->
+                command.execute(actualModel, storageStub, actualHistory));
         assertEquals(expectedResiReg, actualModel.getResiReg());
         assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
@@ -186,7 +206,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
-        final String[] splitName = student.getName().fullName.split("\\s+");
+        final String[] splitName = student.getNameAsString().split("\\s+");
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());

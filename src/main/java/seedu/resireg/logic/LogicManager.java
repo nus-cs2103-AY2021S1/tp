@@ -15,6 +15,7 @@ import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -29,7 +30,9 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
+    private final CommandHistory history;
     private ResiRegParser resiRegParser; // mutable, to allow for dynamic aliasing
+    private boolean isModified;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -37,22 +40,33 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
+        this.history = new CommandHistory();
+
+        model.getResiReg().addListener(observable -> isModified = true);
     }
 
     @Override
     public CommandResult execute(String commandText) throws CommandException, ParseException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
+        isModified = false;
 
         CommandResult commandResult;
-        resiRegParser = new CommandMapper(model.getCommandWordAliases()).getParser();
-        Command command = resiRegParser.parseCommand(commandText);
-        commandResult = command.execute(model, storage);
-
         try {
-            storage.saveResiReg(model.getResiReg());
-            storage.saveUserPrefs(model.getUserPrefs());
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            resiRegParser = new CommandMapper(model.getCommandWordAliases()).getParser();
+            Command command = resiRegParser.parseCommand(commandText);
+            commandResult = command.execute(model, storage, history);
+        } finally {
+            history.add(commandText);
+        }
+
+        if (isModified) {
+            logger.info("Modification present. Saving to file.");
+            try {
+                storage.saveResiReg(model.getResiReg());
+                storage.saveUserPrefs(model.getUserPrefs());
+            } catch (IOException ioe) {
+                throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+            }
         }
 
         return commandResult;
@@ -84,8 +98,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<BinItem> getFilteredBinItemList() {
+        return model.getFilteredBinItemList();
+    }
+
+    @Override
     public Path getResiRegFilePath() {
         return model.getResiRegFilePath();
+    }
+
+    @Override
+    public ObservableList<String> getHistory() {
+        return history.getHistory();
     }
 
     @Override

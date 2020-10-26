@@ -15,6 +15,7 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -31,6 +32,8 @@ public class ModelManager implements Model {
     private final ModelAwareFilteredList<Student> filteredStudents;
     private final ModelAwareFilteredList<Room> filteredRooms;
     private final ModelAwareFilteredList<Allocation> filteredAllocations;
+    private final ModelAwareFilteredList<BinItem> filteredBinItems;
+
 
     /**
      * Initializes a ModelManager with the given ResiReg data and userPrefs.
@@ -47,6 +50,7 @@ public class ModelManager implements Model {
         filteredStudents = new ModelAwareFilteredList<>(versionedResiReg.getStudentList());
         filteredRooms = new ModelAwareFilteredList<>(versionedResiReg.getRoomList());
         filteredAllocations = new ModelAwareFilteredList<>(versionedResiReg.getAllocationList());
+        filteredBinItems = new ModelAwareFilteredList<>(versionedResiReg.getBinItemList());
     }
 
     public ModelManager() {
@@ -115,6 +119,12 @@ public class ModelManager implements Model {
         userPrefs.setResiRegFilePath(resiRegFilePath);
     }
 
+    @Override
+    public void setDaysStoredInBin(int daysStoredInBin) {
+        assert daysStoredInBin > 0 : "Days stored must be a positive integer";
+        userPrefs.setDaysStoredInBin(daysStoredInBin);
+    }
+
     //=========== ResiReg ================================================================================
 
     @Override
@@ -153,6 +163,13 @@ public class ModelManager implements Model {
     public void addStudent(Student student) {
         requireNonNull(student);
         versionedResiReg.addStudent(student);
+        refilterLists();
+    }
+
+    @Override
+    public void addStudent(Student student, boolean isFront) {
+        requireNonNull(student);
+        versionedResiReg.addStudent(student, isFront);
         refilterLists();
     }
 
@@ -233,9 +250,43 @@ public class ModelManager implements Model {
         refilterLists();
     }
 
+    //=========== Bin Items =============================================================
+    @Override
+    public void setBinItem(BinItem target, BinItem editedItem) {
+        requireAllNonNull(target, editedItem);
+        versionedResiReg.setBinItem(target, editedItem);
+        refilterLists();
+    }
+
+    @Override
+    public boolean hasBinItem(BinItem binItem) {
+        requireNonNull(binItem);
+        return versionedResiReg.hasBinItem(binItem);
+    }
+
+    @Override
+    public void deleteBinItem(BinItem target) {
+        versionedResiReg.removeBinItem(target);
+        refilterLists();
+    }
+
+    @Override
+    public void addBinItem(BinItem binItem) {
+        requireNonNull(binItem);
+        versionedResiReg.addBinItem(binItem);
+        refilterLists();
+    }
+
+    @Override
+    public void deleteExpiredBinItems() {
+        versionedResiReg.deleteExpiredBinItems(userPrefs.getDaysStoredInBin());
+    }
+
+    //=========== Semester =============================================================
     public Semester getSemester() {
         return semester;
     }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**
@@ -270,10 +321,21 @@ public class ModelManager implements Model {
         return filteredRooms.getObservableList();
     }
 
+    //=========== Filtered Allocation List Accessors =============================================================
+
     @Override
     public ObservableList<Allocation> getFilteredAllocationList() {
         return filteredAllocations.getObservableList();
     }
+
+    //=========== Filtered Bin Item List Accessors =============================================================
+
+    @Override
+    public ObservableList<BinItem> getFilteredBinItemList() {
+        return filteredBinItems.getObservableList();
+    }
+
+    //=========== Filtered  List Setters =============================================================
 
     @Override
     public void updateFilteredRoomList(Predicate<Room> predicate) {
@@ -297,6 +359,18 @@ public class ModelManager implements Model {
     public void updateFilteredAllocationList(ModelPredicate<Allocation> predicate) {
         requireNonNull(predicate);
         filteredAllocations.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBinItemList(Predicate<BinItem> predicate) {
+        requireNonNull(predicate);
+        filteredBinItems.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredBinItemList(ModelPredicate<BinItem> predicate) {
+        requireNonNull(predicate);
+        filteredBinItems.setPredicate(predicate);
     }
 
 
@@ -349,7 +423,8 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && filteredRooms.equals(other.filteredRooms)
-                && filteredAllocations.equals(other.filteredAllocations);
+                && filteredAllocations.equals(other.filteredAllocations)
+                && filteredBinItems.equals(other.filteredBinItems);
     }
 
     /**

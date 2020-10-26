@@ -56,7 +56,7 @@ class JsonAdaptedStudent {
      * Converts a given {@code Student} into this class for Jackson use.
      */
     public JsonAdaptedStudent(Student source) {
-        name = source.getName().fullName;
+        name = source.getNameAsString();
         phone = source.getPhone().value;
         email = source.getEmail().value;
         faculty = source.getFaculty().value;

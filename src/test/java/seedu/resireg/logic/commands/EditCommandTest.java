@@ -19,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
@@ -35,6 +36,8 @@ import seedu.resireg.testutil.StudentBuilder;
  */
 public class EditCommandTest {
 
+    private CommandHistory history = new CommandHistory();
+
     private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
     private Storage storage = new StorageManager(null, null);
 
@@ -44,13 +47,14 @@ public class EditCommandTest {
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            editedStudent.getNameAsString());
 
-        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), model.getUserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
@@ -66,13 +70,14 @@ public class EditCommandTest {
             .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            editedStudent.getNameAsString());
 
         Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudent);
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
@@ -80,12 +85,13 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditStudentDescriptor());
         Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            editedStudent.getNameAsString());
 
         Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
@@ -97,14 +103,15 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
             new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            editedStudent.getNameAsString());
 
         Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_PERSON);
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
@@ -113,7 +120,7 @@ public class EditCommandTest {
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(firstStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, history, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
@@ -125,7 +132,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
             new EditStudentDescriptorBuilder(studentInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCommand, model, history, EditCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
     @Test
@@ -134,7 +141,7 @@ public class EditCommandTest {
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     /**
@@ -151,7 +158,7 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
             new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -165,15 +172,15 @@ public class EditCommandTest {
         expectedModel.saveStateResiReg();
 
         // edit -> first student edited
-        editCommand.execute(model, storage);
+        editCommand.execute(model, storage, history);
 
         // undo -> reverts resireg back to prev state and filtered student list to show all students
         expectedModel.undoResiReg();
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, history, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // redo -> same first student edited again
         expectedModel.redoResiReg();
-        assertCommandSuccess(new RedoCommand(), model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new RedoCommand(), model, history, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -183,11 +190,11 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(outofBounds, desc);
 
         // execution failed -> resireg state not added into model
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
 
         // single resireg state in mode -> undo and redo fails
-        assertCommandFailure(new UndoCommand(), model, UndoCommand.MESSAGE_FAILURE);
-        assertCommandFailure(new RedoCommand(), model, RedoCommand.MESSAGE_FAILURE);
+        assertCommandFailure(new UndoCommand(), model, history, UndoCommand.MESSAGE_FAILURE);
+        assertCommandFailure(new RedoCommand(), model, history, RedoCommand.MESSAGE_FAILURE);
     }
 
     /**
@@ -211,12 +218,12 @@ public class EditCommandTest {
         expectedModel.saveStateResiReg();
 
         // edit -> edits second student in unfiltered list / first student in filtered student list
-        editCommand.execute(model, storage);
+        editCommand.execute(model, storage, history);
 
         // undo -> reverts resireg back to prev state, keeps filtering
         expectedModel.undoResiReg();
         showStudentAtIndex(expectedModel, INDEX_SECOND_PERSON);
-        assertCommandSuccess(new UndoCommand(), model, UndoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new UndoCommand(), model, history, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // remove filtering
         model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
@@ -225,7 +232,7 @@ public class EditCommandTest {
         assertNotEquals(model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()), studentToEdit);
         // redo -> edits same second student in unfiltered student list
         expectedModel.redoResiReg();
-        assertCommandSuccess(new RedoCommand(), model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new RedoCommand(), model, history, RedoCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test

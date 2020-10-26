@@ -1,5 +1,6 @@
 package seedu.resireg.logic.commands;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
 import seedu.resireg.storage.Storage;
@@ -14,9 +15,10 @@ public abstract class Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @param storage {@code Storage} which the command can update.
+     * @param history {@code CommandHistory} which the command should operate on.
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute(Model model, Storage storage) throws CommandException;
+    public abstract CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException;
 
 }

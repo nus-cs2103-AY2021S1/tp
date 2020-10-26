@@ -5,5 +5,6 @@ package seedu.resireg.logic.commands;
  */
 public enum TabView {
     STUDENTS,
-    ROOMS
+    ROOMS,
+    BIN_ITEMS,
 }

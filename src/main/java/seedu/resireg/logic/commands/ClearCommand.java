@@ -2,6 +2,7 @@ package seedu.resireg.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ResiReg;
 import seedu.resireg.storage.Storage;
@@ -17,7 +18,7 @@ public class ClearCommand extends Command {
     public static final Help HELP = new Help(COMMAND_WORD, "Clears all students and rooms.");
 
     @Override
-    public CommandResult execute(Model model, Storage storage) {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) {
         requireNonNull(model);
         model.setResiReg(new ResiReg());
         model.saveStateResiReg();

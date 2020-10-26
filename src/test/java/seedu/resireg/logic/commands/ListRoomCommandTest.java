@@ -22,6 +22,7 @@ import java.util.Collection;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.ListRoomCommand.RoomFilter;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
@@ -36,6 +37,9 @@ import seedu.resireg.testutil.RoomBuilder;
 import seedu.resireg.testutil.RoomFilterBuilder;
 
 public class ListRoomCommandTest {
+
+    private CommandHistory history = new CommandHistory();
+
     private Model model;
     private Model expectedModel;
 
@@ -106,7 +110,7 @@ public class ListRoomCommandTest {
     public void execute_listIsNotFiltered_showsSameList() {
         assertToggleCommandSuccess(
                 new ListRoomCommand(new RoomFilter()),
-                model, ListRoomCommand.MESSAGE_SUCCESS, expectedModel, TabView.ROOMS);
+                model, history, ListRoomCommand.MESSAGE_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
     @Test
@@ -116,6 +120,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
@@ -126,6 +131,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
@@ -137,6 +143,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
@@ -148,6 +155,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
@@ -159,6 +167,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
@@ -170,6 +179,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
@@ -181,6 +191,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
@@ -193,6 +204,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 
@@ -205,6 +217,7 @@ public class ListRoomCommandTest {
         assertToggleCommandSuccess(
                 cmd,
                 model,
+                history,
                 ListRoomCommand.MESSAGE_FILTERED_SUCCESS, expectedModel, TabView.ROOMS);
     }
 }

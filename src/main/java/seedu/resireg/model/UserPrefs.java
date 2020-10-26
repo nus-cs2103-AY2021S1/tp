@@ -16,10 +16,12 @@ import seedu.resireg.model.alias.exceptions.DuplicateCommandWordAliasException;
  * Represents User's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
+    public static final int DEFAULT_DAYS_STORED_IN_BIN = 30; // 30 days as mentioned in UG
 
     private GuiSettings guiSettings = new GuiSettings();
     private List<CommandWordAlias> commandWordAliases = new ArrayList<>();
     private Path resiRegFilePath = Paths.get("data" , "resireg.json");
+    private int daysStoredInBin = DEFAULT_DAYS_STORED_IN_BIN;
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -42,6 +44,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setCommandAliases(newUserPrefs.getCommandWordAliases());
         setResiRegFilePath(newUserPrefs.getResiRegFilePath());
+        setDaysStoredInBin(newUserPrefs.getDaysStoredInBin());
     }
 
     public GuiSettings getGuiSettings() {
@@ -56,6 +59,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public List<CommandWordAlias> getCommandWordAliases() {
         return commandWordAliases;
     }
+
 
     /**
      * Resets the existing commandAliases of this {@code UserPrefs} with new {@code commandAliases}.
@@ -99,6 +103,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.resiRegFilePath = resiRegFilePath;
     }
 
+
+    public int getDaysStoredInBin() {
+        return daysStoredInBin;
+    }
+
+    public void setDaysStoredInBin(int daysStoredInBin) {
+        assert daysStoredInBin > 0 : "Days stored cannot be negative";
+        this.daysStoredInBin = daysStoredInBin;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -112,7 +126,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && commandWordAliases.equals(o.commandWordAliases)
-                && resiRegFilePath.equals(o.resiRegFilePath);
+                && resiRegFilePath.equals(o.resiRegFilePath)
+                && daysStoredInBin == (o.daysStoredInBin);
     }
 
     @Override

@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.logic.Logic;
 import seedu.resireg.logic.commands.TabView;
@@ -17,17 +18,23 @@ import seedu.resireg.logic.commands.TabView;
 public class MainPanel extends UiPart<Region> {
     private static final String FXML = "MainPanel.fxml";
 
-    private final Logger logger = LogsCenter.getLogger(RoomListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(MainPanel.class);
     private boolean studentsAndRoomsAreCombined;
 
     private StudentsTab studentsTab;
     private RoomsTab roomsTab;
 
+    @FXML
+    private Tab binsTab;
+
     private StudentListPanel studentListPanel;
     private RoomListPanel roomListPanel;
+    private BinItemListPanel binItemListPanel;
 
     @FXML
     private TabPane tabPane;
+    @FXML
+    private StackPane binItemListPanelPlaceholder;
 
     /**
      * Creates a new MainPanel. The rooms and students lists will be in separate tabs.
@@ -62,6 +69,9 @@ public class MainPanel extends UiPart<Region> {
         case STUDENTS:
             showStudentPanel();
             break;
+        case BIN_ITEMS:
+            showTab(binsTab);
+            break;
         default:
             logger.warning("Unhandled TabView");
             assert false : "Unhandled TabView";
@@ -83,8 +93,13 @@ public class MainPanel extends UiPart<Region> {
                 logic.getFilteredAllocationList(),
                 logic.getFilteredStudentList());
 
+        binItemListPanel = new BinItemListPanel(logic.getFilteredBinItemList());
+
         studentsTab.setStudentListPanel(studentListPanel);
         roomsTab.setRoomListPanel(roomListPanel);
+
+        binItemListPanelPlaceholder.getChildren()
+            .add(binItemListPanel.getRoot());
     }
 
     /**

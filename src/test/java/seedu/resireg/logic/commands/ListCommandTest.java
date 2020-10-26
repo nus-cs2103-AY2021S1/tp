@@ -8,6 +8,7 @@ import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
@@ -17,6 +18,7 @@ import seedu.resireg.model.UserPrefs;
  */
 public class ListCommandTest {
 
+    private CommandHistory history = new CommandHistory();
     private Model model;
     private Model expectedModel;
 
@@ -28,12 +30,12 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, history, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showStudentAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), model, history, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

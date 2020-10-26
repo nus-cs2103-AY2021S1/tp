@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.CreateEditCopy;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
@@ -54,7 +55,7 @@ public class AllocateCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model, Storage storage) throws CommandException {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownListStudent = model.getFilteredStudentList();
         List<Room> lastShownListRoom = model.getFilteredRoomList();
@@ -88,7 +89,7 @@ public class AllocateCommand extends Command {
         model.saveStateResiReg();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomToAllocate.getRoomLabel(),
-            studentToAllocate.getName().fullName));
+            studentToAllocate.getNameAsString()));
     }
 
     @Override

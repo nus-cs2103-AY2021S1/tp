@@ -1,5 +1,6 @@
 package seedu.resireg.logic.commands;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.storage.Storage;
 
@@ -15,7 +16,7 @@ public class ToggleTabSplitCommand extends Command {
             "Toggles between showing students and rooms as separate tabs and showing them as one combined tab");
 
     @Override
-    public CommandResult execute(Model model, Storage storage) {
+    public CommandResult execute(Model model, Storage storage, CommandHistory history) {
         return new ToggleTabSplitCommandResult(MESSAGE_SUCCESS);
     }
 }

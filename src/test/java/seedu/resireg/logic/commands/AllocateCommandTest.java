@@ -20,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
@@ -34,6 +35,8 @@ import seedu.resireg.model.student.Student;
  */
 public class AllocateCommandTest {
 
+    private CommandHistory history = new CommandHistory();
+
     private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
 
     @Test
@@ -45,27 +48,27 @@ public class AllocateCommandTest {
 
         AllocateCommand allocateCommand = new AllocateCommand(INDEX_FOURTH_PERSON, INDEX_FOURTH_ROOM);
         String expectedMessage = String.format(AllocateCommand.MESSAGE_SUCCESS, roomToAllocate.getRoomLabel(),
-                studentToAllocate.getName().fullName);
+                studentToAllocate.getNameAsString());
 
         ModelManager expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
         expectedModel.addAllocation(toAllocate);
         expectedModel.saveStateResiReg();
 
-        assertCommandSuccess(allocateCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(allocateCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexStudentUnfilteredList_throwsCommandException() {
         Index outOfBoundIndexStudent = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         AllocateCommand allocateCommand = new AllocateCommand(outOfBoundIndexStudent, INDEX_FOURTH_ROOM);
-        assertCommandFailure(allocateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(allocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_invalidIndexRoomUnfilteredList_throwsCommandException() {
         Index outOfBoundIndexRoom = Index.fromOneBased(model.getFilteredRoomList().size() + 1);
         AllocateCommand allocateCommand = new AllocateCommand(INDEX_FOURTH_ROOM, outOfBoundIndexRoom);
-        assertCommandFailure(allocateCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        assertCommandFailure(allocateCommand, model, history, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
     }
 
     @Test
@@ -75,7 +78,7 @@ public class AllocateCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getStudentList().size());
         AllocateCommand allocateCommand = new AllocateCommand(outOfBoundIndex, INDEX_FIRST_ROOM);
-        assertCommandFailure(allocateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(allocateCommand, model, history, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
@@ -85,7 +88,7 @@ public class AllocateCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getResiReg().getRoomList().size());
         AllocateCommand allocateCommand = new AllocateCommand(INDEX_FIRST_PERSON, outOfBoundIndex);
-        assertCommandFailure(allocateCommand, model, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
+        assertCommandFailure(allocateCommand, model, history, Messages.MESSAGE_INVALID_ROOM_DISPLAYED_INDEX);
     }
 
     @Test
