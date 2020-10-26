@@ -816,7 +816,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a new patient to the list
 
-   1. Test case: `add n/John Doe p/12345678 i/s1234567a`<br>
+   1. Test case: `add n/John Doe p/12345678 ic/s1234567a`<br>
       Expected: A patient named John Doe should be added into the list with his phone number and IC number.
 
    1. Test case: `add`<br>
