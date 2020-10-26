@@ -11,6 +11,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.GradeTracker;
 
@@ -29,7 +30,7 @@ public class DeleteAssignmentCommand extends Command {
             "Assignment to be deleted or module specified is invalid.";
 
     private final Index targetIndex;
-    private final String targetModule;
+    private final ModuleName targetModule;
 
     /**
      * Creates a DeleteAssignmentCommand to remove the specified assignment in the specified module.
@@ -37,7 +38,7 @@ public class DeleteAssignmentCommand extends Command {
      * @param targetIndex the index of the assignment to be removed.
      * @param targetModule the module to remove the assignment from.
      */
-    public DeleteAssignmentCommand(Index targetIndex, String targetModule) {
+    public DeleteAssignmentCommand(Index targetIndex, ModuleName targetModule) {
         this.targetIndex = targetIndex;
         this.targetModule = targetModule;
     }
@@ -48,7 +49,7 @@ public class DeleteAssignmentCommand extends Command {
         Module module = null;
         List<Module> lastShownList = model.getFilteredModuleList();
         for (Module eachModule : lastShownList) {
-            if (eachModule.getName().fullName.equals(targetModule)) {
+            if (eachModule.getName().equals(targetModule)) {
                 module = eachModule;
                 break;
             }
