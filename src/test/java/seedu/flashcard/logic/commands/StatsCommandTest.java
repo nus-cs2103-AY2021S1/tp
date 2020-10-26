@@ -1,14 +1,7 @@
 package seedu.flashcard.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.flashcard.commons.core.Messages;
-import seedu.flashcard.commons.core.index.Index;
-import seedu.flashcard.model.Model;
-import seedu.flashcard.model.ModelManager;
-import seedu.flashcard.model.UserPrefs;
-import seedu.flashcard.model.flashcard.Flashcard;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.flashcard.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.flashcard.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.flashcard.logic.commands.CommandTestUtil.showFlashcardAtIndex;
@@ -16,16 +9,26 @@ import static seedu.flashcard.testutil.TypicalFlashcards.getTypicalFlashcardDeck
 import static seedu.flashcard.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 import static seedu.flashcard.testutil.TypicalIndexes.INDEX_SECOND_FLASHCARD;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.flashcard.commons.core.Messages;
+import seedu.flashcard.commons.core.index.Index;
+import seedu.flashcard.model.Model;
+import seedu.flashcard.model.ModelManager;
+import seedu.flashcard.model.UserPrefs;
+import seedu.flashcard.model.flashcard.Flashcard;
+
 class StatsCommandTest {
 
     private Model model = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Flashcard flashcardToShowStatistics = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        Flashcard flashcardToShowStatistics = model.getFilteredFlashcardList()
+                .get(INDEX_FIRST_FLASHCARD.getZeroBased());
         StatsCommand statsCommand = new StatsCommand(INDEX_FIRST_FLASHCARD);
 
-        String expectedMessage = String.format(StatsCommand.MESSAGE_VIEW_FLASHCARD_SUCCESS, flashcardToShowStatistics);
+        String expectedMessage = String.format(StatsCommand.MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS, flashcardToShowStatistics);
         ModelManager expectedModel = new ModelManager(model.getFlashcardDeck(), new UserPrefs());
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel);
@@ -42,9 +45,10 @@ class StatsCommandTest {
     @Test
     public void execute_validIndexFilteredList_success() {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
-        Flashcard flashcardToShowStatistics = model.getFilteredFlashcardList().get(INDEX_FIRST_FLASHCARD.getZeroBased());
+        Flashcard flashcardToShowStatistics = model.getFilteredFlashcardList()
+                .get(INDEX_FIRST_FLASHCARD.getZeroBased());
         StatsCommand statsCommand = new StatsCommand(INDEX_FIRST_FLASHCARD);
-        String expectedMessage = String.format(StatsCommand.MESSAGE_VIEW_FLASHCARD_SUCCESS, flashcardToShowStatistics);
+        String expectedMessage = String.format(StatsCommand.MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS, flashcardToShowStatistics);
         assertCommandSuccess(statsCommand, model, expectedMessage, model);
     }
 

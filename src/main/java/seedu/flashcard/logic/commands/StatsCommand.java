@@ -25,7 +25,7 @@ public class StatsCommand extends Command {
             + " [" + PREFIX_ANSWER + "]\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEW_FLASHCARD_SUCCESS = "Flashcard's statistics is shown: %1$s";
+    public static final String MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS = "Flashcard's statistics is shown: %1$s";
 
     private final Index targetIndex;
 
@@ -46,7 +46,7 @@ public class StatsCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
         }
         Flashcard flashcardToShowStatistics = lastShownList.get(targetIndex.getZeroBased());
-        return new CommandResult(String.format(MESSAGE_VIEW_FLASHCARD_SUCCESS,
+        return new CommandResult(String.format(MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS,
                 flashcardToShowStatistics), targetIndex.getZeroBased());
     }
 
