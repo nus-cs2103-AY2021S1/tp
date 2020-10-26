@@ -28,7 +28,7 @@ public class ParserUtilTest {
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_SPECIES = "Cat";
     private static final String VALID_ID = "123456";
-    private static final String VALID_MEDICAL_CONDITION_1 = "Healthy";
+    private static final String VALID_MEDICAL_CONDITION_1 = "Flu";
     private static final String VALID_MEDICAL_CONDITION_2 = "Drowsy";
 
     private static final String WHITESPACE = " \t\r\n";

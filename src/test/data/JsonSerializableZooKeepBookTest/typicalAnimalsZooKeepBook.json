@@ -4,7 +4,7 @@
     "name" : "Ahmeng",
     "id" : "123",
     "species" : "Orangutan",
-    "medicalConditions" : [ "Healthy" ]
+    "medicalConditions" : [ "Deceased" ]
   }, {
     "name" : "Buttercup",
     "id" : "456",
@@ -19,7 +19,7 @@
     "name" : "Esther",
     "id" : "126",
     "species" : "Pig",
-    "medicalConditions" : [ "Healthy" ]
+    "medicalConditions" : [ "Swine Flu" ]
   }, {
     "name" : "Grecia",
     "id" : "134",

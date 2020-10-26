@@ -53,7 +53,7 @@ public class CommandTestUtil {
     public static final String INVALID_ID_DESC = " " + PREFIX_ID + "911a"; // 'a' not allowed in IDs
     public static final String INVALID_SPECIES_DESC = " " + PREFIX_SPECIES; // empty string not allowed for species
     public static final String INVALID_MEDICAL_CONDITION_DESC =
-            " " + PREFIX_MEDICAL_CONDITION + "healthy*"; // '*' not allowed in medicalConditions
+            " " + PREFIX_MEDICAL_CONDITION + "Flu*"; // '*' not allowed in medicalConditions
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
