@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TabPane?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+
+    <TabPane fx:id="tabPane"
+             tabClosingPolicy="UNAVAILABLE">
+        <!-- Students and rooms tabs will be created programatically -->
+        <Tab fx:id="binsTab" text="Bin">
+            <VBox fx:id="binItemList"
+                  VBox.vgrow="ALWAYS"
+                  styleClass="pane-with-border"
+                  minWidth="340" prefWidth="340">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <StackPane fx:id="binItemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </Tab>
+    </TabPane>
+
+</StackPane>

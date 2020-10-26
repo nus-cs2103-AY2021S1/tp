@@ -28,7 +28,7 @@ import seedu.resireg.logic.commands.ReallocateCommand;
 import seedu.resireg.logic.commands.RedoCommand;
 import seedu.resireg.logic.commands.RestoreCommand;
 import seedu.resireg.logic.commands.SetBinExpiryCommand;
-import seedu.resireg.logic.commands.ToggleMainPanelCommand;
+import seedu.resireg.logic.commands.ToggleTabSplitCommand;
 import seedu.resireg.logic.commands.UndoCommand;
 import seedu.resireg.logic.parser.AddAliasCommandParser;
 import seedu.resireg.logic.parser.AddCommandParser;
@@ -85,9 +85,9 @@ public class CommandMapper {
         commandMap.addCommand(DeleteAliasCommand.COMMAND_WORD, DeleteAliasCommand.HELP,
             new DeleteAliasCommandParser()::parse);
         commandMap.addCommand(ListAliasCommand.COMMAND_WORD, ListAliasCommand.HELP, unused -> new ListAliasCommand());
+        commandMap.addCommand(ToggleTabSplitCommand.COMMAND_WORD, ToggleTabSplitCommand.HELP,
+            unused -> new ToggleTabSplitCommand());
         commandMap.addCommand(HistoryCommand.COMMAND_WORD, HistoryCommand.HELP, unused -> new HistoryCommand());
-        commandMap.addCommand(ToggleMainPanelCommand.COMMAND_WORD, ToggleMainPanelCommand.HELP,
-            unused -> new ToggleMainPanelCommand());
         commandMap.addCommand(RestoreCommand.COMMAND_WORD, RestoreCommand.HELP,
             new RestoreCommandParser()::parse);
         commandMap.addCommand(ListBinCommand.COMMAND_WORD, ListBinCommand.HELP, unused -> new ListBinCommand());

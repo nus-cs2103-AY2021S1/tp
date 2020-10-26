@@ -116,7 +116,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        setMainPanel(new TabbedView());
+        mainPanel = new MainPanel();
+        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
+        mainPanel.updatePanels(logic);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -172,13 +174,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void setMainPanel(MainPanel mainPanel) {
-        this.mainPanel = mainPanel;
-        mainPanelPlaceholder.getChildren().clear();
-        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
-        mainPanel.updatePanels(logic);
-    }
-
     /**
      * Sets what is displayed in the listPanelStackPane based on the toggle.
      *
@@ -191,12 +186,8 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Toggles the layout of the main panel between a tabbed layout and the side-by-side split layout.
      */
-    public void toggleMainPanelLayout() {
-        if (mainPanel instanceof TabbedView) {
-            setMainPanel(new SplitView());
-        } else {
-            setMainPanel(new TabbedView());
-        }
+    public void toggleStudentsRoomsTabSplit() {
+        mainPanel.toggleStudentsRoomsTabSplit();
     }
 
     /**
