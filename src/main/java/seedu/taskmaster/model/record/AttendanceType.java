@@ -1,4 +1,4 @@
-package seedu.taskmaster.model.session;
+package seedu.taskmaster.model.record;
 
 public enum AttendanceType {
     PRESENT,

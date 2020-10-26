@@ -1,4 +1,4 @@
-package seedu.taskmaster.model.session;
+package seedu.taskmaster.model.record;
 
 import java.util.Iterator;
 import java.util.List;

@@ -9,7 +9,7 @@ import seedu.taskmaster.commons.core.Messages;
 import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
-import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.student.Student;
 
 /**
