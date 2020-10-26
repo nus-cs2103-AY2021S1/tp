@@ -21,7 +21,8 @@ public class HelpCommand extends Command {
             + String.format("%-21s %s", RetagCommand.COMMAND_WORD, RetagCommand.RETAG_MESSAGE_USAGE + "\n")
             + String.format(STRING_FORMAT, ShowCommand.COMMAND_WORD, ShowCommand.SHOW_MESSAGE_USAGE + "\n")
             + String.format("%-22s %s", TagCommand.COMMAND_WORD, TagCommand.TAG_COMMAND_USAGE + "\n")
-            + String.format(STRING_FORMAT, UntagCommand.COMMAND_WORD, UntagCommand.UNTAG_MESSAGE_USAGE + "\n");
+            + String.format(STRING_FORMAT, UntagCommand.COMMAND_WORD, UntagCommand.UNTAG_MESSAGE_USAGE + "\n")
+            + String.format(STRING_FORMAT, LabelCommand.COMMAND_WORD, LabelCommand.LABEL_COMMAND_USAGE + "\n");
 
     @Override
     public CommandResult execute(Model model) {
