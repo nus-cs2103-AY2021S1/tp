@@ -32,6 +32,8 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ModuleListPanel moduleListPanel;
+    private TutorialGroupListPanel tutorialGroupListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane moduleListPanelPlaceholder;
+    private StackPane listPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,7 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
-        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -121,6 +123,24 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    void refillInnerPartsWithTutorialGroupList() {
+        tutorialGroupListPanel = new TutorialGroupListPanel(logic.getFilteredTutorialGroupList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(tutorialGroupListPanel.getRoot());
+    }
+
+    void refillInnerPartsWithModuleList() {
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+    }
+
+    void refillInnerPartsWithStudentList() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
     }
 
     /**
@@ -184,6 +204,18 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowTutorialGroupList()) {
+                refillInnerPartsWithTutorialGroupList();
+            }
+
+            if (commandResult.isShowModuleList()) {
+                refillInnerPartsWithModuleList();
+            }
+
+            if (commandResult.isShowStudentList()) {
+                refillInnerPartsWithStudentList();
             }
 
             return commandResult;

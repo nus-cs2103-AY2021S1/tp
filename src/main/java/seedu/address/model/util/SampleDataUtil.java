@@ -26,9 +26,9 @@ public class SampleDataUtil {
     }
 
     public static ReadOnlyTrackr<Module> getSampleModuleList() {
-        Trackr<Module> sampleAb = new Trackr<>();
+        Trackr sampleAb = new Trackr();
         for (Module sampleModule : getSampleModules()) {
-            sampleAb.addObject(sampleModule);
+            sampleAb.addModule(sampleModule);
         }
         return sampleAb;
     }
@@ -39,13 +39,13 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyTrackr<Student> getSampleStudentList() {
-        Trackr<Student> sample = new Trackr<>();
-        for (Student sampleStudent : getSampleStudents()) {
-            sample.addObject(sampleStudent);
-        }
-        return sample;
-    }
+    //    public static ReadOnlyTrackr<Student> getSampleStudentList() {
+    //        Trackr<Student> sample = new Trackr<>();
+    //        for (Student sampleStudent : getSampleStudents()) {
+    //            sample.addObject(sampleStudent);
+    //        }
+    //        return sample;
+    //    }
 
     /**
      * Returns a tag set containing the list of strings given.

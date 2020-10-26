@@ -2,58 +2,29 @@ package seedu.address.model.tutorialgroup;
 
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.person.Student;
-import seedu.address.model.person.StudentId;
+import seedu.address.model.person.UniqueStudentList;
 
 public class TutorialGroup {
 
     // Identity fields
     private final TutorialGroupId tutorialGroupId;
+    private final UniqueStudentList students;
     private LocalTime startTime;
     private LocalTime endTime;
 
-    // Data fields
-    private HashMap<StudentId, Student> studentList;
-
-    //
-
-    //    /**
-    //     * Constructor for Tutorial Group
-    //     * @param id of Tutorial Group
-    //     * @param module that Tutorial Group belongs to
-    //     */
-    //    public TutorialGroup(String id, Module module) {
-    //        this.id = id;
-    //        this.module = module;
-    //        this.studentList = new HashMap<>();
-    //    }
-
-
     /**
      * Constructor for Tutorial Group
      * @param tutorialGroupId
-     */
-    public TutorialGroup(TutorialGroupId tutorialGroupId) {
-        this.tutorialGroupId = tutorialGroupId;
-        this.studentList = new HashMap<>();
-    }
-
-    /**
-     * Constructor for Tutorial Group
-     * @param tutorialGroupId
-     * @param startTime
-     * @param endTime
      */
     public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime) {
         this.tutorialGroupId = tutorialGroupId;
+        this.students = new UniqueStudentList();
         this.startTime = startTime;
         this.endTime = endTime;
     }
-
 
     //GETTERS
 
@@ -73,11 +44,12 @@ public class TutorialGroup {
         return (this.startTime.until(endTime, ChronoUnit.MINUTES)) / 60.0;
     }
 
+    public ObservableList<Student> getStudents() {
+        return students.asUnmodifiableObservableList();
+    }
 
-    public List<Student> getStudentList() {
-        ArrayList<Student> returnList = new ArrayList<>();
-        returnList.addAll(studentList.values());
-        return returnList;
+    public UniqueStudentList getUniqueStudentList() {
+        return students;
     }
 
 
@@ -85,17 +57,6 @@ public class TutorialGroup {
     public void setLessonTime(LocalTime startTime, LocalTime endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
-    }
-
-    public void setStudentList(ArrayList<Student> studentList) {
-        this.studentList = new HashMap<StudentId, Student>(); //Refresh the student list
-        for (Student student : studentList) {
-            this.studentList.put(student.getStudentId(), student);
-        }
-    }
-
-    public int getTotalStudents() {
-        return this.studentList.size();
     }
 
     //ADD
@@ -108,12 +69,12 @@ public class TutorialGroup {
      * @param student
      */
     public void addStudent(Student student) {
-        this.studentList.put(student.getStudentId(), student);
+        students.addStudent(student);
     }
 
     //DELETE
     public void deleteStudent(Student student) {
-        this.studentList.remove(student.getStudentId());
+        students.removeStudent(student);
     }
 
     /**
@@ -123,12 +84,25 @@ public class TutorialGroup {
      * @param otherTutorialGroup to check against
      * @return true if same, false if not
      */
-    public boolean isSameTutorialGroup(TutorialGroup otherTutorialGroup) {
+    public boolean isSame(TutorialGroup otherTutorialGroup) {
         if (otherTutorialGroup == this) {
             return true;
         }
 
         return otherTutorialGroup != null
             && otherTutorialGroup.getId().equals(getId());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof TutorialGroup) // instanceof handles nulls
+                && getId().equals(((TutorialGroup) other).getId()); // state check
+
+    }
+
+    @Override
+    public String toString() {
+        return getId().toString();
     }
 }

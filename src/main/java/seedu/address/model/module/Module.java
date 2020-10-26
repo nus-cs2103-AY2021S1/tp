@@ -2,20 +2,16 @@ package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
-import seedu.address.model.Showable;
-import seedu.address.model.Task;
+import javafx.collections.ObservableList;
 import seedu.address.model.TaskList;
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 
-public class Module implements Showable<Module> {
+public class Module {
 
     private final ModuleId moduleId;
-    private List<TutorialGroup> tutorialGroups;
+    private UniqueTutorialGroupList tutorialGroups;
     private TaskList taskList;
 
     /**
@@ -26,52 +22,56 @@ public class Module implements Showable<Module> {
     public Module(ModuleId moduleId) {
         requireNonNull(moduleId);
         this.moduleId = moduleId;
-        this.tutorialGroups = new ArrayList<>();
+        this.tutorialGroups = new UniqueTutorialGroupList();
         this.taskList = new TaskList();
     }
 
-    /**
-     * Constructs an {@code Module}.
-     * @param moduleId
-     * @param taskList
-     * @param tutorialGroups
-     */
-    public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups, List<Task> taskList) {
-        requireNonNull(moduleId);
-        requireNonNull(tutorialGroups);
-        this.moduleId = moduleId;
-        this.tutorialGroups = tutorialGroups;
-        this.taskList = new TaskList(taskList);
-    }
+    //    /**
+    //     * Constructs an {@code Module}.
+    //     * @param moduleId
+    //     * @param taskList
+    //     * @param tutorialGroups
+    //     */
+    //    public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups, List<Task> taskList) {
+    //        requireNonNull(moduleId);
+    //        requireNonNull(tutorialGroups);
+    //        this.moduleId = moduleId;
+    //        this.tutorialGroups = tutorialGroups;
+    //        this.taskList = new TaskList(taskList);
+    //    }
 
 
     public ModuleId getModuleId() {
         return this.moduleId;
     }
 
-    public int getTotalStudents() {
-        return this.tutorialGroups.stream().map(TutorialGroup::getStudentList)
-                .map(List::size).reduce(Integer::sum).orElse(0);
+    //    public int getTotalStudents() {
+    //        return this.tutorialGroups.stream().map(TutorialGroup::getStudentList)
+    //                .map(List::size).reduce(Integer::sum).orElse(0);
+    //    }
+
+    //    public int getTotalGroups() {
+    //        return this.tutorialGroups.size();
+    //    }
+
+    public ObservableList<TutorialGroup> getTutorialGroups() {
+        return tutorialGroups.asUnmodifiableObservableList();
     }
 
-    public int getTotalGroups() {
-        return this.tutorialGroups.size();
+    public UniqueTutorialGroupList getUniqueTutorialGroupList() {
+        return tutorialGroups;
     }
 
-    public List<TutorialGroup> getTutorialGroups() {
-        return Collections.unmodifiableList(tutorialGroups);
-    }
-
-    public List<Task> getTaskList() {
-        return Collections.unmodifiableList(taskList.getTaskList());
-    }
+    //    public List<Task> getTaskList() {
+    //        return Collections.unmodifiableList(taskList.getTaskList());
+    //    }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
-        tutorialGroups.add(tutorialGroup);
+        tutorialGroups.addTutorialGroup(tutorialGroup);
     }
 
     public void removeTutorialGroup(TutorialGroup tutorialGroup) {
-        tutorialGroups.remove(tutorialGroup);
+        tutorialGroups.removeTutorialGroup(tutorialGroup);
     }
 
     //    public void addTask(Task task) {

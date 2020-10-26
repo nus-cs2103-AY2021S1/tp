@@ -1,4 +1,4 @@
-package seedu.address.model;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -10,28 +10,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.exceptions.DuplicateShowableException;
 import seedu.address.model.exceptions.ShowableNotFoundException;
+import seedu.address.model.person.UniqueStudentList;
+import seedu.address.model.tutorialgroup.TutorialGroup;
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
-/**
- * A list of {@code Showable} objects that enforces uniqueness between its elements and does not allow nulls.
- * A {@code Showable} object is considered unique by comparing using {@code Showable#isSame(Showable)}.
- * As such, adding and updating of objects uses Showable#isSame(Showable) for equality so as to ensure that
- * the object being added or updated is unique in terms of identity in the UniqueList.
- * However, the removal of an object uses Showable#equals(Object) so as to ensure that the object with exactly
- * the same fields will be removed.
- *
- * Supports a minimal set of list operations.
- *
- * @param <T>
- */
-public class UniqueList<T extends Showable<T>> implements Iterable<T> {
-    private final ObservableList<T> internalList = FXCollections.observableArrayList();
-    private final ObservableList<T> internalUnmodfiableList =
+public class UniqueModuleList implements Iterable<Module> {
+    private final ObservableList<Module> internalList = FXCollections.observableArrayList();
+    private final ObservableList<Module> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    // Module Operations
     /**
      * Returns true if the list contains an equivalent {@code Showable} object as the given argument.
      */
-    public boolean contains(T toCheck) {
+    public boolean contains(Module toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSame);
     }
@@ -40,7 +32,7 @@ public class UniqueList<T extends Showable<T>> implements Iterable<T> {
      * Adds an {@code Showable} object to the list.
      * The object must not already exist in the list.
      */
-    public void add(T toAdd) {
+    public void addModule(Module toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateShowableException();
@@ -53,7 +45,7 @@ public class UniqueList<T extends Showable<T>> implements Iterable<T> {
      * {@code target} must exist in the list.
      * The identity of {@code editedObject} must not be the same as another existing object in the list.
      */
-    public void set(T target, T editedObject) {
+    public void setModule(Module target, Module editedObject) {
         requireAllNonNull(target, editedObject);
 
         int index = internalList.indexOf(target);
@@ -72,14 +64,14 @@ public class UniqueList<T extends Showable<T>> implements Iterable<T> {
      * Removes the equivalent object from the list.
      * The object must exist in the list.
      */
-    public void remove(T toRemove) {
+    public void removeModule(Module toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new ShowableNotFoundException();
         }
     }
 
-    public void setList(UniqueList<T> replacement) {
+    public void setModuleList(UniqueModuleList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -88,9 +80,9 @@ public class UniqueList<T extends Showable<T>> implements Iterable<T> {
      * Replaces the contents of this list with {@code objects}.
      * {@code objects} must not contain duplicate objects.
      */
-    public void setList(List<T> objects) {
+    public void setModuleList(List<Module> objects) {
         requireAllNonNull(objects);
-        if (!objectsAreUnique(objects)) {
+        if (!modulesAreUnique(objects)) {
             throw new DuplicateShowableException();
         }
 
@@ -100,20 +92,45 @@ public class UniqueList<T extends Showable<T>> implements Iterable<T> {
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<T> asUnmodifiableObservableList() {
-        return internalUnmodfiableList;
+    public ObservableList<Module> asUnmodifiableObservableList() {
+        return internalUnmodifiableList;
+    }
+
+    // Tutorial Group Operations
+    /**
+     * Returns the tutorial group list of the given module as an unmodifiable {@code ObservableList}.
+     */
+    public ObservableList<TutorialGroup> getTutorialGroupListOfModule(Module target) {
+        int index = internalList.indexOf(target);
+        return internalList.get(index).getTutorialGroups();
+    }
+
+    public UniqueTutorialGroupList getUniqueTutorialGroupList(Module target) {
+        int index = internalList.indexOf(target);
+        return internalList.get(index).getUniqueTutorialGroupList();
+    }
+
+    /**
+     * Adds an {@code Showable} object to the list.
+     * The object must not already exist in the list.
+     */
+    public void addTutorialGroup(TutorialGroup tutorialGroup, Module currentModuleInView) {
+        int index = internalList.indexOf(currentModuleInView);
+        if (index >= 0) {
+            internalList.get(index).addTutorialGroup(tutorialGroup);
+        }
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<Module> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueList // instanceof handles nulls
-                && internalList.equals(((UniqueList) other).internalList));
+                || (other instanceof UniqueModuleList // instanceof handles nulls
+                && internalList.equals(((UniqueModuleList) other).internalList));
     }
 
     @Override
@@ -124,7 +141,7 @@ public class UniqueList<T extends Showable<T>> implements Iterable<T> {
     /**
      * Returns true if {@code objects} contains only unique objects.
      */
-    private boolean objectsAreUnique(List<T> objects) {
+    private boolean modulesAreUnique(List<Module> objects) {
         for (int i = 0; i < objects.size() - 1; i++) {
             for (int j = i + 1; j < objects.size(); j++) {
                 if (objects.get(i).isSame(objects.get(j))) {

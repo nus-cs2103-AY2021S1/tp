@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * The API of the Model component.
@@ -48,50 +49,7 @@ public interface Model {
      */
     void setTrackrFilePath(Path trackrFilePath);
 
-    // student operations
-
-    /**
-     * Replaces Trackr data with the data in {@code studentList}.
-     */
-    void setStudentList(ReadOnlyTrackr<Student> studentList);
-
-    /** Returns the student Trackr */
-    ReadOnlyTrackr<Student> getStudentList();
-
-    /**
-     * Returns true if a student with the same identity as {@code student} exists in trackr.
-     */
-    boolean hasStudent(Student student);
-
-    /**
-     * Deletes the given student.
-     * The student must exist in trackr.
-     */
-    void deleteStudent(Student target);
-
-    /**
-     * Adds the given student.
-     * {@code student} must not already exist in trackr.
-     */
-    void addStudent(Student student);
-
-    /**
-     * Replaces the given student {@code target} with {@code editedStudent}.
-     * {@code target} must exist in trackr.
-     * The student identity of {@code editedStudent} must not be the same as another existing student in trackr.
-     */
-    void setStudent(Student target, Student editedStudent);
-
-    /** Returns an unmodifiable view of the filtered student list */
-    ObservableList<Student> getFilteredStudentList();
-
-    /**
-     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredStudentList(Predicate<Student> predicate);
-
-    // module operations
+    // Module Operations
 
     /**
      * Replaces Trackr data with the data in {@code moduleList}.
@@ -125,6 +83,54 @@ public interface Model {
      */
     void setModule(Module target, Module editedModule);
 
+    //TutorialGroup Operations
+
+    /**
+     * Sets the view to the tutorial group list of the given module
+     * @param target
+     */
+    void setViewToTutorialGroup(Module target);
+
+    /**
+     * Adds the given module.
+     * {@code module} must not already exist in trackr.
+     */
+    void addTutorialGroup(TutorialGroup tutorialGroup);
+
+    // Student Operations
+
+    /**
+     * Sets the view to the tutorial group list of the given module
+     * @param target
+     */
+    void setViewToStudent(TutorialGroup target);
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in trackr.
+     */
+    boolean hasStudent(Student student);
+
+    /**
+     * Deletes the given student.
+     * The student must exist in trackr.
+     */
+    void deleteStudent(Student target);
+
+    /**
+     * Adds the given student.
+     * {@code student} must not already exist in trackr.
+     */
+    void addStudent(Student student);
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in trackr.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in trackr.
+     */
+    void setStudent(Student target, Student editedStudent);
+
+    // FilteredList Operations
+
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();
 
@@ -133,4 +139,22 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
+
+    /** Returns an unmodifiable view of the filtered tutorial group list */
+    ObservableList<TutorialGroup> getFilteredTutorialGroupList();
+
+    /**
+     * Updates the filter of the filtered tutorial group list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate);
+
+    /** Returns an unmodifiable view of the filtered student list */
+    ObservableList<Student> getFilteredStudentList();
+
+    /**
+     * Updates the filter of the filtered student list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredStudentList(Predicate<Student> predicate);
 }

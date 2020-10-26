@@ -8,6 +8,8 @@ import seedu.address.logic.commands.AddTutorialGroupCommand;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
 
+import java.time.LocalTime;
+
 public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCommand> {
 
     /**
@@ -19,18 +21,19 @@ public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCom
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_TUTORIAL_GRP);
 
-        /*
-        try {
-            id = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (IllegalValueException ive) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTGCommand.MESSAGE_USAGE), ive);
-        }
-        */
+//        try {
+//            id = ParserUtil.parseIndex(argMultimap.getPreamble());
+//        } catch (IllegalValueException ive) {
+//            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+//                    AddTGCommand.MESSAGE_USAGE), ive);
+//        }
+
 
         String id = argMultimap.getValue(PREFIX_TUTORIAL_GRP).orElse("");
 
-        return new AddTutorialGroupCommand(new TutorialGroup(new TutorialGroupId(id)));
+        // todo: change the LocalTime
+        return new AddTutorialGroupCommand(new TutorialGroup(new TutorialGroupId(id),
+                LocalTime.now(), LocalTime.now()));
     }
 
 }
