@@ -10,7 +10,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.ModuleListParser;
+import seedu.address.logic.parser.TodoListParser;
+import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
@@ -29,6 +32,9 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final ModuleListParser moduleListParser;
+    private final ContactListParser contactListParser;
+    private final TodoListParser todoListParser;
+    private final ParserManager parserManager;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -37,6 +43,9 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         moduleListParser = new ModuleListParser();
+        contactListParser = new ContactListParser();
+        todoListParser = new TodoListParser();
+        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser);
     }
 
     @Override
@@ -44,7 +53,9 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = moduleListParser.parseCommand(commandText);
+        String commandWord = commandText.split(" ")[0];
+        FeatureParser parser = parserManager.select(commandWord);
+        Command command = parser.parseCommand(commandText);
         commandResult = command.execute(model);
         try {
             storage.saveModuleList(model.getModuleList());
