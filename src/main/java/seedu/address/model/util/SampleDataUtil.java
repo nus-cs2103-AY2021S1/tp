@@ -45,7 +45,7 @@ public class SampleDataUtil {
                                 new ClassTime("1 1400-1500"), new Fee("430"),
                                 new PaymentDate("23/4/19"), getDetailList("clever")),
                         getQuestions("How do birds fly?"), getExams(sampleExam1, sampleExam2),
-                        new Academic(getAttendanceList(new Attendance("14/04/1998", "attended",
+                        new Academic(getAttendance(new Attendance("14/04/1998", "attended",
                                 new Feedback("attentive"))))),
             new Student(new Name("Bernice Yu"), new Phone("99272758"),
                         new School("Montford Secondary School"), new Year(SchoolType.SECONDARY, 4),
@@ -53,14 +53,14 @@ public class SampleDataUtil {
                                 new ClassTime("1 1500-1600"), new Fee("50"),
                                 new PaymentDate("30/6/20"), getDetailList()),
                         getSolvedQuestions("Read your textbook", "Explain heat flow."), getExams(),
-                        new Academic(getAttendanceList(new Attendance("06/05/2010", "unattended",
+                        new Academic(getAttendance(new Attendance("06/05/2010", "unattended",
                                 new Feedback("was sick"))))),
             new Student(new Name("Charlotte Oliveiro"), new Phone("93210283"),
                         new School("Raffles Girls School"), new Year(SchoolType.SECONDARY, 3),
                         new Admin(new ClassVenue("Blk 11 Ang Mo Kio Street 74, #11-04"),
                                 new ClassTime("2 1900-1930"), new Fee("680"),
                                 new PaymentDate("1/12/19"), getDetailList()),
-                        getQuestions(), getExams(sampleExam3), new Academic(getAttendanceList(new Attendance(
+                        getQuestions(), getExams(sampleExam3), new Academic(getAttendance(new Attendance(
                         "01/01/2020", "attended", new Feedback("prepared well"))))),
             new Student(new Name("David Li"), new Phone("91031282"),
                         new School("Anderson Primary School"), new Year(SchoolType.PRIMARY, 2),
@@ -68,21 +68,21 @@ public class SampleDataUtil {
                                 new ClassTime("6 0800-0950"), new Fee("12"),
                                 new PaymentDate("24/7/20"), getDetailList("friend")),
                         getQuestions("How do birds fly?", "Explain heat flow."), getExams(),
-                        new Academic(getAttendanceList(new Attendance("26/10/2020", "unattended",
+                        new Academic(getAttendance(new Attendance("26/10/2020", "unattended",
                                 new Feedback("productive session"))))),
             new Student(new Name("Irfan Ibrahim"), new Phone("92492021"),
                         new School("National Junior College"), new Year(SchoolType.JC, 1),
                         new Admin(new ClassVenue("Blk 47 Tampines Street 20, #17-35"),
                                 new ClassTime("3 1300-1400"), new Fee("0"),
                                 new PaymentDate("7/4/20"), getDetailList("clever", "friend")),
-                        getQuestions(), getExams(), new Academic(getAttendanceList(new Attendance("25/12/2020",
+                        getQuestions(), getExams(), new Academic(getAttendance(new Attendance("25/12/2020",
                         "attended", new Feedback("studied through christmas"))))),
             new Student(new Name("Roy Balakrishnan"), new Phone("92624417"),
                         new School("Catholic High School"), new Year(SchoolType.JC, 1),
                         new Admin(new ClassVenue("Blk 45 Aljunied Street 85, #11-31"),
                                 new ClassTime("4 2000-2130"), new Fee("38"),
                                 new PaymentDate("19/12/19"), getDetailList("rude")),
-                        getQuestions(), getExams(sampleExam2, sampleExam3), new Academic(getAttendanceList(
+                        getQuestions(), getExams(sampleExam2, sampleExam3), new Academic(getAttendance(
                         new Attendance("20/04/98", "attended", new Feedback("unprepared")))))
         };
     }
@@ -129,7 +129,7 @@ public class SampleDataUtil {
     /**
      * Returns a {@code Attendance} list containing the list of given attendences.
      */
-    public static List<Attendance> getAttendanceList(Attendance... attendances) {
+    public static List<Attendance> getAttendance(Attendance... attendances) {
         return Arrays.asList(attendances);
     }
 }

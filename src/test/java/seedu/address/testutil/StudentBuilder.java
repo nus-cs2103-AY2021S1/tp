@@ -10,6 +10,9 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.Academic;
+import seedu.address.model.student.academic.Attendance;
+import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.Admin;
@@ -41,7 +44,10 @@ public class StudentBuilder {
     public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
     public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
     public static final String DEFAULT_SOLUTION = "Read your textbook";
-    public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
+    public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year 2020", "26/7/2020",
+            new Score("26/50"));
+    public static final Attendance DEFAULT_ATTENDANCE = new Attendance("13/3/2020", "attended",
+            new Feedback("attentive"));
 
     // Identity fields
     private Name name;
@@ -58,8 +64,9 @@ public class StudentBuilder {
 
     private List<Question> questions = new ArrayList<>();
 
-    //Academic details
+    // Academic details
     private List<Exam> exams = new ArrayList<>();
+    private List<Attendance> attendances = new ArrayList<>();
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -85,6 +92,7 @@ public class StudentBuilder {
                 .forEach(questions::add);
 
         exams = Arrays.asList(DEFAULT_EXAM_MYE);
+        attendances = Arrays.asList(DEFAULT_ATTENDANCE);
     }
 
     /**
@@ -105,6 +113,9 @@ public class StudentBuilder {
 
         questions.addAll(studentToCopy.getQuestions());
         exams.addAll(studentToCopy.getExams());
+
+        Academic studentAcademic = studentToCopy.getAcademic();
+        attendances.addAll(studentAcademic.getAttendance());
     }
 
     /**
@@ -205,12 +216,21 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets some {@code Exam} for the {@code Student} that we are building.
+     */
+    public StudentBuilder withAttendances(Attendance... attendances) {
+        this.attendances = SampleDataUtil.getAttendance(attendances);
+        return this;
+    }
+
+    /**
      * Builds a {@code Student} based on the given information.
      */
     public Student build() {
         return new Student(name, phone, school, year,
                 new Admin(venue, time, fee, paymentDate, details),
-                questions, exams);
+                questions, exams,
+                new Academic(attendances));
     }
 
 }
