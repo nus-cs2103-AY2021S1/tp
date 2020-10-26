@@ -23,7 +23,7 @@ import seedu.address.model.medicalcondition.MedicalCondition;
 
 
 /**
- * Edits the details of an existing animal in the zookeep book.
+ * Replaces the details in the fields of an existing animal in the zookeep book.
  */
 public class ReplaceCommand extends Command {
 
@@ -78,7 +78,7 @@ public class ReplaceCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Animal} with the details of {@code animalToEdit}
+     * Creates and returns an {@code Animal} with the details of {@code animalToEdit}
      * edited with {@code editAnimalDescriptor}.
      */
     private static Animal createEditedAnimal(Animal animalToEdit, EditAnimalDescriptor editAnimalDescriptor) {
@@ -108,9 +108,9 @@ public class ReplaceCommand extends Command {
         }
 
         // state check
-        ReplaceCommand e = (ReplaceCommand) other;
-        return id.equals(e.id)
-                && editAnimalDescriptor.equals(e.editAnimalDescriptor);
+        ReplaceCommand otherReplaceCommand = (ReplaceCommand) other;
+        return id.equals(otherReplaceCommand.id)
+                && editAnimalDescriptor.equals(otherReplaceCommand.editAnimalDescriptor);
     }
 
 }

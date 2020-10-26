@@ -34,8 +34,7 @@ import seedu.address.testutil.AnimalBuilder;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
- * and unit tests for ReplaceCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ReplaceCommand.
  */
 public class ReplaceCommandTest {
 

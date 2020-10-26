@@ -19,7 +19,7 @@ import seedu.address.model.feedtime.FeedTime;
 import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
- * Edits the details of an existing animal in the zookeep book.
+ * Appends additional details to the fields of an existing animal in the zookeep book.
  */
 public class AppendCommand extends Command {
 
@@ -67,7 +67,7 @@ public class AppendCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Animal} with the details of {@code animalToEdit}
+     * Creates and returns an {@code Animal} with the details of {@code animalToEdit}
      * edited with {@code editAnimalDescriptor}.
      */
     private static Animal createEditedAnimal(Animal animalToEdit, EditAnimalDescriptor editAnimalDescriptor) {
@@ -107,9 +107,9 @@ public class AppendCommand extends Command {
         }
 
         // state check
-        AppendCommand e = (AppendCommand) other;
-        return id.equals(e.id)
-                && editAnimalDescriptor.equals(e.editAnimalDescriptor);
+        AppendCommand otherAppendCommand = (AppendCommand) other;
+        return id.equals(otherAppendCommand.id)
+                && editAnimalDescriptor.equals(otherAppendCommand.editAnimalDescriptor);
     }
 
 }

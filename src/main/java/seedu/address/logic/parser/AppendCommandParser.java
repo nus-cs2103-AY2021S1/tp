@@ -18,13 +18,13 @@ import seedu.address.model.feedtime.FeedTime;
 import seedu.address.model.medicalcondition.MedicalCondition;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new AppendCommand object
  */
 public class AppendCommandParser implements Parser<AppendCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AppendCommand
+     * and returns an AppendCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public AppendCommand parse(String args) throws ParseException {

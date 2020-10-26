@@ -99,13 +99,13 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<Animal> getAnimal(Id id) {
-        Animal found = null;
+        Animal animalFound = null;
         for (Animal animal : filteredAnimals) {
             if (animal.getId().equals(id)) {
-                found = animal;
+                animalFound = animal;
             }
         }
-        return Optional.ofNullable(found);
+        return Optional.ofNullable(animalFound);
     }
 
     @Override

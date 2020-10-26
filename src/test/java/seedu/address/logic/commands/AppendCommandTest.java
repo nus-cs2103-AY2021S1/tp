@@ -29,8 +29,7 @@ import seedu.address.testutil.AnimalBuilder;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
 
 /**
- * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
- * and unit tests for AppendCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for AppendCommand.
  */
 public class AppendCommandTest {
     private static final String[] FEED_TIMES = new String[]{"0000", "1230", "0059", "1259"};
