@@ -13,6 +13,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -38,7 +39,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private UiPart<Region> mainListPanel;
-    private StudentRecordListPanel studentRecordListPanel; ///////////////////////////attendance stufffffffffffff
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -55,7 +55,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private AnchorPane statusbarPlaceholder;
 
     @FXML
     private MenuItem studentPage;
@@ -64,7 +64,7 @@ public class MainWindow extends UiPart<Stage> {
     private Menu studentRecordMenu;
 
     @FXML
-    private StackPane sessionListPanelPlaceholder;
+    private AnchorPane sessionListPanelPlaceholder;
 
     /*
     THIS SECTION IS A STUB FOR SESSION LIST - REMOVE WHEN IT IS IMPLEMENTED
@@ -106,7 +106,10 @@ public class MainWindow extends UiPart<Stage> {
         THIS SECTION IS A STUB FOR SESSION LIST - REMOVE WHEN IT IS IMPLEMENTED
          */
         SessionStub newSessionToAdd = new SessionStub("Session 1", logic.getFilteredStudentRecordList());
-        sessionList.add(newSessionToAdd);
+        for (int i = 0; i < 15; i++) {
+            sessionList.add(newSessionToAdd);
+        }
+
         /*
         END OF STUB
          */

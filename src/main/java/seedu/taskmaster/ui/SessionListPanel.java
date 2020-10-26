@@ -4,9 +4,11 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.model.session.StudentRecordList;
@@ -55,15 +57,21 @@ public class SessionListPanel extends UiPart<Region> {
                 setText(null);
              } else {
                 button.setText(session.getName());
-                button.setMinSize(130, 30);
-                button.setMaxSize(130, 30);
+                button.setMinSize(110, 30);
+                button.setMaxSize(110, 30);
+                AnchorPane.setBottomAnchor(button, 10.0);
+                AnchorPane.setLeftAnchor(button, 10.0);
+                AnchorPane.setRightAnchor(button, 10.0);
+                AnchorPane.setTopAnchor(button, 10.0);
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
                         listDisplay.accept(getIndex() + 1);
                     }
                 });
-                setGraphic(button);
+                AnchorPane anchorPane = new AnchorPane();
+                anchorPane.getChildren().add(button);
+                setGraphic(anchorPane);
             }
         }
     }
