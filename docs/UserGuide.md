@@ -164,7 +164,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 </div>
 
 Examples:
-* `append 1307 f/1900` appends a feeding time of 1900 to the animal identified by ID 1307.
+* `append 1307 f/1900` appends a feed time of 1900 to the animal identified by ID 1307.
 * `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
 
 ---
@@ -173,9 +173,9 @@ Examples:
 
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
+An animal can have any number of medical conditions and feed times (including 0).
 </div>
 
 Conditions:
@@ -198,7 +198,7 @@ Keyword matching is case insensitive.
 
 Example:
 * `find Ahmeng Buttercup Coco` finds all animals with the fields (name) containing any of the specified keywords.
-* `find 1200` finds all animals with the field (id or feeding time) containing the specified keyword.
+* `find 1200` finds all animals with the field (id or feed time) containing the specified keyword.
 
 ---
 
@@ -211,7 +211,7 @@ Format: `sort CATEGORY`
 Examples:
 * `sort name` sorts all animals by name in alphabetical order.
 * `sort id` sorts all animals by id in ascending order.
-* `sort feedtime` sorts all animals by feeding time from the earliest to the latest (chronological order).
+* `sort feedtime` sorts all animals by feed time from the earliest to the latest (chronological order).
 
 ---
 
@@ -249,8 +249,8 @@ Example:
        By default, the preferred file name is `zookeepbook.json`.
        There is no need to save manually, though a copy of the current data can be created with the `snap` command.
 
-**Q**: Can I record the feeding times of a specific animal in any order I prefer?<br>
-**A**: The feeding time will be arranged in chronological order regardless of the order entered for easier reference.
+**Q**: Can I record the feed times of a specific animal in any order I prefer?<br>
+**A**: The feed time will be arranged in chronological order regardless of the order entered for easier reference.
 
 **Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
 **A**: The find feature will only list animals with the exact specified keyword provided.
@@ -264,12 +264,12 @@ Action | Format, Examples
 **Exit** | `exit`
 **List** | `list`
 **Clear** | `clear`
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEED TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
-**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…`
-**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…` 
+**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…` 
 **Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
 **Sort** | `sort CATEGORY` <br> e.g. `sort name` 
 **Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
