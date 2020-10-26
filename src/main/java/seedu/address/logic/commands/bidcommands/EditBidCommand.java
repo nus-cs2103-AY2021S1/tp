@@ -30,16 +30,16 @@ public class EditBidCommand extends Command {
     public static final String COMMAND_WORD = "edit-bid";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the bid identified "
-            + "by the index number used in the displayed bid list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PROPERTY_ID + "PROPERTY ID] "
-            + "[" + PREFIX_CLIENT + "BIDDER ID] "
-            + "[" + PREFIX_MONEY + "BID AMOUNT]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "\nby the index number used in the displayed bid list. "
+            + "\nExisting values will be overwritten by the input values.\n"
+            + "\n\nParameters: \nINDEX (positive integer) "
+            + "\n[" + PREFIX_PROPERTY_ID + "PROPERTY ID] "
+            + "\n[" + PREFIX_CLIENT + "BIDDER ID] "
+            + "\n[" + PREFIX_MONEY + "BID AMOUNT]\n"
+            + "\n\nExample: " + COMMAND_WORD + " 1 "
             + PREFIX_CLIENT + "B35";
 
-    public static final String MESSAGE_EDIT_BID_SUCCESS = "Edited Bid: From [%1$s] to [%2$s]";
+    public static final String MESSAGE_EDIT_BID_SUCCESS = "Edited Bid:\n\nFROM: %1$s \n\nTO: %2$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_BID = "This bid already exists in the address book.";
 
@@ -47,8 +47,8 @@ public class EditBidCommand extends Command {
     private final EditBidDescriptor editBidDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editBidDescriptor details to edit the person with
+     * @param index of the person in the filtered bid list to edit
+     * @param editBidDescriptor details to edit the bid with
      */
     public EditBidCommand(Index index, EditBidDescriptor editBidDescriptor) {
         requireNonNull(index);

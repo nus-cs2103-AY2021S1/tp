@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.meeting.Meeting;
@@ -118,17 +119,30 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
     /** Returns the BidBook */
     ReadOnlyBidBook getBidBook();
 
+    /** Returns the filtered version of BidBook */
     ObservableList<Bid> getFilteredBidList();
 
+    /**
+     * updates the Bid book with the new predicate
+     * @param predicate predicate useed to determine what is filtered
+     */
     void updateFilteredBidList(Predicate<Bid> predicate);
 
-    void addBid(Bid bid);
+    /**
+     * adds a bid to the BidBook
+     * @param bid to add to the BidBook
+     */
+    void addBid(Bid bid) throws CommandException;
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasBid(Bid bid);
 
+    /**
+     * deleted a bid from the BidBook
+     * @param target
+     */
     void deleteBid(Bid target);
 
     /**
@@ -189,5 +203,7 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedMeetingList(Comparator<Meeting> comparator);
+
+    //=========== MeetingManager ================================================================================
 
 }

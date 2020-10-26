@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -17,7 +19,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.bid.BidListPanel;
 import seedu.address.ui.meeting.MeetingListPanel;
 
 /**
@@ -32,9 +33,10 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private BidListPanel bidListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CalendarView calendarView = new CalendarView(this::executeCommand);
+
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -53,6 +55,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane calendarListPanePlaceholder;
+
+    @FXML
+    private StackPane calendar;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -128,6 +133,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        calendar.getChildren().add(calendarView.getRoot());
     }
 
     /**
@@ -177,6 +184,17 @@ public class MainWindow extends UiPart<Stage> {
         personAndBidTabPanePlaceholder.getChildren().add(personAndJobTabPane.getRoot());
     }
 
+    @FXML
+    private void setCalendarNavigation(String direction) throws CommandException {
+        if (direction.equals("next")) {
+            calendarView.handToNext();
+        } else if (direction.equals("prev")) {
+            calendarView.handleToPrev();
+        } else {
+            throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
+        }
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -185,9 +203,15 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             setAutoTab(commandResult.getEntityType());
+
+            if (commandResult.isUiComponent()) {
+                setCalendarNavigation(commandText);
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

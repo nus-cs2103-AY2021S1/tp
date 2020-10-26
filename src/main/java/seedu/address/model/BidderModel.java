@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 
@@ -57,6 +58,13 @@ public interface BidderModel {
 
     /** Returns an unmodifiable view of the filtered bidder list */
     ObservableList<Bidder> getFilteredBidderList();
+
+    /**
+     * checks the list of bidders to see if the specific bidderId is in the list
+     * @param bidderId the id to look for
+     * @return
+     */
+    boolean containsBidderId(BidderId bidderId);
 
     /**
      * Updates the filter of the filtered bidder list to filter by the given {@code predicate}.

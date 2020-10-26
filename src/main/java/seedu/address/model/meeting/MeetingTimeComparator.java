@@ -5,6 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.Date;
 
+/**
+ * Compares meetings based on time and sorts them chronologically.
+ */
 public class MeetingTimeComparator extends MeetingComparator implements Comparator<Meeting> {
 
     public static final String SORT_CRITERIA = "time";

@@ -11,6 +11,7 @@ import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.bid.Bid;
+import seedu.address.model.bid.BidComparator;
 
 public class AddBidCommand extends Command {
 
@@ -20,15 +21,23 @@ public class AddBidCommand extends Command {
 
     public static final String MESSAGE_DUPLICATE_BID = "This bid already exists in the bid book";
 
+    public static final String MESSAGE_INVALID_PROPERTY_ID = "This bid is invalid as the property Id does not exist";
+
+    public static final String MESSAGE_INVALID_BIDDER_ID = "This bid is invalid as the bidder Id does not exist";
+
+    public static final String MESSAGE_INVALID_BID_AMOUNT = "This bid is invalid as the bid amount is invalid ";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a bid to the bid book. "
-            + "Parameters: "
-            + PREFIX_PROPERTY_ID + "PROPERTY ID "
-            + PREFIX_CLIENT + "CLIENT "
-            + PREFIX_MONEY + "MONEY "
-            + "Example: " + COMMAND_WORD + " "
+            + "\n\nParameters: "
+            + "\n" + PREFIX_PROPERTY_ID + "PROPERTY ID "
+            + "\n" + PREFIX_CLIENT + "CLIENT "
+            + "\n" + PREFIX_MONEY + "MONEY "
+            + "\n\nExample: " + COMMAND_WORD + " "
             + PREFIX_PROPERTY_ID + "P12 "
             + PREFIX_CLIENT + "B24 "
             + PREFIX_MONEY + "500000";
+
+    private static final BidComparator bidComparator = new BidComparator();
 
     private final Bid bid;
 
@@ -48,7 +57,6 @@ public class AddBidCommand extends Command {
         if (model.hasBid(bid)) {
             throw new CommandException(MESSAGE_DUPLICATE_BID);
         }
-
         model.addBid(bid);
         return new CommandResult(String.format(MESSAGE_SUCCESS, bid)).setEntity(EntityType.BID);
 
