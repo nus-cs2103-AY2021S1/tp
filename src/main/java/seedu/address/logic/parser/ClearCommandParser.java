@@ -27,7 +27,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
 
         boolean ifNoCategory = !arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
         if (ifNoCategory) {
-            boolean areInvalidArgs = !argMultimap.getPreamble().isEmpty();
+            boolean areInvalidArgs = !argMultimap.isPreambleEmpty();
 
             if (areInvalidArgs) {
                 throw new ParseException(

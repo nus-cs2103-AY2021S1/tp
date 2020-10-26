@@ -25,7 +25,9 @@ public class DeleteCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the Entry identified by the index number used in the displayed entry list.\n"
             + "Parameters: INDEX (must be a positive integer) c/CATEGORY\n"
-            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CATEGORY + "revenue";
+            + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CATEGORY + "CATEGORY";
+
+    public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY";
 
     public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: [%1$s]";
 
