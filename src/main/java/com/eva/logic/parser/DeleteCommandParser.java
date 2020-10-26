@@ -11,6 +11,7 @@ import java.util.Optional;
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.Command;
+import com.eva.logic.commands.DeleteApplicantCommand;
 import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.parser.comment.DeleteCommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
@@ -55,6 +56,10 @@ public class DeleteCommandParser implements Parser<Command> {
             return new DeleteLeaveCommandParser()
                     .parse(" " + index.getOneBased()
                             + " " + deleteLeaveCommand.get());
+        } else if (!deleteApplicantCommand.isEmpty()) {
+            return new DeleteApplicantCommandParser()
+                    .parse(" " + index.getOneBased()
+                        + " " + deleteApplicantCommand.get());
         } else {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));

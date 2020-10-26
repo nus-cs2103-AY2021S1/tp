@@ -322,9 +322,39 @@ Format: `edit INDEX s- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
 
 *Fields: Comments*
 
-Format: `edit INDEX s- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCROPTION`
+Format: `edit INDEX s- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIPTION`
 
-##### 3.7.1.3 Edit 
+#### 3.7.2 Edit an applicant
+
+Edits specified fields of applicant
+
+##### 3.7.1.1 Edit general information of staff : `edit INDEX a-`
+
+*Fields: Name, Address, Email, Phone, Tag*
+
+ - Can edit the name, phone number, email, address and tag of a applicant
+ - Must change at least one field of a applicant
+
+Format: `edit INDEX a- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
+
+##### 3.7.1.2 Edit comment of an applicant: `edit INDEX a- c/`
+
+ - Can edit descriptions of specific comments
+ - Comment to be changed is identified by title and date
+
+*Fields: Comments*
+
+Format: `edit INDEX a- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIPTION`
+
+##### 3.7.1.3 Edit Interview Date of an applicant: `edit INDEX a- id/`
+
+ - Can edit interview date of an applicant
+ 
+*Fields: Interview Date*
+ 
+Format: `edit INDEX a- id/ d/NEW_DATE_OF_INTERVIEW`
+
+#####
 
 
 ### 3.7. Archiving data files `[coming in v2.0]`
