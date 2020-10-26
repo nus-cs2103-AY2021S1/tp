@@ -20,7 +20,7 @@ public class AddAttendanceCommand extends AttendanceCommand {
 
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = "";
-    public static final String MESSAGE_SUCCESS = "Attendance updated for %s: %s";
+    public static final String MESSAGE_SUCCESS = "Attendance added for %s: %s";
 
     private static Logger logger = Logger.getLogger("Add Attendance Log");
 
@@ -65,5 +65,19 @@ public class AddAttendanceCommand extends AttendanceCommand {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
         return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), attendanceToAdd));
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof AddAttendanceCommand)) {
+            return false;
+        }
+
+        AddAttendanceCommand other = (AddAttendanceCommand) obj;
+        return index.equals(other.index) && attendanceToAdd.equals(other.attendanceToAdd);
     }
 }
