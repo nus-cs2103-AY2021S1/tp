@@ -55,6 +55,10 @@ public class DeleteCommandParser implements Parser<Command> {
             return new DeleteLeaveCommandParser()
                     .parse(" " + index.getOneBased()
                             + " " + deleteLeaveCommand.get());
+        } else if (!deleteApplicantCommand.isEmpty()) {
+            return new DeleteApplicantCommandParser()
+                    .parse(" " + index.getOneBased()
+                        + " " + deleteApplicantCommand.get());
         } else {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
