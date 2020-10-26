@@ -2,6 +2,7 @@ package chopchop;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.function.Supplier;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -13,6 +14,7 @@ import chopchop.commons.util.ConfigUtil;
 import chopchop.commons.util.StringUtil;
 import chopchop.logic.Logic;
 import chopchop.logic.LogicManager;
+import chopchop.model.Entry;
 import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
@@ -38,6 +40,7 @@ import chopchop.storage.UserPrefsStorage;
 import chopchop.ui.Ui;
 import chopchop.ui.UiManager;
 import javafx.application.Application;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 
 /**
@@ -60,27 +63,99 @@ public class MainApp extends Application {
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
-        config = initConfig(appParameters.getConfigPath());
-
-        UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
-        UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        RecipeBookStorage recipeBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
-        IngredientBookStorage ingredientBookStorage =
-                new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
-        JsonRecipeUsageStorage recipeUsageStorage = new JsonRecipeUsageStorage(userPrefs.getRecipeUsageFilePath());
-        JsonIngredientUsageStorage ingredientUsageStorage =
-            new JsonIngredientUsageStorage(userPrefs.getIngredientUsageFilePath());
-        storage = new StorageManager(recipeBookStorage, ingredientBookStorage, recipeUsageStorage,
-            ingredientUsageStorage, userPrefsStorage);
-
+        this.config = initConfig(appParameters.getConfigPath());
         initLogging(config);
 
-        model = initModelManager(storage, userPrefs);
+        var userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+        var userPrefs = initPrefs(userPrefsStorage);
 
-        logic = new LogicManager(model, storage);
+        var recipeBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
+        var ingredientBookStorage = new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
 
-        ui = new UiManager(logic);
+
+        this.storage = new StorageManager(recipeBookStorage, ingredientBookStorage, userPrefsStorage);
+        this.model = new ModelManager(new EntryBook<>(), new EntryBook<>(), userPrefs);
+        this.logic = new LogicManager(this.model, this.storage);
+        this.ui = new UiManager(this.logic);
     }
+
+
+
+// <<<<<<< HEAD
+//         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
+//         UserPrefs userPrefs = initPrefs(userPrefsStorage);
+//         RecipeBookStorage recipeBookStorage = new JsonRecipeBookStorage(userPrefs.getRecipeBookFilePath());
+//         IngredientBookStorage ingredientBookStorage =
+//                 new JsonIngredientBookStorage(userPrefs.getIngredientBookFilePath());
+//         JsonRecipeUsageStorage recipeUsageStorage = new JsonRecipeUsageStorage(userPrefs.getRecipeUsageFilePath());
+//         JsonIngredientUsageStorage ingredientUsageStorage =
+//             new JsonIngredientUsageStorage(userPrefs.getIngredientUsageFilePath());
+//         storage = new StorageManager(recipeBookStorage, ingredientBookStorage, recipeUsageStorage,
+//             ingredientUsageStorage, userPrefsStorage);
+// =======
+// >>>>>>> 508da5ca... Fix #162, displaying both command output and a modal alert box
+
+
+    private void loadEntries() {
+
+        // now that the UI is up, we can load the actual data. this is so there is a way to display
+        // loading errors to the user.
+        this.model.setRecipeBook(this.loadEntryBook("recipe",
+            this.storage::readRecipeBook,
+            SampleDataUtil::getSampleRecipeBook,
+            this.storage.getRecipeBookFilePath()
+        ));
+
+        this.model.setIngredientBook(this.loadEntryBook("ingredient",
+            this.storage::readIngredientBook,
+            SampleDataUtil::getSampleIngredientBook,
+            this.storage.getIngredientBookFilePath()
+        ));
+    }
+
+    /**
+     * Populates the model with the recipe book loaded from disk. If the json was not found, then
+     * sample data is loaded; if the json was invalid, then no data is loaded.
+     */
+    private <T extends Entry> ReadOnlyEntryBook<T> loadEntryBook(String entryKind,
+        EntryBookSupplier<T> loader, Supplier<ReadOnlyEntryBook<T>> sampleData, Path path) {
+
+        try {
+
+            var opt = loader.get();
+            if (opt.isEmpty()) {
+
+                logger.info(String.format("Data file for %s book not found; starting with sample recipes",
+                    entryKind.toLowerCase()));
+
+                this.ui.showCommandOutput(
+                    String.format("Could not find existing %ss, loading sample data", entryKind),
+                    /* isError: */ false
+                );
+
+                return sampleData.get();
+            } else {
+                return opt.get();
+            }
+
+        } catch (DataConversionException e) {
+            logger.severe(String.format("Data file for %s book was invalid; starting with an empty book",
+                entryKind));
+
+            this.ui.showCommandOutput(
+                String.format("Existing %ss were corrupted; starting with empty data.", entryKind),
+                /* isError: */ true
+            );
+
+            this.ui.displayModalDialog(AlertType.ERROR, "Data Loading Error",
+                String.format("Failed to load %ss (from '%s')", entryKind, path),
+                String.format("Note that making any changes here will overwrite any existing %ss", entryKind));
+            return new EntryBook<T>();
+        }
+    }
+
+
+
 
     /**
      * Returns a {@code ModelManager} with the data from {@code storage}'s ingredient and recipe book and
@@ -244,6 +319,9 @@ public class MainApp extends Application {
         logger.info("Starting ChopChop " + MainApp.VERSION);
         primaryStage.setResizable(false);
         ui.start(primaryStage);
+
+        // we can only load entries after the UI starts!!!!
+        this.loadEntries();
     }
 
     @Override
@@ -254,5 +332,14 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+    }
+
+
+
+
+    // dumb stuff.
+    @FunctionalInterface
+    private static interface EntryBookSupplier<T extends Entry> {
+        Optional<ReadOnlyEntryBook<T>> get() throws DataConversionException;
     }
 }
