@@ -208,7 +208,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return reeve.equals(other.reeve)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStudents.equals(other.filteredStudents);
+                && filteredStudents.equals(other.filteredStudents)
+                && notebook.equals(other.notebook);
     }
 
 }
