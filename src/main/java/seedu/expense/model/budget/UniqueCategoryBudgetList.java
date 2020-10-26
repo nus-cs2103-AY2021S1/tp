@@ -6,9 +6,11 @@ import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.expense.model.budget.exceptions.DuplicateCategoryBudgetException;
 import seedu.expense.model.expense.Amount;
 
@@ -31,6 +33,8 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     private final ObservableList<CategoryBudget> internalList = FXCollections.observableArrayList();
     private final ObservableList<CategoryBudget> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
+    private final FilteredList<CategoryBudget> filteredList =
+        new FilteredList<>(asUnmodifiableObservableList());
 
     /**
      * Returns true if the list contains an equivalent category-budget as the given argument.
@@ -66,6 +70,16 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
         return sum;
     }
 
+    /**
+     * Calculates the sum of the budgets in the category-budgets list that matches {@code predicate}.
+     * @return sum of filtered budgets.
+     */
+    public double tallyAmounts(Predicate<CategoryBudget> predicate) {
+        return filteredList.stream()
+            .map(budget -> budget.getAmount().asDouble())
+            .reduce(0.0, (partialSum, amount) -> partialSum + amount);
+    }
+
     public void setBudgets(UniqueCategoryBudgetList replacement) {
         requireNonNull(replacement);
 
@@ -76,6 +90,17 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     public void setBudgets(List<CategoryBudget> budgets) {
         requireAllNonNull(budgets);
         internalList.setAll(budgets);
+        setFilteredBudgets(budgets);
+    }
+
+    public void setFilteredBudgets(List<CategoryBudget> budgets) {
+        requireAllNonNull(budgets);
+        filteredList.setAll(budgets);
+    }
+
+    public void filterCategoryBudget(Predicate<CategoryBudget> predicate) {
+        requireNonNull(predicate);
+        filteredList.setPredicate(predicate);
     }
 
     public List<CategoryBudget> getCategoryBudgets() {
@@ -87,6 +112,10 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
      */
     public ObservableList<CategoryBudget> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public FilteredList<CategoryBudget> getFilteredList() {
+        return filteredList;
     }
 
     public CategoryBudget getDefaultCategory() {
@@ -105,7 +134,7 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     @Override
     public Iterator<CategoryBudget> iterator() {
-        return internalList.iterator();
+        return filteredList.iterator();
     }
 
     @Override
