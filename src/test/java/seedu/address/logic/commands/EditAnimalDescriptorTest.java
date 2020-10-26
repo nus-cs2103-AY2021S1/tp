@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
 
 public class EditAnimalDescriptorTest {

@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SPECIES;
 import java.util.Set;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
+import seedu.address.logic.commands.EditAnimalDescriptor;
 import seedu.address.model.animal.Animal;
 import seedu.address.model.medicalcondition.MedicalCondition;
 

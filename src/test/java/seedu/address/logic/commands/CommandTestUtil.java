@@ -58,8 +58,8 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditAnimalDescriptor DESC_ARCHIE;
-    public static final EditCommand.EditAnimalDescriptor DESC_BAILEY;
+    public static final EditAnimalDescriptor DESC_ARCHIE;
+    public static final EditAnimalDescriptor DESC_BAILEY;
 
     static {
         DESC_ARCHIE = new EditAnimalDescriptorBuilder().withName(VALID_NAME_ARCHIE)

@@ -22,29 +22,28 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_SPECIES_BAILEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEDICAL_CONDITION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ANIMAL;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ANIMAL;
+import static seedu.address.testutil.TypicalAnimals.AHMENG;
+import static seedu.address.testutil.TypicalAnimals.BUTTERCUP;
+import static seedu.address.testutil.TypicalAnimals.COCO;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
+import seedu.address.logic.commands.EditAnimalDescriptor;
+import seedu.address.logic.commands.ReplaceCommand;
 import seedu.address.model.animal.Id;
 import seedu.address.model.animal.Name;
 import seedu.address.model.animal.Species;
 import seedu.address.model.medicalcondition.MedicalCondition;
 import seedu.address.testutil.EditAnimalDescriptorBuilder;
 
-public class EditCommandParserTest {
+public class ReplaceCommandParserTest {
 
     private static final String MEDICAL_CONDITION_EMPTY = " " + PREFIX_MEDICAL_CONDITION;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReplaceCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private ReplaceCommandParser parser = new ReplaceCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -52,7 +51,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, VALID_NAME_ARCHIE, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "123", ReplaceCommand.MESSAGE_NOT_REPLACED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
@@ -75,56 +74,56 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS); // invalid id
-        assertParseFailure(parser, "1" + INVALID_SPECIES_DESC, Species.MESSAGE_CONSTRAINTS); // invalid address
-        assertParseFailure(parser, "1" + INVALID_MEDICAL_CONDITION_DESC,
+        assertParseFailure(parser, "123" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "123" + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS); // invalid id
+        assertParseFailure(parser, "123" + INVALID_SPECIES_DESC, Species.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "123" + INVALID_MEDICAL_CONDITION_DESC,
                 MedicalCondition.MESSAGE_CONSTRAINTS); // invalid medicalCondition
 
         // invalid id followed by valid species
-        assertParseFailure(parser, "1" + INVALID_ID_DESC + SPECIES_DESC_ARCHIE, Id.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "123" + INVALID_ID_DESC + SPECIES_DESC_ARCHIE, Id.MESSAGE_CONSTRAINTS);
 
         // valid id followed by invalid id. The test case for invalid id followed by valid id
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + ID_DESC_BAILEY + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "123" + ID_DESC_BAILEY + INVALID_ID_DESC, Id.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_MEDICAL_CONDITION} alone will reset the
         // medicalConditions of the {@code Animal} being edited,
         // parsing it together with a valid medicalCondition results in error
-        assertParseFailure(parser, "1" + MEDICAL_CONDITION_DESC_OBESE + MEDICAL_CONDITION_DESC_ARTHRITIS
+        assertParseFailure(parser, "123" + MEDICAL_CONDITION_DESC_OBESE + MEDICAL_CONDITION_DESC_ARTHRITIS
                 + MEDICAL_CONDITION_EMPTY, MedicalCondition.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MEDICAL_CONDITION_DESC_OBESE
+        assertParseFailure(parser, "123" + MEDICAL_CONDITION_DESC_OBESE
                 + MEDICAL_CONDITION_EMPTY + MEDICAL_CONDITION_DESC_ARTHRITIS, MedicalCondition.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MEDICAL_CONDITION_EMPTY + MEDICAL_CONDITION_DESC_OBESE
+        assertParseFailure(parser, "123" + MEDICAL_CONDITION_EMPTY + MEDICAL_CONDITION_DESC_OBESE
                 + MEDICAL_CONDITION_DESC_ARTHRITIS, MedicalCondition.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_SPECIES_DESC + VALID_ID_ARCHIE,
+        assertParseFailure(parser, "123" + INVALID_NAME_DESC + INVALID_SPECIES_DESC + VALID_ID_ARCHIE,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_ANIMAL;
-        String userInput = targetIndex.getOneBased() + ID_DESC_BAILEY + MEDICAL_CONDITION_DESC_ARTHRITIS
+        Id targetId = BUTTERCUP.getId();
+        String userInput = targetId.value + ID_DESC_BAILEY + MEDICAL_CONDITION_DESC_ARTHRITIS
                 + SPECIES_DESC_ARCHIE + NAME_DESC_ARCHIE + MEDICAL_CONDITION_DESC_OBESE;
 
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_ARCHIE)
                 .withId(VALID_ID_BAILEY).withSpecies(VALID_SPECIES_ARCHIE)
                 .withMedicalConditions(VALID_MEDICAL_CONDITION_ARTHRITIS, VALID_MEDICAL_CONDITION_OBESE).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ReplaceCommand expectedCommand = new ReplaceCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_ANIMAL;
-        String userInput = targetIndex.getOneBased() + ID_DESC_BAILEY + SPECIES_DESC_ARCHIE;
+        Id targetId = AHMENG.getId();
+        String userInput = targetId.value + ID_DESC_BAILEY + SPECIES_DESC_ARCHIE;
 
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withId(VALID_ID_BAILEY)
                 .withSpecies(VALID_SPECIES_ARCHIE).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ReplaceCommand expectedCommand = new ReplaceCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -132,35 +131,35 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_ANIMAL;
-        String userInput = targetIndex.getOneBased() + NAME_DESC_ARCHIE;
+        Id targetId = COCO.getId();
+        String userInput = targetId.value + NAME_DESC_ARCHIE;
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_ARCHIE).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ReplaceCommand expectedCommand = new ReplaceCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // id
-        userInput = targetIndex.getOneBased() + ID_DESC_ARCHIE;
+        userInput = targetId.value + ID_DESC_ARCHIE;
         descriptor = new EditAnimalDescriptorBuilder().withId(VALID_ID_ARCHIE).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new ReplaceCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // species
-        userInput = targetIndex.getOneBased() + SPECIES_DESC_ARCHIE;
+        userInput = targetId.value + SPECIES_DESC_ARCHIE;
         descriptor = new EditAnimalDescriptorBuilder().withSpecies(VALID_SPECIES_ARCHIE).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new ReplaceCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // medicalConditions
-        userInput = targetIndex.getOneBased() + MEDICAL_CONDITION_DESC_OBESE;
+        userInput = targetId.value + MEDICAL_CONDITION_DESC_OBESE;
         descriptor = new EditAnimalDescriptorBuilder().withMedicalConditions(VALID_MEDICAL_CONDITION_OBESE).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new ReplaceCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_ANIMAL;
-        String userInput = targetIndex.getOneBased() + ID_DESC_ARCHIE + SPECIES_DESC_ARCHIE
+        Id targetId = AHMENG.getId();
+        String userInput = targetId.value + ID_DESC_ARCHIE + SPECIES_DESC_ARCHIE
                 + MEDICAL_CONDITION_DESC_OBESE + ID_DESC_ARCHIE + SPECIES_DESC_ARCHIE + MEDICAL_CONDITION_DESC_OBESE
                 + ID_DESC_BAILEY + SPECIES_DESC_BAILEY + MEDICAL_CONDITION_DESC_ARTHRITIS;
 
@@ -168,7 +167,7 @@ public class EditCommandParserTest {
                 .withSpecies(VALID_SPECIES_BAILEY).withMedicalConditions(VALID_MEDICAL_CONDITION_OBESE,
                         VALID_MEDICAL_CONDITION_ARTHRITIS)
                 .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ReplaceCommand expectedCommand = new ReplaceCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -176,28 +175,28 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_ANIMAL;
-        String userInput = targetIndex.getOneBased() + INVALID_ID_DESC + ID_DESC_BAILEY;
+        Id targetId = AHMENG.getId();
+        String userInput = targetId.value + INVALID_ID_DESC + ID_DESC_BAILEY;
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withId(VALID_ID_BAILEY).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ReplaceCommand expectedCommand = new ReplaceCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + INVALID_ID_DESC + SPECIES_DESC_BAILEY
+        userInput = targetId.value + INVALID_ID_DESC + SPECIES_DESC_BAILEY
                 + ID_DESC_BAILEY;
         descriptor = new EditAnimalDescriptorBuilder().withId(VALID_ID_BAILEY)
                 .withSpecies(VALID_SPECIES_BAILEY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
+        expectedCommand = new ReplaceCommand(targetId, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_resetMedicalConditions_success() {
-        Index targetIndex = INDEX_THIRD_ANIMAL;
-        String userInput = targetIndex.getOneBased() + MEDICAL_CONDITION_EMPTY;
+        Id targetId = COCO.getId();
+        String userInput = targetId.value + MEDICAL_CONDITION_EMPTY;
 
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withMedicalConditions().build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
+        ReplaceCommand expectedCommand = new ReplaceCommand(targetId, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

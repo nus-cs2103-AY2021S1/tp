@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
+import static seedu.address.testutil.TypicalAnimals.AHMENG;
 
 import java.util.Arrays;
 import java.util.List;
@@ -16,12 +16,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditAnimalDescriptor;
+import seedu.address.logic.commands.EditAnimalDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ReplaceCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -61,9 +61,9 @@ public class ZooKeepBookParserTest {
     public void parseCommand_edit() throws Exception {
         Animal animal = new AnimalBuilder().build();
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder(animal).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_ANIMAL.getOneBased() + " " + AnimalUtil.getEditAnimalDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_ANIMAL, descriptor), command);
+        ReplaceCommand command = (ReplaceCommand) parser.parseCommand(ReplaceCommand.COMMAND_WORD + " "
+                + AHMENG.getId().value + " " + AnimalUtil.getEditAnimalDescriptorDetails(descriptor));
+        assertEquals(new ReplaceCommand(AHMENG.getId(), descriptor), command);
     }
 
     @Test

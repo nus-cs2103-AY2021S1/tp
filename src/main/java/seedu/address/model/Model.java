@@ -1,12 +1,15 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.AnimalComparator;
+import seedu.address.model.animal.Id;
+
 
 /**
  * The API of the Model component.
@@ -57,6 +60,11 @@ public interface Model {
      * Returns true if an animal with the same identity as {@code animal} exists in the zookeep book.
      */
     boolean hasAnimal(Animal animal);
+
+    /**
+     * Returns optional of animal with the same ID as the given ID
+     */
+    Optional<Animal> getAnimal(Id id);
 
     /**
      * Deletes the given animal.

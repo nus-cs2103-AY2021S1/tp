@@ -70,11 +70,33 @@ public class AnimalBuilder {
     }
 
     /**
+     * Parses the {@code medicalConditions} into a {@code Set<MedicalCondition>} and
+     * appends it to the {@code Animal} that we are building.
+     */
+    public AnimalBuilder withAppendedMedicalConditions(String ... medicalConditions) {
+        Set<MedicalCondition> appendedMedicalConditions = SampleDataUtil.getMedicalConditionSet(medicalConditions);
+        this.medicalConditions.addAll(appendedMedicalConditions);
+        return this;
+    }
+
+    /**
      * Parses the {@code feedTimes} into a {@code Set<FeedTime>} and
      * set it to the {@code Animal} that we are building.
      */
     public AnimalBuilder withFeedTimes(String ... feedTimes) {
         this.feedTimes = SampleDataUtil.getFeedTimeSet(feedTimes);
+        return this;
+    }
+
+    /**
+     * Parses the {@code feedTimes} into a {@code Set<FeedTime>} and
+     * appends it to the {@code Animal} that we are building.
+     */
+    public AnimalBuilder withAppendedFeedTimes(String ... feedTimes) {
+        Set<FeedTime> combinedFeedTimes = new TreeSet<>(new FeedTimeComparator());
+        combinedFeedTimes.addAll(this.feedTimes);
+        combinedFeedTimes.addAll(SampleDataUtil.getFeedTimeSet(feedTimes));
+        this.feedTimes = combinedFeedTimes;
         return this;
     }
 

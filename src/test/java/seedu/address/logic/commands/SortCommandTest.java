@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -21,6 +22,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.ReadOnlyZooKeepBook;
 import seedu.address.model.animal.Animal;
 import seedu.address.model.animal.AnimalComparator;
+import seedu.address.model.animal.Id;
 import seedu.address.testutil.AnimalBuilder;
 
 class SortCommandTest {
@@ -163,6 +165,11 @@ class SortCommandTest {
 
         @Override
         public boolean hasAnimal(Animal animal) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Optional<Animal> getAnimal(Id id) {
             throw new AssertionError("This method should not be called.");
         }
 
