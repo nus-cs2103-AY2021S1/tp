@@ -16,8 +16,47 @@ import seedu.address.commons.core.LogsCenter;
 public class HelpWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t12-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
+    public static final String HELP_MESSAGE = "The following is the set of commands you can use:\n"
+            + " ____________________________________________________________________ \n"
+            + "|  [Command] |                   [Format]                            |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    help    | help                                                  |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    event   | event title:TITLE [desc:DESCRIPTION] date:DATE        |\n"
+            + "|            | from:TIME to:TIME tag:MODULE_CODE                     |\n"
+            + "|            | e.g. event title:meeting date:23-10-2020 from:20:00   |\n"
+            + "|            | to:22:00 tag:CS2103T                                  |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|  deadline  | deadline title:TITLE [desc:DESCRIPTION]               |\n"
+            + "|            | [datetime:DATETIME] tag:MODULE_CODE                   |\n"
+            + "|            | e.g. deadline title:Assignment2 datetime:23-10-2020   |\n"
+            + "|            | 18:00 tag:CS2103T                                     |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|   lesson   | lesson title:TITLE tag:MODULE_CODE                    |\n"
+            + "|            | [desc:DESCRIPTION] day:DAY from:TIME to:TIME          |\n"
+            + "|            | start:DATE end:DATE                                   |\n"
+            + "|            | e.g. lesson title:CS2103T tag:CS2103T desc: truly fun |\n"
+            + "|            | day:Mon from:12:00 to:14:00 start:01-01-2020          |\n"
+            + "|            | end:01-05-2020                                        |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|   delete   | delete INDEX...                                       |\n"
+            + "|            | e.g. delete 3, delete 3, 4, 5                         |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    done    | done INDEX:TIME_TAKEN...                              |\n"
+            + "|            | e.g. done 1:20, done 1:20 2:60 3:120                  |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    find    | find ATTRIBUTE:SEARCH_PHRASE ...                      |\n"
+            + "|            | e.g.find title:dinner type:deadline date:02-02-2020   |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    edit    | edit INDEX [title:TITLE] [date:DATE]                  |\n"
+            + "|            | [desc:DESCRIPTION] [type:TYPE] [tag:MODULE_CODE]      |\n"
+            + "|            | e.g. edit 1 date:02-02-2020 12:00 tag:CS2101          |\n"
+            + "|--------------------------------------------------------------------|\n"
+            + "|    exit    | exit                                                  |\n"
+            + " -------------------------------------------------------------------- \n";
+
+    public static final String URL_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -27,6 +66,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private Label urlMessage;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +77,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        urlMessage.setText(URL_MESSAGE);
     }
 
     /**
