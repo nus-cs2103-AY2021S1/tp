@@ -14,9 +14,10 @@ public class SortCommandParser implements Parser<SortCommand> {
     public static final String NAME_CATEGORY = "name";
     public static final String ID_CATEGORY = "id";
     public static final String FEEDTIME_CATEGORY = "feedtime";
+    public static final String MEDICAL_CATEGORY = "medical";
 
     public static final String MESSAGE_INVALID_SORT_CATEGORY = "Please key in a proper sort category: "
-            + "name, id or feedtime";
+            + "name, id, feedtime or medical";
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
@@ -41,6 +42,9 @@ public class SortCommandParser implements Parser<SortCommand> {
             break;
         case FEEDTIME_CATEGORY:
             animalComparator = AnimalComparator.createAnimalFeedTimeComparator();
+            break;
+        case MEDICAL_CATEGORY:
+            animalComparator = AnimalComparator.createAnimalMedicalComparator();
             break;
         default:
             throw new ParseException(
