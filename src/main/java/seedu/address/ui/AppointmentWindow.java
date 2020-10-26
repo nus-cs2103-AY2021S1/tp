@@ -19,6 +19,7 @@ public class AppointmentWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
     private final ObservableList<AppointmentDescription> appointmentDescriptions = FXCollections.observableArrayList();
+    private boolean sortByEarliestPolicy = true;
 
     @FXML
     private TableView<AppointmentDescription> appointmentTable;
@@ -49,6 +50,18 @@ public class AppointmentWindow extends UiPart<Stage> {
      */
     public AppointmentWindow(Stage root) {
         super(FXML, root);
+        appointmentTable.sortPolicyProperty().set(table -> {
+            Comparator<AppointmentDescription> comparator;
+            if (sortByEarliestPolicy) {
+                comparator = (a1, a2) -> a2.getLocalDateTime().compareTo(a1.getLocalDateTime());
+                sortByEarliestPolicy = false;
+            } else {
+                sortByEarliestPolicy = true;
+                comparator = Comparator.comparing(AppointmentDescription::getLocalDateTime);
+            }
+            FXCollections.sort(table.getItems(), comparator);
+            return true;
+        });
         appointmentTable.setItems(appointmentDescriptions);
     }
 
@@ -70,7 +83,7 @@ public class AppointmentWindow extends UiPart<Stage> {
                 .forEach(allergy -> patientAllergies.getChildren().add(new Label(allergy.allergyName)));
 
         patient.getAppointments().forEach(appointment -> appointmentDescriptions.add(
-                new AppointmentDescription(appointment.getAppointmentTimeString(), appointment
+                new AppointmentDescription(appointment.getAppointmentTime(), appointment
                         .getAppointmentDescription())));
     }
 
@@ -81,24 +94,25 @@ public class AppointmentWindow extends UiPart<Stage> {
         logger.fine("Showing appointment of patient");
         getRoot().show();
         getRoot().centerOnScreen();
+        appointmentTable.sort();
     }
 
     /**
-     * Returns true if the help window is currently being shown.
+     * Returns true if Appointment window is showing.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides the help window.
+     * Hides the Appointment window.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Focuses on the help window.
+     * Focuses on the Appointment window.
      */
     public void focus() {
         getRoot().requestFocus();

@@ -72,10 +72,13 @@ public class Appointment {
 
     /**
      * Returns appointment time in a formatted string.
+     *
+     * @param localDateTime
+     * @return date and time formatted to stipulated format.
      */
-    public String getAppointmentTimeString() {
+    public static String getAppointmentTimeString(LocalDateTime localDateTime) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy HH:mm");
-        return time.format(formatter);
+        return localDateTime.format(formatter);
     }
 
     /**
@@ -93,7 +96,7 @@ public class Appointment {
     }
 
     /**
-     * Returns true if appointment time is ahead of the current local time.
+     * Returns true if appointment time is past the current local time.
      *
      * @param givenTime current local time.
      */

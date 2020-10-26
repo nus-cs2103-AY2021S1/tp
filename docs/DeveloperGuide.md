@@ -9,7 +9,7 @@ title: Developer Guide
 
 ## **Introduction**
 
-Hello, fellow developers.
+Hello, fellow developers!
 
 Welcome to **Hospify**, a desktop application for a digital medical record management solution. In this developer guide, you will learn more about how this application is implemented and the design choices behind them.
 
@@ -282,23 +282,31 @@ The following activity diagram summarizes what happens when a user adds a new pa
   * Pros: Independent from external and online platforms (fully integrated within the application).
   * Cons: Harder to implement and less freedom to edit medical records.
 
+
 ### Appointment feature (by Gabriel Teo Yu Xiang)
+
+The appointment feature will enable clinics to manage patient's appointments within Hospify, thus avoiding the need for spreadsheets.
+Users have the ability to show, add, delete, edit appointments within the app. 
 
 #### Implementation
 
-The proposed feature will enable users to add appointments for patients, as well as edit and delete them. The following are the additions required for this feature:
+#### Overview:
 
-* An `Appointment` class will be added under `patient` package.
+* An `Appointment` class is created in the `patient` package.
 * A new prefix `appt/` to be used with the new `Appointment` field.
-* Three new commands specifically for managing patients' appointments, `addAppt`, `editAppt` and `deleteAppt`.
+* 4 new commands specifically for managing patients' appointments, `showAppt`, `addAppt`, `editAppt` and `deleteAppt`.
 
-Given below is an example usage scenario.
+Given below is an example usage scenario using a Patient with `NRIC` **S1234567A**.
 
-Step 1. The user executes `addAppt 1 /appt 28/09/2020 20:00` command to add an appointment with the specified time to patient with `index` number `1` shown in the displayed person list.
+Step 1. The user executes `addAppt S1234567A /appt 28/09/2020 20:00` command to add an appointment with the
+ specified time to the patient with `NRIC`of S1234567A.
 
-Step 2. The user now decides to edit the appointment of patient of `index 1` and executes `editAppt 1 /appt 05/10/2020 20:00` to change the appointment timing accordingly.
+Step 2. The user shows the appointment of the patient by **clicking** on the patient using the `GUI` or 
+using the command `showAppt S1234567A`.
 
-Step 3. The user then decides to delete the appointment of patient of `index 1` and executes `deleteAppt 1 /appt 05/10/2020 20:00` to delete the specified appointment.
+Step 3. The user now decides to edit the appointment of patient of `NRIC` S1234567A and executes `editAppt S1234567A /appt 05/10/2020 20:00` to change the appointment timing accordingly.
+
+Step 4. The user then decides to delete the appointment of patient of `NRIC` S1234567A and executes `deleteAppt S1234567A /appt 05/10/2020 20:00` to delete the specified appointment.
 
 The following activity diagram summarizes what happens when a user adds a new appointment:
 
@@ -321,6 +329,10 @@ The following activity diagram summarizes what happens when a user adds a new ap
   * Cons: Very limited functionality as each patient can only have one appointment booked at a time.
 
 _{more aspects and alternatives to be added}_
+
+### Show Appointment (by Peh Jun Siang)
+
+#### Implementation
 
 --------------------------------------------------------------------------------------------------------------------
 

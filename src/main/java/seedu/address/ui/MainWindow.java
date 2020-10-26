@@ -23,6 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    protected static AppointmentWindow appointmentWindow;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -34,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private AppointmentWindow appointmentWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -155,7 +155,11 @@ public class MainWindow extends UiPart<Stage> {
      */
     public void handleShowAppt() {
         appointmentWindow.setAppointmentWindow(logic.getFilteredPersonList().get(0));
-        appointmentWindow.show();
+        if (appointmentWindow.isShowing()) {
+            appointmentWindow.focus();
+        } else {
+            appointmentWindow.show();
+        }
     }
 
     void show() {
@@ -171,6 +175,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        appointmentWindow.hide();
         primaryStage.hide();
     }
 
