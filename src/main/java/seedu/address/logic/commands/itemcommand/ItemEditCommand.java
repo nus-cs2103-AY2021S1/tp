@@ -49,7 +49,7 @@ public class ItemEditCommand extends ItemCommand {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_QUANTITY + "21 ";
 
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: %1$s";
+    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Item: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the inventory book.";
 

@@ -74,7 +74,7 @@ public class Delivery {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Deliverer's Name")
+        builder.append("Deliverer's Name: ")
                 .append(getName())
                 .append("\n")
                 .append("Phone: ")
