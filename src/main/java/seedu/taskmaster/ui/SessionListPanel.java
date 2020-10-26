@@ -4,17 +4,16 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import seedu.taskmaster.commons.core.LogsCenter;
-import seedu.taskmaster.model.session.StudentRecordList;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 
-
-import java.util.function.IntConsumer;
+import java.util.function.Consumer;
 import java.util.logging.Logger;
 
 /**
@@ -26,12 +25,12 @@ public class SessionListPanel extends UiPart<Region> {
     private Runnable studentDisplay;
 
     @FXML
-    private ListView<SessionStub> sessionListView;
+    private ListView<Session> sessionListView;
 
-    public SessionListPanel(ObservableList<SessionStub> sessionList, IntConsumer listDisplay, Runnable studentDisplay) {
+    public SessionListPanel(ObservableList<Session> sessionList, Consumer<SessionName> changeSessionAndFill, Runnable studentDisplay) {
         super(FXML);
         sessionListView.setItems(sessionList);
-        sessionListView.setCellFactory(listView -> new SessionListViewCell(listDisplay));
+        sessionListView.setCellFactory(listView -> new SessionListViewCell(changeSessionAndFill));
         this.studentDisplay = studentDisplay;
     }
 
@@ -43,30 +42,33 @@ public class SessionListPanel extends UiPart<Region> {
     /**
      *
      */
-    class SessionListViewCell extends ListCell<SessionStub> { //change the stub to session
-        IntConsumer listDisplay;
+    class SessionListViewCell extends ListCell<Session> { //change the stub to session
+        Consumer<SessionName> changeSessionAndFill;
         final Button button = new Button();
-        SessionListViewCell(IntConsumer listDisplay) {
-            this.listDisplay = listDisplay;
+        SessionListViewCell(Consumer<SessionName> changeSessionAndFill) {
+            this.changeSessionAndFill = changeSessionAndFill;
         }
         @Override
-        protected void updateItem(SessionStub session, boolean empty) {
+        protected void updateItem(Session session, boolean empty) {
             super.updateItem(session, empty);
             if (empty || session == null) {
                 setGraphic(null);
                 setText(null);
              } else {
-                button.setText(session.getName());
-                button.setMinSize(110, 30);
-                button.setMaxSize(110, 30);
-                AnchorPane.setBottomAnchor(button, 10.0);
-                AnchorPane.setLeftAnchor(button, 10.0);
-                AnchorPane.setRightAnchor(button, 10.0);
-                AnchorPane.setTopAnchor(button, 10.0);
+                SessionName sessionName = session.getSessionName();
+                button.setText(sessionName.name + "\n [" + session.getSessionDateTime().displayDateTime() + "]");
+                button.setMinSize(100, 50);
+                button.setMaxWidth(100);
+                button.setStyle("-fx-alignment: center-left;");
+                AnchorPane.setBottomAnchor(button, 0.0);
+                AnchorPane.setLeftAnchor(button, 0.0);
+                AnchorPane.setRightAnchor(button, 0.0);
+                AnchorPane.setTopAnchor(button, 0.0);
+                button.wrapTextProperty().setValue(true);
                 button.setOnAction(new EventHandler<ActionEvent>() {
                     @Override
                     public void handle(ActionEvent event) {
-                        listDisplay.accept(getIndex() + 1);
+                        changeSessionAndFill.accept(sessionName);
                     }
                 });
                 AnchorPane anchorPane = new AnchorPane();

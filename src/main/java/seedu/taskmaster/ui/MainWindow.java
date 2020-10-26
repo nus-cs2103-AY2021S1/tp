@@ -1,14 +1,9 @@
 package seedu.taskmaster.ui;
 
 import java.util.logging.Logger;
-import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -23,6 +18,7 @@ import seedu.taskmaster.logic.Logic;
 import seedu.taskmaster.logic.commands.CommandResult;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
+import seedu.taskmaster.model.session.SessionName;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -60,15 +56,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private AnchorPane sessionListPanelPlaceholder;
 
-    /*
-    THIS SECTION IS A STUB FOR SESSION LIST - REMOVE WHEN IT IS IMPLEMENTED
-     */
-    ObservableList<SessionStub> sessionList = FXCollections.observableArrayList();
-    /*
-    END OF STUB
-     */
-
-
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -85,18 +72,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-
-        /*
-        THIS SECTION IS A STUB FOR SESSION LIST - REMOVE WHEN IT IS IMPLEMENTED
-         */
-        SessionStub newSessionToAdd = new SessionStub("Session 1", logic.getFilteredStudentRecordList());
-        for (int i = 0; i < 1; i++) {
-            sessionList.add(newSessionToAdd);
-        }
-
-        /*
-        END OF STUB
-         */
 
     }
 
@@ -141,13 +116,12 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts(int index) {
-        assert index >= 0;
+    void fillInnerParts(boolean bool) {
 
-        fillMainList(index);
+        fillWithStudents(bool);
         viewListPanelPlaceholder.getChildren().add(mainListPanel.getRoot());
 
-        SessionListPanel sessionListPanel = new SessionListPanel(sessionList, this::fillInnerParts, this::handleStudent);
+        SessionListPanel sessionListPanel = new SessionListPanel(logic.getFilteredSessionList(), this::changeSessionAndFill, this::handleStudent);
         sessionListPanelPlaceholder.getChildren().add(sessionListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -163,13 +137,20 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Decides on what to fill the main list with.
      */
-    void fillMainList(int index) {
-        assert index >= 0;
-        if (index == 0) {
+    void fillWithStudents(boolean bool) {
+        if (bool) {
             mainListPanel = new StudentListPanel(logic.getFilteredStudentList());
         } else {
-            mainListPanel = new StudentRecordListPanel(sessionList.get(index - 1).getSrList());
+            mainListPanel = new StudentRecordListPanel(logic.getFilteredStudentRecordList());
         }
+    }
+
+    /**
+     * Change current session and fill the main list with it.
+     */
+    void changeSessionAndFill(SessionName sessionName) {
+        logic.changeSession(sessionName);
+        fillInnerParts(false);
     }
 
     /**
@@ -217,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleStudent() {
-        fillInnerParts(0);
+        fillInnerParts(true);
     }
 
     /**
