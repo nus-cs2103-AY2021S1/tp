@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDITIONAL_DETAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDITIONAL_DETAILS_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -58,7 +58,7 @@ public class DetailCommandParserTest {
     @Test
     public void parse_deleteDetailAllFieldsPresent_success() {
         Index targetStudentIndex = INDEX_SECOND_PERSON;
-        String targetDetailIndexDesc = " " + PREFIX_DETAIL_INDEX + "2";
+        String targetDetailIndexDesc = " " + PREFIX_INDEX + "2";
         String userInput = DELETE_DETAIL_DESC + targetStudentIndex.getOneBased() + targetDetailIndexDesc;
         DeleteDetailCommand expectedCommand = new DeleteDetailCommand(targetStudentIndex,
                 Index.fromOneBased(2));
@@ -77,11 +77,11 @@ public class DetailCommandParserTest {
         // missing 1 argument
         assertParseFailure(parser, DELETE_DETAIL_DESC + "2", expectedMessage);
 
-        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_DETAIL_INDEX, "2");
+        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_INDEX, "2");
         assertParseFailure(parser, DELETE_DETAIL_DESC + targetDetailIndexDesc, expectedMessage);
 
         // wrong detail index
-        String invalidDetailIndex = " " + PREFIX_DETAIL_INDEX + "0";
+        String invalidDetailIndex = " " + PREFIX_INDEX + "0";
         assertParseFailure(parser, DELETE_DETAIL_DESC + "2" + invalidDetailIndex, expectedMessage);
     }
 
@@ -89,7 +89,7 @@ public class DetailCommandParserTest {
     public void parse_editDetailAllFieldsPresent_success() {
         Index targetStudentIndex = INDEX_SECOND_PERSON;
         Index targetDetailIndex = Index.fromOneBased(2);
-        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_DETAIL_INDEX, "2");
+        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_INDEX, "2");
         String userInput = EDIT_DETAIL_DESC + "2" + targetDetailIndexDesc + ADDITIONAL_DETAIL_DESC_AMY;
 
         EditDetailCommand expectedCommand = new EditDetailCommand(targetStudentIndex,
@@ -104,7 +104,7 @@ public class DetailCommandParserTest {
 
         Index targetStudentIndex = INDEX_SECOND_PERSON;
         Index targetDetailIndex = INDEX_SECOND_PERSON;
-        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_DETAIL_INDEX, targetDetailIndex.getOneBased());
+        String targetDetailIndexDesc = String.format(" %s%s", PREFIX_INDEX, targetDetailIndex.getOneBased());
 
         // missing 3 arguments
         assertParseFailure(parser, EDIT_DETAIL_DESC, expectedMessage);
@@ -124,7 +124,7 @@ public class DetailCommandParserTest {
 
         // wrong detail index
         assertParseFailure(parser, EDIT_DETAIL_DESC + targetStudentIndex.getOneBased() + " "
-                + PREFIX_DETAIL_INDEX + "0"
+                + PREFIX_INDEX + "0"
                 + ADDITIONAL_DETAIL_DESC_AMY, expectedMessage);
     }
 

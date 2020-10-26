@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.QUESTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
@@ -30,8 +30,8 @@ public class QuestionCommandParserTest {
     private static final String SOLVE_QUESTION_DESC = SolveQuestionCommand.COMMAND_WORD + " ";
     private static final String DEL_QUESTION_DESC = DeleteQuestionCommand.COMMAND_WORD + " ";
 
-    private static final String QUESTION_INDEX_DESC = " " + PREFIX_DETAIL_INDEX + "1";
-    private static final String SOLUTION_DESC = " " + PREFIX_DETAIL_TEXT + DEFAULT_SOLUTION;
+    private static final String QUESTION_INDEX_DESC = " " + PREFIX_INDEX + "1";
+    private static final String SOLUTION_DESC = " " + PREFIX_TEXT + DEFAULT_SOLUTION;
 
     private QuestionCommandParser parser = new QuestionCommandParser();
 
@@ -60,16 +60,16 @@ public class QuestionCommandParserTest {
         assertParseFailure(parser, ADD_QUESTION_DESC + "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix parsed as preamble
-        String invalidPrefix = " " + PREFIX_DETAIL_INDEX + VALID_QUESTION_AMY;
+        String invalidPrefix = " " + PREFIX_INDEX + VALID_QUESTION_AMY;
         assertParseFailure(parser, ADD_QUESTION_DESC + "1" + invalidPrefix, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_addQuestionInvalidQuestion_failure() {
-        String invalidQuestion = " " + PREFIX_DETAIL_TEXT;
+        String invalidQuestion = " " + PREFIX_TEXT;
         assertParseFailure(parser, ADD_QUESTION_DESC + "1" + invalidQuestion, Question.MESSAGE_CONSTRAINTS);
 
-        invalidQuestion = " " + PREFIX_DETAIL_TEXT + " ";
+        invalidQuestion = " " + PREFIX_TEXT + " ";
         assertParseFailure(parser, ADD_QUESTION_DESC + "1" + invalidQuestion, Question.MESSAGE_CONSTRAINTS);
     }
 
@@ -113,21 +113,21 @@ public class QuestionCommandParserTest {
     @Test
     public void parse_solveQuestionInvalidQuestionIndex_failure() {
         // negative index
-        String invalidIndex = " " + PREFIX_DETAIL_INDEX + "-5";
+        String invalidIndex = " " + PREFIX_INDEX + "-5";
         assertParseFailure(parser, SOLVE_QUESTION_DESC + "1" + invalidIndex, MESSAGE_INVALID_FORMAT);
 
         // 0 index
-        invalidIndex = " " + PREFIX_DETAIL_INDEX + "0";
+        invalidIndex = " " + PREFIX_INDEX + "0";
         assertParseFailure(parser, SOLVE_QUESTION_DESC + "1" + invalidIndex, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_solveQuestionInvalidSolution_failure() {
-        String invalidSolution = " " + PREFIX_DETAIL_TEXT;
+        String invalidSolution = " " + PREFIX_TEXT;
         assertParseFailure(parser, SOLVE_QUESTION_DESC + "1" + QUESTION_INDEX_DESC + invalidSolution,
                 SolvedQuestion.MESSAGE_SOLUTION_CONSTRAINTS);
 
-        invalidSolution = " " + PREFIX_DETAIL_TEXT + " ";
+        invalidSolution = " " + PREFIX_TEXT + " ";
         assertParseFailure(parser, SOLVE_QUESTION_DESC + "1" + QUESTION_INDEX_DESC + invalidSolution,
                 SolvedQuestion.MESSAGE_SOLUTION_CONSTRAINTS);
     }
@@ -162,19 +162,19 @@ public class QuestionCommandParserTest {
         assertParseFailure(parser, DEL_QUESTION_DESC + "1 some random string", MESSAGE_INVALID_FORMAT);
 
         // invalid prefix parsed as preamble
-        String invalidPrefix = " " + PREFIX_DETAIL_TEXT + "string";
+        String invalidPrefix = " " + PREFIX_TEXT + "string";
         assertParseFailure(parser, DEL_QUESTION_DESC + "1" + invalidPrefix, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_deleteQuestionInvalidArgument_failure() {
-        String invalidQuestion = " " + PREFIX_DETAIL_INDEX + "-1";
+        String invalidQuestion = " " + PREFIX_INDEX + "-1";
         assertParseFailure(parser, DEL_QUESTION_DESC + "1" + invalidQuestion, MESSAGE_INVALID_FORMAT);
 
-        invalidQuestion = " " + PREFIX_DETAIL_INDEX + "0";
+        invalidQuestion = " " + PREFIX_INDEX + "0";
         assertParseFailure(parser, DEL_QUESTION_DESC + "1" + invalidQuestion, MESSAGE_INVALID_FORMAT);
 
-        invalidQuestion = " " + PREFIX_DETAIL_INDEX + " ";
+        invalidQuestion = " " + PREFIX_INDEX + " ";
         assertParseFailure(parser, DEL_QUESTION_DESC + "1" + invalidQuestion, MESSAGE_INVALID_FORMAT);
     }
 

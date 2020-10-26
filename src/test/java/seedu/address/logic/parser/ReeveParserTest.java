@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_MATH;
 import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
@@ -109,18 +109,18 @@ public class ReeveParserTest {
     @Test
     public void parseCommand_question() throws Exception {
         String addCommandDesc = QuestionCommand.COMMAND_WORD + " " + AddQuestionCommand.COMMAND_WORD + " ";
-        String questionDesc = " " + PREFIX_DETAIL_TEXT + DEFAULT_QUESTION_MATH;
+        String questionDesc = " " + PREFIX_TEXT + DEFAULT_QUESTION_MATH;
         UnsolvedQuestion question = new UnsolvedQuestion(DEFAULT_QUESTION_MATH);
         QuestionCommand command = (QuestionCommand) parser.parseCommand(addCommandDesc + "1" + questionDesc);
         assertEquals(new AddQuestionCommand(INDEX_FIRST_PERSON, question), command);
 
         String solveCommandDesc = QuestionCommand.COMMAND_WORD + " " + SolveQuestionCommand.COMMAND_WORD + " ";
-        questionDesc = " " + PREFIX_DETAIL_INDEX + "1" + " " + PREFIX_DETAIL_TEXT + DEFAULT_SOLUTION;
+        questionDesc = " " + PREFIX_INDEX + "1" + " " + PREFIX_TEXT + DEFAULT_SOLUTION;
         command = (QuestionCommand) parser.parseCommand(solveCommandDesc + "1" + questionDesc);
         assertEquals(new SolveQuestionCommand(INDEX_FIRST_PERSON, Index.fromOneBased(1), DEFAULT_SOLUTION), command);
 
         String delCommandDesc = QuestionCommand.COMMAND_WORD + " " + DeleteQuestionCommand.COMMAND_WORD + " ";
-        questionDesc = " " + PREFIX_DETAIL_INDEX + "1";
+        questionDesc = " " + PREFIX_INDEX + "1";
         command = (QuestionCommand) parser.parseCommand(delCommandDesc + "1" + questionDesc);
         assertEquals(new DeleteQuestionCommand(INDEX_FIRST_PERSON, Index.fromOneBased(1)), command);
     }
@@ -152,7 +152,7 @@ public class ReeveParserTest {
 
     @Test
     public void parseCommand_additionalDetail() throws Exception {
-        assertTrue(parser.parseCommand("detail add 2 d/ smart") instanceof DetailCommand);
+        assertTrue(parser.parseCommand("detail add 2 t/ smart") instanceof DetailCommand);
     }
 
     @Test

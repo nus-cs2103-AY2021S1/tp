@@ -2,9 +2,9 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.DetailCommand.MESSAGE_USAGE;
-import static seedu.address.logic.parser.CliSyntax.ADDITIONAL_DETAIL_COMMAND_PREFIXES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.COMMAND_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -59,9 +59,9 @@ public class DetailCommandParser implements Parser<DetailCommand> {
     //@@author VaishakAnand
     private AddDetailCommand parseAddDetailCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DETAIL_TEXT);
+                ArgumentTokenizer.tokenize(args, PREFIX_TEXT);
 
-        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_DETAIL_TEXT)) {
+        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_TEXT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddDetailCommand.MESSAGE_USAGE));
         }
@@ -75,16 +75,16 @@ public class DetailCommandParser implements Parser<DetailCommand> {
         }
 
         Detail detail = ParserUtil.parseAdditionalDetail(argMultimap
-                .getValue(PREFIX_DETAIL_TEXT).get());
+                .getValue(PREFIX_TEXT).get());
 
         return new AddDetailCommand(index, detail);
     }
 
     private DeleteDetailCommand parseDeleteDetailCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DETAIL_INDEX);
+                ArgumentTokenizer.tokenize(args, PREFIX_INDEX);
 
-        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_DETAIL_INDEX)) {
+        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteDetailCommand.MESSAGE_USAGE));
         }
@@ -93,7 +93,7 @@ public class DetailCommandParser implements Parser<DetailCommand> {
         Index detailIndex;
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            detailIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DETAIL_INDEX).get());
+            detailIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteDetailCommand.MESSAGE_USAGE), pe);
@@ -104,9 +104,9 @@ public class DetailCommandParser implements Parser<DetailCommand> {
 
     private EditDetailCommand parseEditDetailCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, ADDITIONAL_DETAIL_COMMAND_PREFIXES);
+                ArgumentTokenizer.tokenize(args, COMMAND_PREFIXES);
 
-        if (!areRequiredPrefixesPresent(argMultimap, ADDITIONAL_DETAIL_COMMAND_PREFIXES)) {
+        if (!areRequiredPrefixesPresent(argMultimap, COMMAND_PREFIXES)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditDetailCommand.MESSAGE_USAGE));
         }
@@ -115,14 +115,14 @@ public class DetailCommandParser implements Parser<DetailCommand> {
         Index detailIndex;
         try {
             studentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            detailIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_DETAIL_INDEX).get());
+            detailIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditDetailCommand.MESSAGE_USAGE), pe);
         }
 
         Detail detail = ParserUtil.parseAdditionalDetail(argMultimap
-                .getValue(PREFIX_DETAIL_TEXT).get());
+                .getValue(PREFIX_TEXT).get());
 
         return new EditDetailCommand(studentIndex, detailIndex, detail);
     }

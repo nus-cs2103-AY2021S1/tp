@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ public class AddDetailCommand extends DetailCommand {
             + ": adds an Additional Detail to the student identified "
             + "by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_DETAIL_TEXT + "DETAIL\n"
+            + PREFIX_TEXT + "DETAIL\n"
             + "Example: " + DetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
-            + PREFIX_DETAIL_TEXT + "Eats sweets in class";
+            + PREFIX_TEXT + "Eats sweets in class";
 
     public static final String MESSAGE_SUCCESS = "New detail added to %s: %s";
 

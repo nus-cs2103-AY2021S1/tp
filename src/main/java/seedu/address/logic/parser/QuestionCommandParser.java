@@ -3,9 +3,9 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.QuestionCommand.MESSAGE_USAGE;
-import static seedu.address.logic.parser.CliSyntax.ADDITIONAL_DETAIL_COMMAND_PREFIXES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.COMMAND_PREFIXES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.logic.parser.ReeveParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
@@ -69,7 +69,7 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
 
     private Index getQuestionIndex(ArgumentMultimap argumentMultimap) throws ParseException {
         try {
-            return ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_DETAIL_INDEX).get());
+            return ParserUtil.parseIndex(argumentMultimap.getValue(PREFIX_INDEX).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE), pe);
         }
@@ -79,38 +79,38 @@ public class QuestionCommandParser implements Parser<QuestionCommand> {
 
     private AddQuestionCommand parseAddQuestionCommand(String input) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(input, PREFIX_DETAIL_TEXT);
+                ArgumentTokenizer.tokenize(input, PREFIX_TEXT);
 
-        if (areRequiredPrefixesMissing(argMultimap, PREFIX_DETAIL_TEXT)) {
+        if (areRequiredPrefixesMissing(argMultimap, PREFIX_TEXT)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         Index studentIndex = getStudentIndex(argMultimap);
-        UnsolvedQuestion questionToAdd = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_DETAIL_TEXT).get());
+        UnsolvedQuestion questionToAdd = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_TEXT).get());
 
         return new AddQuestionCommand(studentIndex, questionToAdd);
     }
 
     private SolveQuestionCommand parseSolveQuestionCommand(String input) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(input, ADDITIONAL_DETAIL_COMMAND_PREFIXES);
+                ArgumentTokenizer.tokenize(input, COMMAND_PREFIXES);
 
-        if (areRequiredPrefixesMissing(argMultimap, ADDITIONAL_DETAIL_COMMAND_PREFIXES)) {
+        if (areRequiredPrefixesMissing(argMultimap, COMMAND_PREFIXES)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         Index studentIndex = getStudentIndex(argMultimap);
         Index questionIndex = getQuestionIndex(argMultimap);
-        String solution = ParserUtil.parseSolution(argMultimap.getValue(PREFIX_DETAIL_TEXT).get());
+        String solution = ParserUtil.parseSolution(argMultimap.getValue(PREFIX_TEXT).get());
 
         return new SolveQuestionCommand(studentIndex, questionIndex, solution);
     }
 
     private DeleteQuestionCommand parseDeleteQuestionCommand(String input) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(input, PREFIX_DETAIL_INDEX);
+                ArgumentTokenizer.tokenize(input, PREFIX_INDEX);
 
-        if (areRequiredPrefixesMissing(argMultimap, PREFIX_DETAIL_INDEX)) {
+        if (areRequiredPrefixesMissing(argMultimap, PREFIX_INDEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 

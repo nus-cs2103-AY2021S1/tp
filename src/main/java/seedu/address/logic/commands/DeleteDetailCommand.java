@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ public class DeleteDetailCommand extends DetailCommand {
             + ": deletes an Additional Detail in the student identified"
             + " by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_DETAIL_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
+            + PREFIX_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
             + "Example: " + DetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
-            + PREFIX_DETAIL_INDEX + "1";
+            + PREFIX_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = "Detail removed from %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
