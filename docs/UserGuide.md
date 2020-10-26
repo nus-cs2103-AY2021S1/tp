@@ -3,23 +3,21 @@ layout: page
 title: User Guide
 ---
 ---
+<h3>Table of Contents</h3>
+* Table of Contents
+{:toc}
 
-<h2>Warenager’s User Guide</h2>
+## Warenager’s User Guide
 
 This user guide introduces our inventory application, Warenager, and provides support
 for the usage of its functionalities. For quick reference, we have provided a summarised table of commands
 and their usage formats at the end of this guide.
 
-<h3>About Warenager</h3>
+## About Warenager
 
 Warenager is an **inventory application** to help warehouse managers of small scale companies
 keep track of items in their warehouse. It **optimizes management tasks** for warehouse managers including but not
 exhaustive of updating, searching and sorting via Command Line Interface (CLI).
-
-<h3>Table of Contents</h3>
-
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -35,6 +33,24 @@ To get started using Warenager,
    Warenager are: add, delete, update, find, findexact, note, notedelete, stats, sort, print, list and help.
 
 --------------------------------------------------------------------------------------------------------------------
+## Definitions
+
+Term | Definition
+--------|------------------
+**Parameters** | Parameters are additional fields to key in during inputs. e.g. `q/<source of stock>`, `n/<name>`
+**CSV File** | Comma-separated values File. It contains data separated by commas.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Definitions
+
+Term | Definition
+--------|------------------
+**Parameters** | Parameters are additional fields to key in during inputs. e.g. `q/<source of stock>`, `n/<name>`
+**CSV File** | Comma-separated values File. It contains data separated by commas.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -99,7 +115,7 @@ The header fields can be in any order:<br>
 `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br>
 `add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`
 
-⚠ Each specific fields specified in the `add` command should only be entered once.<br>
+:warning: Each specific fields specified in the `add` command should only be entered once.<br>
 e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
 
 ### Listing of stock: `list`
@@ -149,7 +165,7 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 * Multiple:
     * `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
 
-⚠ Each specific fields specified in the `find` command should only be entered once.<br>
+:warning: Each specific fields specified in the `find` command should only be entered once.<br>
 e.g. `find n/banana n/apple` is not a valid command.
 
 <h5>Search criteria</h5>
@@ -193,7 +209,7 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 * Multiple:
     * `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
 
-⚠ Each specific fields specified in the `findexact` command should only be entered once.<br>
+:warning: Each specific fields specified in the `findexact` command should only be entered once.<br>
 e.g. `findexact n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
 
 <h5>Search criteria</h5>
@@ -259,7 +275,7 @@ Prefixes:
 
 `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>`
 
-⚠ If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
+:warning: If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
 will not update anything and shows an error message.
 
 Values to be updated are case-sensitive.
@@ -289,7 +305,7 @@ to `50`.
 Adds a note to the stock specified, displayed in the notes column for that stock.
 Multiple notes can be added to the stock and each note will be indexed. <br>
 
-⚠ If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
+:warning: If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
 To view full notes for the stock, use the `noteview` command.
 
 * Required fields:
@@ -326,7 +342,7 @@ Deletes a note, specified by the note's index, from the stock specified by its s
     1. Serial number of stock
     2. Note index of note to delete
 
-⚠ Note index must be an integer.
+:warning: Note index must be an integer.
 To delete ALL notes from a stock, note index to specify is 0.
 
 <h5>Format</h5>
@@ -433,7 +449,7 @@ Sometimes user will type in wrong commands. Warenager will help such user by sug
 of the command if the command word is valid. If the command word is invalid, then Warenager will try to predict
 and suggest the closest command to whatever the user has typed.
 
-⚠ The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
+:warning: The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
 are errors such as serial number not found, then Warenager will not suggest anything to the user and instead displays
 an error message.
 
@@ -520,12 +536,5 @@ Action | Format, Examples
 **Print** | `print`
 **Help** | `help`
 **Exit** | `exit`
-
---------------------------------------------------------------------------------------------------------------------
-## Glossary
-
-Term | Definition
---------|------------------
-**CSV File** | Comma-separated values File. It contains data separated by commas.
 
 --------------------------------------------------------------------------------------------------------------------
