@@ -61,6 +61,7 @@ public class AddAssignmentCommand extends Command {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_ADDED);
         }
         module.addAssignment(assignmentToAdd);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignmentToAdd));
     }
 
