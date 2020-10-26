@@ -72,7 +72,6 @@ public class MainWindow extends UiPart<Stage> {
         setWindowDefaultSize(logic.getGuiSettings());
 
         helpWindow = new HelpWindow();
-        System.out.println(javafx.scene.text.Font.getFamilies());
         statisticsWindow = new StatisticsWindow();
         //custom fonts
         scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");

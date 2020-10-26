@@ -104,13 +104,13 @@
 
 .list-cell:filled:selected:even {
     -fx-background-color: #e7eaea;
-    -fx-border-color: #F1F1F1;
+    -fx-border-color: #000000;
     -fx-border-width: 1;
 }
 
 .list-cell:filled:selected:odd {
     -fx-background-color: #EEE3BB;
-    -fx-border-color: #F1F1F1;
+    -fx-border-color: #000000;
     -fx-border-width: 1;
 }
 
@@ -172,10 +172,10 @@
 }
 
 .result-display {
-    -fx-background-color: #363C43;
+    -fx-background-color: #CCCCCC;
     -fx-font-family: "Quicksand";
     -fx-font-size: 11pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .result-display .label {
@@ -190,8 +190,8 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#363C43, 30%);
-    -fx-border-color: derive(#363C43, 25%);
+    -fx-background-color: derive(#CCCCCC, 30%);
+    -fx-border-color: derive(#CCCCCC, 25%);
     -fx-border-width: 1px;
 }
 
@@ -356,23 +356,23 @@
     -fx-text-fill: #F70D1A;
 }
 
-.command-text-field {
-    -fx-background-color: transparent #363C43 transparent #363C43;
+.text-field {
+    -fx-background-color:#CCCCCC;
     -fx-background-insets: 0;
-    -fx-border-color: #363C43 #363C43 #363C43 #363C43;
+    -fx-border-color: #CCCCCC #CCCCCC #CCCCCC #CCCCCC;
     -fx-border-insets: 0;
     -fx-border-width: 0;
     -fx-font-family: "Quicksand";
     -fx-font-size: 13pt;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 #filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, #363C43, 10, 0, 0, 0);
+    -fx-effect: innershadow(gaussian, #CCCCCC, 10, 0, 0, 0);
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #363C43, transparent, #363C43;
+    -fx-background-color: transparent, #CCCCCC, transparent, #CCCCCC;
     -fx-background-radius: 0;
 }
 
@@ -419,13 +419,13 @@
 
 .note-list-panel-vbox .list-cell:filled:selected:even {
     -fx-background-color: #B9D6FF;
-    -fx-border-color: #363C43;
+    -fx-border-color: #CCCCCC;
     -fx-border-width: 1;
 }
 
 .note-list-panel-vbox .list-cell:filled:selected:odd {
     -fx-background-color: #FFDCE2;
-    -fx-border-color: #363C43;
+    -fx-border-color: #CCCCCC;
     -fx-border-width: 1;
 }
 
