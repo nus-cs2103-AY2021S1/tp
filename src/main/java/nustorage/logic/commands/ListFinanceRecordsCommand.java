@@ -22,8 +22,6 @@ public class ListFinanceRecordsCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredFinanceList(PREDICATE_SHOW_ALL_FINANCE);
-        model.updateFilteredInventoryList(PREDICATE_REMOVE_ALL_INVENTORY);
-        ObservableList<FinanceRecord> finance = model.getFilteredFinanceList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

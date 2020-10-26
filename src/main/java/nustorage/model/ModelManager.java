@@ -192,7 +192,6 @@ public class ModelManager implements Model {
         return financeAccount;
     }
 
-    //=========== Filtered Person List Accessors =============================================================
 
     @Override
     public boolean equals(Object obj) {
@@ -208,8 +207,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return this.filteredInventory.equals(other.getFilteredInventory())
-                && this.filteredFinance.equals(other.getFilteredFinanceList());
+        return filteredInventory.equals(other.getFilteredInventory())
+                && filteredFinance.equals(other.getFilteredFinanceList())
+                && userPrefs.equals(other.userPrefs);
     }
 
 }

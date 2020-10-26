@@ -20,8 +20,6 @@ public class ListInventoryCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);
-        model.updateFilteredFinanceList(PREDICATE_REMOVE_ALL_FINANCE);
-        model.getFilteredInventory();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
