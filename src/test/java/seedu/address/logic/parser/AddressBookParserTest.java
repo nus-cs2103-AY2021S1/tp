@@ -4,15 +4,21 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -24,7 +30,10 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.DeadlineContainsKeywordsPredicate;
+import seedu.address.model.assignment.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.assignment.NameContainsKeywordsPredicate;
+import seedu.address.model.assignment.PriorityContainsKeywordsPredicate;
 import seedu.address.testutil.AssignmentBuilder;
 import seedu.address.testutil.AssignmentUtil;
 import seedu.address.testutil.EditAssignmentDescriptorBuilder;
@@ -50,7 +59,9 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ASSIGNMENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_ASSIGNMENT), command);
+        List<Index> assignmentIndexToDelete = new ArrayList<>();
+        assignmentIndexToDelete.add(INDEX_FIRST_ASSIGNMENT);
+        assertEquals(new DeleteCommand(assignmentIndexToDelete), command);
     }
 
     @Test
@@ -71,10 +82,31 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        List<String> nameKeywords = Arrays.asList("Assignment", "homework", "lab");
+        List<String> moduleCodeKeywords = Arrays.asList("CS2100", "CS2103T", "MA1101R");
+        List<String> deadlineKeywords = Arrays.asList("23-10-2020", "1200", "10-11-2021");
+        List<String> priorityKeywords = Arrays.asList("HIGH", "LOW");
+
+        FindCommand findByNames = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_NAME + nameKeywords.stream()
+                        .collect(Collectors.joining(" ")));
+
+        FindCommand findByModuleCodes = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_MODULE_CODE + moduleCodeKeywords.stream()
+                        .collect(Collectors.joining(" ")));
+
+        FindCommand findByDeadlines = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_DEADLINE + deadlineKeywords.stream()
+                        .collect(Collectors.joining(" ")));
+
+        FindCommand findByPriorities = (FindCommand) parser.parseCommand(
+                FindCommand.COMMAND_WORD + " " + PREFIX_PRIORITY + priorityKeywords.stream()
+                        .collect(Collectors.joining(" ")));
+
+        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(nameKeywords)), findByNames);
+        assertEquals(new FindCommand(new ModuleCodeContainsKeywordsPredicate(moduleCodeKeywords)), findByModuleCodes);
+        assertEquals(new FindCommand(new DeadlineContainsKeywordsPredicate(deadlineKeywords)), findByDeadlines);
+        assertEquals(new FindCommand(new PriorityContainsKeywordsPredicate(priorityKeywords)), findByPriorities);
     }
 
     @Test

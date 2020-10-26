@@ -3,9 +3,48 @@
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
 }
 
+.overdue {
+    -fx-text-fill: #d06651 !important;
+}
+
+.due-soon {
+    -fx-text-fill: #d06651 !important;
+}
+
+.due-in-a-week {
+    -fx-text-fill: #e0de9b !important;
+}
+
+.start-in-a-week {
+    -fx-text-fill: #e0de9b !important;
+}
+
+.high-priority {
+    -fx-background-color: #f54947 !important;
+    -fx-text-fill: #010504 !important;
+}
+
+.low-priority {
+    -fx-background-color: #73f079 !important;
+    -fx-text-fill: #010504 !important;
+}
+
+.medium-priority {
+    -fx-background-color: #eef567 !important;
+    -fx-text-fill: #010504 !important;
+}
+
+.none-priority {
+    -fx-text-fill: transparent !important;
+}
+
+.start-soon {
+    -fx-text-fill: #d06651 !important;
+}
+
 .list-cell:empty {
     /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background-color: transparent;
 }
 
 .tag-selector {

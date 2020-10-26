@@ -16,7 +16,8 @@ import seedu.address.testutil.TypicalAssignments;
 public class JsonSerializableAddressBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_ASSIGNMENTS_FILE = TEST_DATA_FOLDER.resolve("typicalAssignmentsAddressBook.json");
+    private static final Path TYPICAL_ASSIGNMENTS_FILE = TEST_DATA_FOLDER
+            .resolve("typicalAssignmentsAddressBook.json");
     private static final Path INVALID_ASSIGNMENT_FILE = TEST_DATA_FOLDER.resolve("invalidAssignmentAddressBook.json");
     private static final Path DUPLICATE_ASSIGNMENT_FILE = TEST_DATA_FOLDER
             .resolve("duplicateAssignmentAddressBook.json");

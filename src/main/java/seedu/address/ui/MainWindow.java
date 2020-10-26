@@ -30,8 +30,10 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
 
-    // Independent Ui parts residing in this Ui container
+    //Independent Ui parts residing in this Ui container
     private AssignmentListPanel assignmentListPanel;
+    private UpcomingTaskListPanel upcomingTaskListPanel;
+    private ReminderListPanel reminderListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +44,13 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private StackPane taskListPanelPlaceholder;
+
+    @FXML
     private StackPane assignmentListPanelPlaceholder;
+
+    @FXML
+    private StackPane reminderListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -111,7 +119,15 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         assignmentListPanel = new AssignmentListPanel(logic.getFilteredAssignmentList());
+        //System.out.println(logic.getFilteredAssignmentList());
+        //System.out.println(logic.getFilteredTaskList());
         assignmentListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+
+        reminderListPanel = new ReminderListPanel(logic.getRemindedAssignmentList());
+        reminderListPanelPlaceholder.getChildren().add(reminderListPanel.getRoot());
+
+        upcomingTaskListPanel = new UpcomingTaskListPanel(logic.getFilteredTaskList());
+        taskListPanelPlaceholder.getChildren().add(upcomingTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -163,8 +179,12 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public AssignmentListPanel getAssignmentListPanel() {
-        return assignmentListPanel;
+    public ReminderListPanel getReminderListPanel() {
+        return reminderListPanel;
+    }
+
+    public UpcomingTaskListPanel getTaskListPanel() {
+        return upcomingTaskListPanel;
     }
 
     /**

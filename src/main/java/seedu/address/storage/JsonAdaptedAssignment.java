@@ -5,10 +5,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Deadline;
-import seedu.address.model.assignment.ModuleCode;
-import seedu.address.model.assignment.Name;
+import seedu.address.model.assignment.Done;
+import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
+import seedu.address.model.assignment.Schedule;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.ModuleCode;
+import seedu.address.model.task.Name;
 
 /**
  * Jackson-friendly version of {@link Assignment}.
@@ -21,17 +24,33 @@ class JsonAdaptedAssignment {
     private final String deadline;
     private final String moduleCode;
     private final boolean isReminded;
+    private final boolean isScheduled;
+    private final String suggestedStartTime;
+    private final String suggestedEndTime;
+    private final String priority;
+    private final boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given assignment details.
      */
     @JsonCreator
     public JsonAdaptedAssignment(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-            @JsonProperty("module") String moduleCode) {
+                                 @JsonProperty("module") String moduleCode,
+                                 @JsonProperty("isReminded") boolean isReminded,
+                                 @JsonProperty("isScheduled") boolean isScheduled,
+                                 @JsonProperty("suggestedStartTime") String suggestedStartTime,
+                                 @JsonProperty("suggestedEndTime") String suggestedEndTime,
+                                 @JsonProperty("priority") String priority,
+                                 @JsonProperty("isDone") boolean isDone) {
         this.name = name;
         this.deadline = deadline;
         this.moduleCode = moduleCode;
-        this.isReminded = false;
+        this.isReminded = isReminded;
+        this.isScheduled = isScheduled;
+        this.suggestedStartTime = suggestedStartTime;
+        this.suggestedEndTime = suggestedEndTime;
+        this.priority = priority;
+        this.isDone = isDone;
     }
 
     /**
@@ -42,6 +61,16 @@ class JsonAdaptedAssignment {
         deadline = source.getDeadline().value;
         moduleCode = source.getModuleCode().moduleCode;
         isReminded = source.getRemind().isReminded();
+        isScheduled = source.getSchedule().isScheduled();
+        if (isScheduled) {
+            suggestedStartTime = source.getSchedule().getSuggestedStartTime().value;
+            suggestedEndTime = source.getSchedule().getSuggestedEndTime().value;
+        } else {
+            suggestedStartTime = "";
+            suggestedEndTime = "";
+        }
+        priority = source.getPriority().toString();
+        isDone = source.getDone().isMarkedDone();
     }
 
     /**
@@ -50,6 +79,12 @@ class JsonAdaptedAssignment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted assignment.
      */
     public Assignment toModelType() throws IllegalValueException {
+        final Priority modelPriority;
+        if (priority == null || priority.equals("")) {
+            modelPriority = new Priority();
+        } else {
+            modelPriority = new Priority(priority);
+        }
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -78,7 +113,26 @@ class JsonAdaptedAssignment {
 
         final Remind modelRemind = new Remind(isReminded);
 
-        return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind);
-    }
+        final Done modelDone = new Done(isDone);
 
+        if ((suggestedStartTime.equals("") || suggestedEndTime.equals("")) && isScheduled) {
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
+        }
+        if (!suggestedStartTime.equals("") && !Deadline.isValidDeadline(suggestedStartTime)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        if (!suggestedEndTime.equals("") && !Deadline.isValidDeadline(suggestedEndTime)) {
+            throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        if (isScheduled) {
+            final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
+                    new Deadline(suggestedEndTime));
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule, modelPriority,
+                    modelDone);
+        } else {
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, new Schedule(),
+                    modelPriority, modelDone);
+        }
+    }
 }

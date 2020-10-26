@@ -21,7 +21,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.AssignmentBuilder;
+import seedu.address.timetable.TimetableData;
 
 public class AddCommandTest {
 
@@ -85,6 +87,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setPreviousModel(Model previousModel) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Model getPreviousModel() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyUserPrefs getUserPrefs() {
             throw new AssertionError("This method should not be called.");
         }
@@ -115,12 +127,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void preUpdateModel() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAddressBook(ReadOnlyAddressBook newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void importTimetable(TimetableData data) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -141,6 +163,11 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<Assignment> getFilteredAssignmentList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getFilteredTaskList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,5 +223,4 @@ public class AddCommandTest {
             return new AddressBook();
         }
     }
-
 }

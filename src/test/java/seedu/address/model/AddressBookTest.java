@@ -19,7 +19,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.exceptions.DuplicateAssignmentException;
+import seedu.address.model.lesson.Lesson;
+import seedu.address.model.task.Task;
 import seedu.address.testutil.AssignmentBuilder;
+import seedu.address.timetable.TimetableData;
 
 
 public class AddressBookTest {
@@ -48,7 +51,8 @@ public class AddressBookTest {
         // Two assignments with the same identity fields
         Assignment editedCs1231sHw = new AssignmentBuilder(CS1231S_HW).withModuleCode(VALID_MODULE_CODE_HW).build();
         List<Assignment> newAssignments = Arrays.asList(CS1231S_HW, editedCs1231sHw);
-        AddressBookStub newData = new AddressBookStub(newAssignments);
+        List<Lesson> lessonList = Arrays.asList();
+        AddressBookStub newData = new AddressBookStub(newAssignments, lessonList);
 
         assertThrows(DuplicateAssignmentException.class, () -> addressBook.resetData(newData));
     }
@@ -87,14 +91,31 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Assignment> assignments = FXCollections.observableArrayList();
+        private final ObservableList<Lesson> lessons = FXCollections.observableArrayList();
+        private final ObservableList<Task> tasks = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Assignment> assignments) {
+        AddressBookStub(Collection<Assignment> assignments, Collection<Lesson> lessons) {
             this.assignments.setAll(assignments);
+            this.lessons.setAll(lessons);
         }
 
         @Override
         public ObservableList<Assignment> getAssignmentList() {
             return assignments;
+        }
+
+        @Override
+        public ObservableList<Task> getTaskList() {
+            return tasks;
+        }
+
+        @Override
+        public ObservableList<Lesson> getLessonList() {
+            return lessons;
+        }
+
+        @Override
+        public void importTimetable(TimetableData data) {
         }
     }
 

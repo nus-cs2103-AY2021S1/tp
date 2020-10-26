@@ -9,6 +9,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -32,6 +33,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of assignments */
     ObservableList<Assignment> getFilteredAssignmentList();
+
+    /** Returns an unmodifiable view of the filtered list of assignments */
+    ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the filtered list of reminder assignments */
+    ObservableList<Assignment> getRemindedAssignmentList();
 
     /**
      * Returns the user prefs' address book file path.

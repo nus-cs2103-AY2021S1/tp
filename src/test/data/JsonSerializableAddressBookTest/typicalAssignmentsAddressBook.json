@@ -4,36 +4,59 @@
     "name" : "CS1231S Homework",
     "deadline" : "01-01-2020 1800",
     "moduleCode" : "CS1231S",
-    "tagged" : [ "friends" ]
+    "suggestedStartTime" : "06-11-2020 0600",
+    "suggestedEndTime" : "06-11-2020 0800",
+    "isReminded" : true,
+    "isScheduled" : true
   }, {
     "name" : "CS2103T Tutorial",
     "deadline" : "02-03-2020 2359",
     "moduleCode" : "CS2103T",
-    "tagged" : [ "owesMoney", "friends" ]
+    "suggestedStartTime" : "01-01-2000 0101",
+    "suggestedEndTime" : "01-01-2000 0101",
+    "isReminded" : true,
+    "isScheduled" : false
   }, {
     "name" : "CS2106 Lab",
     "deadline" : "12-12-2020 1200",
     "moduleCode" : "CS2106",
-    "tagged" : [ ]
+    "suggestedStartTime" : "16-11-2020 1100",
+    "suggestedEndTime" : "16-11-2020 1400",
+    "isReminded" : true,
+    "isScheduled" : true
   }, {
     "name" : "CS2106 Tutorial Quiz",
     "deadline" : "03-03-2020 0300",
     "moduleCode" : "CS2106",
-    "tagged" : [ "friends" ]
+    "suggestedStartTime" : "01-01-2000 0101",
+    "suggestedEndTime" : "01-01-2000 0101",
+    "isReminded" : true,
+    "isScheduled" : false
   }, {
     "name" : "IS1103 Mission",
     "deadline" : "12-10-2020 1900",
     "moduleCode" : "IS1103",
-    "tagged" : [ ]
+    "suggestedStartTime" : "16-11-2020 1400",
+    "suggestedEndTime" : "16-11-2020 1700",
+    "isReminded" : true,
+    "isScheduled" : true
   }, {
     "name" : "Peer review",
     "deadline" : "10-10-2020 1700",
     "moduleCode" : "CS2101",
-    "tagged" : [ ]
+    "suggestedStartTime" : "01-01-2000 0101",
+    "suggestedEndTime" : "01-01-2000 0101",
+    "isReminded" : true,
+    "isScheduled" : false
   }, {
     "name" : "Oral presentation",
     "deadline" : "03-12-2020 0400",
     "moduleCode" : "CS2101",
-    "tagged" : [ ]
-  } ]
+    "suggestedStartTime" : "10-11-2020 0600",
+    "suggestedEndTime" : "10-11-2020 0900",
+    "isReminded" : true,
+    "isScheduled" : true
+  } ],
+  "lessons" : [ ],
+  "tasks" : [ ]
 }

@@ -82,9 +82,9 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
-1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
+1. The command execution can affect the `Model` (e.g. adding an assignment).
+1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `UI`.
+1. In addition, the `CommandResult` object can also instruct the `UI` to perform certain actions, such as displaying help to the user.
 
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -102,16 +102,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-* does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
+* stores the data in ProductiveNUS.
+* exposes an unmodifiable `ObservableList<Assignment>` and an unmodifiable `ObservableList<Task>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 
 ### Storage component
 
@@ -121,7 +113,7 @@ The `Model`,
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save assignment and lesson data in json format and read it back.
 
 ### Common classes
 
@@ -133,85 +125,234 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### \[Implemented\] Import timetable feature
+The user can import information about their lessons into ProductiveNUS using their NUSMods timetable URL.
 
-#### Proposed Implementation
+#### Reasons for implementation:
+Users may find it inconvenient to constantly refer to their NUSMods timetable whenever they want to check if they are
+available on a specific date and time. By giving users the option to add their lesson information into ProductiveNUS,
+it will help increase the user's convenience as all their academic related schedule can be found in one place.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+ProdutiveNUS can also better schedule the user's work with their timetable information available, avoiding any clashes
+in schedule.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+#### Current implementation:
+- The import command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute`
+in `CommandResult`. `ImportCommandParser` implements `Parser<ImportCommand>` and it parses the user's input to return an
+`ImportCommand` object. The constructor of `ImportCommand` takes in the prefix url/ and the user's NUSMods timetable
+url.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+- A call to `TimetableRetriever` will be made. `TimetableRetriever` takes the user's timetable data which was parsed by
+`ImportCommandParser` and makes a HTTP GET request to NUSMods API. NUSMods sends `TimetableRetriever` the relevant JSON
+data. The data is parsed and returns as a list of `Lessons`.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+The following sequence diagram shows the sequence when LogicManager executes `import` command.
+![Interactions Inside the Logic Component for the `import url/URL` Command](images/ImportSequenceDiagram.png)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute`
+takes in the input.
+2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized
+`ImportCommandParser` object and further calls the `parse` method of this object to identify the URL in the user input.
+3. It calls the `TimetableUrlParser` with the URL and it returns a `TimetableData` object.
+4. `ImportCommandParser` returns an `ImportCommand` object.
+5. There is return call to `LogicManager` which then calls the overridden `execute` method of `ImportCommand`.
+6. The `execute` method of `ImportCommand` will call the `retrieveLessons` method from `TimetableRetriever`, which
+ returns a list of lessons to be added.
+7. The `execute` method returns a `CommandResult` object.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+### \[Implemented\] Schedule an assignment
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+The user can input a deadline and expected time for an assignment to get a suggested start time and end time to work on the assignment.
+The suggested time will be within working hours from 6am to 11pm local time.
+The expected hours for an assignment ranges from 1 to 5 hours.
+The suggested time will not class with any of the suggested time for other assignments and lessons.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+#### Reasons for Implementation
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+User may find it convenient to be suggested a time slot where they can do their assignment before a specific date and at a
+specific time which he is free from all lessons and other assignment.
 
-![UndoRedoState2](images/UndoRedoState2.png)
+#### Current Implementation
+- The schedule command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+- `ScheduleCommandParser` implements `Parser<ScheduleCommand>` and it parses the user's input to return a `ScheduleCommand` object.
 
-</div>
+- The constructor of `ScheduleCommand` takes in (`Index`, `ExpectedHours`, `DoBefore`) where `Index` is a zero-based index
+with the prefix (expected/, dobefore/) in the user's input. 
+ 
+- The suggested schedule will be display in the assignment card shown in list.
+ 
+It implements the following operations:
+* `schedule 3 expected/2 dobefore/01-01-2001 0101` - Suggest schedule for the 3rd assignment in the displayed assignment list
+with expected hours of 2 and need to be done before 01:01 01-01-2001.
+* `schedule 2 expected/5 dobefore/02-02-2002 0202` - Suggest schedule for the 2nd assignment in the displayed assignment 
+with expected hours of 5 and need to be done before 02:02 02-02-2002.
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+#### Usage Scenario
 
-![UndoRedoState3](images/UndoRedoState3.png)
+A usage scenario would be when a user wants to schedule an assignment.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
+2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `ScheduleCommandParser` object and further calls the `parse` method of this object to identify keywords and prefixes in the user input.
+3. If user input is valid, it returns a `ScheduleCommand` object, which takes in a predicate. (`ExpectedHours` in this example user input)
+4. There is return call to `LogicManager` which then calls the overridden `execute` method of `ScheduleCommand`.
+6. The `execute` method returns a `ScheduleResult` object.
 
-</div>
+### \[Implemented\] Find by specific fields feature
 
-The following sequence diagram shows how the undo operation works:
+The user can find assignments by name, module code, due date/time or priority level. 
+Multiple keywords are allowed of the same type of field. (Fields are name, module code, due date/time and priority)
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+#### Reasons for Implementation
+Finding assignments by only one available field, like name of assignment, restricts the user's process of finding assignments
+based on what he is interested to view in his assignment list. 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+In the case of finding assignments, it is likely that the user will
+want to view assignments of highest priority so that he can complete them first. It is also likely for the user to want to view 
+assignments under this particular module, or view assignments due on this particular date and time. 
 
-</div>
+Allowing finding of assignments by different fields provides more categories for the user to search by and this will make
+the finding process easier and more convenient.
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+#### Current Implementation
+- The find command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+- `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
 
-</div>
+- The constructor of `FindCommand` takes in a Predicate (`NameContainsKeywordsPredicate`, `DeadlineContainsKeywordsPredicate`, `ModuleCodeContainsKeywordsPredicate` or `PriorityContainsKeywordsPredicate`)
+ depending on the prefix (n/, mod/, d/, priority/) or keywords in the user's input. 
+ 
+- The assignment list to be displayed is
+ updated according to the Predicate passed into `FindCommand`.
+ 
+It implements the following operations:
+* `find n/Assignment Lab` — Finds assignments with names that contain "Assignment" or "Lab". (Case-insensitive)
+* `find mod/CS2100 CS2103T` — Finds assignments with module codes "CS2100" or "CS2103T".
+* `find d/24-10-2020 1200` — Finds assignments with due date on 24-10-2020 (regardless of time) 
+or due time of 1200 (regardless of date).
+* `find priority/HIGH` — Finds assignments with high priority.
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+#### Usage Scenario
 
-![UndoRedoState4](images/UndoRedoState4.png)
+A usage scenario would be when a user wants to find assignments with the name 'Lab'.
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+The following sequence diagram shows the sequence when LogicManager executes `find` command.
+![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
 
-![UndoRedoState5](images/UndoRedoState5.png)
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
+2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `FindCommandParser` object and further calls the `parse` method of this object to identify keywords and prefixes in the user input.
+3. If user input is valid, it returns a `FindCommand` object, which takes in a predicate. (`NameContainsKeywordsPredicate` in this example user input)
+4. There is return call to `LogicManager` which then calls the overridden `execute` method of `FindCommand`.
+5. The `execute` method of `FindCommand` will call the `updateFilteredAssignmentList` method and then the `getFilteredAssignmentListMethod` of the `Model` object.
+6. The `execute` method returns a `CommandResult` object.
 
-The following activity diagram summarizes what happens when a user executes a new command:
 
-![CommitActivityDiagram](images/CommitActivityDiagram.png)
 
-#### Design consideration:
+### \[Implemented\] Remind assignments feature
+The user can set reminders for assignments.
+Reminded assignments will be displayed in the `Your Reminders` section in ProductiveNUS for easy referral.
 
-##### Aspect: How undo & redo executes
+#### Reasons for Implementation
+It is likely that the user will want to receive reminders for assignments with deadlines that are far away, so that he will not forget to complete those assignments. It is also likely that the user will want to receive reminders for assignments that require more attention, so that he will know which assignments to focus on and plan his time accordingly.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+Displaying reminded assignments in a list separate from the main assignment list allows for easy referral and is hence more convenient for the user.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+#### Current Implementation
+- The remind command is a typical command used in ProductiveNUS.
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- `RemindCommandParser` implements `Parser<RemindCommand>` and it parses the user's input to return a `RemindCommand` object.
+- The constructor of `RemindCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
 
-_{more aspects and alternatives to be added}_
+It implements the following operations:
+* `remind 3` - Sets reminders for the 3rd assignment in the displayed assignment list.
+* `remind 2` - Sets reminders for the 2nd assignment in the displayed assignment list.
+
+
+
+### \[Implemented\] List by days feature
+
+The user can list all his assignments (`list` without a subsequent argument index), or list assignments with deadlines 
+within a number of days from the current date (and time), with the number being the user input after `list`. 
+
+#### Reasons for Implementation
+It is likely that the user will want to view assignments that are due within days (soon) from the current date, so that he will know which assignments to complete first in order to meet the deadlines.
+It is different from the `find` command as users can list all assignments with deadlines within a period of time (from the current date and time to a number of days later, depending on the index he keys in).
+`find` by deadline (date or time) will only display assignments due on this particular day or time.
+
+It also provides a more intuitive approach for users to view assignments that are more urgent to complete.
+
+#### Current Implementation
+- The list command is a typical command used in ProductiveNUS. 
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- `ListCommandParser` implements `Parser<ListCommand>` and it parses the user's input to return a `ListCommand` object.
+- The constructor of `ListCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
+
+It implements the following operations:
+* `list` — Lists all assignments stored in ProductiveNUS.
+* `list 3` — Lists assignments with deadline 3 days (72 hours) from the current date. (and current time)
+* `list 2` — Lists assignments with deadline 2 days (48 hours) from the current date. (and current time)
+
+### \[Coming up\] Delete multiple assignments feature
+The user can delete multiple assignments at a time, when more than one index is keyed in.
+
+#### Reasons for Implementation
+It will provide convenience to users who want to delete more than one assignment at a time, and it makes the deleting process faster.
+
+
+#### Current Implementation
+- The `delete` command is a typical command used in ProductiveNUS. 
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input (index of the assignment as a positive integer)) to return a `DeleteCommand` object.
+- The constructor of `DeleteCommand` takes in an `Index` which is parsed from the one based index of the user's input.
+ 
+It can implement the following operations:
+* `delete 1 3` — Deletes the assignment at the first and third index in list.
+* `delete 1` — Deletes the assignment at the first index in list.
+
+### \[Coming up\] Help feature
+
+### \[Implemented\] Undo
+
+The user can undo the most recent command that changes the data of the assignments or lessons.
+
+#### Reasons for Implementation
+It is likely that the user might type in command mistakenly will want to go the previous state.
+Instead of using a combination of adding, deleting, editting, ..., a single undo command will 
+help solving the problem easily.
+
+#### Current Implementation
+- The undo command is a typical command used in ProductiveNUS. 
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+
+It implements the following operations:
+* `Undo` — Undo the most recent command that changes the data of the assignments or lessons.
+
+#### Usage Scenario
+
+A usage scenario would be when a user wants to undo the most recent command that changes the data of the assignments
+
+1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
+2. The `execute` calls the `UndoCommand`.
+4. There is return call to `LogicManager` which then calls the overridden `execute` method of `UndoCommand`.
+5. The `execute` method of `UndoCommand` will call the `getPreviousModel` of the `Model` object and reassign `Model`.
+6. The `execute` method returns a `CommandResult` object.
+
+### \[Coming up\] Delete multiple assignments feature
+The user can delete multiple assignments at a time, when more than one index is keyed in.
+
+#### Reasons for Implementation
+It will provide convenience to users who want to delete more than one assignment at a time, and it makes the deleting process faster.
+
+
+#### Current Implementation
+- The `delete` command is a typical command used in ProductiveNUS. 
+- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input (index of the assignment as a positive integer)) to return a `DeleteCommand` object.
+- The constructor of `DeleteCommand` takes in an `Index` which is parsed from the one based index of the user's input.
+ 
+It can implement the following operations:
+* `delete 1 3` — Deletes the assignment at the first and third index in list.
+* `delete 1` — Deletes the assignment at the first index in list.
 
 ### \[Proposed\] Data archiving
 
