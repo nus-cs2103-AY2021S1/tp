@@ -414,6 +414,8 @@ Figure 6.3: <i>Back to the main recipe list</i>
 
 
 
+
+
 ### Listing Ingredients — **`list`**`ingredients`
 This command shows a list of all recipes in ChopChop. As with the `list recipes` command, you can use this command to switch between panes without clicking, or to reset any filters.
 
@@ -558,6 +560,20 @@ Usage: `undo`
 Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
 
 Usage: `redo`
+
+
+### Viewing Recipes — **`view`**
+This command displays a specific recipe from ChopChop. You can either use the name or the number of the recipe to refer to it.
+
+Usage: `view <#REF>`
+
+Examples:
+- `view #4` <br />
+	This displays the fourth recipe currently shown in the GUI's recipe view.
+- `view pancakes` <br />
+	This displays the recipe named 'pancakes'. Note that the name here is case insensitive.
+
+To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe (in this case, the Pancake recipe added in the `add recipe` guide above).
 
 -----------------------
 ## Quantities and Units
