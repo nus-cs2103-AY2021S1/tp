@@ -4,7 +4,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nustorage.commons.core.GuiSettings;
-import nustorage.model.*;
+import nustorage.model.Inventory;
+import nustorage.model.Model;
+import nustorage.model.ReadOnlyFinanceAccount;
+import nustorage.model.ReadOnlyUserPrefs;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
@@ -86,11 +89,6 @@ public class ModelStub implements Model {
 
     @Override
     public ReadOnlyFinanceAccount getFinanceAccount() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyInventory getInventoryAccount() {
         throw new AssertionError("This method should not be called.");
     }
 

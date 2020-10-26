@@ -92,8 +92,6 @@ public interface Model {
 
     ObservableList<InventoryRecord> getFilteredInventory();
 
-    ReadOnlyInventory
-
     Inventory getInventory();
 
     void updateFilteredFinanceList(Predicate<FinanceRecord> predicate);

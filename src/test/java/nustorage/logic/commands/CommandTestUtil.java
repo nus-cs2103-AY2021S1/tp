@@ -26,6 +26,7 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final double VALID_AMOUNT = 0.10;
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
 
@@ -89,6 +90,8 @@ public class CommandTestUtil {
     public static final String DATE_TIME_DESC_C = " " + PREFIX_DATETIME + DATE_STRING_C + " " + TIME_STRING_C;
     public static final String DATE_TIME_DESC_D = " " + PREFIX_DATETIME + DATE_STRING_D + " " + TIME_STRING_D;
 
+    public static final String INVALID_AMOUNT_DESC_A = " " + PREFIX_AMOUNT + "0.10a"; // 'a' is not allowed
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
@@ -99,7 +102,6 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
-            assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
