@@ -24,7 +24,8 @@ public class DeleteVisitCommand extends Command {
         + "Example: " + COMMAND_WORD + " 1 "
         + PREFIX_VISIT_INDEX + "2";
 
-    public static final String MESSAGE_DELETE_VISIT_SUCCESS = "Deleted visitation log from Patient: %1$s";
+    public static final String MESSAGE_DELETE_VISIT_SUCCESS = "Deleted visitation log for the "
+                                                              + "following patient: \n%1$s";
     public static final String MESSAGE_MISSING_INDEX_PROMPT = "Please specify index of visitation to be deleted\n"
         + "Usage: " + COMMAND_WORD + " [PATIENT INDEX] "
         + PREFIX_VISIT_INDEX + "[VISIT INDEX]";

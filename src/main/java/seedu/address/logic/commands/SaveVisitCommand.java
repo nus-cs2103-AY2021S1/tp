@@ -14,7 +14,8 @@ import seedu.address.model.patient.Patient;
 import seedu.address.model.visit.Visit;
 
 public class SaveVisitCommand extends Command {
-    public static final String MESSAGE_SAVE_VISIT_SUCCESS = "Successfully saved visit to Patient: %1$s";
+    public static final String MESSAGE_SAVE_VISIT_SUCCESS = "Successfully saved visit for the "
+                                                            + "following patient: \n%1$s";
     private static final int NEW_VISIT = -1;
 
     private final Index patientIndex;
