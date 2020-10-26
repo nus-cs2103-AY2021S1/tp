@@ -69,14 +69,55 @@ Format: `addMod MODULE_CODE`
 
 Example: `addMod CS2103T`
 
-#### 3.3.2 Add a tutorial group: `addTG`
+## **4.2 - Tutorial Group Features**
 
-Adds a tutorial group to the current module in view.
+### 4.2.1 - View all Tutorial Groups in a Module: `viewTG`
+**You can display all Tutorial Groups in a Module with this command. You can indicated which Module's Tutorial Groups to view by entering its index in the current list.**
 
-Format: `addTG GROUP_CODE`
+Format: `viewTG MODULE_INDEX`
+Where MODULE_INDEX is the target Module's index in the currently displayed Module List.
 
-Example: `addTG T03`
+Example: `viewTG 1`
 
+**You can also use this command to return to the view of all Tutorial Groups in a Module whilst you are viewing all Students in a Tutorial Group by entering the command without an index.**
+
+Format: `viewTG`
+
+### 4.2.2 - Add a Tutorial Group to a Module: `addTG`
+**You can add a Tutorial Group to the Module you are viewing using this command.**
+
+> You can only use this command when you are viewing all Tutorial Groups of the Module you intend to add the Tutorial Group to.
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `addTG`
+
+### 4.2.3 - Find a Tutorial Group: `findTG`
+**if you need to quickly find a Tutorial from a list of Tutorials, use this command.**
+
+> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `findTG TARGET_TG_CODE`
+Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
+
+Example: `findTG B014`
+To search for a Tutorial Group with code B014
+
+### 4.2.2 - Delete a Tutorial Group from a Module: `deleteTG`
+**You can use this command to delete a Tutorial Group you have previously added to a Module.**
+> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `deleteTG TG_INDEX`
+Where TG_INDEX is the index of the Tutorial Group you want to delete.
+
+Example: `deleteTG 2`
+To delete Tutorial Group with the index 2 in the currently displayed list.
+
+
+These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
+
+---
 #### 3.3.3 Add a student: `addStudent`
 
 Adds a student to the current tutorial group in view.
