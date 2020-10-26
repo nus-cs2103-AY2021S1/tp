@@ -111,11 +111,18 @@ public class PatientCard extends UiPart<Region> {
         clipboard.setContent(url);
     }
 
+    /**
+     * Shows the Appointment window when patient is clicked.
+     */
     @FXML
     private void onDoubleClick() {
-        AppointmentWindow appointmentWindow = new AppointmentWindow();
+        AppointmentWindow appointmentWindow = MainWindow.appointmentWindow;
         appointmentWindow.setAppointmentWindow(patient);
-        appointmentWindow.show();
+        if (appointmentWindow.isShowing()) {
+            appointmentWindow.focus();
+        } else {
+            appointmentWindow.show();
+        }
     }
 
 }

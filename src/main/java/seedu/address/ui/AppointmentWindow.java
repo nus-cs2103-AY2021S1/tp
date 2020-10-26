@@ -104,4 +104,17 @@ public class AppointmentWindow extends UiPart<Stage> {
         return getRoot().isShowing();
     }
 
+    /**
+     * Hides the Appointment window.
+     */
+    public void hide() {
+        getRoot().hide();
+    }
+
+    /**
+     * Focuses on the Appointment window.
+     */
+    public void focus() {
+        getRoot().requestFocus();
+    }
 }
