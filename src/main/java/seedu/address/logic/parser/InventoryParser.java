@@ -7,7 +7,26 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddItemCommand;
+import seedu.address.logic.commands.AddItemTagCommand;
+import seedu.address.logic.commands.AddQuantityToItemCommand;
+import seedu.address.logic.commands.AddRecipeCommand;
+import seedu.address.logic.commands.ClearItemCommand;
+import seedu.address.logic.commands.ClearRecipeCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CraftItemCommand;
+import seedu.address.logic.commands.DeleteItemCommand;
+import seedu.address.logic.commands.DeleteRecipeCommand;
+import seedu.address.logic.commands.EditItemCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindByTagCommand;
+import seedu.address.logic.commands.FindItemCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListItemCommand;
+import seedu.address.logic.commands.ListRecipeCommand;
+import seedu.address.logic.commands.RedoCommand;
+import seedu.address.logic.commands.UndoCommand;
+import seedu.address.logic.commands.ViewDetailsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -74,6 +93,12 @@ public class InventoryParser {
             return new ListRecipeCommandParser().parse(arguments);
         case ClearRecipeCommand.COMMAND_WORD:
             return new ClearRecipeCommand();
+
+        // Utility commands start here
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -73,14 +73,16 @@ A summary of the commands for the features currently implemented.
 
 Action | Format
 -------|---------------------------------
-**Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] 
+**Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] \[-t \<tag1, tag2, …\>\]
 **Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
 **Add quantity to item** | `addq` **-n \<item name\>** **-q \<qty\>**
+**Add tag to item** | `addt` **-n \<item name\>** **-t \<tag1, tag2, …\>\**
 **List Items** | `listi`
 **List Recipes** | `listr`
 **Delete item** | `deli` **-n \<item name\>**
 **Delete Recipe** | `delr` **-n \<item name\> -r index**
-**Find** | `find` **\<search strings\>**
+**Find Item** | `find` **\<search strings\>**
+**Find by tag** | `findt` **\<search strings\>**
 **View** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
 **Help** | `help` \[command\]
 **Exit** | `exit`

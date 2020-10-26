@@ -69,6 +69,9 @@ public class DeleteRecipeCommand extends Command {
         }
 
         model.deleteRecipe(recipeToDelete);
+
+        model.commitInventory();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToDelete));
     }
 

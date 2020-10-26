@@ -8,7 +8,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyItemList;
-import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.item.Item;
@@ -16,9 +15,14 @@ import seedu.address.model.location.Location;
 import seedu.address.model.recipe.Recipe;
 
 /**
- * A default model stub that have all of the methods failing EXCEPT processPrecursors and getFilteredItemList.
+ * A default model stub that have all of the methods failing EXCEPT:
+ *
+ * 1. processPrecursors and getFilteredItemList
  * This is because we minimally need the processPrecursors method to handle AddItemCommand and RecipeDeletion
  * to reset the data to its original state (when needed).
+ *
+ * 2. getItemList(), getRecipeList(), getLocationList()
+ * This is because these methods are accessed via VersionedInventory#commit by nearly all commands.
  */
 public class ModelStub extends ModelManager implements Model {
     @Override
@@ -88,21 +92,6 @@ public class ModelStub extends ModelManager implements Model {
 
     @Override
     public void setRecipeList(ReadOnlyRecipeList recipeList) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyItemList getItemList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyLocationList getLocationList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public ReadOnlyRecipeList getRecipeList() {
         throw new AssertionError("This method should not be called.");
     }
 
