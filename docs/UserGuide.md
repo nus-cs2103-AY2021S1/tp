@@ -22,22 +22,26 @@ This User Guide will provide a general overview of installation, existing featur
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
+1. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for this application.
+1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-4. Double-click the file to start the app. Similar GUI shown below (Figure 1) should appear in a few seconds. <br>
-   *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
-   <br> ![Ui](images/UiWithAnnotation.png) <br>
+1. Double-click the file to start the app. Similar GUI shown below (Figure 1) should appear in a few seconds. <br>
+   *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
+   <br>
+   ![Ui](images/UiWithAnnotation.png)
    Figure 1: Introduction to OneShelf User Interface
-
-5. Type the command `help start` in the command box and press Enter to execute it. <br>
+   <br>
+   
+1. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below (Figure 2) should appear on your desktop and you are welcomed to follow the
    guide given in the Help Start Window.
-   <br> ![Help Window](images/UiHelpStart.png) <br>
+   <br> 
+   ![Help Window](images/UiHelpStart.png) 
    Figure 2: Help Start Window
+   <br>
 
-6. Refer to the [Features](#features) below for details of each command.
+1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. Features
@@ -234,10 +238,41 @@ Format: `delete-i INDEX` or `delete-d INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Example 1:
-1. `list-i` followed by `delete-i 2` deletes the 2nd item in the inventory book.
+1. Assume by entering `list-i`, we have the following inventory items as shown in the diagram below:
+ <br>
+ ![](images/UG_delete_eg1_step1.PNG)
+ <br>
+ <br>
+ 
+2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below:
+<br>
+![](images/UG_delete_eg1_step2.PNG)
+<br>
+<br>
 
 Example 2:
-1. `find-d n/DAMITH` followed by `delete-d 1` deletes the 1st item in the results of the `find-d` command.
+1. Assume by entering `list-d`, we have the following deliveries as shown in the diagram below:
+<br>
+![](images/UG_delete_eg2_step1.PNG)
+<br>
+<br>
+
+2. Enter `find-d n/DAMITH` and the expected result should be as shown below:
+<br>
+![](images/UG_delete_eg2_step2.PNG) 
+<br>
+<br>
+
+3. `delete-d 1` will delete the INDEX 1 which is DAMITH. <br>
+*Note: INDEX 1 does not refer to ALEX YEOH as shown in Step 1.*
+<br>
+<br>
+
+4. Enter `list-d` and you should notice that DAMITH is no longer in the delivery book.
+<br>
+![](images/UG_delete_eg2_step3.PNG)
+<br>
+<br>
 
 
 
