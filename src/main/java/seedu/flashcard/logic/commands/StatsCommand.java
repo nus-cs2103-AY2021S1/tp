@@ -47,7 +47,7 @@ public class StatsCommand extends Command {
         }
         Flashcard flashcardToShowStatistics = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_VIEW_FLASHCARD_SUCCESS,
-                flashcardToShowStatistics), true, targetIndex.getZeroBased());
+                flashcardToShowStatistics), targetIndex.getZeroBased());
     }
 
     @Override
