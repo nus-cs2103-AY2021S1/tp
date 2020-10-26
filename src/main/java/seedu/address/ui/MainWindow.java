@@ -173,9 +173,12 @@ public class MainWindow extends UiPart<Stage> {
 
         Node content = semsPanelPlaceholder.getSelectionModel().getSelectedItem().getContent();
         semsPanelPlaceholder.getSelectionModel().getSelectedItem().setContent(null);
+
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
         semsPanelPlaceholder.getSelectionModel().select(toIndex);
         semsPanelPlaceholder.getSelectionModel().getSelectedItem().setContent(content);
-        semsPanelPlaceholder.getSelectionModel().getSelectedItem();
     }
 
     /**
