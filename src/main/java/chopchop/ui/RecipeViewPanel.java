@@ -49,8 +49,7 @@ public class RecipeViewPanel extends UiPart<Region> {
         recipeGridView.getChildren().clear();
 
         this.getPlaceholderText().ifPresentOrElse(
-            t -> this.recipeGridView.add(new TextDisplay(t).getRoot(), 0, 0),
-            () -> this.populate()
+            t -> this.recipeGridView.add(new TextDisplay(t).getRoot(), 0, 0), () -> this.populate()
         );
     }
 
