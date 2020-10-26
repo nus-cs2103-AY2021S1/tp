@@ -10,12 +10,12 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.util.Pair;
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.LogsCenter;
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.commons.util.CollectionUtil;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.macro.MacroList;
 
 
 /**
@@ -26,29 +26,51 @@ public class ModelManager implements Model {
 
     private final History history = new History();
 
+    private MacroList macroList;
     private final McGymmy mcGymmy;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoodItems;
     private Predicate<Food> filterPredicate;
 
     /**
-     * Initializes a ModelManager with the given mcGymmy and userPrefs.
+     * Initializes a ModelManager with the given mcGymmy and userPrefs and macroList.
      */
-    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs, MacroList macroList) {
         super();
-        CollectionUtil.requireAllNonNull(mcGymmy, userPrefs);
+        CollectionUtil.requireAllNonNull(mcGymmy, userPrefs, macroList);
 
         logger.fine("Initializing with food list: " + mcGymmy + " and user prefs " + userPrefs);
 
         this.mcGymmy = new McGymmy(mcGymmy);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.macroList = macroList;
         filteredFoodItems = new FilteredList<>(this.mcGymmy.getFoodList());
         filterPredicate = PREDICATE_SHOW_ALL_FOODS;
         filteredFoodItems.setPredicate(filterPredicate);
     }
 
+    /**
+     * Initializes a ModelManager with the given mcGymmy and userPrefs. Creates a new macroList.
+     */
+    public ModelManager(ReadOnlyMcGymmy mcGymmy, ReadOnlyUserPrefs userPrefs) {
+        this(mcGymmy, userPrefs, new MacroList());
+    }
+
     public ModelManager() {
-        this(new McGymmy(), new UserPrefs());
+        this(new McGymmy(), new UserPrefs(), new MacroList());
+    }
+
+    //=========== MacroList ==================================================================================
+
+    @Override
+    public MacroList getMacroList() {
+        return this.macroList;
+    }
+
+    @Override
+    public void setMacroList(MacroList replacement) {
+        saveCurrentStateToHistory();
+        this.macroList = replacement;
     }
 
     //=========== UserPrefs ==================================================================================
@@ -159,11 +181,13 @@ public class ModelManager implements Model {
     public void undo() {
         if (canUndo()) {
             assert !history.empty() : "McGymmyStack is empty";
-            Pair<McGymmy, Predicate<Food>> prevMcGymmyPredicatePair = history.pop();
-            McGymmy prevMcGymmy = prevMcGymmyPredicatePair.getKey();
-            Predicate<Food> prevPredicate = prevMcGymmyPredicatePair.getValue();
+            McGymmy prevMcGymmy = history.getMcGymmy();
+            Predicate<Food> prevPredicate = history.getPredicate();
+            MacroList macroList = history.getMacroList();
+            history.pop();
             mcGymmy.resetData(prevMcGymmy);
             updateFilterPredicate(prevPredicate);
+            this.macroList = macroList;
         }
     }
 

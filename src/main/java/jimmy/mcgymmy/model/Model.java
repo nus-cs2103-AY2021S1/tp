@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import jimmy.mcgymmy.commons.core.GuiSettings;
 import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.macro.MacroList;
 
 /**
  * The API of the Model component.
@@ -16,6 +17,16 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
+
+    /**
+     * Returns the current MacroList
+     */
+    public MacroList getMacroList();
+
+    /**
+     * Replaces the current MacroList
+     */
+    public void setMacroList(MacroList replacement);
 
     /**
      * Returns the user prefs.

@@ -4,6 +4,7 @@ import static jimmy.mcgymmy.testutil.Assert.assertThrows;
 import static jimmy.mcgymmy.testutil.TypicalFoods.CHICKEN_RICE;
 import static jimmy.mcgymmy.testutil.TypicalFoods.DANISH_COOKIES;
 import static jimmy.mcgymmy.testutil.TypicalFoods.NASI_LEMAK;
+import static jimmy.mcgymmy.testutil.TypicalMacros.TEST_MACRO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,6 +22,7 @@ import jimmy.mcgymmy.commons.core.index.Index;
 import jimmy.mcgymmy.logic.commands.CommandTestUtil;
 import jimmy.mcgymmy.logic.predicate.NameContainsKeywordsPredicate;
 import jimmy.mcgymmy.model.food.Food;
+import jimmy.mcgymmy.model.macro.MacroList;
 import jimmy.mcgymmy.testutil.FoodBuilder;
 import jimmy.mcgymmy.testutil.McGymmyBuilder;
 import jimmy.mcgymmy.testutil.TypicalFoods;
@@ -180,6 +182,15 @@ public class ModelManagerTest {
         modelManager.addFood(CHICKEN_RICE);
         modelManager.addFood(DANISH_COOKIES);
         modelManager.clearFilteredFood();
+        modelManager.undo();
+        assertEquals(modelManager, expectedModelManager);
+    }
+
+    @Test
+    public void undo_undoAfterNewMacro_modelManagerHasCorrectContent() throws Exception {
+        ModelManager expectedModelManager = new ModelManager(modelManager.getMcGymmy(), new UserPrefs());
+        MacroList newMacroList = modelManager.getMacroList().withNewMacro(TEST_MACRO);
+        modelManager.setMacroList(newMacroList);
         modelManager.undo();
         assertEquals(modelManager, expectedModelManager);
     }
