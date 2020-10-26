@@ -169,11 +169,6 @@ Format: `done TASK_NUMBER`
 
 Example: `done 2`
 
-## 4. FAQ
-
-Q: How to save data?<br>
-A: Data will be saved automatically when Trackr is closed.
-
 ## 5. Command Summary
 Action | Format
 ------------ | -------------
@@ -188,3 +183,8 @@ Finding a module | `findMod MODULE_CODE`
 Finding a tutorial group | `findTG GROUP_CODE`
 Finding a student | `findStudent n/NAME id/STUDENT_ID`
 Marking a reminder as done | `done TASK_NUMBER`
+
+## 7. FAQ
+__Q:__ Why did the command I input change colour from white to red? <br> 
+__A:__ This happens when the input command is of the wrong syntax or doesn't exist. U may go to the [Command Summary]() to 
+view the list of commands and their accepted formats.
