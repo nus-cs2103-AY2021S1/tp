@@ -92,8 +92,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyLocationList> readLocationList() {
-        return Optional.empty();
+    public Optional<ReadOnlyLocationList> readLocationList() throws IOException, DataConversionException {
+        return readLocationList(locationListStorage.getLocationListFilePath());
     }
 
     @Override

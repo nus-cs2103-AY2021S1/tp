@@ -2,11 +2,17 @@
 layout: page
 title: User Guide
 ---
+// TODO ** add authorship for grading purposes **
 
 ## Introduction
+// TODO shift to the right
 ![inventoryinator](images/inventoryinator.jpg)
 
-Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
+// TODO longer intro
+
+// TODO personalise intro, don't bother with CLI GUI copypasta
+
+**Inventoryinator** is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
 
@@ -28,18 +34,18 @@ in this document.
 1. Copy the file to the folder you want to use as the _home folder_ for your Inventoryinator.
 
 1. Double-click the file to start the app. The GUI like below should appear in a few seconds. Note how the app contains some sample data.<br>
-   
+   //TODO smaller diagram for quickstart, taking up too much space
    ![Ui](images/Ui.png)
-
+// TODO better use of whitespaces
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    
    Some example commands you can try:
 
    * **`list`** : Lists all items stored in Inventoryinator.
 
-   * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds a item named `banana` to the Inventoryinator
+   * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds an item named `banana` to the Inventoryinator
 
-   * **`add`**`banana -q 10` Add a quantity of 10 to the Bananas
+   * **`add`**`banana -q 10` Adds a quantity of 10 to the banana
 
    * **`deli`**`-n banana` : Deletes the banana item from the Inventoryinator
 
@@ -66,6 +72,8 @@ term | Command/variable term<br>
 default | If no parameter is given as input, this will be the input parameter.
 
 ___________________________________________________________________
+// TODO made Recipe definition clear, add glossary?
+
 
 ## Command summary
 
@@ -81,16 +89,19 @@ Action | Format
 **List Recipes** | `listr`
 **Delete item** | `deli` **-n \<item name\>**
 **Delete Recipe** | `delr` **-n \<item name\> -r index**
-**Find Item** | `find` **\<search strings\>**
-**Find by tag** | `findt` **\<search strings\>**
+**Find Item by name** | `find` **\<search strings\>**
+**Find Item by tag** | `findt` **\<search strings\>**
 **View** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
 **Help** | `help` \[command\]
 **Exit** | `exit`
 
 
 ## Features
+// TODO add more to the preface under the features heading
 
 Inventoryinator's features and their descriptions, as of v1.2.
+
+// TODO in general, descriptions for features too short, need to explain what it does for the user and not just what it does
 
 ### Adding an item: `addi`
 
@@ -149,26 +160,9 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `addq` -n <u>Bob’s 6th regret</u> -q <u>8</u>
-- Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
+Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
 
-### Adding quantity to an item: `addq`
-
-**NAME:**
-- `addq` - adds quantity to a single specified item
-
-**SYNOPSIS:**
-- `addq` **\<item name\>** **-q \<qty\>**
-
-**DESCRIPTION:**
-- **item name:** given name of the item in the system
-- **-q:** amount of that item to add
-- Adds the quantity to the item in the inventory
-
-**EXAMPLE:**
-- `addt` -n <u>Bob’s 6th regret</u> -t <u>sadbob</u> <u>feelsbad</u>
-- Adds tags <u>sadbob</u> and <u>feelsbad</u> to <u>Bob’s 6th regrets</u>.
-
-### Listing all items : `listi`
+### Listing all items: `listi`
 
 **NAME:**
 - `listi` - lists all items
@@ -176,11 +170,14 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 **SYNOPSIS:**
 - `listi`
 
+**DESCRIPTION:**
+//TODO
+
 **EXAMPLE:**
 - `listi`
-- Lists all items and their quantities
+Lists all items and their quantities
 
-### Listing all items : `listr`
+### Listing all recipes: `listr`
 
 **NAME:**
 - `listr` - lists all recipes
@@ -188,11 +185,14 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 **SYNOPSIS:**
 - `listr`
 
+**DESCRIPTION:**
+//TODO
+
 **EXAMPLE:**
 - `listr` 
-- Lists all recipes, outputs, descriptions and their ingredients
+Lists all recipes, outputs, descriptions and their ingredients
 
-### Deleting an item : `deli`
+### Deleting an item: `deli`
 
 **NAME:**
 - `deli` - deletes an item
@@ -207,9 +207,9 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `deli` -n <u>Bob’s 28th finger</u>
-- Deletes the **item** with the name of <u>Bob’s 28th finger</u>
+Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
-### Deleting a Recipe : `delr`
+### Deleting a Recipe: `delr`
 
 **NAME:**
 - `delr` - deletes a recipe
@@ -224,7 +224,7 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>
-- Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
+Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
 
 ### Finding an item: `find`
 
@@ -238,7 +238,7 @@ This command allows the user to search for items in `Inventoryinator` by tags,
 - `find` **\<string1 string2\>**
 
 **DESCRIPTION:**
-- **string{1}:** keywords to search by, space separated
+- **string:** keywords to search by, space separated
 - Displays items that match or contain, case-insensitive, any of the search keywords
 
 **EXAMPLE:**
@@ -290,9 +290,9 @@ WIP as of v1.2
 
 **EXAMPLE:**
 - `view` <u>Bob’s bitten fingernail clipping</u> -r 
-- Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
+Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
 
-### Viewing help : `help`
+### Viewing help: `help`
 WIP as of v1.2
 
 **NAME:** 
@@ -308,7 +308,7 @@ WIP as of v1.2
 
 ![help message](images/helpMessage.png)
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 **NAME:**
 - `exit` - closes the application
@@ -319,16 +319,15 @@ WIP as of v1.2
 **DESCRIPTION:**
 - Closes the application. 
 
-### Saving the data
-
-Inventoryinator data is saved in the hard disk automatically after any command that changes the data.
- There is no need to save manually. The format of save data is via `json file format`
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and run it. Then, overwrite the data files
  it creates with the files that contain the data of your previous Inventoryinator home folder.
 
+**Q**: Do I need to save my data manually in the application?
+**A**: Inventoryinator data is saved in the hard disk automatically after any command that changes the data.
+        There is no need to save manually. The format of save data is via `json file format`
 --------------------------------------------------------------------------------------------------------------------
 
+// TODO Add Glossary of Terms.
