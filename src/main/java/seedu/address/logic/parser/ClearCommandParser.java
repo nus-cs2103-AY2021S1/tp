@@ -1,11 +1,11 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
 import java.util.stream.Stream;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,8 +26,16 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
+        boolean ifNoCategory = !arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
+        if (ifNoCategory) {
+            boolean areInvalidArgs = !argMultimap.getPreamble().isEmpty();
+
+            if (areInvalidArgs) {
+                throw new ParseException(
+                        String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, ClearCommand.MESSAGE_USAGE));
+            }
+
+            return new ClearCommand();
         }
 
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
