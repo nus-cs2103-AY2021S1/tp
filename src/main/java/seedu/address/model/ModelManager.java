@@ -11,6 +11,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -259,7 +260,6 @@ public class ModelManager implements Model {
         requireNonNull(persons);
         Person personToUpdate = persons[0];
         boolean isReplacement = persons.length > 1;
-
         filteredModules.stream()
                 .filter(module -> module.getClassmates().contains(personToUpdate))
                 .forEach(module -> {
@@ -275,6 +275,47 @@ public class ModelManager implements Model {
                     Module updatedModule = new Module(module.getModuleName(), updatedClassmates);
                     moduleBook.setModule(module, updatedModule);
                 });
+    }
+
+    @Override
+    public void updateModuleInMeetingBook(Module... modules) {
+        requireNonNull(modules);
+        Module moduleToUpdate = modules[0];
+        boolean isReplacement = modules.length > 1;
+
+        List<Meeting> meetingList = filteredMeetings.stream().filter(meeting -> meeting.getModule()
+                .equals(moduleToUpdate)).collect(Collectors.toList());
+        for (Meeting filteredMeeting: meetingList) {
+            Set<Person> updatedMembers = new HashSet<>();
+            if (isReplacement) {
+                assert modules.length == 2;
+                Module editedmodule = modules[1];
+                for (Person person : editedmodule.getClassmates()) {
+                    if (filteredMeeting.getParticipants().contains(person)) {
+                        updatedMembers.add(person);
+                    }
+                }
+            }
+            if (updatedMembers.size() == 0) {
+                meetingBook.removeMeeting(filteredMeeting);
+            } else {
+                Meeting updatedMeeting = new Meeting(modules[1], filteredMeeting.getMeetingName(),
+                        filteredMeeting.getDate(), filteredMeeting.getTime(), updatedMembers);
+                meetingBook.setMeeting(filteredMeeting, updatedMeeting);
+            }
+        }
+    }
+
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        moduleBook.setModule(target, editedModule);
+    }
+
+    @Override
+    public void deleteModule(Module target) {
+        moduleBook.removeModule(target);
     }
 
     //=========== Filtered Person List Accessors =============================================================
@@ -347,6 +388,8 @@ public class ModelManager implements Model {
         filteredMeetings.setPredicate(predicate);
     }
 
+    //=========== Filtered Module List Accessors =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
@@ -367,6 +410,12 @@ public class ModelManager implements Model {
             Predicate<Person> predicate = person -> mod.getClassmates().contains(person);
             updateFilteredPersonList(predicate);
         }
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
     }
 
 
