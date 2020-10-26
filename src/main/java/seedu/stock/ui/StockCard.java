@@ -104,7 +104,7 @@ public class StockCard extends UiPart<Region> {
      * @return input string with first letter being upper-cased
      */
     public String upperFirst(String toChange) {
-        String upperCase = toChange.substring(0,1).toUpperCase() ;
+        String upperCase = toChange.substring(0, 1).toUpperCase();
         String lowerCase = toChange.substring(1);
 
         return upperCase + lowerCase;
