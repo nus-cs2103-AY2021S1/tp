@@ -26,12 +26,12 @@ public class Contact {
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Email email, Telegram telegramUsername) {
-        requireAllNonNull(name, email, telegramUsername);
+    public Contact(Name name, Email email, Telegram telegramUsername, Set<Tag> tags) {
+        requireAllNonNull(name, email, telegramUsername, tags);
         this.name = name;
         this.email = email;
         this.telegramUsername = telegramUsername;
-        // this.tags.addAll(tags);
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -55,7 +55,7 @@ public class Contact {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * Returns true if both contacts of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameContact(Contact otherPerson) {
@@ -70,8 +70,8 @@ public class Contact {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both contacts have the same identity and data fields.
+     * This defines a stronger notion of equality between two contacts.
      */
     @Override
     public boolean equals(Object other) {
