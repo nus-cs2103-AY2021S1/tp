@@ -25,7 +25,7 @@ The goal of this User Guide is to provide you with the information on how to uti
 
 For those who are unfamiliar with what a CLI is, no worries! This User Guide will ensure that you will be able to understand how to use a CLI by the end of it! Rest assured!
 
-Here is a summary of symbols that are used in this User Guide:
+Here is a summary of the symbols that are used in this User Guide:
 
 Symbol | Meaning 
 -------|-------- 
