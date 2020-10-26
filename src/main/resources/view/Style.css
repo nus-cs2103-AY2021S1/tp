@@ -269,6 +269,12 @@
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 10 10;
 }
+#pins {
+    -fx-background-color: transparent;
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #575555;
+}
 #pinBoxPlaceholder {
     -fx-padding: 5;
 

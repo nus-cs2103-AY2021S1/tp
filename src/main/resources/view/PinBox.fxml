@@ -10,9 +10,9 @@
         <URL value="@Style.css" />
     </stylesheets>
     <children>
-        <VBox alignment="CENTER" fx:id="statsBox">
+        <VBox alignment="TOP_CENTER" fx:id="statsBox">
             <children>
-                <TextArea fx:id="pins" maxHeight="262.0" maxWidth="242.0" text="\$pins" editable="false"/>
+                <TextArea fx:id="pins" maxHeight="30.0" maxWidth="120.0" text="\$pins" editable="false" style="-fx-font-weight: bold"/>
                 <TextArea fx:id="body1" styleClass="header1" maxHeight="262.0" maxWidth="245.0" prefHeight="320.0" prefWidth="290.0" text="\$body1" editable="false"/>
             </children>
         </VBox>
