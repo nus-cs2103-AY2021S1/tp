@@ -37,7 +37,7 @@ as well as summary commands.
    Figure 2: Help Start Window
 
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Features](#Features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 ## 3. Features
@@ -103,15 +103,38 @@ Adds inventory item or pending delivery to OneShelf.
 
 ##### 3.1.2.a `add-i`
 
-Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​`
+Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​`
 * Adds `QUANTITY` from the current quantity of an inventory item if the item already exist.
 An item is uniquely identified by its `NAME` and `SUPPLIER`.
+* Note 1: `MAX_QUANTITY` denotes the ideal stock level of that particular item.
+* Note 2: `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
-Examples: `add-i n/CHICKEN q/10 s/NTUC max/50`
+Example One: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#Ui) as a base.
 
-Assuming that your inventory item is empty, entering the above command would add a new chicken item that was previously purchased from NTUC. <br>
-By entering `add-i n/CHICKEN q/10 max/50`, a new inventory item would be added instead of increasing the quantity since the second chicken has no supplier. <br>
-On the other hand, by entering `add-i n/CHICKEN q/10 s/NTUC` again would increase the quantity of Chicken from NTUC to be 20kg.
+1. Step One: Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG`.
+
+![add-i example one step one](images/add-i%20example%20one%20step%20one.PNG)
+
+2. Step Two: Either press Enter on your keyboard or click Send to execute the command.
+
+3. Step Three: Success Message will be shown in the Result Display (assuming there isn't an existing same item) and added item will show up in InventoryBook.
+
+![add-i example one step three](images/add-i%20example%20one%20step%20three.PNG)
+
+Example Two: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#Ui) as a base.
+
+1. Step One: Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
+
+![add-i example two step one](images/add-i%20example%20two%20step%20one.PNG)
+
+2. Step Two: Either press Enter on your keyboard or click Send to execute the command.
+
+
+3. Step Three: Success Message will be shown in the Result Display and added item's quantity will combine with existing same item's quantity.
+
+![add-i example two step three](images/add-i%20example%20two%20step%20three.PNG)
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
+</div>
 
 ##### 3.1.2.b `add-d`
 
@@ -290,7 +313,7 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 
 #### 3.2.2 Scrolling through command history
 
-OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.
+OneShelf commands are traversable (up to 20 commands) much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.
 
 
 
@@ -303,7 +326,7 @@ OneShelf commands are traversable much like Window's command prompt with the arr
 
 --------------------------------------------------------------------------------------------------------------------
 ### 3.3 Coming Soon
-#### 3.3.1 Countdown to deliver [`Coming Soon]`
+#### 3.3.1 Countdown to deliver `[Coming Soon]`
 
 Allows user to input a countdown timer when adding a new delivery so that the user will be able to keep track
 the deliveries that needs to be delivered out based on their urgency
@@ -378,3 +401,9 @@ Notify the user if a certain stock is below threshold
 |**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`   |
 |**List Delivery**   | `list-d` |
 |**Find in Delivery**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`   |
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+### 6. Glossary
