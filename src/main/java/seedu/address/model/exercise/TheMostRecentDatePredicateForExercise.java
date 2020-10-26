@@ -7,6 +7,9 @@ public class TheMostRecentDatePredicateForExercise implements Predicate<Exercise
     private final Name name;
     private final Date date;
 
+    /**
+     * Creates a predicate to look for exercises with specified name and date.
+     */
     public TheMostRecentDatePredicateForExercise(Name name, Date date) {
         this.name = name;
         this.date = date;
@@ -14,7 +17,7 @@ public class TheMostRecentDatePredicateForExercise implements Predicate<Exercise
 
     @Override
     public boolean test(Exercise exercise) {
-        if(name == null || date == null) {
+        if (name == null || date == null) {
             return false;
         }
         return name.equals(exercise.getName()) && date.equals(exercise.getDate());

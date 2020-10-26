@@ -13,7 +13,8 @@ public class RecallCommand extends CommandForExercise {
 
     public static final String COMMAND_WORD = "recall";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the most recent exercise with the specified name\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the most recent exercise "
+            + "with the specified name\n"
             + "Parameters: NAME\n"
             + "Example: " + COMMAND_WORD + " push up";
 
@@ -23,6 +24,9 @@ public class RecallCommand extends CommandForExercise {
     private ObservableList<Exercise> filteredExercises;
     private Date date;
 
+    /**
+     * Creates an RecallCommand to recall exercise with the specified name {@code Name}
+     */
     public RecallCommand(String name) {
         this.name = new Name(name);
         date = null;
@@ -32,7 +36,7 @@ public class RecallCommand extends CommandForExercise {
     public CommandResult execute(ExerciseModel model) {
         requireNonNull(model);
         filteredExercises = model.getFilteredExerciseList();
-        for(Exercise exercise : filteredExercises) {
+        for (Exercise exercise : filteredExercises) {
             if (name.equals(exercise.getName())) {
                 if (date == null) {
                     date = exercise.getDate();
@@ -53,4 +57,6 @@ public class RecallCommand extends CommandForExercise {
                 || (other instanceof RecallCommand // instanceof handles nulls
                 && name.equals(((RecallCommand) other).name)); // state check
     }
+
 }
+
