@@ -89,7 +89,7 @@ public class DeleteCommandTest {
     public void execute_validTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.TEST_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
 
         DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
 
@@ -117,7 +117,7 @@ public class DeleteCommandTest {
     public void execute_invalidTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.INVALID_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
 
         DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
 
@@ -172,10 +172,4 @@ public class DeleteCommandTest {
         assertTrue(model.getFilteredFlashcardList().isEmpty());
     }
 
-    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
-        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
-        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
-        FlashcardPredicate flashcardPredicate = new FlashcardPredicate(predicates);
-        return flashcardPredicate;
-    }
 }
