@@ -14,4 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_NRIC = new Prefix("ic/");
     public static final Prefix PREFIX_APPOINTMENT = new Prefix("appt/");
     public static final Prefix PREFIX_MEDICAL_RECORD = new Prefix("mr/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
 }

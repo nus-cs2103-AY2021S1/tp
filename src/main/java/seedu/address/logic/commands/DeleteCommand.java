@@ -58,7 +58,8 @@ public class DeleteCommand extends Command {
 
         if (!targetNric.isEmpty()) {
             lastShownList = lastShownList.stream()
-                    .filter(patient -> patient.getNric().equals(targetNric.get())).collect(Collectors.toList());
+                    .filter(patient -> patient.getNric().value.equals(targetNric.get().value.toUpperCase()))
+                    .collect(Collectors.toList());
             if (lastShownList.size() != 1) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_NRIC);
             }

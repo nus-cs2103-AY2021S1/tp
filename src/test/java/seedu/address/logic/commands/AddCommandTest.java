@@ -21,6 +21,7 @@ import seedu.address.model.HospifyBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHospifyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.PersonBuilder;
 
@@ -48,7 +49,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPerson(validPatient);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PATIENT, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -140,6 +141,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean hasPatientWithNric(Nric nric) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePatient(Patient target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -176,6 +182,12 @@ public class AddCommandTest {
             requireNonNull(patient);
             return this.patient.isSamePatient(patient);
         }
+
+        @Override
+        public boolean hasPatientWithNric(Nric nric) {
+            requireNonNull(nric);
+            return this.patient.getNric().equals(nric);
+        }
     }
 
     /**
@@ -188,6 +200,12 @@ public class AddCommandTest {
         public boolean hasPatient(Patient patient) {
             requireNonNull(patient);
             return personsAdded.stream().anyMatch(patient::isSamePatient);
+        }
+
+        @Override
+        public boolean hasPatientWithNric(Nric nric) {
+            requireNonNull(nric);
+            return personsAdded.stream().anyMatch(patient -> hasPatientWithNric(patient.getNric()));
         }
 
         @Override

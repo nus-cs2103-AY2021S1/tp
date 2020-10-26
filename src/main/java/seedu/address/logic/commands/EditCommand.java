@@ -54,9 +54,10 @@ public class EditCommand extends Command {
             + PREFIX_EMAIL + "johndoe@example.com "
             + PREFIX_NRIC + "S1234567A";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in Hospify.";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in Hospify.";
+    public static final String MESSAGE_DUPLICATE_NRIC = "This NRIC already belongs to an existing patient in Hospify";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -86,12 +87,16 @@ public class EditCommand extends Command {
         Patient editedPatient = createEditedPerson(patientToEdit, editPersonDescriptor);
 
         if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatient(editedPatient)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_PATIENT);
+        }
+
+        if (!patientToEdit.isSamePatient(editedPatient) && model.hasPatientWithNric(editedPatient.getNric())) {
+            throw new CommandException(MESSAGE_DUPLICATE_NRIC);
         }
 
         model.setPatient(patientToEdit, editedPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPatient));
+        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
     }
 
     /**
@@ -168,7 +173,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, allergies, medicalRecord);
+            return CollectionUtil.isAnyNonNull(name, nric, phone, email, address, allergies, medicalRecord);
         }
 
         public void setName(Name name) {

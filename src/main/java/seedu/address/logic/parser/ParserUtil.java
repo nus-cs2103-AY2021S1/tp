@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -137,10 +140,25 @@ public class ParserUtil {
     public static Appointment parseAppointment(String appointment) throws ParseException {
         requireNonNull(appointment);
         String trimmedAppointment = appointment.trim();
-        if (!Appointment.isValidAppointment(trimmedAppointment)) {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(trimmedAppointment, PREFIX_DESCRIPTION);
+        String timing = argMultimap.getPreamble().trim();
+        String description;
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = argMultimap.getValue(PREFIX_DESCRIPTION).get();
+        } else {
+            description = "";
+        }
+        if (!Appointment.isValidAppointment(timing)) {
             throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
-        return new Appointment().setTime(trimmedAppointment);
+
+        LocalDateTime localDateTime =
+                LocalDateTime.parse(timing, DateTimeFormatter.ofPattern("d/M/yyyy HH:mm"));
+        if (Appointment.isPassed(localDateTime)) {
+            throw new ParseException(Appointment.TIME_RANGE_CONSTRAINTS);
+        }
+        return new Appointment().setTime(timing).setDescription(description);
     }
 
     /**

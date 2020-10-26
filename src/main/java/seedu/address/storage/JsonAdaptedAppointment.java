@@ -1,9 +1,17 @@
 package seedu.address.storage;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
+import java.util.logging.Logger;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import seedu.address.MainApp;
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.model.patient.Appointment;
 
 /**
@@ -11,26 +19,51 @@ import seedu.address.model.patient.Appointment;
  */
 public class JsonAdaptedAppointment {
 
-    private final String appointmentName;
+    private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+
+    private final String appointmentTime;
+    private final String appointmentDescription;
 
     /**
-     * Constructs a {@code JsonAdaptedAppointment} with the given {@code appointmentName}.
+     * Constructs a {@code JsonAdaptedAppointment}
+     * with the given {@code appointment}.
      */
     @JsonCreator
-    public JsonAdaptedAppointment(String appointmentName) {
-        this.appointmentName = appointmentName;
+    public JsonAdaptedAppointment(String appointment) {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(appointment, PREFIX_DESCRIPTION);
+        String timing = argMultimap.getPreamble().trim();
+        String description;
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = argMultimap.getValue(PREFIX_DESCRIPTION).get().trim();
+        } else {
+            description = "";
+        }
+        appointmentTime = timing;
+        appointmentDescription = description;
     }
 
     /**
      * Converts a given {@code Appointment} into this class for Jackson use.
      */
     public JsonAdaptedAppointment(Appointment source) {
-        appointmentName = source.toString();
+        String appointment = source.toString();
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(appointment, PREFIX_DESCRIPTION);
+        String timing = argMultimap.getPreamble().trim();
+        String description;
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            description = argMultimap.getValue(PREFIX_DESCRIPTION).get().trim();
+        } else {
+            description = "";
+        }
+        appointmentTime = timing;
+        appointmentDescription = description;
     }
 
     @JsonValue
     public String getAppointmentName() {
-        return appointmentName;
+        return appointmentTime + " " + PREFIX_DESCRIPTION + appointmentDescription;
     }
 
     /**
@@ -39,10 +72,15 @@ public class JsonAdaptedAppointment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted appointment.
      */
     public Appointment toModelType() throws IllegalValueException {
-        if (!Appointment.isValidAppointment(appointmentName)) {
+        if (!Appointment.isValidAppointment(appointmentTime)) {
+            logger.warning("Appointment toModelType Error!");
             throw new IllegalValueException(Appointment.MESSAGE_CONSTRAINTS);
         }
-        return new Appointment().setTime(appointmentName);
+        return new Appointment().setTime(appointmentTime).setDescription(appointmentDescription);
+    }
+
+    public String getAppointmentTime() {
+        return appointmentTime;
     }
 
 }
