@@ -259,7 +259,7 @@ Step 3: The value and prefix is then used to create the predicate and passed to 
 Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
 There is a slight difference in `ADDRESS`, `PHONE`, `ORDER` predicate. The original implementation of predicates will only return true if there is an exact match.
 The issue comes with that these field might be too long and logically do not make sense to search the whole content of the field.
 Hence, we have modified it to allow the predicate to match the substrings of the whole content.

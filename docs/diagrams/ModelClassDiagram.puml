@@ -25,6 +25,9 @@ Class InventoryModelManager
 Class ItemComparator
 Class UniqueItemList
 Class UniqueDeliveryList
+Class Item
+Class Delivery
+}
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Models
@@ -33,23 +36,23 @@ DeliveryBook .up.|> ReadOnlyDeliveryBook
 InventoryBook .up.|> ReadOnlyInventoryBook
 
 ModelManagers .up.|> Models
-ModelManagers o--> "1" InventoryModel
-ModelManagers o--> "1" DeliveryModel
+ModelManagers o-down--> "1" InventoryModel
+ModelManagers o-down--> "1" DeliveryModel
 InventoryModelManager .up.|>InventoryModel
 DeliveryModelManager .up.|>DeliveryModel
 InventoryModel .up.|>Model
 DeliveryModel .up.|>Model
 InventoryModel .up.|>ObservableList
 DeliveryModel .up.|>ObservableList
-InventoryModelManager o--> "1..20" InventoryBook
-DeliveryModelManager o--> "1..20" DeliveryBook
-InventoryModelManager o--> "1" UserPrefs
-DeliveryModelManager o--> "1" UserPrefs
+InventoryModelManager o-right-> "1..20" InventoryBook
+DeliveryModelManager o-left-> "1..20" DeliveryBook
+InventoryModelManager o-left-> "1" UserPrefs
+DeliveryModelManager o-right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 InventoryModel o-right-> "1" ItemComparator
 
-InventoryModelManager o-right->"1" Item : filtered and sorted list
+InventoryModelManager o-->"1" Item : filtered and sorted list
 DeliveryModelManager o-->"1" Delivery : filtered list
 
 InventoryBook o--> "1" UniqueItemList
