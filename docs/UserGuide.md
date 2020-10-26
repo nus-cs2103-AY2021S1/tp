@@ -109,7 +109,7 @@ An item is uniquely identified by its `NAME` and `SUPPLIER`.
 * Note 1: `MAX_QUANTITY` denotes the ideal stock level of that particular item.
 * Note 2: `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
-Example One: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#Ui) as a base.
+Example One: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#2-quick-start) as a base.
 
 1. Step One: Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG`.
 
@@ -121,7 +121,7 @@ Example One: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#Ui) a
 
 ![add-i example one step three](images/add-i%20example%20one%20step%20three.PNG)
 
-Example Two: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#Ui) as a base.
+Example Two: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#2-quick-start) as a base.
 
 1. Step One: Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
 
@@ -362,6 +362,9 @@ Notify the user if a certain stock is below threshold
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Inventory/ DeliveryBook home folder.
 
+**Q**: Help! I've accidentally typed `clear-i` or `clear-d` and wiped all my data! <br>
+**A**: Use the [Undo Command](#3110-undo-last-command-undo) to reset your data back.
+
 --------------------------------------------------------------------------------------------------------------------
 
 
@@ -407,3 +410,8 @@ Notify the user if a certain stock is below threshold
 
 
 ### 6. Glossary
+* **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
+*(i.e milk, cheese)*
+* **Delivery**: Delivery order that has yet to be delivered out from the restaurant
+* **Book**: There are 2 types of book, namely: Inventory Book and Delivery Book which stores the data of your 
+inventory items and pending deliveries respectively
