@@ -23,8 +23,8 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private final IngredientBookStorage ingredientBookStorage;
     private final RecipeBookStorage recipeBookStorage;
-    private final UsageStorage<RecipeUsage, RecipeUsage> recipeUsageStorage;
-    private final UsageStorage<IngredientUsage, IngredientUsage> ingredientUsageStorage;
+    private final UsageStorage<RecipeUsage> recipeUsageStorage;
+    private final UsageStorage<IngredientUsage> ingredientUsageStorage;
     private final UserPrefsStorage userPrefsStorage;
 
     /**
@@ -32,8 +32,8 @@ public class StorageManager implements Storage {
      * {@code UserPrefStorage}.
      */
     public StorageManager(RecipeBookStorage recipeBookStorage, IngredientBookStorage ingredientBookStorage,
-                          UsageStorage<RecipeUsage, RecipeUsage> recipeUsageStorage,
-                          UsageStorage<IngredientUsage, IngredientUsage> ingredientUsageStorage,
+                          UsageStorage<RecipeUsage> recipeUsageStorage,
+                          UsageStorage<IngredientUsage> ingredientUsageStorage,
                           UserPrefsStorage userPrefsStorage) {
         this.recipeBookStorage = recipeBookStorage;
         this.ingredientBookStorage = ingredientBookStorage;

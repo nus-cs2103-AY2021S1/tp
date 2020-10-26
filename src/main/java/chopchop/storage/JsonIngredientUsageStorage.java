@@ -16,7 +16,7 @@ import chopchop.commons.util.JsonUtil;
 import chopchop.model.UsageList;
 import chopchop.model.usage.IngredientUsage;
 
-public class JsonIngredientUsageStorage implements UsageStorage<IngredientUsage, IngredientUsage> {
+public class JsonIngredientUsageStorage implements UsageStorage<IngredientUsage> {
     private static final Logger logger = LogsCenter.getLogger(JsonIngredientUsageStorage.class);
 
     private final Path filePath;

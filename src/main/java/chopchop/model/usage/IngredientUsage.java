@@ -26,7 +26,7 @@ public class IngredientUsage extends Usage {
     @Override
     public String toString() {
         return String.format("%s [%s] Qty: %s", this.getName(),
-            this.getDate().format(DateTimeFormatter.ofPattern("dd-MM-yy, HH:mm")),
+            this.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")),
             this.getQty());
     }
 }

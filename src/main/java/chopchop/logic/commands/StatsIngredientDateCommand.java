@@ -25,15 +25,20 @@ public class StatsIngredientDateCommand extends Command {
     private final LocalDateTime after;
 
     /**
-     * Creates an AddIngredientCommand to add the specified {@code Ingredient}
+     * Creates an StatsIngredientCommand to add the specified {@code Command}.
+     * On takes precedence over before and after.
+     * If on is specified together with before and after, only 'on' is considered.
      */
     public StatsIngredientDateCommand(LocalDateTime on, LocalDateTime before,
                                 LocalDateTime after) {
-        assert (on == null && (before != null || after != null))
-            || (on != null && (before == null && after == null));
         this.on = on;
-        this.before = before;
-        this.after = after;
+        if (this.on != null) {
+            this.before = null;
+            this.after = null;
+        } else {
+            this.before = before;
+            this.after = after;
+        }
     }
 
     @Override
@@ -51,7 +56,10 @@ public class StatsIngredientDateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof AddIngredientCommand);
+            || (other instanceof StatsIngredientDateCommand
+            && this.on.equals(((StatsIngredientDateCommand) other).on)
+            && this.before.equals(((StatsIngredientDateCommand) other).before)
+            && this.after.equals(((StatsIngredientDateCommand) other).after));
     }
 
     @Override

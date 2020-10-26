@@ -28,7 +28,6 @@ public class StatsCommandParser {
     public static Result<? extends Command> parseStatsCommand(CommandArguments args) {
         assert args.getCommand().equals(Strings.COMMAND_STATS);
 
-        // we expect no named arguments. note we don't need to check for augments.
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_ON,
             Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
