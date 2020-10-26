@@ -36,7 +36,15 @@ title: User Guide
     + [3.6.3. Delete a comment from staff in application: `delete <index> s- c-`](#363-delete-a-comment-from-staff-in-application---delete--index--s--c--)
     + [3.6.4. Delete a comment from applicant in application: `delete <index> a- c-`](#364-delete-a-comment-from-applicant-in-application---delete--index--a--c--)
     + [3.6.5. Delete leave from staff in application: `delete <index> l/ `](#365-delete-leave-from-staff-in-application---delete--index--l---)
-  * [3.7. Archiving data files `[coming in v2.0]`](#37-archiving-data-files---coming-in-v20--)
+  * [3.7. Quick Edit (Experienced users): `edit`](#37-quick-edit-experienced-users-edit)
+    + [3.7.1. Edit a staff](#371-edit-a-staff)
+      + [3.7.1.1 Edit general information of staff : `edit INDEX s-`](#3711-edit-general-information-of-staff--edit-index-a-)
+      + [3.7.1.2 Edit comment of a staff: `edit INDEX s- c/`](#3712-edit-comment-of-a-staff-edit-index-s--c)
+    + [3.7.2 Edit an applicant](#372-edit-an-applicant)
+      + [3.7.2.1 Edit general information of staff : `edit INDEX a-`](#3721-edit-general-information-of-staff--edit-index-a-)
+      + [3.7.2.2 Edit comment of an applicant: `edit INDEX a- c/`](#3722-edit-comment-of-an-applicant-edit-index-a--c)
+      + [3.7.2.3 Edit Interview Date of an applicant: `edit INDEX a- id/`](#3723-edit-interview-date-of-an-applicant-edit-index-a--id)
+  * [3.8. Archiving data files `[coming in v2.0]`](#37-archiving-data-files---coming-in-v20--)
 - [4. FAQ](#4-faq)
 - [5. Command summary](#5-command-summary)
   * [5.1. Common](#51-common)
@@ -255,7 +263,7 @@ Format: `deleteapplication INDEX`
 Examples:
 * `deleteapplication 1`
 
-### 3.5. Centralised Add (Experienced users): `add`
+### 3.5. Quick Add (Experienced users): `add`
 
 #### 3.5.1. Add a staff to application: `add s-`
 
@@ -277,7 +285,7 @@ Format: `add <index_of_applicant> a- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DES
 
 Format: `add <index_of_staff> l/ d/DATE (IN DD/MM/YYYY)`
 
-### 3.6. Centralised Delete (Experienced Users): `delete`
+### 3.6. Quick Delete (Experienced Users): `delete`
 
 #### 3.6.1. Delete a staff from application: `delete <index_of_staff> s-`
 
@@ -299,12 +307,11 @@ Format: `delete <index_of_applicant> a- c/ ti/TITLE`
 
 Format: `delete <index_of_staff> l/ d/DATE (IN DD/MM/YYYY/)`
 
-### 3.7. Centralised Edit (Experienced users): `edit`
+### 3.7. Quick Edit (Experienced users): `edit`
 
 #### 3.7.1. Edit a staff
 
 Edits specified fields of a staff
-
 
 ##### 3.7.1.1 Edit general information of staff : `edit INDEX s-`
 
@@ -328,16 +335,16 @@ Format: `edit INDEX s- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIP
 
 Edits specified fields of applicant
 
-##### 3.7.1.1 Edit general information of staff : `edit INDEX a-`
+##### 3.7.2.1 Edit general information of staff : `edit INDEX a-`
 
 *Fields: Name, Address, Email, Phone, Tag*
 
  - Can edit the name, phone number, email, address and tag of a applicant
- - Must change at least one field of a applicant
+ - Must change at least one field of an applicant
 
 Format: `edit INDEX a- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
 
-##### 3.7.1.2 Edit comment of an applicant: `edit INDEX a- c/`
+##### 3.7.2.2 Edit comment of an applicant: `edit INDEX a- c/`
 
  - Can edit descriptions of specific comments
  - Comment to be changed is identified by title and date
@@ -346,18 +353,16 @@ Format: `edit INDEX a- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
 
 Format: `edit INDEX a- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIPTION`
 
-##### 3.7.1.3 Edit Interview Date of an applicant: `edit INDEX a- id/`
+##### 3.7.2.3 Edit Interview Date of an applicant: `edit INDEX a- id/`
 
  - Can edit interview date of an applicant
  
 *Fields: Interview Date*
  
-Format: `edit INDEX a- id/ d/NEW_DATE_OF_INTERVIEW`
-
-#####
+Format: `edit INDEX a- id/ NEW_DATE_OF_INTERVIEW`
 
 
-### 3.7. Archiving data files `[coming in v2.0]`
+### 3.8. Archiving data files `[coming in v2.0]`
 
 ##
 
