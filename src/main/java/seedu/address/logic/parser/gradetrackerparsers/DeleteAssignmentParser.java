@@ -1,12 +1,37 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradetrackercommands.DeleteAssignmentCommand;
-import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.*;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.stream.Stream;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 public class DeleteAssignmentParser implements Parser<DeleteAssignmentCommand> {
     @Override
-    public DeleteAssignmentCommand parse(String userInput) throws ParseException {
-        return null;
+    public DeleteAssignmentCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        String moduleName;
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_INDEX);
+        ArgumentMultimap argMultimap = tokenizer.tokenize();
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INDEX)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteAssignmentCommand.MESSAGE_USAGE));
+        }
+        moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get()).fullName;
+        Index targetIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
+        return new DeleteAssignmentCommand(moduleName, targetIndex);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
