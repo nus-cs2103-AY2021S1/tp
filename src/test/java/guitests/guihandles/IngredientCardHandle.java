@@ -28,6 +28,9 @@ public class IngredientCardHandle extends NodeHandle<Node> {
         return nameLabel.getText();
     }
 
+    /**
+     * Compares an ingredient card to verify if it is equal to an ingredient.
+     */
     public boolean equals(Ingredient ingredient) {
         // Well we gotta change this depending on how we make our ingredient card more presentable uwu
         return getName().equals(ingredient.getName());
