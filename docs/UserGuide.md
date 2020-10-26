@@ -259,23 +259,23 @@ Examples:
 
 #### 3.5.1. Add a staff to application: `add s-`
 
-Format: `add s- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [l/LEAVE]`
+Format: `add s- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT]`
 
 #### 3.5.2. Add a applicant to application: `add a-`
 
 Format: `add a- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [id/INTERVIEW_DATE]`
 
-#### 3.5.3. Add a comment to staff in application: `add <index> s- c-`
+#### 3.5.3. Add a comment to staff in application: `add <index> s- c/`
 
-Format: `add <index_of_staff> s- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<DESCRIPTION>`
+Format: `add <index_of_staff> s- c/ t/TITLE d/DATE IN DD/MM/YYYY desc/DESCRIPTION`
 
-#### 3.5.4. Add a comment to applicant in application: `add <index> a- c-`
+#### 3.5.4. Add a comment to applicant in application: `add <index> a- c/`
 
-Format: `add <index_of_applicant> a- c- t:<TITLE> d:<DATE IN DD/MM/YYYY> desc:<DESCRIPTION>`
+Format: `add <index_of_applicant> a- c/ t/TITLE d/DATE IN DD/MM/YYYY desc/DESCRIPTION`
 
 #### 3.5.5. Add leave to staff in application: `add <index> l/ `
 
-Format: `add <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
+Format: `add <index_of_staff> l/ d/DATE IN DD/MM/YYYY`
 
 ### 3.6. Centralised Delete (Experienced Users): `delete`
 
@@ -287,17 +287,17 @@ Format: `delete <index_of_staff> s-`
 
 Format: `delete <index_of_applicant> a-`
 
-#### 3.6.3. Delete a comment from staff in application: `delete <index> s- c-`
+#### 3.6.3. Delete a comment from staff in application: `delete <index> s- c/`
 
-Format: `delete <index_of_staff> s- c- t:<TITLE>`
+Format: `delete <index_of_staff> s- c/ t/TITLE`
 
-#### 3.6.4. Delete a comment from applicant in application: `delete <index> a- c-`
+#### 3.6.4. Delete a comment from applicant in application: `delete <index> a- c/`
 
-Format: `delete <index_of_applicant> a- c- t:<TITLE>`
+Format: `delete <index_of_applicant> a- c/ t/TITLE`
 
 #### 3.6.5. Delete leave from staff in application: `delete <index> l/ `
 
-Format: `delete <index_of_staff> l/ d:<DATE IN DD/MM/YYYY>`
+Format: `delete <index_of_staff> l/ d/DATE IN DD/MM/YYYY/`
 
 ### 3.7. Archiving data files `[coming in v2.0]`
 
