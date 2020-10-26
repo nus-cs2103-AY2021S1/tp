@@ -1,22 +1,27 @@
 # Trackr - User Guide
 
-1. [Introduction](#1-introduction)
-2. [Quick Start](#2-quick-start)
-3. [Features](#3-features)<br>
-   3.1 [Command format](#31-command-format)<br>
-   3.2 [View help: `help`](#32-view-help-help)<br>
-   3.3 [Module features](#33-module-features)<br>
-   3.4 [Tutorial group features](#34-tutorial-group-features)<br>
-   3.5 [Student features](#35-student-features)<br>
-   --- 3.5.1 [Add a student: `addStudent`](#351-add-a-student-addstudent)<br>
-   --- 3.5.2 [Delete a student: `deleteStudent`](#352-delete-a-student-deletestudent)<br>
-   --- 3.5.3 [Find a student: `findStudent`](#353-find-a-student-findstudent)<br>
-   --- 3.5.4 [Edit a student: `editStudent` [coming in v1.4]](#354-edit-a-student-editstudent-coming-in-v14)<br>
-4. [FAQ](#4-faq)
-5. [Command Summary](#5-command-summary)<br>
-   5.1 [Module commands](#51-module-commands)<br>
-   5.2 [Tutorial group commands](#52-tutorial-group-commands)<br>
-   5.3 [Student commands](#53-student-commands)<br>
+1. [Introduction](#1-introduction)<br>
+2. [About This Document](#2-about-this-document)<br>
+3. [Getting Started](#3-getting-started)<br>
+    3.1 [Setting Up](#31-setting-up)<br>
+    3.2 [Using Trackr](#32-using-trackr)<br>
+    3.3 [Switching Views](#33-switching-views)<br>
+4. [Glossary](#4-glossary)<br>
+5. [Features](#5-features)<br>
+   5.1 [Command format](#51-command-format)<br>
+   5.2 [View help: `help`](#52-view-help-help)<br>
+   5.3 [Module features](#53-module-features)<br>
+   5.4 [Tutorial group features](#54-tutorial-group-features)<br>
+   5.5 [Student features](#55-student-features)<br>
+   --- 5.5.1 [Add a student: `addStudent`](#551-add-a-student-addstudent)<br>
+   --- 5.5.2 [Delete a student: `deleteStudent`](#552-delete-a-student-deletestudent)<br>
+   --- 5.5.3 [Find a student: `findStudent`](#553-find-a-student-findstudent)<br>
+   --- 5.5.4 [Edit a student: `editStudent` [coming in v1.4]](554-edit-a-student-editstudent-coming-in-v14)<br>
+6. [FAQ](#6-faq)<br>
+7. [Command Summary](#7-command-summary)<br>
+   7.1 [Module commands](#71-module-commands)<br>
+   7.2 [Tutorial group commands](#72-tutorial-group-commands)<br>
+   7.3 [Student commands](#73-student-commands)<br>
 
 ## 1. Introduction
 
@@ -39,7 +44,7 @@ _Figure 3.1 Track Gui_
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
 commands to add or delete modules, tutorial groups, or students you are teaching. To use a feature, simply
 type the command into the command box (see Figure 3.2) and press _Enter_ to execute it. Further explanations of 
-all the commands are listed down below in [Section 5]().
+all the commands are listed down below in [Features](#5-features).
 
 ![CommandExample](images/CommandExample.png) <br>
 _Figure 3.2 Command example_
@@ -47,7 +52,7 @@ _Figure 3.2 Command example_
 ### 3.3 Switching Views
 __Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to `Tutorial Groups` (Figure 3.32) 
 to `Students` (Figure 3.33) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
-The correct syntax for these commands are further elaborated down below in [Section 5]().
+The correct syntax for these commands are shown down below in [Features](#5-features).
 
 ![ModuleView](images/ModuleView.png) <br>
 _Figure 3.31 Module View_
@@ -57,6 +62,7 @@ _Figure 3.32 Tutorial Group View_
 
 ![StudentView]() <br>
 _Figure 3.33 Student view_
+
 ## 4. Glossary
 * __Graphical User Interface (GUI)__: An interface through which users interact with electronic devices via visual indicator representations.
 * __Command Line Interface (CLI)__: An interface that processes commands to a computer program in the form of lines of text.
@@ -64,9 +70,9 @@ _Figure 3.33 Student view_
 * __Student__: An individual who is enrolled in a given module.
 
 
-## 3. Features
+## 5. Features
 
-### 3.1 Command format
+### 5.1 Command format
 
 -   Words in UPPER_CASE are the parameters to be supplied by the user.
     e.g. in add n/NAME, NAME is a parameter which can be used as add n/John Doe.
@@ -77,21 +83,21 @@ _Figure 3.33 Student view_
 -   Parameters can be in any order.
     e.g. if the command specifies n/NAME p/PHONE_NUMBER, p/PHONE_NUMBER n/NAME is also acceptable.
 
-### 3.2 View help: `help`
+### 5.2 View help: `help`
 
 Shows a message explaining how to access the user guide.
 
 Format: `help`
 
-### 3.3 Module features
+### 5.3 Module features
 
-### 3.4 Tutorial group features
+### 5.4 Tutorial group features
 
-### 3.5 Student features
+### 5.5 Student features
 
 Note: You should perform the following features while in the Student view.
 
-#### 3.5.1 Add a student: `addStudent`
+#### 5.5.1 Add a student: `addStudent`
 
 Adds a student with your provided details.
 
@@ -119,7 +125,7 @@ Expected Outcome:
     
 {insert screenshot of addStudent with the above parameters}
 
-#### 3.5.2 Delete a student: `deleteStudent`
+#### 5.5.2 Delete a student: `deleteStudent`
 
 Deletes a student based on the given `INDEX`.
 
@@ -145,7 +151,7 @@ Expected Outcome:
     
 {insert screenshot of deleteStudent with the above parameters}
 
-#### 3.5.3 Find a student: `findStudent`
+#### 5.5.3 Find a student: `findStudent`
 
 Finds and lists all students in the current Student view whose field contains any of the given keywords.
 
@@ -169,39 +175,9 @@ Expected Outcome:
     
 {insert screenshot of findStudent with the above parameters}
 
-#### 3.5.4 Edit a student: `editStudent` [coming in v1.4]
+#### 5.5.4 Edit a student: `editStudent` [coming in v1.4]
 
 Edits a student with the provided details.
-
-## 5. Command Summary
-Action | Format
------------- | -------------
-Adding a module | `addMod MODULE_CODE`
-Adding a tutorial group | `addTG GROUP_CODE`
-Adding a student | `addStudent n/NAME id/STUDENT_ID`
-Adding a task | `addTask TASK_NAME`
-Listing all tasks | `list`
-Filtering students | `filter KEYWORD`
-Deleting an item | `delete INDEX`
-Finding a module | `findMod MODULE_CODE`
-Finding a tutorial group | `findTG GROUP_CODE`
-Finding a student | `findStudent n/NAME id/STUDENT_ID`
-Marking a reminder as done | `done TASK_NUMBER`
-
-
-=======
-
-### 5.1 Module commands
-
-### 5.2 Tutorial group commands
-
-### 5.3 Student commands
-
-Command | Summary
---------|--------
-`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view
-`deleteStudent INDEX` | Deletes a student from the current Student view
-`findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view
 
 ## 6. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br> 
@@ -215,3 +191,17 @@ no data will be lost when you close the app or even in the event of a crash.
 __Q:__ How do I exit the app safely? <br>
 __A:__ To close the app, simply click the red _X_ on the top right for Windows users, on the top left
 for MacOS and Linux users.
+
+## 7. Command Summary
+
+### 7.1 Module commands
+
+### 7.2 Tutorial group commands
+
+### 7.3 Student commands
+
+Command | Summary
+--------|--------
+`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view
+`deleteStudent INDEX` | Deletes a student from the current Student view
+`findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view
