@@ -246,6 +246,26 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Command summary
+
+| Action           | Format                                                                                         | Examples                                           |
+|------------------|------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| **add**          | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
+| **delete**       | `delete INDEX [MORE_INDEXES]`                                                                  | `delete 3`<br>`delete 2 3 4`                       |
+| **import**       | `import url/NUSMODS_URL`                                                                       |                                                    |
+| **list**         | `list [NUMBER_OF_DAYS]`                                                                        | `list 2`<br>`list`                                 |
+| **find**         | `find PREFIX/ KEYWORD [MORE_KEYWORD]`                                                          | `find mod/CS2103T CS2100`<br>`find p/HIGH`         |
+| **remind**       | `remind INDEX`                                                                                 | `remind 5`                                         |
+| **unremind**     | `unremind INDEX`                                                                               | `unremind 2`                                       |
+| **prioritize**   | `prioritize INDEX p/PRIORITY`                                                                  | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW`      |
+| **unprioritize** | `unprioritize INDEX`                                                                           | `unprioritize 1`                                   |
+| **done**         | `done INDEX`                                                                                   | `done 4`                                           |
+| **undone**       | `undone INDEX`                                                                                 | `undone 2`                                         |
+| **help**         | `help`                                                                                         | `help`                                             |
+| **exit**         | `exit`                                                                                         | `exit`                                             |
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -255,21 +275,3 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 3. Close the app in your other computer.
 4. Overwrite the newly created data file with the data file from your previous computer.
 5. All your existing data has been successfully transferred!
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]` <br> e.g., `add n/Math tutorial d/21-03-2020 1100 mod/ST2334`
-**delete** | `delete INDEX`<br> e.g., `delete 3`
-**import** | `import url/NUSMODS_URL`
-**list** | `list [NUMBER]` e.g., `list 2`, `list`
-**find** | `find PREFIX/ KEYWORD [MORE KEYWORD]` e.g., `find mod/CS2103T CS2100`, `find priority/HIGH`
-**remind** | `remind INDEX`
-**unremind** | `unremind INDEX`
-**prioritize** | `prioritize INDEX priority/PRIORITY`
-**unprioritize** | `unprioritize INDEX`
-**done** | `done INDEX`
-**undone** | `undone INDEX`
