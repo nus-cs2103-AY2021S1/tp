@@ -50,18 +50,16 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
             predicate = task -> task.isDueOn(deadline);
         }
         if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {
-            predicate = task -> task.getTaskName()
-                .contains(argMultimap.getValue(PREFIX_TASK_NAME).get());
+            String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
+            predicate = task -> task.getTaskName().contains(taskName);
         }
         if (argMultimap.getValue(PREFIX_TASK_PROGRESS).isPresent()) {
-            double progress = Double.parseDouble(
-                ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
-            predicate = task -> task.getProgress() == progress;
+            Double progress = ParserUtil.parseTaskProgress(argMultimap.getValue(PREFIX_TASK_PROGRESS).get());
+            predicate = task -> task.getProgress().equals(progress);
         }
         if (argMultimap.getValue(PREFIX_TASK_IS_DONE).isPresent()) {
-            boolean isDone = Boolean.parseBoolean(
-                ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
-            predicate = task -> task.isDone() == isDone;
+            Boolean isDone = ParserUtil.parseDoneStatus(argMultimap.getValue(PREFIX_TASK_IS_DONE).get());
+            predicate = task -> task.isDone().equals(isDone);
         }
 
         return new TaskFilterCommand(predicate);
