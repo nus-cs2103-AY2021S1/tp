@@ -202,7 +202,7 @@ public interface Model {
      * second argument is the edited person who will replace the deleted person.
      */
     void updatePersonInModuleBook(Person ...persons);
-
+    
     /**
      * Updates the filter of the filtered module list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.

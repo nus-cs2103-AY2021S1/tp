@@ -56,6 +56,7 @@ public class DeleteCommand extends Command {
         List<Person> peopleCopy = new ArrayList<>(people);
 
         // Update address book
+
         people.stream().forEach(p -> {
             model.deletePerson(p); // delete in AddressBook
             model.updatePersonInMeetingBook(p); // delete in MeetingBook
@@ -68,7 +69,6 @@ public class DeleteCommand extends Command {
         deletedNames = deletedNames.substring(0, deletedNames.length() - 2);
 
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames));
-
     }
 
     @Override

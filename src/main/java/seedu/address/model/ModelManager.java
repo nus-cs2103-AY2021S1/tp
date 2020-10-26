@@ -259,6 +259,11 @@ public class ModelManager implements Model {
         requireNonNull(persons);
         Person personToUpdate = persons[0];
         boolean isReplacement = persons.length > 1;
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f849fbe9b9f7c88f9ef6111b93b6c251a0976844
         filteredModules.stream()
                 .filter(module -> module.getClassmates().contains(personToUpdate))
                 .forEach(module -> {
@@ -276,6 +281,7 @@ public class ModelManager implements Model {
                 });
     }
 
+<<<<<<< HEAD
     @Override
     public void updateModuleInMeetingBook(Module... modules) {
         requireNonNull(modules);
@@ -304,6 +310,8 @@ public class ModelManager implements Model {
                 });
     }
 
+=======
+>>>>>>> f849fbe9b9f7c88f9ef6111b93b6c251a0976844
     //=========== Filtered Person List Accessors =============================================================
 
     /**
