@@ -1,7 +1,5 @@
 package nustorage.logic;
 
-
-import static nustorage.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static nustorage.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static nustorage.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
