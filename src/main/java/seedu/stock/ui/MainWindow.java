@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StockListPanel stockListPanel;
+    private StockListPanel stockListPanel1;
     private NoteListPanel noteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -48,6 +49,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane stockListPanelPlaceholder;
+
+    @FXML
+    private StackPane stockListPanelPlaceholder1;
 
     @FXML
     private StackPane noteListPanelPlaceholder;
@@ -88,6 +92,9 @@ public class MainWindow extends UiPart<Stage> {
 
         stockListPanel = new StockListPanel(logic.getFilteredStockList());
         stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
+
+        stockListPanel1 = new StockListPanel(logic.getFilteredStockList());
+        stockListPanelPlaceholder1.getChildren().add(stockListPanel1.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -176,6 +183,8 @@ public class MainWindow extends UiPart<Stage> {
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             stockListPanel = new StockListPanel(logic.getFilteredStockList());
             stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
+            stockListPanel1 = new StockListPanel(logic.getFilteredStockList());
+            stockListPanelPlaceholder1.getChildren().add(stockListPanel1.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -187,6 +196,7 @@ public class MainWindow extends UiPart<Stage> {
                 internalNoteList.addAll(stockToShowNotes.getNotes());
                 noteListPanel = new NoteListPanel(internalNoteList);
                 stockListPanelPlaceholder.getChildren().add(noteListPanel.getRoot());
+                stockListPanelPlaceholder1.getChildren().add(noteListPanel.getRoot());
             }
 
             if (commandResult.isShowStatistics()) {

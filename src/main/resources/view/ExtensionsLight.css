@@ -25,14 +25,14 @@
 }
 
 .help-title {
-    -fx-font-family: "monospace";
+    -fx-font-family: "Quicksand";
     -fx-font-size: 16px;
     -fx-text-fill: #000000;
     -fx-font-weight: bold
 }
 
 .help-text {
-    -fx-font-family: "monospace";
+    -fx-font-family: "Quicksand";
     -fx-font-size: 13px;
     -fx-text-fill: #000000;
 }
@@ -44,4 +44,10 @@
 .help-table-header {
     -fx-border-color: #000000;
     -fx-background-color: #3e7b91;
+}
+
+.some-text{
+    -fx-font-family: "Quicksand";
+    -fx-font-size: 16px;
+    -fx-text-fill: #000000;
 }

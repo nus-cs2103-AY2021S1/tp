@@ -19,14 +19,14 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
-        String[] trimmedListType = args.trim().split("lt/");
+        String trimmedListType = args.trim();
 
-        // Checks for arguments after the list command
-        if (trimmedListType.length != 2) {
+        // Checks if the args start with "lt/"
+        if (!trimmedListType.startsWith("lt/")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        String listType = trimmedListType[1].toLowerCase().trim();
+        String listType = trimmedListType.substring(3);
 
         switch (listType) {
 
