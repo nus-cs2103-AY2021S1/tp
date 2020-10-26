@@ -17,6 +17,13 @@ public class ContactComparatorByName implements Comparator<Contact> {
      */
     @Override
     public int compare(Contact contact, Contact otherContact) {
-        return 0;
+        int value = contact.getName().fullName.compareToIgnoreCase(otherContact.getName().fullName);
+        if (value > 0) {
+            return 1;
+        } else if (value == 0) {
+            return value;
+        } else {
+            return -1;
+        }
     }
 }

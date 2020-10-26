@@ -5,6 +5,7 @@ import java.util.Comparator;
 import seedu.address.logic.commands.contactlistcommands.SortContactCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.ContactComparatorByName;
 
 /**
@@ -17,8 +18,8 @@ public class SortContactParser implements Parser<SortContactCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortContactCommand parse(String args) {
-        Comparator comparator = new ContactComparatorByName();
-        if (!args.equals("r")) {
+        Comparator<Contact> comparator = new ContactComparatorByName();
+        if (args.trim().equals("r")) {
             comparator = comparator.reversed();
         }
         return new SortContactCommand(comparator);
