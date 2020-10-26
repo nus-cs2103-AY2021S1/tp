@@ -187,6 +187,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            caloriesGraph.generateGraph();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

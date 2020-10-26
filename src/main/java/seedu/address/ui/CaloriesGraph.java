@@ -20,6 +20,8 @@ public class CaloriesGraph extends UiPart<Region> {
     private static final int DAY_TO_DISPLAY = 7;
     private static final String FXML = "CaloriesGraph.fxml";
 
+    private HashMap<String, Integer> dayCalories;
+
     @FXML
     private Pane pane;
 
@@ -28,10 +30,14 @@ public class CaloriesGraph extends UiPart<Region> {
      */
     public CaloriesGraph(HashMap<String, Integer> dayCalories) {
         super(FXML);
-        fillInfo(dayCalories);
+        this.dayCalories = dayCalories;
+        generateGraph();
     }
 
-    private void fillInfo(HashMap<String, Integer> dayCalories) {
+    /**
+     * Generates the graph based on this HashMap that is assigned during initialisation.
+     */
+    public void generateGraph() {
         CategoryAxis xAxis = new CategoryAxis();
         NumberAxis yAxis = new NumberAxis();
         LineChart<String, Number> lineChart = new LineChart<String, Number>(xAxis, yAxis);
@@ -52,6 +58,7 @@ public class CaloriesGraph extends UiPart<Region> {
         }
 
         lineChart.getData().add(series);
+        pane.getChildren().clear();
         pane.getChildren().add(lineChart);
     }
 
