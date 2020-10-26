@@ -1,5 +1,8 @@
 package seedu.address.model.recipe;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -16,5 +19,7 @@ public class PrintableRecipeTest {
         PrintableRecipe printableRecipe = new PrintableRecipe(1, TypicalIngredients.getTypicalIngredientList(),
                 1, "pr", new ProductQuantity("1"), "pr",
                 FXCollections.observableList(TypicalItems.getTypicalItems()));
+
+        assertNotNull(printableRecipe.getPrintableIngredients());
     }
 }
