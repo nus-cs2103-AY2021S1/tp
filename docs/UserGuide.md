@@ -3,11 +3,19 @@ layout: page
 title: User Guide
 ---
 
-Common Cents is your convenient at-hand expense-tracking tool, meant for anyone who runs a small-scale business. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you!
+### About
+Common Cents is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you! You can even keep our expenses in multiple, separate accounts for seamless organisation. Amalgamating the features of a Command Line Interface (CLI) with a Graphical User Interface (GUI), Common Cents is meant to be functional, intuitive and faster than most traditional GUI expense-trackers out there!
+
+### User Guide Overview
+This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with Common Cents and clarify most doubts that users may have.
+</div>
+The Common Cents interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
+* `Application` level commands deal with interactions with the app itself.<br>
+* `Account` level commands deal with managing the different accounts in the app.<br>
+* `Entry` level commands deal with managing the entries which are either expenses or revenues in an account.
 
 * Table of Contents
 {:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
 # How to identify notations
@@ -112,14 +120,15 @@ App-Level commands deals with interactions with the app, Common Cents, itself.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page (Figure). You can click on the `Copy URL ` button to copy
-the link to clipboard and paste it in your web browser. <br> 
+This command can be used when you are at a lost or want to view an overview of how to use the application.
+This command will return a message explaining how to access the help page (Figure). 
+You can click on the `Copy URL ` button to copy the link to clipboard and paste it in your web browser. <br> 
 
 **Format**: `help`
 
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `help`: Returns help prompt.
 
@@ -130,13 +139,13 @@ the link to clipboard and paste it in your web browser. <br>
  
 ### Exiting the program : `exit`
 
-Exits the program.
+You can use this command when you are done with what you need to do and want to close the application.
 
 Format: `exit`
  
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `exit`: Returns exit message then quits the program.
 
@@ -147,13 +156,13 @@ Entry-Level commands involves managing the entries which are either expenses or 
 
 ### Adding an entry: `add`
 
-Adds an entry (expense/revenue) to the tracker.
+You can use this command when you want to add an entry (expense/revenue) to the tracker.
 
 Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce`
 * `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
@@ -175,16 +184,16 @@ Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
 ### Deleting an entry: `delete`
 
-Removes an entry (expense/revenue) from the tracker.
+You can use this command when you want to remove an entry (expense/revenue) from the tracker.
 
 Format: `delete ENTRY_INDEX c/CATEGORY`
 
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
-* `delete 1 c/expense` : deletes first entry in expense category
-* `delete 2 c/revenue` : deletes second entry in the revenue category
+* `delete 1 c/expense` : Deletes first entry in expense category
+* `delete 2 c/revenue` : Deletes second entry in the revenue category
 
 </div>
 
@@ -202,7 +211,7 @@ Format: `delete ENTRY_INDEX c/CATEGORY`
 
 ### Editing an entry: `edit`
 
-Edits an entry in the tracker.
+You can use this command when you want to make edits to any existing entries in the tracker.
 
 Formats:
 * `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG`
@@ -211,11 +220,11 @@ Formats:
 
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
-* `edit 2 c/expense n/buy McSpicy a/8.60` changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
-* `edit 2 c/revenue n/sell McNuggets` changes the name of entry 2 to `sell McNuggets`
-* `edit 2 c/expense a/5.50` changes the amount of entry 2 to `$5.50`
+* `edit 2 c/expense n/buy McSpicy a/8.60`: Changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
+* `edit 2 c/revenue n/sell McNuggets`: Changes the name of entry 2 to `sell McNuggets`
+* `edit 2 c/expense a/5.50`: Changes the amount of entry 2 to `$5.50`
 
 </div>
 
@@ -244,11 +253,11 @@ is no expense or revenue found, the respective list will be empty.
 
 :green_book: **Example:** 
 
-* `find c/expense k/watercolours canvas` : finds all expenses with keywords `watercolours` and/or `canvas` in their 
+* `find c/expense k/watercolours canvas`: Finds all expenses with keywords `watercolours` and/or `canvas` in their 
 description.
-* `find c/revenue k/phone` : finds all revenues with keyword `phone` in their 
+* `find c/revenue k/phone`: Finds all revenues with keyword `phone` in their 
 description.
-* `find k/canvas earrings` : finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
+* `find k/canvas earrings`: Finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
 description (Figure).
  
 </div>
@@ -288,7 +297,7 @@ Format: `list`
  
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `list`: Returns the latest list of all entries
 
@@ -303,7 +312,8 @@ Format: `clear`
  
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
+
 
 * `clear c/expense`: clears all entries in expenses by setting the state to an empty one.
 * `clear c/revenue`: clears all entries in revenues by setting the state to an empty one.
@@ -330,7 +340,7 @@ Format: `profit`
  
 <div markdown="block" class="alert alert-success">
 
-:heavy_check_mark: **Example:**
+:green_book: **Example:**
 
 * `profit`: Returns the profits (**Figure**) by taking the difference between the expenses and revenues.
 
@@ -390,6 +400,27 @@ before you exit the app!
 
 </div>
 
+### Calculating total expenses or revenues in an account: `total`
+
+You can use this command to do calculate the total expenses or revenues in your current account.
+
+**Format:** `total c/CATEGORY`
+
+<div markdown="block" class="alert alert-success">
+
+:green_book: **Example:**
+
+* `total c/expense`: Returns the sum of all the expenses.
+* `total c/revenue`: Returns the sum of all the revenues.
+
+</div>
+
+(add screenshots to show the total expense/revenue message)
+
+
+
+
+
 ## Account-level Commands
 Account-Level commands involves managing the different accounts in the app. 
 
@@ -405,6 +436,7 @@ Format: `newacc n/NAME`
 
 * `newacc n/My Flower Shop`: adds a new account, `My Flower Shop`, with no expenses or revenues.
 * `newacc n/$uper $avers`: adds a new account, `$uper $avers`, with no expenses or revenues (**Figure**). 
+
 </div>
 
 ![addAccountCommand](images/commands/addAccountCommand.png)
@@ -544,6 +576,19 @@ commands anymore. Do confirm your changes to the entries in the account before y
 
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
+# Frequently Asked Questions (FAQ)
+
+This section contains a few frequently asked questions with regard to Common Cents.
+
+**Question:** How do I transfer my data to another Computer?<br>
+**Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CommonCents home folder.
+
+**Question:** Where can I make bug reports?<br>
+**Answer:** You may submit a bug report directly to our team [here].
+
+**Question:** What happens if I forget my account names?<br>
+**Answer:** You may use the `listacc` command to see a full list of your existing accounts.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -560,6 +605,8 @@ Action | Format, Examples
 **List** | `list`
 **Clear** | `clear c/CATEGORY`
 **Profit** | `profit`
+**Undo** | `undo`
+**Total** | `total c/CATEGORY`
 **New Account** | `newacc n/NAME`
 **Delete Account** | `deleteacc INDEX`
 **Edit Account** | `editacc n/NAME`
