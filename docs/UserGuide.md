@@ -41,7 +41,7 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
   e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Healthy` or as `n/Hershey`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[f/FEEDING TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
+  e.g. `[f/FEED TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
@@ -62,10 +62,13 @@ Format: `help`
 
 Adds an animal under the care of the user.
 
-Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+
+Conditions:
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
+An animal can have any number of medical conditions and feed times (including 0).
 </div>
 
 Examples:
@@ -96,9 +99,13 @@ Example: `sort name` sorts all animals by name in alphabetical order.
 
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+
+Conditions:
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
+An animal can have any number of medical conditions and feed times (including 0).
 </div>
 
 Examples:
@@ -111,13 +118,17 @@ Examples:
 
 Appends information to the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+
+Conditions:
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
+An animal can have any number of medical conditions and feed times (including 0).
 </div>
 
 Examples:
-* `append 1307 f/1900` appends a feeding time of 1900 to the animal identified by ID 1307..
+* `append 1307 f/1900` appends a feed time of 1900 to the animal identified by ID 1307..
 * `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
 
 ---
@@ -127,6 +138,9 @@ Examples:
 Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `delete ID`
+
+Conditions:
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long.
 
 Example:
 * `delete 193` deletes the individual animal with id 193.
@@ -151,7 +165,8 @@ Format: `undo`
 
 ### Redoing an undo: `redo`
 
-Redoes the previous undo. No changes if no previous state exists.
+Redoes the next task that was undone by undo. Can only be executed if undo was used before and no edit to the 
+ZooKeepBook was made in between. 
 
 Format: `redo`
 
@@ -189,27 +204,26 @@ Format: `exit`
 
 ---
 
-#### Manually saving data
-
-Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
-By default, the preferred file name is `zookeepbook.json`
-There is no need to save manually, though a copy of the current data can be created with the `snap` command. 
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ZooKeep home folder.
+
+**Q**: How can I manually save new data that I enter into the application?<br>
+**A**: Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
+       By default, the preferred file name is `zookeepbook.json`
+       There is no need to save manually, though a copy of the current data can be created with the `snap` command.
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEED TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
 **List** | `list`
 **Sort** | `sort fieldname` <br> e.g. `sort name` 
-**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…` 
-**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…` 
+**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…`
 **Delete** | `delete ID` <br> e.g. `delete 193` 
 **Clear** | `clear`
 **Undo** | `undo`

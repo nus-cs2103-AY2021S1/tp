@@ -64,7 +64,7 @@ The sections below give more details of each component.
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AnimalListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -82,7 +82,7 @@ The `UI` component,
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding a animal).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -103,11 +103,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Animal>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ZooKeepBook`, which `Animal` references. This allows `ZooKeepBook` to only require one `Tag` object per unique `Tag`, instead of each `Animal` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -181,7 +181,7 @@ Step 3. The user executes `help` to view the help screen. `LogicManager` behaves
 </div>
 
 
-Step 4. The user now decides that deleting the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `HistoryStack#removeRecentHistory()` which deletes the current state, and exposes the previous state. `HistoryStack#viewRecentHistory()` is then called to retrieve the previous state, then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
+Step 4. The user now decides that deleting the animal was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `HistoryStack#removeRecentHistory()` which deletes the current state, and exposes the previous state. `HistoryStack#viewRecentHistory()` is then called to retrieve the previous state, then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
 
 ![UndoState3](images/UndoState3.png)
 
@@ -216,7 +216,7 @@ New command | Undo command
 
 * **Alternative 2:** Individual command knows how to undo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the animal being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
@@ -308,7 +308,7 @@ Undo command | Redo command
 
 * **Alternative 2:** Individual command knows how to redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the animal being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
@@ -714,29 +714,47 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Deleting an animal
 
-### Deleting a person
+1. Deleting an animal while all animals are being shown
 
-1. Deleting a person while all persons are being shown
+   1. Prerequisites: List all animals using the `list` command. Multiple animals in the list.
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 123`<br>
+      Expected: The animal with an ID of 123 deleted from the list. Details of the deleted animal shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No animal is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than the requisite size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting an animal while not all animals are being shown
+   
+   1. Prerequisites: Use `find 455` command to list animals that contain 455 in any of their fields. 
+      2 animals are listed: an anaconda named 455 and a lion named Simba with an ID of 455.
+   
+   1. Test case: `delete 455`<br>
+      Expected: Simba with an ID of 455 is deleted from the list. Details of the deleted animal shown in the status message. Timestamp in the status bar is updated.
+
+   1. Test case: `delete 123`<br>
+      Expected: No animal is deleted. Error details shown in the status message. Status bar remains the same.
+
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than the requisite size)<br>
+      Expected: Similar to previous.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. To simulate a missing/corrupted data file, delete the `data/zookeepbook.json` file.
+   
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The sample ZooKeepBook will be loaded as the new `data/zookeepbook.json` file.
 
-1. _{ more test cases …​ }_
+1. Auto-saving feature
+
+   1. After launching the application, perform actions that edit the ZooKeepBook, such as `add` or `delete`. Close
+      the window.
+   
+   1. Re-launch the application. The changes that you just made should be reflected in the ZooKeepBook UI.
