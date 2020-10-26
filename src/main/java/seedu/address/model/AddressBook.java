@@ -241,6 +241,7 @@ public class AddressBook implements ReadOnlyAddressBook {
             if (m.hasInstructor(target)) {
                 m.unassignInstructor(target);
                 m.assignInstructor(editedPerson);
+                modules.setModule(m, m);
             }
         }
     }
