@@ -42,7 +42,7 @@ public class EditTaskCommand extends Command {
         + "NOTE : 1. To update the status of the task you can use the complete command.\n"
         + "NOTE : 2. If tags are present, it will overwrite all of previous tags (editing tags is not cumulative)";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the todo list.";
 

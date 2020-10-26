@@ -31,7 +31,7 @@ public class Task {
         this.tags = null;
         this.priority = null;
         this.date = null;
-        this.status = null;
+        this.status = Status.NOT_COMPLETED;
     }
 
     /**
@@ -86,6 +86,7 @@ public class Task {
     }
 
     public Optional<Status> getStatus() {
+        assert this.status != null;
         return Optional.ofNullable(this.status);
     }
 
@@ -171,19 +172,19 @@ public class Task {
         final StringBuilder builder = new StringBuilder();
         builder
                 .append(" *Name: ")
-                .append(getName())
+                .append(getName().isPresent() ? getName().get() : "")
                 .append("\n")
-                .append(" *Tags: ")
-                .append(getTags())
+                .append(" *Tag: ")
+                .append(getTag().isPresent() ? getTag().get() : "")
                 .append("\n")
                 .append(" *Priority: ")
-                .append(getPriority())
+                .append(getPriority().isPresent() ? getPriority().get() : "")
                 .append("\n")
                 .append(" *Date: ")
-                .append(getDate())
+                .append(getDate().isPresent() ? getDate().get() : "")
                 .append("\n")
                 .append(" *Status: ")
-                .append(getStatus())
+                .append(getStatus().isPresent() ? getStatus().get() : "")
                 .append("\n");
         return builder.toString();
     }
