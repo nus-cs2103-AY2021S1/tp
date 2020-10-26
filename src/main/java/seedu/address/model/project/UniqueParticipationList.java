@@ -46,7 +46,7 @@ public class UniqueParticipationList implements Iterable<Participation> {
     public void add(Participation toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateProjectException();
+            throw new DuplicateParticipationException();
         }
         internalList.add(toAdd);
     }
@@ -54,7 +54,7 @@ public class UniqueParticipationList implements Iterable<Participation> {
     public Participation getParticipation(Participation participation) {
         requireNonNull(participation);
         if (!contains(participation)) {
-            throw new ProjectNotFoundException();
+            throw new ParticipationNotFoundException();
         }
         Stream<Participation> filtered = internalList.stream().filter(participation::isSameParticipation);
         return internalList.get(0);

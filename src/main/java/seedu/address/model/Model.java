@@ -118,6 +118,14 @@ public interface Model {
      */
     void addParticipation(Participation participation);
 
+
+    /**
+     * Deletes the given participation.
+     * The project must exist in the main catalogue.
+     */
+    void deleteParticipation(Participation target);
+
+
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
      * {@code target} must exist in the main catalogue.
