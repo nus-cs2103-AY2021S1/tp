@@ -282,9 +282,9 @@ The following activity diagram summarizes what happens when a user adds a new pa
   * Pros: Independent from external and online platforms (fully integrated within the application).
   * Cons: Harder to implement and less freedom to edit medical records.
 
-### \[Proposed\] Appointment feature
+### Appointment feature (by Gabriel Teo Yu Xiang)
 
-#### Proposed Implementation
+#### Implementation
 
 The proposed feature will enable users to add appointments for patients, as well as edit and delete them. The following are the additions required for this feature:
 
@@ -334,7 +334,7 @@ _{more aspects and alternatives to be added}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix: Requirements** (by Gabriel Teo Yu Xiang)
 
 ### Product scope
 
@@ -342,7 +342,7 @@ _{more aspects and alternatives to be added}_
 
 * Administrative staff in clinics
 * has a need to manage a significant number of patients and their respective medical records
-* prefer desktop apps over other types
+* prefers desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
