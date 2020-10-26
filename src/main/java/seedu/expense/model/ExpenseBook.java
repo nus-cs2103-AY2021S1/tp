@@ -18,6 +18,9 @@ import seedu.expense.model.tag.UniqueTagList;
  * Duplicates are not allowed (by .isSameExpense comparison)
  */
 public class ExpenseBook implements ReadOnlyExpenseBook {
+
+    public static final Tag DEFAULT_TAG = new Tag("Default");
+
     protected final UniqueCategoryBudgetList budgets;
     protected final UniqueExpenseList expenses;
     protected final UniqueTagList tags;

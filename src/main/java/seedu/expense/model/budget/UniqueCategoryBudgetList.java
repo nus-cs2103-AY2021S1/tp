@@ -2,6 +2,7 @@ package seedu.expense.model.budget;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
 import java.util.Iterator;
 import java.util.List;
@@ -10,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.expense.model.budget.exceptions.DuplicateCategoryBudgetException;
 import seedu.expense.model.expense.Amount;
-import seedu.expense.model.tag.Tag;
 
 /**
  * A list of category-budgets that enforces uniqueness between its elements and does not allow nulls.
@@ -27,7 +27,7 @@ import seedu.expense.model.tag.Tag;
  */
 public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget> {
 
-    private final CategoryBudget defaultCategory = new CategoryBudget(new Tag("Default"));
+    private final CategoryBudget defaultCategory = new CategoryBudget(DEFAULT_TAG);
     private final ObservableList<CategoryBudget> internalList = FXCollections.observableArrayList();
     private final ObservableList<CategoryBudget> internalUnmodifiableList =
         FXCollections.unmodifiableObservableList(internalList);
