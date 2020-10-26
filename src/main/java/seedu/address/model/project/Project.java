@@ -280,7 +280,7 @@ public class Project {
         return listOfPersons;
     }*/
     public List<Participation> getTeammates() {
-        List<Participation> res = Collections.emptyList();
+        List<Participation> res = new ArrayList<>(Collections.emptyList());
         res.addAll(listOfParticipations.values());
         return res;
     }
