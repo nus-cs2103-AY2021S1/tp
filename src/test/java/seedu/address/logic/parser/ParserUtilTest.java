@@ -17,6 +17,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
@@ -38,6 +39,11 @@ public class ParserUtilTest {
     private static final String INVALID_ADDITIONAL_DETAIL = "sch!zophren#c";
     private static final String INVALID_QUESTION = "";
     private static final String INVALID_SOLUTION = " ";
+    private static final String INVALID_EXAM_NAME = " ";
+    private static final String INVALID_EXAM_DATE_FORMAT = "23-9-2019";
+    private static final String INVALID_EXAM_DATE_ALPHABETS = "abcdef";
+    private static final String INVALID_SCORE_LARGER = "100/50";
+    private static final String INVALID_SCORE_NEGATIVE = "-50/-100";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -53,6 +59,9 @@ public class ParserUtilTest {
     private static final String VALID_ADDITIONAL_DETAIL_CONVICT = "Just released from prison";
     private static final String VALID_QUESTION = "Why can't humans fly?";
     private static final String VALID_SOLUTION = "Read your textbook.";
+    private static final String VALID_EXAM_NAME = "Mid Year 2020";
+    private static final String VALID_EXAM_DATE = "23/9/2019";
+    private static final String VALID_SCORE = "50/100";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -367,7 +376,6 @@ public class ParserUtilTest {
         assertNotEquals(unexpectedQuestion, ParserUtil.parseQuestion(VALID_QUESTION));
     }
 
-    @Test
     public void parseSolution_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseSolution(null));
     }
@@ -388,4 +396,78 @@ public class ParserUtilTest {
         assertEquals(VALID_SOLUTION, ParserUtil.parseSolution(solutionWithSpace));
     }
 
+    @Test
+    public void parseExamName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExamName(null));
+    }
+
+    @Test
+    public void parseExamName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExamName(INVALID_EXAM_NAME));
+    }
+
+    @Test
+    public void parseExamName_validExamNameWithoutWhiteSpace_returnsExamNameString() throws Exception {
+        assertEquals(VALID_EXAM_NAME, ParserUtil.parseExamName(VALID_EXAM_NAME));
+    }
+
+    @Test
+    public void parseExamName_validExamNameWithWhiteSpace_returnsTrimmedExamNameString() throws Exception {
+        String examNameWithSpaces = WHITESPACE + VALID_EXAM_NAME + WHITESPACE;
+        assertEquals(VALID_EXAM_NAME, ParserUtil.parseExamName(examNameWithSpaces));
+    }
+
+    @Test
+    public void parseExamDate_null_throwNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseExamDate(null));
+    }
+
+    @Test
+    public void parseExamDate_invalidDateWrongFormat_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_FORMAT));
+    }
+
+    @Test
+    public void parseExamDate_invalidDateAlphabets_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseExamDate(INVALID_EXAM_DATE_ALPHABETS));
+    }
+
+    @Test
+    public void parseExamDate_validDateWithoutWhiteSpace_returnsExamDateString() throws Exception {
+        assertEquals(VALID_EXAM_DATE, ParserUtil.parseExamDate(VALID_EXAM_DATE));
+    }
+
+    @Test
+    public void parseExamDate_validDateWithWhiteSpace_returnsTrimmedExamDateString() throws Exception {
+        String examDateWithWhiteSpace = WHITESPACE + VALID_EXAM_DATE + WHITESPACE;
+        assertEquals(VALID_EXAM_DATE, ParserUtil.parseExamDate(examDateWithWhiteSpace));
+    }
+
+    @Test
+    public void parseScore_null_throwNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseScore(null));
+    }
+
+    @Test
+    public void parseScore_invalidScoreFirstLargerThanSecond_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseScore(INVALID_SCORE_LARGER));
+    }
+
+    @Test
+    public void parseScore_invalidScoreNegative_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseScore(INVALID_SCORE_NEGATIVE));
+    }
+
+    @Test
+    public void parseScore_validScoreWithoutWhiteSpace_returnsScore() throws Exception {
+        Score expectedScore = new Score(VALID_SCORE);
+        assertEquals(expectedScore, ParserUtil.parseScore(VALID_SCORE));
+    }
+
+    @Test
+    public void parseScore_validScoreWithoutWhiteSpace_returnsTrimmedScore() throws Exception {
+        String scoreWithWhiteSpace = WHITESPACE + VALID_SCORE + WHITESPACE;
+        Score expectedScore = new Score(VALID_SCORE);
+        assertEquals(expectedScore, ParserUtil.parseScore(scoreWithWhiteSpace));
+    }
 }

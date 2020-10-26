@@ -19,10 +19,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.AddQuestionCommand;
 import seedu.address.logic.commands.AdditionalDetailCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteExamCommand;
 import seedu.address.logic.commands.DeleteQuestionCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -121,6 +123,13 @@ public class ReeveParserTest {
         questionDesc = " " + PREFIX_DETAIL_INDEX + "1";
         command = (QuestionCommand) parser.parseCommand(delCommandDesc + "1" + questionDesc);
         assertEquals(new DeleteQuestionCommand(INDEX_FIRST_PERSON, Index.fromOneBased(1)), command);
+    }
+
+    @Test
+    public void parseCommand_exam() throws Exception {
+        assertTrue(parser.parseCommand("exam add 1 n/Mid Year 2020 d/23/7/2020 s/50/100") instanceof AddExamCommand);
+        assertTrue(parser.parseCommand("exam delete 1 i/1") instanceof DeleteExamCommand);
+
     }
 
     @Test
