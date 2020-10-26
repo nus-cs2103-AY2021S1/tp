@@ -53,25 +53,25 @@ public class TypicalFlashcards {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical flashcards.
+     * Returns an {@code FlashcardDeck} with all the typical flashcards.
      */
     public static FlashcardDeck getTypicalFlashcardDeck() {
-        FlashcardDeck ab = new FlashcardDeck();
+        FlashcardDeck fd = new FlashcardDeck();
         for (Flashcard flashcard : getTypicalFlashcards()) {
-            ab.addFlashcard(flashcard);
+            fd.addFlashcard(flashcard);
         }
-        return ab;
+        return fd;
     }
 
     /**
-     * Returns an {@code AddressBook} with flashcards that have been reviewed before.
+     * Returns an {@code FlashcardDeck} with flashcards that have been reviewed before.
      */
     public static FlashcardDeck getReviewedFlashcardDeck() {
-        FlashcardDeck ab = new FlashcardDeck();
+        FlashcardDeck fd = new FlashcardDeck();
         for (Flashcard flashcard : getReviewedFlashcards()) {
-            ab.addFlashcard(flashcard);
+            fd.addFlashcard(flashcard);
         }
-        return ab;
+        return fd;
     }
 
     public static List<Flashcard> getTypicalFlashcards() {
