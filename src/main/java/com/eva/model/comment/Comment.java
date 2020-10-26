@@ -69,4 +69,18 @@ public class Comment {
     public String toString() {
         return this.title.getTitle() + ": " + this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
+
+    /**
+     * Returns true if comment is same as otherComment.
+     */
+    public boolean isSameComment(Comment otherComment) {
+        if (otherComment == this) {
+            return true;
+        }
+
+        return otherComment != null
+                && otherComment.getTitle().equals(getTitle())
+                && otherComment.getDate().equals(getDate())
+                && otherComment.getDescription().equals(getDescription());
+    }
 }

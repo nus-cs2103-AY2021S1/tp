@@ -1,10 +1,11 @@
-package com.eva.ui;
+package com.eva.ui.list.view;
 
 
 import java.util.logging.Logger;
 
 import com.eva.commons.core.LogsCenter;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.ui.UiPart;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,6 +17,8 @@ import javafx.scene.layout.Region;
  * Panel containing the list of applicant.
  */
 public class ApplicantListPanel extends UiPart<Region> {
+    private static final String PANEL_NAME = "ApplicantList";
+
     private static final String FXML = "ApplicantListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ApplicantListPanel.class);
 

@@ -1,4 +1,5 @@
 package com.eva.logic.parser;
+
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDORDELETE_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;

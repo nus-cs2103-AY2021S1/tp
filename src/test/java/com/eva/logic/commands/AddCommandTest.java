@@ -16,11 +16,14 @@ import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
 
 import com.eva.commons.core.GuiSettings;
+import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.EvaDatabase;
 import com.eva.model.Model;
 import com.eva.model.ReadOnlyEvaDatabase;
 import com.eva.model.ReadOnlyUserPrefs;
+import com.eva.model.current.view.CurrentViewApplicant;
+import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.application.Application;
@@ -102,6 +105,26 @@ public class AddCommandTest {
 
         @Override
         public void setGuiSettings(GuiSettings guiSettings) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PanelState getPanelState() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPanelState(PanelState panelState) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCurrentViewStaff(CurrentViewStaff currentViewStaff) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setCurrentViewApplicant(CurrentViewApplicant currentViewStaff) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -233,6 +256,16 @@ public class AddCommandTest {
         @Override
         public ObservableList<Staff> getFilteredStaffList() {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public CurrentViewStaff getCurrentViewStaff() {
+            return null;
+        }
+
+        @Override
+        public CurrentViewApplicant getCurrentViewApplicant() {
+            return null;
         }
 
         @Override
