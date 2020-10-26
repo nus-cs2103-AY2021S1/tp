@@ -151,6 +151,23 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 - `addq` -n <u>Bob’s 6th regret</u> -q <u>8</u>
 - Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
 
+### Adding quantity to an item: `addq`
+
+**NAME:**
+- `addq` - adds quantity to a single specified item
+
+**SYNOPSIS:**
+- `addq` **\<item name\>** **-q \<qty\>**
+
+**DESCRIPTION:**
+- **item name:** given name of the item in the system
+- **-q:** amount of that item to add
+- Adds the quantity to the item in the inventory
+
+**EXAMPLE:**
+- `addt` -n <u>Bob’s 6th regret</u> -t <u>sadbob</u> <u>feelsbad</u>
+- Adds tags <u>sadbob</u> and <u>feelsbad</u> to <u>Bob’s 6th regrets</u>.
+
 ### Listing all items : `listi`
 
 **NAME:**
@@ -211,24 +228,50 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 ### Finding an item: `find`
 
+This command allows the user to search for items in `Inventoryinator` by tags,
+ entering multiple tags allows the user to search for items that match either tag.
+
 **NAME:**
 - `find` - finds items
 
 **SYNOPSIS:**
-- `find` **\<search strings\>**
+- `find` **\<string1 string2\>**
 
 **DESCRIPTION:**
-- **search strings:** keywords to search by, space separated
+- **string{1}:** keywords to search by, space separated
 - Displays items that match or contain, case-insensitive, any of the search keywords
 
 **EXAMPLE:**
-- `find` <u>bob alice</u>
+- `find` <u>bob</u> <u>alice</u>
 
-- Returns the items whose names match/ contain bob or alice, like: 
+- Returns the items whose names match/ contain <u>bob</u> or <u>alice</u>, like: 
   - Bob’s 9000th crush
   - Alice's sword
   - Little bob
 
+### Finding items by tags: `findt`
+
+This command allows the user to search for items in `Inventoryinator` by tags,
+ entering multiple tags allows the user to search for items that match either tag.
+
+**NAME:**
+- `findt` - finds items tagged with matching tag strings
+
+**SYNOPSIS:**
+- `findt` **\<string1 string2 ...\>**
+
+**DESCRIPTION:**
+- **string{digit}:** keyword tags to search by, comma separated
+- Displays items that match the tags, case-insensitive, any of the given search keywords
+
+**EXAMPLE:**
+- `findt` <u>delic</u> <u>yummy</u>
+
+- Returns the items whose tags match/ contain "delic" or "yummy", like: 
+  - Bob’s Banana tags: [<u>tuturu</u>, <u>yummy</u>]
+  - Alice's Apple tags: [<u>delicate</u>]
+  - Kim's Kiwi tags: [<u>yummy</u>, <u>delicious</u>]
+  
 ### View item `view`
 WIP as of v1.2
 

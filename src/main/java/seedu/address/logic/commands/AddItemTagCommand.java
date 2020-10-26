@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import seedu.address.logic.commands.EditItemCommand.EditItemDescriptor;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.EditItemCommand.EditItemDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
@@ -27,7 +27,7 @@ public class AddItemTagCommand extends Command {
             + "[" + PREFIX_ITEM_NAME + "NAME] "
             + "[" + PREFIX_ITEM_TAG + "TAG(s) TO ADD] "
             + "Example: " + COMMAND_WORD + PREFIX_ITEM_NAME + "Iron "
-            + PREFIX_ITEM_TAG + "delicious1, tuturu";
+            + PREFIX_ITEM_TAG + "delicious, tuturu";
 
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list.";
     public static final String MESSAGE_TAG_NOT_PROVIDED = "Tag is not found in item list";

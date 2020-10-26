@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ItemParserUtil.REGEX_ENTRIES;
 
 import java.util.Arrays;
 
@@ -23,7 +24,7 @@ public class FindByTagCommandParser implements Parser<FindByTagCommand> {
                     FindByTagCommand.MESSAGE_USAGE));
         }
 
-        String[] tagKeywords = trimmedArgs.split("\\s+");
+        String[] tagKeywords = trimmedArgs.split(REGEX_ENTRIES);
         return new FindByTagCommand(new TagMatchesKeywordsPredicate(Arrays.asList(tagKeywords)));
     }
 }
