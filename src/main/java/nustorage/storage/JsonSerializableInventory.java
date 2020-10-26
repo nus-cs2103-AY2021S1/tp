@@ -63,9 +63,13 @@ class JsonSerializableInventory {
         Inventory inventory = new Inventory();
         for (JsonAdaptedInventoryRecord jsonInvRecord : this.inventoryRecords) {
             InventoryRecord invRecord = jsonInvRecord.toModelType();
-            if (inventory.hasInventoryRecord(invRecord)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_INVENTORY_RECORD);
-            }
+
+            /*
+            This section prevents adding of duplicate inventory records.
+             */
+            // if (inventory.hasInventoryRecord(invRecord)) {
+            //     throw new IllegalValueException(MESSAGE_DUPLICATE_INVENTORY_RECORD);
+            // }
             inventory.addInventoryRecord(invRecord);
         }
         return inventory;
