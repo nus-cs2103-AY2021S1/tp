@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.bidcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_BIDS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -34,11 +33,6 @@ public class FindBidCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredBidList(predicate);
-        if (model.getFilteredBidList().size() == 0) {
-            model.updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
-            return new CommandResult(
-                    String.format(Messages.MESSAGE_BIDS_LISTED_FAILURE)).setEntity(EntityType.BID);
-        }
         return new CommandResult(
                 String.format(Messages.MESSAGE_BIDS_LISTED_OVERVIEW, model.getFilteredBidList().size()))
                 .setEntity(EntityType.BID);

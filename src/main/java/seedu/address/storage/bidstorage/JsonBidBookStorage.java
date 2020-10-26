@@ -27,6 +27,10 @@ public class JsonBidBookStorage implements BidBookStorage {
         this.filePath = filePath;
     }
 
+    /**
+     * retrieves the file path for BidBook
+     * @return
+     */
     public Path getBidBookFilePath() {
         return filePath;
     }

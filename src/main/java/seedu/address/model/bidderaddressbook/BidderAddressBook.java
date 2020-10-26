@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.bidder.UniqueBidderList;
 
@@ -80,6 +81,16 @@ public class BidderAddressBook implements ReadOnlyBidderAddressBook {
     public void setBidder(Bidder target, Bidder editedBidder) {
         requireNonNull(editedBidder);
         bidders.setBidder(target, editedBidder);
+    }
+
+    /**
+     * Checks if this {@code BidderAddressBook} contains a bidder with the given {@code id}.
+     *
+     * @param bidderId The given id.
+     * @return True if a bidder with the given id exists in the list.
+     */
+    public boolean containsBidderId(BidderId bidderId) {
+        return bidders.containsBidderId(bidderId);
     }
 
     /**
