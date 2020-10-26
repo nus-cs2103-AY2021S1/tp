@@ -175,7 +175,7 @@ public class Task {
                 .append(getName().isPresent() ? getName().get() : "")
                 .append("\n")
                 .append(" *Tag: ")
-                .append(getTag().isPresent() ? getTag().get() : "")
+                .append(getTags().isPresent() ? getTags().get() : "")
                 .append("\n")
                 .append(" *Priority: ")
                 .append(getPriority().isPresent() ? getPriority().get() : "")
