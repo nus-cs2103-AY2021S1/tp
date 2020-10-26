@@ -250,6 +250,33 @@ public class ModelManager implements Model {
         this.moduleBook.resetData(newBook);
     }
 
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        moduleBook.setModule(target, editedModule);
+    }
+
+    @Override
+    public void updatePersonInModuleBook(Person... persons) {
+        requireNonNull(persons);
+        Person personToUpdate = persons[0];
+        boolean isReplacement = persons.length > 1;
+
+        filteredModules.stream().filter(module -> module.getClassmates()
+                .contains(personToUpdate)).forEach(module -> {
+            Set<Person> updatedMembers = new HashSet<>(module.getClassmates());
+            updatedMembers.remove(personToUpdate);
+            if (isReplacement) {
+                assert persons.length == 2;
+                Person editedPerson = persons[1];
+                updatedMembers.add(editedPerson);
+            }
+            Module updatedModule = new Module(module.getModuleName(), updatedMembers);
+            moduleBook.setModule(module, updatedModule);
+        });
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -284,6 +311,8 @@ public class ModelManager implements Model {
         filteredMeetings.setPredicate(predicate);
     }
 
+    //=========== Filtered Module List Accessors =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
@@ -304,6 +333,12 @@ public class ModelManager implements Model {
             Predicate<Person> predicate = person -> mod.getClassmates().contains(person);
             updateFilteredPersonList(predicate);
         }
+    }
+
+    @Override
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        filteredModules.setPredicate(predicate);
     }
 
 

@@ -52,7 +52,8 @@ public class Module {
         }
 
         return otherModule != null
-                && otherModule.getModuleName().getModuleName().equals(getModuleName().getModuleName());
+                && otherModule.getModuleName().getModuleName().equals(getModuleName().getModuleName())
+                && otherModule.getClassmates().equals(getClassmates());
     }
 
     /**

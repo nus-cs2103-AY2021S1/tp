@@ -189,4 +189,25 @@ public interface Model {
     ObservableList<Module> getFilteredModuleList();
 
     void getPersonsInModule(ModuleName moduleName) throws CommandException;
+
+    /**
+     * Replaces the given meeting {@code target} with {@code editedModule}.
+     * {@code target} must exist in the module book.
+     * The module identity of {@code editedModule} must not be the same
+     * as another existing module in the module book.
+     */
+    void setModule(Module target, Module editedModule);
+
+    /**
+     * Updates all modules in the module book if the required person was part of any module.
+     * @param persons First argument is the person to update which is either deleted or replaced. If replaced,
+     * second argument is the edited person who will replace the deleted person.
+     */
+    void updatePersonInModuleBook(Person ...persons);
+
+    /**
+     * Updates the filter of the filtered module list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredModuleList(Predicate<Module> predicate);
 }
