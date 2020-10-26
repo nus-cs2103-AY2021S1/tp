@@ -16,8 +16,8 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.AdditionalDetail;
 import seedu.address.model.student.admin.Admin;
+import seedu.address.model.student.admin.Detail;
 
 
 /**
@@ -57,7 +57,7 @@ public class StudentUtil {
                 .format(DateTimeFormatter.ofPattern("d/M/yy")) + " ";
         sb.append(venue).append(time).append(fee).append(date);
 
-        for (AdditionalDetail detail : admin.getDetails()) {
+        for (Detail detail : admin.getDetails()) {
             sb.append(PREFIX_DETAILS + detail.detail + " ");
         }
         return sb.toString();
