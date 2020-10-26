@@ -50,8 +50,7 @@ public class SwitchVendorCommand extends VendorCommand {
             model.updateVendor();
         }
 
-        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()),
-                false, false, true);
+        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()));
     }
 
     @Override
