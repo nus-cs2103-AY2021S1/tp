@@ -1,4 +1,4 @@
-package com.eva.logic.parser;
+/*package com.eva.logic.parser;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
@@ -138,4 +138,4 @@ public class AddCommandParserTest {
                 + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
-}
+}*/

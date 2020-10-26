@@ -34,6 +34,7 @@ public class CommentCommand extends Command {
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Commented on Person: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database.";
     public static final String MESSAGE_DELETE_COMMENT_SUCCESS = "Deleted comment on Person: %1$s";
+    public static final String MESSAGE_NO_SUCH_COMMENT = "No such comment with this title and date.";
 
 
 

@@ -1,9 +1,9 @@
 package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_ADD_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_ADD;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DELETE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DELETE_COMMENT;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -42,17 +42,17 @@ public class CommentCommandParser {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CommentCommand.MESSAGE_USAGE), pe);
         }
 
-        ArgumentMultimap addCommands = ArgumentTokenizer.tokenize(args, PREFIX_ADD);
-        ArgumentMultimap deleteCommands = ArgumentTokenizer.tokenize(args, PREFIX_DELETE);
+        ArgumentMultimap addCommands = ArgumentTokenizer.tokenize(args, PREFIX_ADD_COMMENT);
+        ArgumentMultimap deleteCommands = ArgumentTokenizer.tokenize(args, PREFIX_DELETE_COMMENT);
 
         CommentCommand.CommentPersonDescriptor commentPersonDescriptor = new CommentCommand.CommentPersonDescriptor();
         parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT)).ifPresent(commentPersonDescriptor::setComments);
         if (!commentPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        if (addCommands.getAllValues(PREFIX_ADD).size() != 0) {
+        if (addCommands.getAllValues(PREFIX_ADD_COMMENT).size() != 0) {
             return new AddCommentCommand(index, commentPersonDescriptor, "staff");
-        } else if (deleteCommands.getAllValues(PREFIX_DELETE).size() != 0) {
+        } else if (deleteCommands.getAllValues(PREFIX_DELETE_COMMENT).size() != 0) {
             return new DeleteCommentCommand(index, commentPersonDescriptor, "staff");
         } else {
             throw new ParseException("Comment has no such commands.");
