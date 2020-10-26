@@ -9,6 +9,7 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
   * Table of Contents
   {:toc}
 </div>
+
 ---
 
 ## 1. Setting Up, Getting Started
