@@ -249,15 +249,16 @@ Step 1. The user executes `add n/John Doe …​ mr/www.medicalrecorddoc.com/pat
 
 ![AddSequenceDiagramMR](images/UML_Diagrams/AddSequenceDiagramMR.png)<br>
 
-<div markdown="span" class="alert alert-info">:information_source: **Note on sequence diagram:**<br>
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on sequence diagram:**<br>
 
 * The lifeline for `AddCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 * For simplicity, the complete user input for the `add` command is omitted, showing only the `mr/www.medicalrecorddoc.com/patients1234567` portion, which is further simplified to `mr/MR_URL` in the sequence diagram.
 
 * The `Patient` object created is shown as `toAdd` in the sequence diagram.
-
-</div><br>
+</div>
 
 Step 2. The user now decides to access the medical record of patient John Doe and can then do so by clicking on the `MR URL` button located at the bottom right corner of the patient's tab.
 
