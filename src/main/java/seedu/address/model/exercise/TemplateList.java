@@ -20,6 +20,7 @@ public class TemplateList {
     }
 
     public static Template getTemp(String name) {
+        load();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getName().equals(name)) {
                 return list.get(i);
