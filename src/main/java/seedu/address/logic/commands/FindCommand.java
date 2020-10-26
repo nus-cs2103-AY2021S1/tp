@@ -22,7 +22,7 @@ public class FindCommand extends Command {
 
     private final TitleContainsKeywordsPredicate titlePredicate;
 
-//    private final DescriptionContainsKeywordsPredicate descriptionPredicate;  //for upgrade
+    // private final DescriptionContainsKeywordsPredicate descriptionPredicate;  //for upgrade
 
     public FindCommand(TitleContainsKeywordsPredicate titlePredicate) {
         this.titlePredicate = titlePredicate;
