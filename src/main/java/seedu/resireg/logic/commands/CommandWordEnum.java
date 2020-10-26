@@ -18,7 +18,7 @@ public enum CommandWordEnum {
     ADD_ALIAS_COMMAND("alias"),
     DELETE_ALIAS_COMMAND("dealias"),
     LIST_ALIAS_COMMAND("aliases"),
-    TOGGLE_MAIN_PANEL_COMMAND("toggleview");
+    TOGGLE_TAB_SPLIT_COMMAND("togglesplit");
 
     private String commandWord;
 
