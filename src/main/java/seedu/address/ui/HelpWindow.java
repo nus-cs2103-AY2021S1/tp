@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Comparator;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -20,6 +21,11 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
+import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
+import seedu.address.logic.commands.appointmentcommand.EditApptCommand;
+import seedu.address.logic.commands.appointmentcommand.ShowApptCommand;
 
 /**
  * Controller for a help page
@@ -48,10 +54,21 @@ public class HelpWindow extends UiPart<Stage> {
             new CommandDescription(HelpCommand.COMMAND_WORD, HelpCommand.MESSAGE_USAGE);
     private final CommandDescription countCommandDes =
             new CommandDescription(CountCommand.COMMAND_WORD, CountCommand.MESSAGE_UASGE);
+    private final CommandDescription sortCommandDes =
+            new CommandDescription(SortCommand.COMMAND_WORD, SortCommand.MESSAGE_USAGE);
+    private final CommandDescription showApptDes =
+            new CommandDescription(ShowApptCommand.COMMAND_WORD, ShowApptCommand.MESSAGE_USAGE);
+    private final CommandDescription addApptDes =
+            new CommandDescription(AddApptCommand.COMMAND_WORD, AddApptCommand.MESSAGE_USAGE);
+    private final CommandDescription editApptDes =
+            new CommandDescription(EditApptCommand.COMMAND_WORD, EditApptCommand.MESSAGE_USAGE);
+    private final CommandDescription deleteApptDes =
+            new CommandDescription(DeleteApptCommand.COMMAND_WORD, DeleteApptCommand.MESSAGE_USAGE);
 
     public final ObservableList<CommandDescription> commandDescriptions = FXCollections
             .observableArrayList(addCommandDes, clearCommandDes, deleteCommandDes, editCommandDes,
-                    findCommandDes, listCommandDes, helpCommandDes, countCommandDes);
+                    findCommandDes, listCommandDes, helpCommandDes, countCommandDes, sortCommandDes,
+                    showApptDes, addApptDes, editApptDes, deleteApptDes);
 
     @FXML
     private Button copyButton;
@@ -73,6 +90,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         moreInfo.setText(MORE_INFO);
+        commandDescriptions.sort(Comparator.comparing(CommandDescription::getCommand));
         helpTable.setItems(commandDescriptions);
     }
 
