@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-
+TEST
 **Common Cents** is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. 
 With just a few commands, _Common Cents_ will keep track, categorise and calculate your income and expenditure for you! 
 You can even keep your expenses in multiple accounts for seamless organisation. Amalgamating the features of a 
