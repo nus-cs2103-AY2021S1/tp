@@ -194,6 +194,27 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding Items and Delivery
+OneShelf is capable of adding items and deliveries.
+Adding Items and Delivery both are done similarly which will be illustrated with an AddItemActivityDiagram below.
+
+![AddItemActivityDiagram](images/AddItemActivityDiagram.png)
+
+Apart from adding a new Item, should there be an existing item in the Inventory Book, `Add` will be able to increase the quantity of that particular Item.
+In this case 2 items are considered the same if they have the same `Name` and `Supplier`.
+The other variables such as:
+
+a) `Metric` `MaxQuantity`
+- Are not allowed to be defined if there exists the same item inside InventoryBook.
+
+b) `Tags`
+- Will be combined together if there exist the same item inside InventoryBook.
+
+Note: Deliveries are all considered unique. Reason being the same person can make multiple delivery orders.
+
+<div markdown="span" class="alert alert-info">:information_source: **For example:**`John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
+</div>
+
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
 There is a `History` interface that is implemented by `HistoryManager` class which stores `commandHistory` up to its `lengthLimit`
@@ -205,6 +226,13 @@ method call to return `commandHistory`'s 2nd last command instead of the last co
 With `addToHistory(String command)`, `previousCommand()`, `nextCommand()` and `currentCommand()` implemented, a simple `setOnKeyPressed` under `CommandBox` class which checks
 for user's input of arrow up (which calls previousCommand()) and arrow down (which calls nextCommand()) would suffice for GUI implementation.
 
+Below is the sequence diagram when user pressing the arrow up button with `CommandBox` selected on GUI.
+
+![CommandHistoryTraversalSequenceDiagram](images/CommandHistoryTraversalSequenceDiagram.png)
+
+When the user, while having the `CommandBox` selected, pressing the arrow up key, it'll prompt the GUI to call `CommandBox`'s `handleHistoryNavigation(Event)` which will call `HistoryManager`'s `previousCommand()` method.
+`previousCommand()` will attempt to return the previous command entered by user, if any. Then `CommandBox` will call `TextField`'s `setText(String)` on the return value of `previousCommand()` which will set the text for the User 
+in the GUI.
 
 ### Finding Items and Delivery
 
@@ -452,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User request to update item.
-2. OneShelf updates the item accordingly.
+2. OneShelf adds the item accordingly.
 
    Use case ends.
 
@@ -575,6 +603,26 @@ testers are expected to do more *exploratory* testing.
 
    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
+
+if there is no existing same item. If there is an existing same item, 
+
+### Adding an item
+
+1. Adding an item
+    1. Test Case: `add-i n/Chicken q/123 s/NTUC`
+       Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added 
+       
+    1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
+       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added when there is no existing same item. 
+
+### Adding to an existing item
+
+1. Adding to an existing item
+    1. Test Case: `add-i n/Chicken q/123 s/NTUC`
+       Expected: Item with `Name` of Chicken and `Supplier` of NTUC will have it's `Quantity` combine with input item's `Quantity`. `MaxQuantity` `Tags` `Metric` will be adopted from the existing item.
+       
+    1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
+       Expected: User will receive an error message as `MaxQuantity` or `Metric` should not be defined when adding to existing item.
 
 ### Deleting an item
 
