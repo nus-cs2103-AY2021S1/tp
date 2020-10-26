@@ -49,7 +49,6 @@ public class ClearCommandTest {
     public void clear_nonEmptyOrder_success() {
         Model model = initialiseModel();
         setOrderManager(model);
-        
         Model expectedModel = initialiseModel();
         expectedModel.setOrderManager(new OrderManager());
 
