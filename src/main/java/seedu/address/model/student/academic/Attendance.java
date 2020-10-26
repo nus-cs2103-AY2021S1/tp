@@ -12,6 +12,8 @@ public class Attendance {
     private static final DateTimeFormatter INPUT_DEF = DateTimeFormatter.ofPattern("d/M/yy");
     private static final DateTimeFormatter INPUT_ALT = DateTimeFormatter.ofPattern("d/M/yyyy");
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy");
+    private static final String ATTENDED_STATUS = "attended";
+    private static final String UNATTENDED_STATUS = "unattended";
     public static final String DATE_CONSTRAINTS =
             "Attendance dates should be valid and in the form dd/mm/yy, and should not be blank";
     public static final String STATUS_CONSTRAINTS =
@@ -21,12 +23,13 @@ public class Attendance {
     public boolean hasAttended;
     public Feedback feedback;
 
-    public Attendance(String date, boolean hasAttended, Feedback feedback) {
+    public Attendance(String date, String hasAttended, Feedback feedback) {
         requireAllNonNull(date, hasAttended, feedback);
         checkArgument(isValidDate(date), DATE_CONSTRAINTS);
+        checkArgument(isValidAttendanceStatus(hasAttended), STATUS_CONSTRAINTS);
 
         this.lessonDate = parseDate(date);
-        this.hasAttended = hasAttended;
+        this.hasAttended = parseAttendanceStatus(hasAttended);
         this.feedback = feedback;
     }
 
@@ -62,8 +65,27 @@ public class Attendance {
         return testDate != null;
     }
 
+    public static boolean isValidAttendanceStatus(String status) {
+        return status.equals(ATTENDED_STATUS) || status.equals(UNATTENDED_STATUS);
+    }
+
+    public static boolean parseAttendanceStatus(String status) {
+        return status.equals(ATTENDED_STATUS); // if false, then will be equal to UNATTENDED_STATUS
+    }
+
     public LocalDate getLessonDate() {
         return lessonDate;
     }
-    
+
+    public String getUserInputDate() {
+        return lessonDate.format(OUTPUT);
+    }
+
+    public boolean getAttendanceStatus() {
+        return hasAttended;
+    }
+
+    public Feedback getFeedback() {
+        return feedback;
+    }
 }

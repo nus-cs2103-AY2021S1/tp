@@ -56,7 +56,7 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
             String attendanceDate = ParserUtil.parseAttendanceDate(argMultimap.getValue(PREFIX_ATTENDANCE_DATE).get());
-            boolean attendanceStatus = ParserUtil.parseAttendanceStatus(
+            String attendanceStatus = ParserUtil.parseAttendanceStatus(
                     argMultimap.getValue(PREFIX_ATTENDANCE_STATUS).get());
             Feedback attendanceFeedback = ParserUtil.parseFeedback(
                     argMultimap.getValue(PREFIX_ATTENDANCE_FEEDBACK).get());

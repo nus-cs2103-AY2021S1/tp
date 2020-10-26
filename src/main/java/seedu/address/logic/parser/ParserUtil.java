@@ -311,27 +311,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String attendanceStatus} into a {@code Attendance} formatted {@code boolean}.
+     * Parses a {@code String attendanceStatus} into a {@code Attendance} formatted {@code String}.
      * @throws ParseException if the given {@code attendanceStatus} is invalid.
      */
-    public static boolean parseAttendanceStatus(String attendanceStatus) throws ParseException {
+    public static String parseAttendanceStatus(String attendanceStatus) throws ParseException {
         requireNonNull(attendanceStatus);
-        final String ATTENDED_STATUS = "attended";
-        final String UNATTENDED_STATUS = "unattended";
-
         String formattedStatus = attendanceStatus.trim().toLowerCase();
-
-        switch (formattedStatus) {
-
-        case ATTENDED_STATUS:
-            return true;
-
-        case UNATTENDED_STATUS:
-            return false;
-
-        default:
+        if (!Attendance.isValidAttendanceStatus(formattedStatus)) {
             throw new ParseException(Attendance.STATUS_CONSTRAINTS);
         }
+        return formattedStatus;
     }
 
     /**
