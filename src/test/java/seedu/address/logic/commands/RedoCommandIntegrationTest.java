@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.item.Item;
 import seedu.address.testutil.ItemPrecursorBuilder;
 
-public class RedoCommandIntegrationTest {
+public class  RedoCommandIntegrationTest {
     private Model model;
 
     @BeforeEach
