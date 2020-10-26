@@ -1,6 +1,6 @@
 package seedu.address.logic.commands;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_INDEX;
 
 import java.util.List;
 
@@ -20,14 +20,14 @@ public class DeleteVisitCommand extends Command {
         + ": Deletes the visitation log of the patient identified"
         + " by the index number used in the displayed patient list.\n"
         + "Parameters: " + "PATIENT_INDEX "
-        + PREFIX_VISIT_DELETE + "VISIT_INDEX (both must be positive integers)\n"
+        + PREFIX_VISIT_INDEX + "VISIT_INDEX (both must be positive numbers)\n\n"
         + "Example: " + COMMAND_WORD + " 1 "
-        + PREFIX_VISIT_DELETE + "2";
+        + PREFIX_VISIT_INDEX + "2";
 
     public static final String MESSAGE_DELETE_VISIT_SUCCESS = "Deleted visitation log from Patient: %1$s";
     public static final String MESSAGE_MISSING_INDEX_PROMPT = "Please specify index of visitation to be deleted\n"
         + "Usage: " + COMMAND_WORD + " [PATIENT INDEX] "
-        + PREFIX_VISIT_DELETE + "[VISIT INDEX]";;
+        + PREFIX_VISIT_INDEX + "[VISIT INDEX]";
 
     private static final int EMPTY_VISIT_LOG = -1;
 
@@ -60,12 +60,11 @@ public class DeleteVisitCommand extends Command {
         ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
 
         if (visitIndex == EMPTY_VISIT_LOG) {
-            ObservableList<Visit> copyOfObservableHistory = observableHistory;
 
             if (!observableHistory.isEmpty()) {
                 return new CommandResult(MESSAGE_MISSING_INDEX_PROMPT, observableHistory);
             } else {
-                return new CommandResult("", copyOfObservableHistory);
+                return new CommandResult("", observableHistory);
             }
         } else {
             try {
@@ -82,9 +81,9 @@ public class DeleteVisitCommand extends Command {
         }
 
         model.updateFilteredPatientList(Model.PREDICATE_SHOW_ALL_PATIENTS);
-        ObservableList<Visit> copyOfObservableHistory = observableHistory;
+        model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD, patientEdited));
 
-        return new CommandResult(String.format(MESSAGE_DELETE_VISIT_SUCCESS, patientToEdit), copyOfObservableHistory);
+        return new CommandResult(String.format(MESSAGE_DELETE_VISIT_SUCCESS, patientToEdit), observableHistory);
     }
 
     @Override

@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_VISIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_INDEX;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -19,21 +19,18 @@ public class EditVisitCommandParser implements Parser<EditVisitCommand> {
      */
     public EditVisitCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_EDIT_VISIT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_VISIT_INDEX);
 
         Index patientIndex;
         int visitIndex;
 
         try {
             patientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            String input = argMultimap.getValue(PREFIX_EDIT_VISIT).orElse(ParserUtil.MESSAGE_EMPTY_VISIT_INDEX);
+            String input = argMultimap.getValue(PREFIX_VISIT_INDEX).orElse(ParserUtil.MESSAGE_EMPTY_VISIT_INDEX);
             visitIndex = ParserUtil.parseVisitIndex(input);
-        } catch (IllegalValueException ive) {
+        } catch (IllegalValueException | NumberFormatException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditVisitCommand.MESSAGE_USAGE), ive);
-        } catch (NumberFormatException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditVisitCommand.MESSAGE_USAGE), e);
         }
 
         return new EditVisitCommand(patientIndex, visitIndex);

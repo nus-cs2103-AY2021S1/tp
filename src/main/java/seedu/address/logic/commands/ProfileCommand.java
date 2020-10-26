@@ -22,7 +22,7 @@ public class ProfileCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Displays the profile of the patient identified "
             + "by the index number used in the displayed patient list.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive number) \n\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
     public static final String MESSAGE_VIEW_PROFILE_SUCCESS = "Displayed profile of : %1$s";
@@ -50,9 +50,8 @@ public class ProfileCommand extends Command {
 
         Patient patientToDisplay = lastShownList.get(patientIndex.getZeroBased());
         VisitHistory visitHistory = patientToDisplay.getVisitHistory();
-        ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
 
-        ObservableList<Visit> copyOfObservableHistory = observableHistory;
+        ObservableList<Visit> copyOfObservableHistory = visitHistory.getObservableVisits();
 
         return new CommandResult(String.format(MESSAGE_VIEW_PROFILE_SUCCESS, patientToDisplay), copyOfObservableHistory,
                 patientToDisplay);

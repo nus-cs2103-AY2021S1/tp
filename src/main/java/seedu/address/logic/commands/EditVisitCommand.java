@@ -1,8 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_VISIT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_DELETE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_INDEX;
 
 import java.util.List;
 
@@ -23,16 +22,16 @@ public class EditVisitCommand extends Command {
     public static final String COMMAND_WORD = "editvisit";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Edits the visitation log of the patient identified "
-            + "by the index number uused in the displayed patient list.\n"
+            + "by the index number used in the displayed patient list.\n"
             + "Parameters: " + "PATIENT_INDEX "
-            + PREFIX_VISIT_DELETE + "VISIT_INDEX (both must be positive integers)\n"
+            + PREFIX_VISIT_INDEX + "VISIT_INDEX (both must be positive numbers)\n\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_EDIT_VISIT + "2";
+            + PREFIX_VISIT_INDEX + "2";
 
     public static final String MESSAGE_EDIT_VISIT_PROMPT = "Please refer to the popup window and edit visitation log.";
     public static final String MESSAGE_MISSING_INDEX_PROMPT = "Please specify the index of visitation to be edited\n"
-            + "Usage: " + COMMAND_WORD + " [PERSON INDEX] "
-            + PREFIX_EDIT_VISIT + "[REPORT INDEX]\n";
+            + "Usage: " + COMMAND_WORD + " [PATIENT INDEX] "
+            + PREFIX_VISIT_INDEX + "[VISIT INDEX]\n";
 
     private static final int EMPTY_VISIT_LOG = -1;
 
@@ -60,21 +59,18 @@ public class EditVisitCommand extends Command {
         }
 
         Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
-        Patient patientEdited = patientToEdit;
-        VisitHistory visitHistory = patientEdited.getVisitHistory();
+        VisitHistory visitHistory = patientToEdit.getVisitHistory();
         ObservableList<Visit> observableHistory = visitHistory.getObservableVisits();
 
         if (visitIndex == EMPTY_VISIT_LOG) {
-            ObservableList<Visit> copyOfObservableHistory = observableHistory;
 
-            return new CommandResult(MESSAGE_MISSING_INDEX_PROMPT, copyOfObservableHistory);
+            return new CommandResult(MESSAGE_MISSING_INDEX_PROMPT, observableHistory);
         } else {
             try {
                 Visit visit = visitHistory.getVisitByIndex(visitIndex);
-                ObservableList<Visit> copyOfObservableHistory = observableHistory;
-
+                model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD, patientToEdit));
                 return new CommandResult(String.format(MESSAGE_EDIT_VISIT_PROMPT, patientToEdit),
-                        copyOfObservableHistory, visit, visitIndex, patientIndex.getOneBased());
+                    observableHistory, visit, visitIndex, patientIndex.getOneBased());
             } catch (IndexOutOfBoundsException e) {
                 throw new CommandException(Messages.MESSAGE_INVALID_VISIT_HISTORY_INDEX);
             }

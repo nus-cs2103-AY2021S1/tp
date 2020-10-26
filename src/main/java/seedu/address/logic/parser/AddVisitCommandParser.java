@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_VISIT_INDEX;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -30,11 +30,11 @@ public class AddVisitCommandParser implements Parser<AddVisitCommand> {
         Index patientIndex;
         String visitDate;
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_VISIT_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_VISIT_INDEX);
 
         try {
             patientIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
-            visitDate = ParserUtil.parseVisit(argMultimap.getValue(PREFIX_VISIT_DATE)
+            visitDate = ParserUtil.parseVisit(argMultimap.getValue(PREFIX_VISIT_INDEX)
                         .orElse(LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
         } catch (IllegalValueException exception) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,

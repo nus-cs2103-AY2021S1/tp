@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCombination;
+import javafx.scene.input.KeyCodeCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -171,11 +171,12 @@ public class VisitRecordWindow extends UiPart<Stage> {
                     + "to a scene");
         }
 
-        button.getScene().getAccelerators().put(KeyCombination.valueOf("F1"), new Runnable() {
-            @FXML public void run() {
-                button.fire();
-            }
-        });
+        button.getScene().getAccelerators().put(new KeyCodeCombination(KeyCode.S, KeyCodeCombination.CONTROL_DOWN),
+            new Runnable() {
+                @FXML public void run() {
+                    button.fire();
+                }
+            });
     }
 
     public String getFeedbackMessage() {
