@@ -26,6 +26,7 @@ import seedu.address.logic.commands.SetDefaultCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientListCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientResetAllCommand;
+import seedu.address.logic.commands.ingredientcommands.IngredientRestockCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientViewSingleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -110,6 +111,9 @@ public class AddressBookParser {
 
         case IngredientResetAllCommand.COMMAND_WORD:
             return new IngredientResetAllCommand();
+
+        case IngredientRestockCommand.COMMAND_WORD:
+            return new IngredientRestockCommand();
 
         case SalesUpdateCommand.COMMAND_WORD:
             return new SalesUpdateCommandParser().parse(arguments);

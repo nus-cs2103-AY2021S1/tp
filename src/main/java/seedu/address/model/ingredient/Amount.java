@@ -12,6 +12,8 @@ public class Amount {
             "Amount should only contain numbers, and it should be equals to or greater than 0";
     public static final String VALIDATION_REGEX = "\\d{1,}";
 
+    private static final int RESTOCK_LEVEL = 5;
+
     public final String amount;
 
     /**
@@ -30,6 +32,15 @@ public class Amount {
      */
     public static boolean isValidAmount(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns the amount of ingredients in string format.
+     *
+     * @return the amount of ingredients in string format.
+     */
+    public boolean isBelowRestockLevel() {
+        return Integer.parseInt(amount) < RESTOCK_LEVEL;
     }
 
     @Override

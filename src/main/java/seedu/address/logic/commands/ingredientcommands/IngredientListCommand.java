@@ -1,12 +1,12 @@
 package seedu.address.logic.commands.ingredientcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
 import java.util.List;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ingredient.Ingredient;
 
@@ -23,6 +23,7 @@ public class IngredientListCommand extends Command {
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Here is the list of all ingredients: \n";
+
     private String ingredientList = "";
 
     /**
@@ -37,7 +38,6 @@ public class IngredientListCommand extends Command {
      *
      * @param model {@code Model} which the command should operate on.
      * @return feedback message of the operation result for display
-     * @throws CommandException If an error occurs during command execution.
      */
     @Override
     public CommandResult execute(Model model) {
@@ -46,6 +46,7 @@ public class IngredientListCommand extends Command {
         for (Ingredient i : lastShownList) {
             ingredientList += i.toString() + LINE_SEPARATOR;
         }
+        model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
         return new CommandResult(MESSAGE_SUCCESS + ingredientList);
     }
 
