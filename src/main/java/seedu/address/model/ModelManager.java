@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredModules = new FilteredList<>(this.addressBook.getModuleList().asUnmodifiableObservableList());
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
     }
 
     public ModelManager() {
@@ -135,7 +135,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isEmptyModuleList() {
-        return addressBook.getModuleList().isEmptyList();
+        return addressBook.getModuleList().isEmpty();
     }
 
     @Override

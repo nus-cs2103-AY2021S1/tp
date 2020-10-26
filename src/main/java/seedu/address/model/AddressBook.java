@@ -59,7 +59,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the person list with {@code modules}.
      * {@code modules} must not contain duplicate modules.
      */
-    public void setModules(UniqueModuleList modules) {
+    public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
     }
 
@@ -98,7 +98,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
+        reassignEditedInstructor(target, editedPerson);
         persons.setPerson(target, editedPerson);
     }
 
@@ -231,9 +231,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    public UniqueModuleList getModuleList() {
-        // Currently no support for "contains" method for observable list
-        return modules;
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
+    }
+
+    private void reassignEditedInstructor(Person target, Person editedPerson) {
+        for (Module m: modules) {
+            if (m.hasInstructor(target)) {
+                m.unassignInstructor(target);
+                m.assignInstructor(editedPerson);
+            }
+        }
     }
 
     @Override
