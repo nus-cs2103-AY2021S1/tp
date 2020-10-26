@@ -49,7 +49,7 @@ class JsonAdaptedComment {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Comment toModelType() throws IllegalValueException {
-        if (!Comment.isValidComment(date.toString() + " " + description + " " + title)) {
+        if (!Comment.isValidComment(" d/ " + date.toString() + " desc/ " + description + " ti/ " + title)) {
             throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Comment(date, description, title);
