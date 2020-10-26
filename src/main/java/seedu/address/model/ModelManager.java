@@ -4,13 +4,21 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.ReadOnlyEvent;
+import seedu.address.model.event.SchedulePrefs;
+import seedu.address.model.event.ScheduleViewMode;
+import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.Student;
 
 /**
@@ -22,23 +30,27 @@ public class ModelManager implements Model {
     private final Reeve reeve;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final Scheduler scheduler;
+    private final SchedulePrefs schedulePrefs;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyReeve addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyReeve addressBook, ReadOnlyUserPrefs userPrefs, ReadOnlyEvent schedule) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(addressBook, userPrefs, schedule);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + ", schedule : " + schedule + " and user prefs " + userPrefs);
 
         this.reeve = new Reeve(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.reeve.getStudentList());
+        this.scheduler = new Scheduler(schedule);
+        this.schedulePrefs = new SchedulePrefs(ScheduleViewMode.WEEKLY, LocalDateTime.now());
     }
 
     public ModelManager() {
-        this(new Reeve(), new UserPrefs());
+        this(new Reeve(), new UserPrefs(), new Scheduler());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -74,6 +86,17 @@ public class ModelManager implements Model {
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
         userPrefs.setAddressBookFilePath(addressBookFilePath);
+    }
+
+    @Override
+    public Path getScheduleFilePath() {
+        return userPrefs.getScheduleFilePath();
+    }
+
+    @Override
+    public void setScheduleFilePath(Path scheduleFilePath) {
+        requireNonNull(scheduleFilePath);
+        userPrefs.setScheduleFilePath(scheduleFilePath);
     }
 
     //=========== AddressBook ================================================================================
@@ -128,6 +151,66 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
     }
+
+    //=========== schedule ================================================================================
+    @Override
+    public void setSchedulerWithEvents(ReadOnlyEvent events) {
+        this.scheduler.resetData(events);
+    }
+
+    @Override
+    public ReadOnlyEvent getSchedule() {
+        return scheduler;
+    }
+
+    @Override
+    public ReadOnlyVEvent getVEvents() { return scheduler;}
+
+    @Override
+    public LocalDateTime getScheduleViewDateTime() {
+        return schedulePrefs.getTargetViewDateTime();
+    }
+
+    @Override
+    public void setScheduleViewDateTime(LocalDateTime viewDateTime) {
+        schedulePrefs.setTargetViewDateTime(viewDateTime);
+    }
+
+    @Override
+    public ScheduleViewMode getScheduleViewMode() {
+        return schedulePrefs.getViewMode();
+    }
+
+    @Override
+    public void setScheduleViewMode(ScheduleViewMode viewMode) {
+        schedulePrefs.setViewMode(viewMode);
+    }
+
+    @Override
+    public void addVEvent(VEvent vEvent) {
+        scheduler.addVEvent(vEvent);
+    }
+
+    @Override
+    public boolean hasVEvent(VEvent vEvent) {
+        return scheduler.hasVEvent(vEvent);
+    }
+
+    @Override
+    public void removeVEvent(Index index) {
+        scheduler.removeVEvent(index);
+    }
+
+    @Override
+    public VEvent getVEvent(Index index) {
+        return scheduler.getVEvent(index);
+    }
+
+    @Override
+    public ObservableList<VEvent> getVEventList() {
+        return scheduler.getVEvents();
+    }
+
 
     @Override
     public boolean equals(Object obj) {

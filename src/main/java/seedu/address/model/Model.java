@@ -1,10 +1,16 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.event.ReadOnlyEvent;
+import seedu.address.model.event.ScheduleViewMode;
 import seedu.address.model.student.Student;
 
 /**
@@ -84,4 +90,33 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Student> predicate);
+
+    // =========== schedule ================================================================================
+    void setSchedulerWithEvents(ReadOnlyEvent events);
+
+    ReadOnlyEvent getSchedule();
+
+    ReadOnlyVEvent getVEvents();
+
+    Path getScheduleFilePath();
+
+    void setScheduleFilePath(Path scheduleFilePath);
+
+    LocalDateTime getScheduleViewDateTime();
+
+    void setScheduleViewDateTime(LocalDateTime targetDateTime);
+
+    ScheduleViewMode getScheduleViewMode();
+
+    void setScheduleViewMode(ScheduleViewMode viewMode);
+
+    void addVEvent(VEvent vEvent);
+
+    boolean hasVEvent(VEvent vEvent);
+
+    void removeVEvent(Index index);
+
+    VEvent getVEvent(Index index);
+
+    ObservableList<VEvent> getVEventList();
 }
