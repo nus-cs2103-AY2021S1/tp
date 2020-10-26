@@ -157,7 +157,7 @@ public class EditRecipeCommand extends Command implements Undoable {
                     return Result.error("Missing step number for %s", type);
                 }
 
-                var index = numOpt.get();
+                int index = numOpt.get();
                 if (index < 0 || index >= steps.size()) {
                     return Result.error("Step number '%d' is out of range (should be between 1 and %d)",
                         1 + index, steps.size());
