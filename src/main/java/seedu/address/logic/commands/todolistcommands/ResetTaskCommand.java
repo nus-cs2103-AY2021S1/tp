@@ -45,6 +45,7 @@ public class ResetTaskCommand extends Command {
         Task taskToReset = lastShownList.get(targetIndex.getZeroBased());
         Task resetTask = taskToReset.setStatus(Status.COMPLETED);
         model.setTask(taskToReset, resetTask);
+        model.commitTodoList();
         return new CommandResult(String.format(MESSAGE_RESET_TASK_SUCCESS, taskToReset));
     }
 

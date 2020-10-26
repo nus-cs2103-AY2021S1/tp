@@ -62,6 +62,7 @@ public class AddTaskCommand extends Command {
 
         logger.info("Adding task to the list.");
         model.addTask(toAdd);
+        model.commitTodoList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
