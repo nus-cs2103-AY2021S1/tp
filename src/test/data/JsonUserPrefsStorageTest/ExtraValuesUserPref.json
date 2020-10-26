@@ -10,5 +10,6 @@
     }
   },
   "commandWordAliases" : [],
-  "resiRegFilePath" : "resireg.json"
+  "resiRegFilePath" : "resireg.json",
+  "daysStoredInBin" : 30
 }

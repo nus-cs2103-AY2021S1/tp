@@ -8,7 +8,7 @@ import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.model.Model;
-import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.storage.Storage;
 
@@ -37,7 +37,6 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         List<Student> lastShownList = model.getFilteredStudentList();
-        List<Allocation> lastShownAllocationList = model.getFilteredAllocationList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -46,12 +45,14 @@ public class DeleteCommand extends Command {
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         if (model.isAllocated(studentToDelete)) {
-            throw new CommandException(String.format(MESSAGE_ROOM_ALLOCATION_EXISTS, studentToDelete));
+            throw new CommandException(String.format(MESSAGE_ROOM_ALLOCATION_EXISTS,
+                studentToDelete.getNameAsString()));
         }
 
+        model.addBinItem(new BinItem(studentToDelete));
         model.deleteStudent(studentToDelete);
         model.saveStateResiReg();
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete.getNameAsString()));
     }
 
     @Override

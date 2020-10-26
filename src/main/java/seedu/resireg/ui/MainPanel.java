@@ -12,11 +12,14 @@ import seedu.resireg.logic.commands.TabView;
 public abstract class MainPanel extends UiPart<Region> {
     protected StudentListPanel studentListPanel;
     protected RoomListPanel roomListPanel;
+    protected BinItemListPanel binItemListPanel;
 
     @FXML
     protected StackPane studentListPanelPlaceholder;
     @FXML
     protected StackPane roomListPanelPlaceholder;
+    @FXML
+    protected StackPane binItemListPanelPlaceholder;
 
     public MainPanel(String fxmlFileName) {
         super(fxmlFileName);
@@ -36,6 +39,10 @@ public abstract class MainPanel extends UiPart<Region> {
                 logic.getFilteredStudentList());
         roomListPanelPlaceholder.getChildren()
                 .add(roomListPanel.getRoot());
+
+        binItemListPanel = new BinItemListPanel(logic.getFilteredBinItemList());
+        binItemListPanelPlaceholder.getChildren()
+            .add(binItemListPanel.getRoot());
     }
 
     /**

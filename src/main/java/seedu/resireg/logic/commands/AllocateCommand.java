@@ -88,7 +88,7 @@ public class AllocateCommand extends Command {
         model.saveStateResiReg();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, roomToAllocate.getRoomLabel(),
-            studentToAllocate.getName().fullName));
+            studentToAllocate.getNameAsString()));
     }
 
     @Override

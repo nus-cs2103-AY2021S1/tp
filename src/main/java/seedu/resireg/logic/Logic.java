@@ -9,6 +9,7 @@ import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -44,6 +45,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of allocations */
     ObservableList<Allocation> getFilteredAllocationList();
+
+    /** Returns an unmodifiable view of the list of bin items */
+    ObservableList<BinItem> getFilteredBinItemList();
 
     /**
      * Returns the user prefs' ResiReg file path.

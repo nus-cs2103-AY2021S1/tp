@@ -86,7 +86,7 @@ public class ReallocateCommand extends Command {
 
         model.saveStateResiReg();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToReallocate.getName().fullName,
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studentToReallocate.getNameAsString(),
             roomToReallocate.getRoomLabel()));
     }
 

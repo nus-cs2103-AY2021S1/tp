@@ -18,7 +18,10 @@ public enum CommandWordEnum {
     ADD_ALIAS_COMMAND("alias"),
     DELETE_ALIAS_COMMAND("dealias"),
     LIST_ALIAS_COMMAND("aliases"),
-    TOGGLE_MAIN_PANEL_COMMAND("toggleview");
+    TOGGLE_MAIN_PANEL_COMMAND("toggleview"),
+    RESTORE_COMMAND("restore"),
+    LIST_BIN_COMMAND("bin"),
+    SET_BIN_EXPIRY_COMMAND("set-bin-expiry");
 
     private String commandWord;
 

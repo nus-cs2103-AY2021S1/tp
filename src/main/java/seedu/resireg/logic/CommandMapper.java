@@ -20,10 +20,13 @@ import seedu.resireg.logic.commands.FindCommand;
 import seedu.resireg.logic.commands.Help;
 import seedu.resireg.logic.commands.HelpCommand;
 import seedu.resireg.logic.commands.ListAliasCommand;
+import seedu.resireg.logic.commands.ListBinCommand;
 import seedu.resireg.logic.commands.ListCommand;
 import seedu.resireg.logic.commands.ListRoomCommand;
 import seedu.resireg.logic.commands.ReallocateCommand;
 import seedu.resireg.logic.commands.RedoCommand;
+import seedu.resireg.logic.commands.RestoreCommand;
+import seedu.resireg.logic.commands.SetBinExpiryCommand;
 import seedu.resireg.logic.commands.ToggleMainPanelCommand;
 import seedu.resireg.logic.commands.UndoCommand;
 import seedu.resireg.logic.parser.AddAliasCommandParser;
@@ -38,6 +41,8 @@ import seedu.resireg.logic.parser.ListRoomCommandParser;
 import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ReallocateCommandParser;
 import seedu.resireg.logic.parser.ResiRegParser;
+import seedu.resireg.logic.parser.RestoreCommandParser;
+import seedu.resireg.logic.parser.SetBinExpiryCommandParser;
 import seedu.resireg.model.alias.CommandWordAlias;
 
 /**
@@ -81,7 +86,11 @@ public class CommandMapper {
         commandMap.addCommand(ListAliasCommand.COMMAND_WORD, ListAliasCommand.HELP, unused -> new ListAliasCommand());
         commandMap.addCommand(ToggleMainPanelCommand.COMMAND_WORD, ToggleMainPanelCommand.HELP,
             unused -> new ToggleMainPanelCommand());
-
+        commandMap.addCommand(RestoreCommand.COMMAND_WORD, RestoreCommand.HELP,
+            new RestoreCommandParser()::parse);
+        commandMap.addCommand(ListBinCommand.COMMAND_WORD, ListBinCommand.HELP, unused -> new ListBinCommand());
+        commandMap.addCommand(SetBinExpiryCommand.COMMAND_WORD, SetBinExpiryCommand.HELP,
+            new SetBinExpiryCommandParser()::parse);
 
         for (CommandWordAlias commandWordAlias : aliases) {
             commandMap.addAliasCommand(commandWordAlias.getAlias().toString(),

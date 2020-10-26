@@ -6,6 +6,7 @@ import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.resireg.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.resireg.logic.commands.CommandTestUtil.showStudentAtIndex;
 import static seedu.resireg.testutil.TypicalAllocations.getTypicalResiReg;
+import static seedu.resireg.testutil.TypicalCommandWordAliases.getTypicalUserPrefs;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -18,7 +19,6 @@ import seedu.resireg.commons.core.Messages;
 import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
-import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
@@ -31,7 +31,7 @@ import seedu.resireg.model.student.Student;
  */
 public class DeallocateCommandTest {
 
-    private Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResiReg(), getTypicalUserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -40,8 +40,8 @@ public class DeallocateCommandTest {
         DeallocateCommand deallocateCommand = new DeallocateCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(DeallocateCommand.MESSAGE_SUCCESS,
-                roomToDeallocate.getFloor().toString() + ':' + roomToDeallocate.getRoomNumber(),
-                studentToDeallocate.getName().fullName);
+                roomToDeallocate.getFloor().toString() + '-' + roomToDeallocate.getRoomNumber(),
+                studentToDeallocate.getNameAsString());
 
         List<Allocation> lastShownListAllocation = model.getFilteredAllocationList();
         Allocation toDeallocate = null;
@@ -51,7 +51,7 @@ public class DeallocateCommandTest {
             }
         }
 
-        ModelManager expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getResiReg(), model.getUserPrefs());
         expectedModel.removeAllocation(toDeallocate);
         expectedModel.saveStateResiReg();
 

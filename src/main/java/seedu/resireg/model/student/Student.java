@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.student.faculty.Faculty;
 import seedu.resireg.model.tag.Tag;
 
@@ -14,7 +15,7 @@ import seedu.resireg.model.tag.Tag;
  * Represents a Student in ResiReg.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Student {
+public class Student implements Binnable {
 
     // Identity fields
     private final Name name;
@@ -41,6 +42,10 @@ public class Student {
 
     public Name getName() {
         return name;
+    }
+
+    public String getNameAsString() {
+        return name.toString();
     }
 
     public Phone getPhone() {

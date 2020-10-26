@@ -15,6 +15,7 @@ import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -81,6 +82,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Allocation> getFilteredAllocationList() {
         return model.getFilteredAllocationList();
+    }
+
+    @Override
+    public ObservableList<BinItem> getFilteredBinItemList() {
+        return model.getFilteredBinItemList();
     }
 
     @Override

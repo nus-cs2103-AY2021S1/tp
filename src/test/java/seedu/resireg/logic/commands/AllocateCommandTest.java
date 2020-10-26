@@ -45,7 +45,7 @@ public class AllocateCommandTest {
 
         AllocateCommand allocateCommand = new AllocateCommand(INDEX_FOURTH_PERSON, INDEX_FOURTH_ROOM);
         String expectedMessage = String.format(AllocateCommand.MESSAGE_SUCCESS, roomToAllocate.getRoomLabel(),
-                studentToAllocate.getName().fullName);
+                studentToAllocate.getNameAsString());
 
         ModelManager expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
         expectedModel.addAllocation(toAllocate);

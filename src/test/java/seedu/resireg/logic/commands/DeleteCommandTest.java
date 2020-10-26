@@ -17,6 +17,7 @@ import seedu.resireg.commons.core.index.Index;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.student.Student;
 import seedu.resireg.storage.Storage;
 
@@ -34,10 +35,12 @@ public class DeleteCommandTest {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+            studentToDelete.getNameAsString());
 
-        ModelManager expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getResiReg(), model.getUserPrefs());
         expectedModel.deleteStudent(studentToDelete);
+        expectedModel.addBinItem(new BinItem(studentToDelete));
         expectedModel.saveStateResiReg();
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -58,10 +61,12 @@ public class DeleteCommandTest {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+            studentToDelete.getNameAsString());
 
-        Model expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getResiReg(), model.getUserPrefs());
         expectedModel.deleteStudent(studentToDelete);
+        expectedModel.addBinItem(new BinItem(studentToDelete));
         expectedModel.saveStateResiReg();
         showNoStudent(expectedModel);
 
@@ -85,8 +90,9 @@ public class DeleteCommandTest {
     public void executeUndoRedo_validIndexUnfilteredList_success() throws Exception {
         Student toDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        Model expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getResiReg(), model.getUserPrefs());
         expectedModel.deleteStudent(toDelete);
+        expectedModel.addBinItem(new BinItem(toDelete));
         expectedModel.saveStateResiReg();
 
         // delete -> first student deleted
@@ -125,11 +131,12 @@ public class DeleteCommandTest {
     @Test
     public void executeUndoRedo_validIndexFilteredList_sameStudentDeleted() throws Exception {
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON);
-        Model expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getResiReg(), model.getUserPrefs());
 
         showStudentAtIndex(model, INDEX_SECOND_PERSON);
         Student toDelete = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         expectedModel.deleteStudent(toDelete);
+        expectedModel.addBinItem(new BinItem(toDelete));
         expectedModel.saveStateResiReg();
 
         // delete -> deletes second student in unfiltered student list, first student in filtered student list
