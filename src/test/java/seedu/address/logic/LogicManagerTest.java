@@ -82,7 +82,7 @@ public class LogicManagerTest {
         // Execute tag command
         String tagCommand = TagCommand.COMMAND_WORD + TAG_DESC_CS2101
                 + FILE_ADDRESS_DESC_CS2101;
-        Tag expectedTag = new TagBuilder(CS2101).build();
+        Tag expectedTag = new TagBuilder(CS2101).withLabels().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTag(expectedTag.toAbsolute(false, new FileAddress(USER_DIRECTORY_ADDRESS)));
         expectedModel.commitAddressBook();

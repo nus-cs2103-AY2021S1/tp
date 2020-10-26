@@ -92,6 +92,6 @@ public class LabelCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof LabelCommand // instanceof handles nulls
                 && (this.labels.equals(((LabelCommand) other).labels))
-                        && this.tagName.equals(((LabelCommand) other).labels));
+                        && this.tagName.equals(((LabelCommand) other).tagName));
     }
 }

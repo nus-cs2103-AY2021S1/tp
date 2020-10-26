@@ -23,14 +23,15 @@ public class TagBuilder {
     private FileAddress fileAddress;
     private Set<Label> labels;
 
-
     /**
      * Creates a {@code TagBuilder} with the default details.
      */
     public TagBuilder() {
-        tagName = new TagName(DEFAULT_TAG_NAME);
-        fileAddress = new FileAddress(DEFAULT_FILE_ADDRESS);
-        labels = new HashSet<>();
+        this.tagName = new TagName(DEFAULT_TAG_NAME);
+        this.fileAddress = new FileAddress(DEFAULT_FILE_ADDRESS);
+        Set<Label> labels = new HashSet<>();
+        labels.add(new Label(DEFAULT_LABEL));
+        this.labels = labels;
     }
 
     /**

@@ -63,13 +63,13 @@ class TagNameContainsCharPredicateTest {
 
     @Test
     public void test_keywordMissing_returnsFalse() {
-        //Words contain one character longer than keyword
         TagNameContainsCharPredicate firstPredicate = new TagNameContainsCharPredicate(
-                Arrays.asList("tes", "4567"));
-        assertFalse(firstPredicate.test(new TagBuilder().withTagName("te").build()));
+                Arrays.asList("arr", "4567"));
+
+        //Words contain one character longer than keyword
+        assertFalse(firstPredicate.test(new TagBuilder().withTagName("ar").build()));
 
         //Different Keyword
         assertFalse(firstPredicate.test(new TagBuilder().withTagName("1234").build()));
-
     }
 }
