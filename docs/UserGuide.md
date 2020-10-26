@@ -41,7 +41,7 @@ This guide serves to provide a reference for first-time users to get familiar wi
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. You can refer to the features below for the details of each command. For the convenience of new users, the [basic features](#Basic Features) are listed first, followed by additional [advanced features](#Advanced Features) which may be useful for the user.
+1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic Features](#basic-features) are listed first, followed by additional [Advanced Features](#advanced-features) which may be useful for the user.
 
 ## Basic Features
 
