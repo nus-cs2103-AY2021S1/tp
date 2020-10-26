@@ -8,7 +8,9 @@ import org.junit.jupiter.api.Test;
 
 public class AlphanumericTest {
     private static final String ALPHANUMERIC = "ABC123";
-    private static final String NOT_ALPHANUMERIC = "@#$%^";
+    private static final String ALPHA = "ABC";
+    private static final String NUMERIC = "123";
+    private static final String NOT_ALPHANUMERIC = "ASdsa14@#$%^";
     private static final String EMPTY = "";
     private static final String BLANK = " ";
     private static final boolean CAN_BLANK = true;
@@ -36,6 +38,10 @@ public class AlphanumericTest {
     public void isValidAlphanum_validAlphanum_true() {
         assertTrue(AlphanumericStub.isValidAlphanum(ALPHANUMERIC, CAN_BLANK));
         assertTrue(AlphanumericStub.isValidAlphanum(ALPHANUMERIC, CANNOT_BLANK));
+        assertTrue(AlphanumericStub.isValidAlphanum(ALPHA, CAN_BLANK));
+        assertTrue(AlphanumericStub.isValidAlphanum(ALPHA, CANNOT_BLANK));
+        assertTrue(AlphanumericStub.isValidAlphanum(NUMERIC, CAN_BLANK));
+        assertTrue(AlphanumericStub.isValidAlphanum(NUMERIC, CANNOT_BLANK));
         assertTrue(AlphanumericStub.isValidAlphanum(BLANK, CAN_BLANK));
         assertTrue(AlphanumericStub.isValidAlphanum(EMPTY, CAN_BLANK));
     }
