@@ -37,7 +37,7 @@ public class DeleteApptCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT + "28/09/2020 20:00";
+            + PREFIX_APPOINTMENT + "28/09/2022 20:00";
 
     public static final String MESSAGE_DELETE_APPT_SUCCESS = "Deleted appointment successfully!";
     public static final String MESSAGE_MISSING_APPOINTMENT =
