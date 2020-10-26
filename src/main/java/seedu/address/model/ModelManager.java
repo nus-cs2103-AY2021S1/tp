@@ -153,6 +153,7 @@ public class ModelManager implements Model {
     @Override
     public void selectVendor(int vendorIndex) {
         this.addressBook.selectVendor(vendorIndex);
+        this.filteredFoods = new FilteredList<>(this.menuManagers.get(vendorIndex).getFoodList());
     }
 
     @Override
@@ -319,7 +320,7 @@ public class ModelManager implements Model {
 
     @Override
     public int getFilteredFoodListSize() {
-        return getFilteredFoodList().size();
+        return filteredFoods == null ? 0 : getFilteredFoodList().size();
     }
 
     @Override

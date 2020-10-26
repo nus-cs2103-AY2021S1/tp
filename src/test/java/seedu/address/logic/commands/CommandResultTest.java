@@ -32,10 +32,6 @@ public class CommandResultTest {
         // different showHelp value -> returns false
         assertFalse(commandResult.equals(new CommandResult("feedback", true,
                 false, false)));
-
-        // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false,
-                false, true)));
     }
 
     @Test

@@ -13,6 +13,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
+import seedu.address.testutil.TypicalVendors;
 
 public class ClearCommandTest {
 
@@ -26,7 +27,8 @@ public class ClearCommandTest {
     }
 
     private Model initialiseModel() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
         model.selectVendor(0);
         return model;
     }
@@ -36,9 +38,6 @@ public class ClearCommandTest {
     public void clear_emptyOrder_success() {
         Model model = initialiseModel();
         Model expectedModel = initialiseModel();
-        expectedModel.selectVendor(0);
-        expectedModel.setOrderManager(new OrderManager());
-        model.setOrderManager(new OrderManager());
         OrderItem orderItem = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
         model.addOrderItem(orderItem);
         model.clearOrder();

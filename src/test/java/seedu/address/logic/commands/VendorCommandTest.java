@@ -14,6 +14,8 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.order.OrderManager;
+import seedu.address.testutil.TypicalVendors;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -22,7 +24,8 @@ import seedu.address.model.UserPrefs;
 public class VendorCommandTest {
 
     private Model initialiseModel() {
-        return new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        return new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
     }
 
     @Test
