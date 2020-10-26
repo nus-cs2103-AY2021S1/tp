@@ -253,6 +253,16 @@ public class AddModuleCommandTest {
         }
 
         @Override
+        public ObservableList<Contact> getSortedContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedContactList(Comparator<Contact> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void commitModuleList() {
             throw new AssertionError("This method should not be called.");
         }
