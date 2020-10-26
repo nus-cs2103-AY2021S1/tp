@@ -3,9 +3,9 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_DETAIL_COMMAND;
 import static seedu.address.logic.commands.HelpCommand.MESSAGE_USAGE;
+import static seedu.address.logic.parser.ReeveParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddAdditionalDetailCommand;
 import seedu.address.logic.commands.AdditionalDetailCommand;
@@ -14,8 +14,6 @@ import seedu.address.logic.commands.EditAdditionalDetailCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class AdditionalDetailCommandParser {
-
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.
