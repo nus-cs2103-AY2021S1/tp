@@ -62,6 +62,7 @@ public class Task {
     }
 
     public Optional<Set<Tag>> getTags() {
+        //return Collections.unmodifiableSet(tags);
         return Optional.ofNullable(this.tags).map(Collections::unmodifiableSet);
     }
 
@@ -175,6 +176,7 @@ public class Task {
                 .append(getName().isPresent() ? getName().get() : "")
                 .append("\n")
                 .append(" *Tag: ")
+                //.append(getTags().isPresent() ? getTags().get() : "")
                 .append(getTags().isPresent() ? getTags().get() : "")
                 .append("\n")
                 .append(" *Priority: ")
