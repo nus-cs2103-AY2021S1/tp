@@ -42,6 +42,11 @@ public class CommandResult {
     private final boolean quizMode;
 
     /**
+     * The application should show statistics of the flashcard to the user.
+     */
+    private final boolean showStats;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean reviewMode, boolean quizMode) {
@@ -52,6 +57,7 @@ public class CommandResult {
         this.quizMode = quizMode;
         this.viewIndex = null;
         this.showAnswer = false;
+        this.showStats = false;
     }
 
     /**
@@ -65,6 +71,21 @@ public class CommandResult {
         this.quizMode = false;
         this.viewIndex = viewIndex;
         this.showAnswer = showAnswer;
+        this.showStats = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} specifically for stats commands.
+     */
+    public CommandResult(String feedbackToUser, boolean showStats, Integer viewIndex) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.reviewMode = false;
+        this.quizMode = false;
+        this.viewIndex = viewIndex;
+        this.showAnswer = false;
+        this.showStats = showStats;
     }
 
     /**
@@ -102,6 +123,10 @@ public class CommandResult {
 
     public boolean isQuizMode() {
         return quizMode;
+    }
+
+    public boolean isShowStats(){
+        return showStats;
     }
 
     @Override

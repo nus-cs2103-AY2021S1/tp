@@ -241,6 +241,11 @@ public class MainWindow extends UiPart<Stage> {
                 enterStudyMode(new ReviewPanel(logic, this));
             }
 
+            if(commandResult.isShowStats()){
+                //TODO
+                return null;
+            }
+
             if (commandResult.getViewIndex() != null) {
                 handleView(commandResult.getViewIndex(), commandResult.isShowAnswer());
             }
