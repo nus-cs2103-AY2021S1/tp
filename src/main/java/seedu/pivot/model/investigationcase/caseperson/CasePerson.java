@@ -50,6 +50,9 @@ public abstract class CasePerson {
     }
 
     @Override
+    public abstract boolean equals(Object other);
+
+    @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, gender, phone, email, address);
@@ -79,4 +82,6 @@ public abstract class CasePerson {
 
         return builder.toString();
     }
+
+
 }

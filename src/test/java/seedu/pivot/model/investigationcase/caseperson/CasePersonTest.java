@@ -1,6 +1,8 @@
 package seedu.pivot.model.investigationcase.caseperson;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -40,6 +42,37 @@ public class CasePersonTest {
         assertEquals(DEFAULT_ADDRESS, person.getAddress());
     }
 
+    @Test
+    public void equals() {
+        CasePerson person =
+                new CasePersonStub(DEFAULT_NAME, DEFAULT_GENDER, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS);
+        // same values -> returns true
+        assertTrue(person.equals(
+                new CasePersonStub(DEFAULT_NAME, DEFAULT_GENDER, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
+
+        // same object -> returns true
+        assertTrue(person.equals(person));
+
+        // null -> returns false
+        assertFalse(person.equals(null));
+
+        // different type -> returns false
+        assertFalse(person.equals(5));
+
+        // different values -> returns false
+        assertFalse(person.equals(
+                new CasePersonStub(new Name("Tommy"), DEFAULT_GENDER, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
+        assertFalse(person.equals(
+                new CasePersonStub(DEFAULT_NAME, Gender.F, DEFAULT_PHONE, DEFAULT_EMAIL, DEFAULT_ADDRESS)));
+        assertFalse(person.equals(
+                new CasePersonStub(DEFAULT_NAME, DEFAULT_GENDER, new Phone("923"), DEFAULT_EMAIL, DEFAULT_ADDRESS)));
+        assertFalse(person.equals(new CasePersonStub(DEFAULT_NAME, DEFAULT_GENDER, DEFAULT_PHONE,
+                new Email("Tommy@hello.com"), DEFAULT_ADDRESS)));
+        assertFalse(person.equals(
+                new CasePersonStub(DEFAULT_NAME, DEFAULT_GENDER, DEFAULT_PHONE, DEFAULT_EMAIL,
+                        new Address("Blk 231231"))));
+    }
+
     private class CasePersonStub extends CasePerson {
 
         /**
@@ -53,6 +86,17 @@ public class CasePersonTest {
          */
         public CasePersonStub(Name name, Gender gender, Phone phone, Email email, Address address) {
             super(name, gender, phone, email, address);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            return other == this // short circuit if same object
+                    || (other instanceof CasePersonStub // instanceof handles nulls
+                    && getName().equals(((CasePersonStub) other).getName())
+                    && getAddress().equals(((CasePersonStub) other).getAddress())
+                    && getEmail().equals(((CasePersonStub) other).getEmail())
+                    && getPhone().equals(((CasePersonStub) other).getPhone())
+                    && getGender().equals(((CasePersonStub) other).getGender())); // state check
         }
     }
 }
