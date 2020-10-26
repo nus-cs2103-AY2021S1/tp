@@ -1,7 +1,7 @@
 package seedu.address.model.student.academic;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,15 +16,13 @@ public class Attendance {
             "Attendance dates should be valid and in the form dd/mm/yy, and should not be blank";
     public static final String STATUS_CONSTRAINTS =
             "Attendance status should be either 'attended' or 'unattended'.";
-    
+
     public LocalDate lessonDate;
     public boolean hasAttended;
     public Feedback feedback;
 
     public Attendance(String date, boolean hasAttended, Feedback feedback) {
-        requireNonNull(date);
-        requireNonNull(hasAttended);
-        requireNonNull(feedback);
+        requireAllNonNull(date, hasAttended, feedback);
         checkArgument(isValidDate(date), DATE_CONSTRAINTS);
 
         this.lessonDate = parseDate(date);

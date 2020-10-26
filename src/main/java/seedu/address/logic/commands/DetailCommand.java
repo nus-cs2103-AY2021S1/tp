@@ -25,7 +25,7 @@ public abstract class DetailCommand extends Command {
                 adminToAddDetail.getFee(), adminToAddDetail.getPaymentDate(), details);
         Student updatedStudent = new Student(studentToAddDetail.getName(), studentToAddDetail.getPhone(),
                 studentToAddDetail.getSchool(), studentToAddDetail.getYear(), updatedAdmin,
-                studentToAddDetail.getQuestions(), studentToAddDetail.getExams());
+                studentToAddDetail.getQuestions(), studentToAddDetail.getExams(), studentToAddDetail.getAcademic());
 
         return updatedStudent;
     }
