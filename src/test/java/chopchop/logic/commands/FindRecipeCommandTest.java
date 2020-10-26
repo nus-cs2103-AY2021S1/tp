@@ -11,16 +11,21 @@ import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
 import java.util.Arrays;
 import java.util.Collections;
 
+import chopchop.model.attributes.NameContainsKeywordsPredicate;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
+import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
-import chopchop.model.attributes.NameContainsKeywordsPredicate;
 import org.junit.jupiter.api.Test;
 
 public class FindRecipeCommandTest {
-    private Model model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
+            new UsageList<IngredientUsage>(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(),
+            new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
 
     @Test
     public void equals() {

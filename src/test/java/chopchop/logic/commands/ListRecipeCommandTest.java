@@ -5,12 +5,15 @@ import static chopchop.logic.commands.CommandTestUtil.showRecipeAtIndex;
 import static chopchop.testutil.TypicalReferences.INDEXED_FIRST;
 import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
 
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 import chopchop.model.EntryBook;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
+import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ListRecipeCommandTest {
 
@@ -19,8 +22,10 @@ public class ListRecipeCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UserPrefs());
-        expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UserPrefs());
+        model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
+                new UsageList<IngredientUsage>(), new UserPrefs());
+        expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
+                new UsageList<IngredientUsage>(), new UserPrefs());
     }
 
     @Test

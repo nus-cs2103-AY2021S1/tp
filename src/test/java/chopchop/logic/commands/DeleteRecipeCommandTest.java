@@ -11,22 +11,27 @@ import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
 
 import org.junit.jupiter.api.Test;
 
+import chopchop.logic.parser.ItemReference;
 import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
+import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
-import chopchop.logic.parser.ItemReference;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 
 public class DeleteRecipeCommandTest {
 
-    private Model model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
+        new UsageList<IngredientUsage>(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         var recToDelete = model.getFilteredRecipeList().get(INDEXED_FIRST.getZeroIndex());
         var deleteCommand = new DeleteRecipeCommand(INDEXED_FIRST);
 
-        var expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UserPrefs());
+        var expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
+                new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.deleteRecipe(recToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedModel);
@@ -47,7 +52,8 @@ public class DeleteRecipeCommandTest {
         var recToDelete = model.getFilteredRecipeList().get(INDEXED_FIRST.getZeroIndex());
         var deleteCommand = new DeleteRecipeCommand(INDEXED_FIRST);
 
-        var expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UserPrefs());
+        var expectedModel = new ModelManager(model.getRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
+                new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.deleteRecipe(recToDelete);
         showNoRecipe(expectedModel);
 

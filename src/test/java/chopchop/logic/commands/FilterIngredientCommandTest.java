@@ -10,19 +10,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
+import org.junit.jupiter.api.Test;
 
-import chopchop.model.EntryBook;
-import chopchop.model.Model;
-import chopchop.model.ModelManager;
-import chopchop.model.UserPrefs;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.ExpiryDateMatchesKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
-import org.junit.jupiter.api.Test;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
+import chopchop.model.EntryBook;
+import chopchop.model.Model;
+import chopchop.model.ModelManager;
+import chopchop.model.UsageList;
+import chopchop.model.UserPrefs;
 
 public class FilterIngredientCommandTest {
-    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UserPrefs());
+    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UsageList<RecipeUsage>(),
+        new UsageList<IngredientUsage>(), new UserPrefs());
+    private Model expectedModel = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(),
+        new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
 
     @Test
     public void equals() {
