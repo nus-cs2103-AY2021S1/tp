@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import seedu.address.model.Reeve;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventRecurrence;
+import seedu.address.model.event.Scheduler;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 
@@ -28,7 +29,7 @@ public class TypicalEvents {
             .withEventEndDateTime(LocalDateTime.parse("2020-11-03T10:16:35"))
             .withDescription("For Benson and Carl")
             .withUniqueIdentifier("uidPlanLesson")
-            .withRecurrence(EventRecurrence.NONE)
+            .withRecurrence(EventRecurrence.DAILY)
             .build();
 
     public static final Event RELAX_EVENT = new EventBuilder().withEventName("Watch a movie")
@@ -43,5 +44,12 @@ public class TypicalEvents {
 
     public static List<Event> getTypicalEvents() {
         return new ArrayList<>(Arrays.asList(ALICE_CLASS_EVENT, TODO_EVENT, RELAX_EVENT));
+    }
+
+    /**
+     * Returns an {@code scheduler} with all the typical events.
+     */
+    public static Scheduler getTypicalScheduler() {
+        return new Scheduler(getTypicalEvents());
     }
 }
