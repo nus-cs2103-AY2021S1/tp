@@ -5,8 +5,8 @@ import static com.eva.logic.commands.EditCommand.MESSAGE_NO_APPLICANTORSTAFF;
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static com.eva.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -52,7 +52,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (isApplicant) {
             argMultimap =
                     ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_APPLICANT, PREFIX_COMMENT, PREFIX_DATE);
+                            PREFIX_ADDRESS, PREFIX_TAG, PREFIX_APPLICANT, PREFIX_COMMENT, PREFIX_INTERVIEW_DATE);
         } else {
             argMultimap =
                     ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
@@ -84,9 +84,9 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT)).ifPresent(editPersonDescriptor::setComments);
 
-        if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
+        if (argMultimap.getValue(PREFIX_INTERVIEW_DATE).isPresent()) {
             editPersonDescriptor.setInterviewDate(Optional.ofNullable(ParserUtil
-                    .parseInterviewDate(argMultimap.getValue(PREFIX_DATE).get())));
+                    .parseInterviewDate(argMultimap.getValue(PREFIX_INTERVIEW_DATE).get())));
         }
 
         if (argMultimap.getAllValues(PREFIX_LEAVE).size() > 0) {
