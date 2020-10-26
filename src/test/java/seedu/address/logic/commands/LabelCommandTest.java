@@ -23,7 +23,6 @@ public class LabelCommandTest {
     @BeforeEach
     public void setUp() {
         Tag newTag = new TagBuilder().build();
-
         modelStub = new ModelStubWithTag(newTag);
     }
 

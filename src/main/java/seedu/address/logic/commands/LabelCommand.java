@@ -40,7 +40,7 @@ public class LabelCommand extends Command {
     private final Set<Label> labels;
 
     /**
-     * Creates a LabelCommand to add labels to the specified {@code newTagName}
+     * Creates a LabelCommand to add labels to the specified {@code tagName}
      */
     public LabelCommand(TagName tagName, Set<Label> labels) {
         this.tagName = tagName;
