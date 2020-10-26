@@ -17,6 +17,7 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - Find flashcards: `find`
         - Listing all flashcards: `list`
         - Review all flashcards : `review`
+        - Quiz flashcards: `quiz`
         - Sort all flashcards: `sort`
         - Exiting the program: `exit`
         - View a flashcard: `view`
@@ -53,6 +54,8 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
    * **`list`** : Lists all flashcards.
 
    * **`review`** : Reviews the current list of flashcards.
+   
+   * **`quiz`** : Quiz the current list of flashcards.
    
    * **`sort reviewed -d`** : Sorts the list of flashcards according to review frequency in descending order.
    
@@ -209,6 +212,24 @@ Examples:
     - `[right key]` skips the current flashcard and moves on to the next flashcard
     - `[left key]` returns the previous flashcard
     - `q` quits review mode
+
+### Quizzing flashcards: `quiz`
+
+Quiz the current list of flashcards. This puts the user in quiz mode and the user can no longer input commands to the textbox.
+
+Upon entering quiz mode, the following user input will be recognised:
+* `↓ key` shows answer and notes of the current flashcard  
+* `q` key quits review mode
+* `y` to represent correct answer. This input will only be recognised after the `↓ key` is pressed
+* `n` to represent incorrect answer. This input will only be recognised after the `↓ key` is pressed
+
+Upon pressing the down arrow key, the user will be prompted if they got the answer correct. The user can then press 
+`y` to indicate a correct answer or `n` to indicate an incorrect answer.
+
+Format: `quiz`
+
+<div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly.
+</div>
     
 ### Sort all flashcards : `sort`
 
