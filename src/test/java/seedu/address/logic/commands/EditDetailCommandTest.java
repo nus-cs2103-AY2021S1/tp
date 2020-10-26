@@ -26,6 +26,7 @@ import seedu.address.testutil.StudentBuilder;
 
 public class EditDetailCommandTest {
 
+    //@@author VaishakAnand
     private static final Index TEST_INDEX_FIRST_STUDENT = INDEX_FIRST_PERSON;
     private static final Index TEST_INDEX_SECOND_STUDENT = INDEX_SECOND_PERSON;
     private static final Index TEST_INDEX_FIRST_DETAIL = INDEX_FIRST_PERSON;

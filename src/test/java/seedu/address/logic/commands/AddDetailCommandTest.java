@@ -25,6 +25,7 @@ import seedu.address.testutil.StudentBuilder;
 
 public class AddDetailCommandTest {
 
+    //@@author VaishakAnand
     private static final String TEST_DETAIL = "eats flies";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());

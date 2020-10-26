@@ -26,6 +26,11 @@ public class CliSyntax {
     public static final Prefix PREFIX_SCORE = new Prefix("s/");
     public static final Prefix PREFIX_EXAM_INDEX = new Prefix("i/");
 
+    /* Prefix for attendance commands */
+    public static final Prefix PREFIX_ATTENDANCE_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_ATTENDANCE_ATTENDED = new Prefix("a/");
+    public static final Prefix PREFIX_ATTENDANCE_FEEDBACK = new Prefix("f/");
+
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
         PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME, PREFIX_FEE, PREFIX_PAYMENT};
 

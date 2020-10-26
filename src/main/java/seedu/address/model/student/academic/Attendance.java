@@ -14,7 +14,9 @@ public class Attendance {
     private static final DateTimeFormatter OUTPUT = DateTimeFormatter.ofPattern("dd MMM yyyy");
     public static final String DATE_CONSTRAINTS =
             "Attendance dates should be valid and in the form dd/mm/yy, and should not be blank";
-
+    public static final String STATUS_CONSTRAINTS =
+            "Attendance status should be either 'attended' or 'unattended'.";
+    
     public LocalDate lessonDate;
     public boolean hasAttended;
     public Feedback feedback;

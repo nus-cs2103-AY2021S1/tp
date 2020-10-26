@@ -17,7 +17,9 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
@@ -291,6 +293,60 @@ public class ParserUtil {
             throw new ParseException(Score.MESSAGE_CONSTRAINTS);
         }
         return new Score(trimmedScore);
+    }
+
+    /**
+     * Parses a {@code String lessonDate} into a {@code Attendance} formatted {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code lessonDate} is invalid.
+     */
+    public static String parseAttendanceDate(String lessonDate) throws ParseException {
+        requireNonNull(lessonDate);
+        String trimmedLessonDate = lessonDate.trim();
+        if (!Attendance.isValidDate(trimmedLessonDate)) {
+            throw new ParseException(Attendance.DATE_CONSTRAINTS);
+        }
+        return trimmedLessonDate;
+    }
+
+    /**
+     * Parses a {@code String attendanceStatus} into a {@code Attendance} formatted {@code boolean}.
+     * @throws ParseException if the given {@code attendanceStatus} is invalid.
+     */
+    public static boolean parseAttendanceStatus(String attendanceStatus) throws ParseException {
+        requireNonNull(attendanceStatus);
+        final String ATTENDED_STATUS = "attended";
+        final String UNATTENDED_STATUS = "unattended";
+
+        String formattedStatus = attendanceStatus.trim().toLowerCase();
+
+        switch (formattedStatus) {
+
+        case ATTENDED_STATUS:
+            return true;
+
+        case UNATTENDED_STATUS:
+            return false;
+
+        default:
+            throw new ParseException(Attendance.STATUS_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String score} into a {@code Feedback}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code feedback} is invalid.
+     */
+    public static Feedback parseFeedback(String feedback) throws ParseException {
+        requireNonNull(feedback);
+        String trimmedFeedback = feedback.trim();
+        if (!Feedback.isValidFeedback(trimmedFeedback)) {
+            throw new ParseException(Feedback.MESSAGE_CONSTRAINTS);
+        }
+        return new Feedback(trimmedFeedback);
     }
 
 }
