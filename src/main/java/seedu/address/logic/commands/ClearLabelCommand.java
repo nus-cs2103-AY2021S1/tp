@@ -55,7 +55,7 @@ public class ClearLabelCommand extends Command {
                     updatedMembers.remove(personToClear);
                     updatedMembers.add(clearedPerson);
                     Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
-                            meeting.getTime(), updatedMembers);
+                            meeting.getTime(), updatedMembers, meeting.getAgendas(), meeting.getNotes());
                     model.setMeeting(meeting, updatedMeeting);
                     return updatedMeeting;
                 }).collect(Collectors.toList());

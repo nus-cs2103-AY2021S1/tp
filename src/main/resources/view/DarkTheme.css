@@ -399,7 +399,7 @@
 
 .hat_icon {
     -fx-padding: 0 100 0 10;
-    -fx-translate-x: 285;
+    -fx-translate-x: 220;
     -fx-translate-y: -25;
 }
 
@@ -425,6 +425,7 @@
 
 .tab-label {
     -fx-text-fill: #FFFFFF;
+    -fx-padding: 0 0 0 10;
 }
 
 .tab-down-button {

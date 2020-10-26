@@ -1,9 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MEETINGS;
 
@@ -19,6 +21,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.commons.SpecialName;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
@@ -40,7 +43,9 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_MEMBER + "NEW_MEMBERS]...\n"
             + "Example: " + COMMAND_WORD + " CS2103 Project Meeting "
             + PREFIX_DATE + "2020-10-10 "
-            + PREFIX_TIME + "11:30";
+            + PREFIX_TIME + "11:30"
+            + PREFIX_AGENDA + "Discuss project direction"
+            + PREFIX_NOTE + "Alex will be coming late";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -100,9 +105,11 @@ public class EditMeetingCommand extends Command {
         Date updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getDate());
         Time updatedTime = editMeetingDescriptor.getTime().orElse(meetingToEdit.getTime());
         Set<Name> updatedMemberNames = editMeetingDescriptor.getMemberNames().orElse(null);
+        Set<SpecialName> updatedAgendas = editMeetingDescriptor.getAgendas().orElse(null);
+        Set<SpecialName> updatedNotes = editMeetingDescriptor.getNotes().orElse(null);
         Set<Person> updatedMembers = getUpdatedMembers(meetingToEdit, updatedMemberNames, model);
 
-        return new Meeting(updatedMeetingName, updatedDate, updatedTime, updatedMembers);
+        return new Meeting(updatedMeetingName, updatedDate, updatedTime, updatedMembers, updatedAgendas, updatedNotes);
     }
 
     private static Set<Person> getUpdatedMembers(Meeting meetingToEdit,
@@ -166,6 +173,8 @@ public class EditMeetingCommand extends Command {
         private Date date;
         private Time time;
         private Set<Name> memberNames;
+        private Set<SpecialName> agendas;
+        private Set<SpecialName> notes;
 
         public EditMeetingDescriptor() {}
 
@@ -178,6 +187,8 @@ public class EditMeetingCommand extends Command {
             setDate(toCopy.date);
             setTime(toCopy.time);
             setMemberNames(toCopy.memberNames);
+            setAgendas(toCopy.agendas);
+            setNotes(toCopy.notes);
         }
 
         /**
@@ -220,12 +231,46 @@ public class EditMeetingCommand extends Command {
         }
 
         /**
+         * Sets {@code agendas} to this object's {@code agendas}.
+         * A defensive copy of {@code agendas} is used internally.
+         */
+        public void setAgendas(Set<SpecialName> agendas) {
+            this.agendas = (agendas != null) ? new HashSet<>(agendas) : null;
+        }
+
+        /**
+         * Sets {@code notes} to this object's {@code notes}.
+         * A defensive copy of {@code notes} is used internally.
+         */
+        public void setNotes(Set<SpecialName> notes) {
+            this.notes = (notes != null) ? new HashSet<>(notes) : null;
+        }
+
+        /**
          * Returns an unmodifiable person set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
         public Optional<Set<Name>> getMemberNames() {
             return (memberNames != null) ? Optional.of(Collections.unmodifiableSet(memberNames)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable agenda set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<SpecialName>> getAgendas() {
+            return (agendas != null) ? Optional.of(Collections.unmodifiableSet(agendas)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable note set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<SpecialName>> getNotes() {
+            return (notes != null) ? Optional.of(Collections.unmodifiableSet(notes)) : Optional.empty();
         }
 
         @Override

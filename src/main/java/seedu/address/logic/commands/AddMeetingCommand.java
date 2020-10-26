@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MEMBER;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -15,10 +12,8 @@ import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.Date;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.meeting.MeetingName;
-import seedu.address.model.meeting.Time;
+import seedu.address.model.commons.SpecialName;
+import seedu.address.model.meeting.*;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -40,7 +35,9 @@ public class AddMeetingCommand extends Command {
             + PREFIX_DATE + "2020-09-20 "
             + PREFIX_TIME + "10:00 "
             + PREFIX_MEMBER + "Alex "
-            + PREFIX_MEMBER + "Roy";
+            + PREFIX_MEMBER + "Roy"
+            + PREFIX_AGENDA + "Discuss project direction"
+            + PREFIX_NOTE + "Alex will be coming late";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the meeting book";
@@ -50,16 +47,22 @@ public class AddMeetingCommand extends Command {
     private final Date date;
     private final Time time;
     private final Set<Name> nameList;
+    private final Set<SpecialName> agendaList;
+    private final Set<SpecialName> noteList;
+
 
     /**
      * Creates an AddMeetingCommand to add a meeting with specified params
      */
-    public AddMeetingCommand(MeetingName meetingName, Date date, Time time, Set<Name> nameList) {
+    public AddMeetingCommand(MeetingName meetingName, Date date, Time time, Set<Name> nameList,
+                             Set<SpecialName> agendaList, Set<SpecialName> noteList) {
         requireAllNonNull(meetingName, date, time, nameList);
         this.meetingName = meetingName;
         this.date = date;
         this.time = time;
         this.nameList = nameList;
+        this.agendaList = agendaList;
+        this.noteList = noteList;
     }
 
     /**
@@ -72,6 +75,8 @@ public class AddMeetingCommand extends Command {
         this.date = toAdd.getDate();
         this.time = toAdd.getTime();
         this.nameList = toAdd.getMembers().stream().map(person -> person.getName()).collect(Collectors.toSet());
+        this.agendaList = toAdd.getAgendas();
+        this.noteList = toAdd.getNotes();
     }
 
     @Override
@@ -105,7 +110,7 @@ public class AddMeetingCommand extends Command {
             personSet.addAll(filteredList);
         }
 
-        Meeting toAdd = new Meeting(meetingName, date, time, personSet);
+        Meeting toAdd = new Meeting(meetingName, date, time, personSet, agendaList, noteList);
 
         model.addMeeting(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));

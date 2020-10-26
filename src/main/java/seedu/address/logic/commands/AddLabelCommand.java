@@ -81,7 +81,7 @@ public class AddLabelCommand extends Command {
                     updatedMembers.remove(personToLabel);
                     updatedMembers.add(labelledPerson);
                     Meeting updatedMeeting = new Meeting(meeting.getMeetingName(), meeting.getDate(),
-                            meeting.getTime(), updatedMembers);
+                            meeting.getTime(), updatedMembers, meeting.getAgendas(), meeting.getNotes());
                     model.setMeeting(meeting, updatedMeeting);
                     return updatedMeeting;
                 }).collect(Collectors.toList());

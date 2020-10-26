@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.commons.SpecialName;
 import seedu.address.model.person.Person;
 
 public class Meeting {
@@ -15,16 +16,21 @@ public class Meeting {
     private final Date date;
     private final Time time;
     private final Set<Person> members = new HashSet<>();
+    private final Set<SpecialName> agendas = new HashSet<>();
+    private final Set<SpecialName> notes = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Meeting(MeetingName name, Date date, Time time, Set<Person> members) {
+    public Meeting(MeetingName name, Date date, Time time, Set<Person> members, Set<SpecialName> agendas,
+                   Set<SpecialName> notes) {
         requireAllNonNull(name, date, time);
         this.meetingName = name;
         this.date = date;
         this.time = time;
         this.members.addAll(members);
+        this.agendas.addAll(agendas);
+        this.notes.addAll(notes);
     }
 
     public MeetingName getMeetingName() {
@@ -41,6 +47,14 @@ public class Meeting {
 
     public Set<Person> getMembers() {
         return Collections.unmodifiableSet(members);
+    }
+
+    public Set<SpecialName> getAgendas() {
+        return Collections.unmodifiableSet(agendas);
+    }
+
+    public Set<SpecialName> getNotes() {
+        return Collections.unmodifiableSet(notes);
     }
 
     /**

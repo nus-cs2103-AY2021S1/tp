@@ -37,7 +37,8 @@ public class AddMeetingCommandTest {
     @Test
     public void constructor_nullParams_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new AddMeetingCommand(null, null, null, null));
+                new AddMeetingCommand(null, null, null, null, null,
+                        null));
     }
 
     @Test
@@ -190,6 +191,11 @@ public class AddMeetingCommandTest {
         }
 
         @Override
+        public void setSelectedMeeting(Meeting target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updatePersonInMeetingBook(Person ...persons) {
             throw new AssertionError("This method should not be called.");
         }
@@ -261,7 +267,7 @@ public class AddMeetingCommandTest {
         }
 
         @Override
-        public void getPersonsInModule(ModuleName moduleName) throws CommandException {
+        public void getPersonsInModule(ModuleName moduleName) {
             throw new AssertionError("This method should not be called.");
         }
     }
