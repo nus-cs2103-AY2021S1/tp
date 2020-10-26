@@ -58,7 +58,7 @@ public class FilterRecipeCommandTest {
     }
 
     @Test
-    public void execute_multipleTags_noRecipesFound() {
+    public void execute_multipleTags_noRecipeFound() {
         var tagPredicate = prepareTagPredicate("Salad", "Spicy");
         var command = new FilterRecipeCommand(tagPredicate, null);
         expectedModel.updateFilteredRecipeList(tagPredicate);
