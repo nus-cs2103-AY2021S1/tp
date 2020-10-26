@@ -13,6 +13,8 @@ ChopChop is a food recipe management system, which aims to make it easier for pe
 
 However, ChopChop also features a graphical interface to display ingredients and recipes in an interactive form.
 
+This user guide provides an in-depth guide about how to use ChopChop. Choose a topic from the Table of Contents to find answers, get step-by-step instructions.  In addition, the quick start guide provides an end-to-end setup process to get you started on the ChopChop installation process.
+
 --------------
 ## Quick start
 
@@ -51,7 +53,7 @@ ChopChop manages two key components — ingredients and recipes, and they will b
 Names for both ingredients and recipes are case insensitive, so `pAnCakes` and `Pancakes` refer to the same recipe. Note that you cannot have duplicate recipes nor ingredients in ChopChop; items are duplicates if their names are the same.
 
 ### Ingredients
-An ingredient consists of a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, exipring on a certain date.
+An ingredient consists of a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, expiring on a certain date.
 
 For example, you might have `500 ml` of milk that you bought last week that expires tomorrow, while you have another `1.5 l` of milk that you bought today, expiring two weeks from now. ChopChop will track both these *sets*, and will intelligently use the earliest-expiring set when doing its accounting.
 
@@ -70,8 +72,13 @@ This is what ChopChop looks like:
 Figure 1.2: <i>The graphical user interface for ChopChop</i>
 </div>
 
+To use ChopChop you can enter commands into the command box as labelled in figure 1.2. 
+Start typing anywhere in ChopChop to enter a command; commands entered would cause the state of the GUI to change, and the output will be printed into the command output.
 
+Besides navigating the app through the the command box, our interactive graphical display allows you to view your recipes, ingredients and recipe recommendations through pressing of the buttons at the button of the GUI.
+If you wish to view a recipe, you can also click on the recipe tiles.
 
+Also, your cooking statistics will be displayed in the statistics box.
 <h3>.</h3>
 
 
@@ -85,7 +92,7 @@ Figure 1.2: <i>The graphical user interface for ChopChop</i>
 
 ### Command Syntax
 
-To succintly represent the syntax of the various commands, we adopt a simple notation in this User Guide, as shown below:
+To succinctly represent the syntax of the various commands, we adopt a simple notation in this User Guide, as shown below:
 
 * Words starting with a slash (`/`) denote named parameters; these names are case sensitive (eg. `/STEP` is not the same as `/step`). All the text following a named parameter *belong* to it, until either the end of the input, or the next named parameter. <br />
 For example, in `/param1 lorem ipsum /param2 dolor sit amet`, the parameter `param1` will have the value `lorem ipsum`, while the parameter `param2` will have the value `dolor sit amet`.
@@ -106,7 +113,7 @@ For example, the **add ingredient** command is specified like this: `add ingredi
 
 ### Viewing Help : **`help`**
 
-This command shows a message with a link to this user guide; you can use this to easily access this page from the application. Note that you can also access this help dialog from the menubar at the top, under `Help` -> `Docs`.
+This command shows a message with a link to this user guide; you can use this to easily access this page from the application. Note that you can also access this help dialog from the menubar at the top, under `Help` -> `Docs`, or by pressing the function key `F1`.
 
 Usage: `help`
 
@@ -119,7 +126,7 @@ Figure 2: <i>The help dialog</i>
 
 
 ### Quitting ChopChop **`quit`**
-This command quits ChopChop. Your recipe data is already saved whenever a command is executed, so you do not need to save it manually before quitting.
+This command quits ChopChop. Your recipe data is already saved whenever a command is executed, so you do not need to save it manually before quitting. Note that you can also quit ChopChop by pressing the function key `F4`.
 
 Usage: `quit`
 
