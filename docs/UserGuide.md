@@ -59,7 +59,7 @@ Update an existing exercise.
 
 Format: `update INDEX [e/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]`
 - Edits the workout at the specified `INDEX`. The index refers to the index number shown in the displayed workout list. The index **must be a positive integer** 1, 2, 3, …​
-- Existing values will be updated to the input values.
+- Existing values of the exercise will be updated to the input values.
 
 Examples:
 - `update 1 e/Push up d/30 at/09-07-2020 c/260` Updates the exercise, the description, the date and the calories burnt of the 1st exercise to be `push up`, `30`,  `07-09-2020`, `260` respectively.
