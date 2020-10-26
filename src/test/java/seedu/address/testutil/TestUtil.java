@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the vendor in the {@code model}'s vendor list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredVendorList().size() / 2);
+        return Index.fromOneBased(model.getObservableVendorList().size() / 2);
     }
 
     /**
      * Returns the last index of the vendor in the {@code model}'s vendor list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredVendorList().size());
+        return Index.fromOneBased(model.getObservableVendorList().size());
     }
 
     /**
      * Returns the vendor in the {@code model}'s vendor list at {@code index}.
      */
     public static Vendor getVendor(Model model, Index index) {
-        return model.getFilteredVendorList().get(index.getZeroBased());
+        return model.getObservableVendorList().get(index.getZeroBased());
     }
 }

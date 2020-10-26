@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
@@ -32,12 +34,11 @@ public class ModelManager implements Model {
     private final OrderManager orderManager;
 
     private final UserPrefs userPrefs;
-    // TODO: remove filteredvendors and orderitems
-    private final FilteredList<Vendor> filteredVendors;
-    private FilteredList<Food> filteredFoods;
-    private FilteredList<OrderItem> filteredOrderItems;
+    private ObservableList<Food> filteredFoods;
+    private ObservableList<OrderItem> filteredOrderItems;
 
     private boolean changeVendor = false;
+    private boolean isSortedAsc = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -53,7 +54,6 @@ public class ModelManager implements Model {
         this.orderManager = new OrderManager();
 
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     /**
@@ -74,28 +74,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.menuManagers = menuManagers;
         this.orderManager = orderManager;
-        filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
-    }
-
-    /**
-     * Initializes a ModelManager with the given addressBook, userPrefs, menuManager and orderManager.
-     */
-    public ModelManager(
-            ReadOnlyAddressBook addressBook,
-            ReadOnlyUserPrefs userPrefs,
-            List<MenuManager> menuManagers,
-            OrderManager orderManager, Vendor vendor
-    ) {
-        super();
-        requireAllNonNull(addressBook, userPrefs, menuManagers, orderManager);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
-        this.menuManagers = menuManagers;
-        this.orderManager = orderManager;
-        this.filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     public ModelManager() {
@@ -137,17 +115,6 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    @Override
-    public Path getMenuManagerFolderPath() {
-        return userPrefs.getMenuManagerFolderPath();
-    }
-
-    @Override
-    public void setMenuManagerFolderPath(Path menuManagerFolderPath) {
-        requireNonNull(menuManagerFolderPath);
-        userPrefs.setAddressBookFilePath(menuManagerFolderPath);
-    }
-
     //=========== AddressBook ================================================================================
 
     @Override
@@ -174,7 +141,6 @@ public class ModelManager implements Model {
     @Override
     public void addVendor(Vendor vendor) {
         addressBook.addVendor(vendor);
-        updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
     }
 
     @Override
@@ -203,6 +169,11 @@ public class ModelManager implements Model {
     public boolean isSelected() {
         return this.addressBook.getVendorIndex() != -1;
     }
+
+    @Override
+    public ObservableList<Vendor> getObservableVendorList() {
+        return addressBook.getVendorList();
+    }
     //=========== MenuManager ================================================================================
 
     @Override
@@ -216,13 +187,48 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortFoodByName(boolean ascending) {
-        menuManagers.get(getVendorIndex()).sortFoodByName(ascending);
+    public void sortFoodBy(String sortedBy, boolean ascending, boolean toggle) {
+        int index = getVendorIndex();
+        if (index < 0 || index >= menuManagers.size()) {
+            return;
+        }
+        // not suppose to modify menumanager's menus
+        Comparator<Food> foodComparator;
+        switch (sortedBy) {
+        case SortCommand.NAME:
+            foodComparator = Comparator.comparing(Food::getName);
+            break;
+        case SortCommand.PRICE:
+            foodComparator = Comparator.comparing(Food::getPrice);
+            break;
+        default:
+            throw new IllegalStateException("Unexpected value: " + sortedBy);
+        }
+        if (toggle) {
+            if (isSortedAsc) {
+                filteredFoods = filteredFoods.sorted(foodComparator.reversed());
+                isSortedAsc = false;
+            } else {
+                filteredFoods = filteredFoods.sorted(foodComparator);
+                isSortedAsc = true;
+            }
+        } else {
+            if (ascending) {
+                filteredFoods = filteredFoods.sorted(foodComparator);
+                isSortedAsc = true;
+            } else {
+                filteredFoods = filteredFoods.sorted(foodComparator.reversed());
+                isSortedAsc = false;
+            }
+        }
     }
 
-    @Override
-    public void sortFoodByPrice(boolean ascending) {
-        menuManagers.get(getVendorIndex()).sortFoodByPrice(ascending);
+    /**
+     * Shows the current menu at the default state.
+     */
+    public void showDefaultMenu() {
+        updateFilteredFoodList(food -> true);
+        isSortedAsc = false;
     }
 
     @Override
@@ -299,23 +305,6 @@ public class ModelManager implements Model {
         orderManager.undoChanges();
     }
 
-    //=========== Filtered Vendor List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Vendor} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Vendor> getFilteredVendorList() {
-        return filteredVendors;
-    }
-
-    @Override
-    public void updateFilteredVendorList(Predicate<Vendor> predicate) {
-        requireNonNull(predicate);
-        filteredVendors.setPredicate(predicate);
-    }
-
     //=========== Filtered Food List Accessors =============================================================
 
     @Override
@@ -355,8 +344,10 @@ public class ModelManager implements Model {
         if (index < 0 || index >= menuManagers.size()) {
             return;
         }
-        filteredFoods = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
-        filteredFoods.setPredicate(predicate);
+        // not suppose to modify menumanager's menus
+        FilteredList<Food> list = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
+        list.setPredicate(predicate);
+        filteredFoods = list;
     }
 
     //=========== Filtered OrderItem List Accessors =============================================================
@@ -394,8 +385,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredVendors.equals(other.filteredVendors);
+                && userPrefs.equals(other.userPrefs);
     }
 
 }

@@ -56,7 +56,7 @@ public class VendorCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Model model = initialiseModel();
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getObservableVendorList().size() + 1);
         VendorCommand vendorCommand = new SwitchVendorCommand(outOfBoundIndex);
 
         assertCommandFailure(vendorCommand, model, ParserUtil.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);

@@ -12,7 +12,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -55,11 +54,6 @@ public class LogicManagerTest {
         assertCommandException(removeCommand, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
     }
 
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    }
 
     //TODO: pass
     //    @Test
@@ -85,7 +79,7 @@ public class LogicManagerTest {
 
     @Test
     public void getFilteredVendorList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredVendorList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getObservableVendorList().remove(0));
     }
 
     /**
