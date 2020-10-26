@@ -115,8 +115,12 @@ UI component | Description
 * Items in square brackets are optional.<br>
   e.g `...a/AMOUNT [t/TAG]` can be used as `...a/50.10 t/Supplies` or as `...a/50.10`.
 
-* Parameters can be in any order.<br>
+* Parameters **preceded by a prefix** can be in any order.<br>
   e.g. if the command specifies `c/CATEGORY d/DESCRIPTION...`, `d/DESCRIPTION c/CATEGORY...` is also acceptable.
+
+* **Numeric** parameters (e.g. `ENTRY_INDEX`) must be in the correct order.<br>
+  e.g. if the command specifies `ENTRY_INDEX c/CATEGORY`, only `ENTRY_INDEX c/CATEGORY` is acceptable 
+  and `c/CATEGORY ENTRY_INDEX` is invalid. 
 
 </div>
 
@@ -636,3 +640,10 @@ Action | Format, Examples
 [**Edit Account's Name**](#editing-the-name-of-the-current-account-editacc) | `editacc n/NAME`
 [**List Account**](#listing-accounts-you-have-listacc) | `listacc`
 [**Switch Account**](#switching-accounts-switchacc) | `switchacc INDEX`
+
+--------------------------------------------------------------------------------------------------------------------
+
+#Acknowledgement
+
+* The project is a brown-field project, based on AddressBook-Level3 by the [SE-EDU initiative](https://se-education.org/).
+* The background image is [Designed by Freepik](http://www.freepik.com) 
