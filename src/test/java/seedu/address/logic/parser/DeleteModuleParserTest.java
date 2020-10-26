@@ -22,12 +22,12 @@ public class DeleteModuleParserTest {
     private DeleteModuleParser parser = new DeleteModuleParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsDeleteCommand_success() {
         assertParseSuccess(parser, "1", new DeleteModuleCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_invalidArgs_throwsParseException_failure() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteModuleCommand.MESSAGE_USAGE));
     }
