@@ -576,6 +576,44 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 
 
 
+
+### Filtering Ingredients — **`filter`**`ingredient`
+This command filters all ingredients and lists those that match all the tags and expiry dates specified in the command.
+
+Usage: `filter ingredient </SEARCH_FIELD KEYWORDS> [</SEARCH_FIELD KEYWORDS>]...` 
+- `/SEARCH_FIELD` must be either `/tag` or `/expiry`, followed by the 'tag name' or 'expiry date'. The 'tag' name does not have to be complete.
+- `/expiry EXPIRY_DATE` filters the ingredients and only lists those that expire before the date provided.
+- When there are multiple `/expiry EXPIRY_DATE` in the search, only the earliest 'expiry date' will be considered.
+- Except for the changes in the search fields, this feature works identically to the `filter recipe` command. [above](#filtering-recipes--filterrecipe)
+
+Constraints:
+- At least one search term must be given, and it should be a search on either 'tag' or 'expiry date'.
+
+Examples:
+- `filter ingredient /tag bitter taste` will match **Bitter Melon** and **Dark Chocolate**, the only two ingredients with the 'tag' **bitter taste**.
+- `filter ingredient /tag frequently used /tag sweet` will match **Sugar**, the only ingredient with the two 'tags' **frequently used** and **sweet**.
+- `filter ingredient /expiry 2020-12-01` will match **Apple** and **Chocolate**, the only two ingredients expiring before **2020-12-01**.
+- `filter ingredient /expiry 2022-12-31 /expiry 2020-10-31 /expiry 2023-01-01` will match **Chocolate**, the only ingredient expiring before **2020-10-31**.
+- `filter ingredient /tag powdery /expiry 2020-12-31 /expiry 2020-12-01 /tag bakery` will match **baking soda**, the only ingredient that matches all criteria specified.
+
+To illustrate, suppose you want to search for ingredients with 'tags' **all time** and **favourite**, and expire earlier than the 'expiry date' **2020-12-31**, you could use `filter ingredient /tag all time /expiry 2020-12-31 /expiry 2021-01-01 /tag favourite`:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/filter_ingredient_1.png" width="75%" /> <br />
+Figure 11.1: <i>The starting state of the application</i>
+</div>
+
+After executing the command, similar to the effect of **filter recipe** command, the ingredient list has changed, showing only the matching ingredient, **apple**.
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/filter_ingredient_2.png" width="75%" /> <br />
+Figure 11.2: <i>The ingredient matching all criteria provided</i>
+</div>
+
+Again, to reset the search filter or go back to the full ingredient view, you can click the Ingredients button or run the `list ingredients` command:
+
+
+
+
 ### Undoing commands — **`undo`**
 Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
 
