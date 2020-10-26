@@ -20,6 +20,7 @@ import seedu.address.model.ExerciseModel;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Template;
 import seedu.address.testutil.ExerciseBuilder;
 
 public class AddCommandTest {
@@ -95,6 +96,11 @@ public class AddCommandTest {
 
         @Override
         public void addExercise(Exercise exercise) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addTemplate(Template template) {
             throw new AssertionError("This method should not be called.");
         }
 
