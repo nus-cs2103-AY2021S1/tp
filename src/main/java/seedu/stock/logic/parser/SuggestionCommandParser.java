@@ -467,13 +467,14 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param argMultimap The parsed user input fields.
      */
     private void generateNoteViewSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER);
         toBeDisplayed.append(NOTE_VIEW_COMMAND_WORD);
 
-        for (int i = 0; i < allowedPrefixes.size(); i++) {
-            Prefix currentPrefix = allowedPrefixes.get(i);
-            toBeDisplayed.append(" ").append(currentPrefix)
-                    .append(CliSyntax.getDefaultDescription(currentPrefix));
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        for (String serialNumber : keywords) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
         }
 
         generateBodyMessage(toBeDisplayed, NoteViewCommand.MESSAGE_USAGE);
