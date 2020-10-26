@@ -20,8 +20,11 @@ This User Guide will provide a general overview of installation, existing featur
 ## 2. Quick Start
 
 Refer to this video for a quick tutorial on OneShelf Installation Guide:
+<br>
+
 [![](http://img.youtube.com/vi/W460SJkRMMM/0.jpg)](http://www.youtube.com/watch?v=W460SJkRMMM "One Shelf Installation Guide")
 
+<br>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
