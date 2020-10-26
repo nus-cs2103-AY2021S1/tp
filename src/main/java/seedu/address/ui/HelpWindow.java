@@ -19,7 +19,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     public static final String HELP_MESSAGE = "The following is the set of commands you can use:\n"
             + " ____________________________________________________________________ \n"
-            + "|  [Command] |                   [Format]                            |\n"
+            + "|  [Command] |                 [Format, Examples]                    |\n"
             + "|--------------------------------------------------------------------|\n"
             + "|    help    | help                                                  |\n"
             + "|--------------------------------------------------------------------|\n"
