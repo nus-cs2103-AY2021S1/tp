@@ -37,9 +37,9 @@ in this document.
 
    * **`list`** : Lists all items stored in Inventoryinator.
 
-   * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds a item named `banana` to the Inventoryinator
+   * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds an item named `banana` to the Inventoryinator
 
-   * **`add`**`banana -q 10` Add a quantity of 10 to the Bananas
+   * **`add`**`banana -q 10` Adds a quantity of 10 to the banana
 
    * **`deli`**`-n banana` : Deletes the banana item from the Inventoryinator
 
@@ -147,9 +147,9 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `addq` -n <u>Bob’s 6th regret</u> -q <u>8</u>
-- Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
+Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
 
-### Listing all items : `listi`
+### Listing all items: `listi`
 
 **NAME:**
 - `listi` - lists all items
@@ -157,11 +157,14 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 **SYNOPSIS:**
 - `listi`
 
+**DESCRIPTION:**
+//TODO
+
 **EXAMPLE:**
 - `listi`
-- Lists all items and their quantities
+Lists all items and their quantities
 
-### Listing all items : `listr`
+### Listing all recipes: `listr`
 
 **NAME:**
 - `listr` - lists all recipes
@@ -169,11 +172,14 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 **SYNOPSIS:**
 - `listr`
 
+**DESCRIPTION:**
+//TODO
+
 **EXAMPLE:**
 - `listr` 
-- Lists all recipes, outputs, descriptions and their ingredients
+Lists all recipes, outputs, descriptions and their ingredients
 
-### Deleting an item : `deli`
+### Deleting an item: `deli`
 
 **NAME:**
 - `deli` - deletes an item
@@ -188,9 +194,9 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `deli` -n <u>Bob’s 28th finger</u>
-- Deletes the **item** with the name of <u>Bob’s 28th finger</u>
+Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
-### Deleting a Recipe : `delr`
+### Deleting a Recipe: `delr`
 
 **NAME:**
 - `delr` - deletes a recipe
@@ -205,7 +211,7 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>
-- Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
+Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
 
 ### Finding an item: `find`
 
@@ -222,7 +228,7 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 **EXAMPLE:**
 - `find` <u>bob alice</u>
 
-- Returns the items whose names match/ contain bob or alice, like: 
+Returns the items whose names match/ contain bob or alice, like: 
   - Bob’s 9000th crush
   - Alice's sword
   - Little bob
@@ -245,9 +251,9 @@ WIP as of v1.2
 
 **EXAMPLE:**
 - `view` <u>Bob’s bitten fingernail clipping</u> -r 
-- Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
+Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
 
-### Viewing help : `help`
+### Viewing help: `help`
 WIP as of v1.2
 
 **NAME:** 
@@ -263,7 +269,7 @@ WIP as of v1.2
 
 ![help message](images/helpMessage.png)
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 **NAME:**
 - `exit` - closes the application
