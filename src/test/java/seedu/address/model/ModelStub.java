@@ -9,6 +9,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bidbook.ReadOnlyBidBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
+import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
@@ -64,11 +65,6 @@ public class ModelStub implements Model {
 
     @Override
     public void addPerson(Person person) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void addBid(Bid bid) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -133,11 +129,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ReadOnlyBidBook getBidBook() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public boolean hasPerson(Person person) {
         throw new AssertionError("This method should not be called.");
     }
@@ -158,17 +149,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public ObservableList<Bid> getFilteredBidList() {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void updateFilteredBidList(Predicate<Bid> predicate) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -277,6 +258,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean containsBidderId(BidderId bidderId) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void updateFilteredBidderList(Predicate<? super Person> predicate) {
         throw new AssertionError("This method should not be called.");
     }
@@ -336,6 +322,11 @@ public class ModelStub implements Model {
     // ================= BID =================
 
     @Override
+    public void addBid(Bid bid) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public boolean hasBid(Bid bid) {
         throw new AssertionError("This method should not be called.");
     }
@@ -345,13 +336,24 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-    /**
-     * Replaces the given bid {@code target} with {@code editedBid}.
-     * {@code target} must exist in the bid book.
-     * The bid identity of {@code editedBid} must not be the same as another existing bid in the bid book.
-     */
     @Override
     public void setBid(Bid target, Bid editedBid) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void updateFilteredBidList(Predicate<Bid> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ReadOnlyBidBook getBidBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Bid> getFilteredBidList() {
+        throw new AssertionError("This method should not be called.");
+    }
+
 }

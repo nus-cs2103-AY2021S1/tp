@@ -39,6 +39,14 @@ public abstract class Id {
     }
 
     /**
+     * retrieves the id number from an id object
+     * @return id of a certain object
+     */
+    public int getId() {
+        return this.idNumber;
+    }
+
+    /**
      * Gets the next id with the same prefix.
      *
      * @return The next id.

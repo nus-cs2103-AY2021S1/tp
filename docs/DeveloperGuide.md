@@ -253,12 +253,12 @@ categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Prop
 
  The following activity diagram summarises what happens when a user executes `delete-bid` command:
 
- ![DeleteBidActivityDiagram](images/BidDeleteActivityDiagram.png)
+ ![DeleteBidActivityDiagram](images/bids/BidDeleteActivityDiagram.png)
 
  The following sequence diagram summarises as well how the components of Model and Logic interact during the execution
  of the command:
 
- ![DeleteBidSequenceDiagram](images/DeleteBidSequenceDiagram.png)
+ ![DeleteBidSequenceDiagram](images/bids/DeleteBidSequenceDiagram.png)
 
  #### Design Considerations
 
@@ -291,7 +291,7 @@ categorized accordingly to the entities. Specifically: Bidder, Seller, Bid, Prop
  The following sequence diagram summarises how the components of Model and Logic interact during the execution
  of the command:
 
- ![ListBidSequenceDiagram](images/ListBidSequenceDiagram.png)
+ ![ListBidSequenceDiagram](images/bids/ListBidSequenceDiagram.png)
 
  #### Design Considerations
 

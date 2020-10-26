@@ -2,7 +2,7 @@ package seedu.address.logic.commands.bids;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.model.id.PropertyId.DEFAULT_PROPERTY_ID;
+import static seedu.address.logic.commands.bids.BidCommandTestUtil.DEFAULT_PROPERTY_ID;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
@@ -13,6 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.bidcommands.AddBidCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -32,11 +33,10 @@ public class AddBidCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newBid_success() {
+    public void execute_newBid_success() throws CommandException {
         Bid validBid = new BidBuilder()
                 .withPropertyId(DEFAULT_PROPERTY_ID.toString())
                 .build();
-
         Model expectedModel = new ModelManager(
                 model.getAddressBook(),
                 new UserPrefs(),
@@ -47,7 +47,6 @@ public class AddBidCommandIntegrationTest {
                 model.getMeetingBook()
         );
         expectedModel.addBid(validBid);
-
         assertCommandSuccess(new AddBidCommand(validBid), model,
                 String.format(AddBidCommand.MESSAGE_SUCCESS, validBid), expectedModel);
     }
