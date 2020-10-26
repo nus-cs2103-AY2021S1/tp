@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="stock-list-panel-vbox">
   <ListView fx:id="stockListView" VBox.vgrow="ALWAYS" styleClass="pane-with-border-main"/>
   <padding>
     <Insets right="5" left="5" />

@@ -12,8 +12,8 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 import static seedu.stock.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
@@ -119,6 +119,23 @@ public class CommandTestUtil {
     }
 
     /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code SourceCompanyNotFoundException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the stock book, filtered stock list and selected stock in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailureForStatistics(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        StockBook expectedStockBook = new StockBook(actualModel.getStockBook());
+        List<Stock> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStockList());
+
+        assertThrows(SourceCompanyNotFoundException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedStockBook, actualModel.getStockBook());
+        assertEquals(expectedFilteredList, actualModel.getFilteredStockList());
+    }
+
+    /**
      * Updates {@code model}'s filtered list to show only the stock at the given {@code targetSerialNumber} in the
      * {@code model}'s stock book.
      */
@@ -127,17 +144,21 @@ public class CommandTestUtil {
         assertTrue(model.getFilteredStockList().stream().anyMatch(stock ->
                                                 stock.getSerialNumber().equals(targetSerialNumber)));
 
-        String[] splitName = new String[1];
+        List<Stock> stockWithTargetSerialNumber = new ArrayList<>();
 
         for (int i = 0; i < model.getFilteredStockList().size(); i++) {
             Stock curr = model.getFilteredStockList().get(i);
             if (curr.getSerialNumber().equals(targetSerialNumber)) {
-                splitName[0] = curr.getName().fullName.split("\\s+")[0];
+                stockWithTargetSerialNumber.add(curr);
             }
         }
-        assertTrue(splitName[0] != null);
 
-        model.updateFilteredStockList((new NameContainsKeywordsPredicate(Arrays.asList(splitName[0]))));
-        assertEquals(1, model.getFilteredStockList().size());
+        assertEquals(1, stockWithTargetSerialNumber.size());
+
+        List<String> nameForPredicate = stockWithTargetSerialNumber.stream()
+                                    .map(stock -> stock.getName().fullName).collect(Collectors.toList());
+
+        model.updateFilteredStockList((new NameContainsKeywordsPredicate(nameForPredicate)));
+
     }
 }

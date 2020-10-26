@@ -28,6 +28,7 @@ class JsonAdaptedStock {
     private final String quantity;
     private final String location;
     private final List<String> notes;
+    private final boolean isBookmarked;
 
     /**
      * Constructs a {@code JsonAdaptedStock} with the given person details.
@@ -35,13 +36,15 @@ class JsonAdaptedStock {
     @JsonCreator
     public JsonAdaptedStock(@JsonProperty("name") String name, @JsonProperty("serialNumber") String serialNumber,
                             @JsonProperty("source") String source, @JsonProperty("quantity") String quantity,
-                            @JsonProperty("location") String location, @JsonProperty("notes") List<String> notes) {
+                            @JsonProperty("location") String location, @JsonProperty("notes") List<String> notes,
+                            @JsonProperty("isBookmarked") boolean isBookmarked) {
         this.name = name;
         this.serialNumber = serialNumber;
         this.source = source;
         this.quantity = quantity;
         this.location = location;
         this.notes = notes;
+        this.isBookmarked = isBookmarked;
     }
 
     /**
@@ -54,6 +57,7 @@ class JsonAdaptedStock {
         quantity = source.getQuantity().quantity;
         location = source.getLocation().value;
         notes = source.getNotesValues();
+        isBookmarked = source.getIsBookmarked();
     }
 
     /**
@@ -119,10 +123,23 @@ class JsonAdaptedStock {
                 modelNotesList.add(modelNote);
             }
 
-            return new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation, modelNotesList);
+            Stock stockToAdd = new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation,
+                    modelNotesList);
+
+            if (isBookmarked) {
+                stockToAdd.setBookmarked();
+            }
+
+            return stockToAdd;
         }
 
-        return new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation);
+        Stock stockToAdd = new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation);
+
+        if (isBookmarked) {
+            stockToAdd.setBookmarked();
+        }
+
+        return stockToAdd;
 
     }
 
