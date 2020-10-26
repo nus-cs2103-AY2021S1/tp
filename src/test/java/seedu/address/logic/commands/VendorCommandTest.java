@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.VendorCommand.MESSAGE_RESET_VENDOR_SUCCESS;
 import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -63,24 +64,46 @@ public class VendorCommandTest {
 
     @Test
     public void equals() {
-        VendorCommand removeFirstCommand = new SwitchVendorCommand(Index.fromOneBased(1));
-        VendorCommand removeSecondCommand = new SwitchVendorCommand(Index.fromOneBased(2));
+        VendorCommand switchFirstCommand = new SwitchVendorCommand(Index.fromOneBased(1));
+        VendorCommand switchSecondCommand = new SwitchVendorCommand(Index.fromOneBased(2));
+
+        VendorCommand firstVendorCommand = new VendorCommand();
+        VendorCommand secondVendorCommand = new VendorCommand();
 
         // same object -> returns true
-        assertTrue(removeFirstCommand.equals(removeFirstCommand));
+        assertTrue(switchFirstCommand.equals(switchFirstCommand));
+        assertTrue(firstVendorCommand.equals(firstVendorCommand));
 
         // same values -> returns true
         VendorCommand removeFirstCommandCopy = new SwitchVendorCommand(Index.fromOneBased(1));
-        assertTrue(removeFirstCommand.equals(removeFirstCommandCopy));
+        assertTrue(switchFirstCommand.equals(removeFirstCommandCopy));
+        assertTrue(firstVendorCommand.equals(secondVendorCommand));
 
         // different types -> returns false
-        assertFalse(removeFirstCommand.equals(1));
+        assertFalse(switchFirstCommand.equals(1));
+        assertFalse(firstVendorCommand.equals(1));
 
         // null -> returns false
-        assertFalse(removeFirstCommand.equals(null));
+        assertFalse(switchFirstCommand.equals(null));
+        assertFalse(firstVendorCommand.equals(null));
 
         // different vendor -> returns false
-        assertFalse(removeFirstCommand.equals(removeSecondCommand));
+        assertFalse(switchFirstCommand.equals(switchSecondCommand));
+
+
+    }
+
+    @Test
+    public void execute_noIndexProvided_success() {
+        Model model = initialiseModel();
+        model.setVendorIndex(3);
+
+        VendorCommand vendorCommand = new VendorCommand();
+        Model expectedModel = initialiseModel();
+        CommandResult expectedCommandResult = new CommandResult(MESSAGE_RESET_VENDOR_SUCCESS,
+                false, false, true);
+        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
+
     }
 
     //    /**
