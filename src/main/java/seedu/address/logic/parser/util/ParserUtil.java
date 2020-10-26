@@ -148,8 +148,16 @@ public class ParserUtil {
      * Returns true if there is a correct number of values for each prefix in the given
      * {@code ArgumentMultimap}.
      */
-    public static boolean areNumberOfPrefixesCorrect(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+    public static boolean areNumberOfPrefixesOnlyOne(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(argumentMultimap::hasOnlyOneValue);
+    }
+
+    /**
+     * Returns true if there is a correct number of values for each prefix in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean areNumberOfPrefixesOneOrNone(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(argumentMultimap::hasNotMoreThanOneValue);
     }
 
 }

@@ -36,7 +36,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
         }
 
-        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesCorrect(argMultimap, PREFIX_CATEGORY);
+        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_CATEGORY);
 
         if (!areNumberOfPrefixCorrect) {
             throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, DeleteCommand.PREFIXES));

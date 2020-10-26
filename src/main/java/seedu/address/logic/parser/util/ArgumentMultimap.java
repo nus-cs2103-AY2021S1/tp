@@ -79,9 +79,9 @@ public class ArgumentMultimap {
     /**
      * Checks if there are more than one values for the prefix.
      */
-    public boolean hasMoreThanOneValue(Prefix prefix) {
+    public boolean hasNotMoreThanOneValue(Prefix prefix) {
         List<String> value = getAllValues(prefix);
-        return value.size() >= ONE_VALUE;
+        return value.size() <= ONE_VALUE;
     }
 
 }

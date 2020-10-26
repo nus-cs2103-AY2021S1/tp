@@ -34,7 +34,7 @@ public class EditAccountNameCommandParser implements Parser<EditAccountNameComma
                     EditAccountNameCommand.MESSAGE_USAGE));
         }
 
-        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesCorrect(argMultimap, PREFIX_NAME);
+        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_NAME);
 
         if (!areNumberOfPrefixCorrect) {
             throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, EditAccountNameCommand.PREFIXES));

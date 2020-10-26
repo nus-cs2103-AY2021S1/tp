@@ -37,7 +37,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
             return new ClearCommand();
         }
 
-        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesCorrect(argMultimap, PREFIX_CATEGORY);
+        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_CATEGORY);
 
         if (!areNumberOfPrefixCorrect) {
             throw new ParseException(
