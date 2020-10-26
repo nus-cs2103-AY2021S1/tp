@@ -658,6 +658,24 @@ if there is no existing same item. If there is an existing same item,
     1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
        Expected: User will receive an error message as `MaxQuantity` or `Metric` should not be defined when adding to existing item.
 
+### Editing an item
+
+1. Editing an item or delivery
+
+    1. Prerequisites: List all item or delivery using `list-i` and `list-d` respectively.
+    
+    1. Test Case: `edit-i 1 n/TUNA` <br>
+       Expected: Name of the `Item` located at Index 1 of the current list will be changed to "TUNA".
+       
+    1. Test Case: `edit-d 3 p/85734829` <br>
+       Expected: Phone number of the `Delivery` located at Index 3 of the current list will be changed to 85734829.
+       
+    1. Test Case: `edit-i 1` or `edit-d 3` <br>
+       Expected: No item or delivery is edited. Error details shown in status message.
+       
+    1. other incorrect edit commands to try: `edit`, edit x n/TUNA`, ... (where x is larger than the list size of x is a negative number) <br>
+       Expected: Similar to previous.
+       
 ### Deleting an item
 
 1. Deleting an item while all items are being shown
@@ -673,7 +691,6 @@ if there is no existing same item. If there is an existing same item,
    1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size or 
    x is a negative number)<br>
       Expected: Similar to previous.
-
 
 ### Saving data
 
