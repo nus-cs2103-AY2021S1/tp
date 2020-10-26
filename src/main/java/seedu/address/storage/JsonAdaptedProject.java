@@ -11,9 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Person;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
@@ -34,7 +32,7 @@ class JsonAdaptedProject {
     private final String projectDescription;
     private final List<JsonAdaptedTag> projectTagged = new ArrayList<>();
     private final List<JsonAdaptedTask> projectOccupied = new ArrayList<>();
-//    private final List<JsonParticipation> participations = new ArrayList<>();
+    //    private final List<JsonParticipation> participations = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedProject} with the given project details.
@@ -46,7 +44,7 @@ class JsonAdaptedProject {
                               @JsonProperty("projectDescription") String projectDescription,
                               @JsonProperty("projectTag") List<JsonAdaptedTag> projectTagged,
                               @JsonProperty("occupied") List<JsonAdaptedTask> projectOccupied
-//                              @JsonProperty("participations") List<JsonParticipation> participations
+    //                              @JsonProperty("participations") List<JsonParticipation> participations
     ) {
         this.projectName = projectName;
         this.deadline = deadline;
@@ -58,9 +56,9 @@ class JsonAdaptedProject {
         if (projectOccupied != null) {
             this.projectOccupied.addAll(projectOccupied);
         }
-//        if (participations != null) {
-//            this.participations.addAll(participations);
-//        }
+        //        if (participations != null) {
+        //            this.participations.addAll(participations);
+        //        }
     }
 
     /**
@@ -77,9 +75,9 @@ class JsonAdaptedProject {
         projectOccupied.addAll(source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
-//        participations.addAll(source.getParticipationList().stream()
-//                .map(JsonParticipation::new)
-//                .collect(Collectors.toList()));
+        //        participations.addAll(source.getParticipationList().stream()
+        //                .map(JsonParticipation::new)
+        //                .collect(Collectors.toList()));
     }
 
     /**
@@ -140,15 +138,15 @@ class JsonAdaptedProject {
         Project p = new Project(modelProjectName, modelDeadline, modelRepoUrl, modelProjectDescription,
                 modelProjectTags, null, modelTasks, modelMeetings);
 
-//        for (JsonParticipation participation : participations) {
-//
-//            Participation part = participation.toModelType();
-//
-//            Person person = part.getPerson();
-//            p.addExistingParticipation(part);
-//            person.addProject(p);
-//
-//        }
+        //        for (JsonParticipation participation : participations) {
+        //
+        //            Participation part = participation.toModelType();
+        //
+        //            Person person = part.getPerson();
+        //            p.addExistingParticipation(part);
+        //            person.addProject(p);
+        //
+        //        }
         return p;
     }
 

@@ -159,11 +159,11 @@ public class ModelManager implements Model {
 
     }
 
-//    @Override
-//    public void addParticipation(Participation participation) {
-//        mainCatalogue.addParticipation(participation);
-//        update
-//    }
+    //    @Override
+    //    public void addParticipation(Participation participation) {
+    //        mainCatalogue.addParticipation(participation);
+    //        update
+    //    }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
@@ -290,16 +290,20 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Participation} backed by the internal list of
+     * {@code versionedMainCatalogue}
+     */
     public void updateFilteredParticipationList(Predicate<Participation> predicate) {
         requireNonNull(predicate);
         filteredParticipations.setPredicate(predicate);
     }
 
-//    @Override
-//    public void updateFilteredParticipationList(Predicate<Participation> predicate) {
-//        requireNonNull(predicate);
-//        filter.setPredicate(predicate);
-//    }
+    //    @Override
+    //    public void updateFilteredParticipationList(Predicate<Participation> predicate) {
+    //        requireNonNull(predicate);
+    //        filter.setPredicate(predicate);
+    //    }
 
     @Override
     public boolean equals(Object obj) {
