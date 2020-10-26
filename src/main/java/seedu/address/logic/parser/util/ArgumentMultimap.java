@@ -16,6 +16,7 @@ import seedu.address.logic.parser.Prefix;
  * can be inserted multiple times for the same prefix.
  */
 public class ArgumentMultimap {
+    private static final int ONE_VALUE = 1;
 
     /** Prefixes mapped to their respective arguments**/
     private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
@@ -38,6 +39,7 @@ public class ArgumentMultimap {
      */
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
+        assert values.size() == ONE_VALUE;
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
 
@@ -59,4 +61,20 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Checks if the preamble is empty.
+     */
+    public boolean isPreambleEmpty() {
+        return getPreamble().isEmpty();
+    }
+
+    /**
+     * Checks if there is exactly one value for the prefix.
+     */
+    public boolean hasOnlyOneValue(Prefix prefix) {
+        List<String> values = getAllValues(prefix);
+        return values.size() != ONE_VALUE;
+    }
+
 }
