@@ -12,6 +12,9 @@ import seedu.address.model.exercise.Exercise;
  */
 public class TypicalExercise {
 
+    public static final Exercise TYPICAL_EXERCISE = new ExerciseBuilder().withName("Push Up")
+            .withDescription("Push Up Description").withDate("10-10-2020").withCalories("100").build();
+
     public static final Exercise PUSH_UP = new ExerciseBuilder().withName("Push Up")
             .withDescription("Test 1").withDate("09-10-2020").withCalories("12345").build();
 
