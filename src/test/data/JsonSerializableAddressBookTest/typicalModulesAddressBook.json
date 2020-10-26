@@ -1,6 +1,10 @@
 {
   "_comment": "AddressBook save file which contains the same Module values as in TypicalModules#getTypicalAddressBook()",
   "modules" : [ {
+    "moduleCode" : "CS50",
+    "moduleName" : "Introduction to Computer Science",
+    "instructors" : []
+  }, {
     "moduleCode" : "CS1010S",
     "moduleName" : "Programming Methodology",
     "instructors" : [ {
