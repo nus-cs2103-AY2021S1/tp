@@ -169,7 +169,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleSwitchSem() {
         int semester = logic.getSemester();
-        int toIndex = semester == 1 ? 1 : 0;
+        int toIndex = semester == 1 ? 0 : 1;
 
         Node content = semsPanelPlaceholder.getSelectionModel().getSelectedItem().getContent();
         semsPanelPlaceholder.getSelectionModel().getSelectedItem().setContent(null);
