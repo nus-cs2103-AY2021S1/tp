@@ -58,7 +58,7 @@ public class ReallocateCommandTest {
 
         ReallocateCommand allocateCommand = new ReallocateCommand(INDEX_FIRST_PERSON, INDEX_FOURTH_ROOM);
         String expectedMessage = String.format(ReallocateCommand.MESSAGE_SUCCESS,
-                studentToReallocate.getName().fullName,
+                studentToReallocate.getNameAsString(),
                 roomToReallocate.getRoomLabel());
 
         ModelManager expectedModel = new ModelManager(model.getResiReg(), new UserPrefs());

@@ -60,7 +60,7 @@ public class AddCommand extends Command {
 
         model.addStudent(toAdd);
         model.saveStateResiReg();
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getName().fullName, toAdd.getStudentId().value));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getNameAsString(), toAdd.getStudentId().value));
     }
 
     @Override

@@ -28,6 +28,8 @@ import seedu.resireg.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DAYS = "Number of days is not a positive integer.";
+
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -244,6 +246,19 @@ public class ParserUtil {
             things.add(parser.parse(s));
         }
         return things;
+    }
+
+    /**
+     * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
+     */
+    public static int parseDaysAsInt(String daysStoredFor) throws ParseException {
+        String trimmedDays = daysStoredFor.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
+            throw new ParseException(MESSAGE_INVALID_DAYS);
+        }
+        return Integer.parseInt(trimmedDays);
     }
 
     @FunctionalInterface

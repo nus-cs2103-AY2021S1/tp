@@ -37,7 +37,7 @@ public class AddCommandIntegrationTest {
         expectedModel.saveStateResiReg();
 
         assertCommandSuccess(new AddCommand(validStudent), model, history,
-                String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getName().fullName,
+                String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getNameAsString(),
                     validStudent.getStudentId().value), expectedModel);
     }
 

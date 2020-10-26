@@ -37,6 +37,19 @@
                 <StackPane fx:id="roomListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
         </Tab>
+
+        <!-- Bin Items tab -->
+        <Tab fx:id="binsTab" text="Bin">
+            <VBox fx:id="binItemList"
+                  VBox.vgrow="ALWAYS"
+                  styleClass="pane-with-border"
+                  minWidth="340" prefWidth="340">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <StackPane fx:id="binItemListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+            </VBox>
+        </Tab>
     </TabPane>
 
 </StackPane>

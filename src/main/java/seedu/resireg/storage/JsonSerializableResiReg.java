@@ -12,6 +12,7 @@ import seedu.resireg.commons.exceptions.IllegalValueException;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
@@ -23,12 +24,15 @@ class JsonSerializableResiReg {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Students list contains duplicate student(s).";
     public static final String MESSAGE_DUPLICATE_ROOM = "Rooms list contains duplicate room(s).";
-    public static final String MESSAGE_DUPLICATE_ALLOCATION = "Rooms list contains duplicate allocation(s).";
+    public static final String MESSAGE_DUPLICATE_ALLOCATION = "Allocation list contains duplicate allocation(s).";
+    public static final String MESSAGE_DUPLICATE_BIN_ITEM = "Bin items list contains duplicate bin item(s).";
+
 
     private final JsonAdaptedSemester semester;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedRoom> rooms = new ArrayList<>();
     private final List<JsonAdaptedAllocation> allocations = new ArrayList<>();
+    private final List<JsonAdaptedBinItem> binItems = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableResiReg} with the given students.
@@ -37,11 +41,13 @@ class JsonSerializableResiReg {
     public JsonSerializableResiReg(@JsonProperty("semester") JsonAdaptedSemester semester,
                                    @JsonProperty("students") List<JsonAdaptedStudent> students,
                                    @JsonProperty("rooms") List<JsonAdaptedRoom> rooms,
-                                   @JsonProperty("allocations") List<JsonAdaptedAllocation> allocations) {
+                                   @JsonProperty("allocations") List<JsonAdaptedAllocation> allocations,
+                                   @JsonProperty("binItems") List<JsonAdaptedBinItem> binItems) {
         this.semester = semester;
         this.students.addAll(students);
         this.rooms.addAll(rooms);
         this.allocations.addAll(allocations);
+        this.binItems.addAll(binItems);
     }
 
     /**
@@ -54,7 +60,8 @@ class JsonSerializableResiReg {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         rooms.addAll(source.getRoomList().stream().map(JsonAdaptedRoom::new).collect(Collectors.toList()));
         allocations.addAll(
-                source.getAllocationList().stream().map(JsonAdaptedAllocation::new).collect(Collectors.toList()));
+            source.getAllocationList().stream().map(JsonAdaptedAllocation::new).collect(Collectors.toList()));
+        binItems.addAll(source.getBinItemList().stream().map(JsonAdaptedBinItem::new).collect(Collectors.toList()));
     }
 
     /**
@@ -86,6 +93,13 @@ class JsonSerializableResiReg {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ALLOCATION);
             }
             resiReg.addAllocation(allocation);
+        }
+        for (JsonAdaptedBinItem jsonAdaptedBinItem : binItems) {
+            BinItem binItem = jsonAdaptedBinItem.toModelType();
+            if (resiReg.hasBinItem(binItem)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_BIN_ITEM);
+            }
+            resiReg.addBinItem(binItem);
         }
         return resiReg;
     }

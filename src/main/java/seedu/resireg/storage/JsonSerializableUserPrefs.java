@@ -26,6 +26,7 @@ class JsonSerializableUserPrefs {
     private final List<JsonAdaptedCommandWordAlias> commandWordAliases = new ArrayList<>();
     private final GuiSettings guiSettings;
     private final Path resiRegFilePath;
+    private final int daysStoredInBin;
 
     /**
      * Constructs a {@code JsonSerializableResiReg} with the given students.
@@ -33,10 +34,12 @@ class JsonSerializableUserPrefs {
     @JsonCreator
     public JsonSerializableUserPrefs(@JsonProperty("guiSettings") GuiSettings guiSettings,
                                      @JsonProperty("commandWordAliases") List<JsonAdaptedCommandWordAlias> aliases,
-                                     @JsonProperty("addressBookFilePath") Path resiRegFilePath) {
+                                     @JsonProperty("addressBookFilePath") Path resiRegFilePath,
+                                     @JsonProperty("daysStoredInBin") int daysStoredInBin) {
         this.commandWordAliases.addAll(aliases);
         this.guiSettings = guiSettings;
         this.resiRegFilePath = resiRegFilePath;
+        this.daysStoredInBin = daysStoredInBin;
     }
 
     /**
@@ -49,6 +52,7 @@ class JsonSerializableUserPrefs {
             .collect(Collectors.toList()));
         this.guiSettings = source.getGuiSettings();
         this.resiRegFilePath = source.getResiRegFilePath();
+        this.daysStoredInBin = source.getDaysStoredInBin();
     }
 
     /**
@@ -68,7 +72,7 @@ class JsonSerializableUserPrefs {
 
         userPrefs.setGuiSettings(guiSettings);
         userPrefs.setResiRegFilePath(resiRegFilePath);
-
+        userPrefs.setDaysStoredInBin(daysStoredInBin);
         return userPrefs;
     }
 

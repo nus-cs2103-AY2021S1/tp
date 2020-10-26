@@ -25,6 +25,7 @@ import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.exceptions.DuplicateRoomException;
 import seedu.resireg.model.semester.Semester;
@@ -173,6 +174,11 @@ public class ResiRegTest {
         @Override
         public ObservableList<Allocation> getAllocationList() {
             return allocations;
+        }
+
+        @Override
+        public ObservableList<BinItem> getBinItemList() {
+            return null;
         }
 
         @Override

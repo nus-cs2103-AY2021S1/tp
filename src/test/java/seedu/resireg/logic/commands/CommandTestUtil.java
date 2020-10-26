@@ -11,6 +11,8 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_STUDENT_ID;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.resireg.testutil.Assert.assertThrows;
+import static seedu.resireg.testutil.TypicalStudents.AMY;
+import static seedu.resireg.testutil.TypicalStudents.BOB;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -29,6 +31,7 @@ import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.ReadOnlyUserPrefs;
 import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
+import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNameContainsKeywordPairsPredicate;
 import seedu.resireg.model.student.NameContainsKeywordsPredicate;
@@ -67,6 +70,12 @@ public class CommandTestUtil {
     public static final String VALID_TAG_RENOVATED = "renovated";
     public static final String VALID_TAG_DAMAGED = "damaged";
 
+    // Valid bin items
+    public static final String VALID_DATE_DELETED_A = "2020-10-26";
+    public static final String VALID_DATE_DELETED_B = "2019-10-21";
+    public static final Binnable VALID_ITEM_A = AMY;
+    public static final Binnable VALID_ITEM_B = BOB;
+
     // Valid command word aliases
     public static final String VALID_COMMAND_ROOMS_RO = "rooms";
     public static final String VALID_COMMAND_STUDENTS_ST = "students";
@@ -101,6 +110,9 @@ public class CommandTestUtil {
     public static final String INVALID_FLOOR = "asfdj";
     public static final String INVALID_ROOM_NUMBER = "asdfj";
     public static final String INVALID_ROOM_TYPE = "asdfjk";
+
+    public static final String INVALID_DATE = "asfdj";
+
 
     public static final String INVALID_COMMAND_DESC = " " + PREFIX_COMMAND + "71ndn"; // command word doesn't exist
     // alias cant be a command word
@@ -194,7 +206,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
         Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
-        final String[] splitName = student.getName().fullName.split("\\s+");
+        final String[] splitName = student.getNameAsString().split("\\s+");
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredStudentList().size());

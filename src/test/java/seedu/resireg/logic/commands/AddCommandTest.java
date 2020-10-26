@@ -29,6 +29,7 @@ import seedu.resireg.model.ResiReg;
 import seedu.resireg.model.UserPrefs;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -52,7 +53,7 @@ public class AddCommandTest {
 
         CommandResult commandResult = new AddCommand(validStudent).execute(modelStub, storageStub, history);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getName().fullName,
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStudent.getNameAsString(),
             validStudent.getStudentId().value), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStudent), modelStub.studentsAdded);
     }
@@ -152,7 +153,17 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setDaysStoredInBin(int daysStoredInBin) {
+
+        }
+
+        @Override
         public void addStudent(Student student) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addStudent(Student student, boolean isFront) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -218,17 +229,42 @@ public class AddCommandTest {
 
         @Override
         public void removeAllocation(Allocation target) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addAllocation(Allocation allocation) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setAllocation(Allocation target, Allocation editedAllocation) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public boolean hasBinItem(BinItem binItem) {
+            return false;
+        }
+
+        @Override
+        public void deleteBinItem(BinItem target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addBinItem(BinItem binItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setBinItem(BinItem target, BinItem editedItem) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteExpiredBinItems() {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -252,6 +288,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<BinItem> getFilteredBinItemList() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -259,6 +300,16 @@ public class AddCommandTest {
         @Override
         public void updateFilteredStudentList(ModelPredicate<Student> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredBinItemList(Predicate<BinItem> predicate) {
+
+        }
+
+        @Override
+        public void updateFilteredBinItemList(ModelPredicate<BinItem> predicate) {
+
         }
 
         @Override

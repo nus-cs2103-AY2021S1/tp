@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
+import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.semester.Semester;
 import seedu.resireg.model.student.Student;
@@ -30,6 +31,11 @@ public interface Model {
      * {@Code Predicate} that always evaluate to true
      */
     Predicate<Allocation> PREDICATE_SHOW_ALL_ALLOCATIONS = unused -> true;
+
+    /**
+     * {@Code Predicate} that always evaluate to true
+     */
+    Predicate<BinItem> PREDICATE_SHOW_ALL_BIN_ITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -89,6 +95,8 @@ public interface Model {
      */
     void setResiRegFilePath(Path resiRegFilePath);
 
+    void setDaysStoredInBin(int daysStoredInBin);
+
     /**
      * Replaces ResiReg data with the data in {@code resiReg}.
      */
@@ -112,10 +120,16 @@ public interface Model {
     void deleteStudent(Student target);
 
     /**
-     * Adds the given student.
+     * Adds the given student at the back of the list.
      * {@code student} must not already exist in ResiReg.
      */
     void addStudent(Student student);
+
+    /**
+     * Adds the given student at the front of the list depending on the boolean value supplied.
+     * {@code student} must not already exist in ResiReg.
+     */
+    void addStudent(Student student, boolean isFront);
 
     /**
      * Replaces the given student {@code target} with {@code editedStudent}.
@@ -192,9 +206,41 @@ public interface Model {
      */
     void setAllocation(Allocation target, Allocation editedAllocation);
 
+    // Bin Items
+    /**
+     * Returns true if a bin item with the same data as {@code binitem} exists in
+     * ResiReg.
+     */
+    boolean hasBinItem(BinItem binItem);
+
+    /**
+     * Deletes the given bin item.
+     * The bin item must exist in ResiReg.
+     */
+    void deleteBinItem(BinItem target);
+
+    /**
+     * Adds the given bin item.
+     * {@code binItem} must already exist in ResiReg.
+     */
+    void addBinItem(BinItem binItem);
+
+    /**
+     * Replaces the given room {@code target} with {@code editedItem}.
+     * {@code target} must exist in ResiReg.
+     * The bin item identity of {@code editedItem} must not be the same as another
+     * existing bin item in ResiReg.
+     */
+    void setBinItem(BinItem target, BinItem editedItem);
+
+    // Semester
+
+    void deleteExpiredBinItems();
+
     /** Returns the current semester */
     Semester getSemester();
 
+    // Lists for UI
     /** Returns an unmodifiable view of the filtered student list */
     ObservableList<Student> getFilteredStudentList();
 
@@ -207,6 +253,11 @@ public interface Model {
      * Returns an unmodifiable view of the filtered allocation list
      */
     ObservableList<Allocation> getFilteredAllocationList();
+
+    /**
+     * Returns an unmodifiable view of the bin item list
+     */
+    ObservableList<BinItem> getFilteredBinItemList();
 
     /**
      * Updates the filter of the filtered student list to filter by the given {@code predicate}.
@@ -222,6 +273,21 @@ public interface Model {
      * @see Model#updateFilteredStudentList(Predicate)
      */
     void updateFilteredStudentList(ModelPredicate<Student> predicate);
+
+    /**
+     * Updates the filter of the filtered bin item list to filter by the given {@code predicate}.
+     * If the predicate needs to use methods from {@code Model}, use
+     * {@link Model#updateFilteredBinItemList(ModelPredicate)} instead to ensure the list is automatically
+     * updated when the {@code Model}'s contents changes.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBinItemList(Predicate<BinItem> predicate);
+
+    /**
+     * @see Model#updateFilteredBinItemList(Predicate)
+     */
+    void updateFilteredBinItemList(ModelPredicate<BinItem> predicate);
 
     /**
      * Updates the filter of the filtered room list to filter by the given {@code predicate}.

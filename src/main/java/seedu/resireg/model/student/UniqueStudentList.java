@@ -42,11 +42,19 @@ public class UniqueStudentList implements Iterable<Student> {
      * The student must not already exist in the list.
      */
     public void add(Student toAdd) {
+        add(internalList.size(), toAdd);
+    }
+
+    /**
+     * Adds a student to the list at a given index.
+     * The student must not already exist in the list.
+     */
+    public void add(int index, Student toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateStudentException();
         }
-        internalList.add(toAdd);
+        internalList.add(index, toAdd);
     }
 
     /**

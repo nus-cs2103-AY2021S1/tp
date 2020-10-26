@@ -84,6 +84,11 @@ public class UserPrefsTest {
         public Path getResiRegFilePath() {
             return resiRegFilePath;
         }
+
+        @Override
+        public int getDaysStoredInBin() {
+            return 0;
+        }
     }
 
 }

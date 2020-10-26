@@ -17,6 +17,9 @@ public class TabbedView extends MainPanel {
     @FXML
     private Tab roomsTab;
 
+    @FXML
+    private Tab binsTab;
+
     public TabbedView() {
         super(FXML);
     }
@@ -29,12 +32,25 @@ public class TabbedView extends MainPanel {
         tabPane.getSelectionModel().select(roomsTab);
     }
 
+    private void showBinItemsPanel() {
+        tabPane.getSelectionModel().select(binsTab);
+    }
+
+
     @Override
     void handleToggle(TabView toggleView) {
-        if (toggleView == TabView.ROOMS) {
-            showRoomsPanel();
-        } else {
+        switch(toggleView) {
+        case STUDENTS:
             showStudentPanel();
+            break;
+        case ROOMS:
+            showRoomsPanel();
+            break;
+        case BIN_ITEMS:
+            showBinItemsPanel();
+            break;
+        default:
+            assert false : "Add another instance to TabView";
         }
     }
 }

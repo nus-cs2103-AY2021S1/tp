@@ -47,9 +47,10 @@ public class EditCommandTest {
         EditStudentDescriptor descriptor = new EditStudentDescriptorBuilder(editedStudent).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            editedStudent.getNameAsString());
 
-        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), model.getUserPrefs());
         expectedModel.setStudent(model.getFilteredStudentList().get(0), editedStudent);
         expectedModel.saveStateResiReg();
 
@@ -69,7 +70,8 @@ public class EditCommandTest {
             .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastStudent, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            editedStudent.getNameAsString());
 
         Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.setStudent(lastStudent, editedStudent);
@@ -83,7 +85,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditStudentDescriptor());
         Student editedStudent = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            editedStudent.getNameAsString());
 
         Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         expectedModel.saveStateResiReg();
@@ -100,7 +103,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
             new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedStudent);
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+            editedStudent.getNameAsString());
 
         Model expectedModel = new ModelManager(new ResiReg(model.getResiReg()), new UserPrefs());
         showStudentAtIndex(expectedModel, INDEX_FIRST_PERSON);

@@ -62,5 +62,6 @@
     "tagged" : [ ]
   } ],
   "rooms": [ ],
-  "allocations": []
+  "allocations": [],
+  "binItems": []
 }
