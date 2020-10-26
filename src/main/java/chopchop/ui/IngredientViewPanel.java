@@ -1,8 +1,11 @@
 package chopchop.ui;
 
+import java.util.Optional;
+
 import chopchop.model.ingredient.Ingredient;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -12,11 +15,13 @@ public class IngredientViewPanel extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "IngredientViewPanel.fxml";
-    private static final String EMPTY_PROMPT = "You do not have any ingredients yet.\nAdd one today:)";
+
+    private static final String EMPTY_PROMPT = "You do not have any ingredients yet.\nAdd one today (:";
+    private static final String FILTER_NO_MATCH = "No matching ingredients found";
+
     private static final int ROWS = 3;
     private static final int START_COL = -1;
 
-    private final TextDisplay textDisplay;
     // Only 3 rows of recipes will be displayed.
     private ObservableList<Ingredient> ingredientObservableList;
 
@@ -33,7 +38,6 @@ public class IngredientViewPanel extends UiPart<Region> {
     public IngredientViewPanel(ObservableList<Ingredient> ingredientList) {
         super(FXML);
         ingredientObservableList = ingredientList;
-        textDisplay = new TextDisplay(EMPTY_PROMPT);
         ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> fillDisplay());
         fillDisplay();
     }
@@ -64,18 +68,31 @@ public class IngredientViewPanel extends UiPart<Region> {
      */
     private void fillDisplay() {
         ingredientGridView.getChildren().clear();
-        if (isEmpty()) {
-            displayPrompt();
-        } else {
-            populate();
+
+        this.getPlaceholderText().ifPresentOrElse(
+            t -> this.ingredientGridView.add(new TextDisplay(t).getRoot(), 0, 0),
+            () -> this.populate()
+        );
+    }
+
+    // TODO: copy-paste from RecipeViewPanel
+    /**
+     * Gets the appropriate text to show in the pane if there are no recipes to show.
+     * If there are recipes to show, returns an empty optional.
+     */
+    private Optional<String> getPlaceholderText() {
+        if (this.ingredientObservableList instanceof FilteredList<?>) {
+            var src = ((FilteredList<?>) this.ingredientObservableList).getSource();
+
+            // if the source was not empty but the filter view is empty,
+            // then we have no results.
+            if (!src.isEmpty() && this.ingredientObservableList.isEmpty()) {
+                return Optional.of(FILTER_NO_MATCH);
+            }
         }
-    }
 
-    private void displayPrompt() {
-        ingredientGridView.add(textDisplay.getRoot(), 0, 0);
-    }
-
-    private boolean isEmpty() {
-        return ingredientGridView.getChildren().contains(textDisplay) || ingredientObservableList.isEmpty();
+        return this.ingredientObservableList.isEmpty()
+            ? Optional.of(EMPTY_PROMPT)
+            : Optional.empty();
     }
 }
