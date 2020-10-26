@@ -35,10 +35,11 @@ public class AddBidCommandTest {
         Bid validBid = new BidBuilder().build();
 
         CommandResult commandResult = new AddBidCommand(validBid).execute(modelStub);
-
         assertEquals(String.format(AddBidCommand.MESSAGE_SUCCESS, validBid), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validBid), modelStub.bidsAdded);
     }
+
+
 
     @Test
     public void execute_duplicateBid_throwsCommandException() {
@@ -76,7 +77,7 @@ public class AddBidCommandTest {
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single bid.
      */
     private class ModelStubWithBid extends ModelStub {
         private final Bid bid;

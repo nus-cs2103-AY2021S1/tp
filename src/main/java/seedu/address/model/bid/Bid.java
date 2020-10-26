@@ -27,24 +27,28 @@ public class Bid {
         this.bidAmount = bidAmount;
     }
 
+    /**
+     * retrieves the propertyId
+     * @return the property id of a given bid
+     */
     public PropertyId getPropertyId() {
         return propertyId;
     }
 
+    /**
+     * retrieves the bidderId
+     * @return the bidder id of a given bid
+     */
     public BidderId getBidderId() {
         return bidderId;
     }
 
+    /**
+     * retrieves the bid amount
+     * @return the bid amount of a given bid
+     */
     public Price getBidAmount() {
         return bidAmount;
-    }
-
-    public boolean isValidPropertyId() {
-        return false; //will check against propertyList to see if propertyId exists
-    }
-
-    public boolean isValidBidderId() {
-        return false; //will check against bidderList to see if propertyId exists
     }
 
     /**

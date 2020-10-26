@@ -28,16 +28,29 @@ public class BidBook implements ReadOnlyBidBook {
         resetData(toBeCopied);
     }
 
+    /**
+     * method to call the setBid method in UniqueBidList
+     * @param target bid to be replaced
+     * @param editedBid bid to replace target
+     */
     public void setBid(Bid target, Bid editedBid) {
         requireNonNull(editedBid);
 
         listOfBids.setBid(target, editedBid);
     }
 
+    /**
+     * method to call the setBids method in UniqueBidList
+     * @param bids the bids to set in the list
+     */
     public void setBids(List<Bid> bids) {
         this.listOfBids.setBids(bids);
     }
 
+    /**
+     * method to call the addBid method in UniqueBidList
+     * @param b bid to add to the list
+     */
     public void addBid(Bid b) {
         listOfBids.add(b);
     }

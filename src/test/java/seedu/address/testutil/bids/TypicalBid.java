@@ -19,6 +19,11 @@ public class TypicalBid {
             .withBidderId("B2")
             .withBidAmount(123450.20).build();
 
+    public static final Bid BID_C = new BidBuilder()
+            .withPropertyId("P3")
+            .withBidderId("B3")
+            .withBidAmount(10.99).build();
+
     private TypicalBid() {
 
     }
