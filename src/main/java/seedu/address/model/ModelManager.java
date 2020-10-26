@@ -212,7 +212,7 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-        // replace selecting meeting to be updated edited meeting if it is edited
+        // replace selecting meeting to be the edited meeting if it has been edited
         if (target.equals(selectedMeeting)) {
             setSelectedMeeting(editedMeeting);
         }
