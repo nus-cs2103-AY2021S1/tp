@@ -91,7 +91,52 @@ Format: `help`
 
 ### 5.3 Module features
 
-### 5.4 Tutorial group features
+### 5.4 Tutorial Group features
+
+#### 5.4.1 - View all Tutorial Groups in a Module: `viewTG`
+**You can display all Tutorial Groups in a Module with this command. You can indicated which Module's Tutorial Groups to view by entering its index in the current list.**
+
+Format: `viewTG MODULE_INDEX`
+Where MODULE_INDEX is the target Module's index in the currently displayed Module List.
+
+Example: `viewTG 1`
+
+**You can also use this command to return to the view of all Tutorial Groups in a Module whilst you are viewing all Students in a Tutorial Group by entering the command without an index.**
+
+Format: `viewTG`
+
+#### 5.4.2 - Add a Tutorial Group to a Module: `addTG`
+**You can add a Tutorial Group to the Module you are viewing using this command.**
+
+> You can only use this command when you are viewing all Tutorial Groups of the Module you intend to add the Tutorial Group to.
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `addTG`
+
+#### 5.4.3 - Find a Tutorial Group: `findTG`
+**if you need to quickly find a Tutorial from a list of Tutorials, use this command.**
+
+> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `findTG TARGET_TG_CODE`
+Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
+
+Example: `findTG B014`
+To search for a Tutorial Group with code B014
+
+#### 5.4.4 - Delete a Tutorial Group from a Module: `deleteTG`
+**You can use this command to delete a Tutorial Group you have previously added to a Module.**
+> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `deleteTG TG_INDEX`
+Where TG_INDEX is the index of the Tutorial Group you want to delete.
+
+Example: `deleteTG 2`
+To delete Tutorial Group with the index 2 in the currently displayed list.
+
+These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
 
 ### 5.5 Student features
 
