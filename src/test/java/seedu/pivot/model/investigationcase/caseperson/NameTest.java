@@ -1,12 +1,10 @@
-package seedu.pivot.model.investigationcase;
+package seedu.pivot.model.investigationcase.caseperson;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-
-import seedu.pivot.model.investigationcase.caseperson.Name;
 
 public class NameTest {
     private static final String ALPHANUMERIC = "ABC123";
