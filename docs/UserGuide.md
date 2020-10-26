@@ -11,7 +11,15 @@
    5.1 [Command format](#51-command-format)<br>
    5.2 [View help: `help`](#52-view-help-help)<br>
    5.3 [Module features](#53-module-features)<br>
+   --- 5.3.1 [Add a module: `addMod`](#531-add-a-module-addmod)<br>
+   --- 5.3.2 [Delete a module: `deleteMod`](#532-delete-a-module-deletemod)<br>
+   --- 5.3.3 [Find a module: `findMod`](#533-find-a-module-findmod)<br>
+   --- 5.3.4 [Edit a module: `editMod` [coming in v1.4]](534-edit-a-module-editmod-coming-in-v14)<br>
    5.4 [Tutorial group features](#54-tutorial-group-features)<br>
+   --- 5.4.1 [View a module: `viewTG`](#541-view-a-tg-viewTG)<br>
+   --- 5.4.2 [Add a tutorial group: `addTG`](#542-add-a-tg-addtg)<br>
+   --- 5.4.3 [Delete a tutorial group: `deleteTG`](#543-delete-a-tg-deletetg)<br>
+   --- 5.4.4 [Find a tutorial group: `findTG`](#544-find-a-tg-findtg)<br>
    5.5 [Student features](#55-student-features)<br>
    --- 5.5.1 [Add a student: `addStudent`](#551-add-a-student-addstudent)<br>
    --- 5.5.2 [Delete a student: `deleteStudent`](#552-delete-a-student-deletestudent)<br>
@@ -91,7 +99,127 @@ Format: `help`
 
 ### 5.3 Module features
 
-### 5.4 Tutorial group features
+Note: You should perform the following features while in the Module view.
+
+#### 5.3.1 Add a module: `addMod`
+
+Adds a module to the module list.
+
+Format: `addMod MODULE_CODE`
+
+Note: 
+
+- Modules should not share the same name.
+- It is recommended to use the exact code of the module.
+
+Example:
+
+- Adds a module _CS2100_ to the module list.
+    - `addMod CS2100`
+    
+Expected Outcome:
+
+- From the example above, the result box will display the following message:
+
+    New module added: CS2100
+    
+#### 5.3.2 Delete a module: `deleteMod`
+
+Deletes a module based on the given `INDEX`
+
+Format: `deleteMod INDEX`
+
+Note: 
+
+- `INDEX` refers to the index number shown in the Module view.
+- `INDEX` must be a positive integer starting from 1.
+- Deleting a module is **irreversible**.
+
+Example:
+
+- Deletes a module at index _2_ in the module list.
+    - `deleteMod 2`
+    
+Expected Outcome:
+
+- From the example above, the result box will display the following message:
+
+    Module deleted: _module at index 2_
+
+#### 5.3.3 Find a module: `findMod`
+
+Finds and lists all modules in the current Module view whose field contains any of the given keywords.
+
+Format: `findMod KEYWORD`
+
+Note:
+
+- `KEYWORD` is not case-sensitive (e.g. _cs2100_ will match _CS2100_).
+- The search will look for matches in the module's code.
+- If no module matching the keyword is found, the Module view will be empty.
+
+Example:
+
+- Finds a module with `KEYWORD` _cs2100_.
+
+    - `findMod cs2100`
+    
+Expected Outcome:
+
+- From the example given above, the Module view will display the modules matching the criteria:
+
+#### 5.3.4 Edit a module: `editMod` [coming in v1.4]
+
+Edits a module with the provided details.
+
+### 5.4 Tutorial Group features
+
+#### 5.4.1 - View all Tutorial Groups in a Module: `viewTG`
+**You can display all Tutorial Groups in a Module with this command. You can indicate which Module's Tutorial Groups to view by entering its index in the current list.**
+
+Format: `viewTG MODULE_INDEX`
+Where MODULE_INDEX is the target Module's index in the currently displayed Module List.
+
+Example: `viewTG 1`
+
+**You can also use this command to return to the view of all Tutorial Groups in a Module whilst you are viewing all Students in a Tutorial Group by entering the command without an index.**
+
+Format: `viewTG`
+
+#### 5.4.2 - Add a Tutorial Group to a Module: `addTG`
+**You can add a Tutorial Group to the Module you are viewing using this command.**
+
+> You can only use this command when you are viewing all Tutorial Groups of the Module you intend to add the Tutorial Group to.
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `addTG tg/TG_CODE`
+
+Example: `addTG tg/T03`
+
+#### 5.4.3 - Find a Tutorial Group: `findTG`
+**if you need to quickly find a Tutorial from a list of Tutorials, use this command.**
+
+> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `findTG TARGET_TG_CODE`
+Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
+
+Example: `findTG B014`
+To search for a Tutorial Group with code B014
+
+#### 5.4.4 - Delete a Tutorial Group from a Module: `deleteTG`
+**You can use this command to delete a Tutorial Group you have previously added to a Module.**
+> You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
+> Refer to 4.2.1 - View all Tutorial Groups in a Module
+
+Format: `deleteTG TG_INDEX`
+Where TG_INDEX is the index of the Tutorial Group you want to delete.
+
+Example: `deleteTG 2`
+To delete Tutorial Group with the index 2 in the currently displayed list.
+
+These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
 
 ### 5.5 Student features
 
@@ -196,7 +324,20 @@ for MacOS and Linux users.
 
 ### 7.1 Module commands
 
-### 7.2 Tutorial group commands
+Command | Summary
+--------|--------
+`addMod MODULE_CODE` | Adds a new module to the current Module view
+`deleteMod INDEX` | Deletes a module from the current Module view
+`findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view
+
+### 7.2 Tutorial Group commands
+
+Command | Summary
+--------|--------
+`viewTG MODULE_INDEX` | View all Tutorial Groups in a Module
+`addTG tg/TG_CODE` | Add a Tutorial Group to a Module
+`findTG TARGET_TG_CODE` | Find a Tutorial Group
+`deleteTG TG_INDEX` | Delete a Tutorial Group from a Module
 
 ### 7.3 Student commands
 
