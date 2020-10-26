@@ -74,7 +74,7 @@ public class EditFinanceCommand extends Command {
         assert financeRecord != null;
 
         double updatedAmount = editFinanceDescriptor.getAmount().orElse(financeRecord.getAmount());
-        LocalDateTime updatedDatetime = editFinanceDescriptor.getDatetime().orElse(financeRecord.getDatetime());
+        LocalDateTime updatedDatetime = editFinanceDescriptor.getDatetime().orElse(financeRecord.getDateTime());
 
         return new FinanceRecord(updatedAmount, updatedDatetime);
     }

@@ -79,11 +79,11 @@ public class FindFinanceCommand extends Command {
                 return false;
             }
 
-            if (afterDatetime.isPresent() && record.getDatetime().toLocalDate().isBefore(afterDatetime.get())) {
+            if (afterDatetime.isPresent() && record.getDateTime().toLocalDate().isBefore(afterDatetime.get())) {
                 return false;
             }
 
-            if (beforeDatetime.isPresent() && record.getDatetime().toLocalDate().isAfter(beforeDatetime.get())) {
+            if (beforeDatetime.isPresent() && record.getDateTime().toLocalDate().isAfter(beforeDatetime.get())) {
                 return false;
             }
 

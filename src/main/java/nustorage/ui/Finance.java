@@ -38,7 +38,7 @@ public class Finance extends UiPart<Region> {
         dateAndTimeCol.setCellValueFactory(new PropertyValueFactory<>("datetime"));
         idCol.setCellValueFactory(id -> {
             SimpleStringProperty property = new SimpleStringProperty();
-            property.setValue(String.valueOf(id.getValue().getNumberId()));
+            property.setValue(String.valueOf(id.getValue().getUiUsableIndex()));
             return property;
         });
         financeIdCol.setCellValueFactory(id -> {
@@ -56,7 +56,7 @@ public class Finance extends UiPart<Region> {
     private List<FinanceRecord> parseFinanceList(Logic logic) {
         List<FinanceRecord> list = new ArrayList<>();
         for (int i = 0; i < logic.getFilteredFinanceList().size(); i++) {
-            logic.getFilteredFinanceList().get(i).setId(i + 1);
+            logic.getFilteredFinanceList().get(i).setUiUsableIndex(i + 1);
             list.add(logic.getFilteredFinanceList().get(i));
         }
         return list;
