@@ -100,7 +100,7 @@ Figure 3.1 Track Gui
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
 commands to add or delete modules, tutorial groups, or students you are teaching. To use a feature, simply
 type the command into the command box (see Figure 3.2) and press _Enter_ to execute it. Further explanations of 
-all the commands are listed down below in [Features](#5-features).
+all the commands are listed down below in [Features](#4-features).
 
 ![CommandExample](images/CommandExample.png) <br>
 Figure 3.2 Command example
@@ -108,7 +108,7 @@ Figure 3.2 Command example
 ### 3.3 Switching Views
 __Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to `Tutorial Groups` (Figure 3.32) 
 to `Students` (Figure 3.33) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
-The correct syntax for these commands are shown down below in [Features](#5-features).
+The correct syntax for these commands are shown down below in [Features](#4-features).
 
 ![ModuleView](images/ModuleView.png) <br>
 Figure 3.31 Module View
@@ -348,7 +348,7 @@ Edits a student with the provided details.
 
 ## 5. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br> 
-__A:__ This happens when the input command is of the wrong syntax or doesn't exist. U may go to the [Command Summary](#5-command-summary) to 
+__A:__ This happens when the input command is of the wrong syntax or does not exist. You may go to the [Command Format](#23-command-format) to 
 view the list of commands and their accepted formats.
 
 __Q:__ How do I save my data? <br>
@@ -365,23 +365,23 @@ for MacOS and Linux users.
 
 Command | Summary
 --------|--------
-`addMod MODULE_CODE` | Adds a new module to the current Module view
-`deleteMod INDEX` | Deletes a module from the current Module view
-`findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view
+`addMod MODULE_CODE` | Adds a new module to the current Module view. 
+`deleteMod INDEX` | Deletes a module from the current Module view. 
+`findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view. 
 
 ### 6.2 Tutorial Group commands
 
 Command | Summary
 --------|--------
-`viewTG MODULE_INDEX` | View all Tutorial Groups in a Module
-`addTG tg/TG_CODE` | Add a Tutorial Group to a Module
-`findTG TARGET_TG_CODE` | Find a Tutorial Group
-`deleteTG TG_INDEX` | Delete a Tutorial Group from a Module
+`viewTG MODULE_INDEX` | View all Tutorial Groups in a Module. 
+`addTG tg/TG_CODE` | Add a Tutorial Group to a Module. 
+`findTG TARGET_TG_CODE` | Find a Tutorial Group. 
+`deleteTG TG_INDEX` | Delete a Tutorial Group from a Module. 
 
 ### 6.3 Student commands
 
 Command | Summary
 --------|--------
-`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view
-`deleteStudent INDEX` | Deletes a student from the current Student view
-`findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view
+`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view. 
+`deleteStudent INDEX` | Deletes a student from the current Student view. 
+`findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view. 
