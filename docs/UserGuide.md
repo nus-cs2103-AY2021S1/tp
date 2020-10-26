@@ -15,7 +15,7 @@ track of inventory items and pending deliveries, **OneShelf** is for you.
 <br><br>
 This User Guide will provide a general overview of installation, existing features, and a sneak peek for upcoming features.
 
-
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SvpVA8cPAJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick start
