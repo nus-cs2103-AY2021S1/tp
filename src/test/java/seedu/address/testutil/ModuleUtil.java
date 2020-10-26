@@ -6,19 +6,24 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.model.module.Module;
 
 /**
  * A utility class for Person.
  */
-public class PersonUtil {
+public class ModuleUtil {
 
     /**
      * Returns an add command string for adding the {@code module}.
      */
     public static String getAddCommand(Module module) {
         return AddModuleCommand.COMMAND_WORD + " " + getModuleDetails(module);
+    }
+
+    public static String getDeleteCommand(int index) {
+        return DeleteModuleCommand.COMMAND_WORD + " " + index;
     }
 
     /**

@@ -152,7 +152,6 @@ public class ArgumentTokenizer {
                     prefixPositions.get(i), prefixPositions.get(i + 1));
             argMultimap.put(prefix, prefixArgument);
         }
-
         return argMultimap;
     }
 
