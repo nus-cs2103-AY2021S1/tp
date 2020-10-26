@@ -39,6 +39,7 @@
                     <RowConstraints vgrow="NEVER"/>
                     <RowConstraints vgrow="ALWAYS"/>
                     <RowConstraints/>
+                    <RowConstraints/>
                 </rowConstraints>
 
                 <MenuBar fx:id="menuBar"
@@ -66,40 +67,16 @@
                     </padding>
                 </StackPane>
 
-                <TabPane fx:id="tabPane"
-                         tabClosingPolicy="UNAVAILABLE"
-                         GridPane.columnIndex="1" GridPane.rowIndex="2" GridPane.rowSpan="2">
-
-                    <!-- Students tab -->
-                    <Tab fx:id="studentsTab" text="Students">
-                        <VBox fx:id="studentList"
-                              VBox.vgrow="ALWAYS"
-                              styleClass="pane-with-border"
-                              minWidth="340" prefWidth="340">
-                            <padding>
-                                <Insets top="10" right="10" bottom="10" left="10"/>
-                            </padding>
-                            <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                        </VBox>
-                    </Tab>
-                    <!-- Rooms tab -->
-                    <Tab fx:id="roomsTab" text="Rooms">
-                        <VBox fx:id="roomList"
-                              VBox.vgrow="ALWAYS"
-                              styleClass="pane-with-border"
-                              minWidth="340" prefWidth="340">
-                            <padding>
-                                <Insets top="10" right="10" bottom="10" left="10"/>
-                            </padding>
-                            <StackPane fx:id="roomListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                        </VBox>
-                    </Tab>
-                </TabPane>
+                <StackPane fx:id="mainPanelPlaceholder"
+                            VBox.vgrow="ALWAYS"
+                            styleClass="pane-with-border"
+                            GridPane.rowSpan="1" GridPane.columnSpan="1" GridPane.rowIndex="2" GridPane.columnIndex="1">
+                </StackPane>
 
                 <StackPane fx:id="commandBoxPlaceholder"
                            VBox.vgrow="NEVER"
                            styleClass="pane-with-border"
-                           GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2">
+                           GridPane.columnIndex="0" GridPane.rowIndex="3" GridPane.columnSpan="2">
                     <padding>
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
@@ -107,7 +84,7 @@
 
                 <StackPane fx:id="statusbarPlaceholder"
                            VBox.vgrow="NEVER"
-                           GridPane.columnIndex="0" GridPane.rowIndex="5" GridPane.columnSpan="2"/>
+                           GridPane.columnIndex="0" GridPane.rowIndex="4" GridPane.columnSpan="2"/>
             </GridPane>
         </Scene>
     </scene>
