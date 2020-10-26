@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -41,7 +42,7 @@ public class HelpCommand extends Command {
         this.commandWord = commandWord;
     }
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         switch(commandWord) {
         case CdCommand.COMMAND_WORD:
             return new CommandResult(CdCommand.MESSAGE_USAGE);
@@ -70,7 +71,7 @@ public class HelpCommand extends Command {
         case "":
             return new CommandResult(SHOWING_HELP_MESSAGE);
         default:
-            return new CommandResult(String.format(INVALID_KEYWORD_MESSAGE, commandWord));
+            throw new CommandException(String.format(INVALID_KEYWORD_MESSAGE, commandWord));
         }
     }
 
