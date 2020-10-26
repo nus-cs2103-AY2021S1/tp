@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddExerciseFromTemplate;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
@@ -18,7 +17,17 @@ import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
 
+
+/**
+ * Parse input arguments and creates a new AddExerciseFromTemplate object
+ */
 public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand> {
+    /**
+     * Parses the given {@code String} of arguments in the context of the AddExerciseFromTemplateCommand
+     * and returns an AddExerciseFromTemplateCommand object for execution.
+     *
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TEMP, PREFIX_DATE, PREFIX_CALORIES);
@@ -55,6 +64,10 @@ public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand>
         return new AddCommand(exercise);
     }
 
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }

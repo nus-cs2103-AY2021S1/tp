@@ -10,10 +10,7 @@ import seedu.address.logic.parser.AddTemplateCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TemplateList {
-    public static Template pushUp = new Template("push up", "half an hour", 100);
-    public static Template running = new Template("running", "half an hour", 180);
-    public static Template sitUp = new Template("sit up", "half an hour", 100);
-    public static  ArrayList<Template> list = new ArrayList<Template>();
+    private static ArrayList<Template> list = new ArrayList<Template>();
 
     public static List<Template> getList() {
         return list;
@@ -33,7 +30,9 @@ public class TemplateList {
         list.add(template);
     }
 
-
+    /**
+     * Load the template list from the file
+     */
     public static void load() {
         String filePath = "data/template.txt";
         File f = new File(filePath);
@@ -49,6 +48,10 @@ public class TemplateList {
         }
     }
 
+    /**
+     * Read from the template file
+     * @param f file to be read from
+     */
     public static void readTask(File f) {
         list = new ArrayList<>();
         AddTemplateCommandParser parser = new AddTemplateCommandParser();
@@ -65,6 +68,11 @@ public class TemplateList {
         }
     }
 
+    /**
+     * Check whether the given template is equal to any of the template in the list
+     * @param template template to check
+     * @return true if the template is equal to some template in the list, false otherwise
+     */
     public static boolean checkEqual(Template template) {
         for (int i = 0; i < list.size(); i++) {
             if (template.equals(list.get(i))) {

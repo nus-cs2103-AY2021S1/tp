@@ -41,6 +41,7 @@ public class AddTemplateCommand extends CommandForExercise {
         if (TemplateList.checkEqual(toCreate)) {
             throw new CommandException("The template already exists.");
         }
+
         model.addTemplate(toCreate);  // add to list
         Template.writeToFile(TemplateList.getList()); // write to file
 

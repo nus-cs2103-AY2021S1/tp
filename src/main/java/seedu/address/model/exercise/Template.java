@@ -5,10 +5,17 @@ import java.io.IOException;
 import java.util.List;
 
 public class Template {
-    public String name;
-    public String description;
-    public Integer calories;
+    private String name;
+    private String description;
+    private Integer calories;
 
+    /**
+     * Template constructor
+     *
+     * @param name        name of the template
+     * @param description description of the template
+     * @param calories    calories of the template
+     */
     public Template(String name, String description, Integer calories) {
         this.name = name;
         this.description = description;
@@ -39,13 +46,18 @@ public class Template {
         this.calories = calories;
     }
 
+    /**
+     * toString method of the template class
+     *
+     * @return the string representation of the template
+     */
     @Override
     public String toString() {
-        return "Template{" +
-                "name:'" + name + '\'' +
-                ", description:'" + description + '\'' +
-                ", calories:" + calories +
-                '}';
+        return "Template{"
+                + "name:'" + name + '\''
+                + ", description:'" + description
+                + '\'' + ", calories:"
+                + calories + '}';
     }
 
     public String parseToArgument() {
@@ -69,10 +81,6 @@ public class Template {
     @Override
     public boolean equals(Object toCreate) {
         Template template = (Template) toCreate;
-//        return toCreate == this // short circuit if same object
-//                || (this.getName().equals(template.getName()) &&
-//                this.getDescription().equals(template.getDescription()) &&
-//                this.getCalories().equals(template.getCalories())); // state check
         return this.getName().equals(template.getName());
     }
 }
