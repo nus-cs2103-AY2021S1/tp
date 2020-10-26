@@ -38,13 +38,12 @@ public class EvaParserTest {
 
     private final EvaParser parser = new EvaParser();
 
-    // TODO
-    /*@Test
+    @Test
     public void parseCommand_addStaff() throws Exception {
         Staff staff = new StaffBuilder().build();
         AddStaffCommand command = (AddStaffCommand) parser.parseCommand(getAddStaffCommand(staff));
         assertEquals(new AddStaffCommand(staff), command);
-    }*/
+    }
 
     @Test
     public void parseCommand_clear() throws Exception {
