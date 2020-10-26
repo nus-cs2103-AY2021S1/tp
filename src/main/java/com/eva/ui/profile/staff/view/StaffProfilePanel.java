@@ -7,8 +7,8 @@ import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.staff.Staff;
 import com.eva.ui.UiPart;
 import com.eva.ui.profile.BasicInfoDisplay;
-
 import com.eva.ui.profile.CommentListPanel;
+
 import javafx.fxml.FXML;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;

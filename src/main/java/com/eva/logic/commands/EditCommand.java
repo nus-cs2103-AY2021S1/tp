@@ -141,7 +141,7 @@ public class EditCommand extends Command {
                     updatedTags, newComments, updatedInterviewDate, applicationStatus);
         }
         return new Person(updatedName, updatedPhone,
-                updatedEmail, updatedAddress, updatedTags,newComments);
+                updatedEmail, updatedAddress, updatedTags, newComments);
     }
 
     /**

@@ -6,8 +6,8 @@ import java.util.Objects;
 import java.util.Optional;
 
 import com.eva.model.comment.Comment;
-import com.eva.model.comment.CommentNotFoundException;
-import com.eva.model.person.UniqueCommentsList;
+import com.eva.model.comment.exceptions.CommentNotFoundException;
+import com.eva.model.comment.view.UniqueCommentsList;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.person.staff.leave.UniqueLeaveList;

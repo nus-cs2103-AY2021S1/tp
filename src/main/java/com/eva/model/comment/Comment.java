@@ -50,7 +50,7 @@ public class Comment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, date, title.getTitle());
+        return Objects.hash(description, date, title.getTitleDescription());
     }
 
     /**

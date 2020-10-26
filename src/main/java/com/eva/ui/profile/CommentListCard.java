@@ -33,7 +33,7 @@ public class CommentListCard extends UiPart<Region> {
         super(FXML);
         this.comment = comment;
         id.setText(displayedIndex + ". ");
-        title.setText(comment.getTitle().toString());
+        title.setText(comment.getTitle().getTitleDescription());
         date.setText(dateToString(comment.getDate()));
         description.setText(comment.getDescription());
     }

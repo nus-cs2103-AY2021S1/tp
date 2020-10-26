@@ -1,4 +1,4 @@
-package com.eva.model.person;
+package com.eva.model.comment.view;
 
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.Set;
 
 import com.eva.model.comment.Comment;
-import com.eva.model.comment.CommentNotFoundException;
-import com.eva.model.comment.DuplicateCommentException;
+import com.eva.model.comment.exceptions.CommentNotFoundException;
+import com.eva.model.comment.exceptions.DuplicateCommentException;
+import com.eva.model.person.Person;
 import com.eva.model.person.exceptions.DuplicatePersonException;
 
-import com.eva.model.person.staff.leave.Leave;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 

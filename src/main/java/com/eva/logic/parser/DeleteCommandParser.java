@@ -11,7 +11,6 @@ import java.util.Optional;
 import com.eva.commons.core.Messages;
 import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.Command;
-import com.eva.logic.commands.DeleteApplicantCommand;
 import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.parser.comment.DeleteCommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
