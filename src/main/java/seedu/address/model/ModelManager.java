@@ -4,13 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.student.NameComparator;
 import seedu.address.model.student.Student;
 
 /**
@@ -22,6 +25,7 @@ public class ModelManager implements Model {
     private final Reeve reeve;
     private final UserPrefs userPrefs;
     private final FilteredList<Student> filteredStudents;
+    private final SortedList<Student> sortedStudents;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -35,6 +39,7 @@ public class ModelManager implements Model {
         this.reeve = new Reeve(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.reeve.getStudentList());
+        sortedStudents = new SortedList<>(this.filteredStudents, new NameComparator());
     }
 
     public ModelManager() {
@@ -127,6 +132,21 @@ public class ModelManager implements Model {
     public void updateFilteredStudentList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredStudents.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Student> getSortedStudentList() {
+        return sortedStudents;
+    }
+
+    @Override
+    public void updateSortedStudentList(Comparator<? super Student> comparator) {
+        requireNonNull(comparator);
+        sortedStudents.setComparator(comparator);
     }
 
     @Override

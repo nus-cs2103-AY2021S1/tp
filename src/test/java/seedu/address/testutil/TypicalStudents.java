@@ -43,28 +43,33 @@ public class TypicalStudents {
     public static final Student ALICE = new StudentBuilder().withName("Alice Pauline")
             .withSchool("Anderson Secondary").withYear(SchoolType.SECONDARY, 3).withPhone("94351253")
             .withClassVenue("123, Jurong West Ave 6, #08-111")
+            .withClassTime("5 1500-1700")
+            .withDetails("Clever")
             .withDetails("owesMoney", "friends")
             .build();
     public static final Student BENSON = new StudentBuilder().withName("Benson Meier")
             .withSchool("Pei Hwa Secondary").withYear(SchoolType.SECONDARY, 2).withPhone("98765432")
-            .withClassTime("2 1200-1430")
+            .withClassTime("2 1230-1430")
             .build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz")
             .withSchool("Catholic High").withYear(SchoolType.SECONDARY, 5).withPhone("95352563")
             .withFee("450.50")
+            .withClassTime("1 1500-1700")
             .build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier")
             .withSchool("Methodist Girls School").withYear(SchoolType.SECONDARY, 1).withPhone("87652533")
-            .withPaymentDate("28/2/2018")
+            .withPaymentDate("28/2/2018").withClassTime("1 1700-1900")
             .build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer")
             .withSchool("River Valley High").withYear(SchoolType.JC, 2).withPhone("9482224")
-            .withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
+            .withSolved(DEFAULT_SOLUTION, DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH).withClassTime("1 1900-2100")
             .build();
     public static final Student FIONA = new StudentBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withSchool("Raffles Girls School").withYear(SchoolType.SECONDARY, 2).build();
+            .withSchool("Raffles Girls School").withYear(SchoolType.SECONDARY, 2)
+            .withClassTime("3 1200-1430").build();
     public static final Student GEORGE = new StudentBuilder().withName("George Best").withPhone("9482442")
-            .withSchool("Montford Secondary").withYear(SchoolType.SECONDARY, 4).build();
+            .withSchool("Montford Secondary").withYear(SchoolType.SECONDARY, 4)
+            .withClassTime("2 1000-1230").build();
 
     // Manually added
     public static final Student HOON = new StudentBuilder().withName("Hoon Meier").withPhone("8482424")

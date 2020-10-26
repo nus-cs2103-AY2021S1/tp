@@ -222,6 +222,22 @@ The following activity diagram summarises the flow of events when `OverdueComman
 
 Figure \___. Activity diagram for `OverdueCommand` execution
 
+#### 5.1.6 Schedule Command
+
+This section describes the operations that `ScheduleCommand` performs.
+
+1. Upon successful parsing of the user input date into `LocalDate` , the `ScheduleCommand#execute(Model model)` method is called.
+2. The method `LocalDate#getDayOfWeek()` is then called on the `LocalDate` that is parsed from the user input to get the `dayOfWeek`.
+3. The `dayOfWeek` is then used to create a `Predicate<Student>` to check if the student has the same day as the date.
+4. Then the method `Model#updateFilteredPersonList(Predicate<Student>)` is then called to filter students based on predicate created in **Step 3**.
+5. The StudentListPanel is then populated with the students that have lesson on the day.
+
+The following activity diagram summarizes the flow of events when the `ScheduleCommand` is being executed:
+
+![ScheduleActivity](images/ScheduleActivityDiagram.png)
+
+Figure \___. Activity diagram for `ScheduleCommand` execution
+
 ### 5.2 Student questions features
 
 The student questions feature keeps track of questions raised by a student to his tutor. The features comprises of the following commands:
@@ -301,6 +317,24 @@ The following activity diagram summarises the flow of events when `DeleteQuestio
 ![DeleteQuestionActivity](images/DeleteQuestionActivityDiagram.png)
 
 Figure \___. Activity diagram for `DeleteQuestionCommand` execution
+
+### 5.3 Student Find Command
+
+This is an explanation of how `FindCommand` works.
+
+This is an activity diagram showing the high level idea of how `FindCommand` is executed.
+
+![FindCommandActivityDiagram](images/FindCommandActivityDiagram.png)
+
+This is a sequence diagram together with an explanation of the implementation.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+ 1. After the `FindCommand`  is created by parsing user input, `FindCommand::execute` is called.
+ 2. The method then calls `getPredicates()` of the `FindStudentDescriptor` stored within `FindCommand` to obtain a `List<Predicate>` to search with.
+ 3. The predicates within `List<Predicate>`are then combined into `consolidatedPredicate`.
+ 4. The `FilteredList<Student>` within the `Model` is then updated using `Model#updateFilteredPersonList(Predicate predicate)` for display.
+ 5. A new `CommandResult` will be returned with the success message.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -562,7 +596,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC08: Finding all students with overdue tuition fees**
+**UC07: Finding all students with overdue tuition fees**
 
 **MSS**
 
