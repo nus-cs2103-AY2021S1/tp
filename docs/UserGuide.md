@@ -71,13 +71,15 @@ Format: `help`
 
 Adds a student to Reeve.
 
-Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
+Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]`
 
 <div markdown="block" class="alert alert-info">
 
 :information_source: The format of TIME is {int: day_of_week} {int: start_time}-{int: end_time}<br>
 
 </div>
+
+* `LAST_PAYMENT_DATE` defaults to today's date if not included.
 
 Examples:
 * `add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
