@@ -165,4 +165,9 @@ public abstract class ModelStub implements Model {
     public void switchModuleList() {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public int getSemester() {
+        throw new AssertionError("This method should not be called.");
+    }
 }

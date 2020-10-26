@@ -56,6 +56,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public int getSemester() {
+        return model.getSemester();
+    }
+
+    @Override
     public ReadOnlyAddressBook getAddressBook() {
         return model.getAddressBook();
     }

@@ -161,8 +161,13 @@ public interface Model {
 
     /**
      * Switches the active module list.
-     * */
+     */
     void switchModuleList();
+
+    /**
+     * Returns the active semester.
+     */
+    int getSemester();
 
     /** Returns an unmodifiable view of the filtered person list. */
     ObservableList<Module> getFilteredModuleList();

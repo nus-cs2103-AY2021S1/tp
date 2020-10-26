@@ -194,6 +194,12 @@ public class ModelManager implements Model {
     @Override
     public void switchModuleList() {
         addressBook.switchModuleList();
+        System.out.println(filteredModules.get(0).getModuleCode().moduleCode);
+    }
+
+    @Override
+    public int getSemester() {
+        return addressBook.getSemester();
     }
 
     //=========== Filtered Person List Accessors =============================================================
