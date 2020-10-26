@@ -46,6 +46,8 @@ import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
+import seedu.stock.logic.commands.SourceQuantityDistributionStatisticsCommand;
+import seedu.stock.logic.commands.SourceStatisticsCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 import seedu.stock.logic.commands.UnbookmarkCommand;
@@ -99,7 +101,8 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY,
-                        PREFIX_SORT_ORDER, PREFIX_SORT_FIELD, PREFIX_NOTE, PREFIX_NOTE_INDEX
+                        PREFIX_SORT_ORDER, PREFIX_SORT_FIELD, PREFIX_NOTE, PREFIX_NOTE_INDEX,
+                        PREFIX_STATISTICS_TYPE
                 );
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
@@ -513,17 +516,28 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param argMultimap The parsed user input fields.
      */
     private void generateStatisticsSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_STATISTICS_TYPE);
         toBeDisplayed.append(STATISTICS_COMMAND_WORD);
 
-        for (int i = 0; i < allowedPrefixes.size(); i++) {
-            Prefix currentPrefix = allowedPrefixes.get(i);
-            if (!argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+        Prefix typePrefix = PREFIX_STATISTICS_TYPE;
+        String[] typeDescriptions = new String[]{"source", "source-qd-"};
+
+        if (!argMultimap.getValue(typePrefix).isPresent()) {
+            toBeDisplayed.append(" " + typePrefix + CliSyntax.getDefaultDescription(typePrefix));
+        } else {
+            String description = argMultimap.getValue(typePrefix).get();
+            String suggestedDescription = description;
+            int bestEditDistanceSoFar = Integer.MAX_VALUE;
+            for (String typeDescription : typeDescriptions) {
+                int currentEditDistance = SuggestionUtil.minimumEditDistance(description, typeDescription);
+                if (currentEditDistance < bestEditDistanceSoFar) {
+                    bestEditDistanceSoFar = currentEditDistance;
+                    suggestedDescription = typeDescription;
+                }
             }
-            List<String> keywords = argMultimap.getAllValues(PREFIX_STATISTICS_TYPE);
-            for (String statisticsType : keywords) {
-                toBeDisplayed.append(" " + currentPrefix + statisticsType);
+            if (suggestedDescription.equals(typeDescriptions[0])) {
+                toBeDisplayed.append(" " + typePrefix + suggestedDescription);
+            } else {
+                toBeDisplayed.append(" " + typePrefix + suggestedDescription + "<source-company>");
             }
         }
 
