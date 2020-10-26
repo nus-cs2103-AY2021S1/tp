@@ -25,7 +25,6 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Updated the GUI color scheme (Pull requests [\#82](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/82), [\#70](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/70))
-  * Wrote additional tests for existing features to increase coverage from 88% to 92% (Pull requests [\#36](), [\#38]())
 
 * **Documentation**:
   * User Guide:
@@ -35,13 +34,5 @@ Given below are my contributions to the project.
     * Added implementation details of the `onFocus command suggestion list` feature.
 
 * **Community**:
-  * PRs reviewed (with non-trivial review comments): [\#12](), [\#32](), [\#19](), [\#42]()
-  * Contributed to forum discussions (examples: [1](), [2](), [3](), [4]())
-  * Reported bugs and suggestions for other teams in the class (examples: [1](), [2](), [3]())
-  * Some parts of the history feature I added was adopted by several other class mates ([1](), [2]())
-
-* **Tools**:
-  * Integrated a third party library (Natty) to the project ([\#42]())
-  * Integrated a new Github plugin (CircleCI) to the team repo
-
-* _{you can add/remove categories in the list above}_
+  * PRs reviewed (with non-trivial review comments): [\#40](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/40
+  ), [\#62](https://github.com/AY2021S1-CS2103-F10-3/tp/pull/62)
