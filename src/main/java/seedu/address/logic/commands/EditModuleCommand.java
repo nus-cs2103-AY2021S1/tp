@@ -78,7 +78,7 @@ public class EditModuleCommand extends Command {
         if (moduleToEdit.isSameModule(editedModule)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
-
+        model.updateModuleInMeetingBook(moduleToEdit, editedModule);
         model.setModule(moduleToEdit, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));

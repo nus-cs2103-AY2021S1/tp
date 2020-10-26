@@ -210,4 +210,12 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
+
+    /**
+     * Updates all meetings in the module book if the required module was part of any meetings. Will delete the meeting
+     * if all the members of the new module are not in the meeting or if the module is deleted.
+     * @param modules First argument is the module to update which is either deleted or replaced. If replaced,
+     * second argument is the edited module who will replace the deleted module.
+     */
+    void updateModuleInMeetingBook(Module ...modules);
 }

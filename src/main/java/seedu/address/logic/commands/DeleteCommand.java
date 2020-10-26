@@ -61,6 +61,7 @@ public class DeleteCommand extends Command {
                     return updatedMeeting;
                 }).collect(Collectors.toList());
         model.updatePersonInMeetingBook(personToDelete);
+        model.updatePersonInModuleBook(personToDelete);
 
         // todo update module book
         //        List<Meeting> filteredModuleList = model.getFilteredModuleList().stream()

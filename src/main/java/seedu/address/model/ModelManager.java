@@ -265,16 +265,44 @@ public class ModelManager implements Model {
 
         filteredModules.stream().filter(module -> module.getClassmates()
                 .contains(personToUpdate)).forEach(module -> {
-            Set<Person> updatedMembers = new HashSet<>(module.getClassmates());
-            updatedMembers.remove(personToUpdate);
-            if (isReplacement) {
-                assert persons.length == 2;
-                Person editedPerson = persons[1];
-                updatedMembers.add(editedPerson);
-            }
-            Module updatedModule = new Module(module.getModuleName(), updatedMembers);
-            moduleBook.setModule(module, updatedModule);
-        });
+                    Set<Person> updatedMembers = new HashSet<>(module.getClassmates());
+                    updatedMembers.remove(personToUpdate);
+                    if (isReplacement) {
+                        assert persons.length == 2;
+                        Person editedPerson = persons[1];
+                        updatedMembers.add(editedPerson);
+                    }
+                    Module updatedModule = new Module(module.getModuleName(), updatedMembers);
+                    moduleBook.setModule(module, updatedModule);
+                });
+    }
+
+    @Override
+    public void updateModuleInMeetingBook(Module... modules) {
+        requireNonNull(modules);
+        Module moduleToUpdate = modules[0];
+        boolean isReplacement = modules.length > 1;
+
+        filteredMeetings.stream().filter(meeting -> meeting.getModule()
+                .equals(moduleToUpdate)).forEach(meeting -> {
+                    Set<Person> updatedMembers = new HashSet<>();
+                    if (isReplacement) {
+                        assert modules.length == 2;
+                        Module editedmodule = modules[1];
+                        for (Person person : editedmodule.getClassmates()) {
+                            if (meeting.getParticipants().contains(person)) {
+                                updatedMembers.add(person);
+                            }
+                        }
+                    }
+                    if (updatedMembers.size() == 0) {
+                        meetingBook.removeMeeting(meeting);
+                    } else {
+                        Meeting updatedMeeting = new Meeting(modules[1], meeting.getMeetingName(),
+                                meeting.getDate(), meeting.getTime(), updatedMembers);
+                        meetingBook.setMeeting(meeting, updatedMeeting);
+                    }
+                });
     }
 
     //=========== Filtered Person List Accessors =============================================================
