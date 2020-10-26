@@ -349,6 +349,8 @@ Format: `exit`
 
 ## 4. Command summary
 
+This section provides a summary of all the commands in **Reeve**.
+
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]​` <br> e.g., `add n/John Doe p/98765432 s/Woodlands Secondary School y/Secondary 2 v/347 Woodlands Ave 3, Singapore 730347 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
@@ -362,7 +364,9 @@ Action | Format, Examples
 **Delete exam** | `exam delete STUDENT_INDEX i/EXAM_INDEX` <br> e.g. `exam delete 2 i/5`
 
 ## 5. Glossary
-Term | Meaning
+
+The following table provides the definitions of the various terms used in this User Guide.
+Term | Definition
 --------|------------------
 
 ## 6. FAQ
