@@ -14,8 +14,8 @@ Command Line Interface (CLI) with a Graphical User Interface (GUI), Common Cents
 faster than most traditional GUI expense-trackers out there!
 
 ### User Guide Overview
-This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, 
-tips and tricks on how to maximise your experience with Common Cents and clarify most doubts that users may have.
+This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with Common Cents and clarify most doubts that you may have.
+
 The Common Cents interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
 * `Application` level commands deal with interactions with the app itself.<br>
 * `Account` level commands deal with managing the different accounts in the app.<br>
@@ -69,7 +69,8 @@ Important cautions that needs to be known before using the feature.
 
 1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample expenses and revenues.<br>
+1. Double-click the file to start the app. You should see the GUI similar to the one below in a few seconds. 
+Note how the app contains some sample expenses and revenues.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -83,10 +84,11 @@ Important cautions that needs to be known before using the feature.
 
 --------------------------------------------------------------------------------------------------------------------
 # User Interface Overview
-Figure below shows the default user interface (UI) of Common Cents. You can find the description for each UI components in the 
-table below.<br> 
+As you can see, **figure** below shows the default user interface (UI) of *Common Cents* with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
 <p align="center"> <sub> <b>Figure</b>: Default user interface of Common Cents </sub> </p>
+
+You can find the description for each UI component shown in the table below.<br> 
 
 UI component | Description
 --------|------------------
@@ -131,7 +133,7 @@ available! This will better your experience with Common Cents and your usage of 
 
 <div markdown="block" class="alert alert-info">
 
-**Notes about the command format:**<br>
+:information_source: **About the command format:**<br>
 
 * Words in UPPERCASE are the parameters to be supplied by the user.<br>
   e.g. in `add c/CATEGORY...`, `CATEGORY` is a parameter which can be used as `add c/REVENUE...`
@@ -145,6 +147,9 @@ available! This will better your experience with Common Cents and your usage of 
 </div>
 
 The commands are separated into three categories: App-Level commands, Entry-Level commands and Account-Level Commands.
+
+Each level interacts with _Common Cents_ differently to maximise your experience. More details about each level are 
+found in its own section below.  
 
 ## App-Level Commands
 App-Level commands deals with interactions with the app, Common Cents, itself.
@@ -172,15 +177,18 @@ You can click on the `Copy URL ` button to copy the link to clipboard and paste 
 
 You can use this command when you are done with what you need to do and want to close the application.
 
-Format: `exit`
+**Format:** `exit`
  
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
 
-* `exit`: Returns exit message then quits the program.
+* `exit`: Returns exit message then quits the program in 1.5 seconds.
 
 </div>
+
+![exitCommand](images/commands/exitCommand.png)
+<p align="center"> <sub> <b>Figure</b>: Exit message appears in Result display </sub> </p>
 
 ## Entry-Level Commands
 Entry-Level commands involves managing the entries which are either expenses or revenues in an account. 
@@ -189,18 +197,19 @@ Entry-Level commands involves managing the entries which are either expenses or 
 
 You can use this command when you want to add an entry (expense/revenue) to the tracker.
 
-Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
+**Format:** `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
 
-* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce`
+* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce` (**Figure**)
 * `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
 
 </div>
 
-*(Add screenshot showing the profit message)*
+![addCommand](images/commands/addCommand.png)
+<p align="center"> <sub> <b>Figure</b>: A new expense called "buying supplies" is added </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -217,18 +226,19 @@ Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
 You can use this command when you want to remove an entry from the tracker.
 
-Format: `delete ENTRY_INDEX c/CATEGORY`
+**Format:** `delete ENTRY_INDEX c/CATEGORY`
 
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
 
 * `delete 1 c/expense` : Deletes first entry in expense category
-* `delete 2 c/revenue` : Deletes second entry in the revenue category
+* `delete 2 c/revenue` : Deletes second entry in the revenue category (**Figure**)
 
 </div>
 
-*(Add screenshot showing the profit message)*
+![deleteCommand1](images/commands/deleteCommand1.png)
+<p align="center"> <sub> <b>Figure</b>: The revenue at index 2 is deleted </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -244,7 +254,7 @@ Format: `delete ENTRY_INDEX c/CATEGORY`
 
 You can use this command when you want to make edits to any existing entries in the tracker.
 
-Formats:
+**Format:**
 * `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG`
 * `edit 2 c/CATEGORY d/DESCRIPTION`
 * `edit 3 c/CATEGORY a/AMOUNT`
@@ -253,13 +263,18 @@ Formats:
 
 :green_book: **Example:**
 
-* `edit 2 c/expense n/buy McSpicy a/8.60`: Changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
-* `edit 2 c/revenue n/sell McNuggets`: Changes the name of entry 2 to `sell McNuggets`
+* `edit 2 c/expense d/buy McSpicy a/8.60`: Changes the name and the amount of entry 2 to 
+`eating McSpicy` and `$8.60` respectively (**Figure**)
+* `edit 2 c/revenue d/sell McNuggets`: Changes the name of entry 2 to `sell McNuggets` 
 * `edit 2 c/expense a/5.50`: Changes the amount of entry 2 to `$5.50`
 
 </div>
 
-*(Add screenshots showing the before and after the edit command)*
+![beforeEditCommand](images/commands/beforeEditCommand.png)
+<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 before editing </sub> </p>
+
+![afterEditCommand](images/commands/afterEditCommand.png)
+<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 after editing </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -275,8 +290,9 @@ Formats:
 
 ### Locating entries by description: `find`
 
-You can use this command to list expenses and/or revenues that have the given keyword(s) in their description. If there
-is no expense or revenue found, the respective list will be empty.
+You can use this command to list expenses and/or revenues that have the given keyword(s) in their descriptions. This is 
+useful when you want to find some particular entries to [`delete`](#deleting-an-entry-delete) or [`edit`](#editing-an-entry-edit). 
+If there is no expense or revenue found, the respective list will be empty.
 
 **Format:** `find [c/CATEGORY] k/KEYWORDS`
 
@@ -324,7 +340,7 @@ list, with the updated `ENTRY INDEX`.
 
 Lists all entries in the current account.
 
-Format: `list`
+**Format:** `list`
  
 <div markdown="block" class="alert alert-success">
 
@@ -339,19 +355,20 @@ Format: `list`
 
 You can use this command to clear all entries from a particular category.
  
-Format: `clear`
+**Format:** `clear`
  
 <div markdown="block" class="alert alert-success">
 
 :green_book: **Example:**
 
 
-* `clear c/expense`: clears all entries in expenses by setting the state to an empty one.
-* `clear c/revenue`: clears all entries in revenues by setting the state to an empty one.
+* `clear c/expense`: clears all entries visible in expense list (**Figure**). 
+* `clear c/revenue`: clears all entries visible in revenue list.
 
 </div>
 
-*(Add screenshots for before and after clear.)*
+![clearCommand](images/commands/clearCommand.png)
+<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 after editing </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -367,7 +384,7 @@ entries, use the `delete` command instead.
 
 If you wish to calculate the profits you have currently, you may use this command to do so.
  
-Format: `profit`
+**Format:** `profit`
  
 <div markdown="block" class="alert alert-success">
 
@@ -393,7 +410,7 @@ The `profit` function will show deficits as a negative number should expenses be
 You can use this command to return to the state of entries prior to previous command.
 
  
-Format: `undo`
+**Format:** `undo`
  
 <div markdown="block" class="alert alert-success">
 
@@ -431,7 +448,7 @@ before you exit the app!
 
 </div>
 
-### Calculating total expenses or revenues in an account: `total`
+### Calculating total expenses or revenues: `total`
 
 You can use this command to do calculate the total expenses or revenues in your current account.
 
@@ -459,7 +476,7 @@ Account-Level commands involves managing the different accounts in the app.
 
 You can create a new account to manage a different set of entries with this command. 
 
-Format: `newacc n/NAME`
+**Format**: `newacc n/NAME`
 
 <div markdown="block" class="alert alert-success">
 
@@ -488,7 +505,7 @@ Format: `newacc n/NAME`
 You can remove the account using this command. This command is useful for clearing accounts that you might not be using
 anymore.
 
-Format: `deleteacc INDEX`
+**Format:** `deleteacc INDEX`
 
 <div markdown="block" class="alert alert-success">
 
@@ -527,11 +544,11 @@ irreversible action and cannot be undone. Do delete your account with caution!
 
 </div>
 
-### Editing the name current account: `editacc`
+### Editing the name of the current account: `editacc`
 
 You can edit the name of the current account you are on using this command.
 
-Format: `editacc n/NAME`
+**Format:** `editacc n/NAME`
 
 <div markdown="block" class="alert alert-success">
 
@@ -560,7 +577,7 @@ and edit the name from there.
 You can check the accounts you have in the app by using this command. Each account will be numbered with an index and 
 displayed as their names.
 
-Format: `listacc`
+**Format:** `listacc`
 
 <div markdown="block" class="alert alert-success">
 
@@ -578,7 +595,7 @@ Format: `listacc`
 You can use this command to switch to the desired account. This is useful if you want to manage entries in the 
 account or edit the name of the desired account.
 
-Format: `switchacc INDEX`
+**Format:** `switchacc INDEX`
 
 <div markdown="block" class="alert alert-success">
 
@@ -645,24 +662,23 @@ are correct!** If you are unsure of the prefixes and parameters required, do che
 
 # Command summary
 
+The table below summarises the above commands in alphabetical order for your reference. 
+
 Action | Format, Examples
 --------|------------------
-**Help** | `help`
-**Exit** | `exit`
-**Add** | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
-**Delete** | `delete ENTRY_INDEX c/CATEGORY`
-**Edit** | `edit 1 c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
-**Find** | `find k/KEYWORD [MORE_KEYWORDS]`
-**List** | `list`
-**Clear** | `clear c/CATEGORY`
-**Profit** | `profit`
-**Undo** | `undo`
-**Total** | `total c/CATEGORY`
-**New Account** | `newacc n/NAME`
-**Delete Account** | `deleteacc INDEX`
-**Edit Account** | `editacc n/NAME`
-**List Account** | `listacc`
-**Switch Account** | `switchacc INDEX`
-
-<!-- **Edit** | `edit ENTRY_NUM n/EXPENSE_NAME a/MONEY_AMT` -->
-<!-- **Find** | `find KEYWORD [MORE_KEYWORDS]` -->
+[**Help**](#viewing-help--help) | `help`
+[**Exit**](#exiting-the-program--exit) | `exit`
+[**Add**](#adding-an-entry-add) | `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
+[**Delete**](#deleting-an-entry-delete) | `delete ENTRY_INDEX c/CATEGORY`
+[**Edit**](#editing-an-entry-edit) | `edit 1 c/CATEGORY [d/DESCRIPTION] [a/AMOUNT] [t/TAG]`
+[**Find**](#locating-entries-by-description-find) | `find k/KEYWORD [MORE_KEYWORDS]`
+[**List**](#listing-all-entries-list) | `list`
+[**Clear**](#clearing-all-expenses-or-revenue-clear) | `clear c/CATEGORY`
+[**Profit**](#calculating-net-profits-based-on-expenses-and-revenues-profit) | `profit`
+[**Undo**](#undoing-entry-level-commands-undo) | `undo`
+[**Total**](#calculating-total-expenses-or-revenues-total) | `total c/CATEGORY`
+[**New Account**](#adding-new-account-newacc) | `newacc n/NAME`
+[**Delete Account**](#deleting-an-account-deleteacc) | `deleteacc INDEX`
+[**Edit Account's Name**](#editing-the-name-of-the-current-account-editacc) | `editacc n/NAME`
+[**List Account**](#listing-accounts-you-have-listacc) | `listacc`
+[**Switch Account**](#switching-accounts-switchacc) | `switchacc INDEX`

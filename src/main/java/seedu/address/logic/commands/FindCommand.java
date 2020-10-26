@@ -69,14 +69,14 @@ public class FindCommand extends Command {
             activeAccount.updateFilteredRevenueList(revenuePredicate);
         }
 
-        boolean noExpenseFoundWithExpensePredicate =
-            activeAccount.getFilteredExpenseList().size() == 0 && expensePredicate != null;
-        boolean noRevenueFoundWithRevenuePredicate =
-            activeAccount.getFilteredRevenueList().size() == 0 && revenuePredicate != null;
+        boolean noExpenseFoundWithOnlyExpensePredicate =
+            activeAccount.getFilteredExpenseList().size() == 0 && expensePredicate != null && revenuePredicate == null;
+        boolean noRevenueFoundWithOnlyRevenuePredicate =
+            activeAccount.getFilteredRevenueList().size() == 0 && revenuePredicate != null && expensePredicate == null;
         boolean noEntryFound = activeAccount.getFilteredExpenseList().size() == 0
                             && activeAccount.getFilteredRevenueList().size() == 0;
 
-        if (noEntryFound || noExpenseFoundWithExpensePredicate || noRevenueFoundWithRevenuePredicate) {
+        if (noEntryFound || noExpenseFoundWithOnlyExpensePredicate || noRevenueFoundWithOnlyRevenuePredicate) {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_EMPTY_FILTERED_LIST);
         } else {
             return CommandResultFactory.createDefaultCommandResult(Messages.MESSAGE_ENTRIES_UPDATED);
