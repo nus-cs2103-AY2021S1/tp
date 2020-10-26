@@ -141,6 +141,52 @@ add recipe Pancakes
 ```
 
 
+ 
+
+### Editing Recipes -- **`edit`**`recipe`
+Edits a specific recipe from ChopChop. The `edit recipe` command allows for different actions on name, ingredients, steps and tags, as specified below.
+
+#### Name
+To edit a recipe's name, use the `/name` parameter (e.g. `/name new recipe name`).
+
+#### Ingredients
+To edit a recipe's ingredients, use the `/ingredient` parameter, with an action specified after a colon. Note that ingredient names are case-insensitive.
+
+Possible actions include:
+
+- Adding an ingredient with the `/ingredient:add` parameter (e.g. `/ingredient:add beef /qty 1kg`). Note that specifying a quantity is required.
+- Editing an ingredient with the `/ingredient:edit` parameter (e.g.`/ingredient:edit beef /qty 3kg` ). The ingredient must exist for the command to be valid.
+- Deleting an ingredient with the `/ingredient:delete` parameter (e.g. `/ingredient:delete beef`).
+
+#### Steps
+To edit a recipe's steps, use the `/step` parameter, with an action specified after a colon. Steps are referred to using their indexes (starting from 1), which specified after the action.
+
+Possible actions include:
+
+- Adding a step with the `/step:add` parameter (e.g. `/step:add Add in the vanilla extract and mix well`). If an index is specified, the step will be added at the given index. Otherwise, it will be added after all existing steps.
+- Editing a step with the `/step:edit` parameter. An index must be specified for the command to be valid (eg. `/step:edit:4 Beat the eggs thoroughly`).
+- Deleting a step with the `/step:delete` parameter (e.g. `/step:delete:4`).
+
+#### Tags
+To edit a recipe's steps, use the `/tag` parameter, with an action specified after a colon. Like ingredients, tags are case-insensitive.
+
+Possible actions include:
+
+- Adding a tag with the `/tag:add` parameter (e.g. `/tag:add breakfast`).
+- Deleting a tag with the `/tag:delete` parameter (e.g. `/tag:delete breakfast`)
+
+Usage `edit recipe <#REF> [/name <RECIPE_NAME>] [/ingredient:<ACTION> [<INGREDIENT_NAME> /qty <QUANTITY>]]... [/step:<ACTION>[:<INDEX>] [<STEP>]]... [/tag:<ACTION> [<TAG>]]...`
+
+Examples:
+- `edit recipe #4 /name soup` <br />
+	This changes the name of the fourth recipe currently shown in the GUI's view to 'soup'.
+- `edit recipe pancakes /ingredient:add syrup /qty 500ml` <br />
+	This edits the recipe named 'pancakes' by adding 500ml of syrup to the recipe's ingredient list.
+- `edit recipe risotto /step:edit:1 In a saucepan, warm the broth over low heat` <br />
+    This edits the recipe named 'risotto' by changing the 1st step to the text above.
+- `edit recipe beef curry /ingredient:delete apple /step:delete:4` <br />
+    This edits the recipe named 'beef curry' to remove both the ingredient 'apple' and the 4th step.
+
 
 ### Deleting Recipes — **`delete`**`recipe`
 Deletes a specific recipe from ChopChop.
@@ -203,15 +249,23 @@ Examples:
 
 
 ### Deleting Ingredients — **`delete`**`ingredient`
-Deletes a specific ingredient from ChopChop.
+Deletes a specific ingredient from ChopChop. If a quantity is specified, the given quantity of the ingredient is removed.
 
-Usage: `delete ingredient <#REF>`
+If an ingredient consists of multiple sets, the `delete ingredient` command will intelligently remove the earliest expiring ingredients first.
+
+<div markdown="span" class="alert alert-primary">
+:information_source: **Note:** If specified, the quantity needs to have compatible units with the existing ingredient; see [this section](#quantities-and-units) for how it works.
+</div>
+
+Usage: `delete ingredient <#REF> [/qty <QUANTITY>]`
 
 Examples:
 - `delete ingredient #4` <br />
 	This deletes the fourth ingredient currently shown in the GUI's view.
 - `delete ingredient milk` <br />
 	This deletes the ingredient named 'milk'. Note that the name here is case insensitive.
+- `delete ingredient milk /qty 500ml` <br />
+    This removes 500ml of the ingredient named 'milk'.
 
 
 
@@ -222,21 +276,6 @@ Finds all ingredients containing the given keywords in the name; at least one se
 Usage: `find ingredient <KEYWORD_ONE> [<KEYWORD_TWO>]...`
 
 The semantics of this command are the same as `find recipe`, which you can see [above](#finding-recipes--findrecipe).
-
-
-
-
-### Using Ingredients — **`use`**
-Removes the given quantity of the specified ingredient from the internal inventory.
-
-Usage: `use <#REF> /qty <QUANTITY>`
-
-Examples:
-- `use milk /qty 500ml` removes 500 ml of milk from the internal inventory.
-
-
-
-
 
 -----------------------
 ## Quantities and Units
