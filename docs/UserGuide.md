@@ -69,6 +69,14 @@ Format: `addMod MODULE_CODE`
 
 Example: `addMod CS2103T`
 
+#### 3.3.2 Add a tutorial group: `addTG`
+
+Adds a tutorial group to the current module in view.
+    
+Format: `addTG GROUP_CODE`
+
+Example: `addTG T03`
+
 ## **4.2 - Tutorial Group Features**
 
 ### 4.2.1 - View all Tutorial Groups in a Module: `viewTG`
@@ -114,10 +122,10 @@ Where TG_INDEX is the index of the Tutorial Group you want to delete.
 Example: `deleteTG 2`
 To delete Tutorial Group with the index 2 in the currently displayed list.
 
-
 These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
 
 ---
+
 #### 3.3.3 Add a student: `addStudent`
 
 Adds a student to the current tutorial group in view.
