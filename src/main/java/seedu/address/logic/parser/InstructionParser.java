@@ -13,7 +13,7 @@ public class InstructionParser {
      * Parses a String made of 1 or more instructions
      * adds them to an ArrayList of Instruction objects to be returned
      * @param instructionString String of 1 or more instructions
-     * @return ArrayList of String objects of the ingredients in the parameter
+     * @return ArrayList of String objects of the instructions in the parameter
      * @throws ParseException
      */
     public static ArrayList<Instruction> parse(String instructionString) {

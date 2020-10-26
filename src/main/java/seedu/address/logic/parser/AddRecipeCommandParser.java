@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -39,7 +40,7 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
                         PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES,
-                PREFIX_INSTRUCTION, PREFIX_RECIPE_IMAGE)
+                PREFIX_INSTRUCTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddRecipeCommand.MESSAGE_USAGE));
         }
@@ -56,7 +57,12 @@ public class AddRecipeCommandParser implements Parser<AddRecipeCommand> {
         String instructionString = argMultimap.getValue(PREFIX_INSTRUCTION).get();
         ArrayList<Instruction> instructions = InstructionParser.parse(instructionString);
 
-        String img = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
+        String img = "";
+        try {
+            img = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
+        } catch (NoSuchElementException e) {
+            img = "images/default.jpg";
+        }
         ImageParser imageParser = new ImageParser();
         RecipeImage recipeImage = imageParser.parse(img);
         //RecipeImage recipeImage = ParserUtil.parseImage(argMultimap.getValue(PREFIX_TAG).get());

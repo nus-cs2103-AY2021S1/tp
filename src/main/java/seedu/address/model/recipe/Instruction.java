@@ -4,6 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents a Recipe's instructions in the Wishful Shrinking.
+ */
 public class Instruction {
 
     public static final String MESSAGE_CONSTRAINTS =

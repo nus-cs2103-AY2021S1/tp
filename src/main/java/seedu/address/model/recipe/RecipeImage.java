@@ -5,6 +5,9 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/**
+ * Represents a Recipe's image in the Wishful Shrinking.
+ */
 public class RecipeImage {
     public static final String MESSAGE_CONSTRAINTS =
             "Image path should be image link address or local path, can be optional field";

@@ -1,6 +1,6 @@
 package seedu.address.logic.parser;
 
-import static java.util.Objects.requireNonNull;
+//import static java.util.Objects.requireNonNull;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,13 +29,13 @@ public class ImageParser {
     /**
      * Parses a String of image path
      * check validity
-     * convert them to Image object to be returned
-     * @param imagePath String of 1 or more instructions
-     * @return ArrayList of String objects of the ingredients in the parameter
+     * convert them to RecipeImage object to be returned
+     * @param imagePath String of image path (local or url)
+     * @return RecipeImage of String objects of the ingredients in the parameter
      * @throws ParseException
      */
-    public RecipeImage parse(String imagePath) throws IOException, URISyntaxException {
-        requireNonNull(imagePath);
+    public RecipeImage parse(String imagePath) throws ParseException, IOException, URISyntaxException {
+        //requireNonNull(imagePath);
         String filename = "";
         try {
             if (imagePath.length() > 4 && imagePath.substring(0, 4).equals("http")) {
@@ -70,7 +71,7 @@ public class ImageParser {
                 //imagePath = file.getPath();
                 imagePath = "file://" + imagePath;
             }
-        } catch (IOException | URISyntaxException e) {
+        } catch (IOException | URISyntaxException | NullPointerException | NoSuchElementException e) {
             imagePath = "images/default.jpg";
         }
 
@@ -78,7 +79,11 @@ public class ImageParser {
         return new RecipeImage(imagePath);
     }
 
-    // Get all paths from a folder that inside the JAR file
+    /**
+     * Get all paths from a folder that inside the JAR file.
+     * @param folder Name of folder.
+     * @return List of paths from a folder.
+     */
     private List<Path> getPathsFromResourceJar(String folder)
             throws URISyntaxException, IOException {
 
