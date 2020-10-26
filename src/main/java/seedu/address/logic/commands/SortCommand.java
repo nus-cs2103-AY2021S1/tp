@@ -23,32 +23,33 @@ public class SortCommand extends Command {
 
     private final String sortedBy;
     private final boolean ascending;
+    private final boolean toggle;
+
 
     /**
-     * Creates an SortCommand to sort the current menu
+     * Creates an SortCommand to sort the current menu with the respective sort type
      */
     public SortCommand(String sortedBy, String ascending) {
+        assert sortedBy.equals(SortCommand.NAME) || sortedBy.equals(SortCommand.PRICE);
+        assert ascending.equals("a") || ascending.equals("d") || ascending.equals("t");
+
         this.sortedBy = sortedBy;
         if (ascending.equals("t")) {
-            this.ascending = true;
-        } else {
+            this.toggle = true;
             this.ascending = false;
+        } else {
+            this.toggle = false;
+            this.ascending = ascending.equals("a");
         }
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        switch (sortedBy) {
-        case NAME:
-            model.sortFoodByName(ascending);
-            break;
-        case PRICE:
-            model.sortFoodByPrice(ascending);
-            break;
-        default:
-            throw new CommandException(ParserUtil.MESSAGE_UNKNOWN_COMMAND);
+        if (!model.isSelected()) {
+            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.sortFoodBy(sortedBy, ascending, toggle);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }

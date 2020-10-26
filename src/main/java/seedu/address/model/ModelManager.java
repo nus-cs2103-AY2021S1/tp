@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
@@ -32,12 +34,9 @@ public class ModelManager implements Model {
     private final OrderManager orderManager;
 
     private final UserPrefs userPrefs;
-    // TODO: remove filteredvendors and orderitems
-    private final FilteredList<Vendor> filteredVendors;
-    private FilteredList<Food> filteredFoods;
-    private FilteredList<OrderItem> filteredOrderItems;
+    private ObservableList<Food> filteredFoods;
 
-    private boolean changeVendor = false;
+    private boolean isSortedAsc = false;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -53,7 +52,6 @@ public class ModelManager implements Model {
         this.orderManager = new OrderManager();
 
         this.userPrefs = new UserPrefs(userPrefs);
-        this.filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     /**
@@ -74,28 +72,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.menuManagers = menuManagers;
         this.orderManager = orderManager;
-        filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
-    }
-
-    /**
-     * Initializes a ModelManager with the given addressBook, userPrefs, menuManager and orderManager.
-     */
-    public ModelManager(
-            ReadOnlyAddressBook addressBook,
-            ReadOnlyUserPrefs userPrefs,
-            List<MenuManager> menuManagers,
-            OrderManager orderManager, Vendor vendor
-    ) {
-        super();
-        requireAllNonNull(addressBook, userPrefs, menuManagers, orderManager);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
-        this.addressBook = new AddressBook(addressBook);
-        this.userPrefs = new UserPrefs(userPrefs);
-        this.menuManagers = menuManagers;
-        this.orderManager = orderManager;
-        this.filteredVendors = new FilteredList<>(this.addressBook.getVendorList());
     }
 
     public ModelManager() {
@@ -137,17 +113,6 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    @Override
-    public Path getMenuManagerFolderPath() {
-        return userPrefs.getMenuManagerFolderPath();
-    }
-
-    @Override
-    public void setMenuManagerFolderPath(Path menuManagerFolderPath) {
-        requireNonNull(menuManagerFolderPath);
-        userPrefs.setAddressBookFilePath(menuManagerFolderPath);
-    }
-
     //=========== AddressBook ================================================================================
 
     @Override
@@ -167,34 +132,11 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteVendor(Vendor target) {
-        addressBook.removeVendor(target);
-    }
-
-    @Override
-    public void addVendor(Vendor vendor) {
-        addressBook.addVendor(vendor);
-        updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
-    }
-
-    @Override
-    public void setVendor(Vendor target, Vendor editedVendor) {
-        requireAllNonNull(target, editedVendor);
-
-        addressBook.setVendor(target, editedVendor);
-    }
-
-    @Override
     public void selectVendor(int vendorIndex) {
         this.addressBook.selectVendor(vendorIndex);
-
-        filteredFoods = new FilteredList<>(menuManagers.get(vendorIndex).getFoodList());
-        filteredOrderItems = new FilteredList<>(this.orderManager.getOrderItemList());
-    }
-
-    @Override
-    public void setVendorIndex(int vendorIndex) {
-        this.addressBook.selectVendor(vendorIndex);
+        if (vendorIndex != -1) {
+            this.filteredFoods = new FilteredList<>(this.menuManagers.get(vendorIndex).getFoodList());
+        }
     }
 
     @Override
@@ -205,6 +147,11 @@ public class ModelManager implements Model {
     @Override
     public boolean isSelected() {
         return this.addressBook.getVendorIndex() != -1;
+    }
+
+    @Override
+    public ObservableList<Vendor> getObservableVendorList() {
+        return addressBook.getVendorList();
     }
     //=========== MenuManager ================================================================================
 
@@ -219,38 +166,38 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortFoodByName(boolean ascending) {
-        menuManagers.get(getVendorIndex()).sortFoodByName(ascending);
+    public void sortFoodBy(String sortedBy, boolean ascending, boolean toggle) {
+        int index = getVendorIndex();
+        if (index < 0 || index >= menuManagers.size()) {
+            return;
+        }
+        // not suppose to modify menumanager's menus
+        Comparator<Food> foodComparator;
+        switch (sortedBy) {
+        case SortCommand.NAME:
+            foodComparator = Comparator.comparing(Food::getName);
+            break;
+        case SortCommand.PRICE:
+            foodComparator = Comparator.comparing(Food::getPrice);
+            break;
+        default:
+            throw new IllegalStateException("Unexpected value: " + sortedBy);
+        }
+
+        filteredFoods = filteredFoods.sorted(foodComparator);
+        if ((toggle && isSortedAsc) || (!toggle && !ascending)) {
+            filteredFoods = filteredFoods.sorted(foodComparator.reversed());
+        }
+        isSortedAsc = toggle ? !isSortedAsc : ascending;
     }
 
-    @Override
-    public void sortFoodByPrice(boolean ascending) {
-        menuManagers.get(getVendorIndex()).sortFoodByPrice(ascending);
+    /**
+     * Shows the current menu at the default state.
+     */
+    public void showDefaultMenu() {
+        filteredFoods = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
+        isSortedAsc = false;
     }
-
-    @Override
-    public boolean hasFood(Food food, int index) {
-        requireNonNull(food);
-        return menuManagers.get(index).hasFood(food);
-    }
-
-    @Override
-    public void deleteFood(Food target, int index) {
-        menuManagers.get(index).removeFood(target);
-    }
-
-    @Override
-    public void addFood(Food food, int index) {
-    //        menuManagers.get(index).addFood(food);
-    //        updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
-    }
-
-    @Override
-    public void setFood(Food target, Food editedFood, int index) {
-        requireAllNonNull(target, editedFood);
-        menuManagers.get(index).setFood(target, editedFood);
-    }
-
 
     //=========== OrderManager ================================================================================
 
@@ -272,19 +219,14 @@ public class ModelManager implements Model {
 
     @Override
     public void removeOrderItem(OrderItem target) {
+        requireNonNull(target);
         orderManager.removeOrderItem(target);
     }
 
     @Override
     public void addOrderItem(OrderItem orderItem) {
+        requireNonNull(orderItem);
         orderManager.addOrderItem(orderItem);
-        updateFilteredOrderItemList(PREDICATE_SHOW_ALL_ORDERITEMS);
-    }
-
-    @Override
-    public void setOrderItem(OrderItem target, OrderItem editedOrderItem) {
-        requireAllNonNull(target, editedOrderItem);
-        orderManager.setOrderItem(target, editedOrderItem);
     }
 
     @Override
@@ -302,40 +244,6 @@ public class ModelManager implements Model {
         orderManager.undoChanges();
     }
 
-    //=========== Filtered Vendor List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Vendor} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Vendor> getFilteredVendorList() {
-        return filteredVendors;
-    }
-
-    @Override
-    public void updateFilteredVendorList(Predicate<Vendor> predicate) {
-        requireNonNull(predicate);
-        filteredVendors.setPredicate(predicate);
-    }
-
-    //=========== Filtered Food List Accessors =============================================================
-
-    @Override
-    public ObservableList<Food> getFilteredFoodList() {
-        //TODO: the filteredFoods need to be changed and this whole class needs to be updated
-        if (filteredFoods == null || changeVendor) {
-            changeVendor = false;
-            updateFilteredFoodList(PREDICATE_SHOW_ALL_FOODS);
-        }
-        return filteredFoods;
-    }
-
-    @Override
-    public int getFilteredFoodListSize() {
-        return getFilteredFoodList().size();
-    }
-
     @Override
     public void clearOrder() {
         orderManager.setOrder(new ArrayList<>());
@@ -347,8 +255,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateVendor() {
-        changeVendor = true;
+    public int getOrderSize() {
+        return orderManager.getOrderItemList().size();
+    }
+
+    @Override
+    public ObservableList<OrderItem> getObservableOrderItemList() {
+        return orderManager.getOrderItemList();
+    }
+
+    //=========== Filtered Food List Accessors =============================================================
+
+    @Override
+    public ObservableList<Food> getFilteredFoodList() {
+        return filteredFoods;
+    }
+
+    @Override
+    public int getFilteredFoodListSize() {
+        return filteredFoods == null ? 0 : getFilteredFoodList().size();
     }
 
     @Override
@@ -358,28 +283,8 @@ public class ModelManager implements Model {
         if (index < 0 || index >= menuManagers.size()) {
             return;
         }
-        filteredFoods = new FilteredList<>(menuManagers.get(getVendorIndex()).getFoodList());
-        filteredFoods.setPredicate(predicate);
-    }
-
-    //=========== Filtered OrderItem List Accessors =============================================================
-
-    @Override
-    public ObservableList<OrderItem> getFilteredOrderItemList() {
-        if (filteredOrderItems == null) {
-            updateFilteredOrderItemList(PREDICATE_SHOW_ALL_ORDERITEMS);
-        }
-        return filteredOrderItems;
-    }
-
-    @Override
-    public void updateFilteredOrderItemList(Predicate<OrderItem> predicateindex) {
-        filteredOrderItems = new FilteredList<>(this.orderManager.getOrderItemList());
-    }
-
-    @Override
-    public int getOrderSize() {
-        return filteredOrderItems.size();
+        // not suppose to modify menumanager's menus
+        filteredFoods = filteredFoods.filtered(predicate);
     }
 
     @Override
@@ -397,8 +302,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredVendors.equals(other.filteredVendors);
+                && userPrefs.equals(other.userPrefs);
     }
 
 }

@@ -57,8 +57,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Vendor> getFilteredVendorList() {
-        return model.getFilteredVendorList();
+    public ObservableList<Vendor> getObservableVendorList() {
+        return model.getAddressBook().getVendorList();
     }
 
     @Override
@@ -67,13 +67,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean isSelected() {
-        return model.getVendorIndex() != -1;
+    public ObservableList<OrderItem> getFilteredOrderItemList() {
+        return model.getObservableOrderItemList();
     }
 
     @Override
-    public ObservableList<OrderItem> getFilteredOrderItemList() {
-        return model.getFilteredOrderItemList();
+    public boolean isSelected() {
+        return model.getVendorIndex() != -1;
     }
 
     @Override

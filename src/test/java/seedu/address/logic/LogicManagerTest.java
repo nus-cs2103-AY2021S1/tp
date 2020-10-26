@@ -2,9 +2,9 @@ package seedu.address.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalVendors.getManagers;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -13,12 +13,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.*;
+import seedu.address.model.AddressBook;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.order.OrderManager;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -30,16 +35,25 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private Model model;
     private Logic logic;
+
+    private AddressBook book;
+    private UserPrefs userPrefs;
 
     @BeforeEach
     public void setUp() {
+        this.book = TypicalVendors.getTypicalAddressBook();
+        this.userPrefs = new UserPrefs();
+        this.model = new ModelManager(book, userPrefs, getManagers(), new OrderManager());
+
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
-        AddressBook book = TypicalVendors.getTypicalAddressBook();
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+
+        book.selectVendor(0);
+        model.selectVendor(0);
         logic = new LogicManager(model, storage);
     }
 
@@ -53,21 +67,6 @@ public class LogicManagerTest {
     public void execute_commandExecutionError_throwsCommandException() {
         String removeCommand = "remove 9";
         assertCommandException(removeCommand, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
-    }
-
-    @Test
-    public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
-    }
-
-    @Test
-    public void isSelected_success() {
-        model.selectVendor(-2);
-        assertFalse(logic.isSelected());
-
-        model.selectVendor(2);
-        assertTrue(logic.isSelected());
     }
 
     //TODO: pass
@@ -93,18 +92,46 @@ public class LogicManagerTest {
     //    }
 
     @Test
+    public void getAddressBook_success() {
+        assertEquals(this.book, logic.getAddressBook());
+    }
+
+    @Test
     public void getFilteredVendorList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredVendorList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getObservableVendorList().remove(0));
     }
 
     @Test
     public void getFilteredFoodList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredFoodList().remove(2));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredFoodList().remove(0));
     }
 
     @Test
     public void getFilteredOrderItemList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredOrderItemList().remove(0));
+    }
+
+    @Test
+    public void isSelected_success() {
+        model.selectVendor(2);
+        assertTrue(logic.isSelected());
+    }
+
+    @Test
+    public void getAddressBookFilePath_success() {
+        assertEquals(userPrefs.getAddressBookFilePath(), logic.getAddressBookFilePath());
+    }
+
+    @Test
+    public void getGuiSettings_success() {
+        assertEquals(model.getGuiSettings(), logic.getGuiSettings());
+    }
+
+    @Test
+    public void setGuiSettings_success() {
+        GuiSettings guiSettings = model.getGuiSettings();
+        logic.setGuiSettings(guiSettings);
+        assertEquals(guiSettings, logic.getGuiSettings());
     }
 
     /**

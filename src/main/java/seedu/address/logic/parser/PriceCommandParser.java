@@ -5,7 +5,7 @@ import seedu.address.logic.commands.enums.Inequality;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.food.PriceWithinRangePredicate;
 
-public class PriceCommandParser {
+public class PriceCommandParser implements Parser<PriceCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the PriceCommand

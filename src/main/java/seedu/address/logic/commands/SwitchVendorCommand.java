@@ -35,7 +35,7 @@ public class SwitchVendorCommand extends VendorCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Vendor> vendors = model.getFilteredVendorList();
+        ObservableList<Vendor> vendors = model.getObservableVendorList();
         int index = vendorIndex.getZeroBased();
 
         if (vendors.size() <= index) {
@@ -43,11 +43,10 @@ public class SwitchVendorCommand extends VendorCommand {
         }
 
         int oldIndex = model.getVendorIndex();
-        model.setVendorIndex(index);
+        model.selectVendor(index);
 
         if (oldIndex != index) {
             model.resetOrder();
-            model.updateVendor();
         }
 
         return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()),
