@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_PREFIXES;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
@@ -35,9 +36,18 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_DESCRIPTION, PREFIX_AMOUNT, PREFIX_TAG);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_DESCRIPTION, PREFIX_AMOUNT)
-                || !argMultimap.getPreamble().isEmpty()) {
+        boolean arePrefixPresent = ParserUtil.arePrefixesPresent(argMultimap,
+                PREFIX_CATEGORY, PREFIX_DESCRIPTION, PREFIX_AMOUNT);
+        boolean isPreambleEmpty = argMultimap.isPreambleEmpty();
+        boolean areNumberOfPrefixCorrect = ParserUtil.areNumberOfPrefixesCorrect(argMultimap, PREFIX_CATEGORY,
+                PREFIX_DESCRIPTION, PREFIX_AMOUNT);
+
+        if (!arePrefixPresent || !isPreambleEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+        }
+
+        if (!areNumberOfPrefixCorrect) {
+            throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, AddCommand.PREFIXES));
         }
 
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());

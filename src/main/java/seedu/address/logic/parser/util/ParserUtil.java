@@ -1,8 +1,6 @@
 package seedu.address.logic.parser.util;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -147,11 +145,11 @@ public class ParserUtil {
     }
 
     /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * Returns true if there is a correct number of values for each prefix in the given
      * {@code ArgumentMultimap}.
      */
     public static boolean areNumberOfPrefixesCorrect(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+        return Stream.of(prefixes).allMatch(argumentMultimap::hasOnlyOneValue);
     }
 
 }

@@ -39,7 +39,6 @@ public class ArgumentMultimap {
      */
     public Optional<String> getValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
-        assert values.size() == ONE_VALUE;
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
 
@@ -74,7 +73,15 @@ public class ArgumentMultimap {
      */
     public boolean hasOnlyOneValue(Prefix prefix) {
         List<String> values = getAllValues(prefix);
-        return values.size() != ONE_VALUE;
+        return values.size() == ONE_VALUE;
+    }
+
+    /**
+     * Checks if there are more than one values for the prefix.
+     */
+    public boolean hasMoreThanOneValue(Prefix prefix) {
+        List<String> value = getAllValues(prefix);
+        return value.size() >= ONE_VALUE;
     }
 
 }
