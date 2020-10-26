@@ -147,9 +147,8 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        if (!logic.getFilteredMeetingList().isEmpty()) {
-            MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getFilteredMeetingList().get(0),
-                    1);
+        if (logic.getSelectedMeeting() != null) {
+            MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(), 1);
             selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
         }
     }

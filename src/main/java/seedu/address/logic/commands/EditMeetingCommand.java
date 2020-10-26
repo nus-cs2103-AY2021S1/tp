@@ -47,6 +47,8 @@ public class EditMeetingCommand extends Command {
             + "[" + PREFIX_DATE + "NEW_DATE] "
             + "[" + PREFIX_TIME + "NEW_TIME] "
             + "[" + PREFIX_PARTICIPANT + "NEW_MEMBERS]...\n"
+            + "[" + PREFIX_AGENDA + "NEW_AGENDA]...\n"
+            + "[" + PREFIX_NOTE + "NEW_NOTE]...\n"
             + "Example: " + COMMAND_WORD + " m/CS2103 n/Project Meeting "
             + PREFIX_DATE + "2020-10-10 "
             + PREFIX_TIME + "11:30"
@@ -130,8 +132,8 @@ public class EditMeetingCommand extends Command {
         Date updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getDate());
         Time updatedTime = editMeetingDescriptor.getTime().orElse(meetingToEdit.getTime());
         Set<Name> updatedMemberNames = editMeetingDescriptor.getMemberNames().orElse(null);
-        Set<SpecialName> updatedAgendas = editMeetingDescriptor.getAgendas().orElse(null);
-        Set<SpecialName> updatedNotes = editMeetingDescriptor.getNotes().orElse(null);
+        Set<SpecialName> updatedAgendas = editMeetingDescriptor.getAgendas().orElse(meetingToEdit.getAgendas());
+        Set<SpecialName> updatedNotes = editMeetingDescriptor.getNotes().orElse(meetingToEdit.getNotes());
         Set<Person> updatedMembers = getUpdatedMembers(meetingToEdit, updatedMemberNames, model);
 
         return new Meeting(meetingToEdit.getModule(), updatedMeetingName, updatedDate, updatedTime, updatedMembers,
@@ -222,7 +224,7 @@ public class EditMeetingCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(meetingName, date, time, memberNames);
+            return CollectionUtil.isAnyNonNull(meetingName, date, time, memberNames, agendas, notes);
         }
 
         public void setMeetingName(MeetingName meetingName) {

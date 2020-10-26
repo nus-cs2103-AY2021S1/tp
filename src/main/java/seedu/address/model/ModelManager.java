@@ -60,6 +60,11 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
         filteredModules = new FilteredList<>(this.moduleBook.getModuleList());
+
+        // set selected meeting to first meeting in list on launch
+        if (filteredMeetings.size() > 0) {
+            selectedMeeting = filteredMeetings.get(0);
+        }
     }
 
     public ModelManager() {
@@ -192,7 +197,7 @@ public class ModelManager implements Model {
     @Override
     public void deleteMeeting(Meeting targetMeeting) {
         meetingBook.removeMeeting(targetMeeting);
-        // replace selecting meeting to be null if it is deleted
+        // set selected meeting to be null if it is deleted
         if (targetMeeting.equals(selectedMeeting)) {
             setSelectedMeeting(null);
         }
@@ -207,11 +212,11 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-        meetingBook.setMeeting(target, editedMeeting);
         // replace selecting meeting to be updated edited meeting if it is edited
         if (target.equals(selectedMeeting)) {
             setSelectedMeeting(editedMeeting);
         }
+        meetingBook.setMeeting(target, editedMeeting);
     }
 
     @Override
