@@ -54,7 +54,6 @@ public class AmountTest {
         assertTrue(Amount.isValidAmount(".01")); //only decimal a dot with two decimal places
         assertTrue(Amount.isValidAmount("0.39")); //start with 0 only decimal a dot with two decimal places
         assertTrue(Amount.isValidAmount("000000.39")); //start with multiple 0only decimal a dot with two decimal places
-        // assertTrue(Amount.isValidAmount("2147483647")); // max INT
     }
 
     @Test
