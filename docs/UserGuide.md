@@ -240,7 +240,19 @@ Resets all types of ingredients' levels to zero in tCheck.
 Format: `i-reset-all`
 
 #### 3.6 Listing all ingredients that user should restock : `i-restock`
-Lists the ingredient's levels of all ingredient types that require the user to restock.
+Lists the ingredient's levels of all ingredient types that fall below their minimum stock levels and require the user to 
+restock. 
+
+The table below shows the minimum stock levels of different types of ingredients:
+
+Ingredient Type | Minimum Stock Level
+-------|------------------------------
+**Milk** | 5 L
+**Pearl** | 5 KG
+**Boba** | 5 KG
+**Black Tea** | 5 L
+**Green Tea** | 5 L
+**Brown Sugar** | 5 KG
 
 Format: `i-restock`
 
