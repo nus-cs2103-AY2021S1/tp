@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -24,6 +25,8 @@ import seedu.address.model.recipe.RecipeImage;
  * Parse user inputted image path.
  */
 public class ImageParser {
+    private static final String DIRECTORY_NAME = "data/";
+
     /**
      * Parses a String of image path
      * check validity
@@ -53,14 +56,18 @@ public class ImageParser {
                 out.close();
                 in.close();
                 byte[] response = out.toByteArray();
-
                 //imagePath = AddRecipeCommandParser.class.getResource("/images").getPath() + "/" + filename;
-                imagePath = "data/" + filename;
-
+                imagePath = DIRECTORY_NAME + filename;
                 //imagePath = getPathsFromResourceJAR("data") + "/" + filename;
+                File directory = new File(DIRECTORY_NAME);
+                if (!directory.exists()) {
+                    directory.mkdir();
+                    // If you require it to make the entire directory path including parents,
+                    // use directory.mkdirs(); here instead.
+                }
                 FileOutputStream fos = new FileOutputStream(imagePath);
                 URL jarLocation = this.getClass().getProtectionDomain().getCodeSource().getLocation();
-                URL data = new URL(jarLocation, "data/" + filename);
+                URL data = new URL(jarLocation, DIRECTORY_NAME + filename);
                 imagePath = data.toURI().getPath();
                 fos.write(response);
                 fos.close();
@@ -68,7 +75,8 @@ public class ImageParser {
                 //imagePath = file.getPath();
                 imagePath = "file://" + imagePath;
             }
-        } catch (IOException | URISyntaxException | NullPointerException | NoSuchElementException e) {
+        } catch (IOException | URISyntaxException | NullPointerException
+                | NoSuchElementException | IllegalArgumentException e) {
             imagePath = "images/default.jpg";
         }
 
