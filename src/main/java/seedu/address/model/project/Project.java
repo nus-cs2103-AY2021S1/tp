@@ -365,12 +365,33 @@ public class Project {
         }
 
         Project otherProject = (Project) other;
+
+        boolean taskBoolean = true;
+
+        for (int i = 0 ; i < tasks.size() ; i++){
+            Object[] currentTaskArray = tasks.toArray();
+            Object[] otherTaskArray = otherProject.getTasks().toArray();
+
+            for(int j = 0 ; j < otherTaskArray.length;j++){
+                if(currentTaskArray[i].equals(otherTaskArray[j])){
+                    taskBoolean=true;
+                    break;
+                }else{
+                    taskBoolean = false;
+                }
+//                taskBoolean = taskBoolean && currentTaskArray[i].equals(otherTaskArray[j]);
+            }
+            if (!taskBoolean){
+                break;
+            }
+        }
+
         return otherProject.getProjectName().equals(getProjectName())
                 && otherProject.getDeadline().equals(getDeadline())
                 && otherProject.getRepoUrl().equals(getRepoUrl())
                 && otherProject.getProjectDescription().equals(getProjectDescription())
                 && otherProject.getProjectTags().equals(getProjectTags())
-                && otherProject.getTasks().equals(getTasks());
+                && taskBoolean;
     }
 
     @Override

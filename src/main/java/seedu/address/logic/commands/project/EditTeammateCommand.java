@@ -88,7 +88,7 @@ public class EditTeammateCommand extends Command {
         Participation editedTeammate = createEditedTeammate(teammateToEdit, editTeammateDescriptor);
 
         project.removeParticipation(teammateToEdit);
-        project.addParticipation(editedTeammate);
+        project.addExistingParticipation(editedTeammate);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate));
     }

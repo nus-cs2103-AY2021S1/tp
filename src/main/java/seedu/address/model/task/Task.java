@@ -192,15 +192,32 @@ public class Task {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Task)) {
             return false;
         }
         Task task = (Task) o;
-        return Double.compare(task.getProgress(), getProgress()) == 0
-                && getTaskName().equals(task.getTaskName())
-                && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
+//        return Double.compare(task.getProgress(), getProgress()) == 0
+//                && getTaskName().equals(task.getTaskName())
+//                && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
+//                //            && getPublishDate().equals(task.getPublishDate())
+//                && Objects.equals(getDeadline(), task.getDeadline());
+        if( Double.compare(task.getProgress(), getProgress()) != 0){
+            return false;
+        }
+                if( !getTaskName().equals(task.getTaskName())){
+                    return false;
+                }
+                if (!(getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))){
+                    return false;
+                }
                 //            && getPublishDate().equals(task.getPublishDate())
-                && Objects.equals(getDeadline(), task.getDeadline());
+        return Objects.equals(getDeadline(), task.getDeadline());
+//        return task.getProgress().equals(getProgress())
+//                && getTaskName().equals(task.getTaskName())
+//                && getDescription().equals(task.getDescription())
+//                //            && getPublishDate().equals(task.getPublishDate())
+//                && getDeadline().equals(task.getDeadline());
+
     }
 
     @Override
