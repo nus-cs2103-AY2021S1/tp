@@ -30,7 +30,7 @@ public class AddCommand extends CommandForExercise {
             + PREFIX_CALORIES + "100 kcal ";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
-    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise book";
 
     private final Exercise toAdd;
 
