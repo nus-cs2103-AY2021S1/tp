@@ -37,7 +37,7 @@ public class IngredientBuilder {
         name = indToCopy.getName();
         qty = indToCopy.getQuantity();
         expDate = indToCopy.getExpiryDate().orElse(null);
-
+        tags = indToCopy.getTags();
     }
 
     /**

@@ -42,7 +42,7 @@ public class FindIngredientCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different ingredient -> returns false
+        // different values -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 

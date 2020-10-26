@@ -57,7 +57,7 @@ public class AddRecipeCommandTest {
         // null -> returns false
         assertFalse(addAppleSaladCommand.equals(null));
 
-        // different recipes -> returns false
+        // different values -> returns false
         assertFalse(addAppleSaladCommand.equals(addBananaSaladCommand));
     }
 

@@ -85,7 +85,7 @@ public class DeleteRecipeCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different recipes -> returns false
+        // different values -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

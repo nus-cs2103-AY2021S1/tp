@@ -76,7 +76,7 @@ public class AddIngredientCommandTest {
         // null -> returns false
         assertFalse(addAppleCommand.equals(null));
 
-        // different ingredient -> returns false
+        // different values -> returns false
         assertFalse(addAppleCommand.equals(addBananaCommand));
     }
 
