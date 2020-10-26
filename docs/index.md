@@ -28,4 +28,4 @@ or [ZooKeep Developer Guide](https://ay2021s1-cs2103t-w15-4.github.io/tp/Develop
 #### Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* App icon courtesy of [Flatpik](https://www.flaticon.com/authors/freepik)
+* App icon courtesy of [Freepik](https://www.flaticon.com/authors/freepik)

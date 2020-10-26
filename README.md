@@ -21,4 +21,4 @@ ZooKeep can get your management tasks done faster than traditional GUI apps.
 #### Acknowledgements
 
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* App icon courtesy of [Flatpik](https://www.flaticon.com/authors/freepik)
+* App icon courtesy of [Freepik](https://www.flaticon.com/authors/freepik)
