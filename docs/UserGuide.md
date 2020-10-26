@@ -55,7 +55,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-  
+
 * There are 2 special tags `prof` and `ta`. Contacts with either of these tags will be classified as professor or ta
  respectively. Users are not allowed to tag a contact as both `prof` and `ta`.
 
@@ -68,7 +68,7 @@ Adds a contact to Modduke.
 
 Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
-Note: All fields are required. No duplicate names.
+Note: All fields are required except those in square brackets. No duplicate names.
 
 Example:
 * `contact add n/John Doe p/98765432 e/johnd@example.com`
@@ -112,7 +112,7 @@ Shows a list of all persons in the address book.
 
 Format: `contact list`
 
-### Creating a Module : `module add`
+### Creating a module : `module add`
 
 Creates a Module with a given name and members .
 
@@ -159,16 +159,19 @@ Examples:
 
 Adds a meeting at a given date and time with specified members, and a provided meeting name
 
-Format: `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS`
+Format: `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PARTICIPANTS [a/AGENDA] [no/NOTES]`
 
 * Creates a meeting with the provided meeting name for the given module
-* All the fields must be provided
+* All the fields must be provided except those in square brackets
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
 * There can be multiple members separated by a ","
+* There can be multiple agendas separated by a ","
+* There can be multiple notes separated by a ","
 * Participants added need to be contacts that are exist in the given module
 
 Examples:
-*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, Ekam`
+*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, 
+Ekam a/Discuss sequence diagram n/Revise page 2 of textbook beforehand`
 
 ### Deleting a meeting : `meeting delete`
 
@@ -188,26 +191,43 @@ Edits a given meeting. Listed below are the meeting details that can be changed:
 2. Date
 3. Time
 4. Contacts
+5. Agenda
+6. Note
 
-Format: `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [m/NEW_MEMBERS]…`
+Format: `meeting edit m/MODULE n/MEETING_NAME [nN/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [m/NEW_MEMBERS]… [a/AGENDA]…
+ [no/NOTES]…`
 
 * Edits any of the details of the specified meeting from the given module
-* `nN/NEW_NAME`, `d/NEW_DATE`, `t/NEW_TIME` and `m/NEW_MEMBERS` are all optional fields, but at least one of the optional fields must be provided
+* `nN/NEW_NAME`, `d/NEW_DATE`, `t/NEW_TIME`, `m/NEW_MEMBERS`, `a/NEW_AGENDAS`, `n/NEW_NOTES` are all optional fields,
+ but at least one of the optional fields must be provided
 * Date is in the YYYY-MM-dd format and time is in the HH:mm format
 * If there is more than one member to edit, they should be separated by “,”
+* If there is more than one agenda to edit, they should be separated by “,”
+* If there is more than one note to edit, they should be separated by “,”
 * All the newly provided fields will override previous fields
 
 Examples:
 * `meeting edit m/CS2103 n/Meeting d/2020-09-27 t/14:00` edits the date and time of Meeting in the module CS2103 to be `2020-09-27` and `14:00` respectively
 * `meeting edit m/CS2103 n/Meeting nN/Group Discussion' edits the name of Meeting to be `Group Discussion` in the module CS2103
 
-### Listing all Meetings : `meeting list`
+### Listing all meetings : `meeting list`
 
 Views all of the existing meetings.
 
 Format: NA
 
-### Adding a Consultation : `consult add`
+### Viewing specific meeting: `meeting view`
+
+Views selected meeting details, showing meeting agendas and meeting notes.
+
+Format: `meeting view m/MODULE n/MEETING_NAME`
+
+* Views the meeting with the specified meeting name in the given module.
+
+Examples:
+* `meeting view n/CS2103 n/Weekly Meeting` views the `Weekly Meeting` meeting from the module `CS2103`.
+
+### Adding a consultation : `consult add`
 
 Creates a new consultation with given ConsultName.
 
@@ -215,16 +235,16 @@ Format: `consult add n/CONSULT_NAME d/CONSULT_DATE t/CONSULT_TIME m/MEMBERS`
 
 * CONSULT_NAME is a required field.
 * [d/CONSULT_DATE], [t/CONSULT_TIME], [m/MEMBERS] are optional fields
-* Multiple members can join one consultation. 
+* Multiple members can join one consultation.
 * [d/CONSULT_DATE] is in the YYYY:MM:dd format and [t/CONSULT_TIME] is in the HH:mm format.
 
-### Editing a Consultation : `consult edit`
+### Editing a consultation : `consult edit`
 
 Edits any of the details of a consult
 
 Format: `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…`
 
-* [n/NEW_NAME], [d/NEW_DATE], [t/NEW_TIME], [cD/CONTACTS] and [cA/CONTACTS] are all optional fields, 
+* [n/NEW_NAME], [d/NEW_DATE], [t/NEW_TIME], [cD/CONTACTS] and [cA/CONTACTS] are all optional fields,
 * At least one of the optional fields must be provided.
 * If there is more than one contact to be added or deleted in [cA/CONTACTS], they should be separated by “,”
 
@@ -278,8 +298,8 @@ Currently Modduke will support autocompletion for the following fields in v1.3.(
 * Module Name -  Triggered using `mdname/`
 * Meeting Name -  Triggered using `mtname/`
 
-Typing in these trigger phrases will turn the text yellow to show that CommandBox has entered Autocompletion Mode. 
-Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions. 
+Typing in these trigger phrases will turn the text yellow to show that CommandBox has entered Autocompletion Mode.
+Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions.
 
 * Note that while in Autocomplete mode you cannot edit suggestions unless you iterated back to your own input or you press `Backspace`.
 * Pressing `Enter` will lock in your current selection and take you out of Autocomplete mode.
