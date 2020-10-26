@@ -6,7 +6,10 @@ import java.util.function.Predicate;
 
 import chopchop.commons.core.GuiSettings;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.model.ingredient.IngredientReference;
 import chopchop.model.recipe.Recipe;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 import javafx.collections.ObservableList;
 
 /**
@@ -149,4 +152,17 @@ public interface Model {
      */
     void updateFilteredIngredientList(Predicate<? super Ingredient> predicate);
 
+    /** Returns the UsageList of recipe */
+    UsageList<RecipeUsage> getRecipeUsageList();
+
+    /** Returns the UsageList of ingredient */
+    UsageList<IngredientUsage> getIngredientUsageList();
+
+    void addRecipeUsage(Recipe recipe);
+
+    void removeRecipeUsage(Recipe recipe);
+
+    void addIngredientUsage(IngredientReference ingredient);
+
+    void removeIngredientUsage(IngredientReference ingredient);
 }

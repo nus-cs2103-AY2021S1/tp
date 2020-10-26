@@ -181,7 +181,7 @@
 #favouriteBox {
     -fx-background-color:transparent;
 }
-#pins {
+#statsBox {
     -fx-background-color: #fffde7;
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI";
@@ -191,15 +191,16 @@
     -fx-border-radius: 6;
     -fx-padding: 8 4;
 }
-#pins .scroll-pane {
+
+#statsBox .scroll-pane {
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 10 10;
 }
-#pins .scroll-pane .viewport {
+#statsBox .scroll-pane .viewport {
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 10 10;
 }
-#pins .scroll-pane .content{
+#statsBox .scroll-pane .content{
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 10 10;
 }
@@ -249,4 +250,29 @@
 #anchor {
     -fx-background-insets: 0;
     -fx-background-color: transparent, white, transparent, white;
+}
+.header1 {
+    -fx-background-color: transparent;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #575555;
+}
+.header1 .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+.header1 .scroll-pane .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+.header1 .scroll-pane .content {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0 0 10 10;
+}
+#pinBoxPlaceholder {
+    -fx-padding: 5;
+
+}
+#commandOutputPlaceholder {
+    -fx-padding: 5;
 }
