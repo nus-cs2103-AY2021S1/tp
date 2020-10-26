@@ -22,7 +22,7 @@ With some experience in typing, NUStorage can manage your inventory and finance 
 
 Interested? Read on to get [started](#2-quick-start-guide)!
 
-If you see a acronym that you don't understand, kindly refer to the [glossary](#6-glossary).
+If you see a acronym that you don't understand, kindly refer to the [glossary](#7-glossary-and-terms).
 
 ---
 
