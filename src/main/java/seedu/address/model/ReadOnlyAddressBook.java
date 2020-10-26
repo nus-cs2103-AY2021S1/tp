@@ -21,5 +21,17 @@ public interface ReadOnlyAddressBook {
      */
     UniqueModuleList getModuleList();
 
+    /**
+     * Returns an unmodifiable view of the semester one modules list.
+     * This list will not contain any duplicate modules.
+     */
+    UniqueModuleList getSemOneModuleList();
+
+    /**
+     * Returns an unmodifiable view of the semester two modules list.
+     * This list will not contain any duplicate modules.
+     */
+    UniqueModuleList getSemTwoModuleList();
+
 
 }
