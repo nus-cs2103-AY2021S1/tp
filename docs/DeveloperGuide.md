@@ -290,27 +290,22 @@ Step 8: The `RemoveCommand` is executed and one quantity of the first item in th
 * There are two VendorCommand classes in SupperStrikers.
 * `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from.
 * `VendorCommand`, deselects the vendor to the default unintialized value.
+
 * If the vendor does not exist, a `Command Exception` will be thrown
 * If the vendor selected is different from the current vendor, the model will clear the current order.
 
-The following activity diagram summarises the process when the SwitchVendorCommand is executed.
-![SwitchVendorActivityDiagram](diagrams/SwitchVendorCommandActivityDiagram.puml)
 
 
-* `SwitchVendorCommand` allows the user to select a vendor from the `AddressBook` to order from,
-* If the vendor does not exist, a `Command Exception` will be thrown.
 * If the vendor selected is different from the current vendor, the model will clear the current order.
+=======
+#### Switch Vendor Command
+The following activity diagram summarises the process when the SwitchVendorCommand is executed.
+<img src="images/SwitchVendorCommandActivityDiagram.png" alt="SwitchVendorCommandActivityDiagram" style="zoom:40%;" />
 
 
 
-The following diagram summarises the sequence when the SwitchVendorCommmand is executed.
-![VendorSequendeDiagram](images/VendorCommandSequenceDiagram.png)
 
---------------------------------------------------------------------------------------------------------------------
 
-## 
-
->>>>>>> 2c906983c1b7ce22b0503b357c7bf63e54fe568d
 Given below is an example usage scenario and how the SwitchVendorCommand behaves at each step.
 
 Step 1: The user launches the application for the first time, by default, no vendor is selected.
@@ -332,9 +327,12 @@ showing the vendor list is hidden and the UI showing the menu is displayed to th
 Step 8: `Model#resetOrder()` creates a new empty order for the i<sup>th</sup> vendor.
 
 
-The following diagram summarises the sequence when the SwitchVendorCommmand is executed.
-![VendorSequendeDiagram](images/VendorCommandSequenceDiagram.png)
 
+The following diagram summarises the sequence when the SwitchVendorCommmand is executed.
+
+<img src="images/VendorCommandSequenceDiagram.png" alt="VendorSequenceDiagram" style="zoom: 80%;" />
+
+#### Vendor Command
 
 Given below is an example usage scenario and how VendorCommand behaves at each step.
 
@@ -346,7 +344,6 @@ Step 3:  `Model#setVendorIndex(-1)` is executed to set the vendor to the default
 
 Step 4: The UI component showing the menu is hidden and the UI component showing
         the vendor list is displayed to the user by calling `MainWindow#displayMenu()`.
-        
 Step 5: `Model#resetOrder()` sets the order to a new empty order. 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -401,15 +398,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SupperStrikers` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Showing and selecting vendor**
+**Use case: Showing and selecting a particular vendor**
 
 **MSS**
 
-1. User requests to view the list of vendors
-2. SupperStrikers displays the list of vendors
-3. User requests to choose a specified vendor
-4. SupperStrikers displays the menu of the selected vendor
-5. SupperStrikers creates a new empty order of the selected vendor
+2. SupperStrikers displays the list of vendors.
+3. User requests to choose a specified vendor.
+4. SupperStrikers displays the menu of the selected vendor.
+5. SupperStrikers creates a new empty order of the selected vendor.
 
 **Extensions**
 
@@ -417,42 +413,58 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 3a1. SupperStrikers displays an error message.
 
-    Use Case resumes at step 2
+    Use Case resumes at step 2.
+  
 - 3b. The user has already selected a different vendor.
   
   - 3b1. SupperStrikers clears the order of the current vendor.
   
   Use case resumes at step 4.
 
+
+
+**Use case: Showing list of all vendors**
+
+Precondition: <u>User has already selected a particular vendor</u> 
+
+**MSS**
+
+1. SupperStrikers displays a specific vendor.
+2. User requests to view all vendors.
+3. SupperStrikers displays the details of all vendors.
+4. SupperStrikers resets the current order to a new empty order.
+
+
+
 **Use case: Viewing total**
 
 **MSS**
 
-1. User requests to see the total price of the current order
-2. SupperStrikers displays the total price of the current order to the user
+1. User requests to see the total price of the current order.
+2. SupperStrikers displays the total price of the current order to the user.
 
 **Use case: Clearing current order**
 
 **MSS**
 
-1. User requests to clear the current order
-2. SupperStrikers clears the current order
-3. SupperStrikers creates a new empty order of the selected order  
+1. User requests to clear the current order.
+2. SupperStrikers clears the current order.
+3. SupperStrikers creates a new empty order of the selected order  .
 
 **Use case: Submit order**
 
 **MSS**
 
-1. User requests to submit the current order
-2. SupperStrikers displays a copy of the order in a submittable format to the user
+1. User requests to submit the current order.
+2. SupperStrikers displays a copy of the order in a submittable format to the user.
 
 **Use case: Add an item**
 
 **MSS**
 
-1. User requests to add a specified quantity of an item listed in the vendor menu
-2. SupperStrikers adds the item along with the quantity specified into the current order
-4. SupperStrikers displays the updated order with the newly added item
+1. User requests to add a specified quantity of an item listed in the vendor menu.
+2. SupperStrikers adds the item along with the quantity specified into the current order.
+4. SupperStrikers displays the updated order with the newly added item.
 
 **Extensions**
 
@@ -460,15 +472,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   - 1a1. SupperStrikers shows an error message.
 
-    Use Case resumes at step 1
+    Use Case resumes at step 1.
 
 - 1b. The given quantity is negative.
 
   - 1b1. SupperStrikers shows an error message.
 
-    Use Case resumes at step 1
+    Use Case resumes at step 1.
   
-- 1c. The quantity is not specified
+- 1c. The quantity is not specified.
 
   - 1c1. SupperStrikers adds the quantity of the item by 1.
 
@@ -478,7 +490,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to remove a quantity of a specific item in the current order
+1.  User requests to remove a quantity of a specific item in the current order.
 2.  SupperStrikers decreases the quantity of the item by the quantity provided.
 
     Use case ends.
