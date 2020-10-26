@@ -25,7 +25,6 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final SalesBook salesBook;
-    private final TimeSalesBook timeSalesBook;
     private final IngredientBook ingredientBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -46,7 +45,6 @@ public class ModelManager implements Model {
                 + " and user prefs" + " " + userPrefs);
 
         this.addressBook = new AddressBook(addressBook);
-        this.timeSalesBook = new TimeSalesBook();
         this.salesBook = new SalesBook(salesBook);
         this.ingredientBook = new IngredientBook(ingredientBook);
         this.userPrefs = new UserPrefs(userPrefs);

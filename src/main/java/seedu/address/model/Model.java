@@ -27,9 +27,6 @@ public interface Model {
 
     Predicate<SalesRecordEntry> PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY = unused -> true;
 
-    Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
-
-    Predicate<SalesRecordEntry> PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
