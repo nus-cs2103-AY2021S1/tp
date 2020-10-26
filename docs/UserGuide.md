@@ -12,11 +12,12 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
         - Adding a flashcard: `add`
         - Deleting a flashcard: `delete`
         - Editing a flashcard: `edit`
+        - Favourite a flashcard : `fav`
+        - Unfavourite a flashcard: `unfav`
+        - Find flashcards: `find`
         - Listing all flashcards: `list`
         - Review all flashcards : `review`
         - Sort all flashcards: `sort`
-        - Favourite a flashcard : `fav`
-        - Unfavourite a flashcard: `unfav`
         - Exiting the program: `exit`
         - View a flashcard: `view`
         - Saving the data
@@ -43,15 +44,17 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
    
    * **`edit 2 q/What is a revision control software? a/It is the software tool that automate the process of Revision Control`**: Edits the 2nd flashcard in the current list with the specified attributes.
 
+   * **`fav 1`** : Favourite the 1st flashcard in the current list.
+     
+   * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
+   
+   * **`find general`**: Find all flashcards containing general
+
    * **`list`** : Lists all flashcards.
 
    * **`review`** : Reviews the current list of flashcards.
    
    * **`sort reviewed -d`** : Sorts the list of flashcards according to review frequency in descending order.
-   
-   * **`fav 1`** : Favourite the 1st flashcard in the current list.
-      
-   * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
    
    * **`view 1`** : Views the 1st flashcard in the current list.
 
@@ -146,6 +149,47 @@ Format: `filter c/CATEGORY`
 Examples:
 *  `filter` followed by `c/SDLC` filters and lists all flashcards belonging n the SDLC category.
 
+### Favourite a flashcard  : `fav`
+
+Favourite the specified flashcard.
+
+Format: `fav INDEX`
+
+* Favourite the flashcard at the specified INDEX.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples: 
+* `list` followed by `fav 2` favourite the 2nd flashcard in the displayed list.
+
+### Unfavourite a flashcard  : `unfav`
+
+Unfavourite the specified flashcard.
+
+Format: `unfav INDEX`
+
+* Unfavourite the flashcard at the specified INDEX.
+* The index refers to the index number shown in the displayed flashcard list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Examples: 
+* `list` followed by `unfav 2` unfavourite the 2nd flashcard in the displayed list.
+
+### Find flashcards : `find`
+
+Search for all flashcards matching any of the search keywords.
+
+Format: `find KEYWORD...`
+* Finds all flashcards containing any of the keywords
+* The keywords are **case insensitive**
+* Keywords will match as long as they are contained within any flashcard’s question/answer/category/note/tags. Eg. `UML` keyword will match a flashcard with a `category` called `UML-Diagram`
+
+Examples: 
+* `find general` 
+* `find general important` 
+* `find GENERAL object`
+
+
 ### Listing all flashcards : `list`
 
 Shows a list of all flashcards.
@@ -179,26 +223,6 @@ Examples:
     - `success -a` shows a list of all flashcards sorted according to success rate in ascending order
     - `success -d` shows a list of all flashcards sorted according to success rate in descending order
     
-### Favourite a flashcard  : `fav`
-
-Favourites the specified flashcard.
-
-Format: `fav INDEX`
-
-* Favourite the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
-
-### Unfavourite a flashcard  : `unfav`
-
-Unfavourite the specified flashcard.
-
-Format: `unfav INDEX`
-
-* Unfavourite the flashcard at the specified INDEX.
-* The index refers to the index number shown in the displayed flashcard list.
-* The index **must be a positive integer** 1, 2, 3, …
-
 ### Views a flashcard  : `view`
 
 View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.  
@@ -227,13 +251,14 @@ Flashcards data are saved in the hard disk automatically after any command that 
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g., `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
-**Delete** | `delete INDEX` <br> e.g., `delete 3`
-**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g., `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
+**Delete** | `delete INDEX` <br> e.g. `delete 3`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Fav** | `fav INDEX` <br> e.g. `fav 1`
+**Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
+**Find** | `find keyword...` <br>  e.g. `find general important`
 **List** | `list`
 **Review** | `review`
-**Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d>`</code> <br> e.g. sort success -a
-**Fav** | `fav INDEX` <br> e.g., `fav 1`
-**Unfav** | `unfav INDEX` <br> e.g., `unfav 1`
-**View** | `view INDEX` <br> e.g., `view 1`
+**Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> e.g. `sort success -a`
+**View** | `view INDEX` <br> e.g. `view 1`
 **Exit** | `exit`
