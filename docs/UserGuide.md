@@ -75,7 +75,6 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 * **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
 * **Print** to generate file for printing of stock list.
 * **Storage** into csv and json files.
-* **Personalized GUI**: e.g. company name displayed in the GUI, predefined color presets.
 
 * Upon start up of the Warenager application, stocks are by default displayed
 in order of decreasing priority: low quantity stocks, bookmarked stocks, other stocks
