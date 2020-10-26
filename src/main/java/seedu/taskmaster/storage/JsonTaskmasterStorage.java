@@ -14,7 +14,7 @@ import seedu.taskmaster.commons.exceptions.IllegalValueException;
 import seedu.taskmaster.commons.util.FileUtil;
 import seedu.taskmaster.commons.util.JsonUtil;
 import seedu.taskmaster.model.ReadOnlyTaskmaster;
-import seedu.taskmaster.model.session.StudentRecord;
+import seedu.taskmaster.model.record.StudentRecord;
 
 /**
  * A class to access Taskmaster data stored as a json file on the hard disk.
