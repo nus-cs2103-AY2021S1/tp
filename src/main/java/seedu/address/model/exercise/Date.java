@@ -3,6 +3,7 @@ package seedu.address.model.exercise;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
@@ -10,6 +11,7 @@ public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format of DD-MM-YYYY";
     public final String value;
+    private java.util.Date actualDate;
 
     /**
      * Constructs a {@code Date}.
@@ -20,6 +22,13 @@ public class Date {
         requireNonNull(date);
         checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
         value = date;
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+            actualDate = formatter.parse(value);
+        } catch (java.text.ParseException e) {
+            // actually ParseException will never be thrown because we already check if the input is valid.
+            actualDate = null;
+        }
     }
 
     /**
@@ -36,6 +45,13 @@ public class Date {
         return true;
     }
 
+    public boolean isBefore(Date other) {
+        return actualDate.before(other.actualDate);
+    }
+
+    public java.util.Date getActualDate() {
+        return actualDate;
+    }
 
     @Override
     public String toString() {

@@ -12,6 +12,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Template;
+import seedu.address.model.exercise.TemplateList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -102,6 +104,12 @@ public class ExerciseModelManager implements ExerciseModel {
     @Override
     public void addExercise(Exercise exercise) {
         exerciseBook.addExercise(exercise);
+        updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
+    }
+
+    @Override
+    public void addTemplate(Template template) {
+        TemplateList.addTemplate(template);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }
 
