@@ -4,7 +4,6 @@ title: User Guide
 ---
 * Table of Contents
 {:toc}
-
 ---
 
 ## 1. Introduction
@@ -242,7 +241,6 @@ __Result:__ Undo or redo the previous command.
 ---
 
 ## 5. Command Summary
-
 Action | Format, Examples
 --------|------------------
 __Add inventory__ | `add_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `add_inventory i/MacBook pro q/200 c/50`

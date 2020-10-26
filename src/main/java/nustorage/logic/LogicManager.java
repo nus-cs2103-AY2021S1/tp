@@ -63,7 +63,7 @@ public class LogicManager implements Logic {
     public ObservableList<FinanceRecord> getFilteredFinanceList() {
         return model.getFilteredFinanceList();
     }
-    
+
     @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
