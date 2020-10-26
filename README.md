@@ -8,8 +8,8 @@ Eva is a desktop app for human resource management, optimized for use via a Comm
 
 ## More Information
 * [Product website](https://ay2021s1-cs2103t-w13-1.github.io/tp/)
-* [User Guide](https://github.com/AY2021S1-CS2103T-W13-1/tp/blob/master/docs/UserGuide.md)
-* [Developer Guide](https://github.com/AY2021S1-CS2103T-W13-1/tp/blob/master/docs/DeveloperGuide.md)
+* [User Guide](https://ay2021s1-cs2103t-w13-1.github.io/tp/UserGuide.html)
+* [Developer Guide](https://ay2021s1-cs2103t-w13-1.github.io/tp/DeveloperGuide.html)
 ## Acknowledgements
  * Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
  * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).

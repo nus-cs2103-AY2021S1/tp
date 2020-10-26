@@ -245,7 +245,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: Simple and lightweight application that handles HR related administrative tasks, like manage staff performance and recruitment applicants, faster than a typical mouse/GUI driven app.
 
-
 ### 5.3 User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
@@ -568,24 +567,41 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
 ***Use case: UC19 - Deleting a Comment on staff quickly***
 
 
-***Use case: UC20 - Adding an application to a applicant***
+***Use case: UC20 - Adding an application to an applicant***
 
 **MSS**
 
 1. User types in `addapplication <index_of_applicant> <filepath_of_resume>`
 2. Eva inserts the resume data into storage, under the applicant indicated.
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
 * 1a. Eva does not find any file (resume) specified.
 
     * 1a1. Eva informs the user that the file cannot be found.
-    Use case ends
+    Use case ends.
     
+* 1b. Eva does not find the applicant specified.
+
+    * 1b1. Eva informs the user that the applicant's index specified cannot be found.
+    Use case ends.
 
 ***Use case: UC21 - Deleting an application from an applicant***
 
+**MSS**
+
+1. User types in `deleteapplication <index_of_applicant>`
+
+2. Eva removes the resume data from the applicant indicated.
+   Use case ends.
+
+**Extensions**
+
+* 1a. Eva does not find the applicant specified.
+
+    * 1a1. Eva informs the user that the applicant's index specified cannot be found.
+    Use case ends.
 
 ***Use case: UC22 - list all staff records***
 
@@ -614,18 +630,27 @@ Example: `delete <index_of_applicant> a- c- t:<title>`
 
 ***Use case: UC28 - help***
 
+**MSS**
+
+1. User types in `help`
+2. Eva shows a message explaining how to access the help page. <br>
+    Use case ends.
+        
 ***Use case: UC29 - clear***
 
+**MSS**
+
+1. User types in `clear`
+2. Eva clears all entries. <br>
+    Use case ends.
+    
 ***Use case: UC30 - Exiting the program***
 
 **MSS**
 
-1. User types in exit
-2. Eva exits
-
-Use case ends.
-
-*{More to be added}*
+1. User types in `exit`
+2. Eva closes. <br>
+    Use case ends.
 
 ### 5.4 Non-Functional Requirements
 

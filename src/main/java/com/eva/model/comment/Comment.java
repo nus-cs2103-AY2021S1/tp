@@ -1,8 +1,15 @@
 package com.eva.model.comment;
 
+import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DESC;
+import static com.eva.logic.parser.CliSyntax.PREFIX_TITLE;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+
+import com.eva.logic.parser.ArgumentMultimap;
+import com.eva.logic.parser.ArgumentTokenizer;
 
 public class Comment {
 
@@ -43,11 +50,21 @@ public class Comment {
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, date);
+        return Objects.hash(description, date, title.getTitle());
     }
 
+    /**
+     * Checks if provided input is a valid comment
+     * @param comment
+     * @return
+     */
     public static boolean isValidComment(String comment) {
-        return true;
+        ArgumentMultimap argMultmap = ArgumentTokenizer.tokenize(comment,
+                PREFIX_TITLE, PREFIX_DATE, PREFIX_DESC);
+        boolean hasTitle = !argMultmap.getValue(PREFIX_TITLE).isEmpty();
+        boolean hasDate = !argMultmap.getValue(PREFIX_DATE).isEmpty();
+        boolean hasDescription = !argMultmap.getValue(PREFIX_DESC).isEmpty();
+        return hasTitle && hasDate && hasDescription;
     }
 
     public LocalDate getDate() {

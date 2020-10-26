@@ -1,9 +1,9 @@
 package com.eva.logic.parser;
 
 import static com.eva.commons.util.StringUtil.formatForParse;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DESC;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_TITLE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DESC;
+import static com.eva.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
@@ -144,7 +144,7 @@ public class ParserUtil {
     public static Comment parseComment(String comment) throws ParseException {
         requireNonNull(comment);
         String trimmedComment = comment.trim();
-        if (!Comment.isValidComment(trimmedComment)) {
+        if (!Comment.isValidComment(" " + trimmedComment)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(" " + comment,

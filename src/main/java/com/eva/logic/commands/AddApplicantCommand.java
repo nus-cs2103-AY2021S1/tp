@@ -2,8 +2,8 @@ package com.eva.logic.commands;
 
 import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static com.eva.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
 import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
@@ -23,7 +23,7 @@ public class AddApplicantCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "[" + PREFIX_COMMENT + "COMMENT]...\n"
-            + "[" + PREFIX_DATE + " INTERVIEW DATE]\n"
+            + "[" + PREFIX_INTERVIEW_DATE + " INTERVIEW DATE]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
