@@ -91,13 +91,13 @@ For example, the **add ingredient** command is specified like this: `add ingredi
 
 * Portions in square brackets (eg. `[/expiry <expiry_date>]`) denote optional parts of the command. In this example, not all ingredients will expire, so the expiry date is optional.
 
-* Portions with trailing ellipses (eg. `(/step <step>)...`) denote commands accepting one or more of the given argument. In this example, a recipe can have multiple steps, so you can specify multiple `/step` arguments.
+* Portions with trailing ellipses (eg. `(/step <step>)...`) denote commands accepting one or more of the given parameter. In this example, a recipe can have multiple steps, so you can specify multiple `/step` arguments.
 
-* Parentheses are used to group parts of the command together purely for clarity in this document; they must not appear in the typed input. For instance, in `(/step <step>)...`, it is simply used to denote that each step must be preceeded by the `/step` argument.
+* Parentheses are used to group parts of the command together purely for clarity in this document; they must not appear in the typed input. For instance, in `(/step <step>)...`, it is simply used to denote that each step must be preceeded by the `/step` parameter.
 
 * A `<#REF>` refers to an item reference, and is used to refer to either a recipe or an ingredient. It can either be the (case-insensitive) name of the item, or it can be a number prefixed with '#', eg. `#3` to refer to the third item in the list. In the GUI, displayed items are numbered in the corner.
 
-* In general, the order of arguments is important; for example, the order of `/step` arguments determines the order of the steps in the recipe, while a `/qty` in an **add recipe** command must only appear after an `/ingredient` argument.
+* In general, the order of arguments is important; for example, the order of `/step` determines the order of the steps in the recipe, while a `/qty` in an **add recipe** command must only appear after an `/ingredient`.
 
 
 ### Viewing Help : **`help`**
@@ -139,12 +139,13 @@ This command adds a recipe to ChopChop, specifying zero or more ingredients, eac
 
 If an ingredient is specified without a quantity, it is treated *as if* you used `/qty 1`. This works for counted ingredients (eg. eggs), but it will cause errors for other ingredients (eg. volume of milk).
 
-Usage: `add recipe <NAME> [/ingredient <INGREDIENT_NAME> [/qty <QUANTITY>]]... (/step <STEP>)...`
+Usage: `add recipe <NAME> [/ingredient <INGREDIENT_NAME> [/qty <QUANTITY>]]... (/step <STEP>)... [/tag <TAG>]...`
 
 Constraints:
 - Recipe name should not be empty
 - Ingredient names should not be empty
 - Steps should not be empty
+- Tag names should not be empty
 
 For example, suppose you wanted to add a recipe for pancakes using flour, eggs, and milk, you would type this:
 ```
@@ -189,36 +190,67 @@ Figure 3.3: <i>The newly created recipe in the recipe list</i>
 
 
 ### Editing Recipes — **`edit`**`recipe`
-Edits a specific recipe from ChopChop. The `edit recipe` command allows for different actions on the name, ingredients, steps and tags, as specified below.
+This command edits a specific recipe in ChopChop. The `edit recipe` lets you perform different actions on the name, ingredients, steps, and tags, as specified below.
 
-#### Name
-To edit a recipe's name, use the `/name` parameter (e.g. `/name new recipe name`).
+To accomodate the various different kinds of editing operations, ChopChop has special syntax for editing, known as *edit-arguments*, eg. `/step:add`. The component following the colon is the *ACTION*, which can take these values:
 
-#### Ingredients
-To edit a recipe's ingredients, use the `/ingredient` parameter, with an action specified after a colon. Note that ingredient names are case-insensitive.
+- For ingredients and steps, it can either be `add`, `edit`, or `delete`.
+- For tags, it can be either `add` or `delete`.
 
-Possible actions include:
 
-- Adding an ingredient with the `/ingredient:add` parameter (e.g. `/ingredient:add beef /qty 1kg`). Note that specifying a quantity is required.
-- Editing an ingredient with the `/ingredient:edit` parameter (e.g.`/ingredient:edit beef /qty 3kg` ). The ingredient must exist for the command to be valid.
-- Deleting an ingredient with the `/ingredient:delete` parameter (e.g. `/ingredient:delete beef`).
 
-#### Steps
-To edit a recipe's steps, use the `/step` parameter, with an action specified after a colon. Steps are referred to using their indexes (starting from 1), which specified after the action.
+<h4>Name</h4>
+If you want to edit a recipe's name, use `/name`, for example `/name new recipe name`.
 
-Possible actions include:
 
-- Adding a step with the `/step:add` parameter (e.g. `/step:add Add in the vanilla extract and mix well`). If an index is specified, the step will be added at the given index. Otherwise, it will be added after all existing steps.
-- Editing a step with the `/step:edit` parameter. An index must be specified for the command to be valid (eg. `/step:edit:4 Beat the eggs thoroughly`).
-- Deleting a step with the `/step:delete` parameter (e.g. `/step:delete:4`).
+<h4>Ingredients</h4>
+If you want to edit a recipe's ingredients, use `/ingredient` with the corresponding action (eg. `/ingredient:add`).
 
-#### Tags
-To edit a recipe's steps, use the `/tag` parameter, with an action specified after a colon. Like ingredients, tags are case-insensitive.
+When adding or editing ingredients, a `/qty` *must* be specified after the ingredient (similar to an `add recipe` command). Here are some examples:
 
-Possible actions include:
+- `/ingredient:add milk /qty 500ml` <br />
+  This makes the recipe require 500ml of milk; if the recipe already used milk, then an error is displayed — here, you should use `/ingredient:edit` instead.
 
-- Adding a tag with the `/tag:add` parameter (e.g. `/tag:add breakfast`).
-- Deleting a tag with the `/tag:delete` parameter (e.g. `/tag:delete breakfast`)
+- `/ingredient:edit beef /qty 200g` <br />
+  This changes the quantity of beef used in the recipe from its previous value, to 200 grams. If the recipe did not use beef as an ingredient, an error is displayed — here, you should use `/ingredient:add` instead.
+
+- `/ingredient:delete carrot` <br />
+  This removes carrots from the recipe entirely. If the recipe did not use carrots, then an error is displayed.
+
+
+<h4>Tags</h4>
+If you want to edit the tags for a recipe, use `/tag` with the corresponding action, which are either `add` or `delete`. For example:
+
+- `/tag:add vegetarian` <br />
+  This adds the 'vegetarian' tag to the recipe. It is not an error if the recipe already contains this tag.
+
+- `/tag:delete cold` <br />
+  This removes the 'cold' tag from the recipe. If the recipe did not have this tag, an error is displayed.
+
+
+
+<h4>Steps</h4>
+Since steps have a fixed ordering in a recipe, editing them is slightly more involved; when editing or deleting steps, you are required to provide the step number as an additional component in the *edit-argument*, for example `/step:edit:3` edits the third step in the recipe.
+
+When adding a step, the step number is optional; if not specified, the new step will be added at the end. If it is specified, then the new step will be inserted at the corresponding position, and the following steps will be re-numbered.
+
+For example:
+
+- `/step:add Bake for 80 minutes at 400 C` <br />
+  This adds a new step at the end of the existing steps of the recipe.
+
+- `/step:edit:4 Bake for 50 minutes at 250 C` <br />
+  This changes the content of step number 4, so the cake does not get burnt.
+
+- `/step:delete:1` <br />
+  This deletes the first step of the recipe.
+
+
+<h4>Usage</h4>
+
+Except `/name` (which can only appear once), all of the edit operations described above can appear multiple times, in any order, in a single `edit recipe` command. Each operation is processed sequentially from left-to-right, so if two operations modify the same item, then the second one will take precedence.
+
+(As an example, `/step:edit:3 Bake ... /step:edit:3 Fry` will cause step 3 to be 'Fry')
 
 Usage `edit recipe <#REF> [/name <RECIPE_NAME>] [/ingredient:<ACTION> [<INGREDIENT_NAME> /qty <QUANTITY>]]... [/step:<ACTION>[:<INDEX>] [<STEP>]]... [/tag:<ACTION> [<TAG>]]...`
 
@@ -230,7 +262,86 @@ Examples:
 - `edit recipe risotto /step:edit:1 In a saucepan, warm the broth over low heat` <br />
     This edits the recipe named 'risotto' by changing the 1st step to the text above.
 - `edit recipe beef curry /ingredient:delete apple /step:delete:4` <br />
-    This edits the recipe named 'beef curry' to remove both the ingredient 'apple' and the 4th step.
+    This edits the recipe named 'beef curry' to remove both the ingredient 'apple' as well as the 4th step.
+
+To illustrate how to use this powerful command, let us recreate the Pancake recipe from above, but starting from a blank recipe. First, we make the empty recipe using `add recipe Pancakes`:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_1.png" width="75%" /> <br />
+Figure 4.1: <i>The empty recipe</i>
+</div>
+
+Now, let's add our ingredients. First, 400 grams of flour:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_2.png" width="75%" /> <br />
+Figure 4.2: <i>The command to add a new ingredient to the recipe</i>
+</div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_3.png" width="75%" /> <br />
+Figure 4.3: <i>The recipe is now updated with the ingredient</i>
+</div>
+
+Next, adding the eggs and milk in one go:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
+Figure 4.4: <i>The edit command supports multiple operations at once</i>
+</div>
+
+Oops, that's too many eggs, so let's edit the quantity:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
+Figure 4.5: <i>Editing an ingredient to change its quantity</i>
+</div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
+Figure 4.6: <i>The recipe now uses only 3 eggs</i>
+</div>
+
+Now let's add the steps:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
+Figure 4.7: <i>Adding the first step</i>
+</div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_8.png" width="75%" /> <br />
+Figure 4.8: <i>Adding steps 2 and 3</i>
+</div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_9.png" width="75%" /> <br />
+Figure 4.9: <i>The completed recipe</i>
+</div>
+
+Oh no, if we bake the pancakes (are pancakes baked?) like that, they'll get burnt, so let's fix it:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
+Figure 4.10: <i>Editing the second step</i>
+</div>
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/edit_recipe_11.png" width="75%" /> <br />
+Figure 4.11: <i>The actual completed recipe</i>
+</div>
+
+And now the pancake recipe is complete.
+
+
+
+
+
+
+
+
+
+
 
 
 ### Deleting Recipes — **`delete`**`recipe`
@@ -248,7 +359,7 @@ To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
-Figure 4: <i>The recipe number (circled) can be used to refer to an item as well</i>
+Figure 5: <i>The recipe number (circled) can be used to refer to an item as well</i>
 </div>
 
 
@@ -273,21 +384,21 @@ Examples:
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_1.png" width="75%" /> <br />
-Figure 5.1: <i>The starting state of the application</i>
+Figure 6.1: <i>The starting state of the application</i>
 </div>
 
 After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_2.png" width="75%" /> <br />
-Figure 5.2: <i>The recipes containing 'cake'</i>
+Figure 6.2: <i>The recipes containing 'cake'</i>
 </div>
 
 To go back to the full recipe view (resetting the search filter), you can either click the Recipes button at the bottom, or run the `list recipes` command:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_3.png" width="75%" /> <br />
-Figure 5.3: <i>Back to the main recipe list</i>
+Figure 6.3: <i>Back to the main recipe list</i>
 </div>
 
 
@@ -313,7 +424,9 @@ As mentioned in the overview above, an ingredient can consist of multiple sets; 
 :information_source: **Note:** Ingredients need to have compatible units in order to be combined; see [this section](#quantities-and-units) for how it works.
 </div>
 
-Usage: `add ingredient <NAME> [/qty <QUANTITY>] [/expiry <EXPIRY_DATE>]`
+If the new ingredient has `/tag` options that are not present in the existing ingredient, then they are added as well.
+
+Usage: `add ingredient <NAME> [/qty <QUANTITY>] [/expiry <EXPIRY_DATE>] [/tag <TAG>]...`
 
 Examples:
 - `add ingredient milk /qty 1l /expiry 2020-11-09` adds one litre of milk that expires on the 9th of November.
@@ -323,35 +436,35 @@ Suppose you just finished a grocery run, and want to add the items to ChopChop. 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_1.png" width="75%" /> <br />
-Figure 6.1: <i>Adding 2 litres of milk</i>
+Figure 7.1: <i>Adding 2 litres of milk</i>
 </div>
 
 Since ChopChop did not know about 'milk' previously, a new ingredient entry is created for it:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_2.png" width="75%" /> <br />
-Figure 6.2: <i>The newly added milk ingredient</i>
+Figure 7.2: <i>The newly added milk ingredient</i>
 </div>
 
 Next, suppose you also bought 24 blueberries:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_3.png" width="75%" /> <br />
-Figure 6.3: <i>Adding 24 blueberries</i>
+Figure 7.3: <i>Adding 24 blueberries</i>
 </div>
 
 This time, since ChopChop already knew about blueberries, our previous 5 blueberries now become 29:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
-Figure 6.4: <i>You now have 29 blueberries</i>
+Figure 7.4: <i>You now have 29 blueberries</i>
 </div>
 
 If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_5.png" width="75%" /> <br />
-Figure 6.5: <i>Ingredients must have compatible units to be combined</i>
+Figure 7.5: <i>Ingredients must have compatible units to be combined</i>
 </div>
 
 
@@ -380,14 +493,14 @@ To illustrate, suppose that you poured yourself a glass of cold milk to drink, w
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
-Figure 7.1: <i>Removing 250ml of milk</i>
+Figure 8.1: <i>Removing 250ml of milk</i>
 </div>
 
 Notice how the amount of milk decreased from 2 litres to 1.75 litres:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
-Figure 7.2: <i>You now only have 1.75 litres of milk left</i>
+Figure 8.2: <i>You now only have 1.75 litres of milk left</i>
 </div>
 
 
@@ -407,14 +520,14 @@ For example, suppose you wanted to find all ingredients containing fish (not in 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_1.png" width="75%" /> <br />
-Figure 8.1: <i>The complete ingredient list</i>
+Figure 9.1: <i>The complete ingredient list</i>
 </div>
 
 Now, only the matching ingredients are shown:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_2.png" width="75%" /> <br />
-Figure 8.2: <i>Only ingredients containing 'fish' in their name are shown</i>
+Figure 9.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
 Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
@@ -422,7 +535,7 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 
 
 
-#### Undoing commands — **`undo`**
+### Undoing commands — **`undo`**
 Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
 
 Usage: `undo`
@@ -430,7 +543,7 @@ Usage: `undo`
 
 
 
-#### Undoing commands — **`redo`**
+### Undoing commands — **`redo`**
 Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
 
 Usage: `redo`
