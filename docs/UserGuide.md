@@ -5,21 +5,18 @@
 3. [Features](#3-features)<br>
    3.1 [Command format](#31-command-format)<br>
    3.2 [View help: `help`](#32-view-help-help)<br>
-   3.3 [Add an item: `add`](#33-add-an-item-add)<br>
-   ---3.3.1 [Add a module: `addMod`](#331-add-a-module-addmod)<br>
-   ---3.3.2 [Add a tutorial group: `addTG`](#332-add-a-tutorial-group-addtg)<br>
-   ---3.3.3 [Add a student: `addStudent`](#333-add-a-student-addstudent)<br>
-   ---3.3.4 [Add a task: `addTask`](#334-add-a-task-addtask)<br>
-   3.4 [List items: `list`](#34-list-items-list)<br>
-   3.5 [Filter students: `filter`](#35-filter-students-filter)<br>
-   3.6 [Delete an item: `delete`](#36-delete-an-item-delete)<br>
-   3.7 [Find an item: `find`](#37-find-an-item-find)<br>
-   ---3.7.1 [Find a module: `findMod`](#371-find-a-module-findmod)<br>
-   ---3.7.2 [Find a tutorial group: `findTG`](#372-find-a-tutorial-group-findtg)<br>
-   ---3.7.3 [Find a student: `findStudent`](#373-find-a-student-findstudent)<br>
-   3.8 [Mark a task as done: `done`](#38-mark-a-task-as-done-done)<br>
+   3.3 [Module features](#33-module-features)<br>
+   3.4 [Tutorial group features](#34-tutorial-group-features)<br>
+   3.5 [Student features](#35-student-features)<br>
+   --- 3.5.1 [Add a student: `addStudent`](#351-add-a-student-addstudent)<br>
+   --- 3.5.2 [Delete a student: `deleteStudent`](#352-delete-a-student-deletestudent)<br>
+   --- 3.5.3 [Find a student: `findStudent`](#353-find-a-student-findstudent)<br>
+   --- 3.5.4 [Edit a student: `editStudent` [coming in v1.4]](#354-edit-a-student-editstudent-coming-in-v14)<br>
 4. [FAQ](#4-faq)
-5. [Command Summary](#5-command-summary)
+5. [Command Summary](#5-command-summary)<br>
+   5.1 [Module commands](#51-module-commands)<br>
+   5.2 [Tutorial group commands](#52-tutorial-group-commands)<br>
+   5.3 [Student commands](#53-student-commands)<br>
 
 ## 1. Introduction
 
@@ -86,105 +83,95 @@ Shows a message explaining how to access the user guide.
 
 Format: `help`
 
-### 3.3 Add an item: `add`
+### 3.3 Module features
 
-Adds an item to the database.
+### 3.4 Tutorial group features
 
-#### 3.3.1 Add a module: `addMod`
+### 3.5 Student features
 
-Adds a module to the database.
+Note: You should perform the following features while in the Student view.
 
-Format: `addMod MODULE_CODE`
+#### 3.5.1 Add a student: `addStudent`
 
-Example: `addMod CS2103T`
+Adds a student with your provided details.
 
-#### 3.3.2 Add a tutorial group: `addTG`
+Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
 
-Adds a tutorial group to the current module in view.
+Note:
 
-Format: `addTG GROUP_CODE`
+- Students should not share the same name within the same tutorial group.
+- Phone numbers should only be 8 digits long.
+- Student IDs begin and end with a **capital letter** and should have 7 digits (e.g. A1243567X).
+- A student can have any number of tags, including 0.
 
-Example: `addTG T03`
+Example:
 
-#### 3.3.3 Add a student: `addStudent`
+- Adds a student called _John Tan_ with phone number _81234567_, email _johntan@u.nus.edu_, student id _A1234567X_
+and tag _student_ to the current tutorial group in view.
 
-Adds a student to the current tutorial group in view.
+    - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
+    
+Expected Outcome:
 
-Format: `addStudent n/STUDENT_NAME id/STUDENT_ID`
+- From the example above, the result box will display the following message:
 
-Example: `addStudent n/John Doe id/A1234567X`
+    New student added: {to be filled up}
+    
+{insert screenshot of addStudent with the above parameters}
 
-#### 3.3.4 Add a task: `addTask`
+#### 3.5.2 Delete a student: `deleteStudent`
 
-Adds a task to the current module in view.
+Deletes a student based on the given `INDEX`.
 
-Format: `addTask TASK_NAME`
+Format: `deleteStudent INDEX`
 
-Example: `addTask grade CS2103T user guides`
+Note:
 
-### 3.4 List items: `list`
+- `INDEX` refers to the index number shown in the Student view.
+- `INDEX` must be a positive integer starting from 1.
+- Deleting a student is **irreversible**.
 
-Displays items in the current list in view.
+Example:
 
-Format: `list`
+- Deletes the second student in the Student view.
+    
+    - `deleteStudent 2`
+    
+Expected Outcome:
 
-### 3.5 Filter students: `filter`
+- From the example given above, the result box will display the following message:
 
-Filters students in a module based on certain criteria.
+    Deleted student: {to be filled up}
+    
+{insert screenshot of deleteStudent with the above parameters}
 
-Format: `filter KEYWORD`
+#### 3.5.3 Find a student: `findStudent`
 
-List of keywords:
+Finds and lists all students in the current Student view whose field contains any of the given keywords.
 
--   `taskNotDone`
--   `trailingBehind`
--   `notParticipating`
+Format: `findStudent KEYWORD`
 
-Example: `filter taskNotDone`
+Note:
 
-### 3.6 Delete an item: `delete`
+- `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
+- The search will look for matches in the student's name and student ID.
+- If no student matching the keyword is found, the Student view will be empty.
 
-Deletes an item from the database.
+Example:
 
-Format: `delete INDEX`
+- Finds a student with `KEYWORD` _a1234567x_.
 
-Example: `delete 1`
+    - `findStudent a1234567x`
+    
+Expected Outcome:
 
-### 3.7 Find an item: `find`
+- From the example given above, the Student view will display the students matching the criteria:
+    
+{insert screenshot of findStudent with the above parameters}
 
-Finds and retrieves an item from the current list in view.
+#### 3.5.4 Edit a student: `editStudent` [coming in v1.4]
 
-#### 3.7.1 Find a module: `findMod`
-
-Searches for and retrieves a module from within the database.
-
-Format: `findMod MODULE_CODE`
-
-Example: `findMod CS2103T`
-
-#### 3.7.2 Find a tutorial group: `findTG`
-
-Searches for and retrieves a student from within the database.
-
-Format: `findTG GROUP_CODE`
-
-Example: `findTG T03`
-
-#### 3.7.3 Find a student: `findStudent`
-
-Searches for and retrieves a student from within the database.
-
-Format: `findStudent STUDENT_NAME`
-
-Example: `findStudent John Doe`
-
-### 3.8 Mark a task as done: `done`
-
-Marks a task as done upon completion.
-
-Format: `done TASK_NUMBER`
-
-Example: `done 2`
+Edits a student with the provided details.
 
 ## 5. Command Summary
 Action | Format
@@ -201,7 +188,22 @@ Finding a tutorial group | `findTG GROUP_CODE`
 Finding a student | `findStudent n/NAME id/STUDENT_ID`
 Marking a reminder as done | `done TASK_NUMBER`
 
-## 7. FAQ
+
+=======
+
+### 5.1 Module commands
+
+### 5.2 Tutorial group commands
+
+### 5.3 Student commands
+
+Command | Summary
+--------|--------
+`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view
+`deleteStudent INDEX` | Deletes a student from the current Student view
+`findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view
+
+## 6. FAQ
 __Q:__ Why did the command I input change colour from white to red? <br> 
 __A:__ This happens when the input command is of the wrong syntax or doesn't exist. U may go to the [Command Summary](#5-command-summary) to 
 view the list of commands and their accepted formats.
