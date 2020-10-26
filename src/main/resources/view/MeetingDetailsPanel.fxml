@@ -11,6 +11,7 @@
 
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.ListView?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -39,8 +40,12 @@
                     <Insets top="15" />
                 </padding>
                 <TabPane id="tabPane" fx:id="tabPane">
-                    <Tab fx:id="agendaTab" closable="false"></Tab>
-                    <Tab fx:id="notesTab" closable="false"></Tab>
+                    <Tab fx:id="agendaTab" closable="false">
+                        <ListView fx:id="agendas" styleClass="custom-list"></ListView>
+                    </Tab>
+                    <Tab fx:id="notesTab" closable="false">
+                        <ListView fx:id="notes" styleClass="custom-list"></ListView>
+                    </Tab>
                 </TabPane>
             </VBox>
         </VBox>

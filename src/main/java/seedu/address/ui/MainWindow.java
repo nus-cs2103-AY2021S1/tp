@@ -147,10 +147,11 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 .map(m -> m.getMeetingName().meetingName).collect(Collectors.toList()));
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        //todo remove
-        MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getFilteredMeetingList().get(0),
-                1);
-        selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
+        if (!logic.getFilteredMeetingList().isEmpty()) {
+            MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getFilteredMeetingList().get(0),
+                    1);
+            selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
+        }
     }
 
     /**
@@ -180,12 +181,16 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     @Override
     public void update() {
         logger.info("UI update triggered");
-        MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
-                logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
-        if (selectedMeetingPlaceholder.getChildren().size() == 1) {
-            selectedMeetingPlaceholder.getChildren().set(0, selectedMeeting.getRoot());
+        if (logic.getSelectedMeeting() == null) {
+            selectedMeetingPlaceholder.getChildren().remove(0);
         } else {
-            selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
+            MeetingDetailsPanel selectedMeeting = new MeetingDetailsPanel(logic.getSelectedMeeting(),
+                    logic.getFilteredMeetingList().indexOf(logic.getSelectedMeeting()) + 1);
+            if (selectedMeetingPlaceholder.getChildren().size() == 1) {
+                selectedMeetingPlaceholder.getChildren().set(0, selectedMeeting.getRoot());
+            } else {
+                selectedMeetingPlaceholder.getChildren().add(selectedMeeting.getRoot());
+            }
         }
     }
 

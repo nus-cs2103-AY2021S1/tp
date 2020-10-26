@@ -192,6 +192,10 @@ public class ModelManager implements Model {
     @Override
     public void deleteMeeting(Meeting targetMeeting) {
         meetingBook.removeMeeting(targetMeeting);
+        // replace selecting meeting to be null if it is deleted
+        if (targetMeeting.equals(selectedMeeting)) {
+            setSelectedMeeting(null);
+        }
     }
 
     @Override
@@ -203,8 +207,11 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
         meetingBook.setMeeting(target, editedMeeting);
+        // replace selecting meeting to be updated edited meeting if it is edited
+        if (target.equals(selectedMeeting)) {
+            setSelectedMeeting(editedMeeting);
+        }
     }
 
     @Override
@@ -314,7 +321,8 @@ public class ModelManager implements Model {
                 meetingBook.removeMeeting(filteredMeeting);
             } else {
                 Meeting updatedMeeting = new Meeting(modules[1], filteredMeeting.getMeetingName(),
-                        filteredMeeting.getDate(), filteredMeeting.getTime(), updatedMembers);
+                        filteredMeeting.getDate(), filteredMeeting.getTime(), updatedMembers,
+                        filteredMeeting.getAgendas(), filteredMeeting.getNotes());
                 meetingBook.setMeeting(filteredMeeting, updatedMeeting);
             }
         }

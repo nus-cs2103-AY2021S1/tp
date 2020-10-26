@@ -439,3 +439,8 @@
 .tab-pane .tab-header-area .tab-header-background {
     -fx-background-color: derive(#121212, 24%);
 }
+
+.custom-list .list-cell {
+    -fx-padding: 10 5 10 5;
+    -fx-text-fill: #FFFFFF;
+}

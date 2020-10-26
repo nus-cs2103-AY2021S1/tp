@@ -28,10 +28,10 @@ public class SpecialName {
 
     /**
      * Returns true if a given string is a valid special name.
+     * Guarantees: String has been trimmed.
+     * @param test String to be tested.
      */
     public static boolean isValidName(String test) {
-        // test should have been trimmed by parser util
-        assert !test.contains(" ");
         return test.length() != 0;
     }
 

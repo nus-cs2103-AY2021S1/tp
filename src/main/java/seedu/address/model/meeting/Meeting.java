@@ -2,8 +2,10 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -66,6 +68,14 @@ public class Meeting {
         return Collections.unmodifiableSet(notes);
     }
 
+    public List<SpecialName> getAgendasAsList() {
+        return new ArrayList<>(agendas);
+    }
+
+    public List<SpecialName> getNotesAsList() {
+        return new ArrayList<>(notes);
+    }
+
     /**
      * Returns true if both meetings have the same name, date and time.
      */
@@ -83,6 +93,10 @@ public class Meeting {
 
     public boolean isSameMeetingName(MeetingName otherMeetingName) {
         return meetingName.equals(otherMeetingName);
+    }
+
+    public String getBracketNotation() {
+        return "[" + this.module.getModuleName() + "] " + this.meetingName;
     }
 
     /**
@@ -124,6 +138,10 @@ public class Meeting {
                 .append(getTime())
                 .append(" Members: ");
         getParticipants().forEach(member -> builder.append(member.getName() + ", "));
+        builder.append(" Agendas: ");
+        getAgendas().forEach(agenda -> builder.append(agenda.toString() + ", "));
+        builder.append(" Notes: ");
+        getNotes().forEach(note -> builder.append(note.toString() + ", "));
         return builder.substring(0, builder.length() - 2);
     }
 }

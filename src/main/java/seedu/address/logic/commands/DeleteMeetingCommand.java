@@ -70,7 +70,8 @@ public class DeleteMeetingCommand extends Command {
         assert meetingToDelete != null;
 
         model.deleteMeeting(meetingToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete), false,
+                false, true);
     }
 
     @Override

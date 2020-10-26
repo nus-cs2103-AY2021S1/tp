@@ -2,8 +2,10 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.FlowPane;
@@ -46,6 +48,10 @@ public class MeetingDetailsPanel extends UiPart<Region> {
     private Tab agendaTab;
     @FXML
     private Tab notesTab;
+    @FXML
+    private ListView agendas;
+    @FXML
+    private ListView notes;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -56,9 +62,11 @@ public class MeetingDetailsPanel extends UiPart<Region> {
         notesTab.setText("Notes");
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        name.setText(meeting.getMeetingName().meetingName);
+        name.setText(meeting.getBracketNotation());
         time.setText(meeting.getTime().toString());
         date.setText(meeting.getDate().toString());
+        agendas.setItems(FXCollections.observableList(meeting.getAgendasAsList()));
+        notes.setItems(FXCollections.observableList(meeting.getNotesAsList()));
         meeting.getParticipants().stream()
                 .sorted(Comparator.comparing(participant -> participant.getName().fullName))
                 .forEach(participant -> participants.getChildren()

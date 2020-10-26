@@ -48,9 +48,9 @@ public class AddMeetingCommand extends Command {
             + PREFIX_DATE + "2020-09-20 "
             + PREFIX_TIME + "10:00 "
             + PREFIX_PARTICIPANT + "Alex "
-            + PREFIX_PARTICIPANT + "Roy"
-            + PREFIX_AGENDA + "Discuss project direction"
-            + PREFIX_NOTE + "Alex will be coming late";
+            + PREFIX_PARTICIPANT + "Roy "
+            + PREFIX_AGENDA + "Discuss project direction "
+            + PREFIX_NOTE + "Alex will be coming late ";
 
     public static final String MESSAGE_SUCCESS = "New meeting added: %1$s";
     public static final String MESSAGE_DUPLICATE_MEETING = "The meeting [%s] %s already exists in the meeting book";
@@ -93,7 +93,7 @@ public class AddMeetingCommand extends Command {
         this.time = toAdd.getTime();
         this.agendaList = toAdd.getAgendas();
         this.noteList = toAdd.getNotes();
-        this.nameList = toAdd.getParticipants().stream().map(person -> person.getName()).collect(Collectors.toSet());
+        this.nameList = toAdd.getParticipants().stream().map(Person::getName).collect(Collectors.toSet());
     }
 
     @Override

@@ -82,7 +82,8 @@ public class SampleDataUtil {
                     new Date("2020-09-08"),
                     new Time("08:00"),
                     getPersonSet("Roy Balakrishnan", "Bernice Yu"),
-                    getSpecialNameSet("Discuss about pipelining"),
+                    getSpecialNameSet("Discuss about pipelining", "Change the presentation slides",
+                            "Add more content about cache concepts"),
                     getSpecialNameSet("Arrange for consult if needed."))
         };
     }
