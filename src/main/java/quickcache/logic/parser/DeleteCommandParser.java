@@ -39,7 +39,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         DeleteCommand.MESSAGE_USAGE));
             }
             Set<Tag> tagsToMatch = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            FlashcardPredicate predicate = getFlashcardPredicate(tagsToMatch);
+            FlashcardPredicate predicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
             return DeleteCommand.withPredicate(predicate, tagsToMatch);
         } else {
             try {
@@ -50,15 +50,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
             }
         }
-    }
-
-    private FlashcardPredicate getFlashcardPredicate(Set<Tag> tagsToMatch) {
-        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
-
-        if (!tagsToMatch.isEmpty()) {
-            predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
-        }
-        return new FlashcardPredicate(predicates);
     }
 
     /**
