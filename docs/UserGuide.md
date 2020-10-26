@@ -404,7 +404,7 @@ before you exit the app!
 
 </div>
 
-### Calculating total expenses or revenues in an account: `total`
+### Calculating total expenses or revenues: `total`
 
 You can use this command to do calculate the total expenses or revenues in your current account.
 
@@ -498,7 +498,7 @@ irreversible action and cannot be undone. Do delete your account with caution!
 
 </div>
 
-### Editing the name current account: `editacc`
+### Editing the name of the current account: `editacc`
 
 You can edit the name of the current account you are on using this command.
 
