@@ -185,9 +185,4 @@ public class UniqueExerciseList implements Iterable<Exercise> {
         caloriesByDay.put(stringDate, newCalories);
     }
 
-    private void recalculateDayCalories() {
-        for (Exercise e : internalList) {
-            addCaloriesForDay(e);
-        }
-    }
 }
