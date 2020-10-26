@@ -5,13 +5,18 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleName;
+import seedu.address.model.module.ZoomLink;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ModuleBuilder;
 
 public class AddModuleParserTest {
@@ -98,44 +103,55 @@ public class AddModuleParserTest {
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
+    public void parse_compulsoryNameFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE);
-
+        String missingName = " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T
+                + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4;
         // missing name prefix
-        // assertParseFailure(parser, VALID_NAME_BOB + EMAIL_DESC_BOB,
-        //         expectedMessage);
-
-        // missing email prefix
-        //assertParseFailure(parser, NAME_DESC_BOB + VALID_EMAIL_BOB,
-        //        expectedMessage);
-
-        // all prefixes missing
-        // assertParseFailure(parser, VALID_NAME_BOB + VALID_EMAIL_BOB + VALID_ADDRESS_BOB,
-        //         expectedMessage);
+        assertParseFailure(parser, missingName, expectedMessage);
     }
 
     @Test
-    public void parse_invalidValue_failure() {
-
-        // invalid name
-        //assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB
-        //        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
-
-        // invalid email
-        //assertParseFailure(parser, NAME_DESC_BOB + INVALID_EMAIL_DESC
-        //        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
-
-        // invalid tag
-        //assertParseFailure(parser, NAME_DESC_BOB + EMAIL_DESC_BOB
-        //        + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
-
-        // two invalid values, only first invalid value reported
-        //assertParseFailure(parser, INVALID_NAME_DESC + EMAIL_DESC_BOB,
-        //        Name.MESSAGE_CONSTRAINTS);
-
-        // non-empty preamble
-        //assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + EMAIL_DESC_BOB
-        //        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-        //       String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+    public void parse_compulsoryAllFieldsMissing_failure() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE);
+        String missingAll = "";
+        // all prefixes missing
+        assertParseFailure(parser, missingAll, expectedMessage);
     }
+
+    @Test
+    public void parse_invalidName_failure() {
+        String invalidName = " " + PREFIX_NAME + "@123" + " " + PREFIX_ZOOM_LINK + "www.example.com";
+        // invalid name
+        assertParseFailure(parser, invalidName, ModuleName.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidZoomLink_failure() {
+        String invalidLink = " " + PREFIX_NAME + "CS2103T" + " " + PREFIX_ZOOM_LINK + "1234";
+        assertParseFailure(parser, invalidLink, ZoomLink.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidMC_failure() {
+        String invalidMC = " " + PREFIX_NAME + "CS2103T"
+                + " " + PREFIX_ZOOM_LINK + "www.example.com"
+                + " " + PREFIX_MODULAR_CREDITS + "3.9";
+        assertParseFailure(parser, invalidMC, ModularCredits.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidTags_failure() {
+        String invalidTags = ""; // need to implement this.
+        assertParseFailure(parser, invalidTags, Tag.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidPreamble_failure() {
+        String nonEmptyPreamble = "add " + PREFIX_NAME + "CS2103T"
+                + " " + PREFIX_ZOOM_LINK + "www.example.com";
+        assertParseFailure(parser, nonEmptyPreamble,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
+    }
+
 }
