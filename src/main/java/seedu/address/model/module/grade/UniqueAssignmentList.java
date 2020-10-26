@@ -9,16 +9,16 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.exceptions.AssignmentNotFoundException;
 import seedu.address.model.module.grade.exceptions.DuplicateAssignmentException;
 
 /**
  * A list of assignments that enforces uniqueness between its elements and does not allow nulls.
- * An assignment is considered unique by comparing using {@code Assignment#isSame(Assignment)}. As such, adding and updating of
- * assignments uses Assignment#isSameAssignment(Assignment) for equality so as to ensure that the assignment being added or updated is
- * unique in terms of identity in the UniqueAssignmentList. However, the removal of an assignment uses Assignment#equals(Object) so
- * as to ensure that the assignment with exactly the same fields will be removed.
+ * An assignment is considered unique by comparing using {@code Assignment#isSame(Assignment)}. As such, adding and
+ * updating of assignments uses Assignment#isSameAssignment(Assignment) for equality so as to ensure that the
+ * assignment being added or updated is unique in terms of identity in the UniqueAssignmentList. However, the removal
+ * an assignment uses Assignment#equals(Object) so as to ensure that the assignment with exactly the same fields
+ * will be removed.
  *
  * Supports a minimal set of list operations.
  *

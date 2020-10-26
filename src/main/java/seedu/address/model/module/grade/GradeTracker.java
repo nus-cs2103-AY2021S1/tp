@@ -1,20 +1,15 @@
 package seedu.address.model.module.grade;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import seedu.address.model.contact.Contact;
 import seedu.address.model.module.grade.comparator.AssignmentNameComparator;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.UniqueTodoList;
-import seedu.address.model.task.comparator.TaskNameComparator;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Represents an association class that tracks the assignments and grade for a module.
  */
-public class GradeTracker implements ReadOnlyGradeTracker{
+public class GradeTracker implements ReadOnlyGradeTracker {
     public static final String MESSAGE_INVALID_GRADE =
             "Grades should be provided in the range from 0.00 to 1.00.";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT =

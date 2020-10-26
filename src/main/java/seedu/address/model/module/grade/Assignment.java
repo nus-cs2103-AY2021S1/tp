@@ -1,7 +1,5 @@
 package seedu.address.model.module.grade;
 
-import seedu.address.model.task.Task;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
