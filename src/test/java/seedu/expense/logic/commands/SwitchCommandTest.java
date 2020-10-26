@@ -39,7 +39,7 @@ class SwitchCommandTest {
     }
 
     @Test
-    void execute_noMatchingKeywords_noCategoryFound() throws Exception {
+    void execute_noMatchingKeywords_noCategoryFound() {
         Tag foodTag = new Tag(VALID_TAG_FOOD);
         SwitchCommand command = new SwitchCommand(foodTag);
         ModelStub modelStub = new ModelStub();
@@ -174,7 +174,7 @@ class SwitchCommandTest {
                 updateFilteredExpenseList(expense -> true);
             } else {
                 updateFilteredBudgetList(budget -> budget.getTag().equals(category));
-                updateFilteredExpenseList(expense -> expense.getTags().contains(category));
+                updateFilteredExpenseList(expense -> expense.getTag().equals(category));
             }
         }
 

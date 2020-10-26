@@ -21,8 +21,12 @@ public class Tag {
      */
     public Tag(String tagName) {
         requireNonNull(tagName);
-        checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        if (!tagName.isBlank()) {
+            checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
+            this.tagName = tagName;
+        } else {
+            this.tagName = "Default";
+        }
     }
 
     /**
@@ -48,7 +52,7 @@ public class Tag {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return tagName;
     }
 
 }

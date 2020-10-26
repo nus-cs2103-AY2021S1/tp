@@ -1,11 +1,5 @@
 package seedu.expense.storage;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -28,7 +22,7 @@ class JsonAdaptedExpense {
     private final String amount;
     private final String date;
     private final String remark;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final JsonAdaptedTag tagged;
 
     /**
      * Constructs a {@code JsonAdaptedExpense} with the given expense details.
@@ -37,14 +31,12 @@ class JsonAdaptedExpense {
     public JsonAdaptedExpense(@JsonProperty("description") String description, @JsonProperty("amount") String amount,
                               @JsonProperty("date") String date,
                               @JsonProperty("remark") String remark,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                              @JsonProperty("tagged") JsonAdaptedTag tagged) {
         this.description = description;
         this.amount = amount;
         this.date = date;
         this.remark = remark;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        this.tagged = tagged;
     }
 
     /**
@@ -55,9 +47,7 @@ class JsonAdaptedExpense {
         amount = source.getAmount().toString();
         date = source.getDate().toString();
         remark = source.getRemark().value;
-        tagged.addAll(source.getTags().stream()
-                .map(JsonAdaptedTag::new)
-                .collect(Collectors.toList()));
+        tagged = new JsonAdaptedTag(source.getTag());
     }
 
     /**
@@ -66,11 +56,6 @@ class JsonAdaptedExpense {
      * @throws IllegalValueException if there were any data constraints violated in the adapted expense.
      */
     public Expense toModelType() throws IllegalValueException {
-        final List<Tag> expenseTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            expenseTags.add(tag.toModelType());
-        }
-
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Description.class.getSimpleName()));
@@ -101,8 +86,11 @@ class JsonAdaptedExpense {
         }
         final Remark modelRemark = new Remark(remark);
 
-        final Set<Tag> modelTags = new HashSet<>(expenseTags);
-        return new Expense(modelDescription, modelAmount, modelDate, modelRemark, modelTags);
+        if (tagged == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
+        }
+        final Tag modelTag = tagged.toModelType();
+        return new Expense(modelDescription, modelAmount, modelDate, modelRemark, modelTag);
     }
 
 }

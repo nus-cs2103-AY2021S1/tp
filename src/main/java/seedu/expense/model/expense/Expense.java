@@ -2,10 +2,7 @@ package seedu.expense.model.expense;
 
 import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.expense.model.tag.Tag;
 
@@ -22,18 +19,18 @@ public class Expense {
 
     // Data fields
     private final Remark remark;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Tag tag;
 
     /**
      * Every field must be present and not null.
      */
-    public Expense(Description description, Amount amount, Date date, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(description, amount, date, tags);
+    public Expense(Description description, Amount amount, Date date, Remark remark, Tag tag) {
+        requireAllNonNull(description, amount, date, tag);
         this.description = description;
         this.amount = amount;
         this.date = date;
         this.remark = remark;
-        this.tags.addAll(tags);
+        this.tag = tag;
     }
 
     public Description getDescription() {
@@ -52,12 +49,8 @@ public class Expense {
         return remark;
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Tag getTag() {
+        return tag;
     }
 
     /**
@@ -92,13 +85,13 @@ public class Expense {
         return otherExpense.getDescription().equals(getDescription())
                 && otherExpense.getAmount().equals(getAmount())
                 && otherExpense.getDate().equals(getDate())
-                && otherExpense.getTags().equals(getTags());
+                && otherExpense.getTag().equals(getTag());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(description, amount, date, tags);
+        return Objects.hash(description, amount, date, tag);
     }
 
     @Override
@@ -111,8 +104,8 @@ public class Expense {
                 .append(getDate())
                 .append(" Remark: ")
                 .append(getRemark())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(" Tags: ")
+                .append(getTag());
         return builder.toString();
     }
 

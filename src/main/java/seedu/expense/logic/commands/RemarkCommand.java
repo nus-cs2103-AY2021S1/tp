@@ -56,7 +56,7 @@ public class RemarkCommand extends Command {
         Expense expenseToEdit = lastShownList.get(index.getZeroBased());
         Expense editedExpense = new Expense(expenseToEdit.getDescription(),
                 expenseToEdit.getAmount(), expenseToEdit.getDate(),
-                remark, expenseToEdit.getTags());
+                remark, expenseToEdit.getTag());
 
         model.setExpense(expenseToEdit, editedExpense);
         model.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
