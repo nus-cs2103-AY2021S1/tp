@@ -25,13 +25,13 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="propertyName" text="\$first" styleClass="cell_big_label" />
+                <Label fx:id="propertyId" styleClass="cell_small_label" text="\$propertyId" />
+                <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
+                <Label fx:id="sellerId" styleClass="cell_small_label" text="\$sellerId" />
+                <Label fx:id="askingPrice" styleClass="cell_small_label" text="\$askingPrice" />
+                <Label fx:id="propertyType" styleClass="cell_small_label" text="\$propertyType" />
+                <Label fx:id="isRental" styleClass="cell_small_label" text="\$isRental" />
             </HBox>
-            <Label fx:id="propertyId" styleClass="cell_small_label" text="\$propertyId" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-            <Label fx:id="sellerId" styleClass="cell_small_label" text="\$sellerId" />
-            <Label fx:id="askingPrice" styleClass="cell_small_label" text="\$askingPrice" />
-            <Label fx:id="propertyType" styleClass="cell_small_label" text="\$propertyType" />
-            <Label fx:id="isRental" styleClass="cell_small_label" text="\$isRental" />
         </VBox>
     </GridPane>
 </HBox>
