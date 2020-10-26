@@ -151,7 +151,7 @@ Examples:
 
 ### Favourite a flashcard  : `fav`
 
-Favourites the specified flashcard.
+Favourite the specified flashcard.
 
 Format: `fav INDEX`
 
