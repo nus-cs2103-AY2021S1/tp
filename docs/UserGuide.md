@@ -2,8 +2,13 @@
 layout: page
 title: User Guide
 ---
-* Table of Contents
-{:toc}
+<!-- TOC adapted from
+https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff 
+-->
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 ---
 
@@ -238,7 +243,7 @@ __Result:__ Programme terminates.
 Undo or redo the previous command
 
 __Format:__ `undo` or `redo`
-
+  
 __Example:__ `undo` or `redo`
 
 __Result:__ Undo or redo the previous command.
