@@ -3,10 +3,12 @@ package seedu.address.logic.commands.contactlistcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -18,6 +20,7 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.tag.Tag;
 
 /**
  * Edits the details of an existing contact in the contact list.
@@ -32,7 +35,8 @@ public class EditContactCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TELEGRAM + "TELEGRAM]...\n"
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM]..."
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -86,8 +90,9 @@ public class EditContactCommand extends Command {
         Name updatedName = editContactDescriptor.getName().orElse(contactToEdit.getName());
         Email updatedEmail = editContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
         Telegram updatedTelegram = editContactDescriptor.getTelegram().orElse(contactToEdit.getTelegramUsername());
+        Set<Tag> updatedTags = editContactDescriptor.getTags().orElse(contactToEdit.getTags());
 
-        return new Contact(updatedName, updatedEmail, updatedTelegram);
+        return new Contact(updatedName, updatedEmail, updatedTelegram, updatedTags);
     }
 
     @Override
