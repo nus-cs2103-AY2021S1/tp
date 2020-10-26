@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACTIVE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ARCHIVE;
 
+import java.util.List;
+
 import seedu.address.model.Model;
 
 /**
@@ -44,5 +46,12 @@ public class ListCommand extends Command {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_ACTIVE);
             return new CommandResult(MESSAGE_SUCCESS_ACTIVE);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && (isArchiveMode == (((ListCommand) other).isArchiveMode)));
     }
 }

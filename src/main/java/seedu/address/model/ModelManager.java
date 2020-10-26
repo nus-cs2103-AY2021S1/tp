@@ -150,7 +150,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return clientList.equals(other.clientList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && (isArchiveMode.get() == other.isArchiveMode.get());
     }
 
     //=========== Archive Mode =============================================================
