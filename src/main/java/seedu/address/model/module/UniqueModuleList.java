@@ -154,6 +154,7 @@ public class UniqueModuleList implements Iterable<Module> {
                     internalList.set((index), toSet);
                 }
             }
+
         } else {
             throw new CommandException(Messages.MESSAGE_PERSON_IS_NOT_AN_INSTRUCTOR);
         }

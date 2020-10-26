@@ -30,8 +30,11 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         Index index;
 
         try {
+
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
+
         } catch (IllegalValueException ive) {
+
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UnassignCommand.MESSAGE_USAGE), ive);
         }
