@@ -98,6 +98,11 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
         filteredList.setAll(budgets);
     }
 
+    /**
+     * Filters this list's filtered list by {@code predicate}
+     *
+     * @param predicate
+     */
     public void filterCategoryBudget(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
         filteredList.setPredicate(predicate);
