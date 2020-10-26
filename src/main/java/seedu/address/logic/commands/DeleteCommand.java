@@ -56,6 +56,7 @@ public class DeleteCommand extends Command {
         List<Person> peopleCopy = new ArrayList<>(people);
 
         // Update address book
+
         people.stream().forEach(p -> {
             model.deletePerson(p); // delete in AddressBook
             model.updatePersonInMeetingBook(p); // delete in MeetingBook

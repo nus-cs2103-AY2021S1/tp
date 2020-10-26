@@ -287,6 +287,26 @@ public class AddCommandTest {
         public void updatePersonInModuleBook(Person ...persons) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateFilteredModuleList(Predicate<Module> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateModuleInMeetingBook(Module... modules) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setModule(Module target, Module editedModule) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteModule(Module target) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
