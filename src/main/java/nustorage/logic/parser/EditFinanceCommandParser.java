@@ -13,7 +13,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new EditInventoryCommand object.
  */
-public class EditFinanceCommandParser {
+public class EditFinanceCommandParser implements Parser<EditFinanceCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditFinanceCommand
      * and returns an EditFinanceCommand object for execution.
