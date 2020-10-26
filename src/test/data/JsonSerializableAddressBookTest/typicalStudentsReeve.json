@@ -20,8 +20,16 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
-  }, {
+    }],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+  }]}, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "school": "Pei Hwa Secondary",
@@ -41,8 +49,16 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
-  }, {
+    } ],
+      "exams" : [ {
+        "examName" : "CA2",
+        "examDate" : "19/9/2020",
+        "score" : "73/100"
+      }, {
+        "examName" : "CA1",
+        "examDate" : "2/3/2020",
+        "score" : "21/40"
+  }]}, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "school": "Catholic High",
@@ -125,8 +141,16 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
-  }, {
+    } ],
+        "exams" : [ {
+          "examName" : "End of Year Examination 2020",
+          "examDate" : "7/11/2020",
+          "score" : "61/100"
+        }, {
+          "examName" : "Mid Year Examination 2020",
+          "examDate" : "25/7/2020",
+          "score" : "13/30"
+  }]}, {
     "name" : "George Best",
     "phone" : "9482442",
     "school": "Montford Secondary",

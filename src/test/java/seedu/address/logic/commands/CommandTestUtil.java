@@ -4,11 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SCORE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
@@ -56,6 +59,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDITIONAL_DETAILS_BOB = "Hardworking";
     public static final String VALID_QUESTION_AMY = "How is current calculated from resistance?";
     public static final String VALID_QUESTION_BOB = "What is hemoglobin?";
+    public static final String VALID_EXAM_NAME_AMY = "Mid Year 2020";
+    public static final String VALID_EXAM_NAME_BOB = "End of Year 2020";
+    public static final String VALID_EXAM_DATE_AMY = "26/7/2020";
+    public static final String VALID_EXAM_DATE_BOB = "5/11/2020";
+    public static final String VALID_EXAM_SCORE_AMY = "26/50";
+    public static final String VALID_EXAM_SCORE_BOB = "50/50";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -88,6 +97,13 @@ public class CommandTestUtil {
     public static final String[] TEST_QUESTIONS =
             new String[] {QUESTION_MATH, QUESTION_PHYSICS, QUESTION_EMO};
 
+    public static final String EXAM_DESC_AMY = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_AMY + " "
+            + PREFIX_EXAM_DATE + VALID_EXAM_DATE_AMY + " "
+            + PREFIX_SCORE + VALID_EXAM_SCORE_AMY;
+    public static final String EXAM_DESC_BOB = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_BOB + " "
+            + PREFIX_EXAM_DATE + VALID_EXAM_DATE_BOB + " "
+            + PREFIX_SCORE + VALID_EXAM_SCORE_BOB;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_SCHOOL_DESC = " " + PREFIX_SCHOOL; // empty string not allowed for schools
@@ -97,6 +113,24 @@ public class CommandTestUtil {
     public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "$20"; // '$' allowed for schools
     // 'alphabets' not allowed in payment date
     public static final String INVALID_PAYMENT_DESC = " " + PREFIX_PAYMENT + "alphabets";
+    // '*' not allowed in details
+    public static final String INVALID_ADDITIONAL_DETAIL_DESC = " " + PREFIX_DETAILS + "hubby*";
+    // empty string not allowed for exam names
+    public static final String INVALID_EXAM_NAME_DESC = " " + PREFIX_EXAM_NAME + " " + " "
+            + PREFIX_EXAM_DATE + VALID_EXAM_DATE_AMY + " "
+            + PREFIX_SCORE + VALID_EXAM_SCORE_AMY;
+    // 'alphabets' not allowed in exam date
+    public static final String INVALID_EXAM_DATE_DESC = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_AMY + " "
+            + PREFIX_EXAM_DATE + "alphabets" + " "
+            + PREFIX_SCORE + VALID_EXAM_SCORE_AMY;
+    // first int of scores should be <= to second int
+    public static final String INVALID_EXAM_SCORE_DESC_MORE = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_AMY + " "
+            + PREFIX_EXAM_DATE + VALID_EXAM_DATE_AMY + " "
+            + PREFIX_SCORE + "100/50";
+    // both ints of scores cannot not be negative
+    public static final String INVALID_EXAM_SCORE_DESC_NEGATIVE = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_AMY + " "
+            + PREFIX_EXAM_DATE + VALID_EXAM_DATE_AMY + " "
+            + PREFIX_SCORE + "-50/-100";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
