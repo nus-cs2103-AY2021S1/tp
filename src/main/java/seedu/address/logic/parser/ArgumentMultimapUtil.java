@@ -22,4 +22,23 @@ public class ArgumentMultimapUtil {
             .filter(prefix -> argumentMultimap.getValue(prefix).isPresent())
             .count() == 1;
     }
+
+    /**
+     * Checks if the given two prefixes are the only prefixes presented.
+     * @param argumentMultimap  the map containing the prefixes and the corresponding Strings
+     * @param prefix1  the first prefix to check
+     * @param prefix2  the second prefix to check
+     * @return  true if the given two prefixes are the only prefixes presented, and false otherwise
+     */
+    public static boolean areOnlyTheseTwoPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix prefix1, Prefix prefix2) {
+        if (argumentMultimap.size() != 2) {
+            return false;
+        }
+        if (argumentMultimap.getValue(prefix1).isPresent()
+            && argumentMultimap.getValue(prefix2).isPresent()) {
+            return true;
+        }
+        return false;
+    }
+
 }
