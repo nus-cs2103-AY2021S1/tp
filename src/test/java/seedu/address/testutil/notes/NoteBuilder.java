@@ -3,8 +3,6 @@ package seedu.address.testutil.notes;
 import seedu.address.model.notes.note.Description;
 import seedu.address.model.notes.note.Note;
 import seedu.address.model.notes.note.Title;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.Admin;
 
 /**
  * A utility class to help with building Note objects.
