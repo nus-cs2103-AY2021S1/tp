@@ -28,7 +28,8 @@ class StatsCommandTest {
                 .get(INDEX_FIRST_FLASHCARD.getZeroBased());
         StatsCommand statsCommand = new StatsCommand(INDEX_FIRST_FLASHCARD);
 
-        String expectedMessage = String.format(StatsCommand.MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS, flashcardToShowStatistics);
+        String expectedMessage = String.format(StatsCommand.MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS,
+                flashcardToShowStatistics);
         ModelManager expectedModel = new ModelManager(model.getFlashcardDeck(), new UserPrefs());
 
         assertCommandSuccess(statsCommand, model, expectedMessage, expectedModel);
@@ -48,7 +49,8 @@ class StatsCommandTest {
         Flashcard flashcardToShowStatistics = model.getFilteredFlashcardList()
                 .get(INDEX_FIRST_FLASHCARD.getZeroBased());
         StatsCommand statsCommand = new StatsCommand(INDEX_FIRST_FLASHCARD);
-        String expectedMessage = String.format(StatsCommand.MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS, flashcardToShowStatistics);
+        String expectedMessage = String.format(StatsCommand.MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS,
+                flashcardToShowStatistics);
         assertCommandSuccess(statsCommand, model, expectedMessage, model);
     }
 
