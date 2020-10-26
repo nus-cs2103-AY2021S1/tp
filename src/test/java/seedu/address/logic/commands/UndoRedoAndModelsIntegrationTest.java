@@ -4,14 +4,17 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static seedu.address.commons.core.Messages.MESSAGE_REDO_LIMIT_REACHED;
+import static seedu.address.commons.core.Messages.MESSAGE_UNDO_LIMIT_REACHED;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.RedoCommand.MESSAGE_REDO_ACKNOWLEDGEMENT;
+import static seedu.address.logic.commands.UndoCommand.MESSAGE_UNDO_ACKNOWLEDGEMENT;
 import static seedu.address.testutil.TypicalDeliveries.getTypicalDeliveryBook;
 import static seedu.address.testutil.TypicalItems.getTypicalInventoryBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
+import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.ModelsManager;
 import seedu.address.model.UserPrefs;
@@ -78,10 +81,8 @@ class UndoRedoAndModelsIntegrationTest {
         actualModels.commit();
 
         // undo twice
-        assertDoesNotThrow(() -> {
-            new UndoCommand().execute(actualModels);
-            new UndoCommand().execute(actualModels);
-        });
+        assertEquals(new UndoCommand().execute(actualModels), new CommandResult(MESSAGE_UNDO_ACKNOWLEDGEMENT));
+        assertEquals(new UndoCommand().execute(actualModels), new CommandResult(MESSAGE_UNDO_ACKNOWLEDGEMENT));
 
         // redo and compare
         assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_ACKNOWLEDGEMENT, expectedModels);
@@ -100,8 +101,8 @@ class UndoRedoAndModelsIntegrationTest {
         actualModels.commit();
 
         // undo twice
-        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
-        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
+        assertEquals(new UndoCommand().execute(actualModels), new CommandResult(MESSAGE_UNDO_ACKNOWLEDGEMENT));
+        assertEquals(new UndoCommand().execute(actualModels), new CommandResult(MESSAGE_UNDO_LIMIT_REACHED));
 
         // redo and compare
         assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_ACKNOWLEDGEMENT, expectedModels);
@@ -126,16 +127,16 @@ class UndoRedoAndModelsIntegrationTest {
         actualModels.commit();
 
         // undo twice
-        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
-        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
+        assertEquals(new UndoCommand().execute(actualModels), new CommandResult(MESSAGE_UNDO_ACKNOWLEDGEMENT));
+        assertEquals(new UndoCommand().execute(actualModels), new CommandResult(MESSAGE_UNDO_ACKNOWLEDGEMENT));
 
         // redo twice and compare
-        assertDoesNotThrow(() -> new RedoCommand().execute(actualModels));
+        assertEquals(new RedoCommand().execute(actualModels), new CommandResult(MESSAGE_REDO_ACKNOWLEDGEMENT));
         assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_ACKNOWLEDGEMENT, expectedModels);
     }
 
     @Test
-    void execute_undoThenRedoTwiceWithThreeStates_success() {
+    void execute_undoThenRedoTwiceWithTwoStates_success() {
         Models actualModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
         Models expectedModels = new ModelsManager(makeTestInventoryModel(), makeTestDeliveryModel());
 
@@ -147,7 +148,7 @@ class UndoRedoAndModelsIntegrationTest {
         actualModels.commit();
 
         // undo once
-        assertDoesNotThrow(() -> new UndoCommand().execute(actualModels));
+        assertEquals(new UndoCommand().execute(actualModels), new CommandResult(MESSAGE_UNDO_ACKNOWLEDGEMENT));
 
         // redo once and compare
         assertCommandSuccess(new RedoCommand(), actualModels, MESSAGE_REDO_ACKNOWLEDGEMENT, expectedModels);

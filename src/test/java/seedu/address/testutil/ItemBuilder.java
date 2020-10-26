@@ -37,7 +37,7 @@ public class ItemBuilder {
         supplier = new Supplier(DEFAULT_SUPPLIER);
         tags = new HashSet<>();
         maxQuantity = null;
-        metric = new Metric(DEFAULT_METRIC);
+        metric = null;
     }
 
     /**

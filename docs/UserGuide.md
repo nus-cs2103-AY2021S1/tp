@@ -7,12 +7,11 @@ title: User Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## Introduction
- OneShelf is a desktop application for you to manage all of restaurant inventories, table reservations and pending deliveries. 
-It is easy to build and customise your inventories by using 
-only Command Line Interface. If you are a busy restaurant manager 
-who prefers to use the Command Line Interface and needs to keep 
+ OneShelf is a desktop application for you to manage all of restaurant inventories, table reservations and pending deliveries.
+It is easy to build and customise your inventories by using
+only Command Line Interface. If you are a busy restaurant manager
+who prefers to use the Command Line Interface and needs to keep
 track of multiple items, OneShelf is for you!
-
 
 
 ## Quick start
@@ -43,8 +42,6 @@ track of multiple items, OneShelf is for you!
 
 --------------------------------------------------------------------------------------------------------------------
 
-
-
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -68,32 +65,47 @@ track of multiple items, OneShelf is for you!
 
 
 ### Viewing help : `help`
-Format: `help summary`
-Shows a summary of all the possible commands in OneShelf.
 
 Format: `help start`
 Shows a guide for user to kick-start their journey in OneShelf.
 
-<<Insert Screenshot in the future to show user what is expected, once GUI of help finalized>>
+Alternatives:
+* Press `F1` at any point in the usage of the app
+* GUI navigation menu at the top left
+
+Format: `help summary`
+Shows a summary of all the possible commands in OneShelf.
+
+Alternatives:
+* Press `F2` at any point in the usage of the app
+* GUI navigation menu at the top left
+
+![Help Summary Screenshot](images/HelpSummaryWindow.png)
 
 
+### Adding an item: `add-i` or `add-d`
 
-### Adding an item: `add-i`
-
-Adds item to OneShelf, if there's already an item inside with the same name and supplier, it adds on to existing
-quantity of existing item.
+Adds inventory item or pending delivery to OneShelf.
 
 Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​`
+* Adds `QUANTITY` from the current quantity of an inventory item if the item already exist.
+An item is uniquely identified by its NAME and SUPPLIER.
+
+Examples: `add-i n/CHICKEN q/10 s/NTUC max/50`
+
+Assuming that your inventory item is empty, entering the above command would add a new chicken item that was previously purchased from NTUC. <br>
+By entering `add-i n/CHICKEN q/10 max/50`, a new inventory item would be added instead of increasing the quantity since the second chicken has no supplier. <br>
+On the other hand, by entering `add-i n/CHICKEN q/10 s/NTUC` again would increase the quantity of Chicken from NTUC to be 20kg.
+
+
+Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER`
+
+Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A item can have any number of tags (including 0)
+* An item can have any number of tags (including 0)
+* Unlike inventory item, pending delivery does not have a quantity.
 </div>
-
-### Adding a delivery: `add-d`
-
-Adds delivery to OneShelf
-
-Format: `add-d n/NAME, p/PHONE, a/ADDRESS, o/ORDER`
 
 ### Removing quantity from an item: `remove-i`
 
@@ -197,6 +209,27 @@ Exits the program.
 Format: `exit`
 
 
+### Undo last command : `undo`
+
+Undoes the previous command by reverting the current data displayed to the state it was in before the last command was executed.
+
+Format: `undo`
+
+* If there is a previous state available, the current state is reverted to that state
+* If the current state is the earliest possible one, it shows a message informing the user that there is nothing more to undo
+
+
+### Redo last command : `redo`
+
+Redoes the last undone command by reverting the current data displayed to the state it was in before the last undo command was executed.
+
+Format: `redo`
+
+* If there is an undone state available, the current state is reverted to that state
+* If the current state is the latest possible one, it shows a message informing the user that there is nothing more to redo
+* After any command that changes the state of data (such as add, clear, delete, edit), the new state becomes the latest state
+(i.e. the previous undo commands are "forgotten" and `redo` will have no effect)
+
 
 ### Saving the data
 
@@ -206,15 +239,11 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 
 OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.  
 
-### Undo `[Coming Soon]`
 
-Undo previous command
+### Sorting items
 
-
-
-### Sorting items`[Coming Soon]`
-
-Implicit sorting done. Can be explicitly called for lexicographical sorting
+Implicit sorting done.
+Inventory is sorted by % max quantity in ascending order, if it max quantity does not exist for that particular item then it'll be flushed to the end and sorted in ascending order. If 2 items have the same quantity, they are then sorted lexiographically.
 
 
 
@@ -255,7 +284,14 @@ Notify the user if a certain stock is below threshold
 
 ## Command summary
 
+#### General commands summary
 
+| Action    | Format, Examples                                                                                    |
+|-----------|-----------------------------------------------------------------------------------------------------|
+|**Get help to start off**    | `help start` or press `F1` or use GUI help menu at the top left |
+|**Get help summary**    | `help summary` or press `F2` or use GUI help menu at the top left |                                                                                       |                                                                                             |
+|**Undo last command**   | `undo`  |
+|**Redo last undone command**   | `redo`  |
 
 #### Inventory summary
 
@@ -267,8 +303,7 @@ Notify the user if a certain stock is below threshold
 |**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`                |
 |**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`                                       |
 |**List Inventory**   | `list-i
-|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |
-|**Help**   | `help`                                                                                              |
+|**Remove from Inventory** | `remove-i INDEX q/QUANTITY`                                                                                              |                                                                                          |
 
 
 

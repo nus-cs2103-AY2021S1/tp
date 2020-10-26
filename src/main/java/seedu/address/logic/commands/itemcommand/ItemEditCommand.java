@@ -243,7 +243,8 @@ public class ItemEditCommand extends ItemCommand {
                     && getQuantity().equals(e.getQuantity())
                     && getSupplier().equals(e.getSupplier())
                     && getTags().equals(e.getTags())
-                    && getMaxQuantity().equals(e.getMaxQuantity());
+                    && getMaxQuantity().equals(e.getMaxQuantity())
+                    && getMetric().equals(e.getMetric());
         }
     }
 }
