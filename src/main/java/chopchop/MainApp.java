@@ -89,56 +89,84 @@ public class MainApp extends Application {
      * recipe book is not found, or an empty ingredient or recipe book will be used instead if errors occur when
      * reading {@code storage}'s ingredient or recipe book.
      */
-    private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyEntryBook<Recipe>> recipeBookOptional;
-        Optional<ReadOnlyEntryBook<Ingredient>> ingredientBookOptional;
-        Optional<UsageList<RecipeUsage>> recipeUsageOptional;
-        Optional<UsageList<IngredientUsage>> ingredientUsageOptional;
-        ReadOnlyEntryBook<Recipe> initialRecipeData;
-        ReadOnlyEntryBook<Ingredient> initialIngredientData;
-        UsageList<RecipeUsage> initialRecipeUsageData;
-        UsageList<IngredientUsage> initialIngredientUsageData;
+//     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+// <<<<<<< HEAD
+//         Optional<ReadOnlyEntryBook<Recipe>> recipeBookOptional;
+//         Optional<ReadOnlyEntryBook<Ingredient>> ingredientBookOptional;
+//         Optional<UsageList<RecipeUsage>> recipeUsageOptional;
+//         Optional<UsageList<IngredientUsage>> ingredientUsageOptional;
+// =======
+// >>>>>>> abdfe936... Split the loading of recipe and ingredient books
+//         ReadOnlyEntryBook<Recipe> initialRecipeData;
+//         ReadOnlyEntryBook<Ingredient> initialIngredientData;
+//         UsageList<RecipeUsage> initialRecipeUsageData;
+//         UsageList<IngredientUsage> initialIngredientUsageData;
 
-        try {
-            recipeBookOptional = storage.readRecipeBook();
-            ingredientBookOptional = storage.readIngredientBook();
-            recipeUsageOptional = storage.readRecipeUsages();
-            ingredientUsageOptional = storage.readIngredientUsages();
+//         try {
+// <<<<<<< HEAD
+//             recipeBookOptional = storage.readRecipeBook();
+//             ingredientBookOptional = storage.readIngredientBook();
+//             recipeUsageOptional = storage.readRecipeUsages();
+//             ingredientUsageOptional = storage.readIngredientUsages();
 
-            if (recipeBookOptional.isEmpty()) {
-                logger.info("Data file for recipe book not found. Will be starting with a sample RecipeBook");
-            }
+//             if (recipeBookOptional.isEmpty()) {
+//                 logger.info("Data file for recipe book not found. Will be starting with a sample RecipeBook");
+// =======
+//             var opt = storage.readRecipeBook();
+//             if (opt.isEmpty()) {
+//                 logger.info("Data file for recipe book not found; starting with sample recipes");
+// >>>>>>> abdfe936... Split the loading of recipe and ingredient books
+//             }
 
-            if (ingredientBookOptional.isEmpty()) {
-                logger.info("Data file for ingredient book not found. Will be starting with a sample IngredientBook");
-            }
+//             initialRecipeData = opt.orElseGet(SampleDataUtil::getSampleRecipeBook);
 
-            if (recipeUsageOptional.isEmpty()) {
-                logger.info("Data file for recipe usage list not found. Will be starting with an empty list");
-            }
+// <<<<<<< HEAD
+//             if (recipeUsageOptional.isEmpty()) {
+//                 logger.info("Data file for recipe usage list not found. Will be starting with an empty list");
+//             }
 
-            if (ingredientUsageOptional.isEmpty()) {
-                logger.info("Data file for ingredient usage list not found. Will be starting with an empty list");
-            }
+//             if (ingredientUsageOptional.isEmpty()) {
+//                 logger.info("Data file for ingredient usage list not found. Will be starting with an empty list");
+//             }
 
-            initialRecipeData = recipeBookOptional.orElseGet(SampleDataUtil::getSampleRecipeBook);
-            initialIngredientData = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
-            initialRecipeUsageData = recipeUsageOptional.isEmpty() ? new UsageList<RecipeUsage>()
-                                                                    : recipeUsageOptional.get();
-            initialIngredientUsageData = ingredientUsageOptional.isEmpty() ? new UsageList<IngredientUsage>()
-                                                                            : ingredientUsageOptional.get();
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
-                    + " IngredientBook and their usage files");
-            initialRecipeData = new EntryBook<>();
-            initialIngredientData = new EntryBook<>();
-            initialRecipeUsageData = new UsageList<RecipeUsage>();
-            initialIngredientUsageData = new UsageList<IngredientUsage>();
-        }
+//             initialRecipeData = recipeBookOptional.orElseGet(SampleDataUtil::getSampleRecipeBook);
+//             initialIngredientData = ingredientBookOptional.orElseGet(SampleDataUtil::getSampleIngredientBook);
+//             initialRecipeUsageData = recipeUsageOptional.isEmpty() ? new UsageList<RecipeUsage>()
+//                                                                     : recipeUsageOptional.get();
+//             initialIngredientUsageData = ingredientUsageOptional.isEmpty() ? new UsageList<IngredientUsage>()
+//                                                                             : ingredientUsageOptional.get();
+//         } catch (DataConversionException e) {
+//             logger.warning("Data file not in the correct format. Will be starting with an empty RecipeBook and"
+//                     + " IngredientBook and their usage files");
+// =======
+//         } catch (DataConversionException e) {
 
-        return new ModelManager(initialRecipeData, initialIngredientData, initialRecipeUsageData,
-            initialIngredientUsageData, userPrefs);
-    }
+//             logger.warning("Recipe book was not in the correct format; starting with an empty recipe book");
+// >>>>>>> abdfe936... Split the loading of recipe and ingredient books
+//             initialRecipeData = new EntryBook<>();
+//         }
+
+
+
+//         try {
+//             var opt = storage.readIngredientBook();
+//             if (opt.isEmpty()) {
+//                 logger.info("Data file for ingredient book not found; starting with sample ingredients");
+//             }
+
+//             initialIngredientData = opt.orElseGet(SampleDataUtil::getSampleIngredientBook);
+
+//         } catch (DataConversionException e) {
+
+//             logger.warning("Ingredient book was not in the correct format; starting with an empty ingredient book");
+//             initialIngredientData = new EntryBook<>();
+//             initialRecipeUsageData = new UsageList<RecipeUsage>();
+//             initialIngredientUsageData = new UsageList<IngredientUsage>();
+//         }
+
+//         return new ModelManager(initialRecipeData, initialIngredientData, initialRecipeUsageData,
+//             initialIngredientUsageData, userPrefs);
+//     }
 
     private void initLogging(Config config) {
         LogsCenter.init(config);
