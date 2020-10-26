@@ -31,12 +31,6 @@
                            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                         </items>
                      </Menu>
-                     <Menu mnemonicParsing="false" onAction="#handleStudent" text="Students">
-                        <items>
-                           <MenuItem fx:id="studentPage" mnemonicParsing="false" onAction="#handleStudent" text="Student List" />
-                        </items>
-                     </Menu>
-                     <Menu fx:id="studentRecordMenu" mnemonicParsing="false" text="Student Records" />
                   </menus>
                </MenuBar>
                <StackPane fx:id="commandBoxPlaceholder" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" styleClass="pane-with-border" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0">
@@ -49,16 +43,16 @@
                      <Insets bottom="5" left="10" right="10" top="5" />
                   </padding>
                </StackPane>
-               <AnchorPane fx:id="sessionListPanelPlaceholder" prefWidth="150.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="165.0" />
-               <VBox fx:id="viewList" minHeight="-Infinity" prefHeight="220.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="165.0">
+               <AnchorPane fx:id="sessionListPanelPlaceholder" prefWidth="150.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="165.0" />
+               <VBox fx:id="viewList" minHeight="-Infinity" prefHeight="220.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="30.0" AnchorPane.leftAnchor="150.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="165.0">
                   <padding>
                      <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
                   <children>
-                     <StackPane fx:id="viewListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                     <StackPane fx:id="viewListPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
                   </children>
                </VBox>
-               <AnchorPane fx:id="statusbarPlaceholder" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+               <AnchorPane fx:id="statusbarPlaceholder" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" styleClass="pane-with-border" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             </children>
          </AnchorPane>
       </Scene>

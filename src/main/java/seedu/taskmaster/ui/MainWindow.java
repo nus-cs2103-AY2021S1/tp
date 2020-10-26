@@ -58,12 +58,6 @@ public class MainWindow extends UiPart<Stage> {
     private AnchorPane statusbarPlaceholder;
 
     @FXML
-    private MenuItem studentPage;
-
-    @FXML
-    private Menu studentRecordMenu;
-
-    @FXML
     private AnchorPane sessionListPanelPlaceholder;
 
     /*
@@ -92,21 +86,11 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
 
-        //add menu items
-        MenuItem newMenuItem = new MenuItem("Student Record List");
-        newMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                fillInnerParts(1);
-            }
-        });
-        studentRecordMenu.getItems().add(newMenuItem);
-
         /*
         THIS SECTION IS A STUB FOR SESSION LIST - REMOVE WHEN IT IS IMPLEMENTED
          */
         SessionStub newSessionToAdd = new SessionStub("Session 1", logic.getFilteredStudentRecordList());
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 1; i++) {
             sessionList.add(newSessionToAdd);
         }
 
