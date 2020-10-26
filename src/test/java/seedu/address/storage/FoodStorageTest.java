@@ -17,9 +17,9 @@ import seedu.address.testutil.TypicalVendors;
 
 public class FoodStorageTest {
     @Test
-    public void readValidMenuFromFile_equalsTypicalAdressBook() {
+    public void readValidMenuFromFile_equalsTypicalAddressBook() {
         ObservableList<Vendor> vendors = FXCollections.observableArrayList(TypicalVendors.getTypicalVendors());
-        List<ObservableList<Food>> managers = TypicalVendors.getMenuLists();
+        List<ObservableList<Food>> managers = TypicalVendors.getMenus();
         FoodStorage storage = new FoodStorage();
         List<Optional<ReadOnlyMenuManager>> expectedManager = storage.readMenuManagers(vendors);
         List<ObservableList<Food>> expectedMenus = expectedManager.stream().map(x ->

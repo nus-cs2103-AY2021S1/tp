@@ -35,14 +35,14 @@ public class JsonMenuManagerStorageTest {
     }
 
     @Test
-    public void readMenuManagerFailure() {
+    public void readMenuManager_invalidMenuManager_throwsDataConversionException() {
         JsonMenuManagerStorage storage = new JsonMenuManagerStorage(Paths
                 .get("src/test/data/JsonMenuManagerStorageTest/invalidMenuManager.json"));
         assertThrows(DataConversionException.class, storage::readMenuManager);
     }
 
     @Test
-    public void getFilePathSuccess() {
+    public void getFilePath_equalsInputtedFilePath() {
         Path filePath = Paths.get("src/test/data/JsonMenuManagerStorageTest/typicalMenuManager.json");
         JsonMenuManagerStorage storage = new JsonMenuManagerStorage(filePath);
         assertEquals(filePath, storage.getMenuManagerFilePath());

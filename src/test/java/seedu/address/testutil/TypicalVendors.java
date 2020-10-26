@@ -74,7 +74,7 @@ public class TypicalVendors {
         return ab;
     }
 
-    public static List<ObservableList<Food>> getMenuLists() {
+    public static List<ObservableList<Food>> getMenus() {
         List<ObservableList<Food>> menus = new ArrayList<>();
         List<Vendor> vendors = getTypicalVendors();
         for (Vendor v : vendors) {

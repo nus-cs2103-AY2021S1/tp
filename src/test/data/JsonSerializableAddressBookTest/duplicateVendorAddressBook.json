@@ -5,13 +5,37 @@
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
     "tagged": [ "friends" ],
-    "menu" : null
+    "menu" : [ {
+      "name" : "Prata",
+      "price" : 1.0,
+      "tagged" : [ "classic" ]
+    }, {
+      "name" : "Milo",
+      "price" : 1.5,
+      "tagged" : [ "Iced" ]
+    }, {
+      "name" : "Nuggets",
+      "price" : 3.2,
+      "tagged" : [ "six" ]
+    } ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
     "tagged": [],
-    "menu" : null
+    "menu" : [ {
+      "name" : "Prata",
+      "price" : 1.0,
+      "tagged" : [ "classic" ]
+    }, {
+      "name" : "Milo",
+      "price" : 1.5,
+      "tagged" : [ "Iced" ]
+    }, {
+      "name" : "Nuggets",
+      "price" : 3.2,
+      "tagged" : [ "six" ]
+    } ]
   } ]
 }
