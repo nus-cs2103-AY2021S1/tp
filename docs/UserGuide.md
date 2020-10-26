@@ -1,46 +1,78 @@
 # Trackr - User Guide
 
-1. [Introduction](#1-introduction)
-2. [Quick Start](#2-quick-start)
-3. [Features](#3-features)<br>
-   3.1 [Command format](#31-command-format)<br>
-   3.2 [View help: `help`](#32-view-help-help)<br>
-   3.3 [Add an item: `add`](#33-add-an-item-add)<br>
-   ---3.3.1 [Add a module: `addMod`](#331-add-a-module-addmod)<br>
-   ---3.3.2 [Add a tutorial group: `addTG`](#332-add-a-tutorial-group-addtg)<br>
-   ---3.3.3 [Add a student: `addStudent`](#333-add-a-student-addstudent)<br>
-   ---3.3.4 [Add a task: `addTask`](#334-add-a-task-addtask)<br>
-   3.4 [List items: `list`](#34-list-items-list)<br>
-   3.5 [Filter students: `filter`](#35-filter-students-filter)<br>
-   3.6 [Delete an item: `delete`](#36-delete-an-item-delete)<br>
-   3.7 [Find an item: `find`](#37-find-an-item-find)<br>
-   ---3.7.1 [Find a module: `findMod`](#371-find-a-module-findmod)<br>
-   ---3.7.2 [Find a tutorial group: `findTG`](#372-find-a-tutorial-group-findtg)<br>
-   ---3.7.3 [Find a student: `findStudent`](#373-find-a-student-findstudent)<br>
-   3.8 [Mark a task as done: `done`](#38-mark-a-task-as-done-done)<br>
-4. [FAQ](#4-faq)
-5. [Command Summary](#5-command-summary)
+1. [Introduction](#1-introduction)<br>
+2. [About This Document](#2-about-this-document)<br>
+3. [Getting Started](#3-getting-started)<br>
+    3.1 [Setting Up](#31-setting-up)<br>
+    3.2 [Using Trackr](#32-using-trackr)<br>
+    3.3 [Switching Views](#33-switching-views)<br>
+4. [Glossary](#4-glossary)<br>
+5. [Features](#5-features)<br>
+   5.1 [Command format](#51-command-format)<br>
+   5.2 [View help: `help`](#52-view-help-help)<br>
+   5.3 [Module features](#53-module-features)<br>
+   5.4 [Tutorial group features](#54-tutorial-group-features)<br>
+   5.5 [Student features](#55-student-features)<br>
+   --- 5.5.1 [Add a student: `addStudent`](#551-add-a-student-addstudent)<br>
+   --- 5.5.2 [Delete a student: `deleteStudent`](#552-delete-a-student-deletestudent)<br>
+   --- 5.5.3 [Find a student: `findStudent`](#553-find-a-student-findstudent)<br>
+   --- 5.5.4 [Edit a student: `editStudent` [coming in v1.4]](554-edit-a-student-editstudent-coming-in-v14)<br>
+6. [FAQ](#6-faq)<br>
+7. [Command Summary](#7-command-summary)<br>
+   7.1 [Module commands](#71-module-commands)<br>
+   7.2 [Tutorial group commands](#72-tutorial-group-commands)<br>
+   7.3 [Student commands](#73-student-commands)<br>
 
 ## 1. Introduction
 
 Trackr is suited for teaching assistants (TAs) who prefer to use a desktop application for managing their student records. It is optimized for Command Line Interface (CLI), while still retaining the benefits of a Graphical User Interface (GUI). If you are a TA with a fast typing speed, Trackr is the app for you. Head over to (Section 2, "Quick Start") and get started!
 
-## 2. Quick Start
+## 3. Getting Started
 
-Get started by installing our app with the following steps:
+### 3.1 Setting Up
+Get started by installing __Trackr__ with the following steps:
 
-1. Ensure you have Java 11 or above installed.
-2. Download the latest trackr.jar [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases).
-3. Copy the file to a folder you wish to use as your home folder.
-4. Double-click the file to start the app. The GUI should appear in a few seconds. Shown below is an example with some user commands and the app's responses.
+1. Ensure you have Java 11 or above installed. The latest version of _java_ can be found [here](https://www.java.com/en/download/).
+2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases). Look for the file _trackr.jar_.
+3. Copy the file to a folder you wish to use as your home folder for __Trackr__
+4. Double-click _trackr.jar_ to start the app. The GUI (Figure 3.1) should appear in a few seconds.
 
-![Ui](images/Ui.png)
+![Ui](images/Ui.png) <br>
+_Figure 3.1 Track Gui_
 
-5. Type your command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+### 3.2 Using Trackr
+__Trackr__ boasts many useful features to make using the app seamless and smooth. These include
+commands to add or delete modules, tutorial groups, or students you are teaching. To use a feature, simply
+type the command into the command box (see Figure 3.2) and press _Enter_ to execute it. Further explanations of 
+all the commands are listed down below in [Features](#5-features).
 
-## 3. Features
+![CommandExample](images/CommandExample.png) <br>
+_Figure 3.2 Command example_
 
-### 3.1 Command format
+### 3.3 Switching Views
+__Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to `Tutorial Groups` (Figure 3.32) 
+to `Students` (Figure 3.33) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
+The correct syntax for these commands are shown down below in [Features](#5-features).
+
+![ModuleView](images/ModuleView.png) <br>
+_Figure 3.31 Module View_
+
+![TutorialGroupView](images/TutorialGroupView.png) <br>
+_Figure 3.32 Tutorial Group View_
+
+![StudentView]() <br>
+_Figure 3.33 Student view_
+
+## 4. Glossary
+* __Graphical User Interface (GUI)__: An interface through which users interact with electronic devices via visual indicator representations.
+* __Command Line Interface (CLI)__: An interface that processes commands to a computer program in the form of lines of text.
+* __Tutorial Group__: The specific class being taught under a given module.
+* __Student__: An individual who is enrolled in a given module.
+
+
+## 5. Features
+
+### 5.1 Command format
 
 -   Words in UPPER_CASE are the parameters to be supplied by the user.
     e.g. in add n/NAME, NAME is a parameter which can be used as add n/John Doe.
@@ -51,35 +83,17 @@ Get started by installing our app with the following steps:
 -   Parameters can be in any order.
     e.g. if the command specifies n/NAME p/PHONE_NUMBER, p/PHONE_NUMBER n/NAME is also acceptable.
 
-### 3.2 View help: `help`
+### 5.2 View help: `help`
 
 Shows a message explaining how to access the user guide.
 
 Format: `help`
 
-### 3.3 Add an item: `add`
+### 5.3 Module features
 
-Adds an item to the database.
+### 5.4 Tutorial Group features
 
-#### 3.3.1 Add a module: `addMod`
-
-Adds a module to the database.
-
-Format: `addMod MODULE_CODE`
-
-Example: `addMod CS2103T`
-
-#### 3.3.2 Add a tutorial group: `addTG`
-
-Adds a tutorial group to the current module in view.
-
-Format: `addTG GROUP_CODE`
-
-Example: `addTG T03`
-
-## **4.2 - Tutorial Group Features**
-
-### 4.2.1 - View all Tutorial Groups in a Module: `viewTG`
+#### 5.4.1 - View all Tutorial Groups in a Module: `viewTG`
 **You can display all Tutorial Groups in a Module with this command. You can indicated which Module's Tutorial Groups to view by entering its index in the current list.**
 
 Format: `viewTG MODULE_INDEX`
@@ -91,7 +105,7 @@ Example: `viewTG 1`
 
 Format: `viewTG`
 
-### 4.2.2 - Add a Tutorial Group to a Module: `addTG`
+#### 5.4.2 - Add a Tutorial Group to a Module: `addTG`
 **You can add a Tutorial Group to the Module you are viewing using this command.**
 
 > You can only use this command when you are viewing all Tutorial Groups of the Module you intend to add the Tutorial Group to.
@@ -99,7 +113,7 @@ Format: `viewTG`
 
 Format: `addTG`
 
-### 4.2.3 - Find a Tutorial Group: `findTG`
+#### 5.4.3 - Find a Tutorial Group: `findTG`
 **if you need to quickly find a Tutorial from a list of Tutorials, use this command.**
 
 > You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
@@ -111,7 +125,7 @@ Where TARGET_TG_CODE is the code of the Tutorial Group you want to search for.
 Example: `findTG B014`
 To search for a Tutorial Group with code B014
 
-### 4.2.2 - Delete a Tutorial Group from a Module: `deleteTG`
+#### 5.4.4 - Delete a Tutorial Group from a Module: `deleteTG`
 **You can use this command to delete a Tutorial Group you have previously added to a Module.**
 > You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
 > Refer to 4.2.1 - View all Tutorial Groups in a Module
@@ -124,104 +138,115 @@ To delete Tutorial Group with the index 2 in the currently displayed list.
 
 These are the commands you can use to manage the different `Tutorial Groups` you teach. Now we look at how you can manage your `Students`.
 
----
+### 5.5 Student features
 
-#### 3.3.3 Add a student: `addStudent`
+Note: You should perform the following features while in the Student view.
 
-Adds a student to the current tutorial group in view.
+#### 5.5.1 Add a student: `addStudent`
 
-Format: `addStudent n/STUDENT_NAME id/STUDENT_ID`
+Adds a student with your provided details.
 
-Example: `addStudent n/John Doe id/A1234567X`
+Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
 
-#### 3.3.4 Add a task: `addTask`
+Note:
 
-Adds a task to the current module in view.
+- Students should not share the same name within the same tutorial group.
+- Phone numbers should only be 8 digits long.
+- Student IDs begin and end with a **capital letter** and should have 7 digits (e.g. A1243567X).
+- A student can have any number of tags, including 0.
 
-Format: `addTask TASK_NAME`
+Example:
 
-Example: `addTask grade CS2103T user guides`
+- Adds a student called _John Tan_ with phone number _81234567_, email _johntan@u.nus.edu_, student id _A1234567X_
+and tag _student_ to the current tutorial group in view.
 
-### 3.4 List items: `list`
+    - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
+    
+Expected Outcome:
 
-Displays items in the current list in view.
+- From the example above, the result box will display the following message:
 
-Format: `list`
+    New student added: {to be filled up}
+    
+{insert screenshot of addStudent with the above parameters}
 
-### 3.5 Filter students: `filter`
+#### 5.5.2 Delete a student: `deleteStudent`
 
-Filters students in a module based on certain criteria.
+Deletes a student based on the given `INDEX`.
 
-Format: `filter KEYWORD`
+Format: `deleteStudent INDEX`
 
-List of keywords:
+Note:
 
--   `taskNotDone`
--   `trailingBehind`
--   `notParticipating`
+- `INDEX` refers to the index number shown in the Student view.
+- `INDEX` must be a positive integer starting from 1.
+- Deleting a student is **irreversible**.
 
-Example: `filter taskNotDone`
+Example:
 
-### 3.6 Delete an item: `delete`
+- Deletes the second student in the Student view.
+    
+    - `deleteStudent 2`
+    
+Expected Outcome:
 
-Deletes an item from the database.
+- From the example given above, the result box will display the following message:
 
-Format: `delete INDEX`
+    Deleted student: {to be filled up}
+    
+{insert screenshot of deleteStudent with the above parameters}
 
-Example: `delete 1`
+#### 5.5.3 Find a student: `findStudent`
 
-### 3.7 Find an item: `find`
+Finds and lists all students in the current Student view whose field contains any of the given keywords.
 
-Finds and retrieves an item from the current list in view.
+Format: `findStudent KEYWORD`
 
-#### 3.7.1 Find a module: `findMod`
+Note:
 
-Searches for and retrieves a module from within the database.
+- `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
+- The search will look for matches in the student's name and student ID.
+- If no student matching the keyword is found, the Student view will be empty.
 
-Format: `findMod MODULE_CODE`
+Example:
 
-Example: `findMod CS2103T`
+- Finds a student with `KEYWORD` _a1234567x_.
 
-#### 3.7.2 Find a tutorial group: `findTG`
+    - `findStudent a1234567x`
+    
+Expected Outcome:
 
-Searches for and retrieves a student from within the database.
+- From the example given above, the Student view will display the students matching the criteria:
+    
+{insert screenshot of findStudent with the above parameters}
 
-Format: `findTG GROUP_CODE`
+#### 5.5.4 Edit a student: `editStudent` [coming in v1.4]
 
-Example: `findTG T03`
+Edits a student with the provided details.
 
-#### 3.7.3 Find a student: `findStudent`
+## 6. FAQ
+__Q:__ Why did the command I input change colour from white to red? <br> 
+__A:__ This happens when the input command is of the wrong syntax or doesn't exist. U may go to the [Command Summary](#5-command-summary) to 
+view the list of commands and their accepted formats.
 
-Searches for and retrieves a student from within the database.
+__Q:__ How do I save my data? <br>
+__A:__ When you issue a new command, __Trackr__ automatically updates the local save file immediately. This ensures that
+no data will be lost when you close the app or even in the event of a crash.
 
-Format: `findStudent STUDENT_NAME`
+__Q:__ How do I exit the app safely? <br>
+__A:__ To close the app, simply click the red _X_ on the top right for Windows users, on the top left
+for MacOS and Linux users.
 
-Example: `findStudent John Doe`
+## 7. Command Summary
 
-### 3.8 Mark a task as done: `done`
+### 7.1 Module commands
 
-Marks a task as done upon completion.
+### 7.2 Tutorial group commands
 
-Format: `done TASK_NUMBER`
+### 7.3 Student commands
 
-Example: `done 2`
-
-## 4. FAQ
-
-Q: How to save data?<br>
-A: Data will be saved automatically when Trackr is closed.
-
-## 5. Command Summary
-Action | Format
------------- | -------------
-Adding a module | `addMod MODULE_CODE`
-Adding a tutorial group | `addTG GROUP_CODE`
-Adding a student | `addStudent n/NAME id/STUDENT_ID`
-Adding a task | `addTask TASK_NAME`
-Listing all tasks | `list`
-Filtering students | `filter KEYWORD`
-Deleting an item | `delete INDEX`
-Finding a module | `findMod MODULE_CODE`
-Finding a tutorial group | `findTG GROUP_CODE`
-Finding a student | `findStudent n/NAME id/STUDENT_ID`
-Marking a reminder as done | `done TASK_NUMBER`
+Command | Summary
+--------|--------
+`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view
+`deleteStudent INDEX` | Deletes a student from the current Student view
+`findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view

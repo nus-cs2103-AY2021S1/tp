@@ -10,8 +10,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
-import static java.util.Objects.requireNonNull;
-
 public class ViewTutorialGroupCommand extends Command {
     public static final String COMMAND_WORD = "viewTG";
 

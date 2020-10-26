@@ -2,14 +2,9 @@ package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 import javafx.collections.ObservableList;
-import seedu.address.model.Task;
 import seedu.address.model.TaskList;
-import seedu.address.model.UniqueTutorialGroupList;
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 
@@ -61,6 +56,10 @@ public class Module {
 
     public ObservableList<TutorialGroup> getTutorialGroups() {
         return tutorialGroups.asUnmodifiableObservableList();
+    }
+
+    public UniqueTutorialGroupList getUniqueTutorialGroupList() {
+        return tutorialGroups;
     }
 
     //    public List<Task> getTaskList() {
