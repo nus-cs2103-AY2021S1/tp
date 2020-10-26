@@ -15,7 +15,7 @@ import seedu.address.model.student.Student;
  * Finds and list all students with classes on a given date.
  * This is also the schedule of the user on that particular date.
  */
-public class ScheduleCommand extends Command {
+public abstract class ScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "schedule";
 
@@ -30,34 +30,8 @@ public class ScheduleCommand extends Command {
 
     public static final String COMMAND_SUCCESS_MESSAGE = "Here is your schedule";
 
-    private final LocalDate dateToFindSchedule;
 
-    public ScheduleCommand(LocalDate dateTime) {
-        this.dateToFindSchedule = dateTime;
-    }
+    public ScheduleCommand() {};
 
-    @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        // this date is given by the user, we extract out the day
-        DayOfWeek day = this.dateToFindSchedule.getDayOfWeek();
 
-        assert day != null;
-
-        // checks which student has the same day as the one given extracted out
-        Predicate<Student> predicate = student -> student.getAdmin().getClassTime().isSameDay(day);
-
-        // updates the list that is currently showed in the ui
-        model.updateFilteredPersonList(predicate);
-
-        return new CommandResult(
-                String.format(COMMAND_SUCCESS_MESSAGE, model.getFilteredPersonList().size()));
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ScheduleCommand // instanceof handles nulls
-                && dateToFindSchedule.equals(((ScheduleCommand) other).dateToFindSchedule)); // state check
-    }
 }

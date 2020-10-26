@@ -4,11 +4,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.temporal.ChronoField;
-
 import seedu.address.logic.commands.schedule.ScheduleCommand;
 import seedu.address.logic.commands.schedule.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -55,12 +50,12 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
 
         if (argumentMultimap.getValue(PREFIX_VIEW_MODE).isPresent()) {
             String viewMode = argumentMultimap.getValue(PREFIX_VIEW_MODE).get();
-            scheduleViewCommand.setDesiredViewMode(ParserUtil.parseViewMode(viewMode));
+            scheduleViewCommand.setViewMode(ParserUtil.parseViewMode(viewMode));
         }
 
         if (argumentMultimap.getValue(PREFIX_VIEW_DATE).isPresent()) {
             String dateToView = argumentMultimap.getValue(PREFIX_VIEW_DATE).get();
-            scheduleViewCommand.setTargetViewDate(ParserUtil.parseViewDate(dateToView));
+            scheduleViewCommand.setViewDate(ParserUtil.parseViewDate(dateToView));
         }
 
         return scheduleViewCommand;

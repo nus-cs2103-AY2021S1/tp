@@ -1,2 +1,4 @@
-package seedu.address.logic.commands.schedule;public class ScheduleAddCommand {
+package seedu.address.logic.commands.schedule;
+
+public class ScheduleAddCommand {
 }
