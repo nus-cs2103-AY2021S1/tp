@@ -1,30 +1,51 @@
----
-layout: page
-title: Developer Guide
----
-
--   Table of Contents
-    {:toc}
+# **Trackr - Developer Guide**
+by Team W12-2
 
 ---
 
-## **Setting up, getting started**
+## **Table of Contents**
+* [Section 1 - Preface](#section-1---preface)
+* [Section 2 - Setting up, getting started](#section-2---setting-up-getting-started)
+* [Section 3 - Design](#section-3---design)
+    * [3.1 - High-Level Architecture](#section-31---high-level-architecture)
+    * [3.2 - UI Component](#section-32---ui-component)
+    * [3.3 - Logic Component](#section-33---logic-component)
+    * [3.4 - Model Component](#section-34---model-component)
+    * [3.5 - Storage Component](#section-35---storage-component)
+    * [3.6 - Common Classes](#section-36---common-classes)
+* [Section 4 - Implementation](#section-4---implementation)
+    * [4.1 - Add feature](#section-41---add-feature)
+    * [4.2 - Undo/redo feature](#section-42---proposed-undoredo-feature)
+    * [4.3 - Data saving and loading](#section-43---data-saving-and-loading)
+* [Section 5 - Documentation, logging, testing, configuration, dev-ops](#section-5---documentation-logging-testing-configuration-dev-ops)
+* [Section 6 - Appendix](#section-6---appendix)
+
+---
+
+
+
+## **Section 1 - Preface**
+This is a Developer Guide to Trackr. A student and task management system for Teaching Assistants of all faculties who want to manage their students from various modules and tutorial groups, all in one place.
+
+
+---
+
+
+## **Section 2 - Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ---
 
-## **Design**
+## **Section 3 - Design**
 
-### Architecture
+### Section 3.1 - High-Level Architecture
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
 The **_Architecture Diagram_** given above explains the high-level design of the App. Given below is a quick overview of each component.
 
 <div markdown="span" class="alert alert-primary">
-
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -59,14 +80,13 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 The sections below give more details of each component.
 
-### UI component
+### Section 3.2 - UI component
+The UI Component defines what the user will see and interact with while using Trackr. `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `ModuleListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
 [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
-
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -75,7 +95,7 @@ The `UI` component,
 -   Executes user commands using the `Logic` component.
 -   Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
-### Logic component
+### Section 3.3 - Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
@@ -95,7 +115,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-### Model component
+### Section 3.4 - Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
@@ -104,8 +124,8 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 -   stores a `UserPref` object that represents the user’s preferences.
--   stores the address book data.
--   exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+-   stores the Trackr data.
+-   exposes unmodifiable `ObservableList<Module>`, `ObservableList<TutorialGroup>` and `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 -   does not depend on any of the other three components.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
@@ -113,7 +133,7 @@ The `Model`,
 
 </div>
 
-### Storage component
+### Section 3.5 - Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
@@ -122,19 +142,48 @@ The `Model`,
 The `Storage` component,
 
 -   can save `UserPref` objects in json format and read it back.
--   can save the address book data in json format and read it back.
+-   can save the module data in json format and read it back.
 
-### Common classes
+### Section 3.6 - Common classes
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 ---
 
-## **Implementation**
+## **Section 4 - Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Section 4.1 - Add feature
+#### Overview
+
+The Add feature in Trackr enables users to easily add models to the app. Users will be able to keep track of models they are
+in charge of.
+
+There are three types of models:
+- `Module`: The current module the user is teaching
+- `TutorialGroup`: The tutorial groups that the user is teaching
+- `Student`: The students currently being taught by the user
+
+#### Implementation
+Trackr contains a `UniqueList<Module>`, which in turn, contains the modules taught by the user. Each Add command
+for `Module`, `TutorialGroup`, and `Student` is split into `AddModuleCommand`, `AddTutorialGroupCommand`, and `AddStudentCommand`.
+Each command class extends `Command`. 
+
+Given below is an example of the interaction between the Model and the `AddModuleCommand` of Trackr.
+
+![AddModSequenceDiagram](images/AddModSequenceDiagram.png)
+
+#### Design Considerations
+**Aspect: List to contain the models**
+- Option 1: Generic `UniqueList` that contains the models
+    - Pros: Abstraction, 
+    - Cons: Harder to implement
+- Option 2: Seperate `UniqueList` for each model such as `UniqueModuleList`
+    - Pros: Easier to implement
+    - Cons: More repetitive code
+
+### Section 4.2 - \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
@@ -191,7 +240,7 @@ Step 5. The user then decides to execute the command `list`. Commands that do no
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behaviour that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -215,13 +264,56 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Section 4.3 - Data saving and loading
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Implementation
+
+The data saving and loading mechanism is facilitated by `JsonModuleStorage`. It has the operations to save and read data written in Json format to represent modules and their attributes such as tutorial groups and students, stored internally in `StorageManager` as a `moduleStorage`. Additionally it implements the following operations:
+
+- `JsonModuleStorage#getModuleFilePath()` — Obtains the file path of which the Json file representing the data is to be saved to.
+- `JsonModuleStorage#readModuleList()` — Reads the Json file found in the stores file path representing the module list and returns a ReadOnlyTrackr&lt;Module&gt; representing the modules saved in the Json file along with their attributes such as tutorial groups and students.
+- `JsonModuleStorage#saveModuleList(ReadOnlyTrackr<Module> moduleList)` — Writes the Json file representing the module list based on the `ReadOnlyTrackr<Module>` passed into the operation, saving the Json file representing the modules along with their attributes such as tutorial groups and students in the stored file path.
+
+These operations are exposed in the `ModuleStorage` interface as `ModelStorage#getModuleFilePath()`, `ModelStorage#readModuleList()` and `ModuleStorage#saveModuleList(ReadOnlyTrackr<Module> moduleList)` respectively.
+
+The data stored in `JsonModuleStorage` is designed in a nested manner, `JsonModuleStorage` contains `JsonSerializableModuleList` which is a class that is used by the `Jackson` class for conversion to and from the Json format. `JsonSerializableModuleList` stores a list of `JsonAdaptedModule` which stores a list of `JsonAdaptedTutorialGroup` which stores a list of `JsonAdaptedStudent` which also stores a list of `JsonAdaptedTag`. Due to the nature of this nesting all these attributes are stored in a single Json file which branches out to these attributes, stored in a file called `modulelist.json`.
+
+Saving and loading is done by the external class `JsonUtil`, who's static methods allow for the conversion of data in Json files. The methods used are:
+
+- `JsonUtil#readJsonFile(Path filePath, Class<T> classOfObjectToDeserialize)` — Reads the Json file found at the file path, and converts it into the object of class T by using an `ObjectMapper`.
+- `JsonUtil#saveJsonFile(T jsonFile, Path filePath)` — Converts the object of class T into a Json file at the file path using the `FileUtil`.
+
+Given below is an example usage scenario and how the load mechanism behaves in every step.
+
+Step 1. The user launches the application. The MainApp will seek for a ModuleStorage and pass it to the StorageManager who will call `readModuleList(Path filePath)` to attempt to read module data from the Json file. If the file does not already exist, a new Json file is created.
+
+Step 2. The `JsonSerializableModuleList` is broken down into individual `JsonAdaptedModule` objects that are also converted into `Module` objects. To fill these modules with their identity fields such as `moduleId`, the Json file is read and the values of the fields are used to construct the `Module`. For the data fields such as the list of `TutorialGroup` objects, the list of `JsonAdaptedTutorialGroup` is converted into their corresponding class `TutorialGroup`.
+
+Step 3. The process is repeated in `JsonAdaptedTutorialGroup` to obtain the list of Student objects by converting `JsonAdaptedStudent` objects.
+
+Step 4. Once all layers of the Json objects have been converted to their corresponding class, the module list is ready and is used by `StorageManager`, available to be used by `ModelManager` in future to display these objects in the UI.
+
+The following activity diagram summarizes how data from the Json file is read and loaded when a user starts up the application:
+
+![LoadJsonActivityDiagram](images/LoadJsonActivityDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: How the Json file is structured.
+
+-   **Alternative 1 (current choice):** Saves the entire module list in a single file, nesting all internal components.
+    -   Pros: Easy to implement due to abstraction allowing conversion process to be done.
+    -   Cons: Easier for file to get corrupted, and will lead to massive lost of data should data corruption occur.
+
+-   **Alternative 2:** Saving lists of modules, tutorial groups, and students in separate Json files.
+    -   Pros: Easier to test each list individually to check the Json structure of each object type, and data corruption will lead to only data in separate lists to be lost (e.g. A corrupted `TutorialGroup` list will lead to no loss in the `Module` list)
+    -   Cons: Difficult to reconstruct the Json classes into the native classes and more data required to be stored for `StorageManager` to know which objects belong to which (e.g. Which `Module` a `TutorialGroup` belongs to).
+
+
 
 ---
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Section 5 - Documentation, logging, testing, configuration, dev-ops**
 
 -   [Documentation guide](Documentation.md)
 -   [Testing guide](Testing.md)
@@ -230,7 +322,7 @@ _{Explain here how the data archiving feature will be implemented}_
 -   [DevOps guide](DevOps.md)
 
 ---
-
+# **Section 6 - Appendix**
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -265,7 +357,7 @@ _{More to be added}_
 
 (For all use cases below, the **System** is the `Trackr` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a person**
+**Use case: UC01 - Add a person**
 
 **MSS**
 
@@ -282,7 +374,7 @@ Use case ends.
     -   2a1. Trackr shows an error message
     Use Case resumes at 2
 
-**Use case: Delete a person**
+**Use case: UC02 - Delete a person**
 
 **MSS**
 
@@ -305,13 +397,13 @@ Use case ends.
 
         Use case resumes at step 2.
 
-**Use case: Loading a save file**
+**Use case: UC03 - Loading a save file**
 
 **MSS**
 
 1. User launches the application
 2. Trackr attempts to read the save file
-3. Trackr successfully parses the save file and loads the lists of students on it
+3. Trackr successfully parses the save file and loads the lists of modules on it
 4. User can start using the application
 
     Use case ends.
@@ -331,7 +423,7 @@ Use case ends.
 
         Use case resumes at step 4.
 
-**Use case: Search for a person**
+**Use case: UC04 - Search for a person**
 
 **MSS**
 
@@ -354,7 +446,7 @@ Use case ends.
 
     Use case resumes at 1.
 
-**Use case: Add a checklist of task**
+**Use case: UC05 - Add a checklist of task**
 
 **MSS**
 
@@ -371,7 +463,7 @@ Use case ends.
     -   2a1. Trackr shows an error message
     Use Case resumes at 2
 
-**Use case: Mark a task in the list as done**
+**Use case: UC06 - Mark a task in the list as done**
 
 **MSS**
 

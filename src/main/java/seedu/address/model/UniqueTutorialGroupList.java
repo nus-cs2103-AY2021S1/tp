@@ -2,7 +2,10 @@ package seedu.address.model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.exceptions.DuplicateShowableException;
+import seedu.address.model.exceptions.ShowableNotFoundException;
 import seedu.address.model.person.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 import java.util.Iterator;
 import java.util.List;
@@ -12,7 +15,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
     private final ObservableList<TutorialGroup> internalList = FXCollections.observableArrayList();
-    private final ObservableList<TutorialGroup> internalUnmodfiableList =
+    private final ObservableList<TutorialGroup> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
@@ -88,7 +91,7 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<TutorialGroup> asUnmodifiableObservableList() {
-        return internalUnmodfiableList;
+        return internalUnmodifiableList;
     }
 
     /**

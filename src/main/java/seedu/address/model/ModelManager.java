@@ -12,7 +12,10 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.Student;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -28,7 +31,7 @@ public class ModelManager implements Model {
     private FilteredList<Module> filteredModules;
 
     private final UserPrefs userPrefs;
-    Module currentModuleInView = new Module("Currently In View");
+    Module currentModuleInView = new Module(new ModuleId("Currently In View"));
 
     /**
      * Initializes a ModelManager with the given ReadOnlyTrackrs and userPrefs.

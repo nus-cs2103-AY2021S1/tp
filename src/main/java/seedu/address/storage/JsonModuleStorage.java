@@ -12,8 +12,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.Module;
 import seedu.address.model.ReadOnlyTrackr;
+import seedu.address.model.module.Module;
 
 // TODO better JavaDocs
 public class JsonModuleStorage implements ModuleStorage {
@@ -68,6 +68,7 @@ public class JsonModuleStorage implements ModuleStorage {
      * @param moduleList The moduleList to be saved.
      * @param filePath The filePath at which the moduleList will be saved.
      */
+    @Override
     public void saveModuleList(ReadOnlyTrackr<Module> moduleList, Path filePath) throws IOException {
         requireNonNull(moduleList);
         requireNonNull(filePath);

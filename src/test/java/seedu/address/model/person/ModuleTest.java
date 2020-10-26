@@ -6,7 +6,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.Module;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 
 public class ModuleTest {
     @Test
@@ -17,21 +18,21 @@ public class ModuleTest {
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
         String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new Module(invalidAddress));
+        assertThrows(IllegalArgumentException.class, () -> new Module(new ModuleId(invalidAddress)));
     }
 
     @Test
     public void isValidAddress() {
         // null address
-        assertThrows(NullPointerException.class, () -> Module.isValidModuleId(null));
+        assertThrows(NullPointerException.class, () -> ModuleId.isValidModuleId(null));
 
         // invalid addresses
-        assertFalse(Module.isValidModuleId("")); // empty string
-        assertFalse(Module.isValidModuleId(" ")); // spaces only
+        assertFalse(ModuleId.isValidModuleId("")); // empty string
+        assertFalse(ModuleId.isValidModuleId(" ")); // spaces only
 
         // valid addresses
-        assertTrue(Module.isValidModuleId("CS2103T"));
-        assertTrue(Module.isValidModuleId("-")); // one character
-        assertTrue(Module.isValidModuleId("GER1000H")); // long address
+        assertTrue(ModuleId.isValidModuleId("CS2103T"));
+        assertTrue(ModuleId.isValidModuleId("-")); // one character
+        assertTrue(ModuleId.isValidModuleId("GER1000H")); // long address
     }
 }

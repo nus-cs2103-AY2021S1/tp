@@ -5,25 +5,18 @@
 3. [Features](#3-features)<br>
    3.1 [Command format](#31-command-format)<br>
    3.2 [View help: `help`](#32-view-help-help)<br>
-   3.3 [Add an item: `add`](#33-add-an-item-add)<br>
-   ---3.3.1 [Add a module: `add module`](#331-add-a-module-add-module)<br>
-   ---3.3.2 [Add a student: `add student`](#332-add-a-student-add-student)<br>
-   ---3.3.3 [Add a reminder: `add reminder`](#333-add-a-reminder-add-reminder)<br>
-   3.4 [List items: `list`](#34-list-items-list)<br>
-   ---3.4.1 [List all modules: `list modules`](#341-list-all-modules-list-modules)<br>
-   ---3.4.2 [List all students within a module: `list students`](#342-list-all-students-within-a-module-list-students)<br>
-   ---3.4.3 [List all reminders: `list reminders`](#343-list-all-reminders-list-reminders)<br>
-   3.5 [Filter students: `filter`](#35-filter-students-filter)<br>
-   3.6 [Delete an item: `delete`](#36-delete-an-item-delete)<br>
-   ---3.6.1 [Delete a module: `delete module`](#361-delete-a-module-delete-module)<br>
-   ---3.6.2 [Delete a student: `delete student`](#362-delete-a-student-delete-student)<br>
-   ---3.6.3 [Delete a reminder: `delete reminder`](#363-delete-a-reminder-delete-reminder)<br>
-   3.7 [Search for an item: `search`](#37-search-for-an-item-search)<br>
-   ---3.7.1 [Search for a module: `search module`](#371-search-for-a-module-search-module)<br>
-   ---3.7.2 [Search for a student: `search student`](#372-search-for-a-student-search-student)<br>
-   3.8 [Mark a reminder as done: `done`](#38-mark-a-reminder-as-done-done)<br>
+   3.3 [Module features](#33-module-features)<br>
+   3.4 [Tutorial group features](#34-tutorial-group-features)<br>
+   3.5 [Student features](#35-student-features)<br>
+   --- 3.5.1 [Add a student: `addStudent`](#351-add-a-student-addstudent)<br>
+   --- 3.5.2 [Delete a student: `deleteStudent`](#352-delete-a-student-deletestudent)<br>
+   --- 3.5.3 [Find a student: `findStudent`](#353-find-a-student-findstudent)<br>
+   --- 3.5.4 [Edit a student: `editStudent` [coming in v1.4]](#354-edit-a-student-editstudent-coming-in-v14)<br>
 4. [FAQ](#4-faq)
-5. [Command Summary](#5-command-summary)
+5. [Command Summary](#5-command-summary)<br>
+   5.1 [Module commands](#51-module-commands)<br>
+   5.2 [Tutorial group commands](#52-tutorial-group-commands)<br>
+   5.3 [Student commands](#53-student-commands)<br>
 
 ## 1. Introduction
 
@@ -33,25 +26,25 @@ Trackr is suited for teaching assistants (TAs) who prefer to use a desktop appli
 
 Get started by installing our app with the following steps:
 
-1. Ensure you have Java `11` or above installed.
+1. Ensure you have Java 11 or above installed.
 2. Download the latest trackr.jar [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases).
 3. Copy the file to a folder you wish to use as your home folder.
 4. Double-click the file to start the app. The GUI should appear in a few seconds. Shown below is an example with some user commands and the app's responses.
 
-(insert ui here)
+![Ui](images/Ui.png)
 
-5. Type your command in the command box and press **Enter** to execute it. e.g. typing `help` and pressing **Enter** will open the help window.
+5. Type your command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 
 ## 3. Features
 
 ### 3.1 Command format
 
--   Words in `UPPER_CASE` are the parameters to be supplied by the user.
+-   Words in UPPER_CASE are the parameters to be supplied by the user.
     e.g. in add n/NAME, NAME is a parameter which can be used as add n/John Doe.
 -   Items in square brackets are optional.
     e.g n/NAME [t/TAG] can be used as n/John Doe t/friend or as n/John Doe.
--   Items with …​ after them can be used multiple times including zero times.
-    e.g. [t/TAG]…​ can be used as (i.e. 0 times), t/friend, t/friend t/family etc.
+-   Items with …  after them can be used multiple times including zero times.
+    e.g. [t/TAG]…  can be used as (i.e. 0 times), t/friend, t/friend t/family etc.
 -   Parameters can be in any order.
     e.g. if the command specifies n/NAME p/PHONE_NUMBER, p/PHONE_NUMBER n/NAME is also acceptable.
 
@@ -61,128 +54,111 @@ Shows a message explaining how to access the user guide.
 
 Format: `help`
 
-### 3.3 Add an item: `add`
+### 3.3 Module features
 
-Adds an item to the database.
+### 3.4 Tutorial group features
 
-#### 3.3.1 Add a module: `add module`
+### 3.5 Student features
 
-Adds a module to the database.
+Note: You should perform the following features while in the Student view.
 
-Format: `add module MODULE_CODE`
+#### 3.5.1 Add a student: `addStudent`
 
-Example: `add module CS2103T`
+Adds a student with your provided details.
 
-#### 3.3.2 Add a student: `add student`
+Format: `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...`
 
-Adds a student to the database.
+Note:
 
-Format: `add student STUDENT_NAME to MODULE_CODE`
+- Students should not share the same name within the same tutorial group.
+- Phone numbers should only be 8 digits long.
+- Student IDs begin and end with a **capital letter** and should have 7 digits (e.g. A1243567X).
+- A student can have any number of tags, including 0.
 
-Example: `add student John Doe to CS2103T`
+Example:
 
-#### 3.3.3 Add a reminder: `add reminder`
+- Adds a student called _John Tan_ with phone number _81234567_, email _johntan@u.nus.edu_, student id _A1234567X_
+and tag _student_ to the current tutorial group in view.
 
-Adds a reminder to the database.
+    - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
+    
+Expected Outcome:
 
-Format: `add reminder REMINDER`
+- From the example above, the result box will display the following message:
 
-Example: `add reminder grade CS2103T user guides`
+    New student added: {to be filled up}
+    
+{insert screenshot of addStudent with the above parameters}
 
-### 3.4 List items: `list`
+#### 3.5.2 Delete a student: `deleteStudent`
 
-Displays items of a specific type in a list
+Deletes a student based on the given `INDEX`.
 
-#### 3.4.1 List all modules: `list modules`
+Format: `deleteStudent INDEX`
 
-Shows a list of all modules in the database.
+Note:
 
-Format: `list modules`
+- `INDEX` refers to the index number shown in the Student view.
+- `INDEX` must be a positive integer starting from 1.
+- Deleting a student is **irreversible**.
 
-#### 3.4.2 List all students within a module: `list students`
+Example:
 
-Shows a list of all students taking a particular module.
+- Deletes the second student in the Student view.
+    
+    - `deleteStudent 2`
+    
+Expected Outcome:
 
-Format: `list students in MODULE_CODE`
+- From the example given above, the result box will display the following message:
 
-Example: `list students in CS2103T`
+    Deleted student: {to be filled up}
+    
+{insert screenshot of deleteStudent with the above parameters}
 
-#### 3.4.3 List all reminders: `list reminders`
+#### 3.5.3 Find a student: `findStudent`
 
-Shows a list of all reminders for upcoming tasks.
+Finds and lists all students in the current Student view whose field contains any of the given keywords.
 
-Format: `list reminders`
+Format: `findStudent KEYWORD`
 
-### 3.5 Filter students: `filter`
+Note:
 
-Filters students in a module based on certain criteria.
+- `KEYWORD` is not case-sensitive (e.g. _john_ will match _John_).
+- The search will look for matches in the student's name and student ID.
+- If no student matching the keyword is found, the Student view will be empty.
 
-Format: `filter KEYWORD`
+Example:
 
-List of keywords:
+- Finds a student with `KEYWORD` _a1234567x_.
 
--   taskNotDone
--   trailingBehind
--   notParticipating
+    - `findStudent a1234567x`
+    
+Expected Outcome:
 
-Example: `filter taskNotDone`
+- From the example given above, the Student view will display the students matching the criteria:
+    
+{insert screenshot of findStudent with the above parameters}
 
-### 3.6 Delete an item: `delete`
+#### 3.5.4 Edit a student: `editStudent` [coming in v1.4]
 
-Deletes an item from the database.
-
-#### 3.6.1 Delete a module: `delete module`
-
-Deletes a module from the database.
-
-Format: `delete MODULE_CODE`
-
-Example: `delete module CS2103T`
-
-#### 3.6.2 Delete a student: `delete student`
-
-Deletes a student from the database. Note deleting a student will also remove him from the module.
-
-Format: `delete student STUDENT_NAME`
-
-Example: `delete student John Doe`
-
-#### 3.6.3 Delete a reminder: `delete reminder`
-
-Deletes a reminder from the database.
-
-Format: `delete reminder REMINDER_NUMBER`
-
-Example: `delete reminder 2`
-
-### 3.7 Search for an item: `search`
-
-Searches for and retrieves an item from within the database.
-
-#### 3.7.1 Search for a module: `search module`
-
-Searches for and retrieves a module from within the database.
-
-Format: `search module MODULE_CODE`
-
-Example: `search module CS2103T`
-
-#### 3.7.2 Search for a student: `search student`
-
-Searches for and retrieves a student from within the database.
-
-Format: `search student STUDENT_NAME`
-
-Example: `search student John Doe`
-
-### 3.8 Mark a reminder as done: `done`
-
-Marks a reminder as done upon completion of the task.
-
-Format: `done REMINDER_NUMBER`
-
-Example: `done 2`
+Edits a student with the provided details.
 
 ## 4. FAQ
 
+Q: How to save data?<br>
+A: Data will be saved automatically when Trackr is closed.
+
 ## 5. Command Summary
+
+### 5.1 Module commands
+
+### 5.2 Tutorial group commands
+
+### 5.3 Student commands
+
+Command | Summary
+--------|--------
+`addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view
+`deleteStudent INDEX` | Deletes a student from the current Student view
+`findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view

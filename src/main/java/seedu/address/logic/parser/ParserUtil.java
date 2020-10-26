@@ -9,7 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Module;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -117,10 +118,10 @@ public class ParserUtil {
     public static Module parseModule(String module) throws ParseException {
         requireNonNull(module);
         String trimmedModule = module.trim();
-        if (!Module.isValidModuleId(trimmedModule)) {
-            throw new ParseException(Module.MESSAGE_CONSTRAINTS);
+        if (!ModuleId.isValidModuleId(trimmedModule)) {
+            throw new ParseException(ModuleId.MESSAGE_CONSTRAINTS);
         }
-        return new Module(trimmedModule);
+        return new Module(new ModuleId(trimmedModule));
     }
 
     /**

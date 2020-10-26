@@ -1,72 +1,71 @@
-package seedu.address.model;
-
-import javafx.collections.ObservableList;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Represents a Student's Module in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidModuleId(String)}
- */
-public class Module implements Showable<Module> {
-    public static final String MESSAGE_CONSTRAINTS = "Modules can take any values, and it should not be blank";
+import javafx.collections.ObservableList;
+import seedu.address.model.Task;
+import seedu.address.model.TaskList;
+import seedu.address.model.UniqueTutorialGroupList;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
-    /*
-     * The first character of the module must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
 
-    // TODO make a module ID class?
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+public class Module {
 
-    private final String moduleId;
+    private final ModuleId moduleId;
     private UniqueTutorialGroupList tutorialGroups;
     private TaskList taskList;
-    private int totalStudents = 0;
-    private int totalGroups = 0;
 
     /**
      * Constructs an {@code Module}.
      *
      * @param moduleId
      */
-    public Module(String moduleId) {
+    public Module(ModuleId moduleId) {
         requireNonNull(moduleId);
-        checkArgument(isValidModuleId(moduleId), MESSAGE_CONSTRAINTS);
         this.moduleId = moduleId;
         this.tutorialGroups = new UniqueTutorialGroupList();
         this.taskList = new TaskList();
     }
 
-    /**
-     * Returns true if a given string is a valid module.
-     * @param test input moduleId to test
-     * @return boolean that indicates if string is valid
-     */
-    public static boolean isValidModuleId(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
+    //    /**
+    //     * Constructs an {@code Module}.
+    //     * @param moduleId
+    //     * @param taskList
+    //     * @param tutorialGroups
+    //     */
+    //    public Module(ModuleId moduleId, List<TutorialGroup> tutorialGroups, List<Task> taskList) {
+    //        requireNonNull(moduleId);
+    //        requireNonNull(tutorialGroups);
+    //        this.moduleId = moduleId;
+    //        this.tutorialGroups = tutorialGroups;
+    //        this.taskList = new TaskList(taskList);
+    //    }
 
-    public String getModuleId() {
+
+    public ModuleId getModuleId() {
         return this.moduleId;
     }
 
-    public int getTotalStudents() {
-        return this.totalStudents;
-    }
+    //    public int getTotalStudents() {
+    //        return this.tutorialGroups.stream().map(TutorialGroup::getStudentList)
+    //                .map(List::size).reduce(Integer::sum).orElse(0);
+    //    }
 
-    public int getTotalGroups() {
-        return this.totalGroups;
-    }
+    //    public int getTotalGroups() {
+    //        return this.tutorialGroups.size();
+    //    }
 
     public ObservableList<TutorialGroup> getTutorialGroups() {
         return tutorialGroups.asUnmodifiableObservableList();
     }
+
+    //    public List<Task> getTaskList() {
+    //        return Collections.unmodifiableList(taskList.getTaskList());
+    //    }
 
     public void addTutorialGroup(TutorialGroup tutorialGroup) {
         tutorialGroups.addTutorialGroup(tutorialGroup);
@@ -106,6 +105,6 @@ public class Module implements Showable<Module> {
 
     @Override
     public String toString() {
-        return getModuleId();
+        return getModuleId().toString();
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.Module;
+import seedu.address.model.module.Module;
 
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
@@ -19,7 +19,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Module> {
     @Override
     public boolean test(Module module) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(module.getModuleId(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(module.getModuleId().toString(), keyword));
     }
 
     @Override

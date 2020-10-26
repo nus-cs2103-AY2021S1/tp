@@ -7,6 +7,9 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 
+import seedu.address.model.module.Module;
+import seedu.address.model.tutorialgroup.TutorialGroup;
+
 /**
  * Wraps all data at the Trackr level.
  * Duplicates are not allowed (by .isSame comparison).

@@ -1,49 +1,67 @@
-package seedu.address.model;
+package seedu.address.model.tutorialgroup;
 
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
+import seedu.address.model.person.Showable;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.StudentId;
 
-public class TutorialGroup implements Showable<TutorialGroup> {
-    private final String id;
+public class TutorialGroup {
+
+    // Identity fields
+    private final TutorialGroupId tutorialGroupId;
     private Module module;
     private HashMap<StudentId, Student> studentList;
     private LocalTime startTime;
     private LocalTime endTime;
-    private int durationInHours;
+
+    // Data fields
+    //private HashMap<StudentId, Student> studentList;
+
+    //
+
+    //    /**
+    //     * Constructor for Tutorial Group
+    //     * @param id of Tutorial Group
+    //     * @param module that Tutorial Group belongs to
+    //     */
+    //    public TutorialGroup(String id, Module module) {
+    //        this.id = id;
+    //        this.module = module;
+    //        this.studentList = new HashMap<>();
+    //    }
+
 
     /**
      * Constructor for Tutorial Group
-     * @param id of Tutorail Group
-     * @param module that Tutorial Group belongs to
+     * @param tutorialGroupId
      */
-    public TutorialGroup(String id, Module module) {
-        this.id = id;
-        this.module = module;
+    public TutorialGroup(TutorialGroupId tutorialGroupId) {
+        this.tutorialGroupId = tutorialGroupId;
         this.studentList = new HashMap<>();
     }
-
 
     /**
      * Constructor for Tutorial Group
-     * @param id
+     * @param tutorialGroupId
+     * @param startTime
+     * @param endTime
      */
-    public TutorialGroup(String id) {
-        this.id = id;
-        this.studentList = new HashMap<>();
+    public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime) {
+        this.tutorialGroupId = tutorialGroupId;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
+
 
     //GETTERS
 
-    public String getId() {
-        return this.id;
-    }
-
-    public Module getModule() {
-        return this.module;
+    public TutorialGroupId getId() {
+        return this.tutorialGroupId;
     }
 
     public LocalTime getStartTime() {
@@ -54,23 +72,22 @@ public class TutorialGroup implements Showable<TutorialGroup> {
         return endTime;
     }
 
-    public int getDurationInHours() {
-        return this.durationInHours;
+    public double getDurationInHours() {
+        return (this.startTime.until(endTime, ChronoUnit.MINUTES)) / 60.0;
     }
 
 
-    public ArrayList<Student> getStudentList() {
-        ArrayList<Student> returnList = new ArrayList<Student>();
+    public List<Student> getStudentList() {
+        ArrayList<Student> returnList = new ArrayList<>();
         returnList.addAll(studentList.values());
         return returnList;
     }
 
 
     //SETTERS
-    public void setLessonTime(LocalTime startTime, LocalTime endTime, int durationInHours) {
+    public void setLessonTime(LocalTime startTime, LocalTime endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
-        this.durationInHours = durationInHours;
     }
 
     public void setStudentList(ArrayList<Student> studentList) {
@@ -78,6 +95,10 @@ public class TutorialGroup implements Showable<TutorialGroup> {
         for (Student student : studentList) {
             this.studentList.put(student.getStudentId(), student);
         }
+    }
+
+    public int getTotalStudents() {
+        return this.studentList.size();
     }
 
     //ADD

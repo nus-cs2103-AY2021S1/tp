@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.TutorialGroup;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class TutorialGroupCard extends UiPart<Region> {
     private static final String FXML = "TutorialGroupListCard.fxml";
@@ -41,7 +41,7 @@ public class TutorialGroupCard extends UiPart<Region> {
         super(FXML);
         this.tutorialGroup = tutorialGroup;
         id.setText(displayedIndex + ". ");
-        groupId.setText(tutorialGroup.getId());
+        groupId.setText(tutorialGroup.getId().toString());
         //totalStudents.setText("Total Students: " + module.getTotalStudents());
         //        startTime.setText(tutorialGroup.getStartTime().toString());
         //        endTime.setText(tutorialGroup.getEndTime().toString());

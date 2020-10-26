@@ -9,6 +9,11 @@ import java.util.List;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import seedu.address.model.exceptions.DuplicateShowableException;
+import seedu.address.model.exceptions.ShowableNotFoundException;
+import seedu.address.model.module.Module;
+import seedu.address.model.tutorialgroup.TutorialGroup;
+
 public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
     private final ObservableList<Module> internalUnmodifiableList =
