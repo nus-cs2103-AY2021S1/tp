@@ -31,7 +31,7 @@ public class ImageParser {
      * Parses a String of image path to
      * check validity and
      * convert them to RecipeImage object to be returned.
-     * 
+     *
      * @param imagePath String of image path (local or url).
      * @return RecipeImage of String objects of the ingredients in the parameter.
      * @throws ParseException
@@ -85,7 +85,7 @@ public class ImageParser {
 
     /**
      * Get all paths from a folder that inside the JAR file.
-     * 
+     *
      * @param folder Name of folder.
      * @return List of paths from a folder.
      */

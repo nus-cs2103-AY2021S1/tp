@@ -33,7 +33,7 @@ public class RecipeImage {
 
     /**
      * Returns string of image path.
-     * 
+     *
      * @return String of image path.
      */
     public String getImagePath() {
