@@ -152,9 +152,12 @@ You can use this command when you are done with what you need to do and want to 
 
 :green_book: **Example:**
 
-* `exit`: Returns exit message then quits the program.
+* `exit`: Returns exit message then quits the program in 1.5 seconds.
 
 </div>
+
+![exitCommand](images/commands/exitCommand.png)
+<p align="center"> <sub> <b>Figure</b>: Exit message appears in Result display </sub> </p>
 
 ## Entry-Level Commands
 Entry-Level commands involves managing the entries which are either expenses or revenues in an account. 
@@ -169,12 +172,13 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 
 :green_book: **Example:**
 
-* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce`
+* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce` (**Figure**)
 * `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
 
 </div>
 
-*(Add screenshot showing the profit message)*
+![addCommand](images/commands/addCommand.png)
+<p align="center"> <sub> <b>Figure</b>: A new expense called "buying supplies" is added </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -198,11 +202,12 @@ You can use this command when you want to remove an entry (expense/revenue) from
 :green_book: **Example:**
 
 * `delete 1 c/expense` : Deletes first entry in expense category
-* `delete 2 c/revenue` : Deletes second entry in the revenue category
+* `delete 2 c/revenue` : Deletes second entry in the revenue category (**Figure**)
 
 </div>
 
-*(Add screenshot showing the profit message)*
+![deleteCommand1](images/commands/deleteCommand1.png)
+<p align="center"> <sub> <b>Figure</b>: The revenue at index 2 is deleted </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -227,13 +232,18 @@ You can use this command when you want to make edits to any existing entries in 
 
 :green_book: **Example:**
 
-* `edit 2 c/expense n/buy McSpicy a/8.60`: Changes the name and the amount of entry 2 to `eating McSpicy` and `$8.60` respectively
-* `edit 2 c/revenue n/sell McNuggets`: Changes the name of entry 2 to `sell McNuggets`
+* `edit 2 c/expense d/buy McSpicy a/8.60`: Changes the name and the amount of entry 2 to 
+`eating McSpicy` and `$8.60` respectively (**Figure**)
+* `edit 2 c/revenue d/sell McNuggets`: Changes the name of entry 2 to `sell McNuggets` 
 * `edit 2 c/expense a/5.50`: Changes the amount of entry 2 to `$5.50`
 
 </div>
 
-*(Add screenshots showing the before and after the edit command)*
+![beforeEditCommand](images/commands/beforeEditCommand.png)
+<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 before editing </sub> </p>
+
+![afterEditCommand](images/commands/afterEditCommand.png)
+<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 after editing </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -321,12 +331,13 @@ You can use this command to clear all entries from a particular category.
 :green_book: **Example:**
 
 
-* `clear c/expense`: clears all entries in expenses by setting the state to an empty one.
-* `clear c/revenue`: clears all entries in revenues by setting the state to an empty one.
+* `clear c/expense`: clears all entries visible in expense list (**Figure**). 
+* `clear c/revenue`: clears all entries visible in revenue list.
 
 </div>
 
-*(Add screenshots for before and after clear.)*
+![clearCommand](images/commands/clearCommand.png)
+<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 after editing </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
