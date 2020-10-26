@@ -34,6 +34,16 @@ public class GuiSettings implements Serializable {
     /**
      * Constructs a {@code GuiSettings} with the specified height, width, position and panel.
      */
+    public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition) {
+        this.windowWidth = windowWidth;
+        this.windowHeight = windowHeight;
+        windowCoordinates = new Point(xPosition, yPosition);
+        this.panelState = DEFAULT_PANEL;
+    }
+
+    /**
+     * Constructs a {@code GuiSettings} with the specified height, width, position and panel.
+     */
     public GuiSettings(double windowWidth, double windowHeight, int xPosition, int yPosition, PanelState panelState) {
         this.windowWidth = windowWidth;
         this.windowHeight = windowHeight;
