@@ -46,21 +46,21 @@ public class EditCommandParser implements Parser<EditCommand> {
                     EditCommand.MESSAGE_USAGE), pe);
         }
 
-        // Check if there is catgeory
-        boolean isCategoryPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
-        if (!isCategoryPresent) {
+        // Check if there is category
+        boolean isCategoryPrefixPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
+        if (!isCategoryPrefixPresent) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditCommand.MESSAGE_USAGE));
         }
 
         // Check if category prefix is only used once
-        boolean isNumberOfCategoryCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_CATEGORY);
+        boolean isNumberOfCategoryPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_CATEGORY);
 
         // Check if optional prefixes are only used once or none
         boolean isNumberOfOtherPrefixCorrect =
                 ParserUtil.areNumberOfPrefixesOneOrNone(argMultimap, PREFIX_DESCRIPTION, PREFIX_AMOUNT);
 
-        if (!isNumberOfCategoryCorrect || !isNumberOfOtherPrefixCorrect) {
+        if (!isNumberOfCategoryPrefixCorrect || !isNumberOfOtherPrefixCorrect) {
             throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, EditCommand.PREFIXES));
         }
 
@@ -69,13 +69,13 @@ public class EditCommandParser implements Parser<EditCommand> {
         editEntryDescriptor.setCategory(ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get()));
 
         // Parse description if have
-        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+        if (ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             editEntryDescriptor.setDescription(ParserUtil.parseDescription(argMultimap
                     .getValue(PREFIX_DESCRIPTION).get()));
         }
 
         // Parse amount if have
-        if (argMultimap.getValue(PREFIX_AMOUNT).isPresent()) {
+        if (ParserUtil.arePrefixesPresent(argMultimap, PREFIX_AMOUNT)) {
             editEntryDescriptor.setAmount(ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get()));
         }
 

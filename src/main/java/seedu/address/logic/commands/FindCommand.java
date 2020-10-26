@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
@@ -12,6 +14,7 @@ import seedu.address.model.account.entry.RevenueDescriptionContainsKeywordsPredi
 public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
     public static final String EMPTY_KEYWORD_LIST_MESSAGE = "Keyword list cannot be empty! Here are some examples\n"
+        + "Parameters: " + PREFIX_KEYWORDS + "KEYWORDS " + "[" + PREFIX_CATEGORY + "CATEGORY" + "]" + "\n"
         + "Example 1: " + COMMAND_WORD + " k/canvas cases\n"
         + "Example 2: " + COMMAND_WORD + " k/canvas c/expense\n"
         + "Example 3: " + COMMAND_WORD + " k/cases c/revenue\n";
@@ -21,6 +24,10 @@ public class FindCommand extends Command {
         + "Example 1: " + COMMAND_WORD + " k/canvas cases\n"
         + "Example 2: " + COMMAND_WORD + " k/canvas c/expense\n"
         + "Example 3: " + COMMAND_WORD + " k/cases c/revenue\n";
+
+    public static final String PREFIXES = PREFIX_KEYWORDS + "KEYWORDS\n" + "["
+            + PREFIX_CATEGORY + "CATEGORY" + "]" + "\n";
+
 
     private final ExpenseDescriptionContainsKeywordsPredicate expensePredicate;
     private final RevenueDescriptionContainsKeywordsPredicate revenuePredicate;
