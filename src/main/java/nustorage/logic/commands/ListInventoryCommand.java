@@ -1,7 +1,6 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static nustorage.model.Model.PREDICATE_REMOVE_ALL_FINANCE;
 import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
 
 import nustorage.model.Model;
