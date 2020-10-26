@@ -12,7 +12,7 @@ import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
 
-public class CreateTemplateCommand extends CommandForExercise {
+public class AddTemplateCommand extends CommandForExercise {
     public static final String COMMAND_WORD = "create";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates an exercise template. "
@@ -29,7 +29,7 @@ public class CreateTemplateCommand extends CommandForExercise {
 
     private final Template toCreate;
 
-    public CreateTemplateCommand(Template toCreate) {
+    public AddTemplateCommand(Template toCreate) {
         this.toCreate = toCreate;
     }
 
@@ -41,7 +41,7 @@ public class CreateTemplateCommand extends CommandForExercise {
         if (TemplateList.checkEqual(toCreate)) {
             throw new CommandException("The template already exists.");
         }
-        model.createTemplate(toCreate);  // add to list
+        model.addTemplate(toCreate);  // add to list
         Template.writeToFile(TemplateList.getList()); // write to file
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toCreate));

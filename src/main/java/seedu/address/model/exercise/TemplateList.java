@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import seedu.address.logic.parser.CreateTemplateCommandParser;
+import seedu.address.logic.parser.AddTemplateCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TemplateList {
@@ -50,7 +50,7 @@ public class TemplateList {
 
     public static void readTask(File f) {
         list = new ArrayList<>();
-        CreateTemplateCommandParser parser = new CreateTemplateCommandParser();
+        AddTemplateCommandParser parser = new AddTemplateCommandParser();
         try {
             Scanner s = new Scanner(f);
             while (s.hasNext()) {

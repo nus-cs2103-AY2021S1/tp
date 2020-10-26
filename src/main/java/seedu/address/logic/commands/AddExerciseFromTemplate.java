@@ -11,7 +11,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
 
-public class AddTemplateCommand extends CommandForExercise{
+public class AddExerciseFromTemplate extends CommandForExercise{
 
     public static final String COMMAND_WORD = "addt";
 
@@ -29,7 +29,7 @@ public class AddTemplateCommand extends CommandForExercise{
 
     private final Exercise toAdd;
 
-    public AddTemplateCommand(Exercise toAdd) {
+    public AddExerciseFromTemplate(Exercise toAdd) {
         this.toAdd = toAdd;
     }
 

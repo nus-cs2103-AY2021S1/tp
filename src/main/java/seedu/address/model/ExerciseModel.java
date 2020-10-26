@@ -75,7 +75,7 @@ public interface ExerciseModel {
     void addExercise(Exercise exercise);
 
 
-    void createTemplate(Template template);
+    void addTemplate(Template template);
 
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.

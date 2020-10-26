@@ -18,15 +18,15 @@ import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
 
-public class AddTempCommandParser implements ExerciseParser<AddCommand> {
+public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TEMP, PREFIX_DATE, PREFIX_CALORIES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TEMP, PREFIX_DATE)
-            /*|| !argMultimap.getPreamble().isEmpty()*/) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddExerciseFromTemplate.MESSAGE_USAGE));
+                    seedu.address.logic.commands.AddExerciseFromTemplate.MESSAGE_USAGE));
         }
 
         Name templateName = ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_TEMP).get());

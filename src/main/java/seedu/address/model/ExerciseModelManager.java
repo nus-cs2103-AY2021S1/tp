@@ -108,7 +108,7 @@ public class ExerciseModelManager implements ExerciseModel {
     }
 
     @Override
-    public void createTemplate(Template template) {
+    public void addTemplate(Template template) {
         TemplateList.addTemplate(template);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }

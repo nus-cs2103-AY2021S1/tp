@@ -15,13 +15,13 @@ import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.Template;
 
-public class CreateTemplateCommandParser implements ExerciseParser<AddTemplateCommand> {
+public class AddTemplateCommandParser implements ExerciseParser<AddTemplateCommand> {
     public AddTemplateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES)
-            /*|| !argMultimap.getPreamble().isEmpty()*/) {
+                || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTemplateCommand.MESSAGE_USAGE));
         }
