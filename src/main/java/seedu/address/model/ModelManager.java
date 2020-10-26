@@ -14,6 +14,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.PolicyList;
 
 /**
  * Represents the in-memory model of the client list data.
@@ -25,11 +27,12 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final BooleanProperty isArchiveMode;
+    private final PolicyList policyList;
 
     /**
      * Initializes a ModelManager with the given clientList and userPrefs.
      */
-    public ModelManager(ReadOnlyClientList clientList, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyClientList clientList, ReadOnlyUserPrefs userPrefs, PolicyList policyList) {
         super();
         requireAllNonNull(clientList, userPrefs);
 
@@ -40,10 +43,11 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.clientList.getPersonList());
         filteredPersons.setPredicate(PREDICATE_SHOW_ALL_ACTIVE); // initialised to show all active persons
         isArchiveMode = new SimpleBooleanProperty(false);
+        this.policyList = policyList;
     }
 
     public ModelManager() {
-        this(new ClientList(), new UserPrefs());
+        this(new ClientList(), new UserPrefs(), new PolicyList());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -79,6 +83,16 @@ public class ModelManager implements Model {
     public void setClientListFilePath(Path clientListFilePath) {
         requireNonNull(clientListFilePath);
         userPrefs.setClientListFilePath(clientListFilePath);
+    }
+    @Override
+    public Path getPolicyListFilePath() {
+        return userPrefs.getPolicyListFilePath();
+    }
+
+    @Override
+    public void setPolicyListFilePath(Path policyListFilePath) {
+        requireAllNonNull(policyListFilePath);
+        userPrefs.setPolicyListFilePath(policyListFilePath);
     }
 
     //=========== ClientList ================================================================================
@@ -168,5 +182,22 @@ public class ModelManager implements Model {
     @Override
     public void setIsArchiveMode(boolean isArchiveMode) {
         this.isArchiveMode.set(isArchiveMode);
+    }
+
+    //=========== PolicyList ================================================================================
+
+    @Override
+    public PolicyList getPolicyList() {
+        return policyList;
+    }
+
+    @Override
+    public void addPolicy(Policy policy) {
+        policyList.add(policy);
+    }
+
+    @Override
+    public boolean hasPolicy(Policy policy) {
+        return policyList.contains(policy);
     }
 }

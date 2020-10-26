@@ -17,6 +17,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.PolicyDescription;
+import seedu.address.model.policy.PolicyName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -164,6 +166,24 @@ public class ParserUtil {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
         return new Priority(trimmedPriority);
+    }
+
+    public static PolicyName parsePolicyName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!PolicyName.isValidPolicyName(trimmedName)) {
+            throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
+        }
+        return new PolicyName(trimmedName);
+    }
+
+    public static PolicyDescription parsePolicyDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!PolicyName.isValidPolicyName(trimmedDescription)) {
+            throw new ParseException(PolicyDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new PolicyDescription(trimmedDescription);
     }
 
     /**

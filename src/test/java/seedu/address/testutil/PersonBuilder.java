@@ -11,7 +11,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.util.SampleClientDataUtil;
 
 /**
  * A utility class to help with building Person objects.
@@ -76,7 +76,7 @@ public class PersonBuilder {
      * and set it to the {@code Person} that we are building.
      */
     public PersonBuilder withClientSources(String ... clientSources) {
-        this.clientSources = SampleDataUtil.getClientSourceSet(clientSources);
+        this.clientSources = SampleClientDataUtil.getClientSourceSet(clientSources);
         return this;
     }
 

@@ -18,7 +18,7 @@ import seedu.address.model.person.Priority;
 /**
  * Contains utility methods for populating {@code ClientList} with sample data.
  */
-public class SampleDataUtil {
+public class SampleClientDataUtil {
     public static Person[] getSamplePersons() {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
