@@ -313,14 +313,15 @@ The following sequence diagram shows how the import operation works:
 
 #### Implementation
 
-The proposed undo/redo mechanism is facilitated by `ModelManager`.
-It stores multiple versions of `ReadOnlyMcGymmy` in a stack, with the most recent version on top.
-Whenever there is a change to the data, `ModelManager` will store a copy of its `McGymmy` in the stack.
-Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `ModelManager` and `History`.
+`History` pairs `ReadOnlyMcGymmy` and `Predicate<Food>` gotten from `ModelManager` into a pair, then store multiple pairs of different versions in a stack, with the most recent version on top.
+Whenever there is a change to either `ModelManager`'s data or filter predicate, `ModelManager` will pass itself into `History` to be checked and saved in the stack.
+If `History` recognizes there is no change between the current state and the previous state, it will not save the current state to its stack.
+Additionally, `ModelManager` implements the following operations:
 
-* `ModelManager#canUndo()` - Checks if there are any older McGymmy states.
+* `ModelManager#canUndo()` - Checks if there is any older state stored in history.
 * `ModelManager#undo()` - Restores the previous McGymmy state from its history.
-* `ModelManager#addCurrentStateToHistory` - Saves the current McGymmy state in its history.
+* `ModelManager#saveCurrentStateToHistory()` - Saves the current McGymmy state in its history.
 
 The first 2 operations are exposed in the `Model` interface as `Model#canUndo()` and `Model#undo()` respectively.
 
@@ -344,7 +345,7 @@ storing a copied version of the McGymmy into the stack before changing the McGym
 
 ![UndoState2a](images/UndoState2a.png)
 
-![UndoState2a](images/UndoState2a.png)
+![UndoState2a](images/UndoState2b.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `ModelManager#addCurrentStateToHistory()`, so the McGymmy state will not be saved into the `mcGymmyStack`.
 
@@ -368,6 +369,9 @@ The following sequence diagram shows how the undo operation works:
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The method Parser::parse is a simplification of the overall parsing sequence which was already covered in showcasing the execution of the delete method. As such, redundant parsing details are not covered here.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The method ModelManager::updateModelManager is a simplification of updating the McGymmy, updating the filterPredicate and updating the filteredFoodList separately.
 </div>
 
 The following activity diagram summarizes what happens when a user executes a new command:
