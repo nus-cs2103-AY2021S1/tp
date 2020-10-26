@@ -2,6 +2,8 @@ package seedu.address.model.task.deadline;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -103,6 +105,9 @@ public class Deadline extends Task {
                 && otherDeadline.getDeadlineDateTime().equals(getDeadlineDateTime());
     }
 
+    public LocalDateTime getDeadlineDateTimeValue() {
+        return this.deadlineDateTime.getValue();
+    }
     /**
      * mark the task as done by updating the status, duration and done time.
      */
@@ -160,15 +165,15 @@ public class Deadline extends Task {
     public int compareTo(Task otherTask) {
         if (otherTask instanceof Event) {
             if (deadlineDateTime.isFilled) {
-                return getDeadlineDateTime().value.compareTo(((Event) otherTask).getEndDateTime().value);
+                return getDeadlineDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
             } else {
                 return 1;
             }
         } else { //otherTask instanceof Deadline
             Deadline deadline = (Deadline) otherTask;
             if (deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
-                return getDeadlineDateTime().value.compareTo(deadline.getDeadlineDateTime().value);
-            } else if (deadline.isDeadlineDateTimeFilled() && !deadlineDateTime.isFilled){
+                return getDeadlineDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
+            } else if (deadline.isDeadlineDateTimeFilled() && !deadlineDateTime.isFilled) {
                 return 1;
             } else if (!deadline.isDeadlineDateTimeFilled() && deadlineDateTime.isFilled) {
                 return -1;

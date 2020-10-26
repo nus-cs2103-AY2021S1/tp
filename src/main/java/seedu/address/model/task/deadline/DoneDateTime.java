@@ -4,16 +4,16 @@ import java.time.LocalDateTime;
 
 import seedu.address.commons.util.DateUtil;
 import seedu.address.model.lesson.Time;
+import seedu.address.model.task.DateTime;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Task's date and time in PlaNus task list.
- * Guarantees: immutable; is valid as declared in {@link #isValidDoneDateTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class DoneDateTime {
+public class DoneDateTime extends DateTime {
 
-    public final LocalDateTime value;
     public final boolean isFilled;
 
     /**
@@ -22,18 +22,16 @@ public class DoneDateTime {
      * @param dateTime A valid date and time.
      */
     public DoneDateTime(String dateTime) {
+        super(dateTime);
         if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null) {
             this.isFilled = false;
-            this.value = DateUtil.DEFAULT_DATETIME;
         } else {
-            checkArgument(isValidDoneDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
-            this.value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
             this.isFilled = true;
         }
     }
 
     private DoneDateTime(LocalDateTime value) {
-        this.value = value;
+        super(value);
         this.isFilled = true;
     }
 
@@ -52,26 +50,6 @@ public class DoneDateTime {
         return isFilled;
     }
 
-    /**
-     * Returns true if a given string is a valid dateTime number.
-     *
-     * @param test the string value to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidDoneDateTime(String test) {
-        return DateUtil.isValidDateTime(test);
-    }
-
-    /**
-     * Returns true if a given string is a valid search phrase for date time.
-     *
-     * @param test the string value to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidSearchPhrase(String test) {
-        return isValidDoneDateTime(test) || DateUtil.isValidDate(test) || Time.isValidTime(test);
-    }
-
     @Override
     public String toString() {
         if (isFilled) {
@@ -88,10 +66,4 @@ public class DoneDateTime {
                 && (value.equals(((DoneDateTime) other).value)
                 || isFilled && ((DoneDateTime) other).isFilled())); // state check
     }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }

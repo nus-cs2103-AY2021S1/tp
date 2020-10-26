@@ -1,20 +1,14 @@
 package seedu.address.model.task.deadline;
 
-import static seedu.address.commons.util.AppUtil.checkArgument;
-
-import java.time.LocalDateTime;
-
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.lesson.Time;
+import seedu.address.model.task.DateTime;
 
 /**
  * Represents a Task's date and time in PlaNus task list.
- * Guarantees: immutable; is valid as declared in {@link #isValidDeadlineDateTime(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidDateTime(String)}
  */
-public class DeadlineDateTime {
+public class DeadlineDateTime extends DateTime {
 
-    public static final LocalDateTime DEFAULT_DATETIME = LocalDateTime.parse("01-01-1000 00:00", DateUtil.DATETIME_FORMATTER);
-    public final LocalDateTime value;
     public final boolean isFilled;
 
     /**
@@ -23,12 +17,10 @@ public class DeadlineDateTime {
      * @param dateTime A valid date and time.
      */
     public DeadlineDateTime(String dateTime) {
-        if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null || dateTime.equals(DEFAULT_DATETIME)) {
+        super(dateTime);
+        if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null || dateTime.equals(DateUtil.DEFAULT_DATETIME)) {
             this.isFilled = false;
-            value = DEFAULT_DATETIME;
         } else {
-            checkArgument(isValidDeadlineDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
-            value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
             isFilled = true;
         }
     }
@@ -39,26 +31,6 @@ public class DeadlineDateTime {
 
     public boolean isFilled() {
         return isFilled;
-    }
-
-    /**
-     * Returns true if a given string is a valid dateTime number.
-     *
-     * @param test the string value to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidDeadlineDateTime(String test) {
-        return DateUtil.isValidDateTime(test);
-    }
-
-    /**
-     * Returns true if a given string is a valid search phrase for date time.
-     *
-     * @param test the string value to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidSearchPhrase(String test) {
-        return isValidDeadlineDateTime(test) || DateUtil.isValidDate(test) || Time.isValidTime(test);
     }
 
     @Override
@@ -77,10 +49,4 @@ public class DeadlineDateTime {
                 && (value.equals(((DeadlineDateTime) other).value)
                     || isFilled && ((DeadlineDateTime) other).isFilled())); // state check
     }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
-    }
-
 }

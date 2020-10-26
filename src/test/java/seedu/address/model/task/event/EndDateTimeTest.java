@@ -22,19 +22,19 @@ public class EndDateTimeTest {
     @Test
     public void isValidDateTime() {
         // null dateTime number
-        assertThrows(NullPointerException.class, () -> EndDateTime.isValidEndDateTime(null));
+        assertThrows(NullPointerException.class, () -> EndDateTime.isValidDateTime(null));
 
         // invalid dateTime numbers
-        assertFalse(EndDateTime.isValidEndDateTime("")); // empty string
-        assertFalse(EndDateTime.isValidEndDateTime(" ")); // spaces only
-        assertFalse(EndDateTime.isValidEndDateTime("12-13-2000 12:00")); // month greater than 12
-        assertFalse(EndDateTime.isValidEndDateTime("date")); // non-numeric
-        assertFalse(EndDateTime.isValidEndDateTime("32-01-1200")); // day greater than 31
-        assertFalse(EndDateTime.isValidEndDateTime("12-12-2020")); // no time
-        assertFalse(EndDateTime.isValidEndDateTime("5-6-2020 12:00")); // no leading zero for day and month
+        assertFalse(EndDateTime.isValidDateTime("")); // empty string
+        assertFalse(EndDateTime.isValidDateTime(" ")); // spaces only
+        assertFalse(EndDateTime.isValidDateTime("12-13-2000 12:00")); // month greater than 12
+        assertFalse(EndDateTime.isValidDateTime("date")); // non-numeric
+        assertFalse(EndDateTime.isValidDateTime("32-01-1200")); // day greater than 31
+        assertFalse(EndDateTime.isValidDateTime("12-12-2020")); // no time
+        assertFalse(EndDateTime.isValidDateTime("5-6-2020 12:00")); // no leading zero for day and month
 
         // valid dateTime numbers
-        assertTrue(EndDateTime.isValidEndDateTime("05-09-2020 18:00")); // date and month with leading zero
-        assertTrue(EndDateTime.isValidEndDateTime("12-12-2020 12:00"));
+        assertTrue(EndDateTime.isValidDateTime("05-09-2020 18:00")); // date and month with leading zero
+        assertTrue(EndDateTime.isValidDateTime("12-12-2020 12:00"));
     }
 }

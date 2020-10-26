@@ -22,19 +22,19 @@ public class StartDateTimeTest {
     @Test
     public void isValidDateTime() {
         // null dateTime number
-        assertThrows(NullPointerException.class, () -> StartDateTime.isValidStartDateTime(null));
+        assertThrows(NullPointerException.class, () -> StartDateTime.isValidDateTime(null));
 
         // invalid dateTime numbers
-        assertFalse(StartDateTime.isValidStartDateTime("")); // empty string
-        assertFalse(StartDateTime.isValidStartDateTime(" ")); // spaces only
-        assertFalse(StartDateTime.isValidStartDateTime("12-13-2000 12:00")); // month greater than 12
-        assertFalse(StartDateTime.isValidStartDateTime("date")); // non-numeric
-        assertFalse(StartDateTime.isValidStartDateTime("32-01-1200")); // day greater than 31
-        assertFalse(StartDateTime.isValidStartDateTime("12-12-2020")); // no time
-        assertFalse(StartDateTime.isValidStartDateTime("5-6-2020 12:00")); // no leading zero for day and month
+        assertFalse(StartDateTime.isValidDateTime("")); // empty string
+        assertFalse(StartDateTime.isValidDateTime(" ")); // spaces only
+        assertFalse(StartDateTime.isValidDateTime("12-13-2000 12:00")); // month greater than 12
+        assertFalse(StartDateTime.isValidDateTime("date")); // non-numeric
+        assertFalse(StartDateTime.isValidDateTime("32-01-1200")); // day greater than 31
+        assertFalse(StartDateTime.isValidDateTime("12-12-2020")); // no time
+        assertFalse(StartDateTime.isValidDateTime("5-6-2020 12:00")); // no leading zero for day and month
 
         // valid dateTime numbers
-        assertTrue(StartDateTime.isValidStartDateTime("05-09-2020 18:00")); // date and month with leading zero
-        assertTrue(StartDateTime.isValidStartDateTime("12-12-2020 12:00"));
+        assertTrue(StartDateTime.isValidDateTime("05-09-2020 18:00")); // date and month with leading zero
+        assertTrue(StartDateTime.isValidDateTime("12-12-2020 12:00"));
     }
 }

@@ -22,19 +22,19 @@ public class DoneDateTimeTest {
     @Test
     public void isValidDateTime() {
         // null dateTime number
-        assertThrows(NullPointerException.class, () -> DoneDateTime.isValidDoneDateTime(null));
+        assertThrows(NullPointerException.class, () -> DoneDateTime.isValidDateTime(null));
 
         // invalid dateTime numbers
-        assertFalse(DoneDateTime.isValidDoneDateTime("")); // empty string
-        assertFalse(DoneDateTime.isValidDoneDateTime(" ")); // spaces only
-        assertFalse(DoneDateTime.isValidDoneDateTime("12-13-2000 12:00")); // month greater than 12
-        assertFalse(DoneDateTime.isValidDoneDateTime("date")); // non-numeric
-        assertFalse(DoneDateTime.isValidDoneDateTime("32-01-1200")); // day greater than 31
-        assertFalse(DoneDateTime.isValidDoneDateTime("12-12-2020")); // no time
-        assertFalse(DoneDateTime.isValidDoneDateTime("5-6-2020 12:00")); // no leading zero for day and month
+        assertFalse(DoneDateTime.isValidDateTime("")); // empty string
+        assertFalse(DoneDateTime.isValidDateTime(" ")); // spaces only
+        assertFalse(DoneDateTime.isValidDateTime("12-13-2000 12:00")); // month greater than 12
+        assertFalse(DoneDateTime.isValidDateTime("date")); // non-numeric
+        assertFalse(DoneDateTime.isValidDateTime("32-01-1200")); // day greater than 31
+        assertFalse(DoneDateTime.isValidDateTime("12-12-2020")); // no time
+        assertFalse(DoneDateTime.isValidDateTime("5-6-2020 12:00")); // no leading zero for day and month
 
         // valid dateTime numbers
-        assertTrue(DoneDateTime.isValidDoneDateTime("05-09-2020 18:00")); // date and month with leading zero
-        assertTrue(DoneDateTime.isValidDoneDateTime("12-12-2020 12:00"));
+        assertTrue(DoneDateTime.isValidDateTime("05-09-2020 18:00")); // date and month with leading zero
+        assertTrue(DoneDateTime.isValidDateTime("12-12-2020 12:00"));
     }
 }

@@ -3,6 +3,7 @@ package seedu.address.model.task.event;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import seedu.address.model.tag.Tag;
@@ -55,6 +56,15 @@ public class Event extends Task {
     public EndDateTime getEndDateTime() {
         return endDateTime;
     }
+
+    public LocalDateTime getEndDateTimeValue() {
+        return endDateTime.getValue();
+    }
+
+    public LocalDateTime getStartDateTimeValue() {
+        return startDateTime.getValue();
+    }
+
     /**
      * Returns an immutable tag, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -65,7 +75,7 @@ public class Event extends Task {
 
     @Override
     public int getTimeTaken() {
-        return (int) Duration.between(getStartDateTime().value, getEndDateTime().value).toMinutes();
+        return (int) Duration.between(getStartDateTimeValue(), getEndDateTimeValue()).toMinutes();
     }
 
     @Override
@@ -146,11 +156,11 @@ public class Event extends Task {
     @Override
     public int compareTo(Task otherTask) {
         if (otherTask instanceof Event) {
-            return getEndDateTime().value.compareTo(((Event) otherTask).getEndDateTime().value);
+            return getEndDateTimeValue().compareTo(((Event) otherTask).getEndDateTimeValue());
         } else {
             Deadline deadline = (Deadline) otherTask;
             if (deadline.isDeadlineDateTimeFilled()) {
-                return getEndDateTime().value.compareTo(deadline.getDeadlineDateTime().value);
+                return getEndDateTimeValue().compareTo(deadline.getDeadlineDateTimeValue());
             } else {
                 return -1;
             }

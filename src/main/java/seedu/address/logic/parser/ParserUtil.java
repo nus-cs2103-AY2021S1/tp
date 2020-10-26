@@ -6,9 +6,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.DateUtil;
@@ -85,7 +82,7 @@ public class ParserUtil {
     public static DeadlineDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        if (!DeadlineDateTime.isValidDeadlineDateTime(trimmedDateTime)) {
+        if (!DeadlineDateTime.isValidDateTime(trimmedDateTime)) {
             throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return new DeadlineDateTime(trimmedDateTime);
@@ -101,10 +98,10 @@ public class ParserUtil {
         requireNonNull(date, time);
         String trimmedDate = date.trim();
         String trimmedtime = time.trim();
-        if (!StartDateTime.isValidStartDateTime(trimmedDate, trimmedtime)) {
+        if (!StartDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
             throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
-        return new StartDateTime(trimmedDate, trimmedtime);
+        return StartDateTime.createStartDateTime(trimmedDate, trimmedtime);
     }
 
     /**
@@ -117,10 +114,10 @@ public class ParserUtil {
         requireNonNull(date, time);
         String trimmedDate = date.trim();
         String trimmedtime = time.trim();
-        if (!EndDateTime.isValidEndDateTime(trimmedDate, trimmedtime)) {
+        if (!EndDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
             throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
-        return new EndDateTime(trimmedDate, trimmedtime);
+        return EndDateTime.createEndDateTime(trimmedDate, trimmedtime);
     }
 
 
