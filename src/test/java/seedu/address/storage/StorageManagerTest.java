@@ -11,11 +11,14 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.ItemList;
+import seedu.address.model.LocationList;
 import seedu.address.model.ReadOnlyItemList;
+import seedu.address.model.ReadOnlyLocationList;
 import seedu.address.model.ReadOnlyRecipeList;
 import seedu.address.model.RecipeList;
 import seedu.address.model.UserPrefs;
 import seedu.address.testutil.TypicalItems;
+import seedu.address.testutil.TypicalLocations;
 import seedu.address.testutil.TypicalRecipes;
 
 public class StorageManagerTest {
@@ -75,8 +78,6 @@ public class StorageManagerTest {
         assertEquals(original, new RecipeList(retrieved));
     }
 
-    // TODO fix this test
-    /*
     @Test
     public void locationListReadSave() throws Exception {
         LocationList original = TypicalLocations.getTypicalLocationsList();
@@ -84,7 +85,7 @@ public class StorageManagerTest {
         ReadOnlyLocationList retrieved = storageManager.readLocationList().get();
         assertEquals(original, new LocationList(retrieved));
     }
-    */
+
 
     @Test
     public void getItemListFilePath() {

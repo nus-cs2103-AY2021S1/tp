@@ -29,7 +29,7 @@ public interface Storage extends UserPrefsStorage, ItemListStorage, LocationList
     void saveItemList(ReadOnlyItemList itemList) throws IOException;
 
     @Override
-    Optional<ReadOnlyLocationList> readLocationList();
+    Optional<ReadOnlyLocationList> readLocationList() throws IOException, DataConversionException;
 
     @Override
     Optional<ReadOnlyRecipeList> readRecipeList() throws DataConversionException, IOException;
