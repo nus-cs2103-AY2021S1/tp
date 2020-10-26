@@ -35,7 +35,7 @@ public class SwitchVendorCommand extends VendorCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Vendor> vendors = model.getAddressBook().getVendorList();
+        ObservableList<Vendor> vendors = model.getObservableVendorList();
         int index = vendorIndex.getZeroBased();
 
         if (vendors.size() <= index) {
