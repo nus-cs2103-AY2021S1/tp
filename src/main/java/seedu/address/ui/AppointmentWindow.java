@@ -53,7 +53,7 @@ public class AppointmentWindow extends UiPart<Stage> {
         appointmentTable.sortPolicyProperty().set(table -> {
             Comparator<AppointmentDescription> comparator;
             if (sortByEarliestPolicy) {
-                comparator = (a1,a2) -> a2.getLocalDateTime().compareTo(a1.getLocalDateTime());
+                comparator = (a1, a2) -> a2.getLocalDateTime().compareTo(a1.getLocalDateTime());
                 sortByEarliestPolicy = false;
             } else {
                 sortByEarliestPolicy = true;
