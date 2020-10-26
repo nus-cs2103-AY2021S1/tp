@@ -6,16 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
 import seedu.address.model.module.Module;
-import seedu.address.testutil.Assert;
 import seedu.address.testutil.ModuleBuilder;
 
 public class AddModuleParserTest {
@@ -23,6 +19,7 @@ public class AddModuleParserTest {
     private final static String validInput = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T
             + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4;
+
     private final static String multipleNames = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_NAME + VALID_MODULENAME_ES2660
             + " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T
