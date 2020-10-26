@@ -1,7 +1,6 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -28,7 +27,7 @@ public class AddTaskCommand extends Command {
             + PREFIX_TASK_IS_DONE + "TASK STATUS "
             + "[" + PREFIX_TASK_DEADLINE + "TASK DEADLINE] \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_PROJECT_NAME + "Create new Task Class "
+            + PREFIX_TASK_NAME + "Create new Person Class "
             + PREFIX_TASK_PROGRESS + "35 "
             + PREFIX_TASK_IS_DONE + "true "
             + PREFIX_TASK_DEADLINE + "29-02-2020 00:00:00";
