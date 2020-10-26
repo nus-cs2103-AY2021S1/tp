@@ -24,6 +24,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ModuleList moduleList;
+    private final VersionedModuleList versionedModuleList;
     private final ContactList contactList;
     private final TodoList todoList;
     private final UserPrefs userPrefs;
@@ -36,7 +37,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
     public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyContactList contactList, ReadOnlyTodoList todoList,
-                ReadOnlyUserPrefs userPrefs) {
+                        ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(moduleList, todoList, userPrefs);
 
@@ -44,6 +45,7 @@ public class ModelManager implements Model {
                 + " and user prefs " + userPrefs);
 
         this.moduleList = new ModuleList(moduleList);
+        this.versionedModuleList = new VersionedModuleList(moduleList);
         this.contactList = new ContactList(contactList);
         this.todoList = new TodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
@@ -127,6 +129,23 @@ public class ModelManager implements Model {
 
         moduleList.setModule(target, editedModule);
     }
+
+    @Override
+    public void commitModuleList() {
+        versionedModuleList.commit(moduleList);
+    }
+
+    @Override
+    public void undoModuleList() {
+        versionedModuleList.undo();
+        setModuleList(versionedModuleList.getCurrentModuleList());
+    };
+
+    @Override
+    public void redoModuleList() {
+        versionedModuleList.redo();
+        setModuleList(versionedModuleList.getCurrentModuleList());
+    };
 
     //=========== Contact List ================================================================================
 

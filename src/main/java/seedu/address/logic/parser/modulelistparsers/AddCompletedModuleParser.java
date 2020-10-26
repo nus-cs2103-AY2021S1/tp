@@ -1,5 +1,14 @@
 package seedu.address.logic.parser.modulelistparsers;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_POINT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
+import java.util.stream.Stream;
+
 import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -13,11 +22,9 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.tag.Tag;
 
-import java.util.Set;
-import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+
+
 
 /**
  * Parses input arguments and creates a new AddCompletedModuleCommand object
@@ -50,7 +57,8 @@ public class AddCompletedModuleParser implements Parser<AddCompletedModuleComman
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddCompletedModuleCommand.MESSAGE_USAGE));
         }
-        ModularCredits modularCredits = ParserUtil.parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get());
+        ModularCredits modularCredits = ParserUtil.parseModularCredits(argMultimap
+                .getValue(PREFIX_MODULAR_CREDITS).get());
         if (!arePrefixesPresent(argMultimap, PREFIX_GRADE_POINT)
                 && argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
