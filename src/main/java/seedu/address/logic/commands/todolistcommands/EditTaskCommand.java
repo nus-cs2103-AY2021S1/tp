@@ -40,7 +40,7 @@ public class EditTaskCommand extends Command {
         + PREFIX_NAME + "read chapter 7\n"
         + "NOTE : To update the status of the task you can use the complete command.";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the todo list.";
 
