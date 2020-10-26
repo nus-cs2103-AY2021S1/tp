@@ -1,10 +1,10 @@
 package seedu.expense.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.expense.model.Model.PREDICATE_SHOW_ALL_BUDGETS;
 import static seedu.expense.model.Model.PREDICATE_SHOW_ALL_EXPENSES;
 
 import seedu.expense.model.Model;
-import seedu.expense.model.tag.Tag;
 
 /**
  * Lists all expenses in the expense book to the user.
@@ -20,7 +20,7 @@ public class ListCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
-        model.updateCategoryExpenseBook(new Tag("Default"));
+        model.updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
