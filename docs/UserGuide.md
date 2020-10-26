@@ -53,7 +53,7 @@ This guide serves to provide a reference for first-time users to get familiar wi
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Hershey`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Healthy` or as `n/Hershey`.
+  e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[f/FEEDING TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
@@ -109,7 +109,7 @@ An animal can have any number of medical conditions and feeding times (including
 
 Examples:
 * `add n/Hershey s/Rufous Hummingbird i/193`
-* `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
+* `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
 
 ---
 
@@ -155,7 +155,6 @@ An animal can have any number of medical conditions and feeding times (including
 
 Examples:
 * `append 1307 f/1900` appends a feeding time of 1900 to the animal identified by ID 1307.
-* `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
 
 ---
 
@@ -255,7 +254,7 @@ Action | Format, Examples
 **Exit** | `exit`
 **List** | `list`
 **Clear** | `clear`
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
