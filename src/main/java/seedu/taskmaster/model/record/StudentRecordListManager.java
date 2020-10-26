@@ -5,10 +5,12 @@ import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.taskmaster.commons.util.CollectionUtil;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.exceptions.DuplicateStudentException;
@@ -46,9 +48,14 @@ public class StudentRecordListManager implements StudentRecordList {
 
         boolean isFound = false;
 
-        for (StudentRecord studentRecord : internalList) {
+        for (int i = 0; i < internalList.size(); i++) {
+            StudentRecord studentRecord = internalList.get(i);
             if (studentRecord.getNusnetId().equals(nusnetId)) {
-                studentRecord.setAttendanceType(attendanceType);
+                EditStudentRecordDescriptor descriptor = new EditStudentRecordDescriptor();
+                descriptor.setAttendanceType(attendanceType);
+
+                StudentRecord markedStudentRecord = createEditedStudentRecord(studentRecord, descriptor);
+                internalList.set(i, markedStudentRecord);
                 isFound = true;
                 break;
             }
@@ -87,6 +94,26 @@ public class StudentRecordListManager implements StudentRecordList {
         }
 
         internalList.setAll(studentRecords);
+    }
+
+    /**
+     * Creates and returns a {@code StudentRecord} with the details of {@code studentRecordToEdit}
+     * edited with {@code editStudentRecordDescriptor}.
+     * Note that the {@code name} and {@code nusnetId} should not be edited.
+     */
+    private static StudentRecord createEditedStudentRecord(
+            StudentRecord studentRecordToEdit,
+            StudentRecordListManager.EditStudentRecordDescriptor editStudentRecordDescriptor) {
+        assert studentRecordToEdit != null;
+        assert editStudentRecordDescriptor.isAnyFieldEdited();
+
+        AttendanceType updatedAttendanceType = editStudentRecordDescriptor.getAttendanceType()
+                .orElse(studentRecordToEdit.getAttendanceType());
+        ClassParticipation updatedClassParticipation = editStudentRecordDescriptor.getClassParticipation()
+                .orElse(studentRecordToEdit.getClassParticipation());
+
+        return new StudentRecord(studentRecordToEdit.getName(), studentRecordToEdit.getNusnetId(),
+                updatedAttendanceType, updatedClassParticipation);
     }
 
     /**
@@ -137,5 +164,66 @@ public class StudentRecordListManager implements StudentRecordList {
             }
         }
         return true;
+    }
+
+    /**
+     * Stores the details to edit the student record with. Each non-empty field value will replace the
+     * corresponding field value of the student record. Note that the name and nusnetId cannot be changed.
+     */
+    public static class EditStudentRecordDescriptor {
+        private AttendanceType attendanceType;
+        private ClassParticipation classParticipation;
+
+        public EditStudentRecordDescriptor() {}
+
+        /**
+         * Copy constructor.
+         */
+        public EditStudentRecordDescriptor(EditStudentRecordDescriptor toCopy) {
+            setAttendanceType(toCopy.attendanceType);
+            setClassParticipation((toCopy.classParticipation));
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(attendanceType, classParticipation);
+        }
+
+        public void setAttendanceType(AttendanceType attendanceType) {
+            this.attendanceType = attendanceType;
+        }
+
+        public Optional<AttendanceType> getAttendanceType() {
+            return Optional.ofNullable(attendanceType);
+        }
+
+        public void setClassParticipation(ClassParticipation classParticipation) {
+            this.classParticipation = classParticipation;
+        }
+
+        public Optional<ClassParticipation> getClassParticipation() {
+            return Optional.ofNullable(classParticipation);
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof StudentRecordListManager.EditStudentRecordDescriptor)) {
+                return false;
+            }
+
+            // state check
+            StudentRecordListManager.EditStudentRecordDescriptor e =
+                    (StudentRecordListManager.EditStudentRecordDescriptor) other;
+            return getAttendanceType().equals(e.getAttendanceType())
+                    && getClassParticipation().equals(e.getClassParticipation());
+        }
     }
 }

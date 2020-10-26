@@ -7,7 +7,7 @@ import java.util.List;
 
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
-import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.student.Student;
 
 public class MarkAllCommand extends MarkCommand {

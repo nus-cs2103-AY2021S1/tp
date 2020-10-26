@@ -179,6 +179,15 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         currentSession.markStudentAttendance(nusnetId, attendanceType);
     }
 
+    /**
+     * Marks the attendance of all students represented by their {@code nusnetIds} in the {@code studentRecordList}
+     * of the {@code currentSession}, with the given {@code attendanceType}.
+     */
+    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
+        assert nusnetIds != null;
+        assert attendanceType != null;
+        currentSession.markAllStudents(nusnetIds, attendanceType);
+    }
     /* Util Methods */
 
     @Override

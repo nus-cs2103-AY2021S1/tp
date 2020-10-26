@@ -11,8 +11,8 @@ public class StudentRecord {
 
     private final Name name;
     private final NusnetId nusnetId;
-    private AttendanceType attendanceType;
-    private ClassParticipation classParticipation;
+    private final AttendanceType attendanceType;
+    private final ClassParticipation classParticipation;
 
     /**
      * The student is represented by their {@code nusnetId} and initially marked with {@code NO_RECORD}.
@@ -27,11 +27,12 @@ public class StudentRecord {
     /**
      * Creates an StudentRecord object with the AttendanceType already specified.
      */
-    public StudentRecord(Name name, NusnetId nusnetId, AttendanceType attendanceType) {
+    public StudentRecord(Name name, NusnetId nusnetId, AttendanceType attendanceType,
+                         ClassParticipation classParticipation) {
         this.name = name;
         this.nusnetId = nusnetId;
         this.attendanceType = attendanceType;
-        this.classParticipation = new ClassParticipation();
+        this.classParticipation = classParticipation;
     }
 
     public Name getName() {
@@ -48,14 +49,6 @@ public class StudentRecord {
 
     public ClassParticipation getClassParticipation() {
         return classParticipation;
-    }
-
-    public void setAttendanceType(AttendanceType attendanceType) {
-        this.attendanceType = attendanceType;
-    }
-
-    public void setClassParticipation(ClassParticipation classParticipation) {
-        this.classParticipation = classParticipation;
     }
 
     @Override

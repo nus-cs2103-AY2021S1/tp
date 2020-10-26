@@ -58,11 +58,15 @@ public class Session {
         studentRecords.markStudentAttendance(nusnetId, attendanceType);
     }
 
+    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
+        studentRecords.markAllStudents(nusnetIds, attendanceType);
+    }
+
     /**
      * Sets the {@code AttendanceType} of all {@code StudentRecords} to NO_RECORD.
      */
     public void clearAttendance() {
-        studentRecords.markAllAttendance(
+        studentRecords.markAllStudents(
                 studentRecords.asUnmodifiableObservableList().stream()
                         .map(StudentRecord::getNusnetId).collect(Collectors.toList()),
                 AttendanceType.NO_RECORD);

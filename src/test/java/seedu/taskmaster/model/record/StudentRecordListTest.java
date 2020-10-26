@@ -1,4 +1,4 @@
-package seedu.taskmaster.model.session;
+package seedu.taskmaster.model.record;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
@@ -26,7 +26,10 @@ public class StudentRecordListTest {
 
         List<StudentRecord> expectedStudentRecords =
                 Collections.singletonList(new StudentRecord(
-                        studentInList.getName(), studentInList.getNusnetId(), AttendanceType.PRESENT));
+                        studentInList.getName(),
+                        studentInList.getNusnetId(),
+                        AttendanceType.PRESENT,
+                        new ClassParticipation()));
         StudentRecordList expectedList = new StudentRecordListManager();
         expectedList.setStudentRecords(expectedStudentRecords);
 
@@ -47,7 +50,10 @@ public class StudentRecordListTest {
 
         List<StudentRecord> expectedStudentRecords =
                 Collections.singletonList(new StudentRecord(
-                        studentInList.getName(), studentInList.getNusnetId(), AttendanceType.PRESENT));
+                        studentInList.getName(),
+                        studentInList.getNusnetId(),
+                        AttendanceType.PRESENT,
+                        new ClassParticipation()));
         StudentRecordList expectedList = new StudentRecordListManager();
         expectedList.setStudentRecords(expectedStudentRecords);
 
@@ -71,7 +77,10 @@ public class StudentRecordListTest {
     public void setStudentRecords_studentRecordList_replacesOwnListWithProvidedStudentRecordList() {
         List<StudentRecord> expectedStudentRecords =
                 Collections.singletonList(new StudentRecord(
-                        studentNotInList.getName(), studentNotInList.getNusnetId(), AttendanceType.PRESENT));
+                        studentNotInList.getName(),
+                        studentNotInList.getNusnetId(),
+                        AttendanceType.PRESENT,
+                        new ClassParticipation()));
         StudentRecordListManager expectedList = new StudentRecordListManager();
         expectedList.setStudentRecords(expectedStudentRecords);
 
@@ -88,7 +97,10 @@ public class StudentRecordListTest {
     public void setStudentRecords_list_replacesOwnListWithProvidedList() {
         List<StudentRecord> expectedStudentRecords =
                 Collections.singletonList(new StudentRecord(
-                        studentNotInList.getName(), studentNotInList.getNusnetId(), AttendanceType.PRESENT));
+                        studentNotInList.getName(),
+                        studentNotInList.getNusnetId(),
+                        AttendanceType.PRESENT,
+                        new ClassParticipation()));
         StudentRecordList expectedList = new StudentRecordListManager();
         expectedList.setStudentRecords(expectedStudentRecords);
 
@@ -98,11 +110,13 @@ public class StudentRecordListTest {
 
     @Test
     public void setStudentRecords_listWithDuplicateStudentRecords_throwsDuplicateStudentException() {
+        StudentRecord duplicateRecord = new StudentRecord(
+                studentInList.getName(),
+                studentInList.getNusnetId(),
+                AttendanceType.PRESENT,
+                new ClassParticipation());
         List<StudentRecord> listWithDuplicateStudentRecords =
-                Arrays.asList(new StudentRecord(
-                        studentInList.getName(), studentInList.getNusnetId(), AttendanceType.PRESENT),
-                        new StudentRecord(
-                                studentInList.getName(), studentInList.getNusnetId(), AttendanceType.PRESENT));
+                Arrays.asList(duplicateRecord, duplicateRecord);
 
         assertThrows(DuplicateStudentException.class, ()
             -> studentRecordList.setStudentRecords(listWithDuplicateStudentRecords));

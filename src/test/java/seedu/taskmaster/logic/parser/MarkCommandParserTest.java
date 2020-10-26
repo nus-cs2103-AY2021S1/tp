@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.logic.commands.MarkAllCommand;
 import seedu.taskmaster.logic.commands.MarkCommand;
-import seedu.taskmaster.model.session.AttendanceType;
+import seedu.taskmaster.model.record.AttendanceType;
 
 public class MarkCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
