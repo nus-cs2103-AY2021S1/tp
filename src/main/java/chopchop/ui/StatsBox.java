@@ -19,7 +19,7 @@ import javafx.scene.layout.Region;
  * Displays results of statistics.
  */
 public class StatsBox extends UiPart<Region> {
-    private static final String EMPTY_PROMPT = "You haven't cooked anything yet.";
+    private static final String EMPTY_PROMPT = "You haven't cooked anything.";
     private static final String FXML = "PinBox.fxml";
 
     @FXML
@@ -37,7 +37,7 @@ public class StatsBox extends UiPart<Region> {
     public StatsBox() {
         super(FXML);
         pins.setText("Statistics\n");
-        header1.setText("COMMAND_LINE");
+        //header1.setText("COMMAND_LINE");
         body1.setText(EMPTY_PROMPT);
     }
 

@@ -28,10 +28,10 @@
                             </Menu>
                         </menus>
                     </MenuBar>
-                    <VBox prefHeight="550.0" prefWidth="300.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="-16.0">
+                    <VBox prefHeight="550.0" prefWidth="280.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="4.0">
                         <children>
                             <StackPane fx:id="commandOutputPlaceholder" prefHeight="240.0" prefWidth="272.0" BorderPane.alignment="TOP_RIGHT" />
-                            <StackPane fx:id="pinBoxPlaceholder" prefHeight="500.0" prefWidth="280.0" BorderPane.alignment="TOP_RIGHT" />
+                            <StackPane fx:id="pinBoxPlaceholder" prefHeight="500.0" prefWidth="272.0" BorderPane.alignment="TOP_RIGHT" />
                         </children>
                     </VBox>
                     <StackPane fx:id="displayPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="610.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="8.0" />

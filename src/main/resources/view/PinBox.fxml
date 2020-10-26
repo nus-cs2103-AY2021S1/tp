@@ -12,9 +12,8 @@
     <children>
         <VBox alignment="CENTER" fx:id="statsBox">
             <children>
-                <TextArea fx:id="pins" maxHeight="262.0" maxWidth="272.0" text="\$pins" editable="false"/>
-                <TextArea fx:id="header1" styleClass="header1" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$header1" editable="false"/>
-                <TextArea fx:id="body1" styleClass="header1" maxHeight="262.0" maxWidth="285.0" prefHeight="320.0" prefWidth="290.0" text="\$body1" editable="false"/>
+                <TextArea fx:id="pins" maxHeight="262.0" maxWidth="242.0" text="\$pins" editable="false"/>
+                <TextArea fx:id="body1" styleClass="header1" maxHeight="262.0" maxWidth="245.0" prefHeight="320.0" prefWidth="290.0" text="\$body1" editable="false"/>
             </children>
         </VBox>
     </children>
