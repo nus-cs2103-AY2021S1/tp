@@ -43,12 +43,13 @@ Welcome to the __Trackr__ User Guide! In this document you will be able to learn
 
 This document is written in a manner where formatting is applied to text in order to convey different meanings. The table below will explain what these formatting uses are, what they look like, and what they mean in the context of the document.
 
-| Formatting  | Meaning                                                      |
-| ----------- | ------------------------------------------------------------ |
-| `code`      | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
-| `FULL_CAPS` | Words in 'code' format in upper case refer to parameters that have to be provided by you, the user. |
-| *Italics*   | Words in italics refer to example parameters, which is what you, the user could type in place of the `FULL_CAPS` parameter that needs to be provided. |
-| **Bold**    | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
+| Formatting    | Meaning                                                      |
+| ------------- | ------------------------------------------------------------ |
+| `code`        | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
+| `FULL_CAPS`   | Words in 'code' format in upper case refer to parameters that have to be provided by you, the user. |
+| *Italics*     | Words in italics refer to example parameters, which is what you, the user could type in place of the `FULL_CAPS` parameter that needs to be provided. |
+| [Underline]() | Words that are underlined refer to hyperlinks. Hyperlinks are clickable, and bring you either to different parts of this document or to external websites, for the convenience of navigating quickly to different parts of the document or the web. |
+| **Bold**      | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
 
 
 
@@ -59,13 +60,13 @@ This document is written in a manner where formatting is applied to text in orde
 ### 3.1 Setting Up
 Get started by installing __Trackr__ with the following steps:
 
-1. Ensure you have Java 11 or above installed. The latest version of _java_ can be found [here](https://www.java.com/en/download/).
-2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases). Look for the file _trackr.jar_.
+1. Ensure you have Java 11 or above installed. The latest version of Java can be found [here](https://www.java.com/en/download/).
+2. Download the latest version of __Trackr__ [here](https://github.com/AY2021S1-CS2103T-W12-2/tp/releases). Look for the file trackr.jar.
 3. Copy the file to a folder you wish to use as your home folder for __Trackr__
-4. Double-click _trackr.jar_ to start the app. The GUI (Figure 3.1) should appear in a few seconds.
+4. Double-click trackr.jar to start the app. The GUI (Figure 3.1) should appear in a few seconds.
 
 ![Ui](images/Ui.png) <br>
-_Figure 3.1 Track Gui_
+Figure 3.1 Track Gui
 
 ### 3.2 Using Trackr
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
@@ -74,7 +75,7 @@ type the command into the command box (see Figure 3.2) and press _Enter_ to exec
 all the commands are listed down below in [Features](#5-features).
 
 ![CommandExample](images/CommandExample.png) <br>
-_Figure 3.2 Command example_
+Figure 3.2 Command example
 
 ### 3.3 Switching Views
 __Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to `Tutorial Groups` (Figure 3.32) 
@@ -82,13 +83,13 @@ to `Students` (Figure 3.33) depending on your current need. This is done using t
 The correct syntax for these commands are shown down below in [Features](#5-features).
 
 ![ModuleView](images/ModuleView.png) <br>
-_Figure 3.31 Module View_
+Figure 3.31 Module View
 
 ![TutorialGroupView](images/TutorialGroupView.png) <br>
-_Figure 3.32 Tutorial Group View_
+Figure 3.32 Tutorial Group View
 
 ![StudentView]() <br>
-_Figure 3.33 Student view_
+Figure 3.33 Student view
 
 ## 4. Glossary
 * __Graphical User Interface (GUI)__: An interface through which users interact with electronic devices via visual indicator representations.
@@ -153,7 +154,7 @@ Note:
 
 - `INDEX` refers to the index number shown in the Module view.
 - `INDEX` must be a positive integer starting from 1.
-- Deleting a module is **irreversible**.
+- Deleting a module is irreversible.
 
 Example:
 
@@ -165,7 +166,7 @@ Expected Outcome:
 
 - From the example above, the result box will display the following message:
 
-    Module deleted: _module at index 2_
+    Module deleted: module at index 2
 
 #### 5.3.3 Find a module: `findMod`
 
@@ -197,19 +198,19 @@ Edits a module with the provided details.
 ### 5.4 Tutorial Group features
 
 #### 5.4.1 - View all Tutorial Groups in a Module: `viewTG`
-**You can display all Tutorial Groups in a Module with this command. You can indicate which Module's Tutorial Groups to view by entering its index in the current list.**
+You can display all Tutorial Groups in a Module with this command. You can indicate which Module's Tutorial Groups to view by entering its index in the current list.
 
 Format: `viewTG MODULE_INDEX`
 Where MODULE_INDEX is the target Module's index in the currently displayed Module List.
 
 Example: `viewTG 1`
 
-**You can also use this command to return to the view of all Tutorial Groups in a Module whilst you are viewing all Students in a Tutorial Group by entering the command without an index.**
+You can also use this command to return to the view of all Tutorial Groups in a Module whilst you are viewing all Students in a Tutorial Group by entering the command without an index.
 
 Format: `viewTG`
 
 #### 5.4.2 - Add a Tutorial Group to a Module: `addTG`
-**You can add a Tutorial Group to the Module you are viewing using this command.**
+You can add a Tutorial Group to the Module you are viewing using this command.
 
 > You can only use this command when you are viewing all Tutorial Groups of the Module you intend to add the Tutorial Group to.
 > Refer to 4.2.1 - View all Tutorial Groups in a Module
@@ -219,7 +220,7 @@ Format: `addTG tg/TG_CODE`
 Example: `addTG tg/T03`
 
 #### 5.4.3 - Find a Tutorial Group: `findTG`
-**if you need to quickly find a Tutorial from a list of Tutorials, use this command.**
+If you need to quickly find a Tutorial from a list of Tutorials, use this command.
 
 > You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
 > Refer to 4.2.1 - View all Tutorial Groups in a Module
@@ -231,7 +232,7 @@ Example: `findTG B014`
 To search for a Tutorial Group with code B014
 
 #### 5.4.4 - Delete a Tutorial Group from a Module: `deleteTG`
-**You can use this command to delete a Tutorial Group you have previously added to a Module.**
+You can use this command to delete a Tutorial Group you have previously added to a Module.
 > You can only use this command when you are viewing the Module which you are looking for the target Tutorial Group in. 
 > Refer to 4.2.1 - View all Tutorial Groups in a Module
 
@@ -257,15 +258,14 @@ Note:
 
 - Students should not share the same name within the same tutorial group.
 - Phone numbers should only be 8 digits long.
-- Student IDs begin and end with a **capital letter** and should have 7 digits (e.g. A1243567X).
+- Student IDs begin and end with a fcapital letter and should have 7 digits (e.g. A1243567X).
 - A student can have any number of tags, including 0.
 
 Example:
 
 - Adds a student called _John Tan_ with phone number _81234567_, email _johntan@u.nus.edu_, student id _A1234567X_
 and tag _student_ to the current tutorial group in view.
-
-    - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
+  - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
   
 
 Expected Outcome:
@@ -287,7 +287,7 @@ Note:
 
 - `INDEX` refers to the index number shown in the Student view.
 - `INDEX` must be a positive integer starting from 1.
-- Deleting a student is **irreversible**.
+- Deleting a student is irreversible.
 
 Example:
 
@@ -345,7 +345,7 @@ __A:__ When you issue a new command, __Trackr__ automatically updates the local 
 no data will be lost when you close the app or even in the event of a crash.
 
 __Q:__ How do I exit the app safely? <br>
-__A:__ To close the app, simply click the red _X_ on the top right for Windows users, on the top left
+__A:__ To close the app, simply click the red X on the top right for Windows users, on the top left
 for MacOS and Linux users.
 
 ## 7. Command Summary
