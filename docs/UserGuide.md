@@ -4,11 +4,15 @@ title: User Guide
 ---
 
 ### About
-Common Cents is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you! You can even keep our expenses in multiple, separate accounts for seamless organisation. Amalgamating the features of a Command Line Interface (CLI) with a Graphical User Interface (GUI), Common Cents is meant to be functional, intuitive and faster than most traditional GUI expense-trackers out there!
+**Common Cents** is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. 
+With just a few commands, Common Cents will keep track, categorise and calculate your income and expenditure for you! 
+You can even keep our expenses in multiple, separate accounts for seamless organisation. Amalgamating the features of a 
+Command Line Interface (CLI) with a Graphical User Interface (GUI), Common Cents is meant to be functional, intuitive and 
+faster than most traditional GUI expense-trackers out there!
 
 ### User Guide Overview
-This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with Common Cents and clarify most doubts that users may have.
-</div>
+This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, 
+tips and tricks on how to maximise your experience with Common Cents and clarify most doubts that users may have.
 The Common Cents interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
 * `Application` level commands deal with interactions with the app itself.<br>
 * `Account` level commands deal with managing the different accounts in the app.<br>
@@ -120,8 +124,9 @@ App-Level commands deals with interactions with the app, Common Cents, itself.
 
 ### Viewing help : `help`
 
-Shows a message explaining how to access the help page (Figure). You can click on the `Copy URL ` button to copy
-the link to clipboard and paste it in your web browser. <br> 
+This command can be used when you are at a lost or want to view an overview of how to use the application.
+This command will return a message explaining how to access the help page (Figure). 
+You can click on the `Copy URL ` button to copy the link to clipboard and paste it in your web browser. <br> 
 
 **Format**: `help`
 
@@ -138,7 +143,7 @@ the link to clipboard and paste it in your web browser. <br>
  
 ### Exiting the program : `exit`
 
-Exits the program.
+You can use this command when you are done with what you need to do and want to close the application.
 
 Format: `exit`
  
@@ -155,7 +160,7 @@ Entry-Level commands involves managing the entries which are either expenses or 
 
 ### Adding an entry: `add`
 
-Adds an entry (expense/revenue) to the tracker.
+You can use this command when you want to add an entry (expense/revenue) to the tracker.
 
 Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
@@ -183,7 +188,7 @@ Format: `add c/CATEGORY d/DESCRIPTION a/AMOUNT [t/TAG]`
 
 ### Deleting an entry: `delete`
 
-Removes an entry (expense/revenue) from the tracker.
+You can use this command when you want to remove an entry (expense/revenue) from the tracker.
 
 Format: `delete ENTRY_INDEX c/CATEGORY`
 
@@ -210,7 +215,7 @@ Format: `delete ENTRY_INDEX c/CATEGORY`
 
 ### Editing an entry: `edit`
 
-Edits an entry in the tracker.
+You can use this command when you want to make edits to any existing entries in the tracker.
 
 Formats:
 * `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG`
@@ -578,15 +583,13 @@ commands anymore. Do confirm your changes to the entries in the account before y
 --------------------------------------------------------------------------------------------------------------------
 # Frequently Asked Questions (FAQ)
 
+This section contains a few frequently asked questions with regard to Common Cents.
+
 **Question:** How do I transfer my data to another Computer?<br>
 **Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CommonCents home folder.
 
-</div>
-
 **Question:** Where can I make bug reports?<br>
 **Answer:** You may submit a bug report directly to our team [here].
-
-</div>
 
 **Question:** What happens if I forget my account names?<br>
 **Answer:** You may use the `listacc` command to see a full list of your existing accounts.
