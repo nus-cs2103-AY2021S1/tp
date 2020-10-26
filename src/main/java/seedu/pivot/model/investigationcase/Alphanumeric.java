@@ -24,8 +24,9 @@ public abstract class Alphanumeric {
      */
     protected Alphanumeric(String alphaNum, boolean canBeBlank) {
         requireNonNull(alphaNum);
-        checkArgument(isValidAlphanum(alphaNum, canBeBlank), MESSAGE_CONSTRAINTS);
-        this.alphaNum = alphaNum;
+        String trimmedAlphanum = alphaNum.trim();
+        checkArgument(isValidAlphanum(trimmedAlphanum, canBeBlank), MESSAGE_CONSTRAINTS);
+        this.alphaNum = trimmedAlphanum;
     }
 
     public String getAlphaNum() {
@@ -36,9 +37,10 @@ public abstract class Alphanumeric {
      * Returns true if a given string is a valid name.
      */
     protected static boolean isValidAlphanum(String test, boolean canBeBlank) {
+        String trimmedTest = test.trim();
         return canBeBlank
-                ? test.isEmpty() || test.matches(VALIDATION_REGEX)
-                : test.matches(VALIDATION_REGEX);
+                ? trimmedTest.isEmpty() || trimmedTest.matches(VALIDATION_REGEX)
+                : trimmedTest.matches(VALIDATION_REGEX);
     }
 
     @Override
