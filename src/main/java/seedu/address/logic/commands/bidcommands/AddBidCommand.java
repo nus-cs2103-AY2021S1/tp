@@ -21,11 +21,11 @@ public class AddBidCommand extends Command {
     public static final String MESSAGE_DUPLICATE_BID = "This bid already exists in the bid book";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a bid to the bid book. "
-            + "Parameters: "
-            + PREFIX_PROPERTY_ID + "PROPERTY ID "
-            + PREFIX_CLIENT + "CLIENT "
-            + PREFIX_MONEY + "MONEY "
-            + "Example: " + COMMAND_WORD + " "
+            + "\n\nParameters: "
+            + "\n" + PREFIX_PROPERTY_ID + "PROPERTY ID "
+            + "\n" + PREFIX_CLIENT + "CLIENT "
+            + "\n" + PREFIX_MONEY + "MONEY "
+            + "\n\nExample: " + COMMAND_WORD + " "
             + PREFIX_PROPERTY_ID + "P12 "
             + PREFIX_CLIENT + "B24 "
             + PREFIX_MONEY + "500000";

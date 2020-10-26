@@ -37,7 +37,7 @@ public class AddBidderCommandParser implements Parser<AddBidderCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddBidderCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
