@@ -67,13 +67,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public boolean isSelected() {
-        return model.getVendorIndex() != -1;
+    public ObservableList<OrderItem> getFilteredOrderItemList() {
+        return model.getObservableOrderItemList();
     }
 
     @Override
-    public ObservableList<OrderItem> getFilteredOrderItemList() {
-        return model.getObservableOrderItemList();
+    public boolean isSelected() {
+        return model.getVendorIndex() != -1;
     }
 
     @Override
