@@ -21,7 +21,7 @@
 
 .help-box {
     -fx-background-color: derive(#F1F1F1, 0%);
-    -fx-border-color: derive(#F1F1F1, 0%);
+    -fx-border-color: derive(#000000, 0%);
 }
 
 .help-title {
@@ -35,4 +35,13 @@
     -fx-font-family: "monospace";
     -fx-font-size: 13px;
     -fx-text-fill: #000000;
+}
+
+.help-table {
+    -fx-border-color: #000000;
+}
+
+.help-table-header {
+    -fx-border-color: #000000;
+    -fx-background-color: #3e7b91;
 }

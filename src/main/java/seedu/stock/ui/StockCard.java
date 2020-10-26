@@ -52,11 +52,20 @@ public class StockCard extends UiPart<Region> {
         super(FXML);
         this.stock = stock;
         id.setText(displayedIndex + ".");
-        name.setText(stock.getName().fullName);
-        serialNumber.setText(stock.getSerialNumber().getSerialNumberAsString());
+
+        String stockName = upperFirst(stock.getName().fullName);
+        name.setText(stockName);
+
+        String serial = stock.getSerialNumber().getSerialNumberAsString().toUpperCase();
+        serialNumber.setText(serial);
         quantity.setText(stock.getQuantity().quantity);
-        source.setText(stock.getSource().value);
-        locationStored.setText(stock.getLocation().value);
+
+        String sourceName = upperFirst(stock.getSource().value);
+        source.setText(sourceName);
+
+        String locationName = upperFirst(stock.getLocation().value);
+        locationStored.setText(locationName);
+
         bookmark.setVisible(stock.getIsBookmarked());
 
 
@@ -87,5 +96,17 @@ public class StockCard extends UiPart<Region> {
         StockCard card = (StockCard) other;
         return id.getText().equals(card.id.getText())
                 && stock.equals(card.stock);
+    }
+
+    /**
+     * Returns the input string with the first letter being upper-cased
+     * @param toChange
+     * @return input string with first letter being upper-cased
+     */
+    public String upperFirst(String toChange) {
+        String upperCase = toChange.substring(0,1).toUpperCase() ;
+        String lowerCase = toChange.substring(1);
+
+        return upperCase + lowerCase;
     }
 }
