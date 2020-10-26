@@ -43,7 +43,6 @@ public class CopyCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsCopyCommand() {
-        // no leading and trailing whitespaces
         ArrayList<String> nameList = new ArrayList<>();
         nameList.add("Alice");
         ArrayList<Tag> tagList = new ArrayList<>();
@@ -104,5 +103,40 @@ public class CopyCommandParserTest {
                         moduleNames);
 
         assertParseSuccess(parser, " email \n m/CS2103 \n n/Alice \n t/tag\t", expectedCopyCommand);
+    }
+
+    @Test
+    public void parse_invalidArgs_throwsParseException() {
+        // no input
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
+
+        // empty name prefix
+        assertParseFailure(parser, "n/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
+
+        // empty tag prefix
+        assertParseFailure(parser, "t/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
+
+        // empty module prefix
+        assertParseFailure(parser, "m/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
+
+        // empty name prefix with other prefixes
+        assertParseFailure(parser, " n/ t/tag",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
+
+        // empty tag prefix with other prefixes
+        assertParseFailure(parser, " m/CS2103 t/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
+
+        // empty module prefix with other prefixes
+        assertParseFailure(parser, " m/ t/tag",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
+
+        // multiple empty prefixes
+        assertParseFailure(parser, " n/ t/ m/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
     }
 }

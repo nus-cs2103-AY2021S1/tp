@@ -195,4 +195,11 @@ public interface Model {
     ObservableList<Module> getFilteredModuleList();
 
     void getPersonsInModule(ModuleName moduleName) throws CommandException;
+
+    /**
+     * Updates all modules in the module book if the required person was part of any module.
+     * @param persons First argument is the person to update which is either deleted or replaced. If replaced,
+     * second argument is the edited person who will replace the deleted person.
+     */
+    void updatePersonInModuleBook(Person ...persons);
 }

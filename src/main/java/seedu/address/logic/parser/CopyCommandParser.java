@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +15,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.CopyCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -65,7 +63,7 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             Set<Tag> tagSet = parseTagsForFind(argMultimap.getAllValues(PREFIX_TAG)).orElse(new HashSet<>());
             // check if any of the collections are empty (no text after prefixes)
             if ((nameSet.size() == 1 && nameSet.contains("")) || tagSet.isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
             }
             return new CopyCommand(
                     new PersonHasTagsAndNamePredicate(new ArrayList<>(nameSet), new ArrayList<>(tagSet)),
@@ -141,10 +139,10 @@ public class CopyCommandParser implements Parser<CopyCommand> {
     private Optional<Set<Tag>> parseTagsForFind(Collection<String> tags) throws ParseException {
         assert tags != null;
 
-        if (tags.isEmpty()) {
+        if (tags.isEmpty() || (tags.size() == 1 && tags.contains(""))) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        Collection<String> tagSet = tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }

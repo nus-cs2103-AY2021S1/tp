@@ -272,6 +272,11 @@ public class AddCommandTest {
         public void getPersonsInModule(ModuleName moduleName) throws CommandException {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updatePersonInModuleBook(Person ...persons) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

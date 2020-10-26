@@ -7,6 +7,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 //import java.util.Arrays;
@@ -26,6 +27,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -54,8 +56,10 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + TypicalPersons.ALICE.getName().toString());
-        assertEquals(new DeleteCommand(TypicalPersons.ALICE.getName()), command);
+                DeleteCommand.COMMAND_WORD + " n/" + TypicalPersons.ALICE.getName().toString());
+        ArrayList<String> nameOne = new ArrayList<>();
+        nameOne.add(TypicalPersons.ALICE.getName().toString());
+        assertEquals(new DeleteCommand(new NameContainsKeywordsPredicate(nameOne), new ArrayList<>()), command);
     }
 
     @Test

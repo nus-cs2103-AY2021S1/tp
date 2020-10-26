@@ -75,14 +75,16 @@ Example:
 
 ### Deleting a contact : `contact delete`
 
-Deletes the specified contact from Modduke.
+Delete contacts with the given criteria from Modduke.
 
-Format: `contact delete CONTACT_NAME`
+Format: `contact delete [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
 
-* Deletes the contact with the specified name.
+* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* At least one of the optional fields must be provided.
 
 Examples:
-* `contact delete Roy` deletes `Roy` contact from Modduke.
+* `contact delete n/Roy n/Jake` delete contacts `Roy` and `Jake` from Modduke.
+* `contact delete m/CS2103 t/classmates` deletes all contacts in `CS2103` module or have `classmates` tag
 
 ### Editing a contact : `contact edit`
 
@@ -234,7 +236,7 @@ Format: `consult list`
 
 ### Copy email address of contacts : `copy email`
 
-Copies email address of contacts with the given criteria to your clipboard
+Copies email address of contacts with the given criteria to your clipboard.
 
 Format: `copy email [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
 
@@ -247,7 +249,7 @@ Examples:
 
 ### Copy phone numbers of contacts : `copy phone`
 
-Copies phone numbers of contacts with the given criteria to your clipboard
+Copies phone numbers of contacts with the given criteria to your clipboard.
 
 Format: `copy phone [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
 
