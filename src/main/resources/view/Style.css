@@ -282,33 +282,38 @@
 #commandOutputPlaceholder {
     -fx-padding: 5;
 }
+
+
+
+/* ListView CSS */
 #listView {
-    -fx-background-color: #fafafa;
-    -fx-font-size: 12pt;
+    -fx-font-size: 10pt;
     -fx-font-family: "Segoe UI";
     -fx-font-color: #212121;
     -fx-prompt-text-fill: #212121;
-    -fx-background-radius: 20 20 20 20;
+    -fx-border-color: #FFFFFF;
 }
-#listView {
-    -fx-background-color: #f1f8e9;
-    -fx-background-radius: 6;
-    -fx-border-color: #8bc34a;
-    -fx-border-radius: 6;
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI";
-    -fx-font-color: #212121;
-    -fx-padding: 6;
-}
-#listView .scroll-pane {
-    -fx-background-color: #f1f8e9;
-    -fx-background-radius: 6;
-}
-#listView .scroll-pane .viewport {
-    -fx-background-color: #f1f8e9;
-    -fx-background-radius: 6;
-}
+
+
 #listView .scroll-pane .content{
-    -fx-background-color: #f1f8e9;
+    -fx-background-color: #0093ff;
     -fx-background-radius: 6;
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-text-fill: white;
+}
+
+#listView .scroll-arrow {
+    -fx-padding: 0 0 0 0;
+}
+
+.list-cell:even {
+    -fx-background-color: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #0093ff;
+    -fx-text-fill: white;
 }

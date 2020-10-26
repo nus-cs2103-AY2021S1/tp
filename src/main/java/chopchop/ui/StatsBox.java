@@ -18,10 +18,11 @@ import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.ComboBoxListCell;
 import javafx.scene.layout.Region;
+import javafx.util.Callback;
 
 /**
  * The UI component that is responsible for displaying pinned information.
@@ -38,7 +39,7 @@ public class StatsBox extends UiPart<Region> {
     private TextArea header1;
 
     @FXML
-    private ListView<String> listView;
+    private ListView<Pair<String, String>> listView;
 
     /**
      * Creates a {@code PinBox}.
@@ -46,29 +47,13 @@ public class StatsBox extends UiPart<Region> {
     public StatsBox() {
         super(FXML);
         pins.setText("Statistics\n");
-        ArrayList<String> testList = new ArrayList<>(
-            Arrays.asList("recipe 1 2020-02-13", "recipe 2 2020-02-12"));
+        ArrayList<Pair<String, String>> testList = new ArrayList<>(
+            Arrays.asList(new Pair<>("recipe 1 2020-02-13", "recipe 2 2020-02-12") ,
+                new Pair<>("recipe 1 2020-02-13", "recipe 2 2020-02-12"),
+                new Pair<>("recipe 1 2020-02-13", "recipe 2 2020-02-12"),
+                new Pair<>("recipe 1 2020-02-13", "recipe 2 2020-02-12")));
         renderList(testList);
 
-    }
-
-    public void setContent() {
-        final ObservableList<String> names = FXCollections.observableArrayList();
-        final ObservableList<String> data = FXCollections.observableArrayList();
-        this.listView = new ListView(data);
-        listView.setPrefSize(200, 250);
-        listView.setEditable(true);
-        names.addAll(
-            "Adam", "Alex", "Alfred", "Albert",
-            "Brenda", "Connie", "Derek", "Donny",
-            "Lynne", "Myrtle", "Rose", "Rudolph",
-            "Tony", "Trudy", "Williams", "Zach"
-        );
-        for (int i = 0; i < 18; i++) {
-            data.add("anonym");
-        }
-        listView.setItems(data);
-        listView.setCellFactory(ComboBoxListCell.forListView(names));
     }
 
     private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
@@ -89,33 +74,44 @@ public class StatsBox extends UiPart<Region> {
      * A vertical scrollable list. Useful for showing a bunch of Strings wrapped in each
      * panel.
      */
-    private void renderList(List<String> inputList) {
-        ObservableList<String> items = FXCollections.observableArrayList(inputList);
+    public void renderList(List<Pair<String, String>> inputList) {
+        ObservableList<Pair<String, String>> items = FXCollections.observableArrayList(inputList);
         listView.setItems(items);
-
 
         //-------------------------------style-----------------------------------------
         listView.setPrefWidth(100);
-        listView.setPrefHeight(120);
-        /*
-        final ObservableList names =
-            FXCollections.observableArrayList();
-        final ObservableList data =
-            FXCollections.observableArrayList();
-        listView.setPrefSize(200, 250);
+        listView.setPrefHeight(200);
         listView.setEditable(true);
-        names.addAll(
-            "Adam", "Alex", "Alfred", "Albert",
-            "Brenda", "Connie", "Derek", "Donny",
-            "Lynne", "Myrtle", "Rose", "Rudolph",
-            "Tony", "Trudy", "Williams", "Zach"
-        );
+
+        listView.setCellFactory(new Callback<ListView<Pair<String, String>>, ListCell<Pair<String, String>>>() {
+            @Override
+            public ListCell<Pair<String, String>> call(ListView<Pair<String, String>> param) {
+                return new myListCell();
+            }
+        });
+
+        /*
+
         for (int i = 0; i < 18; i++) {
             data.add("anonym");
         }
         listView.setItems(data);
         listView.setCellFactory(ComboBoxListCell.forListView(names));
          */
+    }
+
+    public class myListCell extends ListCell<Pair<String, String>> {
+        @Override
+        public void updateItem(Pair<String, String> item, boolean empty) {
+            super.updateItem(item, empty);
+            if (empty) {
+                setText(null);
+                setGraphic(null);
+            } else {
+                setText(item.fst() + " (" + item.snd() + " )");
+                setGraphic(null);
+            }
+        }
     }
 
     /**
@@ -137,5 +133,7 @@ public class StatsBox extends UiPart<Region> {
     public void setBoxContent(String boxContent) {
         requireNonNull(boxContent);
     }
+
+
 
 }
