@@ -33,9 +33,9 @@ public class TaskSorterCommandParser implements Parser<TaskSorterCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT,
                 PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME, PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
 
-        if (!isOnlyOnePrefixPresent(argMultimap, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT)
-            || !isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME,
-            PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE)) {
+        if (!(isOnlyOnePrefixPresent(argMultimap, PREFIX_ASCENDING_SORT, PREFIX_DESCENDING_SORT)
+            && isOnlyOnePrefixPresent(argMultimap, PREFIX_TASK_DEADLINE, PREFIX_TASK_NAME,
+            PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE))) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskSorterCommand.MESSAGE_USAGE));
         }
 

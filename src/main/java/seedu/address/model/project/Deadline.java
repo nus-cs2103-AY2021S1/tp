@@ -3,7 +3,6 @@ package seedu.address.model.project;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import seedu.address.model.task.Date;
