@@ -124,9 +124,10 @@ Format: `addR n/NAME i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]] 
     * Note: there is a mandatory space before `-`.
 * `CALORIES` **must be a positive integer** e.g. 100, 200, 300......
 * `IMAGE` can be local path e.g. images/healthy1.jpg or url e.g. https://vaya.in/recipes/wp-content/uploads/2018/06/Club-sandwich.jpg
-   * Note: If you want to use an image that has been saved in your computer, you have to copy that image into Wishful Shrinking's data folder. Then, replace IMAGE in img/IMAGE with the file name of your image, e.g. img/myimage.png.
-   * Note: If you want to use a url as the image, make sure that you are connected to the internet on your computer, and that the url is the **image address** (starting with https:// and ending with .jpg/jpeg/png).
-   * Note: If you input an invalid file path, or input a url while there is no internet, Wishful Shrinking will replace the image with a default image.
+   * Note: If you want to use an image that has been saved in your computer, you have to specify the **absolute path** of the image, and add file:// in front of the file path. Then, replace IMAGE in img/IMAGE with the file path of your image, e.g. img/file:///D:/myimages/wishful/data/myimage.png.
+   * Note: If you input an invalid file path, Wishful Shrinking will replace the image with a default image.
+   * Note: If you want to use a url as the image, make sure that you are connected to the internet on your computer, and that the url is the **image address** (starting with https:// and ending with .jpg/jpeg/png). The image will be downloaded into Wishful Shrinking's data folder if there is internet connection.
+   * Note: If you input an invalid url, or input a url while there is no internet, Wishful Shrinking cannot add the image to the recipe. You have to connect to the internet, or check that your url is a valid image address.
 * Each `INSTRUCTION` is separated by a `.` e.g. instr/Cook. Eat.
    * Tip: You don't have to number the steps. Wishful Shrinking will number each instruction after separating by `.`
 
