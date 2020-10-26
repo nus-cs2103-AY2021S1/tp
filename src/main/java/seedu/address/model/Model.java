@@ -136,4 +136,9 @@ public interface Model {
      * Returns true if a policy with the same identity as {@code policy} exists in the policy list.
      */
     boolean hasPolicy(Policy policy);
+
+    /**
+     * Clear policy list data.
+     */
+    void clearPolicyList();
 }

@@ -200,4 +200,9 @@ public class ModelManager implements Model {
     public boolean hasPolicy(Policy policy) {
         return policyList.contains(policy);
     }
+
+    @Override
+    public void clearPolicyList() {
+        policyList.clear();
+    }
 }
