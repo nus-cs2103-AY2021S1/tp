@@ -28,6 +28,7 @@ public class RemoveCommandTest {
 
     private Model initialiseModel() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model.selectVendor(0);
         model.addOrderItem(NUGGETS);
         return model;
     }
@@ -42,6 +43,7 @@ public class RemoveCommandTest {
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, orderItemToRemove);
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.selectVendor(0);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
     }
@@ -55,6 +57,7 @@ public class RemoveCommandTest {
         OrderItem remainingItems = new OrderItemBuilder(NUGGETS).withQuantity(4).build();
 
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.selectVendor(0);
         expectedModel.addOrderItem(remainingItems);
 
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, itemRemoved);
