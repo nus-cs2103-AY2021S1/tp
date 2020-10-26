@@ -1,8 +1,8 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.AddItemTagCommand.MESSAGE_ITEM_NOT_PROVIDED;
 import static seedu.address.logic.commands.AddItemTagCommand.MESSAGE_TAG_NOT_PROVIDED;
-import static seedu.address.logic.commands.AddQuantityToItemCommand.MESSAGE_ITEM_NOT_PROVIDED;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_TAG;
 

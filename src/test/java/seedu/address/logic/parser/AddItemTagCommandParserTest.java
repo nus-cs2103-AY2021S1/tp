@@ -1,9 +1,6 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.commands.CommandTestUtil.DELIMITER_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ABC;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BERT;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -13,16 +10,14 @@ import static seedu.address.testutil.TypicalTags.TAG_BERT;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
-
 import seedu.address.logic.commands.AddItemTagCommand;
-import seedu.address.logic.commands.AddQuantityToItemCommand;
 
 public class AddItemTagCommandParserTest {
 
     private final AddItemTagCommandParser parser = new AddItemTagCommandParser();
 
     /**
-     * Test creation of add quantity command.
+     * Test creation of add tag command.
      */
     @Test
     public void parse_validArgs_returnsAddTagToItemCommand() {
@@ -43,6 +38,6 @@ public class AddItemTagCommandParserTest {
 
     @Test
     public void parse_noItemProvided_throwsParseException() {
-        assertParseFailure(parser, "a", AddQuantityToItemCommand.MESSAGE_ITEM_NOT_PROVIDED);
+        assertParseFailure(parser, "a", AddItemTagCommand.MESSAGE_ITEM_NOT_FOUND);
     }
 }

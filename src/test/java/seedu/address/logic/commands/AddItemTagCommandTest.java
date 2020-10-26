@@ -44,7 +44,7 @@ public class AddItemTagCommandTest {
     }
 
     /**
-     * Tests for successful increase of an item's quantity found in the item list.
+     * Tests for successful addition of tag to item
      */
     @Test
     public void execute_addTag_success() {

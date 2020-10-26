@@ -83,15 +83,15 @@ Action | Format
 -------|---------------------------------
 **Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] \[-t \<tag1, tag2, …\>\]
 **Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
-**Add quantity to item** | `addq` **-n \<item name\>** **-q \<qty\>**
-**Add tag to item** | `addt` **-n \<item name\>** **-t \<tag1, tag2, …\>\**
+**Add Quantity to Item** | `addq` **-n \<item name\>** **-q \<qty\>**
+**Add Tag to Item** | `addt` **-n \<item name\>** **-t \<tag1, tag2, …\>\**
 **List Items** | `listi`
 **List Recipes** | `listr`
-**Delete item** | `deli` **-n \<item name\>**
+**Delete Item** | `deli` **-n \<item name\>**
 **Delete Recipe** | `delr` **-n \<item name\> -r index**
-**Find Item by name** | `find` **\<search strings\>**
-**Find Item by tag** | `findt` **\<search strings\>**
-**View** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
+**Find Item by Name** | `find` **\<search strings\>**
+**Find Item by Tag** | `findt` **\<search strings\>**
+**View Detailed View of Item** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
 **Help** | `help` \[command\]
 **Exit** | `exit`
 
@@ -228,17 +228,17 @@ Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
 
 ### Finding an item: `find`
 
-This command allows the user to search for items in `Inventoryinator` by tags,
- entering multiple tags allows the user to search for items that match either tag.
+This command allows the user to search for items in `Inventoryinator` by item name,
+ entering multiple names allows the user to search for items with name that matches any string.
 
 **NAME:**
 - `find` - finds items
 
 **SYNOPSIS:**
-- `find` **\<string1 string2\>**
+- `find` **\<string1 string2 ...\>**
 
 **DESCRIPTION:**
-- **string:** keywords to search by, space separated
+- **string{digit}:** keywords to search by, space separated
 - Displays items that match or contain, case-insensitive, any of the search keywords
 
 **EXAMPLE:**
@@ -252,13 +252,13 @@ This command allows the user to search for items in `Inventoryinator` by tags,
 ### Finding items by tags: `findt`
 
 This command allows the user to search for items in `Inventoryinator` by tags,
- entering multiple tags allows the user to search for items that match either tag.
+ entering multiple tags allows the user to search for items that match any given tag.
 
 **NAME:**
 - `findt` - finds items tagged with matching tag strings
 
 **SYNOPSIS:**
-- `findt` **\<string1 string2 ...\>**
+- `findt` **\<string1, string2 ...\>**
 
 **DESCRIPTION:**
 - **string{digit}:** keyword tags to search by, comma separated
@@ -267,7 +267,7 @@ This command allows the user to search for items in `Inventoryinator` by tags,
 **EXAMPLE:**
 - `findt` <u>delic</u> <u>yummy</u>
 
-- Returns the items whose tags match/ contain "delic" or "yummy", like: 
+- Returns the items whose tags match/contain "delic" or "yummy", like: 
   - Bob’s Banana tags: [<u>tuturu</u>, <u>yummy</u>]
   - Alice's Apple tags: [<u>delicate</u>]
   - Kim's Kiwi tags: [<u>yummy</u>, <u>delicious</u>]

@@ -20,20 +20,20 @@ import seedu.address.model.tag.Tag;
 public class AddItemTagCommand extends Command {
     public static final String COMMAND_WORD = "addt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a quantity to an item "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a set of tags to an item "
             + "at the index number used in the displayed item list. "
-            + "Existing quantity value will be modified by adding the input value.\n"
+            + "Existing tags added will be ignored by the command.\n"
             + "Parameters: "
             + "[" + PREFIX_ITEM_NAME + "NAME] "
             + "[" + PREFIX_ITEM_TAG + "TAG(s) TO ADD] "
             + "Example: " + COMMAND_WORD + PREFIX_ITEM_NAME + "Iron "
             + PREFIX_ITEM_TAG + "delicious, tuturu";
 
-    public static final String MESSAGE_ITEM_NOT_FOUND = "Item is not found in the item list.";
-    public static final String MESSAGE_TAG_NOT_PROVIDED = "Tag is not found in item list";
-    public static final String MESSAGE_TAG_NOT_ADDED = "No new tag is added";
+    public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item was not found in the item list.";
+    public static final String MESSAGE_ITEM_NOT_FOUND = "Item was not found in the item list.";
+    public static final String MESSAGE_TAG_NOT_ADDED = "No new tag is added.";
 
-    private static final Logger logger = LogsCenter.getLogger(AddQuantityToItemCommand.class);
+    private static final Logger logger = LogsCenter.getLogger(AddItemTagCommand.class);
 
     private final String itemName;
     private final Set<Tag> tags;
@@ -67,6 +67,7 @@ public class AddItemTagCommand extends Command {
         itemToEdit = itemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
                 .orElseThrow(() -> new CommandException(MESSAGE_ITEM_NOT_FOUND));
+
         assert (itemToEdit != null);
         assert (itemToEdit.getTags() != null);
 
@@ -74,7 +75,8 @@ public class AddItemTagCommand extends Command {
             throw new CommandException(MESSAGE_TAG_NOT_ADDED);
         }
 
-        tags.addAll(itemToEdit.getTags()); // add all tags including overlaps.
+        // adds all tags including overlaps, as the datastructure underlying is a set
+        tags.addAll(itemToEdit.getTags());
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
 
         editItemDescriptor.setName(itemToEdit.getName());
@@ -83,6 +85,7 @@ public class AddItemTagCommand extends Command {
         editItemDescriptor.setTags(tags);
 
         EditItemCommand editItemCommand = new EditItemCommand(itemName, editItemDescriptor);
+
         logger.info(itemToEdit.getName() + "'s tags changed to " + tags + ".");
         return editItemCommand.execute(model);
     }
