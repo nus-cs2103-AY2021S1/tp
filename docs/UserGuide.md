@@ -15,10 +15,13 @@ track of inventory items and pending deliveries, **OneShelf** is for you.
 <br><br>
 This User Guide will provide a general overview of installation, existing features, and a sneak peek for upcoming features.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/SvpVA8cPAJM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 --------------------------------------------------------------------------------------------------------------------
-## 2. Quick start
+## 2. Quick Start
+
+Refer to this video for a quick tutorial on OneShelf Installation Guide:
+[![](http://img.youtube.com/vi/W460SJkRMMM/0.jpg)](http://www.youtube.com/watch?v=W460SJkRMMM "One Shelf Installation Guide")
+
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -372,6 +375,10 @@ Notify the user if a certain stock is below threshold
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Inventory/ DeliveryBook home folder.
+
+**Q**: I am unable to open up the application by double clicking on oneshelf.jar file, what should I do?
+**A**: You may refer to ![this installation guide](https://www.computerhope.com/issues/ch001343.htm#:~:text=To%20open%20a%20jar%20file%20in%20Windows%2C%20you%20must%20have,view%20the%20file%20(decompression).)
+or enter `java -jar oneshelf.jar` in the command prompt. *Note: Refer to the video of installation guide*
 
 --------------------------------------------------------------------------------------------------------------------
 
