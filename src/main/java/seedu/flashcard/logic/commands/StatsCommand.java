@@ -19,7 +19,8 @@ public class StatsCommand extends Command {
     public static final String COMMAND_WORD = "stats";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Shows the flashcard's statistics identified by the index number used in the displayed flashcard list.\n"
+            + ": Shows the flashcard's statistics identified by the index number used in the displayed "
+            + "flashcard list.\n"
             + "Parameters: INDEX (must be a positive integer)"
             + " [" + PREFIX_ANSWER + "]\n"
             + "Example: " + COMMAND_WORD + " 1";
@@ -30,6 +31,7 @@ public class StatsCommand extends Command {
 
     /**
      * Creates a stats command to show the targeted flashcard.
+     *
      * @param targetIndex
      */
     public StatsCommand(Index targetIndex) {
@@ -45,7 +47,7 @@ public class StatsCommand extends Command {
         }
         Flashcard flashcardToShowStatistics = lastShownList.get(targetIndex.getZeroBased());
         return new CommandResult(String.format(MESSAGE_VIEW_FLASHCARD_SUCCESS,
-                flashcardToShowStatistics), true , targetIndex.getZeroBased());
+                flashcardToShowStatistics), true, targetIndex.getZeroBased());
     }
 
     @Override

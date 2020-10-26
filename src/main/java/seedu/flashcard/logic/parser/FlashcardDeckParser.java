@@ -1,5 +1,11 @@
 package seedu.flashcard.logic.parser;
 
+import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.flashcard.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.flashcard.logic.commands.AddCommand;
 import seedu.flashcard.logic.commands.ClearCommand;
 import seedu.flashcard.logic.commands.Command;
@@ -18,12 +24,6 @@ import seedu.flashcard.logic.commands.StatsCommand;
 import seedu.flashcard.logic.commands.UnfavCommand;
 import seedu.flashcard.logic.commands.ViewCommand;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.flashcard.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 /**
  * Parses user input.
@@ -52,56 +52,56 @@ public class FlashcardDeckParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-            case AddCommand.COMMAND_WORD:
-                return new AddCommandParser().parse(arguments);
+        case AddCommand.COMMAND_WORD:
+            return new AddCommandParser().parse(arguments);
 
-            case EditCommand.COMMAND_WORD:
-                return new EditCommandParser().parse(arguments);
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
-            case DeleteCommand.COMMAND_WORD:
-                return new DeleteCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-            case FilterCommand.COMMAND_WORD:
-                return new FilterCommandParser().parse(arguments);
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
 
-            case ClearCommand.COMMAND_WORD:
-                return new ClearCommand();
+        case ClearCommand.COMMAND_WORD:
+            return new ClearCommand();
 
-            case FindCommand.COMMAND_WORD:
-                return new FindCommandParser().parse(arguments);
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
-            case ListCommand.COMMAND_WORD:
-                return new ListCommand();
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case ReviewCommand.COMMAND_WORD:
-                return new ReviewCommand();
+        case ReviewCommand.COMMAND_WORD:
+            return new ReviewCommand();
 
-            case FavCommand.COMMAND_WORD:
-                return new FavCommandParser().parse(arguments);
+        case FavCommand.COMMAND_WORD:
+            return new FavCommandParser().parse(arguments);
 
-            case UnfavCommand.COMMAND_WORD:
-                return new UnfavCommandParser().parse(arguments);
+        case UnfavCommand.COMMAND_WORD:
+            return new UnfavCommandParser().parse(arguments);
 
-            case ViewCommand.COMMAND_WORD:
-                return new ViewCommandParser().parse(arguments);
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
 
-            case QuizCommand.COMMAND_WORD:
-                return new QuizCommand();
+        case QuizCommand.COMMAND_WORD:
+            return new QuizCommand();
 
-            case SortCommand.COMMAND_WORD:
-                return new SortCommandParser().parse(arguments);
+        case SortCommand.COMMAND_WORD:
+            return new SortCommandParser().parse(arguments);
 
-            case StatsCommand.COMMAND_WORD:
-                return new StatsCommandParser().parse(arguments);
+        case StatsCommand.COMMAND_WORD:
+            return new StatsCommandParser().parse(arguments);
 
-            default:
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+        default:
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
 

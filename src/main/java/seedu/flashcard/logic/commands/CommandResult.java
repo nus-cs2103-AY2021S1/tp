@@ -125,7 +125,7 @@ public class CommandResult {
         return quizMode;
     }
 
-    public boolean isShowStats(){
+    public boolean isShowStats() {
         return showStats;
     }
 
