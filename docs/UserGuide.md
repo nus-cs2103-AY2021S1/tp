@@ -295,7 +295,7 @@ Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of EXAM_SCORE is as follows:
-* x/y where x and y are both whole numbers 
+* x/y where x and y are non-negative integers. 
 * x has to be less than or equal to y (e.g. 30/50).
 
 Examples:
