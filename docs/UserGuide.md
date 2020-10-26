@@ -34,7 +34,7 @@ Symbol | Meaning
 
 ## 2. Quick start
 
-This section serves to explain how to set up **Reeve** on your computer and understanding the visual layout of the application. 
+This section serves to explain how to set up **Reeve** on your computer and how to make sense of the visual layout of the application. 
 
 ### 2.1 Setting Up Reeve
 1. Ensure you have Java `11` or above installed in your Computer.
