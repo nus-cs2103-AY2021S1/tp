@@ -7,7 +7,6 @@ import java.util.Optional;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.Reeve;
-import seedu.address.model.notes.ReadOnlyNotebook;
 
 /**
  * Represents a storage for {@link Reeve}.
