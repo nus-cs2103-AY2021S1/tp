@@ -1,7 +1,8 @@
-package seedu.address.storage;
+package seedu.address.storage.schedule;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventRecurrence;
@@ -55,6 +56,9 @@ public class JsonAdaptedEvent {
         eventRecurrence = source.getRecurrence().toString();
     }
 
+    public JsonAdaptedEvent(VEvent vEvent) {
+    }
+
     /**
      * Converts this Jackson-friendly adapted event object into the model's {@code Event} object.
      *
@@ -92,8 +96,8 @@ public class JsonAdaptedEvent {
         EventRecurrence eventRecurrenceEnum;
         try {
             eventRecurrenceEnum = EventRecurrence.checkWhichRecurrence(eventRecurrence);
-        } catch (IllegalValueException e) {
-            throw e;
+        } catch (IllegalArgumentException e) {
+            throw new IllegalValueException(e.getMessage());
         }
 
         try {

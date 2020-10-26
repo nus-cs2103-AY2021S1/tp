@@ -10,6 +10,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyReeve;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.event.ReadOnlyEvent;
+import seedu.address.storage.schedule.ScheduleStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,14 +21,16 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private ReeveStorage reeveStorage;
     private UserPrefsStorage userPrefsStorage;
+    private ScheduleStorage scheduleStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ReeveStorage reeveStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(ReeveStorage reeveStorage, UserPrefsStorage userPrefsStorage, ScheduleStorage scheduleStorage) {
         super();
         this.reeveStorage = reeveStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.scheduleStorage = scheduleStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -76,4 +80,32 @@ public class StorageManager implements Storage {
         reeveStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ Schedule methods ==============================
+
+    @Override
+    public Path getScheduleFilePath() {
+        return scheduleStorage.getScheduleFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyEvent> readSchedule() throws DataConversionException, IOException {
+        return readSchedule(scheduleStorage.getScheduleFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyEvent> readSchedule(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return scheduleStorage.readSchedule(filePath);
+    }
+
+    @Override
+    public void saveSchedule(ReadOnlyEvent schedule) throws IOException {
+        saveSchedule(schedule, scheduleStorage.getScheduleFilePath());
+    }
+
+    @Override
+    public void saveSchedule(ReadOnlyEvent schedule, Path filePath) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        scheduleStorage.saveSchedule(schedule, filePath);
+    }
 }
