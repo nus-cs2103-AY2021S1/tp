@@ -53,7 +53,7 @@ public class AddTemplateCommandParser implements ExerciseParser<AddTemplateComma
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_CALORIES)
-            /*|| !argMultimap.getPreamble().isEmpty()*/) {
+            || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddTemplateCommand.MESSAGE_USAGE));
         }
