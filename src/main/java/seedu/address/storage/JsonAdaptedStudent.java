@@ -14,6 +14,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.question.Question;
 
@@ -35,6 +36,9 @@ class JsonAdaptedStudent {
     @JsonProperty("questions")
     private final List<JsonAdaptedQuestion> jsonAdaptedQuestions = new ArrayList<>();
 
+    @JsonProperty("exams")
+    private final ArrayList<JsonAdaptedExam> jsonAdaptedExams = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
@@ -42,7 +46,8 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("school") String school, @JsonProperty("year") String year,
                               @JsonProperty("admin") JsonAdaptedAdmin admin,
-                              @JsonProperty("questions") List<JsonAdaptedQuestion> questions) {
+                              @JsonProperty("questions") List<JsonAdaptedQuestion> questions,
+                              @JsonProperty("exams") ArrayList<JsonAdaptedExam> exams) {
         this.name = name;
         this.phone = phone;
         this.school = school;
@@ -50,6 +55,9 @@ class JsonAdaptedStudent {
         this.jsonAdaptedAdmin = admin;
         if (questions != null) {
             this.jsonAdaptedQuestions.addAll(questions);
+        }
+        if (exams != null) {
+            this.jsonAdaptedExams.addAll(exams);
         }
     }
 
@@ -65,6 +73,10 @@ class JsonAdaptedStudent {
 
         jsonAdaptedQuestions.addAll(source.getQuestions().stream()
                 .map(JsonAdaptedQuestion::new)
+                .collect(Collectors.toList()));
+
+        jsonAdaptedExams.addAll(source.getExams().stream()
+                .map(JsonAdaptedExam::new)
                 .collect(Collectors.toList()));
     }
 
@@ -116,7 +128,12 @@ class JsonAdaptedStudent {
             questions.add(question.toModelType());
         }
 
-        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, questions);
+        ArrayList<Exam> exams = new ArrayList<>();
+        for (JsonAdaptedExam exam : jsonAdaptedExams) {
+            exams.add(exam.toModelType());
+        }
+
+        return new Student(modelName, modelPhone, modelSchool, modelYear, admin, questions, exams);
     }
 
 }

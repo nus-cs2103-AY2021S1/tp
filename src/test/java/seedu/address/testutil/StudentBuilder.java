@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.student.Name;
@@ -9,6 +10,8 @@ import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
@@ -38,6 +41,7 @@ public class StudentBuilder {
     public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
     public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
     public static final String DEFAULT_SOLUTION = "Read your textbook";
+    public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
 
     // Identity fields
     private Name name;
@@ -53,6 +57,9 @@ public class StudentBuilder {
     private List<Detail> details = new ArrayList<>();
 
     private List<Question> questions = new ArrayList<>();
+
+    //Academic details
+    private ArrayList<Exam> exams = new ArrayList<>();
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -76,6 +83,8 @@ public class StudentBuilder {
                 .stream()
                 .map(UnsolvedQuestion::new)
                 .forEach(questions::add);
+
+        exams = new ArrayList<>(Arrays.asList(DEFAULT_EXAM_MYE));
     }
 
     /**
@@ -95,6 +104,7 @@ public class StudentBuilder {
         details.addAll(studentAdmin.getDetails());
 
         questions.addAll(studentToCopy.getQuestions());
+        exams.addAll(studentToCopy.getExams());
     }
 
     /**
@@ -187,12 +197,20 @@ public class StudentBuilder {
     }
 
     /**
+     * Sets some {@code Exam} for the {@code Student} that we are building.
+     */
+    public StudentBuilder withExams(Exam... exams) {
+        this.exams = SampleDataUtil.getExams(exams);
+        return this;
+    }
+
+    /**
      * Builds a {@code Student} based on the given information.
      */
     public Student build() {
         return new Student(name, phone, school, year,
                 new Admin(venue, time, fee, paymentDate, details),
-                questions);
+                questions, exams);
     }
 
 }
