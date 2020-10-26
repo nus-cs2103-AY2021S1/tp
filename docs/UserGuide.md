@@ -2,33 +2,48 @@
 layout: page
 title: User Guide
 ---
+This guide serves to provide a reference for first-time users to get familiar with the `ZooKeep` app.
 
-1. Table of Contents
+* Table of Contents
 {:toc}
 
 ## Introduction
-ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, ZooKeep can get your management tasks done faster than traditional GUI apps.
+`ZooKeep` is a desktop app for managing animals under a zookeeper’s care, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, `ZooKeep` can get your management tasks done faster than traditional GUI apps.
+
+## Legend
+
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Provides additional notes and constraints for certain information.**
+
+</div>
+
+<div markdown="span" class="alert alert-primary">
+
+**:bulb: Provides tips while performing the feature stated.**
+
+</div>
 
 ## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `ZooKeep.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-4/tp/releases).
+1. You can download the latest `ZooKeep.jar` from [here](https://github.com/AY2021S1-CS2103T-W15-4/tp/releases).
 
 1. Copy `ZooKeep.jar` to the folder you want to use as the _home folder_ for the app.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
+1. Type the command you want in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
    <br> Here are some example commands you can try:
 
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic Features](#basic-features) are listed first, followed by additional [Advanced Features](#advanced-features) which may be useful for the user.
 
-## Features
+## Basic Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -48,13 +63,37 @@ ZooKeep is a desktop app for managing animals under a zookeeper’s care, optimi
 
 </div>
 
-### Viewing help : `help`
+### Viewing help: `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how you can access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
+
+---
+
+### Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
+---
+
+### Listing all animals: `list`
+
+Lists all animals under the care of the user.
+
+Format: `list`
+
+---
+
+### Clearing all entries: `clear`
+
+Clears all entries from the app.
+
+Format: `clear`
 
 ---
 
@@ -77,42 +116,39 @@ Examples:
 
 ---
 
-### Listing all animals : `list`
+### Deleting an animal: `delete`
 
-Lists all animals under the care of the user.
+Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `list`
-
----
-
-### Sorting animals: `sort`
-
-Sorts the animals by the given field in lexicographical order.
-
-Format: `sort fieldname`
-
-Example: `sort name` sorts all animals by name in alphabetical order.
-
----
-
-### Replacing an animal's fields: `replace`
-
-Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
-
-Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+Format: `delete ID`
 
 Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long.
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feed times (including 0).
-</div>
-
-Examples:
-* `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
-* `replace 1307 i/2910 n/Jirachi` replaces the ID of animal 1307 with 2910 and the name with "Jirachi".
+Example:
+* `delete 193` deletes the individual animal with id 193.
 
 ---
+
+### Undoing a command: `undo`
+
+Undoes the most recently used command. No changes if no previous state exists.
+
+Format: `undo`
+
+---
+
+### Redoing an undo: `redo`
+
+Redoes the previous undo. No changes if no previous state exists.
+
+Format: `redo`
+
+---
+
+## Advanced Features
+
+The following features are additional ones which some users may find them useful.
 
 ### Appending information to an animal's fields: `append`
 
@@ -128,63 +164,70 @@ An animal can have any number of medical conditions and feed times (including 0)
 </div>
 
 Examples:
-* `append 1307 f/1900` appends a feed time of 1900 to the animal identified by ID 1307..
+* `append 1307 f/1900` appends a feeding time of 1900 to the animal identified by ID 1307.
 * `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
 
 ---
 
-### Deleting an animal: `delete`
+### Replacing an animal's fields: `replace`
 
-Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
+Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `delete ID`
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feeding times (including 0).
+</div>
 
 Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long.
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
+
+Examples:
+* `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
+* `replace 1307 i/2910 n/Jirachi` replaces the ID of animal 1307 with 2910 and the name with "Jirachi".
+
+---
+
+### Finding animals by their fields: `find`
+
+Finds and lists all animals in the `ZooKeep` book whose fields contain any of the specified argument keywords (at least 1).
+
+Format: `find KEYWORD [MORE KEYWORDS]...`
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+Keyword matching is case insensitive.
+</div>
 
 Example:
-* `delete 193` deletes the individual animal with id 193.
+* `find Ahmeng Buttercup Coco` finds all animals with the fields (name) containing any of the specified keywords.
+* `find 1200` finds all animals with the field (id or feeding time) containing the specified keyword.
 
 ---
 
-### Clearing all entries : `clear`
+### Sorting animals: `sort`
 
-Clears all entries from the app.
+Sorts the animals by the given category in a specific order and updates the list of animals accordingly.
 
-Format: `clear`
+Format: `sort CATEGORY`
 
----
-
-### Undoing a command: `undo`
-
-Undoes the most recently used command. No changes if no previous state exists.
-
-Format: `undo`
-
----
-
-### Redoing an undo: `redo`
-
-Redoes the next task that was undone by undo. Can only be executed if undo was used before and no edit to the 
-ZooKeepBook was made in between. 
-
-Format: `redo`
+Examples:
+* `sort name` sorts all animals by name in alphabetical order.
+* `sort id` sorts all animals by id in ascending order.
+* `sort feedtime` sorts all animals by feeding time from the earliest to the latest (chronological order).
 
 ---
 
 ### Saving a snapshot of animal data: `snap`
 
-Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name
+Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name.
 
-<div markdown="block" class="alert alert-primary">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Constraints:**<br>
 
-* File name can only contain alphanumeric characters, hyphens `-` and underscores `_`
+* File name can only contain alphanumeric characters, hyphens `-` and underscores `_`.
 
-* File name must be at least 1 character long and at most 100 characters long
+* File name must be at least 1 character long and at most 100 characters long.
 
-* File name must not already exist in the data folder
+* File name must not already exist in the data folder.
 
 </div>
 
@@ -196,14 +239,6 @@ Example:
 
 ---
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
----
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -211,23 +246,33 @@ Format: `exit`
 
 **Q**: How can I manually save new data that I enter into the application?<br>
 **A**: Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
-       By default, the preferred file name is `zookeepbook.json`
+       By default, the preferred file name is `zookeepbook.json`.
        There is no need to save manually, though a copy of the current data can be created with the `snap` command.
+
+**Q**: Can I record the feeding times of a specific animal in any order I prefer?<br>
+**A**: The feeding time will be arranged in chronological order regardless of the order entered for easier reference.
+
+**Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
+**A**: The find feature will only list animals with the exact specified keyword provided.
+
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
 **Help** | `help`
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEED TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
+**Exit** | `exit`
 **List** | `list`
-**Sort** | `sort fieldname` <br> e.g. `sort name` 
-**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…` 
-**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…`
-**Delete** | `delete ID` <br> e.g. `delete 193` 
 **Clear** | `clear`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Healthy f/1200`
+**Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
+**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…` 
+**Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
+**Sort** | `sort CATEGORY` <br> e.g. `sort name` 
 **Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
-**Exit** | `exit`
+
+
 
