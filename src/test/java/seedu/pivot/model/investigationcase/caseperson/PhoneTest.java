@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 
 public class PhoneTest {
     private static final String VALID_PHONE = "91234567";
+    private static final String VALID_PHONE_SHORT = "123";
+    private static final String VALID_PHONE_LONG = "123456789765432";
     private static final String INVALID_SHORT = "1";
     private static final String INVALID_VALUES = "123abc+#$!";
     private static final String BLANK = "";
@@ -29,6 +31,8 @@ public class PhoneTest {
         assertTrue(Phone.isValidPhone(BLANK));
         assertTrue(Phone.isValidPhone(EMPTY));
         assertTrue(Phone.isValidPhone(VALID_PHONE));
+        assertTrue(Phone.isValidPhone(VALID_PHONE_SHORT));
+        assertTrue(Phone.isValidPhone(VALID_PHONE_LONG));
     }
 
     @Test
