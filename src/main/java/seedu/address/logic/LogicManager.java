@@ -18,8 +18,10 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 import seedu.address.storage.Storage;
 
 /**
@@ -100,6 +102,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Contact> getFilteredContactList() {
         return model.getFilteredContactList();
+    }
+
+    @Override
+    public ReadOnlyTodoList getTodoList() {
+        return model.getTodoList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTodoList() {
+        return model.getFilteredTodoList();
     }
 
     @Override
