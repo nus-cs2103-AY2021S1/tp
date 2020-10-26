@@ -5,13 +5,13 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":OneShelfBookParser" as AddressBookParser LOGIC_COLOR
 participant ":ItemDeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant ":ItemDeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "command:ItemDeleteCommand" as DeleteCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Models MODEL_COLOR_T1
 participant ":InventoryModel" as Model MODEL_COLOR
-participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":DeliveryModel" as ModelManager MODEL_COLOR
 end box
 
 [-> LogicManager : execute("delete-i 1")
@@ -23,6 +23,9 @@ activate AddressBookParser
 create DeleteCommandParser
 AddressBookParser -> DeleteCommandParser
 
+activate DeleteCommandParser
+DeleteCommandParser --> AddressBookParser
+
 deactivate DeleteCommandParser
 
 AddressBookParser -> DeleteCommandParser : parse("1")
@@ -32,10 +35,10 @@ create DeleteCommand
 DeleteCommandParser -> DeleteCommand
 activate DeleteCommand
 
-DeleteCommand --> DeleteCommandParser
+DeleteCommand --> DeleteCommandParser : command
 deactivate DeleteCommand
 
-DeleteCommandParser --> AddressBookParser
+DeleteCommandParser --> AddressBookParser : command
 deactivate DeleteCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 DeleteCommandParser -[hidden]-> AddressBookParser

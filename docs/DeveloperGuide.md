@@ -37,7 +37,7 @@ The rest of the App consists of four components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
-* [**`Model`**](#model-component): Holds the data of the App in memory. Comprises of an `InventoryModel` and a `DeliveryModel` which handles `Item` and `Delivery` respectively.
+* [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk in a `json` file.
 * [**`History`**](#command-history-traversal): Records user's command history and allows for traversal.
 
