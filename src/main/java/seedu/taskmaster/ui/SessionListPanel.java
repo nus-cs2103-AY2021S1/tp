@@ -1,6 +1,10 @@
 package seedu.taskmaster.ui;
 
+import java.util.function.Consumer;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -13,9 +17,6 @@ import seedu.taskmaster.commons.core.LogsCenter;
 import seedu.taskmaster.model.session.Session;
 import seedu.taskmaster.model.session.SessionName;
 
-import java.util.function.Consumer;
-import java.util.logging.Logger;
-
 /**
  * Panel containing the list of sessions.
  */
@@ -27,7 +28,11 @@ public class SessionListPanel extends UiPart<Region> {
     @FXML
     private ListView<Session> sessionListView;
 
-    public SessionListPanel(ObservableList<Session> sessionList, Consumer<SessionName> changeSessionAndFill, Runnable studentDisplay) {
+    /**
+     * Creates a {@code SessionListPanel} with the given {@code ObservableList}.
+     */
+    public SessionListPanel(ObservableList<Session> sessionList, Consumer<SessionName> changeSessionAndFill,
+                            Runnable studentDisplay) {
         super(FXML);
         sessionListView.setItems(sessionList);
         sessionListView.setCellFactory(listView -> new SessionListViewCell(changeSessionAndFill));
@@ -43,8 +48,8 @@ public class SessionListPanel extends UiPart<Region> {
      *
      */
     class SessionListViewCell extends ListCell<Session> { //change the stub to session
-        Consumer<SessionName> changeSessionAndFill;
-        final Button button = new Button();
+        private final Consumer<SessionName> changeSessionAndFill;
+        private final Button button = new Button();
         SessionListViewCell(Consumer<SessionName> changeSessionAndFill) {
             this.changeSessionAndFill = changeSessionAndFill;
         }
@@ -77,5 +82,4 @@ public class SessionListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
