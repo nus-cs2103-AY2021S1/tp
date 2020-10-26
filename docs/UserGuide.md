@@ -135,7 +135,7 @@ Adds a new module to FaculType.
 
 Format : `addmod m/MODULE_CODE n/MODULE_NAME`
 
-* `MODULE_CODE` must be unique.
+* Adds the `MODULE_CODE` specified to FaculType. The `MODULE_CODE` must not exist in FaculType in the first place.
 
 Examples:
 * `addmod m/CS2103 n/Software Engineering` adds a module named `Software Engineering` with code `CS2103` to FaculType.
@@ -177,7 +177,7 @@ Assigns an instructor to one or more modules.
 
 Format: `assign INDEX m/MODULE_CODE [m/MODULE_CODE]…​`
 
-* Assigns the contact at the specified `INDEX` to every `MODULE_CODE` specified. All `MODULE_CODE` **must exist** in FaculType in the first place.
+* Assigns the contact at the specified `INDEX` to every `MODULE_CODE` specified. All `MODULE_CODE` **must be unique** and **must exist** in FaculType in the first place.
 
 Examples :
 * `assign 1 m/CS3233` Assigns the contact at index 1 to the existing module with code `CS3233`.
