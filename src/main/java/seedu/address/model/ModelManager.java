@@ -38,6 +38,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Meeting> filteredMeetings;
     private final FilteredList<Module> filteredModules;
+    private Meeting selectedMeeting;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -59,6 +60,11 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredMeetings = new FilteredList<>(this.meetingBook.getMeetingList());
         filteredModules = new FilteredList<>(this.moduleBook.getModuleList());
+
+        // set selected meeting to first meeting in list on launch
+        if (filteredMeetings.size() > 0) {
+            selectedMeeting = filteredMeetings.get(0);
+        }
     }
 
     public ModelManager() {
@@ -191,6 +197,10 @@ public class ModelManager implements Model {
     @Override
     public void deleteMeeting(Meeting targetMeeting) {
         meetingBook.removeMeeting(targetMeeting);
+        // set selected meeting to be null if it is deleted
+        if (targetMeeting.equals(selectedMeeting)) {
+            setSelectedMeeting(null);
+        }
     }
 
     @Override
@@ -202,8 +212,23 @@ public class ModelManager implements Model {
     @Override
     public void setMeeting(Meeting target, Meeting editedMeeting) {
         requireAllNonNull(target, editedMeeting);
-
+        // replace selecting meeting to be the edited meeting if it has been edited
+        if (target.equals(selectedMeeting)) {
+            setSelectedMeeting(editedMeeting);
+        }
         meetingBook.setMeeting(target, editedMeeting);
+    }
+
+    @Override
+    public void setSelectedMeeting(Meeting target) {
+        logger.fine("Setting selected meeting");
+        selectedMeeting = target;
+    }
+
+    @Override
+    public Meeting getSelectedMeeting() {
+        logger.fine("Retrieving selected meeting");
+        return selectedMeeting;
     }
 
     @Override
@@ -224,7 +249,8 @@ public class ModelManager implements Model {
                         updatedMembers.add(editedPerson);
                     }
                     Meeting updatedMeeting = new Meeting(meeting.getModule(), meeting.getMeetingName(),
-                            meeting.getDate(), meeting.getTime(), updatedMembers);
+                            meeting.getDate(), meeting.getTime(), updatedMembers, meeting.getAgendas(),
+                            meeting.getNotes());
                     meetingBook.setMeeting(meeting, updatedMeeting);
                 });
     }
@@ -300,7 +326,8 @@ public class ModelManager implements Model {
                 meetingBook.removeMeeting(filteredMeeting);
             } else {
                 Meeting updatedMeeting = new Meeting(modules[1], filteredMeeting.getMeetingName(),
-                        filteredMeeting.getDate(), filteredMeeting.getTime(), updatedMembers);
+                        filteredMeeting.getDate(), filteredMeeting.getTime(), updatedMembers,
+                        filteredMeeting.getAgendas(), filteredMeeting.getNotes());
                 meetingBook.setMeeting(filteredMeeting, updatedMeeting);
             }
         }

@@ -169,7 +169,7 @@ Anybody → Students → University Students → NUS Students → NUS Students h
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * seamless contact management which is faster than a typical mouse/GUI driven app
 * convenient scheduling of project meetings and consultations, making planning a work week effortless
@@ -456,7 +456,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. The product should only be for a single user rather than multi-user.
 2. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-3. Increments to the code should be made every week with a consistent delivery rate. 
+3. Increments to the code should be made every week with a consistent delivery rate.
 4. The data should be stored locally and should be in a human editable text file, instead of using a DBMS.
 5. The software should follow the Object-oriented paradigm primarily.
 6. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

@@ -17,4 +17,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_PARTICIPANT = new Prefix("p/");
 
     public static final Prefix PREFIX_NEWNAME = new Prefix("nN/");
+    public static final Prefix PREFIX_AGENDA = new Prefix("a/");
+    public static final Prefix PREFIX_NOTE = new Prefix("no/");
 }

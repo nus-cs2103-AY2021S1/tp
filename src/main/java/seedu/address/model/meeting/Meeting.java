@@ -2,11 +2,14 @@ package seedu.address.model.meeting;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.commons.SpecialName;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 
@@ -19,17 +22,22 @@ public class Meeting {
     private final Date date;
     private final Time time;
     private final Set<Person> members = new HashSet<>();
+    private final Set<SpecialName> agendas = new HashSet<>();
+    private final Set<SpecialName> notes = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Meeting(Module module, MeetingName name, Date date, Time time, Set<Person> members) {
+    public Meeting(Module module, MeetingName name, Date date, Time time, Set<Person> members,
+                   Set<SpecialName> agendas, Set<SpecialName> notes) {
         requireAllNonNull(module, name, date, time, members);
         this.module = module;
         this.meetingName = name;
         this.date = date;
         this.time = time;
         this.members.addAll(members);
+        this.agendas.addAll(agendas);
+        this.notes.addAll(notes);
     }
 
     public Module getModule() {
@@ -52,6 +60,22 @@ public class Meeting {
         return Collections.unmodifiableSet(members);
     }
 
+    public Set<SpecialName> getAgendas() {
+        return Collections.unmodifiableSet(agendas);
+    }
+
+    public Set<SpecialName> getNotes() {
+        return Collections.unmodifiableSet(notes);
+    }
+
+    public List<SpecialName> getAgendasAsList() {
+        return new ArrayList<>(agendas);
+    }
+
+    public List<SpecialName> getNotesAsList() {
+        return new ArrayList<>(notes);
+    }
+
     /**
      * Returns true if both meetings have the same name, date and time.
      */
@@ -69,6 +93,10 @@ public class Meeting {
 
     public boolean isSameMeetingName(MeetingName otherMeetingName) {
         return meetingName.equals(otherMeetingName);
+    }
+
+    public String getBracketNotation() {
+        return "[" + this.module.getModuleName() + "] " + this.meetingName;
     }
 
     /**
@@ -110,6 +138,10 @@ public class Meeting {
                 .append(getTime())
                 .append(" Members: ");
         getParticipants().forEach(member -> builder.append(member.getName() + ", "));
+        builder.append(" Agendas: ");
+        getAgendas().forEach(agenda -> builder.append(agenda.toString() + ", "));
+        builder.append(" Notes: ");
+        getNotes().forEach(note -> builder.append(note.toString() + ", "));
         return builder.substring(0, builder.length() - 2);
     }
 }

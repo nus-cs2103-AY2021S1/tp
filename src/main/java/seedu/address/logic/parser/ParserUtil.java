@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.SpecialName;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
@@ -52,6 +53,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code SpecialName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static SpecialName parseSpecialName(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!SpecialName.isValidName(trimmedName)) {
+            throw new ParseException(SpecialName.MESSAGE_CONSTRAINTS);
+        }
+        return new SpecialName(trimmedName);
     }
 
     /**
@@ -207,5 +223,17 @@ public class ParserUtil {
             personNameSet.add(parseName(personName));
         }
         return personNameSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> names} into a {@code Set<SpecialName>}.
+     */
+    public static Set<SpecialName> parseSpecialNames(Collection<String> names) throws ParseException {
+        requireNonNull(names);
+        final Set<SpecialName> nameSet = new HashSet<>();
+        for (String name : names) {
+            nameSet.add(parseSpecialName(name));
+        }
+        return nameSet;
     }
 }

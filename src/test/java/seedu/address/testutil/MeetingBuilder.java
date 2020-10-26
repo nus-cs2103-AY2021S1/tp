@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.commons.SpecialName;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingName;
@@ -23,6 +24,8 @@ public class MeetingBuilder {
     private Date date;
     private Time time;
     private Set<Person> members;
+    private Set<SpecialName> agendas = new HashSet<>();
+    private Set<SpecialName> notes = new HashSet<>();
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -85,6 +88,6 @@ public class MeetingBuilder {
     }
 
     public Meeting build() {
-        return new Meeting(module, meetingName, date, time, members);
+        return new Meeting(module, meetingName, date, time, members, agendas, notes);
     }
 }

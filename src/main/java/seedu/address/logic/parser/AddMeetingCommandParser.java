@@ -1,9 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_AGENDA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARTICIPANT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
@@ -12,6 +14,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.commons.SpecialName;
 import seedu.address.model.meeting.Date;
 import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.meeting.Time;
@@ -28,7 +31,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
     public AddMeetingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_NAME, PREFIX_DATE,
-                        PREFIX_TIME, PREFIX_PARTICIPANT);
+                        PREFIX_TIME, PREFIX_PARTICIPANT, PREFIX_AGENDA, PREFIX_NOTE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_NAME, PREFIX_DATE, PREFIX_TIME, PREFIX_PARTICIPANT)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -40,8 +43,10 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Set<Name> nameList = ParserUtil.parseNames(argMultimap.getAllValues(PREFIX_PARTICIPANT));
+        Set<SpecialName> agendaList = ParserUtil.parseSpecialNames(argMultimap.getAllValues(PREFIX_AGENDA));
+        Set<SpecialName> noteList = ParserUtil.parseSpecialNames(argMultimap.getAllValues(PREFIX_NOTE));
 
-        return new AddMeetingCommand(moduleName, meetingName, date, time, nameList);
+        return new AddMeetingCommand(moduleName, meetingName, date, time, nameList, agendaList, noteList);
     }
 
     /**

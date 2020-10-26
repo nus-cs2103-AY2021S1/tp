@@ -15,29 +15,30 @@ import seedu.address.model.meeting.MeetingName;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 
-public class DeleteMeetingCommand extends Command {
+public class ViewMeetingCommand extends Command {
 
-    public static final String COMMAND_WORD = "meeting delete";
+    public static final String COMMAND_WORD = "meeting view";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the meeting identified by the [MODULE] and name used in the displayed meeting list.\n"
+            + ": Views the meeting identified by the [MODULE] and name used in the displayed meeting list.\n"
             + "Parameters: "
             + PREFIX_MODULE + "MODULE "
             + PREFIX_NAME + "MEETING NAME "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE + "CS2103 "
-            + PREFIX_NAME + "weekly meeting";
+            + PREFIX_NAME + "Weekly Meeting";
 
-    public static final String MESSAGE_DELETE_MEETING_SUCCESS = "Deleted Meeting: %1$s";
+    public static final String MESSAGE_VIEW_MEETING_SUCCESS = "Viewing selected meeting: %1$s";
 
     private final ModuleName targetModuleName;
     private final MeetingName targetMeetingName;
 
     /**
-     * @param targetModuleName name of the module that the soon to be deleted meeting belongs to
-     * @param targetMeetingName name of the soon to be deleted meeting
+     * Views the selected meeting, showing the agenda and notes of the meeting.
+     * @param targetModuleName Name of the module that the meeting belongs to.
+     * @param targetMeetingName Name of the meeting.
      */
-    public DeleteMeetingCommand(ModuleName targetModuleName, MeetingName targetMeetingName) {
+    public ViewMeetingCommand(ModuleName targetModuleName, MeetingName targetMeetingName) {
         this.targetModuleName = targetModuleName;
         this.targetMeetingName = targetMeetingName;
     }
@@ -56,28 +57,27 @@ public class DeleteMeetingCommand extends Command {
         Module module = filteredMeetingList.get(0);
 
         boolean isValidMeeting = false;
-        Meeting meetingToDelete = null;
+        Meeting meetingToView = null;
         for (Meeting meeting : model.getFilteredMeetingList()) {
             if (meeting.getModule().equals(module) && meeting.getMeetingName().equals(targetMeetingName)) {
                 isValidMeeting = true;
-                meetingToDelete = meeting;
+                meetingToView = meeting;
             }
         }
+
         if (!isValidMeeting) {
             throw new CommandException(Messages.MESSAGE_INVALID_MEETING_DISPLAYED);
         }
 
-        assert meetingToDelete != null;
-
-        model.deleteMeeting(meetingToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_MEETING_SUCCESS, meetingToDelete), false,
-                false, true);
+        model.setSelectedMeeting(meetingToView);
+        return new CommandResult(String.format(MESSAGE_VIEW_MEETING_SUCCESS, meetingToView), false, false,
+                true);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteMeetingCommand // instanceof handles nulls
-                && targetMeetingName.equals(((DeleteMeetingCommand) other).targetMeetingName)); // state check
+                || (other instanceof ViewMeetingCommand // instanceof handles nulls
+                && targetMeetingName.equals(((ViewMeetingCommand) other).targetMeetingName)); // state check
     }
 }
