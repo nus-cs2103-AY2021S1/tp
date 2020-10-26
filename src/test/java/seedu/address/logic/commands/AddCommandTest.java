@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -89,18 +90,47 @@ public class AddCommandTest {
                 new AddCommand(expenseStub).execute(modelStub, activeAccountStub).getFeedbackToUser());
     }
 
-}
+    @Test
+    public void equals() {
+        Expense expenseStub = expenseBuilder.build();
+        Revenue revenueStub = revenueBuilder.build();
+        AddCommand addExpenseCommand = new AddCommand(expenseStub);
+        AddCommand addRevenueCommand = new AddCommand(revenueStub);
 
-class ActiveAccountStubAcceptingEntry extends ActiveAccountStub {
-    private final ArrayList<Entry> entries = new ArrayList<>();
+        // same object -> returns true
+        assertTrue(addExpenseCommand.equals(addExpenseCommand));
+        assertTrue(addRevenueCommand.equals(addRevenueCommand));
 
-    @Override
-    public void addExpense(Expense expense) {
-        entries.add(expense);
+        // same values -> returns true
+        AddCommand addExpenseCommandCopy = new AddCommand(expenseStub);
+        assertTrue(addExpenseCommand.equals(addExpenseCommandCopy));
+
+        AddCommand addRevenueCommandCopy = new AddCommand(revenueStub);
+        assertTrue(addRevenueCommand.equals(addRevenueCommandCopy));
+
+        // different types -> returns false
+        assertFalse(addExpenseCommand.equals(1));
+        assertFalse(addRevenueCommand.equals(1));
+
+        // null -> returns false
+        assertFalse(addExpenseCommand.equals(null));
+        assertFalse(addRevenueCommand.equals(null));
+
+        // different person -> returns false
+        assertFalse(addRevenueCommand.equals(addExpenseCommand));
     }
 
-    public ArrayList<Entry> getEntries() {
-        return entries;
+    public static class ActiveAccountStubAcceptingEntry extends ActiveAccountStub {
+        private final ArrayList<Entry> entries = new ArrayList<>();
+
+        @Override
+        public void addExpense(Expense expense) {
+            entries.add(expense);
+        }
+
+        public ArrayList<Entry> getEntries() {
+            return entries;
+        }
     }
 }
 
