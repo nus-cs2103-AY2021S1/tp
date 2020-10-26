@@ -26,7 +26,7 @@ public class AppointmentListPanel extends UiPart<Region> {
      */
     public AppointmentListPanel(ObservableList<Appointment> appointmentList) {
         super(FXML);
-        appointmentListView.setItems(new SortedList<>(appointmentList, Appointment::compare));
+        appointmentListView.setItems(appointmentList);
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
 

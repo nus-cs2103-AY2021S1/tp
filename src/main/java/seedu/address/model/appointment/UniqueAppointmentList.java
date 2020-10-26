@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.appointment.exceptions.AppointmentNotFoundException;
 import seedu.address.model.appointment.exceptions.ConflictingAppointmentException;
 
@@ -102,7 +103,7 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Appointment> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return new SortedList<>(internalUnmodifiableList, Appointment::compare);
     }
 
     @Override
