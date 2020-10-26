@@ -4,6 +4,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.PriceCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.food.PriceWithinRangePredicate;

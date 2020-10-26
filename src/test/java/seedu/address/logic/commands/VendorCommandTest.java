@@ -14,6 +14,8 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.order.OrderManager;
+import seedu.address.testutil.TypicalVendors;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -22,7 +24,8 @@ import seedu.address.model.UserPrefs;
 public class VendorCommandTest {
 
     private Model initialiseModel() {
-        return new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        return new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
     }
 
     @Test
@@ -56,7 +59,7 @@ public class VendorCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Model model = initialiseModel();
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getObservableVendorList().size() + 1);
         VendorCommand vendorCommand = new SwitchVendorCommand(outOfBoundIndex);
 
         assertCommandFailure(vendorCommand, model, ParserUtil.MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX);

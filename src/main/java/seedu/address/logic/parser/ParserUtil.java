@@ -25,14 +25,13 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "%s is not a non-zero unsigned integer.";
     public static final String MESSAGE_INVALID_QUANTITY = "Quantity given is invalid.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
-    public static final String MESSAGE_INVALID_ARG_LENGTHS = "Incorrect number of arguments provided.";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
     public static final String MESSAGE_INVALID_VENDOR_DISPLAYED_INDEX = "The vendor index provided is invalid";
-    public static final String MESSAGE_VENDORS_LISTED_OVERVIEW = "%1$d vendors listed!";
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX = "The order item index provided is invalid";
     public static final String MESSAGE_INVALID_ORDERITEM_DISPLAYED_QUANTITY = "The order item quantity "
             + "provided is invalid";
-    public static final String MESSAGE_VENDOR_NOT_SELECTED = "A vendor has not been selected to order from";
+    public static final String MESSAGE_VENDOR_NOT_SELECTED = "A vendor has not been selected yet,"
+            + " please choose a vendor.";
     public static final String MESSAGE_INSUFFICENT_ARGUMENTS = "%s command requires at least %s argument(s). \n %s";
     public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments. \n %s";
     public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";

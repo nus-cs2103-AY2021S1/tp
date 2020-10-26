@@ -5,6 +5,8 @@ import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.enums.Inequality;
 import seedu.address.logic.parser.ParserUtil;
@@ -18,10 +20,8 @@ import seedu.address.model.menu.MenuManager;
 import seedu.address.model.order.OrderManager;
 import seedu.address.testutil.TypicalVendors;
 
-import org.junit.jupiter.api.Test;
-
 public class PriceCommandTest {
-    List<MenuManager> menuManagers = TypicalVendors.getManagers();
+    private List<MenuManager> menuManagers = TypicalVendors.getManagers();
 
     private Model initialiseModel() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), menuManagers, new OrderManager());

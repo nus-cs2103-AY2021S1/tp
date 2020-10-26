@@ -14,7 +14,7 @@ public class PriceWithinRangePredicate implements Predicate<Food> {
      * Creates a predicate, taking in an inequality and a price. Used to compare the price of a food item to the price
      * with the specified inequality.
      */
-    public PriceWithinRangePredicate(Inequality inequality, double price) throws ParseException{
+    public PriceWithinRangePredicate(Inequality inequality, double price) throws ParseException {
         this.inequality = inequality;
         if (price < 0) {
             throw new ParseException(String.format(ParserUtil.MESSAGE_INVALID_PRICE, price));
@@ -43,7 +43,7 @@ public class PriceWithinRangePredicate implements Predicate<Food> {
     public boolean equals (Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PriceWithinRangePredicate // instanceof handles nulls
-                && price == ((PriceWithinRangePredicate)other).price
+                && price == ((PriceWithinRangePredicate) other).price
                 && inequality.equals(((PriceWithinRangePredicate) other).inequality)); // state check
     }
     @Override

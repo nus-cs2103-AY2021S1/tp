@@ -14,19 +14,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditVendorDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.vendor.NameContainsKeywordsPredicate;
-import seedu.address.model.vendor.Vendor;
-import seedu.address.testutil.EditVendorDescriptorBuilder;
-import seedu.address.testutil.VendorBuilder;
-import seedu.address.testutil.VendorUtil;
 
 public class AddressBookParserTest {
 
@@ -54,15 +47,6 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
-        Vendor vendor = new VendorBuilder().build();
-        EditVendorDescriptor descriptor = new EditVendorDescriptorBuilder(vendor).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_VENDOR.getOneBased() + " " + VendorUtil.getEditVendorDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_VENDOR, descriptor), command);
-    }
-
-    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -80,12 +64,6 @@ public class AddressBookParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
-    }
-
-    @Test
-    public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     }
 
     @Test

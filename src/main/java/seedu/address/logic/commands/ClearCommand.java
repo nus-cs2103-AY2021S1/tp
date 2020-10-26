@@ -2,6 +2,8 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 
 /**
@@ -15,9 +17,14 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_EMPTY_ORDER = "Order is still empty!";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         requireNonNull(model.getOrderManager());
+
+        if (!model.isSelected()) {
+            throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
+        }
+
         if (model.getOrderSize() == 0) {
             return new CommandResult(MESSAGE_EMPTY_ORDER);
         }

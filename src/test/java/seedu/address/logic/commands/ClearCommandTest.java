@@ -13,10 +13,11 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
+import seedu.address.testutil.TypicalVendors;
 
 public class ClearCommandTest {
 
-    public void setOrderManager(Model model) {
+    private void setOrderManager(Model model) {
         OrderItem item1 = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
         OrderItem item2 = new OrderItem(new Food("Milo", 1.50, new HashSet<>()), 2);
         OrderItem item3 = new OrderItem(new Food("Cheese Prata", 2, new HashSet<>()), 3);
@@ -25,12 +26,18 @@ public class ClearCommandTest {
         model.addOrderItem(item3);
     }
 
+    private Model initialiseModel() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
+        model.selectVendor(0);
+        return model;
+    }
+
+
     @Test
     public void clear_emptyOrder_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.setOrderManager(new OrderManager());
-        model.setOrderManager(new OrderManager());
+        Model model = initialiseModel();
+        Model expectedModel = initialiseModel();
         OrderItem orderItem = new OrderItem(new Food("Prata", 1, new HashSet<>()), 1);
         model.addOrderItem(orderItem);
         model.clearOrder();
@@ -39,9 +46,9 @@ public class ClearCommandTest {
 
     @Test
     public void clear_nonEmptyOrder_success() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = initialiseModel();
         setOrderManager(model);
+        Model expectedModel = initialiseModel();
         expectedModel.setOrderManager(new OrderManager());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
