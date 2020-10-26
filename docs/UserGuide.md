@@ -27,7 +27,7 @@ as well as summary commands.
 3. Copy the file to the folder you want to use as the _home folder_ for your Inventory Book.
 
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
-   *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*<br>
+   *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
 
     #<br>![Ui](images/UiWithAnnotation.png) <br>
     Figure 1: Introduction to OneShelf User Interface
