@@ -1,17 +1,18 @@
-package seedu.address.model;
+package seedu.address.model.tutorialgroup;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
+import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.exceptions.DuplicateShowableException;
 import seedu.address.model.exceptions.ShowableNotFoundException;
+import seedu.address.model.module.Module;
 import seedu.address.model.person.Student;
-import seedu.address.model.tutorialgroup.TutorialGroup;
-
-import java.util.Iterator;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import seedu.address.model.person.UniqueStudentList;
 
 public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
     private final ObservableList<TutorialGroup> internalList = FXCollections.observableArrayList();
@@ -97,8 +98,21 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
     /**
      * Returns the tutorial group list of the given module as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<Student> getStudentListOfTutorialGroup() {
-        return FXCollections.observableArrayList();
+    public ObservableList<Student> getStudentListOfTutorialGroup(TutorialGroup target) {
+        int index = internalList.indexOf(target);
+        return internalList.get(index).getStudents();
+    }
+
+    public UniqueStudentList getUniqueStudentList(TutorialGroup target) {
+        int index = internalList.indexOf(target);
+        return internalList.get(index).getUniqueStudentList();
+    }
+
+    public void addStudent(Student student, TutorialGroup currentTgInView) {
+        int index = internalList.indexOf(currentTgInView);
+        if (index >= 0) {
+            internalList.get(index).addStudent(student);
+        }
     }
 
     @Override

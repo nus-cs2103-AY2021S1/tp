@@ -1,18 +1,18 @@
-package seedu.address.model;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-
-import java.util.Iterator;
-import java.util.List;
+package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.model.exceptions.DuplicateShowableException;
 import seedu.address.model.exceptions.ShowableNotFoundException;
-import seedu.address.model.module.Module;
+import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class UniqueModuleList implements Iterable<Module> {
     private final ObservableList<Module> internalList = FXCollections.observableArrayList();
@@ -103,6 +103,11 @@ public class UniqueModuleList implements Iterable<Module> {
     public ObservableList<TutorialGroup> getTutorialGroupListOfModule(Module target) {
         int index = internalList.indexOf(target);
         return internalList.get(index).getTutorialGroups();
+    }
+
+    public UniqueTutorialGroupList getUniqueTutorialGroupList(Module target) {
+        int index = internalList.indexOf(target);
+        return internalList.get(index).getUniqueTutorialGroupList();
     }
 
     /**
