@@ -32,8 +32,8 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 1. Copy `ZooKeep.jar` to the folder you want to use as the _home folder_ for the app.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+1. Double-click the file to start the app. The GUI similar to *Figure 1* below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)*Figure 1: GUI shown upon starting ZooKeep*
 
 1. Type the command you want in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
    <br> Here are some example commands you can try:
@@ -65,9 +65,9 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 ### Viewing help: `help`
 
-Shows a message explaining how you can access the help page.
+Shows a message as shown in *Figure 2* below explaining how you can access the help page.
 
-![help message](images/helpMessage.png)
+![help message](images/helpMessage.png)*Figure 2: Help message shown upon entering command*
 
 Format: `help`
 
