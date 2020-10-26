@@ -109,30 +109,38 @@ An item is uniquely identified by its `NAME` and `SUPPLIER`.
 * Note 1: `MAX_QUANTITY` denotes the ideal stock level of that particular item.
 * Note 2: `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
-Example One: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#2-quick-start) as a base.
+Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG` using [Figure 1](#2-quick-start) as a base.
 
-1. Step One: Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG`.
-
+1. Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG`.
+<br>
 ![add-i example one step one](images/add-i%20example%20one%20step%20one.PNG)
+<br>
+<br>
 
-2. Step Two: Either press Enter on your keyboard or click Send to execute the command.
+2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. Step Three: Success Message will be shown in the Result Display (assuming there isn't an existing same item) and added item will show up in InventoryBook.
-
+3. Success Message will be shown in the Result Display (assuming there isn't an existing same item) and added item will show up in InventoryBook.
+<br>
 ![add-i example one step three](images/add-i%20example%20one%20step%20three.PNG)
+<br>
+<br>
 
-Example Two: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#2-quick-start) as a base.
+Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#2-quick-start) as a base.
 
-1. Step One: Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
-
+1. Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
+<br>
 ![add-i example two step one](images/add-i%20example%20two%20step%20one.PNG)
+<br>
+<br>
 
-2. Step Two: Either press Enter on your keyboard or click Send to execute the command.
+2. Either press Enter on your keyboard or click Send to execute the command.
 
 
-3. Step Three: Success Message will be shown in the Result Display and added item's quantity will combine with existing same item's quantity.
-
+3. Success Message will be shown in the Result Display and added item's quantity will combine with existing same item's quantity.
+<br>
 ![add-i example two step three](images/add-i%20example%20two%20step%20three.PNG)
+<br>
+<br>
 <div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
 </div>
 
