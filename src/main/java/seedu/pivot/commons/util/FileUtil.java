@@ -11,6 +11,8 @@ import java.nio.file.Paths;
 import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_FILE_EXIST;
+
 /**
  * Writes and reads files
  */
@@ -105,12 +107,10 @@ public class FileUtil {
             throw new CommandException(UserMessages.MESSAGE_DESKTOP_API_NOT_AVAILABLE);
         }
 
-        assert (isFileExists(file)) : "file should exist";
+        assert (isFileExists(file)) : ASSERT_FILE_EXIST;
         File doc = file.toFile();
         Desktop desktop = Desktop.getDesktop();
         desktop.open(doc);
     }
-
-
 
 }
