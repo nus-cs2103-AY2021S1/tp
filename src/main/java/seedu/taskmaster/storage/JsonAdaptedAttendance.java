@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.taskmaster.commons.exceptions.IllegalValueException;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.ClassParticipation;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.student.Name;
@@ -68,7 +69,10 @@ class JsonAdaptedAttendance {
 
         final AttendanceType modelAttendanceType = AttendanceType.valueOf(attendanceType);
 
-        return new StudentRecord(placeholderName, modelNusnetId, modelAttendanceType);
+        // TODO: implement
+        final ClassParticipation classParticipation = new ClassParticipation();
+
+        return new StudentRecord(placeholderName, modelNusnetId, modelAttendanceType, classParticipation);
     }
 
 }

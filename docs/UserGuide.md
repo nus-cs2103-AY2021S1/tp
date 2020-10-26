@@ -62,6 +62,14 @@ mark INDEX a/ATTENDANCE_TYPE
 - The `INDEX` **must be a positive integer**.
 - The `ATTENDANCE_TYPE` must either be `present` or `absent`.
 
+### Marking all students' attendance: `mark all`
+Marks the attendance of all students in the student list.
+```
+mark all a/ATTENDANCE_TYPE
+```
+- Marks the attendances of all students shown in the displayed student list.
+- The `ATTENDANCE_TYPE` must either be `present` or `absent`.
+
 ### Storing students' attendance records: `store_record`
 Stores the attendance records of all the students to a file.
 ```

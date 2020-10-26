@@ -16,7 +16,7 @@ public interface StudentRecordList extends Iterable<StudentRecord> {
     /**
      * Marks the attendance of students represented by the list of {@code nusnetIds} with {@code attendanceType}.
      */
-    void markAllAttendance(List<NusnetId> nusnetIds, AttendanceType attendanceType);
+    void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType);
 
     void setStudentRecords(StudentRecordListManager replacement);
 

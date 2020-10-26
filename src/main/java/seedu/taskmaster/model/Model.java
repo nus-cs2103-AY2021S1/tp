@@ -129,6 +129,11 @@ public interface Model {
     void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType);
 
     /**
+     * Marks the attendances of all {@code students} with the given {@code attendanceType}
+     */
+    void markAllStudents(List<Student> students, AttendanceType attendanceType);
+
+    /**
      * Updates the corresponding attendance statuses with the Attendances in the given list.
      */
     void updateStudentRecords(List<StudentRecord> studentRecords);
