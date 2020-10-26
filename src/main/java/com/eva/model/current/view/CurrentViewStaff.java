@@ -5,6 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.Objects;
 import java.util.Optional;
 
+import com.eva.model.comment.Comment;
+import com.eva.model.comment.exceptions.CommentNotFoundException;
+import com.eva.model.comment.view.UniqueCommentsList;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.person.staff.leave.UniqueLeaveList;
@@ -16,6 +19,7 @@ public class CurrentViewStaff {
 
     private final Staff currentView;
     private final UniqueLeaveList leaves;
+    private final UniqueCommentsList comments;
 
     /**
      * Creates an empty currentViewStaff.
@@ -23,6 +27,7 @@ public class CurrentViewStaff {
     public CurrentViewStaff() {
         this.currentView = null;
         this.leaves = new UniqueLeaveList();
+        this.comments = new UniqueCommentsList();
     }
 
     /**
@@ -33,10 +38,19 @@ public class CurrentViewStaff {
         this.currentView = currentView;
         this.leaves = new UniqueLeaveList();
         this.leaves.fill(currentView.getLeaves());
+        this.comments = new UniqueCommentsList();
+        this.comments.fill(currentView.getComments());
     }
 
     public Optional<Staff> getCurrentView() {
         return Optional.ofNullable(currentView);
+    }
+
+    public ObservableList<Comment> getCommentList() throws CommentNotFoundException {
+        if (currentView == null) {
+            throw new CommentNotFoundException();
+        }
+        return comments.asUnmodifiableObservableList();
     }
 
     public ObservableList<Leave> getLeaveList() throws LeaveNotFoundException {
@@ -57,6 +71,7 @@ public class CurrentViewStaff {
         return other == this // short circuit if same object
                 || (other instanceof CurrentViewStaff // instanceof handles nulls
                 && leaves.equals(((CurrentViewStaff) other).leaves)
+                && comments.equals(((CurrentViewStaff) other).comments)
                 && currentView.equals(((CurrentViewStaff) other).currentView));
     }
 

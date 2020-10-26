@@ -140,8 +140,8 @@ public class EditCommand extends Command {
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
                     updatedTags, newComments, updatedInterviewDate, applicationStatus);
         }
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, newComments);
+        return new Person(updatedName, updatedPhone,
+                updatedEmail, updatedAddress, updatedTags, newComments);
     }
 
     /**

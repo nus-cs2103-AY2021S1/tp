@@ -7,11 +7,11 @@ public class Title {
         this.title = title;
     }
 
-    public String getTitle() {
+    public String getTitleDescription() {
         return this.title;
     }
 
     public boolean equals(Title t) {
-        return this.title.equals(t.getTitle());
+        return this.title.equals(t.getTitleDescription());
     }
 }

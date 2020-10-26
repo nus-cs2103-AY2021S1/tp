@@ -43,14 +43,14 @@ public class Comment {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Comment // instanceof handles nulls
-                && title.getTitle().equals(((Comment) other).getTitle().getTitle())
+                && title.getTitleDescription().equals(((Comment) other).getTitle().getTitleDescription())
                 && description.equals(((Comment) other).description)
                 && date.equals(((Comment) other).date)); // state check
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, date, title.getTitle());
+        return Objects.hash(description, date, title.getTitleDescription());
     }
 
     /**
@@ -84,7 +84,7 @@ public class Comment {
     }
 
     public String toString() {
-        return this.title.getTitle() + ": " + this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return this.title.getTitleDescription() + ": " + this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
     }
 
     /**

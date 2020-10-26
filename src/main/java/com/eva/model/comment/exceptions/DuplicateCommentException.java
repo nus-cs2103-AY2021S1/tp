@@ -1,4 +1,4 @@
-package com.eva.model.comment;
+package com.eva.model.comment.exceptions;
 
 public class DuplicateCommentException extends RuntimeException {
     public DuplicateCommentException() {

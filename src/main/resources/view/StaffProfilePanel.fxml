@@ -13,5 +13,8 @@
             <StackPane fx:id="leaveInfoPlaceholder" VBox.vgrow="NEVER"/>
         </VBox>
     </SplitPane>
+    <VBox>
+        <StackPane fx:id="commentListPanelPlaceholder" VBox.vgrow="NEVER" />
+    </VBox>
 <!--    Comments Section    -->
 </VBox>
