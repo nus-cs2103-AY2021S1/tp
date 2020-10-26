@@ -12,13 +12,13 @@
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Warenager" minWidth="600" minHeight="600" maxHeight="1200" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/WarenagerIcon.png" />
+    <Image url="@/images/Warenager-Icon.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="scene">
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@LightTheme.css" />
+        <URL value="@ExtensionsLight.css" />
       </stylesheets>
       <VBox>
 

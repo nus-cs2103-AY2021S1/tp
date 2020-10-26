@@ -1,6 +1,7 @@
 package seedu.stock.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -14,7 +15,7 @@ import seedu.stock.model.stock.Stock;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Stock> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Stock> PREDICATE_SHOW_ALL_STOCKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -86,6 +87,8 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredStockList(Predicate<Stock> predicate);
+
+    void sortFilteredStockList(Comparator<Stock> comparator);
 
     void setSerialNumberSetsBook(ReadOnlySerialNumberSetsBook serialNumberSetsBook);
 

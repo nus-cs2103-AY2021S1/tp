@@ -4,8 +4,11 @@ import static seedu.stock.commons.core.Messages.MESSAGE_SOURCE_COMPANY_NOT_FOUND
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
+import seedu.stock.commons.core.LogsCenter;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.model.Model;
 import seedu.stock.model.stock.Stock;
@@ -16,9 +19,17 @@ public class SourceQuantityDistributionStatisticsCommand extends StatisticsComma
     public static final String MESSAGE_SUCCESS = "Opened statistics for source-qd window\n"
             + "WARNING: Diagram shown may not be optimal for certain quantities";
 
+    private static final Logger logger = LogsCenter.getLogger(SourceQuantityDistributionStatisticsCommand.class);
+
     private final String targetSource;
 
+    /**
+     * Constructor for new SourceQuantityDistributionStatisticsCommand object.
+     *
+     * @param targetSource The target source company to show statistics for.
+     */
     public SourceQuantityDistributionStatisticsCommand(String targetSource) {
+        assert(targetSource.length() > 0);
         this.targetSource = targetSource;
     }
 
@@ -34,16 +45,26 @@ public class SourceQuantityDistributionStatisticsCommand extends StatisticsComma
         });
 
         if (nameQuantityTable.size() == 0) {
+            logger.log(Level.WARNING, "Valid input but source company not found.");
             throw new SourceCompanyNotFoundException(MESSAGE_SOURCE_COMPANY_NOT_FOUND);
         }
 
         //array of size 2, index 0 is statistics type, index 1 is target source company
         String[] otherStatisticsDetails = {"source-qd-", targetSource};
-        return new CommandResult(MESSAGE_SUCCESS, nameQuantityTable, false, true, otherStatisticsDetails, false);
+        logger.log(Level.INFO, "Valid input with found source company.");
+        return new CommandResult(MESSAGE_SUCCESS, nameQuantityTable, false,
+                false, null, true, otherStatisticsDetails, false);
     }
-
 
     public String getTargetSource() {
         return targetSource;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SourceQuantityDistributionStatisticsCommand // instanceof handles nulls
+                && targetSource.equals(((
+                        SourceQuantityDistributionStatisticsCommand) other).targetSource)); // state check
     }
 }

@@ -31,7 +31,9 @@ public class NoteCommand extends Command {
 
     private final SerialNumber serialNumber;
     private final Note note;
+
     /**
+     * Constructs a NoteCommand
      * @param serialNumber of the stock in the stock book
      * @param note to add to the stock
      */
@@ -51,10 +53,13 @@ public class NoteCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        List<Stock> lastShownStocks = model.getFilteredStockList();
+
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
+        List<Stock> allStocks = model.getFilteredStockList();
+
         Optional<Stock> stockToAddNote = Optional.empty();
         // Find the stock to add note to
-        for (Stock currentStock : lastShownStocks) {
+        for (Stock currentStock : allStocks) {
             String currentStockSerialNumber = currentStock.getSerialNumber().getSerialNumberAsString();
             if (currentStockSerialNumber.equals(serialNumber.getSerialNumberAsString())) {
                 stockToAddNote = Optional.of(currentStock);

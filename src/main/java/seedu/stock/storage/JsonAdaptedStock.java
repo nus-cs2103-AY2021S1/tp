@@ -1,5 +1,6 @@
 package seedu.stock.storage;
 
+//import java.nio.file.ClosedWatchServiceException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,8 +27,10 @@ class JsonAdaptedStock {
     private final String serialNumber;
     private final String source;
     private final String quantity;
+    private final String lowQuantity;
     private final String location;
     private final List<String> notes;
+    private final boolean isBookmarked;
 
     /**
      * Constructs a {@code JsonAdaptedStock} with the given person details.
@@ -35,13 +38,17 @@ class JsonAdaptedStock {
     @JsonCreator
     public JsonAdaptedStock(@JsonProperty("name") String name, @JsonProperty("serialNumber") String serialNumber,
                             @JsonProperty("source") String source, @JsonProperty("quantity") String quantity,
-                            @JsonProperty("location") String location, @JsonProperty("notes") List<String> notes) {
+                            @JsonProperty("lowQuantity") String lowQuantity, @JsonProperty("location") String location,
+                            @JsonProperty("notes") List<String> notes,
+                            @JsonProperty("isBookmarked") boolean isBookmarked) {
         this.name = name;
         this.serialNumber = serialNumber;
         this.source = source;
         this.quantity = quantity;
+        this.lowQuantity = lowQuantity;
         this.location = location;
         this.notes = notes;
+        this.isBookmarked = isBookmarked;
     }
 
     /**
@@ -52,8 +59,10 @@ class JsonAdaptedStock {
         serialNumber = source.getSerialNumber().getSerialNumberAsString();
         this.source = source.getSource().value;
         quantity = source.getQuantity().quantity;
+        lowQuantity = source.getQuantity().lowQuantity;
         location = source.getLocation().value;
         notes = source.getNotesValues();
+        isBookmarked = source.getIsBookmarked();
     }
 
     /**
@@ -94,7 +103,11 @@ class JsonAdaptedStock {
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        final Quantity modelQuantity = new Quantity(quantity);
+
+        if (!Quantity.isValidQuantity(lowQuantity)) {
+            throw new IllegalValueException(Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
+        }
+        final Quantity modelQuantity = new Quantity(quantity, lowQuantity);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -119,10 +132,23 @@ class JsonAdaptedStock {
                 modelNotesList.add(modelNote);
             }
 
-            return new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation, modelNotesList);
+            Stock stockToAdd = new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation,
+                    modelNotesList);
+
+            if (isBookmarked) {
+                stockToAdd.setBookmarked();
+            }
+
+            return stockToAdd;
         }
 
-        return new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation);
+        Stock stockToAdd = new Stock(modelName, modelSerialNumber, modelSource, modelQuantity, modelLocation);
+
+        if (isBookmarked) {
+            stockToAdd.setBookmarked();
+        }
+
+        return stockToAdd;
 
     }
 
