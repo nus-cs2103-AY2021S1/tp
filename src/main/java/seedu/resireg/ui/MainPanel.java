@@ -34,8 +34,7 @@ public class MainPanel extends UiPart<Region> {
      */
     public MainPanel() {
         super(FXML);
-        addSeparateTabs();
-        studentsAndRoomsAreCombined = false;
+        addSeparateStudentsRoomsTabs();
     }
 
     private void showTab(Tab tab) {
@@ -51,7 +50,7 @@ public class MainPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets what is displayed in the listPanelStackPane based on the toggle.
+     * Changes the tab displayed based on the toggle.
      *
      * @param toggleView Enum representing what should be displayed.
      */
@@ -92,7 +91,7 @@ public class MainPanel extends UiPart<Region> {
      * Adds a combined students and rooms tab as the first tab in the tab pane. Does not check whether such a tab or
      * separate rooms and students tabs already exist.
      */
-    private void addCombinedTab() {
+    private void addCombinedStudentsRoomsTab() {
         StudentsRoomsCombinedTab combinedTab = new StudentsRoomsCombinedTab();
         tabPane.getTabs().add(0, combinedTab.getRoot());
 
@@ -106,7 +105,7 @@ public class MainPanel extends UiPart<Region> {
      * Adds a students tab and a rooms tab as the first and second tab respectively in the tab pane.
      * Does not check whether such a tab or separate rooms and students tabs already exist.
      */
-    private void addSeparateTabs() {
+    private void addSeparateStudentsRoomsTabs() {
         StudentsOnlyTab studentsOnlyTab = new StudentsOnlyTab();
         RoomsOnlyTab roomsOnlyTab = new RoomsOnlyTab();
         tabPane.getTabs().addAll(0, Arrays.asList(studentsOnlyTab.getRoot(), roomsOnlyTab.getRoot()));
@@ -124,7 +123,7 @@ public class MainPanel extends UiPart<Region> {
     void combineStudentsAndRooms() {
         if (!studentsAndRoomsAreCombined) {
             tabPane.getTabs().remove(0, 2); // remove first 2 tabs (students and room)
-            addCombinedTab();
+            addCombinedStudentsRoomsTab();
         }
     }
 
@@ -135,7 +134,7 @@ public class MainPanel extends UiPart<Region> {
     void separateStudentsAndRooms() {
         if (studentsAndRoomsAreCombined) {
             tabPane.getTabs().remove(0);
-            addSeparateTabs();
+            addSeparateStudentsRoomsTabs();
         }
     }
 

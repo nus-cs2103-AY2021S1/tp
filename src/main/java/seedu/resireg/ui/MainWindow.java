@@ -116,7 +116,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        setMainPanel(new MainPanel());
+        mainPanel = new MainPanel();
+        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
+        mainPanel.updatePanels(logic);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -170,13 +172,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    private void setMainPanel(MainPanel mainPanel) {
-        this.mainPanel = mainPanel;
-        mainPanelPlaceholder.getChildren().clear();
-        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
-        mainPanel.updatePanels(logic);
     }
 
     /**
