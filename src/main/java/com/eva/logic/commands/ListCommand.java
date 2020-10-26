@@ -19,7 +19,8 @@ public class ListCommand extends Command {
             + "parameters: -LIST_TYPE"
             + "Example: " + COMMAND_WORD + "-staff";
 
-    public static final String MESSAGE_SUCCESS = "Listed all staffs";
+    public static final String MESSAGE_SUCCESS_STAFF = "Listed all staffs";
+    public static final String MESSAGE_SUCCESS_APPLICANT = "Listed all applicants";
 
     private final boolean isStaffList;
 
@@ -38,10 +39,11 @@ public class ListCommand extends Command {
         if (isStaffList) {
             model.setPanelState(PanelState.STAFF_LIST);
             model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
+            return new CommandResult(MESSAGE_SUCCESS_STAFF, false, false, true);
         } else {
             model.setPanelState(PanelState.APPLICANT_LIST);
             model.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+            return new CommandResult(MESSAGE_SUCCESS_APPLICANT, false, false, true);
         }
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true);
     }
 }
