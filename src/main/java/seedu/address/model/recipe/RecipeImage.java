@@ -1,6 +1,7 @@
 package seedu.address.model.recipe;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -23,6 +24,7 @@ public class RecipeImage {
      */
     public RecipeImage(@JsonProperty("imagePath")String imagePath) {
         requireNonNull(imagePath);
+        checkArgument(isValidImage(imagePath), MESSAGE_CONSTRAINTS);
         this.imagePath = imagePath;
     }
 

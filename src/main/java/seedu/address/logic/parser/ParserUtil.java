@@ -142,10 +142,10 @@ public class ParserUtil {
     }
 
     /**
-     *  Parses a {@code String instruction} into a {@code Image}.
+     *  Parses a {@code String imgPath} into a {@code RecipeImage}.
      *  Leading and trailing whitespaces will be trimmed.
      *
-     *  @throws ParseException if the given {@code image} is invalid.
+     *  @throws ParseException if the given {@code RecipeImage} is invalid.
      */
     public static RecipeImage parseImage(String imgPath) throws ParseException {
         requireNonNull(imgPath);
