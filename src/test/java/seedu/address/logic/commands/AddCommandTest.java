@@ -13,6 +13,8 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -39,6 +41,16 @@ public class AddCommandTest {
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+    }
+
+    @Test
+    public void execute_inArchiveMode_throwsCommandException() {
+        ModelStubInArchiveMode modelStub = new ModelStubInArchiveMode();
+        Person validPerson = new PersonBuilder().build();
+        AddCommand addCommand = new AddCommand(validPerson);
+
+        assertThrows(CommandException.class,
+                AddCommand.MESSAGE_DISABLE_IN_ARCHIVE_MODE, () -> addCommand.execute(modelStub));
     }
 
     @Test
@@ -149,12 +161,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean getArchiveMode() {
+        public boolean getIsArchiveMode() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setArchiveMode(boolean isArchiveMode) {
+        public BooleanProperty getIsArchiveModeProperty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setIsArchiveMode(boolean isArchiveMode) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -164,6 +181,7 @@ public class AddCommandTest {
      */
     private class ModelStubWithPerson extends ModelStub {
         private final Person person;
+        private final BooleanProperty isArchiveMode = new SimpleBooleanProperty(false);
 
         ModelStubWithPerson(Person person) {
             requireNonNull(person);
@@ -175,6 +193,11 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
+        @Override
+        public boolean getIsArchiveMode() {
+            return isArchiveMode.get();
+        }
     }
 
     /**
@@ -182,6 +205,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
         final ArrayList<Person> personsAdded = new ArrayList<>();
+        private final BooleanProperty isArchiveMode = new SimpleBooleanProperty(false);
 
         @Override
         public boolean hasPerson(Person person) {
@@ -199,6 +223,25 @@ public class AddCommandTest {
         public ReadOnlyClientList getClientList() {
             return new ClientList();
         }
+
+        @Override
+        public boolean getIsArchiveMode() {
+            return isArchiveMode.get();
+        }
+
+    }
+
+    /**
+     * A Model stub that is always in archive mode.
+     */
+    private class ModelStubInArchiveMode extends ModelStub {
+        private final BooleanProperty isArchiveMode = new SimpleBooleanProperty(true);
+
+        @Override
+        public boolean getIsArchiveMode() {
+            return isArchiveMode.get();
+        }
+
     }
 
 }
