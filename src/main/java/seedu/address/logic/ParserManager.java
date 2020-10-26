@@ -35,7 +35,7 @@ public class ParserManager {
      * @throws ParseException when the command word is invalid.
      */
     public FeatureParser select(String commandWord) throws ParseException {
-        if (commandWord.contains("module")) {
+        if (commandWord.contains("module") || commandWord.contains("undo") || commandWord.contains("redo")) {
             return this.moduleListParser;
         } else if (commandWord.contains("task")) {
             return this.todoListParser;
