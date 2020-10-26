@@ -11,9 +11,9 @@ import seedu.address.model.InputContainsKeywordsPredicate;
 public class SalesFindCommand extends Command {
 
     public static final String COMMAND_WORD = "s-find";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the sales of the drinks as entered. "
-            + "Parameters: A, where A refers to the drink abbreviation. "
-            + "Example: " + COMMAND_WORD + " " + PREFIX_BSBM;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the sales of the drinks as entered. \n"
+            + "Parameters: A, where A refers to the drink abbreviation. \n"
+            + "Example: " + COMMAND_WORD + " " + "BSBBT";
 
     public static final String MESSAGE_SUCCESS = "Here is the drink and its sales data: ";
 

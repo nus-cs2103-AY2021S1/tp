@@ -15,8 +15,7 @@ public class InputContainsKeywordsPredicate implements Predicate<SalesRecordEntr
     @Override
     public boolean test(SalesRecordEntry salesRecordEntry) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(salesRecordEntry.getDrink().getName()
-                        + salesRecordEntry.getDrink().getShortFormName(),
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(salesRecordEntry.getDrink().getShortFormName(),
                         keyword));
     }
 
