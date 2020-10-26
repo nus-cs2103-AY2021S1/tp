@@ -1,10 +1,13 @@
 package seedu.pivot.model.investigationcase;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.pivot.model.investigationcase.caseperson.Name;
 
 public class TitleTest {
     private static final String ALPHANUMERIC = "ABC123";
@@ -47,5 +50,27 @@ public class TitleTest {
         // blank -> false
         assertFalse(Title.isValidTitle(BLANK));
         assertFalse(Title.isValidTitle(EMPTY));
+    }
+
+    @Test
+    public void equals() {
+        assertNotEquals(new Description(ALPHANUMERIC), new Title(ALPHANUMERIC));
+        assertNotEquals(new Name(ALPHANUMERIC), new Title(ALPHANUMERIC));
+
+        Title title = new Title(ALPHANUMERIC);
+        // same values -> returns true
+        assertTrue(title.equals(new Title(ALPHANUMERIC)));
+
+        // same object -> returns true
+        assertTrue(title.equals(title));
+
+        // null -> returns false
+        assertFalse(title.equals(null));
+
+        // different type -> returns false
+        assertFalse(title.equals(5));
+
+        // different alphanum -> returns false
+        assertFalse(title.equals(new Title(ALPHA)));
     }
 }

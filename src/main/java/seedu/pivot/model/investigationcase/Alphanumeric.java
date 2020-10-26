@@ -49,11 +49,7 @@ public abstract class Alphanumeric {
     }
 
     @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Alphanumeric // instanceof handles nulls
-                && alphaNum.equals(((Alphanumeric) other).alphaNum)); // state check
-    }
+    public abstract boolean equals(Object other);
 
     @Override
     public int hashCode() {

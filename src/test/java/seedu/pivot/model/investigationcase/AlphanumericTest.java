@@ -85,5 +85,12 @@ public class AlphanumericTest {
         protected AlphanumericStub(String alphaNum, boolean canBeBlank) {
             super(alphaNum, canBeBlank);
         }
+
+        @Override
+        public boolean equals(Object other) {
+            return other == this // short circuit if same object
+                    || (other instanceof AlphanumericStub // instanceof handles nulls
+                    && getAlphaNum().equals(((AlphanumericStub) other).getAlphaNum())); // state check
+        }
     }
 }
