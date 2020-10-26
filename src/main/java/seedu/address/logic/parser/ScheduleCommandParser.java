@@ -2,12 +2,15 @@ package seedu.address.logic.parser;
 
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.*;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.temporal.ChronoField;
 
 import seedu.address.logic.commands.schedule.ScheduleCommand;
+import seedu.address.logic.commands.schedule.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -16,7 +19,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class ScheduleCommandParser implements Parser<ScheduleCommand> {
 
-    private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
 
     /**
      * Parses the given {@code userInputDate} to a LocalDate object
@@ -25,20 +28,42 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
      * and the input is an empty string
      */
     @Override
-    public ScheduleCommand parse(String userInputDate) throws ParseException {
-        requireNonNull(userInputDate);
-        String trimmedUserInput = userInputDate.trim();
+    public ScheduleCommand parse(String args) throws ParseException {
+        requireNonNull(args);
+        requireNonNull(args);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, SCHEDULE_COMMAND_PREFIXES);
 
-        // check to see if input string is empty
-        if (trimmedUserInput.isBlank()) {
-            throw new ParseException(ScheduleCommand.EMPTY_DATE_MESSAGE);
+        if (argMultimap.getValue(PREFIX_VIEW).isPresent()) {
+            return handleScheduleViewCommand(argMultimap);
+        }
+/*
+        if (argMultimap.getValue(PREFIX_DELETE_EVENT).isPresent()) {
+            return handleScheduleDeleteCommand(argMultimap);
         }
 
-        try {
-            LocalDate date = LocalDate.parse(trimmedUserInput, INPUT_FORMAT);
-            return new ScheduleCommand(date);
-        } catch (DateTimeParseException e) {
-            throw new ParseException(ScheduleCommand.INCORRECT_DATE_FORMAT);
+        if (argMultimap.getValue(PREFIX_ADD_EVENT).isPresent()) {
+            return handleScheduleAddCommand(argMultimap);
         }
+
+ */
+        throw new AssertionError("Should not reach here");
+    }
+
+    private ScheduleViewCommand handleScheduleViewCommand(ArgumentMultimap argumentMultimap) throws ParseException {
+        ScheduleViewCommand scheduleViewCommand = new ScheduleViewCommand();
+
+        if (argumentMultimap.getValue(PREFIX_VIEW_MODE).isPresent()) {
+            String viewMode = argumentMultimap.getValue(PREFIX_VIEW_MODE).get();
+            scheduleViewCommand.setDesiredViewMode(ParserUtil.parseViewMode(viewMode));
+        }
+
+        if (argumentMultimap.getValue(PREFIX_VIEW_DATE).isPresent()) {
+            String dateToView = argumentMultimap.getValue(PREFIX_VIEW_DATE).get();
+            scheduleViewCommand.setTargetViewDate(ParserUtil.parseViewDate(dateToView));
+        }
+
+        return scheduleViewCommand;
+
     }
 }

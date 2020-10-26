@@ -3,6 +3,11 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoField;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -10,7 +15,9 @@ import java.util.regex.Matcher;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.schedule.ScheduleViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.ScheduleViewMode;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Question;
@@ -29,6 +36,12 @@ import seedu.address.model.student.admin.PaymentDate;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()
+            .appendPattern("yyyy-MM-dd[ HH:mm:ss]")
+            .parseDefaulting(ChronoField.HOUR_OF_DAY, 0)
+            .parseDefaulting(ChronoField.MINUTE_OF_HOUR, 0)
+            .parseDefaulting(ChronoField.SECOND_OF_MINUTE, 0)
+            .toFormatter();
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -229,6 +242,31 @@ public class ParserUtil {
             detailSet.add(parseAdditionalDetail(detail));
         }
         return detailSet;
+    }
+
+    /**
+     * Parses {@code String input} into a {@ScheduleViewMode}.
+     * Case of the input string is ignored.
+     * @throws ParseException when given input string is not one of the view mode.
+     */
+    public static ScheduleViewMode parseViewMode(String input) throws ParseException {
+
+        if (input.equalsIgnoreCase(ScheduleViewMode.DAILY.name())) {
+            return ScheduleViewMode.DAILY;
+        }
+
+        if (input.equalsIgnoreCase(ScheduleViewMode.WEEKLY.name())) {
+            return ScheduleViewMode.WEEKLY;
+        }
+        throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_VIEW_MODE);
+    }
+
+    public static LocalDateTime parseViewDate(String dateToViewSchedule) throws DateTimeParseException {
+        try {
+            return LocalDateTime.parse(dateToViewSchedule, DATE_TIME_FORMATTER);
+        } catch (DateTimeParseException e) {
+            throw new DateTimeParseException("INVALID DATE", e.getParsedString(), e.getErrorIndex());
+        }
     }
 
 }
