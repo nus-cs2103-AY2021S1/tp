@@ -28,7 +28,7 @@ public class EditIngredientCommand extends Command {
             + "by the index number used in the displayed ingredient list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_INGREDIENT + "INGREDIENT] "
+            + PREFIX_INGREDIENT + "INGREDIENT "
             + "[" + PREFIX_QUANTITY + "QUANTITY" + "]" + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT + "bread, oranges" + PREFIX_QUANTITY + "2kg" + ", cheese ";
