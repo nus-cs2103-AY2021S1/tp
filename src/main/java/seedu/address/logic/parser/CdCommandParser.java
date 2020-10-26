@@ -25,7 +25,7 @@ public class CdCommandParser implements Parser<CdCommand> {
 
         if (!isOnlyOnePrefixPresent(argMultimap, PREFIX_FILE_ADDRESS, PREFIX_CHILD_PATH, PREFIX_PARENT_PATH)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CdCommand.CD_COMMAND_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CdCommand.MESSAGE_USAGE));
         }
 
         AddressType addressType;

@@ -20,10 +20,10 @@ public class RetagCommand extends Command {
     public static final String COMMAND_WORD = "retag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Retags the tagged file identified by the old tag into the new tag.\n"
+            + ": Retags the tagged file identified by the old tag into the new tag.\n\n"
             + "Parameters: "
             + PREFIX_OLD_TAG_NAME + "OLD_TAG_NAME "
-            + PREFIX_TAG_NAME + "NEW_TAG_NAME\n"
+            + PREFIX_TAG_NAME + "NEW_TAG_NAME\n\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_OLD_TAG_NAME + "my_files "
             + PREFIX_TAG_NAME + "my_old_files ";

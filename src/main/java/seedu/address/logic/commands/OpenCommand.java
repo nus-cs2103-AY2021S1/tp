@@ -17,9 +17,9 @@ public class OpenCommand extends Command {
     public static final String COMMAND_WORD = "open";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Opens the file specified in the filepath of a tag. "
-            + "\nParameters: "
+            + "\n\nParameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
-            + "\nExample: " + COMMAND_WORD + " "
+            + "\n\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 ";
     public static final String OPEN_MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
     public static final String MESSAGE_SUCCESS = "File opened! Tag: %1$s";
