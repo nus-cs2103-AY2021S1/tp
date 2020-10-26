@@ -16,9 +16,9 @@
    --- 5.3.3 [Find a module: `findMod`](#533-find-a-module-findmod)<br>
    --- 5.3.4 [Edit a module: `editMod` [coming in v1.4]](534-edit-a-module-editmod-coming-in-v14)<br>
    5.4 [Tutorial group features](#54-tutorial-group-features)<br>
-   --- 5.4.1 [View a module: `viewTG`](#541-view-a-tg-viewTG)<br>
-   --- 5.4.2 [Add a tutorial group: `addTG`](#542-add-a-tg-addtg)<br>
-   --- 5.4.3 [Delete a tutorial group: `deleteTG`](#543-delete-a-tg-deletetg)<br>
+   --- 5.4.1 [View all tutorial groups in a module: `viewTG`](#541-view-a-tg-viewTG)<br>
+   --- 5.4.2 [Add a tutorial group to a module: `addTG`](#542-add-a-tg-addtg)<br>
+   --- 5.4.3 [Delete a tutorial group from a module: `deleteTG`](#543-delete-a-tg-deletetg)<br>
    --- 5.4.4 [Find a tutorial group: `findTG`](#544-find-a-tg-findtg)<br>
    5.5 [Student features](#55-student-features)<br>
    --- 5.5.1 [Add a student: `addStudent`](#551-add-a-student-addstudent)<br>
@@ -33,7 +33,26 @@
 
 ## 1. Introduction
 
-Trackr is suited for teaching assistants (TAs) who prefer to use a desktop application for managing their student records. It is optimized for Command Line Interface (CLI), while still retaining the benefits of a Graphical User Interface (GUI). If you are a TA with a fast typing speed, Trackr is the app for you. Head over to (Section 2, "Quick Start") and get started!
+__Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User Interface (GUI). If you are a TA with a fast typing speed, Trackr is the app for you! Head over to (Section 2, "Quick Start") to get started!
+
+## 2. About this document
+
+Welcome to the __Trackr__ User Guide! In this document you will be able to learn the features that __Trackr__ can provide to make your TA experience less troublesome. This section will provide information regarding the use of this document, namely how to navigate through this document, what the technical terms mean and how to interpret the formatting used.
+
+### 2.1 Formatting
+
+This document is written in a manner where formatting is applied to text in order to convey different meanings. The table below will explain what these formatting uses are, what they look like, and what they mean in the context of the document.
+
+| Formatting  | Meaning                                                      |
+| ----------- | ------------------------------------------------------------ |
+| `code`      | Words in 'code' format refer to commands (or fields in commands) that can be typed into the command line. |
+| `FULL_CAPS` | Words in 'code' format in upper case refer to parameters that have to be provided by you, the user. |
+| *Italics*   | Words in italics refer to example parameters, which is what you, the user could type in place of the `FULL_CAPS` parameter that needs to be provided. |
+| **Bold**    | The name of the application **Trackr** is written in bold to refer to what the application does or how it responds to user input. |
+
+
+
+
 
 ## 3. Getting Started
 
@@ -117,6 +136,7 @@ Example:
 - Adds a module _CS2100_ to the module list.
     - `addMod CS2100`
     
+
 Expected Outcome:
 
 - From the example above, the result box will display the following message:
@@ -140,6 +160,7 @@ Example:
 - Deletes a module at index _2_ in the module list.
     - `deleteMod 2`
     
+
 Expected Outcome:
 
 - From the example above, the result box will display the following message:
@@ -164,6 +185,7 @@ Example:
 
     - `findMod cs2100`
     
+
 Expected Outcome:
 
 - From the example given above, the Module view will display the modules matching the criteria:
@@ -244,13 +266,15 @@ Example:
 and tag _student_ to the current tutorial group in view.
 
     - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
-    
+  
+
 Expected Outcome:
 
 - From the example above, the result box will display the following message:
 
     New student added: {to be filled up}
     
+
 {insert screenshot of addStudent with the above parameters}
 
 #### 5.5.2 Delete a student: `deleteStudent`
@@ -268,15 +292,17 @@ Note:
 Example:
 
 - Deletes the second student in the Student view.
-    
+  
     - `deleteStudent 2`
     
+
 Expected Outcome:
 
 - From the example given above, the result box will display the following message:
 
     Deleted student: {to be filled up}
     
+
 {insert screenshot of deleteStudent with the above parameters}
 
 #### 5.5.3 Find a student: `findStudent`
@@ -297,10 +323,12 @@ Example:
 
     - `findStudent a1234567x`
     
+
 Expected Outcome:
 
 - From the example given above, the Student view will display the students matching the criteria:
-    
+  
+
 {insert screenshot of findStudent with the above parameters}
 
 #### 5.5.4 Edit a student: `editStudent` [coming in v1.4]
