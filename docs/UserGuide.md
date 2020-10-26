@@ -315,6 +315,7 @@ _{explain the feature here}_
 ## 5. Command summary
 
 ### 5.1. Common
+
 | Action   | Format, Examples                                                                                                           |
 |----------|----------------------------------------------------------------------------------------------------------------------------|
 | **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
@@ -323,6 +324,7 @@ _{explain the feature here}_
 | **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
 
 ### 5.2. General
+
 | Action    | Format, Examples   |
 |-----------|--------------------|
 | **Clear** | `clear`            |
@@ -330,6 +332,7 @@ _{explain the feature here}_
 | **Exit**  | `exit`             |
 
 ### 5.3. Staff
+
 | Action          | Format, Examples                                                                                                                                        |
 |-----------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **AddStaff**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
@@ -338,6 +341,7 @@ _{explain the feature here}_
 | **DeleteLeave** | `deleteleave INDEX d/DATE`<br> e.g., `deleteleave 1 d/10/10/2020`                                                                                       |
 
 ### 5.4. Applicant
+
 | Action                | Format, Examples                                                                                                 |
 |-----------------------|------------------------------------------------------------------------------------------------------------------|
 | **AddApplicant**      | `to be updated` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
