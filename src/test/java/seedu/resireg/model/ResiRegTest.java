@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.resireg.model.allocation.Allocation;
@@ -172,6 +173,16 @@ public class ResiRegTest {
         @Override
         public ObservableList<Allocation> getAllocationList() {
             return allocations;
+        }
+
+        @Override
+        public void addListener(InvalidationListener listener) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeListener(InvalidationListener listener) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

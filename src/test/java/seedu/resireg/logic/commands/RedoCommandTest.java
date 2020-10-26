@@ -8,11 +8,14 @@ import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.UserPrefs;
 
 class RedoCommandTest {
+
+    private CommandHistory history = new CommandHistory();
 
     private final Model model = new ModelManager(getTypicalResiReg(), new UserPrefs());
     private final Model expectedModel = new ModelManager(getTypicalResiReg(), new UserPrefs());
@@ -35,13 +38,13 @@ class RedoCommandTest {
     public void execute() {
         // multiple redoable states in model
         expectedModel.redoResiReg();
-        assertCommandSuccess(new RedoCommand(), model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new RedoCommand(), model, history, RedoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // single redoable state in model
         expectedModel.redoResiReg();
-        assertCommandSuccess(new RedoCommand(), model, RedoCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new RedoCommand(), model, history, RedoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // no redoable state in model
-        assertCommandFailure(new RedoCommand(), model, RedoCommand.MESSAGE_FAILURE);
+        assertCommandFailure(new RedoCommand(), model, history, RedoCommand.MESSAGE_FAILURE);
     }
 }

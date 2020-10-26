@@ -1,5 +1,6 @@
 package seedu.resireg.model;
 
+import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
@@ -9,7 +10,7 @@ import seedu.resireg.model.student.Student;
 /**
  * Unmodifiable view of ResiReg
  */
-public interface ReadOnlyResiReg {
+public interface ReadOnlyResiReg extends Observable {
 
     /**
      * Returns the semester that this view is mapped to.

@@ -13,6 +13,7 @@ import static seedu.resireg.testutil.TypicalStudents.getTypicalResiReg;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelManager;
 import seedu.resireg.model.alias.CommandWordAlias;
@@ -22,6 +23,8 @@ import seedu.resireg.model.alias.CommandWordAlias;
  * {@code DeleteCommand}.
  */
 public class DeleteAliasCommandTest {
+
+    private CommandHistory history = new CommandHistory();
 
     private Model model = new ModelManager(getTypicalResiReg(), getTypicalUserPrefs());
 
@@ -36,7 +39,7 @@ public class DeleteAliasCommandTest {
         expectedModel.deleteCommandWordAlias(aliasToDelete);
 
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model, history, expectedMessage, expectedModel);
     }
 
     @Test
@@ -44,7 +47,7 @@ public class DeleteAliasCommandTest {
         CommandWordAlias outOfBoundAlias = ROOMS_RO;
         DeleteAliasCommand deleteCommand = new DeleteAliasCommand(ROOMS_RO);
 
-        assertCommandFailure(deleteCommand, model, DeleteAliasCommand.MESSAGE_INVALID_ALIAS);
+        assertCommandFailure(deleteCommand, model, history, DeleteAliasCommand.MESSAGE_INVALID_ALIAS);
     }
 
     @Test

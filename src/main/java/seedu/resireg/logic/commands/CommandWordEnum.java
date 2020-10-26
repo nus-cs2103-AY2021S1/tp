@@ -18,6 +18,7 @@ public enum CommandWordEnum {
     ADD_ALIAS_COMMAND("alias"),
     DELETE_ALIAS_COMMAND("dealias"),
     LIST_ALIAS_COMMAND("aliases"),
+    HISTORY_COMMAND("history"),
     TOGGLE_MAIN_PANEL_COMMAND("toggleview");
 
     private String commandWord;

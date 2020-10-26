@@ -19,6 +19,7 @@ import seedu.resireg.logic.commands.ExitCommand;
 import seedu.resireg.logic.commands.FindCommand;
 import seedu.resireg.logic.commands.Help;
 import seedu.resireg.logic.commands.HelpCommand;
+import seedu.resireg.logic.commands.HistoryCommand;
 import seedu.resireg.logic.commands.ListAliasCommand;
 import seedu.resireg.logic.commands.ListCommand;
 import seedu.resireg.logic.commands.ListRoomCommand;
@@ -79,9 +80,9 @@ public class CommandMapper {
         commandMap.addCommand(DeleteAliasCommand.COMMAND_WORD, DeleteAliasCommand.HELP,
             new DeleteAliasCommandParser()::parse);
         commandMap.addCommand(ListAliasCommand.COMMAND_WORD, ListAliasCommand.HELP, unused -> new ListAliasCommand());
+        commandMap.addCommand(HistoryCommand.COMMAND_WORD, HistoryCommand.HELP, unused -> new HistoryCommand());
         commandMap.addCommand(ToggleMainPanelCommand.COMMAND_WORD, ToggleMainPanelCommand.HELP,
             unused -> new ToggleMainPanelCommand());
-
 
         for (CommandWordAlias commandWordAlias : aliases) {
             commandMap.addAliasCommand(commandWordAlias.getAlias().toString(),
