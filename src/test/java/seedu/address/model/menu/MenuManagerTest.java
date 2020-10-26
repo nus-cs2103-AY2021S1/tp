@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.FoodCommandTestUtil.VALID_TAG_CLASSIC;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalFoods.CHEESE_PRATA;
+import static seedu.address.testutil.TypicalFoods.MILO;
 import static seedu.address.testutil.TypicalFoods.PRATA;
 import static seedu.address.testutil.TypicalFoods.getTypicalMenuManager;
 
@@ -95,6 +97,41 @@ public class MenuManagerTest {
         menuManager.addFood(PRATA);
         menuManager.removeFood(PRATA);
         assertFalse(menuManager.hasFood(PRATA));
+    }
+
+    @Test
+    public void setFood_hasFoodInMenuManager_returnsTrue() {
+        menuManager.addFood(PRATA);
+        menuManager.setFood(PRATA, MILO);
+        assertTrue(menuManager.hasFood(MILO));
+    }
+
+    @Test
+    public void sortFoodInAscendingByName_sortsMenu() {
+        menuManager.addFood(PRATA);
+        menuManager.addFood(MILO);
+        menuManager.addFood(CHEESE_PRATA);
+        // Added in wrong order
+        menuManager.sortFoodByName(true);
+        MenuManager sortedMenu = new MenuManager();
+        sortedMenu.addFood(CHEESE_PRATA);
+        sortedMenu.addFood(MILO);
+        sortedMenu.addFood(PRATA);
+        assertEquals(menuManager.getFoodList(), sortedMenu.getFoodList());
+    }
+
+    @Test
+    public void sortFoodInAscendingByPrice_sortsMenu() {
+        menuManager.addFood(PRATA);
+        menuManager.addFood(MILO);
+        menuManager.addFood(CHEESE_PRATA);
+        //Added in wrong order
+        menuManager.sortFoodByPrice(true);
+        MenuManager sortedMenu = new MenuManager();
+        sortedMenu.addFood(PRATA);
+        sortedMenu.addFood(MILO);
+        sortedMenu.addFood(CHEESE_PRATA);
+        assertEquals(menuManager.getFoodList(), sortedMenu.getFoodList());
     }
 
 }

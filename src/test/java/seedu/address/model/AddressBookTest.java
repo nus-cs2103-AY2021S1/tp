@@ -106,6 +106,15 @@ public class AddressBookTest {
         assertEquals(addressBook2.getSelectedVendor(), ELLE);
     }
 
+    @Test
+    public void setVendor_validVendor_success() {
+        AddressBook addressBook1 = new AddressBook();
+        addressBook1.addVendor(ELLE);
+        addressBook1.setVendor(ELLE, ALICE);
+        assertFalse(addressBook1.hasVendor(ELLE));
+        assertTrue(addressBook1.hasVendor(ALICE));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose vendors list can violate interface constraints.
      */

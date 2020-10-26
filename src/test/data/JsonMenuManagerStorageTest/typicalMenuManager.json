@@ -1,0 +1,17 @@
+{
+  "foods" : [ {
+    "name" : "Prata",
+    "price": 1,
+    "tagged" : []
+  },
+    {
+      "name" : "Milo",
+      "price": 1.5,
+      "tagged" : []
+    },
+    {
+      "name": "Nasi Goreng",
+      "price": 4.5,
+      "tagged": []
+    }]
+}

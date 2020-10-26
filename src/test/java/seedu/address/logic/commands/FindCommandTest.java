@@ -48,15 +48,17 @@ public class FindCommandTest {
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
-    //    @Test
-    //    public void execute_zeroKeywords_noVendorFound() {
-    //        String expectedMessage = String.format(MESSAGE_VENDORS_LISTED_OVERVIEW, 0);
-    //        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-    //        FindCommand command = new FindCommand(predicate);
-    //        expectedModel.updateFilteredFoodList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Collections.emptyList(), model.getFilteredVendorList());
-    //    }
+    //        @Test
+    //        public void execute_unknownKeyword_noFoodFound() {
+    //            NameContainsKeywordsPredicate predicate = preparePredicate("*");
+    //            FindCommand command = new FindCommand(predicate);
+    //            expectedModel.setVendorIndex(1);
+    ////            expectedModel.updateFilteredFoodList(predicate);
+    //            //            Model model = new ModelManager();
+    //            String expectedMessage = "0 food listed!";
+    //            assertCommandSuccess(command, model, expectedMessage, expectedModel);
+    ////            assertEquals(expectedModel.getMenuManager(1), Collections.EMPTY_LIST);
+    //        }
     //
     //    @Test
     //    public void execute_multipleKeywords_multipleVendorsFound() {

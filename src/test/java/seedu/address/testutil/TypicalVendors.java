@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.Menu;
@@ -71,6 +72,15 @@ public class TypicalVendors {
             ab.addVendor(vendor);
         }
         return ab;
+    }
+
+    public static List<ObservableList<Food>> getMenus() {
+        List<ObservableList<Food>> menus = new ArrayList<>();
+        List<Vendor> vendors = getTypicalVendors();
+        for (Vendor v : vendors) {
+            menus.add(v.getMenu().asUnmodifiableObservableList());
+        }
+        return menus;
     }
 
     public static List<Vendor> getTypicalVendors() {
