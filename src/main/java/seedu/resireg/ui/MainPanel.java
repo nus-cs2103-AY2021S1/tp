@@ -76,8 +76,8 @@ public class MainPanel extends UiPart<Region> {
             showStudentPanel();
             break;
         case PIECHART:
-                showPiechartsPanel();
-                break;
+            showPiechartsPanel();
+            break;
         case BIN_ITEMS:
             showTab(binsTab);
             break;

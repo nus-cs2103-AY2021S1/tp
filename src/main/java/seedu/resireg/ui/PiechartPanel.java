@@ -1,5 +1,9 @@
 package seedu.resireg.ui;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -10,9 +14,6 @@ import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.student.Student;
 
-import java.util.logging.Logger;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Panel containing the pie chart of allocated rooms.
