@@ -220,11 +220,11 @@ Quiz the current list of flashcards. This puts the user in quiz mode and the use
 Upon entering quiz mode, the following user input will be recognised:
 * `↓ key` shows answer and notes of the current flashcard  
 * `q` key quits review mode
-* `y` to represent correct answer. This input will only be recognised after the `↓ key` is pressed
-* `n` to represent incorrect answer. This input will only be recognised after the `↓ key` is pressed
+* `y` This input will only be recognised after the `↓ key` is pressed. `y` is a feedback to indicate a correct answer. 
+* `n` This input will only be recognised after the `↓ key` is pressed. `n` is a feedback to indicate an incorrect answer. 
 
-Upon pressing the down arrow key, the user will be prompted if they got the answer correct. The user can then press 
-`y` to indicate a correct answer or `n` to indicate an incorrect answer.
+Upon pressing the `↓ key`, the user will be prompted if they got the answer correct. The user can then press 
+`y` to feedback that they got the correct answer or `n` to feedback that they got an incorrect answer.
 
 Format: `quiz`
 
