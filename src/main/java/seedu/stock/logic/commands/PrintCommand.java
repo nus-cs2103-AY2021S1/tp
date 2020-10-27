@@ -123,7 +123,7 @@ public class PrintCommand extends Command {
      *
      * @return String of the formatted input to be stored in a csv column.
      */
-    public String commaFormatter(String string) {
+    private String commaFormatter(String string) {
         if (string.contains(",")) {
             return String.format("\"%s\"", string);
         }
@@ -145,7 +145,8 @@ public class PrintCommand extends Command {
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        return (other instanceof PrintCommand // instanceof handles nulls
-            );
+        return other == this // short circuit if same object
+                || (other instanceof PrintCommand // instanceof handles nulls
+                && csvFileName.equals(((PrintCommand) other).csvFileName)); // state check
     }
 }
