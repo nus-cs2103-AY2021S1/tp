@@ -50,9 +50,9 @@ This guide serves to provide a reference for first-time users to get familiar wi
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic Features](#basic-features) are listed first, followed by additional [Advanced Features](#advanced-features) which may be useful for the user.
+1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic features](#basic-features) are listed first, followed by additional [Advanced features](#advanced-features) which may be useful for the user.
 
-## Basic Features
+## Basic features
 
 <div markdown="block" class="alert alert-info">
 
@@ -114,11 +114,19 @@ Adds an animal under the care of the user.
 
 Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 
-Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `ID` should contain only numbers with no leading zeroes
+
+* `ID` should be at least 3 digits long
+
+* `FEED TIME` must be a valid time in 24 hour format
+
 </div>
 
 Examples:
@@ -157,7 +165,7 @@ Format: `redo`
 
 ---
 
-## Advanced Features
+## Advanced features
 
 The following features are additional ones which some users may find them useful.
 
@@ -166,10 +174,6 @@ The following features are additional ones which some users may find them useful
 Appends information to the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feed times (including 0).
-</div>
 
 Examples:
 * `append 1307 f/1900` appends a feed time of 1900 to the animal identified by ID 1307.
@@ -182,10 +186,6 @@ Examples:
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feed times (including 0).
-</div>
 
 Examples:
 * `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
