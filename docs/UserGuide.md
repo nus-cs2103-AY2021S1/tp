@@ -210,6 +210,7 @@ Examples:
 :information_source:
 
 * Filters the displayed list of food items to only include food items corresponding to the provided parameters.
+* `KEYWORDS` and `WORDS_IN_NAME` are nor case sensitive but `WORDS_IN_TAG` is case sensitive.
 
 </div>
 
