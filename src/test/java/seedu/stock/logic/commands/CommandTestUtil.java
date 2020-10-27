@@ -70,8 +70,7 @@ public class CommandTestUtil {
     public static final String SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + VALID_SORT_FIELD;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
-    public static final String INVALID_SERIAL_NUMBER_DESC = " "
-            + PREFIX_SERIAL_NUMBER; // empty serial number not allowed
+    public static final String INVALID_SERIAL_NUMBER_DESC = " " + PREFIX_SERIAL_NUMBER;
     public static final String INVALID_SOURCE_DESC = " " + PREFIX_SOURCE; // missing source
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-100"; // negative quantity not allowed
     public static final String INVALID_LOCATION_DESC = " " + PREFIX_LOCATION; // '*' not allowed in tags
@@ -81,6 +80,8 @@ public class CommandTestUtil {
     public static final String INVALID_LOW_QUANTITY_DESC = " " + PREFIX_LOW_QUANTITY + "-100";
     public static final String INVALID_LOW_QUANTITY_DESC2 = " " + PREFIX_LOW_QUANTITY + "two";
     public static final String INVALID_FILE_NAME_DESC = " " + PREFIX_FILE_NAME + "test+2";
+    public static final String INVALID_SORT_ORDER_DESC = " " + PREFIX_SORT_ORDER + "random";
+    public static final String INVALID_SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + "note";
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
