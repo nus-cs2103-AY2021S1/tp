@@ -1,21 +1,34 @@
 package seedu.address.model.module.grade;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
+import seedu.address.model.module.grade.comparator.AssignmentNameComparator;
 
 /**
  * Represents an association class that tracks the assignments and grade for a module.
  */
-public class GradeTracker {
+public class GradeTracker implements ReadOnlyGradeTracker {
     public static final String MESSAGE_INVALID_GRADE =
             "Grades should be provided in the range from 0.00 to 1.00.";
     public static final String MESSAGE_INVALID_GRADEPOINT =
             "GradePoint should be given as a decimal from 0.00 to 5.00.";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT =
             "Assignments cannot be repeated.";
-
-    private final List<Assignment> assignments;
+    private final UniqueAssignmentList assignments;
+    private final AssignmentNameComparator comparator = new AssignmentNameComparator();
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        assignments = new UniqueAssignmentList();
+    }
     private Grade grade;
     private GradePoint gradePoint;
 
@@ -23,7 +36,6 @@ public class GradeTracker {
      * Creates a GradeTracker that stores the assignment, grades and grade point for a module.
      */
     public GradeTracker() {
-        this.assignments = new ArrayList<>();
         this.grade = new Grade(0);
         gradePoint = null;
     }
@@ -63,8 +75,23 @@ public class GradeTracker {
         assignments.add(newAssignment);
     }
 
-    public List<Assignment> getAssignments() {
-        return assignments;
+    /**
+     * Removes {@code key} from this {@code assignments}.
+     * {@code key} must exist in the assignments.
+     */
+    public void removeAssignment(Assignment key) {
+        assignments.remove(key);
+    }
+
+    public List<Assignment> getSortedAssignments() {
+        List<Assignment> sortedAssignments = new SortedList<Assignment>(assignments
+                .asUnmodifiableObservableList(), comparator);
+        return sortedAssignments;
+    }
+
+    @Override
+    public ObservableList<Assignment> getAssignments() {
+        return assignments.asUnmodifiableObservableList();
     }
 
 

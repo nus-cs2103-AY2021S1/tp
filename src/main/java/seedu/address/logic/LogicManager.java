@@ -11,6 +11,7 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.FeatureParser;
+import seedu.address.logic.parser.GradeTrackerParser;
 import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.TodoListParser;
 import seedu.address.logic.parser.contactlistparsers.ContactListParser;
@@ -34,6 +35,7 @@ public class LogicManager implements Logic {
     private final ModuleListParser moduleListParser;
     private final ContactListParser contactListParser;
     private final TodoListParser todoListParser;
+    private final GradeTrackerParser gradeTrackerParser;
     private final ParserManager parserManager;
 
     /**
@@ -45,7 +47,8 @@ public class LogicManager implements Logic {
         moduleListParser = new ModuleListParser();
         contactListParser = new ContactListParser();
         todoListParser = new TodoListParser();
-        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser);
+        gradeTrackerParser = new GradeTrackerParser();
+        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser, gradeTrackerParser);
     }
 
     @Override
