@@ -194,7 +194,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal to delete must exist in the zookeep book.
+* `ID` of animal must exist in the zookeep book.
 
 * `FEED TIME` must be a valid time in 24 hour format.
 </div>
@@ -222,7 +222,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long.
 
-* `ID` of animal to delete must exist in the zookeep book.
+* `ID` of animal must exist in the zookeep book.
 
 * `FEED TIME` must be a valid time in 24 hour format.
 </div>
