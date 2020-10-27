@@ -141,7 +141,7 @@ public class UniqueAllocationListTest {
     }
 
     @Test
-    public void remove_AllocationDoesNotExist_throwsAllocationNotFoundException() {
+    public void remove_allocationDoesNotExist_throwsAllocationNotFoundException() {
         assertThrows(AllocationNotFoundException.class, () -> uniqueAllocationList.remove(ALLOCATION_ONE));
     }
 
@@ -186,13 +186,13 @@ public class UniqueAllocationListTest {
     @Test
     public void setAllocations_listWithDuplicateAllocations_throwsDuplicateAllocationException() {
         List<Allocation> listWithDuplicateAllocations = Arrays.asList(ALLOCATION_ONE, ALLOCATION_ONE);
-        assertThrows(DuplicateAllocationException.class,
-            () -> uniqueAllocationList.setAllocations(listWithDuplicateAllocations));
+        assertThrows(DuplicateAllocationException.class, () ->
+            uniqueAllocationList.setAllocations(listWithDuplicateAllocations));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-            () -> uniqueAllocationList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+            uniqueAllocationList.asUnmodifiableObservableList().remove(0));
     }
 }
