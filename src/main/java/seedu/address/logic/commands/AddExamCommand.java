@@ -60,7 +60,7 @@ public class AddExamCommand extends ExamCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getSortedStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -77,7 +77,7 @@ public class AddExamCommand extends ExamCommand {
         exams.add(toAdd);
         Student updatedStudent = new Student(selectedStudent.getName(), selectedStudent.getPhone(),
                 selectedStudent.getSchool(), selectedStudent.getYear(), selectedStudent.getAdmin(),
-                selectedStudent.getQuestions(), exams);
+                selectedStudent.getQuestions(), exams, selectedStudent.getAcademic());
         model.setStudent(selectedStudent, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EXAM_ADDED_SUCCESS, updatedStudent.getName(), toAdd));
