@@ -1,6 +1,7 @@
 package seedu.expense.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -106,6 +107,11 @@ public interface Model {
     void addAlias(AliasEntry alias);
 
     void setAlias(AliasEntry target, AliasEntry editedExpense);
+
+    /**
+     * Returns an unmodifiable view of the sorted expense list
+     */
+    void sortExpenseList(Comparator<Expense> expenseComparator);
 
     /**
      * Returns an unmodifiable view of the filtered expense list

@@ -57,7 +57,12 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
 1. **Adding Remark**
     - Adds a remark to an existing expense
     - Command: `remark`
-    -[API](#remark)
+    - [API](#remark)
+    
+1. **Sorting expenses**  
+    - Sort by **date, description (alphabetical), amount**, with option of reverse sort 
+    - Command: `sort` 
+    - [API](#sort)
     
 1. **Switch Category**
     - Switches an expense book into another existing category
@@ -78,8 +83,7 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
     - Command: `help`
     - [API](#help)
         
-1. Password &lt;Proposed Feature&gt;
-1. Sorting (date, category, keyword, amount) &lt;Coming Soon v1.2.1&gt;
+1. Password &lt;pending&gt;
 1. Multiple Accounts &lt;pending&gt;
 1. GUI &lt;pending&gt;>
 1. Budget notifications &lt;pending&gt;
@@ -137,18 +141,32 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
     ![topup_example](images/ug_example/topup_example.PNG)
 
 1. **find** <a name="find"></a>
-    - Finds expenses with given keywords, date, category by user.
+    - Finds expenses with given keywords and/or date by user.
     - Expenses that fits the criteria will be presented as another list.
-    - Keywords and category are case-sensitive.
-    - Format: `find [-d<description>] [-@<date>] [t/<category>]`
-    - Example: `find -dPhone`, `find -dlunch -@01-07-2020 t/Food`
+    - Keywords are case-sensitive, and partial word matching is supported.
+    - Format: `find [-d<description>] [-@<date>]`
+    - Example: `find -dPhone`, `find -dlunch -@01-07-2020`
 
     ![find_example](images/ug_example/find_example.PNG)
 
 1. **remark** <a name="remark"></a>
     - Adds a remark to an existing expense.
-    - Format: `remark <index> r/<remark>`
-    - Example: `remark 11 r/Pepper Lunch`
+    - Format: `remark <index> -r <remark>`
+    - Example: `remark 11 -r Pepper Lunch`
+
+    ![remark_example](./images/ug_example/remark_example.PNG)
+    
+8. **sort** <a name="sort"></a>
+    - Sorts expenses in current view.
+    - **Sorting keywords** (and thus criterion) include:
+        - expense amount: `amount`
+        - date: `date`
+        - description (alphabetical order): `description` 
+    - Add a "R" behind sorting keywords to induce reversed sorting order
+    - Sorting criterion are assigned priority in order of appearance.
+    - A minimum of 1 sorting keyword is required  
+    - Format: `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]`
+    - Example: `sort -by date -by descriptionR` (sorts by date, then by reversed alphabetical order of the descriptions)
 
     ![remark_example](./images/ug_example/remark_example.PNG)
     
@@ -179,21 +197,21 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
 ### Fields
 1. **description**
     - Description of expense made.
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find)
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort)
     - Prefix: `-d`
     - Format: `-d<description>`
     - Example: `-dlunch`, `-ddinner`
 
 1. **amount**
     - Amount of expense made
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [topup](#topup)
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort), [topup](#topup)
     - Prefix: `-$`
     - Format: `-$<amount>`
     - Example: `-$2`, `-$1.50`
 
 1. **date**
     - Date at which expense was made
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find)
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort)
     - Prefix: `-@`
     - Format: `-@<DD-MM-YYYY>`
     - Example: `-@01-07-2020`, `-@02-07-2020`
@@ -207,15 +225,16 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
 
 ## Command summary <a name="CommandSummary"></a>
 
-|   Action   | Format, Examples                                                                                                                                              |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|  **Add**   | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`                |
-|  **List**  | `list`                                                                                                                                                        |
-|  **Edit**  | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`|
-| **Delete** | `delete <index>`<br> e.g., `delete 1`                                                                                                                         |
-| **Topup**  | `topup -$<amount>`<br> e.g., `topup -$200`                                                                                                                    |
-|  **Find**  | `find [-d<description>] [-@<date>] [t/<category>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`                                              |
-| **Remark** | `remark <index> r/<remark>` <br> e.g., `remark 11 r/Pepper Lunch`                                                                                             |
-| **Switch** | `switch t/<category>` <br> e.g., `switch t/Food`                                                                                                              |
-| **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                     |
-| **Help** | `help`                                                                                                                                                          |
+|   Action      | Format, Examples                                                                                                                                              |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  **Add**      | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`                |
+|  **List**     | `list`                                                                                                                                                        |
+|  **Edit**     | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`|
+| **Delete**    | `delete <index>`<br> e.g., `delete 1`                                                                                                                         |
+| **Topup**     | `topup -$<amount>`<br> e.g., `topup -$200`                                                                                                                    |
+|  **Find**     | `find [-d<description>] [-@<date>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020`                                                                    |
+| **Remark**    | `remark <index> -r<remark>` <br> e.g., `remark 11 -r Pepper Lunch`                                                                                            |
+| **Sort**      | `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]` <br> e.g., `sort -by date -by descriptionR`                                      |
+| **Switch**    | `switch t/<category>` <br> e.g., `switch t/Food`                                                                                                              |
+| **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                        |
+| **Help**      | `help`                                                                                                                                                        |

@@ -19,14 +19,7 @@ public class Date {
             + "2. Date given should be a valid date that exists.\n"
             + "** Note: Date input is optional.";
 
-    // alphanumeric and special characters
-    // TODO Delete the bottom (kept for reference because it's good style)
-    /*
-    private static final String LOCAL_PART_REGEX = "^[\\w" + SPECIAL_CHARACTERS + "]+";
-    private static final String DOMAIN_FIRST_CHARACTER_REGEX = "[^\\W_]"; // alphanumeric characters except underscore
-    private static final String DOMAIN_MIDDLE_REGEX = "[a-zA-Z0-9.-]*"; // alphanumeric, period and hyphen
-    private static final String DOMAIN_LAST_CHARACTER_REGEX = "[^\\W_]$";
-    */
+    // dd-MM-yyyy
     public static final String VALIDATION_REGEX = "^(0[1-9]|[12][0-9]|3[01])-(0[1-9]|1[012])-\\d{4}";
 
     public final LocalDate value;
