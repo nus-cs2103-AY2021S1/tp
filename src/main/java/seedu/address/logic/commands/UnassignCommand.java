@@ -25,10 +25,10 @@ public class UnassignCommand extends Command {
             + "If module codes are provided, it will unassign the instructor from all module codes provided.\n"
             + "Else, it will unassign the instructor from all modules he/she teaches.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_MODULE_CODE + "MODULE CODE]\n"
+            + PREFIX_MODULE_CODE + "[MODULE CODE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_CODE + "CS2103"
-            + " or " + COMMAND_WORD + " 1 ";
+            + " or " + COMMAND_WORD + " 1 m/";
 
     public static final String MESSAGE_UNASSIGNMENT_SUCCESS = "Unassigned instructor from module(s)";
 
