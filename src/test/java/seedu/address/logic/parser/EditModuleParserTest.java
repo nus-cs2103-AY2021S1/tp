@@ -81,19 +81,12 @@ public class EditModuleParserTest {
 
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
-        // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
-        // String userInput = targetIndex.getOneBased();
-        //EditModuleDescriptor descriptor = new EditPersonDescriptorBuilder().build();
-        //EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
-
-        // other valid values specified
-        // userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB;
-        //descriptor = new EditPersonDescriptorBuilder().withEmail(VALID_EMAIL_BOB)
-        //.build();
-        //expectedCommand = new EditCommand(targetIndex, descriptor);
-        // assertParseSuccess(parser, userInput, expectedCommand);
+        String invalidThenValid = " " + PREFIX_EDIT_NAME + VALID_MODULENAME_CS2103T
+                + " " + PREFIX_NAME + "@123"
+                + " " + PREFIX_NAME + VALID_MODULENAME_ES2660;
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).build();
+        EditModuleCommand expectedCommand = new EditModuleCommand(VALID_MODULENAME_CS2103T, descriptor);
+        assertParseSuccess(parser, invalidThenValid, expectedCommand);
     }
 
     @Test
