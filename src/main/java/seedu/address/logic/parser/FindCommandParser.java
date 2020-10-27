@@ -26,33 +26,12 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_KEYWORDS);
-
-        boolean isKeywordPrefixPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_KEYWORDS);
-        boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
-
-        // Check if there is a keyword prefix and no preambles
-        if (!isKeywordPrefixPresent || !isPreambleEmpty) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
-
-        // Check if keyword prefix are only used once or none
-        boolean isNumberOfKeywordPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_KEYWORDS);
-
-        // Check if optional prefixes are only used once or none
-        boolean isNumberOfOtherPrefixCorrect =
-                ParserUtil.areNumberOfPrefixesOneOrNone(argMultimap, PREFIX_CATEGORY);
-
-        if (!isNumberOfKeywordPrefixCorrect || !isNumberOfOtherPrefixCorrect) {
-            throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, FindCommand.PREFIXES));
-        }
+        handleArgMultimapException(argMultimap);
 
         List<String> keywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_KEYWORDS).get());
-        boolean isKeywordListEmpty = keywords.size() == 1 && keywords.get(0).equals("");
-        if (isKeywordListEmpty) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.EMPTY_KEYWORD_LIST_MESSAGE));
-        }
+        handleEmptyKeywordListException(keywords);
 
         boolean isCategoryPrefixPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
 
@@ -70,4 +49,33 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
     }
 
+    private void handleArgMultimapException(ArgumentMultimap multimap) throws ParseException {
+        boolean isKeywordPrefixPresent = ParserUtil.arePrefixesPresent(multimap, PREFIX_KEYWORDS);
+        boolean isPreambleEmpty = multimap.getPreamble().isEmpty();
+
+        // Check if there is a keyword prefix and no preambles
+        if (!isKeywordPrefixPresent || !isPreambleEmpty) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        // Check if keyword prefix are only used once or none
+        boolean isNumberOfKeywordPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(multimap, PREFIX_KEYWORDS);
+
+        // Check if optional prefixes are only used once or none
+        boolean isNumberOfOtherPrefixCorrect =
+            ParserUtil.areNumberOfPrefixesOneOrNone(multimap, PREFIX_CATEGORY);
+
+        if (!isNumberOfKeywordPrefixCorrect || !isNumberOfOtherPrefixCorrect) {
+            throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, FindCommand.PREFIXES));
+        }
+    }
+
+    private void handleEmptyKeywordListException(List<String> keywords) throws ParseException {
+        // Check if keyword list is empty
+        boolean isKeywordListEmpty = keywords.size() == 1 && keywords.get(0).equals("");
+        if (isKeywordListEmpty) {
+            throw new ParseException(
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.EMPTY_KEYWORD_LIST_MESSAGE));
+        }
+    }
 }

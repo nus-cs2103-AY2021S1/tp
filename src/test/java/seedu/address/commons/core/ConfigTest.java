@@ -1,8 +1,10 @@
 package seedu.address.commons.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.nio.file.Paths;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,11 +19,45 @@ public class ConfigTest {
     }
 
     @Test
-    public void equalsMethod() {
+    public void equals() {
         Config defaultConfig = new Config();
+        Config defaultConfigCopy = new Config();
+        Config differentConfig = new Config();
+
+        differentConfig.setUserPrefsFilePath(Paths.get("nonexistentFile.json"));
+
         assertNotNull(defaultConfig);
-        assertTrue(defaultConfig.equals(defaultConfig));
+
+        // same object -> returns true
+        assertEquals(defaultConfig, defaultConfig);
+
+        // different type -> returns false
+        assertNotEquals(null, defaultConfig);
+        assertNotEquals(1, defaultConfig);
+
+        // same value -> returns true
+        assertEquals(defaultConfig, defaultConfigCopy);
+
+        // differentUserPrefs path -> returns false
+        assertNotEquals(defaultConfig, differentConfig);
     }
 
+    @Test
+    public void hashCode_test() {
+        Config defaultConfig = new Config();
+        Config defaultConfigCopy = new Config();
+        Config differentConfig = new Config();
+
+        differentConfig.setUserPrefsFilePath(Paths.get("nonexistentFile.json"));
+
+        // same object -> same hashcode
+        assertEquals(defaultConfig.hashCode(), defaultConfig.hashCode());
+
+        // same value -> same hashcode
+        assertEquals(defaultConfig.hashCode(), defaultConfigCopy.hashCode());
+
+        // different value -> different hashcode
+        assertNotEquals(defaultConfig.hashCode(), differentConfig.hashCode());
+    }
 
 }
