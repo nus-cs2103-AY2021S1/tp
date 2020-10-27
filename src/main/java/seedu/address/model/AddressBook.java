@@ -325,16 +325,16 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     private void deleteInstructorAssignments(Person toBeRemoved) {
-        UniqueModuleList otherSem = activeModules == semOneModules ? semTwoModules : semOneModules;
-        for (Module m : activeModules) {
+        for (Module m : semOneModules) {
             if (m.hasInstructor(toBeRemoved)) {
                 m.unassignInstructor(toBeRemoved);
-                activeModules.setModule(m, m);
+                semOneModules.setModule(m, m);
             }
         }
-        for (Module m : otherSem) {
+        for (Module m : semTwoModules) {
             if (m.hasInstructor(toBeRemoved)) {
                 m.unassignInstructor(toBeRemoved);
+                semTwoModules.setModule(m, m);
             }
         }
     }
