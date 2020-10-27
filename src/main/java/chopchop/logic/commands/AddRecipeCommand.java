@@ -68,6 +68,7 @@ public class AddRecipeCommand extends Command implements Undoable {
         this.recipe = new Recipe(this.name, this.ingredients, this.steps, this.tags);
 
         model.addRecipe(this.recipe);
+
         return CommandResult.message("Added recipe '%s'", this.recipe.getName());
     }
 
