@@ -17,7 +17,7 @@ public class GradeTracker {
 
     private final List<Assignment> assignments;
     private Grade grade;
-    private Optional<GradePoint> gradePoint;
+    private GradePoint gradePoint;
 
     /**
      * Creates a GradeTracker that stores the assignment, grades and grade point for a module.
@@ -25,7 +25,7 @@ public class GradeTracker {
     public GradeTracker() {
         this.assignments = new ArrayList<>();
         this.grade = new Grade(0);
-        gradePoint = Optional.empty();
+        gradePoint = null;
     }
 
     /**
@@ -35,7 +35,7 @@ public class GradeTracker {
     public GradeTracker(double gradePoint) {
         this.assignments = new ArrayList<>();
         this.grade = new Grade(0);
-        this.gradePoint = Optional.of(new GradePoint(gradePoint));
+        this.gradePoint = new GradePoint(gradePoint);
     }
 
     public void setGrade(Grade newGrade) {
@@ -46,7 +46,7 @@ public class GradeTracker {
         return grade;
     }
 
-    public void setGradePoint(Optional<GradePoint> newGradePoint) {
+    public void setGradePoint(GradePoint newGradePoint) {
         this.gradePoint = newGradePoint;
     }
 
@@ -56,7 +56,7 @@ public class GradeTracker {
         } else {
             return Optional.empty();
         }*/
-        return gradePoint;
+        return Optional.ofNullable(gradePoint);
     }
 
     public void addAssignment(Assignment newAssignment) {

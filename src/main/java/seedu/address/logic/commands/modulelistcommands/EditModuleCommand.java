@@ -100,7 +100,7 @@ public class EditModuleCommand extends Command {
         ZoomLink zoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLink());
         GradeTracker gradeTracker = gradeTracker = moduleToEdit.getGradeTracker();
         if (editModuleDescriptor.gradePoint != null) {
-            gradeTracker.setGradePoint(Optional.of(editModuleDescriptor.gradePoint));
+            gradeTracker.setGradePoint(editModuleDescriptor.gradePoint);
         }
         ModularCredits modularCredits = editModuleDescriptor
                 .getModularCredits().orElse((moduleToEdit.getModularCredits()));
