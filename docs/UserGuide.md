@@ -138,7 +138,7 @@ Thereafter, you will be able to view, edit find or delete these students.
 
 You can add a student together with his/her individual administrative details into **Reeve's** student list.
 
-Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/LAST_PAYMENT_DATE [a/ADDITIONAL_DETAILS]`
+Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE [d/LAST_PAYMENT_DATE] [a/ADDITIONAL_DETAILS]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -157,6 +157,8 @@ Format: `add n/NAME p/PHONE s/SCHOOL y/YEAR v/CLASS_VENUE t/CLASS_TIME f/FEE d/L
 <br>
 
 </div>
+
+* `LAST_PAYMENT_DATE` defaults to today's date if not included.
 
 Examples:
 * `add n/Alex p/93211234 s/Commonwealth Secondary School y/pri 6 v/Blk 33 West Coast Rd #21-214
