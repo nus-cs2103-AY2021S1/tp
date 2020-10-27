@@ -19,9 +19,6 @@
         <padding>
             <Insets bottom="15" left="15" right="15" top="15" />
         </padding>
-<!--        <columnConstraints>-->
-<!--            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />-->
-<!--        </columnConstraints>-->
 
         <ScrollPane fx:id="questionScrollPane" styleClass="pane-with-no-border" fitToWidth="true" >
         <VBox alignment="TOP_CENTER" spacing="5" maxHeight="Infinity">
