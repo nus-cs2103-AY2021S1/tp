@@ -39,5 +39,6 @@ public class SexTest {
         // valid sex
         assertTrue(Sex.isValidSex("M")); // male
         assertTrue(Sex.isValidSex("F")); // female
+        assertTrue(Sex.isValidSex("N/A")); // N/A is a valid placeholder
     }
 }

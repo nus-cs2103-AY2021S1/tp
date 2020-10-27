@@ -103,7 +103,7 @@ public class LogicManager implements Logic {
             }
         }
         String filePath = profilePic.getPath();
-        String commandToRun = "addPicture " + patientIndex + " f/" + filePath;
+        String commandToRun = "addpicture " + patientIndex + " f/" + filePath;
         logger.info("----------------[USER COMMAND][" + commandToRun + "]");
 
         CommandResult commandResult = execute(commandToRun);

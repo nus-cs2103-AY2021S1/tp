@@ -42,6 +42,9 @@ public class BloodType {
      * Returns if a given string is a valid blood type.
      */
     public static boolean isValidBloodType(String test) {
+        if (test.equals("N/A")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

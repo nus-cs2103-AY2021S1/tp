@@ -55,7 +55,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         IcNumber icNumber = ParserUtil.parseIcNumber(argMultimap.getValue(PREFIX_ICNUMBER).get());
+        
         VisitHistory visitHistory = new VisitHistory(new ArrayList<Visit>());
+
+        assert name != null : "Patient should be given a name.";
+        assert phone != null : "Patient should be given a phone number.";
+        assert icNumber != null : "Patient should be given an IC number.";
+      
         // optional fields
         Address address = new Address();
         Email email = new Email();
