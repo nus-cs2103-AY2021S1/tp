@@ -150,7 +150,7 @@ public class HelpCommand extends Command {
     }
 
     public static String getCommandHelp() {
-        return "Shows the help dialog, containing a link to the User Guide for ChopChop";
+        return "Shows a link to the user guide for ChopChop, and offers help for individual commands";
     }
 
     public static String getUserGuideSection() {

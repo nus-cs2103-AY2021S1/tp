@@ -35,7 +35,8 @@ public class HelpCommandTest {
         var cases = new HashMap<Pair<String, String>, String>();
 
         cases.put(Pair.of("help", ""),
-            "help: Shows a link to the user guide for ChopChop, and offers help for individual commands");
+            "help: Shows a link to the user guide for ChopChop, and offers help for individual commands"
+                + " see the User Guide");
 
         test(cases);
     }
@@ -53,14 +54,14 @@ public class HelpCommandTest {
                 AddRecipeCommand.getCommandString(),
                 AddRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("add", "ingredient"),
             String.format("%s: %s %s",
                 AddIngredientCommand.getCommandString(),
                 AddIngredientCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         test(cases);
     }
@@ -78,14 +79,14 @@ public class HelpCommandTest {
                 DeleteRecipeCommand.getCommandString(),
                 DeleteRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("delete", "ingredient"),
             String.format("%s: %s %s",
                 DeleteIngredientCommand.getCommandString(),
                 DeleteIngredientCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         test(cases);
     }
@@ -103,7 +104,7 @@ public class HelpCommandTest {
                 EditRecipeCommand.getCommandString(),
                 EditRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         test(cases);
     }
@@ -121,14 +122,14 @@ public class HelpCommandTest {
                 ListRecipeCommand.getCommandString(),
                 ListRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("list", "recipes"),
             String.format("%s: %s %s",
                 ListRecipeCommand.getCommandString(),
                 ListRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
 
         cases.put(Pair.of("list", "ingredient"),
@@ -136,14 +137,14 @@ public class HelpCommandTest {
                 ListIngredientCommand.getCommandString(),
                 ListIngredientCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("list", "ingredients"),
             String.format("%s: %s %s",
                 ListIngredientCommand.getCommandString(),
                 ListIngredientCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         test(cases);
     }
@@ -161,28 +162,28 @@ public class HelpCommandTest {
                 FindRecipeCommand.getCommandString(),
                 FindRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("find", "recipes"),
             String.format("%s: %s %s",
                 FindRecipeCommand.getCommandString(),
                 FindRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("find", "ingredient"),
             String.format("%s: %s %s",
                 FindIngredientCommand.getCommandString(),
                 FindIngredientCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("find", "ingredients"),
             String.format("%s: %s %s",
                 FindIngredientCommand.getCommandString(),
                 FindIngredientCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
         test(cases);
     }
 
@@ -199,28 +200,28 @@ public class HelpCommandTest {
                 FilterRecipeCommand.getCommandString(),
                 FilterRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("filter", "recipes"),
             String.format("%s: %s %s",
                 FilterRecipeCommand.getCommandString(),
                 FilterRecipeCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("filter", "ingredient"),
             String.format("%s: %s %s",
                 FilterIngredientCommand.getCommandString(),
                 FilterIngredientCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
 
         cases.put(Pair.of("filter", "ingredients"),
             String.format("%s: %s %s",
                 FilterIngredientCommand.getCommandString(),
                 FilterIngredientCommand.getCommandHelp(),
                 "see the User Guide")
-            );
+        );
         test(cases);
     }
 
@@ -229,8 +230,8 @@ public class HelpCommandTest {
         var cases = new HashMap<Pair<String, String>, String>();
 
 
-        cases.put(Pair.of("", ""), "");
-        cases.put(Pair.of(null, ""), "");
+        cases.put(Pair.of("", ""), "Refer to the User Guide for more detailed help");
+        cases.put(Pair.of(null, ""), "Refer to the User Guide for more detailed help");
         cases.put(Pair.of("add", "omo"),
             "add: Adds an item; see 'add recipe' or 'add ingredient'");
 
