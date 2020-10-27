@@ -1,14 +1,14 @@
 package seedu.expense.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
-import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.expense.testutil.Assert.assertThrows;
-import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -29,61 +29,64 @@ import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
 
-/**
- * Contains integration tests (interaction with the Model) for {@code SwitchCommand}.
- */
-class SwitchCommandTest {
+class DeleteCategoryCommandTest {
 
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new SwitchCommand(null));
+        assertThrows(NullPointerException.class, () -> new DeleteCategoryCommand(null));
     }
 
     @Test
-    void execute_noMatchingKeywords_noCategoryFound() {
-        Tag foodTag = new Tag(VALID_TAG_FOOD);
-        SwitchCommand command = new SwitchCommand(foodTag);
-        ModelStub modelStub = new ModelStub();
-        assertThrows(CommandException.class, String.format(SwitchCommand.MESSAGE_INVALID_CATEGORY,
-            foodTag), () -> command.execute(modelStub));
+    public void execute_categoryAcceptedByModel_deleteSuccessful() throws Exception {
+        DeleteCategoryCommandTest.ModelStubAcceptingTagDeleted modelStub =
+            new DeleteCategoryCommandTest.ModelStubAcceptingTagDeleted();
+        Tag validTag = new Tag("Valid");
+
+        CommandResult commandResult = new DeleteCategoryCommand(validTag).execute(modelStub);
+
+        assertEquals(String.format(DeleteCategoryCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(), modelStub.tags);
+    }
+
+    @Test
+    public void execute_invalidTag_throwsCommandException() {
+        Tag validTag = new Tag("Valid");
+        Tag invalidTag = new Tag("Invalid");
+        DeleteCategoryCommand deleteCategoryCommand = new DeleteCategoryCommand(invalidTag);
+        DeleteCategoryCommandTest.ModelStub modelStub = new DeleteCategoryCommandTest.ModelStubWithTag(validTag);
+
+        assertThrows(CommandException.class,
+            DeleteCategoryCommand.MESSAGE_INVALID_CATEGORY, () -> deleteCategoryCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Tag foodTag = new Tag(VALID_TAG_FOOD);
-        Tag transportTag = new Tag(VALID_TAG_TRANSPORT);
-
-        SwitchCommand switchFirstCommand = new SwitchCommand(foodTag);
-        SwitchCommand switchSecondCommand = new SwitchCommand(transportTag);
+        Tag aTag = new Tag("A");
+        Tag bTag = new Tag("B");
+        DeleteCategoryCommand deleteACommand = new DeleteCategoryCommand(aTag);
+        DeleteCategoryCommand deleteBCommand = new DeleteCategoryCommand(bTag);
 
         // same object -> returns true
-        assertTrue(switchFirstCommand.equals(switchFirstCommand));
+        assertTrue(deleteACommand.equals(deleteACommand));
 
         // same values -> returns true
-        SwitchCommand switchFirstCommandCopy = new SwitchCommand(foodTag);
-        assertTrue(switchFirstCommand.equals(switchFirstCommandCopy));
+        DeleteCategoryCommand deleteACopy = new DeleteCategoryCommand(aTag);
+        assertTrue(deleteACommand.equals(deleteACopy));
 
         // different types -> returns false
-        assertFalse(switchFirstCommand.equals(1));
+        assertFalse(deleteACommand.equals(1));
 
         // null -> returns false
-        assertFalse(switchFirstCommand.equals(null));
+        assertFalse(deleteACommand.equals(null));
 
-        // different tag -> returns false
-        assertFalse(switchFirstCommand.equals(switchSecondCommand));
+        // different values -> returns false
+        assertFalse(deleteACommand.equals(deleteBCommand));
     }
 
     /**
-     * A Model stub with a budget that can be topped up.
+     * A default model stub that have all of the methods failing.
      */
     private class ModelStub implements Model {
-
-        final ExpenseBook expenseBook;
-
-        ModelStub() {
-            expenseBook = new ExpenseBook(getTypicalExpenseBook());
-        }
-
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -156,27 +159,17 @@ class SwitchCommandTest {
 
         @Override
         public void updateFilteredExpenseList(Predicate<Expense> predicate) {
-            requireNonNull(predicate);
-            expenseBook.updateFilteredExpenses(predicate);
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
-            requireNonNull(predicate);
-            expenseBook.updateFilteredBudgets(predicate);
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateExpenseBookCategory(Tag category) {
-            requireNonNull(category);
-
-            if (category.equals(ExpenseBook.DEFAULT_TAG)) {
-                updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
-                updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
-            } else {
-                updateFilteredBudgetList(budget -> budget.getTag().equals(category));
-                updateFilteredExpenseList(expense -> expense.getTag().equals(category));
-            }
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -206,19 +199,16 @@ class SwitchCommandTest {
 
         @Override
         public boolean hasCategory(Tag toCheck) {
-            return expenseBook.containsCategory(toCheck);
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setAlias(AliasEntry prev, AliasEntry curr) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void switchCategory(Tag category) {
-            requireNonNull(category);
-            if (hasCategory(category)) {
-                updateExpenseBookCategory(category);
-            }
-        }
-
-        @Override
-        public void setAlias(AliasEntry prev, AliasEntry next) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -228,12 +218,12 @@ class SwitchCommandTest {
         }
 
         @Override
-        public AliasMap getAliasMap() {
+        public void addAlias(AliasEntry entry) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addAlias(AliasEntry entry) {
+        public AliasMap getAliasMap() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -245,6 +235,52 @@ class SwitchCommandTest {
         @Override
         public void deleteAlias(AliasEntry entry) {
             throw new AssertionError("This method should not be called.");
+        }
+    }
+
+    /**
+     * A Model stub that contains a single tag.
+     */
+    private class ModelStubWithTag extends DeleteCategoryCommandTest.ModelStub {
+        private final ArrayList<Tag> tags = new ArrayList<>();
+
+        ModelStubWithTag(Tag tag) {
+            requireNonNull(tag);
+            this.tags.add(tag);
+        }
+
+        @Override
+        public boolean hasCategory(Tag toCheck) {
+            return this.tags.contains(toCheck);
+        }
+    }
+
+
+    /**
+     * A Model stub that always accept the expense being deleted.
+     */
+    private class ModelStubAcceptingTagDeleted extends DeleteCategoryCommandTest.ModelStub {
+        final ArrayList<Tag> tags = new ArrayList<>();
+
+        ModelStubAcceptingTagDeleted() {
+            tags.add(new Tag("Valid"));
+        }
+
+        @Override
+        public boolean hasCategory(Tag toCheck) {
+            requireNonNull(toCheck);
+            return tags.stream().anyMatch(toCheck::equals);
+        }
+
+        @Override
+        public void deleteCategory(Tag tag) {
+            requireNonNull(tag);
+            tags.remove(tag);
+        }
+
+        @Override
+        public ReadOnlyExpenseBook getExpenseBook() {
+            return new ExpenseBook();
         }
     }
 }

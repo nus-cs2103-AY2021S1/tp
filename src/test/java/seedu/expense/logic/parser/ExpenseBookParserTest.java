@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.expense.logic.commands.AddCategoryCommand;
 import seedu.expense.logic.commands.AddCommand;
 import seedu.expense.logic.commands.ClearCommand;
+import seedu.expense.logic.commands.DeleteCategoryCommand;
 import seedu.expense.logic.commands.DeleteCommand;
 import seedu.expense.logic.commands.EditCommand;
 import seedu.expense.logic.commands.EditCommand.EditExpenseDescriptor;
@@ -33,10 +34,9 @@ import seedu.expense.logic.commands.RemarkCommand;
 import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.expense.DateMatchesPredicate;
+import seedu.expense.model.expense.DescriptionContainsKeywordsPredicate;
 import seedu.expense.model.expense.Expense;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.model.expense.Remark;
-import seedu.expense.model.expense.TagsMatchesPredicate;
 import seedu.expense.model.tag.Tag;
 import seedu.expense.testutil.CategoryUtil;
 import seedu.expense.testutil.EditExpenseDescriptorBuilder;
@@ -93,14 +93,11 @@ public class ExpenseBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_DESCRIPTION + " "
                         + keywords.stream().collect(Collectors.joining(" "))
-                        + " " + PREFIX_DATE + dateString + " " + PREFIX_TAG
-                        + "CS " + PREFIX_TAG + "bee"
+                        + " " + PREFIX_DATE + dateString + " "
         );
         FindCommand findCommand = new FindCommand(
-                new NameContainsKeywordsPredicate(keywords),
-                new DateMatchesPredicate(dateStrings),
-                new TagsMatchesPredicate(hs)
-        );
+                new DescriptionContainsKeywordsPredicate(keywords),
+                new DateMatchesPredicate(dateStrings));
         assertEquals(findCommand, command);
     }
 
@@ -129,6 +126,15 @@ public class ExpenseBookParserTest {
         Tag tag = new Tag(VALID_TAG_FOOD);
         AddCategoryCommand command = (AddCategoryCommand) parser.parseCommand(CategoryUtil.getAddCategoryCommand(tag));
         assertEquals(new AddCategoryCommand(tag), command);
+    }
+
+    @Test
+    public void parseCommand_deleteCat() throws Exception {
+        Tag tag = new Tag(VALID_TAG_FOOD);
+        DeleteCategoryCommand command = (DeleteCategoryCommand) parser.parseCommand(
+            DeleteCategoryCommand.COMMAND_WORD + " " + PREFIX_TAG + "Food"
+        );
+        assertEquals(new DeleteCategoryCommand(tag), command);
     }
 
     @Test

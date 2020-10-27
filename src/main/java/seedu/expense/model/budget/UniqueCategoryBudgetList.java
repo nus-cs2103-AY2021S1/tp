@@ -11,8 +11,10 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.expense.model.budget.exceptions.CategoryBudgetNotFoundException;
 import seedu.expense.model.budget.exceptions.DuplicateCategoryBudgetException;
 import seedu.expense.model.expense.Amount;
+import seedu.expense.model.tag.Tag;
 
 /**
  * A list of category-budgets that enforces uniqueness between its elements and does not allow nulls.
@@ -58,28 +60,32 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     }
 
     /**
+     * Removes a category-budget to the list.
+     * The category-budget must already exist in the list.
+     */
+    public void remove(CategoryBudget toDelete) {
+        requireNonNull(toDelete);
+        if (!contains(toDelete)) {
+            throw new CategoryBudgetNotFoundException();
+        }
+        internalList.remove(toDelete);
+    }
+
+    /**
      * Calculates the sum of the budgets in the category-budgets list.
      * @return sum of budgets.
      */
     public double tallyAmounts() {
-        double sum = internalList.size() != filteredList.size()
-            ? 0
-            : defaultCategory.getAmount().asDouble();;
+        int size = filteredList.size();
+        double sum = internalList.size() == size && size != 1 || isAllDefaultCategory()
+            ? defaultCategory.getAmount().asDouble()
+            : 0;
+        assert sum >= 0;
         Iterator<CategoryBudget> i = iterator();
         while (i.hasNext()) {
             sum += i.next().getAmount().asDouble();
         }
         return sum;
-    }
-
-    /**
-     * Calculates the sum of the budgets in the category-budgets list that matches {@code predicate}.
-     * @return sum of filtered budgets.
-     */
-    public double tallyAmounts(Predicate<CategoryBudget> predicate) {
-        return filteredList.stream()
-            .map(budget -> budget.getAmount().asDouble())
-            .reduce(0.0, (partialSum, amount) -> partialSum + amount);
     }
 
     public void setBudgets(UniqueCategoryBudgetList replacement) {
@@ -102,8 +108,6 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     /**
      * Filters this list's filtered list by {@code predicate}
-     *
-     * @param predicate
      */
     public void filterCategoryBudget(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
@@ -129,6 +133,21 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
         return defaultCategory;
     }
 
+    /**
+     * Tops up the {@code CategoryBudget} that matches the specified category by the given amount {@code toAdd}.
+     */
+    public void topupCategoryBudget(Tag category, Amount toAdd) {
+        requireAllNonNull(category, toAdd);
+
+        if (category.equals(DEFAULT_TAG)) {
+            topupBudget(toAdd);
+        }
+
+        internalList.stream()
+                .filter(categoryBudget -> categoryBudget.getTag().equals(category))
+                .forEach(categoryBudget -> categoryBudget.topupBudget(toAdd));
+    }
+
     @Override
     public Amount getAmount() {
         return new Amount(tallyAmounts());
@@ -137,6 +156,11 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     @Override
     public void topupBudget(Amount toAdd) {
         defaultCategory.topupBudget(toAdd);
+    }
+
+    private boolean isAllDefaultCategory() {
+        Tag defaultTag = new Tag("Default");
+        return filteredList.stream().allMatch(budget -> budget.getTag().equals(defaultTag));
     }
 
     @Override
