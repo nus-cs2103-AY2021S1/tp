@@ -3,8 +3,6 @@ package seedu.address.storage;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -17,7 +15,6 @@ import seedu.address.model.StatisticsData;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.event.Event;
 
 
 /**
@@ -47,26 +44,25 @@ public class Statistics {
         }
         logger.info("Generating summary for statistics.");
         //TODO: update this after implementing filtering
-        updateTimeTakenForTasks(planus.getTaskList(), stats);
-        updateTimeTakenForLessons(planus.getLessonList(), stats);
+        updateTimeTakenForTasks(planus.getTaskList(), stats, startDate, endDate);
+        updateTimeTakenForLessons(planus.getLessonList(), stats, startDate, endDate);
         logger.info("Generated statistics \n" + stats.toString());
         System.out.println(stats.toString());
         return stats;
     }
-//    private static FilteredList<Task> filterTasksWithinPeriod(ObservableList<Task> tasks, LocalDate start,
-//                                                              LocalTime end) {
-//        return tasks.filtered(task -> {
-//            if (task instanceof Event) {
-//                return ((Event)task).getStartDateTime().(start)
-//                        && ;
-//            } else {
-//                
-//            }
-//        })
-//    }
+    private static FilteredList<Task> filterTasksWithinPeriod(ObservableList<Task> tasks, LocalDate start,
+                                                              LocalDate end) {
+        return tasks.filtered(task -> {
+            LocalDate taskDate = task.getDate();
+            return (taskDate.isEqual(start) || taskDate.isAfter(start))
+                && (taskDate.isBefore(end) || taskDate.isEqual(end));
+        });
+    }
     
-    public static void updateTimeTakenForTasks(ObservableList<Task> tasks, StatisticsData stats) {
-        for (Task task: tasks) {
+    private static void updateTimeTakenForTasks(ObservableList<Task> tasks, StatisticsData stats,
+                                               LocalDate startDate, LocalDate endDate) {
+        FilteredList<Task> filteredTasks = filterTasksWithinPeriod(tasks, startDate, endDate);
+        for (Task task: filteredTasks) {
             Tag currentTag = task.getTag();
             if (!stats.contains(currentTag)) {
                 stats.addTag(currentTag);
@@ -75,20 +71,21 @@ public class Statistics {
         }
     }
 
-    public static void updateTimeTakenForLessons(ObservableList<Lesson> lessons, StatisticsData stats) {
+    private static void updateTimeTakenForLessons(ObservableList<Lesson> lessons, StatisticsData stats,
+                                                 LocalDate startDate, LocalDate endDate) {
         for (Lesson lesson: lessons) {
             Tag currentTag = lesson.getTag();
             if (!stats.contains(currentTag)) {
                 stats.addTag(currentTag);
             }
-            stats.addLessonTime(currentTag, lesson.getTimeTaken());
+            stats.addLessonTime(currentTag, lesson.timeTakenWithinPeriod(startDate, endDate));
         }
     }
 
     public static void main(String args[]) {
         //test
         try {
-            generateStatistics(ParserUtil.parseDate("11-11-1111"),
+            generateStatistics(ParserUtil.parseDate("01-05-2020"),
                     ParserUtil.parseDate("01-05-2020"));
         } catch (Exception e) {
             System.out.println(e);

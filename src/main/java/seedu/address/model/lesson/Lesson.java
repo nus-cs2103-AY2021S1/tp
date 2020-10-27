@@ -75,7 +75,7 @@ public class Lesson {
     public Tag getTag() {
         return tag;
     }
-    public int getTimeTaken() {
+    private int getTimeTaken() {
         return (int) Duration.between(startDate, endDate).toMinutes();
     }
     /**
@@ -101,6 +101,31 @@ public class Lesson {
         }
         associatedTasks = tasksToAdd;
         return tasksToAdd;
+    }
+
+    /**
+     * Calculates the total number of hours this lesson takes within a specified time period. 
+     */
+    public int timeTakenWithinPeriod(LocalDate startDate, LocalDate endDate) {
+        requireAllNonNull(startDate, endDate);
+        return numberOfLessonsWithinPeriod(startDate, endDate) * getTimeTaken();
+    }
+    /**
+     * Calculates the number of lessons within a specified time period.
+     */
+    private int numberOfLessonsWithinPeriod(LocalDate start, LocalDate end) {
+        LocalDate currentDate = getStartDate();
+        while (!((currentDate.getDayOfWeek()).equals(this.dayOfWeek)
+            && ((currentDate.isAfter(start)) || currentDate.isEqual(start)))) {
+            currentDate = currentDate.plusDays(1);
+        }
+        int counter = 0;
+        while ((currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate))
+            && (currentDate.isBefore(start) || currentDate.isBefore(end))) {
+            counter++;
+            currentDate = currentDate.plusDays(7);
+        }
+        return counter;
     }
     /**
      * Returns the set of tasks the lesson created.

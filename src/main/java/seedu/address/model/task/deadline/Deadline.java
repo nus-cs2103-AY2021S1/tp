@@ -66,6 +66,11 @@ public class Deadline extends Task {
     public int getTimeTaken() {
         return duration.valueInMinutes;
     }
+    
+    @Override
+    public LocalDate getDate() {
+        return this.doneDateTime.getValue().toLocalDate();
+    }
 
     public boolean isDeadlineDateTimeFilled() {
         return deadlineDateTime.isFilled();

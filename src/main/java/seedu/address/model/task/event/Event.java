@@ -3,6 +3,7 @@ package seedu.address.model.task.event;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -77,7 +78,10 @@ public class Event extends Task {
     public int getTimeTaken() {
         return (int) Duration.between(getStartDateTimeValue(), getEndDateTimeValue()).toMinutes();
     }
-
+    @Override
+    public LocalDate getDate() {
+        return this.startDateTime.getValue().toLocalDate();
+    }
     @Override
     public boolean isSameTask(Task otherTask) {
         if (otherTask instanceof Event) {
