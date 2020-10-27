@@ -7,6 +7,7 @@ import static seedu.zookeep.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.zookeep.testutil.Assert.assertThrows;
 import static seedu.zookeep.testutil.TypicalAnimals.AHMENG;
 
+import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.zookeep.logic.commands.AddCommand;
+import seedu.zookeep.logic.commands.AppendCommand;
 import seedu.zookeep.logic.commands.ClearCommand;
 import seedu.zookeep.logic.commands.DeleteCommand;
 import seedu.zookeep.logic.commands.EditAnimalDescriptor;
@@ -21,7 +23,9 @@ import seedu.zookeep.logic.commands.ExitCommand;
 import seedu.zookeep.logic.commands.FindCommand;
 import seedu.zookeep.logic.commands.HelpCommand;
 import seedu.zookeep.logic.commands.ListCommand;
+import seedu.zookeep.logic.commands.RedoCommand;
 import seedu.zookeep.logic.commands.ReplaceCommand;
+import seedu.zookeep.logic.commands.SnapCommand;
 import seedu.zookeep.logic.commands.SortCommand;
 import seedu.zookeep.logic.commands.UndoCommand;
 import seedu.zookeep.logic.parser.exceptions.ParseException;
@@ -45,6 +49,14 @@ public class ZooKeepBookParserTest {
     }
 
     @Test
+    public void parseCommand_append() throws Exception {
+        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withMedicalConditions("obese").build();
+        AppendCommand command = (AppendCommand) parser.parseCommand(AppendCommand.COMMAND_WORD + " "
+                + AHMENG.getId().value + " " + AnimalUtil.getEditAnimalDescriptorDetails(descriptor));
+        assertEquals(new AppendCommand(AHMENG.getId(), descriptor), command);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -55,15 +67,6 @@ public class ZooKeepBookParserTest {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + "1234");
         assertEquals(new DeleteCommand(new Id("1234")), command);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Animal animal = new AnimalBuilder().build();
-        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder(animal).build();
-        ReplaceCommand command = (ReplaceCommand) parser.parseCommand(ReplaceCommand.COMMAND_WORD + " "
-                + AHMENG.getId().value + " " + AnimalUtil.getEditAnimalDescriptorDetails(descriptor));
-        assertEquals(new ReplaceCommand(AHMENG.getId(), descriptor), command);
     }
 
     @Test
@@ -99,10 +102,33 @@ public class ZooKeepBookParserTest {
     }
 
     @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
+    }
+
+    @Test
+    public void parseCommand_replace() throws Exception {
+        Animal animal = new AnimalBuilder().build();
+        EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder(animal).build();
+        ReplaceCommand command = (ReplaceCommand) parser.parseCommand(ReplaceCommand.COMMAND_WORD + " "
+                + AHMENG.getId().value + " " + AnimalUtil.getEditAnimalDescriptorDetails(descriptor));
+        assertEquals(new ReplaceCommand(AHMENG.getId(), descriptor), command);
+    }
+
+    @Test
     public void parseCommand_sort() throws Exception {
         SortCommand command = (SortCommand) parser.parseCommand(
                 SortCommand.COMMAND_WORD + " " + "name");
         assertEquals(new SortCommand(AnimalComparator.createAnimalNameComparator()), command);
+    }
+
+    @Test
+    public void parseCommand_snap() throws Exception {
+        String fileName = "zookeepbook_19-10-2020";
+        Path savePath = Path.of("data", fileName + SnapCommand.FILE_FORMAT);
+        SnapCommand command = (SnapCommand) parser.parseCommand(SnapCommand.COMMAND_WORD + " " + fileName);
+        assertEquals(new SnapCommand(savePath, fileName), command);
     }
 
     @Test
