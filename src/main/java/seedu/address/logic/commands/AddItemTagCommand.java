@@ -29,9 +29,10 @@ public class AddItemTagCommand extends Command {
             + "Example: " + COMMAND_WORD + PREFIX_ITEM_NAME + "Iron "
             + PREFIX_ITEM_TAG + "delicious, tuturu";
 
-    public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item was not found in the item list.";
+    public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item name was not provided.";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item was not found in the item list.";
     public static final String MESSAGE_TAG_NOT_ADDED = "No new tag is added.";
+    public static final String MESSAGE_TAG_NOT_PROVIDED = "Item Tag was not provided";
 
     private static final Logger logger = LogsCenter.getLogger(AddItemTagCommand.class);
 

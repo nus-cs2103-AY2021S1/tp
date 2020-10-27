@@ -9,7 +9,10 @@ import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -27,10 +30,16 @@ import seedu.address.ui.DisplayedInventoryType;
  */
 public class FindByTagCommandTest {
 
-    private Model model = new ModelManager(getTypicalItemList(), new LocationList(),
-            new RecipeList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalItemList(), new LocationList(),
-            new RecipeList(), new UserPrefs());
+    private Model model;
+    private Model expectedModel;
+
+    @BeforeEach
+    public void setUp() {
+        model = new ModelManager(getTypicalItemList(), new LocationList(),
+                new RecipeList(), new UserPrefs());
+        expectedModel = new ModelManager(getTypicalItemList(), new LocationList(),
+                new RecipeList(), new UserPrefs());
+    }
 
     @Test
     public void equals() {
@@ -111,7 +120,10 @@ public class FindByTagCommandTest {
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
     private TagMatchesKeywordsPredicate preparePredicate(String userInput) {
-        return new TagMatchesKeywordsPredicate(Arrays.asList(userInput.split(REGEX_ENTRIES)));
+        List<String> inputs = Arrays.stream(userInput.strip().split(REGEX_ENTRIES))
+                .map(String::strip)
+                .collect(Collectors.toList());
+        return new TagMatchesKeywordsPredicate(inputs);
     }
 }
 

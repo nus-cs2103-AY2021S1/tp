@@ -1,8 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ItemParserUtil.REGEX_ENTRIES;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindItemCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -25,9 +28,11 @@ public class FindItemCommandParser implements Parser<FindItemCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindItemCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        List<String> nameKeywords = Arrays.stream(trimmedArgs.split(REGEX_ENTRIES))
+                .map(String::strip)
+                .collect(Collectors.toList());
 
-        return new FindItemCommand(new NameMatchesKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindItemCommand(new NameMatchesKeywordsPredicate(nameKeywords));
     }
 
 }

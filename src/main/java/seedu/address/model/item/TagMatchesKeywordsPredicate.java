@@ -1,5 +1,7 @@
 package seedu.address.model.item;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -12,7 +14,12 @@ import seedu.address.commons.util.StringUtil;
 public class TagMatchesKeywordsPredicate implements Predicate<Item> {
     private final List<String> keywords;
 
+    /**
+     * Constructs a TagMatchesKeywordsPredicate that must not be empty
+     * @param keywords keyword patterns to match.
+     */
     public TagMatchesKeywordsPredicate(List<String> keywords) {
+        requireNonNull(keywords);
         this.keywords = keywords;
     }
 
@@ -21,9 +28,9 @@ public class TagMatchesKeywordsPredicate implements Predicate<Item> {
         return keywords.stream()
                 .anyMatch(keyword -> item.getTags()
                         .stream()
-                        .anyMatch(tag -> StringUtil
+                        .anyMatch(tag -> !keyword.strip().isBlank() && (StringUtil
                                 .matchesPatternIgnoreCase(tag.getTagName(),
-                                        Pattern.compile(keyword, Pattern.CASE_INSENSITIVE)))
+                                        Pattern.compile(keyword.strip(), Pattern.CASE_INSENSITIVE))))
                 );
     }
 

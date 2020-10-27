@@ -235,10 +235,10 @@ This command allows the user to search for items in `Inventoryinator` by item na
 - `find` - finds items
 
 **SYNOPSIS:**
-- `find` **\<string1 string2 ...\>**
+- `find` **\<string1, string2 ...\>**
 
 **DESCRIPTION:**
-- **string{digit}:** keywords to search by, space separated
+- **string{digit}:** keywords to search by, comma seperated.
 - Displays items that match or contain, case-insensitive, any of the search keywords
 
 **EXAMPLE:**
