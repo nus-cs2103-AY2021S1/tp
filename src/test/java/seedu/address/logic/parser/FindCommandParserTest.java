@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_SEARCH_PHRASE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
@@ -33,7 +34,7 @@ public class FindCommandParserTest {
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "Meet Alice");
         predicate.setKeyword(PREFIX_DESCRIPTION, "play");
-        predicate.setKeyword(PREFIX_DATE_TIME, "01-01-2020");
+        predicate.setKeyword(PREFIX_DATE, "01-01-2020");
         predicate.setKeyword(PREFIX_STATUS, "incomplete");
         FindCommand expectedFindCommand = new FindCommand(predicate);
         assertParseSuccess(parser,

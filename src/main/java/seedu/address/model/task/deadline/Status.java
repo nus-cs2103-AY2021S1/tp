@@ -1,7 +1,5 @@
 package seedu.address.model.task.deadline;
 
-import java.util.ArrayList;
-
 /**
  * Represents a Deadline Task's Status in the PlaNus task list.
  * Guarantees: immutable;
@@ -46,7 +44,7 @@ public class Status {
     }
 
     public static boolean isValidStatus(String test) {
-        return test == COMPLETE_TEXT || test == INCOMPLETE_TEXT;
+        return test.equals(COMPLETE_TEXT) || test.equals(INCOMPLETE_TEXT);
     }
 
     @Override
