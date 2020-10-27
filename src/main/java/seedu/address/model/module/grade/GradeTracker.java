@@ -75,4 +75,17 @@ public class GradeTracker {
         }
         return false;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (this == other) {
+            return true;
+        } else if (other instanceof GradeTracker) {
+            GradeTracker gT = (GradeTracker) other;
+            return this.grade.equals(gT.grade)
+                    && this.assignments.equals(gT.assignments);
+        } else {
+            return false;
+        }
+    }
 }
