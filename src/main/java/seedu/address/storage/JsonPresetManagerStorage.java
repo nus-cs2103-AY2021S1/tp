@@ -31,7 +31,7 @@ public class JsonPresetManagerStorage implements PresetManagerStorage {
     }
 
     @Override
-    public Optional<List<Preset>> readPresetManager() throws DataConversionException {
+    public Optional<List<List<Preset>>> readPresetManager() throws DataConversionException {
         return readPresetManager(filePath);
     }
 
@@ -41,7 +41,7 @@ public class JsonPresetManagerStorage implements PresetManagerStorage {
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<List<Preset>> readPresetManager(Path filePath) throws DataConversionException {
+    public Optional<List<List<Preset>>> readPresetManager(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializablePresetManager> jsonPresetManager = JsonUtil.readJsonFile(
@@ -75,7 +75,7 @@ public class JsonPresetManagerStorage implements PresetManagerStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializablePresetManager(orderManager, name, index), filePath);
         // TODO: handle exception
-        List<Preset> currentPresets = readPresetManager(filePath).orElseThrow();
+        List<List<Preset>> currentPresets = readPresetManager(filePath).orElseThrow();
         JsonUtil.saveJsonFile(new JsonSerializablePresetManager(orderManager, name, index), filePath);
     }
 

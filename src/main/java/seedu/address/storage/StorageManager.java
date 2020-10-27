@@ -92,12 +92,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<List<Preset>> readPresetManager() throws DataConversionException, IOException {
+    public Optional<List<List<Preset>>> readPresetManager() throws DataConversionException, IOException {
         return readPresetManager(presetManagerStorage.getPresetManagerFilePath());
     }
 
     @Override
-    public Optional<List<Preset>> readPresetManager(Path filePath) throws DataConversionException, IOException {
+    public Optional<List<List<Preset>>> readPresetManager(Path filePath) throws DataConversionException, IOException {
         logger.fine("Attempting to read data from file: " + filePath);
         return presetManagerStorage.readPresetManager(filePath);
     }

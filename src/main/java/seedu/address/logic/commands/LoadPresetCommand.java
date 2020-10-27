@@ -31,12 +31,12 @@ public class LoadPresetCommand extends PresetCommand {
         if (!model.isSelected()) {
             throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
-        try {
-            Optional<List<Preset>> lists = storage.readPresetManager();
-            lists.ifPresent(list -> model.setOrder(list.get(model.getVendorIndex()).getOrderItems()));
-        } catch (DataConversionException | IOException | IndexOutOfBoundsException e) {
-            throw new CommandException("Presets cannot be read.");
-        }
+//        try {
+//            Optional<List<Preset>> lists = storage.readPresetManager();
+//            lists.ifPresent(list -> model.setOrder(list.get(model.getVendorIndex()).getOrderItems()));
+//        } catch (DataConversionException | IOException | IndexOutOfBoundsException e) {
+//            throw new CommandException("Presets cannot be read.");
+//        }
         return new CommandResult(Messages.MESSAGE_PRESET_LOAD_SUCCESS, false, false, true);
     }
 

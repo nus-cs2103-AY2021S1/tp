@@ -21,12 +21,12 @@ public interface PresetManagerStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<List<Preset>> readPresetManager() throws DataConversionException, IOException;
+    Optional<List<List<Preset>>> readPresetManager() throws DataConversionException, IOException;
 
     /**
      * @see #getPresetManagerFilePath()
      */
-    Optional<List<Preset>> readPresetManager(Path filePath) throws DataConversionException, IOException;
+    Optional<List<List<Preset>>> readPresetManager(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyOrderManager} to the storage.

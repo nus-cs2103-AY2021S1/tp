@@ -1,5 +1,5 @@
 {
-  "presets" : [
+  "presets" : [[
     {
       "name": "morningshit",
       "orderItems": [
@@ -17,4 +17,5 @@
       ]
     }
   ]
+    ]
 }
