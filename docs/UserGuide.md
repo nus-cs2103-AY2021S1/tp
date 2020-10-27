@@ -278,13 +278,13 @@ Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
 
 </div>
 
-- Date format:
+- **Date format:**
 
 Format | Example
 ------ | -------
 dd/MM/yyyy | 28/09/2022
 
-- Time format:
+- **Time format:**
 
 Format | Example
 ------ | -------
