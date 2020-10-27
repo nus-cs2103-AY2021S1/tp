@@ -100,6 +100,12 @@ public class Attendance {
         return feedback;
     }
 
+    public String getFormattedAttendance() {
+        return "  - Lesson Date: " + getUserInputDate()
+                + "\n      - Attended Status: " + (getAttendanceStatus() ? "attended" : "unattended")
+                + "\n      - Lesson Feedback: " + getFeedback();
+    }
+
     @Override
     public String toString() {
         return getUserInputDate() + " " + getAttendanceStatus() + " " + getFeedback();

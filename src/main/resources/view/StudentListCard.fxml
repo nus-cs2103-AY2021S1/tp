@@ -37,6 +37,7 @@
          <Label fx:id="details" styleClass="cell_small_label" text="\$details" wrapText="true" />
       <Label fx:id="questions" styleClass="cell_small_label" text="\$questions" wrapText="true" />
          <Label fx:id="exams" styleClass="cell_small_label" text="\$exams" wrapText="true" />
+        <Label fx:id="attendance" styleClass="cell_small_label" text="\$attendance" wrapText="true" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

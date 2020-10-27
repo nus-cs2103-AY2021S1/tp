@@ -1,5 +1,7 @@
 package seedu.address.model.student.academic;
 
+import seedu.address.model.student.academic.exam.Exam;
+
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
@@ -25,6 +27,20 @@ public class Academic {
 
     public List<Attendance> getAttendance() {
         return attendance;
+    }
+
+    /**
+     * Get Attendance of student formatted for GUI use.
+     * @return formatted exams.
+     */
+    public String getFormattedAttendance() {
+        String result = "";
+        int index = 1;
+        for (Attendance singleAttendance : attendance) {
+            result = result + index + ". " + singleAttendance.getFormattedAttendance() + "\n";
+            index++;
+        }
+        return result;
     }
 
     @Override
