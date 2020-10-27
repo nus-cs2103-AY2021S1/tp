@@ -7,12 +7,10 @@ import static seedu.zookeep.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.zookeep.logic.commands.CommandTestUtil.showAnimalAtIndex;
 import static seedu.zookeep.testutil.TypicalAnimals.getTypicalZooKeepBook;
 import static seedu.zookeep.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
-import static seedu.zookeep.testutil.TypicalIndexes.INDEX_SECOND_ANIMAL;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.zookeep.commons.core.Messages;
-import seedu.zookeep.commons.core.index.Index;
 import seedu.zookeep.model.Model;
 import seedu.zookeep.model.ModelManager;
 import seedu.zookeep.model.UserPrefs;
@@ -25,12 +23,12 @@ import seedu.zookeep.model.animal.Id;
  */
 public class DeleteCommandTest {
 
-    private static final Id OUT_OF_BOUNDS_ID = new Id("99999999999999999999999999999999");
-
     private Model model = new ModelManager(getTypicalZooKeepBook(), new UserPrefs());
+    private Id invalidId = new Id("113"); // No animal in zookeep book has this id
+    private Id validId = new Id("123"); // Animal with this id exists in the zookeep book
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void execute_validIdUnfilteredList_success() {
         Animal animalToDelete = model.getFilteredAnimalList().get(0);
         DeleteCommand deleteCommand = new DeleteCommand(animalToDelete.getId());
 
@@ -43,38 +41,31 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredAnimalList().size() + 1);
-        DeleteCommand deleteCommand = new DeleteCommand(OUT_OF_BOUNDS_ID);
+    public void execute_invalidIdUnfilteredList_throwsCommandException() {
+        DeleteCommand deleteCommand = new DeleteCommand(invalidId);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }
 
+    // Able to delete an animal even if it is not shown on the UI
     @Test
-    public void execute_validIndexFilteredList_success() {
-        showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
-
-        Animal animalToDelete = model.getFilteredAnimalList().get(0);
-        DeleteCommand deleteCommand = new DeleteCommand(animalToDelete.getId());
+    public void execute_validIdFilteredList_success() {
+        Animal animalToDelete = model.getAnimal(validId).get();
+        showNoAnimal(model);
+        DeleteCommand deleteCommand = new DeleteCommand(validId);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ANIMAL_SUCCESS, animalToDelete);
-
         Model expectedModel = new ModelManager(model.getZooKeepBook(), new UserPrefs());
         expectedModel.deleteAnimal(animalToDelete);
-        showNoAnimal(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void execute_invalidIdFilteredList_throwsCommandException() {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
 
-        Index outOfBoundIndex = INDEX_SECOND_ANIMAL;
-        // ensures that outOfBoundIndex is still in bounds of zookeep book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getZooKeepBook().getAnimalList().size());
-
-        DeleteCommand deleteCommand = new DeleteCommand(OUT_OF_BOUNDS_ID);
+        DeleteCommand deleteCommand = new DeleteCommand(invalidId);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }
