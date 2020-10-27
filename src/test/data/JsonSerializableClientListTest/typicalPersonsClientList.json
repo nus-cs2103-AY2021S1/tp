@@ -8,7 +8,8 @@
     "clientSource" : [ "friends" ],
     "note" : "Real Pal",
     "isArchive": false,
-    "priority": "undefined"
+    "priority": "undefined",
+    "policy" : null
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -17,7 +18,8 @@
     "clientSource" : [ "owesMoney", "friends" ],
     "note" : "Snake",
     "isArchive": false,
-    "priority": "low"
+    "priority": "low",
+    "policy" : null
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -26,7 +28,8 @@
     "clientSource" : [ ],
     "note" : "Snake",
     "isArchive": false,
-    "priority": "medium"
+    "priority": "medium",
+    "policy" : null
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -35,7 +38,8 @@
     "clientSource" : [ "friends" ],
     "note" : "Snake",
     "isArchive": false,
-    "priority": "high"
+    "priority": "high",
+    "policy" : null
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -44,7 +48,8 @@
     "clientSource" : [ ],
     "note" : "snake",
     "isArchive": false,
-    "priority": "undefined"
+    "priority": "undefined",
+    "policy" : null
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -53,7 +58,8 @@
     "clientSource" : [ ],
     "note" : "snake",
     "isArchive": false,
-    "priority": "low"
+    "priority": "low",
+    "policy" : null
   }, {
     "name" : "George Best",
     "phone" : "9482442",
@@ -62,6 +68,7 @@
     "clientSource" : [ ],
     "note" : "Snake",
     "isArchive": false,
-    "priority": "medium"
+    "priority": "medium",
+    "policy" :null
   } ]
 }

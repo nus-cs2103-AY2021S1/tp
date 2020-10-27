@@ -59,27 +59,27 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG
-                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson));
+                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson, null));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG
-                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson));
+                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson, null));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG
-                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson));
+                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson, null));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
                 + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG
-                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson));
+                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson, null));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
                 + ADDRESS_DESC_BOB + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_DOG
-                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson));
+                + PRIORITY_DESC_BOB, new AddCommand(expectedPerson, null));
 
         // multiple clientsources - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withClientSources(VALID_CLIENTSOURCE_FRIEND,
@@ -87,7 +87,7 @@ public class AddCommandParserTest {
                 .withNote(VALID_NOTE_DOG).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + CLIENTSOURCE_DESC_FRIEND + CLIENTSOURCE_DESC_HUSBAND + NOTE_DESC_DOG + PRIORITY_DESC_BOB,
-                new AddCommand(expectedPersonMultipleTags));
+                new AddCommand(expectedPersonMultipleTags, null));
     }
 
     @Test
@@ -97,42 +97,42 @@ public class AddCommandParserTest {
         Person expectedPersonWithoutPhone = new PersonBuilder(AMY).withoutPhone().build();
         assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                         + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_CAT + PRIORITY_DESC_AMY,
-                new AddCommand(expectedPersonWithoutPhone));
+                new AddCommand(expectedPersonWithoutPhone, null));
 
         // missing email prefix
         Person expectedPersonWithoutEmail = new PersonBuilder(AMY).withoutEmail().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
                         + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_CAT + PRIORITY_DESC_AMY,
-                new AddCommand(expectedPersonWithoutEmail));
+                new AddCommand(expectedPersonWithoutEmail, null));
 
         // missing address prefix
         Person expectedPersonWithoutAddress = new PersonBuilder(AMY).withoutAddress().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_CAT + PRIORITY_DESC_AMY,
-                new AddCommand(expectedPersonWithoutAddress));
+                new AddCommand(expectedPersonWithoutAddress, null));
 
         // zero clientSources
         Person expectedPerson = new PersonBuilder(AMY).withClientSources().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + ADDRESS_DESC_AMY + NOTE_DESC_CAT + PRIORITY_DESC_AMY,
-                new AddCommand(expectedPerson));
+                new AddCommand(expectedPerson, null));
 
         // missing note prefix
         Person expectedPersonWithoutNote = new PersonBuilder(AMY).withoutNote().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + ADDRESS_DESC_AMY + CLIENTSOURCE_DESC_FRIEND + PRIORITY_DESC_AMY,
-                new AddCommand(expectedPersonWithoutNote));
+                new AddCommand(expectedPersonWithoutNote, null));
 
         // missing priority prefix - should default to undefined
         Person expectedPersonWithoutPriority = new PersonBuilder(AMY).withoutPriority().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                         + ADDRESS_DESC_AMY + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_CAT,
-                new AddCommand(expectedPersonWithoutPriority));
+                new AddCommand(expectedPersonWithoutPriority, null));
 
         // missing priority prefix
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ADDRESS_DESC_AMY + CLIENTSOURCE_DESC_FRIEND + NOTE_DESC_CAT,
-                new AddCommand(expectedPersonWithoutPriority));
+                new AddCommand(expectedPersonWithoutPriority, null));
     }
 
     @Test

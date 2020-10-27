@@ -17,7 +17,7 @@ public class PolicyName {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String policyName;
+    public final String value;
 
     /**
      * Constructs a {@code PolicyName}.
@@ -27,7 +27,7 @@ public class PolicyName {
     public PolicyName(String policyName) {
         requireNonNull(policyName);
         checkArgument(isValidPolicyName(policyName), MESSAGE_CONSTRAINTS);
-        this.policyName = policyName;
+        value = policyName;
     }
 
     /**
@@ -39,18 +39,18 @@ public class PolicyName {
 
     @Override
     public String toString() {
-        return policyName;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof PolicyName // instanceof handles nulls
-                && policyName.equals(((PolicyName) other).policyName)); // state check
+                && value.equals(((PolicyName) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return policyName.hashCode();
+        return value.hashCode();
     }
 }

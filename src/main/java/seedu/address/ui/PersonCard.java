@@ -90,8 +90,8 @@ public class PersonCard extends UiPart<Region> {
         }
 
         if (person.getPolicy() != null) {
-            policyName.getChildren().add(new Label("Policy name: " + person.getPolicy().getPolicyName().policyName));
-            policyDescription.getChildren().add(new Label("Description: " + person.getPolicy().getDescription().policyDescription));
+            policyName.getChildren().add(new Label("Policy name: " + person.getPolicy().getPolicyName().value));
+            policyDescription.getChildren().add(new Label("Description: " + person.getPolicy().getDescription().value));
         }
         priority.getChildren().add(new Label(person.getPriority().value));
 

@@ -160,12 +160,12 @@ public class ModelManager implements Model {
         if (!(obj instanceof ModelManager)) {
             return false;
         }
-
         // state check
         ModelManager other = (ModelManager) obj;
-        return clientList.equals(other.clientList)
+        return  clientList.equals(other.clientList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && policyList.equals(other.policyList);
     }
 
     //=========== Archive Mode =============================================================

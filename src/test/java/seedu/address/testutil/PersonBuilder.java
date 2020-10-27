@@ -11,6 +11,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.PolicyDescription;
+import seedu.address.model.policy.PolicyName;
 import seedu.address.model.util.SampleClientDataUtil;
 
 /**
@@ -25,6 +28,8 @@ public class PersonBuilder {
     public static final String DEFAULT_NOTE = "sd";
     public static final boolean DEFAULT_IS_ARCHIVE = false;
     public static final String DEFAULT_PRIORITY = "u";
+    public static final String DEFAULT_POLICY_NAME = "Life Plan";
+    public static final String DEFAULT_POLICY_DESCRIPTION = "Covers death, serious illnesses, and disabilities.";
 
     private Name name;
     private Phone phone;
@@ -34,6 +39,7 @@ public class PersonBuilder {
     private Note note;
     private boolean isArchive;
     private Priority priority;
+    private Policy policy;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -47,6 +53,7 @@ public class PersonBuilder {
         note = new Note(DEFAULT_NOTE);
         isArchive = DEFAULT_IS_ARCHIVE;
         priority = new Priority(DEFAULT_PRIORITY);
+        policy = null;
     }
 
     /**
@@ -61,6 +68,7 @@ public class PersonBuilder {
         note = personToCopy.getNote();
         isArchive = personToCopy.getIsArchive();
         priority = personToCopy.getPriority();
+        policy = personToCopy.getPolicy();
     }
 
     /**
@@ -168,8 +176,24 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Policy} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPolicy(String name, String description) {
+        policy = new Policy(new PolicyName(name), new PolicyDescription(description));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Policy} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withoutPolicy() {
+        policy = null;
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, clientSources, note, isArchive, priority);
+        return new Person(name, phone, email, address, clientSources, note, isArchive, priority, policy);
     }
 
 }

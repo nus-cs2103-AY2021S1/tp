@@ -3,12 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.NOTE_DESC_CAT;
-import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.PRIORITY_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -30,6 +25,7 @@ import seedu.address.model.ReadOnlyClientList;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonClientListStorage;
+import seedu.address.storage.JsonPolicyListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -48,7 +44,9 @@ public class LogicManagerTest {
         JsonClientListStorage clientListStorage =
                 new JsonClientListStorage(temporaryFolder.resolve("clientList.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(clientListStorage, userPrefsStorage);
+        JsonPolicyListStorage policyListStorage =
+                new JsonPolicyListStorage(temporaryFolder.resolve("clientList.json"));
+        StorageManager storage = new StorageManager(clientListStorage, userPrefsStorage, policyListStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,7 +75,9 @@ public class LogicManagerTest {
                 new JsonClientListIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionClientList.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(clientListStorage, userPrefsStorage);
+        JsonPolicyListStorage policyListStorage =
+                new JsonPolicyListStorage(temporaryFolder.resolve("ioExceptionPolicyList.json"));
+        StorageManager storage = new StorageManager(clientListStorage, userPrefsStorage, policyListStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -131,7 +131,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getClientList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClientList(), new UserPrefs(), model.getPolicyList());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 

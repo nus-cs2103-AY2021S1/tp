@@ -34,7 +34,7 @@ public class PolicyList {
      * Returns true if the hashtable contains the key as the given argument using PolicyName.
      */
     public boolean contains(PolicyName policyName) {
-        return policies.containsKey(policyName.policyName);
+        return policies.containsKey(policyName.value);
     }
 
     /**
@@ -53,7 +53,7 @@ public class PolicyList {
         if (contains(toAdd)) {
             throw new DuplicatePolicyException();
         }
-        policies.put(toAdd.getPolicyName().policyName, toAdd);
+        policies.put(toAdd.getPolicyName().value, toAdd);
     }
 
     /**
@@ -85,7 +85,7 @@ public class PolicyList {
      * else returns null.
      */
     public Policy getPolicy(PolicyName name) {
-        return policies.get(name.policyName);
+        return policies.get(name.value);
     }
 
     /**
