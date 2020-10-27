@@ -4,15 +4,14 @@ title: User Guide
 ---
 
 Welcome to the Wishful Shrinking User Guide! This user guide provides in-depth documentation on the
- **installation process, step-by-step instructions** for each feature and **troubleshooting recommendations**
- . Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.<br><br>
+ **installation process, step-by-step instructions** for each feature and **troubleshooting recommendations**. Wishful Shrinking is available for the Linux, Unix, Windows and Mac OS operating systems.<br><br>
 
 
 ## Introducing Wishful Shrinking
 Wishful Shrinking is your desktop diet manager. It is an app that helps you **manage your on-hand ingredients
 , organise personal recipes and track your diet**. Wishful Shrinking facilitates a **healthier diet** in three main
  ways: 
-1. Provide a *source of healthy, customizable recipes** 
+1. Provide a **source of healthy, customizable recipes** 
 2. **Recommend recipes** to improve ease of home cooking 
 3. **Track daily food and calorie** intake<br><br>
 
