@@ -110,6 +110,7 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered attendance list */
     ObservableList<StudentRecord> getFilteredStudentRecordList();
 
+    /** Returns an unmodifiable view of the filtered session list */
     ObservableList<Session> getFilteredSessionList();
 
     /**

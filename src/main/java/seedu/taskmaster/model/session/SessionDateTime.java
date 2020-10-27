@@ -25,6 +25,10 @@ public class SessionDateTime {
         return this.localDateTime;
     }
 
+    public String displayDateTime() {
+        return localDateTime.format(DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm"));
+    }
+
     @Override
     public String toString() {
         return localDateTime.format(DATE_TIME_FORMAT);

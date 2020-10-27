@@ -19,6 +19,8 @@ import seedu.taskmaster.model.ReadOnlyTaskmaster;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.record.StudentRecordList;
 import seedu.taskmaster.model.record.StudentRecordListManager;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.storage.Storage;
 
@@ -87,6 +89,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Session> getFilteredSessionList() {
+        return model.getFilteredSessionList();
+    }
+
+    @Override
     public Path getTaskmasterFilePath() {
         return model.getTaskmasterFilePath();
     }
@@ -99,5 +106,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public void changeSession(SessionName sessionName) {
+        model.changeSession(sessionName);
     }
 }
