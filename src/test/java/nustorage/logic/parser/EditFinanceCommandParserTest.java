@@ -11,7 +11,6 @@ import static nustorage.logic.parser.CommandParserTestUtil.assertParseFailure;
 
 import org.junit.jupiter.api.Test;
 
-import nustorage.logic.commands.EditCommand;
 import nustorage.logic.commands.EditFinanceCommand;
 
 public class EditFinanceCommandParserTest {
@@ -28,7 +27,7 @@ public class EditFinanceCommandParserTest {
         assertParseFailure(parser, String.valueOf(VALID_AMOUNT), MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditFinanceCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);

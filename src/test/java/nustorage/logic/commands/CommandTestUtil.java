@@ -51,6 +51,11 @@ public class CommandTestUtil {
     public static final double AMOUNT_C = 128.99;
     public static final double AMOUNT_D = 9999999;
 
+    public static final boolean HAS_INVENTORY_A = false;
+    public static final boolean HAS_INVENTORY_B = false;
+    public static final boolean HAS_INVENTORY_C = false;
+    public static final boolean HAS_INVENTORY_D = false;
+
     public static final String DATE_STRING_A = "2020-10-01";
     public static final String DATE_STRING_B = "2019-01-01";
     public static final String DATE_STRING_C = "2018-12-30";
