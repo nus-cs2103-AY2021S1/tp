@@ -99,7 +99,7 @@ t/ | TAG | Recipe tag
 
 **:information_source: Notes about the command format:**<br>
 
-* All prefixes must be preceded by a space and cannot have spaces in between.<br>
+* All prefixes must be preceded by a space.<br>
    e.g ` t/` or ` i/`
 
 * All commands are **case-sensitive**.<br>
@@ -148,10 +148,6 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
    * **Command Result**: The Command Result box will show the result of your input into the Command Box.
    * **Command Box**: Here is where you will type all your commands.
 
-
-* Table of Contents <a id="toc"></a>
-{:toc}
-
 --------------------------------------------------------------------------------------------------------------------
 
 # 4. Quick start <a id="4-quick-start"></a>
@@ -185,7 +181,7 @@ The image below is a labeled diagram of each of Wishful Shrinking's components.<
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Commands <a id="commands"></a>
+## 5. Commands <a id="5-commands"></a>
 
 ## 5.1 Recipe-related Commands <a id="51-recipe-related-commands"></a>
 
