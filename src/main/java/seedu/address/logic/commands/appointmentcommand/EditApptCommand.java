@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -39,8 +40,8 @@ public class EditApptCommand extends Command {
             + "[" + PREFIX_APPOINTMENT_OLD + "OLD APPOINTMENT TIME] "
             + "[" + PREFIX_APPOINTMENT_NEW + "NEW APPOINTMENT TIME] \n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT_OLD + "28/09/2020 20:00 "
-            + PREFIX_APPOINTMENT_NEW + "30/09/2020 15:00";
+            + PREFIX_APPOINTMENT_OLD + "28/09/2022 20:00 "
+            + PREFIX_APPOINTMENT_NEW + "30/09/2022 15:00";
 
     public static final String MESSAGE_EDIT_APPT_SUCCESS = "Edited appointment successfully!";
     public static final String MESSAGE_MISSING_APPOINTMENT =
@@ -79,11 +80,14 @@ public class EditApptCommand extends Command {
         }
 
         Set<Appointment> appointments = patientToEditAppt.getModifiableAppointments();
+        Appointment appointmentToAdd = newAppointment.setDescription(appointments.stream()
+                .filter(appt -> appt.equals(oldAppointment))
+                .collect(Collectors.toList()).get(0).getAppointmentDescription());
         appointments.remove(oldAppointment);
-        appointments.add(newAppointment);
+        appointments.add(appointmentToAdd);
         Patient newPatient = createNewPatient(patientToEditAppt, appointments);
 
-        assert !patientToEditAppt.equals(newPatient) : "New patient should be different from original";
+        //assert !patientToEditAppt.equals(newPatient) : "New patient should be different from original";
 
         model.setPatient(patientToEditAppt, newPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
