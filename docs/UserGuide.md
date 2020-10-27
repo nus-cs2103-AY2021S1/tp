@@ -278,13 +278,13 @@ Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
 
 </div>
 
-- Date format:
+- **Date format:**
 
 Format | Example
 ------ | -------
 dd/MM/yyyy | 28/09/2022
 
-- Time format:
+- **Time format:**
 
 Format | Example
 ------ | -------
@@ -318,7 +318,7 @@ Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
 * The `Appointment` to edit must be an existing appointment of the patient.
 * Only the date and timing of the `Appointment` can be changed. The name/description cannot be changed.
 * `NRIC` represents the `NRIC` of the patient whose `Appointment` you are editing.
-* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addAppt-by-gabriel-teo-yu-xiang) command section.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
 
 Examples:
 * `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
@@ -337,7 +337,7 @@ Format: `deleteAppt NRIC appt/DATE TIME`
 * The `Appointment` name/description does not need to be specified, since **Hospify** does not allow multiple appointments of the same timing for the same patient, and every appointment will have a unique timing.
 * `NRIC` represents the `NRIC` of the patient whose `Appointment` you are deleting.
 * `DATE` and `TIME` represent the date and time of the `Appointment` to be deleted.
-* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addAppt-by-gabriel-teo-yu-xiang) command section.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
 
 Examples:
 * `deleteAppt S0000001A appt/28/09/2022 20:00`
