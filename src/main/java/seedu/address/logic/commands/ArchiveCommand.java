@@ -18,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.Policy;
 
 /**
  * Archives a person identified using its displayed index from the client list.
@@ -74,6 +75,7 @@ public class ArchiveCommand extends Command {
         Set<ClientSource> archivedClientSources = personToArchive.getClientSources();
         Note archivedNote = personToArchive.getNote();
         Priority archivedPriority = personToArchive.getPriority();
+        Policy archivedPolicy = personToArchive.getPolicy();
 
         boolean archivedIsArchive = true;
 
@@ -85,7 +87,8 @@ public class ArchiveCommand extends Command {
                 archivedClientSources,
                 archivedNote,
                 archivedIsArchive,
-                archivedPriority);
+                archivedPriority,
+                archivedPolicy);
     }
 
     @Override
