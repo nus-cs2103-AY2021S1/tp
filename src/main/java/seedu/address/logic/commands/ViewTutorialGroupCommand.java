@@ -32,7 +32,7 @@ public class ViewTutorialGroupCommand extends Command {
         List<Module> lastShownList = model.getFilteredModuleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
         Module moduleToViewTutorialGroups = lastShownList.get(targetIndex.getZeroBased());

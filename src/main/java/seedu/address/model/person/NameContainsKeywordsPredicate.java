@@ -9,7 +9,7 @@ import seedu.address.model.module.Module;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Module> {
+public class NameContainsKeywordsPredicate implements Predicate<Student> {
     private final List<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
@@ -17,9 +17,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Module> {
     }
 
     @Override
-    public boolean test(Module module) {
+    public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(module.getModuleId().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(student.getName().toString(), keyword));
     }
 
     @Override
