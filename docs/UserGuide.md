@@ -220,13 +220,6 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 * Adds an entry to either category.
 * The category refers to the classification of the entry in the entry lists.
 * The category must be either 'expense' or 'revenue'.
-
-</div>
-
-<div markdown="block" class="alert alert-danger">
-
-:warning: **Warning:**
-
 * Each tag can only be 1 word.
 * If multiple tags are required, do input multiple t/ prefixes
 * Each tag in entry only appears once even if added multiple times.
@@ -411,14 +404,6 @@ You can use this command to clear all entries from a particular category when yo
 
 The `clear` command will clear all entries in the stipulated category. If you would like to delete selected
 entries, use the `delete` command instead.
-
-</div>
-
-<div markdown="block" class="alert alert-danger">
-
-:warning: **Warning:**
-
-* The `clear` command clears all expense/revenue entries, even after filtering using find command.
 
 </div>
 
