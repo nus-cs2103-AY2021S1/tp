@@ -16,7 +16,7 @@ Class UserPrefs
 Class ReadOnlyUserPrefs
 
 Package Flashcard {
-class Flashcard
+Class Flashcard
 Class Question
 Class Answer
 Class Category
