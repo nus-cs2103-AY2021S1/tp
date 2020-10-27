@@ -17,7 +17,7 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The application should display AcademicStudentCard as cells in the StudentListPanel. */
+    /** The application should toggle between admin and academic student cards. */
     private final boolean toggleStudentCard;
 
     /**
