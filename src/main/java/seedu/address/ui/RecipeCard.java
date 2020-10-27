@@ -59,7 +59,7 @@ public class RecipeCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(recipe.getName().fullName);
         instruction.setText(recipe.getInstruction().stream()
-                    .map(item -> item.toString() + ". ")
+                    .map(item -> item.toString() + ".\n")
                 .reduce("", (a, b) -> a + b).trim());
 
         try {

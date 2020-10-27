@@ -26,7 +26,7 @@ public class AddIngredientCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT + "bread, oranges " + PREFIX_QUANTITY + "2kg" + ", cheese ";
 
-    public static final String MESSAGE_SUCCESS = "New ingredient added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New ingredient(s) added: %1$s";
     public static final String MESSAGE_DUPLICATE_RECIPE = "This ingredient already exists in the fridge";
 
     private final ArrayList<Ingredient> toAdd;
@@ -54,11 +54,11 @@ public class AddIngredientCommand extends Command {
             if (model.hasIngredient(ingredient)) {
                 throw new CommandException(MESSAGE_DUPLICATE_RECIPE);
             }
-            ingredientsAdded.append(ingredient);
+            ingredientsAdded.append(ingredient + ", ");
             model.addIngredient(ingredient);
         }
         String ingredientsAddedString = ingredientsAdded.toString();
-        //        ingredientsAddedString = ingredientsAddedString.substring(1, ingredientsAddedString.length() - 1);
+        ingredientsAddedString = ingredientsAddedString.substring(0, ingredientsAddedString.length() - 2);
         return new CommandResult(String.format(MESSAGE_SUCCESS, ingredientsAddedString));
     }
 
