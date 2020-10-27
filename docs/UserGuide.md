@@ -44,11 +44,13 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
    
    * **`edit 2 q/What is a revision control software? a/It is the software tool that automate the process of Revision Control`**: Edits the 2nd flashcard in the current list with the specified attributes.
 
+   * **`filter c/OOP`** : Filters out flashcard(s) belonging to the OOP category. 
+   
    * **`fav 1`** : Favourite the 1st flashcard in the current list.
      
    * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
    
-   * **`find general`**: Find all flashcards containing general
+   * **`find general`**: Find all flashcards containing general.
 
    * **`list`** : Lists all flashcards.
 
@@ -141,16 +143,21 @@ Examples:
 
 ### Filtering out flashcards  : `filter`
 
-Filters the specified flashcard based on category input(s) by user.
+Filters for specific flashcard(s) based on the field input(s) by the user. 
+This will return all the flashcards whose fields match all the fields specified by the user.
 
-Format: `filter c/CATEGORY`
+Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 
-* Filters the specified flashcard based on category.
-* Supports filtering of one or more categories. For example:
-* `filter c/SDLC c/Revision History`
+* Filters the specified flashcard based on category, rating, favourite status or tags.
+* Supports filtering of one or more different fields. For example:
+    - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
+* Although all fields are optional, a minimum of one field has to be given.
 
 Examples:
 *  `filter` followed by `c/SDLC` filters and lists all flashcards belonging n the SDLC category.
+*  `filter` followed by `t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
+*  `filter` followed by `r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
+
 
 ### Favourite a flashcard  : `fav`
 
@@ -266,6 +273,7 @@ Action | Format, Examples
 **Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
 **Delete** | `delete INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Filter** | `filter [c/CATEGORY] [r/RATING] [f/FAVOURITE] [t/TAG]...`
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
 **Find** | `find KEYWORD...` <br>  e.g. `find general important`
