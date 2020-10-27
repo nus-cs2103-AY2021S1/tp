@@ -1,3 +1,4 @@
+## Introduction
 PropertyFree is adapted from AB3, which is a desktop application for managing property listing. Leveraging on Command 
 Line Interface for those who are more comfortable with typing than with Graphical User Interface (GUI).
 
@@ -28,9 +29,21 @@ calendar for property agents to manage their schedule be it for property viewing
 It is optimized for CLI users so that the bookkeeping can be done faster by typing in commands.
 
 
-# Property Features
+# Features
+
+> **Command format**
+> - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`.
+> - Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter.
+> - Parameters can be in any order. e.g. if the command specified `add-p n/PROPERTY_NAME a/ADDRESS`, `add-p a/ADDRESS n/PROPERTY_NAME` is also acceptable.
+
+## Viewing help 
+
+Format: `help`  
+Displays a link to this User Guide.
 
 ---
+
+# Property Features
 
 ## Adding a property: 
 
@@ -86,6 +99,7 @@ edit-p 1 n/Cove Residences a/23 Cove Street
 ```
 Edits the property name and address of the first property to `Cove Residences` and `23 Cove Street` respectively.
 
+Expected output:
 ```
 Edited Property: Cove Residences
 Property id: P4
@@ -115,7 +129,12 @@ Example:
 ```
 find-p n/Cove Sunrise ap/<= 100 r/no
 ```
-Returns all properties whose names contains either `Cove` or `Sunrise`, asking price is less than or equals to `100`, **and** is not a rental property.
+
+Expected output:
+```
+2 properties listed!
+```
+Displays all properties whose names contains either `Cove` or `Sunrise`, asking price is less than or equals to `100`, **and** is not a rental property.
 
 ## Deleting a property
 
