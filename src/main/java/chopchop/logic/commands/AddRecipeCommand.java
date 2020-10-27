@@ -49,10 +49,6 @@ public class AddRecipeCommand extends Command implements Undoable {
 
         model.addRecipe(this.recipe);
 
-        if (DisplayNavigator.hasDisplayController()) {
-            DisplayNavigator.loadRecipeDisplay(recipe);
-        }
-
         return CommandResult.message("Added recipe '%s'", this.recipe.getName());
     }
 
