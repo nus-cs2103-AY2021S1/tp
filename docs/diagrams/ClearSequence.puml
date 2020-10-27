@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":WishfulShrinkingParser" as WishfulShrinkingParser LOGIC_COLOR
-participant "command :ClearConsumptionCommand" as ClearConsumptionCommand LOGIC_COLOR
+participant "command :ClearCommand" as ClearCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -14,29 +14,29 @@ participant ":WishfulShrinking" as WishfulShrinking MODEL_COLOR
 participant ":ConsumptionList" as ConsumptionList MODEL_COLOR
 end box
 
-[-> LogicManager : execute("clearC")
+[-> LogicManager : execute("clear")
 activate LogicManager
 
-LogicManager -> WishfulShrinkingParser : parseCommand("clearC")
+LogicManager -> WishfulShrinkingParser : parseCommand("clear")
 activate WishfulShrinkingParser
 
-create ClearConsumptionCommand
-WishfulShrinkingParser -> ClearConsumptionCommand
-activate ClearConsumptionCommand
+create ClearCommand
+WishfulShrinkingParser -> ClearCommand
+activate ClearCommand
 
-ClearConsumptionCommand --> WishfulShrinkingParser
-deactivate ClearConsumptionCommand
+ClearCommand --> WishfulShrinkingParser
+deactivate ClearCommand
 
 WishfulShrinkingParser --> LogicManager : command
 deactivate WishfulShrinkingParser
 
-LogicManager -> ClearConsumptionCommand : execute()
-activate ClearConsumptionCommand
+LogicManager -> ClearCommand : execute()
+activate ClearCommand
 
-ClearConsumptionCommand -> Model : clearConsumption()
+ClearCommand -> Model : clearType()
 activate Model
 
-Model -> WishfulShrinking : clearConsumption()
+Model -> WishfulShrinking : clearType()
 activate WishfulShrinking
 
 WishfulShrinking --> ConsumptionList: clear()
@@ -48,18 +48,18 @@ deactivate ConsumptionList
 WishfulShrinking --> Model
 deactivate WishfulShrinking
 
-Model --> ClearConsumptionCommand
+Model --> ClearCommand
 deactivate Model
 
 create CommandResult
-ClearConsumptionCommand -> CommandResult
+ClearCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> ClearConsumptionCommand
+CommandResult --> ClearCommand
 deactivate CommandResult
 
-ClearConsumptionCommand --> LogicManager : result
-deactivate ClearConsumptionCommand
+ClearCommand --> LogicManager : result
+deactivate ClearCommand
 
 [<--LogicManager
 deactivate LogicManager
