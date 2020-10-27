@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.label.Label;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TagBuilder;
 
@@ -23,20 +24,6 @@ public class TagCommandTest {
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TagCommand(null));
-    }
-
-    @Test
-    @Disabled
-    @Deprecated
-    // This test is using the original idea of tagging person.
-    public void execute_tagAcceptedByModel_tagSuccessful() throws Exception {
-        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
-        Tag validTag = new TagBuilder().build();
-
-        CommandResult commandResult = new TagCommand(validTag).execute(modelStub);
-
-        assertEquals(String.format(TagCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTag), modelStub.tagsAdded);
     }
 
     @Test
