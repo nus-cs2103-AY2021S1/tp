@@ -1,24 +1,15 @@
 package seedu.resireg.model.allocation;
 
-import org.junit.jupiter.api.Test;
-import seedu.resireg.model.room.Room;
-import seedu.resireg.testutil.AllocationBuilder;
-import seedu.resireg.testutil.RoomBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_FLOOR_B;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_NUMBER_B;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_TYPE_B;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_TAG_DAMAGED;
-import static seedu.resireg.testutil.Assert.assertThrows;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_ONE;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_TWO;
-import static seedu.resireg.testutil.TypicalRooms.ROOM_A;
-import static seedu.resireg.testutil.TypicalRooms.ROOM_B;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_TWO;
-import static seedu.resireg.testutil.TypicalStudents.ALICE;
 import static seedu.resireg.testutil.TypicalStudents.BENSON;
+
+import org.junit.jupiter.api.Test;
+import seedu.resireg.testutil.AllocationBuilder;
+
 
 public class AllocationTest {
 

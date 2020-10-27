@@ -1,17 +1,18 @@
 package seedu.resireg.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.resireg.commons.exceptions.IllegalValueException;
-import seedu.resireg.model.room.Floor;
-import seedu.resireg.model.room.RoomNumber;
-import seedu.resireg.model.student.StudentId;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.resireg.storage.JsonAdaptedAllocation.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.resireg.testutil.Assert.assertThrows;
 import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_ONE;
 import static seedu.resireg.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.resireg.testutil.TypicalStudents.AMY;
+
+import org.junit.jupiter.api.Test;
+import seedu.resireg.commons.exceptions.IllegalValueException;
+import seedu.resireg.model.room.Floor;
+import seedu.resireg.model.room.RoomNumber;
+import seedu.resireg.model.student.StudentId;
+
 
 class JsonAdaptedAllocationTest {
     private static final String INVALID_FLOOR = "08";

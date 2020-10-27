@@ -7,7 +7,6 @@ import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.Room;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
-import seedu.resireg.model.student.Student;
 import seedu.resireg.model.tag.Tag;
 import seedu.resireg.model.util.SampleDataUtil;
 

@@ -1,29 +1,22 @@
 package seedu.resireg.model.allocation;
 
-import org.junit.jupiter.api.Test;
-import seedu.resireg.model.allocation.exceptions.AllocationNotFoundException;
-import seedu.resireg.model.allocation.exceptions.DuplicateAllocationException;
-import seedu.resireg.model.room.Room;
-import seedu.resireg.model.room.UniqueRoomList;
-import seedu.resireg.model.room.exceptions.DuplicateRoomException;
-import seedu.resireg.model.room.exceptions.RoomNotFoundException;
-import seedu.resireg.testutil.AllocationBuilder;
-import seedu.resireg.testutil.RoomBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.resireg.testutil.Assert.assertThrows;
+import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_ONE;
+import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_TWO;
+import static seedu.resireg.testutil.TypicalRooms.ROOM_B;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_ROOM_TYPE_B;
-import static seedu.resireg.logic.commands.CommandTestUtil.VALID_TAG_DAMAGED;
-import static seedu.resireg.testutil.Assert.assertThrows;
-import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_ONE;
-import static seedu.resireg.testutil.TypicalAllocations.ALLOCATION_TWO;
-import static seedu.resireg.testutil.TypicalRooms.ROOM_A;
-import static seedu.resireg.testutil.TypicalRooms.ROOM_B;
+import org.junit.jupiter.api.Test;
+import seedu.resireg.model.allocation.exceptions.AllocationNotFoundException;
+import seedu.resireg.model.allocation.exceptions.DuplicateAllocationException;
+import seedu.resireg.testutil.AllocationBuilder;
+
 
 public class UniqueAllocationListTest {
 
@@ -49,8 +42,8 @@ public class UniqueAllocationListTest {
     public void contains_allocationWithSameIdentityFieldsDifferentRoomNumberInList_returnsTrue() {
         uniqueAllocationList.add(ALLOCATION_ONE);
         Allocation editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
-                .withRoomNumber(ROOM_B.getRoomNumber().value)
-                .build();
+            .withRoomNumber(ROOM_B.getRoomNumber().value)
+            .build();
         assertTrue(uniqueAllocationList.contains(editedAllocationOne));
     }
 
@@ -58,8 +51,8 @@ public class UniqueAllocationListTest {
     public void contains_allocationWithSameIdentityFieldsDifferentFloorInList_returnsTrue() {
         uniqueAllocationList.add(ALLOCATION_ONE);
         Allocation editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
-                .withFloor(ROOM_B.getFloor().value)
-                .build();
+            .withFloor(ROOM_B.getFloor().value)
+            .build();
         assertTrue(uniqueAllocationList.contains(editedAllocationOne));
     }
 
@@ -82,13 +75,13 @@ public class UniqueAllocationListTest {
     @Test
     public void setAllocation_nullEditedAllocation_throwsNullPointerException() {
         assertThrows(NullPointerException.class,
-                () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, null));
+            () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, null));
     }
 
     @Test
     public void setAllocation_targetAllocationNotInList_throwsAllocationNotFoundException() {
         assertThrows(AllocationNotFoundException.class,
-                () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, ALLOCATION_ONE));
+            () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, ALLOCATION_ONE));
     }
 
     @Test
@@ -104,8 +97,8 @@ public class UniqueAllocationListTest {
     public void setAllocation_editedAllocationHasSameIdentityDifferentFloor_success() {
         uniqueAllocationList.add(ALLOCATION_ONE);
         Allocation editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
-                .withFloor(ROOM_B.getFloor().value)
-                .build();
+            .withFloor(ROOM_B.getFloor().value)
+            .build();
         uniqueAllocationList.setAllocation(ALLOCATION_ONE, editedAllocationOne);
         UniqueAllocationList expectedUniqueAllocationList = new UniqueAllocationList();
         expectedUniqueAllocationList.add(editedAllocationOne);
@@ -116,8 +109,8 @@ public class UniqueAllocationListTest {
     public void setAllocation_editedAllocationHasSameIdentityDifferentRoomNumber_success() {
         uniqueAllocationList.add(ALLOCATION_ONE);
         Allocation editedAllocationOne = new AllocationBuilder(ALLOCATION_ONE)
-                .withRoomNumber(ROOM_B.getRoomNumber().value)
-                .build();
+            .withRoomNumber(ROOM_B.getRoomNumber().value)
+            .build();
         uniqueAllocationList.setAllocation(ALLOCATION_ONE, editedAllocationOne);
         UniqueAllocationList expectedUniqueAllocationList = new UniqueAllocationList();
         expectedUniqueAllocationList.add(editedAllocationOne);
@@ -138,7 +131,7 @@ public class UniqueAllocationListTest {
         uniqueAllocationList.add(ALLOCATION_ONE);
         uniqueAllocationList.add(ALLOCATION_TWO);
         assertThrows(DuplicateAllocationException.class,
-                () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, ALLOCATION_TWO));
+            () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, ALLOCATION_TWO));
     }
 
     @Test
@@ -162,7 +155,7 @@ public class UniqueAllocationListTest {
     @Test
     public void setAllocations_nullUniqueAllocationList_throwsNullPointerException() {
         assertThrows(NullPointerException.class,
-                () -> uniqueAllocationList.setAllocations((UniqueAllocationList) null));
+            () -> uniqueAllocationList.setAllocations((UniqueAllocationList) null));
     }
 
     @Test
@@ -193,12 +186,12 @@ public class UniqueAllocationListTest {
     public void setAllocations_listWithDuplicateAllocations_throwsDuplicateAllocationException() {
         List<Allocation> listWithDuplicateAllocations = Arrays.asList(ALLOCATION_ONE, ALLOCATION_ONE);
         assertThrows(DuplicateAllocationException.class,
-                () -> uniqueAllocationList.setAllocations(listWithDuplicateAllocations));
+            () -> uniqueAllocationList.setAllocations(listWithDuplicateAllocations));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueAllocationList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class,
+            () -> uniqueAllocationList.asUnmodifiableObservableList().remove(0));
     }
 }
