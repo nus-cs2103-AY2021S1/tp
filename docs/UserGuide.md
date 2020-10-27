@@ -135,7 +135,7 @@ There is no need to save manually. <br>
 ### 3.1. Common Commands
 #### 3.1.1. View : `view`
 
-Brings user to the profile panel of the staff, if on the staff list, or applicant, if on the applicant list, at the specified index. 
+Brings you to the profile panel of the staff, if on the staff list, or applicant, if on the applicant list, at the specified index. 
 
 Format: `view INDEX`
 
@@ -297,7 +297,7 @@ Format: `setappstatus INDEX NEW_APPLICATION_STATUS`
 Example:
 * `setappstatus 1 received`
 
-### 3.5. Quick Add (Experienced users): `add`
+### 3.5. Quick Add (Experienced Users): `add`
 
 These are some shortcuts you can use for the commands above.
 
@@ -343,7 +343,7 @@ Format: `delete <index_of_applicant> a- c/ ti/TITLE`
 
 Format: `delete <index_of_staff> l/ d/DATE (IN DD/MM/YYYY/)`
 
-### 3.7. Quick Edit (Experienced users): `edit`
+### 3.7. Quick Edit (Experienced Users): `edit`
 
 #### 3.7.1. Edit a staff
 
