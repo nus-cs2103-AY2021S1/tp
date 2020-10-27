@@ -1,6 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,23 +31,18 @@ public class EditTodoCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed task list. "
-            + "Existing values will be overwritten by the input values.\n";
-    /*
+            + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_INGREDIENTS + "INGREDIENT 1, QUANTITY; INGREDIENT 2, QUANTITY] "
-            + "[" + PREFIX_INSTRUCTIONS + "INSTRUCTION 1; INSTRUCTION 2] "
-            + "[" + PREFIX_IMAGEFILEPATH + "PATH] "
-            + "[" + PREFIX_CALORIE + "CALORIES] "
-            + "[" + PREFIX_SERVING + "SERVING] "
-            + "[" + PREFIX_RATING + "RATING] "
-            + "[" + PREFIX_DIFFICULTY + "DIFFICULTY] "
-            + "[" + PREFIX_TAG + "TAG [TAG]...]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_INGREDIENTS + "toast, 2; eggs, 1 "
-            + PREFIX_INSTRUCTIONS + "put egg on toast; put bread on egg";
-
-     */
+            + PREFIX_TITLE + "TITLE "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_PRIORITY + "PRIORITY "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_TITLE + "tP Tasks "
+            + PREFIX_DESCRIPTION + "Refactor tP Code "
+            + PREFIX_PRIORITY + "High "
+            + PREFIX_TAG + "cs2103 "
+            + PREFIX_TAG + "project";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

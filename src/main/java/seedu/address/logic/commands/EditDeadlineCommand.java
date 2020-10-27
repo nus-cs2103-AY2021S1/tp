@@ -1,6 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +33,19 @@ public class EditDeadlineCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
             + "by the index number used in the displayed task list. "
-            + "Existing values will be overwritten by the input values.\n";
+            + "Existing values will be overwritten by the input values.\n"
+            + PREFIX_TITLE + "TITLE "
+            + PREFIX_DESCRIPTION + "DESCRIPTION "
+            + PREFIX_PRIORITY + "PRIORITY "
+            + PREFIX_TASK_DATE + "DEADLINE DATE "
+            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_TITLE + "tP Tasks "
+            + PREFIX_DESCRIPTION + "Refactor tP Code "
+            + PREFIX_PRIORITY + "High "
+            + PREFIX_TASK_DATE + "2020-10-01 "
+            + PREFIX_TAG + "cs2103 "
+            + PREFIX_TAG + "project";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
