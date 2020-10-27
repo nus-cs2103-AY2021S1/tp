@@ -131,13 +131,6 @@ This command quits ChopChop. Your recipe data is already saved whenever a comman
 Usage: `quit`
 
 
-### Undoing commands — **`redo`**
-Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
-
-Usage: `redo`
-
-
-
 ### Viewing Recipes — **`view`**
 This command displays a specific recipe from ChopChop. You can either use the name or the number of the recipe to refer to it.
 
@@ -581,6 +574,7 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
 
 Usage: `undo`
+
 
 
 
