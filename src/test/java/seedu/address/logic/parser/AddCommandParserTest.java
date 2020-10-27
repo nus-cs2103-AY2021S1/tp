@@ -47,7 +47,7 @@ public class AddCommandParserTest {
         // multiple names - last name accepted
         assertParseSuccess(parser,
                 NAME_DESC_SIT_UP + NAME_DESC_PUSH_UP
-                        + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP  + MUSCLES_DESC_PUSH_UP,
+                        + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         //multiple descriptions - last description accepted
