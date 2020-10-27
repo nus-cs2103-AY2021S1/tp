@@ -10,7 +10,6 @@ import chopchop.model.Model;
  * Redo the last redoable command.
  */
 public class RedoCommand extends Command {
-    public static final String COMMAND_WORD = "redo";
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {

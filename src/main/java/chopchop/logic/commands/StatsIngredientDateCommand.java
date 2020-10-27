@@ -11,14 +11,6 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class StatsIngredientDateCommand extends Command {
-    public static final String COMMAND_WORD = "stats ingredient";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of ingredient. "
-        + "Parameters: "
-        + "[" + ARG_ON + " DATE] "
-        + "[" + ARG_BEFORE + "DATE] "
-        + "[" + ARG_AFTER + "DATE] "
-        + "Example " + COMMAND_WORD + " " + ARG_BEFORE + " 2020-02-13";
 
     private final LocalDateTime on;
     private final LocalDateTime before;
@@ -65,5 +57,17 @@ public class StatsIngredientDateCommand extends Command {
     @Override
     public String toString() {
         return String.format("StatsIngredientDateCommand");
+    }
+
+    public static String getCommandString() {
+        return "stats ingredient";
+    }
+
+    public static String getCommandHelp() {
+        return "Shows ingredients that were used by cooked recipes in a given timeframe";
+    }
+
+    public static String getUserGuideSection() {
+        throw new RuntimeException("Travis pls implement this");
     }
 }

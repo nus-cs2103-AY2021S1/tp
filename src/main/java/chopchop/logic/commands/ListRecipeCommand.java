@@ -37,4 +37,12 @@ public class ListRecipeCommand extends Command {
     public static String getCommandString() {
         return "list recipe";
     }
+
+    public static String getCommandHelp() {
+        return "Lists all recipes, clearing any search filters";
+    }
+
+    public static String getUserGuideSection() {
+        return "list-recipes--listrecipe";
+    }
 }
