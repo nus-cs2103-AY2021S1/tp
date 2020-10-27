@@ -29,7 +29,7 @@ public class ConsumptionListPanel extends UiPart<Region> {
         consumptionListView.setCellFactory(listView -> new ConsumptionListViewCell());
         //Responsive resizing and increase list view performance
         ChangeListener<Number> consumptionListSizeListener = (observable, oldValue, newValue) -> {
-            consumptionListView.setFixedCellSize(consumptionListView.getWidth() / 2);
+            consumptionListView.setFixedCellSize(consumptionListView.getWidth() / 1.8);
         };
         consumptionListView.widthProperty().addListener(consumptionListSizeListener);
     }
