@@ -69,9 +69,11 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     /**
      * Adds a property to the property book.
      * The property must not already exist in the property book.
+     *
+     * @return The added property.
      */
-    public void addProperty(Property p) {
-        properties.add(p);
+    public Property addProperty(Property p) {
+        return properties.add(p);
     }
 
     /**

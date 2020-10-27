@@ -288,10 +288,6 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-
-
-
-
     //=========== PropertyBook ================================================================================
 
     @Override
@@ -321,9 +317,10 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addProperty(Property property) {
-        propertyBook.addProperty(property);
+    public Property addProperty(Property property) {
+        Property added = propertyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+        return added;
     }
 
     @Override

@@ -64,8 +64,8 @@ public class AddPropertyCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
-        model.addProperty(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd)).setEntity(EntityType.PROPERTY);
+        Property added = model.addProperty(toAdd);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, added)).setEntity(EntityType.PROPERTY);
     }
 
     @Override

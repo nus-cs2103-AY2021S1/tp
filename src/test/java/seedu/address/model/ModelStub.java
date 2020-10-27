@@ -181,7 +181,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addProperty(Property property) {
+    public Property addProperty(Property property) {
         throw new AssertionError("This method should not be called.");
     }
 
