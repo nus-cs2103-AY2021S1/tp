@@ -245,7 +245,6 @@ Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized
 
 ## Command summary <a name="CommandSummary"></a>
 
-<<<<<<< HEAD
 |   Action      | Format, Examples                                                                                                                                              |
 |---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |  **Add**      | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`                |
