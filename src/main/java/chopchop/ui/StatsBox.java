@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
+import chopchop.model.usage.RecipeUsage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -45,11 +46,17 @@ public class StatsBox extends UiPart<Region> {
     /**
      * Creates a {@code PinBox}.
      */
-    public StatsBox() {
+    public StatsBox(List<RecipeUsage> lst) {
         super(FXML);
         pins.setText("Statistics\n");
-        renderList(EMPTY_RESULT);
-
+        if (lst.size() == 0) {
+            setStatsMessage(EMPTY_PROMPT, true);
+            renderList(EMPTY_RESULT);
+        } else {
+            setStatsMessage("Here is the list of recipes made recently.", false);
+            renderList(lst.stream().map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .collect(Collectors.toList()));
+        }
     }
 
     private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
