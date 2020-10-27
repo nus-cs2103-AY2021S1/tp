@@ -183,6 +183,11 @@ class DeleteCategoryCommandTest {
         }
 
         @Override
+        public void topupCategoryBudget(Tag category, Amount amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addCategory(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }

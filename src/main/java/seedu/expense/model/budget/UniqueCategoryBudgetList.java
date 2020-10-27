@@ -108,8 +108,6 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     /**
      * Filters this list's filtered list by {@code predicate}
-     *
-     * @param predicate
      */
     public void filterCategoryBudget(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
@@ -133,6 +131,21 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     public CategoryBudget getDefaultCategory() {
         return defaultCategory;
+    }
+
+    /**
+     * Tops up the {@code CategoryBudget} that matches the specified category by the given amount {@code toAdd}.
+     */
+    public void topupCategoryBudget(Tag category, Amount toAdd) {
+        requireAllNonNull(category, toAdd);
+
+        if (category.equals(DEFAULT_TAG)) {
+            topupBudget(toAdd);
+        }
+
+        internalList.stream()
+                .filter(categoryBudget -> categoryBudget.getTag().equals(category))
+                .forEach(categoryBudget -> categoryBudget.topupBudget(toAdd));
     }
 
     @Override
