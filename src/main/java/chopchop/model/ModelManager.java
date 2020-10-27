@@ -228,7 +228,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the ReadOnlyIngredientBook
+     * Returns the RecipeUsageList
      */
     @Override
     public UsageList<RecipeUsage> getRecipeUsageList() {
@@ -236,11 +236,27 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns the ReadOnlyIngredientBook
+     * Returns the IngredientUsageList
      */
     @Override
     public UsageList<IngredientUsage> getIngredientUsageList() {
         return this.ingredientUsageList;
+    }
+
+    /**
+     * Sets the RecipeUsageList
+     */
+    @Override
+    public void setRecipeUsageList(UsageList<RecipeUsage> list) {
+        this.recipeUsageList.setAll(list);
+    }
+
+    /**
+     * Sets the IngredientUsageList
+     */
+    @Override
+    public void setIngredientUsageList(UsageList<IngredientUsage> list) {
+        this.ingredientUsageList.setAll(list);
     }
 
     @Override

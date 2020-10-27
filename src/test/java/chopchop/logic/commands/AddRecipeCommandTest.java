@@ -1,14 +1,15 @@
 package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static chopchop.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
-import java.util.Optional;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.NoSuchElementException;
 
 import chopchop.model.EntryBook;
@@ -21,17 +22,13 @@ import org.junit.jupiter.api.Test;
 public class AddRecipeCommandTest {
 
     @Test
-    public void constructor_nullRecipe_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddRecipeCommand(null));
-    }
-
-    @Test
     public void execute_recipeAcceptedByModel_addSuccessful() throws Exception {
         var modelStub = new ModelStubAcceptingRecipeAdded();
         var validRecipe = new RecipeBuilder().build();
 
-        var result = new AddRecipeCommand(validRecipe)
-            .execute(modelStub, new CommandTestUtil.HistoryManagerStub());
+        var result = new AddRecipeCommand(validRecipe.getName(), validRecipe.getIngredients(),
+            validRecipe.getSteps(), validRecipe.getTags())
+                .execute(modelStub, new CommandTestUtil.HistoryManagerStub());
 
         assertTrue(result.didSucceed());
         assertEquals(Arrays.asList(validRecipe), modelStub.recipesAdded);
@@ -41,14 +38,14 @@ public class AddRecipeCommandTest {
     public void equals() {
         var appleSalad = new RecipeBuilder().withName("Apple Salad").build();
         var bananaSalad = new RecipeBuilder().withName("Banana Salad").build();
-        var addAppleSaladCommand = new AddRecipeCommand(appleSalad);
-        var addBananaSaladCommand = new AddRecipeCommand(bananaSalad);
+        var addAppleSaladCommand = new AddRecipeCommand(appleSalad.getName(), List.of(), List.of(), Set.of());
+        var addBananaSaladCommand = new AddRecipeCommand(bananaSalad.getName(), List.of(), List.of(), Set.of());
 
         // same object -> returns true
         assertTrue(addAppleSaladCommand.equals(addAppleSaladCommand));
 
         // same values -> returns true
-        var addAmericanoCommand = new AddRecipeCommand(appleSalad);
+        var addAmericanoCommand = new AddRecipeCommand("Apple Salad", List.of(), List.of(), Set.of());
         assertTrue(addAppleSaladCommand.equals(addAmericanoCommand));
 
         // different types -> returns false

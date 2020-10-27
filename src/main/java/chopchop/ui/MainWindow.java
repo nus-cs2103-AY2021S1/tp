@@ -165,6 +165,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    void showCommandOutput(String text, boolean isError) {
+        this.commandOutput.setFeedbackToUser(text, isError);
+    }
+
+
     /**
      * Closes the application.
      */
