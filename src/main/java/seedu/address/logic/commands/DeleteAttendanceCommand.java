@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -68,7 +69,7 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), attendanceDate));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), getUserInputDateString()));
     }
 
     private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) throws CommandException {
@@ -86,6 +87,11 @@ public class DeleteAttendanceCommand extends AttendanceCommand {
         attendanceList.remove(attendanceToDelete);
 
         return attendanceList;
+    }
+
+    private String getUserInputDateString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/M/yyyy");
+        return attendanceDate.format(formatter);
     }
 
     @Override
