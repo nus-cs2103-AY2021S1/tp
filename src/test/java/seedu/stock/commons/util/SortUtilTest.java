@@ -3,6 +3,7 @@ package seedu.stock.commons.util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStocks;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -55,6 +56,23 @@ public class SortUtilTest {
         Comparator<Stock> nameComparator = SortUtil.generateComparator(SortUtil.Field.NAME);
         copy.sort(expectedComparator);
         toTestComparator.sort(nameComparator);
+        assertEquals(copy, toTestComparator);
+    }
+
+    @Test
+    public void generateComparator_quantityComparator_success() {
+        List<Stock> copy = new ArrayList<>(toTestComparator);
+        Comparator<Stock> expectedComparator = new Comparator<>() {
+            @Override
+            public int compare(Stock a, Stock b) {
+                BigInteger quantityA = new BigInteger(a.getQuantity().toString());
+                BigInteger quantityB = new BigInteger(b.getQuantity().toString());
+                return quantityA.compareTo(quantityB);
+            }
+        };
+        Comparator<Stock> quantityComparator = SortUtil.generateComparator(SortUtil.Field.QUANTITY);
+        copy.sort(expectedComparator);
+        toTestComparator.sort(quantityComparator);
         assertEquals(copy, toTestComparator);
     }
 }
