@@ -1,11 +1,11 @@
 package seedu.pivot.testutil;
 
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_STATUS_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_STATUS_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,10 +64,10 @@ public class TypicalCases {
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Case AMY = new CaseBuilder().withTitle(VALID_NAME_AMY)
+    public static final Case AMY = new CaseBuilder().withTitle(VALID_TITLE_AMY)
             .withStatus(VALID_STATUS_AMY)
             .withTags(VALID_TAG_FRIEND).build();
-    public static final Case BOB = new CaseBuilder().withTitle(VALID_NAME_BOB)
+    public static final Case BOB = new CaseBuilder().withTitle(VALID_TITLE_BOB)
             .withStatus(VALID_STATUS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 

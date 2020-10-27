@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TITLE_AMY;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.AMY;
 
@@ -79,7 +79,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + NAME_DESC_AMY;
+        String addCommand = AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + PREFIX_WITH_TITLE_AMY;
         Case expectedCase = new CaseBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addCase(expectedCase);

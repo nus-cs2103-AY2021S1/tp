@@ -3,8 +3,8 @@ package seedu.pivot.model.investigationcase;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.pivot.testutil.Assert.assertThrows;
 import static seedu.pivot.testutil.TypicalCases.ALICE;
 import static seedu.pivot.testutil.TypicalCases.BOB;
@@ -40,7 +40,7 @@ public class CaseTest {
         assertFalse(ALICE.isSameCase(null));
 
         // different title -> returns false
-        Case editedAlice = new CaseBuilder(ALICE).withTitle(VALID_NAME_BOB).build();
+        Case editedAlice = new CaseBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.isSameCase(editedAlice));
 
         // different status -> returns false
@@ -76,7 +76,7 @@ public class CaseTest {
         assertFalse(ALICE.equals(BOB));
 
         // different title -> returns false
-        Case editedAlice = new CaseBuilder(ALICE).withTitle(VALID_NAME_BOB).build();
+        Case editedAlice = new CaseBuilder(ALICE).withTitle(VALID_TITLE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false

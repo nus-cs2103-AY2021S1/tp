@@ -27,36 +27,37 @@ import seedu.pivot.testutil.EditCaseDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_TITLE_AMY = "Amy Bee Disappearance";
+    public static final String VALID_TITLE_BOB = "Bob Choo Salon Theft";
     public static final String VALID_STATUS_AMY = "active";
     public static final String VALID_STATUS_BOB = "closed";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_TITLE + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_TITLE + VALID_NAME_BOB;
+    public static final String PREFIX_WITH_TITLE_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
+    public static final String PREFIX_WITH_TITLE_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
 
-    public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
-    public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String PREFIX_WITH_STATUS_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
+    public static final String PREFIX_WITH_STATUS_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
+    public static final String PREFIX_WITH_TAG_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String PREFIX_WITH_TAG_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in names
-    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "status";
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    // '&' not allowed in title
+    public static final String PREFIX_WITH_INVALID_TITLE_AMY = " " + PREFIX_TITLE + "James&";
+    public static final String PREFIX_WITH_INVALID_STATUS = " " + PREFIX_STATUS + "status";
+    public static final String PREIFX_WITH_INVALID_TAG = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCaseDescriptor DESC_AMY;
-    public static final EditCommand.EditCaseDescriptor DESC_BOB;
+    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_AMY;
+    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_BOB;
 
     static {
-        DESC_AMY = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_AMY)
+        EDIT_CASE_DESCRIPTOR_AMY = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_AMY)
                 .withStatus(VALID_STATUS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB)
+        EDIT_CASE_DESCRIPTOR_BOB = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_BOB)
                 .withStatus(VALID_STATUS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
