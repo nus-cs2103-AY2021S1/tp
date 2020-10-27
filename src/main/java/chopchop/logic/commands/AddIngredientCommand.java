@@ -1,8 +1,6 @@
 package chopchop.logic.commands;
 
 import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
-import static chopchop.commons.util.Strings.ARG_EXPIRY;
-import static chopchop.commons.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
@@ -23,17 +21,6 @@ import chopchop.model.ingredient.Ingredient;
  * Adds an ingredient to the ingredient book.
  */
 public class AddIngredientCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "add ingredient";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an ingredient to the ingredient book. "
-            + "Parameters: "
-            + "NAME "
-            + ARG_QUANTITY + " QUANTITY "
-            + ARG_EXPIRY + " EXPIRY\n"
-            + "Example: " + COMMAND_WORD
-            + " Chili "
-            + ARG_QUANTITY + " 3 "
-            + ARG_EXPIRY + " 2020-10-05";
 
     private final String name;
     private final Set<Tag> tags;
@@ -132,5 +119,17 @@ public class AddIngredientCommand extends Command implements Undoable {
             this.quantity.orElse(Count.of(1)), this.expiryDate
                 .map(e -> String.format(" <Expiry Date: %s>", e)).orElse("")
             );
+    }
+
+    public static String getCommandString() {
+        return "add ingredient";
+    }
+
+    public static String getCommandHelp() {
+        return "Adds a new ingredient, or increases the quantity of an existing ingredient";
+    }
+
+    public static String getUserGuideSection() {
+        return "adding-ingredients--addingredient";
     }
 }

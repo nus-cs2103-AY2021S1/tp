@@ -24,4 +24,16 @@ public class UndoCommand extends Command {
     public String toString() {
         return String.format("UndoCommand");
     }
+
+    public static String getCommandString() {
+        return "undo";
+    }
+
+    public static String getCommandHelp() {
+        return "Undoes the last performed command";
+    }
+
+    public static String getUserGuideSection() {
+        return "undoing-commands--undo";
+    }
 }

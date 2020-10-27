@@ -4,14 +4,18 @@ package chopchop.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents the result of a command execution.
  */
 public class CommandResult {
 
-    private final String message;
+    private final List<Part> parts;
+
     private final boolean isError;
     private final boolean showHelp;
     private final boolean shouldExit;
@@ -22,7 +26,19 @@ public class CommandResult {
     private CommandResult(String message, boolean isError, boolean shouldExit, boolean showHelp) {
         requireNonNull(message);
 
-        this.message = message;
+        this.isError = isError;
+        this.showHelp = showHelp;
+        this.shouldExit = shouldExit;
+        this.parts = List.of(Part.text(message));
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     */
+    private CommandResult(List<Part> parts, boolean isError, boolean shouldExit, boolean showHelp) {
+        requireNonNull(parts);
+
+        this.parts = parts;
         this.isError = isError;
         this.showHelp = showHelp;
         this.shouldExit = shouldExit;
@@ -57,11 +73,46 @@ public class CommandResult {
     }
 
     /**
-     * Returns the message
+     * Returns the parts of the message
      */
-    public String getMessage() {
-        return this.message;
+    public List<Part> getParts() {
+        return this.parts;
     }
+
+    /**
+     * Appends a new textual part to the list.
+     */
+    public CommandResult appending(String text, boolean prependNewline) {
+        var list = new ArrayList<>(this.parts);
+        if (list.size() > 0 && !prependNewline) {
+            list.get(list.size() - 1).setAppendNewline(false);
+        }
+
+        list.add(Part.text(text));
+
+        return new CommandResult(list, this.isError, this.shouldExit, this.showHelp);
+    }
+
+    /**
+     * Appends a new link part to the list.
+     */
+    public CommandResult appendingLink(String text, String url, boolean prependNewline) {
+        var list = new ArrayList<>(this.parts);
+        if (list.size() > 0 && !prependNewline) {
+            list.get(list.size() - 1).setAppendNewline(false);
+        }
+
+        list.add(Part.link(text, url));
+
+        return new CommandResult(list, this.isError, this.shouldExit, this.showHelp);
+    }
+
+    @Override
+    public String toString() {
+        return (this.isError ? "Error: " : "")
+            + String.join(" ", this.parts.stream().map(Part::getText).collect(Collectors.toList()));
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -73,7 +124,7 @@ public class CommandResult {
 
         var cr = (CommandResult) obj;
 
-        return this.message.equals(cr.message)
+        return this.parts.equals(cr.parts)
             && this.isError == cr.isError
             && this.showHelp == cr.showHelp
             && this.shouldExit == cr.shouldExit;
@@ -81,7 +132,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.message, this.isError, this.showHelp, this.shouldExit);
+        return Objects.hash(this.parts, this.isError, this.showHelp, this.shouldExit);
     }
 
     /**
@@ -118,5 +169,51 @@ public class CommandResult {
     public static CommandResult exit() {
         return new CommandResult("", /* isError: */ false, /* shouldExit: */ true,
             /* showHelp: */ false);
+    }
+
+
+    public static class Part {
+        private final String url;
+        private final String text;
+        private final boolean isLink;
+        private boolean appendNewline;
+
+        /**
+         * Makes a new part.
+         */
+        Part(String text, String url, boolean isLink) {
+            this.url = url;
+            this.text = text;
+            this.isLink = isLink;
+            this.appendNewline = true;
+        }
+
+        public String getText() {
+            return this.text;
+        }
+
+        public String getUrl() {
+            return this.url;
+        }
+
+        public boolean isLink() {
+            return this.isLink;
+        }
+
+        public boolean appendNewline() {
+            return this.appendNewline;
+        }
+
+        public void setAppendNewline(boolean newline) {
+            this.appendNewline = newline;
+        }
+
+        static Part text(String text) {
+            return new Part(text, "", false);
+        }
+
+        static Part link(String text, String url) {
+            return new Part(text, url, true);
+        }
     }
 }

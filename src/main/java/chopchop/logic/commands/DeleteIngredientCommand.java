@@ -114,4 +114,9 @@ public class DeleteIngredientCommand extends Command implements Undoable {
         return String.format("DeleteIngredientCommand(%s%s)", this.item,
             this.quantity.map(q -> String.format(" (%s)", q)).orElse(""));
     }
+
+    public static String getCommandString() {
+        return "delete ingredient";
+    }
+
 }

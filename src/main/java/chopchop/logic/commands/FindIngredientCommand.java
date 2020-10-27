@@ -55,4 +55,8 @@ public class FindIngredientCommand extends Command {
     public String toString() {
         return String.format("FindIngredientCommand(keywords: %s)", this.predicate.getKeywords());
     }
+
+    public static String getCommandString() {
+        return "find ingredient";
+    }
 }

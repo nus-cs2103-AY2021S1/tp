@@ -33,4 +33,8 @@ public class ListRecipeCommand extends Command {
     public String toString() {
         return String.format("ListRecipeCommand");
     }
+
+    public static String getCommandString() {
+        return "list recipe";
+    }
 }

@@ -238,4 +238,9 @@ public class EditRecipeCommand extends Command implements Undoable {
     public String toString() {
         return String.format("EditRecipeCommand(%s)", this.item);
     }
+
+    public static String getCommandString() {
+        return "edit recipe";
+    }
+
 }

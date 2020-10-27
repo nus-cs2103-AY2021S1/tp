@@ -69,4 +69,13 @@ public class FilterRecipeCommand extends Command {
             && ingredientPredicates.equals(((FilterRecipeCommand) other).ingredientPredicates)); // state check
     }
 
+    public static String getCommandString() {
+        return "filter recipe";
+    }
+
 }
+
+
+
+
+

@@ -121,4 +121,8 @@ public class MakeRecipeCommand extends Command implements Undoable {
     public String toString() {
         return String.format("MakeRecipeCommand(%s)", this.item);
     }
+
+    public static String getCommandString() {
+        return "make";
+    }
 }

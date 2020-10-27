@@ -70,4 +70,8 @@ public class FilterIngredientCommand extends Command {
             && expPredicate.equals(((FilterIngredientCommand) other).expPredicate)); // state check
     }
 
+
+    public static String getCommandString() {
+        return "filter ingredient";
+    }
 }

@@ -24,4 +24,16 @@ public class RedoCommand extends Command {
     public String toString() {
         return String.format("RedoCommand");
     }
+
+    public static String getCommandString() {
+        return "redo";
+    }
+
+    public static String getCommandHelp() {
+        return "Redoes the last performed command";
+    }
+
+    public static String getUserGuideSection() {
+        return "redoing-commands--redo";
+    }
 }
