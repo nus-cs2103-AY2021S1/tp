@@ -21,16 +21,18 @@ public class UnassignCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns an instructor from one or more modules.\n"
-            + "If module codes are provided, it will unassign the instructor from all module codes provided.\n"
-            + "Else, it will unassign the instructor from all modules he/she teaches.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Unassigns an instructor from one or more modules.\n"
+            + "If module codes are provided, it will unassign the instructor "
+            + "from all module codes provided.\n"
+            + "Otherwise, it will unassign the instructor from all modules he/she teaches.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_MODULE_CODE + "[MODULE CODE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_CODE + "CS2103"
             + " or " + COMMAND_WORD + " 1 m/";
 
-    public static final String MESSAGE_UNASSIGNMENT_SUCCESS = "Unassigned instructor from module(s)";
+    public static final String MESSAGE_UNASSIGNMENT_SUCCESS = "Unassigned %1$s from %2$s";
 
     private final Index index;
     private final Set<ModuleCode> moduleCodes;
@@ -67,31 +69,37 @@ public class UnassignCommand extends Command {
         }
 
         Person instructor = lastShownList.get(index.getZeroBased());
+        StringBuilder moduleString = new StringBuilder();
 
         if (moduleCodes.isEmpty()) {
             model.unassignInstructorFromAll(instructor);
-
+            moduleString.append("all modules");
         } else {
-
             for (ModuleCode moduleCode : moduleCodes) {
                 if (!model.hasModuleCode(moduleCode)) {
-                    throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
+                    throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
                 }
             }
 
             for (ModuleCode moduleCode : moduleCodes) {
                 if (!model.moduleCodeHasInstructor(moduleCode, instructor)) {
-                    throw new CommandException(String.format(
-                        MESSAGE_INSTRUCTOR_DOES_NOT_EXIST, moduleCode));
+                    throw new CommandException(String.format(MESSAGE_INSTRUCTOR_DOES_NOT_EXIST,
+                            instructor.getName(), moduleCode));
                 }
             }
 
             for (ModuleCode moduleCode : moduleCodes) {
                 model.unassignInstructor(instructor, moduleCode);
+                moduleString.append(moduleCode).append(", ");
             }
+
+            assert moduleString.length() > 2;
+
+            moduleString.delete(moduleString.length() - 2, moduleString.length());
         }
 
-        return new CommandResult(MESSAGE_UNASSIGNMENT_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_UNASSIGNMENT_SUCCESS,
+                instructor.getName(), moduleString));
     }
 
     @Override
