@@ -18,7 +18,7 @@ public class PriorityContainsKeywordsPredicate implements Predicate<Assignment> 
     @Override
     public boolean test(Assignment assignment) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(assignment.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(assignment.getPriority().toString(), keyword));
     }
 
     @Override
