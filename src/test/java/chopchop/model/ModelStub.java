@@ -162,16 +162,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setRecipeUsageList(UsageList<RecipeUsage> usages) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setIngredientUsageList(UsageList<IngredientUsage> usages) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void addRecipeUsage(Recipe recipe) {
         throw new AssertionError("This method should not be called.");
     }

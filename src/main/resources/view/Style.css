@@ -70,21 +70,21 @@
 }
 
 .ingredient-button {
-     -fx-padding: 2;
-     -fx-border-color: #795548;
-     -fx-background-radius: 4;
-     -fx-border-radius: 4;
-     -fx-background-color: #efebe9;
-     -fx-background-insets: 0 0 0 0, 0, 1, 2;
-     -fx-focus-color: #d7ccc8;
-     -fx-faint-focus-color: #d7ccc8;
- }
- .ingredient-button:hover {
-     -fx-background-color: #d7ccc8;
- }
- .ingredient-button:pressed {
-     -fx-background-color: transparent;
- }
+    -fx-padding: 2;
+    -fx-border-color: #795548;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-background-color: #efebe9;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+    -fx-focus-color: #d7ccc8;
+    -fx-faint-focus-color: #d7ccc8;
+}
+.ingredient-button:hover {
+ -fx-background-color: #d7ccc8;
+}
+.ingredient-button:pressed {
+ -fx-background-color: transparent;
+}
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 15px;
@@ -349,6 +349,7 @@
     -fx-background-insets: 0;
     -fx-background-color: transparent, white, transparent, white;
 }
+
 .header1 {
     -fx-background-color: transparent;
     -fx-font-size: 12pt;
@@ -447,6 +448,7 @@
 #header1 .scroll-pane .content{
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 10 10;
+}
 #tags {
     -fx-hgap: 4;
     -fx-vgap: 2;
