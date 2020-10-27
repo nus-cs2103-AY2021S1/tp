@@ -87,7 +87,7 @@ public class MainApp extends Application {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialData;
         ReadOnlyContactList initialContactList = initializeContactList(storage);
-        ReadOnlyTodoList initialTodoList = new TodoList();
+        ReadOnlyTodoList initialTodoList = initializeTodoList(storage);
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
@@ -133,6 +133,33 @@ public class MainApp extends Application {
             initialContactList = new ContactList();
         }
         return initialContactList;
+    }
+
+    /**
+     * Returns a {@code ReadOnlyTodoList} with the data from {@code storage}'s todo list.
+     *
+     * @param storage Storage object containing todo list data.
+     * @return ReadOnlyTodoList containing the tasks from the Storage argument.
+     */
+    private ReadOnlyTodoList initializeTodoList(Storage storage) {
+        Optional<ReadOnlyTodoList> todoListOptional;
+        ReadOnlyTodoList initialTodoList;
+        try {
+            todoListOptional = storage.readTodoList();
+            if (!todoListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TodoList");
+                initialTodoList = new TodoList();
+            } else {
+                initialTodoList = todoListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TodoList");
+            initialTodoList = new TodoList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TodoList");
+            initialTodoList = new TodoList();
+        }
+        return initialTodoList;
     }
 
     private void initLogging(Config config) {
