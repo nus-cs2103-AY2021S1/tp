@@ -3,14 +3,15 @@ layout: page
 title: User Guide
 ---
 
-This guide aims to orientate you to the features of **Medmoriser**. If you're a medical student looking for a quiz
+Hi Medical Students! Welcome to the User Guide for **Medmoriser**. 
+
+**Medmoriser** is a desktop app to help medical students organize, memorise, and revise their content with ease.
+
+This guide aims to orientate you to the features of **Medmoriser**. If you're looking for a quiz
 management system, this guide will give you all the information you need to get started with **Medmoriser**.
 
 * Table of Contents
 {:toc}
-
-**Medmoriser** is a desktop app to help medical students memorise and revise their content. It is optimized for
- CLI users so that frequent revisions can be done faster by typing in commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -93,7 +94,11 @@ Examples:
 *  `edit 1 a/To pump blood` Edits the answer the 1st question to be `To pump blood`.
 *  `edit 2 q/What is the heart t/` Edits the question of the 2nd Q&A to be `What is the heart` and clears all existing tags.
 
-### Locating questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
+### Finding questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
+
+> **Tip**
+>
+> `PHRASE` refer to words with spacing, for example: Nervous System
 
 If you would like to search the database, you can do so in a few ways:
 
@@ -106,19 +111,26 @@ If you would like to search the database, you can do so in a few ways:
     Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE 1, KEYWORD1`
 
 3. Find Q&A with **tags** containing any of the given keywords. 
-    Keywords for tags can also have phrases, however this requires the text to have an exact match (case-insensitive).
+   Keywords for tags can also have phrases, however this requires the text to have an exact match (case-insensitive).
 
-    Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
+    Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE 1, KEYWORD1`
 
 4. Find Q&A with **questions or answers** containing any of the given keywords.
 
-    Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
+    Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE 1, KEYWORD1`
+
 
 Examples:
-* `find q/system, disease` - finds questions with the word "system" and/or "disease".
-* `find a/vessels, chronic disease` - finds answers with the word vessels, and/or the phrase "chronic disease".
+* `find q/system, disease` - finds questions containing the word "system" and/or "disease".
+* `find a/vessels, chronic disease` - finds answers containing the word vessels, and/or the phrase "chronic disease".
 * `find t/anatomy, Nervous System` - finds question sets tagged with the word "anatomy" and/or "Nervous System" (can be both), requires exact match of words (case-insensitive).
-* `find infection, nervous system` - finds question and/or answers with the word infection, and/or the phrase "nervous system"
+* `find infection, nervous system` - finds question and/or answers containing the word infection, and/or the phrase "nervous system"
+
+How it looks in the GUI:
+![Context](images/Context.PNG)
+
+Expected result:
+![Result](images/FindResult.PNG)
 
 ### Clearing all entries: `clear`
 
