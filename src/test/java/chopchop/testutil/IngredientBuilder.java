@@ -5,10 +5,9 @@ import java.util.Set;
 
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Tag;
-import chopchop.model.ingredient.Ingredient;
-import chopchop.model.attributes.Tag;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.units.Count;
+import chopchop.model.ingredient.Ingredient;
 
 public class IngredientBuilder {
 
