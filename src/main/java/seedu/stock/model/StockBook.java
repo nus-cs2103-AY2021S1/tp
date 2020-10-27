@@ -98,8 +98,11 @@ public class StockBook implements ReadOnlyStockBook {
 
     @Override
     public String toString() {
-        return stocks.asUnmodifiableObservableList().size() + " stocks";
-        // TODO: refine later
+        String toReturn = "Stocks are:";
+        for (int i = 0; i < stocks.asUnmodifiableObservableList().size(); i++) {
+            toReturn += "\n" + stocks.asUnmodifiableObservableList().get(i);
+        }
+        return toReturn.equals("Stocks are:") ? "No stocks in stockbook" : toReturn;
     }
 
     @Override

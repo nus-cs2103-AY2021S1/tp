@@ -30,7 +30,9 @@ public class AddCommandIntegrationTest {
         Stock validStock = PINEAPPLE;
 
         Model expectedModel = new ModelManager(model.getStockBook(), new UserPrefs(), getTypicalSerialNumberSetsBook());
+
         expectedModel.addStock(validStock);
+        expectedModel.updateSerialNumberSet(PINEAPPLE.getSource());
 
         assertCommandSuccess(new AddCommand(validStock), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validStock), expectedModel);

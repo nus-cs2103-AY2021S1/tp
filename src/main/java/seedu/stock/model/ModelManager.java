@@ -219,7 +219,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return stockBook.equals(other.stockBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredStocks.equals(other.filteredStocks);
+                && filteredStocks.equals(other.filteredStocks)
+                && serialNumberSetsBook.equals(other.serialNumberSetsBook);
     }
 
 }
