@@ -28,7 +28,11 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredCaseList(predicate);
+
+        // updates the currently shown list with cases of matching keywords
+        // this ensures that UI only shows cases in archive or unarchived, based on what they looking at currently
+        model.updateWithCurrentFilteredCaseList(predicate);
+
         return new CommandResult(
                 String.format(UserMessages.MESSAGE_CASES_LISTED_OVERVIEW, model.getFilteredCaseList().size()));
     }

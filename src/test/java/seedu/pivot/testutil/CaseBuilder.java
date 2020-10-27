@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
@@ -135,8 +136,8 @@ public class CaseBuilder {
      * @return Person object
      */
     public Case build() {
-        return new Case(title, description, status, documents, suspects, victims, witnesses, tags);
+        return new Case(title, description, status, documents, suspects, victims, witnesses, tags,
+                ArchiveStatus.DEFAULT);
     }
-
 
 }

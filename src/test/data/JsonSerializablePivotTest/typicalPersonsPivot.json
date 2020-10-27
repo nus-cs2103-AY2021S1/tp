@@ -29,7 +29,8 @@
       "email" : "tom@gmail.com",
       "address" : "Blk 123"
     } ],
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Benson Meier",
     "description": "",
@@ -53,7 +54,8 @@
       "email" : "tom@gmail.com",
       "address" : "Blk 123"
     } ],
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Carl Kurz",
     "description": "",
@@ -62,7 +64,8 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Daniel Meier",
     "description": "",
@@ -71,7 +74,8 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Elle Meyer",
     "description": "",
@@ -80,7 +84,8 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "Fiona Kunz",
     "description": "",
@@ -89,7 +94,8 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
     "title" : "George Best",
     "description": "",
@@ -98,6 +104,7 @@
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   } ]
 }

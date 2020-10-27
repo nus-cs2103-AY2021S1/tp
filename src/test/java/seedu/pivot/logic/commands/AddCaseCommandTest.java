@@ -150,6 +150,11 @@ public class AddCaseCommandTest {
         public void updateFilteredCaseList(Predicate<Case> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void updateWithCurrentFilteredCaseList(Predicate<Case> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

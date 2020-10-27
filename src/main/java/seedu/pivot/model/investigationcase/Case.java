@@ -34,6 +34,7 @@ public class Case {
     private final Title title;
     private final Description description;
     private final Status status;
+    private final ArchiveStatus archiveStatus;
 
     // Data fields
     private final List<Suspect> suspects = new ArrayList<>();
@@ -45,9 +46,9 @@ public class Case {
     /**
      * Every field must be present and not null.
      */
-
     public Case(Title title, Description description, Status status, List<Document> documents,
-                List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags) {
+                List<Suspect> suspects, List<Victim> victims, List<Witness> witnesses, Set<Tag> tags,
+                ArchiveStatus archiveStatus) {
         requireAllNonNull(title, description, status, documents, suspects, victims, witnesses, tags);
         this.title = title;
         this.description = description;
@@ -57,6 +58,7 @@ public class Case {
         this.victims.addAll(victims);
         this.tags.addAll(tags);
         this.witnesses.addAll(witnesses);
+        this.archiveStatus = archiveStatus;
     }
 
     public Title getTitle() {
@@ -93,6 +95,10 @@ public class Case {
 
     public List<Witness> getWitnesses() {
         return witnesses.stream().collect(Collectors.toList());
+    }
+
+    public ArchiveStatus getArchiveStatus() {
+        return archiveStatus;
     }
 
     /**

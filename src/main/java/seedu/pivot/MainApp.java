@@ -91,7 +91,9 @@ public class MainApp extends Application {
             initialData = new Pivot();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ModelManager modelManager = new ModelManager(initialData, userPrefs);
+        modelManager.updateFilteredCaseList(Model.PREDICATE_SHOW_ALL_CASES);
+        return modelManager;
     }
 
     private void initLogging(Config config) {

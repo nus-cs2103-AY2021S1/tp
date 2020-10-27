@@ -5,6 +5,7 @@
     "status": "ACTIVE",
     "suspects": [],
     "victims": [],
-    "witnesses": []
+    "witnesses": [],
+    "archiveStatus": "DEFAULT"
   } ]
 }
