@@ -3,6 +3,7 @@ package chopchop.ui;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.util.Callback;
@@ -70,6 +72,9 @@ public class StatsBox extends UiPart<Region> {
      * panel.
      */
     public void renderList(List<Pair<String, String>> inputList) {
+        if (inputList.isEmpty()) {
+            inputList = new ArrayList<>(Arrays.asList(new Pair<>("No results found", "")));
+        }
         ObservableList<Pair<String, String>> items = FXCollections.observableArrayList(inputList);
         listView.setItems(items);
 
@@ -85,9 +90,14 @@ public class StatsBox extends UiPart<Region> {
         });
     }
 
-    public void setStatsMessage(String msg) {
+    public void setStatsMessage(String msg, boolean isEmpty) {
+        this.header1.getChildren().clear();
         var content = this.header1.getChildren();
-        content.add(new Text(msg));
+        var txt = new Text(msg);
+        if (isEmpty) {
+            txt.setFill(Color.RED);
+        }
+        content.add(txt);
     }
 
     public static class PairListCell extends ListCell<Pair<String, String>> {

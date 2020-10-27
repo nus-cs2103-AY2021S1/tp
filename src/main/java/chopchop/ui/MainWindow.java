@@ -189,11 +189,12 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isStatsOutput()) {
                 this.commandOutput.setFeedbackToUser("", false); // clear cmd box
-                this.statsOutput.setStatsMessage(commandResult.getMessage());
+                var res = commandResult.getStatsMessage();
+                this.statsOutput.setStatsMessage(commandResult.getMessage(), res.size() == 0);
                 this.statsOutput.renderList(commandResult.getStatsMessage());
             } else {
                 this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
-                this.statsOutput.setStatsMessage(""); // clear stats box
+                this.statsOutput.setStatsMessage("", false); // clear stats box
             }
 
             if (commandResult.shouldShowHelp()) {

@@ -4,6 +4,7 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public abstract class Usage {
     private final String name;
@@ -21,6 +22,11 @@ public abstract class Usage {
 
     public LocalDateTime getDate() {
         return this.date;
+    }
+
+    public String getPrintableDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
+        return this.date.format(formatter);
     }
 
     /**

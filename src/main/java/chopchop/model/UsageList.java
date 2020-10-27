@@ -74,12 +74,28 @@ public class UsageList<T extends Usage> {
             .collect(Collectors.toList());
     }
 
-    public List<T> getUsagesBetween(LocalDateTime start, LocalDateTime end) {
-        requireAllNonNull(start, end);
-        return this.usages.stream()
-            .filter(x -> x.isAfter(start))
-            .filter(x -> x.isBefore(end))
-            .collect(Collectors.toList());
+    /**
+     * Returns a list of string output pairs that can be directly fed into listView.
+     */
+    public List<Pair<String, String>> getUsagesBetween(LocalDateTime start, LocalDateTime end) {
+        if (start == null && end == null) {
+            return new ArrayList<>();
+        } else if (start != null && end == null) {
+            return getUsagesAfter(start).stream()
+                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .collect(Collectors.toList());
+        } else if (start == null) {
+            return getUsagesBefore(end).stream()
+                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .collect(Collectors.toList());
+        } else {
+            return this.usages.stream()
+                .filter(x -> x.isAfter(start))
+                .filter(x -> x.isBefore(end))
+                .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
+                .collect(Collectors.toList());
+        }
+
     }
 
     public List<T> getRecentlyUsed(int n) {

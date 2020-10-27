@@ -29,8 +29,7 @@ public class StatsCommandParser {
         assert args.getCommand().equals(Strings.COMMAND_STATS);
 
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_ON,
-            Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
+        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
             return Result.error("'stats' command doesn't support '%s'\n%s",
                 foo.get(), StatsRecipeMostCookedCommand.MESSAGE_USAGE);
         }
@@ -50,18 +49,17 @@ public class StatsCommandParser {
                     return parseDateIngredientCommand(target.snd().strip(), args);
 
                 default:
-                    return Result.error("can only find stats of recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("Stats of recipes or ingredients not found ('%s' invalid)", target.fst());
                 }
             });
     }
 
     private static Result<StatsRecipeDateCommand> parseDateRecipeCommand(String name, CommandArguments args) {
         if (!name.isBlank()) {
-            return Result.error("just 'stats recipe' will do. Do not specify name.");
+            return Result.error("Just 'stats recipe' will do. Do not specify name.");
         }
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_ON,
-            Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
+        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
 
             return Result.error("'stats recipe' command doesn't support '%s'\n%s",
                 foo.get(), StatsRecipeDateCommand.MESSAGE_USAGE);
@@ -72,16 +70,6 @@ public class StatsCommandParser {
                 StatsRecipeDateCommand.MESSAGE_USAGE);
         }
 
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'stats' command doesn't support edit-arguments\n%s",
-                StatsRecipeDateCommand.MESSAGE_USAGE);
-        }
-
-        var on = args.getArgument(Strings.ARG_ON);
-        if (on.size() > 1) {
-            return Result.error("multiple dates specified\n%s", StatsRecipeDateCommand.MESSAGE_USAGE);
-        }
-
         var before = args.getArgument(Strings.ARG_BEFORE);
         if (before.size() > 1) {
             return Result.error("multiple dates specified\n%s", StatsRecipeDateCommand.MESSAGE_USAGE);
@@ -92,21 +80,10 @@ public class StatsCommandParser {
             return Result.error("multiple dates specified\n%s", StatsRecipeDateCommand.MESSAGE_USAGE);
         }
 
-        if (on.size() == 1 && ((before.size() + after.size()) > 0)) {
-            return Result.error("'on' should not be used together with 'before' or 'after'\n%s",
-                StatsRecipeDateCommand.MESSAGE_USAGE);
-        }
-
-        if (on.size() + before.size() + after.size() == 0) {
-            return Result.error("Please at least have 1 specifier\n%s",
-                StatsRecipeDateCommand.MESSAGE_USAGE);
-        }
-
         try {
-            LocalDateTime arg1 = processDate(on).orElse(null);
-            LocalDateTime arg2 = processDate(before).orElse(null);
-            LocalDateTime arg3 = processDate(after).orElse(null);
-            return Result.of(new StatsRecipeDateCommand(arg1, arg2, arg3));
+            LocalDateTime arg1 = processDate(before).orElse(null);
+            LocalDateTime arg2 = processDate(after).orElse(null);
+            return Result.of(new StatsRecipeDateCommand(arg1, arg2));
         } catch (Exception e) {
             return Result.error("Unable to parse date\n%s",
                 StatsRecipeDateCommand.MESSAGE_USAGE);
@@ -115,11 +92,10 @@ public class StatsCommandParser {
 
     private static Result<StatsIngredientDateCommand> parseDateIngredientCommand(String name, CommandArguments args) {
         if (!name.isBlank()) {
-            return Result.error("just 'stats ingredient' will do. Do not specify name.");
+            return Result.error("Just 'stats ingredient' will do. Do not specify name.");
         }
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_ON,
-            Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
+        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
 
             return Result.error("'stats ingredient' command doesn't support '%s'\n%s",
                 foo.get(), StatsRecipeDateCommand.MESSAGE_USAGE);
@@ -130,16 +106,6 @@ public class StatsCommandParser {
                 StatsRecipeDateCommand.MESSAGE_USAGE);
         }
 
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'stats' command doesn't support edit-arguments\n%s",
-                StatsRecipeDateCommand.MESSAGE_USAGE);
-        }
-
-        var on = args.getArgument(Strings.ARG_ON);
-        if (on.size() > 1) {
-            return Result.error("multiple dates specified\n%s", StatsIngredientDateCommand.MESSAGE_USAGE);
-        }
-
         var before = args.getArgument(Strings.ARG_BEFORE);
         if (before.size() > 1) {
             return Result.error("multiple dates specified\n%s", StatsIngredientDateCommand.MESSAGE_USAGE);
@@ -150,21 +116,10 @@ public class StatsCommandParser {
             return Result.error("multiple dates specified\n%s", StatsIngredientDateCommand.MESSAGE_USAGE);
         }
 
-        if (on.size() == 1 && (before.size() + after.size()) != 0) {
-            return Result.error("'on' should not be used together with 'before' or 'after'\n%s",
-                StatsRecipeDateCommand.MESSAGE_USAGE);
-        }
-
-        if (on.size() + before.size() + after.size() == 0) {
-            return Result.error("Please at least have 1 specifier\n%s",
-                StatsRecipeDateCommand.MESSAGE_USAGE);
-        }
-
         try {
-            LocalDateTime arg1 = processDate(on).orElse(null);
-            LocalDateTime arg2 = processDate(before).orElse(null);
-            LocalDateTime arg3 = processDate(after).orElse(null);
-            return Result.of(new StatsIngredientDateCommand(arg1, arg2, arg3));
+            LocalDateTime arg1 = processDate(before).orElse(null);
+            LocalDateTime arg2 = processDate(after).orElse(null);
+            return Result.of(new StatsIngredientDateCommand(arg1, arg2));
         } catch (Exception e) {
             return Result.error("Unable to parse date\n%s",
                 StatsRecipeDateCommand.MESSAGE_USAGE);
