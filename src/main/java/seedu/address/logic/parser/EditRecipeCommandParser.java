@@ -9,6 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_IMAGE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -22,6 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.commons.Calories;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Instruction;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -34,7 +37,7 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public EditRecipeCommand parse(String args) throws ParseException {
+    public EditRecipeCommand parse(String args) throws ParseException, IOException, URISyntaxException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_INGREDIENT, PREFIX_CALORIES,
@@ -69,12 +72,9 @@ public class EditRecipeCommandParser implements Parser<EditRecipeCommand> {
             editRecipeDescriptor.setCalories(calories);
         }
         if (argMultimap.getValue(PREFIX_RECIPE_IMAGE).isPresent()) {
-            String recipeImage = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
-            if (recipeImage.length() < 13) {
-                recipeImage = "images/default.jpg";
-            } else if (!recipeImage.substring(0, 6).equals("images") && !recipeImage.substring(0, 4).equals("http")) {
-                recipeImage = "images/default.jpg";
-            }
+            String recipeImageString = argMultimap.getValue(PREFIX_RECIPE_IMAGE).get();
+            ImageParser imageParser = new ImageParser();
+            RecipeImage recipeImage = imageParser.parse(recipeImageString);
             editRecipeDescriptor.setRecipeImage(recipeImage);
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {

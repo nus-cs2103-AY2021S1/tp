@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -52,7 +53,7 @@ public class CommandBox extends UiPart<Region> {
             } else {
                 commandTextField.setText("");
             }
-        } catch (CommandException | ParseException | IOException e) {
+        } catch (CommandException | ParseException | IOException | URISyntaxException e) {
             setStyleToIndicateCommandFailure();
         }
     }
@@ -87,7 +88,8 @@ public class CommandBox extends UiPart<Region> {
          *
          * @see seedu.address.logic.Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException, IOException;
+        CommandResult execute(String commandText) throws CommandException,
+                ParseException, IOException, URISyntaxException;
     }
 
 }

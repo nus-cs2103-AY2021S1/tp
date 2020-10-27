@@ -85,10 +85,10 @@ public class EditIngredientCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        Ingredient IngredientInFilteredList =
+        Ingredient ingredientInFilteredList =
                 model.getFilteredIngredientList().get(INDEX_FIRST_INGREDIENT.getZeroBased());
         Ingredient editedIngredient =
-                new IngredientBuilder(IngredientInFilteredList).withValue(VALID_NAME_MARGARITAS).build();
+                new IngredientBuilder(ingredientInFilteredList).withValue(VALID_NAME_MARGARITAS).build();
         EditIngredientCommand editIngredientCommand = new EditIngredientCommand(INDEX_FIRST_INGREDIENT,
                 new EditIngredientDescriptorBuilder().withIngredient(new Ingredient(VALID_NAME_MARGARITAS))
                         .build());

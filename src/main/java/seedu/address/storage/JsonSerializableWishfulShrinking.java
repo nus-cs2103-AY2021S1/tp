@@ -15,6 +15,7 @@ import seedu.address.model.consumption.Consumption;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 
 /**
  * An Immutable WishfulShrinking that is serializable to JSON format.
@@ -58,7 +59,7 @@ class JsonSerializableWishfulShrinking {
             String recipeName = consump.getRecipe().getName().fullName;
             ArrayList<Ingredient> ingredients = consump.getRecipe().getIngredient();
             ArrayList<Instruction> instruction = consump.getRecipe().getInstruction();
-            String recipeImage = consump.getRecipe().getRecipeImage();
+            RecipeImage recipeImage = consump.getRecipe().getRecipeImage();
             int calories = consump.getRecipe().getCalories().value;
             /*Set<Tag> tags = consump.getRecipe().getTags();
             if (tags != null) {
