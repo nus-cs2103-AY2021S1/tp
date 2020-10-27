@@ -5,28 +5,28 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ExpenseBookParser" as ExpenseBookParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
-participant "c:Comparator<Expense>" as ExpenseComparator LOGIC_COLOR
+participant "cmp:SortKeyComparator" as SortKeyComparator LOGIC_COLOR
 participant "s:SortCommand" as SortCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute(sort)
+[-> LogicManager : execute("sort -by date")
 activate LogicManager
 
-LogicManager -> ExpenseBookParser : parseCommand(sort)
+LogicManager -> ExpenseBookParser : parseCommand("sort -by date")
 activate ExpenseBookParser
 
-ExpenseBookParser -> SortCommandParser : parse(sort)
+ExpenseBookParser -> SortCommandParser : parse(" -by date")
 activate SortCommandParser
 
-create ExpenseComparator
-SortCommandParser -> ExpenseComparator
-activate ExpenseComparator
+create SortKeyComparator
+SortCommandParser -> SortKeyComparator
+activate SortKeyComparator
 
-ExpenseComparator --> SortCommandParser
-deactivate ExpenseComparator
+SortKeyComparator --> SortCommandParser
+deactivate SortKeyComparator
 
 create SortCommand
 SortCommandParser -> SortCommand
@@ -44,7 +44,7 @@ deactivate ExpenseBookParser
 LogicManager -> SortCommand : execute()
 activate SortCommand
 
-SortCommand -> Model : sortExpenses(c)
+SortCommand -> Model : sortExpenseList(cmp)
 activate Model
 
 
@@ -55,7 +55,7 @@ SortCommand --> LogicManager : result
 deactivate SortCommand
 SortCommand -[hidden]-> LogicManager : result
 destroy SortCommand
-destroy ExpenseComparator
+destroy SortKeyComparator
 
 [<--LogicManager
 deactivate LogicManager

@@ -19,12 +19,20 @@ Package Expense {
 Class Expense
 Class Date
 Class Description
-Class Amount
 Class UniqueExpenseList
+Class a1 as "Amount"
+Class t1 as "Tag"
 }
 
-Package Tag {
-Class Tag
+Package Budget {
+Class UniqueCategoryBudgetList
+Class CategoryBudget
+Class a2 as "Amount"
+Class t2 as "Tag"
+}
+
+Package Alias {
+Class AliasMap
 }
 }
 
@@ -42,12 +50,21 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 ExpenseBook *--> "1" UniqueExpenseList
 UniqueExpenseList o--> "*" Expense
 Expense *--> Description
-Expense *--> Amount
+Expense *--> a1
 Expense *--> Date
-Expense *--> "*" Tag
+Expense *--> "*" t1
 
-Description -[hidden]right-> Amount
-Amount -[hidden]right-> Date
+ExpenseBook *--> "1" UniqueCategoryBudgetList
+UniqueCategoryBudgetList o--> "*" CategoryBudget
+CategoryBudget *--> a2
+CategoryBudget *--> t2
 
-ModelManager -->"1" Expense : filtered list
+ExpenseBook *--> "1" AliasMap
+
+
+Description -[hidden]right-> a1
+a1 -[hidden]right-> Date
+
+UniqueExpenseList -->"1" Expense : filtered list
+UniqueCategoryBudgetList -->"1" CategoryBudget : filtered list
 @enduml
