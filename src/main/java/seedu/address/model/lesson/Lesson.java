@@ -8,7 +8,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Objects;
 
 import seedu.address.commons.util.DateUtil;
@@ -38,8 +37,8 @@ public class Lesson {
     /**
      * Every field must be present and not null.
      */
-    public Lesson(Title title, Tag tag, Description description, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime,
-                  LocalDate startDate, LocalDate endDate) {
+    public Lesson(Title title, Tag tag, Description description, DayOfWeek dayOfWeek, LocalTime startTime,
+                  LocalTime endTime, LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(title, description, dayOfWeek, startTime, endTime, startDate, endDate);
         this.title = title;
         this.tag = tag;
@@ -104,7 +103,7 @@ public class Lesson {
     }
 
     /**
-     * Calculates the total number of hours this lesson takes within a specified time period. 
+     * Calculates the total number of hours this lesson takes within a specified time period.
      */
     public int timeTakenWithinPeriod(LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(startDate, endDate);

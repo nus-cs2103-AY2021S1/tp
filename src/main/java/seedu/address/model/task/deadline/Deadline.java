@@ -4,10 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -66,7 +63,6 @@ public class Deadline extends Task {
     public int getTimeTaken() {
         return duration.valueInMinutes;
     }
-    
     @Override
     public LocalDate getDate() {
         return this.doneDateTime.getValue().toLocalDate();

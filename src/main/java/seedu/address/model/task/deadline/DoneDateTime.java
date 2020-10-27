@@ -21,7 +21,7 @@ public class DoneDateTime extends DateTime {
      */
     public DoneDateTime(String dateTime) {
         super(dateTime);
-        if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null) {
+        if (value.equals(DateUtil.DEFAULT_DATETIME)) {
             this.isFilled = false;
         } else {
             this.isFilled = true;

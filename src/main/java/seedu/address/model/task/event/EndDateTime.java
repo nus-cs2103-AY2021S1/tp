@@ -3,7 +3,6 @@ package seedu.address.model.task.event;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.lesson.Time;
 import seedu.address.model.task.DateTime;
 
 /**
@@ -12,8 +11,6 @@ import seedu.address.model.task.DateTime;
  */
 public class EndDateTime extends DateTime {
 
-    public final boolean isNull;
-
     /**
      * Constructs a {@code DateTime}.
      *
@@ -21,11 +18,6 @@ public class EndDateTime extends DateTime {
      */
     public EndDateTime(String dateTime) {
         super(dateTime);
-        if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null) {
-            this.isNull = true;
-        } else {
-            isNull = false;
-        }
     }
 
     /**
@@ -41,28 +33,15 @@ public class EndDateTime extends DateTime {
         return new EndDateTime(datetime);
     }
 
-    public boolean isNull() {
-        return isNull;
-    }
-
     public static boolean isValidDateTime(String date, String time) {
         return DateUtil.isValidDate(date) && DateUtil.isValidTime(time);
     }
 
-    @Override
-    public String toString() {
-        if (isNull) {
-            return "";
-        } else {
-            return value.format(DateUtil.DATETIME_FORMATTER);
-        }
-    }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof EndDateTime // instanceof handles nulls
-                && (value.equals(((EndDateTime) other).value)
-                    || isNull && ((EndDateTime) other).isNull())); // state check
+                && (value.equals(((EndDateTime) other).value))); // state check
     }
 }

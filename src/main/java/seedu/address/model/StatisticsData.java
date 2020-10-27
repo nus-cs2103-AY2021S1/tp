@@ -83,7 +83,10 @@ public class StatisticsData {
         requireNonNull(tag);
         return getTotalTaskTime(tag) + getTotalLessonTime(tag);
     }
-    
+
+    //TODO:get list of Tag
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Mod | Task Time | Lesson Time | Total time \n");

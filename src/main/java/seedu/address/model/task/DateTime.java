@@ -2,7 +2,6 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import seedu.address.commons.util.DateUtil;
@@ -22,7 +21,7 @@ public class DateTime {
      * @param dateTime A valid date and time.
      */
     public DateTime(String dateTime) {
-        if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null || dateTime.equals(DateUtil.DEFAULT_DATETIME)) {
+        if (dateTime.isEmpty() || dateTime.isBlank()) {
             value = DateUtil.DEFAULT_DATETIME;
         } else {
             checkArgument(isValidDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);

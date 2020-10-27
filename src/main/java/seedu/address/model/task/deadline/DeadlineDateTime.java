@@ -18,7 +18,7 @@ public class DeadlineDateTime extends DateTime {
      */
     public DeadlineDateTime(String dateTime) {
         super(dateTime);
-        if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null || dateTime.equals(DateUtil.DEFAULT_DATETIME)) {
+        if (value.equals(DateUtil.DEFAULT_DATETIME)) {
             this.isFilled = false;
         } else {
             isFilled = true;
@@ -35,7 +35,7 @@ public class DeadlineDateTime extends DateTime {
 
     @Override
     public String toString() {
-        if (!isFilled) {
+        if (!isFilled || value == DateUtil.DEFAULT_DATETIME) {
             return "";
         } else {
             return value.format(DateUtil.DATETIME_FORMATTER);

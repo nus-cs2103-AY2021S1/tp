@@ -1,7 +1,5 @@
 package seedu.address.model.task.deadline;
 
-import seedu.address.commons.util.DateUtil;
-
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**

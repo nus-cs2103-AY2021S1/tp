@@ -21,8 +21,9 @@ import seedu.address.model.task.Task;
  * This class handles all computation related to time spent on tasks and lessons.
  */
 public class Statistics {
-    private static final Logger logger = LogsCenter.getLogger(JsonPlanusStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(Statistics.class);
     private static final Path filePath = Paths.get("data", "planus.json");
+
     /**
      * Computes total duration of time spent on all tasks and lessons for the specified time period and
      * stores it in a data structure.
@@ -43,7 +44,7 @@ public class Statistics {
             return null;
         }
         logger.info("Generating summary for statistics.");
-        //TODO: update this after implementing filtering
+
         updateTimeTakenForTasks(planus.getTaskList(), stats, startDate, endDate);
         updateTimeTakenForLessons(planus.getLessonList(), stats, startDate, endDate);
         logger.info("Generated statistics \n" + stats.toString());
@@ -82,7 +83,10 @@ public class Statistics {
         }
     }
 
-    public static void main(String args[]) {
+    /**
+     * Main method
+     */
+    public static void main(String[] args) {
         //test
         try {
             generateStatistics(ParserUtil.parseDate("01-05-2020"),
@@ -90,7 +94,5 @@ public class Statistics {
         } catch (Exception e) {
             System.out.println(e);
         }
-            
     }
-
 }
