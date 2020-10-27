@@ -526,6 +526,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
 **Find** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
+**Sort** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
 **List** | `list`
 **Help** | `help`
 **Add exam** | `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE` <br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
