@@ -139,7 +139,7 @@ Brings user to the profile panel of the staff, if on the staff list, or applican
 
 Format: `view INDEX`
 
-Examples:
+Example:
 * `view 1`
 
 #### 3.1.2. List all persons : `list`
@@ -185,7 +185,7 @@ Adds a staff to Eva.
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
  - A staff can have any number of tags (including 0) <br>
- - A staff can have any number of comments (including 0) <br><br>
+ - A staff can have any number of comments (including 0) <br>
  
 Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -197,7 +197,7 @@ Deletes a staff from Eva.
 
 Format: `delstaff INDEX`
 
-Examples:
+Example:
 * `delstaff 1`
 
 #### 3.3.3. Record leave taken by staff: `addleave`
@@ -258,7 +258,7 @@ Deletes an applicant with the specified index on the displayed list in Eva.
 
 Format: `delapplicant INDEX`
 
-Examples:
+Example:
 * `delapplicant 1`
 
 
@@ -270,7 +270,7 @@ Format: `addapplication INDEX [filepath]`
 
  - An applicant should be created prior to the addition of its application.
 
-Examples:
+Example:
 * `addapplication 1 C:\Users\Public\Downloads\resume.txt`
 
 #### 3.4.4. Delete an application: `deleteapplication`
@@ -279,7 +279,7 @@ Deletes an application from an applicant under Eva.
 
 Format: `deleteapplication INDEX`
 
-Examples:
+Example:
 * `deleteapplication 1`
 
 #### 3.4.5 Set application status: `setappstatus`
@@ -294,7 +294,7 @@ Format: `setappstatus INDEX NEW_APPLICATION_STATUS`
   - accepted
   - rejected
   
-Examples:
+Example:
 * `setappstatus 1 received`
 
 ### 3.5. Quick Add (Experienced users): `add`
