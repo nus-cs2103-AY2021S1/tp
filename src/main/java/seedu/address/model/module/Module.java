@@ -239,7 +239,8 @@ public class Module {
 
     @Override
     public String toString() {
-        return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getLink(), getModularCredits().toString());
+        return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getLink(),
+                getModularCredits().toString());
     }
 
     /**

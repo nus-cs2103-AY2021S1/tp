@@ -1,13 +1,13 @@
 package seedu.address.testutil;
 
+import java.util.Set;
+
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand.EditModuleDescriptor;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
 
 /**
  * A utility class to help with building EditModuleDescriptor objects.

@@ -22,18 +22,18 @@ public class DeleteModuleParserTest {
     private DeleteModuleParser parser = new DeleteModuleParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand_success() {
+    public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", new DeleteModuleCommand(INDEX_FIRST_PERSON));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException_failure() {
+    public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteModuleCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_missingIndexField_throwsParseException_failure() {
+    public void parse_missingIndexField_throwsParseException() {
         assertParseFailure(parser, "", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteModuleCommand.MESSAGE_USAGE));
     }

@@ -1,31 +1,21 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-//import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_ES2660;
 import static seedu.address.logic.commands.modulelistcommands.EditModuleCommand.EditModuleDescriptor;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-//import seedu.address.model.person.Email;
-//import seedu.address.model.person.Name;
-//import seedu.address.model.tag.Tag;
 
 public class EditModuleParserTest {
 
@@ -59,9 +49,9 @@ public class EditModuleParserTest {
 
     @Test
     public void parse_onlyNameSpecified_success() {
-       EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).build();
-       EditModuleCommand expectedCommand = new EditModuleCommand(VALID_MODULENAME_CS2103T, descriptor);
-       assertParseSuccess(parser, VALID_INPUT_NO_LINK, expectedCommand);
+        EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_ES2660).build();
+        EditModuleCommand expectedCommand = new EditModuleCommand(VALID_MODULENAME_CS2103T, descriptor);
+        assertParseSuccess(parser, VALID_INPUT_NO_LINK, expectedCommand);
     }
 
     @Test
@@ -91,8 +81,8 @@ public class EditModuleParserTest {
 
     @Test
     public void parse_missingCompulsoryName_failure() {
-        String missingCompulsory_Name = " " + PREFIX_NAME + VALID_ZOOMLINK_ES2660;
-        assertParseFailure(parser, missingCompulsory_Name, MESSAGE_INVALID_FORMAT);
+        String missingCompulsoryName = " " + PREFIX_NAME + VALID_ZOOMLINK_ES2660;
+        assertParseFailure(parser, missingCompulsoryName, MESSAGE_INVALID_FORMAT);
     }
 
     @Test

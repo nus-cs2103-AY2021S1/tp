@@ -1,7 +1,13 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MC_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MC_4;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_ES2660;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
@@ -20,25 +26,26 @@ import seedu.address.model.tag.Tag;
 import seedu.address.testutil.ModuleBuilder;
 
 public class AddModuleParserTest {
-    private AddModuleParser parser = new AddModuleParser();
-    private final static String validInput = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String multipleMCs = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T
-            + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4;
+            + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4
+            + " " + PREFIX_MODULAR_CREDITS + VALID_MC_2;
 
-    private final static String multipleNames = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String multipleNames = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_NAME + VALID_MODULENAME_ES2660
             + " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T
             + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4;
 
-    private final static String multipleLinks = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String multipleLinks = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T
             + " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_ES2660
             + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4;
 
-    private final static String multipleMCs = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
+    private static final String validInput = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T
             + " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T
-            + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4
-            + " " + PREFIX_MODULAR_CREDITS + VALID_MC_2;
+            + " " + PREFIX_MODULAR_CREDITS + VALID_MC_4;
+
+    private AddModuleParser parser = new AddModuleParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -49,8 +56,8 @@ public class AddModuleParserTest {
         assertParseSuccess(parser, validInput, new AddModuleCommand(expectedModule));
 
         // multiple tags - all accepted
-//        Contact expectedPersonMultipleTags = new ContactBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-//                .build();
+        // Contact expectedPersonMultipleTags = new ContactBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        //        .build();
         // assertParseSuccess(parser, NAME_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
         //         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleTags));
 
@@ -95,7 +102,7 @@ public class AddModuleParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-//        Contact expectedPerson = new ContactBuilder(AMY).withTags().build();
+        // Contact expectedPerson = new ContactBuilder(AMY).withTags().build();
 
         // assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY,
         //         new AddCommand(expectedPerson));

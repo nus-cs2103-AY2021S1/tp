@@ -56,7 +56,7 @@ public class AddModuleCommand extends Command {
         if (other == this) {
             return true;
         } else if (other instanceof AddModuleCommand) {
-            AddModuleCommand temp =  (AddModuleCommand) other;
+            AddModuleCommand temp = (AddModuleCommand) other;
             Module temp2 = temp.module;
             return this.module.getName().equals(temp2.getName())
                     && this.module.getLink().equals(temp2.getLink())
