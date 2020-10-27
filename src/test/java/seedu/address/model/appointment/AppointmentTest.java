@@ -5,7 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_SECOND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_FIRST;
+import static seedu.address.testutil.TypicalAppointments.CONFLICTING_APPOINTMENT1;
+import static seedu.address.testutil.TypicalAppointments.CONFLICTING_APPOINTMENT2;
 import static seedu.address.testutil.TypicalAppointments.FIRST_APP;
+import static seedu.address.testutil.TypicalAppointments.NOCONFLICT_APPOINTMENT1;
+import static seedu.address.testutil.TypicalAppointments.NOCONFLICT_APPOINTMENT2;
 import static seedu.address.testutil.TypicalAppointments.SECOND_APP;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +34,21 @@ public class AppointmentTest {
         editedFirst = new AppointmentBuilder(FIRST_APP).withEndTime(VALID_END_TIME_SECOND).build();
         assertFalse(FIRST_APP.isSameAppointmentTime(editedFirst));
 
+    }
+
+    @Test
+    public void compare() {
+        assertTrue(Appointment.compare(FIRST_APP, SECOND_APP) <= 1);
+        assertTrue(Appointment.compare(SECOND_APP, FIRST_APP) >= 1);
+    }
+
+    @Test
+    public void hasTimeConflict() {
+        assertTrue(CONFLICTING_APPOINTMENT1.hasTimeConflict(CONFLICTING_APPOINTMENT2));
+        assertTrue(CONFLICTING_APPOINTMENT2.hasTimeConflict(CONFLICTING_APPOINTMENT1));
+
+        assertFalse(NOCONFLICT_APPOINTMENT1.hasTimeConflict(NOCONFLICT_APPOINTMENT2));
+        assertFalse(NOCONFLICT_APPOINTMENT2.hasTimeConflict(NOCONFLICT_APPOINTMENT1));
     }
 
     @Test

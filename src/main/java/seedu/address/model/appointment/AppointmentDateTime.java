@@ -38,7 +38,6 @@ public class AppointmentDateTime {
     public AppointmentDateTime(String dateTime, int duration) {
         assert duration > 0 : "Invalid duration";
         requireNonNull(dateTime);
-        requireNonNull(duration);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER).plusMinutes(duration);
     }

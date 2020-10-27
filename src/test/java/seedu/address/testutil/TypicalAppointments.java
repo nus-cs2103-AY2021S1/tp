@@ -40,6 +40,19 @@ public class TypicalAppointments {
     public static final Appointment SECOND_APP = new AppointmentBuilder().withPatientName(VALID_PATIENT_NAME_SECOND)
             .withStartTime(VALID_START_TIME_SECOND).withEndTime(VALID_END_TIME_SECOND).build();
 
+    // Appointments for checking conflicts
+    public static final Appointment CONFLICTING_APPOINTMENT1 = new AppointmentBuilder()
+            .withPatientName("Conflict One").withStartTime("2020-03-10 01:00").withEndTime("2020-03-10 02:00").build();
+    public static final Appointment CONFLICTING_APPOINTMENT2 = new AppointmentBuilder()
+            .withPatientName("Conflict Two").withStartTime("2020-03-10 01:59").withEndTime("2020-03-10 02:59").build();
+
+    public static final Appointment NOCONFLICT_APPOINTMENT1 = new AppointmentBuilder()
+            .withPatientName("NoConflict One").withStartTime("2020-03-11 01:00").withEndTime("2020-03-11 02:00")
+            .build();
+    public static final Appointment NOCONFLICT_APPOINTMENT2 = new AppointmentBuilder()
+            .withPatientName("NoConflict One").withStartTime("2020-03-11 02:00").withEndTime("2020-03-11 03:00")
+            .build();
+
     private TypicalAppointments() {} // prevents instantiation
 
     /**
