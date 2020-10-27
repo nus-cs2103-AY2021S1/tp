@@ -26,7 +26,7 @@ public class FlashcardAnswerCard extends UiPart<Region> {
         this.flashcard = flashcard;
         answer.setText(PREFIX_ANSWER + flashcard.getAnswer().toString());
         if (flashcard.getNote().toString().length() > 0) {
-            note.setText(flashcard.getNote().toString());
+            note.setText("\u270e " + flashcard.getNote().toString());
         } else {
             note.setVisible(false);
         }
