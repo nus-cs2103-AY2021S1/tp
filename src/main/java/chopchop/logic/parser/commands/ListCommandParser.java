@@ -47,7 +47,7 @@ public class ListCommandParser {
                     return Result.of(new ListIngredientCommand());
 
                 default:
-                    return Result.error("can only list recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("Can only list recipes or ingredients ('%s' invalid)", target.fst());
                 }
             });
     }

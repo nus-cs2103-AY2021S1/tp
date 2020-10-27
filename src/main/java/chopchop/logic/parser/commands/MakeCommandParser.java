@@ -33,7 +33,7 @@ public class MakeCommandParser {
 
         var name = args.getRemaining();
         if (name.isEmpty()) {
-            return Result.error("recipe name cannot be empty");
+            return Result.error("Recipe name cannot be empty");
         } else {
             return ItemReference.parse(name).map(MakeRecipeCommand::new);
         }

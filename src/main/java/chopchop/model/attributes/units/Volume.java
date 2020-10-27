@@ -38,7 +38,7 @@ public class Volume implements Quantity {
     @Override
     public Result<Volume> add(Quantity qty) {
         if (!(qty instanceof Volume)) {
-            return Result.error("cannot add '%s' to '%s' (incompatible units)", qty, this);
+            return Result.error("Cannot add '%s' to '%s' (incompatible units)", qty, this);
         } else {
             var vol = (Volume) qty;
             var newval = this.value + (vol.value * (vol.ratio / this.ratio));
@@ -58,10 +58,15 @@ public class Volume implements Quantity {
     }
 
     @Override
+    public boolean compatibleWith(Quantity qty) {
+        return qty instanceof Volume;
+    }
+
+    @Override
     public int compareTo(Quantity other) {
         if (!(other instanceof Volume)) {
             throw new IncompatibleIngredientsException(
-                    String.format("cannot compare '%s' with '%s' (incompatible units)", other, this));
+                    String.format("Cannot compare '%s' with '%s' (incompatible units)", other, this));
         }
 
         return Double.compare(this.value * this.ratio, ((Volume) other).value * ((Volume) other).ratio);
@@ -120,7 +125,7 @@ public class Volume implements Quantity {
         } else if (unit.equalsIgnoreCase(UNIT_TEASPOON)) {
             ratio = RATIO_TEASPOON;
         } else {
-            return Result.error("unknown unit '%s'", unit);
+            return Result.error("Cnknown unit '%s'", unit);
         }
 
         return Result.of(new Volume(value, ratio));

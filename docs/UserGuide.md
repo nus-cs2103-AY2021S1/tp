@@ -13,6 +13,8 @@ ChopChop is a food recipe management system, which aims to make it easier for pe
 
 However, ChopChop also features a graphical interface to display ingredients and recipes in an interactive form.
 
+This user guide provides an in-depth guide about how to use ChopChop. Choose a topic from the Table of Contents to find answers, get step-by-step instructions.  In addition, the quick start guide provides an end-to-end setup process to get you started on the ChopChop installation process.
+
 --------------
 ## Quick start
 
@@ -28,7 +30,7 @@ To start using and experimenting with ChopChop, here are the steps you can follo
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/sample_data.png" width="75%" /> <br />
-Figure 1: <i>The initial state of ChopChop, including sample data</i>
+Figure 1.1: <i>The initial state of ChopChop, including sample data</i>
 </div>
 
 
@@ -51,7 +53,7 @@ ChopChop manages two key components — ingredients and recipes, and they will b
 Names for both ingredients and recipes are case insensitive, so `pAnCakes` and `Pancakes` refer to the same recipe. Note that you cannot have duplicate recipes nor ingredients in ChopChop; items are duplicates if their names are the same.
 
 ### Ingredients
-An ingredient consists of a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, exipring on a certain date.
+An ingredient consists of a quantity with an associated unit, and an optional expiry date. Each ingredient can have multiple *sets*, where each set is a given quantity of that ingredient, expiring on a certain date.
 
 For example, you might have `500 ml` of milk that you bought last week that expires tomorrow, while you have another `1.5 l` of milk that you bought today, expiring two weeks from now. ChopChop will track both these *sets*, and will intelligently use the earliest-expiring set when doing its accounting.
 
@@ -64,11 +66,20 @@ A recipe consists of a list of used ingredients (and their quantities), as well 
 --------------------------------
 ## Navigating the User Interface
 
-<h1>WE NEED A PROPERLY LABELLED PICTURE</h1>
+This is what ChopChop looks like:
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/UI_description.png" width="75%" /> <br />
+Figure 1.2: <i>The graphical user interface for ChopChop</i>
+</div>
 
-![Ui](images/Ui.png)
+To use ChopChop you can enter commands into the command box as labelled in figure 1.2. 
+Start typing anywhere in ChopChop to enter a command; commands entered would cause the state of the GUI to change, and the output will be printed into the command output.
 
-<h3>insert the various parts of the GUI and talk about it.</h3>
+Besides navigating the app through the the command box, our interactive graphical display allows you to view your recipes, ingredients and recipe recommendations through pressing of the buttons at the button of the GUI.
+If you wish to view a recipe, you can also click on the recipe tiles.
+
+Also, your cooking statistics will be displayed in the statistics box.
+<h3>.</h3>
 
 
 
@@ -81,7 +92,7 @@ A recipe consists of a list of used ingredients (and their quantities), as well 
 
 ### Command Syntax
 
-To succintly represent the syntax of the various commands, we adopt a simple notation in this User Guide, as shown below:
+To succinctly represent the syntax of the various commands, we adopt a simple notation in this User Guide, as shown below:
 
 * Words starting with a slash (`/`) denote named parameters; these names are case sensitive (eg. `/STEP` is not the same as `/step`). All the text following a named parameter *belong* to it, until either the end of the input, or the next named parameter. <br />
 For example, in `/param1 lorem ipsum /param2 dolor sit amet`, the parameter `param1` will have the value `lorem ipsum`, while the parameter `param2` will have the value `dolor sit amet`.
@@ -102,7 +113,7 @@ For example, the **add ingredient** command is specified like this: `add ingredi
 
 ### Viewing Help : **`help`**
 
-This command shows a message with a link to this user guide; you can use this to easily access this page from the application. Note that you can also access this help dialog from the menubar at the top, under `Help` -> `Docs`.
+This command shows a message with a link to this user guide; you can use this to easily access this page from the application. Note that you can also access this help dialog from the menubar at the top, under `Help` -> `Docs`, or by pressing the function key `F1`.
 
 Usage: `help`
 
@@ -115,12 +126,34 @@ Figure 2: <i>The help dialog</i>
 
 
 ### Quitting ChopChop **`quit`**
-This command quits ChopChop. Your recipe data is already saved whenever a command is executed, so you do not need to save it manually before quitting.
+This command quits ChopChop. Your recipe data is already saved whenever a command is executed, so you do not need to save it manually before quitting. Note that you can also quit ChopChop by pressing the function key `F4`.
 
 Usage: `quit`
 
 
+### Viewing Recipes — **`view`**
+This command displays a specific recipe from ChopChop. You can either use the name or the number of the recipe to refer to it.
 
+Usage: `view <#REF>`
+
+Examples:
+- `view #4` <br />
+	This displays the fourth recipe currently shown in the GUI's recipe view.
+- `view pancakes` <br />
+	This displays the recipe named 'pancakes'. Note that the name here is case insensitive.
+
+To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the same recipe (in this case, the Pancake recipe added in the `add recipe` guide below).
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/view_recipe_1.png" width="75%" /> <br />
+Figure 3.1: <i>The recipe detail view</i>
+</div>
+
+After pressing enter, you will see this view, showing the recipe you wish to view:
+
+<div style="text-align: center; padding-bottom: 2em">
+<img src="images/ug/add_recipe_2.png" width="75%" /> <br />
+Figure 3.2: <i>The recipe detail view</i>
+</div>
 
 
 ### Listing Recipes — **`list`**`recipes`
@@ -161,21 +194,21 @@ add recipe Pancakes
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_1.png" width="75%" /> <br />
-Figure 3.1: <i>The add recipe command</i>
+Figure 4.1: <i>The add recipe command</i>
 </div>
 
 After pressing enter, you will see this view, showing your newly created recipe:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_2.png" width="75%" /> <br />
-Figure 3.2: <i>The recipe detail view</i>
+Figure 4.2: <i>The recipe detail view</i>
 </div>
 
 If you go back to the main recipe view (either by clicking on the tab at the bottom, or by using `list recipes`, you can see the new recipe in the list:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_recipe_3.png" width="75%" /> <br />
-Figure 3.3: <i>The newly created recipe in the recipe list</i>
+Figure 4.3: <i>The newly created recipe in the recipe list</i>
 </div>
 
 
@@ -268,67 +301,67 @@ To illustrate how to use this powerful command, let us recreate the Pancake reci
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_1.png" width="75%" /> <br />
-Figure 4.1: <i>The empty recipe</i>
+Figure 5.1: <i>The empty recipe</i>
 </div>
 
 Now, let's add our ingredients. First, 400 grams of flour:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_2.png" width="75%" /> <br />
-Figure 4.2: <i>The command to add a new ingredient to the recipe</i>
+Figure 5.2: <i>The command to add a new ingredient to the recipe</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_3.png" width="75%" /> <br />
-Figure 4.3: <i>The recipe is now updated with the ingredient</i>
+Figure 5.3: <i>The recipe is now updated with the ingredient</i>
 </div>
 
 Next, adding the eggs and milk in one go:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_4.png" width="75%" /> <br />
-Figure 4.4: <i>The edit command supports multiple operations at once</i>
+Figure 5.4: <i>The edit command supports multiple operations at once</i>
 </div>
 
 Oops, that's too many eggs, so let's edit the quantity:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_5.png" width="75%" /> <br />
-Figure 4.5: <i>Editing an ingredient to change its quantity</i>
+Figure 5.5: <i>Editing an ingredient to change its quantity</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_6.png" width="75%" /> <br />
-Figure 4.6: <i>The recipe now uses only 3 eggs</i>
+Figure 5.6: <i>The recipe now uses only 3 eggs</i>
 </div>
 
 Now let's add the steps:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_7.png" width="75%" /> <br />
-Figure 4.7: <i>Adding the first step</i>
+Figure 5.7: <i>Adding the first step</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_8.png" width="75%" /> <br />
-Figure 4.8: <i>Adding steps 2 and 3</i>
+Figure 5.8: <i>Adding steps 2 and 3</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_9.png" width="75%" /> <br />
-Figure 4.9: <i>The completed recipe</i>
+Figure 5.9: <i>The completed recipe</i>
 </div>
 
 Oh no, if we bake the pancakes (are pancakes baked?) like that, they'll get burnt, so let's fix it:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_10.png" width="75%" /> <br />
-Figure 4.10: <i>Editing the second step</i>
+Figure 5.10: <i>Editing the second step</i>
 </div>
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/edit_recipe_11.png" width="75%" /> <br />
-Figure 4.11: <i>The actual completed recipe</i>
+Figure 5.11: <i>The actual completed recipe</i>
 </div>
 
 And now the pancake recipe is complete.
@@ -359,7 +392,7 @@ To illustrate, in the scenario below, both `#4` and `pancakes` will refer to the
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_recipe_1.png" width="75%" /> <br />
-Figure 5: <i>The recipe number (circled) can be used to refer to an item as well</i>
+Figure 6: <i>The recipe number (circled) can be used to refer to an item as well</i>
 </div>
 
 
@@ -384,22 +417,24 @@ Examples:
 To illustrate, suppose you want to search for recipes with names containing 'cake', you would use `find recipe cake`:
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_1.png" width="75%" /> <br />
-Figure 6.1: <i>The starting state of the application</i>
+Figure 7.1: <i>The starting state of the application</i>
 </div>
 
 After executing the command, note how the recipe list has changed, showing only the matching recipes, and that item number in the corners have changed as well. As explained above, the 'Pancakes' recipe was not included in this list.
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_2.png" width="75%" /> <br />
-Figure 6.2: <i>The recipes containing 'cake'</i>
+Figure 7.2: <i>The recipes containing 'cake'</i>
 </div>
 
 To go back to the full recipe view (resetting the search filter), you can either click the Recipes button at the bottom, or run the `list recipes` command:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_recipe_3.png" width="75%" /> <br />
-Figure 6.3: <i>Back to the main recipe list</i>
+Figure 7.3: <i>Back to the main recipe list</i>
 </div>
+
+
 
 
 
@@ -436,35 +471,35 @@ Suppose you just finished a grocery run, and want to add the items to ChopChop. 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_1.png" width="75%" /> <br />
-Figure 7.1: <i>Adding 2 litres of milk</i>
+Figure 8.1: <i>Adding 2 litres of milk</i>
 </div>
 
 Since ChopChop did not know about 'milk' previously, a new ingredient entry is created for it:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_2.png" width="75%" /> <br />
-Figure 7.2: <i>The newly added milk ingredient</i>
+Figure 8.2: <i>The newly added milk ingredient</i>
 </div>
 
 Next, suppose you also bought 24 blueberries:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_3.png" width="75%" /> <br />
-Figure 7.3: <i>Adding 24 blueberries</i>
+Figure 8.3: <i>Adding 24 blueberries</i>
 </div>
 
 This time, since ChopChop already knew about blueberries, our previous 5 blueberries now become 29:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_4.png" width="75%" /> <br />
-Figure 7.4: <i>You now have 29 blueberries</i>
+Figure 8.4: <i>You now have 29 blueberries</i>
 </div>
 
 If you try to add an ingredient with incompatible quantities (for example, suppose you did not want to count the blueberries individually, and you only know that you bought a 400 gram box), ChopChop will display an error message, and not update the ingredient:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/add_ingredient_5.png" width="75%" /> <br />
-Figure 7.5: <i>Ingredients must have compatible units to be combined</i>
+Figure 8.5: <i>Ingredients must have compatible units to be combined</i>
 </div>
 
 
@@ -493,14 +528,14 @@ To illustrate, suppose that you poured yourself a glass of cold milk to drink, w
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_1.png" width="75%" /> <br />
-Figure 8.1: <i>Removing 250ml of milk</i>
+Figure 9.1: <i>Removing 250ml of milk</i>
 </div>
 
 Notice how the amount of milk decreased from 2 litres to 1.75 litres:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/delete_ingredient_2.png" width="75%" /> <br />
-Figure 8.2: <i>You now only have 1.75 litres of milk left</i>
+Figure 9.2: <i>You now only have 1.75 litres of milk left</i>
 </div>
 
 
@@ -520,14 +555,14 @@ For example, suppose you wanted to find all ingredients containing fish (not in 
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_1.png" width="75%" /> <br />
-Figure 9.1: <i>The complete ingredient list</i>
+Figure 10.1: <i>The complete ingredient list</i>
 </div>
 
 Now, only the matching ingredients are shown:
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/find_ingredient_2.png" width="75%" /> <br />
-Figure 9.2: <i>Only ingredients containing 'fish' in their name are shown</i>
+Figure 10.2: <i>Only ingredients containing 'fish' in their name are shown</i>
 </div>
 
 Again, you can either click the Ingredients button, or use `list ingredients` to clear the search filter.
@@ -543,10 +578,81 @@ Usage: `undo`
 
 
 
-### Undoing commands — **`redo`**
+
+
+### Redoing commands — **`redo`**
 Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
 
 Usage: `redo`
+
+
+
+
+### Listing most made Recipes — **`stats recipe most made`**
+Shows a list of the top 5 most made recipes of all time. The number of times of which each recipe is made is tracked from the start of usage of ChopChop. Even after you delete the recipe is deleted, its past usages are still saved within ChopChop.
+
+Usage: `stats recipe most made`
+
+Example:
+Let's say you executed `make Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe most made`, you will still see it listed as one of the most made recipes.
+
+
+
+
+### Listing Recipes made within a certain period — **`stats recipe`**
+The time period given can either be:
+1. A specific day.
+2. A period of time with a start date or an end date or both.
+#### 1. Listing recipes made on the specified day. 
+The day starts at 00:00 hours and ends at 23:59 hours.
+
+Usage: `stats recipe /on <DATE>` 
+
+For example:
+Let's say you executed `make Rojak` on 23:59 hours yesterday. If you enter `stats recipe /on <TODAY'S DATE>` you will not see `Rojak` listed in the statistics box. 
+
+#### 2. Listing recipes made within the specified time period.
+Shows a list of recipes made within the specified time period. It should have a start date or an end date or both.
+
+Usage: `stats recipe [/before <DATE>] [/after <DATE>]`
+<div markdown="span" class="alert alert-primary">
+:warning: 
+</div>
+
+**Note:** Either `[/before <DATE>]` or `[/after <DATE>]` has to be specified.
+
+
+Examples:
+
+If you enter `stats recipe /before 2020-02-13` into the command box, all recipes made prior to 2020-02-13 will be listed in the Statistics box.
+
+If you enter `stats recipe /after 2020-02-13` into the command box, all recipes made after 2020-02-13 will be listed in the Statistics box.
+
+If you enter `stats recipe /before 2020-10-31 /after 2020-02-13` into the command box, all recipes made within the period of 2020-02-13 to 2020-10-31 will be listed in the Statistics box.
+
+If you enter `stats recipe` into the command box without either `[/before <DATE>]` or `[/after <DATE>]`, no recipes will be listed as this is an invalid command.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** If you are only interested in what was cooked for dinner, you can specify the time period to the nearest minute. For example, `stats recipe /before 2020-02-13 20:30 /after 2020-02-13 18:30` will show a list of recipes made within this 2-hour period.
+</div>
+
+
+
+
+### Listing Ingredients used within a certain period — **`stats ingredient`**
+Shows a list of ingredients used within the specified time period.
+
+The time period given can either be:
+1. A specific day.
+2. A period of time with a start date or an end date or both.
+
+Usage: Similar to the previous command [above](#listing-recipes-made-within-a-certain-period--stats-recipe), the only difference is the keyword is now `stats ingredient` instead of `stats recipe`.
+
+
+
+
+
+
 
 -----------------------
 ## Quantities and Units

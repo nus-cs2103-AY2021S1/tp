@@ -5,9 +5,9 @@ import static java.util.Objects.requireNonNull;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
-public class StatsRecipeMostCookedCommand extends Command {
+public class StatsRecipeMostMadeCommand extends Command {
 
-    public static final String COMMAND_WORD = "stats recipe most cooked";
+    public static final String COMMAND_WORD = "stats recipe most made";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List recipes that are most cooked";
 
@@ -23,7 +23,7 @@ public class StatsRecipeMostCookedCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof StatsRecipeMostCookedCommand);
+            || (other instanceof StatsRecipeMostMadeCommand);
     }
 
     @Override

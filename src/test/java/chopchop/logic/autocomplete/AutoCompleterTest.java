@@ -2,13 +2,17 @@
 
 package chopchop.logic.autocomplete;
 
+import java.util.Set;
 import java.util.List;
 import java.util.HashMap;
+import java.util.Optional;
 
 import chopchop.logic.parser.CommandParser;
 
 import chopchop.model.EntryBook;
 import chopchop.model.ReadOnlyEntryBook;
+import chopchop.model.attributes.Step;
+import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 
@@ -148,6 +152,25 @@ public class AutoCompleterTest {
     }
 
     @Test
+    public void test_tagCompletions() {
+
+        var cases = new HashMap<String, String>();
+
+        // tag completion
+        cases.put("add recipe cake /tag r",                 "add recipe cake /tag round");
+        cases.put("add ingredient chocolate /tag b",        "add ingredient chocolate /tag brown");
+
+        // no completion
+        cases.put("add owo uwu /tag k",                     "add owo uwu /tag k");
+
+        // no completion -- can't complete ingredient tags in recipe and vice versa
+        cases.put("add recipe cake /tag b",                 "add recipe cake /tag b");
+        cases.put("add ingredient cake /tag g",             "add ingredient cake /tag g");
+
+        runTests(cases);
+    }
+
+    @Test
     public void test_editCompletions() {
         var cases = new HashMap<String, String>();
 
@@ -245,11 +268,21 @@ public class AutoCompleterTest {
                 TypicalRecipes.CUSTARD_SALAD
             ));
 
+            this.recipes.add(new Recipe(
+                "Peanut Salad", List.of(TypicalIngredients.APRICOT_REF), List.of(new Step("mix")),
+                Set.of(new Tag("gross"), new Tag("round"))
+            ));
+
             this.ingredients.setAll(List.of(
                 TypicalIngredients.APRICOT,
                 TypicalIngredients.BANANA,
                 TypicalIngredients.CUSTARD,
                 TypicalIngredients.BAKED_BEANS
+            ));
+
+            this.ingredients.add(new Ingredient(
+                "Peanut", Optional.empty(), Optional.empty(),
+                Set.of(new Tag("brown"), new Tag("round"))
             ));
         }
 
