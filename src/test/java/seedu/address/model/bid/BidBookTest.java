@@ -81,7 +81,7 @@ public class BidBookTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyBidBook whose bid list can violate interface constraints.
      */
     private static class BidBookStub implements ReadOnlyBidBook {
         private final ObservableList<Bid> bids = FXCollections.observableArrayList();

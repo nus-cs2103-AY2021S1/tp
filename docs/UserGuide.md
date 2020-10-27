@@ -236,83 +236,121 @@ Your property list is sorted!
 
 ## Adding to Bid to a Property
 
-Adds a bid to the property when there is a bidder for a specific property
+Adds a bid to the bid list in order of property followed by bid amount
 
-- Command: `add -b`
-- Format: `add -b a/ADDRESS c/CLIENT_NAME a/BID_AMOUNT`
+- Command: `add-bid`
+- Format: `add-bid b/ PROPERTY_ID c/ BIDDER_ID m/ BID_AMOUNT`
 
 Example:
 
-```java
-add -b a/99 Sunrise Street c/Marcus Duigan a/150000
+```
+add-bid b/ P1 c/ B2 m/ 150000.20
 ```
 
 Expected Output:
 
-```java
-Added bid to property: 99 Sunrise Street of $150,000 by Marcus Duigan
+```
+New bid added: 
+Bid of $150000.20
+by B2
+to property: P1
 ```
 
-## View List of Bidders for a Property
+## View full List of Bids
 
-Will display all bidders for a property
+Will display all bids in the bid list
 
-- Command: `list -b`
-- Format: `list -b n/PROPERTY_NAME`
+- Command: `list-bid`
+- Format: `list-bid`
 
 Example:
 
-```java
-list -b n/99 Sunrise Street
+```
+list-bid
 ```
 
 Expected Output:
 
-```java
-List of bidders for 99 Sunrise Street
-
-* Marcus Duigan- $150000
-* Kor Ming Soon- $140330
+```
+Listed all bids
 ```
 
 ## Deletion of Existing Bid
 
-Will display all bidders for a property
+Will delete a bid based on its number in the bid list
 
-- Command: `delete -b`
-- Format: `delete -b a/ADDRESS c/CLIENT_NAME`
+- Command: `delete-bid`
+- Format: `delete-bid [INDEX_NUMBER_OF_BID_TO_DELETE]`
 
 Example:
 
-```java
-delete -b a/99 Sunrise Street c/Marcus Duigan
+```
+delete-bid 1
 ```
 
 Expected Output:
 
-```java
-Removed bid made by Marcus Duigan for property: 99 Sunrise Street
+```
+Deleted Bid: 
+Bid of $150000.20
+by B2
+to property: P1
 ```
 
 ## Editing Bid from a Property
 
 Will edit a bidder’s bid value for a specific property
 
-- Command: `edit -b`
-- Format: `edit -b a/ADDRESS c/CLIENT_NAME ab/BID_AMOUNT`
+- Command: `edit-bid`
 
+#### edit-bid command can edit multiple parameters at once and can be a combination of b/ c/ or m/
+#####Example formats
+- Format 1: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID]` (edits only the propertyId)
+- Format 2: `edit-bid <index number of bid to edit> c/ [NEW_BIDDER_ID]` (edits only the bidderId)
+- Format 3: `edit-bid <index number of bid to edit> m/ [NEW_BID_AMOUNT]` (edits only the bidAmount)
+- Format 4: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID] c/ [NEW_BIDDER_ID]` (edits only the propertyId and bidderId)
+- Format 5: `edit-bid <index number of bid to edit> c/ [NEW_BIDDER_ID] m/ [NEW_BID_AMOUNT]` (edits only the bidderId and bidAmount)
+- Format 6: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID] m/ [NEW_BID_AMOUNT]` (edits only the propertyId and bidAmount)
+- Format 7: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID] c/ [NEW_BIDDER_ID] m/ [NEW_BID_AMOUNT]` (edits all parameters)           
 Example:
 
-```java
-edit -b a/99 Sunrise Streetc/Marcus Duigan ab/140000
+```
+edit-bid 1 b/ P99 c/ B12 m/1.20
 ```
 
 Expected Output:
 
-```java
-Edited bid made by: Marcus Duigan 
-Property: 99 Sunrise Street
-Amount: $140000
+```
+Edited Bid:
+
+FROM: 
+Bid of $999999.00
+by B2
+to property: P3 
+
+TO: 
+Bid of $1.20
+by B12
+to property: P99
+```
+
+## Find a specific bid based on id
+
+Will display all bids in the bid list that contains the id specified by the user
+
+- Command: `find-bid`
+- Format: `find-bid [KEYWORDS]`
+
+Example:
+
+```
+find-bid P1 B2 $65000.00
+```
+
+Expected Output:
+
+```
+4 bids listed!
 ```
 
 ---

@@ -51,7 +51,7 @@ public class UniqueBidListTest {
     }
 
     @Test
-    public void add_duplicateBid_throwsDuplicatePersonException() {
+    public void add_duplicateBid_throwsDuplicateBidException() {
         uniqueBidList.add(BID_A);
         assertThrows(DuplicateBidException.class, () -> uniqueBidList.add(BID_A));
     }

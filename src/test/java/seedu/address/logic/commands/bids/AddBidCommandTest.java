@@ -95,7 +95,7 @@ public class AddBidCommandTest {
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the bid being added.
      */
     private class ModelStubAcceptingBidAdded extends ModelStub {
         final ArrayList<Bid> bidsAdded = new ArrayList<>();

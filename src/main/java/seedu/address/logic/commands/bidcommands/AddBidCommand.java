@@ -11,7 +11,6 @@ import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.bid.Bid;
-import seedu.address.model.bid.BidComparator;
 
 public class AddBidCommand extends Command {
 
@@ -36,8 +35,6 @@ public class AddBidCommand extends Command {
             + PREFIX_PROPERTY_ID + "P12 "
             + PREFIX_CLIENT + "B24 "
             + PREFIX_MONEY + "500000";
-
-    private static final BidComparator bidComparator = new BidComparator();
 
     private final Bid bid;
 
