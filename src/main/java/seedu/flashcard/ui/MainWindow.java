@@ -17,7 +17,6 @@ import seedu.flashcard.logic.Logic;
 import seedu.flashcard.logic.commands.CommandResult;
 import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
-import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -210,7 +209,8 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleView(int viewIndex, boolean showAnswer) {
         flashcardViewCardPlaceholder.getChildren().clear();
-        FlashcardViewCard flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex), showAnswer);
+        FlashcardViewCard flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex),
+                showAnswer);
         flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
     }
 

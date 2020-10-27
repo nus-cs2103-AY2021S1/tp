@@ -1,10 +1,6 @@
 package seedu.flashcard.ui;
 
-import java.security.Key;
-
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
 import seedu.flashcard.logic.Logic;
 import seedu.flashcard.model.flashcard.Flashcard;

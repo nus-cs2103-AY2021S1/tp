@@ -7,7 +7,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.logic.Logic;
 import seedu.flashcard.logic.StudyManager;
 import seedu.flashcard.model.flashcard.Flashcard;
@@ -104,7 +103,7 @@ public abstract class StudyPanel extends UiPart<Region> {
     };
 
     private void setProgress(int currentCardNumber) {
-        progressBar.setProgress((double)currentCardNumber / (double) numberOfCards);
+        progressBar.setProgress((double) currentCardNumber / (double) numberOfCards);
         progressLabel.setText(currentCardNumber + "/" + numberOfCards);
     }
 

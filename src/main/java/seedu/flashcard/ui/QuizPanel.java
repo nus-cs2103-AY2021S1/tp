@@ -1,7 +1,6 @@
 package seedu.flashcard.ui;
 
 import javafx.event.EventHandler;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
 import seedu.flashcard.logic.Logic;
 import seedu.flashcard.logic.commands.exceptions.CommandException;

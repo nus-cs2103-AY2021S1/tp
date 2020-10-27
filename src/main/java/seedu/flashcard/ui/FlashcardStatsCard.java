@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
@@ -52,8 +51,10 @@ public class FlashcardStatsCard extends UiPart<Region> {
         double successRate = ((double) successFrequency / (double) reviewedFrequency) * 100;
         double failureRate = 100 - successRate;
         if (reviewedFrequency > 0) {
-            PieChart.Data successPie = new PieChart.Data(String.format("Correct (%.1f%%)", successRate), successFrequency);
-            PieChart.Data wrongPie = new PieChart.Data(String.format("Wrong (%.1f%%)", failureRate), failureFrequency);
+            PieChart.Data successPie = new PieChart.Data(String.format("Correct (%.1f%%)", successRate),
+                    successFrequency);
+            PieChart.Data wrongPie = new PieChart.Data(String.format("Wrong (%.1f%%)", failureRate),
+                    failureFrequency);
             pieChart.setData(FXCollections.observableArrayList(successPie, wrongPie));
             pieChart.setLegendVisible(false);
         } else {
