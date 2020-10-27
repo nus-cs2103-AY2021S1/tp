@@ -55,18 +55,22 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
 8. **Expense finding**
     - Finds expenses by keywords, date, tags
-    - Command: 'find'
+    - Command: `find`
     - [API](#find)
 
 9. **Adding Remark**
     - Adds a remark to an existing expense
+<<<<<<< HEAD
     - Command: 'remark"
     - [API](#remark)
+10. **Sorting expenses**  
+    - Sort by **date, description (alphabetical), amount**, with option of reverse sort 
+    - Command: `sort` 
+    - [API](#sort)
 
-10. Save Load Function &lt;Coming Soon v1.2.1&gt;
-11. Password &lt;Coming Soon v1.2.1&gt;
-12. Help command → documentation &lt;Coming Soon v1.2.1&gt;
-13. Sorting (date, category, keyword, amount) &lt;Coming Soon v1.2.1&gt;
+11. Save Load Function &lt;Coming Soon v1.2.1&gt;
+12. Password &lt;Coming Soon v1.2.1&gt;
+13. Help command → documentation &lt;Coming Soon v1.2.1&gt;
 14. Multiple Accounts &lt;pending&gt;
 15. GUI &lt;pending&gt;>
 16. Budget notifications &lt;pending&gt;
@@ -149,8 +153,22 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
 7. **remark** <a name="remark"></a>
     - Adds a remark to an existing expense.
-    - Format: `remark <index> r/<remark>`
-    - Example: `remark 11 r/Pepper Lunch`
+    - Format: `remark <index> -r <remark>`
+    - Example: `remark 11 -r Pepper Lunch`
+
+    ![remark_example](./images/ug_example/remark_example.PNG)
+    
+8. **sort** <a name="sort"></a>
+    - Sorts expenses in current view.
+    - **Sorting keywords** (and thus criterion) include:
+        - expense amount: `amount`
+        - date: `date`
+        - description (alphabetical order): `description` 
+    - Add a "R" behind sorting keywords to induce reversed sorting order
+    - Sorting criterion are assigned priority in order of appearance.
+    - A minimum of 1 sorting keyword is required  
+    - Format: `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]`
+    - Example: `sort -by date -by descriptionR` (sorts by date, then by reversed alphabetical order of the descriptions)
 
     ![remark_example](./images/ug_example/remark_example.PNG)
 
@@ -193,4 +211,5 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 | **AddCat** | `addCat t/<category>`<br> e.g., `addCat t/Food`                                                                                                               |
 | **Topup**  | `topup -$<amount> [t/<category>]`<br> e.g., `topup -$200`, `topup -$30 t/Food`                                                                                |
 |  **Find**  | `find [-d<description>] [-@<date>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020`                                                                    |
-| **Remark** | `remark <index> r/<remark>` <br> e.g., `remark 11 r/Pepper Lunch`                                                                                             |
+| **Remark** | `remark <index> -r<remark>` <br> e.g., `remark 11 -r Pepper Lunch`                                                                                            |
+| **Sort**   | `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]` <br> e.g., `sort -by date -by descriptionR`                                      |
