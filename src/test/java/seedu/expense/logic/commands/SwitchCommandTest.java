@@ -195,6 +195,11 @@ class SwitchCommandTest {
         }
 
         @Override
+        public void deleteCategory(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasCategory(Tag toCheck) {
             return expenseBook.containsCategory(toCheck);
         }
