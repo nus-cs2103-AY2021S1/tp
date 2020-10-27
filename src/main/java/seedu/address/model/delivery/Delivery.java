@@ -20,8 +20,6 @@ public class Delivery {
     private final Order order;
     private final Time time;
 
-    private final LocalDateTime endTime;
-
     /**
      * Every field must be present and not null.
      */
@@ -32,8 +30,6 @@ public class Delivery {
         this.address = address;
         this.order = order;
         this.time = time;
-
-        this.endTime = LocalDateTime.now().plusMinutes(Long.parseLong(time.value));
     }
 
     public DeliveryName getName() {
@@ -57,7 +53,7 @@ public class Delivery {
     }
 
     public LocalDateTime getEndTime() {
-        return this.endTime;
+        return this.time.endTime;
     }
 
     @Override

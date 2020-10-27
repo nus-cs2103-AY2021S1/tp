@@ -1,6 +1,9 @@
 package seedu.address.model.delivery;
 
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -14,17 +17,27 @@ public class Time implements Comparable<Time> {
             "Time is in minutes, should only contain numbers, and it should be at least 1 digit long, \n"
                     + "and it should be greater than or equals to 0";
     public static final String VALIDATION_REGEX = "\\d{1,}";
-    public final String value;
+    public final String minutes;
+    public final LocalDateTime endTime;
 
     /**
      * Constructs a {@code Phone}.
      *
-     * @param time A valid time in minutes.
+     * @param minutes A valid time in minutes.
+     * @param endTime A LocalDateTime that the delivery should be done by.
      */
-    public Time(String time) {
-        requireNonNull(time);
-        checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
-        value = time;
+    public Time(String minutes, LocalDateTime endTime) {
+        requireNonNull(endTime);
+        this.minutes = minutes;
+        this.endTime = endTime;
+    }
+
+    public static Time timeFromMinutes(String minutes) {
+        checkArgument(isValidTime(minutes), MESSAGE_CONSTRAINTS);
+        long min = Long.parseLong(minutes);
+        LocalDateTime endTime = LocalDateTime.now().plusMinutes(min);
+
+        return new Time(minutes, endTime);
     }
 
     /**
@@ -36,23 +49,23 @@ public class Time implements Comparable<Time> {
 
     @Override
     public String toString() {
-        return value;
+        return endTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Time // instanceof handles nulls
-                && value.equals(((Time) other).value)); // state check
+                && endTime.equals(((Time) other).endTime)); // state check
     }
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return endTime.hashCode();
     }
 
     @Override
     public int compareTo(Time time) {
-        return Double.compare(Double.parseDouble(value), Double.parseDouble(time.value));
+        return endTime.compareTo(time.endTime);
     }
 }

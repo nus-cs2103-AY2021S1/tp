@@ -11,6 +11,10 @@ import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
 import seedu.address.model.delivery.Time;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+
 public class JsonAdaptedDelivery {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Delivery's %s field is missing!";
@@ -19,7 +23,7 @@ public class JsonAdaptedDelivery {
     private final String phone;
     private final String address;
     private final String order;
-    private final String deliveryTime;
+    private final String endTime;
 
     /**
      * Constructs a {@code JsonAdaptedDelivery} with the given Delivery details.
@@ -29,12 +33,12 @@ public class JsonAdaptedDelivery {
                                @JsonProperty("phone") String phone,
                                @JsonProperty("address") String address,
                                @JsonProperty("order") String order,
-                               @JsonProperty("time") String deliveryTime) {
+                               @JsonProperty("time") String endTime) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.order = order;
-        this.deliveryTime = deliveryTime;
+        this.endTime = endTime;
     }
 
     /**
@@ -45,7 +49,7 @@ public class JsonAdaptedDelivery {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         order = source.getOrder().value;
-        deliveryTime = source.getTime().value;
+        endTime = source.getTime().toString();
     }
 
     /**
@@ -87,13 +91,18 @@ public class JsonAdaptedDelivery {
         }
         final Order modelOrder = new Order(order);
 
-        if (deliveryTime == null) {
+        if (endTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
-        if (!Time.isValidTime(deliveryTime)) {
+
+        LocalDateTime time = LocalDateTime.now();
+        try {
+            time = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
+        } catch (DateTimeParseException e) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
         }
-        final Time modelTime = new Time(deliveryTime);
+
+        final Time modelTime = new Time("0", time);
 
         return new Delivery(modelName, modelPhone, modelAddress, modelOrder, modelTime);
 
