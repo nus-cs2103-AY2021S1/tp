@@ -103,14 +103,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException {
-        savePresetManager(orderManager, presetManagerStorage.getPresetManagerFilePath(), name, index);
+    public void savePresetManager(List<List<Preset>> allPresets) throws IOException, DataConversionException {
+        savePresetManager(allPresets, presetManagerStorage.getPresetManagerFilePath());
     }
 
     @Override
-    public void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException, DataConversionException {
+    public void savePresetManager(List<List<Preset>> allPresets, Path filePath) throws IOException, DataConversionException {
         logger.fine("Attempting to write to data file: " + filePath);
-        presetManagerStorage.savePresetManager(orderManager, filePath, name, index);
+        presetManagerStorage.savePresetManager(allPresets, filePath);
     }
 
 

@@ -44,7 +44,7 @@ public class SavePresetCommand extends PresetCommand {
                     .findFirst();
             preset.ifPresent(x -> model.setOrder(x.getOrderItems()));
 
-            storage.savePresetManager(model.getOrderManager(), presetName.toString(), model.getVendorIndex());
+            storage.savePresetManager(allLists);
         } catch (IOException | DataConversionException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }

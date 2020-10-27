@@ -59,24 +59,12 @@ public class JsonPresetManagerStorage implements PresetManagerStorage {
     }
 
     @Override
-    public void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException {
-        savePresetManager(orderManager, filePath, name, index);
-    }
-
-    /**
-     * Similar to {@link #savePresetManager(ReadOnlyOrderManager orderManager, String name, int index)}.
-     *
-     * @param filePath location of the data. Cannot be null.
-     */
-    public void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException, DataConversionException {
-        requireNonNull(orderManager);
+    public void savePresetManager(List<List<Preset>> allPresets, Path filePath) throws IOException {
+        requireNonNull(allPresets);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePresetManager(orderManager, name, index), filePath);
-        // TODO: handle exception
-        List<List<Preset>> currentPresets = readPresetManager(filePath).orElseThrow();
-        JsonUtil.saveJsonFile(new JsonSerializablePresetManager(orderManager, name, index), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePresetManager(allPresets), filePath);
     }
 
 }

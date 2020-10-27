@@ -28,15 +28,19 @@ public interface PresetManagerStorage {
      */
     Optional<List<List<Preset>>> readPresetManager(Path filePath) throws DataConversionException, IOException;
 
-    /**
-     * Saves the given {@link ReadOnlyOrderManager} to the storage.
-     * @param orderManager cannot be null.
-     * @throws IOException if there was any problem writing to the file.
-     */
-    void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException;
+    //    /**
+    //     * Saves the given {@link ReadOnlyOrderManager} to the storage.
+    //     * @param orderManager cannot be null.
+    //     * @throws IOException if there was any problem writing to the file.
+    //     */
+    //    void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException;
+    //
+    //    /**
+    //     * @see #savePresetManager(ReadOnlyOrderManager, String name, int index)
+    //     */
+    //    void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException, DataConversionException;
 
-    /**
-     * @see #savePresetManager(ReadOnlyOrderManager, String name, int index)
-     */
-    void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException, DataConversionException;
+    void savePresetManager(List<List<Preset>> allPresets);
+
+    void savePresetManager(List<List<Preset>> allPresets, Path filePath) throws IOException;
 }

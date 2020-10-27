@@ -39,6 +39,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, PresetMan
     Optional<List<List<Preset>>> readPresetManager() throws DataConversionException, IOException;
 
     @Override
-    void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException;
+    void savePresetManager(List<List<Preset>> allPresets, Path filePath) throws IOException, DataConversionException;
 
 }
