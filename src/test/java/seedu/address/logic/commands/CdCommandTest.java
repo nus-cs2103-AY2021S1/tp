@@ -20,6 +20,7 @@ public class CdCommandTest {
     private static String absoluteHomeAddress;
     private static String relativeFileAddress;
     private static String absoluteFileAddress;
+    private static boolean isWindowsPlatform;
 
     @BeforeAll
     static void setUpFileAddress() {
@@ -31,6 +32,8 @@ public class CdCommandTest {
         File folderFile = new File(folderAddress);
         assert folderFile.isDirectory();
         absoluteFileAddress = folderFile.getAbsolutePath();
+
+        isWindowsPlatform = System.getProperty("os.name").toLowerCase().startsWith("windows");
     }
 
     @Test
@@ -47,7 +50,7 @@ public class CdCommandTest {
     public void execute_addressTypeChild_success() {
         Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
         CdCommand cdCommand = new CdCommand(AddressType.CHILD, "src");
-        String newFileAddress = absoluteFileAddress + "\\src";
+        String newFileAddress = absoluteFileAddress + (isWindowsPlatform ? "\\src" : "/src");
         Model expectedModel = new ModelStubWithCurrentPath(newFileAddress);
 
         assertCommandSuccess(cdCommand, modelStub,
@@ -57,7 +60,7 @@ public class CdCommandTest {
 
     @Test
     public void execute_addressTypeParent_success() {
-        String childAddress = absoluteFileAddress + "\\src";
+        String childAddress = absoluteFileAddress + (isWindowsPlatform ? "\\src" : "/src");
         Model modelStub = new ModelStubWithCurrentPath(childAddress);
         CdCommand cdCommand = new CdCommand(AddressType.PARENT, "");
         Model expectedModel = new ModelStubWithCurrentPath(absoluteFileAddress);
@@ -84,9 +87,8 @@ public class CdCommandTest {
         Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
         CdCommand cdCommand = new CdCommand(AddressType.CHILD, "build.gradle");
 
-        assertThrows(CommandException.class,
-                String.format(CdCommand.MESSAGE_PATH_INVALID,
-                        absoluteFileAddress + "\\build.gradle"), () -> cdCommand.execute(modelStub));
+        assertThrows(CommandException.class, String.format(CdCommand.MESSAGE_PATH_INVALID, absoluteFileAddress
+                + (isWindowsPlatform ? "\\build.gradle" : "/build.gradle")), () -> cdCommand.execute(modelStub));
     }
 
     @Test
