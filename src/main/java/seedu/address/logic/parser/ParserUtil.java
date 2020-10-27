@@ -173,18 +173,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String info}.
+     * Parses a {@code String description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code info} is invalid.
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static String parseTaskBasicInformation(String info) throws ParseException {
-        requireNonNull(info);
-        String trimmedInfo = info.trim();
-        if (!Task.isValidAttribute(trimmedInfo)) {
-            throw new ParseException(Task.NAME_MESSAGE_CONSTRAINTS);
+    public static String parseTaskDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Task.isValidTaskDescription(trimmedDescription)) {
+            throw new ParseException(Task.DESCRIPTION_MESSAGE_CONSTRAINTS);
         }
-        return trimmedInfo;
+        return trimmedDescription;
     }
 
     /**

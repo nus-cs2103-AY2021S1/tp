@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -38,7 +38,7 @@ public class EditTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TASK_NAME + "TASKNAME] "
             + "[" + PREFIX_TASK_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PROJECT_DESCRIPTION + "TASKDESCRIPTION] "
+            + "[" + PREFIX_DESCRIPTION + "TASKDESCRIPTION] "
             + "[" + PREFIX_TASK_PROGRESS + "TASK PROGRESS]...\n"
             + "[" + PREFIX_TASK_IS_DONE + "TASK STATUS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "

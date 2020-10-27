@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
@@ -45,13 +46,4 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         return new AddTaskCommand(task);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

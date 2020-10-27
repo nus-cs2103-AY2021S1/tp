@@ -60,12 +60,6 @@ public class Task implements Comparable<Task> {
         this.assignees = new HashSet<>();
     }
 
-    /**
-     * Returns true if a given string is a valid attribute.
-     */
-    public static boolean isValidAttribute(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
     public String getTaskName() {
         return taskName;
     }

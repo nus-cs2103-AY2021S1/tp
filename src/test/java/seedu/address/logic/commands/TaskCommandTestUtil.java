@@ -1,4 +1,4 @@
-package seedu.address.testutil;
+package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
@@ -12,7 +12,7 @@ import static seedu.address.testutil.TypicalPersons.VALID_GITNAME;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.task.Task;
 
-public class TypicalTasks {
+public class TaskCommandTestUtil {
     public static final String VALID_TASK_DEADLINE = "31-12-2020 10:00:00";
     public static final String VALID_TASK_NAME = "Plan for group meeting on milestone v1.4";
     public static final String VALID_TASK_DESCRIPTION = "";
@@ -34,6 +34,8 @@ public class TypicalTasks {
         + PREFIX_TASK_DEADLINE + "14/02/2020 22:00:00"; // use "/" instead of "-"
     public static final String INVALID_TASK_DEADLINE_DESC_B = " "
         + PREFIX_TASK_DEADLINE + "31-02-2020 22:00:00"; // February does not have 31 days
+    public static final String INVALID_TASK_DEADLINE_DESC_C = " "
+        + PREFIX_TASK_DEADLINE + "14-2-2020 22:00:00"; // should be in the form of dd-mm-yyyy
     public static final String INVALID_TASK_PROGRESS_DESC_A = " "
         + PREFIX_TASK_PROGRESS + "half"; // should input a number
     public static final String INVALID_TASK_PROGRESS_DESC_B = " "

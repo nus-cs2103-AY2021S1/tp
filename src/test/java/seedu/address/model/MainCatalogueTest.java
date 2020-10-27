@@ -11,7 +11,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
-import static seedu.address.testutil.TypicalTasks.PLAN_MEETING;
+import static seedu.address.logic.commands.TaskCommandTestUtil.PLAN_MEETING;
 
 import java.util.Arrays;
 import java.util.Collection;
