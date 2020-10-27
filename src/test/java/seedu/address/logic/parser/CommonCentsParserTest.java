@@ -13,15 +13,18 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.account.Account;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
+import seedu.address.testutil.EditEntryDescriptorBuilder;
 import seedu.address.testutil.EntryUtil;
 import seedu.address.testutil.ExpenseBuilder;
 import seedu.address.testutil.RevenueBuilder;
+import seedu.address.testutil.TypicalEntries;
 
 public class CommonCentsParserTest {
     private final CommonCentsParser parser = new CommonCentsParser();
@@ -52,6 +55,29 @@ public class CommonCentsParserTest {
         Category category = new Category(EntryUtil.REVENUE_STRING);
         assertEquals(new DeleteCommand(INDEX_FIRST_ENTRY, category),
                 parser.parseCommand(EntryUtil.getDeleteRevenueCommand()));
+    }
+
+    @Test
+    public void parseEditCommand_editExpense() throws Exception {
+        Expense expense = TypicalEntries.PAY_RENT;
+        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(expense).build();
+        EditCommand actualCommand = (EditCommand) parser.parseCommand(EntryUtil.getEditExpenseCommand());
+        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
+        System.out.println(EntryUtil.getEditExpenseCommand());
+        System.out.println(descriptor.getDescription());
+        System.out.println(descriptor.getAmount());
+        System.out.println(descriptor.getCategory());
+        System.out.println(descriptor.getTags());
+        assertEquals(expectedCommand, actualCommand);
+    }
+
+    @Test
+    public void parseEditCommand_editRevenue() throws Exception {
+        Revenue revenue = TypicalEntries.SELL_FLOWER_SEEDS;
+        EditCommand.EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(revenue).build();
+        EditCommand actualCommand = (EditCommand) parser.parseCommand(EntryUtil.getEditRevenueCommand());
+        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
+        assertEquals(expectedCommand, actualCommand);
     }
 
     @Test
