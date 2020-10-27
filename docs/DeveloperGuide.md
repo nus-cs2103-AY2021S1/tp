@@ -159,8 +159,9 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The undo/redo mechanism is facilitated by `StatefulResiReg`. It extends `ResiReg` with an undo/redo history, stored 
-internally as `redoStatesStack`, `undoStatesStack` and `currState`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `StatefulResiReg`. It extends `ResiReg` with an undo/redo history, for commands that
+modify the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
+The history is stored internally as `redoStatesStack`, `undoStatesStack` and `currState`. Additionally, it implements the following operations:
 
 - `VersionedResiReg#save()` — Saves the current residence regulation state in its history.
 - `VersionedResiReg#undo()` — Restores the previous residence regulation state from its history.
@@ -180,7 +181,7 @@ to be saved in the `undoStatesStack`  and setting `currState` to be the state of
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/Jet …​` to add a new person. The `add` command also calls `Model#saveStateResiReg()`, causing the
+Step 3. The user executes `add n/Jet …​` to add a new student. The `add` command also calls `Model#saveStateResiReg()`, causing the
 current unmodified state to be saved in the `undoStatesStack` and `currState` to be set to the modified resident regulation state.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
@@ -190,13 +191,14 @@ both `currState` and `undoStatesStack` will not be updated.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoResiReg()`, 
+Step 4. The user now decides that adding the student was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoResiReg()`, 
 which will add the current state `stateAfterAdd` to `redoStatesStack` and set `currState` to the last entry in
  `undoStatesStack`, the previous residence regulation state (`stateBeforeAdd`), and restores the residence regulation to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial ResiReg state, then there are no previous ResiReg states to restore. The `undo` command uses `Model#canUndoResiReg()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `redoStatesStack` is empty, then there are no previous ResiReg states to restore. 
+The `undo` command uses `Model#canUndoResiReg()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -209,14 +211,15 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoResiReg()`, which adds the current state to `rundoedoStatesStack` and set `currState` to the last entry in 
+The `redo` command does the opposite — it calls `Model#redoResiReg()`, which adds the current state to `undoStatesStack` and set `currState` to the last entry in 
 `redoStatesStack`, the next residence regulation state, and restores the residence regulation to that state.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If `redoStatesStack` is empty, then there are no undone ResiReg states to restore. The `redo` command uses `Model#canRedoResiReg()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the residence regulation, such as `list`, will usually not call `Model#saveStateResiReg()`, `Model#undoResiReg()` or `Model#redoResiReg()`. Thus, both `redoStatesStack` and `undoStatesStack` remain unchanged.
+Step 5. The user then decides to execute the command `rooms`. Commands that do not modify the state of ResiReg 
+(e.g. `alias`, `rooms`, `togglesplit`, etc.) will not call `Model#saveStateResiReg()`, `Model#undoResiReg()` or `Model#redoResiReg()`. Thus, both `redoStatesStack` and `undoStatesStack` remain unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 

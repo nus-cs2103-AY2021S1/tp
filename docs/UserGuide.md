@@ -258,7 +258,6 @@ the previous state modifying command was executed.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-z</kbd> keyboard combination
 in the command box will execute the command as well.
-
 </div>
 
 #### 5. Redo previous undo command : `redo`
@@ -266,7 +265,11 @@ Reverses the most recent undo command.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-y</kbd> keyboard combination
 in the command box will execute the command as well.
+</div>
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`undo` and `redo` support the undoing and redoing respectively of commands
+that change the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
 </div>
 
 #### 6. List previously entered commands : `history`

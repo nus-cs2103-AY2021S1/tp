@@ -3,7 +3,7 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "list"
+title After command "rooms"
 
 package States {
     class State1 as "__currState:ResiReg__"
