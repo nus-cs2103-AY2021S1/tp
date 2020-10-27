@@ -137,18 +137,28 @@ public class AutoCompleter {
             this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
 
             if (nested) {
-                // TODO:
-                // System.out.printf("completing: %s, orig: '%s', partial: '%s'\n", completion, orig, partial);
-                // return orig + completion.substring(partial.length()) + " ";
-                return orig;
+
+                // now this is a little complicated; split the input into two pieces; the first being
+                // everything occurring before "partial" (this is the only part we want)
+                var idx = orig.lastIndexOf(partial);
+                if (idx == -1) {
+                    // while this should not happen, using an assert decreases codecov.
+                    return orig;
+                }
+
+                var prefix = orig.substring(0, idx);
+                return prefix + completion + " ";
             } else {
+                // if we're not nested, then we're guaranteed that the command must happen at the beginning of
+                // the input, so we can just return the completion as-is.
                 return completion + " ";
             }
         }
     }
 
     /**
-     * Returns a completion for the target only.
+     * Returns a completion for the target only. Since targets don't share any prefix
+     * (recipe vs ingredient), there's no need to handle cycling here.
      */
     private String completeTarget(CommandArguments args, String orig, boolean nested) {
 
