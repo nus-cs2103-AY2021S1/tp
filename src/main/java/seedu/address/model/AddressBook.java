@@ -219,17 +219,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     private void autoUpdateTaskList() {
         Thread javaFx = Thread.currentThread();
         System.out.println(javaFx.getName());
-        javaFx.setPriority(Thread.MAX_PRIORITY);
 
         javafx.concurrent.Task<Void> task = new javafx.concurrent.Task<>() {
             @Override
-            protected Void call() throws Exception {
-                new Timer().schedule(
+            protected Void call() {
+                new Timer(true).schedule(
                         new TimerTask() {
                             @Override
                             public void run() {
-                                System.out.println("ping");
-                                System.out.println(javaFx.isAlive());
                                 Task upcomingTask = tasks.getInternalList().get(0);
                                 DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
                                         .withResolverStyle(ResolverStyle.STRICT);
