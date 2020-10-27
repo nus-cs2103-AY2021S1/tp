@@ -61,12 +61,19 @@ class TaskSorterCommandParserTest {
         assertParseFailure(parser, VALID_DESCENDING_SORT_PREFIX
             + " progress/", MESSAGE_INVALID_FORMAT);
         assertParseFailure(parser, VALID_DESCENDING_SORT_PREFIX
-            + " isDone/" + PREFIX_PROJECT_NAME, MESSAGE_INVALID_FORMAT);
+            + " isDone/", MESSAGE_INVALID_FORMAT);
 
         // no space between two prefixes
         assertParseFailure(parser, VALID_ASCENDING_SORT_PREFIX + PREFIX_TASK_NAME, MESSAGE_INVALID_FORMAT);
     }
 
+    @Test
+    public void parse_valuesAfterPrefix_failure() {
+        assertParseFailure(parser, VALID_DESCENDING_SORT_PREFIX
+            + "random text" + VALID_TASK_PROGRESS_PREFIX, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_DESCENDING_SORT_PREFIX
+            + VALID_TASK_PROGRESS_PREFIX + "@+", MESSAGE_INVALID_FORMAT);
+    }
     @Test
     // TaskSorterCommand does not have equal() method
     // as one cannot compare two comparators unless they are the same object

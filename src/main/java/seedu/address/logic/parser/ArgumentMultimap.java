@@ -59,15 +59,20 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns the number of Prefixes in the ArgumentMultimap.
+     * Returns the number of non-empty Prefixes in the ArgumentMultimap.
      */
-    public int numOfPrefixes() {
-        int count = 0;
-        for (Prefix prefix : argMultimap.keySet()) {
-            if (!prefix.getPrefix().isEmpty()) {
-                count++;
-            }
-        }
-        return count;
+    public long numOfPrefixes() {
+        return argMultimap.keySet().stream()
+            .filter(prefix -> !prefix.getPrefix().isEmpty())
+            .count();
+    }
+    /**
+     * Returns the number of non-empty Prefixes with no values in the ArgumentMultimap.
+     */
+    public long numOfPrefixesWithNoValues() {
+        return argMultimap.keySet().stream()
+            .filter(prefix -> !prefix.getPrefix().isEmpty())
+            .filter(prefix -> this.getValue(prefix).get().isEmpty())
+            .count();
     }
 }
