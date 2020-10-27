@@ -44,10 +44,12 @@ public class StudentBuilder {
     public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
     public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
     public static final String DEFAULT_SOLUTION = "Read your textbook";
-    public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year 2020", "26/7/2020",
-            new Score("26/50"));
-    public static final Attendance DEFAULT_ATTENDANCE = new Attendance("13/3/2020", "attended",
-            new Feedback("attentive"));
+    public static final Exam DEFAULT_EXAM_FYE = new Exam("End of Year Examination 2020", "07/11/2020",
+            new Score("50/100"));
+    public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year Examination 2020", "25/7/2020",
+            new Score("20/30"));
+    public static final Attendance DEFAULT_ATTENDANCE = new Attendance("14/4/1998", "attended",
+            new Feedback("sleepy during lesson"));
 
     // Identity fields
     private Name name;
@@ -91,7 +93,7 @@ public class StudentBuilder {
                 .map(UnsolvedQuestion::new)
                 .forEach(questions::add);
 
-        exams = Arrays.asList(DEFAULT_EXAM_MYE);
+        exams = Arrays.asList(DEFAULT_EXAM_FYE, DEFAULT_EXAM_MYE);
         attendances = Arrays.asList(DEFAULT_ATTENDANCE);
     }
 

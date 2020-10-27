@@ -232,6 +232,8 @@ public class Student {
             exams.forEach(builder::append);
         }
 
+
+
         return builder.toString();
     }
 

@@ -15,8 +15,8 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.question.Question;
 
 public class JsonAdaptedStudentTest {
     private static final String INVALID_NAME = "R@chel";
@@ -43,7 +43,8 @@ public class JsonAdaptedStudentTest {
     @Test
     public void toModelType_validStudentDetails_returnsStudent() throws Exception {
         JsonAdaptedStudent student = new JsonAdaptedStudent(BOB);
-        assertEquals(BOB, student.toModelType());
+        Student bob = BOB;
+        assertEquals(bob, student.toModelType());
     }
 
     @Test
@@ -118,22 +119,6 @@ public class JsonAdaptedStudentTest {
     public void toModelType_nullAdmin_throwsNullPointerException() {
         JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, VALID_YEAR,
                 null, QUESTION_LIST, EXAM_LIST, JSON_ADAPTED_ACADEMIC);
-        assertThrows(NullPointerException.class, student::toModelType);
-    }
-
-    // EITHER NULLPOINTEREXCEPTION OR ILLEGALVALUEEXCEPTION
-    @Test
-    public void toModelType_nullQuestions_throwsNullPointerException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, VALID_YEAR,
-                JSON_ADAPTED_ADMIN, null, EXAM_LIST, JSON_ADAPTED_ACADEMIC);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, student::toModelType);
-    }
-
-    @Test
-    public void toModelType_nullExams_throwsNullPointerException() {
-        JsonAdaptedStudent student = new JsonAdaptedStudent(VALID_NAME, VALID_PHONE, VALID_SCHOOL, VALID_YEAR,
-                JSON_ADAPTED_ADMIN, QUESTION_LIST, null, JSON_ADAPTED_ACADEMIC);
         assertThrows(NullPointerException.class, student::toModelType);
     }
 

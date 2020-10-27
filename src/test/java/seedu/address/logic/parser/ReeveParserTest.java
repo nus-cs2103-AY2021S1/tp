@@ -52,7 +52,7 @@ public class ReeveParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Student student = new StudentBuilder().withQuestions().withDetails().withAttendances().build();
+        Student student = new StudentBuilder().withQuestions().withDetails().withExams().withAttendances().build();
         AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }

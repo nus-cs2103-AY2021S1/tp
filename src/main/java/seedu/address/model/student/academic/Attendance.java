@@ -89,7 +89,7 @@ public class Attendance {
     }
 
     public String getUserInputDate() {
-        return lessonDate.format(OUTPUT);
+        return lessonDate.format(INPUT_ALT);
     }
 
     public boolean getAttendanceStatus() {

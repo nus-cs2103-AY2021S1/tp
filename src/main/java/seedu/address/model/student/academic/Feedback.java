@@ -30,7 +30,7 @@ public class Feedback {
 
     @Override
     public String toString() {
-        return "feedback: " + this.feedback;
+        return this.feedback;
     }
 
     @Override

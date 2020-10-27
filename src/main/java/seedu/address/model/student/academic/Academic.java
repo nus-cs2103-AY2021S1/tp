@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents all academic details of a Student in Reeve.
@@ -43,6 +44,19 @@ public class Academic {
 
         Academic other = (Academic) obj;
         return other.getAttendance().equals(getAttendance());
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        if (!attendance.isEmpty()) {
+            builder.append("\nAttendance:\n");
+            String detailList = attendance.stream()
+                    .map(detail -> String.format("- %s", detail))
+                    .collect(Collectors.joining("\n"));
+            builder.append(detailList);
+        }
+        return builder.toString();
     }
 
 }
