@@ -34,8 +34,8 @@ import seedu.expense.logic.commands.RemarkCommand;
 import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.expense.DateMatchesPredicate;
+import seedu.expense.model.expense.DescriptionContainsKeywordsPredicate;
 import seedu.expense.model.expense.Expense;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.model.expense.Remark;
 import seedu.expense.model.tag.Tag;
 import seedu.expense.testutil.CategoryUtil;
@@ -96,7 +96,7 @@ public class ExpenseBookParserTest {
                         + " " + PREFIX_DATE + dateString + " "
         );
         FindCommand findCommand = new FindCommand(
-                new NameContainsKeywordsPredicate(keywords),
+                new DescriptionContainsKeywordsPredicate(keywords),
                 new DateMatchesPredicate(dateStrings));
         assertEquals(findCommand, command);
     }

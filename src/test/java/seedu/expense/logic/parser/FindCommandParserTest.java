@@ -12,7 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.model.expense.DateMatchesPredicate;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
+import seedu.expense.model.expense.DescriptionContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
@@ -39,7 +39,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         FindCommand expectedFindCommand = new FindCommand(
-                new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
+                new DescriptionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
                 new DateMatchesPredicate(Arrays.asList("07-09-2020"))
         );
         String x = " " + PREFIX_DESCRIPTION + "Alice Bob " + PREFIX_DATE + " 07-09-2020 ";

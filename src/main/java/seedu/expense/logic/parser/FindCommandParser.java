@@ -11,7 +11,7 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.expense.Date;
 import seedu.expense.model.expense.DateMatchesPredicate;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
+import seedu.expense.model.expense.DescriptionContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -55,7 +55,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         }
 
         return new FindCommand(
-                new NameContainsKeywordsPredicate(Arrays.asList(keywords.trim().split("\\s+"))),
+                new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords.trim().split("\\s+"))),
                 new DateMatchesPredicate(dates)
         );
     }

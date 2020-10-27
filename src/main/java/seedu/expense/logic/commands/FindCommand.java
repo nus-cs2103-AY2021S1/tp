@@ -8,8 +8,8 @@ import java.util.function.Predicate;
 import seedu.expense.commons.core.Messages;
 import seedu.expense.model.Model;
 import seedu.expense.model.expense.DateMatchesPredicate;
+import seedu.expense.model.expense.DescriptionContainsKeywordsPredicate;
 import seedu.expense.model.expense.Expense;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 
 /**
  * Finds and lists all expenses in expense book whose name contains any of the argument keywords.
@@ -28,7 +28,7 @@ public class FindCommand extends Command {
             + PREFIX_DATE + "18-02-2020 "
             + PREFIX_DESCRIPTION + "Lunch at YIH";
 
-    private final NameContainsKeywordsPredicate namePredicate;
+    private final DescriptionContainsKeywordsPredicate namePredicate;
     private final DateMatchesPredicate datePredicate;
 
     /**
@@ -36,7 +36,7 @@ public class FindCommand extends Command {
      * the expenses list and find matching expenses. It matches based on keywords,
      * date, and tags.
      */
-    public FindCommand(NameContainsKeywordsPredicate namePredicate,
+    public FindCommand(DescriptionContainsKeywordsPredicate namePredicate,
                        DateMatchesPredicate datePredicate) {
         this.namePredicate = namePredicate;
         this.datePredicate = datePredicate;
