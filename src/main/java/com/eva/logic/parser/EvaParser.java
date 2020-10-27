@@ -14,6 +14,7 @@ import com.eva.logic.commands.ClearCommand;
 import com.eva.logic.commands.Command;
 import com.eva.logic.commands.CommentCommand;
 import com.eva.logic.commands.DeleteApplicantCommand;
+import com.eva.logic.commands.DeleteApplicationCommand;
 import com.eva.logic.commands.DeleteCommand;
 import com.eva.logic.commands.DeleteLeaveCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
@@ -105,6 +106,9 @@ public class EvaParser {
 
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
+
+        case DeleteApplicationCommand.COMMAND_WORD:
+            return new DeleteApplicationCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

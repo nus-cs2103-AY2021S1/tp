@@ -267,4 +267,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
+
+    void deleteApplication(Applicant target, Application toSet);
 }

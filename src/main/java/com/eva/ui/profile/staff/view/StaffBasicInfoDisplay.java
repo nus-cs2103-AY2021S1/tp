@@ -11,6 +11,9 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+/**
+ * A UI component that displays the basic info for {@code Staff} or {@code Applicant}.
+ */
 public class StaffBasicInfoDisplay extends UiPart<Region> {
     private static final String FXML = "StaffBasicInfoDisplay.fxml";
 
@@ -30,7 +33,7 @@ public class StaffBasicInfoDisplay extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code StaffBasicInfoDisplay} with the given {@code Person}.
+     * Creates a {@code StaffBasicInfoDisplay} with the given {@code Staff}.
      */
     public StaffBasicInfoDisplay(Staff staff) {
         super(FXML);

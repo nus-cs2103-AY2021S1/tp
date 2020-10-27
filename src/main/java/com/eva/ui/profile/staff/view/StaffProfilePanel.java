@@ -9,11 +9,13 @@ import com.eva.ui.UiPart;
 import com.eva.ui.profile.CommentListPanel;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Panel containing the profile panel of the current {@code staff}.
+ */
 public class StaffProfilePanel extends UiPart<Region> {
     public static final PanelState PANEL_NAME = STAFF_PROFILE;
 
@@ -27,14 +29,11 @@ public class StaffProfilePanel extends UiPart<Region> {
 
     @FXML
     private VBox cardPane;
-    @FXML
-    private FlowPane leaves;
 
     @FXML
     private StackPane basicInfoPlaceholder;
     @FXML
     private StackPane commentListPanelPlaceholder;
-
     @FXML
     private StackPane leaveInfoPlaceholder;
 
@@ -54,13 +53,12 @@ public class StaffProfilePanel extends UiPart<Region> {
             Staff currentStaff = this.staff.getCurrentView().get();
             staffBasicInfoDisplay = new StaffBasicInfoDisplay(currentStaff);
             basicInfoPlaceholder.getChildren().add(staffBasicInfoDisplay.getRoot());
+
             commentListPanel = new CommentListPanel(staff.getCommentList());
             commentListPanelPlaceholder.getChildren().add(commentListPanel.getRoot());
 
             leaveInfoDisplay = new LeaveInfoDisplay(staff.getLeaveList());
             leaveInfoPlaceholder.getChildren().add(leaveInfoDisplay.getRoot());
-
-            // commentListPanel = new CommentListPanel(currentStaff.getComments());
         }
     }
 
