@@ -26,6 +26,14 @@ import com.eva.model.tag.Tag;
 
 public class DeleteCommentCommand extends CommentCommand {
 
+    public static final String COMMAND_WORD = "deletecomment";
+
+    public static final String MISSING_PERSONTYPE_MESSAGE = "Need to specify applicant or staff \n"
+            + "e.g: 'deletecomment s- ...' or 'deletecomment a- ...'";
+
+    public static final String MESSAGE_DELETECOMMENT_USAGE = "Format for this command: \n"
+            + COMMAND_WORD + " INDEX <s-/a-> ti/TITLE";
+
     private static final String NO_TITLE_MESSAGE = "No such title. To delete comment, "
             + "type: " + DeleteCommand.COMMAND_WORD + " INDEX c- t:<TITLE>";
 
@@ -117,8 +125,9 @@ public class DeleteCommentCommand extends CommentCommand {
             Optional<InterviewDate> interviewDate = ((Applicant) personToEdit).getInterviewDate();
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
                     updatedTags, updatedComments, interviewDate, applicationStatus);
+        } else {
+            throw new CommandException("Specify staff or applicant with 's-' or 'a-'.");
         }
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedComments);
     }
 
     public String getPersonType() {

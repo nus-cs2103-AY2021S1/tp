@@ -142,10 +142,12 @@ public class ParserUtil {
      * @throws ParseException
      */
     public static Comment parseComment(String comment) throws ParseException {
+        System.out.println("reached here");
         requireNonNull(comment);
         String trimmedComment = comment.trim();
-        if (!Comment.isValidComment(" " + trimmedComment)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        if (!Comment.isValidAddComment(" " + trimmedComment)
+                && !Comment.isValidDeleteComment(" " + trimmedComment)) {
+            throw new ParseException(Comment.MESSAGE_CONSTRAINTS);
         }
         ArgumentMultimap argMultiMap = ArgumentTokenizer.tokenize(" " + comment,
                 PREFIX_DATE, PREFIX_TITLE, PREFIX_DESC);
