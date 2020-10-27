@@ -17,10 +17,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("contact delete n/Alex")
+[-> LogicManager : execute("contact delete n/Alex Yeoh")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand("contact delete n/Alex")
+LogicManager -> AddressBookParser : parseCommand("contact delete n/Alex Yeoh")
 activate AddressBookParser
 
 create DeleteCommandParser
@@ -30,7 +30,7 @@ activate DeleteCommandParser
 DeleteCommandParser --> AddressBookParser
 deactivate DeleteCommandParser
 
-AddressBookParser -> DeleteCommandParser : parse(" n/Alex")
+AddressBookParser -> DeleteCommandParser : parse(" n/Alex Yeoh")
 activate DeleteCommandParser
 
 DeleteCommandParser -> ArgumentTokenizer : tokenize(args, PREFIX_TAG)

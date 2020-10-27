@@ -133,11 +133,29 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Feature 1
+### Clearing all Contacts
 
-#### Proposed Implementation
+The mechanism to clear all contacts is facilitated by `ClearCommand`. It extends `Command` and implements the following methods:
 
-### \[Proposed\] Feature 2
+* `ClearCommand#execute` - Resets the AddressBook to a new empty AddressBook.
+
+This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
+
+Given below is the sequence diagram of how the mechanism behaves when called using the `contact clear` command.
+
+![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
+
+### Listing all Contacts
+
+The mechanism to list all contacts is facilitated by `ListCommand`. It extends `Command` and implements the following methods:
+
+* `ListCommand#execute` - Displays all Persons in the AddressBook.
+
+This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
+
+Given below is the sequence diagram of how the mechanism behaves when called using the `contact list` command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 #### Proposed Implementation
 

@@ -268,27 +268,27 @@ Format: `consult list`
 
 Copies email address of contacts with the given criteria to your clipboard.
 
-Format: `copy email [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+Format: `copy email [n/CONTACT_FULL_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
 
-* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
 * At least one of the optional fields must be provided.
 
 Examples:
-* `copy email n/Roy n/Ekam`
-* `copy email m/CS2103 t/classmate n/Tom n/Jerryl`
+* `copy email n/Bob Ross`
+* `copy email m/CS2103 t/classmate n/Tom Tan n/Jerryl Chong`
 
 ### Copy phone numbers of contacts : `copy phone`
 
 Copies phone numbers of contacts with the given criteria to your clipboard.
 
-Format: `copy phone [n/CONTACT_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
+Format: `copy phone [n/CONTACT_FULL_NAME] [m/MODULE_NAME] [t/TAG_NAME]`
 
-* [n/CONTACT_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
+* [n/CONTACT_FULL_NAME], [m/MODULE_NAME] and [t/TAG_NAME] are all optional fields,
 * At least one of the optional fields must be provided.
 
 Examples:
 * `copy phone m/CS2103`
-* `copy phone m/CS1010 t/classmate n/Bob n/Roy`
+* `copy phone m/CS1010 t/classmate n/Bob Ross n/Peter Parker`
 
 ### Exiting the program : `exit`
 
