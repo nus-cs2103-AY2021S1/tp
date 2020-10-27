@@ -55,7 +55,7 @@ You can find out more about the command terminologies here:
 
 <div markdown="block" class="alert alert-info">
 
-**:notebook_with_decorative_cover: Notes about the command format:**<br>
+**:clipboard: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME_OF_ASSIGNMENT`, `NAME_OF_ASSIGNMENT` is a parameter which can be used as `add n/Assignment 2`.
