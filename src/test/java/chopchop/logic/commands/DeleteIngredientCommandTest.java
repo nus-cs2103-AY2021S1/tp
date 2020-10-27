@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandFailure;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static chopchop.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static chopchop.logic.commands.CommandTestUtil.showIngredientAtIndex;
 import static chopchop.testutil.TypicalReferences.INDEXED_FIRST;
 import static chopchop.testutil.TypicalReferences.INDEXED_SECOND;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
@@ -48,7 +48,7 @@ public class DeleteIngredientCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEXED_FIRST);
+        showIngredientAtIndex(model, INDEXED_FIRST);
 
         var indToDelete = model.getFilteredIngredientList().get(INDEXED_FIRST.getZeroIndex());
         var deleteCommand = new DeleteIngredientCommand(INDEXED_FIRST);
@@ -63,7 +63,7 @@ public class DeleteIngredientCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEXED_FIRST);
+        showIngredientAtIndex(model, INDEXED_FIRST);
 
         var outOfBoundIndex = INDEXED_SECOND;
         // ensures that outOfBoundIndex is still in bounds of ingredient book list
@@ -92,7 +92,7 @@ public class DeleteIngredientCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different values -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

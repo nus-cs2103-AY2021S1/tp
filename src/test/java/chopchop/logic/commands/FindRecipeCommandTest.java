@@ -1,44 +1,45 @@
 package chopchop.logic.commands;
 
-import static chopchop.testutil.TypicalIngredients.APRICOT;
-import static chopchop.testutil.TypicalIngredients.BANANA;
+import static chopchop.testutil.TypicalRecipes.APRICOT_SALAD;
+import static chopchop.testutil.TypicalRecipes.BANANA_SALAD;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
+import static chopchop.testutil.TypicalRecipes.getTypicalRecipeBook;
+
 import java.util.Arrays;
 import java.util.Collections;
 
+import chopchop.model.attributes.NameContainsKeywordsPredicate;
+import chopchop.model.usage.IngredientUsage;
+import chopchop.model.usage.RecipeUsage;
 import chopchop.model.EntryBook;
-import org.junit.jupiter.api.Test;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.UsageList;
 import chopchop.model.UserPrefs;
-import chopchop.model.attributes.NameContainsKeywordsPredicate;
-import chopchop.model.usage.IngredientUsage;
-import chopchop.model.usage.RecipeUsage;
+import org.junit.jupiter.api.Test;
 
-public class FindIngredientCommandTest {
-    private Model model = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(), new UsageList<RecipeUsage>(),
-        new UsageList<IngredientUsage>(), new UserPrefs());
-    private Model expectedModel = new ModelManager(new EntryBook<>(), getTypicalIngredientBook(),
-        new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
+public class FindRecipeCommandTest {
+    private Model model = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(), new UsageList<RecipeUsage>(),
+            new UsageList<IngredientUsage>(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalRecipeBook(), new EntryBook<>(),
+            new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
 
     @Test
     public void equals() {
         var firstPredicate = new NameContainsKeywordsPredicate(Collections.singletonList("first"));
         var secondPredicate = new NameContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        var findFirstCommand = new FindIngredientCommand(firstPredicate);
-        var findSecondCommand = new FindIngredientCommand(secondPredicate);
+        var findFirstCommand = new FindRecipeCommand(firstPredicate);
+        var findSecondCommand = new FindRecipeCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        var findFirstCommandCopy = new FindIngredientCommand(firstPredicate);
+        var findFirstCommandCopy = new FindRecipeCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -47,26 +48,26 @@ public class FindIngredientCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different values -> returns false
+        //different values -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noIngredientFound() {
+    public void execute_zeroKeywords_noRecipeFound() {
         var predicate = preparePredicate(" ");
-        var command = new FindIngredientCommand(predicate);
-        expectedModel.updateFilteredIngredientList(predicate);
+        var command = new FindRecipeCommand(predicate);
+        expectedModel.updateFilteredRecipeList(predicate);
         assertCommandSuccess(command, model, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredIngredientList());
+        assertEquals(Collections.emptyList(), model.getFilteredRecipeList());
     }
 
     @Test
-    public void execute_multipleKeywords_multipleIngredientsFound() {
-        var predicate = preparePredicate("apricot banana");
-        var command = new FindIngredientCommand(predicate);
-        expectedModel.updateFilteredIngredientList(predicate);
+    public void execute_multipleKeyWords_mutipleRecipesFound() {
+        var predicate = preparePredicate("apricot salad banana salad");
+        var command = new FindRecipeCommand(predicate);
+        expectedModel.updateFilteredRecipeList(predicate);
         assertCommandSuccess(command, model, expectedModel);
-        assertEquals(Arrays.asList(APRICOT, BANANA), model.getFilteredIngredientList());
+        assertEquals(Arrays.asList(APRICOT_SALAD, BANANA_SALAD), model.getFilteredRecipeList());
     }
 
     /**

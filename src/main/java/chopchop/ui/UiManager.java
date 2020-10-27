@@ -6,6 +6,7 @@ import chopchop.MainApp;
 import chopchop.commons.core.LogsCenter;
 import chopchop.commons.util.StringUtil;
 import chopchop.logic.Logic;
+import chopchop.logic.commands.CommandResult;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -57,7 +58,10 @@ public class UiManager implements Ui {
 
     @Override
     public void showCommandOutput(String text, boolean isError) {
-        this.mainWindow.showCommandOutput(text, isError);
+        this.mainWindow.showCommandOutput(isError
+            ? CommandResult.error(text)
+            : CommandResult.message(text)
+        );
     }
 
 
