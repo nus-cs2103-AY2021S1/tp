@@ -97,7 +97,7 @@ public class DeliveryCard extends UiPart<Region> {
             long seconds = tempDateTime.until(endTime, ChronoUnit.SECONDS);
 
             if ((minutes < 0 || seconds < 0)) {
-                String timeString = "OVERDUE by: "
+                String timeString = "OVERDUE BY: "
                                     + minutes
                                     + "min "
                                     + (seconds < 0 ? (-1 * seconds) : seconds)
@@ -105,7 +105,7 @@ public class DeliveryCard extends UiPart<Region> {
                 time.setText(timeString);
                 time.setFill(Color.web("#f24e6c")); // light red
             } else {
-                String timeString = "Deliver by: "
+                String timeString = "DELIVER BY: "
                                     + minutes
                                     + "min "
                                     + seconds
