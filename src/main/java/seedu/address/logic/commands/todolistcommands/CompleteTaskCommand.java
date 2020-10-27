@@ -26,7 +26,7 @@ public class CompleteTaskCommand extends Command {
         + "Example: " + COMMAND_WORD + " 1 \n"
         + "Note : To mark or undo a task to NOT COMPLETED please use the 'resettask' command";
 
-    public static final String MESSAGE_COMPLETE_TASK_SUCCESS = "Completed Task: %1$s";
+    public static final String MESSAGE_COMPLETE_TASK_SUCCESS = "Completed Task: \n%1$s";
 
     private final Index targetIndex;
 
@@ -47,7 +47,7 @@ public class CompleteTaskCommand extends Command {
         Task completedTask = taskToComplete.setStatus(Status.COMPLETED);
         model.setTask(taskToComplete, completedTask);
         model.commitTodoList();
-        return new CommandResult(String.format(MESSAGE_COMPLETE_TASK_SUCCESS, taskToComplete));
+        return new CommandResult(String.format(MESSAGE_COMPLETE_TASK_SUCCESS, completedTask));
     }
 
     @Override

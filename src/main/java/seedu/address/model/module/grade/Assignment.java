@@ -89,6 +89,21 @@ public class Assignment {
         return assignmentResult;
     }
 
+    /**
+     * Returns true if both assignments have the same name.
+     * This defines a weaker notion of equality between two assignments.
+     *
+     * @param otherAssignment other assignment to be compared
+     * @return true if both assignment has the same name.
+     */
+    public boolean isSameAssignment(Assignment otherAssignment) {
+        if (this == otherAssignment) {
+            return true;
+        }
+
+        return getAssignmentName().equals((otherAssignment.getAssignmentName()));
+    }
+
     @Override
     public String toString() {
         return String.format("Assignment %s is %.2f of the total grade and the result is %.2f",
@@ -99,7 +114,9 @@ public class Assignment {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Assignment // instanceof handles nulls
-                && assignmentName.equals(((Assignment) other).assignmentName)); // state check
+                && assignmentName.equals(((Assignment) other).assignmentName))
+                && assignmentResult == ((Assignment) other).assignmentResult
+                && assignmentPercentage == ((Assignment) other).assignmentPercentage; // state check
     }
 
     @Override
