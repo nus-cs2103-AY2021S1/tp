@@ -45,7 +45,8 @@ public class CommandTestUtil {
     public static final String VALID_LOCATION_APPLE = "Fruit Section, Subsection C";
     public static final String VALID_LOCATION_BANANA = "Fruits section, Subsection B";
     public static final String VALID_FILE_NAME = "test";
-    public static final String VALID_SORT_ORDER = "ascending";
+    public static final String VALID_SORT_ORDER_ASCENDING = "ascending";
+    public static final String VALID_SORT_ORDER_DESCENDING = "descending";
     public static final String VALID_SORT_FIELD = "serialnumber";
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
@@ -66,7 +67,8 @@ public class CommandTestUtil {
     public static final String LOCATION_DESC_APPLE = " " + PREFIX_LOCATION + VALID_LOCATION_APPLE;
     public static final String LOCATION_DESC_BANANA = " " + PREFIX_LOCATION + VALID_LOCATION_BANANA;
     public static final String FILE_NAME_DESC = " " + PREFIX_FILE_NAME + VALID_FILE_NAME;
-    public static final String SORT_ORDER_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER;
+    public static final String SORT_ORDER_ASCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_ASCENDING;
+    public static final String SORT_ORDER_DESCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_DESCENDING;
     public static final String SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + VALID_SORT_FIELD;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
