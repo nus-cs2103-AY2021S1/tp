@@ -51,7 +51,7 @@ public class ScheduleCommand extends Command {
         model.updateSortedStudentList(new ClassTimeComparator());
 
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getSortedStudentList().size()));
     }
 
     @Override

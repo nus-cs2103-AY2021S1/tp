@@ -66,7 +66,7 @@ public class EditCommand extends Command {
     private final EditAdminDescriptor editAdminDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
+     * @param index of the student in the sorted student list to edit
      * @param editStudentDescriptor details to edit the student with
      * @param editAdminDescriptor admin details to edit the student with
      */
@@ -83,7 +83,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getSortedStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
