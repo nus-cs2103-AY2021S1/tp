@@ -66,7 +66,7 @@ public class EditCommand extends Command {
     private final EditAdminDescriptor editAdminDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
+     * @param index of the student in the sorted student list to edit
      * @param editStudentDescriptor details to edit the student with
      * @param editAdminDescriptor admin details to edit the student with
      */
