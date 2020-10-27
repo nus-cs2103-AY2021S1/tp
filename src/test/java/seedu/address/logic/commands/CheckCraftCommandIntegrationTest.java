@@ -1,9 +1,16 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.CheckCraftCommand.MESSAGE_SUCCESS_CRAFTABLE;
+import static seedu.address.logic.commands.CheckCraftCommand.MESSAGE_SUCCESS_UNCRAFTABLE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
+import static seedu.address.testutil.TypicalItems.APPLE;
+import static seedu.address.testutil.TypicalItems.BANANA;
+import static seedu.address.testutil.TypicalItems.getTypicalItemList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
+
 import seedu.address.model.LocationList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -14,14 +21,6 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.Recipe;
 import seedu.address.testutil.RecipeBuilder;
-
-import static seedu.address.logic.commands.CheckCraftCommand.MESSAGE_SUCCESS_CRAFTABLE;
-import static seedu.address.logic.commands.CheckCraftCommand.MESSAGE_SUCCESS_UNCRAFTABLE;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.assertInventoryCommandFailure;
-import static seedu.address.testutil.TypicalItems.APPLE;
-import static seedu.address.testutil.TypicalItems.BANANA;
-import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 
 public class CheckCraftCommandIntegrationTest {
 
@@ -44,15 +43,15 @@ public class CheckCraftCommandIntegrationTest {
     @Test
     public void execute_craftable_success() {
         CheckCraftCommand ccc = new CheckCraftCommand(APPLE.getName(), new Quantity("3"));
-        String expectedMessage = String.format(MESSAGE_SUCCESS_CRAFTABLE, APPLE.getName()) +
-                "\ntest: Banana[6] -> Apple[4]\n";
+        String expectedMessage = String.format(MESSAGE_SUCCESS_CRAFTABLE, APPLE.getName(), 3)
+                + "\ntest: Banana[6] -> Apple[4]\n";
         assertCommandSuccess(ccc, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_uncraftable_success() {
         CheckCraftCommand ccc = new CheckCraftCommand(APPLE.getName(), new Quantity("200"));
-        String expectedMessage = String.format(MESSAGE_SUCCESS_UNCRAFTABLE, APPLE.getName());
+        String expectedMessage = String.format(MESSAGE_SUCCESS_UNCRAFTABLE, APPLE.getName(), 200);
         assertCommandSuccess(ccc, model, expectedMessage, expectedModel);
     }
 

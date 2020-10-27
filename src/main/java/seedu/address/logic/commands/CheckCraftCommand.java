@@ -1,18 +1,18 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 
 /**
  * Checks if there are recipes which may be used to craft the desired quantity of the item.
@@ -28,8 +28,8 @@ public class CheckCraftCommand extends Command {
             + PREFIX_ITEM_NAME + "Bob's blueberry "
             + PREFIX_ITEM_QUANTITY + "20";
 
-    public static final String MESSAGE_SUCCESS_CRAFTABLE = "%1$s may be crafted with any of the recipes below:";
-    public static final String MESSAGE_SUCCESS_UNCRAFTABLE = "%1$s is not possible to craft with a single recipe";
+    public static final String MESSAGE_SUCCESS_CRAFTABLE = "%2$s %1$s may be crafted with any of the recipes below:";
+    public static final String MESSAGE_SUCCESS_UNCRAFTABLE = "%2$s %1$s is not possible to craft with a single recipe";
 
     public static final String MESSAGE_INVALID_QUANTITY = "Please enter a valid quantity";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
@@ -38,7 +38,10 @@ public class CheckCraftCommand extends Command {
     private final String itemName;
     private final int quantity;
 
-    public CheckCraftCommand (String itemName, Quantity quantity) {
+    /**
+     * Creates a CheckCraftCommand to check if the {@code quantity} of the item with {@code itemName} may be crafted.
+     */
+    public CheckCraftCommand(String itemName, Quantity quantity) {
         this.itemName = itemName;
         this.quantity = quantity.getNumber();
     }
@@ -74,13 +77,18 @@ public class CheckCraftCommand extends Command {
         return new CommandResult(findRecipes(quantity, itemList, recipeList));
     }
 
+    /**
+     * Extracts all usable recipes and formats them for display.
+     */
     private String findRecipes(int quantity, ArrayList<Item> itemList, ArrayList<Recipe> recipeList) {
         StringBuilder message = new StringBuilder();
-        message.append(String.format(MESSAGE_SUCCESS_CRAFTABLE, itemName)).append("\n");
+        message.append(String.format(MESSAGE_SUCCESS_CRAFTABLE, itemName, quantity)).append("\n");
         boolean isCraftable = false;
 
-        for (Recipe recipe:
-             recipeList) {
+        for (Recipe recipe
+                : recipeList) {
+            assert recipe.getProductName().equals(itemName);
+
             int productQuantity = recipe.getProductQuantity().getNumber();
             int timesToCraft = quantity / productQuantity;
             if (quantity % productQuantity != 0) {
@@ -89,6 +97,7 @@ public class CheckCraftCommand extends Command {
             }
             boolean isUsable = true;
             StringBuilder requiredIngredients = new StringBuilder();
+
             for (Ingredient ingredient : recipe.getIngredients()) {
                 int itemId = ingredient.getKey();
                 int quantityRequired = ingredient.getValue() * timesToCraft;
@@ -120,7 +129,7 @@ public class CheckCraftCommand extends Command {
             }
         }
         if (!isCraftable) {
-           return String.format(MESSAGE_SUCCESS_UNCRAFTABLE, itemName);
+            return String.format(MESSAGE_SUCCESS_UNCRAFTABLE, itemName, quantity);
         }
         return message.toString();
     }
