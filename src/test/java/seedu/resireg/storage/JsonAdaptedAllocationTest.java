@@ -8,6 +8,7 @@ import static seedu.resireg.testutil.TypicalRooms.ROOM_ONE;
 import static seedu.resireg.testutil.TypicalStudents.AMY;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.resireg.commons.exceptions.IllegalValueException;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.RoomNumber;

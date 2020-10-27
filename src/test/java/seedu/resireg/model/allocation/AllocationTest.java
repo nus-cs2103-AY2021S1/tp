@@ -8,6 +8,7 @@ import static seedu.resireg.testutil.TypicalRooms.ROOM_TWO;
 import static seedu.resireg.testutil.TypicalStudents.BENSON;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.resireg.testutil.AllocationBuilder;
 
 

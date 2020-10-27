@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.resireg.model.allocation.exceptions.AllocationNotFoundException;
 import seedu.resireg.model.allocation.exceptions.DuplicateAllocationException;
 import seedu.resireg.testutil.AllocationBuilder;
@@ -74,14 +75,14 @@ public class UniqueAllocationListTest {
 
     @Test
     public void setAllocation_nullEditedAllocation_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-            () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, null));
+        assertThrows(NullPointerException.class, () ->
+            uniqueAllocationList.setAllocation(ALLOCATION_ONE, null));
     }
 
     @Test
     public void setAllocation_targetAllocationNotInList_throwsAllocationNotFoundException() {
-        assertThrows(AllocationNotFoundException.class,
-            () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, ALLOCATION_ONE));
+        assertThrows(AllocationNotFoundException.class, () ->
+            uniqueAllocationList.setAllocation(ALLOCATION_ONE, ALLOCATION_ONE));
     }
 
     @Test
@@ -130,8 +131,8 @@ public class UniqueAllocationListTest {
     public void setAllocation_editedAllocationHasNonUniqueIdentity_throwsDuplicateAllocationException() {
         uniqueAllocationList.add(ALLOCATION_ONE);
         uniqueAllocationList.add(ALLOCATION_TWO);
-        assertThrows(DuplicateAllocationException.class,
-            () -> uniqueAllocationList.setAllocation(ALLOCATION_ONE, ALLOCATION_TWO));
+        assertThrows(DuplicateAllocationException.class, () ->
+                uniqueAllocationList.setAllocation(ALLOCATION_ONE, ALLOCATION_TWO));
     }
 
     @Test
@@ -154,8 +155,8 @@ public class UniqueAllocationListTest {
 
     @Test
     public void setAllocations_nullUniqueAllocationList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-            () -> uniqueAllocationList.setAllocations((UniqueAllocationList) null));
+        assertThrows(NullPointerException.class, () ->
+            uniqueAllocationList.setAllocations((UniqueAllocationList) null));
     }
 
     @Test

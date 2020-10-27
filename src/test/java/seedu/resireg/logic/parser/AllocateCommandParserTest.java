@@ -7,6 +7,7 @@ import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_ROOM;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.resireg.logic.commands.AllocateCommand;
 
 

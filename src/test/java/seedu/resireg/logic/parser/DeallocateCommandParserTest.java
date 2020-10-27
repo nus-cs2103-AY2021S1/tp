@@ -6,6 +6,7 @@ import static seedu.resireg.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.resireg.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.resireg.logic.commands.DeallocateCommand;
 
 /**
