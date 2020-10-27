@@ -1,5 +1,7 @@
 package seedu.pivot.commons.util;
 
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_FILE_EXIST;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -105,12 +107,10 @@ public class FileUtil {
             throw new CommandException(UserMessages.MESSAGE_DESKTOP_API_NOT_AVAILABLE);
         }
 
-        assert (isFileExists(file)) : "file should exist";
+        assert (isFileExists(file)) : ASSERT_FILE_EXIST;
         File doc = file.toFile();
         Desktop desktop = Desktop.getDesktop();
         desktop.open(doc);
     }
-
-
 
 }
