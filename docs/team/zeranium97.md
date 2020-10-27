@@ -24,6 +24,7 @@ Given below are my contributions to the project.
   * Remove Supplier as a mandatory field. It will display "NO SUPPLIER" if input is empty. (Pull Request [\#43](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/43))
   * Twerk test's data and method to suit our program (Pull Request [\#52](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/52))
   * Modify `find` to support finding based on different data fields (Pull Request [\#86](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/86))
+  * Further enhance `find` to search a combination of fields (Pull Request [\#171](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/86))
 
 * **Documentation**:
   * User Guide:
@@ -33,7 +34,7 @@ Given below are my contributions to the project.
   * Developer Guide:
     * Added Use Cases.
     * Modified Model and Storage section.
-    * Added `find` implementation
+    * Added `edit` and `find` implementation
 
 * **Community**
    * Reported bugs (such as: [Unhandled Exceptions](https://github.com/AY2021S1-CS2103T-T12-1/tp/issues/78)

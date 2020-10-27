@@ -212,7 +212,7 @@ Edits the name and phone number of the 1st item to be `AARON` and `91111233` res
 
 #### 3.1.5 Locating items or delivery by keywords: `find-i` or `find-d`
 
-Finds items or deliveries whose atributes contain any of the given keywords.
+Finds items or deliveries whose attributes contain any of the given keywords.
 
 ##### 3.1.5.a `find-i`
 
@@ -228,8 +228,22 @@ Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
   e.g. 'find-i n/Chicken s/NTUC' will return items matching name and supplier.
 
 Examples:
-* `find-i n/Chicken` returns `chicken` and `chicken salad` items.
-* `find-i s/Cold Storage t/meat` returns item with supplier of Cold Storage and tags of meat.
+* `find-i s/ntuc t/meat` returns item with supplier of `NTUC` and tag of `meat`.
+
+1. Select the Command Box and type in `find-d s/ntuc t/meat`.
+<br>
+![find-command-3](images/find-command-3.PNG)
+<br>
+<br>
+
+2. Either press 'Enter' on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display, and the number of matches will be shown.
+<br>
+![find-command-4](images/find-command-4.PNG)
+<br>
+<br>
+
 
 ##### 3.1.5.b `find-d`
 
@@ -247,9 +261,21 @@ Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
   e.g. 'find-d n/Bernice p/85783742' will return delivery matching name and phone.
  
 Examples:
-* `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
+* `find-d n/alex aileen` returns `Alex` and `Aileen`'s deliveries
 
+1. Select the Command Box and type in `find-d n/alex aileen`.
+<br>
+![find-command-1](images/find-command-1.PNG)
+<br>
+<br>
 
+2. Either press 'Enter' on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display, and the number of matches will be shown.
+<br>
+![find-command-2](images/find-command-2.PNG)
+<br>
+<br>
 
 #### 3.1.6 Listing all items or delivery: `list-i` or `list-d`
 
@@ -259,7 +285,21 @@ that match your find KEYWORD. If you would like to show **all** the items and de
 
 Format: `list-i` or `list-d`
 
+Example: `list-i`
 
+1. Select the Command Box and type in `list-i`.
+<br>
+![list-command-1](images/list-command-1.PNG)
+<br>
+<br>
+
+2. Either press 'Enter' on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display.
+<br>
+![list-command-2](images/list-command-2.PNG)
+<br>
+<br>
 
 #### 3.1.7 Deleting an item or delivery: `delete-i` or `delete-d`
 
