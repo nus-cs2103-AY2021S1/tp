@@ -30,6 +30,7 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 //import seedu.address.model.tag.Tag;
 
@@ -115,7 +116,8 @@ public class EditRecipeCommand extends Command {
         assert recipeToEdit != null;
 
         Name updatedName = editRecipeDescriptor.getName().orElse(recipeToEdit.getName());
-        String updatedRecipeImage = editRecipeDescriptor.getRecipeImage().orElse(recipeToEdit.getRecipeImage());
+        RecipeImage updatedRecipeImage =
+                editRecipeDescriptor.getRecipeImage().orElse(recipeToEdit.getRecipeImage());
         ArrayList<Instruction> updatedInstruction =
                 editRecipeDescriptor.getInstruction().orElse(recipeToEdit.getInstruction());
         ArrayList<Ingredient> updatedIngredient =
@@ -152,7 +154,7 @@ public class EditRecipeCommand extends Command {
     public static class EditRecipeDescriptor {
         private Name name;
         private ArrayList<Instruction> instruction;
-        private String recipeImage;
+        private RecipeImage recipeImage;
         private ArrayList<Ingredient> ingredients;
         private Calories calories;
         private Set<Tag> tags;
@@ -193,10 +195,10 @@ public class EditRecipeCommand extends Command {
             return Optional.ofNullable(instruction);
         }
 
-        public void setRecipeImage(String recipeImage) {
+        public void setRecipeImage(RecipeImage recipeImage) {
             this.recipeImage = recipeImage;
         }
-        public Optional<String> getRecipeImage() {
+        public Optional<RecipeImage> getRecipeImage() {
             return Optional.ofNullable(recipeImage);
         }
 

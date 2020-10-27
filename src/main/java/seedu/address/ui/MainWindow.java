@@ -1,6 +1,7 @@
 package seedu.address.ui;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import com.jfoenix.assets.JFoenixResources;
@@ -201,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.setHeight(600);
         primaryStage.setX(500);
         primaryStage.setY(100);
-        leftPanel.setPrefWidth(400);
+        leftPanel.setPrefWidth(500);
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             leftPanel.setPrefWidth(primaryStage.getWidth() / 2);
@@ -262,7 +263,8 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, IOException {
+    private CommandResult executeCommand(String commandText) throws CommandException,
+            ParseException, IOException, URISyntaxException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -302,9 +304,12 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException | IOException e) {
+        } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        } catch (IOException | URISyntaxException e) {
+            resultDisplay.setFeedbackToUser("URL is invalid! or WIFI is needed to download the image!");
             throw e;
         }
     }

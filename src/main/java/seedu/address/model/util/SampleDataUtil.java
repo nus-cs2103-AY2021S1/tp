@@ -17,6 +17,7 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -38,7 +39,7 @@ public class SampleDataUtil {
         int index = 0;
         Name recipeName = null;
         ArrayList<Instruction> recipeInstructions = new ArrayList<>();
-        String recipeImage = "";
+        RecipeImage recipeImage = null;
         HashSet<Tag> tag = new HashSet<>();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         Calories calories = null;
@@ -53,7 +54,7 @@ public class SampleDataUtil {
             } else if (index == 3) {
                 tag.add(new Tag(getTag(field)));
             } else if (index == 5) {
-                recipeImage = getRecipeImage(field);
+                recipeImage = new RecipeImage(getRecipeImage(field));
             } else if (index == 7) {
                 calories = new Calories(getCalories(field));
             }
@@ -143,9 +144,10 @@ public class SampleDataUtil {
         ArrayList<Instruction> instructionList = new ArrayList<>();
         instructionList.add(instruction1);
         instructionList.add(instruction2);
-        String recipeImage = "https://i.guim.co.uk/img/media/0a07b58d3e8a5c67901c90c7b3b25885095597e6"
+        RecipeImage recipeImage =
+                new RecipeImage("https://i.guim.co.uk/img/media/0a07b58d3e8a5c67901c90c7b3b25885095597e6"
                 + "/84_2248_5678_6000/master/5678.jpg?width=620&quality=85&auto=format&fit=max&s=b20e33f"
-                + "7054827278dbd2b9d8a2e7616";
+                + "7054827278dbd2b9d8a2e7616");
         Ingredient ingredient1 = new Ingredient("unsalted butter", "210g");
         Ingredient ingredient2 = new Ingredient("flour", "2 cups");
         ArrayList<Ingredient> ingredientList = new ArrayList<>();

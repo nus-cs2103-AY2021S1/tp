@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -27,6 +28,12 @@ public class RecipeListPanel extends UiPart<Region> {
         super(FXML);
         recipeListView.setItems(recipeList);
         recipeListView.setCellFactory(listView -> new RecipeListViewCell());
+        //Responsive resizing and increase list view performance
+        ChangeListener<Number> recipeListSizeListener = (observable, oldValue, newValue) -> {
+            recipeListView.setFixedCellSize(recipeListView.getWidth() / 1.5);
+        };
+        recipeListView.widthProperty().addListener(recipeListSizeListener);
+
     }
 
     /**

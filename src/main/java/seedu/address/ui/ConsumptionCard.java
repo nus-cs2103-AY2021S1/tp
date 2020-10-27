@@ -47,7 +47,7 @@ public class ConsumptionCard extends UiPart<Region> {
         this.consumption = consumption;
         id.setText(displayedIndex + ". ");
         name.setText(consumption.getRecipe().getName().fullName);
-        Image rawImage = new Image(consumption.getRecipe().getRecipeImage(), 340, 0, true, true);
+        Image rawImage = new Image(consumption.getRecipe().getRecipeImage().getValue(), 340, 0, true, true);
         PixelReader reader = rawImage.getPixelReader();
         WritableImage newImage = new WritableImage(reader, 0, 0, 310, 150);
         recipeImageView.setImage(newImage);
