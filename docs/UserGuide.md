@@ -5,7 +5,7 @@ title: User Guide
 
 Choose a topic from the table of contents to get started on your **Wishful Shrinking journey**. 
 
-## Table of Contents
+## Table of Contents <a id="toc"></a>
 
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
