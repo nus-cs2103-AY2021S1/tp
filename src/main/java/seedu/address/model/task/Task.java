@@ -168,11 +168,21 @@ public class Task {
             && otherTask.getStatus().equals(getStatus());
     }
 
+    /**
+     * Returns string representing of the name of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
     public String getNameForUi() {
         assert this.name != null;
         return this.name.toString();
     }
 
+    /**
+     * Returns a set representing of the tags of the task for the UI.
+     *
+     * @return set of tags to be displayed in the UI.
+     */
     public Set<Tag> getTagsForUi() {
         if (this.tags == null) {
             HashSet<Tag> defaultTags = new HashSet<>();
@@ -183,6 +193,11 @@ public class Task {
         }
     }
 
+    /**
+     * Returns string representing of the priority of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
     public String getPriorityForUi() {
         if (this.priority == null) {
             return "Priority not provided";
@@ -191,6 +206,11 @@ public class Task {
         }
     }
 
+    /**
+     * Returns string representing of the date of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
     public String getDateForUi() {
         if (this.date == null) {
             return "Date not provided";
@@ -199,6 +219,11 @@ public class Task {
         }
     }
 
+    /**
+     * Returns string representing of the status of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
     public String getStatusForUi() {
         assert this.status != null;
         return this.status.toString();
