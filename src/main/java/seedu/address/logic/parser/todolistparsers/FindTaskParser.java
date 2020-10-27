@@ -5,9 +5,11 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.todolistcommands.FindTaskCommand;
@@ -17,10 +19,12 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.FindTaskCriteria;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.TaskContainsTagsPredicate;
 import seedu.address.model.task.TaskMatchesDatePredicate;
 import seedu.address.model.task.TaskMatchesPriorityPredicate;
 
@@ -36,9 +40,10 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public FindTaskCommand parse(String args) throws ParseException {
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY);
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args,
+                PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
-        if (!isAtLeastOnePrefixPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY)
+        if (!isAtLeastOnePrefixPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE, PREFIX_PRIORITY, PREFIX_TAG)
                 || !argMultiMap.getPreamble().isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
@@ -47,24 +52,27 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
         FindTaskCriteria findTaskCriteria = new FindTaskCriteria();
 
         if (argMultiMap.getValue(PREFIX_NAME).isPresent()) {
-            String keywords = argMultiMap.getValue(PREFIX_NAME).get();
-            List<String> keywordsAsList = parseSearchKeywords(keywords);
+            List<String> keywordsAsList = parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
             NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(keywordsAsList);
             findTaskCriteria.addPredicate(namePredicate);
         }
 
         if (argMultiMap.getValue(PREFIX_DATE).isPresent()) {
-            String dateAsString = argMultiMap.getValue(PREFIX_DATE).get();
-            Date searchDate = parseSearchDate(dateAsString);
+            Date searchDate = ParserUtil.parseTaskDate(argMultiMap.getValue(PREFIX_DATE).get());
             TaskMatchesDatePredicate datePredicate = new TaskMatchesDatePredicate(searchDate);
             findTaskCriteria.addPredicate(datePredicate);
         }
 
         if (argMultiMap.getValue(PREFIX_PRIORITY).isPresent()) {
-            String priorityAsString = argMultiMap.getValue(PREFIX_PRIORITY).get();
-            Priority searchPriority = parseSearchPriority(priorityAsString);
+            Priority searchPriority = ParserUtil.parseTaskPriority(argMultiMap.getValue(PREFIX_PRIORITY).get());
             TaskMatchesPriorityPredicate priorityPredicate = new TaskMatchesPriorityPredicate(searchPriority);
             findTaskCriteria.addPredicate(priorityPredicate);
+        }
+
+        if (argMultiMap.getValue(PREFIX_TAG).isPresent()) {
+            Set<Tag> taskTags = ParserUtil.parseTags(argMultiMap.getAllValues(PREFIX_TAG));
+            TaskContainsTagsPredicate tagsPredicate = new TaskContainsTagsPredicate(taskTags);
+            findTaskCriteria.addPredicate(tagsPredicate);
         }
 
         return new FindTaskCommand(findTaskCriteria);
@@ -85,40 +93,6 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
         } else {
             String[] keywordArray = keywords.split("\\s+");
             return Arrays.asList(keywordArray);
-        }
-    }
-
-    /**
-     * Parses the search date provided by the user if it exists.
-     *
-     * @param date String containing the search date.
-     * @return Date object representing the search date. If no date was provided, null is returned.
-     * @throws ParseException If the date provided is incorrect or invalid.
-     */
-    private Date parseSearchDate(String date) throws ParseException {
-        requireNonNull(date);
-        if (date.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
-        } else {
-            return ParserUtil.parseTaskDate(date);
-        }
-    }
-
-    /**
-     * Parses the search priority criteria provided by the user if it exists.
-     *
-     * @param priority String containing the search priority criteria.
-     * @return Priority object representing the search priority. If no priority was provided, null is returned.
-     * @throws ParseException If the priority provided is incorrect or invalid.
-     */
-    private Priority parseSearchPriority(String priority) throws ParseException {
-        requireNonNull(priority);
-        if (priority.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
-        } else {
-            return ParserUtil.parseTaskPriority(priority);
         }
     }
 

@@ -25,8 +25,8 @@ public class FindTaskCommand extends Command {
             + "the specified search parameters provided (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
             + "At least one of the following search parameters must be provided: \n"
-            + "Parameters: [n/TASKNAME] [d/TASK_DATE] [p/TASK_PRIORITY]\n"
-            + "Example: " + COMMAND_WORD + " n/lab p/Highest";
+            + "Parameters: [n/TASK_NAME] [d/TASK_DATE] [p/TASK_PRIORITY] [t/TASK_TAG...]\n"
+            + "Example: " + COMMAND_WORD + " n/lab t/easy t/cs2103T";
 
     private final Logger logger = LogsCenter.getLogger(FindTaskCommand.class);
 

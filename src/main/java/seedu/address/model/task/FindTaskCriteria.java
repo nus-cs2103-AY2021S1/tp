@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 public class FindTaskCriteria {
 
     /**
-     * List of predicates to be used to test for matching task.
+     * List of predicates to be used to test for matching tasks.
      */
     private final List<Predicate<Task>> predicateList = new ArrayList<>();
 
