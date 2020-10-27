@@ -69,6 +69,12 @@ public class FinanceRecord {
         this.uiUsableIndex = "" + uiUsableIndex;
     }
 
+    /**
+     * Constructs a {@code Finance Record}.
+     *
+     * @param amount the amount of the transaction
+     * @param cost the cost of each item
+     */
     public FinanceRecord(double amount, double cost) {
         this.amount = amount;
         this.id = this.hashCode();;

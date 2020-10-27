@@ -1,5 +1,13 @@
 package nustorage.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
 import nustorage.commons.core.Messages;
 import nustorage.commons.core.index.Index;
 import nustorage.commons.util.CollectionUtil;
@@ -7,15 +15,6 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
-import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
-
 
 public class UpdateInventoryCommand extends Command {
     public static final String COMMAND_WORD = "update_inventory";
@@ -34,6 +33,10 @@ public class UpdateInventoryCommand extends Command {
     private final Index index;
     private final UpdateInventoryDescriptor updateInventoryDescriptor;
 
+    /**
+     * @param index index of the inventory record in the inventory record list to update
+     * @param updateInventoryDescriptor details to update the record with
+     */
     public UpdateInventoryCommand(Index index, UpdateInventoryDescriptor updateInventoryDescriptor) {
         requireNonNull(index);
         requireNonNull(updateInventoryDescriptor);
@@ -73,8 +76,9 @@ public class UpdateInventoryCommand extends Command {
         return new CommandResult(String.format(MESSAGE_UPDATE_INVENTORY_SUCCESS, updatedInventoryRecord));
     }
 
-    private static InventoryRecord createUpdatedInventoryRecord(InventoryRecord inventoryRecord
-            , UpdateInventoryDescriptor updateInventoryDescriptor) throws CommandException {
+    private static InventoryRecord createUpdatedInventoryRecord(
+            InventoryRecord inventoryRecord, UpdateInventoryDescriptor updateInventoryDescriptor)
+            throws CommandException {
         assert inventoryRecord != null;
 
         Integer updateQuantityBy = updateInventoryDescriptor.getChangeInQuantity().orElse(0);

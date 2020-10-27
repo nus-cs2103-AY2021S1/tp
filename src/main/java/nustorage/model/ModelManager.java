@@ -156,6 +156,11 @@ public class ModelManager implements Model {
         requireAllNonNull(target);
         return financeAccount.getFinanceRecord(target);
     }
+
+    @Override
+    public FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord) {
+        return financeAccount.getFinanceRecord(inventoryRecord.getFinanceId());
+    }
     // @Override
     // public List<FinanceRecord> viewFinanceRecords() {
     //     // TODO: DORA IMPLEMENT VIEW FINANCE RECORDS.
@@ -177,11 +182,6 @@ public class ModelManager implements Model {
     @Override
     public FinanceAccount getFinanceAccount() {
         return financeAccount;
-    }
-
-    @Override
-    public FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord) {
-        return financeAccount.getFinanceRecord(inventoryRecord.getFinanceId());
     }
 
     @Override
