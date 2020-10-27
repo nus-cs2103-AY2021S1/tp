@@ -15,4 +15,16 @@ public class QuitCommand extends Command {
     public String toString() {
         return String.format("QuitCommand");
     }
+
+    public static String getCommandString() {
+        return "quit";
+    }
+
+    public static String getCommandHelp() {
+        return "Quits ChopChop";
+    }
+
+    public static String getUserGuideSection() {
+        return "quitting-chopchop--quit";
+    }
 }
