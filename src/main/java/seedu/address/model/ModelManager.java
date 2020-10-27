@@ -26,6 +26,7 @@ import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.bidderaddressbook.ReadOnlyBidderAddressBook;
 import seedu.address.model.id.BidderId;
 import seedu.address.model.id.PropertyId;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
@@ -538,6 +539,11 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Seller> getFilteredSellerList() {
         return filteredSellers;
+    }
+
+    @Override
+    public boolean containsSellerId(SellerId sellerId) {
+        return sellerAddressBook.containsSellerId(sellerId);
     }
 
     @Override
