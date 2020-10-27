@@ -3,11 +3,11 @@ package chopchop.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Tag;
-import chopchop.model.ingredient.Ingredient;
+import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.units.Count;
+import chopchop.model.ingredient.Ingredient;
 
 public class IngredientBuilder {
 
@@ -27,7 +27,7 @@ public class IngredientBuilder {
         qty     = Count.of(DEFAULT_QTY);
         name    = DEFAULT_NAME;
         expDate = new ExpiryDate(DEFAULT_EXPIRY);
-        tags = new HashSet<>();
+        tags    = new HashSet<>();
     }
 
     /**
@@ -65,7 +65,7 @@ public class IngredientBuilder {
     }
 
     /**
-     * Sets the list of tags of the {@code Ingredient} that we are building.
+     * Sets the {@code tags} of the {@code Ingredient} that we are building.
      */
     public IngredientBuilder withTags(Set<Tag> tags) {
         this.tags = tags;
