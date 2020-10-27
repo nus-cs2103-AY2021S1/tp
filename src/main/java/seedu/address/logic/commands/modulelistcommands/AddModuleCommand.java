@@ -47,6 +47,7 @@ public class AddModuleCommand extends Command {
         }
 
         model.addModule(toAdd);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
