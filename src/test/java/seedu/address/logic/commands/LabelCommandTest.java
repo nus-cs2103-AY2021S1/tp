@@ -68,6 +68,19 @@ public class LabelCommandTest {
     }
 
     @Test
+    public void execute_fileNotFound_throwCommandError() {
+        Tag tagWithInvalidFileAddress = new TagBuilder().withFileAddress("C:\\somewhereOverTheRainbow").build();
+        modelStub = new ModelStubWithTag(tagWithInvalidFileAddress);
+
+        HashSet<Label> labels = new HashSet<>();
+        labels.add(new Label("testLabelNew"));
+
+        LabelCommand labelCommand = new LabelCommand(tagWithInvalidFileAddress.getTagName(), labels);
+
+        assertThrows(CommandException.class, () -> labelCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         TagName oldTagName = new TagName("oldTag");
         TagName newTagName = new TagName("newTag");
@@ -78,6 +91,7 @@ public class LabelCommandTest {
 
         LabelCommand labelCommand1 = new LabelCommand(newTagName, emptyLabels);
         LabelCommand labelCommand2 = new LabelCommand(oldTagName, labels);
+        LabelCommand labelCommand3 = new LabelCommand(newTagName, labels);
 
         // same object -> returns true
         assertTrue(labelCommand1.equals(labelCommand1));
@@ -93,9 +107,9 @@ public class LabelCommandTest {
         assertFalse(labelCommand1.equals(null));
 
         // different tagName -> returns false
-        assertFalse(labelCommand1.equals(labelCommand2));
+        assertFalse(labelCommand3.equals(labelCommand2));
 
         // different labels -> returns false
-        assertFalse(labelCommand1.equals(labelCommand2));
+        assertFalse(labelCommand1.equals(labelCommand3));
     }
 }
