@@ -8,12 +8,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.List;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.json.simple.parser.ParseException;
 
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import seedu.address.model.assignment.Assignment;
 import seedu.address.model.assignment.UniqueAssignmentList;
@@ -23,6 +23,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 import seedu.address.timetable.TimetableData;
 import seedu.address.timetable.TimetableRetriever;
+
 
 /**
  * Wraps all data at the address-book level
@@ -47,9 +48,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks = new UniqueTaskList();
     }
 
-    public AddressBook() {
-        autoUpdateTaskList();
-    }
+    public AddressBook() { }
 
     /**
      * Creates an AddressBook using the Assignments in the {@code toBeCopied}
@@ -222,23 +221,32 @@ public class AddressBook implements ReadOnlyAddressBook {
         System.out.println(javaFx.getName());
         javaFx.setPriority(Thread.MAX_PRIORITY);
 
-        Runnable task = ()-> {
-            Task upcomingTask = tasks.getInternalList().get(0);
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDateTime time = LocalDateTime.parse(upcomingTask.getTime().value, inputFormat);
-            boolean isOverdue = time.isBefore(LocalDateTime.now());
+        javafx.concurrent.Task<Void> task = new javafx.concurrent.Task<>() {
+            @Override
+            protected Void call() throws Exception {
+                new Timer().schedule(
+                        new TimerTask() {
+                            @Override
+                            public void run() {
+                                System.out.println("ping");
+                                System.out.println(javaFx.isAlive());
+                                Task upcomingTask = tasks.getInternalList().get(0);
+                                DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                                        .withResolverStyle(ResolverStyle.STRICT);
+                                LocalDateTime time = LocalDateTime.parse(upcomingTask.getTime().value, inputFormat);
+                                boolean isOverdue = time.isBefore(LocalDateTime.now());
 
-            if (isOverdue) {
-                synchronized (tasks) {
-                    updateTasks();
-                    tasks.notifyAll();
-                }
+                                if (isOverdue) {
+                                    Platform.runLater(() -> {
+                                        updateTasks();
+                                    });
+                                }
+                            }
+                        }, 0, 1000);
+                return null;
             }
         };
-
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(task, 0, 1, TimeUnit.SECONDS);
+        task.run();
     }
 
     //// util methods
