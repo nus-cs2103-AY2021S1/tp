@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.TitleOrDescriptionContainsKeywordsPredicate;
 
 /**
  * Finds and lists all tasks in ScheDar whose title contains any of the argument keywords.
@@ -20,18 +20,16 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " cs2103";
 
-    private final TitleContainsKeywordsPredicate titlePredicate;
+    private final TitleOrDescriptionContainsKeywordsPredicate predicate;
 
-    // private final DescriptionContainsKeywordsPredicate descriptionPredicate;  //for upgrade
-
-    public FindCommand(TitleContainsKeywordsPredicate titlePredicate) {
-        this.titlePredicate = titlePredicate;
+    public FindCommand(TitleOrDescriptionContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTaskList(titlePredicate);
+        model.updateFilteredTaskList(predicate);
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, model.getFilteredTaskList().size()));
     }
@@ -40,6 +38,6 @@ public class FindCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
-                && titlePredicate.equals(((FindCommand) other).titlePredicate)); // state check
+                && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 }
