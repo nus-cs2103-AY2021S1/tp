@@ -380,7 +380,7 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 Add an appointment for the specified patient.
 
-Format: `addapp INDEX st/APPOINTMENT DATETIME d/DURATION`
+Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
 * `INDEX` refers to the patient's index number as shown in the displayed patient list in the patient tab. 
     * It **must be a positive number**, eg. 1, 2, 3, …​
@@ -422,7 +422,7 @@ Format: `deleteapp INDEX`
 * `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab. 
     * It **must be a positive number**, eg. 1, 2, 3, …​
     
-Example: You want to delete your most upcoming appointment as your patient could not come.
+Example: You want to delete your next upcoming appointment as your patient could not make it.
 
 Step 1: Input `deleteapp 1` and press Enter.
 
@@ -466,10 +466,12 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g., `add n/James Ho p/22224444 i/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addpicture 1 f/data/profile_picture.png`
 **Add Visit** | `addvisit INDEX [vd/VISIT_DATE]`
+**Add Appointment** | `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION` <br> e.g., `addapp 1 st/2020-10-27 14:00 d/60`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Visit** | `deletevisit INDEX i/VISIT_INDEX`
+**Delete Appointment** | `deleteapp INDEX`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
 **Edit Visit** | `editvisit INDEX i/VISIT_INDEX`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
