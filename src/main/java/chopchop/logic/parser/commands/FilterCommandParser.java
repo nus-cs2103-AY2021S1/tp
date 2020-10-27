@@ -46,7 +46,7 @@ public class FilterCommandParser {
             return Result.error("'filter' command doesn't support edit-arguments");
         }
 
-        return getCommandTarget(args)
+        return getCommandTarget(args, /* acceptsPlural: */ true)
             .then(target -> {
                 if (args.getAllArguments().isEmpty()) {
                     return Result.error("Filtering criteria cannot be empty!");

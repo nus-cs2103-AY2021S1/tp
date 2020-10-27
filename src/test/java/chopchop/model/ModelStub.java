@@ -18,7 +18,8 @@ import javafx.collections.ObservableList;
 /**
  * A default model stub that have all of the methods failing.
  */
-public abstract class ModelStub implements Model {
+public class ModelStub implements Model {
+
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         throw new AssertionError("This method should not be called.");
