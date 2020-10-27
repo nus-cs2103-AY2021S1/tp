@@ -25,7 +25,12 @@
       {
         "tag": "Transport",
         "amount": "50.00"
+      },
+      {
+        "tag": "friends",
+        "amount": "20.00"
       }
     ]
-  }
+  },
+  "categories": [ "Food", "Transport", "friends" ]
 }
