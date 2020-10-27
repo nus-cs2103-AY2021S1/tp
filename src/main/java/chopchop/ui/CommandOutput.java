@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import chopchop.logic.commands.CommandResult;
 import javafx.fxml.FXML;
-import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;

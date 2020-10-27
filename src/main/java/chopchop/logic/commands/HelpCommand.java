@@ -2,7 +2,9 @@ package chopchop.logic.commands;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
+import java.util.function.Function;
 
+import chopchop.commons.util.Strings;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
@@ -67,63 +69,49 @@ public class HelpCommand extends Command {
 
     private Class<?> getCommandClassFor(String cmd, String target) {
 
-        // oof.
-        switch (cmd) {
-        case "add":
-            if (target.startsWith("recipe")) {
-                return AddRecipeCommand.class;
-            } else if (target.startsWith("ingredient")) {
-                return AddIngredientCommand.class;
-            } else {
-                return AddCommandDummy.class;
-            }
+        var camelCasing = (Function<String, String>) s -> s.isEmpty() ? "" : s.substring(0, 1).toUpperCase() + s.substring(1);
+        var pkg = "chopchop.logic.commands.";
 
-        case "list":
-            if (target.startsWith("recipe") || target.startsWith("recipes")) {
-                return ListRecipeCommand.class;
-            } else if (target.startsWith("ingredient") || target.startsWith("ingredients")) {
-                return ListIngredientCommand.class;
-            } else {
-                return ListCommandDummy.class;
-            }
-
-        case "edit":
-            if (target.startsWith("recipe")) {
-                return EditRecipeCommand.class;
-            } else {
-                return EditCommandDummy.class;
-            }
-
-        case "find":
-            if (target.startsWith("recipe")) {
-                return FindRecipeCommand.class;
-            } else if (target.startsWith("ingredient")) {
-                return FindIngredientCommand.class;
-            } else {
-                return FindCommandDummy.class;
-            }
-
-        case "filter":
-            if (target.startsWith("recipe")) {
-                return FilterRecipeCommand.class;
-            } else if (target.startsWith("ingredient")) {
-                return FilterIngredientCommand.class;
-            } else {
-                return FilterCommandDummy.class;
-            }
-
-        case "delete":
-            if (target.startsWith("recipe")) {
-                return DeleteRecipeCommand.class;
-            } else if (target.startsWith("ingredient")) {
-                return DeleteIngredientCommand.class;
-            } else {
-                return DeleteCommandDummy.class;
-            }
-
-        default:
-            return null;
+        if (target.equals("recipes")) {
+            target = "recipe";
+        } else if (target.equals("ingredients")) {
+            target = "ingredient";
         }
+
+
+        for (var cmdName : Strings.COMMAND_NAMES) {
+
+            if (!cmdName.equals(cmd)) {
+                continue;
+            }
+
+            var className = pkg
+                + camelCasing.apply(cmdName)
+                + camelCasing.apply(target)
+                + "Command";
+
+            System.out.printf("searching for class '%s'\n", className);
+            try {
+                return Class.forName(className);
+            } catch (ClassNotFoundException e) {
+                try {
+
+                    // try to find the dummy class.
+                    var dummyPkg = "chopchop.logic.commands.HelpCommand$";
+                    className = dummyPkg
+                        + camelCasing.apply(cmdName)
+                        + "CommandDummy";
+
+                    System.out.printf("searching for dummy class '%s'\n", className);
+                    return Class.forName(className);
+
+                } catch (ClassNotFoundException e1) {
+                    break;
+                }
+            }
+        }
+
+        return null;
     }
 
     private String invokeMethod(Class<?> cls, String methodName) {
