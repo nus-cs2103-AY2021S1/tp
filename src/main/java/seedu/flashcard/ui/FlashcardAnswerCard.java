@@ -14,7 +14,7 @@ public class FlashcardAnswerCard extends UiPart<Region> {
     public final Flashcard flashcard;
 
     @FXML
-    private TextArea answer;
+    private Label answer;
     @FXML
     private Label note;
 

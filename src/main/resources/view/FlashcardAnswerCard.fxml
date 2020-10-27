@@ -5,11 +5,26 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.geometry.Insets?>
-<StackPane fx:id="placeHolder2" alignment="CENTER" styleClass="pane-with-round-border" xmlns="http://javafx.com/javafx/8"
-           xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<HBox fx:id="placeHolder2" alignment="CENTER_LEFT" styleClass="pane-with-round-border" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1">
     <padding>
-        <Insets top="15" right="5" bottom="10" left="5" />
+        <Insets top="20" right="15" bottom="15" left="15" />
     </padding>
-    <TextArea fx:id="answer" wrapText="true" editable="false" styleClass="answer-display"/>
-    <Label fx:id="note"  styleClass="cell_small_label" text="\$note"/>
-</StackPane>
+    <ScrollPane fitToWidth="true">
+        <VBox alignment="CENTER_LEFT">
+            <padding>
+                <Insets left="15" right="15" />
+            </padding>
+            <Label fx:id="answer" wrapText="true"  styleClass="answer-display"/>
+            <HBox>
+                <padding>
+                    <Insets top="15"/>
+                </padding>
+            <Label fx:id="note"  styleClass="cell_small_label" text="\$note"/>
+            </HBox>
+        </VBox>
+    </ScrollPane>
+</HBox>

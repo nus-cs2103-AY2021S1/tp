@@ -1,5 +1,8 @@
 package seedu.flashcard.ui;
 
+import java.security.Key;
+
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
@@ -26,45 +29,31 @@ public class ReviewPanel extends StudyPanel {
     public ReviewPanel(Logic logic, MainWindow parent) {
         super(logic, parent);
         showFlashcard(studyManager.getCurrentFlashcard());
-        handleStudy();
-    }
-
-    /**
-     * Executes review function.
-     */
-    @Override
-    protected void handleStudy() {
-        keyDownEventHandler = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (!(event.getTarget() instanceof TextInputControl)) {
-                    return;
-                }
-                switch (event.getCode().getCode()) {
-                case RIGHT_ARROW: // right arrow key down
-                    handleUserNextFlashcardInput();
-                    break;
-                case LEFT_ARROW: // left arrow key down
-                    handleUserPreviousFlashcardInput();
-                    break;
-                case DOWN_ARROW: // down arrow key down
-                    FlashcardAnswerCard flashcardAnswerCard = new FlashcardAnswerCard(
-                            studyManager.getCurrentFlashcard());
-                    showAnswer(flashcardAnswerCard);
-                    break;
-                case UP_ARROW: // up arrow key down
-                    hideAnswer();
-                    break;
-                case Q_KEY: // 'q' key down
-                    exitStudyMode(EXIT_MESSAGE);
-                    break;
-                default:
-                    break;
-                }
-                event.consume();
+        EventHandler<KeyEvent> keyDownEventHandler = event -> {
+            switch (event.getCode().getCode()) {
+            case RIGHT_ARROW: // right arrow key down
+                handleUserNextFlashcardInput();
+                break;
+            case LEFT_ARROW: // left arrow key down
+                handleUserPreviousFlashcardInput();
+                break;
+            case DOWN_ARROW: // down arrow key down
+                FlashcardAnswerCard flashcardAnswerCard = new FlashcardAnswerCard(
+                        studyManager.getCurrentFlashcard());
+                showAnswer(flashcardAnswerCard);
+                break;
+            case UP_ARROW: // up arrow key down
+                hideAnswer();
+                break;
+            case Q_KEY: // 'q' key down
+                exitStudyMode(EXIT_MESSAGE);
+                break;
+            default:
+                break;
             }
+            event.consume();
         };
-        parent.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
+        handleStudy(keyDownEventHandler);
     }
 
     private void handleUserNextFlashcardInput() {

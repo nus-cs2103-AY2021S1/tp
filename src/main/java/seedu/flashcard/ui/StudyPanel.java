@@ -2,9 +2,12 @@ package seedu.flashcard.ui;
 
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.flashcard.commons.core.index.Index;
 import seedu.flashcard.logic.Logic;
 import seedu.flashcard.logic.StudyManager;
 import seedu.flashcard.model.flashcard.Flashcard;
@@ -25,12 +28,19 @@ public abstract class StudyPanel extends UiPart<Region> {
     protected EventHandler<KeyEvent> keyDownEventHandler;
     protected final MainWindow parent;
     protected final StudyManager studyManager;
+    private int numberOfCards;
 
     @FXML
     private StackPane questionPlaceholder;
 
     @FXML
     private StackPane answerPlaceholder;
+
+    @FXML
+    private ProgressBar progressBar;
+
+    @FXML
+    private Label progressLabel;
 
     /**
      * Creates a {@code StudyPanel} with the given parent {@code MainWindow}
@@ -39,6 +49,8 @@ public abstract class StudyPanel extends UiPart<Region> {
         super(FXML);
         this.studyManager = new StudyManager(logic);
         this.parent = parent;
+        this.numberOfCards = studyManager.getNumberOfCards();
+        setProgress(1);
     }
 
     /**
@@ -47,10 +59,12 @@ public abstract class StudyPanel extends UiPart<Region> {
      * @param flashcard the FlashCard being studied.
      */
     protected void showFlashcard(Flashcard flashcard) {
+
         questionPlaceholder.getChildren().clear();
         FlashcardQuestionCard flashcardQuestionCard = new FlashcardQuestionCard(flashcard);
         questionPlaceholder.getChildren().add(flashcardQuestionCard.getRoot());
         answerPlaceholder.getChildren().clear();
+        setProgress(studyManager.getCurrentIndex() + 1);
     }
 
     /**
@@ -82,8 +96,17 @@ public abstract class StudyPanel extends UiPart<Region> {
     }
 
     /**
-     * Executes abstract study function.
+     * Executes study function by setting up event handler.
      */
-    protected abstract void handleStudy();
+    protected void handleStudy(EventHandler<KeyEvent> keyDownEventHandler) {
+        this.keyDownEventHandler = keyDownEventHandler;
+        parent.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
+    };
+
+    private void setProgress(int currentCardNumber) {
+        progressBar.setProgress((double)currentCardNumber / (double) numberOfCards);
+        progressLabel.setText(currentCardNumber + "/" + numberOfCards);
+    }
+
 
 }

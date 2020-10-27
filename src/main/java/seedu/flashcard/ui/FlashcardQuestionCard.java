@@ -70,7 +70,7 @@ public class FlashcardQuestionCard extends UiPart<Region> {
 
         if (flashcard.getRating().toString().length() > 0) {
             rating.setText(flashcard.getRating().toString());
-            ratingIcon.setText(" \uD83D\uDFCA");
+            ratingIcon.setText(" \u2605");
         } else {
             ratingPane.setVisible(false);
             ratingPane.managedProperty().bind(ratingPane.visibleProperty());

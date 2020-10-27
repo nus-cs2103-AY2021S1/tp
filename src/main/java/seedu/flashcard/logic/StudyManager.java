@@ -85,4 +85,8 @@ public class StudyManager {
         logic.executeCommand(new IncrementStatsCommand(getCurrentFlashcard(), isCorrect));
     }
 
+    public int getNumberOfCards() {
+        return flashcardList.size();
+    }
+
 }
