@@ -1,5 +1,14 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_PERCENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_RESULT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -12,12 +21,6 @@ import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.AssignmentName;
 import seedu.address.model.module.grade.AssignmentPercentage;
 import seedu.address.model.module.grade.AssignmentResult;
-
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 public class EditAssignmentCommand extends Command {
     public static final String COMMAND_WORD = "editassignment";
@@ -47,7 +50,8 @@ public class EditAssignmentCommand extends Command {
      * @param index of the assignment in the gradetracker of the module
      * @param editAssignmentDescriptor details to edit the assignment with
      */
-    public EditAssignmentCommand(Index index, ModuleName moduleName, EditAssignmentDescriptor editAssignmentDescriptor) {
+    public EditAssignmentCommand(Index index, ModuleName moduleName,
+                                 EditAssignmentDescriptor editAssignmentDescriptor) {
         requireNonNull(index);
         requireNonNull(moduleName);
         requireNonNull(editAssignmentDescriptor);
@@ -82,8 +86,8 @@ public class EditAssignmentCommand extends Command {
                 .get(index.getZeroBased());
         Assignment editedAssignment = createEditedAssignment(assignmentToEdit, editAssignmentDescriptor);
 
-        if (!assignmentToEdit.isSameAssignment(editedAssignment) &&
-                moduleWithAssignment.getGradeTracker().containsDuplicateAssignment(editedAssignment)) {
+        if (!assignmentToEdit.isSameAssignment(editedAssignment)
+                && moduleWithAssignment.getGradeTracker().containsDuplicateAssignment(editedAssignment)) {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 
@@ -98,21 +102,25 @@ public class EditAssignmentCommand extends Command {
      * Creates and returns an {@code Assignment} with the details of {@code assignmentToEdit}
      * edited with {@code editAssignmentDescriptor}.
      */
-    private static Assignment createEditedAssignment(Assignment assignmentToEdit, EditAssignmentDescriptor editAssignmentDescriptor) {
+    private static Assignment createEditedAssignment(Assignment assignmentToEdit,
+                                                     EditAssignmentDescriptor editAssignmentDescriptor) {
         assert assignmentToEdit != null;
         assert !assignmentToEdit.getAssignmentName().isEmpty();
 
-        AssignmentName assignmentName = editAssignmentDescriptor.getAssignmentName().orElse(assignmentToEdit.getAssignmentName().get());
+        AssignmentName assignmentName = editAssignmentDescriptor.getAssignmentName().orElse(assignmentToEdit
+                .getAssignmentName().get());
 
         Assignment editedAssignment = new Assignment(assignmentName);
 
-        if (assignmentToEdit.getAssignmentPercentage().isPresent() || editAssignmentDescriptor.getAssignmentPercentage().isPresent()) {
+        if (assignmentToEdit.getAssignmentPercentage().isPresent() || editAssignmentDescriptor
+                .getAssignmentPercentage().isPresent()) {
             AssignmentPercentage updatedPercentage = editAssignmentDescriptor.getAssignmentPercentage()
                     .orElseGet(() -> assignmentToEdit.getAssignmentPercentage().get());
             editedAssignment = editedAssignment.setAssignmentPercentage(updatedPercentage);
         }
 
-        if (assignmentToEdit.getAssignmentResult().isPresent() || editAssignmentDescriptor.getAssignmentResult().isPresent()) {
+        if (assignmentToEdit.getAssignmentResult().isPresent() || editAssignmentDescriptor
+                .getAssignmentResult().isPresent()) {
             AssignmentResult updatedResult = editAssignmentDescriptor.getAssignmentResult()
                     .orElseGet(() -> assignmentToEdit.getAssignmentResult().get());
             editedAssignment = editedAssignment.setAssignmentResult(updatedResult);

@@ -1,21 +1,21 @@
 package seedu.address.logic.parser.gradetrackerparsers;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_PERCENTAGE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_RESULT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentCommand;
 import seedu.address.logic.commands.gradetrackercommands.EditAssignmentDescriptor;
-import seedu.address.logic.commands.todolistcommands.EditTaskCommand;
-import seedu.address.logic.commands.todolistcommands.EditTaskDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleName;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 public class EditAssignmentParser implements Parser<EditAssignmentCommand> {
 
@@ -50,15 +50,18 @@ public class EditAssignmentParser implements Parser<EditAssignmentCommand> {
 
         EditAssignmentDescriptor editAssignmentDescriptor = new EditAssignmentDescriptor();
         if (argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).isPresent()) {
-            editAssignmentDescriptor.setAssignmentName(ParserUtil.parseAssignmentName(argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get()));
+            editAssignmentDescriptor.setAssignmentName(ParserUtil.parseAssignmentName(
+                    argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get()));
         }
 
         if (argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).isPresent()) {
-            editAssignmentDescriptor.setAssignmentPercentage(ParserUtil.parseAssignmentPercentage(argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).get()));
+            editAssignmentDescriptor.setAssignmentPercentage(ParserUtil.parseAssignmentPercentage(
+                    argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).isPresent()) {
-            editAssignmentDescriptor.setAssignmentResult(ParserUtil.parseAssignmentResult(argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).get()));
+            editAssignmentDescriptor.setAssignmentResult(ParserUtil.parseAssignmentResult(
+                    argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).get()));
         }
 
         if (!editAssignmentDescriptor.isAnyFieldEdited()) {

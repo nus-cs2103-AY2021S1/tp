@@ -1,11 +1,8 @@
 package seedu.address.model.module.grade;
 
-import seedu.address.model.task.Priority;
-import seedu.address.model.task.Task;
+import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents an assignment in the Grade Tracker.
@@ -32,7 +29,8 @@ public class Assignment {
      * @param assignmentPercentage the percentage of the total grade that this assignment takes up.
      * @param assignmentResult the result achieved for this assignment. Range from 0 to 1.
      */
-    public Assignment(AssignmentName assignmentName, AssignmentPercentage assignmentPercentage, AssignmentResult assignmentResult) {
+    public Assignment(AssignmentName assignmentName, AssignmentPercentage assignmentPercentage,
+                      AssignmentResult assignmentResult) {
         requireNonNull(assignmentName);
         this.assignmentName = assignmentName;
         this.assignmentPercentage = assignmentPercentage;

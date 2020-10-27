@@ -42,7 +42,7 @@ public class EditAssignmentDescriptor {
         return Optional.ofNullable(assignmentName);
     }
 
-    public void setAssignmentPercentage(AssignmentPercentage assignmentPercentage)  {
+    public void setAssignmentPercentage(AssignmentPercentage assignmentPercentage) {
         this.assignmentPercentage = assignmentPercentage;
     }
 
