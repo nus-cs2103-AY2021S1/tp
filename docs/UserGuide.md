@@ -120,7 +120,7 @@ t/1 1430-1630 f/25 d/12/12/2020`
 * `add n/John Doe p/98765432 s/Woodlands Secondary School y/s 2 v/347 Woodlands Ave 3, Singapore 730347
 t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
-#### 3.2.2 Editing a student : `edit` (By: Vaishak)
+#### 3.2.2 Editing a student: `edit` (By: Vaishak)
 
 Edits an existing student in Reeve.
 
@@ -165,7 +165,7 @@ Examples:
 * `find y/sec 3` matches `sec 4`
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
 
-#### 3.2.4 Listing all students : `list`
+#### 3.2.4 Listing all students: `list`
 
 Shows the list of all students in Reeve.
 
@@ -173,7 +173,7 @@ Shows the list of all students in Reeve.
 
 Format: `list`
 
-#### 3.2.5 Deleting a student : `delete`
+#### 3.2.5 Deleting a student: `delete`
 
 Deletes the specified student from Reeve.
 
@@ -213,7 +213,7 @@ Examples:
 * `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in Reeve, to "Handsome".
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in Reeve.
 
-#### 3.2.8 Clearing all entries : `clear`
+#### 3.2.8 Clearing all entries: `clear`
 
 Clears all student data from Reeve.
 
@@ -369,7 +369,7 @@ Format: `schedule delete EVENT_INDEX`
 * User has to first call the `schedule list` command in order to find out the index of the event being deleted.
 
 
-#### 3.4.2 Viewing help : `help`
+#### 3.4.2 Viewing help: `help`
 
 Shows a message explaning how to access the help page.
 
@@ -378,7 +378,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-#### 3.4.3 Exiting the program : `exit`
+#### 3.4.3 Exiting the program: `exit`
 
 Exits the program.
 
