@@ -44,4 +44,11 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         model.deleteAppointment(toDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteAppointmentCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteAppointmentCommand) other).targetIndex)); // state check
+    }
 }
