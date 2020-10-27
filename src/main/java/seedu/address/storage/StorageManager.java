@@ -7,11 +7,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.ReadOnlyContactList;
-import seedu.address.model.ReadOnlyModuleList;
-import seedu.address.model.ReadOnlyTodoList;
-import seedu.address.model.ReadOnlyUserPrefs;
-import seedu.address.model.UserPrefs;
+import seedu.address.model.*;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -23,18 +19,20 @@ public class StorageManager implements Storage {
     private ContactListStorage contactListStorage;
     private TodoListStorage todoListStorage;
     private UserPrefsStorage userPrefsStorage;
+    private EventListStorage eventListStorage;
 
     /**
      * Creates a {@code StorageManager} with the given {@code ModuleListStorage},
      * {@code ContactListStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(ModuleListStorage moduleListStorage, ContactListStorage contactListStorage,
-                          TodoListStorage todoListStorage, UserPrefsStorage userPrefsStorage) {
+                          TodoListStorage todoListStorage, EventListStorage eventListStorage, UserPrefsStorage userPrefsStorage) {
         super();
         this.moduleListStorage = moduleListStorage;
         this.contactListStorage = contactListStorage;
         this.todoListStorage = todoListStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.eventListStorage = eventListStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -132,6 +130,31 @@ public class StorageManager implements Storage {
     @Override
     public void saveTodoList(ReadOnlyTodoList todoList) throws IOException {
         saveTodoList(todoList, todoListStorage.getTodoListFilePath());
+    }
+
+    @Override
+    public Path getEventListFilePath() {
+        return eventListStorage.getEventListFilePath();
+    }
+
+    @Override
+    public Optional<ReadOnlyEventList> readEventList() throws DataConversionException, IOException {
+        return eventListStorage.readEventList();
+    }
+
+    @Override
+    public Optional<ReadOnlyEventList> readEventList(Path filePath) throws DataConversionException, IOException {
+        return eventListStorage.readEventList(filePath);
+    }
+
+    @Override
+    public void saveEventList(ReadOnlyEventList eventList) throws IOException {
+        eventListStorage.saveEventList(eventList);
+    }
+
+    @Override
+    public void saveEventList(ReadOnlyEventList eventList, Path filePath) throws IOException {
+        eventListStorage.saveEventList(eventList, filePath);
     }
 
     @Override

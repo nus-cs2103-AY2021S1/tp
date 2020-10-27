@@ -16,16 +16,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
 import seedu.address.model.*;
-import seedu.address.storage.ContactListStorage;
-import seedu.address.storage.JsonContactListStorage;
-import seedu.address.storage.JsonModuleListStorage;
-import seedu.address.storage.JsonTodoListStorage;
-import seedu.address.storage.JsonUserPrefsStorage;
-import seedu.address.storage.ModuleListStorage;
-import seedu.address.storage.Storage;
-import seedu.address.storage.StorageManager;
-import seedu.address.storage.TodoListStorage;
-import seedu.address.storage.UserPrefsStorage;
+import seedu.address.storage.*;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -57,7 +48,8 @@ public class MainApp extends Application {
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
         TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
-        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage, userPrefsStorage);
+        EventListStorage eventListStorage = new JsonEventListStorage(userPrefs.getEventListFilePath());
+        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage, eventListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -76,26 +68,36 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyModuleList> moduleListOptional;
+        Optional<ReadOnlyEventList> eventListOptional;
         ReadOnlyModuleList initialData;
         ReadOnlyContactList initialContactList = initializeContactList(storage);
         ReadOnlyTodoList initialTodoList = new TodoList();
-        ReadOnlyEventList initialEventList = new EventList();
+        ReadOnlyEventList initialEventList;
         try {
             moduleListOptional = storage.readModuleList();
+            eventListOptional = storage.readEventList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModuleList");
                 initialData = new ModuleList();
             } else {
                 initialData = moduleListOptional.get();
             }
+            if (!eventListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a blank EventList");
+                initialEventList = new EventList();
+            } else {
+                initialEventList = eventListOptional.get();
+            }
             //to be used when sample modulelist is created
             //initialData = moduleListOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
+            initialEventList = new EventList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
+            initialEventList = new EventList();
         }
         return new ModelManager(initialData, initialContactList, initialTodoList, initialEventList, userPrefs);
     }
