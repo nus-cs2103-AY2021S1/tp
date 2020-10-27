@@ -26,9 +26,9 @@ public class DisplayController extends UiPart<Region> {
             + "\nNote that [] denoted optional arguments.";
 
     private final TextDisplay textDisplay;
-    private NotificationWindow notificationWindow;
-    private ObservableList<Recipe> recipeObservableList;
-    private ObservableList<Ingredient> ingredientObservableList;
+    private final NotificationWindow notificationWindow;
+    private final ObservableList<Recipe> recipeObservableList;
+    private final ObservableList<Ingredient> ingredientObservableList;
 
     @FXML
     private StackPane displayAreaPlaceholder;
