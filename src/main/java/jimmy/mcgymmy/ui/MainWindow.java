@@ -309,18 +309,24 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
-            //Update the graphs
-            summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentCalories(),
-                    getFoodListPanel().getCurrentProteins(),
-                    getFoodListPanel().getCurrentCarbs(),
-                    getFoodListPanel().getCurrentFats());
+            updateGraph();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
+            updateGraph();
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void updateGraph() {
+        //Update the graphs
+        summaryPanel.setTotalMacronutrients(
+                getFoodListPanel().getCurrentCalories(),
+                getFoodListPanel().getCurrentProteins(),
+                getFoodListPanel().getCurrentCarbs(),
+                getFoodListPanel().getCurrentFats()
+        );
     }
 }
