@@ -1,5 +1,7 @@
 package seedu.pivot.commons.util;
 
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_FILE_EXIST;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +12,6 @@ import java.nio.file.Paths;
 
 import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.logic.commands.exceptions.CommandException;
-
-import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_FILE_EXIST;
 
 /**
  * Writes and reads files
