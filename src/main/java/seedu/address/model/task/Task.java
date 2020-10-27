@@ -4,6 +4,8 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.model.tag.Tag;
 
+import java.time.LocalDate;
+
 /**
  * Represents a Task in the PlaNus task list.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -34,7 +36,6 @@ public abstract class Task implements Comparable<Task> {
     public Description getDescription() {
         return description;
     }
-
     /**
      * Returns an immutable tag, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -42,9 +43,14 @@ public abstract class Task implements Comparable<Task> {
     public Tag getTag() {
         return tag;
     }
-    
+    /**
+     * Returns the time taken for the task to be completed in minutes.
+     */
     public abstract int getTimeTaken();
-
+    /**
+     * Returns the date in which the task occurs.
+     */
+    public abstract LocalDate getDate();
     /**
      * Returns true if both tasks of the same title, date and time.
      * This defines a strong notion of equality between two tasks to allow recurring tasks yet preventing duplicates.
