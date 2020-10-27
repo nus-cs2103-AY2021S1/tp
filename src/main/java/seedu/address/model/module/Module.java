@@ -266,9 +266,11 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getName().equals(getName())
+                && otherModule.getLink().equals(getLink());
+        /*return otherModule.getName().equals(getName())
                 && otherModule.getLink().equals(getLink())
                 && otherModule.getModularCredits().equals((getModularCredits()))
-                && otherModule.getGradeTracker().equals(getGradeTracker());
+                && otherModule.getGradeTracker().equals(getGradeTracker());*/
     }
 
 }

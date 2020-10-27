@@ -1,10 +1,16 @@
 package seedu.address.testutil;
 
+import java.util.Set;
+
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.GradeTracker;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
+
+
 
 /**
  * A utility class to help with building Person objects.
@@ -19,6 +25,7 @@ public class ModuleBuilder {
     private ZoomLink zoomLink;
     private ModularCredits modularCredits;
     private GradeTracker gradeTracker;
+    private Set<Tag> tags;
 
     /**
      * Creates a {@code ModuleBuilder} with the default details.
@@ -46,6 +53,14 @@ public class ModuleBuilder {
     }
 
     /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Module} that we are building.
+     */
+    public ModuleBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
      * Sets the {@code ZoomLink} of the {@code Module} that we are building.
      */
     public ModuleBuilder withZoomLink(String zoomLink) {
@@ -53,8 +68,18 @@ public class ModuleBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ZoomLink} of the {@code Module} that we are building.
+     */
+    public ModuleBuilder withModularCredits(double modularCredits) {
+        this.modularCredits = new ModularCredits(modularCredits);
+        return this;
+    }
+
     public Module build() {
         return new Module(moduleName, zoomLink, modularCredits);
     }
+
+
 
 }

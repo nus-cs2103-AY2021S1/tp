@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -13,7 +14,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 // import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.model.Model;
+import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleNameContainsKeywordsPredicate;
+import seedu.address.testutil.EditModuleDescriptorBuilder;
+
+import java.util.Arrays;
 // import seedu.address.model.ModuleList;
 // import seedu.address.model.person.NameContainsKeywordsPredicate;
 // import seedu.address.model.person.Person;
@@ -32,6 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_TAG_CORE_MODULE = "Core";
+    public static final String VALID_TAG_UNGRADED_MODULE = "Ungraded";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -44,8 +54,10 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
+    public static final String VALID_MODULENAME_CS2030 = "CS2030";
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
+    public static final String VALID_ZOOMLINK_CS2030 = "www.cs2030zoom.us";
     public static final String VALID_ZOOMLINK_CS2103T = "www.cs2103tzoom.us";
     public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
 
@@ -59,6 +71,9 @@ public class CommandTestUtil {
 
     //public static final EditCommand.EditModuleDescriptor DESC_AMY;
     //public static final EditCommand.EditModuleDescriptor DESC_BOB;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2030;
+    public static final EditModuleCommand.EditModuleDescriptor DESC_CS2103T;
+    //public static final EditCommand.EditModuleDescriptor DESC_BOB;
 
     static {
         //DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -67,6 +82,12 @@ public class CommandTestUtil {
         //DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
         //       .withEmail(VALID_EMAIL_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
         //       .build();
+        DESC_CS2030 = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_CS2030)
+                .withZoomLink(VALID_ZOOMLINK_CS2030).withTags(VALID_TAG_CORE_MODULE)
+                .build();
+        DESC_CS2103T = new EditModuleDescriptorBuilder().withName(VALID_MODULENAME_CS2103T)
+                .withZoomLink(VALID_ZOOMLINK_CS2103T).withTags(VALID_TAG_CORE_MODULE)
+                .build();
     }
 
     /**
@@ -112,11 +133,15 @@ public class CommandTestUtil {
         // assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the module at the given {@code targetIndex} in the
+     * {@code model}'s module list.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        // assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
+    public static void showModuleAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
+        Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
+        final String[] splitName = module.getName().fullName.split("\\s+");
+        model.updateFilteredModuleList(new ModuleNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        assertEquals(1, model.getFilteredModuleList().size());
 
         // Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         // final String[] splitName = person.getName().fullName.split("\\s+");

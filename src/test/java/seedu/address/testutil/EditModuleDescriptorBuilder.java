@@ -4,6 +4,11 @@ import seedu.address.logic.commands.modulelistcommands.EditModuleCommand.EditMod
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
+import seedu.address.model.tag.Tag;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * A utility class to help with building EditModuleDescriptor objects.
@@ -42,6 +47,16 @@ public class EditModuleDescriptorBuilder {
      */
     public EditModuleDescriptorBuilder withZoomLink(String zoomLink) {
         descriptor.setZoomLink(new ZoomLink(zoomLink));
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditModuleDescriptor}
+     * that we are building.
+     */
+    public EditModuleDescriptorBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
         return this;
     }
 
