@@ -140,7 +140,7 @@ Multiple ingredients are separated by `,`.
     * If you want to use an image that has been saved in your computer, you have to specify the **absolute path** of the image, and add file:// in front of the file path. Then, replace IMAGE in img/IMAGE with the file path of your image, e.g. img/file:///D:/myimages/wishful/data/myimage.png.
     * If you want to use a url as the image, make sure that you are connected to the internet on your computer, and that the url is the **image address** (starting with https:// and ending with .jpg/jpeg/png). The image will only be downloaded into Wishful Shrinking's data folder if there is internet connection.
     * If you input an invalid file path, input an invalid url, or input a url while there is no internet,  Wishful Shrinking will replace the image with a default image. 
-    * Wishful Shrinking also has a few sample images for you to use if you don't have any images on hand. Below is the table of sample images and their file paths. To use the sample images, replace IMAGE in img/IMAGE with the file path, e.g. img/images/healthy1.jpg.<br>
+    * Wishful Shrinking has a few sample images for you to use if you don't have any images on hand. Below is the table of sample images and their file paths. To use the sample images, replace IMAGE in img/IMAGE with the file path, e.g. img/images/healthy1.jpg.<br>
    
       Image | File Path | Image | File Path
       --------|------------------|---------|----------------
