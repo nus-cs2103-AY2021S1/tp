@@ -99,9 +99,9 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     public static boolean isValidGradeTracker(GradeTracker gradeTracker) {
         boolean areAssignmentsValid = true;
         for (Assignment eachAssignment: gradeTracker.assignments) {
-            if (!Assignment.isValidAssignmentResult(eachAssignment.assignmentResult)
-                    && Assignment.isValidAssignmentName(eachAssignment.assignmentName)
-                    && Assignment.isValidAssignmentPercentage(eachAssignment.assignmentPercentage)) {
+            if (!Assignment.isValidAssignmentName(eachAssignment.getAssignmentName().assignmentName)
+                    && Assignment.isValidAssignmentPercentage(eachAssignment.assignmentPercentage)
+                    && Assignment.isValidAssignmentResult(eachAssignment.assignmentResult)) {
                 areAssignmentsValid = false;
                 break;
             }
@@ -119,7 +119,7 @@ public class GradeTracker implements ReadOnlyGradeTracker {
      * @param otherAssignment the assignment being checked.
      * @return true if the assignment already exists
      */
-    public boolean isDuplicateAssignment(Assignment otherAssignment) {
+    public boolean containsDuplicateAssignment(Assignment otherAssignment) {
         for (Assignment eachAssignment : assignments) {
             if (eachAssignment.equals(otherAssignment)) {
                 return true;

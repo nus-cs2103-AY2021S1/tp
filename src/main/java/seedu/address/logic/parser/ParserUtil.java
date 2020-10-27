@@ -16,6 +16,9 @@ import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.AssignmentName;
+import seedu.address.model.module.grade.AssignmentPercentage;
+import seedu.address.model.module.grade.AssignmentResult;
 import seedu.address.model.module.grade.Grade;
 import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.tag.Tag;
@@ -152,7 +155,7 @@ public class ParserUtil {
      */
     public static String parseAssignmentName(String assignmentName) throws ParseException {
         String trimmedAssignmentName = assignmentName.trim();
-        if (!Assignment.isValidAssignmentName(trimmedAssignmentName)) {
+        if (!AssignmentName.isValidAssignmentName(trimmedAssignmentName)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_NAME_CONSTRAINTS);
         }
         return trimmedAssignmentName;
@@ -164,7 +167,7 @@ public class ParserUtil {
      */
     public static double parseAssignmentPercentage(String assignmentPercentage) throws ParseException {
         double trimmedAssignmentPercentage = Double.parseDouble(assignmentPercentage.trim());
-        if (!Assignment.isValidAssignmentPercentage(trimmedAssignmentPercentage)) {
+        if (!AssignmentPercentage.isValidAssignmentPercentage(trimmedAssignmentPercentage)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_PERCENTAGE_CONSTRAINTS);
         }
         return trimmedAssignmentPercentage;
@@ -176,7 +179,7 @@ public class ParserUtil {
      */
     public static double parseAssignmentResult(String assignmentResult) throws ParseException {
         double trimmedAssignmentResult = Double.parseDouble(assignmentResult.trim());
-        if (!Assignment.isValidAssignmentResult(trimmedAssignmentResult)) {
+        if (!AssignmentResult.isValidAssignmentResult(trimmedAssignmentResult)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
         }
         return trimmedAssignmentResult;

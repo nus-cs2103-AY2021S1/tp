@@ -19,6 +19,6 @@ public class AssignmentNameComparator implements Comparator<Assignment> {
      */
     @Override
     public int compare(Assignment assignment, Assignment otherAssignment) {
-        return assignment.assignmentName.compareTo(otherAssignment.getAssignmentName());
+        return assignment.getAssignmentName().assignmentName.compareTo(otherAssignment.getAssignmentName().assignmentName);
     }
 }

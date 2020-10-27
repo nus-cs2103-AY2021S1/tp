@@ -1,10 +1,7 @@
 package seedu.address.logic.commands.gradetrackercommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_NEW_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PERCENTAGE_ASSIGNMENT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_RESULT_ASSIGNMENT;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.List;
 
@@ -22,14 +19,14 @@ public class AddAssignmentCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the grade tracker for a module. "
             + "Parameters: "
             + PREFIX_NAME + "MODULE NAME "
-            + PREFIX_ADD_NEW_ASSIGNMENT + "ASSIGNMENT NAME "
-            + PREFIX_PERCENTAGE_ASSIGNMENT + " PERCENTAGE OF FINAL GRADE "
-            + PREFIX_RESULT_ASSIGNMENT + " RESULT ACHIEVED "
+            + PREFIX_ASSIGNMENT_NAME + "ASSIGNMENT NAME "
+            + PREFIX_ASSIGNMENT_PERCENTAGE + " PERCENTAGE OF FINAL GRADE "
+            + PREFIX_ASSIGNMENT_RESULT + " RESULT ACHIEVED "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2100 "
-            + PREFIX_ADD_NEW_ASSIGNMENT + "Quiz 1"
-            + PREFIX_PERCENTAGE_ASSIGNMENT + " 15"
-            + PREFIX_RESULT_ASSIGNMENT + " 0.85";
+            + PREFIX_ASSIGNMENT_NAME + "Quiz 1"
+            + PREFIX_ASSIGNMENT_PERCENTAGE + " 15"
+            + PREFIX_ASSIGNMENT_RESULT + " 0.85";
 
     public static final String MESSAGE_SUCCESS = "New assignment %1$s added.";
     public static final String MESSAGE_ASSIGNMENT_NOT_ADDED = "Module to add to not found.";
