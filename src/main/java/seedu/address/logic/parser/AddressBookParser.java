@@ -16,6 +16,7 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.MenuCommand;
+import seedu.address.logic.commands.PresetCommand;
 import seedu.address.logic.commands.PriceCommand;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -65,6 +66,7 @@ public class AddressBookParser {
             ExitCommand.COMMAND_WORD,
             HelpCommand.COMMAND_WORD,
             VendorCommand.COMMAND_WORD,
+            PresetCommand.COMMAND_WORD,
         };
 
         ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));
@@ -78,49 +80,52 @@ public class AddressBookParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+            case AddCommand.COMMAND_WORD:
+                return new AddCommandParser().parse(arguments);
 
         case RemoveCommand.COMMAND_WORD:
             return new RemoveCommandParser().parse(arguments);
 
-        case SortCommand.COMMAND_WORD:
-            return new SortCommandParser().parse(arguments);
+            case SortCommand.COMMAND_WORD:
+                return new SortCommandParser().parse(arguments);
 
-        case ClearCommand.COMMAND_WORD:
-            return new ClearCommandParser().parse(arguments);
+            case ClearCommand.COMMAND_WORD:
+                return new ClearCommandParser().parse(arguments);
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            case FindCommand.COMMAND_WORD:
+                return new FindCommandParser().parse(arguments);
 
-        case PriceCommand.COMMAND_WORD:
-            return new PriceCommandParser().parse(arguments);
+            case PriceCommand.COMMAND_WORD:
+                return new PriceCommandParser().parse(arguments);
 
-        case MenuCommand.COMMAND_WORD:
-            return new MenuCommand();
+            case MenuCommand.COMMAND_WORD:
+                return new MenuCommand();
 
         case TotalCommand.COMMAND_WORD:
             return new TotalCommand();
 
-        case SubmitCommand.COMMAND_WORD:
-            return new SubmitCommand();
+            case SubmitCommand.COMMAND_WORD:
+                return new SubmitCommand();
 
-        case UndoCommand.COMMAND_WORD:
-            return new UndoCommand();
+            case UndoCommand.COMMAND_WORD:
+                return new UndoCommand();
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+            case ExitCommand.COMMAND_WORD:
+                return new ExitCommand();
 
-        case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+            case HelpCommand.COMMAND_WORD:
+                return new HelpCommand();
 
-        case VendorCommand.COMMAND_WORD:
-            return new VendorCommandParser().parse(arguments);
+            case VendorCommand.COMMAND_WORD:
+                return new VendorCommandParser().parse(arguments);
 
-        default:
-            throw matchingCommands.size() == 0
-                    ? new ParseException(MESSAGE_UNKNOWN_COMMAND)
-                    : new ParseException(String.format(MESSAGE_AMBIGUOUS_COMMAND, matchingCommands));
+            case PresetCommand.COMMAND_WORD:
+                return new PresetCommandParser().parse(arguments);
+
+            default:
+                throw matchingCommands.size() == 0
+                        ? new ParseException(MESSAGE_UNKNOWN_COMMAND)
+                        : new ParseException(String.format(MESSAGE_AMBIGUOUS_COMMAND, matchingCommands));
         }
     }
 

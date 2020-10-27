@@ -37,9 +37,7 @@ public class VendorCommandTest {
         Model expectedModel = initialiseModel();
         expectedModel.selectVendor(first.getZeroBased());
         String expectedMessage = String.format(SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 1);
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
-                false, true);
-        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(vendorCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -51,9 +49,7 @@ public class VendorCommandTest {
         Model expectedModel = initialiseModel();
         expectedModel.selectVendor(third.getZeroBased());
         String expectedMessage = String.format(SwitchVendorCommand.MESSAGE_SELECT_VENDOR_SUCCESS, 3);
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false,
-                false, true);
-        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(vendorCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -103,9 +99,7 @@ public class VendorCommandTest {
 
         VendorCommand vendorCommand = new VendorCommand();
         Model expectedModel = initialiseModel();
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_RESET_VENDOR_SUCCESS,
-                false, false, true);
-        assertCommandSuccess(vendorCommand, model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(vendorCommand, model, MESSAGE_RESET_VENDOR_SUCCESS, expectedModel);
 
     }
 

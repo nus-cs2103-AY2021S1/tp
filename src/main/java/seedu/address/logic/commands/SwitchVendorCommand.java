@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.vendor.Vendor;
+import seedu.address.storage.Storage;
 
 /**
  * Selects a Vendor to order from.
@@ -33,7 +34,7 @@ public class SwitchVendorCommand extends VendorCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         ObservableList<Vendor> vendors = model.getObservableVendorList();
         int index = vendorIndex.getZeroBased();
@@ -49,8 +50,7 @@ public class SwitchVendorCommand extends VendorCommand {
             model.resetOrder();
         }
 
-        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()),
-                false, false, true);
+        return new CommandResult(String.format(MESSAGE_SELECT_VENDOR_SUCCESS, vendorIndex.getOneBased()));
     }
 
     @Override

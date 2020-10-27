@@ -1,0 +1,13 @@
+{
+  "presets" : [ [ {
+    "name" : "Cup noodles",
+    "price" : 1.15,
+    "tagged" : [ ],
+    "quantity" : 1
+  }, {
+    "name" : "Milo",
+    "price" : 0.9,
+    "tagged" : [ ],
+    "quantity" : 1
+  } ] ]
+}

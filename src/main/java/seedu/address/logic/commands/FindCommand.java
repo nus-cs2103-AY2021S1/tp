@@ -7,6 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.vendor.NameContainsKeywordsPredicate;
+import seedu.address.storage.Storage;
 
 /**
  * Finds and lists all vendors in address book whose name contains any of the argument keywords.
@@ -28,7 +29,7 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.isSelected()) {
@@ -38,7 +39,7 @@ public class FindCommand extends Command {
         model.updateFilteredFoodList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_FOOD_LISTED_OVERVIEW,
-                        model.getFilteredFoodListSize()), false, false, true);
+                        model.getFilteredFoodListSize()));
     }
 
     @Override

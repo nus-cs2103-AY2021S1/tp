@@ -2,9 +2,11 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.ReadOnlyOrderManager;
 
 public interface OrderManagerStorage {
@@ -19,22 +21,22 @@ public interface OrderManagerStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyOrderManager> readOrderManager() throws DataConversionException, IOException;
+    Optional<List<List<OrderItem>>> readOrderManager() throws DataConversionException, IOException;
 
     /**
      * @see #getOrderManagerFilePath()
      */
-    Optional<ReadOnlyOrderManager> readOrderManager(Path filePath) throws DataConversionException, IOException;
+    Optional<List<List<OrderItem>>> readOrderManager(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyOrderManager} to the storage.
      * @param orderManager cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveOrderManager(ReadOnlyOrderManager orderManager) throws IOException;
+    void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException;
 
     /**
-     * @see #saveOrderManager(ReadOnlyOrderManager)
+     * @see #saveOrderManager(ReadOnlyOrderManager, int index)
      */
-    void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath) throws IOException;
+    void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException;
 }

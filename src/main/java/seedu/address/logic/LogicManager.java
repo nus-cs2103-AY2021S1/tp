@@ -1,11 +1,15 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Optional;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,7 +32,6 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
-    private boolean isMenu;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -46,7 +49,26 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, );
+
+        if (commandResult.isPreset()) {
+//            try {
+//                //TODO: Change to index
+//                storage.saveOrderManager(model.getOrderManager(),model.getVendorIndex());
+//            } catch (IOException ioe) {
+//                throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+//            }
+
+            // Try reading
+            try {
+                Optional<List<List<OrderItem>>> lists = storage.readOrderManager();
+                int x = 5;
+            } catch (DataConversionException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
         return commandResult;
     }

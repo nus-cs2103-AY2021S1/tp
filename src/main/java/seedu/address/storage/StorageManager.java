@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -10,6 +11,8 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.ReadOnlyOrderManager;
 
 /**
  * Manages storage of AddressBook data in local storage.
@@ -19,14 +22,18 @@ public class StorageManager implements Storage {
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private AddressBookStorage addressBookStorage;
     private UserPrefsStorage userPrefsStorage;
+    private OrderManagerStorage orderManagerStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}
+     * and {@Code OrderManagerStorage}.
      */
-    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage) {
+    public StorageManager(AddressBookStorage addressBookStorage, UserPrefsStorage userPrefsStorage,
+                          OrderManagerStorage orderManagerStorage) {
         super();
         this.addressBookStorage = addressBookStorage;
         this.userPrefsStorage = userPrefsStorage;
+        this.orderManagerStorage = orderManagerStorage;
     }
 
     // ================ UserPrefs methods ==============================
@@ -75,5 +82,36 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
+
+
+    // ================ OrderManager methods ==============================
+
+    @Override
+    public Path getOrderManagerFilePath() {
+        return orderManagerStorage.getOrderManagerFilePath();
+    }
+
+    @Override
+    public Optional<List<List<OrderItem>>> readOrderManager() throws DataConversionException, IOException {
+        return readOrderManager(orderManagerStorage.getOrderManagerFilePath());
+    }
+
+    @Override
+    public Optional<List<List<OrderItem>>> readOrderManager(Path filePath) throws DataConversionException, IOException {
+        logger.fine("Attempting to read data from file: " + filePath);
+        return orderManagerStorage.readOrderManager(filePath);
+    }
+
+    @Override
+    public void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException {
+        saveOrderManager(orderManager, orderManagerStorage.getOrderManagerFilePath(), index);
+    }
+
+    @Override
+    public void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException {
+        logger.fine("Attempting to write to data file: " + filePath);
+        orderManagerStorage.saveOrderManager(orderManager, filePath, index);
+    }
+
 
 }
