@@ -33,6 +33,7 @@ public class FindFinanceCommand extends Command {
     private Optional<String> idMatch;
     private Optional<LocalDate> afterDatetime;
     private Optional<LocalDate> beforeDatetime;
+    private Optional<Boolean> filterInventory;
 
     /**
      * Creates a command that searches for finance records
@@ -41,6 +42,7 @@ public class FindFinanceCommand extends Command {
         idMatch = Optional.empty();
         afterDatetime = Optional.empty();
         beforeDatetime = Optional.empty();
+        filterInventory = Optional.empty();
     }
 
     /**
@@ -73,8 +75,23 @@ public class FindFinanceCommand extends Command {
         return this;
     }
 
+    /**
+     * Sets the command to search for finance records with or without inventory
+     *
+     * @param hasInventory Filter with inventory if true, else filter without
+     */
+    public FindFinanceCommand setHasInventory(boolean hasInventory) {
+        filterInventory = Optional.of(hasInventory);
+        return this;
+    }
+
     private Predicate<FinanceRecord> getPredicate() {
         return record -> {
+
+            if (filterInventory.isPresent() && filterInventory.get() != record.taggedToInventory()) {
+                return false;
+            }
+
             if (idMatch.isPresent() && !(record.getID() + "").contains(idMatch.get())) {
                 return false;
             }
