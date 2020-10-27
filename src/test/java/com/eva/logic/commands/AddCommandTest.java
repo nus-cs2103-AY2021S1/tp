@@ -307,6 +307,10 @@ public class AddCommandTest {
         public void setApplicant(Applicant target, Applicant editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public void deleteApplication(Applicant target, Application toSet) {
+            throw new AssertionError("This method should not be called.");
+        }
 
         @Override
         public ObservableList<Applicant> getFilteredApplicantList() {
