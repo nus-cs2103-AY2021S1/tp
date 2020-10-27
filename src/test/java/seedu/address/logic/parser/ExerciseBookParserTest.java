@@ -44,7 +44,7 @@ public class ExerciseBookParserTest {
         Exercise exercise = new ExerciseBuilder().build();
         AddCommand command = (AddCommand) parser
                 .parseCommand(AddCommand.COMMAND_WORD + " "
-                        + "n/Push up d/Testing 2254 at/09-10-2020 c/224");
+                        + "n/Push up d/Testing 2254 at/09-10-2020 c/224 m/chest");
         assertEquals(new AddCommand(exercise), command);
     }
 

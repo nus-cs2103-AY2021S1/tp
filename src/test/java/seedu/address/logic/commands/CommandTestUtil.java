@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -39,26 +40,34 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_PUSH_UP = "Push Up Description";
     public static final String VALID_DATE_PUSH_UP = "10-10-2020";
     public static final String VALID_CALORIES_PUSH_UP = "100";
+    public static final String VALID_MUSCLES_PUSH_UP = "chest";
 
     public static final String VALID_NAME_SIT_UP = "Sit Up";
     public static final String VALID_DESCRIPTION_SIT_UP = "Sit Up Description";
     public static final String VALID_DATE_SIT_UP = "10-10-2020";
     public static final String VALID_CALORIES_SIT_UP = "100";
+    public static final String VALID_MUSCLES_SIT_UP = "ab";
 
     public static final String NAME_DESC_PUSH_UP = " " + PREFIX_NAME + VALID_NAME_PUSH_UP;
     public static final String DESCRIPTION_DESC_PUSH_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_PUSH_UP;
     public static final String DATE_DESC_PUSH_UP = " " + PREFIX_DATE + VALID_DATE_PUSH_UP;
     public static final String CALORIES_DESC_PUSH_UP = " " + PREFIX_CALORIES + VALID_CALORIES_PUSH_UP;
+    public static final String MUSCLES_DESC_PUSH_UP = " " + PREFIX_MUSCLES + VALID_MUSCLES_PUSH_UP;
+
 
     public static final String NAME_DESC_SIT_UP = " " + PREFIX_NAME + VALID_NAME_SIT_UP;
     public static final String DESCRIPTION_DESC_SIT_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_SIT_UP;
     public static final String DATE_DESC_SIT_UP = " " + PREFIX_DATE + VALID_DATE_SIT_UP;
     public static final String CALORIES_DESC_SIT_UP = " " + PREFIX_CALORIES + VALID_CALORIES_SIT_UP;
+    public static final String MUSCLES_DESC_SIT_UP = " " + PREFIX_MUSCLES + VALID_MUSCLES_SIT_UP;
+
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "run&"; // '&' not allowed in names
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // description should not be empty
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020-10-10"; // date of incorrect format
     public static final String INVALID_CALORIES_DESC = " " + PREFIX_CALORIES + "abc"; // calories should be numbers
+    public static final String INVALID_MUSCLES_DESC = " " + PREFIX_MUSCLES + "abs,chest"; // abs should be ab
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

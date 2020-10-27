@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Calories {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Calories should be at least 1 digit long";
+            "Calories should be at least 1 digit long, or must be an integer";
 
     /*
      * The first character must not be a whitespace,

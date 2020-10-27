@@ -19,6 +19,11 @@ public enum Muscle {
     ABDOMINALS("ab"),
     LEGS("leg");
 
+    public static final String DELIMITER = ",";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Muscles worked should be in the following format: m/MUSCLE_1,MUSCLE_2,...\n"
+            + "No whitespaces between commas!";
+
     private static final Map<String, Muscle> ENUM_MAP;
     private String name;
 
@@ -40,16 +45,29 @@ public enum Muscle {
         }
         ENUM_MAP = Collections.unmodifiableMap(map);
     }
-
     public static Muscle get(String name) {
         return ENUM_MAP.get(name);
+    }
+
+    /**
+     * Returns true if a given string is a valid input.
+     */
+    public static boolean isValidMusclesWorked(String test) {
+        String[] musclesWorkedArr = test.split(DELIMITER);
+
+        for (String muscleStr: musclesWorkedArr) {
+            if (!ENUM_MAP.containsKey(muscleStr)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
      * Utility method to convert string representation of muscles worked to list (for JsonAdaptedExercise).
      */
     public static List<Muscle> stringToMuscleList(String musclesWorked) {
-        String[] musclesWorkedArr = musclesWorked.split(", ");
+        String[] musclesWorkedArr = musclesWorked.split(DELIMITER);
 
         List<Muscle> musclesWorkedLst = new ArrayList<>();
 
@@ -66,7 +84,7 @@ public enum Muscle {
      */
     public static String muscleListToString(List<Muscle> musclesWorked) {
         return musclesWorked.stream().map(muscle -> muscle.toString())
-                .collect(Collectors.joining(", "));
+                .collect(Collectors.joining(DELIMITER));
     }
 
     @Override

@@ -34,7 +34,7 @@ public class TypicalExercise {
 
     public static final Exercise PULL_UP = new ExerciseBuilder().withName("Pull up")
             .withDescription("Test 5").withDate("31-10-2020").withCalories("123400")
-            .withMusclesWorked("arm, back").build();
+            .withMusclesWorked("arm,back").build();
 
     public static final Exercise SQUAT = new ExerciseBuilder().withName("Squat")
             .withDescription("Test 6").withDate("07-11-2020").withCalories("255491")

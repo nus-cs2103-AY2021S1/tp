@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.ExerciseModel.PREDICATE_SHOW_ALL_EXERCISE;
 
@@ -39,13 +39,13 @@ public class UpdateExerciseCommand extends CommandForExercise {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_CALORIES + "CALORIES] "
-            + "[" + PREFIX_MUSCLE + "MUSCLES_WORKED]\n"
+            + "[" + PREFIX_MUSCLES + "MUSCLES_WORKED]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_NAME + "Push up "
             + PREFIX_DESCRIPTION + "30 "
             + PREFIX_DATE + "09-07-2020 "
             + PREFIX_CALORIES + "260 "
-            + PREFIX_MUSCLE + "chest,arm";
+            + PREFIX_MUSCLES + "chest,arm";
 
     public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited Exercise: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

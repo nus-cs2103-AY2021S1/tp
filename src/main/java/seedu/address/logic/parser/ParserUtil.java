@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -15,6 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
@@ -85,6 +87,21 @@ public class ParserUtil {
             throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
         }
         return new Calories(trimmedCalories);
+    }
+
+    /**
+     * Parses a {@code String musclesWorked} into {@code MusclesWorked}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code musclesWorked} is invalid.
+     */
+    public static List<Muscle> parseMusclesWorked(String musclesWorked) throws ParseException {
+        requireNonNull(musclesWorked);
+        String trimmedMusclesWorked = musclesWorked.trim();
+        if (!Muscle.isValidMusclesWorked(trimmedMusclesWorked)) {
+            throw new ParseException(Muscle.MESSAGE_CONSTRAINTS);
+        }
+        return Muscle.stringToMuscleList(musclesWorked);
     }
 
     //AB3 parse
