@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Done;
 import seedu.address.model.assignment.Priority;
 import seedu.address.model.assignment.Remind;
 import seedu.address.model.assignment.Schedule;
@@ -27,6 +28,7 @@ class JsonAdaptedAssignment {
     private final String suggestedStartTime;
     private final String suggestedEndTime;
     private final String priority;
+    private final boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedAssignment} with the given assignment details.
@@ -38,7 +40,8 @@ class JsonAdaptedAssignment {
                                  @JsonProperty("isScheduled") boolean isScheduled,
                                  @JsonProperty("suggestedStartTime") String suggestedStartTime,
                                  @JsonProperty("suggestedEndTime") String suggestedEndTime,
-                                 @JsonProperty("priority") String priority) {
+                                 @JsonProperty("priority") String priority,
+                                 @JsonProperty("isDone") boolean isDone) {
         this.name = name;
         this.deadline = deadline;
         this.moduleCode = moduleCode;
@@ -47,6 +50,7 @@ class JsonAdaptedAssignment {
         this.suggestedStartTime = suggestedStartTime;
         this.suggestedEndTime = suggestedEndTime;
         this.priority = priority;
+        this.isDone = isDone;
     }
 
     /**
@@ -66,6 +70,7 @@ class JsonAdaptedAssignment {
             suggestedEndTime = "";
         }
         priority = source.getPriority().toString();
+        isDone = source.getDone().isMarkedDone();
     }
 
     /**
@@ -108,6 +113,8 @@ class JsonAdaptedAssignment {
 
         final Remind modelRemind = new Remind(isReminded);
 
+        final Done modelDone = new Done(isDone);
+
         if ((suggestedStartTime.equals("") || suggestedEndTime.equals("")) && isScheduled) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Deadline.class.getSimpleName()));
@@ -121,10 +128,11 @@ class JsonAdaptedAssignment {
         if (isScheduled) {
             final Schedule modelSchedule = new Schedule(new Deadline(suggestedStartTime),
                     new Deadline(suggestedEndTime));
-            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule, modelPriority);
+            return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, modelSchedule, modelPriority,
+                    modelDone);
         } else {
             return new Assignment(modelName, modelDeadline, modelModuleCode, modelRemind, new Schedule(),
-                    modelPriority);
+                    modelPriority, modelDone);
         }
     }
 }

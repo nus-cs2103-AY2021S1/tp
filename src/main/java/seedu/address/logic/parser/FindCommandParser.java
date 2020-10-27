@@ -92,6 +92,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     private static FindCommand findByPriority(String[] keywords) throws ParseException {
         for (String keyword : keywords) {
             ParserUtil.parsePriority(keyword);
+            System.out.println(keyword);
         }
         return new FindCommand(new PriorityContainsKeywordsPredicate(Arrays.asList(keywords)));
     }

@@ -11,12 +11,14 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -57,7 +59,9 @@ public class AddressBookParserTest {
     public void parseCommand_delete() throws Exception {
         DeleteCommand command = (DeleteCommand) parser.parseCommand(
                 DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ASSIGNMENT.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_ASSIGNMENT), command);
+        List<Index> assignmentIndexToDelete = new ArrayList<>();
+        assignmentIndexToDelete.add(INDEX_FIRST_ASSIGNMENT);
+        assertEquals(new DeleteCommand(assignmentIndexToDelete), command);
     }
 
     @Test
