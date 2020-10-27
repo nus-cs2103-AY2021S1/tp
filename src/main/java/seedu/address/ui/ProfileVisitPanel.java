@@ -56,6 +56,8 @@ public class ProfileVisitPanel extends UiPart<Stage> {
             if (visit == null || empty) {
                 setGraphic(null);
                 setText(null);
+            } else {
+                setGraphic(new ProfileVisitCard(visit, String.valueOf(getIndex() + 1)).getRoot());
             }
         }
     }

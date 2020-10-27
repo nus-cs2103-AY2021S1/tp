@@ -187,7 +187,7 @@ public class ProfileWindow extends UiPart<Stage> {
                 setGraphic(null);
                 setText(null);
             } else {
-                ProfileVisitCard visitPanel = new ProfileVisitCard(visit);
+                ProfileVisitCard visitPanel = new ProfileVisitCard(visit, String.valueOf(getIndex() + 1));
                 setGraphic(visitPanel.getRoot());
             }
         }
