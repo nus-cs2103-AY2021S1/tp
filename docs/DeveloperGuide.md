@@ -131,7 +131,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
+This section describes some noteworthy details on how certain features are implemented.
+
 ### Clear all modules feature
+
+#### Implementation
+
 It implements the following operations:
 * `AddressBook#clearMod()` — Clear all modules from the list.  
 
@@ -152,8 +157,6 @@ c. Test case : `mclear` on an empty module list <br>
 Expected : Error message saying "Module list is already empty".
 
 { more test cases ... }
-
-This section describes some noteworthy details on how certain features are implemented.
 
 ### Assign feature
 
