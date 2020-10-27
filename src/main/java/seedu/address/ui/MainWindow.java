@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.setHeight(600);
         primaryStage.setX(500);
         primaryStage.setY(100);
-        leftPanel.setPrefWidth(400);
+        leftPanel.setPrefWidth(500);
         //Responsive resizing
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             leftPanel.setPrefWidth(primaryStage.getWidth() / 2);
