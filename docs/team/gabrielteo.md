@@ -41,9 +41,12 @@ Given below are my contributions to the project.
 
 * **Contributions to the User Guide**:
   * User Guide:
-    * Updated `find` command to include new find by `NRIC` functionality (Pull request [\#71]())
+    * Updated `find` command to include new find by `NRIC` functionality (Pull request [\#71](), [\#170]())
     * Updated `delete` command to include new delete by `NRIC` functionality (Pull request [\#71]())
-    * Updated product screenshots and included some new screenshots (Pull requests [\#71](), [\#157]())
+    * Updated product screenshots and included some new screenshots (Pull requests [\#71](), [\#157](), [\#170]())
+    * Added documentation for the feature `addAppt` (Pull request [\#170]())
+    * Added documentation for the feature `editAppt` (Pull request [\#170]())
+    * Added documentation for the feature `deleteAppt` (Pull request [\#170]())
 
 * **Contributions to the Developer Guide**:
   * Developer Guide: (Pull requests [\#21](), [\#141]())
