@@ -130,7 +130,9 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
 
     /**
      * adds a bid to the BidBook
-     * @param bid to add to the BidBook
+     *
+     * @param bid to add to the BidBook.
+     * @throws CommandException If the bid cannot be added.
      */
     void addBid(Bid bid) throws CommandException;
 

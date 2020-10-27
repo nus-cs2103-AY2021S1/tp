@@ -36,6 +36,7 @@ import seedu.address.logic.commands.meetingcommands.SortMeetingCommand;
 import seedu.address.logic.commands.property.AddPropertyCommand;
 import seedu.address.logic.commands.property.DeletePropertyCommand;
 import seedu.address.logic.commands.property.EditPropertyCommand;
+import seedu.address.logic.commands.property.FindPropertyCommand;
 import seedu.address.logic.commands.property.ListPropertyCommand;
 import seedu.address.logic.commands.sellercommands.AddSellerCommand;
 import seedu.address.logic.commands.sellercommands.DeleteSellerCommand;
@@ -59,6 +60,7 @@ import seedu.address.logic.parser.meetingparser.SortMeetingCommandParser;
 import seedu.address.logic.parser.property.AddPropertyCommandParser;
 import seedu.address.logic.parser.property.DeletePropertyCommandParser;
 import seedu.address.logic.parser.property.EditPropertyCommandParser;
+import seedu.address.logic.parser.property.FindPropertyCommandParser;
 import seedu.address.logic.parser.sellerparser.AddSellerCommandParser;
 import seedu.address.logic.parser.sellerparser.DeleteSellerCommandParser;
 import seedu.address.logic.parser.sellerparser.EditSellerCommandParser;
@@ -163,6 +165,9 @@ public class AddressBookParser {
 
         case EditPropertyCommand.COMMAND_WORD:
             return new EditPropertyCommandParser().parse(arguments);
+
+        case FindPropertyCommand.COMMAND_WORD:
+            return new FindPropertyCommandParser().parse(arguments);
 
         // -------------------- BIDDER ------------------- //
         case AddBidderCommand.COMMAND_WORD:

@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Price.
  * Guarantees: immutable; price is valid as declared in {@link #isValidPrice(double)}
  */
-public class Price {
+public class Price implements Comparable<Price> {
 
     public static final String MESSAGE_CONSTRAINTS = "Price should be greater than 0";
 
@@ -55,4 +55,8 @@ public class Price {
         return Double.hashCode(price);
     }
 
+    @Override
+    public int compareTo(Price o) {
+        return Double.compare(this.price, o.price);
+    }
 }
