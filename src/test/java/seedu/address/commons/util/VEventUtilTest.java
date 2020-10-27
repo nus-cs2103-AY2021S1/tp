@@ -1,5 +1,6 @@
 package seedu.address.commons.util;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_FIRST;
@@ -9,9 +10,13 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_NAME_SE
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_FIRST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_SECOND;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.APP1;
 import static seedu.address.testutil.TypicalVEvents.FIRST_VEVENT;
 import static seedu.address.testutil.TypicalVEvents.SECOND_VEVENT;
+import static seedu.address.testutil.TypicalVEvents.VEVENT1;
 
+import java.util.Collections;
+import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import jfxtras.icalendarfx.components.VEvent;
@@ -26,11 +31,26 @@ public class VEventUtilTest {
         assertThrows(NullPointerException.class, () -> VEventUtil.appsToVEventsMapper(null));
     }
 
+    @Test
+    public void appsToVEventMapper_list_success() {
+        List<VEvent> converted = VEventUtil.appsToVEventsMapper(Collections.singletonList(APP1));
+        List<VEvent> expected = Collections.singletonList(VEVENT1);
+
+        assertEquals(converted.size(), 1);
+        assertTrue(VEventUtil.isSameVEvent(converted.get(0), expected.get(0)));
+    }
+
     //---------------- Tests for appToVEventMapper --------------------------------------
 
     @Test
     public void appToVEventMapper_nullAppointment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> VEventUtil.appToVEventMapper(null));
+    }
+
+    @Test
+    public void appToVEventMapper_appointment_success() {
+        VEvent converted = VEventUtil.appToVEventMapper(APP1);
+        assertTrue(VEventUtil.isSameVEvent(VEVENT1, converted));
     }
 
     //---------------- Tests for isSameVEvent --------------------------------------
