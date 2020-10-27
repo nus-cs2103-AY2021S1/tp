@@ -213,7 +213,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dateTimeStr, durationStr} is invalid.
      */
-    public static AppointmentDateTime parseDurationWithStart(String dateTimeStr, String durationStr) throws ParseException {
+    public static AppointmentDateTime parseDurationWithStart(String dateTimeStr, String durationStr)
+            throws ParseException {
         requireNonNull(dateTimeStr, durationStr);
         String trimmedDateTime = dateTimeStr.trim();
         String trimmedDuration = durationStr.trim();
