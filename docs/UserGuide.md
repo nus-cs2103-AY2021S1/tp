@@ -6,6 +6,7 @@ title: User Guide
 Choose a topic from the table of contents to get started on your **Wishful Shrinking journey**. 
 
 ##Table of Contents
+
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
     - [1.2. Purpose](#12-purpose)
