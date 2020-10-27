@@ -22,6 +22,7 @@ import com.eva.logic.commands.ExitCommand;
 import com.eva.logic.commands.FindCommand;
 import com.eva.logic.commands.HelpCommand;
 import com.eva.logic.commands.ListCommand;
+import com.eva.logic.commands.ViewCommand;
 import com.eva.logic.parser.comment.CommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.logic.parser.leave.AddLeaveCommandParser;
@@ -82,7 +83,7 @@ public class EvaParser {
             return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+            return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -96,11 +97,13 @@ public class EvaParser {
         case AddApplicantCommand.COMMAND_WORD:
             return new AddApplicantCommandParser().parse(arguments);
 
+        case ViewCommand.COMMAND_WORD:
+            return new ViewCommandParser().parse(arguments);
+
         case DeleteApplicantCommand.COMMAND_WORD:
             return new DeleteApplicantCommandParser().parse(arguments);
 
-        case AddApplicationCommand
-                .COMMAND_WORD:
+        case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
 
         default:

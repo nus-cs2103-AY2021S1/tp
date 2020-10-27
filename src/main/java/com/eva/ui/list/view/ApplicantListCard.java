@@ -1,10 +1,11 @@
-package com.eva.ui;
+package com.eva.ui.list.view;
 
 import java.util.Comparator;
 import java.util.Optional;
 
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.InterviewDate;
+import com.eva.ui.UiPart;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

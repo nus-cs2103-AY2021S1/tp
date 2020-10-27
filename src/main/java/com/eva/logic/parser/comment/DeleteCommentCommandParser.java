@@ -1,8 +1,8 @@
 package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_ADDORDELETE_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static java.util.Objects.requireNonNull;
 
@@ -30,7 +30,7 @@ public class DeleteCommentCommandParser {
     public CommentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADDORDELETE_COMMENT, PREFIX_APPLICANT, PREFIX_STAFF);
+                ArgumentTokenizer.tokenize(args, PREFIX_COMMENT, PREFIX_APPLICANT, PREFIX_STAFF);
 
         Index index;
 
@@ -42,7 +42,7 @@ public class DeleteCommentCommandParser {
 
         CommentCommand.CommentPersonDescriptor commentPersonDescriptor =
                 new CommentCommand.CommentPersonDescriptor();
-        parseCommentsForEdit(argMultimap.getAllValues(PREFIX_ADDORDELETE_COMMENT))
+        parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT))
                 .ifPresent(commentPersonDescriptor::setComments);
         if (!commentPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

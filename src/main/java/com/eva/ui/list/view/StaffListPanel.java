@@ -1,9 +1,13 @@
-package com.eva.ui;
+package com.eva.ui.list.view;
+
+import static com.eva.commons.core.PanelState.STAFF_LIST;
 
 import java.util.logging.Logger;
 
 import com.eva.commons.core.LogsCenter;
+import com.eva.commons.core.PanelState;
 import com.eva.model.person.staff.Staff;
+import com.eva.ui.UiPart;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -15,8 +19,10 @@ import javafx.scene.layout.Region;
  * Panel containing the list of staffs.
  */
 public class StaffListPanel extends UiPart<Region> {
+    public static final PanelState PANEL_NAME = STAFF_LIST;
+
     private static final String FXML = "StaffListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(StaffListPanel.class);
 
     @FXML
     private ListView<Staff> staffListView;
@@ -31,7 +37,7 @@ public class StaffListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Staff} using a {@code StaffCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Staff} using a {@code StaffListCard}.
      */
     class StaffListViewCell extends ListCell<Staff> {
         @Override
@@ -42,7 +48,7 @@ public class StaffListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new StaffCard(staff, getIndex() + 1).getRoot());
+                setGraphic(new StaffListCard(staff, getIndex() + 1).getRoot());
             }
         }
     }

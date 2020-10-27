@@ -6,7 +6,7 @@ import com.eva.logic.commands.DeleteStaffCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new DeleteStaffCommand object
+ * Parses input arguments and creates a new DeleteStaffCommand object.
  */
 public class DeleteStaffCommandParser {
 

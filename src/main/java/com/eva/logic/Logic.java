@@ -4,10 +4,13 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 
 import com.eva.commons.core.GuiSettings;
+import com.eva.commons.core.PanelState;
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.ReadOnlyEvaDatabase;
+import com.eva.model.current.view.CurrentViewApplicant;
+import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
@@ -63,6 +66,21 @@ public interface Logic {
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
+
+    /**
+     * Returns the current PanelState.
+     */
+    PanelState getPanelState();
+
+    /**
+     * Returns the current staff being viewed.
+     */
+    CurrentViewStaff getCurrentViewStaff();
+
+    /**
+     * Returns the current staff being viewed.
+     */
+    CurrentViewApplicant getCurrentViewApplicant();
 
     /**
      * Set the user prefs' GUI settings.

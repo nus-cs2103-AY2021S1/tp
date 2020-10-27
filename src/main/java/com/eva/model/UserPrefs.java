@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 import com.eva.commons.core.GuiSettings;
+import com.eva.commons.core.PanelState;
 
 /**
  * Represents User's preferences.
@@ -42,6 +43,14 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     public GuiSettings getGuiSettings() {
         return guiSettings;
+    }
+
+    public PanelState getPanelState() {
+        return guiSettings.getPanelState();
+    }
+
+    public void setPanelState(PanelState panelState) {
+        guiSettings.setPanelState(panelState);
     }
 
     public void setGuiSettings(GuiSettings guiSettings) {
@@ -103,5 +112,4 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal data file location : " + personDatabaseFilePath);
         return sb.toString();
     }
-
 }

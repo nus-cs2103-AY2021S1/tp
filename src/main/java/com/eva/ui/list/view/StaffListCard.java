@@ -1,4 +1,4 @@
-package com.eva.ui;
+package com.eva.ui.list.view;
 
 import static com.eva.commons.util.DateUtil.dateToString;
 
@@ -6,6 +6,7 @@ import java.util.Comparator;
 
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
+import com.eva.ui.UiPart;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -16,7 +17,7 @@ import javafx.scene.layout.Region;
 /**
  * An UI component that displays information of a {@code Staff}.
  */
-public class StaffCard extends UiPart<Region> {
+public class StaffListCard extends UiPart<Region> {
     private static final String FXML = "StaffListCard.fxml";
 
     /**
@@ -49,9 +50,9 @@ public class StaffCard extends UiPart<Region> {
     private FlowPane leaves;
 
     /**
-     * Creates a {@code StaffCard} with the given {@code Staff} and index to display.
+     * Creates a {@code StaffListCard} with the given {@code Staff} and index to display.
      */
-    public StaffCard(Staff staff, int displayedIndex) {
+    public StaffListCard(Staff staff, int displayedIndex) {
         super(FXML);
         this.staff = staff;
         id.setText(displayedIndex + ". ");
@@ -87,12 +88,12 @@ public class StaffCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StaffCard)) {
+        if (!(other instanceof StaffListCard)) {
             return false;
         }
 
         // state check
-        StaffCard card = (StaffCard) other;
+        StaffListCard card = (StaffListCard) other;
         return id.getText().equals(card.id.getText())
                 && staff.equals(card.staff);
     }

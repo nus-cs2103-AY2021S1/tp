@@ -1,8 +1,15 @@
 package com.eva.model.comment;
 
+import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DESC;
+import static com.eva.logic.parser.CliSyntax.PREFIX_TITLE;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
+
+import com.eva.logic.parser.ArgumentMultimap;
+import com.eva.logic.parser.ArgumentTokenizer;
 
 public class Comment {
 
@@ -36,18 +43,28 @@ public class Comment {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Comment // instanceof handles nulls
-                && title.getTitle().equals(((Comment) other).getTitle().getTitle())
+                && title.getTitleDescription().equals(((Comment) other).getTitle().getTitleDescription())
                 && description.equals(((Comment) other).description)
                 && date.equals(((Comment) other).date)); // state check
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, date);
+        return Objects.hash(description, date, title.getTitleDescription());
     }
 
+    /**
+     * Checks if provided input is a valid comment
+     * @param comment
+     * @return
+     */
     public static boolean isValidComment(String comment) {
-        return true;
+        ArgumentMultimap argMultmap = ArgumentTokenizer.tokenize(comment,
+                PREFIX_TITLE, PREFIX_DATE, PREFIX_DESC);
+        boolean hasTitle = !argMultmap.getValue(PREFIX_TITLE).isEmpty();
+        boolean hasDate = !argMultmap.getValue(PREFIX_DATE).isEmpty();
+        boolean hasDescription = !argMultmap.getValue(PREFIX_DESC).isEmpty();
+        return hasTitle && hasDate && hasDescription;
     }
 
     public LocalDate getDate() {
@@ -67,6 +84,20 @@ public class Comment {
     }
 
     public String toString() {
-        return this.title.getTitle() + ": " + this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+        return this.title.getTitleDescription() + ": " + this.date.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+    }
+
+    /**
+     * Returns true if comment is same as otherComment.
+     */
+    public boolean isSameComment(Comment otherComment) {
+        if (otherComment == this) {
+            return true;
+        }
+
+        return otherComment != null
+                && otherComment.getTitle().equals(getTitle())
+                && otherComment.getDate().equals(getDate())
+                && otherComment.getDescription().equals(getDescription());
     }
 }

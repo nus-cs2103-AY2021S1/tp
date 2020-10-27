@@ -113,7 +113,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+            throws CommandException {
         assert personToEdit != null;
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
@@ -123,7 +124,12 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Comment> editedComments = editPersonDescriptor.getComments();
         Set<Comment> currentComments = personToEdit.getComments();
-        Set<Comment> newComments = updateComments(editedComments, currentComments);
+        Set<Comment> newComments;
+        try {
+            newComments = updateComments(editedComments, currentComments);
+        } catch (CommandException e) {
+            throw new CommandException(e.getMessage());
+        }
         if (personToEdit instanceof Staff) {
             Set<Leave> updatedLeaves = ((Staff) personToEdit).getLeaves();
             return new Staff(updatedName, updatedPhone, updatedEmail,
@@ -134,8 +140,8 @@ public class EditCommand extends Command {
             return new Applicant(updatedName, updatedPhone, updatedEmail, updatedAddress,
                     updatedTags, newComments, updatedInterviewDate, applicationStatus);
         }
-
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, newComments);
+        return new Person(updatedName, updatedPhone,
+                updatedEmail, updatedAddress, updatedTags, newComments);
     }
 
     /**
@@ -144,18 +150,25 @@ public class EditCommand extends Command {
      * @param currentComments
      * @return
      */
-    public static Set<Comment> updateComments(Set<Comment> editedComments, Set<Comment> currentComments) {
+    public static Set<Comment> updateComments(Set<Comment> editedComments, Set<Comment> currentComments)
+            throws CommandException {
+        boolean hasChange = false;
         if (editedComments != null) {
             for (Comment comment: currentComments) {
                 for (Comment editedComment : editedComments) {
                     if (editedComment.getTitle().equals(comment.getTitle())
                             && editedComment.getDate().equals(comment.getDate())) {
                         comment.update(editedComment.getDescription());
+                        hasChange = true;
                     }
                 }
             }
         }
-        return editedComments;
+        if (hasChange || editedComments == null) {
+            return currentComments;
+        } else {
+            throw new CommandException(CommentCommand.MESSAGE_NO_SUCH_COMMENT);
+        }
     }
 
     @Override

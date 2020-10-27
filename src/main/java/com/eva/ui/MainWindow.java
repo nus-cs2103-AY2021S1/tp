@@ -5,10 +5,14 @@ import java.util.logging.Logger;
 
 import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.LogsCenter;
+import com.eva.commons.core.PanelState;
 import com.eva.logic.Logic;
 import com.eva.logic.commands.CommandResult;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
+import com.eva.ui.list.view.ApplicantListPanel;
+import com.eva.ui.list.view.StaffListPanel;
+import com.eva.ui.profile.staff.view.StaffProfilePanel;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,8 +37,8 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private StaffListPanel staffListPanel;
+    private StaffProfilePanel staffProfilePanel;
     private ApplicantListPanel applicantListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -49,16 +53,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane sideBarPlaceholder;
 
     @FXML
-    private StackPane staffListPanelPlaceholder;
-
-    @FXML
-    private StackPane applicantListPanelPlaceholder;
+    private StackPane panelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane headerNamePlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -121,20 +122,47 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
-        staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
 
         applicantListPanel = new ApplicantListPanel(logic.getFilteredApplicantList());
-        applicantListPanelPlaceholder.getChildren().add(applicantListPanel.getRoot());
+
+        switchPanel(StaffListPanel.PANEL_NAME);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getEvaDatabaseFilePath(),
-                logic.getStaffDatabaseFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    }
+
+    /**
+     * Switches current panel to the specified panel.
+     */
+    private void switchPanel(PanelState panelState) {
+        logger.info("Switch panel to: " + panelState.toString());
+        panelPlaceholder.getChildren().clear();
+        headerNamePlaceholder.getChildren().clear();
+        headerNamePlaceholder.getChildren().add(new CurrentPanelHeader(panelState.toString()).getRoot());
+
+        switch (panelState) {
+        case STAFF_LIST:
+            panelPlaceholder.getChildren().add(staffListPanel.getRoot());
+            break;
+        case APPLICANT_LIST:
+            panelPlaceholder.getChildren().add(applicantListPanel.getRoot());
+            break;
+        case STAFF_PROFILE:
+            staffProfilePanel = new StaffProfilePanel(logic.getCurrentViewStaff());
+            staffProfilePanel.fillInnerParts();
+            panelPlaceholder.getChildren().add(staffProfilePanel.getRoot());
+            break;
+        default:
+            throw new AssertionError("No such tab name: " + panelState);
+        }
+        /*
+        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
+                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getPanelState());
+        logic.setGuiSettings(guiSettings);
+        */
     }
 
     /**
@@ -177,8 +205,14 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+    @FXML
+    private void handleChangePanel() {
+        PanelState requestedPanelState = logic.getPanelState();
+        switchPanel(requestedPanelState);
+    }
+
+    public StaffListPanel getStaffListPanel() {
+        return staffListPanel;
     }
 
     /**
@@ -199,6 +233,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isChangePanel()) {
+                handleChangePanel();
             }
 
             return commandResult;

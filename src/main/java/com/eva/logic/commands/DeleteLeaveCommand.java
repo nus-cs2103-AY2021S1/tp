@@ -2,7 +2,7 @@ package com.eva.logic.commands;
 
 import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static com.eva.commons.util.DateUtil.dateToString;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
 import static com.eva.model.Model.PREDICATE_SHOW_ALL_STAFFS;
 import static java.util.Objects.requireNonNull;
 

@@ -42,7 +42,7 @@ public class StaffUtil {
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         staff.getComments().stream().forEach(
-            s -> sb.append(PREFIX_COMMENT + s.getTitle().getTitle() + " ")
+            s -> sb.append(PREFIX_COMMENT + s.getTitle().getTitleDescription() + " ")
         );
         staff.getLeaves().stream().forEach(
             s -> sb.append(PREFIX_LEAVE + s.getStartDate().toString() + s.getEndDate().toString() + " ")
@@ -73,7 +73,7 @@ public class StaffUtil {
             if (comments.isEmpty()) {
                 sb.append(PREFIX_COMMENT);
             } else {
-                comments.forEach(s -> sb.append(PREFIX_COMMENT).append(s.getTitle().getTitle()).append(" "));
+                comments.forEach(s -> sb.append(PREFIX_COMMENT).append(s.getTitle().getTitleDescription()).append(" "));
             }
         }
         if (descriptor.getLeaves() != null) {

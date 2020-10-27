@@ -1,7 +1,7 @@
 package com.eva.logic.parser.leave;
 
+import static com.eva.logic.parser.CliSyntax.PREFIX_DATE;
 import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
-import static com.eva.logic.parser.comment.CommentCliSyntax.PREFIX_DATE;
 
 import java.time.LocalDate;
 
