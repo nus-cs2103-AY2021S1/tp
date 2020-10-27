@@ -664,7 +664,7 @@ This section features general questions about _Common Cents_ that are not specif
 contains the data of your previous _CommonCents_ home folder.
 
 2. **Question:** What if I notice something wrong with the application?<br>
-**Answer:** You may submit a bug report or send us a notice directly to our team [here](https://github.com/AY2021S1-CS2103T-T13-4/tp).
+**Answer:** You may submit a bug report or send us a notice directly [here](https://github.com/AY2021S1-CS2103T-T13-4/tp).
 
 
 

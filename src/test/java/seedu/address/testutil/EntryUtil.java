@@ -8,6 +8,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditCommand;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Revenue;
 
@@ -26,7 +27,7 @@ public class EntryUtil {
     }
 
     /**
-     * Returns an delete command string for deleting first expense.
+     * Returns a delete command string for deleting first expense.
      */
     public static String getDeleteExpenseCommand() {
         return DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
@@ -34,11 +35,29 @@ public class EntryUtil {
     }
 
     /**
-     * Returns an delete command string for deleting first revenue.
+     * Returns a delete command string for deleting first revenue.
      */
     public static String getDeleteRevenueCommand() {
         return DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
                 + " " + PREFIX_CATEGORY + REVENUE_STRING;
+    }
+
+    /**
+     * Returns an edit command string for editing first expense.
+     */
+    public static String getEditExpenseCommand() {
+        // replace the info of the 1st entry in the revenue list with that of PAY_RENT
+        return EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
+            + " " + getEntryDetails(TypicalEntries.PAY_RENT) + " t/";
+    }
+
+    /**
+     * Returns an edit command string for editing first revenue.
+     */
+    public static String getEditRevenueCommand() {
+        // replace the info of the 1st entry in the revenue list with that of SELL_FLOWER_SEEDS
+        return EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
+            + " " + getEntryDetails(TypicalEntries.SELL_FLOWER_SEEDS);
     }
 
     /**
