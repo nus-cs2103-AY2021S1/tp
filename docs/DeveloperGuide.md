@@ -20,9 +20,9 @@ This section describes the high-level components that make up ZooKeep.
 
 The ***Architecture Diagram*** (*Figure 1*) given below explains the high-level design of the App. 
 
-<img src="images/ArchitectureDiagram.png" width="450" />
+<p align="center"><img src="images/ArchitectureDiagram.png"/></p>
 
-*Figure 1: The Architecture Diagram of ZooKeep*
+<p align="center"><i>Figure 1: The Architecture Diagram of ZooKeep</i></p>
 
 Given below is a quick overview of each component.
 
@@ -60,12 +60,16 @@ For example, the `Logic` component (see *Figure 2* below) defines its API
 in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class 
 which implements the `Logic` interface.
 
-![Class Diagram of the Logic Component](images/LogicClassDiagram.png)*Figure 2: Class Diagram of Logic component*
+<p align="center"><img src="images/LogicClassDiagram.png"/></p>
+
+<p align="center"><i>Figure 2: Class Diagram of Logic component</i></p>
 
 The *Sequence Diagram (Figure 3)* below shows how the components interact with each other for the 
 scenario where the user issues the command `delete 123`.
 
-![Sequence Diagram of delete command](images/ArchitectureSequenceDiagram.png)*Figure 3: Sequence Diagram of delete command*
+<p align="center"><img src="images/ArchitectureSequenceDiagram.png"/></p>
+
+<p align="center"><i>Figure 3: Sequence Diagram of delete command</i></p>
 
 The sections below give more details of each component.
 
@@ -73,7 +77,9 @@ The sections below give more details of each component.
 
 The Class Diagram for the UI Component is shown below (*Figure 4*)
 
-![Structure of the UI Component](images/UiClassDiagram.png)*Figure 4: Class Diagram of UI Component*
+<p align="center"><img src="images/UiClassDiagram.png"/></p>
+
+<p align="center"><i>Figure 4: Class Diagram of UI Component</i></p>
 
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
@@ -96,7 +102,9 @@ The `UI` component
 
 The Class Diagram for the Logic Component is shown below (*Figure 5*)
 
-![Structure of the Logic Component](images/LogicClassDiagram.png)*Figure 5: Class Diagram of Logic Component*
+<p align="center"><img src="images/LogicClassDiagram.png"/></p>
+
+<p align="center"><i>Figure 5: Class Diagram of Logic Component</i></p>
 
 **API** :
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
@@ -109,7 +117,9 @@ The Class Diagram for the Logic Component is shown below (*Figure 5*)
 
 Given below is the Sequence Diagram (*Figure 6*) for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)*Figure 6: Sequence Diagram for delete command*
+<p align="center"><img src="images/DeleteSequenceDiagram.png"/></p>
+
+<p align="center"><i>Figure 6: Sequence Diagram for delete command</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -118,9 +128,9 @@ Given below is the Sequence Diagram (*Figure 6*) for interactions within the `Lo
 
 The Class Diagram for the Model Component is shown below (*Figure 7*)
 
-![Structure of the Model Component](images/ModelClassDiagram.png)
+<p align="center"><img src="images/ModelClassDiagram.png"/></p>
 
-*Figure 7: Class Diagram of Model Component*
+<p align="center"><i>Figure 7: Class Diagram of Model Component</i></p>
 
 **API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
@@ -142,7 +152,9 @@ The `Model`,
 
 The Class Diagram for the Storage Component is shown below (*Figure 8*)
 
-![Structure of the Storage Component](images/StorageClassDiagram.png)*Figure 8: Class Diagram of Storage Component*
+<p align="center"><img src="images/StorageClassDiagram.png"/></p>
+
+<p align="center"><i>Figure 8: Class Diagram of Storage Component</i></p>
 
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -193,21 +205,21 @@ Given below is an example usage scenario and how the undo mechanism behaves at e
 
 Step 1. The user launches the application for the first time. The `HistoryStack` will be initialized with a single state (*Figure 9*), which is the current state.
 
-![UndoState0](images/UndoState0.png)
+<p align="center"><img src="images/UndoState0.png"/></p>
 
-*Figure 9: State of `HistoryStack` upon initialization*
+<p align="center"><i>Figure 9: State of HistoryStack upon initialization</i></p>
 
 Step 2. The user executes `delete 1` command to delete the animal with ID 1. `LogicManager` calls `Model#getZooKeepBook()` to retrieve the new state of the book, and adds it to the history (*Figure 10*) with `HistoryStack#addToHistory(ReadOnlyZooKeepBook)`.
 
-![UndoState1](images/UndoState1.png)
+<p align="center"><img src="images/UndoState1.png"/></p>
 
-*Figure 10: State of `HistoryStack` after addition of new state*
+<p align="center"><i>Figure 10: State of HistoryStack after addition of new state</i></p>
 
 Step 3. The user executes `help` to view the help screen. `LogicManager` behaves as per Step 2. However, since no changes were made to the state, the current state is not added (*Figure 11*) to `HistoryStack`.
 
-![UndoState2](images/UndoState2.png)
+<p align="center"><img src="images/UndoState2.png"/></p>
 
-*Figure 11: State of `HistoryStack` unchanged*
+<p align="center"><i>Figure 11: State of HistoryStack unchanged</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `HistoryStack#addToHistory()`, so the state will not be saved into the `HistoryStack`.
 
@@ -215,9 +227,9 @@ Step 3. The user executes `help` to view the help screen. `LogicManager` behaves
 
 Step 4. The user now decides that deleting the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `HistoryStack#removeRecentHistory()` which deletes the current state, and exposes the previous state. `HistoryStack#viewRecentHistory()` is then called to retrieve the previous state, then loaded into the model (*Figure 12*) using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
 
-![UndoState3](images/UndoState3.png)
+<p align="center"><img src="images/UndoState3.png"/></p>
 
-*Figure 12: State of `HistoryStack` after loading the previous state*
+<p align="center"><i>Figure 12: State of HistoryStack after loading the previous state</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `HistoryStack` only contains a single state, then there is no previous state to restore. The `undo` command uses `HistoryStack#getHistorySize()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -227,7 +239,9 @@ than attempting to perform the undo.
 
 The following Sequence Diagram (*Figure 13*) shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)*Figure 13: Sequence Diagram when undo command is executed*
+<p align="center"><img src="images/UndoSequenceDiagram.png"/></p>
+
+<p align="center"><i>Figure 13: Sequence Diagram when undo command is executed</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
@@ -236,12 +250,10 @@ The following Sequence Diagram (*Figure 13*) shows how the undo operation works:
 
 The following 2 Activity Diagrams (*Figures 14.1 & 14.2*) summarize what happens when a user executes a new command and when a user executes the undo command:
 
-New command | Undo command
-:-------------------------:|:-------------------------:
-![ExecuteCommandActivityDiagram](images/ExecuteCommandActivityDiagram.png)| ![UndoCommandActivityDiagram](images/UndoCommandActivityDiagram.png)
-*Figure 14.1 (left): Activity Diagram when user executes a command* 
+<p align="center"><img src="images/ExecuteCommandActivityDiagram.png"/><img src="images/UndoCommandActivityDiagram.png"/></p>
 
-*Figure 14.2 (right): Activity Diagram when user undoes a command*
+<p align="center"><i> Figure 14.1 (left): Activity Diagram when user executes a command </i></p>
+<p align="center"><i> Figure 14.2 (right): Activity Diagram when user undoes a command </i></p>
 
 #### Design consideration:
 
@@ -277,34 +289,34 @@ Step 1. The user launches the application for the first time. The ZooKeep book i
 given in `data/zookeepbook.json`, and the `HistoryStack` consists of 2 stacks; the history stack and the redo stack,
 each in their respective initial states (*Figure 15*).
 
-![RedoState0](images/RedoState0.png)
+<p align="center"><img src="images/RedoState0.png"/></p>
 
-*Figure 15: State of both stacks during initialization*
+<p align="center"><i>Figure 15: State of both stacks during initialization</i></p>
 
 Step 2. The user executes `add n/Harambe...` to add a new animal into the ZooKeep book. The `LogicManager` calls
 `Model#getZooKeepBook()` to retrieve the new state of the book and calls `HistoryStack#addToHistory(ReadOnlyZooKeepBook)`
 as per normal undo protocol (*Figure 16*).
 
-![RedoState1](images/RedoState1.png)
+<p align="center"><img src="images/RedoState1.png"/></p>
 
-*Figure 16: State of both stacks after executing add command*
+<p align="center"><i>Figure 16: State of both stacks after executing add command</i></p>
 
 Step 3. The user then executes `delete 567` which deletes the animal in the book with an ID of 567. Similar to step 2, 
 `LogicManager` will call `Model#getZooKeepBook()` to retrieve the new state of the book and then calls 
 `HistoryStack#addToHistory(ReadOnlyZooKeepBook)` to store this state into the history stack (*Figure 17*).
 
-![RedoState2](images/RedoState2.png)
+<p align="center"><img src="images/RedoState2.png"/></p>
 
-*Figure 17: State of both stacks after executing delete command*
+<p align="center"><i>Figure 17: State of both stacks after executing delete command</i></p>
 
 Step 4. Now the user thinks that deleting that animal was a mistake and restores the previous state by 
 executing `undo` (explained in the previous section). However, before the current state is deleted and replaced with 
 the previous one, `HistoryStack#addToRedo(ReadOnlyZooKeepBook)` is called to store the current state into the redo 
 stack (*Figure 18*) for further use.
 
-![RedoState3](images/RedoState3.png)
+<p align="center"><img src="images/RedoState3.png"/></p>
 
-*Figure 18: State of both stacks after executing undo command*
+<p align="center"><i>Figure 18: State of both stacks after executing undo command</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If `UndoCommand` is never executed, the 
 redo stack will remain empty and calling `RedoCommand` will do nothing, since there are no future states recorded in
@@ -317,9 +329,9 @@ Step 5. However, now the user decides that deleting that animal was the correct 
 was deleted. The future state is then loaded into the model using `Model#setZooKeepBook(ReadOnlyZooKeepBook)`.
 Lastly, `HistoryStack#removeRecentRedo()` is called to delete that state from redo stack (*Figure 19*). 
 
-![RedoState4](images/RedoState4.png)
+<p align="center"><img src="images/RedoState4.png"/></p>
 
-*Figure 19: State of both stacks after executing redo command*
+<p align="center"><i>Figure 19: State of both stacks after executing redo command</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If commands which alter the state of the 
 ZooKeep book (e.g. add or delete) are executed after an undo command, the redo stack will be emptied since the 
@@ -331,7 +343,9 @@ executing redo now will do nothing.
 
 The following Sequence Diagram (*Figure 20*) illustrates how the `Redo` operation is performed:
 
-![RedoSequenceDiagram](images/RedoSequenceDiagram.png)*Figure 20: Sequence Diagram when redo command is executed*
+<p align="center"><img src="images/RedoSequenceDiagram.png"/></p>
+
+<p align="center"><i>Figure 20: Sequence Diagram when redo command is executed</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RedoCommand` should end 
 at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
@@ -340,13 +354,10 @@ at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reac
 
 The following 2 Activity Diagrams (*Figures 21.1 & 21.2*) summarise what happens when a user executes the `undo` and `redo` commands:
 
-Undo command | Redo command
-:-------------------------:|:-------------------------:
-![UndoCommandWithRedoActivityDiagram](images/UndoCommandWithRedoActivityDiagram.png) | ![RedoCommandActivityDiagram](images/RedoCommandActivityDiagram.png)
+<p align="center"><img src="images/UndoCommandWithRedoActivityDiagram.png"/><img src="images/RedoCommandActivityDiagram.png"/></p>
 
-*Figure 21.1 (left): Activity Diagram when user executes an undo command*
-
-*Figure 21.2 (right): Activity Diagram when user executes a redo command*
+<p align="center"><i>Figure 21.1 (left): Activity Diagram when user executes an undo command</i></p>
+<p align="center"><i>Figure 21.2 (right): Activity Diagram when user executes a redo command</i></p>
 
 #### Design consideration:
 
@@ -375,7 +386,9 @@ object with a `Path` object representing the save destination and file name as p
 
 The following Sequence Diagram (*Figure 22*) illustrates the creation and execution of a `SnapCommand`:
 
-![SnapCommandSequenceDiagram](images/SnapCommandSequenceDiagram.png)*Figure 22: Sequence Diagram when snap command is executed*
+<p align="center"><img src="images/SnapCommandSequenceDiagram.png"/></p>
+
+<p align="center"><i>Figure 22: Sequence Diagram when snap command is executed</i></p>
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The lifelines for `SnapCommandParser`, `SnapCommand`, `StorageManager` 
@@ -398,7 +411,10 @@ This section explains the implementation of the Sort command feature in the ZooK
 * For the animal feed time, it will be from earliest to latest. 
 
 The following Sequence Diagram (*Figure 23*) shows the Logic and Model Components when a sort command is being executed:
-![SortSequenceDiagram](images/SortSequenceDiagram.png)*Figure 23: Sequence Diagram when sort command is executed*
+
+<p align="center"><img src="images/SortSequenceDiagram.png"/></p>
+
+<p align="center"><i>Figure 23: Sequence Diagram when sort command is executed</i></p>
 
 <div markdown="span" class="alert alert-info">:information_source:  **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -422,7 +438,9 @@ Upon the completion of the user command, a success message (Sorted all animals b
 
 The following Activity Diagram (*Figure 24*) summarises what happens when a user executes a sort command.
 
-![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)*Figure 24: Activity Diagram when user executes sort command*
+<p align="center"><img src="images/SortCommandActivityDiagram.png"/></p>
+
+<p align="center"><i>Figure 24: Activity Diagram when user executes sort command</i></p>
 
 #### Design Consideration  
 ##### Aspect: Sorting based on different categories  
@@ -452,7 +470,9 @@ The parsing and displaying of feed times were adapted from the Medical Condition
 
 Given below is a Sequence Diagram (*Figure 25*) shows how the operation of adding feed times works.
 
-![FeedTimesSequenceDiagram](images/FeedTimesSequenceDiagram.png)*Figure 25: Sequence Diagram when animal is added with feed times*
+<p align="center"><img src="images/FeedTimesSequenceDiagram.png"/></p>
+
+<p align="center"><i>Figure 25: Sequence Diagram when animal is added with feed times</i></p>
 
 Step 1. The user inputs an add command, specifying feed times to be added for an Animal (eg. add n/Pikachu i/1307 s/Pokemon f/1234 f/0001 f/2200)
 
@@ -472,7 +492,9 @@ Step 5. An `Animal` object is created with the Set of `FeedTime` objects.
 
 The following Activity Diagram (*Figure 26*) summarizes what happens when feed times are added to an Animal:
 
-![FeedTimesActivityDiagram](images/FeedTimesActivityDiagram.png)*Figure 26: Activity Diagram when user adds an animal with feed times*
+<p align="center"><img src="images/FeedTimesActivityDiagram.png"/></p>
+
+<p align="center"><i>Figure 26: Activity Diagram when user adds an animal with feed times</i></p>
 
 #### Design consideration:
 
