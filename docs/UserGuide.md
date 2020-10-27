@@ -7,11 +7,11 @@ title: CliniCal User Guide
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Introduction 
+## 1. Introduction
 
 Welcome to the CliniCal User Guide!
 
-Clinic Calendar (CliniCal) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records. 
+Clinic Calendar (CliniCal) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records.
 
 Furthermore, CliniCal is optimized for use via a Command Line Interface (CLI) and even retains the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your work done faster than traditional GUI apps.
 
@@ -232,7 +232,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* You can search for the patient's name or IC number. 
+* You can search for the patient's name or IC number.
 * Patient will be matched even if the keyword matches the search parameters only partially e.g. `Han` will match `Hans`, `9123456` will match `s9123456z`.
 * Patients matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -321,7 +321,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 **Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in relevant
             details in each text box.
-   
+
 **Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully saved.
@@ -333,7 +333,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 * You can press <kbd>Esc</kbd> or the close button at the top right to close the window without saving.
 
 </div>
-   
+
 #### 3.3.2 Deleting patient's visitation log: `deletevisit`
 
 Delete the patient's visitation log.
@@ -366,10 +366,10 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 **Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in updated
             details in each text box.
-       
-   * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box. 
-   * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box. 
-               
+    
+   * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box.
+   * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box.
+
 **Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
