@@ -22,8 +22,8 @@ public class SwitchCommand extends Command {
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_TAG + "Food ";
 
-    public static final String MESSAGE_INVALID_CATEGORY = "No such category account: %s";
-    public static final String MESSAGE_SUCCESS = "Category expense switched: %s";
+    public static final String MESSAGE_INVALID_CATEGORY = "No such category account:  %1$s";
+    public static final String MESSAGE_SUCCESS = "Category expense switched:  %1$s";
 
     private final Tag toMatch;
 
@@ -40,7 +40,7 @@ public class SwitchCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasCategory(toMatch)) {
-            throw new CommandException(MESSAGE_INVALID_CATEGORY);
+            throw new CommandException(String.format(MESSAGE_INVALID_CATEGORY, toMatch));
         }
 
         LogsCenter.getLogger(LogicManager.class).info(

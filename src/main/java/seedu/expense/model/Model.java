@@ -65,9 +65,9 @@ public interface Model {
     ReadOnlyExpenseBook getExpenseBook();
 
     /**
-     * Returns the CategoryExpenseBook
+     * Returns the Statistics
      */
-    ReadOnlyExpenseBook getCategoryExpenseBook();
+    Statistics getStatistics();
 
     /**
      * Returns true if an expense with the same identity as {@code expense} exists in the expense book.
@@ -130,7 +130,7 @@ public interface Model {
      *
      * @throws NullPointerException if {@code category} is null.
      */
-    void updateCategoryExpenseBook(Tag category);
+    void updateExpenseBookCategory(Tag category);
 
     /**
      * Returns the budget.

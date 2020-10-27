@@ -26,19 +26,4 @@ public interface ReadOnlyExpenseBook {
      * Returns the budgets.
      */
     UniqueCategoryBudgetList getBudgets();
-
-    /**
-     * Returns the total sum of the expenses in the expenses list.
-     */
-    double tallyExpenses();
-
-    /**
-     * Returns the total sum of the budgets in the budgets list.
-     */
-    double tallyBudgets();
-
-    /**
-     * Returns the total sum of the expenses and budgets in the expense book.
-     */
-    double tallyBalance();
 }

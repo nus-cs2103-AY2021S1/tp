@@ -5,9 +5,11 @@ import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.expense.model.expense.exceptions.DuplicateExpenseException;
 import seedu.expense.model.expense.exceptions.ExpenseNotFoundException;
 
@@ -28,6 +30,8 @@ public class UniqueExpenseList implements Iterable<Expense> {
     private final ObservableList<Expense> internalList = FXCollections.observableArrayList();
     private final ObservableList<Expense> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final FilteredList<Expense> filteredList =
+            new FilteredList<>(asUnmodifiableObservableList());
 
     /**
      * Returns true if the list contains an equivalent expense as the given argument.
@@ -99,10 +103,51 @@ public class UniqueExpenseList implements Iterable<Expense> {
     }
 
     /**
+     * Replaces the contents of this list's filtered list with {@code expenses}.
+     * {@code expenses} must not contain duplicate expenses.
+     */
+    public void setFilteredExpenses(List<Expense> expenses) {
+        requireAllNonNull(expenses);
+        if (!expensesAreUnique(expenses)) {
+            throw new DuplicateExpenseException();
+        }
+
+        filteredList.setAll(expenses);
+    }
+
+    /**
+     * Returns the filtered list of this object.
+     */
+    public ObservableList<Expense> getFilteredExpenses() {
+        return filteredList;
+    }
+
+    /**
+     * Filters the contents of this list's filtered list with {@code predicate}.
+     */
+    public void filterExpenses(Predicate<Expense> predicate) {
+        requireAllNonNull(predicate);
+        filteredList.setPredicate(predicate);
+    }
+
+    /**
      * Calculates the sum of the expenses in the expense list.
      * @return sum of expenses.
      */
     public double tallyExpenses() {
+        double sum = 0;
+        Iterator<Expense> i = iterator();
+        while (i.hasNext()) {
+            sum += i.next().getAmount().asDouble();
+        }
+        return sum;
+    }
+
+    /**
+     * Calculates the sum of the expenses in the expense list that matches {@code predicate}.
+     * @return sum of filtered expenses.
+     */
+    public double tallyExpenses(Predicate<Expense> predicate) {
         double sum = 0;
         Iterator<Expense> i = iterator();
         while (i.hasNext()) {
@@ -118,9 +163,16 @@ public class UniqueExpenseList implements Iterable<Expense> {
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     */
+    public FilteredList<Expense> getFilteredList() {
+        return filteredList;
+    }
+
     @Override
     public Iterator<Expense> iterator() {
-        return internalList.iterator();
+        return filteredList.iterator();
     }
 
     @Override

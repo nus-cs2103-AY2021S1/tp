@@ -14,6 +14,7 @@ import seedu.expense.logic.parser.ExpenseBookParser;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
+import seedu.expense.model.Statistics;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.storage.Storage;
 
@@ -61,8 +62,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyExpenseBook getCategoryExpenseBook() {
-        return model.getCategoryExpenseBook();
+    public Statistics getStatistics() {
+        return model.getStatistics();
     }
 
     @Override

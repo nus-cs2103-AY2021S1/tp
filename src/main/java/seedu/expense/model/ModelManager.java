@@ -25,7 +25,6 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ExpenseBook expenseBook;
-    private final CategoryExpenseBook categoryExpenseBook;
     private final UserPrefs userPrefs;
     private final AliasMap aliasMap;
 
@@ -41,7 +40,6 @@ public class ModelManager implements Model {
 
         this.expenseBook = new ExpenseBook(expenseBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        categoryExpenseBook = new CategoryExpenseBook(this.expenseBook);
         this.aliasMap = new AliasMap(aliasMap);
     }
 
@@ -97,8 +95,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public ReadOnlyExpenseBook getCategoryExpenseBook() {
-        return categoryExpenseBook;
+    public Statistics getStatistics() {
+        return expenseBook;
     }
 
     @Override
@@ -177,29 +175,29 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {
-        return categoryExpenseBook.getFilteredExpenses();
+        return expenseBook.getFilteredExpenseList();
     }
 
     @Override
     public void updateFilteredExpenseList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
-        categoryExpenseBook.updateFilteredExpenses(predicate);
+        expenseBook.updateFilteredExpenses(predicate);
     }
 
     @Override
     public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
-        categoryExpenseBook.updateFilteredBudgets(predicate);
+        expenseBook.updateFilteredBudgets(predicate);
     }
 
     /**
-     * Updates the {@code categoryExpenseBook} to the given {@code category}
+     * Updates the expense book to one that matches the given {@code category}.
      */
     @Override
-    public void updateCategoryExpenseBook(Tag category) {
+    public void updateExpenseBookCategory(Tag category) {
         requireNonNull(category);
 
-        if (category.equals(new Tag("Default"))) {
+        if (category.equals(ExpenseBook.DEFAULT_TAG)) {
             updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
             updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
         } else {
@@ -224,13 +222,13 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Switches the {@code categoryExpenseBook} to one that matches the given {@code category}.
+     * Switches the expense book to one that matches the given {@code category}.
      */
     @Override
     public void switchCategory(Tag category) {
         requireNonNull(category);
         if (hasCategory(category)) {
-            updateCategoryExpenseBook(category);
+            updateExpenseBookCategory(category);
         }
     }
 

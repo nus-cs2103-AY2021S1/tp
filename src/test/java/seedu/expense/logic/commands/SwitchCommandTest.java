@@ -16,10 +16,11 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.logic.commands.exceptions.CommandException;
-import seedu.expense.model.CategoryExpenseBook;
+import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
+import seedu.expense.model.Statistics;
 import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
@@ -43,8 +44,8 @@ class SwitchCommandTest {
         Tag foodTag = new Tag(VALID_TAG_FOOD);
         SwitchCommand command = new SwitchCommand(foodTag);
         ModelStub modelStub = new ModelStub();
-        assertThrows(CommandException.class, SwitchCommand.MESSAGE_INVALID_CATEGORY, ()
-            -> command.execute(modelStub));
+        assertThrows(CommandException.class, String.format(SwitchCommand.MESSAGE_INVALID_CATEGORY,
+            foodTag), () -> command.execute(modelStub));
     }
 
     @Test
@@ -77,10 +78,10 @@ class SwitchCommandTest {
      */
     private class ModelStub implements Model {
 
-        final CategoryExpenseBook categoryExpenseBook;
+        final ExpenseBook expenseBook;
 
         ModelStub() {
-            categoryExpenseBook = new CategoryExpenseBook(getTypicalExpenseBook());
+            expenseBook = new ExpenseBook(getTypicalExpenseBook());
         }
 
         @Override
@@ -129,7 +130,7 @@ class SwitchCommandTest {
         }
 
         @Override
-        public ReadOnlyExpenseBook getCategoryExpenseBook() {
+        public Statistics getStatistics() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -156,22 +157,22 @@ class SwitchCommandTest {
         @Override
         public void updateFilteredExpenseList(Predicate<Expense> predicate) {
             requireNonNull(predicate);
-            categoryExpenseBook.updateFilteredExpenses(predicate);
+            expenseBook.updateFilteredExpenses(predicate);
         }
 
         @Override
         public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
             requireNonNull(predicate);
-            categoryExpenseBook.updateFilteredBudgets(predicate);
+            expenseBook.updateFilteredBudgets(predicate);
         }
 
         @Override
-        public void updateCategoryExpenseBook(Tag category) {
+        public void updateExpenseBookCategory(Tag category) {
             requireNonNull(category);
 
-            if (category.equals(new Tag("Default"))) {
-                updateFilteredBudgetList(budget -> true);
-                updateFilteredExpenseList(expense -> true);
+            if (category.equals(ExpenseBook.DEFAULT_TAG)) {
+                updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
+                updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
             } else {
                 updateFilteredBudgetList(budget -> budget.getTag().equals(category));
                 updateFilteredExpenseList(expense -> expense.getTag().equals(category));
@@ -195,14 +196,14 @@ class SwitchCommandTest {
 
         @Override
         public boolean hasCategory(Tag toCheck) {
-            return categoryExpenseBook.containsCategory(toCheck);
+            return expenseBook.containsCategory(toCheck);
         }
 
         @Override
         public void switchCategory(Tag category) {
             requireNonNull(category);
             if (hasCategory(category)) {
-                updateCategoryExpenseBook(category);
+                updateExpenseBookCategory(category);
             }
         }
 

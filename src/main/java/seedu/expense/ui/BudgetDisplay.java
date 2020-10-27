@@ -11,8 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.expense.commons.core.LogsCenter;
-import seedu.expense.model.ReadOnlyExpenseBook;
-import seedu.expense.model.budget.UniqueCategoryBudgetList;
+import seedu.expense.model.Statistics;
 
 /**
  * A ui for the budget balance to be displayed to the user.
@@ -25,7 +24,7 @@ public class BudgetDisplay extends UiPart<Region> {
     private static final String GREEN_BAR_STYLE_CLASS = "green-bar";
     private static final String ORANGE_BAR_STYLE_CLASS = "orange-bar";
     private static final String RED_BAR_STYLE_CLASS = "red-bar";
-    private final ReadOnlyExpenseBook categoryExpenseBook;
+    private final Statistics statistics;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
@@ -45,13 +44,13 @@ public class BudgetDisplay extends UiPart<Region> {
 
     /**
      * Constructor for {@code BudgetDisplay}.
-     * @param categoryExpenseBook expenseBook to be stored.
+     * @param statistics expenseBook to be stored.
      */
-    public BudgetDisplay(ReadOnlyExpenseBook categoryExpenseBook) {
+    public BudgetDisplay(Statistics statistics) {
         super(FXML);
 
-        requireNonNull(categoryExpenseBook);
-        this.categoryExpenseBook = categoryExpenseBook;
+        requireNonNull(statistics);
+        this.statistics = statistics;
 
         budgetHeader.setText(HEADER_MESSAGE);
 
@@ -70,10 +69,9 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Progress as double.
      */
     private double getProgress() {
-        UniqueCategoryBudgetList budget = categoryExpenseBook.getBudgets();
-        double budgetAmount = budget.getAmount().asDouble();
+        double budgetAmount = statistics.tallyBudgets();
         assert budgetAmount >= 0;
-        double expensesSum = categoryExpenseBook.tallyExpenses();
+        double expensesSum = statistics.tallyExpenses();
         assert expensesSum >= 0;
         return 1 - expensesSum / budgetAmount;
 
@@ -85,8 +83,8 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Formatted budget balance as String.
      */
     private String budgetBalance() {
-        double budgetAmount = categoryExpenseBook.tallyBudgets();
-        double balance = categoryExpenseBook.tallyBalance();
+        double budgetAmount = statistics.tallyBudgets();
+        double balance = statistics.tallyBalance();
         return String.format(BUDGET_BALANCE, balance, budgetAmount);
     }
 

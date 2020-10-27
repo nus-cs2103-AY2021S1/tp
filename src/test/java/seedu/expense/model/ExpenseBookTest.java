@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -92,7 +93,7 @@ public class ExpenseBookTest {
     /**
      * A stub ReadOnlyExpenseBook whose expenses list can violate interface constraints.
      */
-    private static class ExpenseBookStub implements ReadOnlyExpenseBook {
+    private static class ExpenseBookStub implements ReadOnlyExpenseBook, Statistics {
 
         private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
         private final UniqueCategoryBudgetList budgets = new UniqueCategoryBudgetList();
@@ -122,12 +123,28 @@ public class ExpenseBookTest {
         }
 
         @Override
+        public double tallyExpenses(Predicate<Expense> predicate) {
+            return -1; // should not be called
+        }
+
+        @Override
         public double tallyBudgets() {
             return -1; // should not be called
         }
 
         @Override
+        public double tallyBudgets(Predicate<CategoryBudget> predicate) {
+            return -1; // should not be called
+        }
+
+        @Override
         public double tallyBalance() {
+            return -1; // should not be called
+        }
+
+        @Override
+        public double tallyBalance(Predicate<Expense> expensePredicate,
+                                   Predicate<CategoryBudget> categoryBudgetPredicate) {
             return -1; // should not be called
         }
     }
