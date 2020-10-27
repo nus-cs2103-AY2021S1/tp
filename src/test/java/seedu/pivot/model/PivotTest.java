@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalCases.ALICE;
+import static seedu.pivot.testutil.TypicalCases.ALICE_PAULINE_ASSAULT;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import java.util.Arrays;
@@ -45,8 +45,8 @@ public class PivotTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Case editedAlice = new CaseBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        List<Case> newCases = Arrays.asList(ALICE, editedAlice);
+        Case editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withTags(VALID_TAG_HUSBAND).build();
+        List<Case> newCases = Arrays.asList(ALICE_PAULINE_ASSAULT, editedAlice);
         PivotStub newData = new PivotStub(newCases);
 
         assertThrows(DuplicateCaseException.class, () -> pivot.resetData(newData));
@@ -59,19 +59,19 @@ public class PivotTest {
 
     @Test
     public void hasPerson_personNotInPivot_returnsFalse() {
-        assertFalse(pivot.hasCase(ALICE));
+        assertFalse(pivot.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
     public void hasPerson_personInPivot_returnsTrue() {
-        pivot.addCase(ALICE);
-        assertTrue(pivot.hasCase(ALICE));
+        pivot.addCase(ALICE_PAULINE_ASSAULT);
+        assertTrue(pivot.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
     public void hasPerson_personWithSameIdentityFieldsInPivot_returnsTrue() {
-        pivot.addCase(ALICE);
-        Case editedAlice = new CaseBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        pivot.addCase(ALICE_PAULINE_ASSAULT);
+        Case editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(pivot.hasCase(editedAlice));
     }
 

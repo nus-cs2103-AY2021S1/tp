@@ -6,7 +6,7 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TITLE_AMY;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalCases.AMY;
+import static seedu.pivot.testutil.TypicalCases.AMY_BEE_DISAPPEARANCE;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -80,7 +80,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + PREFIX_WITH_TITLE_AMY;
-        Case expectedCase = new CaseBuilder(AMY).withTags().build();
+        Case expectedCase = new CaseBuilder(AMY_BEE_DISAPPEARANCE).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addCase(expectedCase);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

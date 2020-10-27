@@ -1,7 +1,7 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "title" : "Alice Pauline",
+    "title" : "Alice Pauline Assault",
     "description": "",
     "status": "COLD",
     "documents": [ {
@@ -31,7 +31,7 @@
     } ],
     "tagged" : [ "friends" ]
   }, {
-    "title" : "Benson Meier",
+    "title" : "Benson Meier Robbery",
     "description": "",
     "status": "CLOSED",
     "documents": [ {
@@ -55,7 +55,7 @@
     } ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
-    "title" : "Carl Kurz",
+    "title" : "Carl Kurz Fire",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
@@ -64,7 +64,7 @@
     "victims" : [],
     "tagged" : [ ]
   }, {
-    "title" : "Daniel Meier",
+    "title" : "Daniel Meier Shoplifting",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
@@ -73,7 +73,7 @@
     "victims" : [],
     "tagged" : [ "friends" ]
   }, {
-    "title" : "Elle Meyer",
+    "title" : "Elle Meyer Shooting",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
@@ -82,7 +82,7 @@
     "victims" : [],
     "tagged" : [ ]
   }, {
-    "title" : "Fiona Kunz",
+    "title" : "Fiona Kunz Kidnapping",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
@@ -91,7 +91,7 @@
     "victims" : [],
     "tagged" : [ ]
   }, {
-    "title" : "George Best",
+    "title" : "George Best Vandalism",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],

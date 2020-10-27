@@ -17,8 +17,8 @@ import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSB
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.pivot.testutil.TypicalCases.AMY;
-import static seedu.pivot.testutil.TypicalCases.BOB;
+import static seedu.pivot.testutil.TypicalCases.AMY_BEE_DISAPPEARANCE;
+import static seedu.pivot.testutil.TypicalCases.BOB_CHOO_SALON_THEFT;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +35,7 @@ public class AddCaseCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Case expectedCase = new CaseBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        Case expectedCase = new CaseBuilder(BOB_CHOO_SALON_THEFT).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + PREFIX_WITH_TITLE_BOB
@@ -53,7 +53,8 @@ public class AddCaseCommandParserTest {
                 new AddCaseCommand(expectedCase));
 
         // multiple tags - all accepted
-        Case expectedCaseMultipleTags = new CaseBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Case expectedCaseMultipleTags = new CaseBuilder(BOB_CHOO_SALON_THEFT)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
 
         assertParseSuccess(parser, PREFIX_WITH_TITLE_BOB
@@ -64,7 +65,7 @@ public class AddCaseCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        Case expectedCase = new CaseBuilder(AMY).withTags().build();
+        Case expectedCase = new CaseBuilder(AMY_BEE_DISAPPEARANCE).withTags().build();
         assertParseSuccess(parser, PREFIX_WITH_TITLE_AMY, new AddCaseCommand(expectedCase));
 
         // no status

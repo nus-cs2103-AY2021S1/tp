@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalCases.ALICE;
-import static seedu.pivot.testutil.TypicalCases.BENSON;
+import static seedu.pivot.testutil.TypicalCases.ALICE_PAULINE_ASSAULT;
+import static seedu.pivot.testutil.TypicalCases.BENSON_MEIER_ROBBERY;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasCase(ALICE));
+        assertFalse(modelManager.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
     public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addCase(ALICE);
-        assertTrue(modelManager.hasCase(ALICE));
+        modelManager.addCase(ALICE_PAULINE_ASSAULT);
+        assertTrue(modelManager.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Pivot pivot = new PivotBuilder().withCase(ALICE).withCase(BENSON).build();
+        Pivot pivot = new PivotBuilder().withCase(ALICE_PAULINE_ASSAULT).withCase(BENSON_MEIER_ROBBERY).build();
         Pivot differentPivot = new Pivot();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentPivot, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getTitle().getAlphaNum().split("\\s+");
+        String[] keywords = ALICE_PAULINE_ASSAULT.getTitle().getAlphaNum().split("\\s+");
         modelManager.updateFilteredCaseList(new DetailsContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(pivot, userPrefs)));
 
