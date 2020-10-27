@@ -252,7 +252,6 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowStats()) {
                 assert commandResult.getViewIndex() >= 0;
-                //TODO
                 handleStatsView(commandResult.getViewIndex());
             }
 

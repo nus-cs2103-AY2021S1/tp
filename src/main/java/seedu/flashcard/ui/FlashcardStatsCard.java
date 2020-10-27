@@ -39,7 +39,7 @@ public class FlashcardStatsCard extends UiPart<Region> {
     private Label errorMessage;
 
     /**
-     * Creates a {@code FlashcardListCard} with the given {@code Flashcard} and index to display.
+     * Creates a {@code FlashcardStatsCard} with the given {@code Flashcard} and index to display.
      */
     public FlashcardStatsCard(Flashcard flashcard) {
         super(FXML);
