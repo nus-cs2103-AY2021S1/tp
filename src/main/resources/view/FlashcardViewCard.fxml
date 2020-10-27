@@ -6,9 +6,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.text.Text?>
-<?import javafx.scene.control.ScrollPane?>
 
 <?import javafx.scene.layout.ColumnConstraints?>
 <HBox alignment="CENTER" styleClass="pane-with-no-border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
