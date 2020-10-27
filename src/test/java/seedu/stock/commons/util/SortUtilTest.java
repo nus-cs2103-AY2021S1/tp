@@ -109,4 +109,21 @@ public class SortUtilTest {
         toTestComparator.sort(locationComparator);
         assertEquals(copy, toTestComparator);
     }
+
+    @Test
+    public void generateComparator_serialNumberComparator_success() {
+        List<Stock> copy = new ArrayList<>(toTestComparator);
+        Comparator<Stock> expectedComparator = new Comparator<>() {
+            @Override
+            public int compare(Stock a, Stock b) {
+                String serialNumberA = a.getSerialNumber().toString();
+                String serialNumberB = b.getSerialNumber().toString();
+                return serialNumberA.compareTo(serialNumberB);
+            }
+        };
+        Comparator<Stock> serialNumberComparator = SortUtil.generateComparator(SortUtil.Field.SERIALNUMBER);
+        copy.sort(expectedComparator);
+        toTestComparator.sort(serialNumberComparator);
+        assertEquals(copy, toTestComparator);
+    }
 }
