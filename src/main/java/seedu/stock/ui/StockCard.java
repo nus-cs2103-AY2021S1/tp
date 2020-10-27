@@ -42,8 +42,6 @@ public class StockCard extends UiPart<Region> {
     private Label source;
     @FXML
     private Label notes;
-    @FXML
-    private VBox notesBox;
 
     /**
      * Creates a {@code StockCard} with the given {@code Stock} and index to display.
@@ -51,7 +49,7 @@ public class StockCard extends UiPart<Region> {
     public StockCard(Stock stock, int displayedIndex) {
         super(FXML);
         this.stock = stock;
-        id.setText(displayedIndex + ".");
+        id.setText(displayedIndex + "");
 
         String stockName = upperFirst(stock.getName().fullName);
         name.setText(stockName);
