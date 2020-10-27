@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FEEDBACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_NAME;
@@ -65,6 +68,12 @@ public class CommandTestUtil {
     public static final String VALID_EXAM_DATE_BOB = "5/11/2020";
     public static final String VALID_EXAM_SCORE_AMY = "26/50";
     public static final String VALID_EXAM_SCORE_BOB = "50/50";
+    public static final String VALID_ATTENDANCE_DATE_AMY = "27/10/2020";
+    public static final String VALID_ATTENDANCE_DATE_BOB = "19/4/2009";
+    public static final String VALID_ATTENDANCE_STATUS_AMY = "attended";
+    public static final String VALID_ATTENDANCE_STATUS_BOB = "unattended";
+    public static final String VALID_ATTENDANCE_FEEDBACK_AMY = "attentive";
+    public static final String VALID_ATTENDANCE_FEEDBACK_BOB = "sick";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -101,6 +110,13 @@ public class CommandTestUtil {
     public static final String EXAM_DESC_BOB = " " + PREFIX_EXAM_NAME + VALID_EXAM_NAME_BOB + " "
             + PREFIX_EXAM_DATE + VALID_EXAM_DATE_BOB + " "
             + PREFIX_SCORE + VALID_EXAM_SCORE_BOB;
+
+    public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE_DATE + VALID_ATTENDANCE_DATE_AMY + " "
+            + PREFIX_ATTENDANCE_STATUS + VALID_ATTENDANCE_STATUS_AMY + " "
+            + PREFIX_ATTENDANCE_FEEDBACK + VALID_ATTENDANCE_FEEDBACK_AMY;
+    public static final String ATTENDANCE_DESC_BOB = " " + PREFIX_ATTENDANCE_DATE + VALID_ATTENDANCE_DATE_BOB + " "
+            + PREFIX_ATTENDANCE_STATUS + VALID_ATTENDANCE_STATUS_BOB + " "
+            + PREFIX_ATTENDANCE_FEEDBACK + VALID_ATTENDANCE_FEEDBACK_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones

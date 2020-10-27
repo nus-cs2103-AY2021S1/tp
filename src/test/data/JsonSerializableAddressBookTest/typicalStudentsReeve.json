@@ -29,7 +29,15 @@
       "examName" : "Mid Year Examination 2020",
       "examDate" : "25/7/2020",
       "score" : "20/30"
-  }]}, {
+  }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "",
+        "attendanceStatus" : "",
+        "feedback" : ""
+      }]
+    }
+  }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
     "school": "Pei Hwa Secondary",
