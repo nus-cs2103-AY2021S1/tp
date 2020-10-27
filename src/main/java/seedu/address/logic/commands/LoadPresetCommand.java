@@ -38,17 +38,21 @@ public class LoadPresetCommand extends PresetCommand {
         try {
             List<List<Preset>> allLists = storage.readPresetManager()
                     .orElseThrow(() -> new CommandException(FILE_OPS_ERROR_MESSAGE));
-            allLists.get(model.getVendorIndex())
+            List<OrderItem> orderItems = allLists.get(model.getVendorIndex())
                     .stream()
                     .filter(preset -> preset.getName().equals(presetName.toString()))
                     .findFirst()
                     .map(Preset::getOrderItems)
-                    .ifPresent(model::setOrder);
+                    .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_PRESET_NOT_FOUND,
+                            presetName)));
+            model.getMenuManager(model.getVendorIndex()).getFoodList();
 
+            model.setOrder(orderItems);
         } catch (DataConversionException | IOException | IndexOutOfBoundsException e) {
-            throw new CommandException("Presets cannot be read.");
+            throw new CommandException(Messages.MESSAGE_PRESET_LOAD_ERROR);
         }
-        return new CommandResult(Messages.MESSAGE_PRESET_LOAD_SUCCESS, false, false, true);
+        return new CommandResult(String.format(Messages.MESSAGE_PRESET_LOAD_SUCCESS, presetName),
+                false, false, true);
     }
 
 

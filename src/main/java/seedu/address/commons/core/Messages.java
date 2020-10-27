@@ -15,7 +15,11 @@ public class Messages {
     public static final String MESSAGE_AMBIGUOUS_COMMAND = "Ambiguous command. The following commands matches the "
             + "prefix: %s";
     public static final String MESSAGE_PRESET_SAVE_SUCCESS = "Preset has been saved.";
-    public static final String MESSAGE_PRESET_LOAD_SUCCESS = "Presets has been loaded.";
+    public static final String MESSAGE_PRESET_LOAD_SUCCESS = "Preset %s has been loaded.";
+    public static final String MESSAGE_PRESET_LOAD_ERROR = "Presets cannot be read.";
+    public static final String MESSAGE_PRESET_NOT_FOUND = "Preset %s cannot be found.";
+
+
 
 
 }
