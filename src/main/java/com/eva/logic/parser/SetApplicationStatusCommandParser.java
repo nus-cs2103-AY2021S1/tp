@@ -12,16 +12,19 @@ import java.io.FileNotFoundException;
 import static com.eva.logic.parser.CliSyntax.*;
 import static com.eva.logic.parser.ParserUtil.arePrefixesPresent;
 
-
+/**
+ * Parses the given {@code String} of arguments in the context of the SetApplicationStatusCommand
+ * and returns an SetApplicationStatusCommand object for execution.
+ */
 public class SetApplicationStatusCommandParser implements Parser {
     @Override
     public Command parse(String userInput) throws ParseException, FileNotFoundException {
-        String[] args = userInput.split(" ");
-        Index index = ParserUtil.parseIndex(args[0]);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args[1], PREFIX_APPLICATION_STATUS);
+                ArgumentTokenizer.tokenize(userInput, PREFIX_APPLICATION_STATUS);
+        Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        // ensure application status and index are provided
         if (!arePrefixesPresent(argMultimap, PREFIX_APPLICATION_STATUS)
-                || !argMultimap.getPreamble().isEmpty()) {
+                || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     SetApplicationStatusCommand.MESSAGE_USAGE));
         }
