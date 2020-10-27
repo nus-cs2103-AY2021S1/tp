@@ -39,8 +39,7 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
     - [API](#delete)
 
 1. **Top up budget**
-    - Increases budget by amount input by user .
-    - Expenses are subtracted from the budget.
+    - Increases a budget by amount input by user.
     - Command: `topup`
     - [API](#topup)
 
@@ -68,6 +67,11 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
     - Switches an expense book into another existing category
     - Command: `switch`
     - [API](#switch)
+
+1. **Category adding**
+    - Adds a new category (for budgeting and expenses)
+    - Command: `addCat`
+    - [API](#addCat)
 
 1. **Delete Category**
     - Deletes an existing category in the expense book
@@ -97,13 +101,17 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
 ## Usage/ API <a name="Usage"></a>
 ### Commands
 1. **add** <a name="add"></a>
-    - Date input (DD-MM-YYYY) is optional, defaults to system's date.
     - Order of arguments is flexible.
-    - Able to add multiple tags
+    - Date input (DD-MM-YYYY) is optional, defaults to system's date.
+    - Tag input is optional, defaults to the Default category.
+    - If multiple fields of the same type are specified, only the last one is processed.
     - Format: `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]`
     - Example: `add -ddinner -$10.50` Adds the spending to **current date's** record
     - Example: `add -ddinner -$10.50 -@24-06-2020 t/Food` Adds the spending to **input date's** record and tags with **input category**
-    - Example: `add -ddinner -$10.50 -@20-08-2020 t/Food t/Basic` Adds the spending to **input date's** record and tags with **input categories**
+    - Example: `add -ddinner -$10.50 -@20-08-2020 t/Food t/Basic` Adds the spending to **input date's** record and tags with the last **input category**
+    - Input constraints:
+      - If specified, the tag input must match one of the categories in the expense book.
+      - The expense to be added must not share the same identity fields (description, amount and date) as any expense in the expense book.
 
     ![add_example](images/ug_example/add_example.PNG)
 
@@ -116,11 +124,14 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
 1. **edit** <a name="edit"></a>
     - Identified by index starting from 1.
     - Order of arguments is flexible except index.
-    - Edited fields overwrite previous field completely.
-    - **At least 1, and up to all 3**, fields (description, amount spent, date) of expense must be specified.
+    - Edited fields overwrite the previous field completely.
+    - **At least 1 of the 4 fields** (description, amount, date, category) of expense must be specified.
     - Format: `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`
     - Example: `edit 1 -dlunch -$12.50`
     - Example: `edit 11 -$12.50 -dlunch -@23-06/2020 t/Food`
+    - Input constraints:
+      - See [add](#add)
+    - NOTE: Specifying a blank tag field (e.g. `edit 1 t/`) is the same as editing the tag to the Default tag.
 
     ![edit_example](images/ug_example/edit_example.PNG)
 
@@ -132,11 +143,21 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
 
     ![delete_example](images/ug_example/delete_example.PNG)
 
+1. **addCat** <a name="addCat"></a>
+    - Adds a new category to the expense book.
+    - The category must not already exist in the expense book.
+    - Format: `addCat t/<category>`
+    - Example: `addCat t/Food`
+    
+    ![addCat_example](images/ug_example/addCat_example.PNG)
+    
 1. **topup** <a name="topup"></a>
-    - Increases budget by amount input by user .
-    - Expenses are subtracted from the budget.
-    - Format: `topup -$<amount>`
-    - Example: `topup -$10` Adds an extra budget of 10 dollars to work with.
+    - Increases the budget of a particular category by the amount specified by the user.
+    - Expenses in the same category reduce the balance of the budget.
+    - Tag input is optional, defaults to the Default category.
+    - Format: `topup -$<amount> [t/<category>]`
+    - Example: `topup -$10` Adds an extra budget of 10 dollars to the Default category-budget.
+    - Example: `topup -$20 t/Food` Adds an extra budget of 20 dollars to the Food category-budget.
 
     ![topup_example](images/ug_example/topup_example.PNG)
 
@@ -219,22 +240,23 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
 1. **tag** <a name="tag"></a>
     - Tags expense by a category input by user
     - Works only in complement with [add](#add), [edit](#edit), [find](#find), [switch](#switch), [deleteCat](#deleteCat)
-    - An expense can have multiple tags
     - Format: `t/<category>`
     - Example: `edit t/Food`, `find -dCoffee t/Food`
 
 ## Command summary <a name="CommandSummary"></a>
 
+<<<<<<< HEAD
 |   Action      | Format, Examples                                                                                                                                              |
 |---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |  **Add**      | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`                |
 |  **List**     | `list`                                                                                                                                                        |
 |  **Edit**     | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`|
 | **Delete**    | `delete <index>`<br> e.g., `delete 1`                                                                                                                         |
-| **Topup**     | `topup -$<amount>`<br> e.g., `topup -$200`                                                                                                                    |
+| **Topup**     | `topup -$<amount> [t/<category>]`<br> e.g., `topup -$200`, `topup -$30 t/Food`                                                                                |
 |  **Find**     | `find [-d<description>] [-@<date>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020`                                                                    |
 | **Remark**    | `remark <index> -r<remark>` <br> e.g., `remark 11 -r Pepper Lunch`                                                                                            |
 | **Sort**      | `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]` <br> e.g., `sort -by date -by descriptionR`                                      |
 | **Switch**    | `switch t/<category>` <br> e.g., `switch t/Food`                                                                                                              |
+| **AddCat**    | `addCat t/<category>`<br> e.g., `addCat t/Food`                                                                                                               |
 | **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                        |
 | **Help**      | `help`                                                                                                                                                        |
