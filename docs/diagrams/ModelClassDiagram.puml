@@ -5,23 +5,26 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyFlashcardDeck <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class FlashcardDeck
+Class ReadOnlyFlashcardDeck
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Flashcard {
+class Flashcard
+Class Question
+Class Answer
+Class Category
+Class Note
+Class Rating
+Class Diagram
+Class Statistics
+Class UniqueFlashcardList
 }
 
 Package Tag {
@@ -32,25 +35,31 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+FlashcardDeck .up.|> ReadOnlyFlashcardDeck
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" FlashcardDeck
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+FlashcardDeck *--> "1" UniqueFlashcardList
+UniqueFlashcardList o--> "*" Flashcard
+Flashcard *--> Question
+Flashcard *--> Answer
+Flashcard *--> Category
+Flashcard *--> Note
+Flashcard *--> Rating
+Flashcard *--> Diagram
+Flashcard *--> Statistics
+Flashcard *--> "*" Tag
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Rating -[hidden]right-> Diagram
+Diagram -[hidden]right-> Statistics
+Statistics -[hidden]right-> Question
+Question -[hidden]right-> Answer
+Answer -[hidden]right-> Category
+Category -[hidden]right-> Note
 
-ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Flashcard : filtered list
 @enduml
