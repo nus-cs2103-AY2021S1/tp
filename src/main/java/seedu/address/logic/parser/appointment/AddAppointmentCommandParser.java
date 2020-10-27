@@ -37,7 +37,8 @@ public class AddAppointmentCommandParser implements Parser<AddAppointmentCommand
 
         Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
         AppointmentDateTime startTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_APP_STARTTIME).get());
-        AppointmentDateTime endTime = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_APP_STARTTIME).get(),
+        AppointmentDateTime endTime = ParserUtil.parseDurationWithStart(
+                argMultimap.getValue(PREFIX_APP_STARTTIME).get(),
                 argMultimap.getValue(PREFIX_APP_DURATION).get());
 
         return new AddAppointmentCommand(index, startTime, endTime);
