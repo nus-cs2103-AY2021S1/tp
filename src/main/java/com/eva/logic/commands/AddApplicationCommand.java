@@ -1,5 +1,6 @@
 package com.eva.logic.commands;
 
+import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -16,13 +17,15 @@ public class AddApplicationCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an application to an applicant. ";
 
-    public static final String MESSAGE_USAGE_2 = COMMAND_WORD + " Adds an application to an applicant. "
+    public static final String MESSAGE_USAGE_2 = COMMAND_WORD + ": Adds an application to an applicant. \n"
             + "Parameters: "
-            + "FILEPATH "
+            + "INDEX FILEPATH \n"
             + "Example: " + COMMAND_WORD + " "
-            + "C://Users...";
+            + "src\\main\\java\\com\\eva\\logic\\parser\\resume.txt \n"
+            + "or if you would like to scan a sample resume: addapplication 1 sample";
 
-    public static final String MESSAGE_SUCCESS = "Application added to applicant: %1$s ";
+
+    public static final String MESSAGE_SUCCESS = "Application added to applicant: %1$s";
     public static final String MESSAGE_OVERRIDE = "Application overridden for applicant.";
 
     private final Application applicationToAdd;
@@ -32,13 +35,11 @@ public class AddApplicationCommand extends Command {
      * Creates an AddApplicationCommand to add an application specified {@code Applicant}
      */
     public AddApplicationCommand(Index index, Application application) {
-        requireNonNull(index);
-        requireNonNull(application);
+        requireAllNonNull(index, application);
 
         this.index = index;
         applicationToAdd = application;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -52,6 +53,6 @@ public class AddApplicationCommand extends Command {
 
         Applicant applicantToUpdate = lastShownList.get(index.getZeroBased());
         model.addApplicantApplication(applicantToUpdate, applicationToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, applicationToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, applicantToUpdate.getName()));
     }
 }

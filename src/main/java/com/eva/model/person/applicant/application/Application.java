@@ -1,6 +1,6 @@
 package com.eva.model.person.applicant.application;
 
-import static java.util.Objects.requireNonNull;
+import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +20,7 @@ public class Application {
      * @param educationSection A list of educational history.
      */
     public Application(String applicantName, List<Experience> experienceSection, List<Education> educationSection) {
-        requireNonNull(applicantName);
-        requireNonNull(experienceSection);
-        requireNonNull(educationSection);
+        requireAllNonNull(applicantName, experienceSection, educationSection);
         this.applicantName = applicantName;
         this.experienceSection = experienceSection;
         this.educationSection = educationSection;
@@ -53,15 +51,15 @@ public class Application {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        String experienceString = "";
-        String educationString = "";
+        StringBuilder experienceString = new StringBuilder();
+        StringBuilder educationString = new StringBuilder();
         for (Experience exp : this.experienceSection) {
-            experienceString += exp.toString() + "\n";
+            experienceString.append(exp.toString()).append("\n");
         }
         for (Education edu : this.educationSection) {
-            educationString += edu.toString() + "\n";
+            educationString.append(edu.toString()).append("\n");
         }
-        builder.append("Name: ")
+        builder.append("\nName: ")
                 .append(this.applicantName)
                 .append("\n\nExperience ---------------------\n\n")
                 .append(experienceString)
