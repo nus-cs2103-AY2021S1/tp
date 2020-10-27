@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+/**
+ * A UI component that displays information of a {@code Comment}.
+ */
 public class CommentListCard extends UiPart<Region> {
     private static final String FXML = "CommentListCard.fxml";
 

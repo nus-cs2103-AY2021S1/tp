@@ -44,10 +44,10 @@ public class DeleteCommandParser implements Parser<Command> {
         }
         if (!deleteApplicantCommand.isEmpty() && !deleteCommentCommand.isEmpty()) {
             return new DeleteCommentCommandParser()
-                    .parse(" " + index.getOneBased() + " a- c/ " + deleteCommentCommand.get());
+                    .parse(" " + index.getOneBased() + " a- " + deleteCommentCommand.get());
         } else if (!deleteStaffCommand.isEmpty() && !deleteCommentCommand.isEmpty()) {
             return new DeleteCommentCommandParser()
-                    .parse(" " + index.getOneBased() + " s- c/ " + deleteCommentCommand.get());
+                    .parse(" " + index.getOneBased() + " s- " + deleteCommentCommand.get());
         } else if (!deleteStaffCommand.isEmpty()) {
             return new DeleteStaffCommandParser()
                     .parse(" " + index.getOneBased());

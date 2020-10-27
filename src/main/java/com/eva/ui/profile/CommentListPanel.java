@@ -12,7 +12,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
-
+/**
+ * A UI component that displays the list of comments.
+ */
 public class CommentListPanel extends UiPart<Region> {
     private static final String FXML = "CommentListPanel.fxml";
 
@@ -22,7 +24,7 @@ public class CommentListPanel extends UiPart<Region> {
     private ListView<Comment> commentListView;
 
     /**
-     * Creates a {@code StaffListPanel} with the given {@code ObservableList}.
+     * Creates a {@code CommentListPanel} with the given {@code ObservableList}.
      */
     public CommentListPanel(ObservableList<Comment> commentList) {
         super(FXML);
@@ -31,7 +33,7 @@ public class CommentListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Staff} using a {@code StaffListCard}.
+     * Custom {@code CommentListCell} that displays the graphics of a {@code Comment} using a {@code CommentListCard}.
      */
     class CommentListViewCell extends ListCell<Comment> {
         @Override

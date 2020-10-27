@@ -15,7 +15,7 @@ import com.eva.model.person.staff.leave.exceptions.LeaveNotFoundException;
 
 import javafx.collections.ObservableList;
 
-public class CurrentViewStaff {
+public class CurrentViewStaff implements ReadOnlyCurrentViewStaff {
 
     private final Staff currentView;
     private final UniqueLeaveList leaves;
@@ -77,6 +77,6 @@ public class CurrentViewStaff {
 
     @Override
     public int hashCode() {
-        return Objects.hash(currentView, leaves);
+        return Objects.hash(currentView, leaves, comments);
     }
 }

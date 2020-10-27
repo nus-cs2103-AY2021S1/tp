@@ -9,12 +9,18 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
+/**
+ * A UI component that displays the list of leaves.
+ */
 public class LeaveInfoDisplay extends UiPart<Region> {
     private static final String FXML = "LeaveInfoDisplay.fxml";
 
     @FXML
     private ListView<Leave> leaveListView;
 
+    /**
+     * Creates a {@code LeaveInfoDisplay} with the given {@code ObservableList}.
+     */
     LeaveInfoDisplay(ObservableList<Leave> leaves) {
         super(FXML);
         leaveListView.setItems(leaves);

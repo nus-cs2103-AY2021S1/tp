@@ -12,6 +12,7 @@ import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.ui.list.view.ApplicantListPanel;
 import com.eva.ui.list.view.StaffListPanel;
+import com.eva.ui.profile.applicant.view.ApplicantProfilePanel;
 import com.eva.ui.profile.staff.view.StaffProfilePanel;
 
 import javafx.event.ActionEvent;
@@ -40,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     private StaffListPanel staffListPanel;
     private StaffProfilePanel staffProfilePanel;
     private ApplicantListPanel applicantListPanel;
+    private ApplicantProfilePanel applicantProfilePanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -125,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
 
         applicantListPanel = new ApplicantListPanel(logic.getFilteredApplicantList());
 
-        switchPanel(StaffListPanel.PANEL_NAME);
+        switchPanel(logic.getPanelState());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -155,14 +157,14 @@ public class MainWindow extends UiPart<Stage> {
             staffProfilePanel.fillInnerParts();
             panelPlaceholder.getChildren().add(staffProfilePanel.getRoot());
             break;
+        case APPLICANT_PROFILE:
+            applicantProfilePanel = new ApplicantProfilePanel(logic.getCurrentViewApplicant());
+            applicantProfilePanel.fillInnerParts();
+            panelPlaceholder.getChildren().add(applicantProfilePanel.getRoot());
+            break;
         default:
             throw new AssertionError("No such tab name: " + panelState);
         }
-        /*
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getPanelState());
-        logic.setGuiSettings(guiSettings);
-        */
     }
 
     /**
@@ -198,8 +200,14 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleExit() {
+        PanelState currentPanelState = logic.getPanelState();
+        // if user is working on staffs, start app on staff list, else, start on applicant list.
+        PanelState savePanelState = (currentPanelState.equals(PanelState.STAFF_LIST)
+                        || currentPanelState.equals(PanelState.STAFF_PROFILE))
+                ? PanelState.STAFF_LIST : PanelState.APPLICANT_LIST;
+
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY(), savePanelState);
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();

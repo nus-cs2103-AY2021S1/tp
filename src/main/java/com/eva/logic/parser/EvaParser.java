@@ -8,13 +8,15 @@ import com.eva.commons.core.Messages;
 import com.eva.logic.commands.AddApplicantCommand;
 import com.eva.logic.commands.AddApplicationCommand;
 import com.eva.logic.commands.AddCommand;
+import com.eva.logic.commands.AddCommentCommand;
 import com.eva.logic.commands.AddLeaveCommand;
 import com.eva.logic.commands.AddStaffCommand;
 import com.eva.logic.commands.ClearCommand;
 import com.eva.logic.commands.Command;
-import com.eva.logic.commands.CommentCommand;
 import com.eva.logic.commands.DeleteApplicantCommand;
+import com.eva.logic.commands.DeleteApplicationCommand;
 import com.eva.logic.commands.DeleteCommand;
+import com.eva.logic.commands.DeleteCommentCommand;
 import com.eva.logic.commands.DeleteLeaveCommand;
 import com.eva.logic.commands.DeleteStaffCommand;
 import com.eva.logic.commands.EditCommand;
@@ -23,7 +25,8 @@ import com.eva.logic.commands.FindCommand;
 import com.eva.logic.commands.HelpCommand;
 import com.eva.logic.commands.ListCommand;
 import com.eva.logic.commands.ViewCommand;
-import com.eva.logic.parser.comment.CommentCommandParser;
+import com.eva.logic.parser.comment.AddCommentCommandParser;
+import com.eva.logic.parser.comment.DeleteCommentCommandParser;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.logic.parser.leave.AddLeaveCommandParser;
 import com.eva.logic.parser.leave.DeleteLeaveCommandParser;
@@ -70,8 +73,11 @@ public class EvaParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case CommentCommand.COMMAND_WORD:
-            return new CommentCommandParser().parse(arguments);
+        case AddCommentCommand.COMMAND_WORD:
+            return new AddCommentCommandParser().parse(arguments);
+
+        case DeleteCommentCommand.COMMAND_WORD:
+            return new DeleteCommentCommandParser().parse(arguments);
 
         case AddLeaveCommand.COMMAND_WORD:
             return new AddLeaveCommandParser().parse(arguments);
@@ -105,6 +111,9 @@ public class EvaParser {
 
         case AddApplicationCommand.COMMAND_WORD:
             return new AddApplicationCommandParser().parse(arguments);
+
+        case DeleteApplicationCommand.COMMAND_WORD:
+            return new DeleteApplicationCommandParser().parse(arguments);
 
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);

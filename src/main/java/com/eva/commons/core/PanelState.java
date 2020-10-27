@@ -1,5 +1,8 @@
 package com.eva.commons.core;
 
+/**
+ * Possible panel states of the eva application.
+ */
 public enum PanelState {
     STAFF_LIST("Staff List"),
     STAFF_PROFILE("Staff Profile"),

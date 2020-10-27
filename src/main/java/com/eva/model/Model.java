@@ -9,6 +9,8 @@ import com.eva.commons.core.GuiSettings;
 import com.eva.commons.core.PanelState;
 import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
+import com.eva.model.current.view.ReadOnlyCurrentViewApplicant;
+import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.ApplicationStatus;
@@ -70,12 +72,12 @@ public interface Model {
     /**
      * Returns the current staff being viewed.
      */
-    CurrentViewStaff getCurrentViewStaff();
+    ReadOnlyCurrentViewStaff getCurrentViewStaff();
 
     /**
      * Returns the current applicant being viewed.
      */
-    CurrentViewApplicant getCurrentViewApplicant();
+    ReadOnlyCurrentViewApplicant getCurrentViewApplicant();
 
     /**
      * Returns the user prefs' persons data file path.
@@ -270,4 +272,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
+
+    void deleteApplication(Applicant target, Application toSet);
 }

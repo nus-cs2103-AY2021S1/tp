@@ -12,10 +12,13 @@ import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
 
 public class Comment {
+    public static final String MESSAGE_CONSTRAINTS = "addcomment must have ti/TITLE d/DATE desc/DESCRIPTION\n"
+            + "deletecomment must have ti/TITLE_OF_COMMENT_TO_DELETE";
 
     public final LocalDate date;
     public final Title title;
     private String description;
+
 
     /**
      * Create comment object
@@ -39,6 +42,7 @@ public class Comment {
         this.title = new Title(title);
     }
 
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
@@ -54,17 +58,29 @@ public class Comment {
     }
 
     /**
-     * Checks if provided input is a valid comment
+     * Checks if provided Add input is a valid comment
      * @param comment
      * @return
      */
-    public static boolean isValidComment(String comment) {
+    public static boolean isValidAddComment(String comment) {
         ArgumentMultimap argMultmap = ArgumentTokenizer.tokenize(comment,
                 PREFIX_TITLE, PREFIX_DATE, PREFIX_DESC);
         boolean hasTitle = !argMultmap.getValue(PREFIX_TITLE).isEmpty();
         boolean hasDate = !argMultmap.getValue(PREFIX_DATE).isEmpty();
         boolean hasDescription = !argMultmap.getValue(PREFIX_DESC).isEmpty();
         return hasTitle && hasDate && hasDescription;
+    }
+
+    /**
+     * Checks if provided Delete input is a valid comment
+     * @param comment
+     * @return
+     */
+    public static boolean isValidDeleteComment(String comment) {
+        ArgumentMultimap argMultmap = ArgumentTokenizer.tokenize(comment,
+                PREFIX_TITLE);
+        boolean hasTitle = !argMultmap.getValue(PREFIX_TITLE).isEmpty();
+        return hasTitle;
     }
 
     public LocalDate getDate() {

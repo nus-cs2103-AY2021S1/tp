@@ -211,7 +211,6 @@ public class CommentCommand extends Command {
             return (leaves != null) ? leaves : new HashSet<>();
         }
 
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

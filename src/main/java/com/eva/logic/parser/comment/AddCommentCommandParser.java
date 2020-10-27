@@ -2,7 +2,6 @@ package com.eva.logic.parser.comment;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
 import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static java.util.Objects.requireNonNull;
 
@@ -33,7 +32,7 @@ public class AddCommentCommandParser {
     public CommentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_COMMENT,
+                ArgumentTokenizer.tokenize(args,
                         PREFIX_APPLICANT, PREFIX_STAFF);
 
         Index index;
@@ -41,13 +40,22 @@ public class AddCommentCommandParser {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CommentCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE), pe);
         }
 
 
         CommentCommand.CommentPersonDescriptor commentPersonDescriptor = new CommentCommand.CommentPersonDescriptor();
-        parseCommentsForEdit(argMultimap.getAllValues(PREFIX_COMMENT))
-                .ifPresent(commentPersonDescriptor::setComments);
+        if (argMultimap.getAllValues(PREFIX_APPLICANT).size() != 0) {
+            parseCommentsForEdit(argMultimap.getAllValues(PREFIX_APPLICANT))
+                    .ifPresent(commentPersonDescriptor::setComments);
+        } else if (argMultimap.getAllValues(PREFIX_STAFF).size() != 0) {
+            parseCommentsForEdit(argMultimap.getAllValues(PREFIX_STAFF))
+                    .ifPresent(commentPersonDescriptor::setComments);
+        } else {
+            throw new ParseException(AddCommentCommand.MISSING_PERSONTYPE_MESSAGE);
+        }
+
         if (!commentPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }

@@ -14,6 +14,9 @@ import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.staff.Staff;
 
+/**
+ * Views a staff or applicant identified using it's displayed index from the eva database.
+ */
 public class ViewCommand extends Command {
     public static final String COMMAND_WORD = "view";
 
@@ -35,6 +38,8 @@ public class ViewCommand extends Command {
 
     /**
      * Executes the command and returns the command message.
+     * Views Staff if the command is executed from staff list.
+     * Views Applicant if the command is executed from applicant list.
      *
      * @param model {@code Model} which the command should operate on.
      * @throws CommandException If an error occurs during command execution.
@@ -50,7 +55,7 @@ public class ViewCommand extends Command {
                 viewing = executeViewStaff(model).toString();
             } else if (panelState.equals(PanelState.APPLICANT_LIST)) {
                 executeViewApplicant(model);
-                viewing = executeViewStaff(model).toString();
+                viewing = executeViewApplicant(model).toString();
             } else {
                 throw new CommandException(
                         String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL, MESSAGE_CHANGE_PANEL));
