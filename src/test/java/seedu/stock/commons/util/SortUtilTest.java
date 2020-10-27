@@ -169,4 +169,21 @@ public class SortUtilTest {
         toTestComparator.sort(generalComparator);
         assertEquals(copy, toTestComparator);
     }
+
+    @Test
+    public void generateReverseComparator() {
+        List<Stock> copy = new ArrayList<>(toTestComparator);
+        Comparator<Stock> expectedComparator = new Comparator<>() {
+            @Override
+            public int compare(Stock a, Stock b) {
+                String nameA = a.getName().toString();
+                String nameB = b.getName().toString();
+                return nameB.compareTo(nameA);
+            }
+        };
+        Comparator<Stock> reverseComparator = SortUtil.generateReverseComparator(SortUtil.Field.NAME);
+        copy.sort(expectedComparator);
+        toTestComparator.sort(reverseComparator);
+        assertEquals(copy, toTestComparator);
+    }
 }
