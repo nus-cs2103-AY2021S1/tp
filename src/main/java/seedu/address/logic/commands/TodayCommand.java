@@ -24,25 +24,25 @@ public class TodayCommand extends Command {
 
         switch (dayOfWeek) {
         case SUNDAY:
-            model.updateFilteredPersonList(person -> person.getTags().toString().toLowerCase().contains("sunday"));
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_SUNDAY_PERSONS);
             break;
         case MONDAY:
-            model.updateFilteredPersonList(person -> person.getTags().toString().toLowerCase().contains("monday"));
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_MONDAY_PERSONS);
             break;
         case TUESDAY:
-            model.updateFilteredPersonList(person -> person.getTags().toString().toLowerCase().contains("tuesday"));
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_TUESDAY_PERSONS);
             break;
         case WEDNESDAY:
-            model.updateFilteredPersonList(person -> person.getTags().toString().toLowerCase().contains("wednesday"));
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_WEDNESDAY_PERSONS);
             break;
         case THURSDAY:
-            model.updateFilteredPersonList(person -> person.getTags().toString().toLowerCase().contains("thursday"));
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_THURSDAY_PERSONS);
             break;
         case FRIDAY:
-            model.updateFilteredPersonList(person -> person.getTags().toString().toLowerCase().contains("friday"));
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_FRIDAY_PERSONS);
             break;
         case SATURDAY:
-            model.updateFilteredPersonList(person -> person.getTags().toString().toLowerCase().contains("saturday"));
+            model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_SATURDAY_PERSONS);
             break;
         default:
             model.updateFilteredPersonList(person -> false);
