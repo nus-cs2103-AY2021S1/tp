@@ -57,4 +57,22 @@ public class ArgumentMultimap {
     public String getPreamble() {
         return getValue(new Prefix("")).orElse("");
     }
+
+    /**
+     * Returns the number of non-empty Prefixes in the ArgumentMultimap.
+     */
+    public long numOfPrefixes() {
+        return argMultimap.keySet().stream()
+            .filter(prefix -> !prefix.getPrefix().isEmpty())
+            .count();
+    }
+    /**
+     * Returns the number of non-empty Prefixes with no values in the ArgumentMultimap.
+     */
+    public long numOfPrefixesWithNoValues() {
+        return argMultimap.keySet().stream()
+            .filter(prefix -> !prefix.getPrefix().isEmpty())
+            .filter(prefix -> this.getValue(prefix).get().isEmpty())
+            .count();
+    }
 }

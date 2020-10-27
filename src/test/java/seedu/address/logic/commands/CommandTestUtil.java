@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
@@ -28,7 +28,7 @@ import seedu.address.testutil.EditProjectDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
+    // Valid attributes of Project
     public static final String VALID_PROJECT_NAME_A = "ToastAI";
     public static final String VALID_PROJECT_NAME_B = "Coders without Borders";
     public static final String VALID_DEADLINE_A = "21-03-2020 10:00:00";
@@ -41,6 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_PROJECT_TAG_B = "fiend";
     public static final String VALID_PROJECT_TAG_DG = "DG";
     public static final String VALID_TASK_MODEL = "model";
+    // Valid attribute of Teammate
     public static final String VALID_TEAMMATE = "Codey";
     //TODO: after Parsing of tasks is refined, may update these to be more meaningful
 
@@ -50,9 +51,9 @@ public class CommandTestUtil {
     public static final String DEADLINE_DESC_B = " " + PREFIX_DEADLINE + VALID_DEADLINE_B;
     public static final String REPOURL_DESC_A = " " + PREFIX_REPOURL + VALID_REPOURL_A;
     public static final String REPOURL_DESC_B = " " + PREFIX_REPOURL + VALID_REPOURL_B;
-    public static final String PROJECT_DESCRIPTION_DESC_AMY = " " + PREFIX_PROJECT_DESCRIPTION
+    public static final String PROJECT_DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION
         + VALID_PROJECT_DESCRIPTION_A;
-    public static final String PROJECT_DESCRIPTION_DESC_BOB = " " + PREFIX_PROJECT_DESCRIPTION
+    public static final String PROJECT_DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION
         + VALID_PROJECT_DESCRIPTION_B;
     public static final String PROJECT_TAG_DESC_FRIEND = " " + PREFIX_PROJECT_TAG + VALID_PROJECT_TAG_B;
     public static final String PROJECT_TAG_DESC_HUSBAND = " " + PREFIX_PROJECT_TAG + VALID_PROJECT_TAG_A;
@@ -61,11 +62,11 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_PROJECT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
-            + "29/02/1999 00:00:00"; // '-' is used instead of '/'
+            + "29/02/1999 00:00:00"; // '/' is used instead of '-'
     public static final String INVALID_REPOURL_DESC = " " + PREFIX_REPOURL
             + "https://github.com/a/b"; // missing '.git' part
     public static final String INVALID_PROJECT_DESCRIPTION_DESC = " "
-        + PREFIX_PROJECT_DESCRIPTION; // empty string not allowed
+        + PREFIX_DESCRIPTION; // empty string not allowed
     // for addresses
     public static final String INVALID_PROJECT_TAG_DESC = " " + PREFIX_PROJECT_TAG
         + "hubby*"; // '*' not allowed in tags

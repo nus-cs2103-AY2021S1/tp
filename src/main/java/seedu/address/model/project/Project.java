@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,6 +22,7 @@ import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskComparators;
 
 /**
  * Represents a Project in the main catalogue.
@@ -43,6 +45,7 @@ public class Project {
     private final HashMap<GitUserName, Participation> listOfParticipations = new HashMap<>();
     private Predicate<Task> taskFilter = SHOW_ALL_TASKS_PREDICATE;
     private Predicate<Meeting> meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
+    private Comparator<Task> taskComparator = TaskComparators.SORT_BY_DEADLINE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
     // Display helper
@@ -118,6 +121,9 @@ public class Project {
 
     public void showAllTasks() {
         this.taskFilter = SHOW_ALL_TASKS_PREDICATE;
+    }
+    public void updateTaskComparator(Comparator<Task> comparator) {
+        this.taskComparator = comparator;
     }
 
     public void updateMeetingFilter(Predicate<Meeting> predicate) {
@@ -324,10 +330,14 @@ public class Project {
     }
 
     /**
-     * Returns the filtered list of tasks that is last shown.
+     * Returns the filtered and sorted list of tasks that is last shown.
      */
-    public List<Task> getFilteredTaskList() {
-        return tasks.stream().filter(taskFilter).collect(Collectors.toList());
+    public List<Task> getFilteredSortedTaskList() {
+        return tasks
+            .stream()
+            .filter(taskFilter)
+            .sorted(taskComparator)
+            .collect(Collectors.toList());
     }
 
     /**

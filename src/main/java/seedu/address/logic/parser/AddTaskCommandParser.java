@@ -1,12 +1,11 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.ArgumentMultimapUtil.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
-
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -34,12 +33,9 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
-
-        String taskName = ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_NAME).get());
-        Double taskProgress = Double.parseDouble(
-                ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
-        boolean taskStatus = Boolean.parseBoolean(
-                ParserUtil.parseTaskBasicInformation(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
+        String taskName = ParserUtil.parseTaskName(argMultimap.getValue(PREFIX_TASK_NAME).get());
+        Double taskProgress = ParserUtil.parseTaskProgress(argMultimap.getValue(PREFIX_TASK_PROGRESS).get());
+        boolean taskStatus = ParserUtil.parseDoneStatus(argMultimap.getValue(PREFIX_TASK_IS_DONE).get());
         Deadline taskDeadline = null;
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).orElse(null));
@@ -48,13 +44,4 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
 
         return new AddTaskCommand(task);
     }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
 }

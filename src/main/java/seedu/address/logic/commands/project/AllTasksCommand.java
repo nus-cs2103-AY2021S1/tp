@@ -10,7 +10,7 @@ import seedu.address.model.project.Project;
  */
 public class AllTasksCommand extends Command {
 
-    public static final String COMMAND_WORD = "allt";
+    public static final String COMMAND_WORD = "alltasks";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": clear task filter and view all the tasks\n";
