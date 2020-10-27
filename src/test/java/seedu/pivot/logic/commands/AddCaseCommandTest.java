@@ -11,12 +11,14 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.pivot.commons.core.GuiSettings;
 import seedu.pivot.logic.commands.casecommands.AddCaseCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.ReadOnlyPivot;
@@ -25,6 +27,11 @@ import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.testutil.CaseBuilder;
 
 public class AddCaseCommandTest {
+
+    @BeforeEach
+    public void setUpMainPage() {
+        StateManager.resetState();
+    }
 
     @Test
     public void constructor_nullCase_throwsNullPointerException() {
