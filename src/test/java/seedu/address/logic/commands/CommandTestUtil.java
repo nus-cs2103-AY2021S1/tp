@@ -179,24 +179,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         Reeve expectedReeve = new Reeve(actualModel.getReeve());
-        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getSortedStudentList());
+        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedReeve, actualModel.getReeve());
-        assertEquals(expectedFilteredList, actualModel.getSortedStudentList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getSortedStudentList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
 
-        Student student = model.getSortedStudentList().get(targetIndex.getZeroBased());
+        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getSortedStudentList().size());
+        assertEquals(1, model.getFilteredStudentList().size());
     }
 
 }

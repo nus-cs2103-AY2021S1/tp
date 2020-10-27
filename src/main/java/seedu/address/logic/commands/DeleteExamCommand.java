@@ -52,7 +52,7 @@ public class DeleteExamCommand extends ExamCommand {
         assert(studentIndex != null && examIndex != null);
         requireNonNull(model);
 
-        List<Student> lastShownList = model.getSortedStudentList();
+        List<Student> lastShownList = model.getFilteredStudentList();
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
