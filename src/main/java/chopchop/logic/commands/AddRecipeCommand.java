@@ -9,7 +9,6 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.recipe.Recipe;
-import chopchop.ui.DisplayNavigator;
 
 /**
  * Adds a recipe to the recipe book.
