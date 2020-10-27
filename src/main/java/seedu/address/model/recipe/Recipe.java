@@ -28,7 +28,8 @@ public class Recipe {
     // Identity fields
     private final Name name;
     private final ArrayList<Instruction> instructions;
-    private final String recipeImage;
+    private RecipeImage recipeImage;
+
     // Data fields
     private final ArrayList<Ingredient> ingredients;
     private final Calories calories;
@@ -37,7 +38,7 @@ public class Recipe {
     /**
      * Every field must be present and not null.
      */
-    public Recipe(Name name, ArrayList<Instruction> instructions, String recipeImage,
+    public Recipe(Name name, ArrayList<Instruction> instructions, RecipeImage recipeImage,
                   ArrayList<Ingredient> ingredients, Calories calories,
                   Set<Tag> tags) {
         requireAllNonNull(name, ingredients, calories, instructions, tags);
@@ -57,7 +58,7 @@ public class Recipe {
         return instructions;
     }
 
-    public String getRecipeImage() {
+    public RecipeImage getRecipeImage() {
         return recipeImage;
     }
 
@@ -77,6 +78,10 @@ public class Recipe {
         return Collections.unmodifiableSet(tags);
     }
 
+
+    public void setDefaultImage() {
+        this.recipeImage = new RecipeImage("images/default.jpg");
+    }
     /**
      * Returns true if both recipes of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two recipes.
@@ -105,7 +110,7 @@ public class Recipe {
         String ingredients = PREFIX_INGREDIENT.toString() + stringifyIngredients(this.ingredients);
         String calories = PREFIX_CALORIES.toString() + this.calories.getValue();
         String instructions = PREFIX_INSTRUCTION.toString() + stringifyInstructions(this.instructions);
-        String image = PREFIX_RECIPE_IMAGE + this.recipeImage;
+        String image = PREFIX_RECIPE_IMAGE + this.recipeImage.getValue();
         String tags = stringifyTags(this.tags);
         return commandWord + " " + position + " " + recipeName + " " + ingredients + " " + calories
                 + " " + instructions + " " + image + " " + tags;
