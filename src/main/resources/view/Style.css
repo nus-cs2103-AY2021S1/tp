@@ -89,15 +89,43 @@
     -fx-border-radius: 4;
     -fx-padding: 12 10;
 }
-#ingredientDisplay {
-    -fx-background-color: #fafafa;
+
+
+
+/* -------------------- RECIPE VIEW THINGS -------------------- */
+#recipeName {
+    -fx-font-size: 20pt;
+    -fx-font-color: #575555;
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-padding-top: 25px;
+    -fx-padding-left: 25px;
+}
+
+.ingredientDisplay {
+    -fx-background-color: #f1f8e9;
+    -fx-background-radius: 6;
+    -fx-border-color: #8bc34a;
+    -fx-border-radius: 6;
     -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI";
     -fx-font-color: #212121;
-    -fx-prompt-text-fill: #212121;
-    -fx-background-radius: 20 20 20 20;
+    -fx-padding: 12;
+    -fx-spacing: 12;
 }
-#instructionDisplay {
+
+#ingredientHeader {
+    -fx-font-size: 14pt;
+}
+
+#ingredientList {
+    -fx-font-size: 11pt;
+    -fx-line-spacing: 4;
+}
+
+.stepDisplay {
     -fx-background-color: #fff3e0;
     -fx-border-color: #ff9800;
     -fx-font-size: 12pt;
@@ -106,8 +134,20 @@
     -fx-prompt-text-fill: #212121;
     -fx-background-radius: 6;
     -fx-border-radius: 6;
-    -fx-padding: 6;
+    -fx-padding: 12;
+    -fx-spacing: 12;
 }
+
+#stepHeader {
+    -fx-font-size: 14pt;
+}
+
+#stepList {
+    -fx-font-size: 11pt;
+    -fx-line-spacing: 4;
+}
+
+
 #displayBox {
     -fx-background-color: #fbe9e7;
     -fx-font-size: 12pt;
@@ -130,24 +170,8 @@
     -fx-background-color: transparent;
     -fx-background-radius: 0 0 10 10;
 }
-#recipeName {
-    -fx-font-size: 20pt;
-    -fx-font-color: #575555;
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-focus-color: transparent;
-    -fx-faint-focus-color: transparent;
-}
-#ingredientDisplay {
-    -fx-background-color: #f1f8e9;
-    -fx-background-radius: 6;
-    -fx-border-color: #8bc34a;
-    -fx-border-radius: 6;
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI";
-    -fx-font-color: #212121;
-    -fx-padding: 6;
-}
+
+
 #ingredientDisplay .scroll-pane {
     -fx-background-color: #f1f8e9;
     -fx-background-radius: 6;

@@ -1,14 +1,18 @@
+// RecipeDisplay.java
+//@@author fall9x
+
 package chopchop.ui;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
-import chopchop.model.attributes.Step;
-import chopchop.model.ingredient.IngredientReference;
+import chopchop.commons.util.StreamUtils;
 import chopchop.model.recipe.Recipe;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 public class RecipeDisplay extends UiPart<Region> {
 
@@ -16,19 +20,21 @@ public class RecipeDisplay extends UiPart<Region> {
 
     private final Recipe recipe;
 
-    private String name;
-    private String ingredients;
-    private String steps;
-
+    @FXML
+    private Label recipeName;
 
     @FXML
-    private TextArea recipeName;
+    private Label ingredientHeader;
 
     @FXML
-    private TextArea instructionDisplay;
+    private TextFlow ingredientList;
 
     @FXML
-    private TextArea ingredientDisplay;
+    private Label stepHeader;
+
+    @FXML
+    private TextFlow stepList;
+
 
     /**
      * Creates a {@code RecipeDisplay} with a {@code Recipe}.
@@ -36,11 +42,8 @@ public class RecipeDisplay extends UiPart<Region> {
      */
     public RecipeDisplay(Recipe recipe) {
         super(FXML);
+
         this.recipe = recipe;
-        this.name = "";
-        this.ingredients = "";
-        this.steps = "";
-        stringRepresentation();
         display();
     }
 
@@ -49,45 +52,42 @@ public class RecipeDisplay extends UiPart<Region> {
      */
     private void display() {
 
-        assert !name.isBlank();
+        this.recipeName.setText(this.recipe.getName());
 
-        recipeName.clear();
-        recipeName.setText(name);
+        this.stepHeader.setText("Steps");
+        this.ingredientHeader.setText("Ingredients");
 
-        if (!ingredients.isEmpty()) {
-            ingredientDisplay.clear();
-            ingredientDisplay.setText(ingredients.trim());
-        }
-        if (!steps.isEmpty()) {
-            instructionDisplay.clear();
-            instructionDisplay.setText(steps.trim());
-        }
-    }
+        this.stepList.getChildren().clear();
+        this.ingredientList.getChildren().clear();
 
-    /**
-     * Sets the Strings displayed in the {@code RecipeDisplay} page.
-     */
-    private void stringRepresentation() {
-        final StringBuilder builder = new StringBuilder();
-        name = recipe.getName();
 
-        List<IngredientReference> ingredientList = recipe.getIngredients();
-        if (!ingredientList.isEmpty()) {
-            builder.append(" Ingredients:\n");
-            ingredientList.forEach(ingredient -> builder.append(ingredient).append("\n"));
-            ingredients = builder.toString();
+        if (this.recipe.getIngredients().isEmpty()) {
+            this.ingredientList.getChildren().add(new Text("Recipe uses no ingredients"));
+        } else {
+            this.ingredientList.getChildren().setAll(
+                this.recipe.getIngredients().stream()
+                    .map(Object::toString)
+                    .map(s -> new Text(s + "\n"))
+                    .collect(Collectors.toList())
+            );
         }
 
-        List<Step> stepsList = recipe.getSteps();
-        if (!stepsList.isEmpty()) {
-            builder.setLength(0);
-            builder.append(" Steps:");
-            AtomicInteger counter = new AtomicInteger(1);
-            stepsList.forEach(step -> {
-                builder.append("\n").append(counter.getAndIncrement()).append(". ");
-                builder.append(step);
-            });
-            steps = builder.toString();
+
+        if (this.recipe.getSteps().isEmpty()) {
+            this.stepList.getChildren().add(new Text("Recipe has no steps"));
+        } else {
+            this.stepList.getChildren().setAll(
+                StreamUtils.indexed(this.recipe.getSteps().stream())
+                    .flatMap(s -> {
+                        var label = new Label(String.format("%d.", 1 + s.fst()));
+                        label.setPrefWidth(20);
+
+                        return List.of(
+                            label, new Text(String.format("%s\n", s.snd()))
+                        ).stream();
+                    })
+                    .collect(Collectors.toList())
+            );
         }
     }
 }
