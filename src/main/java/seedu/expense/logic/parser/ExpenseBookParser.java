@@ -13,6 +13,7 @@ import seedu.expense.logic.commands.AddCommand;
 import seedu.expense.logic.commands.AliasCommand;
 import seedu.expense.logic.commands.ClearCommand;
 import seedu.expense.logic.commands.Command;
+import seedu.expense.logic.commands.DeleteCategoryCommand;
 import seedu.expense.logic.commands.DeleteCommand;
 import seedu.expense.logic.commands.EditCommand;
 import seedu.expense.logic.commands.ExitCommand;
@@ -102,6 +103,9 @@ public class ExpenseBookParser {
 
         case AddCategoryCommand.COMMAND_WORD:
             return new AddCategoryCommandParser().parse(arguments);
+
+        case DeleteCategoryCommand.COMMAND_WORD:
+            return new DeleteCategoryCommandParser().parse(arguments);
 
         case SwitchCommand.COMMAND_WORD:
             return new SwitchCommandParser().parse(arguments);

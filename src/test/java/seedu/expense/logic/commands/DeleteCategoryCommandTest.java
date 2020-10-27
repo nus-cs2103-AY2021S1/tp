@@ -29,56 +29,58 @@ import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.tag.Tag;
 
-public class AddCategoryCommandTest {
+class DeleteCategoryCommandTest {
 
     @Test
     public void constructor_nullTag_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCategoryCommand(null));
+        assertThrows(NullPointerException.class, () -> new DeleteCategoryCommand(null));
     }
 
     @Test
-    public void execute_categoryAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
+    public void execute_categoryAcceptedByModel_deleteSuccessful() throws Exception {
+        DeleteCategoryCommandTest.ModelStubAcceptingTagDeleted modelStub =
+            new DeleteCategoryCommandTest.ModelStubAcceptingTagDeleted();
         Tag validTag = new Tag("Valid");
 
-        CommandResult commandResult = new AddCategoryCommand(validTag).execute(modelStub);
+        CommandResult commandResult = new DeleteCategoryCommand(validTag).execute(modelStub);
 
-        assertEquals(String.format(AddCategoryCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTag), modelStub.tagsAdded);
+        assertEquals(String.format(DeleteCategoryCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(), modelStub.tags);
     }
 
     @Test
-    public void execute_duplicateTag_throwsCommandException() {
+    public void execute_invalidTag_throwsCommandException() {
         Tag validTag = new Tag("Valid");
-        AddCategoryCommand addCategoryCommand = new AddCategoryCommand(validTag);
-        ModelStub modelStub = new ModelStubWithTag(validTag);
+        Tag invalidTag = new Tag("Invalid");
+        DeleteCategoryCommand deleteCategoryCommand = new DeleteCategoryCommand(invalidTag);
+        DeleteCategoryCommandTest.ModelStub modelStub = new DeleteCategoryCommandTest.ModelStubWithTag(validTag);
 
         assertThrows(CommandException.class,
-                AddCategoryCommand.MESSAGE_DUPLICATE_CATEGORY, () -> addCategoryCommand.execute(modelStub));
+            DeleteCategoryCommand.MESSAGE_INVALID_CATEGORY, () -> deleteCategoryCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Tag aTag = new Tag("A");
         Tag bTag = new Tag("B");
-        AddCategoryCommand addACommand = new AddCategoryCommand(aTag);
-        AddCategoryCommand addBCommand = new AddCategoryCommand(bTag);
+        DeleteCategoryCommand deleteACommand = new DeleteCategoryCommand(aTag);
+        DeleteCategoryCommand deleteBCommand = new DeleteCategoryCommand(bTag);
 
         // same object -> returns true
-        assertTrue(addACommand.equals(addACommand));
+        assertTrue(deleteACommand.equals(deleteACommand));
 
         // same values -> returns true
-        AddCategoryCommand addACopy = new AddCategoryCommand(aTag);
-        assertTrue(addACommand.equals(addACopy));
+        DeleteCategoryCommand deleteACopy = new DeleteCategoryCommand(aTag);
+        assertTrue(deleteACommand.equals(deleteACopy));
 
         // different types -> returns false
-        assertFalse(addACommand.equals(1));
+        assertFalse(deleteACommand.equals(1));
 
         // null -> returns false
-        assertFalse(addACommand.equals(null));
+        assertFalse(deleteACommand.equals(null));
 
         // different values -> returns false
-        assertFalse(addACommand.equals(addBCommand));
+        assertFalse(deleteACommand.equals(deleteBCommand));
     }
 
     /**
@@ -234,37 +236,41 @@ public class AddCategoryCommandTest {
     /**
      * A Model stub that contains a single tag.
      */
-    private class ModelStubWithTag extends ModelStub {
-        private final Tag tag;
+    private class ModelStubWithTag extends DeleteCategoryCommandTest.ModelStub {
+        private final ArrayList<Tag> tags = new ArrayList<>();
 
         ModelStubWithTag(Tag tag) {
             requireNonNull(tag);
-            this.tag = tag;
+            this.tags.add(tag);
         }
 
         @Override
         public boolean hasCategory(Tag toCheck) {
-            return this.tag.equals(toCheck);
+            return this.tags.contains(toCheck);
         }
     }
 
 
     /**
-     * A Model stub that always accept the expense being added.
+     * A Model stub that always accept the expense being deleted.
      */
-    private class ModelStubAcceptingTagAdded extends ModelStub {
-        final ArrayList<Tag> tagsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTagDeleted extends DeleteCategoryCommandTest.ModelStub {
+        final ArrayList<Tag> tags = new ArrayList<>();
+
+        ModelStubAcceptingTagDeleted() {
+            tags.add(new Tag("Valid"));
+        }
 
         @Override
         public boolean hasCategory(Tag toCheck) {
             requireNonNull(toCheck);
-            return tagsAdded.stream().anyMatch(toCheck::equals);
+            return tags.stream().anyMatch(toCheck::equals);
         }
 
         @Override
-        public void addCategory(Tag tag) {
+        public void deleteCategory(Tag tag) {
             requireNonNull(tag);
-            tagsAdded.add(tag);
+            tags.remove(tag);
         }
 
         @Override

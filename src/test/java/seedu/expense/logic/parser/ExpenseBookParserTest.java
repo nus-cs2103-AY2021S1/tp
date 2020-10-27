@@ -22,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import seedu.expense.logic.commands.AddCategoryCommand;
 import seedu.expense.logic.commands.AddCommand;
 import seedu.expense.logic.commands.ClearCommand;
+import seedu.expense.logic.commands.DeleteCategoryCommand;
 import seedu.expense.logic.commands.DeleteCommand;
 import seedu.expense.logic.commands.EditCommand;
 import seedu.expense.logic.commands.EditCommand.EditExpenseDescriptor;
@@ -129,6 +130,15 @@ public class ExpenseBookParserTest {
         Tag tag = new Tag(VALID_TAG_FOOD);
         AddCategoryCommand command = (AddCategoryCommand) parser.parseCommand(CategoryUtil.getAddCategoryCommand(tag));
         assertEquals(new AddCategoryCommand(tag), command);
+    }
+
+    @Test
+    public void parseCommand_deleteCat() throws Exception {
+        Tag tag = new Tag(VALID_TAG_FOOD);
+        DeleteCategoryCommand command = (DeleteCategoryCommand) parser.parseCommand(
+            DeleteCategoryCommand.COMMAND_WORD + " " + PREFIX_TAG + "Food"
+        );
+        assertEquals(new DeleteCategoryCommand(tag), command);
     }
 
     @Test

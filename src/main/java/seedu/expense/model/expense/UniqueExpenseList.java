@@ -74,6 +74,16 @@ public class UniqueExpenseList implements Iterable<Expense> {
     }
 
     /**
+     * Resets the category tag of expenses that passes the {@code predicate} to Default tag
+     * @param predicate condition for the expenses to be met
+     */
+    public void resetExpenseCategory(Predicate<Expense> predicate) {
+        requireNonNull(predicate);
+        internalList.stream().filter(predicate).forEach(expense ->
+            setExpense(expense, expense.resetTag()));
+    }
+
+    /**
      * Removes the equivalent expense from the list.
      * The expense must exist in the list.
      */
@@ -135,19 +145,6 @@ public class UniqueExpenseList implements Iterable<Expense> {
      * @return sum of expenses.
      */
     public double tallyExpenses() {
-        double sum = 0;
-        Iterator<Expense> i = iterator();
-        while (i.hasNext()) {
-            sum += i.next().getAmount().asDouble();
-        }
-        return sum;
-    }
-
-    /**
-     * Calculates the sum of the expenses in the expense list that matches {@code predicate}.
-     * @return sum of filtered expenses.
-     */
-    public double tallyExpenses(Predicate<Expense> predicate) {
         double sum = 0;
         Iterator<Expense> i = iterator();
         while (i.hasNext()) {
