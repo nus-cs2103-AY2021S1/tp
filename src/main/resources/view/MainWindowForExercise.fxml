@@ -51,14 +51,14 @@
                 </StackPane>
 
                 <HBox fx:id="lists" minWidth="450" prefWidth="450" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                    <VBox fx:id="exerciseList" minWidth="220" prefWidth="220" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="exerciseList" minWidth="220" prefWidth="220" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                         <padding>
                             <Insets bottom="10" left="10" right="10" top="10" />
                         </padding>
                         <StackPane fx:id="exerciseListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                     </VBox>
 
-                    <VBox fx:id="templateList" minWidth="220" prefWidth="220" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="templateList" minWidth="220" prefWidth="220" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
                         <padding>
                             <Insets bottom="10" left="10" right="10" top="10" />
                         </padding>
