@@ -33,6 +33,9 @@ public class TemplateList {
         return null;
     }
 
+    /**
+     * Adds a template to the list.
+     */
     public static void addTemplate(Template template) {
         list.add(template);
         observableList.add(template);
