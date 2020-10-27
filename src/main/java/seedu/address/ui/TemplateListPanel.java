@@ -26,7 +26,6 @@ public class TemplateListPanel extends UiPart<Region> {
      */
     public TemplateListPanel(ObservableList<Template> templateList) {
         super(FXML);
-        ObservableList<Template> t = FXCollections.observableArrayList();
         templateListView.setItems(templateList);
         templateListView.setCellFactory(listView -> new TemplateListViewCell());
     }
