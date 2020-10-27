@@ -11,12 +11,14 @@ public class AppointmentDateTimeTest {
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AppointmentDateTime(null));
+        assertThrows(NullPointerException.class, () -> new AppointmentDateTime(null, 60));
     }
 
     @Test
     public void constructor_invalidAppointmentDateTime_throwsIllegalArgumentException() {
         String invalidAppointmentDateTime = "";
         assertThrows(IllegalArgumentException.class, () -> new AppointmentDateTime(invalidAppointmentDateTime));
+        assertThrows(IllegalArgumentException.class, () -> new AppointmentDateTime(invalidAppointmentDateTime, 60));
     }
 
     @Test

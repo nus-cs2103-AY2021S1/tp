@@ -85,7 +85,7 @@ public class UniquePatientListTest {
     }
 
     @Test
-    public void setPatient_editedPatientnHasSameIdentity_success() {
+    public void setPatient_editedPatientHasSameIdentity_success() {
         uniquePatientList.add(ALICE);
         Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .withAllergies(VALID_ALLERGY_PENICILLIN)

@@ -23,17 +23,6 @@ public class VEventUtil {
         return resultVEventList;
     }
 
-    // /**
-    //  * Maps all vEvents in @param vEvents to a list of appointments
-    //  */
-    // public static ArrayList<Appointment> vEventsToAppsMapper(List<VEvent> vEvents) {
-    //     ArrayList<Appointment> resultAppList = new ArrayList<>();
-    //     for (VEvent vEvent : vEvents) {
-    //         resultAppList.add(VEventUtil.vEventToAppMapper(vEvent));
-    //     }
-    //     return resultAppList;
-    // }
-
     /**
      * Maps an appointment to vEvent
      */
@@ -46,35 +35,6 @@ public class VEventUtil {
 
         return resultVEvent;
     }
-
-    // /**
-    //  * Maps a vEvent to appointment
-    //  */
-    // public static Appointment vEventToAppMapper(VEvent vEvent) {
-    //     Appointment resultAppointment = new Appointment();
-    //     String patientName = vEvent.getSummary().getValue();
-    //     LocalDateTime startDateTime = LocalDateTime.parse(vEvent.getDateTimeStart().getValue().toString());
-    //     LocalDateTime endDateTime = LocalDateTime.parse(vEvent.getDateTimeEnd().getValue().toString());
-    //     String uniqueIdentifier = vEvent.getUniqueIdentifier().getValue();
-    //     resultAppointment.setPatientName(patientName);
-    //     resultAppointment.setStartTime(startDateTime);
-    //     resultAppointment.setEndTime(endDateTime);
-    //    // resultAppointment.setUniqueIdentifier(uniqueIdentifier);
-    //    //
-    //    // RecurrenceRule currentRule = vEvent.getRecurrenceRule();
-    //    // if (currentRule.toString().contains("DAILY")) {
-    //    //     resultAppointment.setRecurrenceType(RecurrenceType.DAILY);
-    //    // } else if (currentRule.toString().contains("WEEKLY")) {
-    //    //     resultAppointment.setRecurrenceType(RecurrenceType.WEEKLY);
-    //    // } else {
-    //    //     resultAppointment.setRecurrenceType(RecurrenceType.NONE);
-    //    // }
-    //    //
-    //    // String colorCategory = vEvent.getCategories().get(0).getValue().get(0);
-    //    // resultAppointment.setColorCategory(colorCategory);
-    //
-    //     return resultAppointment;
-    // }
 
     /**
      * Compares between 2 vEvents to see whether they are the same. Attributes used to determine this include
