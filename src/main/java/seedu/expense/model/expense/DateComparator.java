@@ -6,7 +6,7 @@ import java.time.LocalDate;
  * Compares two expenses according to their alphabetical description
  */
 public class DateComparator extends SortKeyComparator {
-    public static String SORT_KEYWORD = "date";
+    public static final String SORT_KEYWORD = "date";
 
     /**
      * Constructor for {@code DescriptionComparator} to work with SortCommand.

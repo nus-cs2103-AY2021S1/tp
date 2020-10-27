@@ -4,7 +4,7 @@ package seedu.expense.model.expense;
  * Compares two expenses according to their alphabetical description
  */
 public class AmountComparator extends SortKeyComparator {
-    public static String SORT_KEYWORD = "amount";
+    public static final String SORT_KEYWORD = "amount";
 
     /**
      * Constructor for {@code DescriptionComparator} to work with SortCommand.

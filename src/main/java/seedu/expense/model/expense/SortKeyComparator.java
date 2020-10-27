@@ -4,7 +4,6 @@ import java.util.Comparator;
 
 public abstract class SortKeyComparator implements Comparator<Expense> {
 
-    public static String SORT_KEYWORD;
     protected boolean sortActive;
     protected boolean reverse;
     protected int index;
@@ -37,13 +36,6 @@ public abstract class SortKeyComparator implements Comparator<Expense> {
      */
     public int getSortIndex() {
         return index;
-    }
-
-    /**
-     * Getter for {@code SORT_KEYWORD}.
-     */
-    public String getSortKeyword() {
-        return SORT_KEYWORD;
     }
 
     public boolean isReverse() {

@@ -24,7 +24,8 @@ import seedu.expense.model.expense.DescriptionComparator;
 public class SortCommandParser implements Parser<SortCommand> {
 
     private static final String VALIDATION_REGEX =
-            "(?<keyword>" + DescriptionComparator.SORT_KEYWORD + "|" + AmountComparator.SORT_KEYWORD + "|" + DateComparator.SORT_KEYWORD + ")";
+            "(?<keyword>" + DescriptionComparator.SORT_KEYWORD + "|" + AmountComparator.SORT_KEYWORD + "|"
+                    + DateComparator.SORT_KEYWORD + ")";
 
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
@@ -51,33 +52,24 @@ public class SortCommandParser implements Parser<SortCommand> {
         // filter and clean up repeats. Only take the latest entry if conflicting entries are found
         Set<String> sortKeysUnique = getUniqueSortKeys(sortKeys);
 
-        DescriptionComparator descriptionComparator = new DescriptionComparator(false,false, -1);
+        DescriptionComparator descriptionComparator = new DescriptionComparator(false, false, -1);
         AmountComparator amountComparator = new AmountComparator(false, false, -1);
         DateComparator dateComparator = new DateComparator(false, false, -1);
 
         int index = 0;
         for (String sortKey : sortKeysUnique) {
             if (sortKey.contains(DescriptionComparator.SORT_KEYWORD)) {
-                System.out.println("description found");
                 descriptionComparator = new DescriptionComparator(true,
                         sortKey.matches(VALIDATION_REGEX + REVERSE_KEYWORD), index);
             } else if (sortKey.contains(AmountComparator.SORT_KEYWORD)) {
-                System.out.println("amount found");
                 amountComparator = new AmountComparator(true,
                         sortKey.matches(VALIDATION_REGEX + REVERSE_KEYWORD), index);
             } else if (sortKey.contains(DateComparator.SORT_KEYWORD)) {
-                System.out.println("date found");
                 dateComparator = new DateComparator(true,
                         sortKey.matches(VALIDATION_REGEX + REVERSE_KEYWORD), index);
             }
             index++;
         }
-
-        System.out.println("description active = " + descriptionComparator.isActive() + ", reverse = "
-                + descriptionComparator.isReverse());
-        System.out.println("amount active = " + amountComparator.isActive() + ", reverse = "
-                + amountComparator.isReverse());
-        System.out.println("date active = " + dateComparator.isActive() + ", reverse = " + dateComparator.isReverse());
 
         return new SortCommand(descriptionComparator, amountComparator, dateComparator);
     }

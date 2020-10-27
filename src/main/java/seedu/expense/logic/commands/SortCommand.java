@@ -18,6 +18,9 @@ import seedu.expense.model.expense.SortKeyComparator;
 
 /**
  * Sorts the current expenses listed.
+ * <p>
+ * Able to take in up to 3 parameters, specifying sorts according to Amount, Date and Description.
+ * </p>
  */
 public class SortCommand extends Command {
 
@@ -38,8 +41,12 @@ public class SortCommand extends Command {
     private Comparator<Expense> expenseComparator;
     private List<String> sortOrder;
 
-
+    /**
+     * Constructor for SortCommand, takes in parameters specifying the sort required.
+     * @param sortKeyComparators various comparators that will be merged into 1 in order of their index.
+     */
     public SortCommand(SortKeyComparator ... sortKeyComparators) {
+        requireNonNull(sortKeyComparators);
         sortOrder = new ArrayList<>();
         List<SortKeyComparator> sortedSortKeyComparators = new ArrayList<>();
         for (SortKeyComparator sortKeyComparator : sortKeyComparators) {
@@ -47,23 +54,22 @@ public class SortCommand extends Command {
         }
         sortedSortKeyComparators.sort(Comparator.comparingInt(SortKeyComparator::getSortIndex));
 
-        for (int i = 0; i < sortedSortKeyComparators.size() ; i++) {
+        for (int i = 0; i < sortedSortKeyComparators.size(); i++) {
             SortKeyComparator current = sortedSortKeyComparators.get(i);
             if (current.isActive()) {
                 System.out.println("currentSort = " + current);
                 System.out.println("ExpenseComparator = " + expenseComparator);
                 if (expenseComparator == null) {
                     expenseComparator = current.isReverse() ? current.reversed() : current;
-                    //expenseComparator = current;
                 } else {
-                    //expenseComparator = expenseComparator.thenComparing(current);
-                    expenseComparator = current.isReverse() ?
-                            expenseComparator.thenComparing(current.reversed()) :
-                            expenseComparator.thenComparing(current);
+                    expenseComparator = current.isReverse()
+                            ? expenseComparator.thenComparing(current.reversed())
+                            : expenseComparator.thenComparing(current);
                 }
                 sortOrder.add(current.toString());
             }
         }
+        assert expenseComparator != null : "ExpenseComparator for SortCommand processed by Parser but is null.";
     }
 
     @Override
@@ -73,5 +79,12 @@ public class SortCommand extends Command {
         model.sortExpenseList(expenseComparator);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, sortOrder.toString()));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SortCommand); // instanceof handles nulls
+                // && expenseComparator.equals(((SortCommand) other).expenseComparator)); // state check
     }
 }
