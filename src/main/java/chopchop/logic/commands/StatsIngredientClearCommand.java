@@ -8,14 +8,14 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 import chopchop.model.UsageList;
-import chopchop.model.usage.RecipeUsage;
+import chopchop.model.usage.IngredientUsage;
 
-public class StatsRecipeClearCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "stats recipe clear";
+public class StatsIngredientClearCommand extends Command implements Undoable {
+    public static final String COMMAND_WORD = "stats ingredient clear";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : deletes all saved"
-        + "records of recipe usages from ChopChop. It can be undone but cannot be restored.";
+        + "records of ingredient usages from ChopChop. It can be undone but cannot be restored.";
 
-    private UsageList<RecipeUsage> usages = new UsageList<>();
+    private UsageList<IngredientUsage> usages = new UsageList<>();
 
     /**
      * Executes the command and returns the result message.
@@ -29,12 +29,12 @@ public class StatsRecipeClearCommand extends Command implements Undoable {
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         requireNonNull(model);
         try {
-            this.usages = model.getRecipeUsageList();
-            model.setRecipeUsageList(new UsageList<>());
+            this.usages = model.getIngredientUsageList();
+            model.setIngredientUsageList(new UsageList<>());
         } catch (Exception e) {
-            return CommandResult.error("Unable to clear records of recipes made");
+            return CommandResult.error("Unable to clear records of ingredients used");
         }
-        return CommandResult.statsMessage(new ArrayList<>(), "All records of recipes made cleared!");
+        return CommandResult.statsMessage(new ArrayList<>(), "All records of ingredients used cleared!");
     }
 
     /**
@@ -48,11 +48,11 @@ public class StatsRecipeClearCommand extends Command implements Undoable {
     public CommandResult undo(Model model) throws CommandException {
         requireNonNull(model);
         try {
-            model.setRecipeUsageList(this.usages);
+            model.setIngredientUsageList(this.usages);
             this.usages.setAll(new UsageList<>()); //don't think need to clear but just in case
         } catch (Exception e) {
-            return CommandResult.error("Unable to restore records of recipes made");
+            return CommandResult.error("Unable to restore records of ingredients used");
         }
-        return CommandResult.message("Undo: restored records of recipes made");
+        return CommandResult.message("Undo: restored records of ingredients used");
     }
 }

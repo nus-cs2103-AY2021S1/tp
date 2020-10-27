@@ -167,4 +167,6 @@ public interface Model {
     void removeIngredientUsage(IngredientReference ingredient);
 
     void setRecipeUsageList(UsageList<RecipeUsage> rl);
+
+    void setIngredientUsageList(UsageList<IngredientUsage> rl);
 }

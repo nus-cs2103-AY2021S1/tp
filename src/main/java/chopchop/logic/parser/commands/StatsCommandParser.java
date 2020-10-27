@@ -14,6 +14,7 @@ import chopchop.commons.util.Result;
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
+import chopchop.logic.commands.StatsIngredientClearCommand;
 import chopchop.logic.commands.StatsIngredientDateCommand;
 import chopchop.logic.commands.StatsRecipeClearCommand;
 import chopchop.logic.commands.StatsRecipeDateCommand;
@@ -50,6 +51,9 @@ public class StatsCommandParser {
                     return parseDateRecipeCommand(target.snd().strip(), args);
 
                 case INGREDIENT:
+                    if (target.snd().equals("clear")) {
+                        return Result.of(new StatsIngredientClearCommand());
+                    }
                     return parseDateIngredientCommand(target.snd().strip(), args);
 
                 default:
