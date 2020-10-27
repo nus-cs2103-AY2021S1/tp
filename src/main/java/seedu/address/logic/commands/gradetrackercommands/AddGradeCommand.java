@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.gradetrackercommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE;
@@ -6,6 +6,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -53,6 +55,7 @@ public class AddGradeCommand extends Command {
             throw new CommandException(MESSAGE_GRADE_NOT_ADDED);
         }
         module.addGrade(gradeToAdd);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, gradeToAdd));
     }
 

@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.gradetrackercommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_NEW_ASSIGNMENT;
@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RESULT_ASSIGNMENT;
 
 import java.util.List;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -59,6 +61,7 @@ public class AddAssignmentCommand extends Command {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_ADDED);
         }
         module.addAssignment(assignmentToAdd);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignmentToAdd));
     }
 

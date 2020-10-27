@@ -9,20 +9,24 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.todolistcommands.AddTaskCommand;
+import seedu.address.logic.commands.todolistcommands.CompleteTaskCommand;
 import seedu.address.logic.commands.todolistcommands.DeleteTaskCommand;
 import seedu.address.logic.commands.todolistcommands.EditTaskCommand;
 import seedu.address.logic.commands.todolistcommands.FindTaskCommand;
 import seedu.address.logic.commands.todolistcommands.HelpTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ListTaskCommand;
+import seedu.address.logic.commands.todolistcommands.ResetTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ViewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.todolistparsers.AddTaskParser;
+import seedu.address.logic.parser.todolistparsers.CompleteTaskParser;
 import seedu.address.logic.parser.todolistparsers.DeleteTaskParser;
 import seedu.address.logic.parser.todolistparsers.EditTaskParser;
 import seedu.address.logic.parser.todolistparsers.FindTaskParser;
+import seedu.address.logic.parser.todolistparsers.ResetTaskParser;
 import seedu.address.logic.parser.todolistparsers.ViewTaskParser;
 
-public class TodoListParser {
+public class TodoListParser implements FeatureParser {
     /**
      * Used for initial separation of command word and args.
      */
@@ -61,6 +65,12 @@ public class TodoListParser {
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
+
+        case ResetTaskCommand.COMMAND_WORD:
+            return new ResetTaskParser().parse(arguments);
+
+        case CompleteTaskCommand.COMMAND_WORD:
+            return new CompleteTaskParser().parse(arguments);
 
         //case ExitCommand.COMMAND_WORD:
         //return new ExitCommand();

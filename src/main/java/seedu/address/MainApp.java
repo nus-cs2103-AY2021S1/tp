@@ -28,10 +28,12 @@ import seedu.address.model.UserPrefs;
 import seedu.address.storage.ContactListStorage;
 import seedu.address.storage.JsonContactListStorage;
 import seedu.address.storage.JsonModuleListStorage;
+import seedu.address.storage.JsonTodoListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.ModuleListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TodoListStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -63,7 +65,8 @@ public class MainApp extends Application {
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
         ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
-        storage = new StorageManager(moduleListStorage, contactListStorage, userPrefsStorage);
+        TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
+        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage, userPrefsStorage);
 
         initLogging(config);
 
