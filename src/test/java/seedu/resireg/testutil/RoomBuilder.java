@@ -23,7 +23,6 @@ public class RoomBuilder {
     private Floor floor;
     private RoomNumber roomNumber;
     private RoomType roomType;
-    private Student student;
     private Set<Tag> tags;
 
     /**
@@ -75,14 +74,6 @@ public class RoomBuilder {
      */
     public RoomBuilder withRoomNumber(String number) {
         this.roomNumber = new RoomNumber(number);
-        return this;
-    }
-
-    /**
-     * Sets the {@code RoomNumber} of the {@code Room} that we are building.
-     */
-    public RoomBuilder withStudent(Student student) {
-        this.student = student;
         return this;
     }
 
