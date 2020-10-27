@@ -66,7 +66,7 @@ public enum Muscle {
      */
     public static String muscleListToString(List<Muscle> musclesWorked) {
         return musclesWorked.stream().map(muscle -> muscle.toString())
-                .collect(Collectors.joining( ", " ));
+                .collect(Collectors.joining(", "));
     }
 
     @Override

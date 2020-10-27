@@ -75,7 +75,8 @@ public class SampleDataUtil {
             new Exercise(new seedu.address.model.exercise.Name("2 4km"), new Description("11:30"),
                     new Date("04-10-2020"), new Calories("100"), musclesWorked),
             new Exercise(new seedu.address.model.exercise.Name("Pull Up"),
-                    new Description("20 with Added Weight: 5 kg "), new Date("05-10-2020"), new Calories("100"), musclesWorked)
+                    new Description("20 with Added Weight: 5 kg "), new Date("05-10-2020"),
+                    new Calories("100"), musclesWorked)
         };
     }
 
