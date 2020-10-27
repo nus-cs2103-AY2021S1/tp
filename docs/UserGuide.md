@@ -29,7 +29,7 @@ Here is a summary of the symbols that are used in this User Guide:
 
 Symbol | Meaning 
 -------|-------- 
-`command` | A grey highlight indicates a command that can be executed by Reeve.
+`command` | A grey highlight indicates a command that can be executed by **Reeve**.
 :information_source: | Indicates important information. 
 
 ## 2. Quick start
@@ -41,7 +41,7 @@ This section serves to explain how to set up **Reeve** on your computer and how 
 
 2. Download the latest `jar` file from [here](https://github.com/AY2021S1-CS2103T-W15-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for Reeve.
+3. Copy the file to the folder you want to use as the _home folder_ for **Reeve**.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -52,17 +52,17 @@ This section serves to explain how to set up **Reeve** on your computer and how 
    * **`list`** : Lists all students.
 
    * **`add`**`add n/Alex p/93211234 s/Commonwealth Secondary School y/Primary 6 v/Blk 33 West Coast Rd #21-214
-   t/1 1430-1630 f/25 d/12/12/2020` : Adds a student named `Alex` to Reeve.
+   t/1 1430-1630 f/25 d/12/12/2020` : Adds a student named `Alex` to **Reeve**.
 
    * **`delete`**`3` : Deletes the 3rd student shown in the current list.
 
    * **`clear`** : Deletes all students.
 
-   * **`exit`** : Exits Reeve.
+   * **`exit`** : Exits **Reeve**.
 
 1. Refer to the [Features](#features) section below for details of each command.
 
-### 2.2 Making sense of Reeve's layout
+### 2.2 Making sense of **Reeve**'s layout
 (to be added when GUI is finalised)
 
 ## 3. Features
@@ -122,7 +122,7 @@ t/1 1200-1400 f/30 d/24/09/2020 a/Likes chocolates a/Needs help with Algebra`
 
 #### 3.2.2 Editing a student: `edit` (By: Vaishak)
 
-Edits an existing student in Reeve.
+Edits an existing student in **Reeve**.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [s/SCHOOL] [y/YEAR] [v/CLASS_VENUE] [t/CLASS_TIME] [f/FEE] [d/PAYMENT_DATE] `
 
@@ -167,7 +167,7 @@ Examples:
 
 #### 3.2.4 Listing all students: `list`
 
-Shows the list of all students in Reeve.
+Shows the list of all students in **Reeve**.
 
 :information source: You will need to use this if you want to view the full student list after using commands such as `find` and `schedule`.
 
@@ -175,7 +175,7 @@ Format: `list`
 
 #### 3.2.5 Deleting a student: `delete`
 
-Deletes the specified student from Reeve.
+Deletes the specified student from **Reeve**.
 
 Format: `delete INDEX`
 
@@ -184,7 +184,7 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd student in Reeve.
+* `list` followed by `delete 2` deletes the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
 #### 3.2.6 Finding students with overdue fees: `overdue` (By: Ying Gao)
@@ -211,9 +211,9 @@ General Format: `detail COMMAND_WORD STUDENT_INDEX PARAMETERS`
 * `detail delete` requires the following optional field: `[i/DETAIL_INDEX]`.
 
 Examples:  
-* `detail add 1 d/Smart` adds the "Smart" detail to the 1st student in Reeve.
-* `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in Reeve, to "Handsome".
-* `detail delete 1 i/3` deletes the 3rd detail for the 1st student in Reeve.
+* `detail add 1 d/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
+* `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
+* `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 
 #### 3.2.7.1 Adding a detail: `detail add`
 
@@ -253,7 +253,7 @@ Examples:
 
 #### 3.2.8 Clearing all entries: `clear`
 
-Clears all student data from Reeve.
+Clears all student data from **Reeve**.
 
 Format: `clear`
 
@@ -283,7 +283,7 @@ Format: `question add INDEX t/QUESTION`
 * `QUESTION` must not be empty.
 
 Example:
-* `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in Reeve.
+* `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in **Reeve**.
 
 #### 3.3.1.3 Resolving a question: `solve`
 
@@ -296,7 +296,7 @@ Format: `question solve INDEX i/QUESTION_INDEX t/SOLUTION`
 * `SOLUTION` must not be empty.
 
 Example:
-* `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in Reeve as answered.
+* `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in **Reeve** as answered.
 
 #### 3.3.1.4 Deleting a question: `delete`
 
@@ -308,7 +308,7 @@ Format: `question delete INDEX i/QUESTION_INDEX`
 * `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
 
 Example:
-* `question delete 1 i/1` deletes the 1st question of the 1st student in Reeve.
+* `question delete 1 i/1` deletes the 1st question of the 1st student in **Reeve**.
 
 #### 3.3.2 Recording exams of a student: `exam` (By: Hogan)
 
@@ -323,7 +323,7 @@ General Format: `exam COMMAND_WORD_EXAM INDEX PARAMETERS`
 
 #### 3.3.2.1 Adding an exam record to a student: `exam add`
 
-You can add an exam record to a specified student in Reeve.
+You can add an exam record to a specified student in **Reeve**.
 
 Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
@@ -338,19 +338,19 @@ Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam  with date 8 Dec 2020 and 
-score 40/60 to the first student in Reeve.
+score 40/60 to the first student in **Reeve**.
 
 * `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam  with date 12 May 2020 and 
-score 67/100 to the fifth student in Reeve.
+score 67/100 to the fifth student in **Reeve**.
 
 #### 3.3.2.2 Deleting an exam record to a student: `exam delete`
 
-You can delete a specific exam from a specified student in Reeve.
+You can delete a specific exam from a specified student in **Reeve**.
 
 Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
 * Deletes the an exam at `EXAM_INDEX` in the specified student's exam list.
-* The specified student is chosen based on `STUDENT_INDEX` of Reeve. 
+* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**. 
 * The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
 Examples:
@@ -448,7 +448,7 @@ Term | Definition
 This section provides the answers to Frequently Asked Questions(FAQ) by users.
 
 1. How do I transfer my data to another Computer?<br>
-Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Reeve home folder.
+Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Reeve** home folder.
 
 2. Do I have to manually save my data?<br>
 Reeve data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
