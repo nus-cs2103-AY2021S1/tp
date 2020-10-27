@@ -19,7 +19,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_MEETING_PROPERTY_ID = new Prefix("p/");
     public static final Prefix PREFIX_MEETING_BIDDER_ID = new Prefix("b/");
     public static final Prefix PREFIX_MEETING_TYPE = new Prefix("q/");
-    public static final Prefix PREFIX_MEETING_ORDER = new Prefix("order/");
+    public static final Prefix PREFIX_MEETING_ORDER = new Prefix("o/");
 
     /* Property Prefix definitions */
     public static final Prefix PREFIX_PROPERTY_NAME = new Prefix("n/");

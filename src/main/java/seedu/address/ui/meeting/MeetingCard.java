@@ -12,7 +12,7 @@ import seedu.address.ui.UiPart;
  */
 public class MeetingCard extends UiPart<Region> {
 
-    private static final String FXML = "MeetingListCard.fxml";
+    private static final String FXML = "meeting/MeetingListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -47,10 +47,10 @@ public class MeetingCard extends UiPart<Region> {
         super(FXML);
         this.meeting = meeting;
         id.setText(displayedIndex + ". ");
-        typeOfMeeting.setText("Meeting Type: " + getMeetingType(meeting));
+        typeOfMeeting.setText(getMeetingType(meeting));
         bidderId.setText("Bidder ID: " + meeting.getBidderId().toString());
         propertyId.setText("Property ID: " + meeting.getPropertyId().toString());
-        time.setText("Time: " + meeting.getTime().time);
+        time.setText("Date: " + meeting.getTime().time);
         venue.setText("Venue: " + meeting.getVenue().venue);
     }
 
