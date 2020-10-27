@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
-import chopchop.model.usage.RecipeUsage;
 import chopchop.model.usage.Usage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

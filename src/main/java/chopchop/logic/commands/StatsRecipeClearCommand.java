@@ -3,6 +3,7 @@ package chopchop.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
@@ -33,7 +34,8 @@ public class StatsRecipeClearCommand extends Command implements Undoable {
         } catch (Exception e) {
             return CommandResult.error("Unable to clear records of recipes made");
         }
-        return CommandResult.statsMessage(new ArrayList<>(), "All records of recipes made cleared!" + this.usages.getUsageCount());
+        return CommandResult.statsMessage(new ArrayList<>(), "All records of recipes made cleared!"
+            + this.usages.getUsageCount());
     }
 
     /**

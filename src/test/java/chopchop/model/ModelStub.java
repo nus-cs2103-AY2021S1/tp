@@ -178,4 +178,9 @@ public abstract class ModelStub implements Model {
     public void removeIngredientUsage(IngredientReference ingredient) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public void setRecipeUsageList(UsageList<RecipeUsage> rl) {
+        throw new AssertionError("This method should not be called.");
+    }
 }

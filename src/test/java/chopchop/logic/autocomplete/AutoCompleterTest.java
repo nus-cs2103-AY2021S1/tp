@@ -262,6 +262,7 @@ public class AutoCompleterTest {
         public ReadOnlyEntryBook<Recipe> getRecipeBook() {
             return this.recipes;
         }
+
     }
 
 }
