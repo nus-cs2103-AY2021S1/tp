@@ -149,7 +149,24 @@ Shows a list of all types of drinks sold for the current day.
 
 Format: `s-list`
 
-#### 2.3 Listing the sales record for a specific day :
+#### 2.3 Finds the number of drinks by keywords : `s-find`
+
+Finds all sales data of drinks that contain the KEYWORD(s).
+
+Format: `s-find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
+* Only the drink's short form name is searched.
+* Only full words will be matched e.g. `BSB` will not match `BSBBT`.
+* Drinks matching at least one keyword will be returned (i.e. `OR` search).
+  e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
+
+Examples:
+* `s-find BSBBT` returns `BSBBT`.
+* `s-find BSBBT BSBM` returns `BSBBT`, `BSBM`.<br>
+
+
+#### 2.4 Listing the sales record for a specific day :
 Shows a sales record for each type of mile tea on a specific date.
 
 Format: `sales YYYY-MM-DD`
