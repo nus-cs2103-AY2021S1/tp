@@ -131,13 +131,6 @@ This command quits ChopChop. Your recipe data is already saved whenever a comman
 Usage: `quit`
 
 
-### Undoing commands — **`redo`**
-Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
-
-Usage: `redo`
-
-
-
 ### Viewing Recipes — **`view`**
 This command displays a specific recipe from ChopChop. You can either use the name or the number of the recipe to refer to it.
 
@@ -581,6 +574,80 @@ Again, you can either click the Ingredients button, or use `list ingredients` to
 Undoes the last undoable command. Undoable commands are commands that involve changes to recipes and ingredients stored in ChopChop.
 
 Usage: `undo`
+
+
+### Redoing commands — **`redo`**
+Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
+
+Usage: `redo`
+
+
+
+
+### Listing most made Recipes — **`stats recipe most made`**
+Shows a list of the top 5 most made recipes of all time. The number of times of which each recipe is made is tracked from the start of usage of ChopChop. Even after you delete the recipe is deleted, its past usages are still saved within ChopChop.
+
+Usage: `stats recipe most made`
+
+Example:
+Let's say you executed `make Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe most made`, you will still see it listed as one of the most made recipes.
+
+
+
+
+### Listing Recipes made within a certain period — **`stats recipe`**
+The time period given can either be:
+1. A specific day.
+2. A period of time with a start date or an end date or both.
+#### 1. Listing recipes made on the specified day. 
+The day starts at 00:00 hours and ends at 23:59 hours.
+
+Usage: `stats recipe /on <DATE>` 
+
+For example:
+Let's say you executed `make Rojak` on 23:59 hours yesterday. If you enter `stats recipe /on <TODAY'S DATE>` you will not see `Rojak` listed in the statistics box. 
+
+#### 2. Listing recipes made within the specified time period.
+Shows a list of recipes made within the specified time period. It should have a start date or an end date or both.
+
+Usage: `stats recipe [/before <DATE>] [/after <DATE>]`
+<div markdown="span" class="alert alert-primary">
+:warning: 
+</div>
+
+**Note:** Either `[/before <DATE>]` or `[/after <DATE>]` has to be specified.
+
+
+Examples:
+
+If you enter `stats recipe /before 2020-02-13` into the command box, all recipes made prior to 2020-02-13 will be listed in the Statistics box.
+
+If you enter `stats recipe /after 2020-02-13` into the command box, all recipes made after 2020-02-13 will be listed in the Statistics box.
+
+If you enter `stats recipe /before 2020-10-31 /after 2020-02-13` into the command box, all recipes made within the period of 2020-02-13 to 2020-10-31 will be listed in the Statistics box.
+
+If you enter `stats recipe` into the command box without either `[/before <DATE>]` or `[/after <DATE>]`, no recipes will be listed as this is an invalid command.
+
+<div markdown="span" class="alert alert-primary">
+:bulb: **Tip:** If you are only interested in what was cooked for dinner, you can specify the time period to the nearest minute. For example, `stats recipe /before 2020-02-13 20:30 /after 2020-02-13 18:30` will show a list of recipes made within this 2-hour period.
+</div>
+
+
+
+
+### Listing Ingredients used within a certain period — **`stats ingredient`**
+Shows a list of ingredients used within the specified time period.
+
+The time period given can either be:
+1. A specific day.
+2. A period of time with a start date or an end date or both.
+
+Usage: Similar to the previous command [above](#listing-recipes-made-within-a-certain-period--stats-recipe), the only difference is the keyword is now `stats ingredient` instead of `stats recipe`.
+
+
+
+
+
 
 
 -----------------------
