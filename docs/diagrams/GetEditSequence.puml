@@ -1,0 +1,62 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":WishfulShrinkingParser" as WishfulShrinkingParser LOGIC_COLOR
+participant ":GetEditCommandParser" as GetEditCommandParser LOGIC_COLOR
+participant "command :GetEditCommand" as GetEditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("edit 1")
+activate LogicManager
+
+LogicManager -> WishfulShrinkingParser : parseCommand("edit 1")
+activate WishfulShrinkingParser
+
+create GetEditCommandParser
+WishfulShrinkingParser -> GetEditCommandParser
+activate GetEditCommandParser
+
+GetEditCommandParser --> WishfulShrinkingParser
+deactivate GetEditCommandParser
+
+WishfulShrinkingParser -> GetEditCommandParser : parse("1")
+activate GetEditCommandParser
+
+create GetEditCommand
+GetEditCommandParser -> GetEditCommand
+activate GetEditCommand
+
+GetEditCommand --> GetEditCommandParser : command
+deactivate GetEditCommand
+
+GetEditCommandParser --> WishfulShrinkingParser : command
+deactivate GetEditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+GetEditCommandParser -[hidden]-> WishfulShrinkingParser
+destroy GetEditCommandParser
+
+WishfulShrinkingParser --> LogicManager : command
+deactivate WishfulShrinkingParser
+
+LogicManager -> GetEditCommand : execute()
+activate GetEditCommand
+
+create CommandResult
+GetEditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> GetEditCommand
+
+GetEditCommand -> CommandResult : setCommandBox(commandType)
+
+CommandResult --> GetEditCommand
+
+GetEditCommand --> LogicManager : CommandResult
+deactivate GetEditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
