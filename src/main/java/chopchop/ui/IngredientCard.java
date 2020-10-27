@@ -1,12 +1,14 @@
-package chopchop.ui;
+// IngredientCard.java
+//@@author fall9x
 
-import java.util.Comparator;
+package chopchop.ui;
 
 import chopchop.model.ingredient.Ingredient;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 
@@ -20,30 +22,44 @@ public class IngredientCard extends UiPart<Region> {
     private Button ingredientCard;
 
     @FXML
-    private Label ingredientName;
+    private Label name;
 
     @FXML
-    private Label ingredientQty;
+    private Label quantity;
 
     @FXML
     private Label expiryDate;
 
     @FXML
-    private FlowPane tags;
+    private FlowPane tagList;
+
+    @FXML
+    private Label index;
+
+    @FXML
+    private HBox expiryBox;
 
     /**
      * Creates a {@code RecipeCard} with the given {@code Recipe}.
      */
-    public IngredientCard(Ingredient ingredient) {
+    public IngredientCard(Ingredient ingredient, int id) {
         super(FXML);
         this.ingredient = ingredient;
-        ingredientName.setText(ingredient.getName());
-        ingredientQty.setText(ingredient.getQuantity().toString());
-        expiryDate.setText(ingredient.getExpiryDate().map(d -> String.format("Exp: %s", d))
-                .orElse(""));
-        ingredient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.toString()))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.toString())));
+
+        this.index.setText(String.format("#%d", id));
+
+        this.name.setText(ingredient.getName());
+        this.quantity.setText(ingredient.getQuantity().toString());
+
+        this.ingredient.getExpiryDate().ifPresentOrElse(exp -> {
+            this.expiryDate.setText(exp.toString());
+        }, () -> this.expiryBox.setVisible(false));
+
+        this.ingredient.getTags().stream()
+            .map(Object::toString)
+            .sorted()
+            .map(Label::new)
+            .forEach(this.tagList.getChildren()::add);
     }
 
 
