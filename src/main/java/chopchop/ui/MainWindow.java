@@ -165,6 +165,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    void showCommandOutput(CommandResult output) {
+        this.commandOutput.setFeedbackToUser(output);
+    }
+
+
     /**
      * Closes the application.
      */
@@ -183,27 +188,28 @@ public class MainWindow extends UiPart<Stage> {
      * @see chopchop.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getMessage());
+            var result = logic.execute(commandText);
+            logger.info("Result: " + result.toString());
 
-            this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
+            this.commandOutput.setFeedbackToUser(result);
 
-            if (commandResult.shouldShowHelp()) {
+            if (result.shouldShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.shouldExit()) {
+            if (result.shouldExit()) {
                 handleExit();
             }
 
-            return commandResult;
+            return result;
 
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             this.statsOutput.setBoxContent(e.getMessage());
 
-            commandOutput.setFeedbackToUser(e.getMessage(), /* isError: */ true);
+            commandOutput.setFeedbackToUser(CommandResult.error(e.getMessage(), /* isError: */ true));
             throw e;
         }
     }

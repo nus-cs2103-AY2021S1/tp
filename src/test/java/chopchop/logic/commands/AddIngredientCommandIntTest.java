@@ -3,9 +3,9 @@ package chopchop.logic.commands;
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 
+import java.util.Optional;
+
 import chopchop.model.EntryBook;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import chopchop.model.Model;
 import chopchop.model.ModelManager;
 import chopchop.model.UsageList;
@@ -13,6 +13,10 @@ import chopchop.model.UserPrefs;
 import chopchop.model.usage.IngredientUsage;
 import chopchop.model.usage.RecipeUsage;
 import chopchop.testutil.IngredientBuilder;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 
 public class AddIngredientCommandIntTest {
     private Model model;
@@ -31,6 +35,11 @@ public class AddIngredientCommandIntTest {
             new UsageList<RecipeUsage>(), new UsageList<IngredientUsage>(), new UserPrefs());
         expectedModel.addIngredient(validIngredient);
 
-        assertCommandSuccess(new AddIngredientCommand(validIngredient), model, expectedModel);
+        assertCommandSuccess(new AddIngredientCommand(
+            validIngredient.getName(),
+            Optional.of(validIngredient.getQuantity()),
+            validIngredient.getExpiryDate(),
+            validIngredient.getTags()
+        ), model, expectedModel);
     }
 }

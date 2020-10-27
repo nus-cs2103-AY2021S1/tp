@@ -71,9 +71,9 @@ public class QuantityTest {
     @Test
     void parse_invalidUnits_failure() {
         var tests = Map.of(
-            "10 lg",        "unknown unit 'lg' (from '10 lg')",
-            "3.1.4 cups",   "couldn't parse number from quantity '3.1.4 cups': multiple points",
-            "",             "quantity string cannot be empty"
+            "10 lg",        "Unknown unit 'lg' (from '10 lg')",
+            "3.1.4 cups",   "Couldn't parse number from quantity '3.1.4 cups': multiple points",
+            "",             "Quantity string cannot be empty"
         );
 
         tests.forEach((k, v) -> {
@@ -103,8 +103,8 @@ public class QuantityTest {
     @Test
     void add_incompatibleUnits_failure() {
         var tests = Map.of(
-            Pair.of("185 g", "3.7 ml"),     "cannot add '3.700ml' to '185g' (incompatible units)",
-            Pair.of("1", "7g"),             "cannot add '7g' to '1' (incompatible units)"
+            Pair.of("185 g", "3.7 ml"),     "Cannot add '3.7ml' to '185g' (incompatible units)",
+            Pair.of("1", "7g"),             "Cannot add '7g' to '1' (incompatible units)"
         );
 
         tests.forEach((k, v) -> {

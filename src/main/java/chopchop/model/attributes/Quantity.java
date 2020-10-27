@@ -50,6 +50,11 @@ public interface Quantity extends Comparable<Quantity> {
     }
 
     /**
+     * Checks whether the given quantity is unit-compatible with this one.
+     */
+    boolean compatibleWith(Quantity qty);
+
+    /**
      * Negates this quantity, primarily used for subtracting quantities.
      *
      * @return a new Quantity representing the negation of this quantity.
@@ -75,7 +80,7 @@ public interface Quantity extends Comparable<Quantity> {
         );
 
         if (input.isEmpty()) {
-            return Result.error("quantity string cannot be empty");
+            return Result.error("Quantity string cannot be empty");
         }
 
         // this is a bit iffy, but this condition will accept things like "-31.4-48.145.201-4".
@@ -85,7 +90,7 @@ public interface Quantity extends Comparable<Quantity> {
 
         // do-notation would be really nice here.
         if (num.isError()) {
-            return Result.error("couldn't parse number from quantity '%s': %s", input, num.getError());
+            return Result.error("Couldn't parse number from quantity '%s': %s", input, num.getError());
         }
 
         var unit = p.snd().trim();
@@ -99,7 +104,7 @@ public interface Quantity extends Comparable<Quantity> {
                     .map(fn -> num.then(n -> fn.apply(n, unit.toString())))
                     .filter(Result::hasValue)
                     .findFirst(),
-                String.format("unknown unit '%s' (from '%s')", unit, input))
+                String.format("Unknown unit '%s' (from '%s')", unit, input))
             );
     }
 
@@ -113,6 +118,10 @@ public interface Quantity extends Comparable<Quantity> {
     static String formatDecimalValue(double value) {
         if (value == (int) value) {
             return String.format("%d", (int) value);
+        } else if (value * 10 == (int) (value * 10)) {
+            return String.format("%.1f", value);
+        } else if (value * 100 == (int) (value * 100)) {
+            return String.format("%.2f", value);
         } else {
             return String.format("%.3f", value);
         }
