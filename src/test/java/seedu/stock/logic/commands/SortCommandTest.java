@@ -40,4 +40,21 @@ public class SortCommandTest {
 
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
+
+    @Test
+    public void execute_descendingOrder_success() {
+        SortCommand sortCommand = new SortCommand(SortUtil.Field.SERIALNUMBER, true);
+        List<Stock> sortedStocks = getTypicalStocks();
+        Comparator<Stock> serialNumberComparator = SortUtil.generateReverseComparator(SortUtil.Field.SERIALNUMBER);
+        sortedStocks.sort(serialNumberComparator);
+        StockBook sortedStockBook = new StockBook();
+        sortedStockBook.setStocks(sortedStocks);
+
+        String expectedMessage =
+                String.format(MESSAGE_SORT_STOCK_SUCCESS, SortUtil.getFieldDescription(SortUtil.Field.SERIALNUMBER));
+        Model expectedModel = new ModelManager(sortedStockBook, new UserPrefs(),
+                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
+
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
 }
