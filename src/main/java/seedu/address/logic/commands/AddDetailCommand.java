@@ -58,7 +58,7 @@ public class AddDetailCommand extends DetailCommand {
         requireNonNull(model);
         logger.log(Level.INFO, "Beginning command execution");
 
-        List<Student> lastShownList = model.getSortedStudentList();
+        List<Student> lastShownList = model.getFilteredStudentList();
         if (index.getZeroBased() >= lastShownList.size()) {
             logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);

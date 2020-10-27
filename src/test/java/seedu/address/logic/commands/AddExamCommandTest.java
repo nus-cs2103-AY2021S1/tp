@@ -56,7 +56,7 @@ public class AddExamCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withExams().build();
         AddExamCommand addExamCommand =
                 new AddExamCommand(INDEX_FIRST_PERSON, dummyExam);
@@ -74,7 +74,7 @@ public class AddExamCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromOneBased(model.getSortedStudentList().size() + 1);
+        Index outOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         AddExamCommand command = new AddExamCommand(outOfBounds,
                 dummyExam);
 
@@ -85,7 +85,7 @@ public class AddExamCommandTest {
     public void execute_validIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withExams().build();
         model.setStudent(asker, clone);
 
