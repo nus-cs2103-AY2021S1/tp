@@ -244,7 +244,15 @@ Examples:
 * `addapplicant n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
 * `addapplicant n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
 
-#### 3.4.2. Deleting an applicant:
+#### 3.4.2. Deleting an applicant: `delapplicant`
+
+Deletes an applicant with the specified index on the displayed list from the application. 
+
+Format: `delapplicant INDEX`
+
+Examples:
+* `delapplicant 1`
+
 
 #### 3.4.3. Adding an application: `addapplication`
 
