@@ -22,9 +22,9 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.builders.ModuleBuilder;
 import seedu.address.testutil.builders.PersonBuilder;
@@ -75,6 +75,21 @@ public class AddressBookTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         assertTrue(addressBook.hasPerson(ALICE));
+    }
+
+    @Test
+    public void clearContacts_personInAddressBook_returnsTrue() {
+        addressBook.clearContacts();
+        assertEquals(addressBook.getPersonList(), new UniquePersonList().asUnmodifiableObservableList());
+    }
+
+    @Test
+    public void clearContacts_checkInstructorInModuleList_returnsTrue() {
+        addressBook.clearContacts();
+        AddressBook temp = getTypicalAddressBook();
+        temp.clearContacts();
+        assertEquals(addressBook.getSemOneModuleList(), temp.getSemOneModuleList());
+        assertEquals(addressBook.getSemTwoModuleList(), temp.getSemTwoModuleList());
     }
 
     @Test
@@ -153,11 +168,11 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final UniqueModuleList modules = new UniqueModuleList();
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons, Collection<Module> modules) {
             this.persons.setAll(persons);
-            this.modules.getInternalList().setAll(modules);
+            this.modules.setAll(modules);
         }
 
         AddressBookStub(Collection<Person> persons) {
@@ -170,7 +185,17 @@ public class AddressBookTest {
         }
 
         @Override
-        public UniqueModuleList getModuleList() {
+        public ObservableList<Module> getModuleList() {
+            return modules;
+        }
+
+        @Override
+        public ObservableList<Module> getSemOneModuleList() {
+            return modules;
+        }
+
+        @Override
+        public ObservableList<Module> getSemTwoModuleList() {
             return modules;
         }
     }

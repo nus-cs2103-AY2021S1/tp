@@ -75,9 +75,9 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1">
+                  <TabPane fx:id="semsPanelPlaceholder" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1">
                     <tabs>
-                      <Tab text="Sem 1">
+                      <Tab disable="false" text="Semester 1">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
@@ -93,7 +93,7 @@
                               </AnchorPane>
                         </content>
                       </Tab>
-                      <Tab text="Sem 2">
+                      <Tab disable="true" text="Semester 2">
                         <content>
                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                  <children>
