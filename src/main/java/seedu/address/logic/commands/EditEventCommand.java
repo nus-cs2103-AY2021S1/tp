@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,11 +15,11 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.EditEventDescriptor;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
@@ -53,6 +54,7 @@ public class EditEventCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
@@ -81,6 +83,13 @@ public class EditEventCommand extends Command {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedEvent((Event) taskToEdit, editEventDescriptor);
 
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        model.setTask(taskToEdit, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
@@ -91,13 +100,13 @@ public class EditEventCommand extends Command {
     public static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
 
-        Title updatedTitle = Optional.of(editEventDescriptor.getTitle()).orElse(eventToEdit.getTitle());
-        Description updatedDescription = Optional.of(editEventDescriptor.getDescription())
+        Title updatedTitle = editEventDescriptor.getTitle().orElse(eventToEdit.getTitle());
+        Description updatedDescription = editEventDescriptor.getDescription()
                 .orElse(eventToEdit.getDescription());
-        Priority updatedPriority = Optional.of(editEventDescriptor.getPriority()).orElse(eventToEdit.getPriority());
-        TaskDate updatedEventDate = Optional.of(editEventDescriptor.getEventDate()).orElse(eventToEdit.getEventDate());
-        TaskTime updatedEventTime = Optional.of(editEventDescriptor.getEventTime()).orElse(eventToEdit.getEventTime());
-        Set<Tag> updatedTagList = Optional.of(editEventDescriptor.getTagList()).orElse(eventToEdit.getTags());
+        Priority updatedPriority = editEventDescriptor.getPriority().orElse(eventToEdit.getPriority());
+        TaskDate updatedEventDate = editEventDescriptor.getEventDate().orElse(eventToEdit.getEventDate());
+        TaskTime updatedEventTime = editEventDescriptor.getEventTime().orElse(eventToEdit.getEventTime());
+        Set<Tag> updatedTagList = editEventDescriptor.getTagList().orElse(eventToEdit.getTags());
 
         return new Event(updatedTitle, updatedDescription, updatedPriority, updatedEventDate,
                 updatedEventTime, updatedTagList);
@@ -120,6 +129,112 @@ public class EditEventCommand extends Command {
         EditEventCommand e = (EditEventCommand) other;
         return index.equals(e.index)
                 && editEventDescriptor.equals(e.editEventDescriptor);
+    }
+
+    /**
+     * Stores the details to edit the event task with. Each non-empty field value will replace the
+     * corresponding field value of the event task.
+     */
+    public static class EditEventDescriptor {
+        private Title title;
+        private Description description;
+        private Priority priority;
+        private TaskDate eventDate;
+        private TaskTime eventTime;
+        private Set<Tag> tagList;
+
+        public EditEventDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditEventDescriptor(EditEventDescriptor toCopy) {
+            setTitle(toCopy.title);
+            setDescription(toCopy.description);
+            setPriority(toCopy.priority);
+            setEventDate(toCopy.eventDate);
+            setEventTime(toCopy.eventTime);
+            setTagList(toCopy.tagList);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(title, description, priority, eventDate, eventTime, tagList);
+        }
+
+        public Optional<Title> getTitle() {
+            return Optional.ofNullable(title);
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
+        public Optional<TaskDate> getEventDate() {
+            return Optional.ofNullable(eventDate);
+        }
+
+        public Optional<TaskTime> getEventTime() {
+            return Optional.ofNullable(eventTime);
+        }
+
+        public Optional<Set<Tag>> getTagList() {
+            return Optional.ofNullable(tagList);
+        }
+
+        public void setTitle(Title title) {
+            this.title = title;
+        }
+
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+
+        public void setEventDate(TaskDate eventDate) {
+            this.eventDate = eventDate;
+        }
+
+        public void setEventTime(TaskTime eventTime) {
+            this.eventTime = eventTime;
+        }
+
+        public void setTagList(Set<Tag> tagList) {
+            this.tagList = tagList;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditEventDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditEventDescriptor e = (EditEventDescriptor) other;
+
+            return getTitle().equals(e.getTitle())
+                    && getDescription().equals(e.getDescription())
+                    && getPriority().equals(e.getPriority())
+                    && getEventDate().equals(e.getEventDate())
+                    && getEventTime().equals(e.getEventTime())
+                    && getTagList().equals(e.getTagList());
+        }
     }
 
 }

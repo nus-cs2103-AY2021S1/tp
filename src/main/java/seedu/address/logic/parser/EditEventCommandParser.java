@@ -19,7 +19,6 @@ import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.EditTodoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.EditEventDescriptor;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -45,7 +44,7 @@ public class EditEventCommandParser implements Parser<EditEventCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditTodoCommand.MESSAGE_USAGE), pe);
         }
 
-        EditEventDescriptor editEventDescriptor = new EditEventDescriptor();
+        EditEventCommand.EditEventDescriptor editEventDescriptor = new EditEventCommand.EditEventDescriptor();
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             editEventDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }

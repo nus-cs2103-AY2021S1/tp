@@ -17,7 +17,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.EditDeadlineDescriptor;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -44,7 +43,8 @@ public class EditDeadlineCommandParser implements Parser<EditDeadlineCommand> {
                     EditDeadlineCommand.MESSAGE_USAGE), pe);
         }
 
-        EditDeadlineDescriptor editDeadlineDescriptor = new EditDeadlineDescriptor();
+        EditDeadlineCommand.EditDeadlineDescriptor editDeadlineDescriptor =
+                new EditDeadlineCommand.EditDeadlineDescriptor();
         if (argMultimap.getValue(PREFIX_TITLE).isPresent()) {
             editDeadlineDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }

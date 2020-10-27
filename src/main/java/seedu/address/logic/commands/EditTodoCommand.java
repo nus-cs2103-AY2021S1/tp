@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,11 +13,11 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.EditTodoDescriptor;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -46,6 +47,7 @@ public class EditTodoCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the task list.";
 
     private final Index index;
     private final EditTodoDescriptor editTodoDescriptor;
@@ -59,7 +61,7 @@ public class EditTodoCommand extends Command {
         requireNonNull(editTodoDescriptor);
 
         this.index = index;
-        this.editTodoDescriptor = editTodoDescriptor;
+        this.editTodoDescriptor = new EditTodoDescriptor(editTodoDescriptor);
     }
 
     @Override
@@ -74,6 +76,13 @@ public class EditTodoCommand extends Command {
         Task taskToEdit = lastShownList.get(index.getZeroBased());
         Task editedTask = createEditedTodo((ToDo) taskToEdit, editTodoDescriptor);
 
+        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
+        model.setTask(taskToEdit, editedTask);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
@@ -84,11 +93,11 @@ public class EditTodoCommand extends Command {
     public static ToDo createEditedTodo(ToDo todoToEdit, EditTodoDescriptor editTodoDescriptor) {
         assert todoToEdit != null;
 
-        Title updatedTitle = Optional.of(editTodoDescriptor.getTitle()).orElse(todoToEdit.getTitle());
-        Description updatedDescription = Optional.of(editTodoDescriptor.getDescription())
+        Title updatedTitle = editTodoDescriptor.getTitle().orElse(todoToEdit.getTitle());
+        Description updatedDescription = editTodoDescriptor.getDescription()
                 .orElse(todoToEdit.getDescription());
-        Priority updatedPriority = Optional.of(editTodoDescriptor.getPriority()).orElse(todoToEdit.getPriority());
-        Set<Tag> updatedTagList = Optional.of(editTodoDescriptor.getTagList()).orElse(todoToEdit.getTags());
+        Priority updatedPriority = editTodoDescriptor.getPriority().orElse(todoToEdit.getPriority());
+        Set<Tag> updatedTagList = editTodoDescriptor.getTagList().orElse(todoToEdit.getTags());
 
         return new ToDo(updatedTitle, updatedDescription, updatedPriority, updatedTagList);
     }
@@ -109,6 +118,90 @@ public class EditTodoCommand extends Command {
         EditTodoCommand e = (EditTodoCommand) other;
         return index.equals(e.index)
                 && editTodoDescriptor.equals(e.editTodoDescriptor);
+    }
+
+    /**
+     * Stores the details to edit the todo task with. Each non-empty field value will replace the
+     * corresponding field value of the todo task.
+     */
+    public static class EditTodoDescriptor {
+        private Title title;
+        private Description description;
+        private Priority priority;
+        private Set<Tag> tagList;
+
+        public EditTodoDescriptor() {}
+
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public EditTodoDescriptor(EditTodoDescriptor toCopy) {
+            setTitle(toCopy.title);
+            setDescription(toCopy.description);
+            setPriority(toCopy.priority);
+            setTagList(toCopy.tagList);
+        }
+
+        /**
+         * Returns true if at least one field is edited.
+         */
+        public boolean isAnyFieldEdited() {
+            return CollectionUtil.isAnyNonNull(title, description, priority, tagList);
+        }
+
+        public Optional<Title> getTitle() {
+            return Optional.ofNullable(title);
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
+        }
+
+        public Optional<Priority> getPriority() {
+            return Optional.ofNullable(priority);
+        }
+
+        public Optional<Set<Tag>> getTagList() {
+            return Optional.ofNullable(tagList);
+        }
+
+        public void setTitle(Title title) {
+            this.title = title;
+        }
+
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public void setPriority(Priority priority) {
+            this.priority = priority;
+        }
+
+        public void setTagList(Set<Tag> tagList) {
+            this.tagList = tagList;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditTodoDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditTodoDescriptor e = (EditTodoDescriptor) other;
+
+            return getTitle().equals(e.getTitle())
+                    && getDescription().equals(e.getDescription())
+                    && getPriority().equals(e.getPriority())
+                    && getTagList().equals(e.getTagList());
+        }
     }
 
 }
