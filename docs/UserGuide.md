@@ -600,84 +600,72 @@ Property Id: P12
 Venue: 2 ALBERT PARK
 Date: 11-12-2021
 ```
-## Deleting a Meeting
+
+## Deleting an Existing Meeting
+
 
 Deletes a meeting from the calendar when a meeting is cancelled
 
-- Command: `delete -m`
-- Format: `delete -m m/MEETING_ID`
+- Command: `delete-m`
+- Format: `delete-m <INDEX>`
 
 Example:
 
 ```java
-delete -m m/M4
+delete-m 3
 ```
 
 Expected Output:
 
 ```java
-Meeting M4 has been deleted
+Deleted Meeting: Paperwork
+Bidder Id: B12
+Property Id: P12
+Venue: eunos
+Date: 12-05-2016
+```
+
+## View the list of all Meetings
+
+Lists all the meetings in the meetingbook. Can be used after using the find meeting feature.
+
+- Command: `list-m`
+- Format: `list-m`
+
+Example:
+
+```java
+list-m
+```
+Expected Output:
+
+```java
+Listed all meetings
 ```
 
 ## Editing an Existing Meeting
 
 Edits an existing meeting detail that is in the list.
 
-- Command: `edit -m`
-- Format: `edit -m m/MEETING_ID by/TIME t/TYPE_MEETING d/DESCRIPTION`
+- Command: `edit-m`
+- Format: `edit-m <INDEX> b/BIDDER_ID p/PROPERTY_ID v/VENUE t/DATE`
 
 Example:
 
 ```java
-edit -c m/4 by/12102020 1600 t/view d/show bedroom
+edit-m 2 v/eunos
 ```
-
-💡 at/PROPERTY_ID indicates the id of the property listing.
-
-💡 by/TIME indicates the time of the meeting.
 
 Expected Output:
 
 ```java
-Client Paperwork Meeting: 12 Oct 2020 at 1600hrs
-    Id: C2
-    Name: Marcus Duigan
-    Phone number: 12345678
-    Address: 99 Hill Street
-    Type: Seller
-    Description: show bedroom
-Has been added!
+Edited Meeting: Admin
+Bidder Id: B12
+Property Id: P12
+Venue: eunos
+Date: 12-05-2016
 ```
-
-## Listing all Meeting Schedules
-
-Displays all meetings in the calendar list chronologically
-
-- Command: `add -m admin`
-- Format: `add -m admin at/PROPERTY_ID by/TIME d/DESCRIPTION`
-
-Example:
-
-```java
-add -m admin at/4 by/12102020 1600 d/talk about regulations
-```
-
-💡 at/PROPERTY_ID indicates the id of the property listing.
-
-💡 by/TIME indicates the time of the meeting.
-
-Expected Output:
-
-```java
-Client Admin Meeting: 12 Oct 2020 at 1600hrs
-    Id: C2
-    Name: Marcus Duigan
-    Phone number: 12345678
-    Address: 99 Hill Street
-    Type: Seller
-    Description: talk about regulations
-Has been added!
-```
+The index will only correspond to the original list, NOT the filtered list (when used in find).
 
 
 ## Calendar Navigation Features
