@@ -83,7 +83,7 @@ public class AnimalComparator {
     }
 
     /**
-     * Creates an animal comparator to sort all animals by their number of medical conditions in increasing order.
+     * Creates an animal comparator to sort all animals by their number of medical conditions in ascending order.
      * @return An animal medical comparator.
      */
     public static AnimalComparator createAnimalMedicalComparator() {
