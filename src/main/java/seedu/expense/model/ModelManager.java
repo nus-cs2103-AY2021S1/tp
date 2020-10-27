@@ -8,14 +8,15 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.commons.core.LogsCenter;
 import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 
 /**
  * Represents the in-memory model of the expense book data.
@@ -26,8 +27,6 @@ public class ModelManager implements Model {
     private final ExpenseBook expenseBook;
     private final UserPrefs userPrefs;
     private final AliasMap aliasMap;
-    private final FilteredList<Expense> filteredExpenses;
-    private final Budget budget;
 
     /**
      * Initializes a ModelManager with the given expenseBook and userPrefs.
@@ -42,8 +41,6 @@ public class ModelManager implements Model {
         this.expenseBook = new ExpenseBook(expenseBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.aliasMap = new AliasMap(aliasMap);
-        filteredExpenses = new FilteredList<>(this.expenseBook.getExpenseList());
-        budget = this.expenseBook.getBudget();
     }
 
     public ModelManager() {
@@ -98,6 +95,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Statistics getStatistics() {
+        return expenseBook;
+    }
+
+    @Override
     public boolean hasExpense(Expense expense) {
         requireNonNull(expense);
         return expenseBook.hasExpense(expense);
@@ -122,13 +124,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Budget getBudget() {
-        return budget;
+    public Budget getTotalBudget() {
+        return expenseBook.getBudgets();
     }
 
     @Override
     public void topupBudget(Amount amount) {
-        budget.topupBudget(amount);
+        expenseBook.topupBudget(amount);
     }
 
     //=========== AliasMap ================================================================================
@@ -173,13 +175,61 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Expense> getFilteredExpenseList() {
-        return filteredExpenses;
+        return expenseBook.getFilteredExpenseList();
     }
 
     @Override
     public void updateFilteredExpenseList(Predicate<Expense> predicate) {
         requireNonNull(predicate);
-        filteredExpenses.setPredicate(predicate);
+        expenseBook.updateFilteredExpenses(predicate);
+    }
+
+    @Override
+    public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
+        requireNonNull(predicate);
+        expenseBook.updateFilteredBudgets(predicate);
+    }
+
+    /**
+     * Updates the expense book to one that matches the given {@code category}.
+     */
+    @Override
+    public void updateExpenseBookCategory(Tag category) {
+        requireNonNull(category);
+
+        if (category.equals(ExpenseBook.DEFAULT_TAG)) {
+            updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
+            updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        } else {
+            updateFilteredBudgetList(budget -> budget.getTag().equals(category));
+            updateFilteredExpenseList(expense -> expense.getTag().equals(category));
+        }
+    }
+
+    /**
+     * Checks if the given Tag is present in the expense book.
+     * @see ExpenseBook#containsCategory(Tag)
+     */
+    @Override
+    public boolean hasCategory(Tag toCheck) {
+        return expenseBook.containsCategory(toCheck);
+    }
+
+    @Override
+    public void addCategory(Tag tag) {
+        expenseBook.addCategory(tag);
+        updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
+    }
+
+    /**
+     * Switches the expense book to one that matches the given {@code category}.
+     */
+    @Override
+    public void switchCategory(Tag category) {
+        requireNonNull(category);
+        if (hasCategory(category)) {
+            updateExpenseBookCategory(category);
+        }
     }
 
     @Override
@@ -197,8 +247,6 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return expenseBook.equals(other.expenseBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredExpenses.equals(other.filteredExpenses);
+                && userPrefs.equals(other.userPrefs);
     }
-
 }

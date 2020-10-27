@@ -10,13 +10,11 @@ import static seedu.expense.testutil.TypicalExpenses.GRAB_HOME;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.alias.AliasMap;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.testutil.ExpenseBookBuilder;
 
 public class ModelManagerTest {
@@ -117,11 +115,6 @@ public class ModelManagerTest {
 
         // different expenseBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentExpenseBook, userPrefs, aliasMap)));
-
-        // different filteredList -> returns false
-        String[] keywords = FEL_BDAY.getDescription().fullDescription.split("\\s+");
-        modelManager.updateFilteredExpenseList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(expenseBook, userPrefs, aliasMap)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);

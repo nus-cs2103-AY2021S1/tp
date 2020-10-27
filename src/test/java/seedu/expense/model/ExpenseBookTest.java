@@ -12,12 +12,14 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.exceptions.DuplicateExpenseException;
 import seedu.expense.testutil.ExpenseBuilder;
@@ -46,7 +48,7 @@ public class ExpenseBookTest {
     @Test
     public void resetData_withDuplicateExpenses_throwsDuplicateExpenseException() {
         // Two expenses with the same identity fields
-        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT)
                 .build();
         List<Expense> newExpenses = Arrays.asList(FEL_BDAY, editedAlice);
         ExpenseBookStub newData = new ExpenseBookStub(newExpenses);
@@ -73,7 +75,7 @@ public class ExpenseBookTest {
     @Test
     public void hasExpense_expenseWithSameIdentityFieldsInExpenseBook_returnsTrue() {
         expenseBook.addExpense(FEL_BDAY);
-        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT)
                 .build();
         assertTrue(expenseBook.hasExpense(editedAlice));
     }
@@ -83,13 +85,18 @@ public class ExpenseBookTest {
         assertThrows(UnsupportedOperationException.class, () -> expenseBook.getExpenseList().remove(0));
     }
 
+    @Test
+    public void getBudgetList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> expenseBook.getBudgetList().remove(0));
+    }
+
     /**
      * A stub ReadOnlyExpenseBook whose expenses list can violate interface constraints.
      */
-    private static class ExpenseBookStub implements ReadOnlyExpenseBook {
+    private static class ExpenseBookStub implements ReadOnlyExpenseBook, Statistics {
 
         private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
-        private final Budget budget = new Budget();
+        private final UniqueCategoryBudgetList budgets = new UniqueCategoryBudgetList();
 
         ExpenseBookStub(Collection<Expense> expenses) {
             this.expenses.setAll(expenses);
@@ -101,12 +108,43 @@ public class ExpenseBookTest {
         }
 
         @Override
-        public Budget getBudget() {
-            return budget;
+        public ObservableList<CategoryBudget> getBudgetList() {
+            return budgets.asUnmodifiableObservableList();
+        }
+
+        @Override
+        public UniqueCategoryBudgetList getBudgets() {
+            return budgets;
         }
 
         @Override
         public double tallyExpenses() {
+            return -1; // should not be called
+        }
+
+        @Override
+        public double tallyExpenses(Predicate<Expense> predicate) {
+            return -1; // should not be called
+        }
+
+        @Override
+        public double tallyBudgets() {
+            return -1; // should not be called
+        }
+
+        @Override
+        public double tallyBudgets(Predicate<CategoryBudget> predicate) {
+            return -1; // should not be called
+        }
+
+        @Override
+        public double tallyBalance() {
+            return -1; // should not be called
+        }
+
+        @Override
+        public double tallyBalance(Predicate<Expense> expensePredicate,
+                                   Predicate<CategoryBudget> categoryBudgetPredicate) {
             return -1; // should not be called
         }
     }

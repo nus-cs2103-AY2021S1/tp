@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.expense.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_REMARK;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.expense.logic.commands.AddCategoryCommand;
 import seedu.expense.logic.commands.AddCommand;
 import seedu.expense.logic.commands.ClearCommand;
 import seedu.expense.logic.commands.DeleteCommand;
@@ -28,12 +30,15 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
 import seedu.expense.logic.commands.RemarkCommand;
+import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.expense.DateMatchesPredicate;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.model.expense.Remark;
 import seedu.expense.model.expense.TagsMatchesPredicate;
+import seedu.expense.model.tag.Tag;
+import seedu.expense.testutil.CategoryUtil;
 import seedu.expense.testutil.EditExpenseDescriptorBuilder;
 import seedu.expense.testutil.ExpenseBuilder;
 import seedu.expense.testutil.ExpenseUtil;
@@ -117,6 +122,23 @@ public class ExpenseBookParserTest {
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_EXPENSE.getOneBased() + " " + PREFIX_REMARK + remark.value);
         assertEquals(new RemarkCommand(INDEX_FIRST_EXPENSE, remark), command);
+    }
+
+    @Test
+    public void parseCommand_addCat() throws Exception {
+        Tag tag = new Tag(VALID_TAG_FOOD);
+        AddCategoryCommand command = (AddCategoryCommand) parser.parseCommand(CategoryUtil.getAddCategoryCommand(tag));
+        assertEquals(new AddCategoryCommand(tag), command);
+    }
+
+    @Test
+    public void parseCommand_switch() throws Exception {
+        Tag foodTag = new Tag("Food");
+        SwitchCommand command = (SwitchCommand) parser.parseCommand(
+            SwitchCommand.COMMAND_WORD + " " + PREFIX_TAG + "Food"
+        );
+        SwitchCommand switchCommand = new SwitchCommand(foodTag);
+        assertEquals(switchCommand, command);
     }
 
     @Test

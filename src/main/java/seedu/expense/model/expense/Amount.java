@@ -19,14 +19,39 @@ public class Amount {
     /**
      * Constructs a {@code Amount}.
      *
-     * @param amount A valid amount.
+     * @param amount A valid amount, as a {@code String}.
      */
     public Amount(String amount) {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
 
-        float f = Float.parseFloat(amount);
-        value = Math.round(f * 100);
+        double f = Double.parseDouble(amount);
+        value = toCents(f);
+    }
+
+    /**
+     * Constructs a {@code Amount}
+     *
+     * @param amount A valid amount, as a {@code double}.
+     */
+    public Amount(double amount) {
+        requireNonNull(amount);
+
+        value = toCents(amount);
+    }
+
+    /**
+     * Converts an amount (rounded to two decimal places) into cents.
+     */
+    public static int toCents(double amount) {
+        return (int) Math.round(amount * 100);
+    }
+
+    /**
+     * Converts an amount (in cents) into the format [dollars].[cents]
+     */
+    public static double toDollars(int cents) {
+        return cents / 100.0;
     }
 
     /**
@@ -42,11 +67,14 @@ public class Amount {
     public Amount add(Amount amount) {
         requireNonNull(amount);
         Integer total = value + amount.value;
-        return new Amount(String.format("%.02f", total / 100.0));
+        return new Amount(toDollars(total));
     }
 
+    /**
+     * Returns the {@code Double} value of the amount.
+     */
     public Double asDouble() {
-        return value / 100.0;
+        return toDollars(value);
     }
 
     @Override

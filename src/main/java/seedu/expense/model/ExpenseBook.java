@@ -3,21 +3,28 @@ package seedu.expense.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
+import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
+import seedu.expense.model.tag.Tag;
+import seedu.expense.model.tag.UniqueTagList;
 
 /**
  * Wraps all data at the expense-book level
  * Duplicates are not allowed (by .isSameExpense comparison)
  */
-public class ExpenseBook implements ReadOnlyExpenseBook {
+public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
 
+    public static final Tag DEFAULT_TAG = new Tag("Default");
 
-    private final Budget budget;
+    private final UniqueCategoryBudgetList budgets;
     private final UniqueExpenseList expenses;
+    private final UniqueTagList tags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,15 +34,16 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
      *   among constructors.
      */
     {
+        budgets = new UniqueCategoryBudgetList();
         expenses = new UniqueExpenseList();
+        tags = new UniqueTagList();
     }
 
     public ExpenseBook() {
-        budget = new Budget();
     }
 
     /**
-     * Creates an ExpenseBook using the Expenses in the {@code toBeCopied}
+     * Creates an ExpenseBook using the Expenses and Budgets in the {@code toBeCopied}
      */
     public ExpenseBook(ReadOnlyExpenseBook toBeCopied) {
         this();
@@ -53,26 +61,70 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     }
 
     /**
+     * Replaces the contents of the category-budgets list with {@code budgets}.
+     * {@code expenses} must not contain duplicate expenses.
+     */
+    public void setBudgets(UniqueCategoryBudgetList budgets) {
+        this.budgets.setBudgets(budgets);
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags.setTags(tags);
+    }
+
+    /**
      * Resets the existing data of this {@code ExpenseBook} with {@code newData}.
      */
     public void resetData(ReadOnlyExpenseBook newData) {
         requireNonNull(newData);
 
         setExpenses(newData.getExpenseList());
-        setBudget(newData.getBudget());
+        setBudgets(newData.getBudgets());
     }
 
     //// budget-level operations
 
-    public void setBudget(Budget budget) {
-        requireNonNull(budget);
-
-        this.budget.topupBudget(budget.getAmount());
+    @Override
+    public UniqueCategoryBudgetList getBudgets() {
+        return budgets;
     }
 
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueCategoryBudgetList#asUnmodifiableObservableList()
+     */
     @Override
-    public Budget getBudget() {
-        return budget;
+    public ObservableList<CategoryBudget> getBudgetList() {
+        return budgets.asUnmodifiableObservableList();
+    }
+
+    public void topupBudget(Amount amount) {
+        budgets.topupBudget(amount);
+    }
+
+    public boolean containsCategory(Tag tag) {
+        return tags.contains(tag);
+    }
+
+    /**
+     * Adds a category to the expense book.
+     * The tag must not already exist in the expense book.
+     */
+    public void addCategory(Tag tag) {
+        requireNonNull(tag);
+        tags.add(tag);
+        budgets.add(new CategoryBudget(tag));
+    }
+
+    /**
+     * Updates the filter of the filtered budget list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    public void updateFilteredBudgets(Predicate<CategoryBudget> predicate) {
+        requireNonNull(predicate);
+        budgets.filterCategoryBudget(predicate);
     }
 
     //// expense-level operations
@@ -114,6 +166,25 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     }
 
     /**
+     * Updates the filter of the filtered expense list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    public void updateFilteredExpenses(Predicate<Expense> predicate) {
+        requireNonNull(predicate);
+        expenses.filterExpenses(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Expense} backed by the internal list of
+     * {@code versionedExpenseBook}
+     */
+    public ObservableList<Expense> getFilteredExpenseList() {
+        return expenses.getFilteredExpenses();
+    }
+
+    // Statistics method
+    /**
      * {@inheritDoc}
      *
      * @see UniqueExpenseList#tallyExpenses()
@@ -121,6 +192,58 @@ public class ExpenseBook implements ReadOnlyExpenseBook {
     @Override
     public double tallyExpenses() {
         return expenses.tallyExpenses();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueExpenseList#tallyExpenses(Predicate predicate)
+     */
+    @Override
+    public double tallyExpenses(Predicate<Expense> predicate) {
+        return expenses.tallyExpenses(predicate);
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueCategoryBudgetList#tallyAmounts()
+     */
+    @Override
+    public double tallyBudgets() {
+        return budgets.tallyAmounts();
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * @see UniqueCategoryBudgetList#tallyAmounts(Predicate predicate)
+     */
+    @Override
+    public double tallyBudgets(Predicate<CategoryBudget> predicate) {
+        return budgets.tallyAmounts(predicate);
+    }
+
+    /**
+     * Tallies the balance of budgets and expenses in the expense book.
+     *
+     * @return tallied balance of the expense book
+     */
+    @Override
+    public double tallyBalance() {
+        return tallyBudgets() - tallyExpenses();
+    }
+
+    /**
+     * Tallies the balance of budgets and expenses in the expense book by
+     * {@code categoryBudgetPredicate} and {@code expensePredicate} respectively.
+     *
+     * @return tallied balance of the expense book
+     */
+    @Override
+    public double tallyBalance(Predicate<Expense> expensePredicate,
+                               Predicate<CategoryBudget> categoryBudgetPredicate) {
+        return tallyBudgets(categoryBudgetPredicate) - tallyExpenses(expensePredicate);
     }
 
     //// util methods

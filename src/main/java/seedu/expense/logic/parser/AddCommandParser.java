@@ -5,8 +5,8 @@ import static seedu.expense.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.expense.logic.commands.AddCommand;
@@ -43,14 +43,21 @@ public class AddCommandParser implements Parser<AddCommand> {
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+
+        Tag tag;
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        } else {
+            tag = DEFAULT_TAG;
+        }
+
         Date date;
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         } else {
             date = new Date(); // creates a default Date object with date set as now.
         }
-        Expense expense = new Expense(description, amount, date, remark, tagList);
+        Expense expense = new Expense(description, amount, date, remark, tag);
 
         return new AddCommand(expense);
     }

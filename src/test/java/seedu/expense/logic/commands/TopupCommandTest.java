@@ -15,11 +15,15 @@ import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
+import seedu.expense.model.Statistics;
 import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
+import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 
 public class TopupCommandTest {
 
@@ -35,7 +39,7 @@ public class TopupCommandTest {
         CommandResult commandResult = new TopupCommand(validAmount).execute(modelStub);
         assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, validAmount.asDouble()),
                 commandResult.getFeedbackToUser());
-        assertEquals(validAmount, modelStub.budget.getAmount());
+        assertEquals(validAmount, modelStub.budgets.getAmount());
     }
 
     @Test
@@ -67,10 +71,10 @@ public class TopupCommandTest {
      */
     private class ModelStub implements Model {
 
-        final Budget budget;
+        final UniqueCategoryBudgetList budgets;
 
         ModelStub() {
-            budget = new Budget();
+            budgets = new UniqueCategoryBudgetList();
         }
 
         @Override
@@ -119,6 +123,11 @@ public class TopupCommandTest {
         }
 
         @Override
+        public Statistics getStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasExpense(Expense expense) {
             throw new AssertionError("This method should not be called.");
         }
@@ -144,13 +153,38 @@ public class TopupCommandTest {
         }
 
         @Override
-        public Budget getBudget() {
-            return budget;
+        public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateExpenseBookCategory(Tag category) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Budget getTotalBudget() {
+            return budgets;
         }
 
         @Override
         public void topupBudget(Amount amount) {
-            budget.topupBudget(amount);
+            budgets.topupBudget(amount);
+        }
+
+        @Override
+        public void addCategory(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCategory(Tag toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchCategory(Tag category) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override

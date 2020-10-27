@@ -11,8 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.expense.commons.core.LogsCenter;
-import seedu.expense.model.ReadOnlyExpenseBook;
-import seedu.expense.model.budget.Budget;
+import seedu.expense.model.Statistics;
 
 /**
  * A ui for the budget balance to be displayed to the user.
@@ -25,7 +24,7 @@ public class BudgetDisplay extends UiPart<Region> {
     private static final String GREEN_BAR_STYLE_CLASS = "green-bar";
     private static final String ORANGE_BAR_STYLE_CLASS = "orange-bar";
     private static final String RED_BAR_STYLE_CLASS = "red-bar";
-    private final ReadOnlyExpenseBook expenseBook;
+    private final Statistics statistics;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     @FXML
@@ -45,13 +44,13 @@ public class BudgetDisplay extends UiPart<Region> {
 
     /**
      * Constructor for {@code BudgetDisplay}.
-     * @param expenseBook expenseBook to be stored.
+     * @param statistics expenseBook to be stored.
      */
-    public BudgetDisplay(ReadOnlyExpenseBook expenseBook) {
+    public BudgetDisplay(Statistics statistics) {
         super(FXML);
 
-        requireNonNull(expenseBook);
-        this.expenseBook = expenseBook;
+        requireNonNull(statistics);
+        this.statistics = statistics;
 
         budgetHeader.setText(HEADER_MESSAGE);
 
@@ -70,10 +69,9 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Progress as double.
      */
     private double getProgress() {
-        Budget budget = expenseBook.getBudget();
-        double budgetAmount = budget.getAmount().asDouble();
+        double budgetAmount = statistics.tallyBudgets();
         assert budgetAmount >= 0;
-        double expensesSum = expenseBook.tallyExpenses();
+        double expensesSum = statistics.tallyExpenses();
         assert expensesSum >= 0;
         return 1 - expensesSum / budgetAmount;
 
@@ -85,10 +83,8 @@ public class BudgetDisplay extends UiPart<Region> {
      * @return Formatted budget balance as String.
      */
     private String budgetBalance() {
-        Budget budget = expenseBook.getBudget();
-        double budgetAmount = budget.getAmount().asDouble();
-        double expensesSum = expenseBook.tallyExpenses();
-        double balance = budgetAmount - expensesSum;
+        double budgetAmount = statistics.tallyBudgets();
+        double balance = statistics.tallyBalance();
         return String.format(BUDGET_BALANCE, balance, budgetAmount);
     }
 

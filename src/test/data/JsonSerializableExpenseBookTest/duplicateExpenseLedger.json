@@ -4,14 +4,28 @@
     "amount": "3.00",
     "date": "04-10-2020",
     "remark" : "",
-    "tagged": [ "friends" ]
+    "tagged": "friends"
   }, {
     "description": "Lunch Bak Chor Mee",
     "amount": "3.00",
     "date": "05-10-2020",
-    "remark" : ""
+    "remark" : "",
+    "tagged": "Default"
   } ],
   "budget": {
-    "amount": "10.00"
+    "defaultCategory": {
+      "tag": "Default",
+      "amount": "10.00"
+    },
+    "categoryBudgets": [
+      {
+        "tag": "Food",
+        "amount": "100.00"
+      },
+      {
+        "tag": "Transport",
+        "amount": "50.00"
+      }
+    ]
   }
 }

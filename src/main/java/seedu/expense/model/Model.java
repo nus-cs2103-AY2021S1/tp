@@ -8,8 +8,10 @@ import seedu.expense.commons.core.GuiSettings;
 import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 
 /**
  * The API of the Model component.
@@ -19,6 +21,8 @@ public interface Model {
      * {@code Predicate} that always evaluate to true
      */
     Predicate<Expense> PREDICATE_SHOW_ALL_EXPENSES = unused -> true;
+
+    Predicate<CategoryBudget> PREDICATE_SHOW_ALL_BUDGETS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -59,6 +63,11 @@ public interface Model {
      * Returns the ExpenseBook
      */
     ReadOnlyExpenseBook getExpenseBook();
+
+    /**
+     * Returns the Statistics
+     */
+    Statistics getStatistics();
 
     /**
      * Returns true if an expense with the same identity as {@code expense} exists in the expense book.
@@ -110,12 +119,41 @@ public interface Model {
     void updateFilteredExpenseList(Predicate<Expense> predicate);
 
     /**
+     * Updates the filter of the filtered budget list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBudgetList(Predicate<CategoryBudget> predicate);
+
+    /**
+     * Updates the category expense book by the given {@code category}.
+     *
+     * @throws NullPointerException if {@code category} is null.
+     */
+    void updateExpenseBookCategory(Tag category);
+
+    /**
      * Returns the budget.
      */
-    Budget getBudget();
+    Budget getTotalBudget();
 
     /**
      * Adds the given amount to the budget.
      */
     void topupBudget(Amount amount);
+
+    /**
+     * Checks if the given Tag is present in any of the category budget.
+     */
+    boolean hasCategory(Tag toCheck);
+
+    /**
+     * Adds the given Tag to the expense book.
+     */
+    void addCategory(Tag tag);
+
+    /**
+     * Switches the category expense book into the one that matches the given Tag.
+     */
+    void switchCategory(Tag category);
 }

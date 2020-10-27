@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import static seedu.expense.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -20,11 +21,14 @@ import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.Model;
 import seedu.expense.model.ReadOnlyExpenseBook;
 import seedu.expense.model.ReadOnlyUserPrefs;
+import seedu.expense.model.Statistics;
 import seedu.expense.model.alias.AliasEntry;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.budget.Budget;
+import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 import seedu.expense.testutil.ExpenseBuilder;
 
 public class AddCommandTest {
@@ -128,6 +132,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Statistics getStatistics() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasExpense(Expense expense) {
             throw new AssertionError("This method should not be called.");
         }
@@ -153,7 +162,17 @@ public class AddCommandTest {
         }
 
         @Override
-        public Budget getBudget() {
+        public void updateFilteredBudgetList(Predicate<CategoryBudget> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateExpenseBookCategory(Tag category) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Budget getTotalBudget() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -163,7 +182,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public void addCategory(Tag tag) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasCategory(Tag toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setAlias(AliasEntry prev, AliasEntry curr) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void switchCategory(Tag category) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -216,6 +250,7 @@ public class AddCommandTest {
      */
     private class ModelStubAcceptingExpenseAdded extends ModelStub {
         final ArrayList<Expense> expensesAdded = new ArrayList<>();
+        final Tag tag = DEFAULT_TAG;
 
         @Override
         public boolean hasExpense(Expense expense) {
@@ -227,6 +262,11 @@ public class AddCommandTest {
         public void addExpense(Expense expense) {
             requireNonNull(expense);
             expensesAdded.add(expense);
+        }
+
+        @Override
+        public boolean hasCategory(Tag toCheck) {
+            return toCheck.equals(tag);
         }
 
         @Override
