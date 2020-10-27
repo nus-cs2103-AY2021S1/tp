@@ -68,11 +68,20 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
+     * Replaces the contents of the session list with {@code sessions}.
+     * {@code sessions} must not contain duplicate sessions.
+     */
+    public void setSessions(List<Session> sessions) {
+        this.sessions.setSessions(sessions);
+    }
+
+    /**
      * Resets the existing data of this {@code Taskmaster} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskmaster newData) {
         requireNonNull(newData);
         setStudents(newData.getStudentList());
+        setSessions(newData.getSessionList());
         currentSession = null;
     }
 

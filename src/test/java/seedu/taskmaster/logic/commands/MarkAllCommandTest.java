@@ -11,6 +11,7 @@ import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.ModelManager;
 import seedu.taskmaster.model.UserPrefs;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
 
 public class MarkAllCommandTest {
@@ -18,9 +19,11 @@ public class MarkAllCommandTest {
 
     @Test
     public void execute_markAllStudentsAsPresent_success() {
+        model.changeSession(new SessionName("Typical session"));
         List<Student> students = model.getFilteredStudentList();
         MarkAllCommand markAllCommand = new MarkAllCommand(AttendanceType.PRESENT);
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
+        expectedModel.changeSession(new SessionName("Typical session"));
         expectedModel.markAllStudents(students, AttendanceType.PRESENT);
         String expectedMessage = String.format(MarkAllCommand.MESSAGE_MARK_ALL_SUCCESS, AttendanceType.PRESENT);
         assertCommandSuccess(markAllCommand, model, expectedMessage, expectedModel);
@@ -28,9 +31,11 @@ public class MarkAllCommandTest {
 
     @Test
     public void execute_markAllStudentsAsAbsent_success() {
+        model.changeSession(new SessionName("Typical session"));
         List<Student> students = model.getFilteredStudentList();
         MarkAllCommand markAllCommand = new MarkAllCommand(AttendanceType.ABSENT);
         Model expectedModel = new ModelManager(getTypicalTaskmaster(), new UserPrefs());
+        expectedModel.changeSession(new SessionName("Typical session"));
         expectedModel.markAllStudents(students, AttendanceType.ABSENT);
         String expectedMessage = String.format(MarkAllCommand.MESSAGE_MARK_ALL_SUCCESS, AttendanceType.ABSENT);
         assertCommandSuccess(markAllCommand, model, expectedMessage, expectedModel);
