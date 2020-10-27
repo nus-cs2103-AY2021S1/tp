@@ -123,5 +123,8 @@ public class AddVictimCommandTest {
         public void updateFilteredCaseList(Predicate<Case> predicate) {
             return;
         }
+
+        @Override
+        public void commitPivot(String command) {}
     }
 }

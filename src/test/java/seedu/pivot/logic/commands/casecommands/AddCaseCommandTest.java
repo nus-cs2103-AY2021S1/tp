@@ -9,18 +9,25 @@ import static seedu.pivot.testutil.Assert.assertThrows;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.commands.AddCommand;
 import seedu.pivot.logic.commands.CommandResult;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.logic.commands.testutil.ModelStub;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.ReadOnlyPivot;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.testutil.CaseBuilder;
 
 public class AddCaseCommandTest {
+
+    @BeforeEach
+    public void setUpMainPage() {
+        StateManager.resetState();
+    }
 
     @Test
     public void constructor_nullCase_throwsNullPointerException() {
@@ -108,6 +115,9 @@ public class AddCaseCommandTest {
             requireNonNull(investigationCase);
             personsAdded.add(investigationCase);
         }
+
+        @Override
+        public void commitPivot(String command) {}
 
         @Override
         public ReadOnlyPivot getPivot() {
