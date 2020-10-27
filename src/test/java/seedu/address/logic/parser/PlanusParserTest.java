@@ -63,14 +63,13 @@ public class PlanusParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("title:foo", "desc:bar", "type:todo");
+        List<String> keywords = Arrays.asList("title:foo", "desc:bar");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
 
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "foo");
         predicate.setKeyword(PREFIX_DESCRIPTION, "bar");
-        predicate.setKeyword(PREFIX_TYPE, "todo");
         assertEquals(new FindCommand(predicate), command);
     }
 

@@ -53,16 +53,6 @@ public class DateUtil {
     }
 
     /**
-     * Returns true if a given string is a valid search phrase for date time.
-     *
-     * @param test the string value to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidSearchPhrase(String test) {
-        return isValidDateTime(test) || isValidDate(test) || isValidTime(test);
-    }
-
-    /**
      * @param input the string value for a date
      * @return a LocalDate object representing the specific date
      */
