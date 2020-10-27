@@ -20,6 +20,7 @@ public class ProfileVisitCard extends UiPart<Region> {
     private String diagnosis;
     private String prescription;
     private String comment;
+    private String id;
 
     @FXML
     private HBox profileVisitCard;
@@ -35,16 +36,17 @@ public class ProfileVisitCard extends UiPart<Region> {
     /**
      * Instantiates a ProfileVisitCard object.
      */
-    public ProfileVisitCard(Visit visit) {
+    public ProfileVisitCard(Visit visit, String visitIndex) {
         super(FXML);
         this.visit = visit;
+        this.id = visitIndex;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.visitDate = visit.getVisitDate().format(formatter);
         this.diagnosis = visit.getDiagnosis();
         this.prescription = visit.getPrescription();
         this.comment = visit.getComment();
 
-        profileDate.setText("Visitation Report on [" + visitDate + "]");
+        profileDate.setText("Visitation Log " + id + " on [" + visitDate + "]");
 
         setParameter(diagnosis, profileDiagnosis);
         setParameter(prescription, profilePrescription);
