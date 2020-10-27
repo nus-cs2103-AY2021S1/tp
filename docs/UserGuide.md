@@ -1,6 +1,6 @@
 # User Guide
 
-Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
+Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
 
 ---
 
@@ -14,7 +14,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 ## Quick Start <a name="QuickStart"></a>
 
 1. Download Java Version 11
-2. Download [Bamboo v1.2](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.2).
+2. Download [Bamboo v1.2](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.2.1).
 
 ## Features <a name="Features"></a>
 
@@ -51,22 +51,22 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
 1. **Expense finding**
     - Finds expenses by keywords, date, tags
-    - Command: 'find'
+    - Command: `find`
     - [API](#find)
 
 1. **Adding Remark**
     - Adds a remark to an existing expense
-    - Command: 'remark"
+    - Command: `remark`
     -[API](#remark)
     
 1. **Switch Category**
     - Switches an expense book into another existing category
-    - Command: 'switch"
+    - Command: `switch`
     - [API](#switch)
 
 1. **Delete Category**
     - Deletes an existing category in the expense book
-    - Command: "deleteCat"
+    - Command: `deleteCat`
     - [API](#deleteCat) 
     
 1. Save Load Function
@@ -75,7 +75,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
 1. Help command
     - Renders a help link to the commands in User Guide
-    - Command: "help"
+    - Command: `help`
     - [API](#help)
         
 1. Password &lt;Proposed Feature&gt;
