@@ -190,6 +190,51 @@ Then, the `assignInstructor()` operation is called in both `UniqueModuleList` an
 
 Both are equally viable options but Alternative 1 was chosen so `Person` would not have to be redesigned or have too many fields.
 
+### Deleting Module feature
+
+#### Implementation
+
+The delete module mechanism is facilitated by the `DelmodCommand` and the `DelmodCommandParser`.
+It deletes the module based on the specified module code inputted by the user.
+For example, “delmod m/CS2103” deletes the existing CS2103 module in FaculType.
+
+Currently, `DelmodCommand` implements the following operations:
+
+* `DelmodCommandParser#parse(String)` - Parses the arguments of the delmod command. In the given example above, the arguments will be “ m/CS2103”.
+
+And `DelmodCommand` implements the following:
+
+* `DelmodCommand#execute(Model)` - Executes the deletion of the specified module in the given FaculType model.
+
+Given below is the example usage scenario and how the delete module mecahnism behaves at each step.
+
+Step 1. The user executes the command `delmod m/CS2103`. 
+
+Step 2. The command will be brought to the LogicManager class, where it will be recognized as a `delmod` command and 
+LogicManager will call `DelmodCommandParser#parse(String)` with ` m/CS2103` as the arguments.
+
+Step 3. `DelmodCommandParser` then obtains the `ModuleCode` from the arguments and forms the `DelmodCommand` with that specified `ModuleCode`.
+The `DelmodCommand` is then returned to the `LogicManager`.
+
+Step 4. `LogicManager` then calls `DelmodCommand#execute(Model)`. 
+
+Step 5. The `Module` with the specified `ModuleCode`, if already existing in FaculType, will be deleted. 
+
+The following sequence diagram shows how the deleting of the module works:
+
+![DelmodActivityDiagram](images/DelmodSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: What the delmod command deletes by
+* **Alternative 1 (current choice):** Deletes a module based on the module code.
+ * Pros : More intuitive to the Dean to delete by the module code.
+ * Cons : Would be more troublesome to look for the module should the Dean forget the module code.
+
+* **Alternative 2:** Deletes a module based on the index of the module list.
+ * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
+ * Cons : Less intuitive.
+
 ### Unassign feature
 
 The assign feature is facilitated by `UnassignCommand` and `UnassignCommandParser`.
