@@ -3,7 +3,6 @@ package com.eva.ui.profile.staff.view;
 import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 
 import com.eva.commons.core.PanelState;
-import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.staff.Staff;
 import com.eva.ui.UiPart;

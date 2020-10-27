@@ -3,7 +3,6 @@ package com.eva.ui.profile.applicant.view;
 import static com.eva.commons.core.PanelState.APPLICANT_PROFILE;
 
 import com.eva.commons.core.PanelState;
-import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.ReadOnlyCurrentViewApplicant;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.ui.UiPart;
