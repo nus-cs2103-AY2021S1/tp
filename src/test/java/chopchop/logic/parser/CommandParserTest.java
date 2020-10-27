@@ -29,11 +29,11 @@ public class CommandParserTest {
             "Result(AddIngredientCommand: squid (30g) <Expiry Date: 2020-12-24>)");
 
         tests.put("add ingredient milk /qty 600ml",
-            "Result(AddIngredientCommand: milk (600ml))");
+            "Result(AddIngredientCommand: milk (600mL))");
 
         tests.put("add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
             + "/ingredient egg /qty 7 /step mix /step bake /step eat",
-            "Result(AddRecipeCommand(cake, ingr: [milk (400ml), flour (500g), "
+            "Result(AddRecipeCommand(cake, ingr: [milk (400mL), flour (500g), "
                 + "egg (7)], steps: [mix, bake, eat]))");
 
         tests.put("delete recipe cake", "Result(DeleteRecipeCommand(cake))");
@@ -41,7 +41,7 @@ public class CommandParserTest {
 
         tests.put("delete ingredient milk", "Result(DeleteIngredientCommand(milk))");
 
-        tests.put("delete ingredient milk /qty 500ml", "Result(DeleteIngredientCommand(milk (500ml)))");
+        tests.put("delete ingredient milk /qty 500ml", "Result(DeleteIngredientCommand(milk (500mL)))");
 
         tests.put("help", "Result(HelpCommand)");
         tests.put("quit", "Result(QuitCommand)");
