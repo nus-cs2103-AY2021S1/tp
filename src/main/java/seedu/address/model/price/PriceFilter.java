@@ -41,7 +41,7 @@ public class PriceFilter implements Predicate<Price> {
             "<=", CompareOp.LESS_THAN_OR_EQUALS,
             "==", CompareOp.EQUALS,
             ">", CompareOp.GREATER_THAN,
-            ">=", CompareOp.GREATER_THAN
+            ">=", CompareOp.GREATER_THAN_OR_EQUALS
     );
     public static final String MESSAGE_CONSTRAINTS = "< / <= / == / > / >= PRICE eg [<= 500]";
 
@@ -70,12 +70,13 @@ public class PriceFilter implements Predicate<Price> {
         if (test == null || test.equals("")) {
             return false;
         }
+        String trimmed = test.trim();
         try {
-            if (map.containsKey(test.substring(0, 2))) {
-                Double.parseDouble(test.substring(2));
+            if (map.containsKey(trimmed.substring(0, 2))) {
+                Double.parseDouble(trimmed.substring(2));
                 return true;
-            } else if (map.containsKey(test.substring(0, 1))) {
-                Double.parseDouble(test.substring(1));
+            } else if (map.containsKey(trimmed.substring(0, 1))) {
+                Double.parseDouble(trimmed.substring(1));
                 return true;
             } else {
                 return false;
@@ -88,5 +89,13 @@ public class PriceFilter implements Predicate<Price> {
     @Override
     public boolean test(Price price) {
         return compareOp.getBiFunction().apply(price, target);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj
+                || (obj instanceof PriceFilter
+        && compareOp.equals(((PriceFilter) obj).compareOp)
+                && target.equals(((PriceFilter) obj).target));
     }
 }

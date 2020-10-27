@@ -19,4 +19,11 @@ public class AskingPricePredicate implements Predicate<Property> {
     public boolean test(Property property) {
         return priceFilter.test(property.getAskingPrice());
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj
+                || (obj instanceof AskingPricePredicate
+        && priceFilter.equals(((AskingPricePredicate) obj).priceFilter));
+    }
 }

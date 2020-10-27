@@ -17,4 +17,11 @@ public class PropertyIsClosedDealPredicate implements Predicate<Property> {
     public boolean test(Property property) {
         return property.isClosedDeal().equals(target);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj
+                || (obj instanceof PropertyIsClosedDealPredicate
+        && this.target.equals(((PropertyIsClosedDealPredicate) obj).target));
+    }
 }
