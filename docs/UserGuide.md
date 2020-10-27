@@ -193,14 +193,16 @@ Finds students whose date of last payment is more than a month ago.
 
 Format: `unpaid`
 
-#### 3.2.7 Managing additional details for a student: `detail` (By: Vaishak) 
+#### 3.2.7 Managing details for a student: `detail` (By: Vaishak) 
 
-Adds, edits or deletes an additional detail for a specified student.
+You can add, edit or delete a detail for a specified student.
 
-Format: `detail [add] [edit] [delete] STUDENT_INDEX [i/DETAIL_INDEX] [d/DETAIL_TEXT]`
+General Format: `detail COMMAND_WORD STUDENT_INDEX PARAMETERS`
 
-* Exactly one of the following fields must be present: `[add]`, `[edit]` or `[delete]`
-* The student index and detail index **must be positive integers** 1, 2, 3, …​
+* The `COMMAND_WORD` field accepts either `add`, `edit` or `delete`.
+* The command affects the student at the specified `STUDENT_INDEX`. 
+* `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* The format of `PARAMETERS` varies with each `COMMAND_WORD` as explained below.
 * `detail add` adds the given additional detail to the student at the specified `STUDENT_INDEX`.
 * `detail add` requires the following optional field: `[d/DETAIL_TEXT]`.
 * `detail edit` edits the additional detail at the specified `DETAIL_INDEX`, for the student at the specified `STUDENT_INDEX`
@@ -212,6 +214,42 @@ Examples:
 * `detail add 1 d/Smart` adds the "Smart" detail to the 1st student in Reeve.
 * `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in Reeve, to "Handsome".
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in Reeve.
+
+#### 3.2.7.1 Adding a detail: `detail add`
+
+You can add a detail to a specified student in **Reeve**.
+
+Format: `detail add STUDENT_INDEX t/DETAIL_TEXT`
+
+* Adds the given detail to the student at the specified `STUDENT_INDEX`.
+
+Examples:  
+* `detail add 1 t/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
+* `detail add 4 t/Handsome` adds the "Handsome" detail to the 4th student in **Reeve**.
+
+#### 3.2.7.2 Editing a detail: `detail edit`
+
+You can edit an existing detail to a specified student in **Reeve**.
+
+Format: `detail edit STUDENT_INDEX i/DETAIL_INDEX t/DETAIL_TEXT`
+
+* Edits the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+
+Examples:  
+* `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
+* `detail edit 5 i/8 t/Smart` edits the 8th detail for the 5th student in **Reeve**, to "Smart".
+
+#### 3.2.7.3 Deleting a detail: `detail delete`
+
+You can delete an existing detail to a specified student in **Reeve**.
+
+Format: `detail delete STUDENT_INDEX i/DETAIL_INDEX`
+
+* Deletes the detail at the specified `DETAIL_INDEX` for the student at the specified `STUDENT_INDEX`.
+
+Examples:  
+* `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
+* `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
 #### 3.2.8 Clearing all entries: `clear`
 
