@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import javafx.beans.binding.ObjectExpression;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
