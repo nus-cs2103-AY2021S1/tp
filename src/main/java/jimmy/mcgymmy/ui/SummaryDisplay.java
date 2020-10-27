@@ -23,8 +23,8 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
     public SummaryDisplay() {
         super(FXML);
         pieChart.setClockwise(true);
-        pieChart.setLabelLineLength(25);
-        pieChart.setLabelsVisible(true);
+        pieChart.setAnimated(false);
+        pieChart.setLabelsVisible(false);
     }
 
     public void setTotalMacronutrients(long totalCalories, long totalProtein, long totalCarbs, long totalFats) {
