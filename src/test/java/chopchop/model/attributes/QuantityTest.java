@@ -103,7 +103,7 @@ public class QuantityTest {
     @Test
     void add_incompatibleUnits_failure() {
         var tests = Map.of(
-            Pair.of("185 g", "3.7 ml"),     "Cannot add '3.7ml' to '185g' (incompatible units)",
+            Pair.of("185 g", "3.7 mL"),     "Cannot add '3.7mL' to '185g' (incompatible units)",
             Pair.of("1", "7g"),             "Cannot add '7g' to '1' (incompatible units)"
         );
 
