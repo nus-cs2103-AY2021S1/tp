@@ -3,17 +3,11 @@ package seedu.stock.testutil;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import seedu.stock.commons.util.SortUtil;
-import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.StockBook;
-import seedu.stock.model.stock.AccumulatedQuantity;
 import seedu.stock.model.stock.SerialNumber;
-import seedu.stock.model.stock.SerialNumberSet;
-import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
 /**
@@ -40,7 +34,7 @@ public class TypicalStocks {
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = PINEAPPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_FOURTH_STOCK = ORANGE.getSerialNumber();
-    public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown");
+    public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown1");
 
     public static final String RESERVED_NON_EXISTENCE_SOURCE = "$NON-EXISTENT-SOURCE";
 
@@ -59,7 +53,7 @@ public class TypicalStocks {
 
     /**
      * Returns a {@code StockBook} with all the typical stocks sorted by serial number.
-     * @return
+     * @return StockBook The StockBook containing typical stocks.
      */
     public static StockBook getTypicalStockBookSortedSerialNumber() {
         List<Stock> typicalStocks = getTypicalStocks();
@@ -73,27 +67,6 @@ public class TypicalStocks {
 
     public static List<Stock> getTypicalStocks() {
         return new ArrayList<>(Arrays.asList(APPLE, BANANA, ORANGE));
-    }
-
-    public static SerialNumberSetsBook getTypicalSerialNumberSetsBook() {
-        SerialNumberSetsBook serialNumbers = new SerialNumberSetsBook();
-        Map<Source, AccumulatedQuantity> sourceAccumulatedQuantityMap = new HashMap<>();
-        for (int i = 0; i < getTypicalStocks().size(); i++) {
-            Stock curr = getTypicalStocks().get(i);
-            if (sourceAccumulatedQuantityMap.containsKey(curr.getSource())) {
-                AccumulatedQuantity newAccumulatedQuantity = sourceAccumulatedQuantityMap
-                                        .get(curr.getSource()).getIncrementedAccumulatedQuantity();
-                sourceAccumulatedQuantityMap.put(curr.getSource(), newAccumulatedQuantity);
-            } else {
-                sourceAccumulatedQuantityMap.put(curr.getSource(), new AccumulatedQuantity("1"));
-            }
-        }
-        List<SerialNumberSet> serialNumberSets = new ArrayList<>();
-        sourceAccumulatedQuantityMap.forEach((source, accumulatedQuantity) -> {
-            serialNumberSets.add(new SerialNumberSet(source, accumulatedQuantity));
-        });
-        serialNumbers.setSerialNumberSets(serialNumberSets);
-        return serialNumbers;
     }
 
     /**

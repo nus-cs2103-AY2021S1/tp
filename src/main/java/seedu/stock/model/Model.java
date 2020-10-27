@@ -56,13 +56,13 @@ public interface Model {
     ReadOnlyStockBook getStockBook();
 
     /**
-     * Returns true if a stock with the same identity as {@code person} exists in the stock book.
+     * Returns true if a stock with the same identity as {@code stock} exists in the stock book.
      */
     boolean hasStock(Stock stock);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the stock book.
+     * Deletes the given stock.
+     * The stock must exist in the stock book.
      */
     void deleteStock(Stock target);
 

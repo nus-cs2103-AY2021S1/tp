@@ -158,7 +158,6 @@ public class ModelManager implements Model {
     @Override
     public void addSerialNumberSet(SerialNumberSet serialNumberSet) {
         serialNumberSetsBook.addSerialNumberSet(serialNumberSet);
-        //updateFilteredSerialNumberSetsList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override

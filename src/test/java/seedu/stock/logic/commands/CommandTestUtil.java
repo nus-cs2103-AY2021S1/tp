@@ -88,7 +88,7 @@ public class CommandTestUtil {
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-    public static final String DEFAULT_SERIAL_NUMBER = "0";
+    public static final String DEFAULT_SERIAL_NUMBER = "00";
 
     public static final String[] VALID_NAME_APPLE_KEYWORDS = VALID_NAME_APPLE.split("\\s+");
     public static final String[] VALID_NAME_BANANA_KEYWORDS = VALID_NAME_BANANA.split("\\s+");

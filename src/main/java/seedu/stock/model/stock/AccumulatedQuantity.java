@@ -20,7 +20,7 @@ public class AccumulatedQuantity {
      */
     public AccumulatedQuantity(String accumulatedQuantity) {
         requireNonNull(accumulatedQuantity);
-        checkArgument(isValidAccQuantity(accumulatedQuantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAccumulatedQuantity(accumulatedQuantity), MESSAGE_CONSTRAINTS);
         this.accumulatedQuantity = accumulatedQuantity;
     }
 
@@ -36,7 +36,7 @@ public class AccumulatedQuantity {
     /**
      * Returns true if a given int is more than zero or more.
      */
-    public static boolean isValidAccQuantity(String test) {
+    public static boolean isValidAccumulatedQuantity(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 

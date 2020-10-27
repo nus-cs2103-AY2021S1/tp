@@ -40,8 +40,9 @@ public class AddCommandTest {
     public void execute_stockAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingStockAdded modelStub = new ModelStubAcceptingStockAdded();
         Stock validStock = new StockBuilder().build();
+        AddCommand addCommand = new AddCommand(validStock);
 
-        CommandResult commandResult = new AddCommand(validStock).execute(modelStub);
+        CommandResult commandResult = addCommand.execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validStock), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validStock), modelStub.stocksAdded);
@@ -110,7 +111,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setStockBookFilePath(Path addressBookFilePath) {
+        public void setStockBookFilePath(Path stockBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -206,7 +207,7 @@ public class AddCommandTest {
 
         @Override
         public String generateNextSerialNumber(Source source) {
-            return "0";
+            return "00";
         }
     }
 

@@ -59,7 +59,7 @@ public class SerialNumberSetsBook implements ReadOnlySerialNumberSetsBook {
         setSerialNumberSets(newData.getSerialNumberSetsList());
     }
 
-    //// person-level operations
+    //// serial number set-level operations
 
     /**
      * Returns true if a SerialNumberSet with the same identity as {@code serialNumberSet} exists

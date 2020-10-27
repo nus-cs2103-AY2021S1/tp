@@ -10,7 +10,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.VALID_SERIAL_NUMBER_BAN
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
+import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 //import org.junit.jupiter.api.BeforeEach;
@@ -190,7 +190,7 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_serialNumberNotFound_failure() {
-        Stock updatedStock = new StockBuilder().withSerialNumber("NotFound").build();
+        Stock updatedStock = new StockBuilder().withSerialNumber("NotFound1").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -200,7 +200,7 @@ public class UpdateCommandTest {
     @Test
     public void execute_someSerialNumberNotFound_failure() {
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder()
-                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, "Not Found").build();
+                .withSerialNumber(VALID_SERIAL_NUMBER_APPLE, "Not Found1").build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
         assertCommandFailure(updateCommand, model, UpdateCommand.MESSAGE_SERIAL_NUMBER_NOT_FOUND);
@@ -209,7 +209,7 @@ public class UpdateCommandTest {
     @Test
     public void execute_allSerialNumberNotFound_failure() {
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder()
-                .withSerialNumber("Unknown", "Not Found").build();
+                .withSerialNumber("Unknown1", "Not Found1").build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
         assertCommandFailure(updateCommand, model, UpdateCommand.MESSAGE_SERIAL_NUMBER_NOT_FOUND);

@@ -6,7 +6,7 @@ import static seedu.stock.model.Model.PREDICATE_SHOW_ALL_STOCKS;
 import seedu.stock.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all stocks in the stock book to the user.
  */
 public abstract class ListCommand extends Command {
 
