@@ -302,7 +302,7 @@ Format: `searchR [i/INGREDIENT [ MORE INGREDIENTS]] [n/NAME] [t/TAG [ MORE TAGS]
 * All fields are optional, but **at least one** of the fields must be present to search by recipe ingredient(s
 ), recipe name or recipe tag(s).
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    Multiple ingredients and tags are separated by a space and not a comma
+    Multiple ingredients and tags are separated by a space and not a comma.
 </div>
 
 Examples:
@@ -325,7 +325,7 @@ Format: `recommend`
 
 * Recipes are only recommended if you your Fridge contains all of a recipe ingredients.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    Ingredient quantity is not taken into account when determining whether an ingredient is present in your Fridge
+    Ingredient quantity is not taken into account when determining whether an ingredient is present in your Fridge.
 </div>
 
 Examples:
@@ -365,12 +365,12 @@ Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before the dash and after, only accepts alphanumeric characters
+`QUANTITY` is separated with a mandatory space before `-` and after the dash, only accepts alphanumeric characters
 , forward
  slashes and full stops.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-Multiple ingredients are separated by a comma.
+Multiple ingredients are separated by a `,`.
 </div> 
 
 Examples:
@@ -428,14 +428,14 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 , forward slashes and full stops.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-Multiple ingredients are separated by a comma.
+Multiple ingredients are separated by a `,`.
 </div> 
 
 * All fields are optional, but **at least** the ingredient index and one of the fields must be present to edit
  an ingredient.
 * You are not allowed to edit an ingredient into an already existing ingredient in the Fridge.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
-    Specified fields will permanently override existing values with the new values- the edit is not cumulative. Typing editF INDEX and then hitting Enter will insert the information of the ingredient at the specified INDEX into the command box, letting you directly modify the existing ingredient.
+    Specified fields will permanently override existing values with the new values- the edit is not cumulative. Typing `editF INDEX` and then hitting `Enter` will insert the information of the ingredient at the specified `INDEX` into the command box, letting you directly modify the existing ingredient.
 </div> 
 
 Examples:
@@ -480,7 +480,7 @@ Format: `searchF KEYWORD [ MORE KEYWORDS]`
 * The search is case-insensitive. e.g `peanut` will match `Peanut`.
 * The order of the keywords does not matter. e.g. Peanut Butter will match Butter with Peanut.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    Ingredient quantity is not taken into account when determining whether two ingredients matches
+    Ingredient quantity is not taken into account when determining whether two ingredients matches.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
 Multiple kewyords are separated by a space.
@@ -539,7 +539,7 @@ Shows the list of recipes that you have eaten, including the recipe's name and c
 Format: `calories`
 
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-    Deleting a recipe **will not** affect the recipes that have been eaten in the consumption list.
+    Deleting a recipe will not affect the recipes that have been eaten in the consumption list.
 </div>
 
 <br><br><br>
