@@ -6,12 +6,13 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.appointment.Appointment;
 
-public class DeleteAppointmentCommand extends AppointmentCommand {
+public class DeleteAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "deleteapp";
 
@@ -43,5 +44,12 @@ public class DeleteAppointmentCommand extends AppointmentCommand {
         Appointment toDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteAppointment(toDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DeleteAppointmentCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteAppointmentCommand) other).targetIndex)); // state check
     }
 }

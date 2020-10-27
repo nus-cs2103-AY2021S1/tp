@@ -8,6 +8,7 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -17,7 +18,7 @@ import seedu.address.model.patient.IcNumber;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 
-public class AddAppointmentCommand extends AppointmentCommand {
+public class AddAppointmentCommand extends Command {
 
     public static final String COMMAND_WORD = "addapp";
 
@@ -44,36 +45,60 @@ public class AddAppointmentCommand extends AppointmentCommand {
      * Creates an AddAppointmentCommand to add the specified {@code Appointment}
      */
     public AddAppointmentCommand(Index targetIndex, AppointmentDateTime startTime, AppointmentDateTime endTime) {
+        assert targetIndex != null : "targetIndex cannot be null.";
+        assert startTime != null : "startTime cannot be null.";
+        assert endTime != null : "endTime cannot be null.";
         this.targetIndex = targetIndex;
         this.startTime = startTime;
         this.endTime = endTime;
     }
+
+    /**
+     * Creates an AddAppointmentCommand to add the specified {@code Appointment}
+     */
+    public AddAppointmentCommand(Appointment appointment) {
+        requireNonNull(appointment);
+        toAdd = appointment;
+        startTime = appointment.getStartTime();
+        endTime = appointment.getEndTime();
+        targetIndex = null;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Patient> lastShownList = model.getFilteredPatientList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+        if (targetIndex == null) {
+            requireNonNull(toAdd);
+            if (model.hasAppointment(toAdd)) {
+                throw new CommandException(MESSAGE_CONFLICTING_APP);
+            }
+            model.addAppointment(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        } else {
+            List<Patient> lastShownList = model.getFilteredPatientList();
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_PATIENT_DISPLAYED_INDEX);
+            }
+
+            Patient patient = lastShownList.get(targetIndex.getZeroBased());
+
+            Name patientName = patient.getName();
+            IcNumber patientIC = patient.getIcNumber();
+
+            toAdd = new Appointment(patientName, patientIC, startTime, endTime);
+
+            if (model.hasAppointment(toAdd)) {
+                throw new CommandException(MESSAGE_CONFLICTING_APP);
+            }
+
+            //        if (model.getFilteredAppointmentList().contains(toAdd)) {
+            //            throw new CommandException(MESSAGE_CONFLICTING_APP);
+            //        }
+
+            model.addAppointment(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
-
-        Patient patient = lastShownList.get(targetIndex.getZeroBased());
-
-        Name patientName = patient.getName();
-        IcNumber patientIC = patient.getIcNumber();
-
-        toAdd = new Appointment(patientName, patientIC, startTime, endTime);
-
-        if (model.hasAppointment(toAdd)) {
-            throw new CommandException(MESSAGE_CONFLICTING_APP);
-        }
-
-        //        if (model.getFilteredAppointmentList().contains(toAdd)) {
-        //            throw new CommandException(MESSAGE_CONFLICTING_APP);
-        //        }
-
-        model.addAppointment(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     @Override
