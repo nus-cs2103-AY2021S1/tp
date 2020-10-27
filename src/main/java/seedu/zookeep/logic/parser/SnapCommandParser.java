@@ -13,6 +13,7 @@ import seedu.zookeep.logic.parser.exceptions.ParseException;
  */
 public class SnapCommandParser implements Parser<SnapCommand> {
     private static final String VALIDATION_REGEX = "^[a-zA-Z0-9_-]*$";
+    private static final int MAX_FILE_NAME_LENGTH = 100;
 
     /**
      * Parses the given {@code String} of arguments in the context of the SnapCommand
@@ -21,12 +22,11 @@ public class SnapCommandParser implements Parser<SnapCommand> {
      */
     public SnapCommand parse(String args) throws ParseException {
         String fileName = args.trim();
-        Path savePath = Path.of("data", fileName + SnapCommand.FILE_FORMAT);
-        int maxFileNameLength = 100;
+        Path savePath = Path.of("data", "snapshots", fileName + SnapCommand.FILE_FORMAT);
 
         if (fileName.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SnapCommand.MESSAGE_USAGE));
-        } else if (!fileName.matches(VALIDATION_REGEX) || fileName.length() > maxFileNameLength) {
+        } else if (!fileName.matches(VALIDATION_REGEX) || fileName.length() > MAX_FILE_NAME_LENGTH) {
             throw new ParseException(SnapCommand.MESSAGE_CONSTRAINTS);
         } else if (Files.exists(savePath)) {
             throw new ParseException(String.format(SnapCommand.MESSAGE_WARNING, fileName + SnapCommand.FILE_FORMAT));

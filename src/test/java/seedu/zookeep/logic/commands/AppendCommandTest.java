@@ -11,14 +11,12 @@ import static seedu.zookeep.testutil.TypicalAnimals.AHMENG;
 import static seedu.zookeep.testutil.TypicalAnimals.BUTTERCUP;
 import static seedu.zookeep.testutil.TypicalAnimals.getTypicalZooKeepBook;
 import static seedu.zookeep.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
-import static seedu.zookeep.testutil.TypicalIndexes.INDEX_SECOND_ANIMAL;
 
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.zookeep.commons.core.Messages;
-import seedu.zookeep.commons.core.index.Index;
 import seedu.zookeep.model.Model;
 import seedu.zookeep.model.ModelManager;
 import seedu.zookeep.model.UserPrefs;
@@ -37,7 +35,7 @@ public class AppendCommandTest {
     private Model model = new ModelManager(getTypicalZooKeepBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecified_success() {
         Animal editedAnimal = new AnimalBuilder().withFeedTimes(FEED_TIMES)
                 .withMedicalConditions(MEDICAL_CONDITIONS).build();
         Animal appendedAnimal = new AnimalBuilder(AHMENG).withAppendedFeedTimes(FEED_TIMES)
@@ -54,7 +52,7 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecified_success() {
         Animal editedAnimal = new AnimalBuilder().withFeedTimes(FEED_TIMES).build();
         Animal appendedAnimal = new AnimalBuilder(AHMENG).withAppendedFeedTimes(FEED_TIMES).build();
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder(editedAnimal).build();
@@ -69,7 +67,7 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecified_success() {
         AppendCommand appendCommand = new AppendCommand(AHMENG.getId(), new EditAnimalDescriptor());
         Animal editedAnimal = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
 
@@ -81,7 +79,7 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_success() {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
 
         Animal animalInFilteredList = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
@@ -99,28 +97,11 @@ public class AppendCommandTest {
     }
 
     @Test
-    public void execute_invalidAnimalIdUnfilteredList_failure() {
+    public void execute_invalidAnimalId_failure() {
         Id outOfBoundId = new Id("99999999999999");
         assert model.getAnimal(outOfBoundId).equals(Optional.empty());
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withFeedTimes(FEED_TIMES).build();
         AppendCommand appendCommand = new AppendCommand(outOfBoundId, descriptor);
-
-        assertCommandFailure(appendCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
-    }
-
-    /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of zookeep book
-     */
-    @Test
-    public void execute_invalidAnimalIndexFilteredList_failure() {
-        showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
-        Index outOfBoundIndex = INDEX_SECOND_ANIMAL;
-        // ensures that outOfBoundIndex is still in bounds of zookeep book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getZooKeepBook().getAnimalList().size());
-
-        AppendCommand appendCommand = new AppendCommand(BUTTERCUP.getId(),
-                new EditAnimalDescriptorBuilder().withFeedTimes(FEED_TIMES).build());
 
         assertCommandFailure(appendCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }

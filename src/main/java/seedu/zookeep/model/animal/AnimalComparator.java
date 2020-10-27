@@ -39,6 +39,13 @@ public class AnimalComparator {
         }
     };
 
+    private static final Comparator<Animal> ANIMAL_MEDICAL_COMPARATOR = new Comparator<Animal>() {
+        @Override
+        public int compare(Animal o1, Animal o2) {
+            return o1.getMedicalConditions().size() - o2.getMedicalConditions().size();
+        }
+    };
+
     private static final Comparator<Animal> ANIMAL_NAME_COMPARATOR = new Comparator<Animal>() {
         @Override
         public int compare(Animal o1, Animal o2) {
@@ -48,6 +55,7 @@ public class AnimalComparator {
 
     private static final String FEEDTIME_CATEGORY = "feedtime";
     private static final String ID_CATEGORY = "id";
+    private static final String MEDICAL_CATEGORY = "medical";
     private static final String NAME_CATEGORY = "name";
 
     private String category;
@@ -59,7 +67,7 @@ public class AnimalComparator {
     }
 
     /**
-     * Creates an animal feed time comparator.
+     * Creates an animal comparator to sort all animals by earliest feed time in chronological order.
      * @return An animal feed time comparator.
      */
     public static AnimalComparator createAnimalFeedTimeComparator() {
@@ -67,7 +75,7 @@ public class AnimalComparator {
     }
 
     /**
-     * Creates an animal id comparator.
+     * Creates an animal comparator to sort all animals by id in ascending order.
      * @return An animal id comparator.
      */
     public static AnimalComparator createAnimalIdComparator() {
@@ -75,7 +83,15 @@ public class AnimalComparator {
     }
 
     /**
-     * Creates an animal name comparator.
+     * Creates an animal comparator to sort all animals by their number of medical conditions in ascending order.
+     * @return An animal medical comparator.
+     */
+    public static AnimalComparator createAnimalMedicalComparator() {
+        return new AnimalComparator(ANIMAL_MEDICAL_COMPARATOR, MEDICAL_CATEGORY);
+    }
+
+    /**
+     * Creates an animal comparator to sort all animals by name in alphabetical order.
      * @return An animal name comparator.
      */
     public static AnimalComparator createAnimalNameComparator() {
