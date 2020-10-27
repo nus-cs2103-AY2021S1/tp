@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -10,9 +13,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import seedu.address.model.delivery.Delivery;
-
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 
 /**
  * An UI component that displays information of a {@code Item}.

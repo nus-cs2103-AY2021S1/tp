@@ -65,7 +65,7 @@ public interface DeliveryModel extends Model {
     void setDelivery(Delivery target, Delivery editedDelivery);
 
     /** Returns an unmodifiable view of the filtered delivery list */
-    ObservableList<Delivery> getFilteredDeliveryList();
+    ObservableList<Delivery> getFilteredAndSortedDeliveryList();
 
     /**
      * Updates the filter of the filtered delivery list to filter by the given {@code predicate}.

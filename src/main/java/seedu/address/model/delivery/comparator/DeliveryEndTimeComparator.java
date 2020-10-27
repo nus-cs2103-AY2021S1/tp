@@ -1,8 +1,8 @@
 package seedu.address.model.delivery.comparator;
 
-import seedu.address.model.delivery.Delivery;
-
 import java.util.Comparator;
+
+import seedu.address.model.delivery.Delivery;
 
 public class DeliveryEndTimeComparator implements Comparator<Delivery> {
     @Override

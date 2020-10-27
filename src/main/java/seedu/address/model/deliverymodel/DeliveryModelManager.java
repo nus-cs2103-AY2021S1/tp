@@ -125,7 +125,7 @@ public class DeliveryModelManager implements DeliveryModel {
      * {@code versionedDeliveryBook}
      */
     @Override
-    public ObservableList<Delivery> getFilteredDeliveryList() {
+    public ObservableList<Delivery> getFilteredAndSortedDeliveryList() {
         return new SortedList<>(filteredDeliveries, DELIVERY_COMPARATOR);
     }
 

@@ -249,12 +249,12 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         DeliveryBook expectedDeliveryBook = new DeliveryBook(actualDeliveryModel.getDeliveryBook());
-        List<Delivery> expectedFilteredList = new ArrayList<>(actualDeliveryModel.getFilteredDeliveryList());
+        List<Delivery> expectedFilteredList = new ArrayList<>(actualDeliveryModel.getFilteredAndSortedDeliveryList());
         Models models = new ModelsManager(new InventoryModelManager(), actualDeliveryModel);
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(models));
         assertEquals(expectedDeliveryBook, actualDeliveryModel.getDeliveryBook());
-        assertEquals(expectedFilteredList, actualDeliveryModel.getFilteredDeliveryList());
+        assertEquals(expectedFilteredList, actualDeliveryModel.getFilteredAndSortedDeliveryList());
     }
 
     /**
@@ -277,14 +277,14 @@ public class CommandTestUtil {
      * the delivery at the given {@code targetIndex} in the {@code model}'s delivery book.
      */
     public static void showDeliveryAtIndex(DeliveryModel deliveryModel, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < deliveryModel.getFilteredDeliveryList().size());
+        assertTrue(targetIndex.getZeroBased() < deliveryModel.getFilteredAndSortedDeliveryList().size());
 
-        Delivery delivery = deliveryModel.getFilteredDeliveryList().get(targetIndex.getZeroBased());
+        Delivery delivery = deliveryModel.getFilteredAndSortedDeliveryList().get(targetIndex.getZeroBased());
         final String[] splitName = delivery.getName().fullName.split("\\s+");
         deliveryModel.updateFilteredDeliveryList(
                 new DeliveryNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, deliveryModel.getFilteredDeliveryList().size());
+        assertEquals(1, deliveryModel.getFilteredAndSortedDeliveryList().size());
     }
 
 }

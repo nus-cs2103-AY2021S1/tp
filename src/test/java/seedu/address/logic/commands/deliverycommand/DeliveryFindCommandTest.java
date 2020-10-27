@@ -60,20 +60,20 @@ class DeliveryFindCommandTest {
     @Test
     public void execute_matchingSubstring_itemsFound() {
         executeTest(2, prepareAddressPredicate("blk 23"), testModel, expectedTestModel,
-                testModel.getFilteredDeliveryList());
+                testModel.getFilteredAndSortedDeliveryList());
     }
 
     @Test
     public void execute_matchingKeywordsNotInOrder_itemsFound() {
         executeTest(2, prepareAddressPredicate("23 blk"), testModel, expectedTestModel,
-                testModel.getFilteredDeliveryList());
+                testModel.getFilteredAndSortedDeliveryList());
     }
 
     @Test
     public void execute_twoFieldSpecified_itemsFound() {
         executeTest(1, prepareDeliveryNamePredicate("Kelvin")
                 .and(prepareAddressPredicate("Clementi")), testModel,
-                expectedTestModel, testModel.getFilteredDeliveryList());
+                expectedTestModel, testModel.getFilteredAndSortedDeliveryList());
     }
 
     @Test
@@ -128,7 +128,7 @@ class DeliveryFindCommandTest {
         expectedModel.updateFilteredDeliveryList(predicate);
 
         assertCommandSuccess(command, actualModel, expectedMessage, expectedModel);
-        assertEquals(expectedFilteredDeliveries, actualModel.getFilteredDeliveryList());
+        assertEquals(expectedFilteredDeliveries, actualModel.getFilteredAndSortedDeliveryList());
     }
 
 }

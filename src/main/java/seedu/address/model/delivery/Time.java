@@ -1,11 +1,10 @@
 package seedu.address.model.delivery;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Delivery's time in the address book.
@@ -21,7 +20,7 @@ public class Time implements Comparable<Time> {
     public final LocalDateTime endTime;
 
     /**
-     * Constructs a {@code Phone}.
+     * Constructs a {@code Time}.
      *
      * @param minutes A valid time in minutes.
      * @param endTime A LocalDateTime that the delivery should be done by.
@@ -32,6 +31,10 @@ public class Time implements Comparable<Time> {
         this.endTime = endTime;
     }
 
+    /**
+     * @param minutes A valid time in minutes.
+     * @return A new Time, with endTime {@code minutes} from time now.
+     */
     public static Time timeFromMinutes(String minutes) {
         checkArgument(isValidTime(minutes), MESSAGE_CONSTRAINTS);
         long min = Long.parseLong(minutes);

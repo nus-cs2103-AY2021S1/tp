@@ -28,7 +28,8 @@ public class DeliveryDeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Delivery deliveryToDelete = deliveryModel.getFilteredDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Delivery deliveryToDelete =
+                deliveryModel.getFilteredAndSortedDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeliveryDeleteCommand deleteCommand = new DeliveryDeleteCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(DeliveryDeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, deliveryToDelete);
@@ -42,7 +43,7 @@ public class DeliveryDeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(deliveryModel.getFilteredDeliveryList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(deliveryModel.getFilteredAndSortedDeliveryList().size() + 1);
         DeliveryDeleteCommand deleteCommand = new DeliveryDeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, deliveryModel, Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
@@ -52,7 +53,8 @@ public class DeliveryDeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showDeliveryAtIndex(deliveryModel, INDEX_FIRST_ITEM);
 
-        Delivery deliveryToDelete = deliveryModel.getFilteredDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Delivery deliveryToDelete =
+                deliveryModel.getFilteredAndSortedDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeliveryDeleteCommand deleteCommand = new DeliveryDeleteCommand(INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(DeliveryDeleteCommand.MESSAGE_DELETE_ITEM_SUCCESS, deliveryToDelete);
@@ -106,6 +108,6 @@ public class DeliveryDeleteCommandTest {
     private void showNoDelivery(DeliveryModel deliveryModel) {
         deliveryModel.updateFilteredDeliveryList(p -> false);
 
-        assertTrue(deliveryModel.getFilteredDeliveryList().isEmpty());
+        assertTrue(deliveryModel.getFilteredAndSortedDeliveryList().isEmpty());
     }
 }
