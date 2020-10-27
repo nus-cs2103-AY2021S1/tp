@@ -54,6 +54,7 @@ public class PatientCard extends UiPart<Region> {
     @FXML
     private Label copyButtonNotification;
 
+
     /**
      * Creates a {@code PatientCard} with the given {@code Patient} and index to display.
      */
@@ -70,7 +71,7 @@ public class PatientCard extends UiPart<Region> {
         Set<Appointment> appointmentList = patient.getAppointments();
         int numOfAppts = 0;
         for (Appointment appt : appointmentList) {
-            if (Appointment.isPassed(appt.getAppointmentTime())) {
+            if (!Appointment.isPassed(appt.getAppointmentTime())) {
                 numOfAppts++;
             }
         }
@@ -109,4 +110,19 @@ public class PatientCard extends UiPart<Region> {
         url.putString(patient.getMedicalRecord().value);
         clipboard.setContent(url);
     }
+
+    /**
+     * Shows the Appointment window when patient is clicked.
+     */
+    @FXML
+    private void onDoubleClick() {
+        AppointmentWindow appointmentWindow = MainWindow.appointmentWindow;
+        appointmentWindow.setAppointmentWindow(patient);
+        if (appointmentWindow.isShowing()) {
+            appointmentWindow.focus();
+        } else {
+            appointmentWindow.show();
+        }
+    }
+
 }

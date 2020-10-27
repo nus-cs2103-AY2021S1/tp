@@ -1,18 +1,23 @@
-package seedu.address.logic.parser;
+package seedu.address.logic.parser.AppointmentCommandParser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_NEW;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT_OLD;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointmentcommand.EditApptCommand;
+import seedu.address.logic.parser.ArgumentMultimap;
+import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Appointment;
+import seedu.address.model.patient.Nric;
 
 /**
  * Parses input arguments and creates a new EditApptCommand object
@@ -31,12 +36,12 @@ public class EditApptCommandParser implements Parser<EditApptCommand> {
         logger.log(Level.INFO, "Start parsing");
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT_OLD, PREFIX_APPOINTMENT_NEW);
 
-        Index index;
+        Nric nric;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            nric = ParserUtil.parseNric(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditApptCommand.MESSAGE_USAGE), pe);
@@ -44,18 +49,18 @@ public class EditApptCommandParser implements Parser<EditApptCommand> {
 
         Appointment oldAppointment = new Appointment();
 
-        if (argMultimap.getValue(PREFIX_APPOINTMENT).isPresent()) {
-            oldAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
+        if (argMultimap.getValue(PREFIX_APPOINTMENT_OLD).isPresent()) {
+            oldAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT_OLD).get());
         }
         assert !oldAppointment.equals(new Appointment()) : "Appointment should not be empty!";
 
         Appointment newAppointment = new Appointment();
 
-        if (argMultimap.getValue(PREFIX_APPOINTMENT).isPresent()) {
-            newAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT).get());
+        if (argMultimap.getValue(PREFIX_APPOINTMENT_NEW).isPresent()) {
+            newAppointment = ParserUtil.parseAppointment(argMultimap.getValue(PREFIX_APPOINTMENT_NEW).get());
         }
 
-        return new EditApptCommand(index, oldAppointment, newAppointment);
+        return new EditApptCommand(nric, oldAppointment, newAppointment);
     }
 
 }

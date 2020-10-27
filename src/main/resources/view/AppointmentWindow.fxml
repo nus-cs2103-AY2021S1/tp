@@ -9,7 +9,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.stage.*?>
 
-<fx:root maximized="true" minHeight="500.0" minWidth="1000.0" title="Appointment" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="500.0" minWidth="1000.0" title="Appointment" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/help_icon.png" />
     </icons>
