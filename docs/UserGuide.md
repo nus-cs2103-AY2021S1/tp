@@ -471,7 +471,7 @@ Action | Format, Examples
 **Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Visit** | `deletevisit INDEX i/VISIT_INDEX`
-**Delete Appointment** | `deleteapp INDEX`
+**Delete Appointment** | `deleteapp INDEX` <br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
 **Edit Visit** | `editvisit INDEX i/VISIT_INDEX`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
