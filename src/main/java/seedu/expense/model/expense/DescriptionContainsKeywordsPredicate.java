@@ -10,10 +10,10 @@ import seedu.expense.commons.util.StringUtil;
 /**
  * Tests that a {@code Expense}'s {@code Description} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Expense> {
+public class DescriptionContainsKeywordsPredicate implements Predicate<Expense> {
     private final Set<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public DescriptionContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = new HashSet<>(keywords);
     }
 
@@ -27,8 +27,8 @@ public class NameContainsKeywordsPredicate implements Predicate<Expense> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof DescriptionContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((DescriptionContainsKeywordsPredicate) other).keywords)); // state check
     }
 
     /**

@@ -110,6 +110,10 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
         budgets.topupBudget(amount);
     }
 
+    public void topupCategoryBudget(Tag category, Amount amount) {
+        budgets.topupCategoryBudget(category, amount);
+    }
+
     public boolean containsCategory(Tag tag) {
         return tags.contains(tag);
     }
