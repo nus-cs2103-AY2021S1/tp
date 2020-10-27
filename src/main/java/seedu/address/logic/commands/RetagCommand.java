@@ -14,7 +14,7 @@ import seedu.address.model.tag.TagName;
 import seedu.address.model.tag.TagNameEqualsKeywordPredicate;
 
 /**
- * Adds a person to the address book.
+ * Changes a tag's name in the address book.
  */
 public class RetagCommand extends Command {
     public static final String COMMAND_WORD = "retag";
