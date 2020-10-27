@@ -25,7 +25,7 @@ public class ProfileCommand extends Command {
             + "Parameters: INDEX (must be a positive number) \n\n"
             + "Example: " + COMMAND_WORD + " 1 ";
 
-    public static final String MESSAGE_VIEW_PROFILE_SUCCESS = "Displayed profile of : %1$s";
+    public static final String MESSAGE_VIEW_PROFILE_SUCCESS = "Displayed profile of the following patient: \n%1$s";
 
     private final Index patientIndex;
 
