@@ -149,10 +149,13 @@ public class Recipe {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < len; i++) {
             Instruction instruction = instructions.get(i);
+            String instrStr = instruction.toString();
+            int firstBracket = instrStr.indexOf(")");
+            instrStr = instrStr.substring(firstBracket + 1);
             if (i == len - 1) {
-                sb.append(instruction.toString());
+                sb.append(instrStr);
             } else {
-                sb.append(instruction.toString() + ". ");
+                sb.append(instrStr + ". ");
             }
         }
         return sb.toString();
