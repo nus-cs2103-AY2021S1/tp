@@ -75,10 +75,6 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
         return financeRecords.getFinanceRecord(recordId);
     }
 
-    public FinanceRecord getFinanceRecord(Integer targetID) {
-        return financeRecordHashMap.get(targetID);
-    }
-
     /**
      * Removes the finance record with the corresponding index
      *

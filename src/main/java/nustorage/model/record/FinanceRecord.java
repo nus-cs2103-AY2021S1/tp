@@ -12,6 +12,7 @@ public class FinanceRecord {
     private final boolean hasInventory;
     private double amount;
     private String uiUsableIndex;
+    private double cost;
 
     /**
      * Constructs a {@code Finance Record}.
@@ -68,12 +69,25 @@ public class FinanceRecord {
         this.uiUsableIndex = "" + uiUsableIndex;
     }
 
+    public FinanceRecord(double amount, double cost) {
+        this.amount = amount;
+        this.id = this.hashCode();;
+        this.dateTime = LocalDateTime.now();
+        this.cost = cost;
+        this.hasInventory = true;
+        this.uiUsableIndex = "" + uiUsableIndex;
+    }
+
     public int getID() {
         return id;
     }
 
     public double getAmount() {
         return amount;
+    }
+
+    public double getCost() {
+        return cost;
     }
 
     public void setAmount(double amount) {

@@ -80,7 +80,6 @@ public class EditFinanceCommand extends Command {
 
         double updatedAmount = editFinanceDescriptor.getAmount().orElse(financeRecord.getAmount());
         LocalDateTime updatedDatetime = editFinanceDescriptor.getDatetime().orElse(financeRecord.getDateTime());
-
         return new FinanceRecord(updatedAmount, updatedDatetime);
     }
 
