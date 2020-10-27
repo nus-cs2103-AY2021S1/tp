@@ -140,23 +140,6 @@ Examples:
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
-### Clearing all food items shown : `clear`
-
-You can remove all food items shown in McGymmy.
-
-Format: `clear`
-
-<div markdown="block" class="alert alert-info">
-
-:information_source:
-
-* Items are removed permanently.
-* All additional input after the *command word* `clear` will be ignored. E.g. `clear` and `clear 123` will have the same effect.
-
-</div>
-
-![clear command example](images/CommandImagesForUG/Clear.png)
-
 ### Tagging food items : `tag`
 
 You can tag a food item in McGymmy.
