@@ -16,6 +16,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -23,8 +24,9 @@ import seedu.address.model.task.Task;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    public static final String MESSAGE_NO_UNDO_HISTORY = "There are no commands to undo";
+    public static final String MESSAGE_NO_REDO_HISTORY = "There are no commands to redo";
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final ModuleList moduleList;
     private final VersionedModuleList versionedModuleList;
     private final ContactList contactList;
@@ -151,17 +153,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoModuleList() {
+    public void undoModuleList() throws VersionedListException {
         assert accessPointer >= 0;
-        versionedModuleList.undo();
+        try {
+            versionedModuleList.undo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
         setModuleList(versionedModuleList.getCurrentModuleList());
         //accessSequence.add(1);
     }
 
     @Override
-    public void redoModuleList() {
+    public void redoModuleList() throws VersionedListException {
         assert accessPointer >= 0;
-        versionedModuleList.redo();
+        try {
+            versionedModuleList.redo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
         setModuleList(versionedModuleList.getCurrentModuleList());
         //accessSequence.add(1);
         //accessPointer += 1;
@@ -218,17 +228,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoContactList() {
+    public void undoContactList() throws VersionedListException {
         assert accessPointer >= 0;
-        versionedContactList.undo();
+        try {
+            versionedContactList.undo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
         setContactList(versionedContactList.getCurrentContactList());
         //accessSequence.add(2);
     }
 
     @Override
-    public void redoContactList() {
+    public void redoContactList() throws VersionedListException {
         assert accessPointer >= 0;
-        versionedContactList.redo();
+        try {
+            versionedContactList.redo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
         setContactList(versionedContactList.getCurrentContactList());
         //accessSequence.add(2);
     }
@@ -279,17 +297,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoTodoList() {
+    public void undoTodoList() throws VersionedListException{
         assert accessPointer >= 0;
-        versionedTodoList.undo();
+        try {
+            versionedTodoList.undo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
         setTodoList(versionedTodoList.getCurrentTodoList());
         //accessSequence.add(3);
     }
 
     @Override
-    public void redoTodoList() {
+    public void redoTodoList() throws VersionedListException {
         assert accessPointer >= 0;
-        versionedTodoList.redo();
+        try {
+            versionedTodoList.redo();
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
+        }
         setTodoList(versionedTodoList.getCurrentTodoList());
         //accessSequence.add(3);
     }
@@ -306,26 +332,40 @@ public class ModelManager implements Model {
         }
     }
     @Override
-    public void undo() {
+    public void undo() throws VersionedListException {
+        if (accessPointer == 0) {
+            throw new VersionedListException(MESSAGE_NO_UNDO_HISTORY);
+        }
         int pointer = accessSequence.get(accessPointer);
-        if (pointer == 1) {
-            undoModuleList();
-        } else if (pointer == 2) {
-            undoContactList();
-        } else {
-            undoTodoList();
+        try {
+            if (pointer == 1) {
+                undoModuleList();
+            } else if (pointer == 2) {
+                undoContactList();
+            } else {
+                undoTodoList();
+            }
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
         }
         accessPointer -= 1;
     }
     @Override
-    public void redo() {
+    public void redo() throws VersionedListException {
+        if (accessPointer >= accessSequence.size() - 1) {
+            throw new VersionedListException(MESSAGE_NO_REDO_HISTORY);
+        }
         int pointer = accessSequence.get(accessPointer + 1);
-        if (pointer == 1) {
-            redoModuleList();
-        } else if (pointer == 2) {
-            redoContactList();
-        } else {
-            redoTodoList();
+        try {
+            if (pointer == 1) {
+                redoModuleList();
+            } else if (pointer == 2) {
+                redoContactList();
+            } else {
+                redoTodoList();
+            }
+        } catch (VersionedListException versionedListException) {
+            throw versionedListException;
         }
         accessPointer += 1;
     }

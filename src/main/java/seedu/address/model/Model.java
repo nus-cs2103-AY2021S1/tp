@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -104,12 +105,12 @@ public interface Model {
     /**
      * Restores the previous module list state from history.
      */
-    void undoModuleList();
+    void undoModuleList() throws VersionedListException;
 
     /**
      * Restores the previously undone module list state from history.
      */
-    void redoModuleList();
+    void redoModuleList() throws VersionedListException;
     // ============================ ContactList ==================================================
 
     /**
@@ -168,12 +169,12 @@ public interface Model {
     /**
      * Restores the previous contact list state from history.
      */
-    void undoContactList();
+    void undoContactList() throws VersionedListException;
 
     /**
      * Restores the previously undone contact list state from history.
      */
-    void redoContactList();
+    void redoContactList() throws VersionedListException;
 
     // ============================ TodoList ==================================================
 
@@ -235,12 +236,12 @@ public interface Model {
     /**
      * Restores the previous todo list state from history.
      */
-    void undoTodoList();
+    void undoTodoList() throws VersionedListException;
 
     /**
      * Restores the previously undone todo list state from history.
      */
-    void redoTodoList();
+    void redoTodoList() throws VersionedListException;
 
     /**
      * Saves the current CAP5Buddy list state in history.
@@ -250,10 +251,10 @@ public interface Model {
     /**
      * Restores the previous CAP5Buddy state from history.
      */
-    void undo();
+    void undo() throws VersionedListException;
 
     /**
      * Restores the previously undone CAP5Buddy state from history.
      */
-    void redo();
+    void redo() throws VersionedListException;
 }

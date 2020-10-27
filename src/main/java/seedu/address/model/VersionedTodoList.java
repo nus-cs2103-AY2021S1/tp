@@ -3,7 +3,11 @@ package seedu.address.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.model.exceptions.VersionedListException;
+
 public class VersionedTodoList extends TodoList {
+    private static final String MESSAGE_NO_REDO_HISTORY = "There are no Todo List commands to redo";
+    private static final String MESSAGE_NO_UNDO_HISTORY = "There are no Todo List commands to undo";
     private List<ReadOnlyTodoList> todoListStateList = new ArrayList<>();
     private int currentStatePointer;
 
@@ -28,15 +32,20 @@ public class VersionedTodoList extends TodoList {
     /**
      * Restores the previous todo list state from history.
      */
-    public void undo() {
-        assert !isIndexZero() : "Assertion error, there are no instructions to undo";
+    public void undo() throws VersionedListException {
+        if (isIndexZero()) {
+            throw new VersionedListException(MESSAGE_NO_UNDO_HISTORY);
+        }
         this.currentStatePointer -= 1;
     }
 
     /**
      * Restores the previously undone todo list state from history.
      */
-    public void redo() {
+    public void redo() throws VersionedListException {
+        if (isLastIndex()) {
+            throw new VersionedListException(MESSAGE_NO_REDO_HISTORY);
+        }
         assert !isLastIndex() : "Assertion error, there are no instructions to redo";
         this.currentStatePointer += 1;
     }
