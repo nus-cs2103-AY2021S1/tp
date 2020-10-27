@@ -10,7 +10,9 @@ import chopchop.commons.util.StreamUtils;
 import chopchop.model.recipe.Recipe;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
@@ -35,6 +37,9 @@ public class RecipeDisplay extends UiPart<Region> {
     @FXML
     private TextFlow stepList;
 
+    @FXML
+    private FlowPane tagList;
+
 
     /**
      * Creates a {@code RecipeDisplay} with a {@code Recipe}.
@@ -44,7 +49,7 @@ public class RecipeDisplay extends UiPart<Region> {
         super(FXML);
 
         this.recipe = recipe;
-        display();
+        this.display();
     }
 
     /**
@@ -57,6 +62,7 @@ public class RecipeDisplay extends UiPart<Region> {
         this.stepHeader.setText("Steps");
         this.ingredientHeader.setText("Ingredients");
 
+        this.tagList.getChildren().clear();
         this.stepList.getChildren().clear();
         this.ingredientList.getChildren().clear();
 
@@ -72,7 +78,6 @@ public class RecipeDisplay extends UiPart<Region> {
             );
         }
 
-
         if (this.recipe.getSteps().isEmpty()) {
             this.stepList.getChildren().add(new Text("Recipe has no steps"));
         } else {
@@ -85,6 +90,22 @@ public class RecipeDisplay extends UiPart<Region> {
                         return List.of(
                             label, new Text(String.format("%s\n", s.snd()))
                         ).stream();
+                    })
+                    .collect(Collectors.toList())
+            );
+        }
+
+        if (this.recipe.getTags().isEmpty()) {
+            this.tagList.getChildren().add(new Text("Recipe has no tags"));
+        } else {
+            this.tagList.getChildren().setAll(
+                this.recipe.getTags().stream()
+                    .map(Object::toString)
+                    .sorted()
+                    .map(s -> {
+                        var t = new Label(s);
+                        t.getStyleClass().add("rTagItem");
+                        return t;
                     })
                     .collect(Collectors.toList())
             );

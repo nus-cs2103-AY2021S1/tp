@@ -12,17 +12,26 @@
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="470.0" prefWidth="288.0">
+            <VBox spacing="10" prefHeight="470.0" prefWidth="288.0">
                <children>
-                  <AnchorPane prefHeight="130.0" prefWidth="200.0">
+                  <AnchorPane minHeight="40.0" prefWidth="200.0">
                      <children>
-                        <Label fx:id="recipeName" wrapText="true" AnchorPane.topAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
+                        <Label styleClass="rRecipeName"
+                               fx:id="recipeName"
+                               wrapText="true"
+                               AnchorPane.topAnchor="5.0"
+                               AnchorPane.leftAnchor="5.0"/>
                      </children>
                   </AnchorPane>
-                  <VBox styleClass="ingredientDisplay" prefHeight="360.0" prefWidth="200.0">
+                  <VBox styleClass="rTagDisplay" prefWidth="200.0">
                      <children>
-                        <Label fx:id="ingredientHeader" underline="true" />
-                        <TextFlow fx:id="ingredientList" />
+                        <FlowPane styleClass="rTagList" fx:id="tagList" />
+                     </children>
+                  </VBox>
+                  <VBox styleClass="rIngredientDisplay" VBox.vgrow="ALWAYS" prefWidth="200.0">
+                     <children>
+                        <Label styleClass="rIngredientHeader" fx:id="ingredientHeader" underline="true"/>
+                        <TextFlow styleClass="rIngredientList" fx:id="ingredientList" />
                      </children>
                   </VBox>
                </children>
@@ -33,11 +42,10 @@
    <right>
       <HBox BorderPane.alignment="CENTER_LEFT">
          <children>
-            <!-- <TextArea fx:id="instructionDisplay" prefHeight="465.0" prefWidth="310.0" editable="false" wrapText="true"/> -->
-            <VBox styleClass="stepDisplay" prefHeight="465.0" prefWidth="310.0">
+            <VBox styleClass="rStepDisplay" prefHeight="465.0" prefWidth="310.0">
                <children>
-                  <Label fx:id="stepHeader" underline="true" />
-                  <TextFlow fx:id="stepList" />
+                  <Label styleClass="rStepHeader" fx:id="stepHeader" underline="true" />
+                  <TextFlow styleClass="rStepList" fx:id="stepList" />
                </children>
             </VBox>
          </children>
