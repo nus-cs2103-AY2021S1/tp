@@ -13,7 +13,7 @@ public class RecipeCard extends UiPart<Region> {
 
     private static final String FXML = "RecipeCard.fxml";
 
-    public final Recipe recipe;
+    private final Recipe recipe;
 
     private final int id;
 
@@ -34,6 +34,13 @@ public class RecipeCard extends UiPart<Region> {
         this.id = id;
         recipeName.setText(recipe.getName());
         recipeIndex.setText(String.valueOf(id));
+    }
+
+    /**
+     * Retrieves a {@code Recipe}.
+     */
+    public Recipe getRecipe() {
+        return recipe;
     }
 
     @FXML

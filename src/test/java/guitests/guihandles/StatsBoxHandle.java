@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
  */
 public class StatsBoxHandle extends NodeHandle<Region> {
 
-    public final static String STATS_FIELD_ID = "statsBox";
+    public static final String STATS_FIELD_ID = "statsBox";
 
     private static final String PINS_FIELD_ID = "#pins";
     private static final String HEADER_FIELD_ID = "#header1";
