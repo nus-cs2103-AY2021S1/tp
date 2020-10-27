@@ -36,7 +36,7 @@ Welcome to CliniCal! If you are new to our software, this quick start guide will
 
    * `list` : Lists all your patients.
 
-   * `add``n/John Doe p/98765432 i/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
+   * `add``n/John Doe p/98765432 ic/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
 
    * `delete``3` : Deletes the 3rd patient shown in the patient list.
 
@@ -122,11 +122,11 @@ Add your patient to the patient database.
 
 ![example of newly added patient](images/addExample.png)
 
-Format: `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
+Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
 Examples:
-* `add n/John Doe p/98765432 i/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01`
-* `add n/Betsy Crowe i/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin`
+* `add n/John Doe p/98765432 ic/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01`
+* `add n/Betsy Crowe ic/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin`
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tips:</span>
@@ -176,9 +176,9 @@ Edit an existing patient in the patient database.
 
 ![example of edited patient](images/editExample.png)
 
-Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
+Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
-* Edits the patient at the specified `INDEX`. The index refers to the index number shown in the displayed patient list. The index **must be a positive integer** 1, 2, 3, …​
+* Edits the patient at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed patient list. The index **must be a positive number** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 * When editing allergies (or color tag), the existing allergies (or color tag) of the patient will be removed i.e adding of allergies (or color tag) is not cumulative.
@@ -200,8 +200,8 @@ Delete a specified patient from the patient database.
 Format: `delete INDEX`
 
 * Deletes the patient at the specified `INDEX`.
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* `INDEX` refers to the index number shown in the displayed patient list.
+* `INDEX` **must be a positive number** 1, 2, 3, …​
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the patient database.
@@ -285,7 +285,96 @@ Format: `redo`
 
 * Only able to `redo` commands that have been previously undone such as `add`, `addpicture`, `edit`, `delete` and `clear`.
 
-### 3.3 Retrieving past commands using arrow keys
+#### 3.2.10 Viewing patient profile: `profile`
+
+Display the patient's profile in a separate window.
+
+Format: `profile INDEX`
+
+* Displays the patient's profile that is specified by `INDEX`.
+* `INDEX` refers to the index number shown in the displayed patient list.
+* `INDEX` **must be a positive number** 1, 2, 3, …​
+
+**Example**: You want to display the profile of the 1st patient on the list.
+
+**Step 1**: Input `profile 1` into the command box and press <kbd>Enter</kbd> on your keyboard.
+
+**Step 2**: A window displaying the patient's profile will appear. All relevant patient records and visitation logs will be shown.
+
+**Step 3**: To close the patient profile window, you can click on the 'Close' button on the top-right section of the window. Alternatively, you can press
+<kbd>ESC</kbd> key on your keyboard.
+
+### 3.3 Patient Visitation Commands
+
+#### 3.3.1 Adding a new visitation log for patient: `addvisit`
+
+Display a new window to add a new visitation log for the specified patient.
+
+Format: `addvisit INDEX [vd/VISIT_DATE]`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_DATE`is optional. If no visit date is being specified in the command, then the current date on the local machine will be used to record the patient's visit.
+
+**Example**: You want to add a visitation log to the 1st patient on the list.
+
+**Step 1**: Input `addvisit 1 vd/10/12/2020` into the command box and press <kbd>Enter</kbd>.
+
+**Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in relevant
+            details in each text box.
+   
+**Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
+
+**Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully saved.
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* Use <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> and <kbd>CTRL</kbd> + <kbd>TAB</kbd> to move to the previous and next text box respectively!
+* You can press <kbd>Esc</kbd> or the close button at the top right to close the window without saving.
+
+</div>
+   
+#### 3.3.2 Deleting patient's visitation log: `deletevisit`
+
+Delete the patient's visitation log.
+
+Format: `deletevisit INDEX i/VISIT_INDEX`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
+* Both indexes **must be a positive number** 1, 2, 3, …​
+
+**Example**: You want to delete the 2nd visitation log belonging to the 1st patient on the list.
+
+**Step 1**: Input `deletevisit 1 i/2` into the command box and press <kbd>Enter</kbd>.
+
+**Step 2**: A message will be displayed to indicate that the patient's second visitation log has been successfully deleted.
+
+#### 3.3.3 Editing patient's visitation log: `editvisit`
+
+Display a new window to edit the visitation log for a specified patient.
+
+Format: `editvisit INDEX i/VISIT_INDEX`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
+* Both indexes **must be a positive number** 1, 2, 3, …​
+
+**Example**: You want to edit the 1st visitation log belonging to the 2nd patient on the list.
+
+**Step 1**: Input `editvisit 2 i/1` into the command box and press <kbd>Enter</kbd>.
+
+**Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in updated
+            details in each text box.
+       
+   * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box. 
+   * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box. 
+               
+**Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
+
+**Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
+
+### 3.4 Retrieving past commands using arrow keys
 
 Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys on the keyboard.
 1. Click on the text field of the command box.
@@ -301,10 +390,9 @@ Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kb
 
 </div>
 
-### 3.4 Saving the data
+### 3.5 Saving the data
 
 CliniCal data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -319,16 +407,20 @@ CliniCal data is saved in your hard disk automatically after any command that ch
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER i/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g., `add n/James Ho p/22224444 i/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
+**Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g., `add n/James Ho p/22224444 i/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addpicture 1 f/data/profile_picture.png`
+**Add Visit** | `addvisit INDEX [vd/VISIT_DATE]`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [i/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
+**Delete Visit** | `deletevisit INDEX i/VISIT_INDEX`
+**Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
+**Edit Visit** | `editvisit INDEX i/VISIT_INDEX`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
 **Undo** | `undo`
 **Redo** | `redo`
 **Retrieve past commands** | `history`
+**View patient profile** | `profile INDEX`<br> e.g., `profile 2`
 **Exit** | `exit`
