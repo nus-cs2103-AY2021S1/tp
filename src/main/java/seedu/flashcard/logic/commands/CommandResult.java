@@ -9,6 +9,7 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    private static final int NOT_IN_USE = -1;
     private final String feedbackToUser;
 
     /**
@@ -34,7 +35,7 @@ public class CommandResult {
     /**
      * The flashcard index to view
      */
-    private final Integer viewIndex;
+    private final int viewIndex;
 
     /**
      * The application should show answer for view command.
@@ -61,7 +62,7 @@ public class CommandResult {
         this.reviewMode = reviewMode;
         this.quizMode = quizMode;
         this.viewMode = false;
-        this.viewIndex = null;
+        this.viewIndex = NOT_IN_USE;
         this.showAnswer = false;
         this.showStats = false;
     }
@@ -69,7 +70,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} specifically for view commands.
      */
-    public CommandResult(String feedbackToUser, Integer viewIndex, boolean showAnswer) {
+    public CommandResult(String feedbackToUser, int viewIndex, boolean showAnswer) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
@@ -84,7 +85,7 @@ public class CommandResult {
     /**
      * Constructs a {@code CommandResult} specifically for stats commands.
      */
-    public CommandResult(String feedbackToUser, Integer viewIndex) {
+    public CommandResult(String feedbackToUser, int viewIndex) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = false;
         this.exit = false;
@@ -153,11 +154,16 @@ public class CommandResult {
         }
 
         CommandResult otherCommandResult = (CommandResult) other;
+
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
                 && reviewMode == otherCommandResult.reviewMode
-                && quizMode == otherCommandResult.quizMode;
+                && quizMode == otherCommandResult.quizMode
+                && viewMode == otherCommandResult.viewMode
+                && showStats == otherCommandResult.showStats
+                && showAnswer == otherCommandResult.showAnswer
+                && viewIndex == otherCommandResult.viewIndex;
     }
 
     @Override

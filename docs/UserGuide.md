@@ -265,12 +265,12 @@ Examples:
 
 View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.
 
-Format: `view INDEX [a/]`
+Format: `view INDEX [-a]`
 
 * View the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
-*  If `a/` is specified, the answer and notes of the flashcard will be shown too.
+*  If `-a` is specified, the answer and notes of the flashcard will be shown too.
 
 <div markdown="span" class="alert alert-primary">:memo: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
 </div>
@@ -302,5 +302,5 @@ Action | Format, Examples
 **Review** | `review`
 **Quiz** | `quiz`
 **Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> e.g. `sort success -a`
-**View** | `view INDEX [a/]` <br> e.g. `view 1`
+**View** | `view INDEX [-a]` <br> e.g. `view 1`
 **Exit** | `exit`
