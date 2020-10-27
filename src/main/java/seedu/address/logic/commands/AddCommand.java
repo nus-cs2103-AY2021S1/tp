@@ -52,6 +52,7 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         // Todo: This index value will be that of the chosen vendor. As of now the first menu on the list is chosen
+        assert model != null;
         ObservableList<Food> menu = model.getFilteredFoodList();
         int index = addIndex.getZeroBased();
 
