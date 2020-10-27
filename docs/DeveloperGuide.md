@@ -213,50 +213,62 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Category account switching feature
+### Category Account Switching Feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed switching mechanism is facilitated by `CategoryExpenseBook`. It extends `ExpenseBook` with a tag-matching method. Additionally, it implements the following operations:
+The proposed switching mechanism is facilitated by `ExpenseBook` and initialised by 
+`Model#switchCategory(Tag category)`. Additionally, `ExpenseBook` implements the following operations:
 
-* `CategoryExpenseBook#containsCategory(Tag toCheck)` — Checks if the given tag matches the tag of category budget.
-* `CategoryExpenseBook#updateFilteredBudgets(Predicate<CategoryBudget> predicate)` — Filters the budget list to the given tag.
-* `CategoryExpenseBook#updateFilteredExpenses(Predicate<Expense> predicate)` — Filters the expense list to the given tag.
+* `ExpenseBook#containsCategory(Tag toCheck)` — Checks if the given tag matches the tag of category budget. <a name="switchOperations"></a>
+* `ExpenseBook#updateExpenseBookCategory(Tag category)` - Updates the expense to only show expenses and budgets that matches the category.
+* `ExpenseBook#updateFilteredBudgets(Predicate<CategoryBudget> predicate)` — Filters the budget list to the given tag.
+* `ExpenseBook#updateFilteredExpenses(Predicate<Expense> predicate)` — Filters the expense list to the given tag.
 
-These operations are exposed in the `Model` interface as `Model#switchCategory(Tag category)`
+These operations are exposed in the `Model` interface as 
+* `hasCategory(Tag toCheck)`
+* `updateExpenseBookCategory(Tag category)`
+* `Model#updateFilteredExpenseList(Predicate<Expense> predicate)`
+* `Model#updateFilteredBudgetList(Predicate<CategoryBudget> predicate)`
+
 Given below is an example usage scenario and how the switching mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `CategoryExpenseBook` will be initialized with the initial expense book state in Model.
+Step 1. The user launches the application for the first time. The `ExpenseBook` will be initialized with the 
+initial expense book state in Model.
 
-
-Step 2. The user executes `switch t/Food` command to switch to CategoryExpenseBook with "Food" tag in category budget in the expense book. The `switch` command calls `Model#switchCategory(Tag category)`, causing the filteredExpenses and filteredBudgets to be modified.
-
+Step 2. The user executes `switch t/Food` command to switch to `ExpenseBook` with "Food" tag in category budget 
+and expenses in the expense book. The `switch` command calls `Model#switchCategory(Tag category)`. The method then 
+calls the operations mentioned [above](#switchOperations) causing the category budgets and expenses to be filtered.
 
 The following sequence diagram shows how the switch operation works:
 
 ![UndoSequenceDiagram](images/SwitchSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SwitchCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SwitchCommand` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
-Step 3. The user then decides to execute the command `topup`. Commands that modify the expense book, such as `topup`, `delete`, `edit`, will usually call their respectively method in Model. Thus, the `expenseBookStateList` remains unchanged.
+<br/>
 
+Step 3. The user then decides to execute the command `topup`. Commands that modify the expense book, 
+such as `topup`, `delete`, `edit`, will usually call their respectively method in Model. As such the budget balance
+display of the application will change accordingly to reflect on their corresponding values.
 
-Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book, such as `list`, `find`, will usually revert the display budget view to initial expensebook`. Thus, the `expenseBookStateList` remains unchanged.
-
+Step 4. The user then decides to execute the command `list`. Commands that do not modify the expense book, 
+such as `list`, `find`, will usually revert the displayed budget to the overall amount instead of category-specific. 
+In addition, the expenses calculated will be based on the displayed list total amount. 
 
 #### Design consideration:
 
-##### Aspect: How category switching executes
+##### Aspect: How Category switching executes
 
 * **Alternative 1 (current choice):** Filters the entire expense book by tag.
   * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of execution speed.
+  * Cons: May have performance issues in terms of execution speed. (Require repeated calculation and filtering)
 
 * **Alternative 2:** Create multiple expense books for each category.
-  * Pros: Will be faster during execution.
-  * Cons: Slower initialisation and more memory used.
+  * Pros: Will be faster during execution. (Calculation and sorting/filtering are done during initialisation)
+  * Cons: Slower initialisation and higher overhead cost and more memory used. 
 
 ### \[Proposed\] Expense Sorting Feature
 

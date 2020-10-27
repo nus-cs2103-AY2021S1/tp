@@ -1,6 +1,6 @@
 # User Guide
 
-Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
+Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
 
 ---
 
@@ -14,7 +14,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 ## Quick Start <a name="QuickStart"></a>
 
 1. Download Java Version 11
-2. Download [Bamboo v1.2](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.2).
+2. Download [Bamboo v1.3](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.3).
 
 ## Features <a name="Features"></a>
 
@@ -23,63 +23,80 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Command: `add`
     - [API](#add)
 
-2. **List**
+1. **List**
     - Displays a list of the all the user's expenses.
     - Command: `list`
     - [API](#list)
 
-3. **Update**
+1. **Update**
     - Edits existing expense record.
     - Command: `edit`
     - [API](#edit)
 
-4. **Delete**
+1. **Delete**
     - Deletes a specified existing expense record.
     - Command: `delete`
     - [API](#delete)
 
-5. **Category adding**
-    - Adds a new category (for budgeting and expenses)
-    - Command: `addCat`
-    - [API](#addCat)
-
-6. **Top up budget**
+1. **Top up budget**
     - Increases a budget by amount input by user.
     - Command: `topup`
     - [API](#topup)
 
-7. **Category tagging**
+1. **Category tagging**
     - Tags expenses by their categories
     - Prefix: `t/`
     - [API](#tag)
 
-8. **Expense finding**
+1. **Expense finding**
     - Finds expenses by keywords, date, tags
     - Command: `find`
     - [API](#find)
 
-9. **Adding Remark**
+1. **Adding Remark**
     - Adds a remark to an existing expense
-<<<<<<< HEAD
-    - Command: 'remark"
+    - Command: `remark`
     - [API](#remark)
-10. **Sorting expenses**  
+    
+1. **Sorting expenses**  
     - Sort by **date, description (alphabetical), amount**, with option of reverse sort 
     - Command: `sort` 
     - [API](#sort)
+    
+1. **Switch Category**
+    - Switches an expense book into another existing category
+    - Command: `switch`
+    - [API](#switch)
 
-11. Save Load Function &lt;Coming Soon v1.2.1&gt;
-12. Password &lt;Coming Soon v1.2.1&gt;
-13. Help command → documentation &lt;Coming Soon v1.2.1&gt;
-14. Multiple Accounts &lt;pending&gt;
-15. GUI &lt;pending&gt;>
-16. Budget notifications &lt;pending&gt;
-17. Achievements &lt;pending&gt;
-18. Graphs and progress trackers &lt;pending&gt;
-19. Colours &lt;pending&gt;
-20. Sort/Search more powerful &lt;pending&gt;
-21. Customisation of workflow → shortcuts etc. &lt;pending&gt;
-22. Simulation of spending &lt;pending&gt;
+1. **Category adding**
+    - Adds a new category (for budgeting and expenses)
+    - Command: `addCat`
+    - [API](#addCat)
+
+1. **Delete Category**
+    - Deletes an existing category in the expense book
+    - Command: `deleteCat`
+    - [API](#deleteCat) 
+    
+1. Save Load Function
+    - Auto saves the new state of expense book after each operations
+    - Auto load previously saved data upon initialisation of the application
+
+1. Help command
+    - Renders a help link to the commands in User Guide
+    - Command: `help`
+    - [API](#help)
+        
+1. Password &lt;pending&gt;
+1. Multiple Accounts &lt;pending&gt;
+1. GUI &lt;pending&gt;>
+1. Budget notifications &lt;pending&gt;
+1. Achievements &lt;pending&gt;
+1. Graphs and progress trackers &lt;pending&gt;
+1. Colours &lt;pending&gt;
+1. Sort/Search more powerful &lt;pending&gt;
+1. Customisation of workflow → shortcuts etc. &lt;pending&gt;
+1. Simulation of spending &lt;pending&gt;
 
 ## Usage/ API <a name="Usage"></a>
 ### Commands
@@ -98,13 +115,13 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
     ![add_example](images/ug_example/add_example.PNG)
 
-2. **list** <a name="list"></a>
+1. **list** <a name="list"></a>
     - Format: `list`
     - Example: `list` Displays all the items in the list.
 
     ![list_example](images/ug_example/list_example.PNG)
 
-3. **edit** <a name="edit"></a>
+1. **edit** <a name="edit"></a>
     - Identified by index starting from 1.
     - Order of arguments is flexible except index.
     - Edited fields overwrite the previous field completely.
@@ -118,7 +135,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
     ![edit_example](images/ug_example/edit_example.PNG)
 
-4. **delete** <a name="delete"></a>
+1. **delete** <a name="delete"></a>
     - Deletes a specified existing expense record.
     - Identified by index starting from 1.
     - Format:  `delete <index>`
@@ -126,13 +143,15 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
     ![delete_example](images/ug_example/delete_example.PNG)
 
-5. **addCat** <a name="addCat"></a>
+1. **addCat** <a name="addCat"></a>
     - Adds a new category to the expense book.
     - The category must not already exist in the expense book.
     - Format: `addCat t/<category>`
     - Example: `addCat t/Food`
     
-5. **topup** <a name="topup"></a>
+    ![addCat_example](images/ug_example/addCat_example.PNG)
+    
+1. **topup** <a name="topup"></a>
     - Increases the budget of a particular category by the amount specified by the user.
     - Expenses in the same category reduce the balance of the budget.
     - Tag input is optional, defaults to the Default category.
@@ -142,7 +161,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
     ![topup_example](images/ug_example/topup_example.PNG)
 
-6. **find** <a name="find"></a>
+1. **find** <a name="find"></a>
     - Finds expenses with given keywords and/or date by user.
     - Expenses that fits the criteria will be presented as another list.
     - Keywords are case-sensitive, and partial word matching is supported.
@@ -151,7 +170,7 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 
     ![find_example](images/ug_example/find_example.PNG)
 
-7. **remark** <a name="remark"></a>
+1. **remark** <a name="remark"></a>
     - Adds a remark to an existing expense.
     - Format: `remark <index> -r <remark>`
     - Example: `remark 11 -r Pepper Lunch`
@@ -170,46 +189,73 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     - Format: `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]`
     - Example: `sort -by date -by descriptionR` (sorts by date, then by reversed alphabetical order of the descriptions)
 
-    ![remark_example](./images/ug_example/remark_example.PNG)
+    ![sort_example](./images/ug_example/sort_example.PNG)
+    
+1. **switch** <a name="switch"></a>
+    - Switches an expense book into another category.
+    - Category switched must already exists in expense book
+    - Format: `switch t/<category>`
+    - Example: `switch t/Food`
+
+    ![switch_example](./images/ug_example/switch_example.PNG)
+    
+ 1. **deleteCat** <a name="deleteCat"></a>
+    - Deletes an existing category in expense book.
+    - Category budget with the same category will be deleted
+    - Expenses with the same category will be changed to "Default" tag
+    - Format: `deleteCat t/<category>`
+    - Example: `deleteCat t/Food`
+    
+    ![deleteCat_example](./images/ug_example/deleteCat_example.PNG)
+    
+ 1. **help** <a name="help"></a>
+    - Renders a help link to the commands in User Guide
+    - Format: `help`
+    - Example: `help` 
+    
+    ![help_example](./images/ug_example/help_example.PNG)
 
 ### Fields
 1. **description**
     - Description of expense made.
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find)
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort)
     - Prefix: `-d`
     - Format: `-d<description>`
     - Example: `-dlunch`, `-ddinner`
 
-2. **amount**
+1. **amount**
     - Amount of expense made
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [topup](#topup)
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort), [topup](#topup)
     - Prefix: `-$`
     - Format: `-$<amount>`
     - Example: `-$2`, `-$1.50`
 
-3. **date**
+1. **date**
     - Date at which expense was made
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find)
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [sort](#sort)
     - Prefix: `-@`
     - Format: `-@<DD-MM-YYYY>`
     - Example: `-@01-07-2020`, `-@02-07-2020`
 
-4. **tag** <a name="tag"></a>
+1. **tag** <a name="tag"></a>
     - Tags expense by a category input by user
-    - Works only in complement with [add](#add), [edit](#edit), [find](#find), []
+    - Works only in complement with [add](#add), [edit](#edit), [find](#find), [switch](#switch), [deleteCat](#deleteCat)
     - Format: `t/<category>`
     - Example: `edit t/Food`, `find -dCoffee t/Food`
 
 ## Command summary <a name="CommandSummary"></a>
 
-|   Action   | Format, Examples                                                                                                                                              |
-|------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
-|  **Add**   | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`                |
-|  **List**  | `list`                                                                                                                                                        |
-|  **Edit**  | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`|
-| **Delete** | `delete <index>`<br> e.g., `delete 1`                                                                                                                         |
-| **AddCat** | `addCat t/<category>`<br> e.g., `addCat t/Food`                                                                                                               |
-| **Topup**  | `topup -$<amount> [t/<category>]`<br> e.g., `topup -$200`, `topup -$30 t/Food`                                                                                |
-|  **Find**  | `find [-d<description>] [-@<date>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020`                                                                    |
-| **Remark** | `remark <index> -r<remark>` <br> e.g., `remark 11 -r Pepper Lunch`                                                                                            |
-| **Sort**   | `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]` <br> e.g., `sort -by date -by descriptionR`                                      |
+|   Action      | Format, Examples                                                                                                                                              |
+|---------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  **Add**      | `add -d<description> -$<amount_spent> [-@<date>] [t/<category>]` <br> e.g., `add -ddinner -$10.50`, `add -ddinner -$10.50 -@20-08-2020 t/Food`                |
+|  **List**     | `list`                                                                                                                                                        |
+|  **Edit**     | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`|
+| **Delete**    | `delete <index>`<br> e.g., `delete 1`                                                                                                                         |
+| **Topup**     | `topup -$<amount> [t/<category>]`<br> e.g., `topup -$200`, `topup -$30 t/Food`                                                                                |
+|  **Find**     | `find [-d<description>] [-@<date>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020`                                                                    |
+| **Remark**    | `remark <index> -r<remark>` <br> e.g., `remark 11 -r Pepper Lunch`                                                                                            |
+| **Sort**      | `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]` <br> e.g., `sort -by date -by descriptionR`                                      |
+| **Switch**    | `switch t/<category>` <br> e.g., `switch t/Food`                                                                                                              |
+| **AddCat**    | `addCat t/<category>`<br> e.g., `addCat t/Food`                                                                                                               |
+| **DeleteCat** | `deleteCat t/<category>` <br> e.g., `deleteCat t/Food`                                                                                                        |
+| **Help**      | `help`                                                                                                                                                        |
