@@ -84,7 +84,7 @@ public class AddAttendanceCommand extends AttendanceCommand {
     private List<Attendance> updateAttendanceList(List<Attendance> attendanceList) throws CommandException {
         boolean containsAttendanceAtDate = attendanceList
                 .stream()
-                .anyMatch(attendance -> attendance.getLessonDate().equals(attendance.getLessonDate()));
+                .anyMatch(attendance -> attendance.getLessonDate().equals(attendanceToAdd.getLessonDate()));
 
         if (containsAttendanceAtDate) {
             throw new CommandException(MESSAGE_INVALID_ATTENDANCE_DATE);
