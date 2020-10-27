@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Participation> filteredParticipations;
     //private final List<Task> filteredTasks;
     //private final List<Person> filteredTeammates;
     private Optional<Project> projectToBeDisplayedOnDashboard;
@@ -49,6 +50,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.mainCatalogue.getProjectList());
         filteredPersons = new FilteredList<>(this.mainCatalogue.getPersonList());
+        filteredParticipations = new FilteredList<>(this.mainCatalogue.getParticipationList());
         //filteredTasks = new ArrayList<>();
         //filteredTeammates = new ArrayList<>();;
         this.projectToBeDisplayedOnDashboard = Optional.empty();
@@ -149,6 +151,24 @@ public class ModelManager implements Model {
         mainCatalogue.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
+
+    @Override
+    public void addParticipation(Participation participation) {
+        mainCatalogue.addParticipation(participation);
+        updateFilteredParticipationList(PREDICATE_SHOW_ALL_PARTICIPATION);
+
+    }
+
+    @Override
+    public void deleteParticipation(Participation target) {
+        mainCatalogue.removeParticipation(target);
+    }
+
+    //    @Override
+    //    public void addParticipation(Participation participation) {
+    //        mainCatalogue.addParticipation(participation);
+    //        update
+    //    }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
@@ -274,6 +294,21 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Participation} backed by the internal list of
+     * {@code versionedMainCatalogue}
+     */
+    public void updateFilteredParticipationList(Predicate<Participation> predicate) {
+        requireNonNull(predicate);
+        filteredParticipations.setPredicate(predicate);
+    }
+
+    //    @Override
+    //    public void updateFilteredParticipationList(Predicate<Participation> predicate) {
+    //        requireNonNull(predicate);
+    //        filter.setPredicate(predicate);
+    //    }
 
     @Override
     public boolean equals(Object obj) {

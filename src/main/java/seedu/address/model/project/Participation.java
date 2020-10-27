@@ -133,6 +133,10 @@ public class Participation {
         return meetings;
     }
 
+    public void setPerson(Person person) {
+        this.person = person.getGitUserNameString();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -149,7 +153,21 @@ public class Participation {
                 && otherParticipation.getMeetings().equals(getMeetings())
                 && otherParticipation.getRole().equals(getRole())
                 && otherParticipation.getTasks().equals(getTasks());
-
     }
+
+    /**
+     * Returns true if both Participations contain the same project and person.
+     * This defines a weaker notion of equality between two Participations.
+     */
+    public boolean isSameParticipation(Participation other) {
+        if (other == this) {
+            return true;
+        }
+
+        return other != null
+                && other.getProject().equals(getProject())
+                && (other.getPerson().equals(getPerson()));
+    }
+
 }
 

@@ -191,6 +191,7 @@ public class MainCatalogueTest {
     private static class MainCatalogueStub implements ReadOnlyMainCatalogue {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Participation> participations = FXCollections.observableArrayList();
         private Status status = Status.PROJECT_LIST;
 
         MainCatalogueStub(Collection<Project> projects, Collection<Person> persons) {
@@ -206,6 +207,11 @@ public class MainCatalogueTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Participation> getParticipationList() {
+            return participations;
         }
 
         @Override

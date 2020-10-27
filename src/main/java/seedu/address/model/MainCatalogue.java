@@ -11,6 +11,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
+import seedu.address.model.project.UniqueParticipationList;
 import seedu.address.model.project.UniqueProjectList;
 import seedu.address.model.task.Task;
 
@@ -22,9 +23,11 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
     private final UniqueProjectList projects;
     private final UniquePersonList persons;
+    private final UniqueParticipationList participations;
     private Status status;
     private Optional<Project> project;
     private Optional<Person> person;
+    private Optional<Participation> participation;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -36,9 +39,11 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     {
         projects = new UniqueProjectList();
         persons = new UniquePersonList();
+        participations = new UniqueParticipationList();
         status = Status.PROJECT_LIST;
         project = Optional.empty();
         person = Optional.empty();
+        participation = Optional.empty();
     }
 
     public MainCatalogue() {}
@@ -70,6 +75,14 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     }
 
     /**
+     * Replaces the contents of the participation list with {@code participations}.
+     * {@code participations} must not contain duplicate participations.
+     */
+    public void setParticipations(List<Participation> participations) {
+        this.participations.setParticipations(participations);
+    }
+
+    /**
      * Resets the existing data of this {@code MainCatalogue} with {@code newData}.
      */
     public void resetData(ReadOnlyMainCatalogue newData) {
@@ -77,6 +90,7 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
 
         setProjects(newData.getProjectList());
         setPersons(newData.getPersonList());
+        setParticipations(newData.getParticipationList());
     }
 
     //// person-level operations
@@ -115,6 +129,44 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+    }
+
+    //// participation-level operations
+
+    /**
+     * Returns true if a project with the same identity as {@code project} exists in the main catalogue.
+     */
+    public boolean hasParticipation(Participation participation) {
+        requireNonNull(participation);
+        return participations.contains(participation);
+    }
+
+    /**
+     * Adds a project to the main catalogue.
+     * The project must not already exist in the main catalogue.
+     */
+    public void addParticipation(Participation p) {
+        participations.add(p);
+    }
+
+    /**
+     * Replaces the given project {@code target} in the list with {@code editedProject}.
+     * {@code target} must exist in the main catalogue.
+     * The project identity of {@code editedProject} must not be the same as another existing project in the main
+     * catalogue.
+     */
+    public void setParticipation(Participation target, Participation editedParticipation) {
+        requireNonNull(editedParticipation);
+
+        participations.setParticipation(target, editedParticipation);
+    }
+
+    /**
+     * Removes {@code key} from this {@code MainCatalogue}.
+     * {@code key} must exist in the main catalogue.
+     */
+    public void removeParticipation(Participation key) {
+        participations.remove(key);
     }
 
     //// project-level operations
@@ -242,6 +294,11 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Participation> getParticipationList() {
+        return participations.asUnmodifiableObservableList();
     }
 
     @Override
