@@ -338,6 +338,10 @@
     -fx-text-fill: white;
 }
 
+.text-area:focused {
+    -fx-background-color: transparent;
+    -fx-border: 0;
+}
 
 .scroll-bar {
     -fx-background-color: transparent;
