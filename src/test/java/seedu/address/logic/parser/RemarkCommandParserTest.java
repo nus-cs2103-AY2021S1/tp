@@ -28,6 +28,9 @@ class RemarkCommandParserTest {
         // no index specified
         assertParseFailure(parser, "likes fries", MESSAGE_INVALID_FORMAT);
 
+        // no prefix specified
+        assertParseFailure(parser, "1", MESSAGE_INVALID_FORMAT);
+
         // no index and no remark specified
         assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
@@ -60,7 +63,7 @@ class RemarkCommandParserTest {
     @Test
     public void parse_removeRemark_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = Integer.toString(targetIndex.getOneBased());
+        String userInput = targetIndex.getOneBased() + " r/";
 
         Remark remark = new Remark("");
         RemarkCommand expectedCommand = new RemarkCommand(targetIndex, remark);
