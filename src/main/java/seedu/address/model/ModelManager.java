@@ -4,14 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.person.Person;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -19,26 +23,40 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final ModuleList moduleList;
+    private final VersionedModuleList versionedModuleList;
+    private final ContactList contactList;
+    private final TodoList todoList;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Module> filteredModules;
+    private final FilteredList<Contact> filteredContacts;
+    private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyContactList contactList, ReadOnlyTodoList todoList,
+                        ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(moduleList, todoList, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with module list: " + moduleList + " and todo list" + todoList
+                + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.moduleList = new ModuleList(moduleList);
+        this.versionedModuleList = new VersionedModuleList(moduleList);
+        this.contactList = new ContactList(contactList);
+        this.todoList = new TodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
+        filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
+        filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
+        sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ModuleList(), new ContactList(), new TodoList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -66,67 +84,208 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getModuleListFilePath() {
+        return userPrefs.getModuleListFilePath();
     }
 
     @Override
     public void setAddressBookFilePath(Path addressBookFilePath) {
         requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+        userPrefs.setModuleListFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== Module List ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public void setModuleList(ReadOnlyModuleList moduleList) {
+        this.moduleList.resetData(moduleList);
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
+    public ReadOnlyModuleList getModuleList() {
+        return moduleList;
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+    public boolean hasModule(Module module) {
+        requireNonNull(module);
+        return moduleList.hasModule(module);
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void deleteModule(Module target) {
+        moduleList.removeModule(target);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
+    public void addModule(Module module) {
+        moduleList.addModule(module);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    @Override
+    public void setModule(Module target, Module editedModule) {
+        requireAllNonNull(target, editedModule);
+
+        moduleList.setModule(target, editedModule);
+    }
+
+    @Override
+    public void commitModuleList() {
+        versionedModuleList.commit(moduleList);
+    }
+
+    @Override
+    public void undoModuleList() {
+        versionedModuleList.undo();
+        setModuleList(versionedModuleList.getCurrentModuleList());
+    };
+
+    @Override
+    public void redoModuleList() {
+        versionedModuleList.redo();
+        setModuleList(versionedModuleList.getCurrentModuleList());
+    };
+
+    //=========== Contact List ================================================================================
+
+    @Override
+    public void setContactList(ReadOnlyContactList contactList) {
+        this.contactList.resetData(contactList);
+    }
+
+    @Override
+    public ReadOnlyContactList getContactList() {
+        return contactList;
+    }
+
+    @Override
+    public boolean hasContact(Contact contact) {
+        requireNonNull(contact);
+        return contactList.hasContact(contact);
+    }
+
+    @Override
+    public void deleteContact(Contact target) {
+        contactList.removeContact(target);
+    }
+
+    @Override
+    public void addContact(Contact contact) {
+        contactList.addContact(contact);
+        updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
+    }
+
+    @Override
+    public void setContact(Contact target, Contact editedContact) {
+        requireAllNonNull(target, editedContact);
+
+        contactList.setContact(target, editedContact);
+    }
+
+    @Override
+    public Path getContactListFilePath() {
+        return userPrefs.getContactListFilePath();
+    }
+
+    //=========== Todo List =============================================================
+
+    @Override
+    public void setTodoList(ReadOnlyTodoList todoList) {
+        this.todoList.resetData(todoList);
+    }
+
+    @Override
+    public ReadOnlyTodoList getTodoList() {
+        return todoList;
+    }
+
+    @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return todoList.hasTask(task);
+    }
+
+    @Override
+    public void deleteTask(Task target) {
+        todoList.removeTask(target);
+    }
+
+    @Override
+    public void addTask(Task task) {
+        todoList.addTask(task);
+        updateFilteredTodoList(PREDICATE_SHOW_ALL_TASKS);
+    }
+
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+
+        todoList.setTask(target, editedTask);
+    }
+
+    //=========== Filtered Module List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredModules;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredModuleList(Predicate<Module> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredModules.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Contact} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Contact> getFilteredContactList() {
+        return filteredContacts;
+    }
+
+    @Override
+    public void updateFilteredContactList(Predicate<Contact> predicate) {
+        requireNonNull(predicate);
+        filteredContacts.setPredicate(predicate);
+    }
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Task> getFilteredTodoList() {
+        return filteredTasks;
+    }
+
+    @Override
+    public void updateFilteredTodoList(Predicate<Task> predicate) {
+        requireNonNull(predicate);
+        filteredTasks.setPredicate(predicate);
+    }
+
+    //=========== Sorted List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Task> getSortedTodoList() {
+        return sortedTasks;
+    }
+
+    @Override
+    public void updateSortedTodoList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        sortedTasks.setComparator(comparator);
     }
 
     @Override
@@ -143,9 +302,12 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return moduleList.equals(other.moduleList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredModules.equals(other.filteredModules)
+                && filteredContacts.equals(other.filteredContacts)
+                && filteredTasks.equals(other.filteredTasks)
+                && sortedTasks.equals(other.sortedTasks);
     }
 
 }

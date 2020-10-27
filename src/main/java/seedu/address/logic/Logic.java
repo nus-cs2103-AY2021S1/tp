@@ -7,8 +7,12 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
+import seedu.address.model.contact.Contact;
+import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -26,17 +30,17 @@ public interface Logic {
     /**
      * Returns the AddressBook.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getModuleList()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyModuleList getModuleList();
 
     /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    ObservableList<Module> getFilteredModuleList();
 
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getModuleListFilePath();
 
     /**
      * Returns the user prefs' GUI settings.
@@ -47,4 +51,30 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the Contact List.
+     */
+    ReadOnlyContactList getContactList();
+
+    /**
+     * Returns an unmodifiable list of filtered contacts.
+     */
+    ObservableList<Contact> getFilteredContactList();
+
+    /**
+     * Returns the Todo List.
+     */
+    public ReadOnlyTodoList getTodoList();
+
+    /**
+     * Returns an unmodifiable list of filtered tasks.
+     */
+    ObservableList<Task> getFilteredTodoList();
+
+    /**
+     * Returns the file Path of the Contact List.
+     * @return Path of contact list.
+     */
+    public Path getContactListFilePath();
 }
