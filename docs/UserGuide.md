@@ -1,3 +1,10 @@
+---
+layout: page
+title: User Guide
+---
+* Table of Contents
+{:toc}
+
 ## Introduction
 PropertyFree is adapted from AB3, which is a desktop application for managing property listing. Leveraging on Command 
 Line Interface for those who are more comfortable with typing than with Graphical User Interface (GUI).
