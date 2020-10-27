@@ -55,7 +55,8 @@ public class TopupCommand extends Command {
         requireNonNull(model);
 
         model.topupCategoryBudget(category, toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, category.tagName, model.getTotalBudget().getAmount().asDouble()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, category.tagName,
+                model.getTotalBudget().getAmount().asDouble()));
     }
 
     @Override
