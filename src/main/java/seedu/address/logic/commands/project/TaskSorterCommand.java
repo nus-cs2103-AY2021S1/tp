@@ -35,7 +35,7 @@ public class TaskSorterCommand extends Command {
         + PREFIX_TASK_PROGRESS + "PROGRESS)||("
         + PREFIX_TASK_IS_DONE + "DONE STATUS)\n"
         + "Example: " + COMMAND_WORD + " "
-        + PREFIX_ASCENDING_SORT
+        + PREFIX_ASCENDING_SORT + " "
         + PREFIX_TASK_NAME;
     public static final String MESSAGE_SORT_TASK_SUCCESS = "Here is the sorted task list:";
     private static final Logger logger = Logger.getLogger("TaskSorterCommandLogger");

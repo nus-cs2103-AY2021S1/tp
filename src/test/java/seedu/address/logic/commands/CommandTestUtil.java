@@ -61,7 +61,7 @@ public class CommandTestUtil {
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_PROJECT_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE
-            + "29/02/1999 00:00:00"; // '-' is used instead of '/'
+            + "29/02/1999 00:00:00"; // '/' is used instead of '-'
     public static final String INVALID_REPOURL_DESC = " " + PREFIX_REPOURL
             + "https://github.com/a/b"; // missing '.git' part
     public static final String INVALID_PROJECT_DESCRIPTION_DESC = " "
