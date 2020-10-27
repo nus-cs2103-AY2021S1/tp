@@ -123,6 +123,14 @@ class JsonInventoryStorageTest {
         );
     }
 
+    @Test
+    void readInventory_invalidFinanceAccountFile2_throwsDataConversionException() {
+        // invalidRecord.json is a file that does not follow the json file convention
+        assertThrows(DataConversionException.class,
+                () -> readInventory(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidInventory2.json"))
+        );
+    }
+
 
     void saveFinanceAccount(ReadOnlyInventory toSave) {
         try {
