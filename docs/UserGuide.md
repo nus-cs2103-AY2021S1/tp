@@ -110,7 +110,7 @@ Action | Format, Examples
 **NoteDelete** | `notedelete sn/<serial number> ni<note index>`
 **Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number> n/<new name>` <br> `update sn/<serial number> iq/<+/-><increment value>` <br> `update sn/<serial number> nq/<new quantity>` <br> `update sn/<serial number> l/<new location>` <br> `update sn/<serial number> s/<new source>` <br> `update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
 **Statistics** | `stats st/source`<br>`stats st/source-qd-<source company>`
-**Print** | `print`
+**Print** | `print fn/<file name>`
 **Help** | `help`
 **Exit** | `exit`
 
@@ -521,17 +521,29 @@ an error message.
   Warenager will suggest: `list`
 
 ### Generates a csv file that contains all stocks: `print`
-Generates a csv file that contains all stocks. Users may want to sort the stocks using `sort` command
+Generates a csv file that contains all stocks. Csv file will be named according to the user input, and the file name
+can only contain alphanumeric characters. Users may want to sort the stocks using `sort` command
 to sort the stock in their preferred order before converting it into the csv file. The csv file is saved
-to `[root directory]/data/stocks.csv` after successfully executing the command.
+to `[root directory]/data/userInput.csv` after successfully executing the command.
+
+* Required fields:
+    1. file name
 
 <h5>Format</h5>
 
-Single: `print`
+The header fields can be in any order:<br>
+`print fn/<file name>`
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+Each specific fields specified in the `print` command should only be entered once.<br>
+e.g. `print fn/stock fn/stock2` is not a valid command.
+</div>
 
 <h5>Example usages</h5>
 
-After executing the `print` command, proceed to the folder which contains Warenager. Click on the `data`
+After executing the `print fn/stocks` command, proceed to the folder which contains Warenager. Click on the `data`
 folder circled in red.
 
 ![stockCsvExample1](images/stockCsvExample1.png)

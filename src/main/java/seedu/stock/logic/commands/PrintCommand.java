@@ -1,5 +1,8 @@
 package seedu.stock.logic.commands;
 
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME_DESCRIPTION;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,18 +27,25 @@ public class PrintCommand extends Command {
     public static final String MESSAGE_FAILURE = "Error occurred when generating the csv file. ";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies all stocks in the inventory into a csv file.\n"
-            + "Parameters: No parameters\n"
-            + "Example: " + COMMAND_WORD;
+            + "Parameters: " + PREFIX_FILE_NAME + PREFIX_FILE_NAME_DESCRIPTION
+            + "\nExample: " + COMMAND_WORD + " " + PREFIX_FILE_NAME + "stocks";
 
     public static final char CSV_SEPARATOR = ',';
 
+    public static final String CSV_TAG = ".csv";
+
+    private final String csvFileName;
+
+    public PrintCommand(String fileName) {
+        csvFileName = fileName + CSV_TAG;
+    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         assert model != null : "Model cannot be null!";
 
         ObservableList<Stock> stockBookList = model.getStockBook().getStockList();
-        Path csvFilePath = model.getUserPrefs().getCsvFilePath();
+        Path csvFilePath = model.getUserPrefs().getCsvFilePath().resolve(csvFileName);
 
         try {
             FileUtil.createIfMissing(csvFilePath);
@@ -61,11 +71,14 @@ public class PrintCommand extends Command {
      */
     private String printStock(Stock stock) {
         return new StringBuilder()
-                .append(stock.getSerialNumber()).append(CSV_SEPARATOR)
-                .append(stock.getName()).append(CSV_SEPARATOR)
-                .append(stock.getSource()).append(CSV_SEPARATOR)
-                .append(stock.getQuantity()).append(CSV_SEPARATOR)
-                .append(stock.getLocation()).append(CSV_SEPARATOR)
+                .append(commaFormatter(stock.getSerialNumber().toString())).append(CSV_SEPARATOR)
+                .append(commaFormatter(stock.getName().toString())).append(CSV_SEPARATOR)
+                .append(commaFormatter(stock.getSource().toString())).append(CSV_SEPARATOR)
+                .append(stock.getQuantity().toString()).append(CSV_SEPARATOR)
+                .append(stock.getQuantity().lowQuantity).append(CSV_SEPARATOR)
+                .append(commaFormatter(stock.getLocation().toString())).append(CSV_SEPARATOR)
+                .append(bookmarkToString(stock)).append(CSV_SEPARATOR)
+                .append(commaFormatter(stock.notesToString(stock.getNotes()))).append(CSV_SEPARATOR)
                 .append(System.lineSeparator())
                 .toString();
     }
@@ -81,7 +94,10 @@ public class PrintCommand extends Command {
                 .append("Name").append(CSV_SEPARATOR)
                 .append("Source of stock").append(CSV_SEPARATOR)
                 .append("Quantity").append(CSV_SEPARATOR)
+                .append("Low Quantity").append(CSV_SEPARATOR)
                 .append("Location in warehouse").append(CSV_SEPARATOR)
+                .append("Bookmark").append(CSV_SEPARATOR)
+                .append("Notes").append(CSV_SEPARATOR)
                 .append(System.lineSeparator())
                 .toString();
     }
@@ -89,7 +105,7 @@ public class PrintCommand extends Command {
     /**
      * Gets the timing which the csv file is created in csv format.
      *
-     * @return String of the given stock in the csv format.
+     * @return String that describes the creation time of file in csv format.
      */
     private String makeFileCreationTime() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy 'at' HH:mm.");
@@ -102,10 +118,35 @@ public class PrintCommand extends Command {
                 .toString();
     }
 
+    /**
+     * Formats the string to allow commas to be stored in the same column if it contains a comma.
+     *
+     * @return String of the formatted input to be stored in a csv column.
+     */
+    private String commaFormatter(String string) {
+        if (string.contains(",")) {
+            return String.format("\"%s\"", string);
+        }
+        return string;
+    }
+
+    /**
+     * Converts bookmark in stock to a string value.
+     *
+     * @return String of whether the given stock is bookmarked.
+     */
+    private String bookmarkToString(Stock stock) {
+        if (stock.getIsBookmarked()) {
+            return "Yes";
+        }
+        return "No";
+    }
+
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
-        return (other instanceof PrintCommand // instanceof handles nulls
-            );
+        return other == this // short circuit if same object
+                || (other instanceof PrintCommand // instanceof handles nulls
+                && csvFileName.equals(((PrintCommand) other).csvFileName)); // state check
     }
 }
