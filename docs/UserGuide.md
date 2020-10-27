@@ -86,7 +86,7 @@ Symbol | Meaning
 
 Prefix | Parameter | Meaning
 --------|----------|--------
- | INDEX | Index of item in the displayed item list
+[]()| INDEX | Index of item in the displayed item list
 n/ | NAME | Name of recipe or name of ingredient
 i/ | INGREDIENT | Ingredient name and optional quantity
 instr/ | INSTRUCTION | Instructions of a recipe
