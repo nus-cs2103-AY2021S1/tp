@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
@@ -57,6 +58,13 @@ public interface SellerModel {
 
     /** Returns an unmodifiable view of the filtered seller list */
     ObservableList<Seller> getFilteredSellerList();
+
+
+    /**
+     * checks the list of bidders to see if the specific sellerId is in the list
+     * @param sellerId the id to look for
+     */
+    boolean containsSellerId(SellerId sellerId);
 
     /**
      * Updates the filter of the filtered seller list to filter by the given {@code predicate}.
