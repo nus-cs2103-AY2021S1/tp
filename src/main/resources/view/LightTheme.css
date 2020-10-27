@@ -94,28 +94,71 @@
     -fx-padding: 0 0 0 0;
 }
 
+.list-cell-element {
+    -fx-border-width: 0 0 0 1;
+    -fx-border-color: #000000;
+    -fx-padding: 2 2 2 2;
+}
+
+
+.list-cell-text {
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 14px;
+    -fx-text-fill: #000000;
+}
+
+.list-cell-text-low {
+    -fx-font-family: "Montserrat";
+    -fx-font-size: 14px;
+    -fx-text-fill: #ff0000;
+    -fx-font-weight: bold;
+}
+
+.list-cell-header {
+    -fx-border-width: 0 0 0 1;
+    -fx-border-color: #000000;
+    -fx-padding: 0 0 2 2;
+    -fx-background-color: #a3a1a1;
+}
+
+.list-cell-header-text {
+    -fx-font-family: "Quicksand";
+    -fx-text-fill: #181717;
+    -fx-font-size: 16 px;
+    -fx-font-weight: bold;
+}
+
 .list-cell:filled:even {
-    -fx-background-color: #ced5d7;
+    -fx-background-color: #e7eaea;
+    -fx-border-width: 1;
+    -fx-border-color: #000000;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #F0D56D;
+    -fx-background-color: #EEE3BB;
+    -fx-border-width: 1;
+    -fx-border-color: #000000;
 }
 
 .list-cell:filled:selected:even {
-    -fx-background-color: #e7eaea;
+    -fx-background-color: #ced5d7;
     -fx-border-color: #000000;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
 }
 
 .list-cell:filled:selected:odd {
-    -fx-background-color: #EEE3BB;
+    -fx-background-color: #F0D56D;
     -fx-border-color: #000000;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
 }
 
 .list-cell .label {
     -fx-text-fill: #231f20;
+}
+
+.list-header {
+    -fx-padding: 0 0 0 1;
+    -fx-border-width: 10;
 }
 
 .cell_big_label {
@@ -159,6 +202,7 @@
 
 .stock-list-panel-vbox  {
      -fx-background-color: #F1F1F1;
+
  }
 
 .pane-with-border-anchor {
@@ -307,16 +351,16 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#F1F1F1, 0%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#f4fafe, 50%);
+    -fx-background-color: derive(#CCCCCC, 0%);
     -fx-background-insets: 3;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
-    -fx-background-color: transparent;
+    -fx-background-color: #CCCCCC;
     -fx-padding: 0 0 0 0;
 }
 
@@ -433,3 +477,5 @@
 .scroll-bar:vertical .thumb {
     -fx-background-color :derive(#343335,90.0%);
 }
+
+

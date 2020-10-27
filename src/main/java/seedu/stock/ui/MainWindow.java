@@ -49,6 +49,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane stockListPanelPlaceholder;
 
+
     @FXML
     private StackPane noteListPanelPlaceholder;
 
@@ -74,7 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
         statisticsWindow = new StatisticsWindow();
         //custom fonts
-        scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
+        scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
     }
 
     public Stage getPrimaryStage() {
@@ -88,6 +89,7 @@ public class MainWindow extends UiPart<Stage> {
 
         stockListPanel = new StockListPanel(logic.getFilteredStockList());
         stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
