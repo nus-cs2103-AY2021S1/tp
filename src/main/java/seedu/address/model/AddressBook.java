@@ -129,6 +129,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        deleteInstructorAssignments(key);
     }
 
     public void clearContacts() {
@@ -319,6 +320,21 @@ public class AddressBook implements ReadOnlyAddressBook {
                 m.unassignInstructor(target);
                 m.assignInstructor(editedPerson);
                 activeModules.setModule(m, m);
+            }
+        }
+    }
+
+    private void deleteInstructorAssignments(Person toBeRemoved) {
+        UniqueModuleList otherSem = activeModules == semOneModules ? semTwoModules : semOneModules;
+        for (Module m : activeModules) {
+            if (m.hasInstructor(toBeRemoved)) {
+                m.unassignInstructor(toBeRemoved);
+                activeModules.setModule(m, m);
+            }
+        }
+        for (Module m : otherSem) {
+            if (m.hasInstructor(toBeRemoved)) {
+                m.unassignInstructor(toBeRemoved);
             }
         }
     }
