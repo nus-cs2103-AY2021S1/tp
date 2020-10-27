@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.DEADLINE1;
 import static seedu.address.testutil.TypicalTasks.HOON;
 import static seedu.address.testutil.TypicalTasks.IDA;
 import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
@@ -73,7 +73,7 @@ public class JsonPlanusStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addTask(HOON);
-        original.removeTask(ALICE);
+        original.removeTask(DEADLINE1);
         jsonPlanusStorage.savePlanus(original, filePath);
         readBack = jsonPlanusStorage.readPlanus(filePath).get();
         assertEquals(original, new Planus(readBack));

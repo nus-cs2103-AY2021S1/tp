@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
@@ -11,7 +8,6 @@ import seedu.address.model.task.deadline.DeadlineDateTime;
 import seedu.address.model.task.deadline.DoneDateTime;
 import seedu.address.model.task.deadline.Duration;
 import seedu.address.model.task.deadline.Status;
-import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Task objects.
@@ -22,7 +18,7 @@ public class DeadlineBuilder {
     public static final String DEFAULT_DEADLINE_DATE_TIME = "01-01-2020 12:00";
     public static final String DEFAULT_DESCRIPTION = "6 midterms next week.";
     public static final String DEFAULT_DONE_DATE_TIME = "02-01-2020 12:00";
-    public static final int DEFAULT_DURATION = 60;
+    public static final int DEFAULT_DURATION = -1;
     public static final boolean DEFAULT_STATUS = true;
     public static final String DEFAULT_TAG = "CS2100";
 
@@ -71,7 +67,7 @@ public class DeadlineBuilder {
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Task} that we are building.
      */
-    public DeadlineBuilder withTags(String tag) {
+    public DeadlineBuilder withTag(String tag) {
         this.tag = new Tag(tag);
         return this;
     }
@@ -128,10 +124,11 @@ public class DeadlineBuilder {
     }
 
     /**
-     * Sets the {@code Status} of the {@code Deadline} that we are building.
+     * Sets the {@code Status} of the {@code Deadline} that we are building to be complete status.
+     * Simulates the situation that the deadline is first been created.
      */
-    public DeadlineBuilder withStatus(boolean status) {
-        this.status = new Status(status);
+    public DeadlineBuilder withCompleteStatus() {
+        this.status = Status.createCompleteStatus();
         return this;
     }
 
@@ -141,6 +138,7 @@ public class DeadlineBuilder {
      */
     public DeadlineBuilder withIncompleteStatus() {
         this.status = Status.createIncompleteStatus();
+        this.duration = Duration.createNullDuration();
         return this;
     }
 

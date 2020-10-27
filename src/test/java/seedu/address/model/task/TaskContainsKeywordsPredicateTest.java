@@ -60,15 +60,15 @@ public class TaskContainsKeywordsPredicateTest {
         // Multiple keywords with partial match
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TYPE, "tod");
-        assertTrue(predicate.test(new DeadlineBuilder().withType("todo").build()));
+        assertTrue(predicate.test(new DeadlineBuilder().build()));
 
         // status keywords match status exactly
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_STATUS, "incomplete");
-        assertTrue(predicate.test(new DeadlineBuilder().withStatus(State.INCOMPLETE).build()));
+        assertTrue(predicate.test(new DeadlineBuilder().withIncompleteStatus().build()));
 
         predicate.setKeyword(PREFIX_STATUS, "complete");
-        assertTrue(predicate.test(new DeadlineBuilder().withStatus(State.COMPLETE).build()));
+        assertTrue(predicate.test(new DeadlineBuilder().withCompleteStatus().build()));
 
         // Mixed-case keywords
         predicate = new TaskContainsKeywordsPredicate();
@@ -85,34 +85,34 @@ public class TaskContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_DATE_TIME, "01-01-2020 19:00");
-        assertFalse(predicate.test(new DeadlineBuilder().withDateTime("01-02-2019 18:00").build()));
+        assertFalse(predicate.test(new DeadlineBuilder().withDeadlineDateTime("01-02-2019 18:00").build()));
 
         // title Keywords does not match title
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "01-01-2020 12:00");
-        assertFalse(predicate.test(new DeadlineBuilder().withTitle("Alice").withDateTime("01-01-2020 12:00")
-                .withDescription("alice,email.com").withType("event").build()));
+        assertFalse(predicate.test(new DeadlineBuilder().withTitle("Alice").withDeadlineDateTime("01-01-2020 12:00")
+                .withDescription("alice,email.com").build()));
 
 
         // type Keywords does not match type
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TYPE, "deadline");
-        assertFalse(predicate.test(new DeadlineBuilder().withType("event").withDateTime("01-01-2020 12:00")
-                .withDescription("alice,email.com").withType("event").build()));
+        assertFalse(predicate.test(new DeadlineBuilder().withDeadlineDateTime("01-01-2020 12:00")
+                .withDescription("alice,email.com").build()));
 
 
         // desc Keywords does not match description
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_DESCRIPTION, "play outside");
-        assertFalse(predicate.test(new DeadlineBuilder().withType("event").withDateTime("01-01-2020 12:00")
-                .withDescription("alice,email.com").withType("event").build()));
+        assertFalse(predicate.test(new DeadlineBuilder().withDeadlineDateTime("01-01-2020 12:00")
+                .withDescription("alice,email.com").build()));
 
 
         // status Keywords does not match status
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_STATUS, "complet");
-        assertFalse(predicate.test(new DeadlineBuilder().withType("event").withDateTime("01-01-2020 12:00")
-                .withDescription("alice,email.com").withType("event").withStatus(State.COMPLETE).build()));
+        assertFalse(predicate.test(new DeadlineBuilder().withDeadlineDateTime("01-01-2020 12:00")
+                .withDescription("alice,email.com").withCompleteStatus().build()));
 
         // test with multiple repeated attributes
         predicate = new TaskContainsKeywordsPredicate();
@@ -126,8 +126,8 @@ public class TaskContainsKeywordsPredicateTest {
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "assignment");
         predicate.setKeyword(PREFIX_TYPE, "event");
-        assertTrue(predicate.test(new DeadlineBuilder().withTitle("submit assignment").withType("event").build()));
-        assertFalse(predicate.test(new DeadlineBuilder().withTitle("submit assignment").withType("todo").build()));
-        assertFalse(predicate.test(new DeadlineBuilder().withTitle("random").withType("event").build()));
+        assertTrue(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
+        assertFalse(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
+        assertFalse(predicate.test(new DeadlineBuilder().withTitle("random").build()));
     }
 }

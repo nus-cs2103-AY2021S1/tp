@@ -1,5 +1,7 @@
 package seedu.address.model.task.deadline;
 
+import java.util.ArrayList;
+
 /**
  * Represents a Deadline Task's Status in the PlaNus task list.
  * Guarantees: immutable;
@@ -8,6 +10,12 @@ public class Status {
 
     public static final String COMPLETE_TEXT = "complete";
     public static final String INCOMPLETE_TEXT = "incomplete";
+
+    public static final String ACCEPTED_STATUS = COMPLETE_TEXT + "," + COMPLETE_TEXT;
+    public static final String MESSAGE_CONSTRAINTS = String.format("Value for status can only be one of "
+            + "the following: %s.", ACCEPTED_STATUS);
+    public static final String SEARCH_CONSTRAINTS = String.format("Search phrase for Status can only be one of "
+            + "the following: %s.", ACCEPTED_STATUS);
 
     public final boolean isCompleted;
 
@@ -36,6 +44,11 @@ public class Status {
     public static boolean isComplete(String status) {
         return status.equals(COMPLETE_TEXT);
     }
+
+    public static boolean isValidStatus(String test) {
+        return test == COMPLETE_TEXT || test == INCOMPLETE_TEXT;
+    }
+
     @Override
     public String toString() {
         if (isCompleted) {

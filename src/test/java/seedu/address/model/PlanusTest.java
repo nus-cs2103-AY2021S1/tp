@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
+import static seedu.address.testutil.TypicalTasks.DEADLINE1;
 import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
 
 import java.util.Arrays;
@@ -47,9 +47,9 @@ public class PlanusTest {
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
-        Task editedAlice = new DeadlineBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
+        Task editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND)
                 .build();
-        List<Task> newTasks = Arrays.asList(ALICE, editedAlice);
+        List<Task> newTasks = Arrays.asList(DEADLINE1, editedAlice);
         PlanusStub newData = new PlanusStub(newTasks);
 
         assertThrows(DuplicateTaskException.class, () -> planus.resetData(newData));
@@ -62,19 +62,19 @@ public class PlanusTest {
 
     @Test
     public void hasTask_taskNotInPlanus_returnsFalse() {
-        assertFalse(planus.hasTask(ALICE));
+        assertFalse(planus.hasTask(DEADLINE1));
     }
 
     @Test
     public void hasTask_taskInPlanus_returnsTrue() {
-        planus.addTask(ALICE);
-        assertTrue(planus.hasTask(ALICE));
+        planus.addTask(DEADLINE1);
+        assertTrue(planus.hasTask(DEADLINE1));
     }
 
     @Test
     public void hasTask_taskWithSameIdentityFieldsInPlanus_returnsTrue() {
-        planus.addTask(ALICE);
-        Task editedAlice = new DeadlineBuilder(ALICE).withType(VALID_TYPE_BOB).withTags(VALID_TAG_HUSBAND)
+        planus.addTask(DEADLINE1);
+        Task editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(planus.hasTask(editedAlice));
     }

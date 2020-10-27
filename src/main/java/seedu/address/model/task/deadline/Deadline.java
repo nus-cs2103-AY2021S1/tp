@@ -81,7 +81,11 @@ public class Deadline extends Task {
 
     @Override
     public boolean isSameTask(Task otherTask) {
-        return false;
+        if (otherTask instanceof Deadline) {
+            return isSameDeadline((Deadline) otherTask);
+        } else {
+            return false;
+        }
     }
 
     public Status getStatus() {
@@ -112,7 +116,7 @@ public class Deadline extends Task {
      * mark the task as done by updating the status, duration and done time.
      */
     public Deadline markAsDone(int durationInMinutes) {
-        return new Deadline(title, deadlineDateTime, description, tag, Status.createIncompleteStatus(),
+        return new Deadline(title, deadlineDateTime, description, tag, Status.createCompleteStatus(),
                 new Duration(durationInMinutes), DoneDateTime.createDoneNow());
     }
 

@@ -17,34 +17,20 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DoneCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
-import seedu.address.testutil.EditTaskDescriptorBuilder;
-import seedu.address.testutil.DeadlineBuilder;
-import seedu.address.testutil.TaskUtil;
 
 
 public class PlanusParserTest {
 
     private final PlanusParser parser = new PlanusParser();
-
-    @Test
-    public void parseCommand_add() throws Exception {
-        Task task = new DeadlineBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(TaskUtil.getAddCommand(task));
-        assertEquals(new AddCommand(task), command);
-    }
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -63,18 +49,10 @@ public class PlanusParserTest {
     @Test
     public void parseCommand_done() throws Exception {
         DoneCommand command = (DoneCommand) parser.parseCommand(
-                DoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+                DoneCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased() + ":20");
         Index[] indexes = {INDEX_FIRST_TASK};
-        assertEquals(new DoneCommand(indexes), command);
-    }
-
-    @Test
-    public void parseCommand_edit() throws Exception {
-        Task task = new DeadlineBuilder().build();
-        EditTaskDescriptor descriptor = new EditTaskDescriptorBuilder(task).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_TASK.getOneBased() + " " + TaskUtil.getEditTaskDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_TASK, descriptor), command);
+        int[] durations = {20};
+        assertEquals(new DoneCommand(indexes, durations), command);
     }
 
     @Test

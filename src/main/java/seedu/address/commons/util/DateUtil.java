@@ -1,7 +1,10 @@
 package seedu.address.commons.util;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+
+import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class DateUtil {
     public static final String MESSAGE_CONSTRAINTS =
@@ -57,5 +60,14 @@ public class DateUtil {
      */
     public static boolean isValidSearchPhrase(String test) {
         return isValidDateTime(test) || isValidDate(test) || isValidTime(test);
+    }
+
+    /**
+     * @param input the string value for a date
+     * @return a LocalDate object representing the specific date
+     */
+    public static LocalDate toLocalDate(String input) {
+        checkArgument(isValidDate(input), MESSAGE_CONSTRAINTS);
+        return LocalDate.parse(input, DateUtil.DATE_FORMATTER);
     }
 }
