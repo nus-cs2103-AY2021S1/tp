@@ -50,18 +50,15 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     // --------- Finance Account ---------
-
-
     void deleteFinanceRecord(FinanceRecord target);
-
 
     ReadOnlyFinanceAccount getFinanceAccount();
 
     void addFinanceRecord(FinanceRecord newRecord);
 
+    FinanceRecord getFinanceRecord(Integer ID);
 
     void deleteInventoryRecord(InventoryRecord target);
-
 
     void setFinanceRecord(FinanceRecord financeRecordToEdit, FinanceRecord editedFinanceRecord);
 

@@ -6,20 +6,7 @@ import static nustorage.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import nustorage.logic.commands.AddFinanceCommand;
-import nustorage.logic.commands.AddInventoryRecordCommand;
-import nustorage.logic.commands.ClearCommand;
-import nustorage.logic.commands.Command;
-import nustorage.logic.commands.DeleteFinanceCommand;
-import nustorage.logic.commands.DeleteInventoryRecordCommand;
-import nustorage.logic.commands.EditFinanceCommand;
-import nustorage.logic.commands.EditInventoryCommand;
-import nustorage.logic.commands.ExitCommand;
-import nustorage.logic.commands.FindFinanceCommand;
-import nustorage.logic.commands.FindInventoryRecordCommand;
-import nustorage.logic.commands.HelpCommand;
-import nustorage.logic.commands.ListFinanceRecordsCommand;
-import nustorage.logic.commands.ListInventoryCommand;
+import nustorage.logic.commands.*;
 import nustorage.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,6 +49,9 @@ public class NuStorageParser {
 
         case FindInventoryRecordCommand.COMMAND_WORD:
             return new FindInventoryRecordCommandParser().parse(arguments);
+
+        case UpdateInventoryCommand.COMMAND_WORD:
+            return new UpdateInventoryCommandParser().parse(arguments);
 
         case AddFinanceCommand.COMMAND_WORD:
             return new AddFinanceCommandParser().parse(arguments);

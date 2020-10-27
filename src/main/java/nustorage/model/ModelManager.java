@@ -165,7 +165,11 @@ public class ModelManager implements Model {
         financeAccount.setFinanceRecord(target, editedFinanceRecord);
     }
 
-
+    @Override
+    public FinanceRecord getFinanceRecord(Integer target) {
+        requireAllNonNull(target);
+        return financeAccount.getFinanceRecord(target);
+    }
     // @Override
     // public List<FinanceRecord> viewFinanceRecords() {
     //     // TODO: DORA IMPLEMENT VIEW FINANCE RECORDS.
