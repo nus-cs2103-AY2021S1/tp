@@ -51,8 +51,6 @@ public class CalendarView extends UiPart<Region> {
     private int thisMonthBalance;
     private final int dayOfTheMonthForToday;
 
-    private CommandBox.CommandExecutor commandExecutor;
-
     @FXML
     private Text monthYearText;
 
@@ -74,7 +72,7 @@ public class CalendarView extends UiPart<Region> {
     /**
      * Constructor for the calendar view in PropertyFree
      */
-    public CalendarView(CommandBox.CommandExecutor commandExecutor) {
+    public CalendarView() {
         super(FXML);
         this.todayDate = LocalDate.now();
         this.pivotDate = todayDate;
@@ -85,7 +83,6 @@ public class CalendarView extends UiPart<Region> {
         this.dayOfTheMonthForToday = this.day;
         this.yearMonth = YearMonth.of(this.year, this.month);
         this.firstDayOfTheMonth = yearMonth.atDay(1);
-        this.commandExecutor = commandExecutor;
         setMonthYearLabel();
         generateCalender();
     }
@@ -250,8 +247,7 @@ public class CalendarView extends UiPart<Region> {
 
                 if (isSameMonth(this.todayDate, this.nonPivotDate)
                         && i == this.prevMonthBalance + this.dayOfTheMonthForToday - 1) {
-
-                    holder.setBorder(new Border(new BorderStroke(Color.valueOf("#FFFFFF"),
+                    holder.setBorder(new Border(new BorderStroke(Color.valueOf("white"),
                             BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(1))));
                 }
 
@@ -274,11 +270,6 @@ public class CalendarView extends UiPart<Region> {
                             nonPivotDate = pivotDate;
                             updateDayMonthYear(pivotDate);
                             refreshCalenderView();
-                        }
-                        try {
-                            commandExecutor.execute("go " + pivotDate);
-                        } catch (Exception e) {
-                            e.printStackTrace();
                         }
                     }
                 });

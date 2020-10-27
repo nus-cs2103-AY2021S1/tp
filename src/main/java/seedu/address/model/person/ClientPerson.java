@@ -40,7 +40,8 @@ public class ClientPerson extends Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append("\nName:")
+                .append(getName())
                 .append("\nPhone: ")
                 .append(getPhone())
                 .append("\nId: ")

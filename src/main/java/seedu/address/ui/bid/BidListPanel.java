@@ -15,7 +15,7 @@ import seedu.address.ui.UiPart;
  * Panel containing the list of bids.
  */
 public class BidListPanel extends UiPart<Region> {
-    private static final String FXML = "BidListPanel.fxml";
+    private static final String FXML = "bid/BidListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(BidListPanel.class);
 
     @FXML

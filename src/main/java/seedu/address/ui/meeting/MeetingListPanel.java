@@ -13,7 +13,7 @@ import seedu.address.ui.UiPart;
 
 
 public class MeetingListPanel extends UiPart<Region> {
-    private static final String FXML = "MeetingListPanel.fxml";
+    private static final String FXML = "meeting/MeetingListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(MeetingListPanel.class);
 
     @FXML
