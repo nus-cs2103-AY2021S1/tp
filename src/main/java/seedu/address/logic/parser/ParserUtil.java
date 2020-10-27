@@ -16,6 +16,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
+import seedu.address.model.exercise.ExerciseTag;
 import seedu.address.model.exercise.Muscle;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -112,6 +113,34 @@ public class ParserUtil {
         }
         return Muscle.stringToMuscleList(musclesWorked);
     }
+
+    /**
+     * Parses a {@code String tag} into a {@code ExerciseTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static ExerciseTag parseExerciseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!ExerciseTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(ExerciseTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ExerciseTag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<ExerciseTag>}.
+     */
+    public static Set<ExerciseTag> parseExerciseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<ExerciseTag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseExerciseTag(tagName));
+        }
+        return tagSet;
+    }
+
 
     //AB3 parse
 

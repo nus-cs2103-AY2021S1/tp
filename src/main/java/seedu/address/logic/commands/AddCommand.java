@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
@@ -24,13 +25,16 @@ public class AddCommand extends CommandForExercise {
             + PREFIX_DESCRIPTION + "DESCRIPTION "
             + PREFIX_DATE + "DATE "
             + "[" + PREFIX_CALORIES + "CALORIES] "
-            + "[" + PREFIX_MUSCLES + "MUSCLES_WORKED]\n"
+            + "[" + PREFIX_MUSCLES + "MUSCLES_WORKED] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "running "
             + PREFIX_DESCRIPTION + "10 mins "
             + PREFIX_DATE + "31-12-2020 "
             + PREFIX_CALORIES + "100 "
-            + PREFIX_MUSCLES + "chest,arm";
+            + PREFIX_MUSCLES + "chest,arm"
+            + PREFIX_TAG + "home "
+            + PREFIX_TAG + "gym";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
     public static final String MESSAGE_DUPLICATE_EXERCISE = "This exercise already exists in the exercise book";
