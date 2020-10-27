@@ -59,7 +59,7 @@ public class TemplateList {
             Scanner s = new Scanner(f);
             while (s.hasNext()) {
                 String string = s.nextLine();
-                list.add(parser.parseTemp("create " + string));
+                list.add(parser.parseTemp(" " + string));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
