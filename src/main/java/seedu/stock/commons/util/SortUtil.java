@@ -66,7 +66,6 @@ public class SortUtil {
      *
      * @return The general comparator to sort the inventory.
      */
-
     public static Comparator<Stock> generateGeneralComparator() {
         return new Comparator<Stock>() {
             @Override
@@ -173,6 +172,4 @@ public class SortUtil {
             }
         };
     }
-
-
 }
