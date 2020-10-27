@@ -138,7 +138,7 @@ public class Module {
         this.name = name;
         this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
-        gradeTracker.setGradePoint(Optional.of(gradePoint));
+        gradeTracker.setGradePoint(gradePoint);
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
     }
