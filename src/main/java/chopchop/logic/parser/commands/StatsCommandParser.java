@@ -16,9 +16,11 @@ import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.StatsIngredientClearCommand;
 import chopchop.logic.commands.StatsIngredientDateCommand;
+import chopchop.logic.commands.StatsIngredientRecentlyUsedCommand;
 import chopchop.logic.commands.StatsRecipeClearCommand;
 import chopchop.logic.commands.StatsRecipeDateCommand;
 import chopchop.logic.commands.StatsRecipeMostMadeCommand;
+import chopchop.logic.commands.StatsRecipeRecentlyMadeCommand;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 
@@ -48,13 +50,25 @@ public class StatsCommandParser {
                     if (target.snd().equals("clear")) {
                         return Result.of(new StatsRecipeClearCommand());
                     }
-                    return parseDateRecipeCommand(target.snd().strip(), args);
+                    if (target.snd().equals("recently made")) {
+                        return Result.of(new StatsRecipeRecentlyMadeCommand());
+                    }
+                    if (target.snd().equals("made")) {
+                        return parseDateRecipeCommand(target.snd().strip(), args);
+                    }
+                    return Result.error("Invalid command: Stats of recipes not found ('%s' invalid)", target.fst());
 
                 case INGREDIENT:
                     if (target.snd().equals("clear")) {
                         return Result.of(new StatsIngredientClearCommand());
                     }
-                    return parseDateIngredientCommand(target.snd().strip(), args);
+                    if (target.snd().equals("recently used")) {
+                        return Result.of(new StatsIngredientRecentlyUsedCommand());
+                    }
+                    if (target.snd().equals("used")) {
+                        return parseDateIngredientCommand(target.snd().strip(), args);
+                    }
+                    return Result.error("Invalid command: Stats of ingredients not found ('%s' invalid)", target.fst());
 
                 default:
                     return Result.error("Stats of recipes or ingredients not found ('%s' invalid)", target.fst());
@@ -63,8 +77,8 @@ public class StatsCommandParser {
     }
 
     private static Result<StatsRecipeDateCommand> parseDateRecipeCommand(String name, CommandArguments args) {
-        if (!name.isBlank()) {
-            return Result.error("Just 'stats recipe' will do. Do not specify name.");
+        if (!name.equals("made")) {
+            return Result.error("Just 'stats recipe made' will do. Do not specify name.");
         }
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
@@ -99,8 +113,8 @@ public class StatsCommandParser {
     }
 
     private static Result<StatsIngredientDateCommand> parseDateIngredientCommand(String name, CommandArguments args) {
-        if (!name.isBlank()) {
-            return Result.error("Just 'stats ingredient' will do. Do not specify name.");
+        if (!name.equals("used")) {
+            return Result.error("Just 'stats ingredient used' will do. Do not specify name.");
         }
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {

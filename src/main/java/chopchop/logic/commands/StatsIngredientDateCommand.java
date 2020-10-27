@@ -11,7 +11,7 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class StatsIngredientDateCommand extends Command {
-    public static final String COMMAND_WORD = "stats ingredient";
+    public static final String COMMAND_WORD = "stats ingredient used";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of ingredient. "
         + "Parameters: "

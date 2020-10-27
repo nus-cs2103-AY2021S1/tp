@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.nio.file.Path;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -274,6 +275,16 @@ public class ModelManager implements Model {
     @Override
     public void setIngredientUsageList(UsageList<IngredientUsage> il) {
         this.ingredientUsageList.setAll(il);
+    }
+
+    @Override
+    public List<RecipeUsage> getRecentlyUsedRecipe(int n) {
+        return this.recipeUsageList.getRecentlyUsed(n);
+    }
+
+    @Override
+    public List<IngredientUsage> getRecentlyUsedIngredient(int n) {
+        return this.ingredientUsageList.getRecentlyUsed(n);
     }
 
     @Override

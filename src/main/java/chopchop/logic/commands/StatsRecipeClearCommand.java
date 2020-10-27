@@ -55,4 +55,16 @@ public class StatsRecipeClearCommand extends Command implements Undoable {
         }
         return CommandResult.message("Undo: restored records of recipes made");
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+            || (other instanceof StatsRecipeClearCommand
+            && this.usages.equals(((StatsRecipeClearCommand) other).usages));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("StatsRecipeClearCommand");
+    }
 }

@@ -55,4 +55,16 @@ public class StatsIngredientClearCommand extends Command implements Undoable {
         }
         return CommandResult.message("Undo: restored records of ingredients used");
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+            || (other instanceof StatsIngredientClearCommand
+            && this.usages.equals(((StatsIngredientClearCommand) other).usages));
+    }
+
+    @Override
+    public String toString() {
+        return "StatsIngredientClearCommand";
+    }
 }

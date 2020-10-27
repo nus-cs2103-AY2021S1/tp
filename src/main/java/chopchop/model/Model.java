@@ -1,6 +1,7 @@
 package chopchop.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -169,4 +170,8 @@ public interface Model {
     void setRecipeUsageList(UsageList<RecipeUsage> rl);
 
     void setIngredientUsageList(UsageList<IngredientUsage> rl);
+
+    List<RecipeUsage> getRecentlyUsedRecipe(int n);
+
+    List<IngredientUsage> getRecentlyUsedIngredient(int n);
 }
