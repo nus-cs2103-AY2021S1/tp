@@ -18,16 +18,17 @@ import seedu.address.model.tag.FileAddress;
 public class CdCommand extends Command {
 
     public static final String COMMAND_WORD = "cd";
-    public static final String CD_COMMAND_USAGE = COMMAND_WORD
-            + ": Changes the current path of the file explorer\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Changes the current path of the file explorer\n\n"
             + "Parameters: "
             + "\n\t(1)" + PREFIX_FILE_ADDRESS + "ABSOLUTE PATH"
             + "\n\t(2)" + PREFIX_CHILD_PATH + "CHILD FOLDER NAME"
             + "\n\t(3)" + PREFIX_PARENT_PATH
-            + "\nExamples: "
+            + "\n\nExamples: "
             + "\n\t(1)" + COMMAND_WORD + " " + PREFIX_FILE_ADDRESS + "F:\\OneDrive\\CS2013T "
             + "\n\t(2)" + COMMAND_WORD + " " + PREFIX_CHILD_PATH + "OneDrive"
             + "\n\t(3)" + COMMAND_WORD + " " + PREFIX_PARENT_PATH;
+    public static final String CD_COMMAND_USAGE = COMMAND_WORD + " " + "FILE_PATH";
     public static final String MESSAGE_SUCCESS = "Current path set to '%s'";
     public static final String MESSAGE_PATH_NOT_FOUND = "Cannot find '%s'";
     public static final String MESSAGE_PATH_INVALID = "Cannot set the path to '%s'";

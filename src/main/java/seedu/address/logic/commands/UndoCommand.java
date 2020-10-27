@@ -15,6 +15,9 @@ import seedu.address.model.Model;
 public class UndoCommand extends Command {
 
     public static final String COMMAND_WORD = "undo";
+    public static final String UNDO_COMMAND_USAGE = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Undo a recent command"
+            + "\n\nExample: " + COMMAND_WORD;
     public static final String MESSAGE_SUCCESS = "Undo success!";
     public static final String MESSAGE_FAILURE = "Unable to undo! No more commands that are undo-able!";
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);

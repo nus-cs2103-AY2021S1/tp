@@ -13,6 +13,6 @@ public class CdCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "    ",
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CdCommand.CD_COMMAND_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, CdCommand.MESSAGE_USAGE));
     }
 }
