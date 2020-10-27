@@ -208,6 +208,19 @@ public class Module {
     }
 
     /**
+     * Deletes the zoom link based on the specified key.
+     *
+     * @param key name of the zoom link to be deleted
+     * @return module containing the updated zoom links
+     */
+    public Module deleteZoomLink(String key) {
+        Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
+        updatedLinks.remove(key);
+        return new Module(this.name, this.zoomLink, updatedLinks,
+            this.gradeTracker, this.tags, this.modularCredits);
+    }
+
+    /**
      * Returns the grades being tracked for this module.
      *
      * @return grade tracker.
