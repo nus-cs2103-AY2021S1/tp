@@ -3,7 +3,6 @@ package seedu.address.model.propertybook;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
 
@@ -43,7 +42,7 @@ public interface PropertyModel {
      * {@code property} must not already exist in the property book.
      * @return
      */
-    Property addProperty(Property property) throws CommandException;
+    Property addProperty(Property property);
 
     /**
      * Gets the property with the given id.
@@ -67,7 +66,7 @@ public interface PropertyModel {
      * The property identity of {@code editedProperty} must not be the same as another existing property in the
      * property book.
      */
-    void setProperty(Property target, Property editedProperty) throws CommandException;
+    void setProperty(Property target, Property editedProperty);
 
     /** Returns an unmodifiable view of the filtered property list */
     ObservableList<Property> getFilteredPropertyList();

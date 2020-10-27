@@ -31,7 +31,6 @@ import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
 import seedu.address.model.propertybook.PropertyBook;
-import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.testutil.property.EditPropertyDescriptorBuilder;
 import seedu.address.testutil.property.PropertyBuilder;
 
