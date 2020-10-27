@@ -3,6 +3,9 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -11,12 +14,19 @@
   <scene>
     <Scene>
       <stylesheets>
-<!--        <URL value="@DarkTheme.css" />-->
         <URL value="@TrackrTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
       <VBox>
+        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+          <Menu mnemonicParsing="false" text="File">
+            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+        </MenuBar>
             <StackPane fx:id="viewDisplayPlaceholder" prefHeight="55.0" prefWidth="340.0" styleClass="pane-with-border" />
 
         <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
@@ -26,27 +36,19 @@
           <StackPane fx:id="listPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS" />
         </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
-
         <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-<!--        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">-->
-<!--          <Menu mnemonicParsing="false" text="File">-->
-<!--            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />-->
-<!--          </Menu>-->
-<!--          <Menu mnemonicParsing="false" text="Help">-->
-<!--            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />-->
-<!--          </Menu>-->
-<!--        </MenuBar>-->
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
+
+        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>
