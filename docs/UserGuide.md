@@ -264,12 +264,6 @@ General Format: `detail COMMAND_WORD STUDENT_INDEX PARAMETERS`
 * The command affects the student at the specified `STUDENT_INDEX`. 
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each `COMMAND_WORD` as explained below.
-* `detail add` adds the given additional detail to the student at the specified `STUDENT_INDEX`.
-* `detail add` requires the following optional field: `[d/DETAIL_TEXT]`.
-* `detail edit` edits the additional detail at the specified `DETAIL_INDEX`, for the student at the specified `STUDENT_INDEX`
-* `detail edit` requires the following optional fields: `[i/DETAIL_INDEX] [d/DETAIL_TEXT]`.
-* `detail delete` deletes the additional detail at the specified `DETAIL_INDEX`, for the student at the specified `STUDENT_INDEX`
-* `detail delete` requires the following optional field: `[i/DETAIL_INDEX]`.
 
 Examples:  
 * `detail add 1 d/Smart` adds the "Smart" detail to the 1st student in **Reeve**.

@@ -42,6 +42,8 @@ public class StudentAcademicCard extends UiPart<Region> {
     private Label questions;
     @FXML
     private Label exams;
+    @FXML
+    private Label attendance;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -59,6 +61,7 @@ public class StudentAcademicCard extends UiPart<Region> {
                 .map(Question::toString)
                 .collect(Collectors.joining("\n")));
         exams.setText("Examinations: \n" + student.getFormattedExams());
+        attendance.setText("Attendance:\n" + student.getAcademic().getFormattedAttendance());
     }
 
     @Override

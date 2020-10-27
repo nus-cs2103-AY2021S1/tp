@@ -21,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddExamCommand;
 import seedu.address.logic.commands.AddQuestionCommand;
+import seedu.address.logic.commands.AttendanceCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteExamCommand;
@@ -52,7 +53,7 @@ public class ReeveParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Student student = new StudentBuilder().withQuestions().build();
+        Student student = new StudentBuilder().withQuestions().withDetails().withExams().withAttendances().build();
         AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
@@ -151,7 +152,7 @@ public class ReeveParserTest {
     }
 
     @Test
-    public void parseCommand_additionalDetail() throws Exception {
+    public void parseCommand_detail() throws Exception {
         assertTrue(parser.parseCommand("detail add 2 t/ smart") instanceof DetailCommand);
     }
 
@@ -161,6 +162,13 @@ public class ReeveParserTest {
         assertTrue(parser.parseCommand(OverdueCommand.COMMAND_WORD + " 3") instanceof OverdueCommand);
     }
 
+    @Test
+    public void parseCommand_attendance() throws Exception {
+        assertTrue(parser.parseCommand("attendance add 1 d/19/02/2020 a/attended f/attentive")
+                instanceof AttendanceCommand);
+        assertTrue(parser.parseCommand("attendance delete 3 d/25/12/2020")
+                instanceof AttendanceCommand);
+    }
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()

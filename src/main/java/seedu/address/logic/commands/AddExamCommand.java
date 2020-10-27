@@ -77,7 +77,7 @@ public class AddExamCommand extends ExamCommand {
         exams.add(toAdd);
         Student updatedStudent = new Student(selectedStudent.getName(), selectedStudent.getPhone(),
                 selectedStudent.getSchool(), selectedStudent.getYear(), selectedStudent.getAdmin(),
-                selectedStudent.getQuestions(), exams);
+                selectedStudent.getQuestions(), exams, selectedStudent.getAcademic());
         model.setStudent(selectedStudent, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EXAM_ADDED_SUCCESS, updatedStudent.getName(), toAdd));

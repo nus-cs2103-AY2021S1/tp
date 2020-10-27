@@ -20,15 +20,15 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.Detail;
+import seedu.address.model.student.academic.Attendance;
+import seedu.address.model.student.academic.Feedback;
 import seedu.address.testutil.StudentBuilder;
 
-public class AddDetailCommandTest {
-
-    //@@author VaishakAnand
-    private static final String TEST_DETAIL = "eats flies";
+public class AddAttendanceCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Attendance validAttendance = new Attendance("12/02/2020", "attended",
+            new Feedback("sleepy"));
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -36,39 +36,38 @@ public class AddDetailCommandTest {
 
         // both arguments null
         assertThrows(NullPointerException.class, () ->
-                new AddDetailCommand(null, null));
+                new AddAttendanceCommand(null, null));
 
         // one argument null
         assertThrows(NullPointerException.class, () ->
-                new AddDetailCommand(testIndex, null));
+                new AddAttendanceCommand(testIndex, null));
         assertThrows(NullPointerException.class, () ->
-                new AddDetailCommand(null, new Detail(TEST_DETAIL)));
+                new AddAttendanceCommand(null, validAttendance));
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
         Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withDetails().build();
-        Detail detail = new Detail(TEST_DETAIL);
-        AddDetailCommand addAdditionalDetailCommand =
-                new AddDetailCommand(INDEX_FIRST_PERSON, detail);
-        Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_DETAIL).build();
+        Student clone = new StudentBuilder(asker).withAttendances().build();
+        AddAttendanceCommand addAttendanceCommand =
+                new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance);
+        Student expectedStudent = new StudentBuilder(ALICE).withAttendances(validAttendance).build();
         model.setStudent(asker, clone);
 
-        String expectedMessage = String.format(AddDetailCommand.MESSAGE_SUCCESS, clone.getName(),
-                detail);
+        String expectedMessage = String.format(AddAttendanceCommand.MESSAGE_SUCCESS, clone.getName(),
+                validAttendance);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
-        assertCommandSuccess(addAdditionalDetailCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addAttendanceCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBounds = Index.fromOneBased(model.getSortedStudentList().size() + 1);
-        AddDetailCommand command = new AddDetailCommand(outOfBounds,
-                new Detail(TEST_DETAIL));
+        AddAttendanceCommand command =
+                new AddAttendanceCommand(outOfBounds, validAttendance);
 
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
@@ -78,15 +77,15 @@ public class AddDetailCommandTest {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Detail detail = new Detail(TEST_DETAIL);
-        Student clone = new StudentBuilder(asker).withDetails().build();
+        Student clone = new StudentBuilder(asker).withAttendances().build();
+
         model.setStudent(asker, clone);
 
-        AddDetailCommand command = new AddDetailCommand(INDEX_FIRST_PERSON, detail);
-        Student expectedStudent = new StudentBuilder(BENSON).withDetails(TEST_DETAIL).build();
+        AddAttendanceCommand command = new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance);
+        Student expectedStudent = new StudentBuilder(BENSON).withAttendances(validAttendance).build();
 
-        String expectedMessage = String.format(AddDetailCommand.MESSAGE_SUCCESS,
-                clone.getName(), detail);
+        String expectedMessage = String.format(AddAttendanceCommand.MESSAGE_SUCCESS, clone.getName(),
+                validAttendance);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
@@ -99,33 +98,30 @@ public class AddDetailCommandTest {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Index outOfBounds = INDEX_SECOND_PERSON;
-        Detail detail = new Detail(TEST_DETAIL);
-        AddDetailCommand invalidCommand = new AddDetailCommand(outOfBounds, detail);
+        AddAttendanceCommand command =
+                new AddAttendanceCommand(outOfBounds, validAttendance);
 
-        assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
+        assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        Detail testDetail = new Detail(TEST_DETAIL);
-        AddDetailCommand addAdditionalDetailCommand =
-                new AddDetailCommand(INDEX_FIRST_PERSON, testDetail);
+        AddAttendanceCommand addAttendanceCommand = new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance);
 
         // same object -> return true;
-        assertTrue(addAdditionalDetailCommand.equals(addAdditionalDetailCommand));
+        assertTrue(addAttendanceCommand.equals(addAttendanceCommand));
 
         // different object -> return false;
-        assertFalse(addAdditionalDetailCommand.equals("hello"));
+        assertFalse(addAttendanceCommand.equals("hello"));
 
         // same fields -> return true;
-        assertTrue(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_FIRST_PERSON, testDetail)));
+        assertTrue(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance)));
 
         // different index -> return false;
-        assertFalse(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_SECOND_PERSON, testDetail)));
+        assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_SECOND_PERSON, validAttendance)));
 
-        // different detail -> return false;
-        Detail altDetail = new Detail("he watches birds");
-        assertFalse(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_FIRST_PERSON, altDetail)));
+        // different attendance -> return false;
+        Attendance altAttendance = new Attendance("17/02/2020", "unattended", new Feedback("sleepy"));
+        assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_FIRST_PERSON, altAttendance)));
     }
-
 }

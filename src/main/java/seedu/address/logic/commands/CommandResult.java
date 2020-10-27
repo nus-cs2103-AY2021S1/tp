@@ -77,4 +77,8 @@ public class CommandResult {
         return Objects.hash(feedbackToUser, showHelp, exit, toggleStudentCard);
     }
 
+    @Override
+    public String toString() {
+        return this.feedbackToUser;
+    }
 }
