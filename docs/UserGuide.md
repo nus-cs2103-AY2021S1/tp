@@ -125,8 +125,9 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` should be at least 3 digits long
 
-* `FEED TIME` must be a valid time in 24 hour format
+* `ID` of animal to add must not already exist in the zookeep book
 
+* `FEED TIME` must be a valid time in 24 hour format
 </div>
 
 Examples:
@@ -141,11 +142,18 @@ Deletes the animal with the specified `ID`. `ID` refers to the id number shown i
 
 Format: `delete ID`
 
-Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `ID` should contain only numbers with no leading zeroes
+
+* `ID` should be at least 3 digits long
+
+* `ID` of animal to delete must exist in the zookeep book
+</div>
 
 Example:
-* `delete 193` deletes the individual animal with id 193.
+* `delete 193` deletes the individual animal with `ID` 193.
 
 ---
 
@@ -175,6 +183,22 @@ Appends information to the fields of the animal with the specified `ID`. `ID` re
 
 Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feed times (including 0).
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `ID` should contain only numbers with no leading zeroes
+
+* `ID` should be at least 3 digits long
+
+* `ID` of animal to delete must exist in the zookeep book
+
+* `FEED TIME` must be a valid time in 24 hour format
+</div>
+
 Examples:
 * `append 1307 f/1900` appends a feed time of 1900 to the animal identified by ID 1307.
 * `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
@@ -186,6 +210,22 @@ Examples:
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+An animal can have any number of medical conditions and feed times (including 0).
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `ID` should contain only numbers with no leading zeroes
+
+* `ID` should be at least 3 digits long
+
+* `ID` of animal to delete must exist in the zookeep book
+
+* `FEED TIME` must be a valid time in 24 hour format
+</div>
 
 Examples:
 * `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
@@ -234,7 +274,6 @@ Creates a snapshot of the current zookeep book data, saved as a file with the us
 * File name must be at least 1 character long and at most 100 characters long.
 
 * File name must not already exist in the data folder.
-
 </div>
 
 Format: `snap FILE_NAME`
