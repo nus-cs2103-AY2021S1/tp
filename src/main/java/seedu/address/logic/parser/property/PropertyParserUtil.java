@@ -1,9 +1,16 @@
 package seedu.address.logic.parser.property;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.logic.commands.property.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.price.PriceFilter;
 import seedu.address.model.property.Address;
+import seedu.address.model.property.IsClosedDeal;
 import seedu.address.model.property.IsRental;
 import seedu.address.model.property.PropertyName;
 import seedu.address.model.property.PropertyType;
@@ -71,6 +78,55 @@ public class PropertyParserUtil {
             throw new ParseException(IsRental.MESSAGE_CONSTRAINTS);
         }
         return new IsRental(trimmedIsRental);
+    }
+
+    /**
+     * Parses the String arguments into a List of String.
+     *
+     * @param args The arguments.
+     * @return The List of String separated by words.
+     * @throws ParseException If arguments is empty.
+     */
+    public static List<String> parseKeywords(String args) throws ParseException {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPropertyCommand.MESSAGE_USAGE));
+        }
+        String[] keywords = trimmedArgs.split("\\s+");
+        return Arrays.asList(keywords);
+    }
+
+    /**
+     * Parses the String priceFilter into a {@code PriceFilter} object.
+     *
+     * @param priceFilter The String priceFilter.
+     * @return A {@code PriceFilter} object.
+     * @throws ParseException If the priceFilter is in an invalid format.
+     */
+    public static PriceFilter parsePriceFilter(String priceFilter) throws ParseException {
+        String trimmed = priceFilter.trim();
+        requireNonNull(priceFilter);
+        if (!PriceFilter.isValidPriceFilter(trimmed)) {
+            throw new ParseException(PriceFilter.MESSAGE_CONSTRAINTS);
+        }
+        return new PriceFilter(trimmed);
+    }
+
+    /**
+     * Parses the String isClosedDeal into a {@code IsClosedDeal} object.
+     *
+     * @param isClosedDeal The String isClosedDeal.
+     * @return The {@code IsClosedDeal} object.
+     * @throws ParseException If the isClosedDeal is in an invalid format.
+     */
+    public static IsClosedDeal parseIsClosedDeal(String isClosedDeal) throws ParseException {
+        requireNonNull(isClosedDeal);
+        String trimmed = isClosedDeal.trim();
+        if (!IsClosedDeal.isValidIsClosedDeal(isClosedDeal)) {
+            throw new ParseException(IsClosedDeal.MESSAGE_CONSTRAINTS);
+        }
+        return new IsClosedDeal(trimmed);
     }
 
 }
