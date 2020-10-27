@@ -1,7 +1,9 @@
 package seedu.address.model.module;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.model.module.grade.Assignment;
@@ -17,6 +19,7 @@ import seedu.address.model.tag.Tag;
 public class Module {
     private final ModuleName name;
     private final ZoomLink zoomLink;
+    private Map<String, ZoomLink> zoomLinks;
     private final GradeTracker gradeTracker;
     private final ModularCredits modularCredits;
 
@@ -138,6 +141,23 @@ public class Module {
     }
 
     /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param zoomLink zoom link attached to module
+     * @param gradeTracker grade tracker attached to module
+     * @param tags tag attached to module
+     */
+    public Module(ModuleName name, ZoomLink zoomLink, Map<String, ZoomLink> zoomLinks,
+                  GradeTracker gradeTracker, Set<Tag> tags, ModularCredits modularCredits) {
+        this.name = name;
+        this.zoomLink = zoomLink;
+        this.zoomLinks = zoomLinks;
+        this.gradeTracker = gradeTracker;
+        this.tags.addAll(tags);
+        this.modularCredits = modularCredits;
+    }
+
+    /**
      * Returns the module name.
      * @return ModuleName module name.
      */
@@ -155,12 +175,36 @@ public class Module {
     }
 
     /**
+     * Returns the zoom link based on the specified key.
+     *
+     * @param key the specified key
+     * @return zoom link
+     */
+    public ZoomLink getLink(String key) {
+        return this.zoomLinks.get(key);
+    }
+
+    /**
      * Adds the zoom link for this module.
      * @param zoomLink zoom link.
      * @return Module a new Module with the input zoom link.
      */
     public Module addZoomLink(ZoomLink zoomLink) {
         return new Module(this.getName(), zoomLink, this.gradeTracker, this.tags);
+    }
+
+    /**
+     * Adds the zoom link for this module.
+     *
+     * @param key name to indicate the zoom link
+     * @param link zoom link
+     * @return module containing the updated zoom links
+     */
+    public Module addZoomLink(String key, ZoomLink link) {
+        Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
+        updatedLinks.put(key, link);
+        return new Module(this.name, this.zoomLink, updatedLinks,
+                this.gradeTracker, this.tags, this.modularCredits);
     }
 
     /**
