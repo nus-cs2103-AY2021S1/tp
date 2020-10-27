@@ -19,6 +19,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.OrderManager;
 import seedu.address.model.vendor.Vendor;
 import seedu.address.storage.Storage;
 
@@ -58,11 +59,10 @@ public class LogicManager implements Logic {
 //            } catch (IOException ioe) {
 //                throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
 //            }
-
             // Try reading
             try {
                 Optional<List<List<OrderItem>>> lists = storage.readOrderManager();
-                int x = 5;
+                lists.ifPresent(list -> model.setOrder(list.get(model.getVendorIndex())));
             } catch (DataConversionException e) {
                 e.printStackTrace();
             } catch (IOException e) {

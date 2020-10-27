@@ -33,10 +33,10 @@ public interface OrderManagerStorage {
      * @param orderManager cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException;
+    void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException, DataConversionException;
 
     /**
      * @see #saveOrderManager(ReadOnlyOrderManager, int index)
      */
-    void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException;
+    void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException, DataConversionException;
 }

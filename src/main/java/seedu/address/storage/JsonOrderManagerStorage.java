@@ -14,6 +14,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.OrderManager;
 import seedu.address.model.order.ReadOnlyOrderManager;
 
 public class JsonOrderManagerStorage implements OrderManagerStorage {
@@ -59,7 +60,8 @@ public class JsonOrderManagerStorage implements OrderManagerStorage {
     }
 
     @Override
-    public void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException {
+    public void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException,
+            DataConversionException {
         saveOrderManager(orderManager, filePath, index);
     }
 
@@ -68,11 +70,14 @@ public class JsonOrderManagerStorage implements OrderManagerStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException {
+    public void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException,
+            DataConversionException {
         requireNonNull(orderManager);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
+        // TODO: handle exception
+        List<List<OrderItem>> currentPresets = readOrderManager(filePath).orElseThrow();
         JsonUtil.saveJsonFile(new JsonSerializableOrderManager(orderManager, index), filePath);
     }
 

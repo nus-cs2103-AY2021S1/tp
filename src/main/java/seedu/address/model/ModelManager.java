@@ -257,6 +257,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setOrder(List<OrderItem> orderItems) {
+        this.orderManager.setOrder(orderItems);
+    }
+
+    @Override
     public ReadOnlyOrderManager getOrderManager() {
         return orderManager;
     }

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -143,9 +144,16 @@ public interface Model {
 
     void sortFoodByPrice(boolean ascending);
 
+
+
+    /**
+     * Replaces OrderManager data with the data in {@code orderItems}.
+     */
+    void setOrder(List<OrderItem> orderItems);
+
     /**
 
-     * Replaces address book data with the data in {@code orderManager}.
+     * Replaces OrderManager data with the data in {@code orderManager}.
      */
     void setOrderManager(ReadOnlyOrderManager orderManager);
 
