@@ -39,8 +39,9 @@
         + [Adding events to the schedule: `schedule add`](#adding-events-to-the-schedule---schedule-add-)
         + [List events: `schedule list`](#list-events---schedule-list-)
         + [Delete events on the schedule: `schedule delete`](#delete-events-on-the-schedule---schedule-delete-)
-    + [3.4.2 Viewing help: `help`](#342-viewing-help---help-)
-    + [3.4.3 Exiting the program: `exit`](#343-exiting-the-program---exit-)
+    + [3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#342-toggling-between-academic-and-administrative details---toggle---by--hogan-)
+    + [3.4.3 Viewing help: `help`](#343-viewing-help---help-)
+    + [3.4.4 Exiting the program: `exit`](#344-exiting-the-program---exit-)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
@@ -325,7 +326,7 @@ General Format: `question COMMAND_WORD INDEX DETAILS`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The format of `DETAILS` varies with each command word as explained below.
 
-#### 3.3.1.1 Adding a question: `question add`
+##### 3.3.1.1 Adding a question: `question add`
 
 Adds a new question to the student.
 
@@ -337,7 +338,7 @@ Format: `question add INDEX t/QUESTION`
 Example:
 * `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in **Reeve**.
 
-#### 3.3.1.2 Resolving a question: `question solve`
+##### 3.3.1.2 Resolving a question: `question solve`
 
 Marks a student's question as resolved.
 
@@ -350,7 +351,7 @@ Format: `question solve INDEX i/QUESTION_INDEX t/SOLUTION`
 Example:
 * `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in **Reeve** as answered.
 
-#### 3.3.1.3 Deleting a question: `question delete`
+##### 3.3.1.3 Deleting a question: `question delete`
 
 Deletes a student's question.
 
@@ -373,7 +374,7 @@ General Format: `exam COMMAND_WORD_EXAM INDEX PARAMETERS`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each command word as explained below.
 
-#### 3.3.2.1 Adding an exam record to a student: `exam add`
+##### 3.3.2.1 Adding an exam record to a student: `exam add`
 
 You can add an exam record to a specified student in **Reeve**.
 
@@ -395,7 +396,7 @@ score 40/60 to the first student in **Reeve**.
 * `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam with date 12 May 2020 and 
 score 67/100 to the fifth student in **Reeve**.
 
-#### 3.3.2.2 Deleting an exam record for a student: `exam delete`
+##### 3.3.2.2 Deleting an exam record for a student: `exam delete`
 
 You can delete a specific exam from a specified student in **Reeve**.
 
@@ -420,7 +421,7 @@ General Format: `attendance COMMAND_WORD STUDENT_INDEX PARAMETERS`
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each command word as explained below.
 
-#### 3.3.2.1 Adding an attendance record to a student: `attendance add`
+##### 3.3.2.1 Adding an attendance record to a student: `attendance add`
 
 You can add an attendance record to a specified student in **Reeve**.
 
@@ -439,7 +440,7 @@ Examples:
 * `attendance add 2 d/08/12/2020 s/attended f/attentive` adds the attendance record with the date 8 Dec 2020,
 status of attended and feedback of attentive, to the 2nd student in **Reeve**.
 
-#### 3.3.2.2 Deleting an attendance record for a student: `attendance delete`
+##### 3.3.2.2 Deleting an attendance record for a student: `attendance delete`
 
 You can delete a specific attendance record from a specified student in **Reeve**.
 
@@ -456,7 +457,7 @@ Examples:
 
 #### 3.4.1 Scheduling: `schedule`
 
-#### Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)
+##### 3.4.1.1 Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)
 
 List the events that the user has on a timetable. The classes that user has with students will also be included.
 
@@ -468,7 +469,7 @@ Format: `schedule view [mode/View_Mode] [date/Date_To_View]`
 
 Example: (To include screenshot)
 
-#### Adding events to the schedule: `schedule add`
+##### 3.4.1.2 Adding events to the schedule: `schedule add`
 
 Adds a new event to the schedule.
 
@@ -483,7 +484,7 @@ Example:
 `schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
 creates a meeting event from 10am - 11am on 25th October 2020, this is a non-recurring event.
 
-####  List events: `schedule list`
+##### 3.4.1.3 List events: `schedule list`
 
 Lists events.
 
@@ -491,7 +492,7 @@ Format: `schedule list`
 
 * Outputs a list of events on the same panel as the student list. 
 
-#### Delete events on the schedule: `schedule delete`
+##### 3.4.1.4 Delete events on the schedule: `schedule delete`
 
 Deletes an event on the schedule.
 
@@ -500,8 +501,14 @@ Format: `schedule delete EVENT_INDEX`
 * EVENT_INDEX is the index of the event to be deleted.
 * User has to first call the `schedule list` command in order to find out the index of the event being deleted.
 
+#### 3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)
 
-#### 3.4.2 Viewing help: `help`
+You can toggle between viewing your students' academic and administrative details to allow you to focus on the type of details that you are currently interested in.
+By default, the administrative details of students are shown upon starting the application.
+
+Format: `toggle`
+
+#### 3.4.3 Viewing help: `help`
 
 Shows a message explaning how to access the help page.
 
@@ -510,7 +517,7 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-#### 3.4.3 Exiting the program: `exit`
+#### 3.4.4 Exiting the program: `exit`
 
 Exits the program.
 
