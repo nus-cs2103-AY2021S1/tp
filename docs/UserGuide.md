@@ -51,7 +51,7 @@ Adds a client to I4I.
 A person can have any number of client sources (including 0)
 </div>
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]...? [l/PRIORITY]`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​? [l/PRIORITY]`
 
 Examples: 
    
