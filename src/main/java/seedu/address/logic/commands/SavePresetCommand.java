@@ -37,6 +37,7 @@ public class SavePresetCommand extends PresetCommand {
             if (currentIndex >= allLists.size()) {
                 throw new CommandException("dab");
             }
+            // check entire menu???? whether order is valid
             List<Preset> currentVendorPresets = allLists.get(model.getVendorIndex());
             Optional<Preset> preset = currentVendorPresets.stream()
                     .filter(x -> x.getName().equals(presetName.toString()))
