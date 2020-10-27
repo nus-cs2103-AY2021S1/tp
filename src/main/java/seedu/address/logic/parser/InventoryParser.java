@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddItemCommand;
 import seedu.address.logic.commands.AddQuantityToItemCommand;
 import seedu.address.logic.commands.AddRecipeCommand;
+import seedu.address.logic.commands.CheckCraftCommand;
 import seedu.address.logic.commands.ClearItemCommand;
 import seedu.address.logic.commands.ClearRecipeCommand;
 import seedu.address.logic.commands.Command;
@@ -75,6 +76,8 @@ public class InventoryParser {
             return new ViewDetailsCommandParser().parse(arguments);
         case CraftItemCommand.COMMAND_WORD:
             return new CraftItemCommandParser().parse(arguments);
+        case CheckCraftCommand.COMMAND_WORD:
+            return new CheckCraftCommandParser().parse(arguments);
 
         // Recipe commands start here
         case AddRecipeCommand.COMMAND_WORD:
