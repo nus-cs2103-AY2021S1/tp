@@ -48,14 +48,14 @@ public class FlashcardStatsCard extends UiPart<Region> {
         int successFrequency = flashcard.getStatistics().getSuccessFrequency();
         int reviewedFrequency = flashcard.getStatistics().getReviewFrequency();
         int failureFrequency = reviewedFrequency - successFrequency;
-        double successRate = ((double) successFrequency / (double) reviewedFrequency) * 100;
-        double failureRate = 100 - successRate;
         if (reviewedFrequency > 0) {
+            double successRate = ((double) successFrequency / reviewedFrequency) * 100;
+            double failureRate = 100 - successRate;
             PieChart.Data successPie = new PieChart.Data(String.format("Correct (%.1f%%)", successRate),
                     successFrequency);
-            PieChart.Data wrongPie = new PieChart.Data(String.format("Wrong (%.1f%%)", failureRate),
+            PieChart.Data failurePie = new PieChart.Data(String.format("Wrong (%.1f%%)", failureRate),
                     failureFrequency);
-            pieChart.setData(FXCollections.observableArrayList(successPie, wrongPie));
+            pieChart.setData(FXCollections.observableArrayList(successPie, failurePie));
             pieChart.setLegendVisible(false);
         } else {
             errorMessage.setVisible(true);
@@ -64,6 +64,5 @@ public class FlashcardStatsCard extends UiPart<Region> {
         }
         reviewCount.setText("Reviewed count: " + reviewedFrequency);
         correctCount.setText("Correct count: " + successFrequency);
-
     }
 }
