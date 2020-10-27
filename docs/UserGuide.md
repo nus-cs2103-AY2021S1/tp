@@ -2,8 +2,8 @@
 
 1. [Introduction](#1-introduction)<br>
 2. [About This Document](#2-about-this-document)<br>
-    2.1 [Glossary](#21-glossary)
-	2.2 [Formatting](#22-formatting)
+    2.1 [Glossary](#21-glossary)<br>
+	2.2 [Formatting](#22-formatting)<br>
 	2.3 [Command format](#23-command-format)<br>
 3. [Getting Started](#3-getting-started)<br>
     3.1 [Setting Up](#31-setting-up)<br>
@@ -12,20 +12,22 @@
 4. [Features](#4-features)<br>
    4.1 [View help: `help`](#41-view-help-help)<br>
    4.2 [Module features](#42-module-features)<br>
-   --- 4.2.1 [Add a module: `addMod`](#421-add-a-module-addmod)<br>
-   --- 4.2.2 [Delete a module: `deleteMod`](#422-delete-a-module-deletemod)<br>
-   --- 4.2.3 [Find a module: `findMod`](#423-find-a-module-findmod)<br>
-   --- 4.2.4 [Edit a module: `editMod` [coming in v1.4]](#424-edit-a-module-editmod-coming-in-v14)<br>
+   --- 4.2.1 [View all modules: `viewMod`](#421-view-all-modules-viewmod)<br>
+   --- 4.2.2 [Add a module: `addMod`](#422-add-a-module-addmod)<br>
+   --- 4.2.3 [Delete a module: `deleteMod`](#423-delete-a-module-deletemod)<br>
+   --- 4.2.4 [Find a module: `findMod`](#424-find-a-module-findmod)<br>
+   --- 4.2.5 [Edit a module: `editMod` [coming in v1.4]](#425-edit-a-module-editmod-coming-in-v14)<br>
    4.3 [Tutorial group features](#43-tutorial-group-features)<br>
    --- 4.3.1 [View all tutorial groups in a module: `viewTG`](#431-view-all-tutorial-groups-in-a-module-viewtg)<br>
    --- 4.3.2 [Add a tutorial group to a module: `addTG`](#432-add-a-tutorial-group-to-a-module-addtg)<br>
    --- 4.3.3 [Find a tutorial group: `findTG`](#433-find-a-tutorial-group-findtg)<br>
    --- 4.3.4 [Delete a tutorial group from a module: `deleteTG`](#434-delete-a-tutorial-group-from-a-module-deletetg)<br>
    4.4 [Student features](#44-student-features)<br>
-   --- 4.4.1 [Add a student: `addStudent`](#441-add-a-student-addstudent)<br>
-   --- 4.4.2 [Delete a student: `deleteStudent`](#442-delete-a-student-deletestudent)<br>
-   --- 4.4.3 [Find a student: `findStudent`](#443-find-a-student-findstudent)<br>
-   --- 4.4.4 [Edit a student: `editStudent` [coming in v1.4]](#444-edit-a-student-editstudent-coming-in-v14)<br>
+   --- 4.4.1 [View all students in a tutorial group: `viewStudent`](#441-view-all-students-in-a-tutorial-group-viewstudent)<br>
+   --- 4.4.2 [Add a student: `addStudent`](#442-add-a-student-addstudent)<br>
+   --- 4.4.3 [Delete a student: `deleteStudent`](#443-delete-a-student-deletestudent)<br>
+   --- 4.4.4 [Find a student: `findStudent`](#444-find-a-student-findstudent)<br>
+   --- 4.4.5 [Edit a student: `editStudent` [coming in v1.4]](#445-edit-a-student-editstudent-coming-in-v14)<br>
 5. [FAQ](#5-faq)<br>
 6. [Command Summary](#6-command-summary)<br>
    6.1 [Module commands](#61-module-commands)<br>
@@ -34,13 +36,20 @@
 
 ## 1. Introduction
 
-__Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User Interface (GUI). If you are a TA with a fast typing speed, Trackr is the app for you! You can start by familiarising yourself with the information regarding how this document is designed in [Section 2, "About this document"](#2-about-this-document).
+__Trackr__ is an application for teaching assistants (TAs) who prefer to use a desktop application for managing their 
+student records. It is uses a Command Line Interface (CLI), while still retaining the benefits of a Graphical User 
+Interface (GUI). If you are a TA with a fast typing speed, __Trackr__ is the app for you! You can start by familiarising 
+yourself with the information regarding how this document is designed in 
+[Section 2, "About this document"](#2-about-this-document).
 
 
 
 ## 2. About this document
 
-Welcome to the __Trackr__ User Guide! In this document you will be able to learn the features that __Trackr__ can provide to make your TA experience less troublesome. This section will provide information regarding the use of this document, namely how to navigate through this document, what the technical terms mean and how to interpret the formatting used.
+Welcome to the __Trackr__ User Guide! In this document you will be able to learn the features that __Trackr__ can 
+provide to make your TA experience less troublesome. This section will provide information regarding the use of this 
+document, namely how to navigate through this document, what the technical terms mean and how to interpret the 
+formatting used.
 
 ### 2.1 Glossary
 
@@ -70,7 +79,7 @@ This document is written in a manner where formatting is applied to text in orde
 
 ### 2.3 Command Format
 
-Commands in the command line are typed in a specific way and follow specific rules. These are the rules you have to follow when typing commands for **Trackr** to read:
+Commands you provide in the command line follow specific rules. These are the rules you have to follow when typing commands for **Trackr** to read:
 
 -   Words in UPPER_CASE are the parameters to be supplied by the user.
     e.g. in add n/NAME, NAME is a parameter which can be used as add n/John Doe.
@@ -100,7 +109,7 @@ Figure 3.1 Track Gui
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
 commands to add or delete modules, tutorial groups, or students you are teaching. To use a feature, simply
 type the command into the command box (see Figure 3.2) and press _Enter_ to execute it. Further explanations of 
-all the commands are listed down below in [Features](#4-features).
+all the commands are listed in [Section 4, "Features"](#4-features).
 
 ![CommandExample](images/CommandExample.png) <br>
 Figure 3.2 Command example
@@ -108,7 +117,7 @@ Figure 3.2 Command example
 ### 3.3 Switching Views
 __Trackr__ allows you to switch the current view from `Modules` (Figure 3.31) to `Tutorial Groups` (Figure 3.32) 
 to `Students` (Figure 3.33) depending on your current need. This is done using the commands `viewMod`, `viewTG`, and `viewStudent`. 
-The correct syntax for these commands are shown down below in [Features](#4-features).
+The correct syntax for these commands are shown in [Section 4, "Features"](#4-features).
 
 ![ModuleView](images/ModuleView.png) <br>
 Figure 3.31 Module View
@@ -116,7 +125,7 @@ Figure 3.31 Module View
 ![TutorialGroupView](images/TutorialGroupView.png) <br>
 Figure 3.32 Tutorial Group View
 
-![StudentView]() <br>
+![StudentView](images/StudentView.png) <br>
 Figure 3.33 Student view
 
 
@@ -130,9 +139,15 @@ Format: `help`
 
 ### 4.2 Module features
 
-Note: You should perform the following features while in the Module view.
+#### 4.2.1 View all modules: `viewMod`
 
-#### 4.2.1 Add a module: `addMod`
+Shows all the modules you have added in the Module view.
+
+Format: `viewModule`
+
+> You should perform the following features while in the Module view.
+
+#### 4.2.2 Add a module: `addMod`
 
 Adds a module to the module list.
 
@@ -147,7 +162,6 @@ Example:
 
 - Adds a module _CS2100_ to the module list.
     - `addMod CS2100`
-    
 
 Expected Outcome:
 
@@ -155,7 +169,7 @@ Expected Outcome:
 
     New module added: CS2100
     
-#### 4.2.2 Delete a module: `deleteMod`
+#### 4.2.3 Delete a module: `deleteMod`
 
 Deletes a module based on the given `INDEX`
 
@@ -171,7 +185,6 @@ Example:
 
 - Deletes a module at index _2_ in the module list.
     - `deleteMod 2`
-    
 
 Expected Outcome:
 
@@ -179,7 +192,7 @@ Expected Outcome:
 
     Module deleted: module at index 2
 
-#### 4.2.3 Find a module: `findMod`
+#### 4.2.4 Find a module: `findMod`
 
 Finds and lists all modules in the current Module view whose field contains any of the given keywords.
 
@@ -196,13 +209,12 @@ Example:
 - Finds a module with `KEYWORD` _cs2100_.
 
     - `findMod cs2100`
-    
 
 Expected Outcome:
 
 - From the example given above, the Module view will display the modules matching the criteria:
 
-#### 4.2.4 Edit a module: `editMod` [coming in v1.4]
+#### 4.2.5 Edit a module: `editMod` [coming in v1.4]
 
 Edits a module with the provided details.
 
@@ -257,9 +269,25 @@ These are the commands you can use to manage the different `Tutorial Groups` you
 
 ### 4.4 Student features
 
-Note: You should perform the following features while in the Student view.
+#### 4.4.1 View all students in a tutorial group: `viewStudent`
 
-#### 4.4.1 Add a student: `addStudent`
+Shows all students within the given tutorial group.
+
+Format: `viewStudent INDEX`
+
+Note:
+
+- `INDEX` refers to the index number shown in the Tutorial Group view.
+- `INDEX` must be a positive integer starting from 1.
+
+Example:
+
+- Views all students of tutorial group _T03_.
+    - `viewStudent T03`
+
+> You should perform the following features while in the Student view.
+
+#### 4.4.2 Add a student: `addStudent`
 
 Adds a student with your provided details.
 
@@ -278,17 +306,14 @@ Example:
 and tag _student_ to the current tutorial group in view.
   - `addStudent n/John Tan p/81234567 e/johntan@u.nus.edu id/A1234567X t/student`
   
-
 Expected Outcome:
 
 - From the example above, the result box will display the following message:
 
-    New student added: {to be filled up}
+    New student added: New student added: John Tan Phone: 81234567 Email: johntan@u.nus.edu Student ID: A1234567X 
+    Tags: [student]
     
-
-{insert screenshot of addStudent with the above parameters}
-
-#### 4.4.2 Delete a student: `deleteStudent`
+#### 4.4.3 Delete a student: `deleteStudent`
 
 Deletes a student based on the given `INDEX`.
 
@@ -306,17 +331,13 @@ Example:
   
     - `deleteStudent 2`
     
-
 Expected Outcome:
 
 - From the example given above, the result box will display the following message:
 
-    Deleted student: {to be filled up}
+    Deleted student: {to be implemented by this week}
     
-
-{insert screenshot of deleteStudent with the above parameters}
-
-#### 4.4.3 Find a student: `findStudent`
+#### 4.4.4 Find a student: `findStudent`
 
 Finds and lists all students in the current Student view whose field contains any of the given keywords.
 
@@ -334,15 +355,11 @@ Example:
 
     - `findStudent a1234567x`
     
-
 Expected Outcome:
 
 - From the example given above, the Student view will display the students matching the criteria:
   
-
-{insert screenshot of findStudent with the above parameters}
-
-#### 4.4.4 Edit a student: `editStudent` [coming in v1.4]
+#### 4.4.5 Edit a student: `editStudent` [coming in v1.4]
 
 Edits a student with the provided details.
 
@@ -365,6 +382,7 @@ for MacOS and Linux users.
 
 Command | Summary
 --------|--------
+`viewMod` | Views all modules in __Trackr__.
 `addMod MODULE_CODE` | Adds a new module to the current Module view. 
 `deleteMod INDEX` | Deletes a module from the current Module view. 
 `findMod KEYWORD` | Finds module(s) that contain the keyword in the current Module view. 
@@ -373,15 +391,16 @@ Command | Summary
 
 Command | Summary
 --------|--------
-`viewTG MODULE_INDEX` | View all Tutorial Groups in a Module. 
-`addTG tg/TG_CODE` | Add a Tutorial Group to a Module. 
-`findTG TARGET_TG_CODE` | Find a Tutorial Group. 
-`deleteTG TG_INDEX` | Delete a Tutorial Group from a Module. 
+`viewTG MODULE_INDEX` | Views all Tutorial Groups in a Module. 
+`addTG tg/TG_CODE` | Adds a Tutorial Group to a Module. 
+`findTG TARGET_TG_CODE` | Finds a Tutorial Group. 
+`deleteTG TG_INDEX` | Deletes a Tutorial Group from a Module. 
 
 ### 6.3 Student commands
 
 Command | Summary
 --------|--------
+`viewStudent INDEX` | Views all students in the given tutorial group.
 `addStudent n/NAME p/PHONE_NUMBER e/EMAIL id/STUDENT_ID [t/TAG]...` | Adds a new student to the current Student view. 
 `deleteStudent INDEX` | Deletes a student from the current Student view. 
 `findStudent KEYWORD` | Finds student(s) that contain the keyword in the current Student view. 
