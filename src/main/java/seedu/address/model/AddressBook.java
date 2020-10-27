@@ -131,7 +131,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         persons.remove(key);
     }
 
+    /**
+     * Removes all the contacts from the list and unassigns all contacts from all modules.
+     */
     public void clearContacts() {
+        semOneModules.unassignAllInstructors();
+        semTwoModules.unassignAllInstructors();
         persons.clearAll();
     }
 
