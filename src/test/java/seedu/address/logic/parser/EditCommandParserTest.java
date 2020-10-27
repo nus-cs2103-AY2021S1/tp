@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DATE_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SIT_UP;
+import static seedu.address.logic.commands.CommandTestUtil.MUSCLES_DESC_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.MUSCLES_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PUSH_UP;
@@ -15,6 +17,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_SIT_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MUSCLES_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MUSCLES_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_SIT_UP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -75,13 +79,14 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_EXERCISE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
-                + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP;
+                + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP;
 
         UpdateExerciseCommand.EditExerciseDescriptor descriptor =
                 new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
                                                     .withDescription(VALID_DESCRIPTION_PUSH_UP)
                                                     .withDate(VALID_DATE_PUSH_UP)
-                                                    .withCalories(VALID_CALORIES_PUSH_UP).build();
+                                                    .withCalories(VALID_CALORIES_PUSH_UP)
+                                                    .withMusclesWorked(VALID_MUSCLES_PUSH_UP).build();
 
         UpdateExerciseCommand expectedCommand = new UpdateExerciseCommand(targetIndex, descriptor);
 
@@ -129,21 +134,29 @@ public class EditCommandParserTest {
         descriptor = new EditExerciseDescriptorBuilder().withCalories(VALID_CALORIES_PUSH_UP).build();
         expectedCommand = new UpdateExerciseCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // muscles worked
+        userInput = targetIndex.getOneBased() + MUSCLES_DESC_PUSH_UP;
+        descriptor = new EditExerciseDescriptorBuilder().withMusclesWorked(VALID_MUSCLES_PUSH_UP).build();
+        expectedCommand = new UpdateExerciseCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_EXERCISE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP
-                + CALORIES_DESC_PUSH_UP + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
-                + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP
-                + NAME_DESC_SIT_UP + DESCRIPTION_DESC_SIT_UP + DATE_DESC_SIT_UP + CALORIES_DESC_SIT_UP;
+                + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP
+                + NAME_DESC_SIT_UP + DESCRIPTION_DESC_SIT_UP + DATE_DESC_SIT_UP + CALORIES_DESC_SIT_UP
+                + MUSCLES_DESC_SIT_UP;
 
         UpdateExerciseCommand.EditExerciseDescriptor descriptor =
                 new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
                         .withDescription(VALID_DESCRIPTION_SIT_UP)
                         .withDate(VALID_DATE_SIT_UP)
-                        .withCalories(VALID_CALORIES_SIT_UP).build();
+                        .withCalories(VALID_CALORIES_SIT_UP)
+                        .withMusclesWorked(VALID_MUSCLES_SIT_UP).build();
 
         UpdateExerciseCommand expectedCommand = new UpdateExerciseCommand(targetIndex, descriptor);
 

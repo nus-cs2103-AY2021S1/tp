@@ -29,7 +29,7 @@ public class AddCommand extends CommandForExercise {
             + PREFIX_NAME + "running "
             + PREFIX_DESCRIPTION + "10 mins "
             + PREFIX_DATE + "31-12-2020 "
-            + PREFIX_CALORIES + "100"
+            + PREFIX_CALORIES + "100 "
             + PREFIX_MUSCLES + "chest,arm";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";

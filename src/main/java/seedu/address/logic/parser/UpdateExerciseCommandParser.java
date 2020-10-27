@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import seedu.address.commons.core.index.Index;
@@ -25,7 +26,8 @@ public class UpdateExerciseCommandParser implements ExerciseParser<UpdateExercis
     public UpdateExerciseCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_CALORIES);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DESCRIPTION,
+                        PREFIX_DATE, PREFIX_CALORIES, PREFIX_MUSCLES);
 
         Index index;
 
@@ -51,6 +53,10 @@ public class UpdateExerciseCommandParser implements ExerciseParser<UpdateExercis
         }
         if (argMultimap.getValue(PREFIX_CALORIES).isPresent()) {
             editExerciseDescriptor.setCalories(ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get()));
+        }
+        if (argMultimap.getValue(PREFIX_MUSCLES).isPresent()) {
+            editExerciseDescriptor.setMusclesWorked(
+                                    ParserUtil.parseMusclesWorked(argMultimap.getValue(PREFIX_MUSCLES).get()));
         }
 
         if (!editExerciseDescriptor.isAnyFieldEdited()) {

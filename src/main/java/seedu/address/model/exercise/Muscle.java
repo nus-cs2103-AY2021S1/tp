@@ -1,6 +1,7 @@
 package seedu.address.model.exercise;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -20,11 +21,9 @@ public enum Muscle {
     LEGS("leg");
 
     public static final String DELIMITER = ",";
-    public static final String MESSAGE_CONSTRAINTS =
-            "Muscles worked should be in the following format: m/MUSCLE_1,MUSCLE_2,...\n"
-            + "No whitespaces between commas!";
-
+    public static final String MESSAGE_CONSTRAINTS;
     private static final Map<String, Muscle> ENUM_MAP;
+
     private String name;
 
     Muscle(String name) {
@@ -44,6 +43,11 @@ public enum Muscle {
             map.put(muscle.getName(), muscle);
         }
         ENUM_MAP = Collections.unmodifiableMap(map);
+        MESSAGE_CONSTRAINTS = String.format(
+                "Muscles worked should be in the following format: m/MUSCLE_1,MUSCLE_2,...\n"
+                        + "Muscle names must belong to one of the following:\n"
+                        + "%s\n"
+                        + "No whitespaces between commas!", muscleListToString(Arrays.asList(Muscle.values())));
     }
     public static Muscle get(String name) {
         return ENUM_MAP.get(name);

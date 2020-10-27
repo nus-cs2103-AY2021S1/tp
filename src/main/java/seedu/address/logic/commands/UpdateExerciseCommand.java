@@ -158,7 +158,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, date, description, calories);
+            return CollectionUtil.isAnyNonNull(name, date, description, calories, musclesWorked);
         }
 
         public void setName(Name name) {
