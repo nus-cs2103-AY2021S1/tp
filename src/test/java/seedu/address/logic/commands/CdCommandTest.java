@@ -6,6 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -20,7 +21,6 @@ public class CdCommandTest {
     private static String absoluteHomeAddress;
     private static String relativeFileAddress;
     private static String absoluteFileAddress;
-    private static boolean isWindowsPlatform;
 
     @BeforeAll
     static void setUpFileAddress() {
@@ -33,7 +33,6 @@ public class CdCommandTest {
         assert folderFile.isDirectory();
         absoluteFileAddress = folderFile.getAbsolutePath();
 
-        isWindowsPlatform = System.getProperty("os.name").toLowerCase().startsWith("windows");
     }
 
     @Test
@@ -47,10 +46,10 @@ public class CdCommandTest {
     }
 
     @Test
-    public void execute_addressTypeChild_success() {
+    public void execute_addressTypeChild_success() throws IOException {
         Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
         CdCommand cdCommand = new CdCommand(AddressType.CHILD, "src");
-        String newFileAddress = absoluteFileAddress + (isWindowsPlatform ? "\\src" : "/src");
+        String newFileAddress = new File(absoluteFileAddress + "\\src").getCanonicalPath();
         Model expectedModel = new ModelStubWithCurrentPath(newFileAddress);
 
         assertCommandSuccess(cdCommand, modelStub,
@@ -59,14 +58,15 @@ public class CdCommandTest {
 
 
     @Test
-    public void execute_addressTypeParent_success() {
-        String childAddress = absoluteFileAddress + (isWindowsPlatform ? "\\src" : "/src");
+    public void execute_addressTypeParent_success() throws IOException {
+        String childAddress = new File(absoluteFileAddress + "\\src").getCanonicalPath();
+        String parentAddress = new File(absoluteFileAddress).getCanonicalPath();
         Model modelStub = new ModelStubWithCurrentPath(childAddress);
         CdCommand cdCommand = new CdCommand(AddressType.PARENT, "");
-        Model expectedModel = new ModelStubWithCurrentPath(absoluteFileAddress);
+        Model expectedModel = new ModelStubWithCurrentPath(parentAddress);
 
         assertCommandSuccess(cdCommand, modelStub,
-                String.format(CdCommand.MESSAGE_SUCCESS, absoluteFileAddress), expectedModel);
+                String.format(CdCommand.MESSAGE_SUCCESS, parentAddress), expectedModel);
     }
 
     @Test
@@ -87,8 +87,8 @@ public class CdCommandTest {
         Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
         CdCommand cdCommand = new CdCommand(AddressType.CHILD, "build.gradle");
 
-        assertThrows(CommandException.class, String.format(CdCommand.MESSAGE_PATH_INVALID, absoluteFileAddress
-                + (isWindowsPlatform ? "\\build.gradle" : "/build.gradle")), () -> cdCommand.execute(modelStub));
+        assertThrows(CommandException.class, String.format(
+                CdCommand.MESSAGE_PATH_INVALID, "build.gradle"), () -> cdCommand.execute(modelStub));
     }
 
     @Test

@@ -32,7 +32,7 @@ public class CommandTestUtil {
     public static final String VALID_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.bat";
     public static final String VALID_MAC_FILE_ADDRESS_CS2101 = "./src/test/java/seedu/address/testutil/cs2101.sh";
     public static final String VALID_MAC_FILE_ADDRESS_TESTFILE = "./src/test/java/seedu/address/testutil/testFile.sh";
-    public static final String VALID_LABEL = "CSlabel";
+    public static final String VALID_LABEL = "testLabel";
     public static final String INVALID_LABEL = "@label";
 
     public static final String OLD_TAG_DESC_CS2101 = " " + PREFIX_OLD_TAG_NAME + VALID_TAG_NAME_CS2101;
@@ -49,7 +49,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG_NAME + INVALID_TAG_NAME;
     public static final String INVALID_LABEL_DESC = " " + PREFIX_LABEL_NAME + INVALID_LABEL;
     // empty string not allowed for addresses
-    public static final String INVALID_FILE_ADDRESS_DESC = " " + PREFIX_FILE_ADDRESS;
+    public static final String INVALID_FILE_ADDRESS_DESC = " " + PREFIX_FILE_ADDRESS + " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

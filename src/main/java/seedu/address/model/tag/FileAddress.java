@@ -15,9 +15,7 @@ public class FileAddress {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "((((?<!\\w)[A-Z,a-z]:)|(\\.{1,2}\\\\))"
-            + "([^\b%\\/\\|:\\n\\\"]*))|(\"\\2([^%\\/\\|:\\n\\\"]*)\")|((?<!\\w)(\\.{1,2})?"
-            + "(?<!\\/)(\\/((\\\\\\b)|[^ \b%\\|:\\n\\\"\\\\\\/])+)+\\/?)";
+    public static final String VALIDATION_REGEX = "([a-zA-z])?:?([\\\\/[a-zA-Z0-9]+\\.]*)?";
 
     public final String value;
 
@@ -29,14 +27,28 @@ public class FileAddress {
     public FileAddress(String address) {
         requireNonNull(address);
         checkArgument(isValidFileAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+        value = formatByOS(address);
     }
 
     /**
      * Returns true if a given string is a valid file address.
      */
     public static boolean isValidFileAddress(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX) && test.length() != 0;
+    }
+
+    /**
+     * Formats a string to be specific to operating system.
+     *
+     * @param toFormat the string before formatting
+     * @return the string after formatting
+     */
+    private String formatByOS(String toFormat) {
+        if (System.getProperty("os.name").toLowerCase().startsWith("windows")) {
+            return toFormat.replace('/', '\\');
+        } else {
+            return toFormat.replace('\\', '/');
+        }
     }
 
     @Override
