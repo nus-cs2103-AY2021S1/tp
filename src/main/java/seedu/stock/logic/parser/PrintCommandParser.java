@@ -4,10 +4,10 @@ import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
 
+import java.util.stream.Stream;
+
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
-
-import java.util.stream.Stream;
 
 /**
  * Parses input arguments and creates a new PrintCommand object
@@ -16,8 +16,8 @@ public class PrintCommandParser implements Parser<PrintCommand> {
 
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public static final String INVALID_PRINT_ARGUMENT = "File name is invalid. File name should only contain" +
-            " alphanumeric characters and should not be empty.";
+    public static final String INVALID_PRINT_ARGUMENT = "File name is invalid. File name should only contain"
+            + " alphanumeric characters and should not be empty.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the PrintCommand

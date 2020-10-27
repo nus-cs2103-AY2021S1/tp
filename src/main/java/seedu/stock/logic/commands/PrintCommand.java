@@ -32,12 +32,12 @@ public class PrintCommand extends Command {
 
     public static final char CSV_SEPARATOR = ',';
 
-    public static final String csvTag = ".csv";
+    public static final String CSV_TAG = ".csv";
 
     private final String csvFileName;
 
     public PrintCommand(String fileName) {
-        csvFileName = fileName + csvTag;
+        csvFileName = fileName + CSV_TAG;
     }
 
     @Override
