@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ModuleListPanel moduleListPanel;
     private TutorialGroupListPanel tutorialGroupListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -136,6 +137,12 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
     }
 
+    void refillInnerPartsWithStudentList() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    }
+
     /**
      * Sets the default size based on {@code guiSettings}.
      */
@@ -205,6 +212,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowModuleList()) {
                 refillInnerPartsWithModuleList();
+            }
+
+            if (commandResult.isShowStudentList()) {
+                refillInnerPartsWithStudentList();
             }
 
             return commandResult;

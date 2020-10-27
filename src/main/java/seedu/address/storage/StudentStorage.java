@@ -10,13 +10,13 @@ import seedu.address.model.person.Student;
 
 public interface StudentStorage {
 
-    Path getStudentFilePath();
-
-    Optional<ReadOnlyTrackr<Student>> readStudentList() throws DataConversionException, IOException;
-
-    Optional<ReadOnlyTrackr<Student>> readStudentList(Path filePath) throws DataConversionException, IOException;
-
-    void saveStudentList(ReadOnlyTrackr<Student> studentList) throws IOException;
-
-    void saveStudentList(ReadOnlyTrackr<Student> studentList, Path filePath) throws IOException;
+//    Path getStudentFilePath();
+//
+//    Optional<ReadOnlyTrackr<Student>> readStudentList() throws DataConversionException, IOException;
+//
+//    Optional<ReadOnlyTrackr<Student>> readStudentList(Path filePath) throws DataConversionException, IOException;
+//
+//    void saveStudentList(ReadOnlyTrackr<Student> studentList) throws IOException;
+//
+//    void saveStudentList(ReadOnlyTrackr<Student> studentList, Path filePath) throws IOException;
 }

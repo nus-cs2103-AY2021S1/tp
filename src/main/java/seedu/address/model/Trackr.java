@@ -8,6 +8,9 @@ import java.util.List;
 import javafx.collections.ObservableList;
 
 import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
+import seedu.address.model.person.Student;
+import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
 /**
@@ -84,6 +87,7 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     }
 
     //Tutorial Group Operations
+
     public ObservableList<TutorialGroup> getTutorialGroupListOfModule(Module target) {
         return moduleList.getTutorialGroupListOfModule(target);
     }
@@ -95,6 +99,21 @@ public class Trackr implements ReadOnlyTrackr<Module> {
     public void addTutorialGroup(TutorialGroup tutorialGroup, Module currentModuleInView) {
         requireNonNull(tutorialGroup);
         moduleList.addTutorialGroup(tutorialGroup, currentModuleInView);
+    }
+
+    // Student Operations
+
+    public ObservableList<Student> getStudentListOfTutorialGroup(Module targetModule, TutorialGroup targetTG) {
+        return moduleList.getUniqueTutorialGroupList(targetModule).getStudentListOfTutorialGroup(targetTG);
+    }
+
+    public UniqueStudentList getUniqueStudentList(Module targetModule, TutorialGroup targetTg) {
+        return moduleList.getUniqueTutorialGroupList(targetModule).getUniqueStudentList(targetTg);
+    }
+
+    public void addStudent(Module targetModule, TutorialGroup targetTg, Student student) {
+        requireNonNull(student);
+        moduleList.getUniqueTutorialGroupList(targetModule).addStudent(student, targetTg);
     }
 
     @Override
