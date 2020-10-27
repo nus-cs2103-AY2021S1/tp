@@ -25,7 +25,9 @@ The goal of this User Guide is to provide you with the information on how to uti
 
 For those who are unfamiliar with what a CLI is, no worries! This User Guide will ensure that you will be able to understand how to use a CLI by the end of it! Rest assured!
 
-Here is a summary of the symbols that are used in this User Guide:
+Here is a summary (Table 1) of the symbols that are used in this User Guide:
+
+Table 1: Summary of symbols
 
 Symbol | Meaning 
 -------|-------- 
@@ -466,7 +468,9 @@ Format: `exit`
 
 ## 4. Command summary
 
-This following table provides a summary of all the commands in **Reeve**.
+This following table (Table 2) provides a summary of all the commands in **Reeve**.
+
+Table 2: Summary of commands in **Reeve**
 
 Action | Format, Examples
 --------|------------------
@@ -487,7 +491,7 @@ Term | Definition
 --------|------------------
 
 ## 6. FAQ
-This section provides the answers to Frequently Asked Questions(FAQ) by users.
+This section provides the answers to Frequently Asked Questions (FAQ) by users.
 
 1. How do I transfer my data to another Computer?<br>
 Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous **Reeve** home folder.
