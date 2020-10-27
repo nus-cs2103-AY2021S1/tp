@@ -98,7 +98,7 @@ public class DeliveryCard extends UiPart<Region> {
 
             if ((minutes < 0 || seconds < 0)) {
                 String timeString = "OVERDUE BY: "
-                                    + minutes
+                                    + (minutes < 0 ? (-1 * minutes) : minutes)
                                     + "min "
                                     + (seconds < 0 ? (-1 * seconds) : seconds)
                                     + "sec";
