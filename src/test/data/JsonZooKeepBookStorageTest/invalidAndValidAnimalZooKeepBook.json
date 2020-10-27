@@ -2,7 +2,7 @@
   "animals": [ {
     "name": "Valid Animal",
     "id": "123",
-    "species": "4th street"
+    "species": "Lion"
   }, {
     "name": "Animal With Invalid Id Field",
     "id": "asd123",
