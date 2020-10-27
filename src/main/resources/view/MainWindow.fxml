@@ -75,8 +75,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <TabPane fx:id="semsPanelPlaceholder" prefHeight="200.0" prefWidth="200.0"
-                           tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1">
+                  <TabPane fx:id="semsPanelPlaceholder" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.columnIndex="1">
                     <tabs>
                       <Tab disable="true" text="Sem 1">
                         <content>
