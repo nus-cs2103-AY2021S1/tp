@@ -50,8 +50,9 @@ public class DeleteCommand extends Command {
                 studentToDelete.getNameAsString()));
         }
 
-        model.addBinItem(new BinItem(studentToDelete));
         model.deleteStudent(studentToDelete);
+        BinItem studentBinItem = new BinItem(studentToDelete);
+        model.addBinItem(studentBinItem);
         model.saveStateResiReg();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, studentToDelete.getNameAsString()));
     }

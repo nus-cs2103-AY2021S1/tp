@@ -62,6 +62,4 @@ public class HelpCommand extends Command {
             throw new CommandException(String.format(MESSAGE_UNKNOWN_COMMAND, input));
         }
     }
-
-
 }
