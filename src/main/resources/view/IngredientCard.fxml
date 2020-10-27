@@ -6,6 +6,15 @@
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
     <Button mnemonicParsing="false" prefHeight="125.0" prefWidth="148.0" styleClass="recipe-button">
         <graphic>
-            <Label fx:id="name" styleClass="recipe_name_label" text="\$name" wrapText="true" />
+         <VBox>
+            <children>
+               <HBox>
+                  <children>
+                      <Label fx:id="ingredientName" styleClass="recipe_name_label" text="\$name" wrapText="true" prefWidth="90.0"/>
+                      <Label fx:id="ingredientQty" text="\$qty" prefWidth="35.0"/>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
         </graphic></Button>
 </StackPane>
