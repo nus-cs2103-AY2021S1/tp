@@ -168,7 +168,7 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
     - Format: `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]`
     - Example: `sort -by date -by descriptionR` (sorts by date, then by reversed alphabetical order of the descriptions)
 
-    ![remark_example](./images/ug_example/remark_example.PNG)
+    ![sort_example](./images/ug_example/sort_example.PNG)
     
 1. **switch** <a name="switch"></a>
     - Switches an expense book into another category.
