@@ -1,5 +1,9 @@
 package seedu.address.model.task.deadline;
 
+import seedu.address.commons.util.DateUtil;
+
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Deadline Task's Status in the PlaNus task list.
  * Guarantees: immutable;
@@ -19,7 +23,7 @@ public class Duration {
             this.isFill = true;
             this.valueInMinutes = valueInMinutes;
         } else {
-            //do a check
+            checkArgument(isValidDuration(valueInMinutes), Duration.INVALID_DURATION_FORMAT);
             this.valueInMinutes = valueInMinutes;
             this.isFill = false;
         }

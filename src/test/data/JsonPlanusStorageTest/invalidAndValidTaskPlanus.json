@@ -5,17 +5,9 @@
     "description" : "",
     "doneDateTime" : "24-10-2020 04:07",
     "duration" : 10,
-    "tagged" : [ ],
+    "tagged" : "",
     "status" : "incomplete"
-  }, {
-    "title" : "Task With Invalid deadlineDateTime",
-    "deadlineDateTime" : "25-11-202 09:00",
-    "description" : "Programming Assignment 2 of CS3230, Very hard.",
-    "doneDateTime" : "24-10-2020 04:07",
-    "duration" : 20,
-    "tagged" : [ ],
-    "status" : "complete"
   }],
-  "events" : [ ],
+  "events" : {},
   "lessons" : [ ]
 }

@@ -57,11 +57,6 @@ public class TaskContainsKeywordsPredicateTest {
         predicate.setKeyword(PREFIX_DESCRIPTION, "League of Legends");
         assertTrue(predicate.test(new DeadlineBuilder().withTitle("Play").withDescription("League of Legends").build()));
 
-        // Multiple keywords with partial match
-        predicate = new TaskContainsKeywordsPredicate();
-        predicate.setKeyword(PREFIX_TYPE, "tod");
-        assertTrue(predicate.test(new DeadlineBuilder().build()));
-
         // status keywords match status exactly
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_STATUS, "incomplete");
@@ -125,8 +120,8 @@ public class TaskContainsKeywordsPredicateTest {
         // test with multiple distinct attributes
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "assignment");
-        predicate.setKeyword(PREFIX_TYPE, "event");
         assertTrue(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
+        predicate.setKeyword(PREFIX_TYPE, "event");
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("random").build()));
     }

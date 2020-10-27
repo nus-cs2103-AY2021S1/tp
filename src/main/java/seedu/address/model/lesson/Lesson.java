@@ -91,8 +91,8 @@ public class Lesson {
         while (currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate)) {
             LocalDateTime localStartDateTime = LocalDateTime.of(currentDate, getStartTime());
             LocalDateTime localEndDateTime = LocalDateTime.of(currentDate, getStartTime());
-            String startDateTimeString = localStartDateTime.format(DateUtil.DATE_FORMATTER);
-            String endDateTimeString = localEndDateTime.format(DateUtil.DATE_FORMATTER);
+            String startDateTimeString = localStartDateTime.format(DateUtil.DATETIME_FORMATTER);
+            String endDateTimeString = localEndDateTime.format(DateUtil.DATETIME_FORMATTER);
             StartDateTime startDateTime = new StartDateTime(startDateTimeString);
             EndDateTime endDateTime = new EndDateTime(endDateTimeString);
             Event eventToAdd = Event.createLessonEvent(title, startDateTime, endDateTime, description, tag);

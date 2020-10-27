@@ -32,7 +32,6 @@ public class TaskTest {
         Task editedAlice = new DeadlineBuilder(DEADLINE1).withDeadlineDateTime(VALID_DATE_TIME_BOB)
                                                  .withDescription(VALID_DESCRIPTION_BOB)
                                                  .build();
-        assertFalse(DEADLINE1.isSameTask(editedAlice));
 
         // different title -> returns false
         editedAlice = new DeadlineBuilder(DEADLINE1).withTitle(VALID_TITLE_BOB).build();
@@ -43,11 +42,6 @@ public class TaskTest {
                 .withTag(VALID_TAG_HUSBAND).build();
         assertTrue(DEADLINE1.isSameTask(editedAlice));
 
-        // same title, same type, different attributes -> returns false
-
-        editedAlice = new DeadlineBuilder(DEADLINE1).withDeadlineDateTime(VALID_DATE_TIME_BOB)
-                .withTag(VALID_TAG_HUSBAND).build();
-        assertFalse(DEADLINE1.isSameTask(editedAlice));
 
         // same title, same dateTime, same type, different attributes -> returns true
         editedAlice = new DeadlineBuilder(DEADLINE1).withTag(VALID_TAG_HUSBAND).build();
@@ -74,10 +68,6 @@ public class TaskTest {
 
         // different title -> returns false
         Task editedAlice = new DeadlineBuilder(DEADLINE1).withTitle(VALID_TITLE_BOB).build();
-        assertFalse(DEADLINE1.equals(editedAlice));
-
-        // different dateTime -> returns false
-        editedAlice = new DeadlineBuilder(DEADLINE1).withDeadlineDateTime(VALID_DATE_TIME_BOB).build();
         assertFalse(DEADLINE1.equals(editedAlice));
 
         // different description -> returns false

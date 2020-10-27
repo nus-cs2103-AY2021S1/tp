@@ -47,9 +47,9 @@ public class TypicalTasks {
 
 
     // Manually added
-    public static final Deadline HOON = new DeadlineBuilder().withTitle("Assignment 3")
+    public static final Deadline DEADLINE5 = new DeadlineBuilder().withTitle("Assignment 10")
             .withDeadlineDateTime("02-02-2020 12:59").withTag("CS2102").withCompleteStatus().build();
-    public static final Event IDA = new EventBuilder().withTitle("Project meeting")
+    public static final Event EVENT4 = new EventBuilder().withTitle("Project meeting 2020")
             .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
             .withDescription("dicuss v1.3 content").withTag("CS2103T").build();
 

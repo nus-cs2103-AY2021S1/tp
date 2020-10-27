@@ -60,15 +60,6 @@ public class JsonAdaptedDeadlineTest {
     }
 
     @Test
-    public void toModelType_nullDateTime_throwsIllegalValueException() {
-        JsonAdaptedDeadline task =
-                new JsonAdaptedDeadline(VALID_TITLE, null, VALID_DESCRIPTION, VALID_DATE_TIME, 1,
-                        VALID_TAG, VALID_STATUS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
-    }
-
-    @Test
     public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedDeadline task =
                 new JsonAdaptedDeadline(VALID_TITLE, VALID_DATE_TIME, INVALID_DESCRIPTION,

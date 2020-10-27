@@ -8,6 +8,8 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.event.Event;
 
 /**
  * Tests that a {@code Task}'s given attribute matches any of the keywords given.
@@ -78,20 +80,26 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
                     .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDescription().value, keyword));
         }
 
-        //        if (prefix.equals("date:")) {
-        //            return words.stream()
-        //                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().toString(), keyword));
-        //        }
-        //
-        //        if (prefix.equals("type:")) {
-        //            return words.stream()
-        //                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword));
-        //        }
-        //        if (prefix.equals("status:")) {
-        //            // must be an exact match here
-        //            return words.stream()
-        //                    .anyMatch(keyword -> task.getStatus().value.toString().toLowerCase().equals(keyword.toLowerCase()));
-        //        }
+        if (prefix.equals("date:")) {
+            String datetTime;
+            if (task instanceof Event) {
+                datetTime = ((Event) task).getEndDateTime().toString();
+            } else {
+                datetTime = ((Deadline) task).getDeadlineDateTimeValue().toString();
+            }
+            return words.stream()
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(datetTime, keyword));
+        }
+
+        if (prefix.equals("status:")) {
+            if (task instanceof Deadline) {
+                return words.stream()
+                        .anyMatch(keyword -> ((Deadline) task).getStatus().toString().toLowerCase()
+                                .equals(keyword.toLowerCase()));
+            } else {
+                return false;
+            }
+        }
 
         return false;
     }
