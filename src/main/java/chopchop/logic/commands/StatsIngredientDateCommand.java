@@ -17,7 +17,7 @@ public class StatsIngredientDateCommand extends Command {
         + "Parameters: "
         + "[" + ARG_BEFORE + " DATE] "
         + "[" + ARG_AFTER + " DATE] "
-        + "Example " + COMMAND_WORD + " " + ARG_BEFORE + " 2020-02-13";
+        + "Example: " + COMMAND_WORD + " " + ARG_BEFORE + " 2020-02-13 ";
 
     private final LocalDateTime before;
     private final LocalDateTime after;

@@ -73,7 +73,7 @@ public class StatsBox extends UiPart<Region> {
      */
     public void renderList(List<Pair<String, String>> inputList) {
         if (inputList.isEmpty()) {
-            inputList = new ArrayList<>(Arrays.asList(new Pair<>("No results found", "")));
+            inputList = EMPTY_RESULT;
         }
         ObservableList<Pair<String, String>> items = FXCollections.observableArrayList(inputList);
         listView.setItems(items);

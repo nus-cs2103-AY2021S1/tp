@@ -111,7 +111,7 @@ public class UsageList<T extends Usage> {
         return output;
     }
 
-    public List<Pair<String, Integer>> getMostUsed() {
+    public List<Pair<String, String>> getMostUsed() {
         ArrayList<T> newLst = new ArrayList<>(this.usages);
         ArrayList<Pair<String, Integer>> outputLst = new ArrayList<>();
         for (var i : newLst) {
@@ -127,7 +127,9 @@ public class UsageList<T extends Usage> {
         }
         Comparator<Pair<String, Integer>> compare = (p1, p2)-> p1.snd() < p2.snd() ? 1 : 0;
         outputLst.sort(compare);
-        return outputLst;
+        return outputLst.stream()
+            .map(x -> new Pair<>(x.fst(), "Times made: " + x.snd().toString()))
+            .collect(Collectors.toList());
     }
 
 }
