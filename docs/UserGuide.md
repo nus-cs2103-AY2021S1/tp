@@ -246,6 +246,9 @@ There is no need to save manually, though you can create a copy of the current d
 **Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
 **A**: The find feature will only list animals with the exact specified keyword provided.
 
+**Q**: Can I manually edit the ZooKeep data file?<br>
+**A**: No, manually editing the data file may result in loss of data or unexpected behaviour when running the application.
+
 ## Command summary
 
 Action | Format, Examples
