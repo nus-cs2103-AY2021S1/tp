@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "PIVOT save file which contains the same Person values as in TypicalCases#getTypicalPivot()",
   "persons" : [ {
     "title" : "Alice Pauline Assault",
     "description": "",

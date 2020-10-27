@@ -78,17 +78,17 @@ public class TypicalCases {
     private TypicalCases() {} // prevents instantiation
 
     /**
-     * Returns an {@code Pivot} with all the typical persons.
+     * Returns an {@code Pivot} with all the typical cases.
      */
     public static Pivot getTypicalPivot() {
-        Pivot ab = new Pivot();
-        for (Case investigationCase : getTypicalPersons()) {
-            ab.addCase(investigationCase);
+        Pivot pivot = new Pivot();
+        for (Case investigationCase : getTypicalCases()) {
+            pivot.addCase(investigationCase);
         }
-        return ab;
+        return pivot;
     }
 
-    public static List<Case> getTypicalPersons() {
+    public static List<Case> getTypicalCases() {
         return new ArrayList<>(Arrays.asList(ALICE_PAULINE_ASSAULT, BENSON_MEIER_ROBBERY,
                 CARL_KURZ_FIRE, DANIEL_MEIER_SHOPLIFTING, ELLE_MEYER_SHOOTING,
                 FIONA_KUNZ_KIDNAPPING, GEORGE_BEST_VANDALISM));
