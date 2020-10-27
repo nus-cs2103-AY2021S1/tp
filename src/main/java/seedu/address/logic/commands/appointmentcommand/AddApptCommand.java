@@ -34,7 +34,7 @@ public class AddApptCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment for the patient specified "
-            + "by the index number used in the displayed person list. \n"
+            + "by the index number used in the displayed patient list. \n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] "
             + "[" + PREFIX_DESCRIPTION + "APPOINTMENT DESCRIPTION]"
@@ -51,7 +51,7 @@ public class AddApptCommand extends Command {
     private final Appointment appointment;
 
     /**
-     * @param index of the person in the filtered person list to add appointment to
+     * @param index of the patient in the filtered patient list to add appointment to
      * @param appointment the appointment to add to the patient
      */
     public AddApptCommand(Index index, Appointment appointment) {
@@ -74,7 +74,7 @@ public class AddApptCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        Patient changedPatient = createChangedPerson(patientToAddAppt, appointment);
+        Patient changedPatient = createChangedPatient(patientToAddAppt, appointment);
 
         assert !patientToAddAppt.equals(changedPatient) : "changedPatient should be different from original";
 
@@ -87,7 +87,7 @@ public class AddApptCommand extends Command {
      * Creates and returns a {@code Patient} with the details of {@code patientToAddAppt}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Patient createChangedPerson(Patient patientToAddAppt, Appointment appointment) {
+    private static Patient createChangedPatient(Patient patientToAddAppt, Appointment appointment) {
         assert patientToAddAppt != null : "Patient to add Appointment should not be null!";
 
         Name updatedName = patientToAddAppt.getName();

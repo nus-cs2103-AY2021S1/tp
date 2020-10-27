@@ -39,12 +39,12 @@ public interface Model {
     /**
      * Returns the user prefs' Hospify file path.
      */
-    Path getAddressBookFilePath();
+    Path getHospifyFilePath();
 
     /**
      * Sets the user prefs' Hospify file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setHospifyFilePath(Path hospifyFilePath);
 
     /**
      * Replaces Hospify data with the data in {@code addressBook}.
