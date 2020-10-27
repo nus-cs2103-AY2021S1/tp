@@ -14,13 +14,21 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
+import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.bid.Bid;
 import seedu.address.model.bid.BidContainsKeywordsPredicate;
+import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.VenueContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.bidder.Bidder;
+import seedu.address.model.person.seller.Seller;
+import seedu.address.model.property.Property;
+import seedu.address.model.propertybook.PropertyBook;
+import seedu.address.model.selleraddressbook.SellerAddressBook;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -100,11 +108,35 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
+        PropertyBook expectedPropertyBook = new PropertyBook(actualModel.getPropertyBook());
+        BidderAddressBook expectedBidderAddressBook = new BidderAddressBook(actualModel.getBidderAddressBook());
+        SellerAddressBook expectedSellerAddressBook = new SellerAddressBook(actualModel.getSellerAddressBook());
+        MeetingBook expectedMeetingBook = new MeetingBook(actualModel.getMeetingBook());
+        BidBook expectedBidBook = new BidBook(actualModel.getBidBook());
+
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        List<Property> expectedFilteredProperties = new ArrayList<>(actualModel.getFilteredPropertyList());
+        List<Bidder> expectedFilteredBidders = new ArrayList<>(actualModel.getFilteredBidderList());
+        List<Seller> expectedFilteredSellers = new ArrayList<>(actualModel.getFilteredSellerList());
+        List<Meeting> expectedFilteredMeetings = new ArrayList<>(actualModel.getFilteredMeetingList());
+        List<Bid> expectedFilteredBids = new ArrayList<>(actualModel.getFilteredBidList());
+
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
+        assertEquals(expectedPropertyBook, actualModel.getPropertyBook());
+        assertEquals(expectedBidderAddressBook, actualModel.getBidderAddressBook());
+        assertEquals(expectedSellerAddressBook, actualModel.getSellerAddressBook());
+        assertEquals(expectedMeetingBook, actualModel.getMeetingBook());
+        assertEquals(expectedBidBook, actualModel.getBidBook());
+
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredProperties, actualModel.getFilteredPropertyList());
+        assertEquals(expectedFilteredBidders, actualModel.getFilteredBidderList());
+        assertEquals(expectedFilteredSellers, actualModel.getFilteredSellerList());
+        assertEquals(expectedFilteredMeetings, actualModel.getFilteredMeetingList());
+        assertEquals(expectedFilteredBids, actualModel.getFilteredBidList());
+
     }
 
     /**

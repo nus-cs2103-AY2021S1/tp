@@ -28,6 +28,7 @@ import seedu.address.model.property.IsRental;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 import seedu.address.model.property.PropertyType;
+import seedu.address.model.property.exceptions.InvalidSellerIdException;
 
 /**
  * Edits the details of an existing property in the property book.
@@ -88,10 +89,14 @@ public class EditPropertyCommand extends Command {
         assert propertyToEdit.getPropertyId().equals(editedProperty.getPropertyId());
         // not allowed to edit property id
 
-        model.setProperty(propertyToEdit, editedProperty);
-        model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty))
-                .setEntity(EntityType.PROPERTY);
+        try {
+            model.setProperty(propertyToEdit, editedProperty);
+            model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
+            return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty))
+                    .setEntity(EntityType.PROPERTY);
+        } catch (InvalidSellerIdException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     /**
