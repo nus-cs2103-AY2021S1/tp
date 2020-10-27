@@ -22,9 +22,9 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
 
     public static final Tag DEFAULT_TAG = new Tag("Default");
 
-    protected final UniqueCategoryBudgetList budgets;
-    protected final UniqueExpenseList expenses;
-    protected final UniqueTagList tags;
+    private final UniqueCategoryBudgetList budgets;
+    private final UniqueExpenseList expenses;
+    private final UniqueTagList tags;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
