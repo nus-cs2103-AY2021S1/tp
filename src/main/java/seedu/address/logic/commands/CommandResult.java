@@ -17,6 +17,9 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** Commands for Ui navigation purposes **/
+    private boolean isUiNavigation;
+
     /** The tab should automatically change. */
     private EntityType entityType;
 
@@ -41,6 +44,16 @@ public class CommandResult {
     }
 
     /**
+     * Constructs a {@code CommandResult} with the specified fields including isUiNavigation.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isUiNavigation) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = showHelp;
+        this.exit = exit;
+        this.isUiNavigation = isUiNavigation;
+    }
+
+    /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
      * and other fields set to their default value.
      */
@@ -48,8 +61,16 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Sets the entity type for which the tab bar has to navigate to.
+     * @param entityType type of the entity in the command.
+     */
     public CommandResult setEntity(EntityType entityType) {
         return new CommandResult(feedbackToUser, showHelp, exit, entityType);
+    }
+
+    public CommandResult setNavigationTrue() {
+        return new CommandResult(feedbackToUser, showHelp, exit, true);
     }
 
     public String getFeedbackToUser() {
@@ -66,6 +87,10 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isUiComponent() {
+        return this.isUiNavigation;
     }
 
     @Override

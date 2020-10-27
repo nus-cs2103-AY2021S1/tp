@@ -161,18 +161,18 @@ public class Property {
             builder.append("[CLOSED] ");
         }
         builder.append(getPropertyName())
-                .append(" Property Id: ")
+                .append("\nProperty Id: ")
                 .append(getPropertyId())
-                .append(" Address: ")
+                .append("\nAddress: ")
                 .append(getAddress())
-                .append(" Property type: ")
+                .append("\nProperty type: ")
                 .append(getPropertyType())
-                .append(" Asking price: ")
+                .append("\nAsking price: ")
                 .append(getAskingPrice())
-                .append(" Seller Id: ")
+                .append("\nSeller Id: ")
                 .append(getSellerId());
         if (isRental()) {
-            builder.append(" Rental");
+            builder.append("\nRental");
         }
         return builder.toString();
     }

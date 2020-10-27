@@ -140,13 +140,13 @@ public class Meeting {
         StringBuilder builder = new StringBuilder();
         builder.append(checkMeetingType());
 
-        builder.append(" Bidder Id: ")
+        builder.append("\nBidder Id: ")
                 .append(getBidderId())
-                .append(" Property Id: ")
+                .append("\nProperty Id: ")
                 .append(getPropertyId())
-                .append(" Venue: ")
+                .append("\nVenue: ")
                 .append(getVenue())
-                .append(" Time: ")
+                .append("\nTime: ")
                 .append(getTime());
         return builder.toString();
     }

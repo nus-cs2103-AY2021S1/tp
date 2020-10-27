@@ -21,9 +21,11 @@ public class DeleteBidCommand extends Command {
     public static final String COMMAND_WORD = "delete-bid";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the bid identified by the index number used in the displayed bid list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the bid identified by the "
+            + "index number used in the displayed "
+            + "bid list."
+            + "\n\nParameters: \nINDEX (positive integer)\n"
+            + "\n\nExample:\n" + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_BID_SUCCESS = "Deleted Bid: %1$s";
 
