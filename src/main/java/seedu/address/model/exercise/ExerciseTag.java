@@ -1,13 +1,13 @@
-package seedu.address.model.exercise;
+package seedu.address.model.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag in the exercise book.
+ * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class ExerciseTag {
+public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
@@ -19,7 +19,7 @@ public class ExerciseTag {
      *
      * @param tagName A valid tag name.
      */
-    public ExerciseTag(String tagName) {
+    public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
@@ -35,8 +35,8 @@ public class ExerciseTag {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ExerciseTag // instanceof handles nulls
-                && tagName.equals(((ExerciseTag) other).tagName)); // state check
+                || (other instanceof Tag // instanceof handles nulls
+                && tagName.equals(((Tag) other).tagName)); // state check
     }
 
     @Override

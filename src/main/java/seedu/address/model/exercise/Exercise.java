@@ -2,12 +2,9 @@ package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 /**
  * Represents an exercise in the exercise book.
@@ -24,19 +21,17 @@ public class Exercise {
     private final Description description;
     private final Calories calories;
     private final List<Muscle> musclesWorked;
-    private final Set<ExerciseTag> tags = new HashSet<>();
 
     /**
      * Every field except for calories must be present and not null.
      */
-    public Exercise(Name name, Description description, Date date, Calories calories, List<Muscle> musclesWorked, Set<ExerciseTag> tags) {
-        requireAllNonNull(name, description, tags);
+    public Exercise(Name name, Description description, Date date, Calories calories, List<Muscle> musclesWorked) {
+        requireAllNonNull(name, description);
         this.name = name;
         this.description = description;
         this.date = date;
         this.calories = calories;
         this.musclesWorked = musclesWorked;
-        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -75,18 +70,9 @@ public class Exercise {
         return Muscle.muscleListToString(getMusclesWorked().get());
     }
 
-    /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
-     * if modification is attempted.
-     */
-    public Set<ExerciseTag> getExerciseTags() {
-        return Collections.unmodifiableSet(tags);
-    }
-
-
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, date, tags);
+        return Objects.hash(name, description, date);
     }
 
     @Override
@@ -101,10 +87,7 @@ public class Exercise {
                 .append(" Calories: ")
                 .append(getCalories())
                 .append(" Muscles worked:")
-                .append(getMusclesWorkedDescription())
-                .append(" Tags: ");
-
-        getExerciseTags().forEach(builder::append);
+                .append(getMusclesWorkedDescription());
 
         return builder.toString();
     }
@@ -123,8 +106,7 @@ public class Exercise {
 
         return otherExercise.getName().equals(getName())
                 && otherExercise.getDescription().equals(getDescription())
-                && otherExercise.getDate().equals(getDate())
-                && otherExercise.getExerciseTags().equals(getExerciseTags());
+                && otherExercise.getDate().equals(getDate());
     }
 
     /**

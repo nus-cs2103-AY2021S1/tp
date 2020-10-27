@@ -1,8 +1,6 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -14,7 +12,6 @@ import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Exercise}.
@@ -28,7 +25,6 @@ class JsonAdaptedExercise {
     private final String date;
     private final String calories;
     private final String musclesWorked;
-    private final List<JsonAdaptedExerciseTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedExercise} with the given person details.
@@ -36,16 +32,12 @@ class JsonAdaptedExercise {
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("phone") String description,
                                @JsonProperty("email") String date, @JsonProperty("address") String calories,
-                               @JsonProperty("musclesWorked") String musclesWorked,
-                               JsonProperty("tagged") List<JsonAdaptedExerciseTag> tagged) {
+                               @JsonProperty("musclesWorked") String musclesWorked) {
         this.name = name;
         this.description = description;
         this.date = date;
         this.calories = calories;
         this.musclesWorked = musclesWorked;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
     }
 
     /**
@@ -57,9 +49,6 @@ class JsonAdaptedExercise {
         date = source.getDate().value;
         calories = source.getCalories().isPresent() ? source.getCalories().get().value : "None";
         musclesWorked = source.getMusclesWorkedDescription();
-        tagged.addAll(source.getExerciseTags().stream()
-                .map(JsonAdaptedExerciseTag::new)
-                .collect(Collectors.toList()));
     }
 
     /**
@@ -68,10 +57,6 @@ class JsonAdaptedExercise {
      * @throws IllegalValueException if there were any data constraints violated in the adapted exercise.
      */
     public Exercise toModelType() throws IllegalValueException {
-        final List<Tag> exerciseTags = new ArrayList<>();
-        for (JsonAdaptedExerciseTag tag : tagged) {
-            exerciseTags.add(tag.toModelType());
-        }
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
