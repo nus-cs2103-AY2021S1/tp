@@ -10,6 +10,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
+/**
+ * A UI component that displays information of a {@code Leave}.
+ */
 public class LeaveInfoCard extends UiPart<Region> {
     private static final String FXML = "LeaveInfoCard.fxml";
 
@@ -31,7 +34,7 @@ public class LeaveInfoCard extends UiPart<Region> {
     private Label duration;
 
     /**
-     * Creates a {@code StaffListCard} with the given {@code Staff} and index to display.
+     * Creates a {@code LeaveInfoCard} with the given {@code Leave} and index to display.
      */
     public LeaveInfoCard(Leave leave) {
         super(FXML);
@@ -40,6 +43,9 @@ public class LeaveInfoCard extends UiPart<Region> {
         duration.setText(leave.getLeaveLength() + " Days");
     }
 
+    /**
+     * Formats the date for display according to whether it's a single date leave of a multiple date leave.
+     */
     private String formatDate(Leave leave) {
         return leave.startDate.equals(leave.endDate)
                         ? dateToString(leave.startDate)
