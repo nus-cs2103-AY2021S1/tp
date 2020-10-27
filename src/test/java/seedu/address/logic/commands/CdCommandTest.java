@@ -11,8 +11,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.condition.DisabledIf;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
@@ -49,18 +51,19 @@ public class CdCommandTest {
 
     @Test
     public void execute_addressTypeChild_success() throws IOException {
-        Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
-        CdCommand cdCommand = new CdCommand(AddressType.CHILD, "src");
-        String newFileAddress = new File(absoluteFileAddress + (isWindows ? "\\src" : "/src"))
-                .getCanonicalPath();
-        assert new File(absoluteFileAddress).exists();
-        assert new File(newFileAddress).exists();
-        Model expectedModel = new ModelStubWithCurrentPath(newFileAddress);
+        if (isWindows) {
+            Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
+            CdCommand cdCommand = new CdCommand(AddressType.CHILD, "src");
+            String newFileAddress = new File(absoluteFileAddress + (isWindows ? "\\src" : "/src"))
+                    .getCanonicalPath();
+            assert new File(absoluteFileAddress).exists();
+            assert new File(newFileAddress).exists();
+            Model expectedModel = new ModelStubWithCurrentPath(newFileAddress);
 
-        assertCommandSuccess(cdCommand, modelStub,
-                String.format(CdCommand.MESSAGE_SUCCESS, newFileAddress), expectedModel);
+            assertCommandSuccess(cdCommand, modelStub,
+                    String.format(CdCommand.MESSAGE_SUCCESS, newFileAddress), expectedModel);
+        }
     }
-
 
     @Test
     public void execute_addressTypeParent_success() throws IOException {
@@ -81,10 +84,12 @@ public class CdCommandTest {
 
     @Test
     public void execute_rootGetParent_throwCommandException() {
-        Path root = Paths.get(absoluteHomeAddress).getRoot();
-        Model modelStub = new ModelStubWithCurrentPath(root.toString());
-        CdCommand cdCommand = new CdCommand(AddressType.PARENT, "");
-        assertThrows(CommandException.class, CdCommand.MESSAGE_NO_PARENT_PATH, () -> cdCommand.execute(modelStub));
+        if (isWindows) {
+            Path root = Paths.get(absoluteHomeAddress).getRoot();
+            Model modelStub = new ModelStubWithCurrentPath(root.toString());
+            CdCommand cdCommand = new CdCommand(AddressType.PARENT, "");
+            assertThrows(CommandException.class, CdCommand.MESSAGE_NO_PARENT_PATH, () -> cdCommand.execute(modelStub));
+        }
     }
 
     @Test
