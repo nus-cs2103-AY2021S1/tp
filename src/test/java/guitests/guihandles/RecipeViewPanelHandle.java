@@ -4,8 +4,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import chopchop.model.recipe.Recipe;
-import chopchop.ui.RecipeCard;
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
