@@ -17,6 +17,9 @@ public interface Model {
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
+    Predicate<TutorialGroup> PREDICATE_SHOW_ALL_TUTORIALGROUPS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
@@ -81,7 +84,7 @@ public interface Model {
      * {@code target} must exist in trackr.
      * The module identity of {@code editedModule} must not be the same as another existing module in trackr.
      */
-    void setModule(Module target, Module editedModule);
+    void setModule(Module target, String newModuleId);
 
     //TutorialGroup Operations
 

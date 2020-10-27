@@ -121,9 +121,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModule(Module target, Module editedModule) {
-        requireAllNonNull(target, editedModule);
-        moduleList.setModule(target, editedModule);
+    public void setModule(Module target, String newModuleId) {
+        requireAllNonNull(target, newModuleId);
+        moduleList.setModule(target, newModuleId);
     }
 
     //=========== TutorialGroup Operations ====================================================================

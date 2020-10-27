@@ -73,9 +73,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
      * {@code target} must exist in Trackr.
      * The identity of {@code editedObject} must not be the same as another existing object.
      */
-    public void setModule(Module target, Module editedObject) {
-        requireAllNonNull(target, editedObject);
-        moduleList.setModule(target, editedObject);
+    public void setModule(Module target, String newModuleId) {
+        requireAllNonNull(target, newModuleId);
+        moduleList.setModule(target, newModuleId);
     }
 
     /**

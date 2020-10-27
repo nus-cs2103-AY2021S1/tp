@@ -40,19 +40,21 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditModuleCommand.COMMAND_WORD:
+            return new EditModuleCommandParser().parse(arguments);
 
-            /* todo:
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
+        case DeleteModuleCommand.COMMAND_WORD:
+            return new DeleteModuleCommandParser().parse(arguments);
+        /*
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommand();*/
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-            */
+        case ListTutorialGroupCommand.COMMAND_WORD:
+            return new ListTutorialGroupCommand();
+
+        case ListStudentCommand.COMMAND_WORD:
+            return new ListStudentCommand();
+
         case FindModuleCommand.COMMAND_WORD:
             return new FindModuleCommandParser().parse(arguments);
 
@@ -71,8 +73,8 @@ public class AddressBookParser {
         case ViewTutorialGroupCommand.COMMAND_WORD:
             return new ViewTutorialGroupCommandParser().parse(arguments);
 
-        case ViewModuleCommand.COMMAND_WORD:
-            return new ViewModuleCommandParser().parse(arguments);
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListModuleCommand();
 
         case ViewStudentCommand.COMMAND_WORD:
             return new ViewStudentCommandParser().parse(arguments);
