@@ -17,6 +17,8 @@ import com.eva.commons.core.PanelState;
 import com.eva.commons.util.DateUtil;
 import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
+import com.eva.model.current.view.ReadOnlyCurrentViewApplicant;
+import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
 import com.eva.model.person.applicant.application.Application;
@@ -39,8 +41,8 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Staff> filteredStaffs;
     private final FilteredList<Applicant> filteredApplicants;
-    private CurrentViewStaff currentViewStaff;
-    private CurrentViewApplicant currentViewApplicant;
+    private ReadOnlyCurrentViewStaff currentViewStaff;
+    private ReadOnlyCurrentViewApplicant currentViewApplicant;
 
 
     /**
@@ -343,7 +345,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public CurrentViewStaff getCurrentViewStaff() {
+    public ReadOnlyCurrentViewStaff getCurrentViewStaff() {
         return currentViewStaff;
     }
 
@@ -365,7 +367,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public CurrentViewApplicant getCurrentViewApplicant() {
+    public ReadOnlyCurrentViewApplicant getCurrentViewApplicant() {
         return currentViewApplicant;
     }
 

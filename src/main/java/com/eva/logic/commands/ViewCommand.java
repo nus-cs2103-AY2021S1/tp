@@ -55,7 +55,7 @@ public class ViewCommand extends Command {
                 viewing = executeViewStaff(model).toString();
             } else if (panelState.equals(PanelState.APPLICANT_LIST)) {
                 executeViewApplicant(model);
-                viewing = executeViewStaff(model).toString();
+                viewing = executeViewApplicant(model).toString();
             } else {
                 throw new CommandException(
                         String.format(Messages.MESSAGE_INVALID_COMMAND_AT_PANEL, MESSAGE_CHANGE_PANEL));

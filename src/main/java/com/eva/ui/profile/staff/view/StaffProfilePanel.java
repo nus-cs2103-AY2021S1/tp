@@ -3,10 +3,9 @@ package com.eva.ui.profile.staff.view;
 import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 
 import com.eva.commons.core.PanelState;
-import com.eva.model.current.view.CurrentViewStaff;
+import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.staff.Staff;
 import com.eva.ui.UiPart;
-import com.eva.ui.profile.BasicInfoDisplay;
 import com.eva.ui.profile.CommentListPanel;
 
 import javafx.fxml.FXML;
@@ -22,9 +21,9 @@ public class StaffProfilePanel extends UiPart<Region> {
 
     private static final String FXML = "StaffProfilePanel.fxml";
 
-    public final CurrentViewStaff staff;
+    public final ReadOnlyCurrentViewStaff staff;
 
-    private BasicInfoDisplay basicInfoDisplay;
+    private StaffBasicInfoDisplay staffBasicInfoDisplay;
     private LeaveInfoDisplay leaveInfoDisplay;
     private CommentListPanel commentListPanel;
 
@@ -41,7 +40,7 @@ public class StaffProfilePanel extends UiPart<Region> {
     /**
      * Creates a {@code StaffProfilePanel} with the given {@code Staff}.
      */
-    public StaffProfilePanel(CurrentViewStaff staff) {
+    public StaffProfilePanel(ReadOnlyCurrentViewStaff staff) {
         super(FXML);
         this.staff = staff;
     }
@@ -52,8 +51,8 @@ public class StaffProfilePanel extends UiPart<Region> {
     public void fillInnerParts() {
         if (this.staff.getCurrentView().isPresent()) {
             Staff currentStaff = this.staff.getCurrentView().get();
-            basicInfoDisplay = new BasicInfoDisplay(currentStaff);
-            basicInfoPlaceholder.getChildren().add(basicInfoDisplay.getRoot());
+            staffBasicInfoDisplay = new StaffBasicInfoDisplay(currentStaff);
+            basicInfoPlaceholder.getChildren().add(staffBasicInfoDisplay.getRoot());
 
             commentListPanel = new CommentListPanel(staff.getCommentList());
             commentListPanelPlaceholder.getChildren().add(commentListPanel.getRoot());
