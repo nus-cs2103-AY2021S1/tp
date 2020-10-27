@@ -275,14 +275,14 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Switches the active module list.
      * */
     public void switchModuleList() {
-        modules = (modules.equals(semOneModules) ? semTwoModules : semOneModules);
+        modules = modules == semOneModules ? semTwoModules : semOneModules;
     }
 
     /**
      * Returns the active semester.
      */
     public int getSemester() {
-        return modules.equals(semOneModules) ? 1 : 2;
+        return modules == semOneModules ? 1 : 2;
     }
 
     //// util methods
