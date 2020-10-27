@@ -1,20 +1,22 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
-import seedu.address.ui.UiManager;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.EditTodoDescriptor;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.Title;
+import seedu.address.model.task.ToDo;
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -45,16 +47,13 @@ public class EditTodoCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    //public static final String MESSAGE_DUPLICATE_TASK = "This recipe already exists in the recipe book.";
 
     private final Index index;
     private final EditTodoDescriptor editTodoDescriptor;
-    //private final EditDeadlineDescriptor editDeadlineDescriptor;
-    //private final EditEventDescriptor editEventDescriptor;
 
     /**
      * @param index                of the task in the filtered task list to edit
-     * @param editTaskDescriptor details to edit the task with
+     * @param editTodoDescriptor details to edit the task with
      */
     public EditTodoCommand(Index index, EditTodoDescriptor editTodoDescriptor) {
         requireNonNull(index);
@@ -62,35 +61,7 @@ public class EditTodoCommand extends Command {
 
         this.index = index;
         this.editTodoDescriptor = editTodoDescriptor;
-        //this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
     }
-
-    /**
-     * @param index                of the task in the filtered task list to edit
-     * @param editTaskDescriptor details to edit the task with
-     */
-    /*
-    public EditCommand(Index index, EditDeadlineDescriptor editDeadlineDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editDeadlineDescriptor);
-
-        this.index = index;
-        this.editDeadlineDescriptor = new EditDeadlineDescriptor(editDeadlineDescriptor);
-    }
-    */
-    /**
-     * @param index                of the task in the filtered task list to edit
-     * @param editTaskDescriptor details to edit the task with
-     */
-    /*
-    public EditCommand(Index index, EditEventDescriptor editEventDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editEventDescriptor);
-
-        this.index = index;
-        this.editEventDescriptor = new EditEventDescriptor(editEventDescriptor);
-    }
-    */
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -102,26 +73,8 @@ public class EditTodoCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedTodo((ToDo)taskToEdit, editTodoDescriptor);
-    /*
-    } else if (taskToEdit instanceof Deadline) {
-            editedTask = createEditedDeadline(taskToEdit, (EditDeadlineDescriptor)editTaskDescriptor);
-        } else {
-            editedTask = createEditedEvent(taskToEdit, (EditEventDescriptor)editTaskDescriptor);
-        }
-*/
-        /*
-        if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
-        }
+        Task editedTask = createEditedTodo((ToDo) taskToEdit, editTodoDescriptor);
 
-
-        model.setTask(taskToEdit, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        if (UiManager.getViewedTask() == taskToEdit) {
-            UiManager.changeTask(editedTask);
-        }
-        */
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
@@ -133,46 +86,13 @@ public class EditTodoCommand extends Command {
         assert todoToEdit != null;
 
         Title updatedTitle = Optional.of(editTodoDescriptor.getTitle()).orElse(todoToEdit.getTitle());
-        Description updatedDescription = Optional.of(editTodoDescriptor.getDescription()).orElse(todoToEdit.getDescription());
+        Description updatedDescription = Optional.of(editTodoDescriptor.getDescription())
+                .orElse(todoToEdit.getDescription());
         Priority updatedPriority = Optional.of(editTodoDescriptor.getPriority()).orElse(todoToEdit.getPriority());
         Set<Tag> updatedTagList = Optional.of(editTodoDescriptor.getTagList()).orElse(todoToEdit.getTags());
 
         return new ToDo(updatedTitle, updatedDescription, updatedPriority, updatedTagList);
     }
-
-    /**
-     * Creates and returns a {@code Deadline} with the details of {@code deadlineToEdit}
-     * edited with {@code editDeadlineDescriptor}.
-     */
-    public static Deadline createEditedDeadline(Deadline deadlineToEdit, EditDeadlineDescriptor editDeadlineDescriptor) {
-        assert deadlineToEdit != null;
-
-        Title updatedTitle = Optional.of(editDeadlineDescriptor.getTitle()).orElse(deadlineToEdit.getTitle());
-        Description updatedDescription = Optional.of(editDeadlineDescriptor.getDescription()).orElse(deadlineToEdit.getDescription());
-        Priority updatedPriority = Optional.of(editDeadlineDescriptor.getPriority()).orElse(deadlineToEdit.getPriority());
-        TaskDate updatedTaskDeadline = Optional.of(editDeadlineDescriptor.getTaskDeadline()).orElse(deadlineToEdit.getDeadlineDate());
-        Set<Tag> updatedTagList = Optional.of(editDeadlineDescriptor.getTagList()).orElse(deadlineToEdit.getTags());
-
-        return new Deadline(updatedTitle, updatedDescription, updatedPriority, updatedTaskDeadline, updatedTagList);
-    }
-
-    /**
-     * Creates and returns a {@code Deadline} with the details of {@code deadlineToEdit}
-     * edited with {@code editDeadlineDescriptor}.
-     */
-    public static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
-        assert eventToEdit != null;
-
-        Title updatedTitle = Optional.of(editEventDescriptor.getTitle()).orElse(eventToEdit.getTitle());
-        Description updatedDescription = Optional.of(editEventDescriptor.getDescription()).orElse(eventToEdit.getDescription());
-        Priority updatedPriority = Optional.of(editEventDescriptor.getPriority()).orElse(eventToEdit.getPriority());
-        TaskDate updatedEventDate = Optional.of(editEventDescriptor.getEventDate()).orElse(eventToEdit.getEventDate());
-        TaskTime updatedEventTime = Optional.of(editEventDescriptor.getEventTime()).orElse(eventToEdit.getEventTime());
-        Set<Tag> updatedTagList = Optional.of(editEventDescriptor.getTagList()).orElse(eventToEdit.getTags());
-
-        return new Event(updatedTitle, updatedDescription, updatedPriority, updatedEventDate, updatedEventTime, updatedTagList);
-    }
-
 
     @Override
     public boolean equals(Object other) {

@@ -1,19 +1,24 @@
 package seedu.address.logic.commands;
 
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
-import seedu.address.model.task.*;
-import seedu.address.ui.UiManager;
+import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
+import seedu.address.model.task.EditEventDescriptor;
+import seedu.address.model.task.Event;
+import seedu.address.model.task.Priority;
+import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDate;
+import seedu.address.model.task.TaskTime;
+import seedu.address.model.task.Title;
 
 /**
  * Edits the details of an existing recipe in the recipe book.
@@ -29,14 +34,13 @@ public class EditEventCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    //public static final String MESSAGE_DUPLICATE_TASK = "This recipe already exists in the recipe book.";
 
     private final Index index;
     private final EditEventDescriptor editEventDescriptor;
 
     /**
      * @param index                of the task in the filtered task list to edit
-     * @param editTaskDescriptor details to edit the task with
+     * @param editEventDescriptor details to edit the task with
      */
     public EditEventCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
@@ -56,7 +60,7 @@ public class EditEventCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
-        Task editedTask = createEditedEvent((Event)taskToEdit, editEventDescriptor);
+        Task editedTask = createEditedEvent((Event) taskToEdit, editEventDescriptor);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
@@ -69,13 +73,15 @@ public class EditEventCommand extends Command {
         assert eventToEdit != null;
 
         Title updatedTitle = Optional.of(editEventDescriptor.getTitle()).orElse(eventToEdit.getTitle());
-        Description updatedDescription = Optional.of(editEventDescriptor.getDescription()).orElse(eventToEdit.getDescription());
+        Description updatedDescription = Optional.of(editEventDescriptor.getDescription())
+                .orElse(eventToEdit.getDescription());
         Priority updatedPriority = Optional.of(editEventDescriptor.getPriority()).orElse(eventToEdit.getPriority());
         TaskDate updatedEventDate = Optional.of(editEventDescriptor.getEventDate()).orElse(eventToEdit.getEventDate());
         TaskTime updatedEventTime = Optional.of(editEventDescriptor.getEventTime()).orElse(eventToEdit.getEventTime());
         Set<Tag> updatedTagList = Optional.of(editEventDescriptor.getTagList()).orElse(eventToEdit.getTags());
 
-        return new Event(updatedTitle, updatedDescription, updatedPriority, updatedEventDate, updatedEventTime, updatedTagList);
+        return new Event(updatedTitle, updatedDescription, updatedPriority, updatedEventDate,
+                updatedEventTime, updatedTagList);
     }
 
 

@@ -1,9 +1,9 @@
 package seedu.address.model.task;
 
+import java.util.Set;
+
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.Tag;
-
-import java.util.Set;
 
 /**
  * Stores the details to edit the event task with. Each non-empty field value will replace the
