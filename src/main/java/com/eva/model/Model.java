@@ -11,6 +11,7 @@ import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -258,6 +259,8 @@ public interface Model {
      * The person identity of {@code editedPerson} must not be the same as another existing person in the eva database.
      */
     void setApplicant(Applicant target, Applicant editedPerson);
+
+    void setApplicationStatus(Applicant applicant, ApplicationStatus status);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Applicant> getFilteredApplicantList();

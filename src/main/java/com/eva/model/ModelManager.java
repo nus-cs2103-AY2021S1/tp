@@ -19,6 +19,7 @@ import com.eva.model.current.view.CurrentViewApplicant;
 import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.Person;
 import com.eva.model.person.applicant.Applicant;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.application.Application;
 import com.eva.model.person.staff.Staff;
 import com.eva.model.person.staff.leave.Leave;
@@ -307,6 +308,11 @@ public class ModelManager implements Model {
     public void setApplicant(Applicant target, Applicant editedPerson) {
         requireAllNonNull(target, editedPerson);
         applicantDatabase.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public void setApplicationStatus(Application applicant, ApplicationStatus status) {
+        System.out.println("Need to Implement");
     }
 
     //=========== Filtered Person List Accessors =============================================================
