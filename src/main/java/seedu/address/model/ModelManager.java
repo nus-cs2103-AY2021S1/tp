@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Module> filteredModules;
+    private FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -190,6 +190,16 @@ public class ModelManager implements Model {
         return addressBook.moduleCodeHasInstructor(moduleCode, instructor);
     }
 
+    @Override
+    public void switchModuleList() {
+        addressBook.switchModuleList();
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
+    }
+
+    @Override
+    public int getSemester() {
+        return addressBook.getSemester();
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

@@ -81,6 +81,11 @@ public class AddCommandTest {
             requireNonNull(person);
             return this.person.isSamePerson(person);
         }
+
+        @Override
+        public int getSemester() {
+            return 0;
+        }
     }
 
     /**

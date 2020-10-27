@@ -172,6 +172,16 @@ public class AddressBookTest {
         public ObservableList<Module> getModuleList() {
             return modules;
         }
+
+        @Override
+        public ObservableList<Module> getSemOneModuleList() {
+            return modules;
+        }
+
+        @Override
+        public ObservableList<Module> getSemTwoModuleList() {
+            return modules;
+        }
     }
 
 }

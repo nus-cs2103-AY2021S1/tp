@@ -85,8 +85,7 @@ public class UniqueModuleList implements Iterable<Module> {
     public boolean isAnInstructor(Person instructor) {
         requireNonNull(instructor);
         boolean instructorExistInAnyModule = false;
-        for (int index = 0; index < internalList.size(); index++) {
-            Module toCheck = internalList.get(index);
+        for (Module toCheck : internalList) {
             if (toCheck.hasInstructor(instructor)) {
                 instructorExistInAnyModule = true;
             }
@@ -168,15 +167,12 @@ public class UniqueModuleList implements Iterable<Module> {
     public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
         requireAllNonNull(instructor, moduleCode);
 
-        for (int index = 0; index < internalList.size(); index++) {
-
-            Module moduleToCheck = internalList.get(index);
+        for (Module moduleToCheck : internalList) {
             if (moduleToCheck.hasModuleCode(moduleCode)
-                && !moduleToCheck.hasInstructor(instructor)) {
+                    && !moduleToCheck.hasInstructor(instructor)) {
                 return false;
             }
         }
-
         return true;
     }
 
