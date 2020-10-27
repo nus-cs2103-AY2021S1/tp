@@ -1,0 +1,21 @@
+{
+  "stocks": [ {
+    "name" : "orange",
+    "serialNumber" : "fairprice3",
+    "source" : "fairprice",
+    "quantity" : "1000",
+    "lowQuantity" : "1",
+    "location" : "section a",
+    "notes" : [ ],
+    "isBookmarked" : true
+  }, {
+    "name" : "orange",
+    "serialNumber" : "fairprice3",
+    "source" : "fairprice",
+    "quantity" : "1000",
+    "lowQuantity" : "1",
+    "location" : "section c",
+    "notes" : [ ],
+    "isBookmarked" : false
+  } ]
+}

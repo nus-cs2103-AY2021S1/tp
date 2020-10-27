@@ -1,0 +1,12 @@
+{
+  "stocks": [ {
+    "name" : "Invalid!name",
+    "serialNumber" : "fairprice3",
+    "source" : "fairprice",
+    "quantity" : "1000",
+    "lowQuantity" : "1",
+    "location" : "section a",
+    "notes" : [ ],
+    "isBookmarked" : true
+  } ]
+}

@@ -24,6 +24,13 @@ Given below are my contributions to the project.
    There are plans to incorporate the company name into the serial number after we implement a feature which
    allows first time user to input their company name.
 
+* **New Feature**: Added the ability to convert the stock book into a readable csv file.
+  * What it does: Allows the user to convert the stock book into a readable csv file. Users can sort 
+  the stock in the order of their choice using the sort command before generating the csv file.
+  * Justification: This is an enhancement feature as it would allow users have a physical/soft copy of the list of stock
+  to refer to for book keeping purposes.
+  * Highlights: User scan name the csv generated. The name to the csv file can only be alphanumeric characters.
+
 * **Git & Repository**:
   * Used GitHub Projects feature to create kanban boards to track user stories.
   * Helped team members with git and GitHub functionalities.
@@ -32,14 +39,18 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `add`.
+    * Added documentation for the feature `prrint`.
   * Developer Guide:
     * Added implementation details of the `add` feature.
+    * Added implementation details of the `print` feature.
     * Added documentation for `product scope` section.
 
 * **Testing**:
   * User Guide:
-    * Added test classes for `add` command.
+    * Added test classes for `add` feature.
+    * Added test classes for `print` feature.
     * Added testing for bases classes in model package.
+    * Added test classes for storage package (except classes related to serial numbers)
 
 * **Tracking of task**
   * Ensures that all assigned tasks completed before deadline and TP task tracker badges updated correctly.
