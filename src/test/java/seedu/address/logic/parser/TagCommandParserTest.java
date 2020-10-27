@@ -11,21 +11,16 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_FILE_ADDRESS_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LABEL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ModelStubWithTagAndTaglist;
 import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
-import seedu.address.testutil.TagBuilder;
 import seedu.address.testutil.TypicalTags;
 
 public class TagCommandParserTest {
