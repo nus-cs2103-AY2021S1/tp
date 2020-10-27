@@ -43,6 +43,11 @@ public class DeleteFinanceCommand extends Command {
         }
 
         FinanceRecord recordToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (recordToDelete.taggedToInventory()) {
+            throw new CommandException(Messages.MESSAGE_FINANCE_HAS_INVENTORY);
+        }
+
         model.deleteFinanceRecord(recordToDelete);
         return new CommandResult(String.format(MESSAGE_SUCCESS, recordToDelete));
     }
