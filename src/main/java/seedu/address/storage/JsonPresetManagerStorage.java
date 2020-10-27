@@ -64,7 +64,11 @@ public class JsonPresetManagerStorage implements PresetManagerStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePresetManager(allPresets), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePresetManager(allPresets, true), filePath);
     }
 
+    @Override
+    public void savePresetManager(List<List<Preset>> allPresets) throws IOException {
+        savePresetManager(allPresets, filePath);
+    }
 }

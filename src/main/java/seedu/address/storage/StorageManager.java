@@ -103,12 +103,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void savePresetManager(List<List<Preset>> allPresets) throws IOException, DataConversionException {
+    public void savePresetManager(List<List<Preset>> allPresets) throws IOException {
         savePresetManager(allPresets, presetManagerStorage.getPresetManagerFilePath());
     }
 
     @Override
-    public void savePresetManager(List<List<Preset>> allPresets, Path filePath) throws IOException, DataConversionException {
+    public void savePresetManager(List<List<Preset>> allPresets, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
         presetManagerStorage.savePresetManager(allPresets, filePath);
     }

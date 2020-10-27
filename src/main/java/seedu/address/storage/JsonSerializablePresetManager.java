@@ -34,7 +34,11 @@ public class JsonSerializablePresetManager {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableOrderManager}.
      */
-    public JsonSerializablePresetManager(List<List<Preset>> allPresets) {
+    public JsonSerializablePresetManager(List<List<Preset>> allPresets, boolean bool) {
+        if (!bool) {
+
+        }
+
         List<List<JsonAdaptedPreset>> finalList = new ArrayList<>();
 
         for (List<Preset> allPreset : allPresets) {
@@ -44,40 +48,7 @@ public class JsonSerializablePresetManager {
                     .collect(Collectors.toList());
             finalList.add(vendorList);
         }
-
-
-    //        try {
-    //            List<JsonAdaptedPreset> vendorPresets = this.presets.get(index);
-    //            JsonAdaptedPreset prevPreset = null;
-    //            int presetIndex = 0;
-    //            for (int i = 0; i < vendorPresets.size(); i++) {
-    //                JsonAdaptedPreset currPreset = vendorPresets.get(i);
-    //                if (currPreset.getName().equals(name)) {
-    //                    prevPreset = currPreset;
-    //                    presetIndex = i;
-    //                }
-    //            }
-    //
-    //            if (prevPreset == null) {
-    //                throw new NoSuchElementException();
-    //            }
-    //
-    //            prevPreset.addAllOrderItems(orderItems);
-    //            this.presets.get(index).set(presetIndex, prevPreset);
-    ////            this.presets.set(index, prevPreset);
-    //        } catch (IndexOutOfBoundsException ioe) {
-    //
-    //            for (int i = 0; i < index - 1; i++) {
-    //                this.presets.add(new ArrayList<>());
-    //                // Empty vendor list used as buffer
-    //            }
-    //            List<JsonAdaptedPreset> presetList = new ArrayList<>();
-    //            presetList.add(new JsonAdaptedPreset(name, new ArrayList<>()));
-    //            this.presets.add(presetList);
-    //        } catch (NoSuchElementException ne) {
-    //            List<JsonAdaptedPreset> vendorPresets = this.presets.get(index);
-    //            vendorPresets.add(new JsonAdaptedPreset(name, new ArrayList<>()));
-    //        }
+        this.presets.addAll(finalList);
     }
 
     /**

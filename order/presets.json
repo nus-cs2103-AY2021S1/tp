@@ -1,54 +1,13 @@
 {
-  "presets" : [[
-    {
-      "name": "morningshit",
-      "orderItems": [
-        {
-          "name": "Prata",
-          "price": 1.15,
-          "tagged": [ ],
-          "quantity" : 1
-        }, {
-          "name" : "Milo",
-          "price" : 0.9,
-          "tagged" : [ ],
-          "quantity" : 1
-        }
-      ]
-    },
-    {
-      "name": "test2",
-      "orderItems": [
-        {
-          "name": "Prata",
-          "price": 1.15,
-          "tagged": [ ],
-          "quantity" : 2
-        }, {
-          "name" : "Milo",
-          "price" : 0.9,
-          "tagged" : [ ],
-          "quantity" : 5
-        }
-      ]
-    }
-  ],[
-    {
-      "name": "fav",
-      "orderItems": [
-        {
-          "name" : "Prata",
-          "price" : 1.0,
-          "tagged" : [ "Yums" ],
-          "quantity": 3
-        }, {
-          "name" : "Water",
-          "price" : 3.0,
-          "tagged" : [ ],
-          "quantity": 12
-        }
-      ]
-    }
-  ]
-  ]
+  "presets" : [ [ ], [ ], [ {
+    "name" : "vendor3",
+    "orderItems" : [ {
+      "name" : "Steak",
+      "price" : 16.9,
+      "tagged" : [ ],
+      "quantity" : 1
+    } ]
+  } ] ]
 }
+
+

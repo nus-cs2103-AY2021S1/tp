@@ -10,8 +10,10 @@ import seedu.address.model.vendor.Name;
 import seedu.address.storage.Storage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.IntStream;
 
 import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
@@ -35,14 +37,19 @@ public class SavePresetCommand extends PresetCommand {
             //TODO: UPDATE ERROR THROW
             int currentIndex = model.getVendorIndex();
             if (currentIndex >= allLists.size()) {
-                throw new CommandException("dab");
+                IntStream.rangeClosed(allLists.size(), currentIndex)
+                        .forEach(x -> allLists.add(new ArrayList<>()));
             }
             // check entire menu???? whether order is valid
             List<Preset> currentVendorPresets = allLists.get(model.getVendorIndex());
+            Preset newPreset = new Preset(presetName.toString(),
+                    model.getObservableOrderItemList());
             Optional<Preset> preset = currentVendorPresets.stream()
                     .filter(x -> x.getName().equals(presetName.toString()))
                     .findFirst();
-            preset.ifPresent(x -> model.setOrder(x.getOrderItems()));
+            preset.ifPresent(currentVendorPresets::remove);
+            currentVendorPresets.add(newPreset);
+
 
             storage.savePresetManager(allLists);
         } catch (IOException | DataConversionException ioe) {

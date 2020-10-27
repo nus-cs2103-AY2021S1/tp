@@ -40,7 +40,7 @@ public interface PresetManagerStorage {
     //     */
     //    void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException, DataConversionException;
 
-    void savePresetManager(List<List<Preset>> allPresets);
+    void savePresetManager(List<List<Preset>> allPresets) throws IOException;
 
     void savePresetManager(List<List<Preset>> allPresets, Path filePath) throws IOException;
 }
