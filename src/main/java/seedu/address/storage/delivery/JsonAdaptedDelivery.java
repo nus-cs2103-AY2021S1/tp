@@ -9,6 +9,7 @@ import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
+import seedu.address.model.delivery.Time;
 
 public class JsonAdaptedDelivery {
 
@@ -18,6 +19,7 @@ public class JsonAdaptedDelivery {
     private final String phone;
     private final String address;
     private final String order;
+    private final String deliveryTime;
 
     /**
      * Constructs a {@code JsonAdaptedDelivery} with the given Delivery details.
@@ -26,11 +28,13 @@ public class JsonAdaptedDelivery {
     public JsonAdaptedDelivery(@JsonProperty("name") String name,
                                @JsonProperty("phone") String phone,
                                @JsonProperty("address") String address,
-                               @JsonProperty("order") String order) {
+                               @JsonProperty("order") String order,
+                               @JsonProperty("time") String deliveryTime) {
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.order = order;
+        this.deliveryTime = deliveryTime;
     }
 
     /**
@@ -41,6 +45,7 @@ public class JsonAdaptedDelivery {
         phone = source.getPhone().value;
         address = source.getAddress().value;
         order = source.getOrder().value;
+        deliveryTime = source.getTime().value;
     }
 
     /**
@@ -82,7 +87,15 @@ public class JsonAdaptedDelivery {
         }
         final Order modelOrder = new Order(order);
 
-        return new Delivery(modelName, modelPhone, modelAddress, modelOrder);
+        if (deliveryTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
+        }
+        if (!Time.isValidTime(deliveryTime)) {
+            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
+        }
+        final Time modelTime = new Time(deliveryTime);
+
+        return new Delivery(modelName, modelPhone, modelAddress, modelOrder, modelTime);
 
     }
 

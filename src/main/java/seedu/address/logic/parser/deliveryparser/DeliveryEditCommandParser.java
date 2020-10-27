@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.deliverycommand.DeliveryEditCommand;
@@ -27,7 +28,7 @@ public class DeliveryEditCommandParser implements Parser<DeliveryEditCommand> {
     public DeliveryEditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_ORDER);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_ADDRESS, PREFIX_ORDER, PREFIX_TIME);
 
         Index index;
 
@@ -55,6 +56,11 @@ public class DeliveryEditCommandParser implements Parser<DeliveryEditCommand> {
         if (argMultimap.getValue(PREFIX_ORDER).isPresent()) {
             editDeliveryDescriptor.setOrder(ParserUtil
                     .parseOrder(argMultimap.getValue(PREFIX_ORDER).get()));
+        }
+
+        if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
+            editDeliveryDescriptor.setTime(ParserUtil
+                    .parseTime(argMultimap.getValue(PREFIX_TIME).get()));
         }
 
         if (!editDeliveryDescriptor.isAnyFieldEdited()) {
