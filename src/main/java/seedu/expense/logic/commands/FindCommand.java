@@ -2,6 +2,7 @@ package seedu.expense.logic.commands;
 
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.expense.model.Model.PREDICATE_SHOW_ALL_BUDGETS;
 
 import java.util.function.Predicate;
 
@@ -55,6 +56,7 @@ public class FindCommand extends Command {
             predicate = predicate.and(datePredicate);
         }
         model.updateFilteredExpenseList(predicate);
+        model.updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
         return new CommandResult(
                 String.format(Messages.MESSAGE_EXPENSES_LISTED_OVERVIEW,
                         model.getFilteredExpenseList().size()));
