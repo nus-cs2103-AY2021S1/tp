@@ -32,8 +32,8 @@ public class EditExerciseDescriptorBuilder {
         descriptor.setName(exercise.getName());
         descriptor.setDate(exercise.getDate());
         descriptor.setDescription(exercise.getDescription());
-        descriptor.setCalories(exercise.getCalories());
-        descriptor.setMusclesWorked(exercise.getMusclesWorked());
+        descriptor.setCalories(exercise.getCalories().isPresent() ? exercise.getCalories().get() : null);
+        descriptor.setMusclesWorked(exercise.getMusclesWorked().isPresent() ? exercise.getMusclesWorked().get() : null);
     }
 
     /**

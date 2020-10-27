@@ -6,6 +6,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -168,7 +169,8 @@ public class UniqueExerciseList implements Iterable<Exercise> {
 
     private void addCaloriesForDay(Exercise newEntry, HashMap<String, Integer> currentCaloriesByDay) {
         String stringDate = newEntry.getDate().value;
-        Integer intCalories = Integer.parseInt(newEntry.getCalories().value);
+
+        int intCalories = newEntry.getCalories().isPresent() ? Integer.parseInt(newEntry.getCalories().get().value) : 0;
         if (currentCaloriesByDay.containsKey(stringDate)) {
             Integer newCalories = currentCaloriesByDay.get(stringDate) + intCalories;
             currentCaloriesByDay.put(stringDate, newCalories);
@@ -179,7 +181,7 @@ public class UniqueExerciseList implements Iterable<Exercise> {
 
     private void minusCaloriesForDay(Exercise oldEntry) {
         String stringDate = oldEntry.getDate().value;
-        Integer intCalories = Integer.parseInt(oldEntry.getCalories().value);
+        int intCalories = oldEntry.getCalories().isPresent() ? Integer.parseInt(oldEntry.getCalories().get().value) : 0;
         assert caloriesByDay.containsKey(stringDate) : "Input for minusCaloriesForDay() is wrong";
         Integer newCalories = caloriesByDay.get(stringDate) - intCalories;
         caloriesByDay.put(stringDate, newCalories);

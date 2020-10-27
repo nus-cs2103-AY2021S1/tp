@@ -173,7 +173,8 @@ public class AddCommandTest {
 
         private void addCaloriesForDay(Exercise newEntry) {
             String stringDate = newEntry.getDate().value;
-            Integer intCalories = Integer.parseInt(newEntry.getCalories().value);
+            int intCalories = newEntry.getCalories().isPresent()
+                    ? Integer.parseInt(newEntry.getCalories().get().value) : 0;
             if (caloriesByDay.containsKey(stringDate)) {
                 Integer newCalories = caloriesByDay.get(stringDate) + intCalories;
                 caloriesByDay.put(stringDate, newCalories);

@@ -45,8 +45,8 @@ public class ExerciseBuilder {
         name = exerciseToCopy.getName();
         description = exerciseToCopy.getDescription();
         date = exerciseToCopy.getDate();
-        calories = exerciseToCopy.getCalories();
-        musclesWorked = exerciseToCopy.getMusclesWorked();
+        calories = exerciseToCopy.getCalories().isPresent() ? exerciseToCopy.getCalories().get() : null;
+        musclesWorked = exerciseToCopy.getMusclesWorked().isPresent() ? exerciseToCopy.getMusclesWorked().get() : null;
     }
 
     /**

@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Represents an exercise in the exercise book.
@@ -45,16 +46,28 @@ public class Exercise {
         return date;
     }
 
-    public Calories getCalories() {
-        return calories;
+    public Optional<Calories> getCalories() {
+        return Optional.ofNullable(calories);
     }
 
-    public List<Muscle> getMusclesWorked() {
-        return musclesWorked;
+    public String getCaloriesDescription() {
+        if (!getCalories().isPresent()) {
+            return "None";
+        }
+
+        return getCalories().get().toString();
+    }
+
+    public Optional<List<Muscle>> getMusclesWorked() {
+        return Optional.ofNullable(musclesWorked);
     }
 
     public String getMusclesWorkedDescription() {
-        return Muscle.muscleListToString(musclesWorked);
+        if (!getMusclesWorked().isPresent()) {
+            return null;
+        }
+
+        return Muscle.muscleListToString(getMusclesWorked().get());
     }
 
     @Override

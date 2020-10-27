@@ -47,7 +47,7 @@ class JsonAdaptedExercise {
         name = source.getName().fullName;
         description = source.getDescription().value;
         date = source.getDate().value;
-        calories = source.getCalories().value;
+        calories = source.getCalories().isPresent() ? source.getCalories().get().value : "None";
         musclesWorked = source.getMusclesWorkedDescription();
     }
 
@@ -67,33 +67,38 @@ class JsonAdaptedExercise {
         final Name modelName = new Name(name);
 
         if (description == null) {
-            throw new IllegalValueException("Exercise's Description field is missing!");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
         }
         if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException("Invalid description");
+            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
         final Description modelDescription = new Description(description);
 
         if (date == null) {
-            throw new IllegalValueException("Exercise's Date field is missing!");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
         if (!Date.isValidDate(date)) {
-            throw new IllegalValueException("Invalid Date");
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);
 
+        final Calories modelCalories;
         if (calories == null) {
-            throw new IllegalValueException("Exercise's Calories field is missing!");
+            modelCalories = null;
+        } else if (!Calories.isValidCalories(calories)) {
+            throw new IllegalValueException(Calories.MESSAGE_CONSTRAINTS);
+        } else {
+            modelCalories = new Calories(calories);
         }
-        if (!Calories.isValidCalories(calories)) {
-            throw new IllegalValueException("Invalid Calories");
-        }
-        final Calories modelCalories = new Calories(calories);
 
+        List<Muscle> musclesWorkedLst;
         if (musclesWorked == null) {
-            throw new IllegalValueException("Exercise's Muscle field is missing!");
+            musclesWorkedLst = null;
+        } else if (!Muscle.isValidMusclesWorked(musclesWorked)) {
+            throw new IllegalValueException(Muscle.MESSAGE_CONSTRAINTS);
+        } else {
+            musclesWorkedLst = Muscle.stringToMuscleList(musclesWorked);
         }
-        List<Muscle> musclesWorkedLst = Muscle.stringToMuscleList(musclesWorked);
 
         return new Exercise(modelName, modelDescription, modelDate, modelCalories, musclesWorkedLst);
     }
