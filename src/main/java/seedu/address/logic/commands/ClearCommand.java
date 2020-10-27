@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
+import seedu.address.storage.Storage;
 
 /**
  * Clears the address book.
@@ -17,7 +18,7 @@ public class ClearCommand extends Command {
     public static final String MESSAGE_EMPTY_ORDER = "Order is still empty!";
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         requireNonNull(model.getOrderManager());
 

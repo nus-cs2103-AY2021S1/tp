@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Preset.Preset;
+import seedu.address.model.preset.Preset;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -39,6 +39,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, PresetMan
     Optional<List<Preset>> readPresetManager() throws DataConversionException, IOException;
 
     @Override
-    void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException;
+    void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException;
 
 }

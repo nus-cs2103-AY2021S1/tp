@@ -8,7 +8,7 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Preset.Preset;
+import seedu.address.model.preset.Preset;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
@@ -103,12 +103,12 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException {
+    public void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException {
         savePresetManager(orderManager, presetManagerStorage.getPresetManagerFilePath(), name, index);
     }
 
     @Override
-    public void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException {
+    public void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException, DataConversionException {
         logger.fine("Attempting to write to data file: " + filePath);
         presetManagerStorage.savePresetManager(orderManager, filePath, name, index);
     }

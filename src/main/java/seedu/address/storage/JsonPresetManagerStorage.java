@@ -13,7 +13,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.FileUtil;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.Preset.Preset;
+import seedu.address.model.preset.Preset;
 import seedu.address.model.order.ReadOnlyOrderManager;
 
 public class JsonPresetManagerStorage implements PresetManagerStorage {
@@ -59,7 +59,7 @@ public class JsonPresetManagerStorage implements PresetManagerStorage {
     }
 
     @Override
-    public void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException {
+    public void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException {
         savePresetManager(orderManager, filePath, name, index);
     }
 
@@ -68,11 +68,14 @@ public class JsonPresetManagerStorage implements PresetManagerStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException {
+    public void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException, DataConversionException {
         requireNonNull(orderManager);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePresetManager(orderManager, name, index), filePath);
+        // TODO: handle exception
+        List<Preset> currentPresets = readPresetManager(filePath).orElseThrow();
         JsonUtil.saveJsonFile(new JsonSerializablePresetManager(orderManager, name, index), filePath);
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.Preset.Preset;
+import seedu.address.model.preset.Preset;
 import seedu.address.model.order.ReadOnlyOrderManager;
 
 public interface PresetManagerStorage {
@@ -33,10 +33,10 @@ public interface PresetManagerStorage {
      * @param orderManager cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException;
+    void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException, DataConversionException;
 
     /**
      * @see #savePresetManager(ReadOnlyOrderManager, String name, int index)
      */
-    void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException;
+    void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException, DataConversionException;
 }

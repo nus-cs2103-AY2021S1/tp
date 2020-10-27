@@ -1,4 +1,4 @@
-package seedu.address.model.Preset;
+package seedu.address.model.preset;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.OrderItem;

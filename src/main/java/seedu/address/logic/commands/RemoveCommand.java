@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.order.OrderItem;
+import seedu.address.storage.Storage;
 
 /**
  * Removes a order item identified using it's displayed index from the address book.
@@ -54,7 +55,7 @@ public class RemoveCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.isSelected()) {
