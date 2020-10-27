@@ -11,7 +11,6 @@ import seedu.address.model.tag.Tag;
 /**
  * A Model stub that always accept the tag being added.
  */
-@Deprecated
 class ModelStubAcceptingTagAdded extends ModelStub {
     final ArrayList<Tag> tagsAdded = new ArrayList<>();
 
@@ -25,6 +24,10 @@ class ModelStubAcceptingTagAdded extends ModelStub {
     public void addTag(Tag tag) {
         requireNonNull(tag);
         tagsAdded.add(tag);
+    }
+
+    @Override
+    public void commitAddressBook() {
     }
 
     @Override

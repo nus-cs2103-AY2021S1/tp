@@ -7,6 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2101
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_NAME_CS2103;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Disabled;
@@ -35,6 +37,35 @@ public class TagCommandTest {
 
         assertEquals(String.format(TagCommand.MESSAGE_SUCCESS, validTag), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTag), modelStub.tagsAdded);
+    }
+
+    @Test
+    void execute_absoluteFilePath_tagSuccess() throws Exception {
+        ModelStubAcceptingTagAdded modelStub = new ModelStubAcceptingTagAdded();
+
+        // Get absolute filepath
+        Path validPath = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
+        Tag tagValidAddress = new TagBuilder().withFileAddress(validPath.toString()).build();
+
+        CommandResult commandResult = new TagCommand(tagValidAddress).execute(modelStub);
+
+        assertEquals(String.format(TagCommand.MESSAGE_SUCCESS, tagValidAddress), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(tagValidAddress), modelStub.tagsAdded);
+    }
+
+    @Test
+    void execute_invalidFilePath_throwsCommandException() {
+        Tag validTag = new TagBuilder().withTagName("valid tag name").build();
+        Path validPath = FileSystems.getDefault().getPath(new String()).toAbsolutePath();
+        String path = validPath.toString() + "somewhereOverTheRainbow";
+
+        Tag tagInvalidAddress = new TagBuilder().withFileAddress(path).build();
+
+        TagCommand tagCommand = new TagCommand(tagInvalidAddress);
+        ModelStub modelStub = new ModelStubWithTag(validTag);
+
+        assertThrows(CommandException.class,
+                String.format(TagCommand.MESSAGE_FILE_NOT_FOUND, path), () -> tagCommand.execute(modelStub));
     }
 
     @Test

@@ -67,21 +67,22 @@ public class TagCommand extends Command {
 
         // Check if file is present
         String path;
+        String a = toTag.getFileAddress().value;
         boolean isAbsolutePath = Paths.get(toTag.getFileAddress().value).isAbsolute();
 
-        if (isAbsolutePath) {
-            path = toTag.getFileAddress().value;
-        } else {
+        path = toTag.getFileAddress().value;
+        Tag tag = toTag;
+        if (!isAbsolutePath) {
             path = Paths.get(model.getCurrentPath().getAddress().value, toTag.getFileAddress().value)
                     .normalize().toString();
+            tag = toTag.toAbsolute(isAbsolutePath, model.getCurrentPath().getAddress());
         }
 
         if (!filePresent(path)) {
             throw new CommandException(
                     String.format(MESSAGE_FILE_NOT_FOUND, path));
         }
-
-        model.addTag(toTag.toAbsolute(isAbsolutePath, model.getCurrentPath().getAddress()));
+        model.addTag(tag);
 
         // Save commit for undo
         model.commitAddressBook();
