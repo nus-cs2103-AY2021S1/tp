@@ -22,7 +22,7 @@ public class DateTime {
      * @param dateTime A valid date and time.
      */
     public DateTime(String dateTime) {
-        if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null || dateTime.equals(DateUtil.DEFAULT_DATETIME)) {
+        if (dateTime.isEmpty() || dateTime.isBlank() || dateTime == null ) {
             value = DateUtil.DEFAULT_DATETIME;
         } else {
             checkArgument(isValidDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
