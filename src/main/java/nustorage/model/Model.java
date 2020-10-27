@@ -71,9 +71,7 @@ public interface Model {
 
     // --------- Inventory ---------
 
-
     void addInventoryRecord(InventoryRecord inventoryRecord);
-
 
     /**
      * Replaces the given InventoryRecord {@code target} with {@code editedInventoryRecord}.
@@ -93,7 +91,6 @@ public interface Model {
 
 
     ObservableList<InventoryRecord> getFilteredInventory();
-
 
     Inventory getInventory();
 
