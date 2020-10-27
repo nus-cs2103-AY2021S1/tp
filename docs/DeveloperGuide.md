@@ -131,7 +131,12 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
+This section describes some noteworthy details on how certain features are implemented.
+
 ### Clear all contacts feature
+
+#### Implementation
+
 It implements the following operations:
 * `AddressBook#clearContacts()` — Clear all contacts from the list.  
 
@@ -152,8 +157,6 @@ c. Test case : `cclear` on an empty contact list <br>
 Expected : Error message saying "Contact list is already empty".
 
 { more test cases ... }
-
-This section describes some noteworthy details on how certain features are implemented.
 
 ### \[Proposed\] Undo/redo feature
 
