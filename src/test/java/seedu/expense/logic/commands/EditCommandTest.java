@@ -59,11 +59,11 @@ public class EditCommandTest {
 
         ExpenseBuilder expenseInList = new ExpenseBuilder(lastExpense);
         Expense editedExpense = expenseInList.withDescription(VALID_DESCRIPTION_BUS).withAmount(VALID_AMOUNT_BUS)
-                .withTags(VALID_TAG_TRANSPORT).build();
+                .withTag(VALID_TAG_TRANSPORT).build();
 
         EditCommand.EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder()
                 .withDescription(VALID_DESCRIPTION_BUS)
-                .withAmount(VALID_AMOUNT_BUS).withTags(VALID_TAG_TRANSPORT).build();
+                .withAmount(VALID_AMOUNT_BUS).withTag(VALID_TAG_TRANSPORT).build();
         EditCommand editCommand = new EditCommand(indexLastExpense, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_EXPENSE_SUCCESS, editedExpense);

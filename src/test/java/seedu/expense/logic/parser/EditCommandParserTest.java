@@ -87,12 +87,6 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + AMOUNT_DESC_BUS + INVALID_AMOUNT_DESC, Amount.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Expense} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_TRANSPORT + TAG_DESC_FOOD + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_TRANSPORT + TAG_EMPTY + TAG_DESC_FOOD, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_TRANSPORT + TAG_DESC_FOOD, Tag.MESSAGE_CONSTRAINTS);
-
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser,
                 "1" + INVALID_DESCRIPTION_DESC + INVALID_DATE_DESC + VALID_AMOUNT_FOOD,
@@ -107,7 +101,7 @@ public class EditCommandParserTest {
 
         EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_FOOD)
                 .withAmount(VALID_AMOUNT_BUS).withDate(VALID_DATE_FOOD)
-                .withTags(VALID_TAG_TRANSPORT, VALID_TAG_FOOD).build();
+                .withTag(VALID_TAG_TRANSPORT).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -148,7 +142,7 @@ public class EditCommandParserTest {
 
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_TRANSPORT;
-        descriptor = new EditExpenseDescriptorBuilder().withTags(VALID_TAG_TRANSPORT).build();
+        descriptor = new EditExpenseDescriptorBuilder().withTag(VALID_TAG_TRANSPORT).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -161,7 +155,7 @@ public class EditCommandParserTest {
                 + AMOUNT_DESC_BUS + DATE_DESC_BUS + TAG_DESC_FOOD;
 
         EditCommand.EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withAmount(VALID_AMOUNT_BUS)
-                .withDate(VALID_DATE_BUS).withTags(VALID_TAG_FOOD, VALID_TAG_TRANSPORT)
+                .withDate(VALID_DATE_BUS).withTag(VALID_TAG_FOOD)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -187,11 +181,11 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetTags_success() throws Exception {
         Index targetIndex = INDEX_THIRD_EXPENSE;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withTags().build();
+        EditExpenseDescriptor descriptor = new EditExpenseDescriptorBuilder().withTag("").build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

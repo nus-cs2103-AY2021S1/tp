@@ -48,7 +48,7 @@ class CategoryExpenseBookTest {
     @Test
     public void resetData_withDuplicateExpenses_throwsDuplicateExpenseException() {
         // Two expenses with the same identity fields
-        Expense edited = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+        Expense edited = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT)
             .build();
         List<Expense> newExpenses = Arrays.asList(FEL_BDAY, edited);
         CategoryExpenseBookTest.CategoryExpenseBookStub newData =
@@ -76,7 +76,7 @@ class CategoryExpenseBookTest {
     @Test
     public void hasExpense_expenseWithSameIdentityFieldsInCategoryExpenseBook_returnsTrue() {
         categoryExpenseBook.addExpense(FEL_BDAY);
-        Expense edited = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+        Expense edited = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT)
             .build();
         assertTrue(categoryExpenseBook.hasExpense(edited));
     }

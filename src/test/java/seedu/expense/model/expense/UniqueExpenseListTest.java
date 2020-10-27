@@ -41,7 +41,7 @@ public class UniqueExpenseListTest {
     @Test
     public void contains_expenseWithSameIdentityFieldsInList_returnsTrue() {
         uniqueExpenseList.add(FEL_BDAY);
-        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT)
                 .build();
         assertTrue(uniqueExpenseList.contains(editedAlice));
     }
@@ -84,7 +84,7 @@ public class UniqueExpenseListTest {
     @Test
     public void setExpense_editedExpenseHasSameIdentity_success() {
         uniqueExpenseList.add(FEL_BDAY);
-        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTags(VALID_TAG_TRANSPORT)
+        Expense editedAlice = new ExpenseBuilder(FEL_BDAY).withTag(VALID_TAG_TRANSPORT)
                 .build();
         uniqueExpenseList.setExpense(FEL_BDAY, editedAlice);
         UniqueExpenseList expectedUniqueExpenseList = new UniqueExpenseList();

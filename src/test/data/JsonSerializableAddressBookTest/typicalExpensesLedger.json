@@ -5,43 +5,43 @@
     "amount" : "140",
     "date" : "02-07-2020",
     "remark" : "Birthday surprise with friends + birthday presents + birthday dinner",
-    "tagged" : [ "Girlfriend", "Shopping", "Food" ]
+    "tagged" : "Girlfriend"
   }, {
     "description" : "Grab Home",
     "amount" : "15",
     "date" : "01-07-2020",
     "remark" : "Need to stop grabbing so much!",
-    "tagged" : [ "Transport" ]
+    "tagged" : "Transport"
   }, {
     "description" : "ZARA Jacket",
     "amount" : "80",
     "date" : "30-06-2020",
     "remark" : "",
-    "tagged" : [ "Shopping" ]
+    "tagged" : "Shopping"
   }, {
     "description" : "Ramen with Tyler",
     "amount" : "18.50",
     "date" : "29-06-2020",
     "remark" : "",
-    "tagged" : [ "Food" ]
+    "tagged" : "Food"
   }, {
     "description" : "Phone Bill Payment",
     "amount" : "35.90",
     "date" : "29-06-2020",
     "remark" : "",
-    "tagged" : [ ]
+    "tagged" : "Default"
   }, {
     "description" : "Grab to Supper",
     "amount" : "5",
     "date" : "28-06-2020",
     "remark" : "",
-    "tagged" : [ ]
+    "tagged" : "Default"
   }, {
     "description" : "Swee Choon Supper",
     "amount" : "12.40",
     "date" : "28-06-2020",
     "remark" : "",
-    "tagged" : [ ]
+    "tagged" : "Default"
   } ],
   "budget": {
     "defaultCategory": {
@@ -49,10 +49,6 @@
       "amount": "10.00"
     },
     "categoryBudgets": [
-      {
-        "tag": "Food",
-        "amount": "100.00"
-      },
       {
         "tag": "Transport",
         "amount": "50.00"

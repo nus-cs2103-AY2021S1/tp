@@ -2,10 +2,13 @@ package seedu.expense.testutil;
 
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_AMOUNT_BUS;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_AMOUNT_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_AMOUNT_MISC;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_DATE_BUS;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_DATE_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_DATE_MISC;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BUS;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_DESCRIPTION_FOOD;
+import static seedu.expense.logic.commands.CommandTestUtil.VALID_DESCRIPTION_MISC;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_FOOD;
 import static seedu.expense.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 
@@ -16,6 +19,7 @@ import java.util.List;
 import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.tag.Tag;
 
 /**
  * A utility class containing a list of {@code Expense} objects to be used in tests.
@@ -26,17 +30,17 @@ public class TypicalExpenses {
             .withDate("02-07-2020")
             .withAmount("140.00")
             .withRemark("Birthday surprise with friends + birthday presents + birthday dinner")
-            .withTags("Girlfriend", "Shopping", "Food").build();
+            .withTag("Girlfriend").build();
     public static final Expense GRAB_HOME = new ExpenseBuilder().withDescription("Grab Home")
             .withRemark("Need to stop grabbing so much!")
             .withDate("01-07-2020").withAmount("15.00")
-            .withTags("Transport").build();
+            .withTag("Transport").build();
     public static final Expense ZARA = new ExpenseBuilder().withDescription("ZARA Jacket").withAmount("80.00")
             .withDate("30-06-2020")
-            .withTags("Shopping").build();
+            .withTag("Shopping").build();
     public static final Expense RAMEN = new ExpenseBuilder().withDescription("Ramen with Tyler").withAmount("18.50")
             .withDate("29-06-2020")
-            .withTags("Food").build();
+            .withTag("Food").build();
     public static final Expense PHONE_BILL = new ExpenseBuilder()
             .withDescription("Phone Bill Payment").withAmount("35.90")
             .withDate("29-06-2020").build();
@@ -58,11 +62,12 @@ public class TypicalExpenses {
     // Manually added - Expense's details found in {@code CommandTestUtil}
     public static final Expense FOOD = new ExpenseBuilder().withDescription(VALID_DESCRIPTION_FOOD)
             .withAmount(VALID_AMOUNT_FOOD).withDate(VALID_DATE_FOOD)
-            .withTags(VALID_TAG_FOOD).build();
+            .withTag(VALID_TAG_FOOD).build();
     public static final Expense BUS = new ExpenseBuilder().withDescription(VALID_DESCRIPTION_BUS)
             .withAmount(VALID_AMOUNT_BUS).withDate(VALID_DATE_BUS)
-            .withTags(VALID_TAG_TRANSPORT, VALID_TAG_FOOD)
-            .build();
+            .withTag(VALID_TAG_TRANSPORT).build();
+    public static final Expense MISC = new ExpenseBuilder().withDescription(VALID_DESCRIPTION_MISC)
+            .withAmount(VALID_AMOUNT_MISC).withDate(VALID_DATE_MISC).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -72,12 +77,13 @@ public class TypicalExpenses {
      * Returns an {@code ExpenseBook} with all the typical expenses.
      */
     public static ExpenseBook getTypicalExpenseBook() {
-        ExpenseBook ab = new ExpenseBook();
+        ExpenseBook eb = new ExpenseBook();
         for (Expense expense : getTypicalExpenses()) {
-            ab.addExpense(expense);
+            eb.addExpense(expense);
         }
-        ab.getBudgets().topupBudget(new Amount("10"));
-        return ab;
+        eb.getBudgets().topupBudget(new Amount("10"));
+        eb.addCategory(new Tag(VALID_TAG_TRANSPORT));
+        return eb;
     }
 
     public static List<Expense> getTypicalExpenses() {
