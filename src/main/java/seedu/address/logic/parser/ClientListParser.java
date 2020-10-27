@@ -52,7 +52,13 @@ public class ClientListParser {
             return new AddPolicyCommandParser().parse(arguments);
 
         case ClearPolicyCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearPolicyCommand();
+
+        case ArchiveCommand.COMMAND_WORD:
+            return new ArchiveCommandParser().parse(arguments);
+
+        case UnarchiveCommand.COMMAND_WORD:
+            return new UnarchiveCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

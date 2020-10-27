@@ -85,6 +85,7 @@ public class ModelManager implements Model {
         requireNonNull(clientListFilePath);
         userPrefs.setClientListFilePath(clientListFilePath);
     }
+
     @Override
     public Path getPolicyListFilePath() {
         return userPrefs.getPolicyListFilePath();
@@ -149,25 +150,6 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return  clientList.equals(other.clientList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
-                && policyList.equals(other.policyList);
-    }
-
     //=========== Archive Mode =============================================================
 
     @Override
@@ -211,5 +193,27 @@ public class ModelManager implements Model {
     public void clearPolicyList() {
         clientList.clearPolicy();
         policyList.clear();
+    }
+
+    //=========== Equals =============================================================
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return clientList.equals(other.clientList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons)
+                && policyList.equals(other.policyList)
+                && (isArchiveMode.get() == other.isArchiveMode.get());
     }
 }
