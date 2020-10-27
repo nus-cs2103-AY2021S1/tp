@@ -40,7 +40,7 @@ public class FindCommandParser {
             return Result.error("'find' command doesn't support '%s'", foo.get());
         }
 
-        return getCommandTarget(args)
+        return getCommandTarget(args, /* acceptsPlural: */ true)
             .then(target -> {
                 var words = new StringView(target.snd()).words();
 
@@ -56,7 +56,7 @@ public class FindCommandParser {
                     return Result.of(new FindIngredientCommand(new NameContainsKeywordsPredicate(words)));
 
                 default:
-                    return Result.error("can only find recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("Can only find recipes or ingredients ('%s' invalid)", target.fst());
                 }
             });
     }

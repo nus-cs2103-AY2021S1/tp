@@ -6,6 +6,7 @@ import chopchop.MainApp;
 import chopchop.commons.core.LogsCenter;
 import chopchop.commons.util.StringUtil;
 import chopchop.logic.Logic;
+import chopchop.logic.commands.CommandResult;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -55,9 +56,20 @@ public class UiManager implements Ui {
         return new Image(MainApp.class.getResourceAsStream(imagePath));
     }
 
-    void showAlertDialogAndWait(AlertType type, String title, String headerText, String contentText) {
+    @Override
+    public void showCommandOutput(String text, boolean isError) {
+        this.mainWindow.showCommandOutput(isError
+            ? CommandResult.error(text)
+            : CommandResult.message(text)
+        );
+    }
+
+
+    @Override
+    public void displayModalDialog(AlertType type, String title, String headerText, String contentText) {
         showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
+
 
     /**
      * Shows an alert dialog on {@code owner} with the given parameters.
@@ -81,7 +93,8 @@ public class UiManager implements Ui {
      */
     private void showFatalErrorDialogAndShutdown(String title, Throwable e) {
         logger.severe(title + " " + e.getMessage() + StringUtil.getDetails(e));
-        showAlertDialogAndWait(AlertType.ERROR, title, e.getMessage(), e.toString());
+
+        displayModalDialog(AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
     }

@@ -13,6 +13,7 @@ import chopchop.model.EntryBook;
 import chopchop.model.Model;
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
 import chopchop.model.ingredient.Ingredient;
+import chopchop.model.recipe.Recipe;
 
 public class CommandTestUtil {
     public static final String VALID_INGREDIENT_NAME_APRICOT = "Apricot";
@@ -68,17 +69,33 @@ public class CommandTestUtil {
 
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered ingredient list to show only the ingredient at the given {@code targetIndex}
+     * in the {@code model}'s ingredient book.
      */
-    public static void showPersonAtIndex(Model model, ItemReference targetIndex) {
+    public static void showIngredientAtIndex(Model model, ItemReference targetIndex) {
         assertTrue(targetIndex.getZeroIndex() < model.getFilteredIngredientList().size());
 
-        Ingredient person = model.getFilteredIngredientList().get(targetIndex.getZeroIndex());
-        final String[] splitName = person.getName().split("\\s+");
+        Ingredient ind = model.getFilteredIngredientList().get(targetIndex.getZeroIndex());
+        final String[] splitName = ind.getName().split("\\s+");
         model.updateFilteredIngredientList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredIngredientList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered recipe list to show only the recipe at the given {@code targetIndex} in the
+     * {@code model}'s recipe book.
+     * @param model
+     * @param targetIndex
+     */
+    public static void showRecipeAtIndex(Model model, ItemReference targetIndex) {
+        assertTrue(targetIndex.getZeroIndex() < model.getFilteredRecipeList().size());
+
+        Recipe rec = model.getFilteredRecipeList().get(targetIndex.getZeroIndex());
+        final String[] splitName = rec.getName().split("\\s+");
+        model.updateFilteredRecipeList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredRecipeList().size());
     }
 
     /**
