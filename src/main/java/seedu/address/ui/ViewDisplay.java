@@ -16,6 +16,7 @@ public class ViewDisplay extends UiPart<Region>{
     public ViewDisplay() {
         super(FXML);
         viewDisplay.setText("MODULES");
+        viewDisplay.setDisable(true);
     }
 
     public void setCurrentView(String view) {
