@@ -176,7 +176,7 @@
     -fx-border-width: 5px;
     -fx-border-radius: 10;
     -fx-background-radius: 20 20 20 20;
-        -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
 
 }
 
