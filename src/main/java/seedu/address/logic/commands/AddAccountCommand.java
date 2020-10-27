@@ -17,7 +17,7 @@ public class AddAccountCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Account to "
             + "Common Cents\n"
-            + "Parameters: " + PREFIX_NAME + "ACCOUNT NAME"
+            + "Parameters: " + PREFIX_NAME + "ACCOUNT NAME\n"
             + "Example: " + PREFIX_NAME + "My Non-Biz Account";
     public static final String PREFIXES = PREFIX_NAME + "ACCOUNT NAME";
 
@@ -51,7 +51,7 @@ public class AddAccountCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddAccountCommand // instanceof handles nulls
-                && account.equals(((AddAccountCommand) other).account));
+                && account.getName().equals(((AddAccountCommand) other).account.getName()));
     }
 
 }
