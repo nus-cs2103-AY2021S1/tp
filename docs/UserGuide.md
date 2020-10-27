@@ -187,13 +187,30 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in Reeve.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-#### 3.2.6 Finding students with overdue fees: `overdue` (By: Ying Gao)
+#### 3.2.6 Sorting the list of students: `sort` (By: Choon Siong)  
+  
+Sorts the list of students by a specified comparison means. The comparison means must be their name, class time or year.
+
+Format: `sort COMPARISON_MEANS`
+
+* The valid options for the sorting method `COMPARISON_MEANS` are `name`, `classTime` or `year`. 
+* Only one option for the sorting method can be specified.
+* The sorting method is case sensitive when being specified
+* Sorting methods:
+	* `name`: Sorts students by their name in alphabetical order. This is case insensitive.
+	* `classTime`: Sorts students by the the time of their class first by the day than the time.
+	* `year` Sorts students by the school year they are in with `Primary` type years coming before `Secondary` type coming before `JC` type. 
+
+Examples:
+* `sort year` to sort students by their year
+
+#### 3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)
 
 Finds students whose date of last payment is more than a month ago.
 
 Format: `unpaid`
 
-#### 3.2.7 Managing additional details for a student: `detail` (By: Vaishak) 
+#### 3.2.8 Managing additional details for a student: `detail` (By: Vaishak) 
 
 Adds, edits or deletes an additional detail for a specified student.
 
@@ -213,7 +230,7 @@ Examples:
 * `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in Reeve, to "Handsome".
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in Reeve.
 
-#### 3.2.8 Clearing all entries : `clear`
+#### 3.2.9 Clearing all entries : `clear`
 
 Clears all student data from Reeve.
 
