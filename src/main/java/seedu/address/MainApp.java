@@ -104,12 +104,13 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            assert model != null;
         }
         try {
             storage.saveAddressBook(initialData);
         } catch (IOException e) {
             logger.warning("Something unexpected occurred!");
-            assert false;
+            assert model != null;
         }
 
         return new ModelManager(initialData, userPrefs, initialMenuManagers, initialOrderManager);
