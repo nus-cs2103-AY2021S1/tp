@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -11,10 +12,10 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exercise.Template;
 
 /**
- * Panel containing the list of exercises.
+ * Panel containing the list of templates.
  */
 public class TemplateListPanel extends UiPart<Region> {
-    private static final String FXML = "ExerciseListPanel.fxml";
+    private static final String FXML = "TemplateListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
@@ -25,8 +26,9 @@ public class TemplateListPanel extends UiPart<Region> {
      */
     public TemplateListPanel(ObservableList<Template> templateList) {
         super(FXML);
-        //templateListView.setItems(templateList);
-        //templateListView.setCellFactory(listView -> new TemplateListViewCell());
+        ObservableList<Template> t = FXCollections.observableArrayList();
+        templateListView.setItems(templateList);
+        templateListView.setCellFactory(listView -> new TemplateListViewCell());
     }
 
     /**
