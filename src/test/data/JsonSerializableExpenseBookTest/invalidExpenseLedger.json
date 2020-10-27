@@ -19,5 +19,6 @@
         "amount": "50.00"
       }
     ]
-  }
+  },
+  "categories": [ "Food", "Transport" ]
 }
