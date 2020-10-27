@@ -21,6 +21,10 @@ import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
 import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
 import seedu.address.logic.commands.appointmentcommand.EditApptCommand;
 import seedu.address.logic.commands.appointmentcommand.ShowApptCommand;
+import seedu.address.logic.parser.AppointmentCommandParser.AddApptCommandParser;
+import seedu.address.logic.parser.AppointmentCommandParser.DeleteApptCommandParser;
+import seedu.address.logic.parser.AppointmentCommandParser.EditApptCommandParser;
+import seedu.address.logic.parser.AppointmentCommandParser.ShowApptCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
