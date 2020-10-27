@@ -272,13 +272,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Switches the active module list and returns the new active list.
+     * Switches the active module list.
      * */
-    public UniqueModuleList switchModuleList() {
+    public void switchModuleList() {
         modules = (modules.equals(semOneModules) ? semTwoModules : semOneModules);
-        UniqueModuleList moduleList = new UniqueModuleList();
-        moduleList.setModules(modules);
-        return moduleList;
     }
 
     /**

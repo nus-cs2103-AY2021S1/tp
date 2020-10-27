@@ -81,7 +81,7 @@
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-view {
@@ -102,6 +102,7 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 3px;
     -fx-background-insets: 0px, 2px;
+    -fx-background-color: transparent;
 }
 
 #moduleListView .list-cell:filled:even {
