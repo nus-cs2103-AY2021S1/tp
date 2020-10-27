@@ -75,4 +75,21 @@ public class SortUtilTest {
         toTestComparator.sort(quantityComparator);
         assertEquals(copy, toTestComparator);
     }
+
+    @Test
+    public void generateComparator_sourceComparator_success() {
+        List<Stock> copy = new ArrayList<>(toTestComparator);
+        Comparator<Stock> expectedComparator = new Comparator<>() {
+            @Override
+            public int compare(Stock a, Stock b) {
+                String sourceA = a.getSource().toString();
+                String sourceB = b.getSource().toString();
+                return sourceA.compareTo(sourceB);
+            }
+        };
+        Comparator<Stock> sourceComparator = SortUtil.generateComparator(SortUtil.Field.SOURCE);
+        copy.sort(expectedComparator);
+        toTestComparator.sort(sourceComparator);
+        assertEquals(copy, toTestComparator);
+    }
 }
