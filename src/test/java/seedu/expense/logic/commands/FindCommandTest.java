@@ -21,7 +21,6 @@ import seedu.expense.model.UserPrefs;
 import seedu.expense.model.alias.AliasMap;
 import seedu.expense.model.expense.DateMatchesPredicate;
 import seedu.expense.model.expense.NameContainsKeywordsPredicate;
-import seedu.expense.model.expense.TagsMatchesPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -80,8 +79,6 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 3);
         DateMatchesPredicate datePredicate =
                 new DateMatchesPredicate(Collections.emptyList());
-        TagsMatchesPredicate tagsPredicate =
-                new TagsMatchesPredicate(Collections.emptyList());
         NameContainsKeywordsPredicate namePredicate = preparePredicate("ZARA Phone Swee");
         FindCommand command = new FindCommand(namePredicate, datePredicate);
         expectedModel.updateFilteredExpenseList(namePredicate);
