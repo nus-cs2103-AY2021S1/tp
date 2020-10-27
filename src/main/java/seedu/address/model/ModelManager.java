@@ -134,25 +134,6 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return clientList.equals(other.clientList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
-    }
-
     //=========== Archive Mode =============================================================
 
     @Override
@@ -169,4 +150,27 @@ public class ModelManager implements Model {
     public void setIsArchiveMode(boolean isArchiveMode) {
         this.isArchiveMode.set(isArchiveMode);
     }
+
+    //=========== Equals =============================================================
+
+    @Override
+    public boolean equals(Object obj) {
+        // short circuit if same object
+        if (obj == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(obj instanceof ModelManager)) {
+            return false;
+        }
+
+        // state check
+        ModelManager other = (ModelManager) obj;
+        return clientList.equals(other.clientList)
+                && userPrefs.equals(other.userPrefs)
+                && filteredPersons.equals(other.filteredPersons)
+                && (isArchiveMode.get() == other.isArchiveMode.get());
+    }
+
 }

@@ -62,6 +62,20 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withAddress("chicago ave")
             .withPriority("u").build();
 
+    // People in archive
+    public static final Person JASON = new PersonBuilder().withName("Jason Dallar").withPhone("848242411")
+            .withEmail("jason@example.com").withAddress("toa payoh").withNote("hi")
+            .withPriority("h").addToArchive().build();
+    public static final Person KING = new PersonBuilder().withName("King Arthur").withPhone("848212231")
+            .withEmail("king@example.com").withAddress("west mall").withClientSources("friends")
+            .withPriority("u").addToArchive().build();
+    public static final Person LINDA = new PersonBuilder().withName("Linda Blinda").withPhone("842382424")
+            .withEmail("linda@example.com").withAddress("chinatown").withNote("hello").withClientSources("snake")
+            .withPriority("h").addToArchive().build();
+    public static final Person MONK = new PersonBuilder().withName("Monkey").withPhone("841482131")
+            .withEmail("monk@example.com").withAddress("clementi avenue")
+            .withPriority("u").addToArchive().build();
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -91,4 +105,36 @@ public class TypicalPersons {
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+    /**
+     * Returns an {@code ClientList} with all the typical persons, including cases with archive.
+     */
+    public static ClientList getTypicalClientListWithArchive() {
+        ClientList ab = new ClientList();
+        for (Person person : getTypicalPersonsWithArchive()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    public static List<Person> getTypicalPersonsWithArchive() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE,
+                FIONA, GEORGE, JASON, KING, LINDA, MONK));
+    }
+
+    /**
+     * Returns an {@code ClientList} with all the typical persons, with only the ones in archive.
+     */
+    public static ClientList getTypicalClientListOnlyArchive() {
+        ClientList ab = new ClientList();
+        for (Person person : getTypicalPersonsOnlyArchive()) {
+            ab.addPerson(person);
+        }
+        return ab;
+    }
+
+    public static List<Person> getTypicalPersonsOnlyArchive() {
+        return new ArrayList<>(Arrays.asList(JASON, KING, LINDA, MONK));
+    }
+
 }
