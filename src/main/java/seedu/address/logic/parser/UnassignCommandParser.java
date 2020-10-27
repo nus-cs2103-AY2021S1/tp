@@ -30,21 +30,25 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
         Index index;
 
         try {
-
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-
         } catch (IllegalValueException ive) {
-
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 UnassignCommand.MESSAGE_USAGE), ive);
         }
 
-        Set<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_MODULE_CODE));
-
-        if (moduleCodes.isEmpty()) {
-            return new UnassignCommand(index);
+        if (argMultimap.getValue(PREFIX_MODULE_CODE).isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                UnassignCommand.MESSAGE_USAGE));
         }
 
-        return new UnassignCommand(index, moduleCodes);
+
+        if (argMultimap.getValue(PREFIX_MODULE_CODE).get().isEmpty()) {
+            return new UnassignCommand(index);
+        } else {
+            Set<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_MODULE_CODE));
+            return new UnassignCommand(index, moduleCodes);
+        }
     }
+
+
 }
