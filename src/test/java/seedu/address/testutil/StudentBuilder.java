@@ -1,23 +1,25 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
-import seedu.address.model.student.Question;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.academic.exam.Exam;
+import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.model.student.admin.Fee;
 import seedu.address.model.student.admin.PaymentDate;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.UnsolvedQuestion;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -38,6 +40,8 @@ public class StudentBuilder {
     public static final String DEFAULT_ADDITIONAL_DETAILS_FRIEND = "friends";
     public static final String DEFAULT_QUESTION_NEWTON = "What is Newton's Second Law?";
     public static final String DEFAULT_QUESTION_MATH = "How do you inverse a matrix?";
+    public static final String DEFAULT_SOLUTION = "Read your textbook";
+    public static final Exam DEFAULT_EXAM_MYE = new Exam("Mid Year 2020", "26/7/2020", new Score("26/50"));
 
     // Identity fields
     private Name name;
@@ -50,9 +54,12 @@ public class StudentBuilder {
     private ClassTime time;
     private Fee fee;
     private PaymentDate paymentDate;
-    private Set<AdditionalDetail> details = new HashSet<>();
+    private List<Detail> details = new ArrayList<>();
 
     private List<Question> questions = new ArrayList<>();
+
+    //Academic details
+    private List<Exam> exams = new ArrayList<>();
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -69,13 +76,15 @@ public class StudentBuilder {
         paymentDate = new PaymentDate(DEFAULT_PAYMENT_DATE);
         List.of(DEFAULT_ADDITIONAL_DETAILS_MONEY, DEFAULT_ADDITIONAL_DETAILS_FRIEND)
                 .stream()
-                .map(AdditionalDetail::new)
+                .map(Detail::new)
                 .forEach(details::add);
 
         List.of(DEFAULT_QUESTION_NEWTON, DEFAULT_QUESTION_MATH)
                 .stream()
-                .map(Question::new)
+                .map(UnsolvedQuestion::new)
                 .forEach(questions::add);
+
+        exams = Arrays.asList(DEFAULT_EXAM_MYE);
     }
 
     /**
@@ -95,6 +104,7 @@ public class StudentBuilder {
         details.addAll(studentAdmin.getDetails());
 
         questions.addAll(studentToCopy.getQuestions());
+        exams.addAll(studentToCopy.getExams());
     }
 
     /**
@@ -166,7 +176,7 @@ public class StudentBuilder {
      * Sets the {@code Details} of the {@code Student} that we are building.
      */
     public StudentBuilder withDetails(String... details) {
-        this.details = SampleDataUtil.getDetailSet(details);
+        this.details = SampleDataUtil.getDetailList(details);
         return this;
     }
 
@@ -181,8 +191,16 @@ public class StudentBuilder {
     /**
      * Sets some {@code Questions} as solved for the {@code Student} that we are building.
      */
-    public StudentBuilder withSolved(String... questions) {
-        this.questions = SampleDataUtil.getSolvedQuestions(questions);
+    public StudentBuilder withSolved(String solution, String... questions) {
+        this.questions = SampleDataUtil.getSolvedQuestions(solution, questions);
+        return this;
+    }
+
+    /**
+     * Sets some {@code Exam} for the {@code Student} that we are building.
+     */
+    public StudentBuilder withExams(Exam... exams) {
+        this.exams = SampleDataUtil.getExams(exams);
         return this;
     }
 
@@ -192,7 +210,7 @@ public class StudentBuilder {
     public Student build() {
         return new Student(name, phone, school, year,
                 new Admin(venue, time, fee, paymentDate, details),
-                questions);
+                questions, exams);
     }
 
 }

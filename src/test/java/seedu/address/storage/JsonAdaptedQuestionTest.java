@@ -2,60 +2,39 @@ package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_QUESTION_NEWTON;
+import static seedu.address.testutil.StudentBuilder.DEFAULT_SOLUTION;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.Question;
+import seedu.address.model.student.question.Question;
+import seedu.address.model.student.question.SolvedQuestion;
+import seedu.address.model.student.question.UnsolvedQuestion;
 
 public class JsonAdaptedQuestionTest {
 
     @Test
-    public void constructor() {
-        Question question = new Question("test", false);
-        String expectedString = "0 | test";
-        assertEquals(expectedString, new JsonAdaptedQuestion(question).getQuestion());
+    public void toModelType_validQuestion_returnsQuestion() throws Exception {
+        Question question = new UnsolvedQuestion(DEFAULT_QUESTION_NEWTON);
+        assertEquals(question, new JsonAdaptedQuestion(question).toModelType());
 
-        question = new Question("test | string", true);
-        expectedString = "1 | test | string";
-        assertEquals(expectedString, new JsonAdaptedQuestion(question).getQuestion());
+        question = new SolvedQuestion(DEFAULT_QUESTION_NEWTON, DEFAULT_SOLUTION);
+        assertEquals(question, new JsonAdaptedQuestion(question).toModelType());
     }
 
     @Test
-    public void toModelType_invalidString_throwsIllegalArgumentException() {
-        JsonAdaptedQuestion question = new JsonAdaptedQuestion("0 |   ");
-        assertThrows(IllegalValueException.class, question::toModelType);
+    public void toModelType_invalidQuestion_throwsIllegalArgumentException() {
+        JsonAdaptedQuestion test = new JsonAdaptedQuestion(false, " ", "");
+        assertThrows(IllegalValueException.class, test::toModelType);
 
-        question = new JsonAdaptedQuestion("1 | ");
-        assertThrows(IllegalValueException.class, question::toModelType);
-
-        question = new JsonAdaptedQuestion("- | test");
-        assertThrows(IllegalValueException.class, question::toModelType);
-
-        question = new JsonAdaptedQuestion("2 | test");
-        assertThrows(IllegalValueException.class, question::toModelType);
-
-        question = new JsonAdaptedQuestion("1 test");
-        assertThrows(IllegalValueException.class, question::toModelType);
-
-        question = new JsonAdaptedQuestion("0 ");
-        assertThrows(IllegalValueException.class, question::toModelType);
-
-        question = new JsonAdaptedQuestion("");
-        assertThrows(IllegalValueException.class, question::toModelType);
+        test = new JsonAdaptedQuestion(true, " ", DEFAULT_SOLUTION);
+        assertThrows(IllegalValueException.class, test::toModelType);
     }
 
     @Test
-    public void toModelType_validString_success() throws IllegalValueException {
-        String testString = "Hi";
-        JsonAdaptedQuestion question = new JsonAdaptedQuestion("0 | " + testString);
-        Question modelQuestion = new Question(testString, false);
-        assertEquals(question.toModelType(), modelQuestion);
-
-        testString = "test! | 131?";
-        question = new JsonAdaptedQuestion("1 | " + testString);
-        modelQuestion = new Question(testString, true);
-        assertEquals(question.toModelType(), modelQuestion);
-
+    public void toModelType_invalidSolution_throwsIllegalArgumentException() {
+        JsonAdaptedQuestion test = new JsonAdaptedQuestion(true, DEFAULT_QUESTION_NEWTON, "");
+        assertThrows(IllegalValueException.class, test::toModelType);
     }
 }

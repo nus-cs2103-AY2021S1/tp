@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.ALL_PREFIXES;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAILS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PAYMENT;
@@ -13,17 +12,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditAdminDescriptor;
 import seedu.address.logic.commands.EditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.student.admin.AdditionalDetail;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -105,25 +98,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_PAYMENT).isPresent()) {
             editAdminDescriptor.setPaymentDate(ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).get()));
         }
-        parseDetailsForEdit(argMultimap.getAllValues(PREFIX_DETAILS))
-                .ifPresent(editAdminDescriptor::setAdditionalDetails);
 
         return editAdminDescriptor;
-    }
-
-    /**
-     * Parses {@code Collection<String> details} into a {@code Set<AdditionalDetail>} if {@code details} is non-empty.
-     * If {@code details} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<AdditionalDetail>} containing zero details.
-     */
-    private Optional<Set<AdditionalDetail>> parseDetailsForEdit(Collection<String> details) throws ParseException {
-        assert details != null;
-
-        if (details.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> detailSet = details.size() == 1 && details.contains("") ? Collections.emptySet() : details;
-        return Optional.of(ParserUtil.parseAdditionalDetails(detailSet));
     }
 
 }

@@ -16,10 +16,15 @@ public class CliSyntax {
     public static final Prefix PREFIX_PAYMENT = new Prefix("d/");
     public static final Prefix PREFIX_DETAILS = new Prefix("a/");
 
-    /* Prefix for question commands */
-    public static final Prefix PREFIX_ADD_QUESTION = new Prefix("a/");
-    public static final Prefix PREFIX_SOLVE_QUESTION = new Prefix("s/");
-    public static final Prefix PREFIX_DELETE_QUESTION = new Prefix("d/");
+    /* Prefix for detail and question commands */
+    public static final Prefix PREFIX_INDEX = new Prefix("i/");
+    public static final Prefix PREFIX_TEXT = new Prefix("t/");
+
+    /* Prefix for exam commands */
+    public static final Prefix PREFIX_EXAM_NAME = new Prefix("n/");
+    public static final Prefix PREFIX_EXAM_DATE = new Prefix("d/");
+    public static final Prefix PREFIX_SCORE = new Prefix("s/");
+    public static final Prefix PREFIX_EXAM_INDEX = new Prefix("i/");
 
     public static final Prefix[] COMPULSORY_PREFIXES = new Prefix[] {PREFIX_NAME, PREFIX_PHONE,
         PREFIX_SCHOOL, PREFIX_YEAR, PREFIX_VENUE, PREFIX_TIME, PREFIX_FEE, PREFIX_PAYMENT};
@@ -30,6 +35,9 @@ public class CliSyntax {
     public static final Prefix[] FIND_SUPPORTED_PREFIXES =
             new Prefix[] {PREFIX_NAME, PREFIX_SCHOOL, PREFIX_YEAR};
 
-    public static final Prefix[] QUESTION_COMMAND_PREFIXES =
-            new Prefix[] {PREFIX_ADD_QUESTION, PREFIX_SOLVE_QUESTION, PREFIX_DELETE_QUESTION};
+    public static final Prefix[] COMMAND_PREFIXES =
+            new Prefix[] {PREFIX_INDEX, PREFIX_TEXT};
+
+    public static final Prefix[] EXAM_COMMAND_PREFIXES =
+            new Prefix[] {PREFIX_EXAM_NAME, PREFIX_EXAM_DATE, PREFIX_SCORE};
 }

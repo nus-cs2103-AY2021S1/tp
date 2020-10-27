@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
 
-public class OverDueFeePredicateTest {
+public class OverdueFeePredicateTest {
 
     private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("d/M/yy");
 
