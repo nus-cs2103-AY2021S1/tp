@@ -25,7 +25,7 @@ public class AddEventParser implements Parser<AddEventCommand> {
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(userInput, PREFIX_NAME, PREFIX_DATE);
         ArgumentMultimap argMultiMap = tokenizer.tokenize();
         if (!arePrefixesPresent(argMultiMap, PREFIX_NAME, PREFIX_DATE)
-                || argMultiMap.getPreamble().isEmpty()) {
+                || !argMultiMap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddEventCommand.MESSAGE_USAGE));
         }

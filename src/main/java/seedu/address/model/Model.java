@@ -256,8 +256,8 @@ public interface Model {
      */
     void updateFilteredEventList(Predicate<Event> predicate);
 
-    /**
-     * Saves the current Event list state in history.
-     */
-    void commitEventList();
+    ///**
+    // * Saves the current Event list state in history.
+    // */
+    //void commitEventList();
 }

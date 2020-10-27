@@ -36,7 +36,8 @@ public class AddEventCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
         model.addEvent(this.event);
-        model.commitEventList();
+        // TODO: Yet to implement commit for scheduler
+        //model.commitEventList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, this.event));
     }
 
