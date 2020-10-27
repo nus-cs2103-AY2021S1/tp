@@ -1,7 +1,5 @@
 package seedu.address.model.student.academic;
 
-import seedu.address.model.student.academic.exam.Exam;
-
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
