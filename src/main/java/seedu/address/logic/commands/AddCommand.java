@@ -63,5 +63,4 @@ public class AddCommand extends CommandForExercise {
                 || (other instanceof AddCommand // instanceof handles nulls
                 && toAdd.equals(((AddCommand) other).toAdd)); // state check
     }
-
 }

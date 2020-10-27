@@ -66,7 +66,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code Date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
+        if (date == null) {
+            return new Date(null);
+        }
+
         String trimmedDate = date.trim();
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
@@ -81,7 +84,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code Calories} is invalid.
      */
     public static Calories parseCalories(String calories) throws ParseException {
-        requireNonNull(calories);
+        if (calories == null) {
+            return new Calories(null);
+        }
+
         String trimmedCalories = calories.trim();
         if (!Calories.isValidCalories(trimmedCalories)) {
             throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
@@ -96,7 +102,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code musclesWorked} is invalid.
      */
     public static List<Muscle> parseMusclesWorked(String musclesWorked) throws ParseException {
-        requireNonNull(musclesWorked);
+        if (musclesWorked == null) {
+            return null;
+        }
+
         String trimmedMusclesWorked = musclesWorked.trim();
         if (!Muscle.isValidMusclesWorked(trimmedMusclesWorked)) {
             throw new ParseException(Muscle.MESSAGE_CONSTRAINTS);

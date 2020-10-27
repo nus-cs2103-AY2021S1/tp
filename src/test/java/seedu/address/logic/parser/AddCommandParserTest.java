@@ -86,10 +86,6 @@ public class AddCommandParserTest {
         //missing description
         assertParseFailure(parser, NAME_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
                 expectedMessage);
-
-        //missing date
-        assertParseFailure(parser, NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
-                expectedMessage);
     }
 
     @Test

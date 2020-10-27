@@ -36,14 +36,14 @@ public class AddCommandParser implements ExerciseParser<AddCommand> {
                                                 PREFIX_DATE, PREFIX_CALORIES, PREFIX_MUSCLES);
 
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION, PREFIX_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_DESCRIPTION)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseExerciseName(argMultimap.getValue(PREFIX_NAME).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).orElse(null));
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).orElse(null));
         List<Muscle> musclesWorked = ParserUtil.parseMusclesWorked(argMultimap.getValue(PREFIX_MUSCLES).orElse(null));
 
