@@ -2,11 +2,17 @@
 layout: page
 title: User Guide
 ---
+// TODO ** add authorship for grading purposes **
 
 ## Introduction
+// TODO shift to the right
 ![inventoryinator](images/inventoryinator.jpg)
 
-Inventoryinator is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
+// TODO longer intro
+
+// TODO personalise intro, don't bother with CLI GUI copypasta
+
+**Inventoryinator** is a **desktop app for game inventories, optimized for use via a Command Line Interface** (CLI) 
 while still having the benefits of a Graphical User Interface (GUI). If you can type fast, Inventoryinator can
 get your inventory management tasks done faster than traditional GUI apps.
 
@@ -28,18 +34,18 @@ in this document.
 1. Copy the file to the folder you want to use as the _home folder_ for your Inventoryinator.
 
 1. Double-click the file to start the app. The GUI like below should appear in a few seconds. Note how the app contains some sample data.<br>
-   
+   //TODO smaller diagram for quickstart, taking up too much space
    ![Ui](images/Ui.png)
-
+// TODO better use of whitespaces
 1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    
    Some example commands you can try:
 
    * **`list`** : Lists all items stored in Inventoryinator.
 
-   * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds a item named `banana` to the Inventoryinator
+   * **`addi`**`banana -q 44 -d edible banana -l Bob's Banana Farm` : Adds an item named `banana` to the Inventoryinator
 
-   * **`add`**`banana -q 10` Add a quantity of 10 to the Bananas
+   * **`add`**`banana -q 10` Adds a quantity of 10 to the banana
 
    * **`deli`**`-n banana` : Deletes the banana item from the Inventoryinator
 
@@ -66,6 +72,8 @@ term | Command/variable term<br>
 default | If no parameter is given as input, this will be the input parameter.
 
 ___________________________________________________________________
+// TODO made Recipe definition clear, add glossary?
+
 
 ## Command summary
 
@@ -87,8 +95,11 @@ Action | Format
 
 
 ## Features
+// TODO add more to the preface under the features heading
 
 Inventoryinator's features and their descriptions, as of v1.2.
+
+// TODO in general, descriptions for features too short, need to explain what it does for the user and not just what it does
 
 ### Adding an item: `addi`
 
@@ -147,9 +158,9 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `addq` -n <u>Bob’s 6th regret</u> -q <u>8</u>
-- Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
+Adds <u>8</u> more <u>Bob’s 6th regrets</u> to the inventory
 
-### Listing all items : `listi`
+### Listing all items: `listi`
 
 **NAME:**
 - `listi` - lists all items
@@ -157,11 +168,14 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 **SYNOPSIS:**
 - `listi`
 
+**DESCRIPTION:**
+//TODO
+
 **EXAMPLE:**
 - `listi`
-- Lists all items and their quantities
+Lists all items and their quantities
 
-### Listing all items : `listr`
+### Listing all recipes: `listr`
 
 **NAME:**
 - `listr` - lists all recipes
@@ -169,11 +183,14 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 **SYNOPSIS:**
 - `listr`
 
+**DESCRIPTION:**
+//TODO
+
 **EXAMPLE:**
 - `listr` 
-- Lists all recipes, outputs, descriptions and their ingredients
+Lists all recipes, outputs, descriptions and their ingredients
 
-### Deleting an item : `deli`
+### Deleting an item: `deli`
 
 **NAME:**
 - `deli` - deletes an item
@@ -188,9 +205,9 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `deli` -n <u>Bob’s 28th finger</u>
-- Deletes the **item** with the name of <u>Bob’s 28th finger</u>
+Deletes the **item** with the name of <u>Bob’s 28th finger</u>
 
-### Deleting a Recipe : `delr`
+### Deleting a Recipe: `delr`
 
 **NAME:**
 - `delr` - deletes a recipe
@@ -205,7 +222,7 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 
 **EXAMPLE:**
 - `delr` -n <u>Bob’s 28th finger</u> -r <u>1</u>
-- Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
+Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
 
 ### Finding an item: `find`
 
@@ -222,7 +239,7 @@ found at **location** <u>Bob’s banana farm</u> and tags delicious, consumable
 **EXAMPLE:**
 - `find` <u>bob alice</u>
 
-- Returns the items whose names match/ contain bob or alice, like: 
+Returns the items whose names match/ contain bob or alice, like: 
   - Bob’s 9000th crush
   - Alice's sword
   - Little bob
@@ -245,9 +262,9 @@ WIP as of v1.2
 
 **EXAMPLE:**
 - `view` <u>Bob’s bitten fingernail clipping</u> -r 
-- Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
+Returns all recipes that use <u>Bob’s bitten fingernail clipping</u>
 
-### Viewing help : `help`
+### Viewing help: `help`
 WIP as of v1.2
 
 **NAME:** 
@@ -263,7 +280,7 @@ WIP as of v1.2
 
 ![help message](images/helpMessage.png)
 
-### Exiting the program : `exit`
+### Exiting the program: `exit`
 
 **NAME:**
 - `exit` - closes the application
