@@ -19,11 +19,11 @@
 
    * **`vendor`** : List all the vendors available.
 
-   * **`vendor i/1`** : Select the first vendor to make a supper order for.
+   * **`vendor 1`** : Select the first vendor to make a supper order for.
 
    * **`create`** : Creates a new supper order.
 
-   * **`add i/1 q/1`** : Adds one quantity of the first item from the vendor's menu to your supper menu.
+   * **`add 1 2`** : Adds two quantity of the first item from the vendor's menu to your supper menu.
 
    * **`exit`** : Exits the app.
 
@@ -35,45 +35,103 @@
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `find KEYWORD`, `KEYWORD` is a parameter which can be used as `find spicy`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
-
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g `add INDEX [QUANTITY]` can be used as `add 3 2` or as `add 3`.
+  
+* Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless
+there is any ambiguity. For example, `help` only requires the user to type `h` to be recognized, while `sort` will
+require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The user. The commands
+will be explained below. For the sake of clarity, the whole command will be shown instead of the prefix.
 
 </div>
 
+The application is divided into two modes, vendor mode and menu mode. Vendor mode is when a vendor is not yet selected,
+as seen by the section on the left displaying a list of vendors. In vendor mode, only vendor related command can be
+executed. We will divide the commands based on which entity do they affect.
+
+## General
 
 ### Getting Started: `help`
 
 Shows the user instructions on how to use the application.
 
 
+### Exit application: `exit`
+
+See you next time! 
+
+## Vendor related commands
+
 ### View/select vendor: `vendor`
 
-Shows the list of vendor. If an index is specified, that vendor is selected.
+Shows the list of vendor. If an index is specified, that vendor is selected, and its menu will be shown.
 
-Format: `vendor INDEX`
+Format: `vendor [INDEX]`
 
 Examples:
 * `vendor 2` Selects the 2<sup>nd</sup> vendor in the list
 
 
+## Menu related commands
+
 ### Displaying supper menu: `menu`
 
-Shows the menu from the current selected vendor
+Shows the menu from the currently selected vendor.
 
-Format: `menu
+Format: `menu`
 
+
+### Sorting the menu: `sort`
+
+Sorts the menu by either price or name.
+
+Format: `sort MODE [DIRECTION]`
+
+* `MODE` must be either 'n' or 'p', meaning name and price respectively.
+* `DIRECTION` is either 'a' or 'd', meaning ascending or descending respectively.
+* If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending 
+order and vice versa.
+
+Examples:
+* `sort n a` sorts the menu by name in ascending direction.
+* `sort p` sorts the menu by price in opposite direction as last sorted.
+
+
+### Find food item: `find`
+
+Finds and lists all food items containing any of the specified keywords in their name. Note that the keywords are 
+case-sensitive.
+
+Format: `find KEYWORD [MORE_KEYWORDS]`
+
+Examples:
+* `find milo dinosaur` lists all food items containing the word 'milo' or 'dinosaur' in their name.
+
+
+### Filter food item by price: `price`
+
+Finds all food item within a specified price range.
+
+Format: `price INEQUALITY PRICE`
+
+* `INEQUALITY` is an inequality sign, and must be either '<' (strictly less than), '<=' (less than or equal to),
+'>' (greater than), or '>=' (greater than or equal to).
+* `PRICE` must be a non-negative real number.
+
+Examples:
+* `price < 3` lists all food item with price less than $3.
+* `price >= 2` lists all food item with price from $2.
+
+## Order related commands
 
 ### Adding a food item: `add`
 
-Adds a new food item for the user according to the index from the menu
+Adds a new food item for the user according to the index from the menu.
 
 Format: `add INDEX [QUANTITY]`
 
@@ -99,19 +157,25 @@ Examples:
 * `delete 1 2` deletes 2 instances of the first item in the supper order.
 
 
-### Display total: 'total'
+### Clearing the order: `clear`
 
-Displays the price of the current order
+Removes everything from the order.
 
-Format: `total`
 
-### Submit the order: 'submit'
+### Undo changes to order: `undo`
 
-Displays the current order along with its total price
+Undoes last change to the order.
 
-Format: `submit`
 
-### Other features `[coming soon]`
+### Calculate total: `total`
+
+Displays the total of the order currently.
+
+
+### Generate order text: `submit`
+
+Displays a copy-paste-able text of the order.
+
 
 _{coming soon}_
 
@@ -126,12 +190,18 @@ _{coming soon}_
 
 ## Command summary
 
-Action | Format, Examples
+Action | Format
 --------|------------------
 **Help**   | `help`
-**Vendor** | `vendor INDEX` <br> e.g., `vendor 2`
-**Menu**   | `menu` <br> e.g., `menu`
-**Total** | `total` <br> e.g., `total`
-**Add**    | `add INDEX [QUANTITY]` <br> e.g., `add 2 2`
-**Delete** | `delete INDEX [QUANTITY]`<br> e.g., `delete 3 1`
-**Submit**| `submit` <br> e.g., `submit`
+**Exit** | `exit`
+**Vendor** | `vendor [INDEX]`
+**Menu**   | `menu`
+**Sort** | `sort MODE [DIRECTION]`
+**Find** | `find KEYWORD [MORE_KEYWORDS]`
+**Price** | `price INEQUALITY PRICE`
+**Add** | `add INDEX [QUANTITY]`
+**Remove** | `remove INDEX [QUANTITY]`
+**Clear** | `clear`
+**Undo** | `undo`
+**Total** | `total`
+**Submit** | `submit`
