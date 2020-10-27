@@ -21,6 +21,7 @@ public class CdCommandTest {
     private static String absoluteHomeAddress;
     private static String relativeFileAddress;
     private static String absoluteFileAddress;
+    private static boolean isWindows;
 
     @BeforeAll
     static void setUpFileAddress() {
@@ -33,6 +34,7 @@ public class CdCommandTest {
         assert folderFile.isDirectory();
         absoluteFileAddress = folderFile.getAbsolutePath();
 
+        isWindows = System.getProperty("os.name").toLowerCase().startsWith("windows");
     }
 
     @Test
@@ -49,7 +51,10 @@ public class CdCommandTest {
     public void execute_addressTypeChild_success() throws IOException {
         Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
         CdCommand cdCommand = new CdCommand(AddressType.CHILD, "src");
-        String newFileAddress = new File(absoluteFileAddress + "\\src").getCanonicalPath();
+        String newFileAddress = new File(absoluteFileAddress + (isWindows ? "\\src" : "/src"))
+                .getCanonicalPath();
+        assert new File(absoluteFileAddress).exists();
+        assert new File(newFileAddress).exists();
         Model expectedModel = new ModelStubWithCurrentPath(newFileAddress);
 
         assertCommandSuccess(cdCommand, modelStub,
@@ -86,6 +91,7 @@ public class CdCommandTest {
     public void execute_isNotDirectory_throwCommandException() {
         Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
         CdCommand cdCommand = new CdCommand(AddressType.CHILD, "build.gradle");
+        assert new File("./build.gradle").exists();
 
         assertThrows(CommandException.class, String.format(
                 CdCommand.MESSAGE_PATH_INVALID, "build.gradle"), () -> cdCommand.execute(modelStub));
