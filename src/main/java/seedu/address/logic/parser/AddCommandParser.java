@@ -64,7 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Fee fee = ParserUtil.parseFee(argMultimap.getValue(PREFIX_FEE).get());
         PaymentDate paymentDate = ParserUtil.parsePaymentDate(argMultimap.getValue(PREFIX_PAYMENT).get());
         List<Detail> detailList =
-                ParserUtil.parseAdditionalDetails(argMultimap.getAllValues(PREFIX_DETAILS));
+                ParserUtil.parseDetails(argMultimap.getAllValues(PREFIX_DETAILS));
 
         Admin admin = new Admin(classVenue, classTime, fee, paymentDate, detailList);
         List<Question> questions = new ArrayList<>();

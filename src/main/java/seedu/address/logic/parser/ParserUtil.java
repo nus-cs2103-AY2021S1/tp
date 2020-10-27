@@ -223,12 +223,12 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String detail} into a {@code AdditionalDetail}.
+     * Parses a {@code String detail} into a {@code Detail}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code detail} is invalid.
      */
-    public static Detail parseAdditionalDetail(String detail) throws ParseException {
+    public static Detail parseDetail(String detail) throws ParseException {
         requireNonNull(detail);
         String trimmedDetail = detail.trim();
         if (!Detail.isValidAdditionalDetail(trimmedDetail)) {
@@ -238,14 +238,14 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> additionalDetails} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> details} into a {@code List<Detail>}.
      */
-    public static List<Detail> parseAdditionalDetails(Collection<String> additionalDetails)
+    public static List<Detail> parseDetails(Collection<String> additionalDetails)
             throws ParseException {
         requireNonNull(additionalDetails);
         final List<Detail> detailSet = new ArrayList<>();
         for (String detail : additionalDetails) {
-            detailSet.add(parseAdditionalDetail(detail));
+            detailSet.add(parseDetail(detail));
         }
         return detailSet;
     }
