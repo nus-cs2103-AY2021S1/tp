@@ -102,7 +102,6 @@
     -fx-graphic-text-gap : 0;
     -fx-padding: 3px;
     -fx-background-insets: 0px, 2px;
-    -fx-background-color: transparent;
 }
 
 #moduleListView .list-cell:filled:even {

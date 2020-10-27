@@ -63,7 +63,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the active module list with {@code modules}.
      * {@code modules} must not contain duplicate modules.
      */
-    public void setModules(UniqueModuleList modules) {
+    public void setModules(List<Module> modules) {
         this.modules.setModules(modules);
     }
 
@@ -71,7 +71,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the semester one list with {@code modules}.
      * {@code modules} must not contain duplicate modules.
      */
-    public void setSemOneModules(UniqueModuleList modules) {
+    public void setSemOneModules(List<Module> modules) {
         this.semOneModules.setModules(modules);
     }
 
@@ -79,7 +79,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Replaces the contents of the semester two list with {@code modules}.
      * {@code modules} must not contain duplicate modules.
      */
-    public void setSemTwoModules(UniqueModuleList modules) {
+    public void setSemTwoModules(List<Module> modules) {
         this.semTwoModules.setModules(modules);
     }
 
@@ -119,7 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
+        reassignEditedInstructor(target, editedPerson);
         persons.setPerson(target, editedPerson);
     }
 
@@ -302,19 +302,28 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     @Override
-    public UniqueModuleList getModuleList() {
-        // Currently no support for "contains" method for observable list
-        return modules;
+    public ObservableList<Module> getModuleList() {
+        return modules.asUnmodifiableObservableList();
     }
 
     @Override
-    public UniqueModuleList getSemOneModuleList() {
-        return semOneModules;
+    public ObservableList<Module> getSemOneModuleList() {
+        return semOneModules.asUnmodifiableObservableList();
     }
 
     @Override
-    public UniqueModuleList getSemTwoModuleList() {
-        return semTwoModules;
+    public ObservableList<Module> getSemTwoModuleList() {
+        return semTwoModules.asUnmodifiableObservableList();
+    }
+
+    private void reassignEditedInstructor(Person target, Person editedPerson) {
+        for (Module m: modules) {
+            if (m.hasInstructor(target)) {
+                m.unassignInstructor(target);
+                m.assignInstructor(editedPerson);
+                modules.setModule(m, m);
+            }
+        }
     }
 
     @Override
@@ -322,7 +331,9 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
-                && modules.equals(((AddressBook) other).modules));
+                && modules.equals(((AddressBook) other).modules)
+                && semOneModules.equals(((AddressBook) other).semOneModules)
+                && semTwoModules.equals(((AddressBook) other).semTwoModules));
     }
 
     @Override

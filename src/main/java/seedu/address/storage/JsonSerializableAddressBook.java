@@ -52,9 +52,9 @@ class JsonSerializableAddressBook {
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
-        semOneModules.addAll(source.getSemOneModuleList().getInternalList().stream()
+        semOneModules.addAll(source.getSemOneModuleList().stream()
                 .map(JsonAdaptedModule::new).collect(Collectors.toList()));
-        semTwoModules.addAll(source.getSemTwoModuleList().getInternalList().stream()
+        semTwoModules.addAll(source.getSemTwoModuleList().stream()
                 .map(JsonAdaptedModule::new).collect(Collectors.toList()));
     }
 
