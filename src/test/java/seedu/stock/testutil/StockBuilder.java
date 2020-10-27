@@ -16,6 +16,7 @@ public class StockBuilder {
     public static final String DEFAULT_SERIALNUMBER = "Fairprice1";
     public static final String DEFAULT_SOURCE = "Fairprice";
     public static final String DEFAULT_QUANTITY = "1000";
+    public static final String DEFAULT_LOW_QUANTITY = "0";
     public static final String DEFAULT_LOCATION = "Fruits section, Subsection B";
 
     private Name name;
@@ -31,7 +32,7 @@ public class StockBuilder {
         name = new Name(DEFAULT_NAME);
         serialNumber = new SerialNumber(DEFAULT_SERIALNUMBER);
         source = new Source(DEFAULT_SOURCE);
-        quantity = new Quantity(DEFAULT_QUANTITY);
+        quantity = new Quantity(DEFAULT_QUANTITY, DEFAULT_LOW_QUANTITY);
         location = new Location(DEFAULT_LOCATION);
     }
 
@@ -75,6 +76,14 @@ public class StockBuilder {
      */
     public StockBuilder withQuantity(String quantity) {
         this.quantity = new Quantity(quantity);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Quantity} and lowQuantity of the {@code Stock} that we are building.
+     */
+    public StockBuilder withQuantity(String quantity, String lowQuantity) {
+        this.quantity = new Quantity(quantity, lowQuantity);
         return this;
     }
 

@@ -19,11 +19,9 @@ public class LowStocksPredicate implements Predicate<Stock> {
      */
     @Override
     public boolean test(Stock stock) {
-        String quantity = stock.getQuantity().toString();
-        int quantityInt = Integer.parseInt(quantity);
 
-        if (quantityInt <= 50) {
-            // test returns true if stock isBookmarked
+        if (stock.getQuantity().isLowOnQuantity()) {
+            // test returns true if stock is low in quantity
             return true;
         } else {
             return false;

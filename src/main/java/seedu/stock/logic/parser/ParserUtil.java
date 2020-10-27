@@ -6,6 +6,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.stock.commons.core.Messages;
@@ -67,7 +68,30 @@ public class ParserUtil {
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
+
         return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {@code Optional<String> lowQuantity} into a {@code Quantity}.
+     * Updates lowQuantity in quantity if lowQuantity is present and returns original
+     * quantity otherwise.
+     * Leading and trailing whitespaces will be trimmed if lowQuantity is present.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseLowQuantity(Quantity quantity, Optional<String> lowQuantity) throws ParseException {
+        if (lowQuantity.isEmpty()) {
+            return quantity;
+        }
+
+        String trimmedLowQuantity = lowQuantity.get().trim();
+
+        if (!Quantity.isValidQuantity(trimmedLowQuantity)) {
+            throw new ParseException(Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
+        }
+
+        return quantity.updateLowQuantity(trimmedLowQuantity);
     }
 
     /**
