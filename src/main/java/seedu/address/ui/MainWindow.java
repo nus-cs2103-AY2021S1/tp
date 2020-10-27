@@ -113,13 +113,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        patientListPanel = new PatientListPanel(logic.getFilteredPersonList());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         personListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHospifyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -154,7 +154,7 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Appointment Window.
      */
     public void handleShowAppt() {
-        appointmentWindow.setAppointmentWindow(logic.getFilteredPersonList().get(0));
+        appointmentWindow.setAppointmentWindow(logic.getFilteredPatientList().get(0));
         if (appointmentWindow.isShowing()) {
             appointmentWindow.focus();
         } else {
@@ -199,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowAppointment()) {
-                if (logic.getFilteredPersonList().size() != 1) {
+                if (logic.getFilteredPatientList().size() != 1) {
                     logger.info("Parse exception: Patient not found - " + commandText);
                     throw new ParseException("Patient not found");
                 } else {

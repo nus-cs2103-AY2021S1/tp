@@ -23,7 +23,7 @@ import seedu.address.model.ReadOnlyHospifyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.patient.Nric;
 import seedu.address.model.patient.Patient;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatientBuilder;
 
 public class AddCommandTest {
 
@@ -35,7 +35,7 @@ public class AddCommandTest {
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Patient validPatient = new PersonBuilder().build();
+        Patient validPatient = new PatientBuilder().build();
 
         CommandResult commandResult = new AddCommand(validPatient).execute(modelStub);
 
@@ -45,7 +45,7 @@ public class AddCommandTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Patient validPatient = new PersonBuilder().build();
+        Patient validPatient = new PatientBuilder().build();
         AddCommand addCommand = new AddCommand(validPatient);
         ModelStub modelStub = new ModelStubWithPerson(validPatient);
 
@@ -54,8 +54,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Patient alice = new PersonBuilder().withName("Alice").build();
-        Patient bob = new PersonBuilder().withName("Bob").build();
+        Patient alice = new PatientBuilder().withName("Alice").build();
+        Patient bob = new PatientBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -101,12 +101,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getHospifyFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setHospifyFilePath(Path hospifyFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

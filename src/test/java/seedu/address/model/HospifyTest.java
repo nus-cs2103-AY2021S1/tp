@@ -20,9 +20,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.exceptions.DuplicatePatientException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PatientBuilder;
 
-public class AddressBookTest {
+public class HospifyTest {
 
     private final HospifyBook addressBook = new HospifyBook();
 
@@ -46,7 +46,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
-        Patient editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .withAllergies(VALID_ALLERGY_POLLEN).build();
         List<Patient> newPatients = Arrays.asList(ALICE, editedAlice);
         HospifyBookStub newData = new HospifyBookStub(newPatients);
@@ -73,7 +73,7 @@ public class AddressBookTest {
     @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPatient(ALICE);
-        Patient editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Patient editedAlice = new PatientBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .withAllergies(VALID_ALLERGY_POLLEN).build();
         assertTrue(addressBook.hasPatient(editedAlice));
     }
