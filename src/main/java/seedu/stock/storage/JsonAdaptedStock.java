@@ -80,10 +80,11 @@ class JsonAdaptedStock {
         final Name modelName = new Name(name);
 
         if (serialNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Source.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    SerialNumber.class.getSimpleName()));
         }
         if (!SerialNumber.isValidSerialNumber(serialNumber)) {
-            throw new IllegalValueException(Source.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(SerialNumber.MESSAGE_CONSTRAINTS);
         }
         final SerialNumber modelSerialNumber = new SerialNumber(serialNumber);
 

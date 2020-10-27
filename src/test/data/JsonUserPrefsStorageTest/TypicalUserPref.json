@@ -7,5 +7,6 @@
       "y" : 100
     }
   },
-  "addressBookFilePath" : "addressbook.json"
+  "stockBookFilePath" : "stockbook.json",
+  "serialNumberSetsBookFilePath" : "serialnumbers.json"
 }
