@@ -61,35 +61,35 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
+    public void setPivotFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setPivotFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setPivotFilePath_validPath_setsPivotFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setPivotFilePath(path);
         assertEquals(path, modelManager.getPivotFilePath());
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasCase_nullCase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasCase(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasCase_caseNotInPivot_returnsFalse() {
         assertFalse(modelManager.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasCase_caseInPivot_returnsTrue() {
         modelManager.addCase(ALICE_PAULINE_ASSAULT);
         assertTrue(modelManager.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredCaseList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredCaseList().remove(0));
     }
 
@@ -113,7 +113,7 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different Pivot -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentPivot, userPrefs)));
 
         // different filteredList -> returns false

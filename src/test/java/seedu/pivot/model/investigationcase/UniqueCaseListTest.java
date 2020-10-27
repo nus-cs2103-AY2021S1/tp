@@ -23,23 +23,23 @@ public class UniqueCaseListTest {
     private final UniqueCaseList uniqueCaseList = new UniqueCaseList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
+    public void contains_nullCase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCaseList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
+    public void contains_caseNotInList_returnsFalse() {
         assertFalse(uniqueCaseList.contains(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
+    public void contains_caseInList_returnsTrue() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         assertTrue(uniqueCaseList.contains(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_caseWithSameIdentityFieldsInList_returnsTrue() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         Case editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -47,34 +47,34 @@ public class UniqueCaseListTest {
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
+    public void add_nullCase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCaseList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
+    public void add_duplicateCase_throwsDuplicateCaseException() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         assertThrows(DuplicateCaseException.class, () -> uniqueCaseList.add(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
+    public void setCase_nullTargetCase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCaseList.setCase(null, ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
+    public void setCase_nullEditedCase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCaseList.setCase(ALICE_PAULINE_ASSAULT, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
+    public void setCase_targetCaseNotInList_throwsCaseNotFoundException() {
         assertThrows(CaseNotFoundException.class, () ->
                 uniqueCaseList.setCase(ALICE_PAULINE_ASSAULT, ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
+    public void setCase_editedCaseIsSameCase_success() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         uniqueCaseList.setCase(ALICE_PAULINE_ASSAULT, ALICE_PAULINE_ASSAULT);
         UniqueCaseList expectedUniqueCaseList = new UniqueCaseList();
@@ -83,7 +83,7 @@ public class UniqueCaseListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
+    public void setCase_editedCaseHasSameIdentity_success() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         Case editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -94,7 +94,7 @@ public class UniqueCaseListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
+    public void setCase_editedCaseHasDifferentIdentity_success() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         uniqueCaseList.setCase(ALICE_PAULINE_ASSAULT, BOB_CHOO_SALON_THEFT);
         UniqueCaseList expectedUniqueCaseList = new UniqueCaseList();
@@ -103,7 +103,7 @@ public class UniqueCaseListTest {
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
+    public void setCase_editedCaseHasNonUniqueIdentity_throwsDuplicateCaseException() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         uniqueCaseList.add(BOB_CHOO_SALON_THEFT);
         assertThrows(DuplicateCaseException.class, () ->
@@ -111,17 +111,17 @@ public class UniqueCaseListTest {
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullCase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCaseList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
+    public void remove_caseDoesNotExist_throwsCaseNotFoundException() {
         assertThrows(CaseNotFoundException.class, () -> uniqueCaseList.remove(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingCase_removesCase() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         uniqueCaseList.remove(ALICE_PAULINE_ASSAULT);
         UniqueCaseList expectedUniqueCaseList = new UniqueCaseList();
@@ -129,12 +129,12 @@ public class UniqueCaseListTest {
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
+    public void setCases_nullUniqueCaseList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCaseList.setCases((UniqueCaseList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
+    public void setCases_uniqueCaseList_replacesOwnListWithProvidedUniqueCaseList() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         UniqueCaseList expectedUniqueCaseList = new UniqueCaseList();
         expectedUniqueCaseList.add(BOB_CHOO_SALON_THEFT);
@@ -143,12 +143,12 @@ public class UniqueCaseListTest {
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
+    public void setCases_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueCaseList.setCases((List<Case>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
+    public void setCases_list_replacesOwnListWithProvidedList() {
         uniqueCaseList.add(ALICE_PAULINE_ASSAULT);
         List<Case> caseList = Collections.singletonList(BOB_CHOO_SALON_THEFT);
         uniqueCaseList.setCases(caseList);
@@ -158,7 +158,7 @@ public class UniqueCaseListTest {
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setCases_listWithDuplicateCases_throwsDuplicateCaseException() {
         List<Case> listWithDuplicateCases = Arrays.asList(ALICE_PAULINE_ASSAULT, ALICE_PAULINE_ASSAULT);
         assertThrows(DuplicateCaseException.class, () -> uniqueCaseList.setCases(listWithDuplicateCases));
     }

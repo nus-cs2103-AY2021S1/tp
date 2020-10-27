@@ -43,7 +43,7 @@ public class PivotTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+    public void resetData_withDuplicateCases_throwsDuplicatePersonException() {
         // Two persons with the same identity fields
         Case editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withTags(VALID_TAG_HUSBAND).build();
         List<Case> newCases = Arrays.asList(ALICE_PAULINE_ASSAULT, editedAlice);
@@ -53,30 +53,30 @@ public class PivotTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasCase_nullCase_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> pivot.hasCase(null));
     }
 
     @Test
-    public void hasPerson_personNotInPivot_returnsFalse() {
+    public void hasCase_caseNotInPivot_returnsFalse() {
         assertFalse(pivot.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void hasPerson_personInPivot_returnsTrue() {
+    public void hasCase_caseInPivot_returnsTrue() {
         pivot.addCase(ALICE_PAULINE_ASSAULT);
         assertTrue(pivot.hasCase(ALICE_PAULINE_ASSAULT));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInPivot_returnsTrue() {
+    public void hasCase_caseWithSameIdentityFieldsInPivot_returnsTrue() {
         pivot.addCase(ALICE_PAULINE_ASSAULT);
         Case editedAlice = new CaseBuilder(ALICE_PAULINE_ASSAULT).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(pivot.hasCase(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
+    public void getCaseList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> pivot.getCaseList().remove(0));
     }
 
