@@ -27,6 +27,11 @@ public class CommandResult {
     private final boolean reviewMode;
 
     /**
+     * The application enters view mode
+     */
+    private final boolean viewMode;
+
+    /**
      * The flashcard index to view
      */
     private final Integer viewIndex;
@@ -42,6 +47,11 @@ public class CommandResult {
     private final boolean quizMode;
 
     /**
+     * The application should show statistics of the flashcard to the user.
+     */
+    private final boolean showStats;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean reviewMode, boolean quizMode) {
@@ -50,8 +60,10 @@ public class CommandResult {
         this.exit = exit;
         this.reviewMode = reviewMode;
         this.quizMode = quizMode;
+        this.viewMode = false;
         this.viewIndex = null;
         this.showAnswer = false;
+        this.showStats = false;
     }
 
     /**
@@ -63,8 +75,25 @@ public class CommandResult {
         this.exit = false;
         this.reviewMode = false;
         this.quizMode = false;
+        this.viewMode = true;
         this.viewIndex = viewIndex;
         this.showAnswer = showAnswer;
+        this.showStats = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} specifically for stats commands.
+     */
+    public CommandResult(String feedbackToUser, Integer viewIndex) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.showHelp = false;
+        this.exit = false;
+        this.reviewMode = false;
+        this.quizMode = false;
+        this.viewMode = false;
+        this.viewIndex = viewIndex;
+        this.showAnswer = false;
+        this.showStats = true;
     }
 
     /**
@@ -82,6 +111,10 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isViewMode() {
+        return viewMode;
     }
 
     public Integer getViewIndex() {
@@ -102,6 +135,10 @@ public class CommandResult {
 
     public boolean isQuizMode() {
         return quizMode;
+    }
+
+    public boolean isShowStats() {
+        return showStats;
     }
 
     @Override
