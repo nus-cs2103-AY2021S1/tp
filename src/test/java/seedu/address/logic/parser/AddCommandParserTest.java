@@ -22,10 +22,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalAssignments.HW;
 import static seedu.address.testutil.TypicalAssignments.LAB;
+import static seedu.address.testutil.TypicalAssignments.LAB_PRIORITY;
 import static seedu.address.testutil.TypicalAssignments.LAB_PRIORITY_REMIND;
 import static seedu.address.testutil.TypicalAssignments.LAB_REMIND;
-import static seedu.address.testutil.TypicalAssignments.LAB_PRIORITY;
-
 
 import org.junit.jupiter.api.Test;
 
@@ -88,7 +87,7 @@ public class AddCommandParserTest {
 
         // all compulsory fields with remind and priority
         assertParseSuccess(parser, NAME_DESC_LAB + DEADLINE_DESC_LAB + MODULE_CODE_DESC_LAB + PRIORITY_DESC
-                        + REMIND_DESC, new AddCommand(expectedAssignmentWithPriorityAndRemind));
+                + REMIND_DESC, new AddCommand(expectedAssignmentWithPriorityAndRemind));
     }
 
     @Test
