@@ -19,11 +19,11 @@ import seedu.stock.model.stock.Stock;
 public class TypicalStocks {
     public static final Stock APPLE = new StockBuilder().withName("Apple Juice")
             .withSerialNumber("Ntuc1").withSource("Ntuc")
-            .withQuantity("2000").withLocation("Fruit Section, Subsection C")
+            .withQuantity("2000", "0").withLocation("Fruit Section, Subsection C")
             .build();
     public static final Stock BANANA = new StockBuilder().withName("Banana Cake")
             .withSerialNumber("Fairprice1").withSource("Fairprice")
-            .withQuantity("2103").withLocation("Fruits section, Subsection B")
+            .withQuantity("2103", "2200").withLocation("Fruits section, Subsection B")
             .build();
     public static final Stock PINEAPPLE = new StockBuilder().withName("Pineapple Tart")
             .withSerialNumber("BengawanSolo1").withSource("BengawanSolo")

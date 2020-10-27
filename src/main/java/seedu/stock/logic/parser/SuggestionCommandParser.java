@@ -9,13 +9,16 @@ import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_VIEW_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.PRINT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.SORT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UNBOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LIST_TYPE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
@@ -99,7 +102,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
-                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY,
+                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_FILE_NAME,
                         PREFIX_SORT_ORDER, PREFIX_SORT_FIELD, PREFIX_NOTE, PREFIX_NOTE_INDEX,
                         PREFIX_STATISTICS_TYPE, PREFIX_LIST_TYPE
                 );
@@ -551,7 +554,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateAddSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
-                 PREFIX_QUANTITY, PREFIX_LOCATION);
+                 PREFIX_QUANTITY, PREFIX_LOCATION, PREFIX_LOW_QUANTITY);
         toBeDisplayed.append(ADD_COMMAND_WORD);
 
         for (int i = 0; i < allowedPrefixes.size(); i++) {
@@ -631,7 +634,24 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param argMultimap The parsed user input fields.
      */
     private void generatePrintSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        toBeDisplayed.append(CommandWords.PRINT_COMMAND_WORD);
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_FILE_NAME);
+        toBeDisplayed.append(PRINT_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (!argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+            }
+            List<String> keywords = argMultimap.getAllValues(PREFIX_FILE_NAME);
+
+            if (keywords.size() == 0) {
+                continue;
+            }
+
+            toBeDisplayed.append(" " + currentPrefix + keywords.get(0));
+        }
+
+        generateBodyMessage(toBeDisplayed, PrintCommand.MESSAGE_USAGE);
     }
 
     /**

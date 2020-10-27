@@ -4,11 +4,14 @@ import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.commands.CommandTestUtil.DEFAULT_SERIAL_NUMBER;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
+import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOW_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_SOURCE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_BANANA;
+import static seedu.stock.logic.commands.CommandTestUtil.LOW_QUANTITY_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.LOW_QUANTITY_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
@@ -18,6 +21,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.QUANTITY_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOCATION_BANANA;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_LOW_QUANTITY_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_NAME_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_QUANTITY_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.VALID_SOURCE_BANANA;
@@ -44,13 +48,21 @@ public class AddCommandParserTest {
                 .withLocation(VALID_LOCATION_BANANA).withQuantity(VALID_QUANTITY_BANANA)
                 .withSerialNumber(DEFAULT_SERIAL_NUMBER).build();
 
-        // whitespace only preamble
+        // whitespace only preamble, optional field header low quantity not included
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BANANA + SOURCE_DESC_BANANA
                 + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA, new AddCommand(expectedStock));
 
-        // fielder header in different order
+        // field header in different order
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + SOURCE_DESC_BANANA
                 + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + NAME_DESC_BANANA, new AddCommand(expectedStock));
+
+        // optional field header low quantity present
+        Stock newExpectedStock = new StockBuilder().withName(VALID_NAME_BANANA).withSource(VALID_SOURCE_BANANA)
+                .withLocation(VALID_LOCATION_BANANA).withQuantity(VALID_QUANTITY_BANANA, VALID_LOW_QUANTITY_BANANA)
+                .withSerialNumber(DEFAULT_SERIAL_NUMBER).build();
+        assertParseSuccess(parser, PREAMBLE_WHITESPACE + SOURCE_DESC_BANANA
+                + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + NAME_DESC_BANANA + LOW_QUANTITY_DESC_BANANA,
+                new AddCommand(expectedStock));
 
     }
 
@@ -98,6 +110,10 @@ public class AddCommandParserTest {
         // multiple location
         assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA + QUANTITY_DESC_BANANA
                 + LOCATION_DESC_BANANA + LOCATION_DESC_APPLE, expectedMessage);
+
+        // multiple lowQuantity
+        assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA + QUANTITY_DESC_BANANA
+                + LOCATION_DESC_BANANA + LOW_QUANTITY_DESC_APPLE + LOW_QUANTITY_DESC_BANANA, expectedMessage);
     }
 
     @Test
@@ -113,6 +129,11 @@ public class AddCommandParserTest {
         // invalid quantity
         assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA
                 + INVALID_QUANTITY_DESC + LOCATION_DESC_BANANA, Quantity.MESSAGE_CONSTRAINTS);
+
+        // invalid lowQuantity
+        assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA
+                + QUANTITY_DESC_BANANA + LOCATION_DESC_BANANA + INVALID_LOW_QUANTITY_DESC,
+                Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
 
         // invalid location
         assertParseFailure(parser, NAME_DESC_BANANA + SOURCE_DESC_BANANA + QUANTITY_DESC_BANANA
