@@ -591,7 +591,7 @@ Format: `help`
 
 ### Exiting the program : `exit`
 
-Exits the program.
+Exits Wishful Shrinking.
 
 Format: `exit`
 <br><br><br>
