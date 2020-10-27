@@ -202,7 +202,7 @@ Example:
 
 #### 3.3.3. Record leave taken by staff: `addleave`
 
-Records leave taken by a staff that is in Eva.
+Records leave taken by a staff that is in Eva. <br>
 Format: `addleave INDEX l/d/DATE [d/DATE]`
 
 <div markdown="span" class="alert alert-primary">
@@ -222,7 +222,7 @@ Examples:
 
 #### 3.3.4. Delete leave taken by staff: `deleteleave`
 
-Removes record of leave taken by staff.
+Removes record of leave taken by staff. <br>
 Format: `deleteleave INDEX d/DATE`
 
 Examples:
