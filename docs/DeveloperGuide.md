@@ -461,6 +461,51 @@ Use case ends.
     - ResiReg shows an error message.
 
       Use case resumes at step 2.
+      
+#### Use case: UC07 - Undo previous command
+1. OHS admin enters a command that changes state.
+1. ResiReg processes and executes the command.
+1. OHS admin requests to undo previously entered command.
+1. This previous command gets undone and the state of 
+`ResiReg` is reverted.
+
+Use case ends.
+
+**Extensions**
+
+- 3a. There are no previously entered commands entered that change state.
+    - ResiReg shows an error message.
+    
+      Use case resumes at Step 1.
+      
+#### Use case: UC08 - Redo previous command
+1. OHS admin requests to redo previously undone command 
+that changes state.
+1. ResiReg processes and executes the command.
+1. This previous command gets undone and the state of 
+`ResiReg` is updated. 
+
+Use case ends.
+
+**Extensions**
+
+- 1a. There are no previously undone commands that change state to redo.
+    - ResiReg shows an error message.
+    
+      Use case ends.
+      
+#### Use case: UC09 - History command
+1. OHS admin requests to list history of previously entered commands.
+1. ResiReg shows a history of previously entered commands in reverse chronological order.
+
+Use case ends.
+
+**Extensions**
+
+- 1a. The history of previously entered commands is empty.
+    - ResiReg shows an error message.
+    
+      Use case ends.
 
 ### Non-Functional Requirements
 

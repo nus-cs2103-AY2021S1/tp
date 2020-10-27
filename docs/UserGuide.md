@@ -257,7 +257,7 @@ Restores the address book to the state before
 the previous state modifying command was executed.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-z</kbd> keyboard combination
-in the command box will execute `undo` as well. 
+in the command box will execute the command as well.
 
 </div>
 
@@ -265,7 +265,7 @@ in the command box will execute `undo` as well.
 Reverses the most recent undo command.
 
 <div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-y</kbd> keyboard combination
-in the command box will execute `undo` as well. 
+in the command box will execute the command as well.
 
 </div>
 
