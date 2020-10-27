@@ -32,13 +32,9 @@ public class CommandParserTest {
             "Result(AddIngredientCommand: milk (600ml))");
 
         tests.put("add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
-// <<<<<<< HEAD
-//                 + "/ingredient egg /qty 7 /step mix /step bake /step eat",
-//             "Result(AddRecipeCommand: cake <Ingredients: milk (400ml), flour (500g), "
-//                 + "egg (7)> <Steps: 1. mix, 2. bake, 3. eat>)");
-// =======
             + "/ingredient egg /qty 7 /step mix /step bake /step eat",
-            "Result(AddRecipeCommand(cake))");
+            "Result(AddRecipeCommand(cake, ingr: [milk (400ml), flour (500g), "
+                + "egg (7)], steps: [mix, bake, eat]))");
 
         tests.put("delete recipe cake", "Result(DeleteRecipeCommand(cake))");
         tests.put("delete recipe #4", "Result(DeleteRecipeCommand(#4))");

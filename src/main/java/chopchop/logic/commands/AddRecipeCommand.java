@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
@@ -66,30 +67,13 @@ public class AddRecipeCommand extends Command implements Undoable {
             return CommandResult.error("Recipe '%s' already exists", this.name);
         }
 
-        // validate the ingredients.
+        // first, ensure that the ingredients are unique.
         {
             var seenIngredients = new HashSet<String>();
             for (var ingr : this.ingredients) {
-
-                // check it's not a dupe
                 if (seenIngredients.contains(ingr.getName())) {
+
                     return CommandResult.error("Ingredient '%s' was specified twice", ingr.getName());
-                }
-
-                // check that it exists
-                var opt = model.findIngredientWithName(ingr.getName());
-                if (opt.isEmpty()) {
-                    return CommandResult.error("Referenced ingredient '%s' does not exist", ingr.getName());
-                }
-
-                var existing = opt.get();
-                // and check that they're compatible.
-                if (!existing.getQuantity().compatibleWith(ingr.getQuantity())) {
-                    return CommandResult.error(
-                        "Ingredient '%s' has different, incompatible units (%s) than specified (%s)",
-                        existing.getQuantity(),
-                        ingr.getQuantity()
-                    );
                 }
 
                 seenIngredients.add(ingr.getName());
@@ -134,7 +118,9 @@ public class AddRecipeCommand extends Command implements Undoable {
 
     @Override
     public String toString() {
-        return String.format("AddRecipeCommand(%s)", this.name);
+        return String.format("AddRecipeCommand(%s, ingr: [%s], steps: [%s])", this.name,
+            String.join(", ", this.ingredients.stream().map(x -> x.toString()).collect(Collectors.toList())),
+            String.join(", ", this.steps.stream().map(x -> x.toString()).collect(Collectors.toList())));
     }
 }
 

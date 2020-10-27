@@ -76,7 +76,7 @@ public class AddIngredientCommand extends Command implements Undoable {
 
             } catch (IncompatibleIngredientsException e) {
                 return CommandResult.error("Could not add %s of '%s': " + e.getMessage(),
-                    this.ingredient.getQuantity(), this.ingredient.getName());
+                    this.addedIngredient.getQuantity(), this.addedIngredient.getName());
             }
 
             return CommandResult.message("Updated ingredient '%s'", this.combinedIngredient.getName());
