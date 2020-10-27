@@ -136,8 +136,8 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(indexesToDelete);
 
-        assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand
-                .MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX));
+        assertCommandFailure(deleteCommand, model, String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, Messages
+                .MESSAGE_DUPLICATE_INDEXES));
     }
 
     @Test

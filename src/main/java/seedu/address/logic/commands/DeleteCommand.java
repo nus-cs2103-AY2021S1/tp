@@ -3,10 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -29,49 +27,17 @@ public class DeleteCommand extends Command {
             + COMMAND_WORD + " 1 2\n";
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Assignment(s): %1$s";
-    public static final String MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX = "Duplicated indexes found.";
-
-    private final Comparator<Index> indexComparator = (firstIndex, secondIndex) -> {
-        int firstIndexValue = firstIndex.getZeroBased();
-        int secondIndexValue = secondIndex.getZeroBased();
-        return secondIndexValue - firstIndexValue; // sort by descending order
-    };
 
     private final List<Index> targetIndexes;
 
+    /**
+     * Constructs a DeleteCommand to delete the specified assignment(s).
+     *
+     * @param targetIndexes indexes of assignments in the filtered assignment list to delete
+     */
     public DeleteCommand(List<Index> targetIndexes) {
+        requireNonNull(targetIndexes);
         this.targetIndexes = targetIndexes;
-    }
-
-    private void checkForDuplicatedIndexes(List<Index> targetIndexes) throws CommandException {
-        List<Integer> zeroBasedIndexes = new ArrayList<>();
-        for (Index targetIndex : targetIndexes) {
-            int zeroBasedIndex = targetIndex.getZeroBased();
-            zeroBasedIndexes.add(zeroBasedIndex);
-        }
-
-        long distinctIndexes = zeroBasedIndexes.stream().distinct().count();
-        long lengthOfIndexesList = zeroBasedIndexes.size();
-        boolean containsDuplicates = distinctIndexes < lengthOfIndexesList;
-
-        if (containsDuplicates) {
-            throw new CommandException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand
-                            .MESSAGE_ASSIGNMENTS_DUPLICATED_INDEX));
-        }
-    }
-
-    private void checkForInvalidIndexes(List<Index> targetIndexes, Model model) throws CommandException {
-        List<Assignment> lastShownList = model.getFilteredAssignmentList();
-        if (targetIndexes.isEmpty()) {
-            throw new CommandException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
-        }
-        for (Index targetIndex : targetIndexes) {
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_ASSIGNMENT_DISPLAYED_INDEX);
-            }
-        }
     }
 
     @Override
@@ -81,10 +47,10 @@ public class DeleteCommand extends Command {
         List<Assignment> lastShownList = model.getFilteredAssignmentList();
         List<Assignment> deletedAssignments = new ArrayList<>();
 
-        targetIndexes.sort(indexComparator);
+        targetIndexes.sort(CommandLogic.INDEX_COMPARATOR);
 
-        checkForDuplicatedIndexes(targetIndexes);
-        checkForInvalidIndexes(targetIndexes, model);
+        CommandLogic.checkForDuplicatedIndexes(targetIndexes);
+        CommandLogic.checkForInvalidIndexes(targetIndexes, model, DeleteCommand.MESSAGE_USAGE);
 
         for (Index targetIndex : targetIndexes) {
             Assignment assignmentToDelete = lastShownList.get(targetIndex.getZeroBased());
