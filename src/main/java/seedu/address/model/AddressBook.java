@@ -314,11 +314,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     private void reassignEditedInstructor(Person target, Person editedPerson) {
-        for (Module m: activeModules) {
+        for (Module m: semOneModules) {
             if (m.hasInstructor(target)) {
                 m.unassignInstructor(target);
                 m.assignInstructor(editedPerson);
-                activeModules.setModule(m, m);
+                semOneModules.setModule(m, m);
+            }
+        }
+
+        for (Module m: semTwoModules) {
+            if (m.hasInstructor(target)) {
+                m.unassignInstructor(target);
+                m.assignInstructor(editedPerson);
+                semTwoModules.setModule(m, m);
             }
         }
     }
