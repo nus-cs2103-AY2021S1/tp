@@ -39,6 +39,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, OrderMana
     Optional<List<List<OrderItem>>> readOrderManager() throws DataConversionException, IOException;
 
     @Override
-    void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException;
+    void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException, DataConversionException;
 
 }

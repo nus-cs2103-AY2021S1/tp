@@ -93,6 +93,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -245,14 +246,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
-<<<<<<< HEAD
-            if (commandResult.isVendor()) {
-                handleVendor();
-            }
-=======
             // TODO: add commandResult.isUpdatedMenu?
->>>>>>> b040565e8e11b3921757f96f5cc132c307b8fe86
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

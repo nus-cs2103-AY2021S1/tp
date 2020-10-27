@@ -50,25 +50,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model, );
-
-        if (commandResult.isPreset()) {
-//            try {
-//                //TODO: Change to index
-//                storage.saveOrderManager(model.getOrderManager(),model.getVendorIndex());
-//            } catch (IOException ioe) {
-//                throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-//            }
-            // Try reading
-            try {
-                Optional<List<List<OrderItem>>> lists = storage.readOrderManager();
-                lists.ifPresent(list -> model.setOrder(list.get(model.getVendorIndex())));
-            } catch (DataConversionException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        commandResult = command.execute(model, storage);
 
         return commandResult;
     }

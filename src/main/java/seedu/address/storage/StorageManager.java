@@ -103,12 +103,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException {
+    public void saveOrderManager(ReadOnlyOrderManager orderManager, int index) throws IOException,
+            DataConversionException {
         saveOrderManager(orderManager, orderManagerStorage.getOrderManagerFilePath(), index);
     }
 
     @Override
-    public void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException {
+    public void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath, int index) throws IOException,
+            DataConversionException {
         logger.fine("Attempting to write to data file: " + filePath);
         orderManagerStorage.saveOrderManager(orderManager, filePath, index);
     }
