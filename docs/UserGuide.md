@@ -14,13 +14,19 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 <div markdown="span" class="alert alert-info">
 
-**:information_source: Provides additional notes and constraints for certain information.**
+**:information_source: Provides additional information**
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
 **:bulb: Provides tips while performing the feature stated.**
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Provides input constraints for the command.**
 
 </div>
 
@@ -161,9 +167,6 @@ Appends information to the fields of the animal with the specified `ID`. `ID` re
 
 Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 
-Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long.
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
 </div>
@@ -179,12 +182,10 @@ Examples:
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
 </div>
-
-Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
 
 Examples:
 * `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
@@ -197,6 +198,7 @@ Examples:
 Finds and lists all animals in the `ZooKeep` book whose fields contain any of the specified argument keywords (at least 1).
 
 Format: `find KEYWORD [MORE KEYWORDS]...`
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Keyword matching is case insensitive.
 </div>
@@ -224,9 +226,8 @@ Examples:
 
 Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Constraints:**<br>
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
 
 * File name can only contain alphanumeric characters, hyphens `-` and underscores `_`.
 
@@ -240,7 +241,7 @@ Format: `snap FILE_NAME`
 
 Example:
 * `snap zookeepbook_19-10-2020` saves the current state of the zookeep book data as a file named 
-`zookeepbook_19-10-2020.json`, located in the data folder.
+`zookeepbook_19-10-2020.json`, located in the `data/snapshots` directory.
 
 ---
 
