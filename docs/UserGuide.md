@@ -317,7 +317,7 @@ Amount: $140000
 
 ---
 
-# Calendar Features
+# Meeting Features
 
 ---
 
@@ -333,93 +333,94 @@ There are three types of meetings of which the agent will be able to add:
 
 Creates a view meeting to be added to the schedule.
 
-- Command: `add -m view`
-- Format: `add -m view at/PROPERTY_ID by/TIME d/DESCRIPTION`
+- Command: `add-m q/v`
+- Format: `add-m q/v b/<BIDDER_ID> p/<PROPERTY_ID> v/<VENUE> t/<DATE>`
 
 Example:
 
 ```java
-add -m view at/4 by/12102020 1600 d/bring to condo
+add-m q/v b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
 ```
+💡 p/BIDDER_ID indicates the id of the bidder.
 
-💡 at/PROPERTY_ID indicates the id of the property listing.
+💡 p/PROPERTY_ID indicates the id of the property listing.
 
-💡 by/TIME indicates the time of the meeting.
+💡 t/VENUE indicates the venue of the meeting.
+
+💡 t/DATE indicates the date of the meeting.
 
 Expected Output:
 
 ```java
-Client Viewing Meeting: 12 Oct 2020 at 1600hrs
-    Id: C2
-    Name: Marcus Duigan
-    Phone number: 12345678
-    Address: 99 Hill Street
-    Type: Seller
-    Description: bring to condo
-Has been added!
+New meeting added: Viewing
+Bidder Id: B12
+Property Id: P12
+Venue: 2 ALBERT PARK
+Date: 11-12-2021
 ```
 
 ## Add an Administrative Meeting
 
 Creates an admin meeting to be added to the schedule.
 
-- Command: `add -m admin`
-- Format: `add -m admin at/PROPERTY_ID by/TIME d/DESCRIPTION`
+- Command: `add-m q/a`
+- Format: `add-m q/a b/<BIDDER_ID> p/<PROPERTY_ID> v/<VENUE> t/<DATE>`
 
 Example:
 
 ```java
-add -m admin at/4 by/12102020 1600 d/talk about regulations
+add-m q/a b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
 ```
+💡 p/BIDDER_ID indicates the id of the bidder.
 
-💡 at/PROPERTY_ID indicates the id of the property listing.
+💡 p/PROPERTY_ID indicates the id of the property listing.
 
-💡 by/TIME indicates the time of the meeting.
+💡 t/VENUE indicates the venue of the meeting.
+
+💡 t/DATE indicates the date of the meeting.
 
 Expected Output:
 
 ```java
-Client Admin Meeting: 12 Oct 2020 at 1600hrs
-    Id: C2
-    Name: Marcus Duigan
-    Phone number: 12345678
-    Address: 99 Hill Street
-    Type: Seller
-    Description: talk about regulations
-Has been added!
+New meeting added: Admin
+Bidder Id: B12
+Property Id: P12
+Venue: 2 ALBERT PARK
+Date: 11-12-2021
 ```
 
 ## Add a Paperwork Meeting
 
 Creates a paperwork meeting to be added to the schedule.
 
-- Command: `add -m admin`
-- Format: `add -m paper at/PROPERTY_ID by/TIME d/DESCRIPTION`
+- Command: `add-m q/p`
+- Format: `add-m q/p b/<BIDDER_ID> p/<PROPERTY_ID> v/<VENUE> t/<DATE>`
 
 Example:
 
 ```java
-add -m paper at/4 by/12102020 1600 d/sign CPF paper
+add-m q/p b/B12 p/P12 v/2 ALBERT PARK t/11-12-2021
 ```
+💡 p/BIDDER_ID indicates the id of the bidder.
 
-💡 at/PROPERTY_ID indicates the id of the property listing.
+💡 p/PROPERTY_ID indicates the id of the property listing.
 
-💡 by/TIME indicates the time of the meeting.
+💡 t/VENUE indicates the venue of the meeting.
+
+💡 t/DATE indicates the date of the meeting.
 
 Expected Output:
 
 ```java
-Client Paperwork Meeting: 12 Oct 2020 at 1600hrs
-    Id: C2
-    Name: Marcus Duigan
-    Phone number: 12345678
-    Address: 99 Hill Street
-    Type: Seller
-     Description: sign CPF paper
-Has been added!
+New meeting added: Paperwork
+Bidder Id: B12
+Property Id: P12
+Venue: 2 ALBERT PARK
+Date: 11-12-2021
 ```
 
 ## Deleting an Existing Meeting
+
 
 Deletes a meeting from the calendar when a meeting is cancelled
 
@@ -484,6 +485,65 @@ Date: 12-05-2016
 ```
 The index will only correspond to the original list, NOT the filtered list (when used in find).
 
+## Sort Meeting 
+
+Sorts meetings that are present in ascending or descending order.
+
+- Command: `sort-m`
+- Format: `sort-m o/asc` `sort-m o/dsc` 
+
+Example:
+
+```java
+sort-m o/asc
+
+sort-m o/dsc
+```
+
+
+Expected Output:
+```java
+Successfully sorted meeting
+```
+
+
+## Find Meeting 
+
+Finds meetings based on any **one** of the different attributes.
+
+- Command: `find-m`
+- Format: `find-m v/<VENEUE>` `find-m t/<TIME>` `find-m b/<BIDDERID>` `find-m p/<PROPERTYID>`
+
+Example:
+
+```java
+find-m v/ bedok
+
+find-m t/ 20-10-2020
+
+find-m b/ B10
+
+find-m p/ P10
+```
+
+💡 p/BIDDER_ID indicates the id of the bidder.
+
+💡 p/PROPERTY_ID indicates the id of the property listing.
+
+💡 t/VENUE indicates the venue of the meeting.
+
+💡 t/DATE indicates the date of the meeting.
+
+Expected Output:
+
+If there are meeting present based on the attribute
+```java
+1 meetings listed!
+```
+If there are no meeting present based on the attribute:
+```java
+0 meetings listed!
+```
 ## FAQ
 
 To be completed. Stay tuned!
