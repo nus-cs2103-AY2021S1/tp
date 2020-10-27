@@ -46,34 +46,6 @@ public class IngredientCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.toString())));
     }
 
-    /**
-     * Adds a new line to separate the ingredient name and the quantity.
-     */
-    private String displayFormatter(Ingredient ingredient) {
-        String tags;
-
-        if (ingredient.getTags().isEmpty()) {
-            tags = "No tags attached";
-        } else {
-            StringBuilder sb = new StringBuilder();
-            int index = 1;
-            for (var tag : ingredient.getTags()) {
-                sb.append(index)
-                        .append(" : ")
-                        .append(tag.toString())
-                        .append("\n");
-                index++;
-            }
-            tags = sb.toString();
-        }
-
-        return String.format("%s\n(%s)%s \nTags: \n%s",
-                ingredient.getName(),
-                ingredient.getQuantity(),
-                ingredient.getExpiryDate().map(d -> String.format(" expires: %s", d))
-                        .orElse(""),
-                tags);
-    }
 
     @Override
     public boolean equals(Object other) {
