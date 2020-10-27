@@ -61,10 +61,16 @@ public class AutoCompleter {
         switch (req) {
 
         case COMMAND_NAME:
-            return completeCommand(args, orig);
+            return completeCommand(args, orig, /* nested: */ false);
 
         case TARGET_NAME:
-            return completeTarget(args, orig);
+            return completeTarget(args, orig, /* nested: */ false);
+
+        case NESTED_COMMAND_NAME:
+            return completeCommand(args, orig, /* nested: */ true);
+
+        case NESTED_TARGET_NAME:
+            return completeTarget(args, orig, /* nested: */ true);
 
         case ARGUMENT_NAME:
             return completeArgument(args, orig);
@@ -96,11 +102,15 @@ public class AutoCompleter {
     /**
      * Returns a completion for the command only.
      */
-    private String completeCommand(CommandArguments args, String orig) {
+    private String completeCommand(CommandArguments args, String orig, boolean nested) {
+
+        var partial = nested
+            ? args.getFirstWordFromRemaining()
+            : args.getCommand();
 
         var valids = new ArrayList<String>();
         for (var cmd : Strings.COMMAND_NAMES) {
-            if (cmd.startsWith(args.getCommand())) {
+            if (cmd.startsWith(partial)) {
                 valids.add(cmd);
             }
         }
@@ -126,16 +136,29 @@ public class AutoCompleter {
             var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
             this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
 
-            return completion + " ";
+            return tryCompletionUsing(List.of(completion), orig, partial)
+                .orElse(orig);
         }
     }
 
     /**
      * Returns a completion for the target only.
      */
-    private String completeTarget(CommandArguments args, String orig) {
+    private String completeTarget(CommandArguments args, String orig, boolean nested) {
 
-        var partial = args.getFirstWordFromRemaining();
+        String partial = "";
+        if (nested) {
+            var words = new StringView(args.getRemaining()).words();
+            if (words.size() < 2) {
+                return orig;
+            }
+
+            partial = words.get(1);
+
+        } else {
+            partial = args.getFirstWordFromRemaining();
+        }
+
 
         return tryCompletionUsing(Arrays.stream(CommandTarget.values()).map(x -> x.toString())
                 .collect(Collectors.toList()), orig, partial)
@@ -394,6 +417,18 @@ public class AutoCompleter {
                 return RequiredCompletion.TARGET_NAME;
             }
 
+            // the help command needs another command.
+            if (cmd.equals(Strings.COMMAND_HELP)) {
+
+                // this is tricky. first, get the command you want help for:
+                var helpedCmd = args.getFirstWordFromRemaining();
+                if (commandRequiresTarget(helpedCmd)) {
+                    return RequiredCompletion.NESTED_TARGET_NAME;
+                }
+
+                return RequiredCompletion.NESTED_COMMAND_NAME;
+            }
+
             // eg. 'find recipe' -- there's nothing to complete.
             if (!commandRequiresItemReference(cmd)) {
                 return RequiredCompletion.NONE;
@@ -548,6 +583,8 @@ public class AutoCompleter {
         RECIPE_NAME_IN_ARG,
         INGREDIENT_NAME_IN_ARG,
         COMPONENT_NAME,
-        TAG_NAME
+        TAG_NAME,
+        NESTED_COMMAND_NAME,
+        NESTED_TARGET_NAME
     }
 }
