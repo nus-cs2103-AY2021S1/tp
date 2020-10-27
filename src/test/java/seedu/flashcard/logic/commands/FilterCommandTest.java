@@ -163,16 +163,6 @@ public class FilterCommandTest {
         assertEquals(Arrays.asList(FLASHCARD_2), model.getFilteredFlashcardList());
     }
 
-    //    @Test
-    //    public void execute_multipleKeywordsMixedOrder_success() {
-    //        String expectedMessage = String.format(MESSAGE_FLASHCARDS_LISTED_OVERVIEW, 2);
-    //        CategoryEqualsKeywordsPredicate predicate = preparePredicate("c/REVISION HISTORY c/SDLC");
-    //        FilterCommand command = new FilterCommand(predicate);
-    //        expectedModel.updateFilteredFlashcardList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Arrays.asList(FLASHCARD_1, FLASHCARD_2), model.getFilteredFlashcardList());
-    //    }
-
     /**
      * Parses {@code userInput} into a {@code CategoryEqualsKeywordsPredicate}.
      */
