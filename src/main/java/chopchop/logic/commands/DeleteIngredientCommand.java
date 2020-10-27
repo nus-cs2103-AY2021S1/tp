@@ -1,6 +1,5 @@
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;

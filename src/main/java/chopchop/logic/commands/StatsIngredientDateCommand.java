@@ -1,9 +1,5 @@
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.Strings.ARG_AFTER;
-import static chopchop.commons.util.Strings.ARG_BEFORE;
-import static chopchop.commons.util.Strings.ARG_ON;
-
 import java.time.LocalDateTime;
 
 import chopchop.logic.commands.exceptions.CommandException;
