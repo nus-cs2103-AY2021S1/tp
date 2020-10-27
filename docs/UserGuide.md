@@ -27,12 +27,6 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
 
 </div>
 
-### Viewing help : `help`
-
-Shows a message explaining how to access the help page.
-
-Format: `help`
-
 ### Adding a contact: `add`
 
 Adds a contact to FaculType.
@@ -48,23 +42,19 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com d/Computer Science o/B01-A3`
 * `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 
-### Listing all modules and contacts : `list`
+### Deleting a contact : `delete`
 
-Shows a list of all contacts in FaculType and all modules in the active semester.
+Deletes the specified contact from FaculType.
 
-Format: `list`
+Format: `delete INDEX`
 
-### Listing all contacts : `clist`
+* Deletes the contact at the specified `INDEX`.
+* The index refers to the index number shown in the displayed contact list.
+* The index **must be a positive integer** 1, 2, 3, …​
 
-Shows a list of all contacts in FaculType.
-
-Format: `clist`
-
-### Listing all modules : `mlist`
-
-Shows a list of all modules in the active semester.
-
-Format: `mlist`
+Examples:
+* `list` followed by `delete 2` deletes the 2nd contact in FaculType.
+* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
 
 ### Editing a contact : `edit`
 
@@ -87,7 +77,7 @@ Examples:
 
 Adds or updates the remark of an existing contact in FaculType.
 
-Format: `remark INDEX [r/REMARK]`
+Format: `remark INDEX r/[REMARK]`
 
 * Adds a remark to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * You can remove the contact’s remark by typing `r/` without specifying any remark after it.
@@ -114,21 +104,6 @@ Examples:
 * `find n/victor tan d/computing` returns all contacts with names containing `victor` and `tan` and with departments
 containing `computing`.
  
- 
-### Deleting a contact : `delete`
-
-Deletes the specified contact from FaculType.
-
-Format: `delete INDEX`
-
-* Deletes the contact at the specified `INDEX`.
-* The index refers to the index number shown in the displayed contact list.
-* The index **must be a positive integer** 1, 2, 3, …​
-
-Examples:
-* `list` followed by `delete 2` deletes the 2nd contact in FaculType.
-* `find Betsy` followed by `delete 1` deletes the 1st contact in the results of the `find` command.
-
 ### Adding a module: `addmod`
 
 Adds a new module to the active semester.
@@ -170,6 +145,24 @@ Examples :
 * `findmod n/programming` returns all modules with names containing `programming`.
 * `findmod m/CS2 n/security i/Bob` returns all modules with codes containing `CS2`, names containing `programming`,
 and instructors with names containing `Bob`.
+
+### Listing all contacts and modules: `list`
+
+Shows a list of all contacts in FaculType and all modules in the active semester.
+
+Format: `list`
+
+### Listing all contacts : `clist`
+
+Shows a list of all contacts in FaculType.
+
+Format: `clist`
+
+### Listing all modules : `mlist`
+
+Shows a list of all modules in the active semester.
+
+Format: `mlist`
 
 ### Assigning an instructor to modules : `assign`
 
@@ -229,6 +222,12 @@ Clears all entries of modules in the active semester.
 
 Format : `mclear`
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+Format: `help`
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -255,7 +254,7 @@ Action | Format, Examples
 **Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL d/DEPARTMENT o/OFFICE [t/TAG]…​` <br> e.g. `add n/Betsy Crowe p/98765431 e/betsycrowe@example.com d/Data Science o/COM1-02-03 t/lecturer t/friend`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TAG]…​` <br> e.g. `edit 1 d/Information Systems o/COM2-01-02`
-**Remark** | `remark INDEX [r/REMARK]`<br> e.g. `remark 1 r/Wears red glasses`
+**Remark** | `remark INDEX r/[REMARK]`<br> e.g. `remark 1 r/Wears red glasses`
 **Find** | `find [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [r/REMARK] [t/TAG]` <br> e.g. `find n/Victor Tan d/Math`
 **Add modules** | `addmod m/MODULE_CODE n/MODULE_NAME`<br> e.g. `addmod m/CS2103 n/Software Engineering`
 **Delete modules** | `delmod m/MODULE_CODE`<br> e.g. `delmod m/CS2103`
