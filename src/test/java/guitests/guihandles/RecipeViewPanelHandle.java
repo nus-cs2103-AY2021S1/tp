@@ -4,6 +4,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import chopchop.model.recipe.Recipe;
+import chopchop.ui.RecipeCard;
+import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
@@ -24,6 +26,9 @@ public class RecipeViewPanelHandle extends NodeHandle<GridPane> {
         super(recipeViewPanelNode);
     }
 
+    private void test() {
+
+    }
 
     private Set<Node> getAllCardNodes() {
         return guiRobot.lookup(RECIPE_CARD_ID).queryAll();
