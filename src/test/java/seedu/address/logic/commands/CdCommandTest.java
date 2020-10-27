@@ -82,22 +82,22 @@ public class CdCommandTest {
 
     @Test
     public void execute_rootGetParent_throwCommandException() {
-        if (isWindows) {
-            Path root = Paths.get(absoluteHomeAddress).getRoot();
-            Model modelStub = new ModelStubWithCurrentPath(root.toString());
-            CdCommand cdCommand = new CdCommand(AddressType.PARENT, "");
-            assertThrows(CommandException.class, CdCommand.MESSAGE_NO_PARENT_PATH, () -> cdCommand.execute(modelStub));
-        }
+        Path root = Paths.get(absoluteHomeAddress).getRoot();
+        Model modelStub = new ModelStubWithCurrentPath(root.toString());
+        CdCommand cdCommand = new CdCommand(AddressType.PARENT, "");
+        assertThrows(CommandException.class, CdCommand.MESSAGE_NO_PARENT_PATH, () -> cdCommand.execute(modelStub));
     }
 
     @Test
     public void execute_isNotDirectory_throwCommandException() {
-        Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
-        CdCommand cdCommand = new CdCommand(AddressType.CHILD, "build.gradle");
-        assert new File("./build.gradle").exists();
+        if (isWindows) {
+            Model modelStub = new ModelStubWithCurrentPath(absoluteFileAddress);
+            CdCommand cdCommand = new CdCommand(AddressType.CHILD, "build.gradle");
+            assert new File("./build.gradle").exists();
 
-        assertThrows(CommandException.class, String.format(
-                CdCommand.MESSAGE_PATH_INVALID, "build.gradle"), () -> cdCommand.execute(modelStub));
+            assertThrows(CommandException.class, String.format(
+                    CdCommand.MESSAGE_PATH_INVALID, "build.gradle"), () -> cdCommand.execute(modelStub));
+        }
     }
 
     @Test
