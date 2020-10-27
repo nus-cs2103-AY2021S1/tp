@@ -28,7 +28,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.1.8 Searching for a recipe: `searchR`](#search-recipe)
         * [5.1.9 Recommending recipes : `recommend`](#recommend-recipe)
         * [5.1.10 Clearing all recipes : `clearR`](#clear-recipe) 
-        <br>
+        <br><br>
     - [5.2 Fridge-related Commands](#52-ingredient-related-commands)
         * [5.2.1 Adding an ingredient: `addF`](#add-ingredient)
         * [5.2.2 Listing all ingredients : `fridge`](#list-ingredient)
@@ -37,13 +37,13 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.2.5 Getting an ingredient to edit: `editF`](#get-edit-ingredient)
         * [5.2.6 Searching for an Ingredient: `searchF`](#search-ingredient)
         * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient) 
-        <br>
+        <br><br>
     - [5.3 Consumption-related Commands](#53-consumption-related-commands)
         * [5.3.1 Eating a recipe : `eatR`](#eat-consumption)
         * [5.3.2 Listing all recipes eaten : `calories`](#list-consumption)
         * [5.3.3 Deleting a recipe eaten: `deleteC`](#delete-consumption)
         * [5.3.4 Clearing all consumed recipes : `clearC`](#clear-consumption) 
-        <br>
+        <br><br>
     - [5.4 Miscellaneous Commands](#54-miscellaneous-commands)
         * [5.4.1 Viewing help : `help`](#help)
         * [5.4.2 Exiting the program : `exit`](#exit)
@@ -80,6 +80,7 @@ This user guide provides in-depth documentation on the **installation process, s
 This section will explain the symbols in the user guide, and the format and parameters of commands.
 
 ## 2.1 Symbols <a id="21-symbols"></a>
+
 Symbol | Meaning
 -------|------------------
 :memo: | This symbol indicates information to take note of.
@@ -224,9 +225,9 @@ Multiple ingredients are separated by `,`.
    
       Image | File Path | Image | File Path
       --------|------------------|---------|----------------
-      <img src="../src/main/resources/images/healthy1.jpg" width="100" height="100"> | images/healthy1.jpg | <img src="../src/main/resources/images/healthy4.jpg" width="100" height="100"> | images/healthy4.jpg
-      <img src="../src/main/resources/images/healthy2.jpg" width="100" height="100"> | images/healthy2.jpg | <img src="../src/main/resources/images/healthy5.jpg" width="100" height="100"> | images/healthy5.jpg
-      <img src="../src/main/resources/images/healthy3.jpg" width="100" height="100"> | images/healthy3.jpg | <img src="../src/main/resources/images/healthy6.jpg" width="100" height="100"> | images/healthy6.jpg
+      <img src="images/healthy1.jpg" width="100" height="100"> | images/healthy1.jpg | <img src="images/healthy4.jpg" width="100" height="100"> | images/healthy4.jpg
+      <img src="images/healthy2.jpg" width="100" height="100"> | images/healthy2.jpg | <img src="images/healthy5.jpg" width="100" height="100"> | images/healthy5.jpg
+      <img src="images/healthy3.jpg" width="100" height="100"> | images/healthy3.jpg | <img src="images/healthy6.jpg" width="100" height="100"> | images/healthy6.jpg
    
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
  step of the instruction based on the end of a sentence, indicated by a `.`.
