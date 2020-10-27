@@ -1,8 +1,13 @@
 package com.eva.logic.commands;
 
-import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static java.util.Objects.requireNonNull;
+import static com.eva.commons.util.CollectionUtil.requireAllNonNull;
+import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 
+import java.util.List;
+
+import com.eva.commons.core.Messages;
+import com.eva.commons.core.index.Index;
 import com.eva.logic.commands.exceptions.CommandException;
 import com.eva.model.Model;
 import com.eva.model.person.applicant.Applicant;
@@ -26,34 +31,36 @@ public class SetApplicationStatusCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Application Status of %1$s changed to %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the eva database";
 
-    private final Applicant toSetApplicationStatus;
+    private final Index targetIndex;
     private final ApplicationStatus newApplicationStatus;
 
     /**
      * Creates an SetApplicationStatusCommand to set the application of the specified {@code Applicant}
      */
-    public SetApplicationStatusCommand(Applicant applicant, ApplicationStatus newApplicationStatus) {
+    public SetApplicationStatusCommand(Index index, ApplicationStatus newApplicationStatus) {
+        requireAllNonNull(index, newApplicationStatus);
         this.newApplicationStatus = newApplicationStatus;
-        requireNonNull(applicant);
-        toSetApplicationStatus = applicant;
+        targetIndex = index;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasApplicant(toSetApplicationStatus)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        List<Applicant> lastShownList = model.getFilteredApplicantList();
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
+        Applicant targetApplicant = lastShownList.get(targetIndex.getZeroBased());
 
-        model.setApplicationStatus(toSetApplicationStatus, newApplicationStatus);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toSetApplicationStatus, newApplicationStatus));
+        model.setApplicationStatus(targetApplicant, newApplicationStatus);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, targetApplicant, newApplicationStatus));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SetApplicationStatusCommand // instanceof handles nulls
-                && toSetApplicationStatus.equals(((SetApplicationStatusCommand) other).toSetApplicationStatus));
+                && targetIndex.equals(((SetApplicationStatusCommand) other).targetIndex));
     }
 }

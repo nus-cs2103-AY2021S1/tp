@@ -6,11 +6,7 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_DESC;
 import static com.eva.logic.parser.CliSyntax.PREFIX_TITLE;
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Stream;
 
 import com.eva.commons.core.index.Index;
@@ -23,6 +19,7 @@ import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
@@ -242,5 +239,12 @@ public class ParserUtil {
             throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return new InterviewDate(value.trim());
+    }
+
+    public static ApplicationStatus parseApplicationStatus(String value) throws ParseException {
+        if (! ApplicationStatus.isValidApplicationStatus(value)) {
+            throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
+        }
+        return  new ApplicationStatus(value);
     }
 }
