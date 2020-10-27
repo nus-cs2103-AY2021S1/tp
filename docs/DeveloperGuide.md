@@ -159,7 +159,7 @@ The Class Diagram for the Storage Component is shown below (*Figure 8*)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save the ZooKeep book data in json format and read it back.
 
 ### Common classes
 
