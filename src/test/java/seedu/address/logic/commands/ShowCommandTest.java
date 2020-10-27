@@ -4,7 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TAG;
+import static seedu.address.testutil.TypicalTags.MYFILE;
+import static seedu.address.testutil.TypicalTags.MYFILE2;
 import static seedu.address.testutil.TypicalTags.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -13,12 +14,14 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
 import seedu.address.model.tag.TagNameEqualsKeywordPredicate;
+import seedu.address.testutil.TypicalTags;
 
 public class ShowCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
+
 
     @Test
     public void equals() {
@@ -60,15 +63,34 @@ public class ShowCommandTest {
 
     @Test
     public void execute_validTagName_showTagFileSuccess() {
-        Tag tagToBeShown = model.getFilteredTagList().get(INDEX_FIRST_TAG.getZeroBased());
-        TagNameEqualsKeywordPredicate predicate = new TagNameEqualsKeywordPredicate(tagToBeShown.getTagName());
-        ShowCommand showCommand = new ShowCommand(predicate);
+        TagNameEqualsKeywordPredicate firstPredicate =
+                new TagNameEqualsKeywordPredicate(MYFILE.getTagName());
+        TagNameEqualsKeywordPredicate secondPredicate =
+                new TagNameEqualsKeywordPredicate(TypicalTags.MYFILE2.getTagName());
 
-        String expectedMessage = String.format(showCommand.MESSAGE_SUCCESS,
-                tagToBeShown.getTagName(), tagToBeShown.getFileAddress());
+        ShowCommand firstShowCommand = new ShowCommand(firstPredicate);
+        ShowCommand secondShowCommand = new ShowCommand(secondPredicate);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
 
-        assertCommandSuccess(showCommand, model, expectedMessage, expectedModel);
+        // show tag that has more than 1 label
+        StringBuilder firstBuilder = new StringBuilder();
+        firstBuilder.append(String.format(firstShowCommand.MESSAGE_SUCCESS,
+                MYFILE.getTagName(), MYFILE.getFileAddress()));
+        firstBuilder.append("\nLabels: ");
+        MYFILE.getLabels().forEach(firstBuilder::append);
+        String firstExpectedMessage = firstBuilder.toString().trim();
+
+        // show tag that has only 1 label
+        StringBuilder secondBuilder = new StringBuilder();
+        secondBuilder.append(String.format(secondShowCommand.MESSAGE_SUCCESS,
+                MYFILE2.getTagName(), MYFILE2.getFileAddress()));
+        secondBuilder.append("\nLabel: ");
+        MYFILE2.getLabels().forEach(secondBuilder::append);
+        String secondExpectedMessage = secondBuilder.toString().trim();
+
+
+        assertCommandSuccess(firstShowCommand, model, firstExpectedMessage, expectedModel);
+        assertCommandSuccess(secondShowCommand, model, secondExpectedMessage, expectedModel);
     }
 }

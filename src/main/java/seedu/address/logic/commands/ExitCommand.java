@@ -9,6 +9,8 @@ public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
     public static final String EXIT_COMMAND_USAGE = COMMAND_WORD;
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Exit from HelloFile app"
+            + "\n\nExample: " + COMMAND_WORD;
     public static final String MESSAGE_EXIT_ACKNOWLEDGEMENT = "Exiting Address Book as requested ...";
 
     @Override

@@ -4,8 +4,13 @@ import java.io.File;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.commons.util.AppUtil;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * An UI component that displays information of a {@code File}.
@@ -13,6 +18,8 @@ import javafx.scene.layout.Region;
 public class FileCard extends UiPart<Region> {
 
     private static final String FXML = "FileCard.fxml";
+    private static final Image FILE_ICON = AppUtil.getImage("/images/file_icon.png");
+    private static final Image FOLDER_ICON = AppUtil.getImage("/images/folder_icon.png");
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,6 +34,8 @@ public class FileCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private ImageView icon;
+    @FXML
     private Label fileName;
 
     /**
@@ -36,6 +45,29 @@ public class FileCard extends UiPart<Region> {
         super(FXML);
         this.file = file;
         fileName.setText(file.getName());
+
+        if (file.isDirectory()) {
+            icon.setImage(FOLDER_ICON);
+        } else {
+            icon.setImage(FILE_ICON);
+        }
+    }
+
+    /**
+     * Changes the current directory to this path.
+     */
+    public void cdToThisPath() {
+        MainWindow mainWindow = MainWindow.getInstance();
+        if (mainWindow == null) {
+            return;
+        }
+
+        String command = "cd ./" + fileName.getText();
+        try {
+            mainWindow.executeCommand(command);
+        } catch (CommandException | ParseException exception) {
+            // do nothing
+        }
     }
 
     @Override

@@ -18,13 +18,13 @@ public class ShowCommand extends Command {
 
     public static final String COMMAND_WORD = "show";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a tag's file address. "
-            + "\nParameters: "
+            + "\n\nParameters: "
             + PREFIX_TAG_NAME + "TAG_NAME "
-            + "\nExample: " + COMMAND_WORD + " "
+            + "\n\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 ";
-    public static final String SHOW_MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
+    public static final String SHOW_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
     public static final String MESSAGE_SUCCESS = "%s's file path: %s";
-
+    public static final String NO_LABEL_IN_TAG = "\nYou haven't add any label to this tag!";
     private final TagNameEqualsKeywordPredicate predicate;
 
     /**
@@ -44,7 +44,18 @@ public class ShowCommand extends Command {
         }
 
         Tag tag = tags.get(0);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, tag.getTagName(), tag.getFileAddress()));
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(String.format(MESSAGE_SUCCESS, tag.getTagName(), tag.getFileAddress()));
+
+        if (tag.getLabels().isEmpty()) {
+            builder.append(NO_LABEL_IN_TAG);
+        } else {
+            builder.append(tag.getLabels().size() == 1 ? "\nLabel: " : "\nLabels: ");
+            tag.getLabels().forEach(builder::append);
+        }
+
+        return new CommandResult(builder.toString().trim());
     }
 
     @Override

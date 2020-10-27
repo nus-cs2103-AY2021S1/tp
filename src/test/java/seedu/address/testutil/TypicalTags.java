@@ -31,7 +31,9 @@ public class TypicalTags {
             .withLabels("project", "myfile")
             .build();
     public static final Tag MYFILE2 = new TagBuilder().withTagName("myfile 2")
-            .withFileAddress("c:\\a\\b\\myfile2.txt").build();
+            .withFileAddress("c:\\a\\b\\myfile2.txt")
+            .withLabels("project")
+            .build();
     public static final Tag MYFILE3 = new TagBuilder().withTagName("myfile 3")
             .withFileAddress("c:\\a\\b\\myfile3.txt").build();
 
