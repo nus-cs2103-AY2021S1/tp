@@ -122,11 +122,11 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
     ![topup_example](images/ug_example/topup_example.PNG)
 
 6. **find** <a name="find"></a>
-    - Finds expenses with given keywords, date, category by user.
+    - Finds expenses with given keywords and/or date by user.
     - Expenses that fits the criteria will be presented as another list.
-    - Keywords and category are case-sensitive.
-    - Format: `find [-d<description>] [-@<date>] [t/<category>]`
-    - Example: `find -dPhone`, `find -dlunch -@01-07-2020 t/Food`
+    - Keywords are case-sensitive, and partial word matching is supported.
+    - Format: `find [-d<description>] [-@<date>]`
+    - Example: `find -dPhone`, `find -dlunch -@01-07-2020`
 
     ![find_example](images/ug_example/find_example.PNG)
 
@@ -189,6 +189,6 @@ Bamboo (v1.2) is a **simple desktop app for managing personal finance, optimized
 |  **Edit**  | `edit <index> [-d<description>] [-$<amount_spent>] [-@<date>] [t/<category>]`<br> e.g.,`edit 1 -dlunch -$12.50`, `edit 1 -$12.50 -dlunch -@11-11/2020 t/Lunch`|
 | **Delete** | `delete <index>`<br> e.g., `delete 1`                                                                                                                         |
 | **Topup**  | `topup -$<amount>`<br> e.g., `topup -$200`                                                                                                                    |
-|  **Find**  | `find [-d<description>] [-@<date>] [t/<category>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020 t/Food`                                              |
+|  **Find**  | `find [-d<description>] [-@<date>]` <br> e.g., `find -dlunch`, `find -dlunch -@01-07-2020`                                                                    |
 | **Remark** | `remark <index> -r<remark>` <br> e.g., `remark 11 -r Pepper Lunch`                                                                                            |
 | **Sort**   | `sort -by <sorting keyword> [-by <sorting keyword>] [-by <sorting keyword>]` <br> e.g., `sort -by date -by descriptionR`                                      |
