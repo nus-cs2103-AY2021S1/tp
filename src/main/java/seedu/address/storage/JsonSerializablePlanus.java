@@ -45,7 +45,9 @@ class JsonSerializablePlanus {
      * @param source future changes to this will not affect the created {@code JsonSerializablePlanus}.
      */
     public JsonSerializablePlanus(ReadOnlyPlanus source) {
-        deadlines.addAll(source.getTaskList().stream().filter(task -> task instanceof Deadline).map(task -> (Deadline) task)
+        deadlines.addAll(source.getTaskList().stream()
+                .filter(task -> task instanceof Deadline)
+                .map(task -> (Deadline) task)
                 .map(JsonAdaptedDeadline::new).collect(Collectors.toList()));
         events.addAll(source.getTaskList().stream().filter(task -> task instanceof Event).map(task -> (Event) task)
                 .filter(event -> !event.isLesson()).map(JsonAdaptedEvent::new).collect(Collectors.toList()));

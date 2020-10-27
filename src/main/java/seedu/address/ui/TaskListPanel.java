@@ -46,9 +46,9 @@ public class TaskListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 if (task instanceof Deadline) {
-                    setGraphic(new DeadlineCard((Deadline)task, getIndex() + 1).getRoot());
+                    setGraphic(new DeadlineCard((Deadline) task, getIndex() + 1).getRoot());
                 } else {
-                    setGraphic(new EventCard((Event)task, getIndex() + 1).getRoot());
+                    setGraphic(new EventCard((Event) task, getIndex() + 1).getRoot());
                 }
             }
         }
