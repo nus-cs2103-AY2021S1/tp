@@ -48,19 +48,15 @@
       "tag": "Default",
       "amount": "10.00"
     },
-    "categoryBudgets": [ {
-      "tag": "Transport",
-      "amount": "50.00"
-    }, {
-      "tag": "Food",
-      "amount": "70.00"
-    }, {
-      "tag": "Shopping",
-      "amount": "20.00"
-    }, {
-      "tag": "Girlfriend",
-      "amount": "200.00"
-    } ]
-  },
-  "categories": [ "Transport", "Food", "Shopping", "Girlfriend" ]
+    "categoryBudgets": [
+      {
+        "tag": "Food",
+        "amount": "100.00"
+      },
+      {
+        "tag": "Transport",
+        "amount": "50.00"
+      }
+    ]
+  }
 }

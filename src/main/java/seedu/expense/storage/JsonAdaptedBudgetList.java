@@ -12,12 +12,12 @@ import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
 
 /**
- * Jackson-friendly version of {@link UniqueCategoryBudgetList}.
+ * Jackson-friendly version of {@link CategoryBudget}.
  */
 public class JsonAdaptedBudgetList {
 
     public static final String MESSAGE_DUPLICATE_CATEGORY_BUDGET = "Budgets list contains duplicate"
-            + " category-budgets.";
+            + " category-budget(s).";
 
     private final JsonAdaptedBudget defaultCategory;
     private final List<JsonAdaptedBudget> categoryBudgets = new ArrayList<>();
@@ -33,7 +33,7 @@ public class JsonAdaptedBudgetList {
     }
 
     /**
-     * Converts a given {@code UniqueCategoryBudgetList} into this class for Jackson use.
+     * Converts a given {@code Budget} into this class for Jackson use.
      */
     public JsonAdaptedBudgetList(UniqueCategoryBudgetList budgets) {
         defaultCategory = new JsonAdaptedBudget(budgets.getDefaultCategory());
@@ -43,7 +43,7 @@ public class JsonAdaptedBudgetList {
     }
 
     /**
-     * Converts this Jackson-friendly adapted budget object into the model's {@code UniqueCategoryBudgetList} object.
+     * Converts this Jackson-friendly adapted budget object into the model's {@code Budget} object.
      */
     public UniqueCategoryBudgetList toModelType() throws IllegalValueException {
         UniqueCategoryBudgetList budgetList = new UniqueCategoryBudgetList();

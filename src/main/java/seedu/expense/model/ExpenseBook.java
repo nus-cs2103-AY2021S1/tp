@@ -80,13 +80,6 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
 
         setExpenses(newData.getExpenseList());
         setBudgets(newData.getBudgets());
-        setTags(newData.getTags());
-    }
-
-    //// tag-level operations
-    @Override
-    public ObservableList<Tag> getTags() {
-        return tags.asUnmodifiableObservableList();
     }
 
     //// budget-level operations
