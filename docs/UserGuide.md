@@ -635,8 +635,8 @@ This section features general questions about _Common Cents_ that are not specif
 **Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that 
 contains the data of your previous _CommonCents_ home folder.
 
-2. **Question:** Where can I make bug reports?<br>
-**Answer:** You may submit a bug report directly to our team [here].
+2. **Question:** What if I notice something wrong with the application?<br>
+**Answer:** You may submit a bug report or send us a notice directly to our team [here](https://github.com/AY2021S1-CS2103T-T13-4/tp).
 
 
 
@@ -648,7 +648,9 @@ This section features feature-related questions about _Common Cents_.
 2. **Question:** I encountered this situation when using the features as shown in the screenshot below. I understand that the 
 prefix indicated is wrong after checking the `add` section in the User Guide. However, the error message states that my category is
 wrong. Can I clarify on this situation?<br>
-*(Insert screenshot for the case "edit 2 c/expense n/buy McSpicy a/8.60")*
+
+![errorMessage](images/commands/errorMessage.png)
+<p align="center"> <sub> <b>Figure</b>: Error message that might cause confusion </sub> </p>
 
    **Answer:** 
 Yes, the prefix indicated is wrong as it should be `d/` instead of `n/`. As a result, the category parameter is read as
