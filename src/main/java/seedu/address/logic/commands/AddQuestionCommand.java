@@ -46,7 +46,7 @@ public class AddQuestionCommand extends QuestionCommand {
         requireNonNull(model);
         logger.log(Level.INFO, "Beginning command execution");
 
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getSortedStudentList();
         if (index.getZeroBased() >= lastShownList.size()) {
             logger.log(Level.WARNING, "Handling non-existent student error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
