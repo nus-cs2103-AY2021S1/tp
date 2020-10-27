@@ -21,9 +21,10 @@ title: User Guide
     + [3.3.5. Edit leave taken by staff: `editleave`](#335-edit-leave-taken-by-staff-editleave)
   * [3.4. Applicant commands](#34-applicant-commands)
     + [3.4.1 Adding an applicant: `addapplicant`](#341-adding-an-applicant-addapplicant)
-    + [3.4.2. Deleting an applicant:](#342-deleting-an-applicant)
+    + [3.4.2. Deleting an applicant: `delapplicant`](#342-deleting-an-applicant-delapplicant)
     + [3.4.3. Adding an application: `addapplication`](#343-adding-an-application-addapplication)
     + [3.4.4. Deleting an application: `deleteapplication`](#344-deleting-an-application-deleteapplication)
+    + [3.4.5. Setting of application status: `setappstatus`](#345-setting-of-application-status-settappstatus)
   * [3.5. Centralised Add (Experienced users): `add`](#35-centralised-add-experienced-users-add)
     + [3.5.1. Add a staff to application: `add s-`](#351-add-a-staff-to-application-add-s-)
     + [3.5.2. Add a applicant to application: `add a-`](#352-add-a-applicant-to-application-add-a-)
@@ -58,6 +59,8 @@ Eva is a simple and lightweight application that **handles HR related administra
 like managing staff performance and recruitment of applicants, faster than a typical mouse/GUI driven app.
 
 This user guide takes you through the basics of Eva and helps you get moving straightaway.
+
+------------------------------------------------------------------------------------------------------------------------
 
 ## 2. Getting Started
 
@@ -104,7 +107,6 @@ This user guide takes you through the basics of Eva and helps you get moving str
 --------------------------------------------------------------------------------------------------------------------
 
 ## 3. Features
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -127,7 +129,6 @@ This user guide takes you through the basics of Eva and helps you get moving str
 Note: Once any change is made to the data from the commands below, the data is saved in the hard disk. 
 There is no need to save manually.
 ### 3.1. Common Commands
-
 #### 3.1.1. View : `view`
 
 Brings user to the profile panel of the staff, if on the staff list, or applicant, if on the applicant list, at the specified index. 
@@ -237,6 +238,8 @@ Format: `addapplicant n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE
  - An applicant can have any number of tags (including 0) <br>
  - An applicant can have any number of comments (including 0) <br>
  - The interview date has to be in DD/MM/YYYY format <br>
+ - Once you add an applicant the status would be automatically set as received, if you wish to change it, refer to the feature [setting 
+ of application status]() below
  - :bulb: **Tip** The interview date is optional. If an interview date is not fixed yet, you can leave it and set it later. <br>
 <br>
 
@@ -246,7 +249,7 @@ Examples:
 
 #### 3.4.2. Deleting an applicant: `delapplicant`
 
-Deletes an applicant with the specified index on the displayed list from the application. 
+Deletes an applicant with the specified index on the displayed list in Eva. 
 
 Format: `delapplicant INDEX`
 
@@ -274,7 +277,24 @@ Format: `deleteapplication INDEX`
 Examples:
 * `deleteapplication 1`
 
+#### 3.4.5 Setting of application status: `setappstatus`
+[This feature is coming soon] <br>
+Sets the application status of an applicant with the specified index on the displayed list in Eva.
+
+Format: `setappstatus INDEX NEW_APPLICATION_STATUS`
+
+- Application status can only be any one from the following: 
+  - received
+  - processing
+  - accepted
+  - rejected
+  
+Examples:
+* `setappstatus 1 received`
+
 ### 3.5. Quick Add (Experienced users): `add`
+
+These are some shortcuts you can use for the commands above.
 
 #### 3.5.1. Add a staff to application: `add s-`
 
@@ -424,5 +444,6 @@ _{explain the feature here}_
 | **DeleteApplicant**   | `to be updated` <br> e.g., `addleave 2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`                               |
 | **AddApplication**    | `addapplication INDEX [filepath]` <br> e.g., `addapplication 1 C:\Users\Public\Downloads\resume.txt`             |
 | **DeleteApplication** | `deleteapplication INDEX` <br> e.g., `deleteapplication 1`                                                       |
+| **SetAppStatus**      | `setappstatus INDEX NEW_APPLICATION_STATUS` <br> e.g., `setappstatus 1 processing`                               |
 
 
