@@ -17,14 +17,6 @@ import chopchop.ui.DisplayNavigator;
  */
 public class FilterRecipeCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter recipe";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters and gets all recipes whose ingredient "
-            + "and tag list contain any of the specified keywords (case-insensitive) and displays them as a "
-            + "list with index numbers.\nParameters: /FIELD_NAME KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " /ingredient apple /tag home /ingredient chocolate /tag snacks"
-            + "Note: Tag(s) and Ingredient names should be split into single words during your search.";
-
     private final IngredientsContainsKeywordsPredicate ingredientPredicates;
     private final TagContainsKeywordsPredicate tagPredicates;
 
@@ -69,4 +61,20 @@ public class FilterRecipeCommand extends Command {
             && ingredientPredicates.equals(((FilterRecipeCommand) other).ingredientPredicates)); // state check
     }
 
+    public static String getCommandString() {
+        return "filter recipe";
+    }
+
+    public static String getCommandHelp() {
+        return "Filters recipes by one or more criteria (tags and ingredients used)";
+    }
+
+    public static String getUserGuideSection() {
+        return "filtering-recipes--filterrecipe";
+    }
 }
+
+
+
+
+

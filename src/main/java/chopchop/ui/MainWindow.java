@@ -168,6 +168,11 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
+    void showCommandOutput(CommandResult output) {
+        this.commandOutput.setFeedbackToUser(output);
+    }
+
+
     /**
      * Closes the application.
      */
@@ -186,34 +191,35 @@ public class MainWindow extends UiPart<Stage> {
      * @see chopchop.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
-        try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getMessage());
 
-            if (commandResult.isStatsOutput()) {
-                this.commandOutput.setFeedbackToUser("", false); // clear cmd box
-                var res = commandResult.getStatsMessage();
-                this.statsOutput.setStatsMessage(commandResult.getMessage(), res.size() == 0);
-                this.statsOutput.renderList(commandResult.getStatsMessage());
+        try {
+            var result = logic.execute(commandText);
+            logger.info("Result: " + result.toString());
+
+            if (result.isStatsOutput()) {
+                this.commandOutput.clear(); // clear cmd box
+                var res = result.getStatsMessage();
+                this.statsOutput.setStatsMessage(result.toString(), res.size() == 0);
+                this.statsOutput.renderList(result.getStatsMessage());
             } else {
-                this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
+                this.commandOutput.setFeedbackToUser(result);
                 this.statsOutput.setStatsMessage("", false); // clear stats box
             }
 
-            if (commandResult.shouldShowHelp()) {
+            if (result.shouldShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.shouldExit()) {
+            if (result.shouldExit()) {
                 handleExit();
             }
 
-            return commandResult;
+            return result;
 
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
 
-            this.commandOutput.setFeedbackToUser(e.getMessage(), /* isError: */ true);
+            commandOutput.setFeedbackToUser(CommandResult.error(e.getMessage(), /* isError: */ true));
             throw e;
         }
     }

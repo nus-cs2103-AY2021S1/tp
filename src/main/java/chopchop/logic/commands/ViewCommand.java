@@ -12,12 +12,6 @@ import chopchop.ui.DisplayNavigator;
  * Displays a recipe identified by the index number or its name from the recipe book.
  */
 public class ViewCommand extends Command {
-    public static final String COMMAND_WORD = "view";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Displays the recipe identified by the name used in the displayed recipe list.\n"
-            + "Parameters: NAME \n"
-            + "Example: " + COMMAND_WORD + " chicken soup";
 
     private final ItemReference item;
 
@@ -44,5 +38,17 @@ public class ViewCommand extends Command {
         }
 
         return CommandResult.message("Displaying recipe '%s'", recipe.getValue().getName());
+    }
+
+    public static String getCommandString() {
+        return "view";
+    }
+
+    public static String getCommandHelp() {
+        return "Views the given recipe by opening its detailed view";
+    }
+
+    public static String getUserGuideSection() {
+        return "viewing-recipes--view";
     }
 }

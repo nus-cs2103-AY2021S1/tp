@@ -77,4 +77,16 @@ public class StatsRecipeDateCommand extends Command {
     public String toString() {
         return String.format("StatsRecipeDateCommand");
     }
+
+    public static String getCommandString() {
+        return "stats recipe";
+    }
+
+    public static String getCommandHelp() {
+        return "Shows recipes that were cooked in a given timeframe";
+    }
+
+    public static String getUserGuideSection() {
+        throw new RuntimeException("Travis pls implement this");
+    }
 }

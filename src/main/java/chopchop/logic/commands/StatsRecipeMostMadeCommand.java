@@ -6,7 +6,6 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class StatsRecipeMostMadeCommand extends Command {
-
     public static final String COMMAND_WORD = "stats recipe most made";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": List recipes that are most made";
@@ -28,5 +27,17 @@ public class StatsRecipeMostMadeCommand extends Command {
     @Override
     public String toString() {
         return "StatsRecipeMostCookedCommand";
+    }
+
+    public static String getCommandString() {
+        return "stats recipe most made";
+    }
+
+    public static String getCommandHelp() {
+        return "Shows the recipes that are cooked the most";
+    }
+
+    public static String getUserGuideSection() {
+        throw new RuntimeException("Travis pls implement this");
     }
 }

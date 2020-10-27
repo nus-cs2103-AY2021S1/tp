@@ -27,12 +27,6 @@ import chopchop.model.recipe.Recipe;
  * Edits a recipe identified using it's displayed index or name from the recipe book.
  */
 public class EditRecipeCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "edit recipe";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the recipe identified by the index number or name used in the displayed recipe list.\n"
-            + "Parameters: INDEX (must be a positive integer) / NAME\n"
-            + "Example: " + COMMAND_WORD + " 1";
 
     private final ItemReference item;
     private final RecipeEditDescriptor recipeEditDescriptor;
@@ -102,7 +96,13 @@ public class EditRecipeCommand extends Command implements Undoable {
 
             if (type == EditOperationType.ADD) {
 
-                // TODO: validate the ingredient here
+                for (var ingr : ingredients) {
+                    if (ingr.getName().equals(name)) {
+                        return Result.error("Recipe '%s' already contains ingredient '%s'",
+                            this.recipe.getName(), name);
+                    }
+                }
+
                 ingredients.add(new IngredientReference(name, qtyOpt.orElse(Count.of(1))));
 
             } else {
@@ -157,7 +157,7 @@ public class EditRecipeCommand extends Command implements Undoable {
                     return Result.error("Missing step number for %s", type);
                 }
 
-                var index = numOpt.get();
+                int index = numOpt.get();
                 if (index < 0 || index >= steps.size()) {
                     return Result.error("Step number '%d' is out of range (should be between 1 and %d)",
                         1 + index, steps.size());
@@ -231,5 +231,17 @@ public class EditRecipeCommand extends Command implements Undoable {
     @Override
     public String toString() {
         return String.format("EditRecipeCommand(%s)", this.item);
+    }
+
+    public static String getCommandString() {
+        return "edit recipe";
+    }
+
+    public static String getCommandHelp() {
+        return "Edits an existing recipe";
+    }
+
+    public static String getUserGuideSection() {
+        return "editing-recipes--editrecipe";
     }
 }

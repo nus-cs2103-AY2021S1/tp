@@ -33,6 +33,13 @@ public class UsageList<T extends Usage> {
     }
 
     /**
+     * Replaces the contents of the usage list with {@code usages}.
+     */
+    public void setAll(UsageList<T> usages) {
+        this.usages.setAll(usages.usages);
+    }
+
+    /**
      * Adds to the stack.
      */
     public void add(T item) {
@@ -158,14 +165,6 @@ public class UsageList<T extends Usage> {
         return outputLst.stream()
             .map(x -> new Pair<>(x.fst(), "No. of times made: " + x.snd().toString()))
             .collect(Collectors.toList());
-    }
-
-    /**
-     * Can be used to set, add or remove.
-     */
-    public void setAll(UsageList<T> newList) {
-        this.usages.clear();
-        this.usages.addAll(newList.getUsages());
     }
 
 }

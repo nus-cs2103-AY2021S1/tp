@@ -229,7 +229,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns a copy of usage list.
+     * Returns a copy of RecipeUsage list.
      */
     @Override
     public UsageList<RecipeUsage> getRecipeUsageList() {
@@ -237,11 +237,26 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Returns a copy of usage list.
+     * Returns a copy of IngredientUsage list.
      */
     @Override
     public UsageList<IngredientUsage> getIngredientUsageList() {
         return new UsageList<>(this.ingredientUsageList.getUsageList());
+    }
+
+    /**
+     * Sets the RecipeUsageList
+     */
+    @Override
+    public void setRecipeUsageList(UsageList<RecipeUsage> rl) {
+        this.recipeUsageList.setAll(rl);
+    }
+    /**
+     * Sets the IngredientUsageList
+     */
+    @Override
+    public void setIngredientUsageList(UsageList<IngredientUsage> il) {
+        this.ingredientUsageList.setAll(il);
     }
 
     @Override
@@ -265,16 +280,6 @@ public class ModelManager implements Model {
     @Override
     public void removeIngredientUsage(IngredientReference ingredient) {
         this.ingredientUsageList.pop(ingredient.getName());
-    }
-
-    @Override
-    public void setRecipeUsageList(UsageList<RecipeUsage> rl) {
-        this.recipeUsageList.setAll(rl);
-    }
-
-    @Override
-    public void setIngredientUsageList(UsageList<IngredientUsage> il) {
-        this.ingredientUsageList.setAll(il);
     }
 
     @Override

@@ -77,4 +77,16 @@ public class StatsIngredientDateCommand extends Command {
     public String toString() {
         return String.format("StatsIngredientDateCommand");
     }
+
+    public static String getCommandString() {
+        return "stats ingredient";
+    }
+
+    public static String getCommandHelp() {
+        return "Shows ingredients that were used by cooked recipes in a given timeframe";
+    }
+
+    public static String getUserGuideSection() {
+        throw new RuntimeException("Travis pls implement this");
+    }
 }

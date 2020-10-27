@@ -167,8 +167,10 @@ public interface Model {
 
     void removeIngredientUsage(IngredientReference ingredient);
 
+    /** Sets the RecipeUsageList */
     void setRecipeUsageList(UsageList<RecipeUsage> rl);
 
+    /** Sets the IngredientUsageList */
     void setIngredientUsageList(UsageList<IngredientUsage> rl);
 
     List<RecipeUsage> getRecentlyUsedRecipe(int n);
