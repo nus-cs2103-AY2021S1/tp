@@ -19,15 +19,15 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.property.SellerIdContainsKeywordsPredicate;
-import seedu.address.model.property.PropertyIdContainsKeywordsPredicate;
 import seedu.address.model.property.AskingPricePredicate;
 import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyAddressContainsKeywordsPredicate;
+import seedu.address.model.property.PropertyIdContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyIsClosedDealPredicate;
 import seedu.address.model.property.PropertyIsRentalPredicate;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyTypeContainsKeywordsPredicate;
+import seedu.address.model.property.SellerIdContainsKeywordsPredicate;
 
 /**
  * Finds and lists all properties in property book whose attributes contains any of the argument keywords.
@@ -92,7 +92,8 @@ public class FindPropertyCommand extends Command {
         private PropertyIdContainsKeywordsPredicate propertyIdPredicate;
         private PropertyIsClosedDealPredicate isClosedDealPredicate;
 
-        public FindPropertyDescriptor() {}
+        public FindPropertyDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -116,7 +117,8 @@ public class FindPropertyCommand extends Command {
                     propertyIdPredicate);
         }
 
-        public void setPropertyNameContainsKeywordsPredicate(PropertyNameContainsKeywordsPredicate propertyNamePredicate) {
+        public void setPropertyNameContainsKeywordsPredicate(PropertyNameContainsKeywordsPredicate
+                                                                     propertyNamePredicate) {
             this.propertyNamePredicate = propertyNamePredicate;
         }
 
@@ -141,7 +143,8 @@ public class FindPropertyCommand extends Command {
             return Optional.ofNullable(addressPredicate);
         }
 
-        public void setPropertyTypeContainsKeywordsPredicate(PropertyTypeContainsKeywordsPredicate propertyTypePredicate) {
+        public void setPropertyTypeContainsKeywordsPredicate(PropertyTypeContainsKeywordsPredicate
+                                                                     propertyTypePredicate) {
             this.propertyTypePredicate = propertyTypePredicate;
         }
 
@@ -213,7 +216,8 @@ public class FindPropertyCommand extends Command {
             FindPropertyCommand.FindPropertyDescriptor e = (FindPropertyCommand.FindPropertyDescriptor) other;
 
             return getPropertyNameContainsKeywordsPredicate().equals(e.getPropertyNameContainsKeywordsPredicate())
-                    && getPropertyAddressContainsKeywordsPredicate().equals(e.getPropertyAddressContainsKeywordsPredicate())
+                    && getPropertyAddressContainsKeywordsPredicate()
+                    .equals(e.getPropertyAddressContainsKeywordsPredicate())
                     && getPropertyTypeContainsKeywordsPredicate().equals(e.getPropertyTypeContainsKeywordsPredicate())
                     && getAskingPricePredicate().equals(e.getAskingPricePredicate())
                     && getSellerIdContainsKeywordsPredicate().equals(e.getSellerIdContainsKeywordsPredicate())

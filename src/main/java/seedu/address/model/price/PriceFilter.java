@@ -16,12 +16,11 @@ public class PriceFilter implements Predicate<Price> {
      * Enumeration of the different comparisons.
      */
     enum CompareOp {
-        LESS_THAN ((toTest, target) -> toTest.compareTo(target) < 0),
-        LESS_THAN_OR_EQUALS ((toTest, target) -> toTest.compareTo(target) <= 0),
-        EQUALS ((toTest, target) -> toTest.compareTo(target) == 0),
-        GREATER_THAN ((toTest, target) -> toTest.compareTo(target) > 0),
-        GREATER_THAN_OR_EQUALS ((toTest, target) -> toTest.compareTo(target) >= 0)
-        ;
+        LESS_THAN((toTest, target) -> toTest.compareTo(target) < 0),
+        LESS_THAN_OR_EQUALS((toTest, target) -> toTest.compareTo(target) <= 0),
+        EQUALS((toTest, target) -> toTest.compareTo(target) == 0),
+        GREATER_THAN((toTest, target) -> toTest.compareTo(target) > 0),
+        GREATER_THAN_OR_EQUALS((toTest, target) -> toTest.compareTo(target) >= 0);
 
         private final BiFunction<Price, Price, Boolean> function;
 
@@ -33,9 +32,7 @@ public class PriceFilter implements Predicate<Price> {
             return function;
         }
     }
-
-    private final CompareOp compareOp;
-    private final Price target;
+    public static final String MESSAGE_CONSTRAINTS = "< / <= / == / > / >= PRICE eg [<= 500]";
     private static Map<String, CompareOp> map = Map.of(
             "<", CompareOp.LESS_THAN,
             "<=", CompareOp.LESS_THAN_OR_EQUALS,
@@ -43,8 +40,8 @@ public class PriceFilter implements Predicate<Price> {
             ">", CompareOp.GREATER_THAN,
             ">=", CompareOp.GREATER_THAN_OR_EQUALS
     );
-    public static final String MESSAGE_CONSTRAINTS = "< / <= / == / > / >= PRICE eg [<= 500]";
-
+    private final CompareOp compareOp;
+    private final Price target;
     /**
      * Constructs a {@code PriceFilter} object from a String.
      *
@@ -60,12 +57,18 @@ public class PriceFilter implements Predicate<Price> {
             this.compareOp = map.get(priceFilter.substring(0, 1));
             this.target = new Price(Double.parseDouble(priceFilter.substring(1)));
         } else {
-            assert false: "Invalid price filter scenario already handled";
+            assert false : "Invalid price filter scenario already handled";
             this.compareOp = null;
             this.target = null;
         }
     }
 
+    /**
+     * Checks if the string is a valid {@code PriceFilter}.
+     *
+     * @param test The test string.
+     * @return True if string is a valid {@code PriceFilter}.
+     */
     public static boolean isValidPriceFilter(String test) {
         if (test == null || test.equals("")) {
             return false;
@@ -95,7 +98,7 @@ public class PriceFilter implements Predicate<Price> {
     public boolean equals(Object obj) {
         return this == obj
                 || (obj instanceof PriceFilter
-        && compareOp.equals(((PriceFilter) obj).compareOp)
+            && compareOp.equals(((PriceFilter) obj).compareOp)
                 && target.equals(((PriceFilter) obj).target));
     }
 }

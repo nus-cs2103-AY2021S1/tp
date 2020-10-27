@@ -1,7 +1,6 @@
 package seedu.address.testutil.property;
 
 import java.util.Arrays;
-import java.util.List;
 
 import seedu.address.logic.commands.property.FindPropertyCommand.FindPropertyDescriptor;
 import seedu.address.model.price.PriceFilter;

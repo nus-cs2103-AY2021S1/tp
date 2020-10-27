@@ -47,8 +47,7 @@ public class PropertyIsClosedDealPredicateTest {
         PropertyIsClosedDealPredicate predicate =
                 new PropertyIsClosedDealPredicate(active);
         assertTrue(predicate.test(new PropertyBuilder().withIsClosedDeal("active").build()));
-
-         predicate =
+        predicate =
                 new PropertyIsClosedDealPredicate(close);
         assertTrue(predicate.test(new PropertyBuilder().withIsClosedDeal("close").build()));
     }

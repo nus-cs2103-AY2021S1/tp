@@ -22,6 +22,6 @@ public class PropertyIsRentalPredicate implements Predicate<Property> {
     public boolean equals(Object obj) {
         return this == obj
                 || (obj instanceof PropertyIsRentalPredicate
-        && target.equals(((PropertyIsRentalPredicate) obj).target));
+            && target.equals(((PropertyIsRentalPredicate) obj).target));
     }
 }

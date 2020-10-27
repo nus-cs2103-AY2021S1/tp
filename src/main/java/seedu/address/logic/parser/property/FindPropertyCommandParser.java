@@ -3,10 +3,10 @@ package seedu.address.logic.parser.property;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_ASKING_PRICE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PROPERTY_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_IS_CLOSED_DEAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_IS_RENTAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_PROPERTY_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_SELLER_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROPERTY_TYPE;
 

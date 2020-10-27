@@ -6,7 +6,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.property.FindPropertyCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.price.PriceFilter;
@@ -81,6 +80,13 @@ public class PropertyParserUtil {
         return new IsRental(trimmedIsRental);
     }
 
+    /**
+     * Parses the String arguments into a List of String.
+     *
+     * @param args The arguments.
+     * @return The List of String separated by words.
+     * @throws ParseException If arguments is empty.
+     */
     public static List<String> parseKeywords(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
@@ -91,6 +97,13 @@ public class PropertyParserUtil {
         return Arrays.asList(keywords);
     }
 
+    /**
+     * Parses the String priceFilter into a {@code PriceFilter} object.
+     *
+     * @param priceFilter The String priceFilter.
+     * @return A {@code PriceFilter} object.
+     * @throws ParseException If the priceFilter is in an invalid format.
+     */
     public static PriceFilter parsePriceFilter(String priceFilter) throws ParseException {
         String trimmed = priceFilter.trim();
         requireNonNull(priceFilter);
@@ -100,6 +113,13 @@ public class PropertyParserUtil {
         return new PriceFilter(trimmed);
     }
 
+    /**
+     * Parses the String isClosedDeal into a {@code IsClosedDeal} object.
+     *
+     * @param isClosedDeal The String isClosedDeal.
+     * @return The {@code IsClosedDeal} object.
+     * @throws ParseException If the isClosedDeal is in an invalid format.
+     */
     public static IsClosedDeal parseIsClosedDeal(String isClosedDeal) throws ParseException {
         requireNonNull(isClosedDeal);
         String trimmed = isClosedDeal.trim();
