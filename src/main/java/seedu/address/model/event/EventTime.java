@@ -21,6 +21,11 @@ public class EventTime {
         this.end = end;
     }
 
+    public EventTime(LocalDateTime start) {
+        this.start = start;
+        this.end = null;
+    }
+
     public LocalDateTime getStart() {
         return this.start;
     }

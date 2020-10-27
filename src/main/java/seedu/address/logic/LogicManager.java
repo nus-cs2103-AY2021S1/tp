@@ -16,6 +16,7 @@ import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.TodoListParser;
 import seedu.address.logic.parser.contactlistparsers.ContactListParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.schedulerparsers.SchedulerParser;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyModuleList;
@@ -37,6 +38,7 @@ public class LogicManager implements Logic {
     private final TodoListParser todoListParser;
     private final GradeTrackerParser gradeTrackerParser;
     private final ParserManager parserManager;
+    private final SchedulerParser schedulerParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -48,7 +50,9 @@ public class LogicManager implements Logic {
         contactListParser = new ContactListParser();
         todoListParser = new TodoListParser();
         gradeTrackerParser = new GradeTrackerParser();
-        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser, gradeTrackerParser);
+        schedulerParser = new SchedulerParser();
+        parserManager = new ParserManager(moduleListParser, todoListParser, contactListParser,
+                gradeTrackerParser, schedulerParser);
     }
 
     @Override
