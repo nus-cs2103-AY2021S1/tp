@@ -11,6 +11,7 @@ import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
 import seedu.expense.model.tag.Tag;
 
 /**
@@ -141,6 +142,12 @@ public interface Model {
      * Adds the given amount to the budget.
      */
     void topupBudget(Amount amount);
+
+    /**
+     * Adds the given amount to the {@code CategoryBudget} that corresponding to the specified {@code category}.
+     *
+     */
+    void topupCategoryBudget(Tag category, Amount amount) throws CategoryNotFoundException;
 
     /**
      * Checks if the given Tag is present in any of the category budget.

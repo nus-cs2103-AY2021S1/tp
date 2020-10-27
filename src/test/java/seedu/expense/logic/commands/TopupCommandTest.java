@@ -173,6 +173,11 @@ public class TopupCommandTest {
         }
 
         @Override
+        public void topupCategoryBudget(Tag category, Amount amount) {
+            budgets.topupCategoryBudget(category, amount);
+        }
+
+        @Override
         public void addCategory(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }

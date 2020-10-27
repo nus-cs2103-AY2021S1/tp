@@ -8,6 +8,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
+import seedu.expense.model.budget.exceptions.DuplicateCategoryBudgetException;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.UniqueExpenseList;
@@ -101,6 +102,10 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
 
     public void topupBudget(Amount amount) {
         budgets.topupBudget(amount);
+    }
+
+    public void topupCategoryBudget(Tag category, Amount amount) {
+        budgets.topupCategoryBudget(category, amount);
     }
 
     public boolean containsCategory(Tag tag) {

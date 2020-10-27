@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.expense.model.budget.exceptions.DuplicateCategoryBudgetException;
 import seedu.expense.model.expense.Amount;
+import seedu.expense.model.tag.Tag;
 
 /**
  * A list of category-budgets that enforces uniqueness between its elements and does not allow nulls.
@@ -64,7 +65,7 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     public double tallyAmounts() {
         double sum = internalList.size() != filteredList.size()
             ? 0
-            : defaultCategory.getAmount().asDouble();;
+            : defaultCategory.getAmount().asDouble();
         Iterator<CategoryBudget> i = iterator();
         while (i.hasNext()) {
             sum += i.next().getAmount().asDouble();
@@ -102,8 +103,6 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     /**
      * Filters this list's filtered list by {@code predicate}
-     *
-     * @param predicate
      */
     public void filterCategoryBudget(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
@@ -127,6 +126,21 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     public CategoryBudget getDefaultCategory() {
         return defaultCategory;
+    }
+
+    /**
+     * Tops up the {@code CategoryBudget} that matches the specified category by the given amount {@code toAdd}.
+     */
+    public void topupCategoryBudget(Tag category, Amount toAdd) {
+        requireAllNonNull(category, toAdd);
+
+        if (category.equals(DEFAULT_TAG)) {
+            topupBudget(toAdd);
+        }
+
+        internalList.stream()
+                .filter(categoryBudget -> categoryBudget.getTag().equals(category))
+                .forEach(categoryBudget -> categoryBudget.topupBudget(toAdd));
     }
 
     @Override
