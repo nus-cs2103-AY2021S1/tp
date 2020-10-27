@@ -103,7 +103,7 @@ public class RecipeDisplay extends UiPart<Region> {
                     .sorted()
                     .map(s -> {
                         var t = new Label(s);
-                        t.getStyleClass().add("rTagItem");
+                        t.getStyleClass().add("rvTagItem");
                         return t;
                     })
                     .collect(Collectors.toList())

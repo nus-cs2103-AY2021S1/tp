@@ -130,9 +130,13 @@ public class Ingredient extends Entry {
      */
     public Ingredient combine(Ingredient other) throws IncompatibleIngredientsException {
         if (!this.isSame(other)) {
-            throw new IncompatibleIngredientsException(String.format("cannot combine '%s' with '%s'",
+            throw new IncompatibleIngredientsException(String.format("Cannot combine '%s' with '%s'",
                 this.name, other.name));
         }
+
+        // the validity of quantities is kinda like induction. Assume that we start with a series of valid sets;
+        // if each new addition was compatible, then the final set will be compatible.
+        var thisQty = this.getQuantity();
 
         // there's no constructor that takes both an existing map and the comparator...
         var newSets = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
@@ -146,13 +150,21 @@ public class Ingredient extends Entry {
 
             // get the existing quantity of ingredient with the given expiry date
             var existingQty = newSets.get(exp);
+
             if (existingQty != null) {
                 // it exists; time to combine them using Quantity::add()
                 // (assuming they are compatible, of course)
-                var newQty = existingQty.add(qty).orElseThrow(IncompatibleIngredientsException::new);
+                var newQty = existingQty.add(qty)
+                    .orElseThrow(IncompatibleIngredientsException::new);
 
                 newSets.put(exp, newQty);
             } else {
+                if (!thisQty.compatibleWith(qty)) {
+                    throw new IncompatibleIngredientsException(
+                        String.format("Incompatible units '%s' and '%s'", thisQty, qty)
+                    );
+                }
+
                 // it doesn't exist; so just add it in.
                 newSets.put(exp, qty);
             }

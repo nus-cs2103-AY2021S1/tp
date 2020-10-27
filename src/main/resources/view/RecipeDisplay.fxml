@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
 <?import javafx.geometry.Insets?>
 <BorderPane prefHeight="472.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <padding>
-      <Insets top="8" bottom="12" />
-   </padding>
+   <stylesheets><URL value="@Style.css" /></stylesheets>
+   <padding><Insets top="8" bottom="12" /></padding>
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
@@ -16,19 +16,19 @@
                <children>
                   <AnchorPane minHeight="30.0" maxHeight="70" prefWidth="200.0" maxWidth="200.0">
                      <children>
-                        <Label styleClass="rRecipeName" maxHeight="70" prefWidth="200.0" fx:id="recipeName" wrapText="true"
+                        <Label styleClass="rvRecipeName" maxHeight="70" prefWidth="200.0" fx:id="recipeName" wrapText="true"
                                AnchorPane.topAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
                      </children>
                   </AnchorPane>
-                  <VBox styleClass="rTagDisplay" prefWidth="200.0">
+                  <VBox styleClass="rvTagDisplay" prefWidth="200.0">
                      <children>
-                        <FlowPane styleClass="rTagList" fx:id="tagList" />
+                        <FlowPane styleClass="rvTagList" fx:id="tagList" />
                      </children>
                   </VBox>
-                  <VBox styleClass="rIngredientDisplay" VBox.vgrow="ALWAYS" prefWidth="200.0">
+                  <VBox styleClass="rvIngredientDisplay" VBox.vgrow="ALWAYS" prefWidth="200.0">
                      <children>
-                        <Label styleClass="rIngredientHeader" fx:id="ingredientHeader" underline="true"/>
-                        <TextFlow styleClass="rIngredientList" fx:id="ingredientList" />
+                        <Label styleClass="rvIngredientHeader" fx:id="ingredientHeader" underline="true"/>
+                        <TextFlow styleClass="rvIngredientList" fx:id="ingredientList" />
                      </children>
                   </VBox>
                </children>
@@ -39,10 +39,10 @@
    <right>
       <HBox BorderPane.alignment="CENTER_LEFT">
          <children>
-            <VBox styleClass="rStepDisplay" prefHeight="465.0" prefWidth="310.0">
+            <VBox styleClass="rvStepDisplay" prefHeight="465.0" prefWidth="310.0">
                <children>
-                  <Label styleClass="rStepHeader" fx:id="stepHeader" underline="true" />
-                  <TextFlow styleClass="rStepList" fx:id="stepList" />
+                  <Label styleClass="rvStepHeader" fx:id="stepHeader" underline="true" />
+                  <TextFlow styleClass="rvStepList" fx:id="stepList" />
                </children>
             </VBox>
          </children>

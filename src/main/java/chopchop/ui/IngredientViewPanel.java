@@ -53,8 +53,9 @@ public class IngredientViewPanel extends UiPart<Region> {
         int row;
         int col = START_COL;
         for (int i = 0; i < ingredientObservableList.size(); i++) {
-            Ingredient ingredient = ingredientObservableList.get(i);
-            IngredientCard ingredientCard = new IngredientCard(ingredient);
+            var ingredient = ingredientObservableList.get(i);
+            var ingredientCard = new IngredientCard(ingredient, i + 1);
+
             row = calculate_row(i);
             if (row == 0) {
                 col++;

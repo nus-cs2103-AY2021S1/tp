@@ -7,32 +7,26 @@
 <?import javafx.scene.text.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <stylesheets>
-      <URL value="@Style.css" />
-   </stylesheets>
-   <Button mnemonicParsing="false" onAction="#handleSelectRecipe" prefHeight="125.0" prefWidth="148.0" styleClass="recipe-button">
-      <graphic>
-         <StackPane><children>
-            <AnchorPane prefWidth="148.0" prefHeight="125.0"><children>
-               <Label AnchorPane.topAnchor="6" AnchorPane.leftAnchor="6" fx:id="index" styleClass="rcNumber" />
+   <stylesheets><URL value="@Style.css" /></stylesheets>
+   <Button mnemonicParsing="false" onAction="#handleSelectRecipe" maxHeight="125.0" maxWidth="148.0"
+           prefHeight="125.0" prefWidth="148.0" styleClass="rcButton"><graphic>
+      <AnchorPane prefWidth="148.0" prefHeight="125.0"><children>
+         <Label fx:id="index" styleClass="rcNumber" AnchorPane.topAnchor="6" AnchorPane.leftAnchor="6"/>
 
+         <VBox spacing="-5" alignment="CENTER"
+               AnchorPane.topAnchor="10"
+               AnchorPane.bottomAnchor="3"
+               AnchorPane.leftAnchor="0"
+               AnchorPane.rightAnchor="0"><children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image><Image url="@../images/meal.png" /></image>
+            </ImageView>
 
-               <VBox spacing="1" alignment="CENTER"
-                     AnchorPane.topAnchor="6"
-                     AnchorPane.bottomAnchor="6"
-                     AnchorPane.leftAnchor="0"
-                     AnchorPane.rightAnchor="0"><children>
-                     <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                        <image><Image url="@../images/meal.png" /></image>
-                     </ImageView>
+            <HBox VBox.vgrow="ALWAYS" alignment="CENTER"><children>
+               <Label fx:id="name" styleClass="rcName" wrapText="true" />
+            </children></HBox>
+         </children></VBox>
 
-                  <HBox VBox.vgrow="ALWAYS" alignment="CENTER"><children>
-                     <Label fx:id="name" styleClass="rcName" wrapText="true" />
-                  </children></HBox>
-               </children></VBox>
-
-            </children></AnchorPane>
-         </children></StackPane>
-      </graphic>
-   </Button>
+      </children></AnchorPane>
+   </graphic></Button>
 </StackPane>
