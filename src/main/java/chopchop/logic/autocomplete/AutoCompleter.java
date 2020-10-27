@@ -141,12 +141,8 @@ public class AutoCompleter {
                 // now this is a little complicated; split the input into two pieces; the first being
                 // everything occurring before "partial" (this is the only part we want)
                 var idx = orig.lastIndexOf(partial);
-                if (idx == -1) {
-                    // while this should not happen, using an assert decreases codecov.
-                    return orig;
-                }
-
                 var prefix = orig.substring(0, idx);
+
                 return prefix + completion + " ";
             } else {
                 // if we're not nested, then we're guaranteed that the command must happen at the beginning of
@@ -352,9 +348,6 @@ public class AutoCompleter {
             }
         }
 
-        assert !partial.isEmpty();
-
-
         // the entire command string *except* the partial item name.
         var allExceptLast = orig.stripTrailing().substring(0,
             orig.stripTrailing().length() - partial.length());
@@ -376,8 +369,6 @@ public class AutoCompleter {
                 }
             }
         }
-
-        assert this.lastViableCompletions != null;
 
         if (this.lastViableCompletions.isEmpty()) {
             return Optional.empty();
@@ -445,15 +436,11 @@ public class AutoCompleter {
                 return RequiredCompletion.NESTED_COMMAND_NAME;
             }
 
-            // eg. 'find recipe' -- there's nothing to complete.
-            if (!commandRequiresItemReference(cmd)) {
-                return RequiredCompletion.NONE;
-            }
-
             if (commandRequiresTarget(cmd)) {
                 var target = args.getFirstWordFromRemaining();
                 return CommandTarget.of(target)
                     .map(tgt -> {
+
                         switch (tgt) {
                         case RECIPE:
                             // we don't let you autocomplete recipe names when adding them
@@ -470,6 +457,7 @@ public class AutoCompleter {
                         default:
                             return RequiredCompletion.NONE;
                         }
+
                     }).orElse(RequiredCompletion.NONE);
 
             } else if (commandRequiresItemReference(cmd)) {
