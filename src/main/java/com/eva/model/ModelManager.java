@@ -309,6 +309,11 @@ public class ModelManager implements Model {
         applicantDatabase.setPerson(target, editedPerson);
     }
 
+    @Override
+    public void deleteApplication(Applicant target, Application toSet) {
+        target.setApplication(toSet);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
