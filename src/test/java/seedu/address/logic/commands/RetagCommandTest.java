@@ -58,8 +58,8 @@ public class RetagCommandTest {
 
         RetagCommand retagCommand = new RetagCommand(oldTagName, newTagName);
 
-        assertThrows(CommandException.class, RetagCommand.MESSAGE_DUPLICATE_TAG,
-                () -> retagCommand.execute(expectedModelStub));
+        assertThrows(CommandException.class,
+                RetagCommand.MESSAGE_DUPLICATE_TAG, () -> retagCommand.execute(expectedModelStub));
     }
 
     @Test

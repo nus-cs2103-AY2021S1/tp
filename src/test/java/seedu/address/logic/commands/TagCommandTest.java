@@ -11,11 +11,9 @@ import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.Arrays;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.label.Label;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TagBuilder;
 

@@ -5,21 +5,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import java.io.File;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-
 public class CdCommandTest {
 
-    public static String absoluteHomeAddress;
-    public static String relativeFileAddress;
-    public static String absoluteFileAddress;
+    private static String absoluteHomeAddress;
+    private static String relativeFileAddress;
+    private static String absoluteFileAddress;
 
     @BeforeAll
     static void setUpFileAddress() {
@@ -85,8 +85,8 @@ public class CdCommandTest {
         CdCommand cdCommand = new CdCommand(AddressType.CHILD, "build.gradle");
 
         assertThrows(CommandException.class,
-                String.format(CdCommand.MESSAGE_PATH_INVALID, absoluteFileAddress + "\\build.gradle"),
-                () -> cdCommand.execute(modelStub));
+                String.format(CdCommand.MESSAGE_PATH_INVALID,
+                        absoluteFileAddress + "\\build.gradle"), () -> cdCommand.execute(modelStub));
     }
 
     @Test
