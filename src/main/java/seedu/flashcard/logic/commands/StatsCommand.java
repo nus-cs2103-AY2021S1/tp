@@ -1,7 +1,6 @@
 package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
 
 import java.util.List;
 
@@ -22,7 +21,6 @@ public class StatsCommand extends Command {
             + ": Shows the flashcard's statistics identified by the index number used in the displayed "
             + "flashcard list.\n"
             + "Parameters: INDEX (must be a positive integer)"
-            + " [" + PREFIX_ANSWER + "]\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS = "Flashcard's statistics is shown: %1$s";
