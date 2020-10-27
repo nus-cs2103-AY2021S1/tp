@@ -374,7 +374,49 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
 
-### 3.4 Retrieving past commands using arrow keys
+### 3.4 Patient Appointment Commands
+
+#### 3.4.1 Adding an appointment for patient: `addapp`
+
+Add an appointment for the specified patient.
+
+Format: `addapp INDEX st/APPOINTMENT DATETIME d/DURATION`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list. 
+    * It **must be a positive number**, eg. 1, 2, 3, …​
+* `APPOINTMENT DATETIME` refers to the date and starting time of the appointment. 
+    * It follows the format of `yyyy-MM-dd HH:mm`. 
+    * Do note that you will need to input the hour (`HH`) in  the 24-hour format. 
+   
+* `DURATION` refers to the duration of the appointment, in minutes.
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* If you are having trouble converting your time to 24 hour format, you may use the time format converter at https://www.timecalculator.net/12-hour-to-24-hour-converter.
+
+</div>
+
+Example: You want to add an appointment with the 1st patient on the list.
+
+Step 1: Input `addapp 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
+
+Step 2: On the overview tab, you can find your newly added appointment saved inside the appointment list. 
+
+Step 3: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* You are highly recommended to use a duration of at least 60 minutes to optimise your experience with our CliniCal calendar feature.
+
+</div>
+
+
+    
+
+
+### 3.5 Retrieving past commands using arrow keys
 
 Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys on the keyboard.
 1. Click on the text field of the command box.
@@ -390,7 +432,7 @@ Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kb
 
 </div>
 
-### 3.5 Saving the data
+### 3.6 Saving the data
 
 CliniCal data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
 
