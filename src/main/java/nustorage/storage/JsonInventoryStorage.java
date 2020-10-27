@@ -33,7 +33,7 @@ public class JsonInventoryStorage implements InventoryStorage {
      * @param filePath file path to storage file.
      */
     public JsonInventoryStorage(Path filePath) {
-        assert filePath != null : "File path for finance account storage is null!";
+        // assert filePath != null : "File path for finance account storage is null!";
 
         this.filePath = filePath;
     }
@@ -46,14 +46,14 @@ public class JsonInventoryStorage implements InventoryStorage {
 
 
     @Override
-    public Optional<ReadOnlyInventory> readInventory() throws DataConversionException, IOException {
-        assert filePath != null : "Inventory file path is null!";
+    public Optional<ReadOnlyInventory> readInventory() throws DataConversionException {
+        // assert filePath != null : "Inventory file path is null!";
         return readInventory(filePath);
     }
 
 
     @Override
-    public Optional<ReadOnlyInventory> readInventory(Path filePath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyInventory> readInventory(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableInventory> jsonInventory = JsonUtil.readJsonFile(
@@ -74,7 +74,7 @@ public class JsonInventoryStorage implements InventoryStorage {
 
     @Override
     public void saveInventory(ReadOnlyInventory inventory) throws IOException {
-        assert inventory != null : "Inventory is null!";
+        // assert inventory != null : "Inventory is null!";
         saveInventory(inventory, filePath);
     }
 
