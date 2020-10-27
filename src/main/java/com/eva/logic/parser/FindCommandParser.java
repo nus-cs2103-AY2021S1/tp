@@ -28,9 +28,9 @@ public class FindCommandParser implements Parser<FindCommand> {
         String[] nameKeywords = trimmedArgs.split("\\s+");
         String[] shiftedNameKeywords = Arrays.copyOfRange(nameKeywords, 1, nameKeywords.length);
         switch (nameKeywords[0]) {
-        case "-a":
+        case "-applicant":
             return new FindApplicantCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(shiftedNameKeywords)));
-        case "-s":
+        case "-staff":
             return new FindStaffCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(shiftedNameKeywords)));
         default:
             return new FindCommand(new NameContainsKeywordsPredicate<>(Arrays.asList(nameKeywords)));
