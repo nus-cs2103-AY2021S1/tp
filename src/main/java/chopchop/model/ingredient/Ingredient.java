@@ -158,7 +158,12 @@ public class Ingredient extends Entry {
             }
         }
 
-        return new Ingredient(this.name.toString(), newSets, this.tags);
+        // here we combine the tags.
+        // TODO: investigate if this is something we should actually do
+        var newTags = new HashSet<>(this.tags);
+        newTags.addAll(other.tags);
+
+        return new Ingredient(this.name.toString(), newSets, newTags);
     }
 
     /**

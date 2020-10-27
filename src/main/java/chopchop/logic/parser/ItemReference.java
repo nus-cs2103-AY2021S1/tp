@@ -90,14 +90,14 @@ public class ItemReference {
      */
     public static Result<ItemReference> parse(String input) {
         if (input.isEmpty()) {
-            return Result.error("empty input");
+            return Result.error("Empty input");
         } else if (input.startsWith("#")) {
             return new StringView(input)
                 .drop(1)
                 .parseInt()
                 .then(i -> {
                     if (i <= 0) {
-                        return Result.error("invalid index (cannot be zero or negative)");
+                        return Result.error("Invalid index (cannot be zero or negative)");
                     } else {
                         return Result.of(ItemReference.ofOneIndex(i));
                     }

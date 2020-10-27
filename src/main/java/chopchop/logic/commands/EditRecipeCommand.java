@@ -102,7 +102,13 @@ public class EditRecipeCommand extends Command implements Undoable {
 
             if (type == EditOperationType.ADD) {
 
-                // TODO: validate the ingredient here
+                for (var ingr : ingredients) {
+                    if (ingr.getName().equals(name)) {
+                        return Result.error("Recipe '%s' already contains ingredient '%s'",
+                            this.recipe.getName(), name);
+                    }
+                }
+
                 ingredients.add(new IngredientReference(name, qtyOpt.orElse(Count.of(1))));
 
             } else {

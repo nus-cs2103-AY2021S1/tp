@@ -14,7 +14,7 @@ public class Count implements Quantity {
     @Override
     public Result<Count> add(Quantity qty) {
         if (!(qty instanceof Count)) {
-            return Result.error("cannot add '%s' to '%s' (incompatible units)", qty, this);
+            return Result.error("Cannot add '%s' to '%s' (incompatible units)", qty, this);
         } else {
             var cnt = (Count) qty;
             return Result.of(new Count(this.value + cnt.value));
@@ -32,10 +32,15 @@ public class Count implements Quantity {
     }
 
     @Override
+    public boolean compatibleWith(Quantity qty) {
+        return qty instanceof Count;
+    }
+
+    @Override
     public int compareTo(Quantity other) {
         if (!(other instanceof Count)) {
             throw new IncompatibleIngredientsException(
-                    String.format("cannot compare '%s' with '%s' (incompatible units)", other, this));
+                    String.format("Cannot compare '%s' with '%s' (incompatible units)", other, this));
         }
 
         return Double.compare(this.value, ((Count) other).value);

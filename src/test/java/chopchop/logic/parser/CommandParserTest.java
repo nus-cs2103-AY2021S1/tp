@@ -32,9 +32,9 @@ public class CommandParserTest {
             "Result(AddIngredientCommand: milk (600ml))");
 
         tests.put("add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
-                + "/ingredient egg /qty 7 /step mix /step bake /step eat",
-            "Result(AddRecipeCommand: cake <Ingredients: milk (400ml), flour (500g), "
-                + "egg (7)> <Steps: 1. mix, 2. bake, 3. eat>)");
+            + "/ingredient egg /qty 7 /step mix /step bake /step eat",
+            "Result(AddRecipeCommand(cake, ingr: [milk (400ml), flour (500g), "
+                + "egg (7)], steps: [mix, bake, eat]))");
 
         tests.put("delete recipe cake", "Result(DeleteRecipeCommand(cake))");
         tests.put("delete recipe #4", "Result(DeleteRecipeCommand(#4))");
@@ -59,9 +59,9 @@ public class CommandParserTest {
         tests.put("find ingredient cake cucumber", "Result(FindIngredientCommand(keywords: [cake, cucumber]))");
 
         tests.put("find recipe", "Error('find' command requires at least one search term)");
-        tests.put("add recipe cake /", "Error(expected argument name after '/')");
+        tests.put("add recipe cake /", "Error(Expected argument name after '/')");
 
-        tests.put("OWO", "Error(unknown command 'OWO')");
+        tests.put("OWO", "Error(Unknown command 'OWO')");
 
         tests.forEach((k, v) -> {
             var x = parser.parse(k);
