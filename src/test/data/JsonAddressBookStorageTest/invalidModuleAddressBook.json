@@ -1,5 +1,5 @@
 {
-  "modules": [
+  "semOneModules": [
     {
       "moduleCode": "Module with invalid moduleName field: CS1010S",
       "moduleName": "Programming & Algorithms"

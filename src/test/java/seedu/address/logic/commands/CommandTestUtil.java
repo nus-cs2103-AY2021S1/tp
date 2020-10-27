@@ -25,7 +25,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.predicates.ModuleCodeContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.builders.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.

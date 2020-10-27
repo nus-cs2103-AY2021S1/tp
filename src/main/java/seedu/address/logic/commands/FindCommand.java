@@ -2,7 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFICE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,15 +25,24 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose attributes contain all of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: PREFIX KEYWORD... [PREFIX KEYWORD...]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice liddel "
-            + PREFIX_DEPARTMENT + " computing";
+        + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+        + "At least one of the specified parameters should be present.\n"
+        + "Parameters: "
+        + PREFIX_NAME + "NAME "
+        + PREFIX_PHONE + "PHONE "
+        + PREFIX_EMAIL + "EMAIL "
+        + PREFIX_DEPARTMENT + "DEPARTMENT "
+        + PREFIX_OFFICE + "OFFICE "
+        + "Example: "
+        + COMMAND_WORD + " "
+        + PREFIX_NAME + "alice liddel "
+        + PREFIX_DEPARTMENT + "computing";
 
     private final List<Predicate<Person>> predicates;
 
     /**
      * Constructs a {@code FindCommand} from the given {@code predicate}.
+     *
      * @param predicate The searching parameter used in finding contacts.
      */
     public FindCommand(Predicate<Person> predicate) {
@@ -41,6 +53,7 @@ public class FindCommand extends Command {
 
     /**
      * Constructs a {@code FindCommand} from the given list of {@code predicates}.
+     *
      * @param predicates The searching parameters used in finding contacts.
      */
     public FindCommand(List<Predicate<Person>> predicates) {
@@ -58,7 +71,7 @@ public class FindCommand extends Command {
 
         Predicate<Person> composedPredicate = person -> true;
 
-        for (Predicate<Person> p: predicates) {
+        for (Predicate<Person> p : predicates) {
             composedPredicate = composedPredicate.and(p);
         }
 
@@ -70,14 +83,14 @@ public class FindCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(composePredicates(predicates));
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+            String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicates.equals(((FindCommand) other).predicates)); // state check
+            || (other instanceof FindCommand // instanceof handles nulls
+            && predicates.equals(((FindCommand) other).predicates)); // state check
     }
 
     @Override

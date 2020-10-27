@@ -6,6 +6,9 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Department;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -45,10 +48,34 @@ public class SampleDataUtil {
         };
     }
 
+    public static Module[] getSampleSemOneModules() {
+        return new Module[] {
+            new Module(new ModuleCode("CS1010"), new ModuleName("Programming Methodology")),
+            new Module(new ModuleCode("CS1231"), new ModuleName("Discrete Structures")),
+            new Module(new ModuleCode("CS2040"), new ModuleName("Data Structures and Algorithms")),
+            new Module(new ModuleCode("CS2103"), new ModuleName("Software Engineering")),
+        };
+    }
+
+    public static Module[] getSampleSemTwoModules() {
+        return new Module[] {
+            new Module(new ModuleCode("CS1101S"), new ModuleName("Programming Methodology")),
+            new Module(new ModuleCode("CS1231"), new ModuleName("Discrete Structures")),
+            new Module(new ModuleCode("CS2030"), new ModuleName("Programming Methodology II")),
+            new Module(new ModuleCode("CS2102"), new ModuleName("Database Systems")),
+        };
+    }
+
     public static ReadOnlyAddressBook getSampleAddressBook() {
         AddressBook sampleAb = new AddressBook();
         for (Person samplePerson : getSamplePersons()) {
             sampleAb.addPerson(samplePerson);
+        }
+        for (Module sampleModule : getSampleSemOneModules()) {
+            sampleAb.addSemOneModule(sampleModule);
+        }
+        for (Module sampleModule : getSampleSemTwoModules()) {
+            sampleAb.addSemTwoModule(sampleModule);
         }
         return sampleAb;
     }
