@@ -84,6 +84,8 @@ public class StatisticsData {
         return getTotalTaskTime(tag) + getTotalLessonTime(tag);
     }
 
+    //TODO:get list of Tag
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();

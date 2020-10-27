@@ -11,7 +11,7 @@ public class Status {
     public static final String COMPLETE_TEXT = "complete";
     public static final String INCOMPLETE_TEXT = "incomplete";
 
-    public static final String ACCEPTED_STATUS = COMPLETE_TEXT + "," + COMPLETE_TEXT;
+    public static final String ACCEPTED_STATUS = COMPLETE_TEXT + "," + INCOMPLETE_TEXT;
     public static final String MESSAGE_CONSTRAINTS = String.format("Value for status can only be one of "
             + "the following: %s.", ACCEPTED_STATUS);
     public static final String SEARCH_CONSTRAINTS = String.format("Search phrase for Status can only be one of "
