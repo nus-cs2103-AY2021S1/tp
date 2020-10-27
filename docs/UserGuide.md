@@ -25,6 +25,8 @@ To navigate around this user guide, you may use the hyperlinks provided at the t
 
 1. **:bulb: Tip:** - represents a useful tip
 
+1. **:warning: Important:** - represents important information
+
 ## Quick start
 
 Ensure you have Java `11` or above installed in your Computer. If not, you may download Java `11`from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
@@ -168,17 +170,24 @@ Examples:
 
 ### Locating patients by name or Nric: `find` (by Gabriel Teo Yu Xiang)
 
-Finds patients whose names contain any of the given keywords or NRICs.
+This command allows you to find patients whose names contain any of the given keywords or NRICs.
 
 Format: `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`, and `s1234567a` will match `S1234567A`
 * The order of the keywords or NRICs does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Both the name and NRIC are searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
 * Patients matching at least one keyword or NRIC will be returned (i.e. `OR` search).
   e.g. `Hans Bo S7654321A` will return `Hans Gruber`, `Bo Yang`, `Tom Lee` (whose NRIC is S7654321A)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* Only full words will be matched e.g. `Han` will not match `Hans`
+
+* Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
+</div>
 
 Examples:
 * `find John` returns `john` and `John Doe`
@@ -188,24 +197,52 @@ Examples:
 * `find bernice s0000003a` returns `Bernice Yu`, `Charlotte Oliveiro`
   ![result for 'find bernice s0000003a'](images/findbernices0000003aResult.png)
 
-### Deleting a patient: `delete`
+### Deleting a patient: `delete` (by Cao Qin)
 
 Deletes the specified patient from **Hospify**.
 
 Format: `delete INDEX`<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `delete NRIC`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: About the format of `delete` command:**<br>
 * Deletes the patient at the specified `INDEX` or `NRIC`
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed patient list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `NRIC` refers to the `NRIC` of the patient to be deleted.
 * The `NRIC` entered is **case-sensitive**. e.g. `s1234567a` will **not** match `S1234567A`
 * Only full `NRIC`s will be matched e.g. `S12345` will **not** match `S1234567A`
+</div>
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in **Hospify**.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-* `delete S7654321A` deletes `Tom Lee` (whose NRIC is S7654321A).
+
+scenario 1:
+
+* `list`(shown in Figure 2.4 below) followed by `delete 2`(shown in Figure 2.5 below) deletes the 2nd patient in **Hospify**.
+
+  ![result for 'list'](images/listResult.png)
+  Figure 2.4 result of `list` command
+  
+  ![result for 'delete 2'](images/deleteTwoResult.png)
+  Figure 2.5 result of `delete 2` command
+  
+scenario 2:
+  
+* `find Oliveiro`(shown in Figure 2.6 below) followed by `delete 1`(shown in Figure 2.7 below) deletes the 1st patient in the results of the `find` command.
+
+  ![result for 'find Oliveiro'](images/findOliveiro.png)
+  Figure 2.6 result of `find Oliveiro` command
+  
+  ![result for 'delete 1'](images/deleteOliveiroResult.png)
+  Figure 2.7 result of `delete 1` command
+
+scenario 3:
+
+* `delete S0000004A`(shown in Figure 2.8 below) deletes `David Li` (whose NRIC is S0000004A).
+
+  ![result for 'delete S0000004A'](images/deleteDavidResult.png)
+  Figure 2.8 result of `delete S0000004A` command
 
 ### Counting total number of patients: `count`
 
@@ -223,6 +260,91 @@ Format: `sort name`<br>
 Examples:
 * `sort name` would result in the patients to be sorted by their name in ascending order.
 * `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order.
+
+### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to schedule an `Appointment` for a patient in **Hospify**.
+
+Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
+
+* `NRIC` represents the `NRIC` of the patient you are adding an `Appointment` to.
+* `DATE` and `TIME` represent the date and time of the `Appointment` respectively.
+* `DESCRIPTION` represents the name or brief description of the `Appointment`.
+  e.g. `Eye Check-up` or `Physiotherapy Session`
+
+<div markdown="span" class="alert alert-warning">
+
+**:warning: Important:** `DATE` and `TIME` parameters must be specified in the following formats:
+
+</div>
+
+- **Date format:**
+
+Format | Example
+------ | -------
+dd/MM/yyyy | 28/09/2022
+
+- **Time format:**
+
+Format | Example
+------ | -------
+HH:mm | 20:00
+
+Examples:
+* `addAppt S1234567A appt/25/12/2020 15:00 d/Foot Therapy`
+* `addAppt S0000001A appt/28/09/2022 20:00 d/Eye Check-up`
+
+When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+
+![result for 'add appointment'](images/addAppt.png)
+
+### Editing an Appointment: `editAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to edit an existing `Appointment` for a patient in **Hospify**.
+
+Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on different appointment parameters:**<br>
+
+* There are two separate `Appointment` timings specified in the format
+
+* The old `Appointment` timing is preceded by a `oldappt/` prefix
+
+* The new `Appointment` timing is preceded by a `newappt/` prefix
+</div>
+
+* The `Appointment` to edit must be an existing appointment of the patient.
+* Only the date and timing of the `Appointment` can be changed. The name/description cannot be changed.
+* `NRIC` represents the `NRIC` of the patient whose `Appointment` you are editing.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+
+Examples:
+* `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
+
+When an `Appointment` is successfully edited, a success message will appear in the message box as shown in the figure below.<br>
+
+![result for 'edit appointment'](images/editAppt.png)
+
+### Deleting an Appointment: `deleteAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to delete an existing `Appointment` for a patient in **Hospify**.
+
+Format: `deleteAppt NRIC appt/DATE TIME`
+
+* The `Appointment` to delete must be an existing appointment of the patient.
+* The `Appointment` name/description does not need to be specified, since **Hospify** does not allow multiple appointments of the same timing for the same patient, and every appointment will have a unique timing.
+* `NRIC` represents the `NRIC` of the patient whose `Appointment` you are deleting.
+* `DATE` and `TIME` represent the date and time of the `Appointment` to be deleted.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-addappt-by-gabriel-teo-yu-xiang) command section.
+
+Examples:
+* `deleteAppt S0000001A appt/28/09/2022 20:00`
+
+When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+
+![result for 'delete appointment'](images/deleteAppt.png)
 
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 

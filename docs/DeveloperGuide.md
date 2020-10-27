@@ -233,6 +233,45 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Find by name or NRIC feature (by Cao Qin)
+
+The find feature enables users to find patients by specifying their names(anyone from their first name, middle name or last name) or Nric numbers.
+
+#### Implementation
+
+The following are the changes made to achieve this feature:
+
+* A `KeywordPredicate` class is added under the `model/patient` package. 
+* `FindCommand` class is modified to keep a KeywordPredicate object as a filed.
+
+Given below is an example usage scenario of this feature using both name and Nric as inputs.
+
+Step 1. The user executes `add n/Alex Yeoh ic/S0000001A p/87438807 e/alexyeoh@example.com a/Blk 30 Geylang Street 29, #06-40 mr/www.sample.com/01` to add a patient named Alex Yeho and with a Nric number “S0000001A”.
+
+Step 2. The user executes `add n/Bernice Yu ic/S0000002A p/99272758 e/berniceyu@example.com a/Blk 30 Lorong 3 Serangoon Gardens, #07-18 mr/www.sample.com/02` to add a patient named Bernice Yu and with a Nric number “S0000002A”.
+
+Step 3. The user executes `find Yeoh` command to find a patient with name "Yeoh".
+
+Step 4. The user executes `find S0000001A` command to find a patient with Nric number "S0000001A".
+
+Step 5. The user executes `find Alex A0000002S` command to find 2 patients: one with name “Alex” and one with Nric number “A0000002S”.
+
+Step 6. The user executes `list` command to view the full list of patients.
+
+#### Design Consideration
+
+##### Aspect: What to use as reference to find the wanted patient?
+
+* **Alternative 1 (current choice):** Requires users to enter names or Nric numbers or both of the patients wanted.
+  * Pros: Easier for users to find the patients wanted if they know either the wanted patients' names or Nric numbers.
+  * Cons: Harder to implement because the input may contain a mix of names and Nric numbers.
+
+* **Alternative 2:** Users can only enter Nric numbers of the patients wanted. 
+  * Pros: Easy to implement, and the finding results are accurate(the list will display the exact patients with the given Nric numbers). 
+  * Cons: Inconvenient for users if they only know the patients' names.
+
+
+
 ### Medical Record feature (by Cedric Lim Jun Wei)
 
 #### Implementation
