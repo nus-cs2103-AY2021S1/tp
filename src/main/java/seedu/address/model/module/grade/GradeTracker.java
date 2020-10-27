@@ -99,9 +99,9 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     public static boolean isValidGradeTracker(GradeTracker gradeTracker) {
         boolean areAssignmentsValid = true;
         for (Assignment eachAssignment: gradeTracker.assignments) {
-            if (!Assignment.isValidAssignmentName(eachAssignment.getAssignmentName().assignmentName)
-                    && Assignment.isValidAssignmentPercentage(eachAssignment.assignmentPercentage)
-                    && Assignment.isValidAssignmentResult(eachAssignment.assignmentResult)) {
+            if (!AssignmentName.isValidAssignmentName(eachAssignment.getAssignmentName().get().assignmentName)
+                    && AssignmentPercentage.isValidAssignmentPercentage(eachAssignment.getAssignmentPercentage().get().assignmentPercentage)
+                    && AssignmentResult.isValidAssignmentResult(eachAssignment.getAssignmentResult().get().assignmentResult)) {
                 areAssignmentsValid = false;
                 break;
             }

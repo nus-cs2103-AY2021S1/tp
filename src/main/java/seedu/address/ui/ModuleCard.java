@@ -54,8 +54,8 @@ public class ModuleCard extends UiPart<Region> {
         zoomLink.setText(module.getLink().getLink());
         modularCredits.setText(module.getModularCredits().toString());
         module.getGradeTracker().getAssignments().stream()
-                .sorted(Comparator.comparing(assignment -> assignment.assignmentName))
-                .forEach(assignment -> assignments.getChildren().add(new Label(assignment.assignmentName)));
+                .sorted(Comparator.comparing(assignment -> assignment.getAssignmentName().get().assignmentName))
+                .forEach(assignment -> assignments.getChildren().add(new Label(assignment.getAssignmentName().get().assignmentName)));
         assignments.setHgap(10);
         assignments.setVgap(10);
         //module.getTags().stream()
