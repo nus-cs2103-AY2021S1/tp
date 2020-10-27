@@ -4,6 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
    <stylesheets>
@@ -11,20 +12,27 @@
    </stylesheets>
    <Button mnemonicParsing="false" onAction="#handleSelectRecipe" prefHeight="125.0" prefWidth="148.0" styleClass="recipe-button">
       <graphic>
-         <VBox alignment="CENTER">
-            <children>
-               <HBox>
-                  <children>
-                     <Label fx:id="index" alignment="CENTER" prefHeight="26.0" prefWidth="38.0" styleClass="recipe_name_label" text="\$index" wrapText="false" />
+         <StackPane><children>
+            <AnchorPane prefWidth="148.0" prefHeight="125.0"><children>
+               <Label AnchorPane.topAnchor="6" AnchorPane.leftAnchor="6" fx:id="index" styleClass="rcNumber" />
+
+
+               <VBox spacing="1" alignment="CENTER"
+                     AnchorPane.topAnchor="6"
+                     AnchorPane.bottomAnchor="6"
+                     AnchorPane.leftAnchor="0"
+                     AnchorPane.rightAnchor="0"><children>
                      <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../images/meal.png" />
-                        </image>
+                        <image><Image url="@../images/meal.png" /></image>
                      </ImageView>
-                  </children>
-               </HBox>
-               <Label fx:id="name" alignment="CENTER" styleClass="recipe_name_label" text="\$name" wrapText="false" />
-            </children>
-         </VBox>
-      </graphic></Button>
+
+                  <HBox VBox.vgrow="ALWAYS" alignment="CENTER"><children>
+                     <Label fx:id="name" styleClass="rcName" wrapText="true" />
+                  </children></HBox>
+               </children></VBox>
+
+            </children></AnchorPane>
+         </children></StackPane>
+      </graphic>
+   </Button>
 </StackPane>

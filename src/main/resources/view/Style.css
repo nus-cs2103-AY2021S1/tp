@@ -119,7 +119,6 @@
     -fx-padding-top: 25px;
     -fx-padding-left: 25px;
 }
-
 .rIngredientDisplay {
     -fx-background-color: #f1f8e9;
     -fx-background-radius: 6;
@@ -131,16 +130,13 @@
     -fx-padding: 12;
     -fx-spacing: 12;
 }
-
 .rIngredientHeader {
     -fx-font-size: 14pt;
 }
-
 .rIngredientList {
     -fx-font-size: 11pt;
     -fx-line-spacing: 4;
 }
-
 .rStepDisplay {
     -fx-background-color: #fff3e0;
     -fx-border-color: #ff9800;
@@ -153,43 +149,44 @@
     -fx-padding: 12;
     -fx-spacing: 12;
 }
-
 .rStepHeader {
     -fx-font-size: 14pt;
 }
-
 .rStepList {
     -fx-font-size: 11pt;
     -fx-line-spacing: 4;
 }
-
 .rTagDisplay {
-    /*-fx-background-color: #f0ebf7;
-    -fx-border-color: #b39ddb;
-    -fx-font-size: 12pt;
-    -fx-background-radius: 6;
-    -fx-border-radius: 6;
-    */
     -fx-padding: 6;
     -fx-spacing: 6;
 }
-
 .rTagItem {
     -fx-font-size: 11pt;
     -fx-font-color: #212121;
     -fx-prompt-text-fill: #212121;
     -fx-font-family: "Segoe UI";
-    /*-fx-background-color: #ffbba7;*/
     -fx-background-color: #ffab91;
     -fx-background-radius: 5;
     -fx-padding: 4;
 }
-
 .rTagList {
     -fx-hgap: 6;
     -fx-vgap: 6;
 }
 
+/* -------------------- RECIPE CARD THINGS -------------------- */
+.rcName {
+    -fx-font-size: 12pt;
+    -fx-text-align: center;
+    -fx-text-alignment: center;
+    -fx-vertical-align: center;
+}
+.rcNameFlow {
+    -fx-text-alignment: center;
+    -fx-vertical-align: center;
+}
+.rcNumber {
+}
 
 
 

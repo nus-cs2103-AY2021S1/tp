@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 
 /**
  * An UI component that displays information of a {@code Recipe}.
@@ -32,8 +33,9 @@ public class RecipeCard extends UiPart<Region> {
         super(FXML);
         this.recipe = recipe;
         this.id = id;
+
         name.setText(recipe.getName());
-        index.setText(String.valueOf(id));
+        index.setText(String.format("#%d", id));
     }
 
     @FXML

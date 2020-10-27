@@ -14,13 +14,10 @@
          <children>
             <VBox spacing="10" prefHeight="470.0" prefWidth="288.0">
                <children>
-                  <AnchorPane minHeight="40.0" prefWidth="200.0">
+                  <AnchorPane minHeight="30.0" maxHeight="70" prefWidth="200.0" maxWidth="200.0">
                      <children>
-                        <Label styleClass="rRecipeName"
-                               fx:id="recipeName"
-                               wrapText="true"
-                               AnchorPane.topAnchor="5.0"
-                               AnchorPane.leftAnchor="5.0"/>
+                        <Label styleClass="rRecipeName" maxHeight="70" prefWidth="200.0" fx:id="recipeName" wrapText="true"
+                               AnchorPane.topAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
                      </children>
                   </AnchorPane>
                   <VBox styleClass="rTagDisplay" prefWidth="200.0">
