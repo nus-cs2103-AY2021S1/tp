@@ -16,7 +16,7 @@ import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.StatsIngredientDateCommand;
 import chopchop.logic.commands.StatsRecipeDateCommand;
-import chopchop.logic.commands.StatsRecipeMostCookedCommand;
+import chopchop.logic.commands.StatsRecipeMostMadeCommand;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 
@@ -32,7 +32,7 @@ public class StatsCommandParser {
         if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_ON,
             Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
             return Result.error("'stats' command doesn't support '%s'\n%s",
-                foo.get(), StatsRecipeMostCookedCommand.MESSAGE_USAGE);
+                foo.get(), StatsRecipeMostMadeCommand.MESSAGE_USAGE);
         }
 
         return getCommandTarget(args)
@@ -41,8 +41,8 @@ public class StatsCommandParser {
 
                 switch (target.fst()) {
                 case RECIPE:
-                    if (target.snd().equals("most cooked")) {
-                        return Result.of(new StatsRecipeMostCookedCommand());
+                    if (target.snd().equals("most made")) {
+                        return Result.of(new StatsRecipeMostMadeCommand());
                     }
                     return parseDateRecipeCommand(target.snd().strip(), args);
 
