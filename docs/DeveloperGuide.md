@@ -288,24 +288,30 @@ The following sequence diagram shows how the unassignall operation works:
  * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
  * Cons : Less efficient to unassign all instructors from all modules.
  
-### \[Proposed\] Switch feature
+### Clear all contacts feature
 
-#### Proposed Implementation
+#### Implementation
 
-The switch feature is facilitated by `AddressBook#switchActiveSemester()`.
-The `AddressBook` will store three module lists, one for Semester 1, one for Semester 2, and one to reference the active semester.
-All operations on `UniqueModuleList` will be done on the active semester. `AddressBook#switchActiveSemester()` toggles the active semester between Semester 1 and Semester 2.
+It implements the following operations:
+* `AddressBook#clearContacts()` — Clear all contacts from the list.  
 
-#### Design consideration:
+These operations are exposed in the `Model` interface as `Model#clearContacts()` and `UniquePersonList` class as `UniquePersonList#clearAll()`
 
-##### Aspect: Viewing a certain semester
-* **Alternative 1 (current choice):** There are two module lists and active semester references one of them.
-  * Pros: Less code to change, more difficult to test.
-  * Cons: Can only manage the modules in the active semester.
+The following sequence diagram shows how the cclear operation works:
 
-* **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
-  * Pros: More efficient to list the modules of a certain instructor.
-  * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
+![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
+
+Clearing all contacts from the contact list
+
+a. Prerequisites : Clear all contacts from contact list using `cclear` There are 3 contacts with names `Andre Taulani`, `Bayu Skak`, `Cak Lontong` in FaculType.
+
+b. Test case : `cclear` <br>
+Expected : Success message saying "All contacts deleted"
+
+c. Test case : `cclear` on an empty contact list <br>
+Expected : Error message saying "Contact list is already empty".
+
+{ more test cases ... }
 
 ### Clear all modules feature
 
@@ -331,6 +337,25 @@ c. Test case : `mclear` on an empty module list <br>
 Expected : Error message saying "Module list is already empty".
 
 { more test cases ... }
+
+### \[Proposed\] Switch feature
+
+#### Proposed Implementation
+
+The switch feature is facilitated by `AddressBook#switchActiveSemester()`.
+The `AddressBook` will store three module lists, one for Semester 1, one for Semester 2, and one to reference the active semester.
+All operations on `UniqueModuleList` will be done on the active semester. `AddressBook#switchActiveSemester()` toggles the active semester between Semester 1 and Semester 2.
+
+#### Design consideration:
+
+##### Aspect: Viewing a certain semester
+* **Alternative 1 (current choice):** There are two module lists and active semester references one of them.
+  * Pros: Less code to change, more difficult to test.
+  * Cons: Can only manage the modules in the active semester.
+
+* **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
+  * Pros: More efficient to list the modules of a certain instructor.
+  * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
 
 ### \[Proposed\] Undo/redo feature
 
