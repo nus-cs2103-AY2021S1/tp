@@ -10,9 +10,15 @@ Class "{abstract}\nUiPart" as UiPart
 Class UiManager
 Class MainWindow
 Class HelpWindow
+Class StudyPanel
+Class QuizPanel
+Class ReviewPanel
 Class ResultDisplay
-Class PersonListPanel
-Class PersonCard
+Class FlashcardListPanel
+Class FlashcardListCard
+Class FlashcardViewCard
+Class FlashcardQuestionCard
+Class FlashcardAnswerCard
 Class StatusBarFooter
 Class CommandBox
 }
@@ -33,25 +39,38 @@ UiManager -down-> MainWindow
 MainWindow --> HelpWindow
 MainWindow *-down-> CommandBox
 MainWindow *-down-> ResultDisplay
-MainWindow *-down-> PersonListPanel
+MainWindow *-down-> FlashcardListPanel
+MainWindow *-down-> FlashcardViewCard
 MainWindow *-down-> StatusBarFooter
+MainWindow *-down-> ReviewPanel
+MainWindow *-down-> QuizPanel
 
-PersonListPanel -down-> PersonCard
+ReviewPanel --|> StudyPanel
+QuizPanel --|> StudyPanel
+
+FlashcardListPanel -down-> FlashcardListCard
+FlashcardViewCard -down-> FlashcardQuestionCard
+FlashcardViewCard -down-> FlashcardAnswerCard
 
 MainWindow -left-|> UiPart
 
 ResultDisplay --|> UiPart
 CommandBox --|> UiPart
-PersonListPanel --|> UiPart
-PersonCard --|> UiPart
+FlashcardListPanel --|> UiPart
+FlashcardListCard --|> UiPart
+FlashcardViewCard --|> UiPart
+FlashcardQuestionCard --|> UiPart
+FlashcardAnswerCard --|> UiPart
 StatusBarFooter --|> UiPart
 HelpWindow -down-|> UiPart
 
-PersonCard ..> Model
+FlashcardListCard ..> Model
 UiManager -right-> Logic
 MainWindow -left-> Logic
 
-PersonListPanel -[hidden]left- HelpWindow
+QuizPanel -[hidden]left- ReviewPanel
+FlashcardListPanel -[hidden]left- FlashcardViewCard
+FlashcardViewCard -[hidden]left- HelpWindow
 HelpWindow -[hidden]left- CommandBox
 CommandBox -[hidden]left- ResultDisplay
 ResultDisplay -[hidden]left- StatusBarFooter
