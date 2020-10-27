@@ -16,4 +16,19 @@ public class SuggestionUtilTest {
         // EP: all three numbers different
         assertEquals(2103, SuggestionUtil.min(2103, 2104, 2105));
     }
+
+    @Test
+    public void minimumEditDistance() {
+        // EP: empty strings
+        assertEquals(0, SuggestionUtil.minimumEditDistance("", ""));
+
+        // EP: empty string and nonempty string
+        assertEquals(6, SuggestionUtil.minimumEditDistance("", "string"));
+
+        // EP: equal nonempty strings
+        assertEquals(0, SuggestionUtil.minimumEditDistance("string", "string"));
+
+        // EP: different nonempty strings
+        assertEquals(10, SuggestionUtil.minimumEditDistance("damith", "string"));
+    }
 }
