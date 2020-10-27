@@ -62,6 +62,7 @@ public class LogicManager implements Logic {
             // Try reading
             try {
                 Optional<List<List<OrderItem>>> lists = storage.readOrderManager();
+                int x = 5;
             } catch (DataConversionException e) {
                 e.printStackTrace();
             } catch (IOException e) {

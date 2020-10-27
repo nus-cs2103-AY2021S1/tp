@@ -15,7 +15,6 @@ import seedu.address.model.order.ReadOnlyOrderManager;
 /**
  * An Immutable OrderManager that is serializable to JSON format.
  */
-@JsonRootName(value = "presets")
 public class JsonSerializableOrderManager {
     public static final String MESSAGE_DUPLICATE_ORDERITEM = "Order contains duplicate orderItems.";
 
@@ -25,7 +24,7 @@ public class JsonSerializableOrderManager {
      * Constructs a {@code JsonSerializableOrderManager} with the given orderItems.
      */
     @JsonCreator
-    public JsonSerializableOrderManager(@JsonProperty("orderItems") List<List<JsonAdaptedOrderItem>> orderItems) {
+    public JsonSerializableOrderManager(@JsonProperty("presets") List<List<JsonAdaptedOrderItem>> orderItems) {
         this.presets.addAll(orderItems);
     }
 
