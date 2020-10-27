@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_VENUE;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.meetingcommands.AddMeetingCommand;
-import seedu.address.logic.commands.meetingcommands.FindMeetingCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -50,11 +49,11 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         }
 
         try {
-            if (argMultimap.getValue(PREFIX_MEETING_TYPE).isPresent() &
-                    argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).isPresent() &
-                    argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).isPresent() &
-                    argMultimap.getValue(PREFIX_MEETING_VENUE).isPresent() &
-                    argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
+            if (argMultimap.getValue(PREFIX_MEETING_TYPE).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_VENUE).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
                 Venue venue = ParserUtil.parseMeetingVenue(argMultimap.getValue(PREFIX_MEETING_VENUE).get());
                 Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
                 PropertyId propertyId =
@@ -76,7 +75,6 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                             time, venue);
                     return new AddMeetingCommand(meeting);
                 }
-//                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
             }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         } catch (ParseException pe) {
