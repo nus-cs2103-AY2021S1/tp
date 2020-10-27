@@ -78,7 +78,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(new FindStudentDescriptorBuilder()
                 .withNamePredicate(predicate).build());
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getSortedStudentList());
+        assertEquals(Collections.emptyList(), model.getFilteredStudentList());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class FindCommandTest {
                 .withNamePredicate(predicate).build());
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getSortedStudentList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredStudentList());
     }
 
     @Test
@@ -111,7 +111,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(descriptor);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(FIONA), model.getSortedStudentList());
+        assertEquals(Arrays.asList(FIONA), model.getFilteredStudentList());
     }
 
     @Test
@@ -131,7 +131,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(descriptor);
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(new ArrayList<>(), model.getSortedStudentList());
+        assertEquals(new ArrayList<>(), model.getFilteredStudentList());
     }
 
     /**

@@ -50,7 +50,7 @@ public class DeleteDetailCommandTest {
 
     @Test
     public void execute_validStudentIndexUnfilteredList_success() {
-        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_DETAIL).build();
         Detail detail = new Detail(TEST_DETAIL);
         DeleteDetailCommand deleteAdditionalDetailCommand =
@@ -69,7 +69,7 @@ public class DeleteDetailCommandTest {
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getSortedStudentList().size() + 1);
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         DeleteDetailCommand command = new DeleteDetailCommand(outOfBoundsStudentIndex,
                 TEST_INDEX_FIRST_DETAIL);
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -78,7 +78,7 @@ public class DeleteDetailCommandTest {
     @Test
     public void execute_invalidDetailIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundsDetailIndex =
-                Index.fromOneBased(model.getSortedStudentList().get(0).getDetails().size() + 1);
+                Index.fromOneBased(model.getFilteredStudentList().get(0).getDetails().size() + 1);
         DeleteDetailCommand invalidCommand = new DeleteDetailCommand(TEST_INDEX_FIRST_STUDENT,
                 outOfBoundsDetailIndex);
 
@@ -89,7 +89,7 @@ public class DeleteDetailCommandTest {
     public void execute_validStudentIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Detail detail = new Detail(TEST_DETAIL);
         Student clone = new StudentBuilder(asker).withDetails(TEST_DETAIL).build();
         model.setStudent(asker, clone);
@@ -123,7 +123,7 @@ public class DeleteDetailCommandTest {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Index outOfBoundsDetailIndex =
-                Index.fromOneBased(model.getSortedStudentList().get(0).getDetails().size() + 1);
+                Index.fromOneBased(model.getFilteredStudentList().get(0).getDetails().size() + 1);
         DeleteDetailCommand invalidCommand =
                 new DeleteDetailCommand(TEST_INDEX_FIRST_STUDENT, outOfBoundsDetailIndex);
 
