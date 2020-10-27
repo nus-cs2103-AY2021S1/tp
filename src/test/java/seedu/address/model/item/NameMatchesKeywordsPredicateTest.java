@@ -66,7 +66,7 @@ public class NameMatchesKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsFalse() {
+    public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Non-matching keyword
         NameMatchesKeywordsPredicate predicate = new NameMatchesKeywordsPredicate(Collections.singletonList("Carrot"));
         assertFalse(predicate.test(new ItemBuilder().withName("Apple Banana").build()));

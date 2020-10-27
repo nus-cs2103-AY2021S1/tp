@@ -37,7 +37,7 @@ public class RedoCommandIntegrationTest {
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(model);
         } catch (Exception ignored) {
-            // ignored
+            // valid add item, won't throw error; ignored
         }
 
         CommandResult expectedResult = new CommandResult(RedoCommand.MESSAGE_FAILURE);
@@ -50,19 +50,19 @@ public class RedoCommandIntegrationTest {
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(model);
         } catch (Exception ignored) {
-            // ignored
+            // valid add item, won't throw error; ignored
         }
 
         try {
             new UndoCommand().execute(model);
         } catch (Exception ignored) {
-            // ignored
+            // valid undo, won't throw error; ignored
         }
 
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(model);
         } catch (Exception ignored) {
-            // ignored
+            // valid add item, won't throw error; ignored
         }
 
         CommandResult expectedResult = new CommandResult(RedoCommand.MESSAGE_FAILURE);
@@ -79,7 +79,7 @@ public class RedoCommandIntegrationTest {
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(modifiedModel);
         } catch (Exception ignored) {
-            // ignored
+            // valid add item, won't throw error; ignored
         }
 
         Model modifiedCopy = new ModelManager(modifiedModel.getItemList(), new LocationList(),
@@ -88,7 +88,7 @@ public class RedoCommandIntegrationTest {
         try {
             new UndoCommand().execute(modifiedModel);
         } catch (Exception ignored) {
-            // ignored
+            // valid undo, won't throw error; ignored
         }
 
         CommandResult expectedResult = new CommandResult(RedoCommand.MESSAGE_SUCCESS);

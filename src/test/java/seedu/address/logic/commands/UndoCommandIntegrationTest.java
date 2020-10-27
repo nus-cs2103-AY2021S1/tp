@@ -41,7 +41,7 @@ public class UndoCommandIntegrationTest {
         try {
             new AddItemCommand(new ItemPrecursorBuilder().build()).execute(modifiedModel);
         } catch (Exception ignored) {
-            // ignored
+            // valid add item, won't throw error; ignored
         }
 
         Model modifiedCopy = new ModelManager(modifiedModel.getItemList(), new LocationList(),
