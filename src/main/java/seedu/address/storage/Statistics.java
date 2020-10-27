@@ -23,6 +23,7 @@ import seedu.address.model.task.Task;
 public class Statistics {
     private static final Logger logger = LogsCenter.getLogger(JsonPlanusStorage.class);
     private static final Path filePath = Paths.get("data", "planus.json");
+
     /**
      * Computes total duration of time spent on all tasks and lessons for the specified time period and
      * stores it in a data structure.
@@ -82,7 +83,10 @@ public class Statistics {
         }
     }
 
-    public static void main(String args[]) {
+    /**
+     * Main method
+     */
+    public static void main(String[] args) {
         //test
         try {
             generateStatistics(ParserUtil.parseDate("01-05-2020"),
@@ -90,7 +94,5 @@ public class Statistics {
         } catch (Exception e) {
             System.out.println(e);
         }
-            
     }
-
 }

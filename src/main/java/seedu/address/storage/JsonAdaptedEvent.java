@@ -16,8 +16,6 @@ import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
 import seedu.address.model.task.event.StartDateTime;
 
-
-
 /**
  * Jackson-friendly version of {@link Task}.
  */
@@ -69,7 +67,6 @@ class JsonAdaptedEvent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Event toModelType() throws IllegalValueException {
-        
         if (tag == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
         }
@@ -88,10 +85,10 @@ class JsonAdaptedEvent {
 
         final StartDateTime modelStartDateTime;
 
-         if (!DateUtil.isValidDateTime(startDateTime) || startDateTime.equals("")) {
+        if (!DateUtil.isValidDateTime(startDateTime) || startDateTime.equals("")) {
             throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);
         } else {
-             modelStartDateTime = new StartDateTime(startDateTime);
+            modelStartDateTime = new StartDateTime(startDateTime);
         }
 
         if (endDateTime == null) {

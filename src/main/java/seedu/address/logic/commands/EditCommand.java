@@ -5,14 +5,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -24,10 +20,7 @@ import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.deadline.Deadline;
-import seedu.address.model.task.deadline.DeadlineDateTime;
-import seedu.address.model.task.event.EndDateTime;
 import seedu.address.model.task.event.Event;
-import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Edits the details of an existing task in PlaNus task list.
@@ -43,7 +36,6 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_DATE_TIME + "DATE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_TYPE + "TYPE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DATE_TIME + "02-02-2020 12:00 "
@@ -116,10 +108,12 @@ public class EditCommand extends Command {
 
         if (taskToEdit instanceof Deadline) {
             Deadline deadlineToEdit = (Deadline) taskToEdit;
-            return Deadline.createDeadline(updatedTitle, deadlineToEdit.getDeadlineDateTime(), updatedDescription, updatedTag);
+            return Deadline.createDeadline(updatedTitle, deadlineToEdit.getDeadlineDateTime(),
+                    updatedDescription, updatedTag);
         } else {
             Event eventToEdit = (Event) taskToEdit;
-            return Event.createUserEvent(updatedTitle, eventToEdit.getStartDateTime(), eventToEdit.getEndDateTime(), updatedDescription, updatedTag);
+            return Event.createUserEvent(updatedTitle, eventToEdit.getStartDateTime(), eventToEdit.getEndDateTime(),
+                    updatedDescription, updatedTag);
         }
     }
 
