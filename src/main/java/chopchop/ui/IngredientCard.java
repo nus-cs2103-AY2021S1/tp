@@ -33,7 +33,7 @@ public class IngredientCard extends UiPart<Region> {
     private Label expiryDate;
 
     @FXML
-    private FlowPane tags;
+    private FlowPane tagList;
 
     @FXML
     private Label index;
@@ -59,9 +59,11 @@ public class IngredientCard extends UiPart<Region> {
             this.expiryBox.setVisible(false);
         });
 
-        ingredient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.toString()))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.toString())));
+        this.ingredient.getTags().stream()
+            .map(Object::toString)
+            .sorted()
+            .map(Label::new)
+            .forEach(this.tagList.getChildren()::add);
     }
 
 

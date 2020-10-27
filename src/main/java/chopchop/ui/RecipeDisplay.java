@@ -4,7 +4,6 @@
 package chopchop.ui;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import chopchop.commons.util.StreamUtils;
 import chopchop.model.recipe.Recipe;
@@ -69,45 +68,39 @@ public class RecipeDisplay extends UiPart<Region> {
         if (this.recipe.getIngredients().isEmpty()) {
             this.ingredientList.getChildren().add(new Text("Recipe uses no ingredients"));
         } else {
-            this.ingredientList.getChildren().setAll(
-                this.recipe.getIngredients().stream()
-                    .map(Object::toString)
-                    .map(s -> new Text(s + "\n"))
-                    .collect(Collectors.toList())
-            );
+            this.recipe.getIngredients().stream()
+                .map(Object::toString)
+                .map(s -> new Text(s + "\n"))
+                .forEach(this.ingredientList.getChildren()::add);
         }
 
         if (this.recipe.getSteps().isEmpty()) {
             this.stepList.getChildren().add(new Text("Recipe has no steps"));
         } else {
-            this.stepList.getChildren().setAll(
-                StreamUtils.indexed(this.recipe.getSteps().stream())
-                    .flatMap(s -> {
-                        var label = new Label(String.format("%d.", 1 + s.fst()));
-                        label.setPrefWidth(20);
+            StreamUtils.indexed(this.recipe.getSteps().stream())
+                .flatMap(s -> {
+                    var label = new Label(String.format("%d.", 1 + s.fst()));
+                    label.setPrefWidth(20);
 
-                        return List.of(
-                            label, new Text(String.format("%s\n", s.snd()))
-                        ).stream();
-                    })
-                    .collect(Collectors.toList())
-            );
+                    return List.of(
+                        label, new Text(String.format("%s\n", s.snd()))
+                    ).stream();
+                })
+                .forEach(this.stepList.getChildren()::add);
         }
 
         if (this.recipe.getTags().isEmpty()) {
             this.tagList.getChildren().add(new Text("Recipe has no tags"));
         } else {
-            this.tagList.getChildren().setAll(
-                this.recipe.getTags().stream()
-                    .map(Object::toString)
-                    .sorted()
-                    .map(s -> {
-                        var t = new Label(s);
-                        t.getStyleClass().add("rvTagItem");
-                        return t;
-                    })
-                    .collect(Collectors.toList())
-            );
+            this.recipe.getTags().stream()
+                .map(Object::toString)
+                .sorted()
+                .map(s -> {
+                    var t = new Label(s);
+                    t.getStyleClass().add("rvTagItem");
+                    return t;
+                })
+                .forEach(this.tagList.getChildren()::add);
         }
     }
 }
