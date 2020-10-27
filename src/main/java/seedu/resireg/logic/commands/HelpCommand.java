@@ -8,6 +8,7 @@ import seedu.resireg.commons.core.Messages;
 import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.CommandMapper;
 import seedu.resireg.logic.commands.exceptions.CommandException;
+import seedu.resireg.model.AppMode;
 import seedu.resireg.model.Model;
 import seedu.resireg.storage.Storage;
 
@@ -25,9 +26,10 @@ public class HelpCommand extends Command {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Cannot show help for %s: " + Messages.MESSAGE_UNKNOWN_COMMAND;
 
+    // TODO fix this to be mode specific
     public static final String MESSAGE_GENERAL_HELP = "Commands available:\n"
             // summary for commands available (excluding help command), in alphabetical order
-            + new CommandMapper(new ArrayList<>()).getCommandWordToHelpMap().entrySet().stream()
+            + new CommandMapper(AppMode.NORMAL, new ArrayList<>()).getCommandWordToHelpMap().entrySet().stream()
                     .sorted(Map.Entry.comparingByKey())
                     .filter(entry -> !entry.getKey().equals(HelpCommand.COMMAND_WORD))
                     .map(entry -> entry.getValue().getSummary())
@@ -38,7 +40,7 @@ public class HelpCommand extends Command {
             + "You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io/tp/UserGuide.html";
 
     private static final Map<String, Help> commandWordToHelpMap =
-            new CommandMapper(new ArrayList<>()).getCommandWordToHelpMap();
+            new CommandMapper(AppMode.NORMAL, new ArrayList<>()).getCommandWordToHelpMap();
 
     private String input;
 

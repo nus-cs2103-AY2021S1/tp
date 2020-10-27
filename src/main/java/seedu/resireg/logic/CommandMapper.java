@@ -44,6 +44,7 @@ import seedu.resireg.logic.parser.ReallocateCommandParser;
 import seedu.resireg.logic.parser.ResiRegParser;
 import seedu.resireg.logic.parser.RestoreCommandParser;
 import seedu.resireg.logic.parser.SetBinExpiryCommandParser;
+import seedu.resireg.model.AppMode;
 import seedu.resireg.model.alias.CommandWordAlias;
 
 /**
@@ -55,51 +56,58 @@ import seedu.resireg.model.alias.CommandWordAlias;
 public class CommandMapper {
 
     private CommandMap commandMap;
-    private ResiRegParser parser;
 
     /**
      * Creates a new CommandMapper with all the commands supported by the application bound appropriately.
      * Developers who want to add new commands need to modify this constructor.
      */
-    public CommandMapper(List<CommandWordAlias> aliases) {
+    public CommandMapper(AppMode appMode, List<CommandWordAlias> aliases) {
         commandMap = new CommandMap();
         // note: new Parser()::parse assumes that Parser does not depend on state
-        commandMap.addCommand(AddCommand.COMMAND_WORD, AddCommand.HELP, new AddCommandParser()::parse);
-        commandMap.addCommand(ArchiveCommand.COMMAND_WORD, ArchiveCommand.HELP, unused -> new ArchiveCommand());
-        commandMap.addCommand(ClearCommand.COMMAND_WORD, ClearCommand.HELP, unused -> new ClearCommand());
-        commandMap.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand.HELP, new DeleteCommandParser()::parse);
-        commandMap.addCommand(EditCommand.COMMAND_WORD, EditCommand.HELP, new EditCommandParser()::parse);
-        commandMap.addCommand(ExitCommand.COMMAND_WORD, ExitCommand.HELP, unused -> new ExitCommand());
-        commandMap.addCommand(FindCommand.COMMAND_WORD, FindCommand.HELP, new FindCommandParser()::parse);
-        commandMap.addCommand(HelpCommand.COMMAND_WORD, HelpCommand.HELP, HelpCommand::new);
-        commandMap.addCommand(ListCommand.COMMAND_WORD, ListCommand.HELP, unused -> new ListCommand());
-        commandMap.addCommand(ListRoomCommand.COMMAND_WORD, ListRoomCommand.HELP, new ListRoomCommandParser()::parse);
-        commandMap.addCommand(AllocateCommand.COMMAND_WORD, AllocateCommand.HELP, new AllocateCommandParser()::parse);
-        commandMap.addCommand(DeallocateCommand.COMMAND_WORD, DeallocateCommand.HELP,
-            new DeallocateCommandParser()::parse);
-        commandMap.addCommand(ReallocateCommand.COMMAND_WORD, ReallocateCommand.HELP,
-            new ReallocateCommandParser()::parse);
-        commandMap.addCommand(RedoCommand.COMMAND_WORD, RedoCommand.HELP, unused -> new RedoCommand());
-        commandMap.addCommand(UndoCommand.COMMAND_WORD, UndoCommand.HELP, unused -> new UndoCommand());
-        commandMap.addCommand(AddAliasCommand.COMMAND_WORD, AddAliasCommand.HELP, new AddAliasCommandParser()::parse);
-        commandMap.addCommand(DeleteAliasCommand.COMMAND_WORD, DeleteAliasCommand.HELP,
-            new DeleteAliasCommandParser()::parse);
-        commandMap.addCommand(ListAliasCommand.COMMAND_WORD, ListAliasCommand.HELP, unused -> new ListAliasCommand());
-        commandMap.addCommand(ToggleTabSplitCommand.COMMAND_WORD, ToggleTabSplitCommand.HELP,
-            unused -> new ToggleTabSplitCommand());
-        commandMap.addCommand(HistoryCommand.COMMAND_WORD, HistoryCommand.HELP, unused -> new HistoryCommand());
-        commandMap.addCommand(RestoreCommand.COMMAND_WORD, RestoreCommand.HELP,
-            new RestoreCommandParser()::parse);
-        commandMap.addCommand(ListBinCommand.COMMAND_WORD, ListBinCommand.HELP, unused -> new ListBinCommand());
-        commandMap.addCommand(SetBinExpiryCommand.COMMAND_WORD, SetBinExpiryCommand.HELP,
-            new SetBinExpiryCommandParser()::parse);
+
+        switch (appMode) {
+        case NORMAL:
+            commandMap.addCommand(AddCommand.COMMAND_WORD, AddCommand.HELP, new AddCommandParser()::parse);
+            commandMap.addCommand(ArchiveCommand.COMMAND_WORD, ArchiveCommand.HELP, unused -> new ArchiveCommand());
+            commandMap.addCommand(ClearCommand.COMMAND_WORD, ClearCommand.HELP, unused -> new ClearCommand());
+            commandMap.addCommand(DeleteCommand.COMMAND_WORD, DeleteCommand.HELP, new DeleteCommandParser()::parse);
+            commandMap.addCommand(EditCommand.COMMAND_WORD, EditCommand.HELP, new EditCommandParser()::parse);
+            commandMap.addCommand(ExitCommand.COMMAND_WORD, ExitCommand.HELP, unused -> new ExitCommand());
+            commandMap.addCommand(FindCommand.COMMAND_WORD, FindCommand.HELP, new FindCommandParser()::parse);
+            commandMap.addCommand(HelpCommand.COMMAND_WORD, HelpCommand.HELP, HelpCommand::new);
+            commandMap.addCommand(ListCommand.COMMAND_WORD, ListCommand.HELP, unused -> new ListCommand());
+            commandMap.addCommand(ListRoomCommand.COMMAND_WORD, ListRoomCommand.HELP, new ListRoomCommandParser()::parse);
+            commandMap.addCommand(AllocateCommand.COMMAND_WORD, AllocateCommand.HELP, new AllocateCommandParser()::parse);
+            commandMap.addCommand(DeallocateCommand.COMMAND_WORD, DeallocateCommand.HELP,
+                    new DeallocateCommandParser()::parse);
+            commandMap.addCommand(ReallocateCommand.COMMAND_WORD, ReallocateCommand.HELP,
+                    new ReallocateCommandParser()::parse);
+            commandMap.addCommand(RedoCommand.COMMAND_WORD, RedoCommand.HELP, unused -> new RedoCommand());
+            commandMap.addCommand(UndoCommand.COMMAND_WORD, UndoCommand.HELP, unused -> new UndoCommand());
+            commandMap.addCommand(AddAliasCommand.COMMAND_WORD, AddAliasCommand.HELP, new AddAliasCommandParser()::parse);
+            commandMap.addCommand(DeleteAliasCommand.COMMAND_WORD, DeleteAliasCommand.HELP,
+                    new DeleteAliasCommandParser()::parse);
+            commandMap.addCommand(ListAliasCommand.COMMAND_WORD, ListAliasCommand.HELP, unused -> new ListAliasCommand());
+            commandMap.addCommand(ToggleTabSplitCommand.COMMAND_WORD, ToggleTabSplitCommand.HELP,
+                    unused -> new ToggleTabSplitCommand());
+            commandMap.addCommand(HistoryCommand.COMMAND_WORD, HistoryCommand.HELP, unused -> new HistoryCommand());
+            commandMap.addCommand(RestoreCommand.COMMAND_WORD, RestoreCommand.HELP,
+                    new RestoreCommandParser()::parse);
+            commandMap.addCommand(ListBinCommand.COMMAND_WORD, ListBinCommand.HELP, unused -> new ListBinCommand());
+            commandMap.addCommand(SetBinExpiryCommand.COMMAND_WORD, SetBinExpiryCommand.HELP,
+                    new SetBinExpiryCommandParser()::parse);
+            break;
+        case NEW:
+
+            break;
+        default:
+            assert false: "Unhandled AppMode in CommandMapper!";
+        }
 
         for (CommandWordAlias commandWordAlias : aliases) {
             commandMap.addAliasCommand(commandWordAlias.getAlias().toString(),
                 commandWordAlias.getCommandWord().toString());
         }
-
-        parser = new ResiRegParser(commandMap.getCommandWordToParserMap());
     }
 
     public Map<String, Help> getCommandWordToHelpMap() {
@@ -113,7 +121,7 @@ public class CommandMapper {
      * @return Parser.
      */
     ResiRegParser getParser() {
-        return parser;
+        return new ResiRegParser(commandMap.getCommandWordToParserMap());
     }
 
     private static class CommandMap {
@@ -131,8 +139,11 @@ public class CommandMapper {
         }
 
         void addAliasCommand(String alias, String commandWord) {
-            commandWordToHelp.put(alias, commandWordToHelp.get(commandWord));
-            commandWordToParser.put(alias, commandWordToParser.get(commandWord));
+            // ignore the alias if it's not present
+            if (commandWordToParser.containsKey(alias)) {
+                commandWordToHelp.put(alias, commandWordToHelp.get(commandWord));
+                commandWordToParser.put(alias, commandWordToParser.get(commandWord));
+            }
         }
 
         Map<String, Help> getCommandWordToHelpMap() {

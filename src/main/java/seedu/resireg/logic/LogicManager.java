@@ -12,6 +12,7 @@ import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.ResiRegParser;
 import seedu.resireg.logic.parser.exceptions.ParseException;
+import seedu.resireg.model.AppMode;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
@@ -52,7 +53,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         try {
-            resiRegParser = new CommandMapper(model.getCommandWordAliases()).getParser();
+            resiRegParser = new CommandMapper(model.getAppMode(), model.getCommandWordAliases()).getParser();
             Command command = resiRegParser.parseCommand(commandText);
             commandResult = command.execute(model, storage, history);
         } finally {
