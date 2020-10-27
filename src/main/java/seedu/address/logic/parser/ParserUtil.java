@@ -163,7 +163,31 @@ public class ParserUtil {
         requireNonNull(day);
         String trimmedDay = day.trim();
         String dayOfWeek = trimmedDay.toUpperCase();
-        return DayOfWeek.valueOf(day);
+        switch (dayOfWeek) {
+        case "MON":
+        case "MONDAY":
+            return DayOfWeek.MONDAY;
+        case "TUE":
+        case "TUESDAY":
+            return DayOfWeek.TUESDAY;
+        case "WED":
+        case "WEDNESDAY":
+            return DayOfWeek.WEDNESDAY;
+        case "THU":
+        case "THURSDAY":
+            return DayOfWeek.THURSDAY;
+        case "FRI":
+        case "FRIDAY":
+            return DayOfWeek.FRIDAY;
+        case "SAT":
+        case "SATURDAY":
+            return DayOfWeek.SATURDAY;
+        case "SUN":
+        case "SUNDAY":
+            return DayOfWeek.SUNDAY;
+        default:
+            throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

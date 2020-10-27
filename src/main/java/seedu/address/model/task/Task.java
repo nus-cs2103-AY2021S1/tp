@@ -36,7 +36,7 @@ public abstract class Task implements Comparable<Task> {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable tag, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Tag getTag() {

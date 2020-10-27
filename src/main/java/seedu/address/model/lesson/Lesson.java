@@ -3,6 +3,7 @@ package seedu.address.model.lesson;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -74,6 +75,9 @@ public class Lesson {
     public Tag getTag() {
         return tag;
     }
+    public int getTimeTaken() {
+        return (int) Duration.between(startDate, endDate).toMinutes();
+    }
     /**
      * Creates recurring event tasks based on the lesson's details.
      * @return a list of recurring tasks to add.
@@ -98,7 +102,6 @@ public class Lesson {
         associatedTasks = tasksToAdd;
         return tasksToAdd;
     }
-
     /**
      * Returns the set of tasks the lesson created.
      * @return an array list of tasks created by the lesson.
