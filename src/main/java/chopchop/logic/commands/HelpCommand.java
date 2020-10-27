@@ -69,7 +69,12 @@ public class HelpCommand extends Command {
 
     private Class<?> getCommandClassFor(String cmd, String target) {
 
-        var camelCasing = (Function<String, String>) s -> s.isEmpty() ? "" : s.substring(0, 1).toUpperCase() + s.substring(1);
+        var camelCasing = (Function<String, String>) s -> {
+            return s.isEmpty()
+                ? ""
+                : (s.substring(0, 1).toUpperCase() + s.substring(1));
+        };
+
         var pkg = "chopchop.logic.commands.";
 
         if (target.equals("recipes")) {
