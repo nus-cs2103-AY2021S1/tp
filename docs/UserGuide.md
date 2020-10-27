@@ -1,3 +1,10 @@
+---
+layout: page
+title: User Guide
+---
+* Table of Contents
+{:toc}
+
 ## Introduction
 PropertyFree is adapted from AB3, which is a desktop application for managing property listing. Leveraging on Command 
 Line Interface for those who are more comfortable with typing than with Graphical User Interface (GUI).
@@ -114,7 +121,7 @@ Seller id: S20
 Find properties that satisfy all of the user's filters.  
 Format: `find-p [p/PROPERTY_ID_KEYWORDS] [n/NAME_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/SELLER_ID_KEYWORDS] [t/PROPERTY_TYPE_KEYWORDS] [ap/ASKING_PRICE_FILTER] [r/IS_RENTAL] [c/IS_CLOSED_DEAL]`
 
-|   |   |
+|   |**Formats**|
 |---|---|
 |💡|<p>Format for attributes that search by keywords (property name, address, seller id, property id, property type): keywords delimited by whitespace. <br>For example, `n/Sunrise Cove a/Street Road`<br><br> Format for asking price filter: `< / <= / == / > / >= PRICE`<br>For example, `ap/<= 100`<br><br>Format for is rental: `y / yes / n / no`<br><br>Format for is closed deal: `close` or `active`</p>|
 
@@ -724,7 +731,7 @@ Picture Example:
 
 ## Navigate To Previous Month in Calendar
 
-Brings the next month page to view.
+Brings the previous month page to view.
 
 - Command: `prev`
 - Format: `prev`
