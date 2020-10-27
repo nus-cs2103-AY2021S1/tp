@@ -168,17 +168,24 @@ Examples:
 
 ### Locating patients by name or Nric: `find` (by Gabriel Teo Yu Xiang)
 
-Finds patients whose names contain any of the given keywords or NRICs.
+This command allows you to find patients whose names contain any of the given keywords or NRICs.
 
 Format: `find KEYWORD [MORE_KEYWORDS] [NRIC] [MORE_NRICs]`
 
 * The search is case-insensitive. e.g. `hans` will match `Hans`, and `s1234567a` will match `S1234567A`
 * The order of the keywords or NRICs does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * Both the name and NRIC are searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
 * Patients matching at least one keyword or NRIC will be returned (i.e. `OR` search).
   e.g. `Hans Bo S7654321A` will return `Hans Gruber`, `Bo Yang`, `Tom Lee` (whose NRIC is S7654321A)
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note:**<br>
+
+* Only full words will be matched e.g. `Han` will not match `Hans`
+
+* Only full NRICs will be matched e.g. `S12345` will not match `S1234567A`
+</div>
 
 Examples:
 * `find John` returns `john` and `John Doe`
