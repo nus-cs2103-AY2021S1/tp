@@ -173,6 +173,8 @@ public class CraftItemCommand extends Command {
             displayMessage.append(String.format(MESSAGE_SUCCESS, itemToCraft, productQuantity));
         }
 
+        model.commitInventory();
+
         return new CommandResult(displayMessage.toString());
     }
 

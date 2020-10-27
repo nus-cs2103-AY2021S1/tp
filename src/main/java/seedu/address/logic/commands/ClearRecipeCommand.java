@@ -17,6 +17,9 @@ public class ClearRecipeCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setRecipeList(new RecipeList());
+
+        model.commitInventory();
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

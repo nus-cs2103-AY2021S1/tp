@@ -62,6 +62,9 @@ public class AddRecipeCommand extends Command {
         }
 
         model.addRecipe(recipeToAdd);
+
+        model.commitInventory();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, recipeToAdd));
     }
 
