@@ -17,8 +17,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
+import seedu.address.testutil.builders.AddressBookBuilder;
 
 public class ModelManagerTest {
 
@@ -112,8 +112,44 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void isEmptyModuleList_moduleListNotEmpty_returnsFalse() {
+        modelManager.addModule(CS1101S);
+        assertFalse(modelManager.isEmptyModuleList());
+    }
+
+    @Test
+    public void isEmptyModuleList_moduleListEmpty_returnsTrue() {
+        assertTrue(modelManager.isEmptyModuleList());
+    }
+
+    @Test
+    public void clearModules_returnsTrue() {
+        modelManager.addModule(CS1101S);
+        modelManager.clearMod();
+        assertTrue(modelManager.isEmptyModuleList());
+    }
+
+    @Test
     public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
+    }
+
+    @Test
+    public void isEmptyPersonList_personListNotEmpty_returnsFalse() {
+        modelManager.addPerson(ALICE);
+        assertFalse(modelManager.isEmptyPersonList());
+    }
+
+    @Test
+    public void isEmptyPersonList_persontListEmpty_returnsTrue() {
+        assertTrue(modelManager.isEmptyPersonList());
+    }
+
+    @Test
+    public void clearContacts_returnsTrue() {
+        modelManager.addPerson(ALICE);
+        modelManager.clearContacts();
+        assertTrue(modelManager.isEmptyPersonList());
     }
 
     @Test

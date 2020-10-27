@@ -1,6 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap');
+
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: #0B132B;
+    background-color: #0B132B; /* Used in the default.html file */
+}
+
+*:disabled {
+    -fx-opacity: 100;
 }
 
 .label {
@@ -19,7 +26,7 @@
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Poppins";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -29,33 +36,23 @@
     -fx-font-family: "Segoe UI Semibold";
 }
 
-.tab-pane {
-    -fx-padding: 0 0 0 1;
-}
-
-.tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
-    -fx-min-height: 0;
-    -fx-max-height: 0;
-}
-
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
+    -fx-base: #0B132B;
+    -fx-control-inner-background: #0B132B;
+    -fx-background-color: #0B132B;
+    -fx-table-cell-border-color: #0B132B;
+    -fx-table-header-border-color: #0B132B;
     -fx-padding: 5;
 }
 
 .table-view .column-header-background {
-    -fx-background-color: transparent;
+    -fx-background-color: #0B132B;
 }
 
 .table-view .column-header, .table-view .filler {
     -fx-size: 35;
     -fx-border-width: 0 0 1 0;
-    -fx-background-color: transparent;
+    -fx-background-color: #0B132B;
     -fx-border-color:
         transparent
         transparent
@@ -66,7 +63,7 @@
 
 .table-view .column-header .label {
     -fx-font-size: 20pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Poppins";
     -fx-text-fill: white;
     -fx-alignment: center-left;
     -fx-opacity: 1;
@@ -77,34 +74,66 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #0B132B;
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #c24848;
+}
+
+#personListView {
+    -fx-background-insets: 0;
+    -fx-background-color: #6930c3;
+    -fx-background-radius: 15px;
+    -fx-padding: 20px 10px;
+}
+
+#personListView .list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 3px;
+    -fx-background-insets: 0px, 2px;
+    -fx-background-color: #6930c3;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 3px;
+    -fx-background-color: #c24848;
 }
 
-.list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+#moduleListView .list-cell:filled:even {
+    -fx-background-color: #c24848, #8b3333;
+    -fx-background-radius: 15px;
+    -fx-background-insets: 0px, 2px;
 }
 
-.list-cell:filled:odd {
-    -fx-background-color: #515658;
+#moduleListView .list-cell:filled:odd {
+    -fx-background-color: #c24848, #a4343d;
+    -fx-background-radius: 15px;
+    -fx-background-insets: 0px, 2px;
+}
+
+#personListView .list-cell:filled:even {
+    -fx-background-color: transparent, #421785;
+    -fx-background-radius: 15px;
+    -fx-background-insets: 0px, 2px;
+}
+
+#personListView .list-cell:filled:odd {
+    -fx-background-color: transparent, #381471;
+    -fx-background-radius: 15px;
+    -fx-background-insets: 0px, 2px;
 }
 
 .list-cell:filled:selected {
@@ -113,7 +142,7 @@
 
 .list-cell:filled:selected #cardPane {
     -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
+    -fx-border-width: 0;
 }
 
 .list-cell .label {
@@ -121,35 +150,36 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
+    -fx-font-family: "Poppins";
+    -fx-font-weight: 700;
+    -fx-font-size: 18px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Poppins";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #0B132B;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: #0B132B;
+     -fx-border-color: #0B132B;
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #1C2541;
 }
 
 .result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-background-color: #0B132B;
+    -fx-font-family: "Roboto Mono Light";
+    -fx-font-size: 10pt;
     -fx-text-fill: white;
 }
 
@@ -158,15 +188,14 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Poppins";
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
 
 .status-bar-with-border {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 25%);
+    -fx-background-color: #1C2541;
     -fx-border-width: 1px;
 }
 
@@ -175,17 +204,25 @@
 }
 
 .grid-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
-    -fx-border-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #0B132B;
+    -fx-border-color: #0B132B;
     -fx-border-width: 1px;
 }
 
+.listTitle {
+    -fx-font-size: 24pt;
+    -fx-font-family: "Poppins";
+    -fx-font-weight: 700;
+    -fx-text-fill: white;
+    -fx-padding: 20px 0px 5px 15px;
+}
+
 .grid-pane .stack-pane {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #0B132B
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #0B132B
 }
 
 .context-menu .label {
@@ -193,12 +230,12 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #0B132B;
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 11pt;
+    -fx-font-family: "Poppins";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -257,11 +294,11 @@
 }
 
 .dialog-pane {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #0B132B;
 }
 
 .dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #0B132B;
 }
 
 .dialog-pane > *.label.content {
@@ -271,7 +308,7 @@
 }
 
 .dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#1d1d1d, 25%);
+    -fx-background-color: #0B132B;
 }
 
 .dialog-pane:header *.header-panel *.label {
@@ -281,13 +318,38 @@
     -fx-text-fill: white;
 }
 
+.scroll-pane {
+    -fx-background-color: #0B132B;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: #c24848;
+    -fx-background-radius: 15px;
+}
+
+#personListView .scroll-pane > .viewport {
+    -fx-background-color: #6930c3;
+    -fx-background-radius: 15px;
+}
+
+.text-area {
+    -fx-font-family: "Roboto Mono";
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
+
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
-    -fx-background-insets: 3;
+    -fx-background-color: #1C2541;
+    -fx-background-insets: 6px;
+}
+
+.module_card > .scroll-bar .thumb {
+    -fx-background-color: #8b3333;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -307,6 +369,58 @@
     -fx-padding: 8 1 8 1;
 }
 
+.tab-pane {
+    -fx-background-color: #0B132B;
+    -fx-background-insets: 0px;
+    -fx-padding: 0px;
+}
+
+.tab-pane .headers-region {
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+.tab-pane:focused > .tab-header-area > .headers-region > .tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+.tab-header-area {
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+.tab-header-background {
+    -fx-background-color: #0B132B;
+}
+
+.tab {
+    -fx-background-color: #8b3333;
+    -fx-padding: 5px 20px;
+    -fx-background-radius: 15px 15px 0px 0px;
+    -fx-focus-color: transparent;
+    -fx-font-size: 18px;
+}
+
+.tab:top {
+    -fx-background-insets: 0;
+}
+
+.tab:selected {
+    -fx-background-color: #c24848;
+}
+
+.tab Label {
+    -fx-text-fill: white;
+    -fx-focus-color: transparent;
+    -fx-font-weight: bold;
+}
+
+.tab-content-area {
+    -fx-background-color: #c24848;
+    -fx-background-radius: 0px 15px 15px 15px;
+    padding: 15px;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;
@@ -318,14 +432,13 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: #1C2541;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-background-radius: 15px;
+    -fx-font-family: "Roboto Mono";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-padding: 10px 15px;
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -333,8 +446,12 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: #1C2541;
+    -fx-background-radius: 15px;
+    -fx-font-family: "Roboto Mono";
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-padding: 10px 15px;
 }
 
 #tags {
@@ -344,9 +461,49 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
-    -fx-padding: 1 3 1 3;
+    -fx-background-color: #4ea8de;
+    -fx-padding: 2 8;
     -fx-border-radius: 2;
-    -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-background-radius: 15px;
+    -fx-font-size: 9pt;
+}
+
+#instructors {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#instructors .label {
+    -fx-text-fill: white;
+    -fx-background-color: #fb8b24;
+    -fx-padding: 2 8;
+    -fx-border-radius: 2;
+    -fx-background-radius: 15px;
+    -fx-font-size: 9pt;
+}
+
+.icon-button {
+    -icon-paint: white;
+    -fx-background-color: -icon-paint;
+    -size: 10;
+    -fx-min-height: -size;
+    -fx-min-width: -size;
+    -fx-max-height: -size;
+    -fx-max-width: -size;
+}
+
+#user {
+    -fx-shape: "M12 12a5 5 0 1 1 0-10 5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm9 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H8a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v2z";
+}
+
+#contact {
+    -fx-shape: "M13.04 14.69l1.07-2.14a1 1 0 0 1 1.2-.5l6 2A1 1 0 0 1 22 15v5a2 2 0 0 1-2 2h-2A16 16 0 0 1 2 6V4c0-1.1.9-2 2-2h5a1 1 0 0 1 .95.68l2 6a1 1 0 0 1-.5 1.21L9.3 10.96a10.05 10.05 0 0 0 3.73 3.73zM8.28 4H4v2a14 14 0 0 0 14 14h2v-4.28l-4.5-1.5-1.12 2.26a1 1 0 0 1-1.3.46 12.04 12.04 0 0 1-6.02-6.01 1 1 0 0 1 .46-1.3l2.26-1.14L8.28 4z";
+}
+
+#department {
+    -fx-shape: "M8 7V5c0-1.1.9-2 2-2h4a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9c0-1.1.9-2 2-2h4zm8 2H8v10h8V9zm2 0v10h2V9h-2zM6 9H4v10h2V9zm4-2h4V5h-4v2z";
+}
+
+#email {
+    -fx-shape: "M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6c0-1.1.9-2 2-2zm16 3.38V6H4v1.38l8 4 8-4zm0 2.24l-7.55 3.77a1 1 0 0 1-.9 0L4 9.62V18h16V9.62z";
 }

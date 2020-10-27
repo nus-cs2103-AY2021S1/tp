@@ -22,12 +22,12 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.testutil.ModuleBuilder;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.builders.ModuleBuilder;
+import seedu.address.testutil.builders.PersonBuilder;
 
 public class AddressBookTest {
 
@@ -78,6 +78,21 @@ public class AddressBookTest {
     }
 
     @Test
+    public void clearContacts_personInAddressBook_returnsTrue() {
+        addressBook.clearContacts();
+        assertEquals(addressBook.getPersonList(), new UniquePersonList().asUnmodifiableObservableList());
+    }
+
+    @Test
+    public void clearContacts_checkInstructorInModuleList_returnsTrue() {
+        addressBook.clearContacts();
+        AddressBook temp = getTypicalAddressBook();
+        temp.clearContacts();
+        assertEquals(addressBook.getSemOneModuleList(), temp.getSemOneModuleList() );
+        assertEquals(addressBook.getSemTwoModuleList(), temp.getSemTwoModuleList() );
+    }
+
+    @Test
     public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withDepartment(VALID_DEPARTMENT_BOB)
@@ -96,7 +111,7 @@ public class AddressBookTest {
         // Two modules with the same identity fields
         Module editedCs1101s = new ModuleBuilder(CS1101S).withName(VALID_MODULE_NAME_CS50).build();
         List<Module> newModules = Arrays.asList(CS1101S, editedCs1101s);
-        List<Person> persons = Arrays.asList(ALICE);
+        List<Person> persons = Collections.singletonList(ALICE);
         AddressBookStub newData = new AddressBookStub(persons, newModules);
 
         assertThrows(DuplicateModuleException.class, () -> addressBook.resetData(newData));
@@ -125,16 +140,39 @@ public class AddressBookTest {
         assertTrue(addressBook.hasModule(editedCs1101s));
     }
 
+    @Test
+    public void hasModuleCode_nullModuleCode_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasModule(null));
+    }
+
+    @Test
+    public void hasModuleCode_moduleCodeNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasModuleCode(CS1101S.getModuleCode()));
+    }
+
+    @Test
+    public void hasModuleCode_moduleCodeInAddressBook_returnsTrue() {
+        addressBook.addModule(CS1101S);
+        assertTrue(addressBook.hasModuleCode(CS1101S.getModuleCode()));
+    }
+
+    @Test
+    public void hasModuleCode_moduleCodeWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addModule(CS1101S);
+        Module editedCs1101s = new ModuleBuilder(CS1101S).withName(VALID_MODULE_NAME_CS50).build();
+        assertTrue(addressBook.hasModuleCode(editedCs1101s.getModuleCode()));
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
-        private final UniqueModuleList modules = new UniqueModuleList();
+        private final ObservableList<Module> modules = FXCollections.observableArrayList();
 
         AddressBookStub(Collection<Person> persons, Collection<Module> modules) {
             this.persons.setAll(persons);
-            this.modules.getInternalList().setAll(modules);
+            this.modules.setAll(modules);
         }
 
         AddressBookStub(Collection<Person> persons) {
@@ -147,7 +185,17 @@ public class AddressBookTest {
         }
 
         @Override
-        public UniqueModuleList getModuleList() {
+        public ObservableList<Module> getModuleList() {
+            return modules;
+        }
+
+        @Override
+        public ObservableList<Module> getSemOneModuleList() {
+            return modules;
+        }
+
+        @Override
+        public ObservableList<Module> getSemTwoModuleList() {
             return modules;
         }
     }

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DelModCommand;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.testutil.ModuleCodeBuilder;
+import seedu.address.testutil.builders.ModuleCodeBuilder;
 
 class DelModCommandParserTest {
     private DelModCommandParser parser = new DelModCommandParser();

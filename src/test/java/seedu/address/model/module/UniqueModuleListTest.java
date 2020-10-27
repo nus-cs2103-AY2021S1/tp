@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
-import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.builders.ModuleBuilder;
 
 public class UniqueModuleListTest {
     private final UniqueModuleList uniqueModuleList = new UniqueModuleList();
@@ -42,6 +42,12 @@ public class UniqueModuleListTest {
         uniqueModuleList.add(CS1010S);
         Module editedCs1010s = new ModuleBuilder(CS1010S).withName(VALID_MODULE_NAME_CS50).build();
         assertTrue(uniqueModuleList.contains(editedCs1010s));
+    }
+
+    @Test
+    public void clearAll_returnsTrue() {
+        uniqueModuleList.clearAll();
+        assertEquals(uniqueModuleList, new UniqueModuleList());
     }
 
     @Test

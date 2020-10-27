@@ -3,10 +3,6 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.List;
-
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Represents a Module's code in FaculType.
  * Guarantees: immutable; is valid as declared in {@link #isValidCode(String)}
@@ -33,13 +29,6 @@ public class ModuleCode {
         requireNonNull(moduleCode);
         checkArgument(isValidCode(moduleCode), MESSAGE_CONSTRAINTS);
         this.moduleCode = moduleCode.toUpperCase();
-    }
-    /**
-     * Returns true if the module code contains any of the specified keywords.
-     */
-    public boolean containsKeywords(List<String> keywords) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsSubWordOrWordIgnoreCase(this.moduleCode, keyword));
     }
 
     /**

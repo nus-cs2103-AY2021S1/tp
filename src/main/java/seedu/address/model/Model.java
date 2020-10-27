@@ -5,9 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Person;
 
 /**
@@ -64,6 +64,17 @@ public interface Model {
     boolean hasPerson(Person person);
 
     /**
+     * Returns true if contact list is empty.
+     */
+    boolean isEmptyPersonList();
+
+    /**
+     * Clear all modules from the contact list.
+     * The list must have at least one contact.
+     */
+    void clearContacts();
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the address book.
      */
@@ -103,8 +114,12 @@ public interface Model {
     boolean hasModule(Module module);
 
     /**
+     * Returns true if a module has a module code of {@code moduleCode} exists in the address book.
+     */
+    boolean hasModuleCode(ModuleCode moduleCode);
+
+    /**
      * Returns true if module list is empty.
-     * @return
      */
     boolean isEmptyModuleList();
 
@@ -120,7 +135,41 @@ public interface Model {
      */
     void deleteModule(ModuleCode moduleCode);
 
-    /** Returns an unmodifiable view of the filtered module list */
+    /**
+     * Assigns an {@code instructor} to the module with the given {@code moduleCode}.
+     * The module with the {@code moduleCode} must exist in the address book.
+     */
+    void assignInstructor(Person instructor, ModuleCode moduleCode);
+
+    void unassignAllInstructors();
+
+    /**
+     * Unassigns an {@code instructor} from the module with the given {@code moduleCode}.
+     * The module with the {@code moduleCode} must exist in the address book.
+     */
+    void unassignInstructor(Person instructor, ModuleCode moduleCode);
+
+    /**
+     * Unassigns an {@code instructor} from all modules.
+     */
+    void unassignInstructorFromAll(Person instructor) throws CommandException;
+
+    /**
+     * Returns true if the module with the given {@code moduleCode} has {@code instructor}.
+     */
+    boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor);
+
+    /**
+     * Switches the active module list.
+     */
+    void switchModuleList();
+
+    /**
+     * Returns the active semester.
+     */
+    int getSemester();
+
+    /** Returns an unmodifiable view of the filtered person list. */
     ObservableList<Module> getFilteredModuleList();
 
     /**
@@ -129,6 +178,4 @@ public interface Model {
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
 
-    /** Returns an unmodifiable view of the filtered module list */
-    UniqueModuleList getModuleList();
 }

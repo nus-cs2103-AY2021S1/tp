@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.builders.PersonBuilder;
 
 public class UniquePersonListTest {
 
@@ -46,6 +46,12 @@ public class UniquePersonListTest {
         Person editedAlice = new PersonBuilder(ALICE).withDepartment(VALID_DEPARTMENT_BOB)
                 .withOffice(VALID_OFFICE_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(uniquePersonList.contains(editedAlice));
+    }
+
+    @Test
+    public void clearAll_returnsTrue() {
+        uniquePersonList.clearAll();
+        assertEquals(uniquePersonList, new UniquePersonList());
     }
 
     @Test

@@ -4,7 +4,9 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -41,6 +43,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private TabPane semsPanelPlaceholder;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -159,6 +164,26 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Switches the semester view.
+     */
+    @FXML
+    private void handleSwitchSem() {
+        int semester = logic.getSemester();
+        int toIndex = semester == 1 ? 0 : 1;
+
+        Node content = semsPanelPlaceholder.getSelectionModel().getSelectedItem().getContent();
+        semsPanelPlaceholder.getSelectionModel().getSelectedItem().setContent(null);
+        semsPanelPlaceholder.getSelectionModel().getSelectedItem().setDisable(true);
+
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+
+        semsPanelPlaceholder.getSelectionModel().select(toIndex);
+        semsPanelPlaceholder.getSelectionModel().getSelectedItem().setDisable(false);
+        semsPanelPlaceholder.getSelectionModel().getSelectedItem().setContent(content);
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -191,6 +216,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isSwitchSem()) {
+                handleSwitchSem();
             }
 
             if (commandResult.isExit()) {

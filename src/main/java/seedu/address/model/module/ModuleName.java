@@ -3,10 +3,6 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import java.util.List;
-
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Represents a Module's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
@@ -33,13 +29,6 @@ public class ModuleName {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         moduleName = name;
-    }
-    /**
-     * Returns true if the module name contains any of the specified keywords.
-     */
-    public boolean containsKeywords(List<String> keywords) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsSubWordOrWordIgnoreCase(this.moduleName, keyword));
     }
 
     /**

@@ -20,6 +20,10 @@ checkstyle {
     toolVersion = '8.29'
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
@@ -66,7 +70,13 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'facultype.jar'
+}
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked"
+    }
 }
 
 defaultTasks 'clean', 'test'

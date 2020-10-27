@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -208,8 +211,35 @@ public class ParserUtilTest {
     @Test
     public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
         Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+        Set<Tag> expectedTagSet = new HashSet<>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseString_validString_returnsString() {
+        String validString = "Valid String";
+        try {
+            String resultString = ParserUtil.parseString(validString);
+            assertEquals(validString, resultString);
+        } catch (ParseException e) {
+            fail();
+        }
+    }
+
+    @Test
+    public void parseString_null_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseString(null));
+    }
+
+    @Test
+    public void parseString_emptyString_throwsParseException() {
+        String emptyString = "";
+        try {
+            ParserUtil.parseString(emptyString);
+            fail();
+        } catch (ParseException e) {
+            assertEquals(MESSAGE_EMPTY_KEYWORD, e.getMessage());
+        }
     }
 }

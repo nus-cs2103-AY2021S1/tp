@@ -43,6 +43,11 @@ public interface Logic {
     Path getAddressBookFilePath();
 
     /**
+     * Gets the current semester
+     */
+    int getSemester();
+
+    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();

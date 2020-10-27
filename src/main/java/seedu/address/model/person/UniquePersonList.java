@@ -79,6 +79,21 @@ public class UniquePersonList implements Iterable<Person> {
         }
     }
 
+    /**
+     * Clear all the contacts inside the list.
+     */
+    public void clearAll() {
+        internalList.clear();
+    }
+
+    /**
+     * Returns true if the internal list is empty.
+     * @return
+     */
+    public boolean isEmptyList() {
+        return internalList.isEmpty();
+    }
+
     public void setPersons(UniquePersonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
