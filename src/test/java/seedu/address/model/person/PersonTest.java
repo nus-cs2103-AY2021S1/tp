@@ -42,18 +42,18 @@ public class PersonTest {
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).addToArchive().build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, same email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).addToArchive().build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
                 .withClientSources(VALID_CLIENTSOURCE_HUSBAND)
-                .withNote(VALID_NOTE_DOG).build();
+                .withNote(VALID_NOTE_DOG).addToArchive().build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
 
@@ -64,7 +64,7 @@ public class PersonTest {
 
         // same name, null phone, null email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withoutPhone().withoutEmail().withAddress(VALID_ADDRESS_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).addToArchive().build();
         assertTrue(aliceWithoutPhoneAndEmail.isSamePerson(editedAlice));
 
         // same name, null phone, null and non-null email -> returns false
@@ -73,7 +73,7 @@ public class PersonTest {
 
         // same name, null phone, same email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withoutPhone().withAddress(VALID_ADDRESS_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).addToArchive().build();
         assertTrue(aliceWithoutPhone.isSamePerson(editedAlice));
 
         // same name, null phone, different email -> returns false
@@ -90,7 +90,7 @@ public class PersonTest {
 
         // same name, null and non-null phone, same email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withoutPhone().withAddress(VALID_ADDRESS_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).addToArchive().build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, null and non-null phone, different email -> returns false
@@ -99,12 +99,12 @@ public class PersonTest {
 
         // same name, same phone, null email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withoutEmail().withAddress(VALID_ADDRESS_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).addToArchive().build();
         assertTrue(aliceWithoutEmail.isSamePerson(editedAlice));
 
         // same name, same phone, null and non-null email, different attributes -> returns true
         editedAlice = new PersonBuilder(ALICE).withoutEmail().withAddress(VALID_ADDRESS_BOB)
-                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).build();
+                .withClientSources(VALID_CLIENTSOURCE_HUSBAND).withNote(VALID_NOTE_DOG).addToArchive().build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // same name, different phone, null email -> returns false

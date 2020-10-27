@@ -7,6 +7,8 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
@@ -22,6 +24,7 @@ public class ModelManager implements Model {
     private final ClientList clientList;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final BooleanProperty isArchiveMode;
 
     /**
      * Initializes a ModelManager with the given clientList and userPrefs.
@@ -35,6 +38,8 @@ public class ModelManager implements Model {
         this.clientList = new ClientList(clientList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.clientList.getPersonList());
+        filteredPersons.setPredicate(PREDICATE_SHOW_ALL_ACTIVE); // initialised to show all active persons
+        isArchiveMode = new SimpleBooleanProperty(false);
     }
 
     public ModelManager() {
@@ -102,7 +107,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         clientList.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_ACTIVE);
     }
 
     @Override
@@ -129,6 +134,25 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Archive Mode =============================================================
+
+    @Override
+    public boolean getIsArchiveMode() {
+        return isArchiveMode.get();
+    }
+
+    @Override
+    public BooleanProperty getIsArchiveModeProperty() {
+        return isArchiveMode;
+    }
+
+    @Override
+    public void setIsArchiveMode(boolean isArchiveMode) {
+        this.isArchiveMode.set(isArchiveMode);
+    }
+
+    //=========== Equals =============================================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -145,7 +169,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return clientList.equals(other.clientList)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && (isArchiveMode.get() == other.isArchiveMode.get());
     }
 
 }

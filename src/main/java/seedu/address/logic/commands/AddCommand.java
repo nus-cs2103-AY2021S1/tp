@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -26,7 +27,8 @@ public class AddCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_CLIENTSOURCE + "CLIENTSOURCE]..."
-            + "[" + PREFIX_NOTE + "NOTE]\n"
+            + "[" + PREFIX_NOTE + "NOTE]"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
@@ -34,10 +36,18 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_CLIENTSOURCE + "friends "
             + PREFIX_CLIENTSOURCE + "classmate "
-            + PREFIX_NOTE + "fakefriend";
+            + PREFIX_NOTE + "fakefriend"
+            + PREFIX_PRIORITY + " H ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the client list";
+    public static final String MESSAGE_DUPLICATE_PERSON =
+            "This person already exists in the client list\n"
+            + "Check the archive if you do not see the client in the active list";
+    public static final String MESSAGE_DISABLE_IN_ARCHIVE_MODE =
+            "This command is disabled in archive mode\n"
+            + "To add a new client, switch to active mode with the list command, then call the add command\n"
+            + "To archive an existing client, switch to active mode with the list command, "
+            + "then call the archive command";
 
     private final Person toAdd;
 
@@ -52,6 +62,10 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (model.getIsArchiveMode()) {
+            throw new CommandException(MESSAGE_DISABLE_IN_ARCHIVE_MODE);
+        }
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);

@@ -366,3 +366,24 @@
 #note .label {
     -fx-font-size: 12;
 }
+
+#priority .label {
+    -fx-font-size: 12;
+}
+
+#archiveModePlaceholder {
+    -fx-background-color: #383838;
+}
+
+#archiveModeBox {
+    -fx-alignment: center-left;
+}
+
+#archiveMode {
+    -fx-font-size: 18;
+    -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+}

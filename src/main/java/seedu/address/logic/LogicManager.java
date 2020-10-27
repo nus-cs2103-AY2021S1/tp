@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
@@ -78,4 +79,15 @@ public class LogicManager implements Logic {
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
     }
+
+    @Override
+    public boolean getIsArchiveMode() {
+        return model.getIsArchiveMode();
+    }
+
+    @Override
+    public BooleanProperty getIsArchiveModeProperty() {
+        return model.getIsArchiveModeProperty();
+    }
+
 }

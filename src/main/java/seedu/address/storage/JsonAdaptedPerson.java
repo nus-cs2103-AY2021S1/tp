@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 
 /**
  * Jackson-friendly version of {@link Person}.
@@ -31,6 +32,8 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedClientSource> clientSource = new ArrayList<>();
     private final String note;
+    private final boolean isArchive;
+    private final String priority;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -40,7 +43,9 @@ class JsonAdaptedPerson {
             @JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("clientSource") List<JsonAdaptedClientSource> clientSource,
-            @JsonProperty("note") String note) {
+            @JsonProperty("note") String note, @JsonProperty("isArchive") boolean isArchive,
+            @JsonProperty("priority") String priority) {
+
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -49,6 +54,8 @@ class JsonAdaptedPerson {
             this.clientSource.addAll(clientSource);
         }
         this.note = note;
+        this.isArchive = isArchive;
+        this.priority = priority;
     }
 
     /**
@@ -56,21 +63,25 @@ class JsonAdaptedPerson {
      */
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
+        assert name != null : "Value stored in name should not be null";
 
         if (source.getPhone() != null) {
             phone = source.getPhone().value;
+            assert phone != null : "Value stored in phone should not be null";
         } else {
             phone = null;
         }
 
         if (source.getEmail() != null) {
             email = source.getEmail().value;
+            assert email != null : "Value stored in email should not be null";
         } else {
             email = null;
         }
 
         if (source.getAddress() != null) {
             address = source.getAddress().value;
+            assert address != null : "Value stored in address should not be null";
         } else {
             address = null;
         }
@@ -82,9 +93,16 @@ class JsonAdaptedPerson {
 
         if (source.getNote() != null) {
             note = source.getNote().noteName;
+            assert note != null : "Value stored in note should not be null";
         } else {
             note = null;
         }
+
+        isArchive = source.getIsArchive();
+
+        priority = source.getPriority().value;
+        assert priority != null : "Value stored in priority should not be null";
+
     }
 
     /**
@@ -148,7 +166,20 @@ class JsonAdaptedPerson {
             modelNote = new Note(note);
         }
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote);
+        final boolean modelIsArchive = isArchive;
+
+        final Priority modelPriority;
+        if (priority == null) {
+            modelPriority = new Priority(null);
+        } else {
+            if (!Priority.isValidPriority(priority)) {
+                throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
+            }
+
+            modelPriority = new Priority(priority);
+        }
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelClientSources, modelNote,
+                modelIsArchive, modelPriority);
     }
 
 }

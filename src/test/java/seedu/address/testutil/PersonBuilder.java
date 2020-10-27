@@ -10,6 +10,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Priority;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
@@ -22,6 +23,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_NOTE = "sd";
+    public static final boolean DEFAULT_IS_ARCHIVE = false;
+    public static final String DEFAULT_PRIORITY = "u";
 
     private Name name;
     private Phone phone;
@@ -29,6 +32,8 @@ public class PersonBuilder {
     private Address address;
     private Set<ClientSource> clientSources;
     private Note note;
+    private boolean isArchive;
+    private Priority priority;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -40,6 +45,8 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         clientSources = new HashSet<>();
         note = new Note(DEFAULT_NOTE);
+        isArchive = DEFAULT_IS_ARCHIVE;
+        priority = new Priority(DEFAULT_PRIORITY);
     }
 
     /**
@@ -52,6 +59,8 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         clientSources = new HashSet<>(personToCopy.getClientSources());
         note = personToCopy.getNote();
+        isArchive = personToCopy.getIsArchive();
+        priority = personToCopy.getPriority();
     }
 
     /**
@@ -135,8 +144,32 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code isArchive} of the {@code Person} that we are building to true.
+     */
+    public PersonBuilder addToArchive() {
+        this.isArchive = true;
+        return this;
+    }
+
+    /**
+     * Sets the {@code Priority} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withPriority(String priority) {
+        this.priority = new Priority(priority);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Priority} of the {@code Person} that we are building to null.
+     */
+    public PersonBuilder withoutPriority() {
+        this.priority = new Priority(null);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, phone, email, address, clientSources, note);
+        return new Person(name, phone, email, address, clientSources, note, isArchive, priority);
     }
 
 }
