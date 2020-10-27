@@ -59,10 +59,10 @@ public class FindItemCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noItemFound() {
+    public void execute_validKeywords_noItemFound() {
         String expectedMessage = Messages.MESSAGE_NO_ITEM_MATCH;
 
-        NameMatchesKeywordsPredicate predicate = preparePredicate(" ");
+        NameMatchesKeywordsPredicate predicate = preparePredicate("Orange Strawberry");
         FindItemCommand command = new FindItemCommand(predicate);
 
         expectedModel.updateFilteredItemList(predicate);
