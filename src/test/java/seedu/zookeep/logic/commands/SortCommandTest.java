@@ -76,7 +76,7 @@ class SortCommandTest {
     }
 
     @Test
-    public void execute_sortAnimalNoFeedTimeSuccessful() {
+    public void execute_sortAnimalIncompleteFeedTimeSuccessful() {
         Animal ahmeng = new AnimalBuilder().withFeedTimes().build();
         Animal buttercup = new AnimalBuilder().withFeedTimes().build();
         Animal coco = new AnimalBuilder().withFeedTimes("1300").build();
@@ -90,6 +90,22 @@ class SortCommandTest {
         assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + SortCommandParser.FEEDTIME_CATEGORY),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(coco, buttercup, ahmeng, nemo), modelStub.animals);
+    }
+
+    @Test
+    public void execute_sortAnimalMedicalSuccessful() {
+        Animal ahmeng = new AnimalBuilder().withMedicalConditions("flu").build();
+        Animal buttercup = new AnimalBuilder().withMedicalConditions("flu", "obese").build();
+        Animal coco = new AnimalBuilder().withMedicalConditions().build();
+        ModelStubSortingAnimals modelStub = new ModelStubSortingAnimals(
+                new ArrayList<>(Arrays.asList(buttercup, ahmeng, coco)));
+
+        AnimalComparator animalMedicalComparator = AnimalComparator.createAnimalMedicalComparator();
+        CommandResult commandResult = new SortCommand(animalMedicalComparator).execute(modelStub);
+
+        assertEquals(String.format(SortCommand.MESSAGE_SUCCESS + SortCommandParser.MEDICAL_CATEGORY),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(coco, ahmeng, buttercup), modelStub.animals);
     }
 
     @Test

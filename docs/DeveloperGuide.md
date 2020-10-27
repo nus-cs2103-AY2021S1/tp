@@ -84,9 +84,8 @@ The Class Diagram for the UI Component is shown below (*Figure 4*)
 **API** :
 [`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-4/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, 
-`AnimalListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, 
-inherit from the abstract `UiPart` class.
+
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `AnimalListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
 The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in 
 matching `.fxml` files that are in the `src/main/resources/view` folder. 
@@ -111,7 +110,7 @@ The Class Diagram for the Logic Component is shown below (*Figure 5*)
 
 1. `Logic` uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. adding an animal).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
@@ -138,11 +137,11 @@ The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Animal>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ZooKeepBook`, which `Animal` references. This allows `ZooKeepBook` to only require one `Tag` object per unique `Tag`, instead of each `Animal` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -265,7 +264,7 @@ The following 2 Activity Diagrams (*Figures 14.1 & 14.2*) summarize what happens
 
 * **Alternative 2:** Individual command knows how to undo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the animal being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
@@ -369,7 +368,7 @@ The following 2 Activity Diagrams (*Figures 21.1 & 21.2*) summarise what happens
 
 * **Alternative 2:** Individual command knows how to redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the animal being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 
@@ -787,29 +786,31 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Deleting an animal
 
-### Deleting a person
+1. Deleting an animal
 
-1. Deleting a person while all persons are being shown
-
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete 123`<br>
+      Expected: The animal with an ID of 123 deleted from the list. Details of the deleted animal shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No animal is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than all 3 digit numbers)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. To simulate a missing/corrupted data file, delete the `data/zookeepbook.json` file.
+   
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The sample ZooKeepBook will be loaded as the new `data/zookeepbook.json` file.
 
-1. _{ more test cases …​ }_
+1. Auto-saving feature
+
+   1. After launching the application, perform actions that edit the ZooKeepBook, such as `add` or `delete`. Close
+      the window.
+   
+   1. Re-launch the application. The changes that you just made should be reflected in the ZooKeepBook UI.

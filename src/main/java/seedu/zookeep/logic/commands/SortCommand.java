@@ -14,8 +14,8 @@ public class SortCommand extends Command {
     public static final String COMMAND_WORD = "sort";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sorts the animals according to their name, ID or earliest feed time. \n"
-            + "Parameters: case-insensitive CATEGORY (name, id, feedtime) \n"
+            + ": Sorts the animals according to their name, ID, earliest feed time or number of medical conditions. \n"
+            + "Parameters: case-insensitive CATEGORY (name, id, feedtime, medical) \n"
             + "Example: " + COMMAND_WORD + " name";
     public static final String MESSAGE_SUCCESS = "Sorted all animals by ";
 
