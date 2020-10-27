@@ -1,13 +1,12 @@
-package seedu.pivot.logic.commands;
+package seedu.pivot.logic.commands.casecommands;
 
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.pivot.logic.commands.casecommands.AddCaseCommand;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.UserPrefs;

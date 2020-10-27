@@ -36,6 +36,8 @@ public class DeleteVictimCommand extends DeleteCommand {
      * @param victimIndex The index of the victim to be deleted.
      */
     public DeleteVictimCommand(Index caseIndex, Index victimIndex) {
+        requireNonNull(caseIndex);
+        requireNonNull(victimIndex);
         this.caseIndex = caseIndex;
         this.victimIndex = victimIndex;
     }

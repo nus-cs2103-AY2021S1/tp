@@ -1,7 +1,7 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "PIVOT save file which contains the same Person values as in TypicalCases#getTypicalPivot()",
   "persons" : [ {
-    "title" : "Alice Pauline",
+    "title" : "Alice Pauline Assault",
     "description": "",
     "status": "COLD",
     "documents": [ {
@@ -32,7 +32,7 @@
     "tagged" : [ "friends" ],
     "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Benson Meier",
+    "title" : "Benson Meier Robbery",
     "description": "",
     "status": "CLOSED",
     "documents": [ {
@@ -57,7 +57,7 @@
     "tagged" : [ "owesMoney", "friends" ],
     "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Carl Kurz",
+    "title" : "Carl Kurz Fire",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
@@ -67,7 +67,7 @@
     "tagged" : [ ],
     "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Daniel Meier",
+    "title" : "Daniel Meier Shoplifting",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
@@ -77,7 +77,7 @@
     "tagged" : [ "friends" ],
     "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Elle Meyer",
+    "title" : "Elle Meyer Shooting",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
@@ -87,7 +87,7 @@
     "tagged" : [ ],
     "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Fiona Kunz",
+    "title" : "Fiona Kunz Kidnapping",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
@@ -97,7 +97,7 @@
     "tagged" : [ ],
     "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "George Best",
+    "title" : "George Best Vandalism",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],

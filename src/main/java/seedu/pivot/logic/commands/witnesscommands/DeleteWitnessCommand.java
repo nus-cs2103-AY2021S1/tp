@@ -36,6 +36,8 @@ public class DeleteWitnessCommand extends DeleteCommand {
      * @param witnessIndex The index of the witness to be deleted.
      */
     public DeleteWitnessCommand(Index caseIndex, Index witnessIndex) {
+        requireNonNull(caseIndex);
+        requireNonNull(witnessIndex);
         this.caseIndex = caseIndex;
         this.witnessIndex = witnessIndex;
     }

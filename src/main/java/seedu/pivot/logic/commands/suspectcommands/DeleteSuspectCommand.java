@@ -33,6 +33,8 @@ public class DeleteSuspectCommand extends DeleteCommand {
      * @param suspectIndex The index of the suspect to be deleted.
      */
     public DeleteSuspectCommand(Index caseIndex, Index suspectIndex) {
+        requireNonNull(caseIndex);
+        requireNonNull(suspectIndex);
         this.caseIndex = caseIndex;
         this.suspectIndex = suspectIndex;
     }
