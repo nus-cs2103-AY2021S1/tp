@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -211,4 +212,52 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedTodoList(Comparator<Task> comparator);
+
+    // ========================== Scheduler Methods ============================================ //
+
+    /**
+     * Replaces Event list data with the data in {@code Eventlist}.
+     */
+    void setEventList(ReadOnlyEventList EventList);
+
+    /** Returns the EventList */
+    ReadOnlyEventList getEventList();
+
+    /**
+     * Returns true if a Event with the same identity as {@code Event} exists in the Event list.
+     */
+    boolean hasEvent(Event event);
+
+    /**
+     * Deletes the given Event.
+     * The Event must exist in the Event list.
+     */
+    void deleteEvent(Event target);
+
+    /**
+     * Adds the given Event.
+     * {@code Event} must not already exist in the Event list.
+     */
+    void addEvent(Event event);
+
+    /**
+     * Replaces the given Event {@code target} with {@code editedEvent}.
+     * {@code target} must exist in the Event list.
+     * The Event identity of {@code editedEvent} must not be the same as another existing Event in the Event List.
+     */
+    void setEvent(Event target, Event editedEvent);
+
+    /** Returns an unmodifiable view of the filtered Event list */
+    ObservableList<Event> getFilteredEventList();
+
+    /**
+     * Updates the filter of the filtered Event list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredEventList(Predicate<Event> predicate);
+
+    /**
+     * Saves the current Event list state in history.
+     */
+    void commitEventList();
 }

@@ -19,6 +19,8 @@ public class AddEventCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2103T peer review "
             + PREFIX_DATE + "12-8-2020";
+    public static  final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the event list";
+    public static final String MESSAGE_SUCCESS = "New event added: %1$s";
 
     private final Event event;
 
@@ -33,6 +35,9 @@ public class AddEventCommand extends Command {
         if (model.hasEvent(this.event)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
+        model.addEvent(this.event);
+        model.commitEventList();
+        return new CommandResult(String.format(MESSAGE_SUCCESS, this.event));
     }
 
     @Override
