@@ -99,6 +99,7 @@ public class ModelManager implements Model {
 
     @Override
     public Optional<Animal> getAnimal(Id id) {
+        updateFilteredAnimalList(PREDICATE_SHOW_ALL_ANIMALS);
         Animal animalFound = null;
         for (Animal animal : filteredAnimals) {
             if (animal.getId().equals(id)) {

@@ -16,7 +16,6 @@ import static seedu.zookeep.testutil.TypicalAnimals.BUTTERCUP;
 import static seedu.zookeep.testutil.TypicalAnimals.PASHA;
 import static seedu.zookeep.testutil.TypicalAnimals.getTypicalZooKeepBook;
 import static seedu.zookeep.testutil.TypicalIndexes.INDEX_FIRST_ANIMAL;
-import static seedu.zookeep.testutil.TypicalIndexes.INDEX_SECOND_ANIMAL;
 
 import java.util.Optional;
 
@@ -41,7 +40,7 @@ public class ReplaceCommandTest {
     private Model model = new ModelManager(getTypicalZooKeepBook(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_allFieldsSpecified_success() {
         Animal editedAnimal = new AnimalBuilder().build();
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder(editedAnimal).build();
         ReplaceCommand replaceCommand = new ReplaceCommand(AHMENG.getId(), descriptor);
@@ -55,7 +54,7 @@ public class ReplaceCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
+    public void execute_someFieldsSpecified_success() {
         Index indexLastAnimal = Index.fromOneBased(model.getFilteredAnimalList().size());
         Animal lastAnimal = model.getFilteredAnimalList().get(indexLastAnimal.getZeroBased());
         AnimalBuilder animalInList = new AnimalBuilder(lastAnimal);
@@ -75,7 +74,7 @@ public class ReplaceCommandTest {
     }
 
     @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecified_success() {
         ReplaceCommand replaceCommand = new ReplaceCommand(AHMENG.getId(), new EditAnimalDescriptor());
         Animal editedAnimal = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
 
@@ -87,7 +86,7 @@ public class ReplaceCommandTest {
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_success() {
         showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
 
         Animal animalInFilteredList = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
@@ -104,7 +103,7 @@ public class ReplaceCommandTest {
     }
 
     @Test
-    public void execute_duplicateAnimalUnfilteredList_failure() {
+    public void execute_duplicateAnimal_failure() {
         Animal firstAnimal = model.getFilteredAnimalList().get(INDEX_FIRST_ANIMAL.getZeroBased());
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder(firstAnimal).build();
         ReplaceCommand replaceCommand = new ReplaceCommand(BUTTERCUP.getId(), descriptor);
@@ -113,40 +112,11 @@ public class ReplaceCommandTest {
     }
 
     @Test
-    public void execute_duplicateAnimalFilteredList_failure() {
-        showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
-
-        // edit animal in filtered list into a duplicate in zookeep book
-        Animal animalInList = model.getZooKeepBook().getAnimalList().get(INDEX_SECOND_ANIMAL.getZeroBased());
-        ReplaceCommand replaceCommand = new ReplaceCommand(AHMENG.getId(),
-                new EditAnimalDescriptorBuilder(animalInList).build());
-
-        assertCommandFailure(replaceCommand, model, ReplaceCommand.MESSAGE_DUPLICATE_ANIMAL);
-    }
-
-    @Test
-    public void execute_invalidAnimalIdUnfilteredList_failure() {
+    public void execute_invalidAnimalId_failure() {
         Id outOfBoundId = new Id("99999999999999");
         assert model.getAnimal(outOfBoundId).equals(Optional.empty());
         EditAnimalDescriptor descriptor = new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY).build();
         ReplaceCommand replaceCommand = new ReplaceCommand(outOfBoundId, descriptor);
-
-        assertCommandFailure(replaceCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
-    }
-
-    /**
-     * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of zookeep book
-     */
-    @Test
-    public void execute_invalidAnimalIndexFilteredList_failure() {
-        showAnimalAtIndex(model, INDEX_FIRST_ANIMAL);
-        Index outOfBoundIndex = INDEX_SECOND_ANIMAL;
-        // ensures that outOfBoundIndex is still in bounds of zookeep book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getZooKeepBook().getAnimalList().size());
-
-        ReplaceCommand replaceCommand = new ReplaceCommand(BUTTERCUP.getId(),
-                new EditAnimalDescriptorBuilder().withName(VALID_NAME_BAILEY).build());
 
         assertCommandFailure(replaceCommand, model, Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
     }
