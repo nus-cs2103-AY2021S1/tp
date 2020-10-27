@@ -1,6 +1,7 @@
 package nustorage.model;
 
-import static nustorage.logic.commands.CommandTestUtil.*;
+import static nustorage.logic.commands.CommandTestUtil.AMOUNT_B;
+import static nustorage.logic.commands.CommandTestUtil.ID_B;
 import static nustorage.testutil.Assert.assertThrows;
 import static nustorage.testutil.TypicalFinanceRecords.RECORD_A;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,12 +13,12 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import nustorage.model.record.exceptions.DuplicateFinanceRecordException;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.exceptions.DuplicateFinanceRecordException;
 import nustorage.testutil.FinanceRecordBuilder;
 
 public class FinanceAccountTest {
