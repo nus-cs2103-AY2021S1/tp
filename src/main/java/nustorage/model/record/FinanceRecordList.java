@@ -5,6 +5,7 @@ import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,6 +54,14 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
         internalList.set(index, editedRecord);
     }
 
+    public FinanceRecord getFinanceRecord(int recordId) {
+        Optional<FinanceRecord> record = internalList.stream().filter(r -> r.getID() == recordId).findFirst();
+        if (record.isEmpty()) {
+            throw new FinanceRecordNotFoundException();
+        }
+        return record.get();
+    }
+
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
@@ -77,7 +86,21 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
      */
     public void setFinanceRecords(List<FinanceRecord> financeRecords) {
         requireAllNonNull(financeRecords);
+        if (!financeRecordsAreUnique(financeRecords)) {
+            throw new DuplicateFinanceRecordException();
+        }
         internalList.setAll(financeRecords);
+    }
+
+    private boolean financeRecordsAreUnique(List<FinanceRecord> financeRecords) {
+        for (int i = 0; i < financeRecords.size() - 1; i++) {
+            for (int j = i + 1; j < financeRecords.size(); j++) {
+                if (financeRecords.get(i).isSameRecord(financeRecords.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**

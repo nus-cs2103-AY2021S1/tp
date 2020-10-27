@@ -54,6 +54,8 @@ public interface Model {
 
     ReadOnlyFinanceAccount getFinanceAccount();
 
+    FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord);
+
     void addFinanceRecord(FinanceRecord newRecord);
 
     FinanceRecord getFinanceRecord(Integer ID);

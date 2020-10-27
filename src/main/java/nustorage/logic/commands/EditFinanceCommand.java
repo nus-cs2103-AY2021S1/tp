@@ -57,6 +57,11 @@ public class EditFinanceCommand extends Command {
         }
 
         FinanceRecord financeRecordToEdit = lastShownList.get(index.getZeroBased());
+
+        if (financeRecordToEdit.taggedToInventory()) {
+            throw new CommandException(Messages.MESSAGE_FINANCE_HAS_INVENTORY);
+        }
+
         FinanceRecord editedFinanceRecord = createEditedFinanceRecord(
                 financeRecordToEdit, editFinanceDescriptor);
 

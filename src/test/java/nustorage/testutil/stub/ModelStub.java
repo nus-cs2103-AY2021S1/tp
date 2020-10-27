@@ -84,11 +84,16 @@ public class ModelStub implements Model {
 
     @Override
     public void deleteFinanceRecord(FinanceRecord target) {
-
+        throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public ReadOnlyFinanceAccount getFinanceAccount() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord) {
         throw new AssertionError("This method should not be called.");
     }
 

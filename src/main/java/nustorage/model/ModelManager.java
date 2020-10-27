@@ -28,7 +28,6 @@ public class ModelManager implements Model {
     private final FilteredList<InventoryRecord> filteredInventory;
     private final FilteredList<FinanceRecord> filteredFinance;
 
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -40,7 +39,6 @@ public class ModelManager implements Model {
         filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
         this.userPrefs = new UserPrefs(userPrefs);
     }
-
 
     /**
      * Initializes a ModelManager with the given financeAccount, inventory and userPrefs
@@ -67,25 +65,21 @@ public class ModelManager implements Model {
 
     //=========== UserPrefs ==================================================================================
 
-
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
 
-
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         return userPrefs;
     }
 
-
     @Override
     public GuiSettings getGuiSettings() {
         return userPrefs.getGuiSettings();
     }
-
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
@@ -95,16 +89,13 @@ public class ModelManager implements Model {
 
     //=========== Inventory ================================================================================
 
-
     public void addInventoryRecord(InventoryRecord newRecord) {
         inventory.addInventoryRecord(newRecord);
     }
 
-
     public ObservableList<InventoryRecord> getFilteredInventory() {
         return filteredInventory;
     }
-
 
     /**
      * Applies a predicate to the Inventory and returns those that pass it.
@@ -127,14 +118,12 @@ public class ModelManager implements Model {
         return inventory.hasInventoryRecord(inventoryRecord);
     }
 
-
     @Override
     public void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord) {
         requireAllNonNull(target, editedInventoryRecord);
 
         inventory.setInventoryRecord(target, editedInventoryRecord);
     }
-
 
     @Override
     public void deleteInventoryRecord(InventoryRecord target) {
@@ -145,18 +134,15 @@ public class ModelManager implements Model {
 
     //=========== FinanceAccount ================================================================================
 
-
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
         financeAccount.addFinanceRecord(newRecord);
     }
 
-
     @Override
     public ObservableList<FinanceRecord> getFilteredFinanceList() {
         return filteredFinance;
     }
-
 
     @Override
     public void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord) {
@@ -176,13 +162,11 @@ public class ModelManager implements Model {
     //     return null;
     // }
 
-
     @Override
     public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
         requireNonNull(predicate);
         filteredFinance.setPredicate(predicate);
     }
-
 
     @Override
     public void deleteFinanceRecord(FinanceRecord target) {
@@ -190,12 +174,15 @@ public class ModelManager implements Model {
         financeAccount.removeFinanceRecord(target);
     }
 
-
     @Override
     public FinanceAccount getFinanceAccount() {
         return financeAccount;
     }
 
+    @Override
+    public FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord) {
+        return financeAccount.getFinanceRecord(inventoryRecord.getFinanceId());
+    }
 
     @Override
     public boolean equals(Object obj) {
