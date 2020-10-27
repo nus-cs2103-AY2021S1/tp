@@ -3,8 +3,6 @@ package seedu.address.storage;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -17,7 +15,6 @@ import seedu.address.model.StatisticsData;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.event.Event;
 
 
 /**
