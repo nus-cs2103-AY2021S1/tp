@@ -137,6 +137,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(tutorialGroupListPanel.getRoot());
         viewDisplay.setCurrentView("TUTORIAL GROUPS");
+        viewDisplayPlaceholder.getChildren().clear();
         viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
     }
 
@@ -145,6 +146,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         viewDisplay.setCurrentView("MODULES");
+        viewDisplayPlaceholder.getChildren().clear();
         viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
     }
 
@@ -153,6 +155,7 @@ public class MainWindow extends UiPart<Stage> {
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         viewDisplay.setCurrentView("STUDENTS");
+        viewDisplayPlaceholder.getChildren().clear();
         viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
     }
 
