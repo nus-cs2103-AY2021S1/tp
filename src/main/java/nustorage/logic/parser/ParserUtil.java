@@ -21,6 +21,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_DATETIME = "Date must be of the format yyyy-mm-dd HH:mm";
     public static final String MESSAGE_INVALID_QUANITY = "Quantity is not a non-zero integer.";
     public static final String MESSAGE_INVALID_ITEM_COST = "Item cost must be a positive numerical value.";
+    public static final String MESSAGE_INVALID_YESNO = "Yes/No input must be one of the following: yes/y/no/n.";
 
     /**
      * Parses {@code itemCost} into an double and returns it
@@ -109,6 +110,20 @@ public class ParserUtil {
         }
 
         return LocalDateTime.of(date, time);
+    }
+
+    /**
+     * Parses {@code yesNoString} into an {@code boolean} and returns it.
+     * @throws ParseException if the specified index is invalid (does not correspond to a y/n input)
+     */
+    public static boolean parseYesNo(String yesNoString) throws ParseException {
+        if (yesNoString.equals("yes") || yesNoString.equals("y")) {
+            return true;
+        }
+        if (yesNoString.equals("no") || yesNoString.equals("n")) {
+            return false;
+        }
+        throw new ParseException(MESSAGE_INVALID_YESNO);
     }
 
     /**
