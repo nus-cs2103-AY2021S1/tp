@@ -25,7 +25,7 @@ public class DeleteMeetingCommandParser implements Parser<DeleteMeetingCommand> 
             return new DeleteMeetingCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteMeetingCommand.MESSAGE_USAGE), pe);
         }
     }
 

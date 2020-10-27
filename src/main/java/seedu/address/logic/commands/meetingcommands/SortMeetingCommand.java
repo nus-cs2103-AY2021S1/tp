@@ -18,7 +18,10 @@ public class SortMeetingCommand extends Command {
 
     public static final String COMMAND_WORD = "sort-m";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the meeting in the meeting book.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts the meeting in the meeting book."
+            + "\n\nParameters: "
+            + "\n" + "sort-m o/asc"
+            + "\n" + "sort-m o/dsc";
 
     public static final String MESSAGE_SUCCESS = "Successfully sorted meeting";
 
