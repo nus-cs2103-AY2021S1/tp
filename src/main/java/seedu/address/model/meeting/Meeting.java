@@ -146,7 +146,7 @@ public class Meeting {
                 .append(getPropertyId())
                 .append("\nVenue: ")
                 .append(getVenue())
-                .append("\nTime: ")
+                .append("\nDate: ")
                 .append(getTime());
         return builder.toString();
     }
