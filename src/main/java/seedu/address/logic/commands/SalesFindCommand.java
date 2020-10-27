@@ -12,8 +12,9 @@ public class SalesFindCommand extends Command {
 
     public static final String COMMAND_WORD = "s-find";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds the sales of the drinks as entered. \n"
-            + "Parameters: A, where A refers to the drink abbreviation. \n"
-            + "Example: " + COMMAND_WORD + " " + "BSBBT";
+            + "Parameters: keywords, where keywords refer to the drink abbreviation. \n"
+            + "Example: " + COMMAND_WORD + " " + "BSBBT" + ", " + COMMAND_WORD + " " + "BSBM" + " "
+            + "BSBGT";
 
     public static final String MESSAGE_SUCCESS = "Here is the drink and its sales data: ";
 
@@ -29,6 +30,7 @@ public class SalesFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
+        assert model != null;
         model.updateFilteredSalesList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_DRINKS_LISTED_OVERVIEW, model.getFilteredSalesRecordList().size()));
