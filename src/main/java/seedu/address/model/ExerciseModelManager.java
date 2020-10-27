@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,7 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.goal.Goal;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +25,8 @@ public class ExerciseModelManager implements ExerciseModel {
     private final ExerciseBook exerciseBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Exercise> filteredExercises;
+    private final HashMap<Date,Goal> goalHashMap;
+    
 
     /**
      * Initializes a ExerciseModelManager with the given exerciseBook and userPrefs.
@@ -34,6 +39,7 @@ public class ExerciseModelManager implements ExerciseModel {
         this.exerciseBook = new ExerciseBook(exerciseBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredExercises = new FilteredList<>(this.exerciseBook.getExerciseList());
+        this.goalHashMap = new HashMap<>();
     }
 
     public ExerciseModelManager() {
@@ -103,6 +109,16 @@ public class ExerciseModelManager implements ExerciseModel {
     public void addExercise(Exercise exercise) {
         exerciseBook.addExercise(exercise);
         updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
+    }
+    
+    @Override
+    public void addGoal(Goal goal) {
+        goalHashMap.put(goal.date,goal);
+    }
+    
+    @Override
+    public boolean hasGoal (Goal goal) {
+        return goalHashMap.containsKey(goal.date);
     }
 
     @Override

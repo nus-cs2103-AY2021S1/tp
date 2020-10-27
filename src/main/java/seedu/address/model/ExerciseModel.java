@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.goal.Goal;
 
 /**
  * The API of the Model component.
@@ -73,6 +74,17 @@ public interface ExerciseModel {
      */
     void addExercise(Exercise exercise);
 
+    /**
+     * Adds the given goal.
+     * {@code exercise} must not already exist in the address book.
+     */
+    void addGoal(Goal goal);
+
+    /**
+     * Returns true if a Exercise with the same identity as {@code Exercise} exists in the address book.
+     */
+    boolean hasGoal(Goal goal);
+    
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.
      * {@code target} must exist in the address book.

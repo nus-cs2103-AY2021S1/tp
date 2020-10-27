@@ -9,6 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Weight;
 
 /**
  * Adds an exercise to Calo.
@@ -29,12 +30,16 @@ public class AddCommandForExercise extends CommandForExercise {
             + PREFIX_DATE + "31-12-2020 "
             + PREFIX_CALORIES + "100 kcal ";
 
-    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New exercise added: %1$s \n " +
+            "You have burnt %1$s kg";
 
     private final Exercise toAdd;
+    private final Weight burntWeight;
 
     public AddCommandForExercise(Exercise toAdd) {
+        
         this.toAdd = toAdd;
+        this.burntWeight = new Weight(toAdd.getCalories());
     }
 
     @Override
@@ -42,7 +47,7 @@ public class AddCommandForExercise extends CommandForExercise {
         requireNonNull(model);
 
         model.addExercise(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd, burntWeight));
     }
 
     @Override

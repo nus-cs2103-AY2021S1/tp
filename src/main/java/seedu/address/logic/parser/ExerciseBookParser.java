@@ -11,6 +11,7 @@ import seedu.address.logic.commands.ArchiveCommand;
 import seedu.address.logic.commands.CommandForExercise;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.GoalCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.UpdateExerciseCommand;
@@ -61,6 +62,9 @@ public class ExerciseBookParser {
 
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
+            
+        case GoalCommand.COMMAND_WORD:
+                return new GoalCommandParser().parse(arguments);    
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
