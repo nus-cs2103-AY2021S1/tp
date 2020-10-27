@@ -9,10 +9,12 @@ public class UnassignallCommand extends Command {
 
     public static final String COMMAND_WORD = "unassignall";
 
-    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + ": Unassigns all instructors from all modules. "
-        + "\nExample: " + COMMAND_WORD;
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD
+            + ": Unassigns all instructors from all modules. "
+            + "\nExample: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Unassigned all instructors from all modules";
+    public static final String MESSAGE_SUCCESS = "Unassigned all instructors from all modules "
+            + "in the active semester";
 
     @Override
     public CommandResult execute(Model model) {
