@@ -41,7 +41,7 @@ class SwitchCommandTest {
 
     @Test
     void execute_noMatchingKeywords_noCategoryFound() {
-        Tag foodTag = new Tag(VALID_TAG_FOOD);
+        Tag foodTag = new Tag("Potato");
         SwitchCommand command = new SwitchCommand(foodTag);
         ModelStub modelStub = new ModelStub();
         assertThrows(CommandException.class, String.format(SwitchCommand.MESSAGE_INVALID_CATEGORY,
