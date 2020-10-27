@@ -44,10 +44,10 @@ public class UnassignCommandParser implements Parser<UnassignCommand> {
 
         if (argMultimap.getValue(PREFIX_MODULE_CODE).get().isEmpty()) {
             return new UnassignCommand(index);
+        } else {
+            Set<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_MODULE_CODE));
+            return new UnassignCommand(index, moduleCodes);
         }
-
-        Set<ModuleCode> moduleCodes = ParserUtil.parseModuleCodes(argMultimap.getAllValues(PREFIX_MODULE_CODE));
-        return new UnassignCommand(index, moduleCodes);
     }
 
 
