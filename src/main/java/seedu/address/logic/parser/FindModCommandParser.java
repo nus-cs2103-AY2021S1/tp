@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_CODE_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_INSTRUCTOR;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_NAME;
@@ -42,11 +43,11 @@ public class FindModCommandParser implements Parser<FindModCommand> {
         checkDuplicatePrefix(argMultimap, PREFIX_MODULE_CODE, PREFIX_MODULE_NAME, PREFIX_MODULE_INSTRUCTOR);
 
         getKeyword(argMultimap, PREFIX_MODULE_CODE)
-                .ifPresent(k -> predicates.add(new ModuleCodeContainsKeywordsPredicate(k)));
+            .ifPresent(k -> predicates.add(new ModuleCodeContainsKeywordsPredicate(k)));
         getKeywords(argMultimap, PREFIX_MODULE_NAME)
-                .ifPresent(k -> predicates.add(new ModuleNameContainsKeywordsPredicate(Arrays.asList(k))));
+            .ifPresent(k -> predicates.add(new ModuleNameContainsKeywordsPredicate(Arrays.asList(k))));
         getKeywords(argMultimap, PREFIX_MODULE_INSTRUCTOR)
-                .ifPresent(k -> predicates.add(new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList(k))));
+            .ifPresent(k -> predicates.add(new ModuleInstructorsContainsKeywordsPredicate(Arrays.asList(k))));
 
         assert (!predicates.isEmpty());
         return new FindModCommand(predicates);
@@ -63,14 +64,14 @@ public class FindModCommandParser implements Parser<FindModCommand> {
     /**
      * Throws a {@code ParseException} if there is a duplicate prefix.
      */
-    private void checkDuplicatePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes)
-            throws ParseException {
+    private void checkDuplicatePrefix(ArgumentMultimap argumentMultimap, Prefix... prefixes) throws ParseException {
         for (Prefix p : prefixes) {
             if (argumentMultimap.getAllValues(p).size() > 1) {
                 throw new ParseException(String.format(MESSAGE_DUPLICATE_PREFIX, p));
             }
         }
     }
+
     /**
      * Returns keywords stored as the value of {@code prefix}.
      */
@@ -95,7 +96,7 @@ public class FindModCommandParser implements Parser<FindModCommand> {
         String[] keywords = ParserUtil.parseString(argMultimap.getValue(prefix).get()).split("\\s+");
 
         if (keywords.length != 1) {
-            throw new ParseException("Module code parameter should be a single word");
+            throw new ParseException(MESSAGE_INVALID_MODULE_CODE_KEYWORD);
         }
 
         return Optional.of(keywords[0]);

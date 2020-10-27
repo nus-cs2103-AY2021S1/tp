@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -19,11 +21,14 @@ public class UnassignCommand extends Command {
 
     public static final String COMMAND_WORD = "unassign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns an instructor from one or more modules. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Unassigns an instructor from one or more modules.\n"
+            + "If module codes are provided, it will unassign the instructor from all module codes provided.\n"
+            + "Else, it will unassign the instructor from all modules he/she teaches.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_MODULE_CODE + "MODULE CODE\n"
+            + PREFIX_MODULE_CODE + "[MODULE CODE]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_MODULE_CODE + "CS2103";
+            + PREFIX_MODULE_CODE + "CS2103"
+            + " or " + COMMAND_WORD + " 1 m/";
 
     public static final String MESSAGE_UNASSIGNMENT_SUCCESS = "Unassigned instructor from module(s)";
 
@@ -31,7 +36,7 @@ public class UnassignCommand extends Command {
     private final Set<ModuleCode> moduleCodes;
 
     /**
-     * @param index of the person in the filtered person list to be assigned
+     * @param index of the person in the filtered person list to be unassigned
      * @param moduleCodes of modules the person would be unassigned from
      */
     public UnassignCommand(Index index, Set<ModuleCode> moduleCodes) {
@@ -39,6 +44,16 @@ public class UnassignCommand extends Command {
 
         this.index = index;
         this.moduleCodes = moduleCodes;
+    }
+
+    /**
+     * @param index of the person in the filtered person list to be unassigned
+     */
+    public UnassignCommand(Index index) {
+        requireAllNonNull(index);
+
+        this.index = index;
+        this.moduleCodes = new HashSet<>();
     }
 
     @Override
@@ -53,14 +68,27 @@ public class UnassignCommand extends Command {
 
         Person instructor = lastShownList.get(index.getZeroBased());
 
-        for (ModuleCode moduleCode: moduleCodes) {
-            if (!model.hasModuleCode(moduleCode)) {
-                throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
-            }
-        }
+        if (moduleCodes.isEmpty()) {
+            model.unassignInstructorFromAll(instructor);
 
-        for (ModuleCode moduleCode: moduleCodes) {
-            model.unassignInstructor(instructor, moduleCode);
+        } else {
+
+            for (ModuleCode moduleCode : moduleCodes) {
+                if (!model.hasModuleCode(moduleCode)) {
+                    throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
+                }
+            }
+
+            for (ModuleCode moduleCode : moduleCodes) {
+                if (!model.moduleCodeHasInstructor(moduleCode, instructor)) {
+                    throw new CommandException(String.format(
+                        MESSAGE_INSTRUCTOR_DOES_NOT_EXIST, moduleCode));
+                }
+            }
+
+            for (ModuleCode moduleCode : moduleCodes) {
+                model.unassignInstructor(instructor, moduleCode);
+            }
         }
 
         return new CommandResult(MESSAGE_UNASSIGNMENT_SUCCESS);
@@ -73,4 +101,5 @@ public class UnassignCommand extends Command {
                 && index.equals(((UnassignCommand) other).index)
                 && moduleCodes.equals(((UnassignCommand) other).moduleCodes));
     }
+
 }

@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NAME_KEYWORD;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PHONE_KEYWORD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -33,6 +34,16 @@ import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+
+    /**
+     * Name keywords should be alphanumeric and the first character should not be a whitespace.
+     */
+    public static final String NAME_VALIDATION_REGEX = "[\\p{Alnum}]+";
+
+    /**
+     * Phone keywords should be numeric and the first character should not be a whitespace.
+     */
+    public static final String PHONE_VALIDATION_REGEX = "\\p{Digit}+";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -85,12 +96,17 @@ public class FindCommandParser implements Parser<FindCommand> {
     }
 
     /**
-     * Throws a {@code ParseException} if there is a blank keyword.
+     * Throws a {@code ParseException} if keyword does not match valid attribute format.
      */
     private void checkKeywords(String[] keywords, Prefix prefix) throws ParseException {
         if (prefix.equals(PREFIX_PHONE)
-            && Stream.of(keywords).anyMatch(k -> !k.matches("\\d+"))) {
+            && Stream.of(keywords).anyMatch(k -> !k.matches(PHONE_VALIDATION_REGEX))) {
             throw new ParseException(MESSAGE_INVALID_PHONE_KEYWORD);
+        }
+
+        if (prefix.equals(PREFIX_NAME)
+            && Stream.of(keywords).anyMatch(k -> !k.matches(NAME_VALIDATION_REGEX))) {
+            throw new ParseException(MESSAGE_INVALID_NAME_KEYWORD);
         }
     }
 

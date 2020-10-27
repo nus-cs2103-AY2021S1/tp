@@ -47,7 +47,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Office;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.builders.EditPersonDescriptorBuilder;
 
 public class EditCommandParserTest {
 

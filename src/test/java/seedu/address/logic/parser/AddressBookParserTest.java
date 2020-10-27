@@ -36,11 +36,11 @@ import seedu.address.model.module.predicates.ModuleInstructorsContainsKeywordsPr
 import seedu.address.model.module.predicates.ModuleNameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.builders.EditPersonDescriptorBuilder;
+import seedu.address.testutil.builders.ModuleBuilder;
+import seedu.address.testutil.builders.PersonBuilder;
 
 public class AddressBookParserTest {
 

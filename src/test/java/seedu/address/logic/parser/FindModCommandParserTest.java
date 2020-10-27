@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_PREFIX;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_KEYWORD;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_MODULE_CODE_KEYWORD;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -39,7 +40,7 @@ class FindModCommandParserTest {
     @Test
     public void parse_argsWithModuleParameterAsSentence_throwsParseException() {
         assertParseFailure(parser, " m/CS21 03 n/Software Engineering i/ ",
-                "Module code parameter should be a single word");
+                MESSAGE_INVALID_MODULE_CODE_KEYWORD);
     }
     @Test
     public void parse_validArgs_returnsFindModCommand() {

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED;
 import static seedu.address.commons.core.Messages.MESSAGE_MODULE_DOES_NOT_EXIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
@@ -24,7 +25,8 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns an instructor to one or more modules. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_MODULE_CODE + "MODULE CODE\n"
+            + PREFIX_MODULE_CODE + "MODULE CODE "
+            + "[" + PREFIX_MODULE_CODE + "MODULE CODE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_CODE + "CS2103";
 
@@ -63,6 +65,9 @@ public class AssignCommand extends Command {
         for (ModuleCode moduleCode: moduleCodes) {
             if (!model.hasModuleCode(moduleCode)) {
                 throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
+            }
+            if (model.moduleCodeHasInstructor(moduleCode, instructor)) {
+                throw new CommandException(String.format(MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED, moduleCode));
             }
         }
 
