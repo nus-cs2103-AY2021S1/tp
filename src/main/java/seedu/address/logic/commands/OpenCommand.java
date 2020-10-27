@@ -21,7 +21,7 @@ public class OpenCommand extends Command {
             + PREFIX_TAG_NAME + "TAG_NAME "
             + "\n\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 ";
-    public static final String OPEN_MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
+    public static final String OPEN_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
     public static final String MESSAGE_SUCCESS = "File opened! Tag: %1$s";
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag '%s' not found!";
     public static final String MESSAGE_FILE_NOT_FOUND = "The file: %s doesn't exist.";

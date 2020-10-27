@@ -22,7 +22,7 @@ public class ShowCommand extends Command {
             + PREFIX_TAG_NAME + "TAG_NAME "
             + "\n\nExample: " + COMMAND_WORD + " "
             + PREFIX_TAG_NAME + "cs2103 ";
-    public static final String SHOW_MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
+    public static final String SHOW_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>";
     public static final String MESSAGE_SUCCESS = "%s's file path: %s";
 
     private final TagNameEqualsKeywordPredicate predicate;

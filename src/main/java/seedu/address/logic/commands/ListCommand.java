@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "ls";
-    public static final String LIST_MESSAGE_USAGE = COMMAND_WORD;
+    public static final String LIST_COMMAND_USAGE = COMMAND_WORD;
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows the list of all tag. "
             + "\n\nExample: " + COMMAND_WORD;
     public static final String VALID_USER_INPUT = "";

@@ -19,15 +19,16 @@ public class HelpCommand extends Command {
             + String.format("%-22s %s", CdCommand.COMMAND_WORD, CdCommand.CD_COMMAND_USAGE + "\n")
             + String.format("%-21s %s", ClearCommand.COMMAND_WORD, ClearCommand.CLEAR_COMMAND_USAGE + "\n")
             + String.format("%-22s %s", ExitCommand.COMMAND_WORD, ExitCommand.EXIT_COMMAND_USAGE + "\n")
-            + String.format("%-22s %s", FindCommand.COMMAND_WORD, FindCommand.FIND_MESSAGE_USAGE + "\n")
-            + String.format("%-24s %s", ListCommand.COMMAND_WORD, ListCommand.LIST_MESSAGE_USAGE + "\n")
-            + String.format(STRING_FORMAT, OpenCommand.COMMAND_WORD, OpenCommand.OPEN_MESSAGE_USAGE + "\n")
+            + String.format("%-22s %s", FindCommand.COMMAND_WORD, FindCommand.FIND_COMMAND_USAGE + "\n")
+            + String.format("%-22s %s", LabelCommand.COMMAND_WORD, LabelCommand.LABEL_COMMAND_USAGE + "\n")
+            + String.format("%-24s %s", ListCommand.COMMAND_WORD, ListCommand.LIST_COMMAND_USAGE + "\n")
+            + String.format(STRING_FORMAT, OpenCommand.COMMAND_WORD, OpenCommand.OPEN_COMMAND_USAGE + "\n")
             + String.format("%-21s %s", RedoCommand.COMMAND_WORD, RedoCommand.REDO_COMMAND_USAGE + "\n")
-            + String.format("%-21s %s", RetagCommand.COMMAND_WORD, RetagCommand.RETAG_MESSAGE_USAGE + "\n")
-            + String.format(STRING_FORMAT, ShowCommand.COMMAND_WORD, ShowCommand.SHOW_MESSAGE_USAGE + "\n")
+            + String.format("%-21s %s", RetagCommand.COMMAND_WORD, RetagCommand.RETAG_COMMAND_USAGE + "\n")
+            + String.format(STRING_FORMAT, ShowCommand.COMMAND_WORD, ShowCommand.SHOW_COMMAND_USAGE + "\n")
             + String.format("%-22s %s", TagCommand.COMMAND_WORD, TagCommand.TAG_COMMAND_USAGE + "\n")
             + String.format("%-20s %s", UndoCommand.COMMAND_WORD, UndoCommand.UNDO_COMMAND_USAGE + "\n")
-            + String.format(STRING_FORMAT, UntagCommand.COMMAND_WORD, UntagCommand.UNTAG_MESSAGE_USAGE + "\n");
+            + String.format(STRING_FORMAT, UntagCommand.COMMAND_WORD, UntagCommand.UNTAG_COMMAND_USAGE + "\n");
     public static final String INVALID_KEYWORD_MESSAGE = "%s is an unknown command";
 
     private final String commandWord;
@@ -52,6 +53,8 @@ public class HelpCommand extends Command {
             return new CommandResult(ExitCommand.MESSAGE_USAGE);
         case FindCommand.COMMAND_WORD:
             return new CommandResult(FindCommand.MESSAGE_USAGE);
+        case LabelCommand.COMMAND_WORD:
+            return new CommandResult(LabelCommand.MESSAGE_USAGE);
         case ListCommand.COMMAND_WORD:
             return new CommandResult(ListCommand.MESSAGE_USAGE);
         case OpenCommand.COMMAND_WORD:
