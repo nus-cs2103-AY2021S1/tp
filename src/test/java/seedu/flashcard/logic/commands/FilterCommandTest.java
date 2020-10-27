@@ -15,7 +15,6 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.flashcard.logic.parser.FilterCommandParser;
 import seedu.flashcard.model.Model;
 import seedu.flashcard.model.ModelManager;
 import seedu.flashcard.model.UserPrefs;

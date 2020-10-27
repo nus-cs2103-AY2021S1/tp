@@ -1,19 +1,22 @@
 package seedu.flashcard.model;
 
-import org.junit.jupiter.api.Test;
-import seedu.flashcard.commons.core.GuiSettings;
-import seedu.flashcard.model.flashcard.QuestionContainsKeywordsPredicate;
-import seedu.flashcard.testutil.FlashcardDeckBuilder;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
+import static seedu.flashcard.testutil.Assert.assertThrows;
+import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
+import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.flashcard.model.Model.PREDICATE_SHOW_ALL_FLASHCARDS;
-import static seedu.flashcard.testutil.Assert.assertThrows;
-import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
-import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_2;
+import org.junit.jupiter.api.Test;
+
+import seedu.flashcard.commons.core.GuiSettings;
+import seedu.flashcard.model.flashcard.QuestionContainsKeywordsPredicate;
+import seedu.flashcard.testutil.FlashcardDeckBuilder;
 
 public class ModelManagerTest {
 
@@ -87,8 +90,8 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredFlashcardList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class,
-                () -> modelManager.getFilteredFlashcardList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+            modelManager.getFilteredFlashcardList().remove(0));
     }
 
     @Test

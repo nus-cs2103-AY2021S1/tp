@@ -16,17 +16,4 @@ public class FilterCommandParserTest {
         assertParseFailure(parser, "     ",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
     }
-
-//        @Test
-//        public void parse_validArgs_returnsFilterCommand() {
-//            // no leading and trailing whitespaces
-//            FilterCommand expectedFilterCommand =
-//                    new FilterCommand(new CategoryEqualsKeywordsPredicate(null),
-//                            new RatingEqualsKeywordsPredicate(new Rating("1")),
-//                            new FavouriteEqualsKeywordsPredicate(null),
-//                            new TagsEqualKeywordsPredicate(null));
-//            assertParseSuccess(parser, " r/ 1", expectedFilterCommand);
-//            // multiple whitespaces between keywords
-//            assertParseSuccess(parser, " \n \t r/ 1  \t", expectedFilterCommand);
-//        }
 }

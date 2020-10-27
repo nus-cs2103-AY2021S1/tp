@@ -1,9 +1,28 @@
 package seedu.flashcard.logic;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX;
+import static seedu.flashcard.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_ANSWER_1;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_CATEGORY_1;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_QUESTION_1;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_RATING_2;
+import static seedu.flashcard.logic.commands.CommandTestUtil.VALID_TAG_2;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_ANSWER;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_QUESTION;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_RATING;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_TAG;
+import static seedu.flashcard.testutil.Assert.assertThrows;
+import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
+
+import java.io.IOException;
+import java.nio.file.Path;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
-import seedu.flashcard.commons.core.Messages;
+
 import seedu.flashcard.logic.commands.AddCommand;
 import seedu.flashcard.logic.commands.CommandResult;
 import seedu.flashcard.logic.commands.ListCommand;
@@ -18,16 +37,6 @@ import seedu.flashcard.storage.JsonFlashcardDeckStorage;
 import seedu.flashcard.storage.JsonUserPrefsStorage;
 import seedu.flashcard.storage.StorageManager;
 import seedu.flashcard.testutil.FlashcardBuilder;
-
-import java.io.IOException;
-import java.nio.file.Path;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.flashcard.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.flashcard.logic.commands.CommandTestUtil.*;
-import static seedu.flashcard.logic.parser.AddCommandParserTest.*;
-import static seedu.flashcard.testutil.Assert.assertThrows;
-import static seedu.flashcard.testutil.TypicalFlashcards.FLASHCARD_1;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -56,7 +65,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
 
     @Test

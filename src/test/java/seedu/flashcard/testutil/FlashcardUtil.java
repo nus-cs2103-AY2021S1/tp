@@ -1,13 +1,20 @@
 package seedu.flashcard.testutil;
 
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_ANSWER;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_CATEGORY;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_DIAGRAM;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_NOTE;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_QUESTION;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_RATING;
+import static seedu.flashcard.logic.parser.AddCommandParserTest.PREFIX_TAG;
+
+import java.util.Set;
+
 import seedu.flashcard.logic.commands.AddCommand;
 import seedu.flashcard.logic.commands.EditCommand.EditFlashcardDescriptor;
 import seedu.flashcard.model.flashcard.Flashcard;
 import seedu.flashcard.model.tag.Tag;
 
-import java.util.Set;
-
-import static seedu.flashcard.logic.parser.AddCommandParserTest.*;
 
 /**
  * A utility class for Flashcard.
@@ -28,7 +35,7 @@ public class FlashcardUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_QUESTION + flashcard.getQuestion() + " ");
         sb.append(PREFIX_ANSWER + flashcard.getAnswer() + " ");
-        sb.append(PREFIX_CATEGORY + flashcard.getCategory()+ " ");
+        sb.append(PREFIX_CATEGORY + flashcard.getCategory() + " ");
         sb.append(PREFIX_RATING + flashcard.getRating() + " ");
         flashcard.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")

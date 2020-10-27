@@ -1,24 +1,32 @@
 package seedu.flashcard.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.flashcard.logic.commands.*;
-import seedu.flashcard.logic.commands.EditCommand.EditFlashcardDescriptor;
-import seedu.flashcard.logic.parser.exceptions.ParseException;
-import seedu.flashcard.model.flashcard.Flashcard;
-import seedu.flashcard.testutil.EditFlashcardDescriptorBuilder;
-import seedu.flashcard.testutil.FlashcardBuilder;
-import seedu.flashcard.testutil.FlashcardUtil;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.flashcard.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.flashcard.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.flashcard.testutil.Assert.assertThrows;
 import static seedu.flashcard.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.flashcard.logic.commands.AddCommand;
+import seedu.flashcard.logic.commands.ClearCommand;
+import seedu.flashcard.logic.commands.DeleteCommand;
+import seedu.flashcard.logic.commands.EditCommand;
+import seedu.flashcard.logic.commands.EditCommand.EditFlashcardDescriptor;
+import seedu.flashcard.logic.commands.ExitCommand;
+import seedu.flashcard.logic.commands.FindCommand;
+import seedu.flashcard.logic.commands.HelpCommand;
+import seedu.flashcard.logic.commands.ListCommand;
+import seedu.flashcard.logic.parser.exceptions.ParseException;
+import seedu.flashcard.model.flashcard.Flashcard;
+import seedu.flashcard.testutil.EditFlashcardDescriptorBuilder;
+import seedu.flashcard.testutil.FlashcardBuilder;
+import seedu.flashcard.testutil.FlashcardUtil;
 
 public class FlashcardDeckParserTest {
 
@@ -83,8 +91,8 @@ public class FlashcardDeckParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-        HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+            HelpCommand.MESSAGE_USAGE), ()
+                -> parser.parseCommand(""));
     }
 
     @Test
