@@ -40,21 +40,17 @@ public class FindCommandTest {
                 new DateMatchesPredicate(Arrays.asList("09-08-2020"));
         DateMatchesPredicate secondDatePredicate =
                 new DateMatchesPredicate(Arrays.asList("09-08-2020"));
-        TagsMatchesPredicate firstTagsPredicate =
-                new TagsMatchesPredicate(Arrays.asList("tagOne", "tagThree", "tagFour"));
-        TagsMatchesPredicate secondTagsPredicate =
-                new TagsMatchesPredicate(Arrays.asList("tagTwo", "bye"));
         FindCommand findFirstCommand = new FindCommand(
-                firstPredicate, firstDatePredicate, firstTagsPredicate);
+                firstPredicate, firstDatePredicate);
         FindCommand findSecondCommand = new FindCommand(
-                secondPredicate, secondDatePredicate, secondTagsPredicate);
+                secondPredicate, secondDatePredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(
-                firstPredicate, firstDatePredicate, firstTagsPredicate);
+                firstPredicate, firstDatePredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -72,10 +68,8 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_EXPENSES_LISTED_OVERVIEW, 0);
         DateMatchesPredicate datePredicate =
                 new DateMatchesPredicate(Collections.emptyList());
-        TagsMatchesPredicate tagsPredicate =
-                new TagsMatchesPredicate(Collections.emptyList());
         NameContainsKeywordsPredicate namePredicate = preparePredicate("CannotBeNotFound");
-        FindCommand command = new FindCommand(namePredicate, datePredicate, tagsPredicate);
+        FindCommand command = new FindCommand(namePredicate, datePredicate);
         expectedModel.updateFilteredExpenseList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredExpenseList());
@@ -89,7 +83,7 @@ public class FindCommandTest {
         TagsMatchesPredicate tagsPredicate =
                 new TagsMatchesPredicate(Collections.emptyList());
         NameContainsKeywordsPredicate namePredicate = preparePredicate("ZARA Phone Swee");
-        FindCommand command = new FindCommand(namePredicate, datePredicate, tagsPredicate);
+        FindCommand command = new FindCommand(namePredicate, datePredicate);
         expectedModel.updateFilteredExpenseList(namePredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ZARA, PHONE_BILL, SWEE_CHOON), model.getFilteredExpenseList());

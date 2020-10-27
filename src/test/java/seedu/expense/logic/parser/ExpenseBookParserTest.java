@@ -37,7 +37,6 @@ import seedu.expense.model.expense.DateMatchesPredicate;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.model.expense.Remark;
-import seedu.expense.model.expense.TagsMatchesPredicate;
 import seedu.expense.model.tag.Tag;
 import seedu.expense.testutil.CategoryUtil;
 import seedu.expense.testutil.EditExpenseDescriptorBuilder;
@@ -94,14 +93,11 @@ public class ExpenseBookParserTest {
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + PREFIX_DESCRIPTION + " "
                         + keywords.stream().collect(Collectors.joining(" "))
-                        + " " + PREFIX_DATE + dateString + " " + PREFIX_TAG
-                        + "CS " + PREFIX_TAG + "bee"
+                        + " " + PREFIX_DATE + dateString + " "
         );
         FindCommand findCommand = new FindCommand(
                 new NameContainsKeywordsPredicate(keywords),
-                new DateMatchesPredicate(dateStrings),
-                new TagsMatchesPredicate(hs)
-        );
+                new DateMatchesPredicate(dateStrings));
         assertEquals(findCommand, command);
     }
 
