@@ -32,6 +32,13 @@ public class UsageList<T extends Usage> {
     }
 
     /**
+     * Replaces the contents of the usage list with {@code usages}.
+     */
+    public void setAll(UsageList<T> usages) {
+        this.usages.setAll(usages.usages);
+    }
+
+    /**
      * Adds to the stack.
      */
     public void add(T item) {

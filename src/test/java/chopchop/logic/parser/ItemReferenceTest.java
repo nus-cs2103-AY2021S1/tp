@@ -20,10 +20,10 @@ public class ItemReferenceTest {
         var oi = ItemReference.ofOneIndex(4);
         var nm = ItemReference.ofName("owo");
 
-        assertEquals(ItemReference.parse(""), Result.error("empty input"));
-        assertEquals(ItemReference.parse("#"), Result.error("couldn't parse integer: For input string: \"\""));
-        assertEquals(ItemReference.parse("#0"), Result.error("invalid index (cannot be zero or negative)"));
-        assertEquals(ItemReference.parse("#-30"), Result.error("invalid index (cannot be zero or negative)"));
+        assertEquals(ItemReference.parse(""), Result.error("Empty input"));
+        assertEquals(ItemReference.parse("#"), Result.error("Couldn't parse integer: For input string: \"\""));
+        assertEquals(ItemReference.parse("#0"), Result.error("Invalid index (cannot be zero or negative)"));
+        assertEquals(ItemReference.parse("#-30"), Result.error("Invalid index (cannot be zero or negative)"));
 
         assertEquals(0, ItemReference.ofZeroIndex(0).getZeroIndex());
         assertEquals(3, ItemReference.ofZeroIndex(3).getZeroIndex());
