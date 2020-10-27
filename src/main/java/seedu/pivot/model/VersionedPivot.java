@@ -1,34 +1,80 @@
 package seedu.pivot.model;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.ArrayList;
+import java.util.List;
 
 public class VersionedPivot extends Pivot {
 
-    private final ArrayList<ReadOnlyPivot> pivotStateList = new ArrayList<>();
-    private final ArrayList<String> commands = new ArrayList<>();
+    public static final String INITIAL_COMMAND = "Initial command";
+    public static final int INITIAL_STATE = 0;
 
-    private final String initialCommand = "Initial command";
-    private final int initialState = 0;
+    private final List<ReadOnlyPivot> pivotStateList = new ArrayList<>();
+    private final List<String> commands = new ArrayList<>();
 
     private int currentStatePointer;
 
     /**
-     * Create a VersionedPivot object with the list of pivot states being
+     * Create a VersionedPivot object with the list of Pivot states being
      * initialised with the initial state. The current state pointer points to the
-     * inital state.
-     * @param pivot
+     * initial state.
+     * @param pivot The initial Pivot state.
      */
     public VersionedPivot(ReadOnlyPivot pivot) {
+        requireNonNull(pivot);
         pivotStateList.add(pivot);
-        commands.add(initialCommand);
-        currentStatePointer = initialState;
+        commands.add(INITIAL_COMMAND);
+        currentStatePointer = INITIAL_STATE;
     }
 
+    /**
+     * Create a VersionedPivot object with the fields directly initialised with
+     * the arguments.
+     * @param pivotStateList The list of Pivot states.
+     * @param commands The list of commands corresponding to the Pivot states.
+     * @param currentStatePointer The index of the current Pivot state in the pivotStateList.
+     */
+    public VersionedPivot(List<ReadOnlyPivot> pivotStateList,
+            List<String> commands, int currentStatePointer) {
+        this.pivotStateList.addAll(pivotStateList);
+        this.commands.addAll(commands);
+        this.currentStatePointer = currentStatePointer;
+
+    }
+
+    public List<ReadOnlyPivot> getPivotStateList() {
+        return this.pivotStateList;
+    }
+
+    public List<String> getCommands() {
+        return this.commands;
+    }
+
+    public int getCurrentStatePointer() {
+        return this.currentStatePointer;
+    }
+
+    public String getStateCommand() {
+        return commands.get(currentStatePointer);
+    }
+
+    /**
+     * Check if the current state can be undone.
+     * @return True if the currentStatePointer is not at the initial state, false otherwise.
+     */
     public boolean canUndo() {
-        return currentStatePointer != initialState;
+        assert currentStatePointer < pivotStateList.size() && currentStatePointer >= 0 : "Index out of bounds";
+        return currentStatePointer != INITIAL_STATE;
     }
 
+    /**
+     * Check if the current state can be redone.
+     * @return True if the currentStatePointer is not at the most recent state, false otherwise.
+     */
     public boolean canRedo() {
+        assert currentStatePointer < pivotStateList.size() && currentStatePointer >= 0 : "Index out of bounds";
         return currentStatePointer != (pivotStateList.size() - 1);
     }
 
@@ -37,13 +83,12 @@ public class VersionedPivot extends Pivot {
      * @param pivot Current Pivot state.
      */
     public void commit(ReadOnlyPivot pivot, String command) {
-        purgeStates();
-
+        requireAllNonNull(pivot, command);
         pivotStateList.add(pivot);
         commands.add(command);
         currentStatePointer++;
 
-        System.out.println(pivotStateList.size());
+        assert currentStatePointer < pivotStateList.size() : "Index out of bounds";
     }
 
     /**
@@ -53,6 +98,7 @@ public class VersionedPivot extends Pivot {
         int stateAfterCurrent = currentStatePointer + 1;
         for (int i = stateAfterCurrent; i < pivotStateList.size(); i++) {
             pivotStateList.remove(i);
+            commands.remove(i);
         }
     }
 
@@ -62,6 +108,8 @@ public class VersionedPivot extends Pivot {
      */
     public ReadOnlyPivot undo() {
         currentStatePointer--;
+        assert currentStatePointer >= 0 : "Index out of bounds";
+
         return pivotStateList.get(currentStatePointer);
     }
 
@@ -71,10 +119,24 @@ public class VersionedPivot extends Pivot {
      */
     public ReadOnlyPivot redo() {
         currentStatePointer++;
+        assert currentStatePointer < pivotStateList.size() : "Index out of bounds";
+
         return pivotStateList.get(currentStatePointer);
     }
 
-    public String getStateCommand() {
-        return commands.get(currentStatePointer);
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof VersionedPivot)) {
+            return false;
+        }
+
+        VersionedPivot otherVersionedPivot = (VersionedPivot) other;
+        return otherVersionedPivot.getPivotStateList().equals(getPivotStateList())
+                && otherVersionedPivot.getCommands().equals(getCommands())
+                && otherVersionedPivot.getCurrentStatePointer() == getCurrentStatePointer();
     }
 }

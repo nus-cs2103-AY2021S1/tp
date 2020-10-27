@@ -79,11 +79,11 @@ public class TypicalCases {
      * Returns an {@code Pivot} with all the typical persons.
      */
     public static Pivot getTypicalPivot() {
-        Pivot ab = new Pivot();
+        Pivot pivot = new Pivot();
         for (Case investigationCase : getTypicalPersons()) {
-            ab.addCase(investigationCase);
+            pivot.addCase(investigationCase);
         }
-        return ab;
+        return pivot;
     }
 
     public static List<Case> getTypicalPersons() {
