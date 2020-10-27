@@ -26,6 +26,17 @@ public class TutorialGroup {
         this.endTime = endTime;
     }
 
+    /**
+     * Constructor for Tutorial Group
+     * @param tutorialGroupId
+     */
+    public TutorialGroup(TutorialGroupId tutorialGroupId, UniqueStudentList students,  LocalTime startTime, LocalTime endTime) {
+        this.tutorialGroupId = tutorialGroupId;
+        this.students = students;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     //GETTERS
 
     public TutorialGroupId getId() {

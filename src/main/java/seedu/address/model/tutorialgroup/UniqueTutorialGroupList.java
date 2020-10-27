@@ -5,12 +5,12 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.exceptions.DuplicateShowableException;
 import seedu.address.model.exceptions.ShowableNotFoundException;
-import seedu.address.model.module.Module;
 import seedu.address.model.person.Student;
 import seedu.address.model.person.UniqueStudentList;
 
@@ -108,11 +108,24 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
         return internalList.get(index).getUniqueStudentList();
     }
 
+    /**
+     * Adds a {@code Student} in the tutorial group list.
+     * @param student The new {@code Student} to be added
+     * @param currentTgInView The current tutorial group list
+     */
     public void addStudent(Student student, TutorialGroup currentTgInView) {
         int index = internalList.indexOf(currentTgInView);
         if (index >= 0) {
             internalList.get(index).addStudent(student);
         }
+    }
+
+    public Stream<TutorialGroup> stream() {
+        return internalList.stream();
+    }
+
+    public int size() {
+        return internalList.size();
     }
 
     @Override

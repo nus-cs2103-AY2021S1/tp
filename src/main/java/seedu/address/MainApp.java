@@ -22,9 +22,10 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTrackr;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
-import seedu.address.model.person.Student;
+import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonModuleStorage;
@@ -83,28 +84,23 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        /* todo:
-        Optional<ReadOnlyTrackr<Student>> studentListOptional;
-        ReadOnlyTrackr<Student> initialData;
+
+        ReadOnlyTrackr<Module> initialData;
         try {
-            studentListOptional = storage.readModuleList();
+            Optional<ReadOnlyTrackr<Module>> moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialData = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new ModuleList();
+            initialData = new Trackr();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new ModuleList();
+            initialData = new Trackr();
         }
-         */
 
-        //ReadOnlyTrackr<Student> initialStudentData = getSampleStudentList();
-        ReadOnlyTrackr<Module> initalModuleData = getSampleModuleList();
-
-        return new ModelManager(initalModuleData, userPrefs);
+        return new ModelManager(initialData, userPrefs);
     }
 
     private void initLogging(Config config) {

@@ -103,7 +103,7 @@ Get started by installing __Trackr__ with the following steps:
 4. Double-click trackr.jar to start the app. The GUI (Figure 3.1) should appear in a few seconds.
 
 ![Ui](images/Ui.png) <br>
-Figure 3.1 Track Gui
+Figure 3.1 Trackr GUI
 
 ### 3.2 Using Trackr
 __Trackr__ boasts many useful features to make using the app seamless and smooth. These include
