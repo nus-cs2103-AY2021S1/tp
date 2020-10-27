@@ -74,17 +74,17 @@ public class Account implements ReadOnlyAccount {
     }
 
     /**
-     * Clears contents of the revenue list.
-     */
-    public void clearRevenues() {
-        this.revenues.clearRevenues();
-    }
-
-    /**
      * Clears contents of the expense list.
      */
     public void clearExpenses() {
         this.expenses.clearExpenses();
+    }
+
+    /**
+     * Clears contents of the revenue list.
+     */
+    public void clearRevenues() {
+        this.revenues.clearRevenues();
     }
 
     /**
