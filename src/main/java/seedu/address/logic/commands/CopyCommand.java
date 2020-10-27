@@ -57,6 +57,11 @@ public class CopyCommand extends Command {
             // finds Persons that match the predicate and Persons that have the given Modules
             people = model.getUpdatedFilteredPersonList(predicate, moduleNames);
         }
+
+        if (people.isEmpty()) {
+            throw new CommandException("No contact has the given arguments.");
+        }
+
         String results;
         if (isEmail) {
             // gets email addresses from Persons in people
