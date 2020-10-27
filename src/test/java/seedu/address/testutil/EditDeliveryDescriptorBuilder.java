@@ -1,11 +1,16 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.logic.commands.deliverycommand.DeliveryEditCommand;
 import seedu.address.model.delivery.Address;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
+import seedu.address.model.delivery.Time;
+
 
 /**
  * A utility class to help with building EditDeliveryDescriptor objects.
@@ -62,6 +67,15 @@ public class EditDeliveryDescriptorBuilder {
      */
     public EditDeliveryDescriptorBuilder withOrder(String order) {
         descriptor.setOrder(new Order(order));
+        return this;
+    }
+
+    /**
+     * Sets the {@code order} of the {@code EditDeliveryDescriptor} that we are building.
+     */
+    public EditDeliveryDescriptorBuilder withTime(String time) {
+        LocalDateTime endTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
+        descriptor.setTime(new Time("0", endTime));
         return this;
     }
 

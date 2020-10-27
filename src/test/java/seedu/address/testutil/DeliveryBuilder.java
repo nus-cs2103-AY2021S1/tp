@@ -49,6 +49,7 @@ public class DeliveryBuilder {
         phone = deliveryToCopy.getPhone();
         address = deliveryToCopy.getAddress();
         order = deliveryToCopy.getOrder();
+        time = deliveryToCopy.getTime();
     }
 
     /**

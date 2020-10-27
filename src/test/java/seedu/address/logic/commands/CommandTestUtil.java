@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -101,6 +102,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AARON = "Jl Koro koro kuru kuru Blk 251";
     public static final String VALID_ORDER_DAMITH = "Chicken rice 1x, not spicy";
     public static final String VALID_ORDER_AARON = "Iced Kopi x2, Prata plain x3";
+    public static final String VALID_TIME_AARON = "28 October 2020 00:00:00";
+    public static final String VALID_TIME_DAMITH = "28 October 2020 00:00:00";
 
     public static final String NAME_DESC_DAMITH = " " + PREFIX_NAME + VALID_NAME_DAMITH;
     public static final String NAME_DESC_AARON = " " + PREFIX_NAME + VALID_NAME_AARON;
@@ -110,11 +113,14 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AARON = " " + PREFIX_ADDRESS + VALID_ADDRESS_AARON;
     public static final String ORDER_DESC_DAMITH = " " + PREFIX_ORDER + VALID_ORDER_DAMITH;
     public static final String ORDER_DESC_AARON = " " + PREFIX_ORDER + VALID_ORDER_AARON;
+    public static final String TIME_DESC_AARON = " " + PREFIX_TIME + VALID_TIME_AARON;
+    public static final String TIME_DESC_DAMITH = " " + PREFIX_TIME + VALID_TIME_DAMITH;
 
     public static final String INVALID_DELIVERYNAME_DESC = " " + PREFIX_NAME + "Salt&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phone
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for address
     public static final String INVALID_ORDER_DESC = " " + PREFIX_ORDER; // empty string not allowed for orders
+    public static final String INVALID_TIME = " " + PREFIX_TIME;
 
     public static final DeliveryEditCommand.EditDeliveryDescriptor DESC_AARON;
     public static final DeliveryEditCommand.EditDeliveryDescriptor DESC_DAMITH;
@@ -125,6 +131,7 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AARON)
                 .withAddress(VALID_ADDRESS_AARON)
                 .withOrder(VALID_ORDER_AARON)
+                .withTime
                 .build();
         DESC_DAMITH = new EditDeliveryDescriptorBuilder()
                 .withName(VALID_NAME_DAMITH)
