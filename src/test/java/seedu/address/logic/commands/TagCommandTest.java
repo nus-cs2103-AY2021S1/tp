@@ -14,7 +14,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TagBuilder;
@@ -65,8 +64,8 @@ public class TagCommandTest {
         TagCommand tagCommand = new TagCommand(tagInvalidAddress);
         ModelStub modelStub = new ModelStubWithTag(validTag);
 
-        assertThrows(CommandException.class, String.format(TagCommand.MESSAGE_FILE_NOT_FOUND, path),
-                () -> tagCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                String.format(TagCommand.MESSAGE_FILE_NOT_FOUND, path), () -> tagCommand.execute(modelStub));
     }
 
     @Test
