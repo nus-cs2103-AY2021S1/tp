@@ -14,7 +14,7 @@
         <Insets top="20" right="15" bottom="15" left="15" />
     </padding>
     <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
-        <VBox alignment="CENTER_LEFT">
+        <VBox minHeight="50" alignment="CENTER_LEFT">
             <padding>
                 <Insets left="15" right="15" />
             </padding>

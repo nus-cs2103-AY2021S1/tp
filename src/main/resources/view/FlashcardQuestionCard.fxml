@@ -24,11 +24,12 @@
 <!--        </columnConstraints>-->
 
         <ScrollPane fx:id="questionScrollPane" styleClass="pane-with-no-border" fitToWidth="true" >
-        <VBox alignment="TOP_CENTER" spacing="5" >
+        <VBox alignment="TOP_CENTER" spacing="5" maxHeight="Infinity">
             <padding>
                 <Insets bottom="5" left="15" right="15" top="5" />
             </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
+            <VBox minHeight="200" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5" >
                 <Label fx:id="question" styleClass="cell_question_label" text="\$question" wrapText="true"/>
             </HBox>
 
@@ -43,6 +44,7 @@
                 </TextFlow>
                 <Text fx:id="favouriteIcon" text="\$favouriteIcon"/>
             </HBox>
+            </VBox>
             <ImageView fx:id="diagram" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
             <FlowPane fx:id="tags" />
         </VBox>

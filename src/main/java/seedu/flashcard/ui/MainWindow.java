@@ -140,6 +140,8 @@ public class MainWindow extends UiPart<Stage> {
 
         studyPanePlaceholder.setVisible(false);
         studyPanePlaceholder.managedProperty().bind(studyPanePlaceholder.visibleProperty());
+
+        flashcardViewCardPlaceholder.getChildren().add(new FlashcardStatsCard(logic.getFilteredFlashcardList().get(0)).getRoot());
     }
 
     /**
