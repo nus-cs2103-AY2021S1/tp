@@ -1,5 +1,12 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
+
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.label.Label;
@@ -7,14 +14,6 @@ import seedu.address.model.tag.FileAddress;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
 import seedu.address.model.tag.TagNameEqualsKeywordPredicate;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
 /**
  * Deletes a specified tag's label(s).
