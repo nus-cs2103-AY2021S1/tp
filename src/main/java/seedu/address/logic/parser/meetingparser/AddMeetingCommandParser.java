@@ -42,34 +42,49 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_MEETING_TYPE, PREFIX_MEETING_BIDDER_ID,
                         PREFIX_MEETING_PROPERTY_ID, PREFIX_MEETING_VENUE, PREFIX_MEETING_TIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_MEETING_BIDDER_ID, PREFIX_MEETING_PROPERTY_ID)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MEETING_BIDDER_ID, PREFIX_MEETING_PROPERTY_ID,
+                PREFIX_MEETING_PROPERTY_ID, PREFIX_MEETING_VENUE, PREFIX_MEETING_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
         }
 
-        Venue venue = ParserUtil.parseMeetingVenue(argMultimap.getValue(PREFIX_MEETING_VENUE).get());
-        Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
-        PropertyId propertyId =
-                IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).get());
-        BidderId bidderId =
-                IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).get());
-        String type = ParserUtil.parseMeetingType(argMultimap.getValue(PREFIX_MEETING_TYPE).get());
+        try {
+            if (argMultimap.getValue(PREFIX_MEETING_TYPE).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_VENUE).isPresent()
+                    & argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
+                Venue venue = ParserUtil.parseMeetingVenue(argMultimap.getValue(PREFIX_MEETING_VENUE).get());
+                Time time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
+                PropertyId propertyId =
+                        IdParserUtil.parsePropertyId(argMultimap.getValue(PREFIX_MEETING_PROPERTY_ID).get());
+                BidderId bidderId =
+                        IdParserUtil.parseBidderId(argMultimap.getValue(PREFIX_MEETING_BIDDER_ID).get());
+                String type = ParserUtil.parseMeetingType(argMultimap.getValue(PREFIX_MEETING_TYPE).get());
 
-        if (type.contains("p")) {
-            Meeting meeting = new Paperwork(bidderId, propertyId,
-                    time, venue);
-            return new AddMeetingCommand(meeting);
-        } else if (type.contains("a")) {
-            Meeting meeting = new Admin(bidderId, propertyId,
-                    time, venue);
-            return new AddMeetingCommand(meeting);
-        } else if (type.contains("v")) {
-            Meeting meeting = new Viewing(bidderId, propertyId,
-                    time, venue);
-            return new AddMeetingCommand(meeting);
-        } else {
+                if (type.contains("p")) {
+                    Meeting meeting = new Paperwork(bidderId, propertyId,
+                            time, venue);
+                    return new AddMeetingCommand(meeting);
+                } else if (type.contains("a")) {
+                    Meeting meeting = new Admin(bidderId, propertyId,
+                            time, venue);
+                    return new AddMeetingCommand(meeting);
+                } else if (type.contains("v")) {
+                    Meeting meeting = new Viewing(bidderId, propertyId,
+                            time, venue);
+                    return new AddMeetingCommand(meeting);
+                }
+            }
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMeetingCommand.MESSAGE_USAGE));
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddMeetingCommand.MESSAGE_USAGE), pe);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddMeetingCommand.MESSAGE_USAGE), e);
         }
+
     }
 
     /**

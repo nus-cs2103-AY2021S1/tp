@@ -35,8 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private CalendarView calendarView = new CalendarView(this::executeCommand);
-
+    private CalendarView calendarView = new CalendarView();
 
     @FXML
     private StackPane commandBoxPlaceholder;
