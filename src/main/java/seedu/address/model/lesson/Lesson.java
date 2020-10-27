@@ -76,7 +76,7 @@ public class Lesson {
         return tag;
     }
     private int getTimeTaken() {
-        return (int) Duration.between(startDate, endDate).toMinutes();
+        return (int) Duration.between(startTime, endTime).toMinutes();
     }
     /**
      * Creates recurring event tasks based on the lesson's details.

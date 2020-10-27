@@ -8,6 +8,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -33,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private LessonListPanel lessonListPanel;
+    private DataAnalysisPanel dataAnalysisPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,6 +49,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane lessonListPanelPlaceholder;
+
+    @FXML
+    private Pane dataAnalysisPanelPlaceholder;
+
+    @FXML
+    private Pane calendarPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -120,6 +128,9 @@ public class MainWindow extends UiPart<Stage> {
 
         lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
         lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
+
+        dataAnalysisPanel = new DataAnalysisPanel(logic.getFilteredLessonList());
+        dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
