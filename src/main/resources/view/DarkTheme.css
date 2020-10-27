@@ -149,6 +149,21 @@
     -fx-text-fill: white;
 }
 
+.question-display {
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 700;
+    -fx-font-size: 25px;
+    -fx-text-fill: white;
+}
+
+.stats-display {
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 500;
+    -fx-font-size: 18px;
+    -fx-text-fill: white;
+}
+
+
 .stack-pane {
      -fx-background-color: #3c4b6e;
 }
@@ -177,9 +192,11 @@
     -fx-border-radius: 10;
     -fx-background-radius: 20 20 20 20;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
-
 }
 
+.progress-bar > .bar {
+    -fx-accent: #65789d;
+}
 .status-bar {
     -fx-background-color: #3c4b6e;
 }
@@ -210,9 +227,7 @@
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
-.answer-display .text {
-    -fx-text-alignment: center;
-}
+
 
 .status-bar .label {
     -fx-font-family: 'Nunito', sans-serif;
@@ -318,6 +333,22 @@
 .button:default:hover {
     -fx-background-color: derive(-fx-focus-color, 30%);
 }
+
+.chart-pie-label {
+    -fx-font-size: 15pt;
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 600;
+    -fx-fill: white
+}
+
+.data0.chart-pie {
+    -fx-pie-color: #77DD77
+}
+
+.data1.chart-pie {
+    -fx-pie-color: #FF6961
+}
+
 
 .dialog-pane {
     -fx-background-color: #1d1d1d;

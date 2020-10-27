@@ -14,19 +14,22 @@
 
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
-<StackPane styleClass="pane-with-round-border" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <padding>
-        <Insets bottom="5" left="15" right="15" top="5" />
-    </padding>
-    <GridPane alignment="CENTER_LEFT" HBox.hgrow="ALWAYS">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
-        </columnConstraints>
-        <VBox alignment="TOP_CENTER" spacing="5" GridPane.columnIndex="0">
+<?import javafx.scene.control.ScrollPane?>
+    <VBox alignment="CENTER_LEFT" styleClass="pane-with-round-border"  xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+        <padding>
+            <Insets bottom="15" left="15" right="15" top="15" />
+        </padding>
+<!--        <columnConstraints>-->
+<!--            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />-->
+<!--        </columnConstraints>-->
+
+        <ScrollPane fx:id="questionScrollPane" styleClass="pane-with-no-border" fitToWidth="true" >
+        <VBox alignment="TOP_CENTER" spacing="5" maxHeight="Infinity">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets bottom="5" left="15" right="15" top="5" />
             </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
+            <VBox minHeight="200" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5" >
                 <Label fx:id="question" styleClass="cell_question_label" text="\$question" wrapText="true"/>
             </HBox>
 
@@ -41,13 +44,12 @@
                 </TextFlow>
                 <Text fx:id="favouriteIcon" text="\$favouriteIcon"/>
             </HBox>
+            </VBox>
             <ImageView fx:id="diagram" fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" />
             <FlowPane fx:id="tags" />
         </VBox>
+        </ScrollPane>
 
 
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
-    </GridPane>
-</StackPane>
+</VBox>
+

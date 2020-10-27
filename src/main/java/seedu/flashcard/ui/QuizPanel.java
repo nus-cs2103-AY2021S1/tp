@@ -1,7 +1,6 @@
 package seedu.flashcard.ui;
 
 import javafx.event.EventHandler;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyEvent;
 import seedu.flashcard.logic.Logic;
 import seedu.flashcard.logic.commands.exceptions.CommandException;
@@ -25,42 +24,28 @@ public class QuizPanel extends StudyPanel {
     public QuizPanel(Logic logic, MainWindow parent) {
         super(logic, parent);
         showFlashcard(studyManager.getCurrentFlashcard());
-        handleStudy();
-    }
-
-    /**
-     * Executes quiz function.
-     */
-    @Override
-    protected void handleStudy() {
-        keyDownEventHandler = new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if (!(event.getTarget() instanceof TextInputControl)) {
-                    return;
-                }
-                switch (event.getCode().getCode()) {
-                case DOWN_ARROW: // down arrow key down
-                    FlashcardAnswerCard flashcardAnswerCard = new FlashcardAnswerCard(
-                            studyManager.getCurrentFlashcard());
-                    showAnswer(flashcardAnswerCard);
-                    break;
-                case Q_KEY: // 'q' key down
-                    exitStudyMode(EXIT_MESSAGE);
-                    break;
-                case Y_KEY: // 'y' key down
-                    handleUserAnswerInput(true);
-                    break;
-                case N_KEY:// 'n' key down
-                    handleUserAnswerInput(false);
-                    break;
-                default:
-                    break;
-                }
-                event.consume();
+        EventHandler<KeyEvent> keyDownEventHandler = event -> {
+            switch (event.getCode().getCode()) {
+            case DOWN_ARROW: // down arrow key down
+                FlashcardAnswerCard flashcardAnswerCard = new FlashcardAnswerCard(
+                        studyManager.getCurrentFlashcard());
+                showAnswer(flashcardAnswerCard);
+                break;
+            case Q_KEY: // 'q' key down
+                exitStudyMode(EXIT_MESSAGE);
+                break;
+            case Y_KEY: // 'y' key down
+                handleUserAnswerInput(true);
+                break;
+            case N_KEY:// 'n' key down
+                handleUserAnswerInput(false);
+                break;
+            default:
+                break;
             }
+            event.consume();
         };
-        parent.getRoot().addEventFilter(KeyEvent.KEY_PRESSED, keyDownEventHandler);
+        handleStudy(keyDownEventHandler);
     }
 
     private void handleUserAnswerInput(boolean isCorrect) {

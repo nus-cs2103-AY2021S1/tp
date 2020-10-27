@@ -33,7 +33,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private FlashcardListPanel flashcardListPanel;
-    private FlashcardViewCard flashcardViewCard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -210,8 +209,18 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleView(int viewIndex, boolean showAnswer) {
         flashcardViewCardPlaceholder.getChildren().clear();
-        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex), showAnswer);
+        FlashcardViewCard flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex),
+                showAnswer);
         flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
+    }
+
+    /**
+     * Executes stats view function
+     */
+    private void handleStatsView(int viewIndex) {
+        flashcardViewCardPlaceholder.getChildren().clear();
+        FlashcardStatsCard flashcardStatsCard = new FlashcardStatsCard(logic.getFilteredFlashcardList().get(viewIndex));
+        flashcardViewCardPlaceholder.getChildren().add(flashcardStatsCard.getRoot());
     }
 
     public FlashcardListPanel getFlashcardListPanel() {
@@ -243,7 +252,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowStats()) {
                 assert commandResult.getViewIndex() >= 0;
-                //TODO
+                handleStatsView(commandResult.getViewIndex());
             }
 
             if (commandResult.isViewMode()) {

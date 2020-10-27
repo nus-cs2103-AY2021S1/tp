@@ -10,18 +10,24 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.ScrollPane?>
 
-<HBox alignment="CENTER"  styleClass="pane-with-no-border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <ScrollPane styleClass="pane-with-no-border" fitToWidth="true" fitToHeight="true">
-    <GridPane HBox.hgrow="ALWAYS" styleClass="pane-with-no-border">
+<?import javafx.scene.layout.ColumnConstraints?>
+<HBox alignment="CENTER" styleClass="pane-with-no-border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane HBox.hgrow="ALWAYS" alignment="CENTER" styleClass="pane-with-no-border">
         <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
         </padding>
         <rowConstraints>
-            <RowConstraints percentHeight="80.0"/>
-            <RowConstraints percentHeight="20.0"/>
+            <RowConstraints percentHeight="75.0"/>
+            <RowConstraints percentHeight="25.0"/>
         </rowConstraints>
 
-        <VBox VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS" styleClass="pane-with-no-border" GridPane.rowIndex="0">
+                <columnConstraints>
+                    <ColumnConstraints percentWidth="5.0" />
+                    <ColumnConstraints percentWidth="90.0"/>
+                    <ColumnConstraints percentWidth="5.0"/>
+                </columnConstraints>
+
+        <VBox VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS" styleClass="pane-with-no-border" GridPane.rowIndex="0" GridPane.columnIndex="1">
             <StackPane  fx:id="questionViewPlaceholder"  VBox.vgrow="ALWAYS" />
 
             <padding>
@@ -29,10 +35,9 @@
             </padding>
         </VBox>
 
-        <VBox VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS" styleClass="pane-with-no-border" GridPane.rowIndex="1">
-            <StackPane fx:id="answerViewPlaceholder" VBox.vgrow="ALWAYS">
+        <VBox VBox.vgrow="ALWAYS" HBox.hgrow = "ALWAYS"  styleClass="pane-with-no-border" GridPane.rowIndex="1" GridPane.columnIndex="1" >
+            <StackPane fx:id="answerViewPlaceholder"  VBox.vgrow="ALWAYS">
             </StackPane>
         </VBox>
     </GridPane>
-    </ScrollPane>
 </HBox>

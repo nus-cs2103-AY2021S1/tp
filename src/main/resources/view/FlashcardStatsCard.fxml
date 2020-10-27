@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.ScrollPane?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.chart.PieChart?>
+<HBox alignment="CENTER" styleClass="pane-with-no-border" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane HBox.hgrow="ALWAYS" alignment="CENTER" styleClass="pane-with-no-border">
+   <padding>
+      <Insets bottom="10" left="10" right="10" top="10" />
+   </padding>
+
+
+   <columnConstraints>
+      <ColumnConstraints percentWidth="5.0" />
+      <ColumnConstraints percentWidth="90.0"/>
+      <ColumnConstraints percentWidth="5.0"/>
+   </columnConstraints>
+
+   <VBox  alignment="CENTER" styleClass="pane-with-round-border"  GridPane.columnIndex="1">
+       <padding>
+           <Insets bottom="20" left="20" right="20" top="20" />
+       </padding>
+         <Label fx:id="question" styleClass="question-display"/>
+       <Label fx:id="errorMessage" visible="false" text="You have yet to review this flashcard!" styleClass="stats-display"/>
+         <PieChart fx:id="pieChart"></PieChart>
+         <Label fx:id="reviewCount" styleClass="stats-display"/>
+         <Label fx:id="correctCount" styleClass="stats-display"/>
+
+   </VBox>
+
+</GridPane>
+</HBox>

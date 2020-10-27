@@ -70,13 +70,13 @@ public class FlashcardQuestionCard extends UiPart<Region> {
 
         if (flashcard.getRating().toString().length() > 0) {
             rating.setText(flashcard.getRating().toString());
-            ratingIcon.setText(" \uD83D\uDFCA");
+            ratingIcon.setText(" " + TextIcon.STAR);
         } else {
             ratingPane.setVisible(false);
             ratingPane.managedProperty().bind(ratingPane.visibleProperty());
         }
         if (flashcard.isFavourite()) {
-            favouriteIcon.setText("\u2764");
+            favouriteIcon.setText(TextIcon.HEART);
         } else {
             favouriteIcon.setVisible(false);
         }
