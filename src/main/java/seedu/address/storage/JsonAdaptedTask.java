@@ -52,7 +52,7 @@ class JsonAdaptedTask {
         taskName = source.taskName;
         description = source.getDescription();
         publishDate = source.getPublishDate().toString();
-        if (source.getDeadline() != null) {
+        if (source.getDeadline().isPresent()) {
             deadline = source.getDeadline().toString();
         } else {
             deadline = null;

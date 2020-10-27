@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.GitUserName;
@@ -15,7 +16,7 @@ import seedu.address.model.project.Participation;
  * Represents a Task of a project.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public class Task implements Comparable<Task> {
 
     public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
@@ -77,8 +78,8 @@ public class Task {
         return publishDate;
     }
 
-    public Deadline getDeadline() {
-        return deadline;
+    public Optional<Deadline> getDeadline() {
+        return Optional.ofNullable(deadline);
     }
 
     public Double getProgress() {
@@ -100,6 +101,20 @@ public class Task {
     public boolean hasAnyAssignee() {
         return !assignees.isEmpty();
     }
+
+    /**
+     * Returns true if the task's due date is between the given start date and end date.
+     * @param start the start date of the time range
+     * @param end   the end date of the time range
+     */
+    public boolean isDueBetween(Date start, Date end) {
+        assert (start != null && end != null);
+        if (this.deadline == null) {
+            return false;
+        }
+        return this.deadline.isWithinTimeRange(start, end);
+    }
+
 
     /**
      * Checks if the task has an assignee whose name matches the given name.
@@ -243,6 +258,23 @@ public class Task {
             return false;
         } else {
             return isValidDay && isValidMonth;
+        }
+    }
+
+    /**
+     * By default, two tasks are compared using their deadlines
+     * @param task  the task to compare with
+     */
+    @Override
+    public int compareTo(Task task) {
+        if (this.deadline == null && task.deadline == null) {
+            return 0;
+        } else if (this.deadline == null) {
+            return -1;
+        } else if (task.deadline == null) {
+            return 1;
+        } else {
+            return this.deadline.compareTo(task.deadline);
         }
     }
 

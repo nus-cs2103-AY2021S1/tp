@@ -97,7 +97,7 @@ public class EditTaskCommand extends Command {
         assert taskToEdit != null;
 
         String updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
-        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline().orElse(null));
         Double updatedProgress = editTaskDescriptor.getProgress().orElse(taskToEdit.getProgress());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
         String updatedTaskDescription = editTaskDescriptor.getTaskDescription()

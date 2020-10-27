@@ -45,7 +45,7 @@ public class Project {
     private final HashMap<GitUserName, Participation> listOfParticipations = new HashMap<>();
     private Predicate<Task> taskFilter = SHOW_ALL_TASKS_PREDICATE;
     private Predicate<Meeting> meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
-    private Comparator<Task> taskComparator = TaskComparators.SORT_BY_TASK_NAME;
+    private Comparator<Task> taskComparator = TaskComparators.SORT_BY_DEADLINE;
     private final Set<Task> tasks = new HashSet<>();
     private final Set<Meeting> meetings = new HashSet<>();
     // Display helper

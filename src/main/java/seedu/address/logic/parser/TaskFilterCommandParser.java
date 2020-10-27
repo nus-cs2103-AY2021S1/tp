@@ -70,7 +70,7 @@ public class TaskFilterCommandParser implements Parser<TaskFilterCommand> {
         if (areOnlyTheseTwoPrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_END_DATE)) {
             Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
-            predicate = task -> task.getDeadline().isWithinTimeRange(startDate, endDate);
+            predicate = task -> task.isDueBetween(startDate, endDate);
         }
         return new TaskFilterCommand(predicate);
     }
