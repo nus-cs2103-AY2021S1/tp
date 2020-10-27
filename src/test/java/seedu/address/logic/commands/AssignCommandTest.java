@@ -49,7 +49,8 @@ class AssignCommandTest {
     private static ModuleCode[] codeArray = {CS1010S_CODE, CS2030_CODE, CS2103_CODE};
     private static ModuleCode[] inexistentCodeArray = {CS2100_CODE, CS1101S_CODE};
     private static Set<ModuleCode> moduleCodes = new HashSet<>(Arrays.asList(codeArray));
-    private static Set<ModuleCode> inexistentModuleCodes = new HashSet<>(Arrays.asList(inexistentCodeArray));
+    private static Set<ModuleCode> inexistentModuleCodes = new HashSet<>(
+            Arrays.asList(inexistentCodeArray));
 
 
     @Test
@@ -75,7 +76,14 @@ class AssignCommandTest {
         Person personToAssign = personList.get(INDEX_FIRST_PERSON.getZeroBased());
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, moduleCodes);
 
-        String expectedMessage = AssignCommand.MESSAGE_ADD_ASSIGNMENT_SUCCESS;
+        StringBuilder moduleString = new StringBuilder();
+        for (ModuleCode moduleCode: moduleCodes) {
+            moduleString.append(moduleCode).append(", ");
+        }
+        moduleString.delete(moduleString.length() - 2, moduleString.length());
+
+        String expectedMessage = String.format(AssignCommand.MESSAGE_ADD_ASSIGNMENT_SUCCESS,
+                personToAssign.getName(), moduleString);
 
         ModelStubAcceptingPersonAndModule expectedModel = new ModelStubAcceptingPersonAndModule();
         expectedModel.assignInstructor(personToAssign, CS1010S_CODE);
@@ -89,8 +97,9 @@ class AssignCommandTest {
     public void execute_inexistentModuleCode_failure() {
         Model model = new ModelStubAcceptingPersonAndModule();
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_PERSON, inexistentModuleCodes);
-
-        assertCommandFailure(assignCommand, model, Messages.MESSAGE_MODULE_DOES_NOT_EXIST);
+        ModuleCode inexistentModuleCode = inexistentCodeArray[0];
+        assertCommandFailure(assignCommand, model, String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST,
+                inexistentModuleCode));
     }
 
     @Test
@@ -103,7 +112,8 @@ class AssignCommandTest {
         model.assignInstructor(personToAssign, CS1010S_CODE);
 
         assertCommandFailure(assignCommand, model,
-                String.format(MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED, CS1010S_CODE));
+                String.format(MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED,
+                        personToAssign.getName(), CS1010S_CODE));
     }
 
     @Test

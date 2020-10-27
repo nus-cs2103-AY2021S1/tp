@@ -13,7 +13,7 @@ public class CclearCommand extends Command {
 
     public static final String MESSAGE_FAIL = "Contact list is already empty";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD
             + ": Clears all the contacts from the list.\n"
             + "Example: " + COMMAND_WORD;
 

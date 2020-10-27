@@ -129,9 +129,15 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removePerson(Person key) {
         persons.remove(key);
+        deleteInstructorAssignments(key);
     }
 
+    /**
+     * Removes all the contacts from the list and unassigns all contacts from all modules.
+     */
     public void clearContacts() {
+        semOneModules.unassignAllInstructors();
+        semTwoModules.unassignAllInstructors();
         persons.clearAll();
     }
 
@@ -326,6 +332,21 @@ public class AddressBook implements ReadOnlyAddressBook {
             if (m.hasInstructor(target)) {
                 m.unassignInstructor(target);
                 m.assignInstructor(editedPerson);
+                semTwoModules.setModule(m, m);
+            }
+        }
+    }
+
+    private void deleteInstructorAssignments(Person toBeRemoved) {
+        for (Module m : semOneModules) {
+            if (m.hasInstructor(toBeRemoved)) {
+                m.unassignInstructor(toBeRemoved);
+                semOneModules.setModule(m, m);
+            }
+        }
+        for (Module m : semTwoModules) {
+            if (m.hasInstructor(toBeRemoved)) {
+                m.unassignInstructor(toBeRemoved);
                 semTwoModules.setModule(m, m);
             }
         }

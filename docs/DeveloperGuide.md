@@ -169,6 +169,51 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
+### Deleting Module feature
+
+#### Implementation
+
+The delete module mechanism is facilitated by the `DelmodCommand` and the `DelmodCommandParser`.
+It deletes the module based on the specified module code inputted by the user.
+For example, “delmod m/CS2103” deletes the existing CS2103 module in FaculType.
+
+Currently, `DelmodCommand` implements the following operations:
+
+* `DelmodCommandParser#parse(String)` - Parses the arguments of the delmod command. In the given example above, the arguments will be “ m/CS2103”.
+
+And `DelmodCommand` implements the following:
+
+* `DelmodCommand#execute(Model)` - Executes the deletion of the specified module in the given FaculType model.
+
+Given below is the example usage scenario and how the delete module mecahnism behaves at each step.
+
+Step 1. The user executes the command `delmod m/CS2103`. 
+
+Step 2. The command will be brought to the LogicManager class, where it will be recognized as a `delmod` command and 
+LogicManager will call `DelmodCommandParser#parse(String)` with ` m/CS2103` as the arguments.
+
+Step 3. `DelmodCommandParser` then obtains the `ModuleCode` from the arguments and forms the `DelmodCommand` with that specified `ModuleCode`.
+The `DelmodCommand` is then returned to the `LogicManager`.
+
+Step 4. `LogicManager` then calls `DelmodCommand#execute(Model)`. 
+
+Step 5. The `Module` with the specified `ModuleCode`, if already existing in FaculType, will be deleted. 
+
+The following sequence diagram shows how the deleting of the module works:
+
+![DelmodActivityDiagram](images/DelmodSequenceDiagram.png)
+
+#### Design consideration:
+
+##### Aspect: What the delmod command deletes by
+* **Alternative 1 (current choice):** Deletes a module based on the module code.
+ * Pros : More intuitive to the Dean to delete by the module code.
+ * Cons : Would be more troublesome to look for the module should the Dean forget the module code.
+
+* **Alternative 2:** Deletes a module based on the index of the module list.
+ * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
+ * Cons : Less intuitive.
+
 ### Assign feature
 
 #### Implementation
@@ -243,6 +288,56 @@ The following sequence diagram shows how the unassignall operation works:
  * Pros : More efficient to unassign a certain instructor from all modules he/she teaches.
  * Cons : Less efficient to unassign all instructors from all modules.
  
+### Clear all contacts feature
+
+#### Implementation
+
+It implements the following operations:
+* `AddressBook#clearContacts()` — Clear all contacts from the list.  
+
+These operations are exposed in the `Model` interface as `Model#clearContacts()` and `UniquePersonList` class as `UniquePersonList#clearAll()`
+
+The following sequence diagram shows how the cclear operation works:
+
+![UndoRedoState0](images/ClearContactsSequenceDiagram.png)
+
+Clearing all contacts from the contact list
+
+a. Prerequisites : Clear all contacts from contact list using `cclear` There are 3 contacts with names `Andre Taulani`, `Bayu Skak`, `Cak Lontong` in FaculType.
+
+b. Test case : `cclear` <br>
+Expected : Success message saying "All contacts deleted"
+
+c. Test case : `cclear` on an empty contact list <br>
+Expected : Error message saying "Contact list is already empty".
+
+{ more test cases ... }
+
+### Clear all modules feature
+
+#### Implementation
+
+It implements the following operations:
+* `AddressBook#clearMod()` — Clear all modules from the list.  
+
+These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
+
+The following sequence diagram shows how the mclear operation works:
+
+![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
+
+Clearing all modules from the module list
+
+a. Prerequisites : Clear all modules from module list using `mclear` There are 3 modules with module codes `CS2100`, `CS2101`, `CS2102` in FaculType.
+
+b. Test case : `mclear` <br>
+Expected : Success message saying "All modules deleted"
+
+c. Test case : `mclear` on an empty module list <br>
+Expected : Error message saying "Module list is already empty".
+
+{ more test cases ... }
+
 ### \[Proposed\] Switch feature
 
 #### Proposed Implementation

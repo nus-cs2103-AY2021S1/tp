@@ -35,7 +35,7 @@ public class DelModCommand extends Command {
         requireNonNull(model);
 
         if (!model.hasModuleCode(this.moduleCode)) {
-            throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
+            throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST, moduleCode));
         }
 
         model.deleteModule(this.moduleCode);

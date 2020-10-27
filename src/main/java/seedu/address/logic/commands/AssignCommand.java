@@ -23,14 +23,15 @@ public class AssignCommand extends Command {
 
     public static final String COMMAND_WORD = "assign";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns an instructor to one or more modules. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Assigns an instructor to one or more modules. "
             + "Parameters: INDEX (must be a positive integer) "
             + PREFIX_MODULE_CODE + "MODULE CODE "
             + "[" + PREFIX_MODULE_CODE + "MODULE CODE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_CODE + "CS2103";
 
-    public static final String MESSAGE_ADD_ASSIGNMENT_SUCCESS = "Assigned instructor to module(s)";
+    public static final String MESSAGE_ADD_ASSIGNMENT_SUCCESS = "Assigned %1$s to %2$s";
 
     private final Index index;
     private final Set<ModuleCode> moduleCodes;
@@ -59,23 +60,32 @@ public class AssignCommand extends Command {
         }
 
         Person instructor = lastShownList.get(index.getZeroBased());
+        StringBuilder moduleString = new StringBuilder();
 
         assert instructor != null;
 
         for (ModuleCode moduleCode: moduleCodes) {
             if (!model.hasModuleCode(moduleCode)) {
-                throw new CommandException(MESSAGE_MODULE_DOES_NOT_EXIST);
+                throw new CommandException(String.format(MESSAGE_MODULE_DOES_NOT_EXIST,
+                        moduleCode));
             }
             if (model.moduleCodeHasInstructor(moduleCode, instructor)) {
-                throw new CommandException(String.format(MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED, moduleCode));
+                throw new CommandException(String.format(MESSAGE_INSTRUCTOR_ALREADY_ASSIGNED,
+                        instructor.getName(), moduleCode));
             }
         }
 
         for (ModuleCode moduleCode: moduleCodes) {
             model.assignInstructor(instructor, moduleCode);
+            moduleString.append(moduleCode).append(", ");
         }
 
-        return new CommandResult(MESSAGE_ADD_ASSIGNMENT_SUCCESS);
+        assert moduleString.length() > 2;
+
+        moduleString.delete(moduleString.length() - 2, moduleString.length());
+
+        return new CommandResult(String.format(MESSAGE_ADD_ASSIGNMENT_SUCCESS,
+                instructor.getName(), moduleString));
     }
 
     @Override

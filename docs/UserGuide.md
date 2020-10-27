@@ -188,7 +188,7 @@ Examples :
 
 Unassigns a contact from one or more modules in the active semester. The contact will no longer be an instructor in those modules.
 
-Format: `unassign INDEX m/MODULE_CODE [m/MODULE_CODE]…​`
+Format: `unassign INDEX m/[MODULE_CODE] [m/MODULE_CODE]…​`
 
 * Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. The contact **must be assigned** to all `MODULE_CODE` in the active semester in the first place.
 * You can unassign the contact from all modules in the active semester by typing `m/`
@@ -264,7 +264,7 @@ Action | Format, Examples
 **List all contacts** | `clist`
 **List all modules** | `mlist`
 **Assign a contact** | `assign INDEX m/MODULE_CODE [m/MODULE_CODE]…​` <br> e.g. `assign 3 m/CS2100 m/CS2106`
-**Unassign a contact** | `unassign INDEX m/MODULE_CODE [m/MODULE_CODE]…​` <br> e.g. `unassign 3 m/CS2100 m/CS2106`
+**Unassign a contact** | `unassign INDEX m/[MODULE_CODE] [m/MODULE_CODE]…​` <br> e.g. `unassign 3 m/CS2100 m/CS2106`
 **Unassign all contacts** | `unassignall`
 **Switch active semester** | `switch`
 **Clear all data** | `reset`

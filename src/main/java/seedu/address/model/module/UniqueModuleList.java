@@ -155,7 +155,8 @@ public class UniqueModuleList implements Iterable<Module> {
             }
 
         } else {
-            throw new CommandException(Messages.MESSAGE_PERSON_IS_NOT_AN_INSTRUCTOR);
+            throw new CommandException(String.format(Messages.MESSAGE_PERSON_IS_NOT_AN_INSTRUCTOR,
+                    instructor.getName()));
         }
     }
 
