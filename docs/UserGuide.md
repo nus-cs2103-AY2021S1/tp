@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-If this is your first-time using `ZooKeep`, this guide will serve to provide a reference for you to get familiar with the application.
+If this is your first time using `ZooKeep`, this guide will serve to provide a reference for you to get familiar with the application.
 
 * Table of Contents
 {:toc}
@@ -89,7 +89,7 @@ Format: `exit`
 
 ### Listing all animals: `list`
 
-This command is convenient in cases where you need to quickly reference all the animals stored in `ZooKeep` or if you
+This command is convenient in cases where you need to quickly reference all the animals stored in your `ZooKeep` book or if you
 need to know how many animals are currently in your book.
 
 Format: `list`
@@ -208,7 +208,7 @@ Examples:
 ### Finding animals by their fields: `find`
 
 You may find yourself in situations where you need to retrieve a specific group of animals from the `ZooKeep` book. For
-example, you may need to find animals that have the same feed times or animals that have similar medical conditions.
+example, you may need to find animals with the same feed times or similar medical conditions.
 You can use this command to find and list all animals in the `ZooKeep` book whose fields contain any of the specified 
 argument keywords (at least 1).
 
