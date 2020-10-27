@@ -11,5 +11,8 @@
         <Insets top="15" right="5" bottom="10" left="5" />
     </padding>
     <TextArea fx:id="answer" wrapText="true" editable="false" styleClass="answer-display"/>
+    <padding>
+        <Insets topRightBottomLeft="2" />
+    </padding>
     <Label fx:id="note"  styleClass="cell_small_label" text="\$note"/>
 </StackPane>

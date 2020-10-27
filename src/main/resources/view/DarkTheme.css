@@ -1,30 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap');
+
 .background {
     -fx-background-color: derive(#1d1d1d, 20%);
     background-color: #383838; /* Used in the default.html file */
 }
 
 .main-window {
-    -fx-background-color: #d3d3d3;
+    -fx-background-color: #3c4b6e;
     -fx-background-size: 100% 100%;
 }
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 600;
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 600;
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 600;
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
@@ -82,14 +87,14 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #3c4b6e;
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #3c4b6e;
 }
 
 .list-view {
@@ -124,31 +129,34 @@
 }
 
 .cell_big_label {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 700;
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 700;
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
 
 .cell_question_label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 700;
     -fx-font-size: 25px;
     -fx-text-fill: white;
 }
 
 .stack-pane {
-     -fx-background-color: derive(#1d1d1d, 20%);
+     -fx-background-color: #3c4b6e;
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
-     -fx-border-top-width: 1px;
+     -fx-background-color: #3c4b6e;
+     -fx-border-color: #3c4b6e;
+     -fx-border-width: 1px;
 }
 
 .scroll-pane > .viewport {
@@ -163,15 +171,17 @@
 }
 
 .pane-with-round-border {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    -fx-border-color: derive(#1d1d1d, 10%);
-    -fx-border-top-width: 1px;
-    -fx-border-radius: 20 20 20 20;
+    -fx-background-color: #65789d;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 5px;
+    -fx-border-radius: 10;
     -fx-background-radius: 20 20 20 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: #3c4b6e;
 }
 
 .result-display {
@@ -179,6 +189,10 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
+    -fx-border-width: 2;
+    -fx-border-color: #ffffff;
+    -fx-border-radius: 5;
 }
 
 .result-display .label {
@@ -191,7 +205,8 @@
 
 .answer-display {
     -fx-background-color: transparent;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Nunito', sans-serif;
+    -fx-font-weight: 400;
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -200,7 +215,7 @@
 }
 
 .status-bar .label {
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Nunito', sans-serif;
     -fx-text-fill: white;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
@@ -233,7 +248,7 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #3c4b6e;
 }
 
 .context-menu .label {
@@ -241,12 +256,12 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #3c4b6e;
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: 'Nunito', sans-serif;
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -330,11 +345,11 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #2d3a59;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: #65789d;
     -fx-background-insets: 3;
 }
 
@@ -366,14 +381,15 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: transparent #ffffff transparent #ffffff;
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
+    -fx-border-color: #ffffff;
     -fx-border-insets: 0;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -381,12 +397,12 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #3c4b6e, transparent, #3c4b6e;
     -fx-background-radius: 0;
 }
 
 #answer .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: transparent, #65789d, transparent, #65789d;
     -fx-background-radius: 0;
 }
 
@@ -397,7 +413,7 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-background-color: #4168ab;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -406,7 +422,7 @@
 
 #category {
     -fx-text-fill: white;
-    -fx-background-color: #cd7f32;
+    -fx-background-color: #2a436e;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
@@ -425,7 +441,7 @@
 
 #favouriteIcon {
     -fx-font-size: 13px;
-    -fx-fill: red;
+    -fx-fill: #ff5993;
 }
 
 #note {

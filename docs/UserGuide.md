@@ -45,11 +45,13 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
    
    * **`edit 2 q/What is a revision control software? a/It is the software tool that automate the process of Revision Control`**: Edits the 2nd flashcard in the current list with the specified attributes.
 
+   * **`filter c/OOP`** : Filters out flashcard(s) belonging to the OOP category. 
+   
    * **`fav 1`** : Favourite the 1st flashcard in the current list.
      
    * **`unfav 1`** : Unfavourite the 1st flashcard in the current list.
    
-   * **`find general`**: Find all flashcards containing general
+   * **`find general`**: Find all flashcards containing general.
 
    * **`list`** : Lists all flashcards.
 
@@ -77,14 +79,17 @@ SWEe! is a  **desktop app for CS2103T students to manage their learning progress
 * Words in UPPER_CASE are the parameters to be supplied by the user.<br>
   e.g. in add `q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/`What is my name?
 
+* Words in lower_case are to be specified exactly. e.g. in `sort <success|reviewed>`, `success` and `reviewed` 
+must be specified exactly.
+
 * Items in square brackets are optional.<br>
   e.g `q/QUESTION [c/CATEGORY]` can be used as `q/What is my name? c/topic 1` or as `q/What is my name?`
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `q/QUESTION a/ANSWER, a/ANSWER q/QUESTION` is also acceptable.
   
-* Items in angle brackets are either/or options. Each option is delineated by a | . 
-  e.g <success|reviewed> can be used as success or reviewed but not both.
+* Items in angle brackets `<>` are either/or options. Each option is delineated by a `|` . 
+  e.g `<success|reviewed>` can be used as `success` or `reviewed` but not both.
 
 </div>
 
@@ -94,19 +99,19 @@ Adds a flashcard.
 
 Format: `add q/QUESTION a/ANSWER [c/CATEGORY] [r/RATING] [n/NOTE] [d/DIAGRAM]`
 
-* If a rating is specified, it must be a number between 1 and 5 inclusive. It is intended to follow the star rating on CS2103T website.
-* Diagram can be defined by a valid relative or absolute path.
+* `RATING` must be a number between 1 and 5 inclusive.
+* `DIAGRAM` can be defined by a valid relative or absolute path.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-If the category does not exist, it will be created.
+If the category is not specified, the flashcard will have the <b>General</b> category.
 </div>
 
 Examples:
-* `add q/What does OOP stand for? a/Object Oriented Programming c/General`
 * `add q/What does OOP stand for? a/Object Oriented Programming`
-* `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question!`
-* `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram`
-* `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram`
+* `add q/What does OOP stand for? a/Object Oriented Programming r/3`
+* `add q/What does OOP stand for? a/Object Oriented Programming c/Super Important n/Important question!`
+* `add q/What does OOP stand for? a/Object Oriented Programming d/images/diagram.png`
+* `add q/What does OOP stand for? a/Object Oriented Programming c/UML n/Important question! d/images/diagram.png`
 
 
 ### Deleting a flashcard  : `delete`
@@ -131,26 +136,31 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/
 * Edits the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
-* At least one attribute must be given
+* Although all fields are optional, a minimum of one field has to be given.
 * Specifying empty values to note or rating eg. `r/` will remove the corresponding field in the flashcard.
 
 Examples:
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming c/General`
 * `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
-* `edit 3 n/Important question!`
+* `edit 3 n/Important question! r/`
 
 ### Filtering out flashcards  : `filter`
 
-Filters the specified flashcard based on category input(s) by user.
+Filters for specific flashcard(s) based on the field input(s) by the user. 
+This will return all the flashcards whose fields match all the fields specified by the user.
 
-Format: `filter c/CATEGORY`
+Format: `filter [c/CATEGORY] [r/RATING] [f/<yes|no>] [t/TAG]...`
 
-* Filters the specified flashcard based on category.
-* Supports filtering of one or more categories. For example:
-* `filter c/SDLC c/Revision History`
+* Filters the specified flashcard based on category, rating, favourite status or tags.
+* Supports filtering of one or more different fields. For example:
+    - `filter c/SDLC r/5` will filter out flashcards belonging to the SDLC category with a rating of 5.
+* Although all fields are optional, a minimum of one field has to be given.
 
 Examples:
 *  `filter` followed by `c/SDLC` filters and lists all flashcards belonging n the SDLC category.
+*  `filter` followed by `t/examinable t/study` filters and lists all flashcards that have both “examinable” and “study”.
+*  `filter` followed by `r/3 f/yes` filters and lists all favourited flashcards that have a rating of 3.
+
 
 ### Favourite a flashcard  : `fav`
 
@@ -201,17 +211,21 @@ Format: `list`
 
 ### Reviewing all flashcards: `review`
 
-Reviews the current list of flashcards. This puts the user in review mode and the user can no longer input commands to the textbox.
+Reviews the current list of flashcards. This puts the user in review mode and the user can no 
+longer input commands to the textbox.
+
+Upon entering review mode, the following user input will be recognised:
+* `↓ key` shows answer and notes of the current flashcard  
+* `↑ key` hides answer and notes of the current flashcard  
+* `→ arrow` key moves on to the next flashcard (if there is a next flashcard)
+* `← key` moves to the previous flashcard (if there is a previous flashcard)
+* `q key` quits review mode
 
 Format: `review`
 
-Examples:
-* `review` followed by:
-    - `[down key]` shows answer and notes of the current flashcard
-    - `[up key]` hides answer and notes of the current flashcard
-    - `[right key]` skips the current flashcard and moves on to the next flashcard
-    - `[left key]` returns the previous flashcard
-    - `q` quits review mode
+<div markdown="span" class="alert alert-primary">:memo: Note:
+The review and success frequency of a flashcard is not affected by review mode.
+</div>
 
 ### Quizzing flashcards: `quiz`
 
@@ -230,7 +244,7 @@ Format: `quiz`
 
 <div markdown="span" class="alert alert-primary">:memo: Note: Once the user presses `y` or `n`, the review and success frequency of the flashcard is updated accordingly.
 </div>
-    
+
 ### Sort all flashcards : `sort`
 
 Sorts a list of all flashcards according to the criteria given.
@@ -243,18 +257,23 @@ Examples:
     - `reviewed -d` shows a list of all flashcards sorted according to review frequency in descending order
     - `success -a` shows a list of all flashcards sorted according to success rate in ascending order
     - `success -d` shows a list of all flashcards sorted according to success rate in descending order
+
+<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
+</div>
     
 ### Views a flashcard  : `view`
 
-View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.  
-<div markdown="span" class="alert alert-primary">:bulb: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
-</div>
+View the specified flashcard. A "snapshot" of the flashcard is taken and displayed in the view pane to the user.
 
-Format: `view INDEX`
+Format: `view INDEX [a/]`
 
 * View the flashcard at the specified INDEX.
 * The index refers to the index number shown in the displayed flashcard list.
 * The index **must be a positive integer** 1, 2, 3, …
+*  If `a/` is specified, the answer and notes of the flashcard will be shown too.
+
+<div markdown="span" class="alert alert-primary">:memo: Note: If the viewed flashcard is changed (eg. edited or deleted), the view shown remains unchanged.
+</div>
 
 ### Exiting the program : `exit`
 
@@ -275,12 +294,13 @@ Action | Format, Examples
 **Add** | `add q/QUESTION a/ANSWER [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g, `add q/What does OOP stand for? a/Object Oriented Programming c/General n/Important question! d/images/diagram.jpeg`
 **Delete** | `delete INDEX` <br> e.g. `delete 3`
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [c/CATEGORY] [n/NOTE] [r/RATING] [d/DIAGRAM]` <br> e.g. `edit 3 q/What does OOP stand for? a/Object Oriented Programming`
+**Filter** | `filter [c/CATEGORY] [r/RATING] [f/FAVOURITE] [t/TAG]...`
 **Fav** | `fav INDEX` <br> e.g. `fav 1`
 **Unfav** | `unfav INDEX` <br> e.g. `unfav 1`
-**Find** | `find keyword...` <br>  e.g. `find general important`
+**Find** | `find KEYWORD...` <br>  e.g. `find general important`
 **List** | `list`
 **Review** | `review`
 **Quiz** | `quiz`
 **Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> e.g. `sort success -a`
-**View** | `view INDEX` <br> e.g. `view 1`
+**View** | `view INDEX [a/]` <br> e.g. `view 1`
 **Exit** | `exit`
