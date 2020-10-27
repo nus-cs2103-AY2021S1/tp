@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.index.GitUserIndex;
-import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -24,11 +23,12 @@ public class ParsePersonUtil {
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static GitUserIndex parseGitUserIndex(String gitUserName) throws ParseException {
+        requireNonNull(gitUserName);
         String trimmedGitUserName = gitUserName.trim();
-        if (StringUtil.isInteger(trimmedGitUserName)) {
+        if (!GitUserName.isValidGitUserName(trimmedGitUserName)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
-        return new GitUserIndex(gitUserName);
+        return new GitUserIndex(trimmedGitUserName);
     }
 
     /**
