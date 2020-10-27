@@ -187,8 +187,15 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getMessage());
 
-            this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
-            this.statsOutput.setStatsMessage(commandResult.getMessage());
+            if (commandResult.isStatsOutput()) {
+                this.commandOutput.setFeedbackToUser("", false); // clear cmd box
+                this.statsOutput.setStatsMessage(commandResult.getMessage());
+                this.statsOutput.renderList(commandResult.getStatsMessage());
+            } else {
+                this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
+                this.statsOutput.setStatsMessage(""); // clear stats box
+            }
+
             if (commandResult.shouldShowHelp()) {
                 handleHelp();
             }
