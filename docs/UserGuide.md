@@ -12,6 +12,8 @@ As a **student from the SoC in NUS**, you tend to have a **heavy workload**. Pro
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Table of Contents
+
 * Table of Contents
 {:toc}
 
@@ -27,10 +29,10 @@ The figure below shows the GUI of ProductiveNUS, with its components labelled.
 ### Icon usages
 Wondering what each icon is used for? You can refer to the table below to find out.
 
-| Icon        | Icon usage                                               | Box color                                                     |
-|-------------|----------------------------------------------------------|---------------------------------------------------------------|
-| :clipboard: | - Notes about the command format <br> - Pointers to note | <div markdown="span" class="alert alert-info"> Green </div>   |
-| :bulb:      | - Tip                                                    | <div markdown="span" class="alert alert-success"> Blue </div> |
+| Icon        | Icon usage                                               | Box color |
+|-------------|----------------------------------------------------------|-----------|
+| :clipboard: | - Notes about the command format <br> - Pointers to note | Green     |
+| :bulb:      | - Tip                                                    | Blue      |
 
 ### Command syntax and terminologies
 
@@ -309,21 +311,22 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-| Action           | Format                                                                                         | Examples                                                            |
-|------------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
-| **add**          | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334`                  |
-| **delete**       | `delete INDEX [MORE_INDEXES]`                                                                  | `delete 3`<br>`delete 2 3 4`                                        |
-| **import**       | `import url/NUSMODS_URL`                                                                       | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
-| **list**         | `list [NUMBER_OF_DAYS]`                                                                        | `list 2`<br>`list`                                                  |
-| **find**         | `find PREFIX/ KEYWORD [MORE_KEYWORD]`                                                          | `find mod/CS2103T CS2100`<br>`find p/HIGH`                          |
-| **remind**       | `remind INDEX [MORE_INDEXES]`                                                                  | `remind 5`<br>`remind 2 4 5`                                        |
-| **unremind**     | `unremind INDEX`                                                                               | `unremind 2`                                                        |
-| **prioritize**   | `prioritize INDEX p/PRIORITY`                                                                  | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW`                       |
-| **unprioritize** | `unprioritize INDEX`                                                                           | `unprioritize 1`                                                    |
-| **done**         | `done INDEX`                                                                                   | `done 4`                                                            |
-| **undone**       | `undone INDEX`                                                                                 | `undone 2`                                                          |
-| **help**         | `help`                                                                                         | `help`                                                              |
-| **exit**         | `exit`                                                                                         | `exit`                                                              |
+
+| Action | Format | Examples |
+|-|-|-|
+| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
+| **delete** | `delete INDEX [MORE_INDEXES]` | `delete 3` `delete 2 3 4` |
+| **import** | `import url/NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
+| **list** | `list [NUMBER_OF_DAYS]` | `list 2` `list` |
+| **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100` `find p/HIGH` |
+| **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5` `remind 2 4 5` |
+| **unremind** | `unremind INDEX` | `unremind 2` |
+| **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH` `prioritize 1 p/LOW` |
+| **unprioritize** | `unprioritize INDEX` | `unprioritize 1` |
+| **done** | `done INDEX` | `done 4` |
+| **undone** | `undone INDEX` | `undone 2` |
+| **help** | `help` | `help` |
+| **exit** | `exit` | `exit` |
 
 --------------------------------------------------------------------------------------------------------------------
 
