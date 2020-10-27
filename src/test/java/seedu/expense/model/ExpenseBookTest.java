@@ -12,7 +12,6 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -123,28 +122,12 @@ public class ExpenseBookTest {
         }
 
         @Override
-        public double tallyExpenses(Predicate<Expense> predicate) {
-            return -1; // should not be called
-        }
-
-        @Override
         public double tallyBudgets() {
             return -1; // should not be called
         }
 
         @Override
-        public double tallyBudgets(Predicate<CategoryBudget> predicate) {
-            return -1; // should not be called
-        }
-
-        @Override
         public double tallyBalance() {
-            return -1; // should not be called
-        }
-
-        @Override
-        public double tallyBalance(Predicate<Expense> expensePredicate,
-                                   Predicate<CategoryBudget> categoryBudgetPredicate) {
             return -1; // should not be called
         }
     }
