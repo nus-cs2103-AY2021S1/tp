@@ -210,6 +210,7 @@ Examples:
 :information_source:
 
 * Filters the displayed list of food items to only include food items corresponding to the provided parameters.
+* `KEYWORDS` and `WORDS_IN_NAME` are nor case sensitive but `WORDS_IN_TAG` is case sensitive.
 
 </div>
 
@@ -414,13 +415,13 @@ Examples:
 * `listmacro` - this will display all available macros.
 * `listmacro kfc` - this will display information on the `kfc` macro.
 
-![macro image](todo)
+![List Macro command example](images/CommandImagesForUG/Listmacro.png)
 
 ### Deleting a macro: `remmacro`
 
 Deletes the given macro.
 
-Format: `delete MACRONAME`
+Format: `remmacro MACRONAME`
 
 <div markdown="block" class="alert alert-info">
 
@@ -431,7 +432,7 @@ Format: `delete MACRONAME`
 
 </div>
 
-![delete macro example](todo)
+![delete macro example](images/CommandImagesForUG/Deletemacro.png)
 
 ### Exiting the program : `exit`
 
