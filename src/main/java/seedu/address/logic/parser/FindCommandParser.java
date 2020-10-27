@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_PREFIXES;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
 
@@ -26,10 +27,24 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_KEYWORDS);
-        boolean isCategoryPrefixPresent = (argMultimap.getAllValues(PREFIX_CATEGORY).size() > 0);
 
-        if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_KEYWORDS) || !argMultimap.getPreamble().isEmpty()) {
+        boolean isKeywordPrefixPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_KEYWORDS);
+        boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
+
+        // Check if there is a keyword prefix and no preambles
+        if (!isKeywordPrefixPresent || !isPreambleEmpty) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
+        // Check if keyword prefix are only used once or none
+        boolean isNumberOfKeywordPrefixCorrect = ParserUtil.areNumberOfPrefixesOnlyOne(argMultimap, PREFIX_KEYWORDS);
+
+        // Check if optional prefixes are only used once or none
+        boolean isNumberOfOtherPrefixCorrect =
+                ParserUtil.areNumberOfPrefixesOneOrNone(argMultimap, PREFIX_CATEGORY);
+
+        if (!isNumberOfKeywordPrefixCorrect || !isNumberOfOtherPrefixCorrect) {
+            throw new ParseException(String.format(MESSAGE_MULTIPLE_PREFIXES, FindCommand.PREFIXES));
         }
 
         List<String> keywords = ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_KEYWORDS).get());
@@ -38,6 +53,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException(
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.EMPTY_KEYWORD_LIST_MESSAGE));
         }
+
+        boolean isCategoryPrefixPresent = ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
 
         if (isCategoryPrefixPresent) {
             Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());

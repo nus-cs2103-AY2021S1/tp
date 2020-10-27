@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.account.ActiveAccount;
+import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Expense;
 import seedu.address.model.account.entry.Revenue;
 
@@ -26,7 +27,9 @@ public class DeleteCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) c/CATEGORY\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_CATEGORY + "revenue";
 
-    public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: %1$s";
+    public static final String PREFIXES = PREFIX_CATEGORY + "CATEGORY";
+
+    public static final String MESSAGE_DELETE_ENTRY_SUCCESS = "Deleted Entry: [%1$s]";
 
     private final Index targetIndex;
     private final Category category;
@@ -57,18 +60,21 @@ public class DeleteCommand extends Command {
 
         // Set previous state for undo before entry is deleted
         activeAccount.setPreviousState();
+        Entry entry;
         if (isExpense) {
-            Expense toDelete = expenseList.get(index);
-            activeAccount.deleteExpense(toDelete);
+            Expense expenseToDelete = expenseList.get(index);
+            activeAccount.deleteExpense(expenseToDelete);
+            entry = expenseToDelete;
         } else {
             assert isRevenue;
-            Revenue toDelete = revenueList.get(index);
-            activeAccount.deleteRevenue(toDelete);
+            Revenue revenueToDelete = revenueList.get(index);
+            activeAccount.deleteRevenue(revenueToDelete);
+            entry = revenueToDelete;
         }
 
         model.setAccount(activeAccount.getAccount());
         return CommandResultFactory
-            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, category));
+            .createCommandResultForEntryListChangingCommand(String.format(MESSAGE_DELETE_ENTRY_SUCCESS, entry));
     }
 
     @Override
