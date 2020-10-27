@@ -14,7 +14,7 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 <div markdown="span" class="alert alert-info">
 
-**:information_source: Provides additional information**
+**:information_source: Provides additional information.**
 
 </div>
 
@@ -121,13 +121,13 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes
+* `ID` should contain only numbers with no leading zeroes.
 
-* `ID` should be at least 3 digits long
+* `ID` should be at least 3 digits long.
 
-* `ID` of animal to add must not already exist in the zookeep book
+* `ID` of animal to add must not already exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format
+* `FEED TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -145,11 +145,11 @@ Format: `delete ID`
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes
+* `ID` should contain only numbers with no leading zeroes.
 
-* `ID` should be at least 3 digits long
+* `ID` should be at least 3 digits long.
 
-* `ID` of animal to delete must exist in the zookeep book
+* `ID` of animal to delete must exist in the zookeep book.
 </div>
 
 Example:
@@ -190,13 +190,13 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes
+* `ID` should contain only numbers with no leading zeroes.
 
-* `ID` should be at least 3 digits long
+* `ID` should be at least 3 digits long.
 
-* `ID` of animal to delete must exist in the zookeep book
+* `ID` of animal to delete must exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format
+* `FEED TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -218,13 +218,13 @@ An animal can have any number of medical conditions and feed times (including 0)
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `ID` should contain only numbers with no leading zeroes
+* `ID` should contain only numbers with no leading zeroes.
 
-* `ID` should be at least 3 digits long
+* `ID` should be at least 3 digits long.
 
-* `ID` of animal to delete must exist in the zookeep book
+* `ID` of animal to delete must exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format
+* `FEED TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
