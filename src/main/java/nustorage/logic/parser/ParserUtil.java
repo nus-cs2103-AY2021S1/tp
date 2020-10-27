@@ -24,14 +24,20 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_YESNO = "Yes/No input must be one of the following: yes/y/no/n.";
 
     /**
-     * Parses {@code itemCost} into an double and returns it
+     * Parses {@code a} into an double and returns it
      */
     public static double parseItemCost(String itemCost) throws ParseException {
-        String trimmedCost = itemCost.trim();
-        if (!StringUtil.isNonZeroUnsignedInteger(trimmedCost)) {
+        requireNonNull(itemCost);
+        String trimmedAmount = itemCost.trim();
+        try {
+            double cost = Double.parseDouble(trimmedAmount);
+            if (cost <= 0) {
+                throw new ParseException(MESSAGE_INVALID_ITEM_COST);
+            }
+            return cost;
+        } catch (NumberFormatException ex) {
             throw new ParseException(MESSAGE_INVALID_ITEM_COST);
         }
-        return Double.parseDouble(trimmedCost);
     }
 
     /**
