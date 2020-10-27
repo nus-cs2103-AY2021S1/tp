@@ -62,9 +62,11 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
      * @return sum of budgets.
      */
     public double tallyAmounts() {
-        double sum = internalList.size() != filteredList.size()
+        int size = filteredList.size();
+        double sum = internalList.size() != size || size == 1 //filteredlist not filtered or only one budget
             ? 0
-            : defaultCategory.getAmount().asDouble();;
+            : defaultCategory.getAmount().asDouble();
+        assert sum >= 0;
         Iterator<CategoryBudget> i = iterator();
         while (i.hasNext()) {
             sum += i.next().getAmount().asDouble();
