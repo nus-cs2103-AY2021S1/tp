@@ -92,4 +92,21 @@ public class SortUtilTest {
         toTestComparator.sort(sourceComparator);
         assertEquals(copy, toTestComparator);
     }
+
+    @Test
+    public void generateComparator_locationComparator_success() {
+        List<Stock> copy = new ArrayList<>(toTestComparator);
+        Comparator<Stock> expectedComparator = new Comparator<>() {
+            @Override
+            public int compare(Stock a, Stock b) {
+                String locationA = a.getLocation().toString();
+                String locationB = b.getLocation().toString();
+                return locationA.compareTo(locationB);
+            }
+        };
+        Comparator<Stock> locationComparator = SortUtil.generateComparator(SortUtil.Field.LOCATION);
+        copy.sort(expectedComparator);
+        toTestComparator.sort(locationComparator);
+        assertEquals(copy, toTestComparator);
+    }
 }
