@@ -160,6 +160,11 @@ public interface Model {
     void addCategory(Tag tag);
 
     /**
+     * Deletes the given Tag from the expense book.
+     */
+    void deleteCategory(Tag tag);
+
+    /**
      * Switches the category expense book into the one that matches the given Tag.
      */
     void switchCategory(Tag category);

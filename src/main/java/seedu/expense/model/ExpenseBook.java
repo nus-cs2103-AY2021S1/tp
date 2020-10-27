@@ -81,6 +81,13 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
 
         setExpenses(newData.getExpenseList());
         setBudgets(newData.getBudgets());
+        setTags(newData.getTags());
+    }
+
+    //// tag-level operations
+    @Override
+    public ObservableList<Tag> getTags() {
+        return tags.asUnmodifiableObservableList();
     }
 
     //// budget-level operations
@@ -123,6 +130,17 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
     }
 
     /**
+     * Deletes a category from the expense book.
+     * The tag must already exist in the expense book.
+     */
+    public void deleteCategory(Tag tag) {
+        requireNonNull(tag);
+        tags.remove(tag);
+        budgets.remove(new CategoryBudget(tag));
+        expenses.resetExpenseCategory(expense -> expense.getTag().equals(tag));
+    }
+
+    /**
      * Updates the filter of the filtered budget list to filter by the given {@code predicate}.
      *
      * @throws NullPointerException if {@code predicate} is null.
@@ -147,6 +165,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      * The expense must not already exist in the expense book.
      */
     public void addExpense(Expense p) {
+        requireNonNull(p);
         expenses.add(p);
     }
 
@@ -167,6 +186,7 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
      * {@code key} must exist in the expense book.
      */
     public void removeExpense(Expense key) {
+        requireNonNull(key);
         expenses.remove(key);
     }
 
@@ -202,31 +222,11 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
     /**
      * {@inheritDoc}
      *
-     * @see UniqueExpenseList#tallyExpenses(Predicate predicate)
-     */
-    @Override
-    public double tallyExpenses(Predicate<Expense> predicate) {
-        return expenses.tallyExpenses(predicate);
-    }
-
-    /**
-     * {@inheritDoc}
-     *
      * @see UniqueCategoryBudgetList#tallyAmounts()
      */
     @Override
     public double tallyBudgets() {
         return budgets.tallyAmounts();
-    }
-
-    /**
-     * {@inheritDoc}
-     *
-     * @see UniqueCategoryBudgetList#tallyAmounts(Predicate predicate)
-     */
-    @Override
-    public double tallyBudgets(Predicate<CategoryBudget> predicate) {
-        return budgets.tallyAmounts(predicate);
     }
 
     /**
@@ -237,18 +237,6 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
     @Override
     public double tallyBalance() {
         return tallyBudgets() - tallyExpenses();
-    }
-
-    /**
-     * Tallies the balance of budgets and expenses in the expense book by
-     * {@code categoryBudgetPredicate} and {@code expensePredicate} respectively.
-     *
-     * @return tallied balance of the expense book
-     */
-    @Override
-    public double tallyBalance(Predicate<Expense> expensePredicate,
-                               Predicate<CategoryBudget> categoryBudgetPredicate) {
-        return tallyBudgets(categoryBudgetPredicate) - tallyExpenses(expensePredicate);
     }
 
     //// util methods

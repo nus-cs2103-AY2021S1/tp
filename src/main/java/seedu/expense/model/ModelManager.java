@@ -116,6 +116,7 @@ public class ModelManager implements Model {
     public void addExpense(Expense expense) {
         expenseBook.addExpense(expense);
         updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
+        updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
     }
 
     @Override
@@ -207,14 +208,8 @@ public class ModelManager implements Model {
     @Override
     public void updateExpenseBookCategory(Tag category) {
         requireNonNull(category);
-
-        if (category.equals(ExpenseBook.DEFAULT_TAG)) {
-            updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
-            updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
-        } else {
-            updateFilteredBudgetList(budget -> budget.getTag().equals(category));
-            updateFilteredExpenseList(expense -> expense.getTag().equals(category));
-        }
+        updateFilteredBudgetList(budget -> budget.getTag().equals(category));
+        updateFilteredExpenseList(expense -> expense.getTag().equals(category));
     }
 
     /**
@@ -230,6 +225,13 @@ public class ModelManager implements Model {
     public void addCategory(Tag tag) {
         expenseBook.addCategory(tag);
         updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
+    }
+
+    @Override
+    public void deleteCategory(Tag tag) {
+        expenseBook.deleteCategory(tag);
+        updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
+        updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
     }
 
     /**
