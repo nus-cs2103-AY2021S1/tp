@@ -38,8 +38,8 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         moduleId.setText(module.getModuleId().toString());
-//        totalStudents.setText("Total Students: " + module.getTotalStudents());
-//        totalGroups.setText("Total Groups: " + module.getTotalGroups());
+        //totalStudents.setText("Total Students: " + module.getTotalStudents());
+        //totalGroups.setText("Total Groups: " + module.getTotalGroups());
     }
 
     @Override

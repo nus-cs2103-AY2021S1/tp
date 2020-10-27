@@ -4,9 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.TaskList;
-import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class Module {
 
