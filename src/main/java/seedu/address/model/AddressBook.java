@@ -132,6 +132,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     public void clearContacts() {
+        semOneModules.unassignAllInstructors();
+        semTwoModules.unassignAllInstructors();
         persons.clearAll();
     }
 

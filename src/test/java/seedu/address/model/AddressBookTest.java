@@ -24,6 +24,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.builders.ModuleBuilder;
 import seedu.address.testutil.builders.PersonBuilder;
@@ -74,6 +75,21 @@ public class AddressBookTest {
     public void hasPerson_personInAddressBook_returnsTrue() {
         addressBook.addPerson(ALICE);
         assertTrue(addressBook.hasPerson(ALICE));
+    }
+
+    @Test
+    public void clearContacts_personInAddressBook_returnsTrue() {
+        addressBook.clearContacts();
+        assertEquals(addressBook.getPersonList(), new UniquePersonList().asUnmodifiableObservableList());
+    }
+
+    @Test
+    public void clearContacts_checkInstructorInModuleList_returnsTrue() {
+        addressBook.clearContacts();
+        AddressBook temp = getTypicalAddressBook();
+        temp.clearContacts();
+        assertEquals(addressBook.getSemOneModuleList(), temp.getSemOneModuleList() );
+        assertEquals(addressBook.getSemTwoModuleList(), temp.getSemTwoModuleList() );
     }
 
     @Test
