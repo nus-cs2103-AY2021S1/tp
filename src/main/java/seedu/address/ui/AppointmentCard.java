@@ -32,6 +32,8 @@ public class AppointmentCard extends UiPart<Region> {
      */
     public AppointmentCard(Appointment appointment, int displayedIndex) {
         super(FXML);
+
+        assert appointment != null;
         this.appointment = appointment;
 
         id.setText(displayedIndex + ". ");

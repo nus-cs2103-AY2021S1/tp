@@ -25,6 +25,7 @@ public class AppointmentListPanel extends UiPart<Region> {
      */
     public AppointmentListPanel(ObservableList<Appointment> appointmentList) {
         super(FXML);
+        assert appointmentList != null;
         appointmentListView.setItems(appointmentList);
         appointmentListView.setCellFactory(listView -> new AppointmentListViewCell());
     }
