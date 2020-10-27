@@ -26,6 +26,15 @@ import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
 
 public class AddCommentCommand extends CommentCommand {
+
+    public static final String COMMAND_WORD = "addcomment";
+
+    public static final String MISSING_PERSONTYPE_MESSAGE = "Need to specify applicant or staff \n"
+            + "e.g: 'addcomment s- ...' or 'addcomment a- ...'";
+
+    public static final String MESSAGE_ADDCOMMENT_USAGE = "Format for this command: \n"
+            + COMMAND_WORD + " INDEX <s-/a-> ti/TITLE d/DATE desc/DESCRIPTION";
+
     private String personType;
 
     /**
