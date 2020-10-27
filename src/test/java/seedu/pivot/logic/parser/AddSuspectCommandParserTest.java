@@ -1,10 +1,10 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.pivot.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.pivot.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_EMPTY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -24,8 +24,8 @@ import seedu.pivot.testutil.CasePersonBuilder;
 
 public class AddSuspectCommandParserTest {
     // Todo: move static fields to CommandTestUtil
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_TITLE_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_TITLE_BOB;
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&";
 
     public static final String VALID_GENDER_BOB = "M";
@@ -48,7 +48,7 @@ public class AddSuspectCommandParserTest {
     //TODO: add all the fields in for suspect here
     @Test
     public void parse_allFieldsPresent_success() {
-        Suspect expectedSuspect = new CasePersonBuilder().withName(VALID_NAME_BOB).withGender(VALID_GENDER_BOB)
+        Suspect expectedSuspect = new CasePersonBuilder().withName(VALID_TITLE_BOB).withGender(VALID_GENDER_BOB)
                 .buildSuspect();
 
         // normal input
@@ -69,7 +69,7 @@ public class AddSuspectCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddSuspectCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, VALID_NAME_BOB, expectedMessage);
+        assertParseFailure(parser, VALID_TITLE_BOB, expectedMessage);
     }
 
     @Test

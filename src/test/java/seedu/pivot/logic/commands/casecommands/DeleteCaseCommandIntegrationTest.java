@@ -1,19 +1,19 @@
-package seedu.pivot.logic.commands;
+package seedu.pivot.logic.commands.casecommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.pivot.commons.core.Messages;
+import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.casecommands.DeleteCaseCommand;
+import seedu.pivot.logic.commands.DeleteCommand;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.UserPrefs;
@@ -23,7 +23,7 @@ import seedu.pivot.model.investigationcase.Case;
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
  * {@code DeleteCaseCommand}.
  */
-public class DeleteCaseCommandTest {
+public class DeleteCaseCommandIntegrationTest {
 
     private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
 
@@ -45,12 +45,12 @@ public class DeleteCaseCommandTest {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCaseList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON); // filter the list
 
         Case caseToDelete = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCaseCommand(INDEX_FIRST_PERSON);
@@ -66,7 +66,7 @@ public class DeleteCaseCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -74,7 +74,7 @@ public class DeleteCaseCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }
 
     @Test

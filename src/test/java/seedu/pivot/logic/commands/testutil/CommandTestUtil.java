@@ -1,4 +1,4 @@
-package seedu.pivot.logic.commands;
+package seedu.pivot.logic.commands.testutil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -12,11 +12,14 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.pivot.commons.core.index.Index;
+import seedu.pivot.logic.commands.Command;
+import seedu.pivot.logic.commands.CommandResult;
+import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.exceptions.CommandException;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.investigationcase.Case;
-import seedu.pivot.model.investigationcase.NameContainsKeywordsPredicate;
+import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 import seedu.pivot.testutil.EditCaseDescriptorBuilder;
 
 /**
@@ -24,36 +27,37 @@ import seedu.pivot.testutil.EditCaseDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_TITLE_AMY = "Amy Bee Disappearance";
+    public static final String VALID_TITLE_BOB = "Bob Choo Salon Theft";
     public static final String VALID_STATUS_AMY = "active";
     public static final String VALID_STATUS_BOB = "closed";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_TITLE + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_TITLE + VALID_NAME_BOB;
+    public static final String PREFIX_WITH_TITLE_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
+    public static final String PREFIX_WITH_TITLE_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
 
-    public static final String STATUS_DESC_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
-    public static final String STATUS_DESC_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
+    public static final String PREFIX_WITH_STATUS_AMY = " " + PREFIX_STATUS + VALID_STATUS_AMY;
+    public static final String PREFIX_WITH_STATUS_BOB = " " + PREFIX_STATUS + VALID_STATUS_BOB;
+    public static final String PREFIX_WITH_TAG_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
+    public static final String PREFIX_WITH_TAG_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_TITLE + "James&"; // '&' not allowed in names
-    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "status";
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    // '&' not allowed in title
+    public static final String PREFIX_WITH_INVALID_TITLE_AMY = " " + PREFIX_TITLE + "James&";
+    public static final String PREFIX_WITH_INVALID_STATUS = " " + PREFIX_STATUS + "status";
+    public static final String PREIFX_WITH_INVALID_TAG = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCaseDescriptor DESC_AMY;
-    public static final EditCommand.EditCaseDescriptor DESC_BOB;
+    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_AMY;
+    public static final EditCommand.EditCaseDescriptor EDIT_CASE_DESCRIPTOR_BOB;
 
     static {
-        DESC_AMY = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_AMY)
+        EDIT_CASE_DESCRIPTOR_AMY = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_AMY)
                 .withStatus(VALID_STATUS_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB)
+        EDIT_CASE_DESCRIPTOR_BOB = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_BOB)
                 .withStatus(VALID_STATUS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
@@ -64,7 +68,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -88,7 +92,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the PIVOT, filtered Case list and selected Case in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -101,15 +105,15 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredCaseList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
-     * {@code model}'s address book.
+     * Updates {@code model}'s filtered list to show only the Case at the given {@code targetIndex} in the
+     * {@code model}'s PIVOT.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
+    public static void showCaseAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredCaseList().size());
 
         Case investigationCase = model.getFilteredCaseList().get(targetIndex.getZeroBased());
         final String[] splitName = investigationCase.getTitle().getAlphaNum().split("\\s+");
-        model.updateFilteredCaseList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredCaseList(new DetailsContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredCaseList().size());
     }
