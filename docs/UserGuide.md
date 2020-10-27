@@ -367,18 +367,18 @@ Adds a macro to run several commands in succession.
 
 *__WARNING:__* this is an advanced feature!
 
-Parameters of the macro can be substituted in the commands using the syntax:
+Arguments to the macro can be substituted in the commands using the syntax:
 `\ARGUMENT_NAME`.
 
-Unnamed parameters can be substituted using the syntax: `\$`
+Unnamed arguments can be substituted using the syntax: `\$`
 
-Format: `macro SHORTCUT PARAMETERS_1 PARAMETERS_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND \REUSED_PARAMETERS; [COMMAND_2; ...]` <br>
+Format: `macro SHORTCUT ARGUMENT_1 ARGUMENT_2 ... ; COMMAND_1 ARGUMENTS_TO_COMMAND \REUSED_ARGUMENT; [COMMAND_2; ...]` <br>
 
 <div markdown="block" class="alert alert-info">
 
 :information_source:
 
-* Create a macro with name `SHORTCUT` and parameters `PARAMETERS_1` and `PARAMETERS` which executes `COMMAND_1; COMMAND_2; ...`.
+* Create a macro with name `SHORTCUT` and arguments `ARGUMENT_1` and `ARGUMENT_2` which executes `COMMAND_1; COMMAND_2; ...`.
 
 </div>
 
