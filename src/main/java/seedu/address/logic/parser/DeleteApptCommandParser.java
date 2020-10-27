@@ -9,10 +9,10 @@ import java.util.logging.Logger;
 
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointmentcommand.DeleteApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Appointment;
+import seedu.address.model.patient.Nric;
 
 /**
  * Parses input arguments and creates a new DeleteApptCommand object
@@ -33,10 +33,10 @@ public class DeleteApptCommandParser implements Parser<DeleteApptCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT);
 
-        Index index;
+        Nric nric;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            nric = ParserUtil.parseNric(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteApptCommand.MESSAGE_USAGE), pe);
@@ -49,7 +49,7 @@ public class DeleteApptCommandParser implements Parser<DeleteApptCommand> {
         }
         assert !appointment.equals(new Appointment()) : "Appointment should not be empty!";
 
-        return new DeleteApptCommand(index, appointment);
+        return new DeleteApptCommand(nric, appointment);
     }
 
 }
