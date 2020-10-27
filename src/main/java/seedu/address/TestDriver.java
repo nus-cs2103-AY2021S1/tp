@@ -1,5 +1,7 @@
 package seedu.address;
 
+import static seedu.address.model.util.SampleDataUtil.getExerciseTagSet;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,15 +52,15 @@ public class TestDriver {
             ArrayList<Muscle> musclesWorked = new ArrayList<Muscle>(Arrays.asList(Muscle.CHEST, Muscle.LEGS));
 
             exerciseBook.addExercise(new Exercise(new Name("Hello"), new Description("Test 1"),
-                    new Date("10-10-2020"), new Calories("101"), musclesWorked));
+                    new Date("10-10-2020"), new Calories("101"), musclesWorked, getExerciseTagSet("gym")));
             exerciseBook.addExercise(new Exercise(new Name("Hello1"), new Description("Test 2"),
-                    new Date("10-10-2021"), new Calories("102"), musclesWorked));
+                    new Date("10-10-2021"), new Calories("102"), musclesWorked, getExerciseTagSet("gym")));
             exerciseBook.addExercise(new Exercise(new Name("Hello2"), new Description("Test 3"),
-                    new Date("10-10-2022"), new Calories("103"), musclesWorked));
+                    new Date("10-10-2022"), new Calories("103"), musclesWorked, getExerciseTagSet("home")));
             exerciseBook.addExercise(new Exercise(new Name("Hello3"), new Description("Test 4"),
-                    new Date("10-10-2023"), new Calories("104"), musclesWorked));
+                    new Date("10-10-2023"), new Calories("104"), musclesWorked, getExerciseTagSet("home")));
             exerciseBook.addExercise(new Exercise(new Name("Hello4"), new Description("Test 5"),
-                    new Date("10-10-2024"), new Calories("105"), musclesWorked));
+                    new Date("10-10-2024"), new Calories("105"), musclesWorked, getExerciseTagSet("home, gym")));
             jStorage.saveExerciseBook(exerciseBook);
             System.out.println(exerciseBook.toString());
         } catch (Exception err) {
