@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.id.Id;
 import seedu.address.model.id.SellerId;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -108,6 +109,18 @@ public class UniqueSellerList implements Iterable<Seller> {
         if (!internalList.remove(toRemove)) {
             throw new PersonNotFoundException();
         }
+    }
+
+    /**
+     * Checks if the seller list contains a seller with the given id.
+     *
+     * @param id The specified id.
+     * @return True if the seller list contains the bidder with the given id.
+     */
+    public boolean containsSellerId(Id id) {
+        requireNonNull(id);
+        return internalList.filtered(seller -> seller.getId().equals(id))
+                .size() > 0;
     }
 
 
