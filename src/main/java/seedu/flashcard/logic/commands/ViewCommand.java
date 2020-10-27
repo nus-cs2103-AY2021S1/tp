@@ -1,7 +1,7 @@
 package seedu.flashcard.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.flashcard.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.flashcard.logic.parser.CliSyntax.FLAG_ANSWER;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": View the flashcard identified by the index number used in the displayed flashcard list.\n"
             + "Parameters: INDEX (must be a positive integer)"
-            + " [" + PREFIX_ANSWER + "]\n"
+            + " [" + FLAG_ANSWER + "]\n"
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_VIEW_FLASHCARD_SUCCESS = "Viewed Flashcard: %1$s";
@@ -55,6 +55,7 @@ public class ViewCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ViewCommand // instanceof handles nulls
-                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
+                && targetIndex.equals(((ViewCommand) other).targetIndex)
+                && showAnswer == ((ViewCommand) other).showAnswer); // state check
     }
 }

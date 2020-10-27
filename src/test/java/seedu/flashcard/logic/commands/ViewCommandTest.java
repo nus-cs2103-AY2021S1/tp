@@ -18,41 +18,39 @@ import seedu.flashcard.model.ModelManager;
 import seedu.flashcard.model.UserPrefs;
 import seedu.flashcard.model.flashcard.Flashcard;
 
-class StatsCommandTest {
+class ViewCommandTest {
 
     private Model model = new ModelManager(getTypicalFlashcardDeck(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Flashcard flashcardToShowStatistics = model.getFilteredFlashcardList()
+        Flashcard flashcardToView = model.getFilteredFlashcardList()
                 .get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        StatsCommand statsCommand = new StatsCommand(INDEX_FIRST_FLASHCARD);
-
-        String expectedMessage = String.format(StatsCommand.MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS,
-                flashcardToShowStatistics);
+        ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_FLASHCARD, false);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(ViewCommand.MESSAGE_VIEW_FLASHCARD_SUCCESS,
+                        flashcardToView), INDEX_FIRST_FLASHCARD.getZeroBased(), false);
         ModelManager expectedModel = new ModelManager(model.getFlashcardDeck(), new UserPrefs());
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, INDEX_FIRST_FLASHCARD.getZeroBased());
-        assertCommandSuccess(statsCommand, model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(viewCommand, model, expectedCommandResult, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
-        StatsCommand statsCommand = new StatsCommand(outOfBoundIndex);
-
-        assertCommandFailure(statsCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        ViewCommand viewCommand = new ViewCommand(outOfBoundIndex, false);
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_validIndexFilteredList_success() {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
-        Flashcard flashcardToShowStatistics = model.getFilteredFlashcardList()
+        Flashcard flashcardToView = model.getFilteredFlashcardList()
                 .get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        StatsCommand statsCommand = new StatsCommand(INDEX_FIRST_FLASHCARD);
-        String expectedMessage = String.format(StatsCommand.MESSAGE_SHOW_FLASHCARD_STATISTICS_SUCCESS,
-                flashcardToShowStatistics);
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, INDEX_FIRST_FLASHCARD.getZeroBased());
-        assertCommandSuccess(statsCommand, model, expectedCommandResult, model);
+        ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_FLASHCARD, false);
+        CommandResult expectedCommandResult = new CommandResult(
+                String.format(ViewCommand.MESSAGE_VIEW_FLASHCARD_SUCCESS, flashcardToView),
+                INDEX_FIRST_FLASHCARD.getZeroBased(), false);
+        assertCommandSuccess(viewCommand, model, expectedCommandResult, model);
     }
 
     @Test
@@ -60,30 +58,34 @@ class StatsCommandTest {
         showFlashcardAtIndex(model, INDEX_FIRST_FLASHCARD);
         Index outOfBoundIndex = INDEX_SECOND_FLASHCARD;
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFlashcardDeck().getFlashcardList().size());
-        StatsCommand statsCommand = new StatsCommand(outOfBoundIndex);
-        assertCommandFailure(statsCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
+        ViewCommand viewCommand = new ViewCommand(outOfBoundIndex, false);
+        assertCommandFailure(viewCommand, model, Messages.MESSAGE_INVALID_FLASHCARD_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        StatsCommand statsFirstCommand = new StatsCommand(INDEX_FIRST_FLASHCARD);
-        StatsCommand statsSecondCommand = new StatsCommand(INDEX_SECOND_FLASHCARD);
+        ViewCommand viewFirstCommand = new ViewCommand(INDEX_FIRST_FLASHCARD, false);
+        ViewCommand viewSecondCommand = new ViewCommand(INDEX_SECOND_FLASHCARD, false);
+        ViewCommand viewThirdCommand = new ViewCommand(INDEX_FIRST_FLASHCARD, true);
 
         // same object -> returns true
-        assertTrue(statsFirstCommand.equals(statsFirstCommand));
+        assertTrue(viewFirstCommand.equals(viewFirstCommand));
 
         // same values -> returns true
-        StatsCommand statsFirstCommandCopy = new StatsCommand(INDEX_FIRST_FLASHCARD);
-        assertTrue(statsFirstCommand.equals(statsFirstCommandCopy));
+        ViewCommand viewFirstCommandCopy = new ViewCommand(INDEX_FIRST_FLASHCARD, false);
+        assertTrue(viewFirstCommand.equals(viewFirstCommandCopy));
 
         // different types -> returns false
-        assertFalse(statsFirstCommand.equals(1));
+        assertFalse(viewFirstCommand.equals(1));
 
         // null -> returns false
-        assertFalse(statsFirstCommand.equals(null));
+        assertFalse(viewFirstCommand.equals(null));
 
         // different flashcard -> returns false
-        assertFalse(statsFirstCommand.equals(statsSecondCommand));
+        assertFalse(viewFirstCommand.equals(viewSecondCommand));
+
+        // same flashcard but different showAnswer -> returns false
+        assertFalse(viewFirstCommand.equals(viewThirdCommand));
     }
 
 }

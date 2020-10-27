@@ -15,4 +15,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_DIAGRAM = new Prefix("d/");
     public static final Prefix PREFIX_FAV = new Prefix("f/");
     public static final Prefix PREFIX_CRITERIA = new Prefix("-");
+    public static final Prefix FLAG_ANSWER = new Prefix("-a");
 }
