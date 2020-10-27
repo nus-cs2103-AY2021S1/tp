@@ -108,7 +108,7 @@ You should follow the following convention for each command's format:
 
 ### Viewing help : `help`
 
-Displays information on the available commands in the terminal.
+You can view information on the available commands in the terminal.
 
 Format: `help [COMMAND]`
 
@@ -120,7 +120,7 @@ Examples:
 
 ### Adding a food item: `add`
 
-Adds a food item to McGymmy.
+You can add a food item to McGymmy.
 
 Format: `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`
 
@@ -142,7 +142,7 @@ Examples:
 
 ### Clearing all food items shown : `clear`
 
-Removes all food items shown in McGymmy.
+You can remove all food items shown in McGymmy.
 
 Format: `clear`
 
@@ -159,7 +159,7 @@ Format: `clear`
 
 ### Tagging food items : `tag`
 
-Tags a food item in McGymmy.
+You can tag a food item in McGymmy.
 
 Format: `tag INDEX -t TAG_NAME`
 
@@ -177,7 +177,7 @@ Format: `tag INDEX -t TAG_NAME`
 
 ### Tagging food items : `untag`
 
-Untags a food item in McGymmy.
+You can untag a food item in McGymmy.
 
 Format: `untag INDEX -t TAG_NAME`
 
@@ -195,7 +195,7 @@ Format: `untag INDEX -t TAG_NAME`
 
 ### Finding a food item: `find`
 
-Finds food items based on the keywords supplied.
+You can find food items based on the keywords supplied.
 
 Format: `find [KEYWORDS] [-n WORDS_IN_NAME] [-t WORDS_IN_TAG] [-d DATE]`
 
@@ -217,7 +217,7 @@ Examples:
 
 ### Clearing food items: `clear`
 
-Clear food items currently shown in the list.
+You can clear food items currently shown in the list.
 
 Format: `clear`
 
@@ -237,7 +237,7 @@ Examples:
 
 ### Listing all food items : `list`
 
-Shows a list of all food items in McGymmy.
+You can view a list of all food items in McGymmy.
 
 Format: `list`
 
@@ -254,7 +254,7 @@ Format: `list`
 
 ### Editing a food item : `edit`
 
-Edits the details of a food item at the specified index.
+You can edit the details of a food item at the specified index.
 
 Format: `edit INDEX [-n NAME] [-p PROTEIN] [-c CARBS] [-f FATS] [-d DATE]`
 
@@ -278,7 +278,7 @@ Examples:
 
 ### Deleting a food item: `delete`
 
-Deletes a food item at the specified index.
+You can delete a food item at the specified index.
 
 Format: `delete INDEX`
 
@@ -299,7 +299,7 @@ Examples:
 
 ### Importing another save file: `import`
 
-Imports a previously saved file into McGymmy
+You can import a previously saved file into McGymmy from your local directory
 
 Format: `import FILEPATH`
 
@@ -329,9 +329,9 @@ Examples:
 
 ### Exporting your save file to a folder: `export`
 
-Imports a previously saved file to a folder
+You can export a saved file to a folder to your local directory
 
-Format: `import DIRPATH [-o FILENAME]`
+Format: `export DIRPATH [-o FILENAME]`
 
 <div markdown="block" class="alert alert-info">
 
@@ -363,7 +363,7 @@ Examples:
 
 ### Exiting the program : `exit`
 
-Exits the program.
+You can exit the program when you are done editing McGymmy
 
 Format: `exit`
 
