@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import chopchop.commons.util.Pair;
+import chopchop.model.usage.RecipeUsage;
 import chopchop.model.usage.Usage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -54,6 +55,10 @@ public class UsageList<T extends Usage> {
                 return;
             }
         }
+    }
+
+    public ObservableList<T> getUsageList() {
+        return FXCollections.observableArrayList(this.usages);
     }
 
     public int getUsageCount() {
@@ -128,8 +133,16 @@ public class UsageList<T extends Usage> {
         Comparator<Pair<String, Integer>> compare = (p1, p2)-> p1.snd() < p2.snd() ? 1 : 0;
         outputLst.sort(compare);
         return outputLst.stream()
-            .map(x -> new Pair<>(x.fst(), "Times made: " + x.snd().toString()))
+            .map(x -> new Pair<>(x.fst(), "No. of times made: " + x.snd().toString()))
             .collect(Collectors.toList());
+    }
+
+    /**
+     * Can be used to set, add or remove.
+     */
+    public void setAll(UsageList<T> newList) {
+        this.usages.clear();
+        this.usages.addAll(newList.getUsages());
     }
 
 }

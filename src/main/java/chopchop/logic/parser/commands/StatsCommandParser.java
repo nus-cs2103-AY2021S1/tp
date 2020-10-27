@@ -15,6 +15,7 @@ import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.StatsIngredientDateCommand;
+import chopchop.logic.commands.StatsRecipeClearCommand;
 import chopchop.logic.commands.StatsRecipeDateCommand;
 import chopchop.logic.commands.StatsRecipeMostMadeCommand;
 import chopchop.logic.parser.ArgName;
@@ -42,6 +43,9 @@ public class StatsCommandParser {
                 case RECIPE:
                     if (target.snd().equals("most made")) {
                         return Result.of(new StatsRecipeMostMadeCommand());
+                    }
+                    if (target.snd().equals("clear")) {
+                        return Result.of(new StatsRecipeClearCommand());
                     }
                     return parseDateRecipeCommand(target.snd().strip(), args);
 
