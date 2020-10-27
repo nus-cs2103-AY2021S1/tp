@@ -179,7 +179,7 @@ public class PrimitiveCommandParser {
     }
 
     public Boolean hasCommand(String command) {
-        return this.getRegisteredCommands().contains(command);
+        return getRegisteredCommands().contains(command);
     }
 
     // for testing

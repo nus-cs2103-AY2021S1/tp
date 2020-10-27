@@ -9,9 +9,9 @@ import javafx.scene.layout.AnchorPane;
 public class SummaryDisplay extends UiPart<AnchorPane> {
     private static final String FXML = "SummaryDisplay.fxml";
     private static final String TOTAL_CALORIES_TEXT = "Total Calories %d";
-    private static final String TOTAL_PROTEIN_TEXT = "Protein: %s";
-    private static final String TOTAL_CARBOHYDRATE_TEXT = "Carbs: %s";
-    private static final String TOTAL_FAT_TEXT = "Fats: %s";
+    private static final String TOTAL_PROTEIN_TEXT = "Protein: %-5s";
+    private static final String TOTAL_CARBOHYDRATE_TEXT = "Carbs: %-5s";
+    private static final String TOTAL_FAT_TEXT = "Fats: %-5s";
 
     @FXML
     private PieChart pieChart;
@@ -27,8 +27,9 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
         pieChart.setLabelsVisible(true);
     }
 
-    public void setTotalMacronutrients(int totalCalories, int totalProtein, int totalCarbs, int totalFats) {
+    public void setTotalMacronutrients(long totalCalories, long totalProtein, long totalCarbs, long totalFats) {
         requireAllNonNull(totalCalories, totalProtein, totalCarbs, totalFats);
+        assert totalCalories > 0 : "Total Calories is negative";
         pieChart.setTitle(String.format(TOTAL_CALORIES_TEXT, totalCalories));
 
         //Reset the data
@@ -40,7 +41,7 @@ public class SummaryDisplay extends UiPart<AnchorPane> {
         addData(TOTAL_FAT_TEXT, totalFats);
     }
 
-    private void addData(String formatString, int count) {
+    private void addData(String formatString, long count) {
 
         //If the count for the data is <= 0, do not show the data value
         if (count <= 0) {

@@ -5,7 +5,7 @@ import jimmy.mcgymmy.commons.util.CollectionUtil;
 
 public abstract class Macronutrient {
     public static final String MESSAGE_CONSTRAINTS = "values should only contain positive numbers";
-    private static final String VALIDATION_REGEX = "(\\d)+";
+    private static final String VALIDATION_REGEX = "(\\d){1,3}";
     private final int amount;
     private final int caloricMultiplier;
     private final int totalCalories;
@@ -42,11 +42,11 @@ public abstract class Macronutrient {
     }
 
     private boolean isValidAmount(int amount) {
-        return amount >= 0;
+        return amount >= 0 && amount < 1000;
     }
 
     private String getMessageConstraint() {
-        return this.getMacronutrientType() + " amount can only take in value larger than 0";
+        return this.getMacronutrientType() + " amount can only take in value larger than 0 and less than 1000";
     }
 
     @Override
