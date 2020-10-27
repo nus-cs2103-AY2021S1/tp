@@ -1,9 +1,5 @@
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.Strings.ARG_AFTER;
-import static chopchop.commons.util.Strings.ARG_BEFORE;
-import static chopchop.commons.util.Strings.ARG_ON;
-
 import java.time.LocalDateTime;
 
 import chopchop.logic.commands.exceptions.CommandException;
@@ -11,14 +7,6 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class StatsRecipeDateCommand extends Command {
-    public static final String COMMAND_WORD = "stats recipe";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of recipes. "
-        + "Parameters: "
-        + "[" + ARG_ON + " DATE] "
-        + "[" + ARG_BEFORE + "DATE] "
-        + "[" + ARG_AFTER + "DATE] "
-        + "Example " + COMMAND_WORD + " " + ARG_BEFORE + " 2020-02-13";
 
     private final LocalDateTime on;
     private final LocalDateTime before;
@@ -65,5 +53,17 @@ public class StatsRecipeDateCommand extends Command {
     @Override
     public String toString() {
         return String.format("StatsRecipeDateCommand");
+    }
+
+    public static String getCommandString() {
+        return "stats recipe";
+    }
+
+    public static String getCommandHelp() {
+        return "Shows recipes that were cooked in a given timeframe";
+    }
+
+    public static String getUserGuideSection() {
+        throw new RuntimeException("Travis pls implement this");
     }
 }

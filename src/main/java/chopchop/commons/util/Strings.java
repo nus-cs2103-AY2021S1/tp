@@ -11,6 +11,9 @@ import chopchop.logic.parser.ArgName;
  */
 public class Strings {
 
+    // misc things
+    public static final String USER_GUIDE_BASE_URL  = "https://ay2021s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
+
     // argument names
     public static final ArgName ARG_STEP            = new ArgName("step");
     public static final ArgName ARG_INGREDIENT      = new ArgName("ingredient");

@@ -10,7 +10,6 @@ import chopchop.model.Model;
  * Undo the last undoable command.
  */
 public class UndoCommand extends Command {
-    public static final String COMMAND_WORD = "undo";
 
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
@@ -23,5 +22,17 @@ public class UndoCommand extends Command {
     @Override
     public String toString() {
         return String.format("UndoCommand");
+    }
+
+    public static String getCommandString() {
+        return "undo";
+    }
+
+    public static String getCommandHelp() {
+        return "Undoes the last performed command";
+    }
+
+    public static String getUserGuideSection() {
+        return "undoing-commands--undo";
     }
 }
