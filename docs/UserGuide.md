@@ -273,7 +273,7 @@ General Format: `question COMMAND_WORD INDEX DETAILS`
 * The index **must be a positive integer** 1, 2, 3, …​
 * The format of `DETAILS` varies with each command word as explained below.
 
-#### 3.3.1.2 Adding a question: `add`
+#### 3.3.1.1 Adding a question: `question add`
 
 Adds a new question to the student.
 
@@ -285,7 +285,7 @@ Format: `question add INDEX t/QUESTION`
 Example:
 * `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in **Reeve**.
 
-#### 3.3.1.3 Resolving a question: `solve`
+#### 3.3.1.2 Resolving a question: `question solve`
 
 Marks a student's question as resolved.
 
@@ -298,7 +298,7 @@ Format: `question solve INDEX i/QUESTION_INDEX t/SOLUTION`
 Example:
 * `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in **Reeve** as answered.
 
-#### 3.3.1.4 Deleting a question: `delete`
+#### 3.3.1.3 Deleting a question: `question delete`
 
 Deletes a student's question.
 
@@ -337,19 +337,19 @@ Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 * x has to be less than or equal to y (e.g. 30/50).
 
 Examples:
-* `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam  with date 8 Dec 2020 and 
+* `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and 
 score 40/60 to the first student in **Reeve**.
 
-* `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam  with date 12 May 2020 and 
+* `exam add 5 n/End of Year 2020 d/12/05/2020 s/67/100` adds the "End of Year 2020" exam with date 12 May 2020 and 
 score 67/100 to the fifth student in **Reeve**.
 
-#### 3.3.2.2 Deleting an exam record to a student: `exam delete`
+#### 3.3.2.2 Deleting an exam record for a student: `exam delete`
 
 You can delete a specific exam from a specified student in **Reeve**.
 
 Format: `exam delete STUDENT_INDEX i/EXAM_INDEX`
 
-* Deletes the an exam at `EXAM_INDEX` in the specified student's exam list.
+* Deletes the exam at `EXAM_INDEX` in the specified student's exam list.
 * The specified student is chosen based on `STUDENT_INDEX` of **Reeve**. 
 * The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
 
@@ -357,6 +357,48 @@ Examples:
 * `exam delete 1 i/1` deletes the first exam from the first student in the displayed students list.
 * `exam delete 2 i/5` deletes the fifth exam from the second student in the displayed students list.
 
+#### 3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)
+
+You can add or delete an attendance record to/from a specified student.
+
+General Format: `attendance COMMAND_WORD STUDENT_INDEX PARAMETERS`
+
+* The `COMMAND_WORD` field accepts either `add` or `delete`.
+* The command affects the student at the specified `INDEX`.
+* `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
+* The format of `PARAMETERS` varies with each command word as explained below.
+
+#### 3.3.2.1 Adding an attendance record to a student: `attendance add`
+
+You can add an attendance record to a specified student in **Reeve**.
+
+Format: `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBACK`
+
+* Adds the given attendance record to the student at the specified `STUDENT_INDEX`.
+* There can only be one attendance record for every `LESSON_DATE`.
+
+:information_source: The format of ATTENDANCE_DATE is as follows:
+* dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
+
+:information_source: The format of FEEDBACK is as follows:
+* attended or unattended.
+
+Examples:
+* `attendance add 2 d/08/12/2020 s/attended f/attentive` adds the attendance record with the date 8 Dec 2020,
+status of attended and feedback of attentive, to the 2nd student in **Reeve**.
+
+#### 3.3.2.2 Deleting an attendance record for a student: `attendance delete`
+
+You can delete a specific attendance record from a specified student in **Reeve**.
+
+Format: `attendance delete STUDENT_INDEX d/ATTENDANCE_DATE`
+
+* Deletes the attendance record with the given `ATTENDANCE_DATE` in the specified student.
+* The specified student is chosen based on `STUDENT_INDEX` of **Reeve**. 
+* The `STUDENT_INDEX` refers to the index number shown in the displayed students list.
+
+Examples:
+* `attendance delete 1 d/19/04/2020` deletes the attendance with the date 19 Apr 2020 from the 1st student in the displayed students list in **Reeve**.
 
 ### 3.4 Miscellaneous Features
 
