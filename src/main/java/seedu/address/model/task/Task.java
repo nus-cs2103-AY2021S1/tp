@@ -262,7 +262,9 @@ public class Task implements Comparable<Task> {
     }
 
     /**
-     * By default, two tasks are compared using their deadlines
+     * By default, two tasks are compared using their deadlines.
+     * Tasks with no deadline are consider "larger",
+     * so that they will be listed at the end when sorted by default.
      * @param task  the task to compare with
      */
     @Override
@@ -270,9 +272,9 @@ public class Task implements Comparable<Task> {
         if (this.deadline == null && task.deadline == null) {
             return 0;
         } else if (this.deadline == null) {
-            return -1;
-        } else if (task.deadline == null) {
             return 1;
+        } else if (task.deadline == null) {
+            return -1;
         } else {
             return this.deadline.compareTo(task.deadline);
         }

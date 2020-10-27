@@ -52,11 +52,7 @@ class JsonAdaptedTask {
         taskName = source.taskName;
         description = source.getDescription();
         publishDate = source.getPublishDate().toString();
-        if (source.getDeadline().isPresent()) {
-            deadline = source.getDeadline().toString();
-        } else {
-            deadline = null;
-        }
+        deadline = source.getDeadline().map(Deadline::toString).orElse(null);
         progress = source.getProgress().toString();
         isDone = source.isDone().toString();
         assignees = source.getAssignees();
