@@ -59,6 +59,9 @@ public class TaskManagerParser {
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
 
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
 
