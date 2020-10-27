@@ -21,6 +21,7 @@ import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.budget.UniqueCategoryBudgetList;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.exceptions.DuplicateExpenseException;
+import seedu.expense.model.tag.Tag;
 import seedu.expense.testutil.ExpenseBuilder;
 
 public class ExpenseBookTest {
@@ -94,11 +95,17 @@ public class ExpenseBookTest {
      */
     private static class ExpenseBookStub implements ReadOnlyExpenseBook, Statistics {
 
+        private final ObservableList<Tag> categories = FXCollections.observableArrayList();
         private final ObservableList<Expense> expenses = FXCollections.observableArrayList();
         private final UniqueCategoryBudgetList budgets = new UniqueCategoryBudgetList();
 
         ExpenseBookStub(Collection<Expense> expenses) {
             this.expenses.setAll(expenses);
+        }
+
+        @Override
+        public ObservableList<Tag> getTags() {
+            return categories;
         }
 
         @Override
