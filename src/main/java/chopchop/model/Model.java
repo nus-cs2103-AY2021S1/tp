@@ -158,6 +158,13 @@ public interface Model {
     /** Returns the UsageList of ingredient */
     UsageList<IngredientUsage> getIngredientUsageList();
 
+
+    /** Sets the RecipeUsageList */
+    void setRecipeUsageList(UsageList<RecipeUsage> list);
+
+    /** Sets the IngredientUsageList */
+    void setIngredientUsageList(UsageList<IngredientUsage> list);
+
     void addRecipeUsage(Recipe recipe);
 
     void removeRecipeUsage(Recipe recipe);

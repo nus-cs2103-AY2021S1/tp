@@ -36,7 +36,7 @@ public class CommandParser {
             if (input.find('/') != 0) {
                 break;
             } else if (input.size() == 1) {
-                return Result.error("expected argument name after '/'");
+                return Result.error("Expected argument name after '/'");
             }
 
             var pair = splitUntilNextSlash(input.drop(1));
@@ -49,7 +49,7 @@ public class CommandParser {
                 var argName = self.bisect(' ', argValue);
 
                 if (argName.isEmpty()) {
-                    return Result.error("expected argument name after '/'");
+                    return Result.error("Expected argument name after '/'");
                 }
 
                 ret.add(Pair.of(new ArgName(argName.trim().toString()), argValue.trim().toString()));
@@ -115,7 +115,7 @@ public class CommandParser {
                 case Strings.COMMAND_STATS:     return parseStatsCommand(args);
 
                 default:
-                    return Result.error("unknown command '%s'", args.getCommand());
+                    return Result.error("Unknown command '%s'", args.getCommand());
                 }
             });
     }

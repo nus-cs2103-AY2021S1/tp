@@ -4,6 +4,7 @@ package chopchop.logic.autocomplete;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -68,7 +69,8 @@ public class AutoCompleter {
         case ARGUMENT_NAME:
             return completeArgument(args, orig);
 
-        case RECIPE_NAME:
+        case RECIPE_NAME: // fallthrough
+        case RECIPE_NAME_IN_ARG:
             return completeRecipe(req, model, args, orig);
 
         case INGREDIENT_NAME: // fallthrough
@@ -78,9 +80,8 @@ public class AutoCompleter {
         case COMPONENT_NAME:
             return completeArgComponent(args, orig);
 
-        // TODO: tags
         case TAG_NAME:
-            return orig;
+            return completeTag(model, args, orig);
 
         case NONE: // fallthrough
         default:
@@ -138,6 +139,29 @@ public class AutoCompleter {
 
         return tryCompletionUsing(Arrays.stream(CommandTarget.values()).map(x -> x.toString())
                 .collect(Collectors.toList()), orig, partial)
+            .orElse(orig);
+    }
+
+    private String completeTag(Model model, CommandArguments args, String orig) {
+        assert args.getAllArguments().size() > 0;
+
+        var lastArg = args.getAllArguments().get(args.getAllArguments().size() - 1);
+        var partial = lastArg.snd();
+
+        return CommandTarget.of(args.getFirstWordFromRemaining())
+            .flatMap(target -> {
+                List<String> tags = List.of();
+
+                if (target == CommandTarget.RECIPE) {
+                    tags = getAllRecipeTags(model);
+                } else if (target == CommandTarget.INGREDIENT) {
+                    tags = getAllIngredientTags(model);
+                } else {
+                    return Optional.empty();
+                }
+
+                return tryCompletionUsing(tags, orig, partial);
+            })
             .orElse(orig);
     }
 
@@ -466,6 +490,22 @@ public class AutoCompleter {
     private Optional<String> tryCompletionUsing(List<String> candidates, String orig, String partial) {
         return tryCompletionUsing(candidates, orig, partial, " ");
     }
+
+    private <T extends Entry> List<String> getAllTags(List<T> entries) {
+        return new ArrayList<>(new HashSet<>(entries.stream()
+            .flatMap(e -> e.getTags().stream())
+            .map(t -> t.toString())
+            .collect(Collectors.toList())));
+    }
+
+    private List<String> getAllIngredientTags(Model model) {
+        return getAllTags(model.getIngredientBook().getEntryList());
+    }
+
+    private List<String> getAllRecipeTags(Model model) {
+        return getAllTags(model.getRecipeBook().getEntryList());
+    }
+
 
     @SafeVarargs
     private List<String> getArgNames(ArgName... args) {

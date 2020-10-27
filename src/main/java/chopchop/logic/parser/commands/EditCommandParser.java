@@ -133,7 +133,7 @@ public class EditCommandParser {
 
         var components = argName.getComponents();
         if (components.isEmpty()) {
-            return Result.error("expected either /ingredient:add, /ingredient:edit, or /ingredient:delete");
+            return Result.error("Expected either /ingredient:add, /ingredient:edit, or /ingredient:delete");
         }
 
         var op = components.get(0);

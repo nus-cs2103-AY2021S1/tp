@@ -18,7 +18,6 @@ import chopchop.model.Entry;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Tag;
-import chopchop.model.exceptions.DuplicateEntryException;
 import chopchop.model.ingredient.IngredientReference;
 
 
@@ -33,11 +32,6 @@ public class Recipe extends Entry {
     public Recipe(String name, List<IngredientReference> ingredients, List<Step> steps, Set<Tag> tags) {
         super(name);
         requireAllNonNull(name, ingredients, steps, tags);
-
-        if (ingredients.size() != new HashSet<>(ingredients).size()) {
-            throw new DuplicateEntryException();
-        }
-
         this.ingredients = new ArrayList<>(ingredients);
         this.steps = new ArrayList<>(steps);
         this.tags = new HashSet<>(tags);

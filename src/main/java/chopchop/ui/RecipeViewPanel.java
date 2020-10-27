@@ -1,8 +1,11 @@
 package chopchop.ui;
 
+import java.util.Optional;
+
 import chopchop.model.recipe.Recipe;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
@@ -11,12 +14,13 @@ import javafx.scene.layout.Region;
 public class RecipeViewPanel extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
+
     private static final String FXML = "RecipeViewPanel.fxml";
-    private static final String EMPTY_PROMPT = "You do not have any recipes yet.\nAdd one today:)";
+    private static final String EMPTY_PROMPT = "You do not have any recipes yet.\nAdd one today (:";
+    private static final String FILTER_NO_MATCH = "No matching recipes found";
+
     private static final int ROWS = 3;
     private static final int START_COL = -1;
-
-    private final TextDisplay textDisplay;
 
     private ObservableList<Recipe> recipeObservableList;
     // Only 3 rows of recipes will be displayed.
@@ -30,10 +34,10 @@ public class RecipeViewPanel extends UiPart<Region> {
     /**
      * Creates a {@code RecipeView} with the given {@code ObservableList}.
      */
-    public RecipeViewPanel(ObservableList<Recipe> recipeList) {
+    public RecipeViewPanel(ObservableList<Recipe> filteredList) {
         super(FXML);
-        textDisplay = new TextDisplay(EMPTY_PROMPT);
-        recipeObservableList = recipeList;
+
+        recipeObservableList = filteredList;
         recipeObservableList.addListener((ListChangeListener<Recipe>) c -> fillDisplay());
         fillDisplay();
     }
@@ -43,11 +47,10 @@ public class RecipeViewPanel extends UiPart<Region> {
      */
     private void fillDisplay() {
         recipeGridView.getChildren().clear();
-        if (isEmpty()) {
-            displayPrompt();
-        } else {
-            populate();
-        }
+
+        this.getPlaceholderText().ifPresentOrElse(
+            t -> this.recipeGridView.add(new TextDisplay(t).getRoot(), 0, 0), () -> this.populate()
+        );
     }
 
     private int calculate_row(int index) {
@@ -62,6 +65,7 @@ public class RecipeViewPanel extends UiPart<Region> {
         int col = START_COL;
         for (int i = 0; i < recipeObservableList.size(); i++) {
             Recipe recipe = recipeObservableList.get(i);
+
             // Change from 0 based index to 1 based index
             RecipeCard recipeCard = new RecipeCard(recipe, i + 1);
             row = calculate_row(i);
@@ -72,11 +76,23 @@ public class RecipeViewPanel extends UiPart<Region> {
         }
     }
 
-    private void displayPrompt() {
-        recipeGridView.add(textDisplay.getRoot(), 0, 0);
-    }
+    /**
+     * Gets the appropriate text to show in the pane if there are no recipes to show.
+     * If there are recipes to show, returns an empty optional.
+     */
+    private Optional<String> getPlaceholderText() {
+        if (this.recipeObservableList instanceof FilteredList<?>) {
+            var src = ((FilteredList<?>) this.recipeObservableList).getSource();
 
-    private boolean isEmpty() {
-        return recipeGridView.getChildren().contains(textDisplay) || recipeObservableList.isEmpty();
+            // if the source was not empty but the filter view is empty,
+            // then we have no results.
+            if (!src.isEmpty() && this.recipeObservableList.isEmpty()) {
+                return Optional.of(FILTER_NO_MATCH);
+            }
+        }
+
+        return this.recipeObservableList.isEmpty()
+            ? Optional.of(EMPTY_PROMPT)
+            : Optional.empty();
     }
 }
