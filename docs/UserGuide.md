@@ -543,7 +543,7 @@ Usage: `undo`
 
 
 
-#### Redoing commands — **`redo`**
+### Redoing commands — **`redo`**
 Redoes the last redoable command. All undoable commands (as described [above](#undoing-commands--undo)) can be redone.
 
 Usage: `redo`
