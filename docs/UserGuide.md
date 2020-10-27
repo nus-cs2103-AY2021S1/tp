@@ -241,6 +241,7 @@ Examples:
 * `deleteleave 2 d/09/09/2020`
 
 #### 3.3.5. Edit leave taken by staff: `editleave`
+[This feature is coming soon]
 
 ### 3.4. Applicant commands
 
