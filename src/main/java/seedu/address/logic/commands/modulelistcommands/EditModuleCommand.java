@@ -263,13 +263,11 @@ public class EditModuleCommand extends Command {
             // state check
             EditModuleDescriptor e = (EditModuleDescriptor) other;
 
-            //return getName().equals(e.getName())
-            //       && getEmail().equals(e.getEmail())
-            //       && getTags().equals(e.getTags());
             return getModuleName().equals(e.getModuleName())
                     && getZoomLink().equals(e.getZoomLink())
                     && getGradeTracker().equals(e.getGradeTracker())
-                    && getModularCredits().equals(e.getModularCredits());
+                    && getModularCredits().equals(e.getModularCredits())
+                    && getTags().equals(e.getTags());
         }
     }
 }

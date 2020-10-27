@@ -22,7 +22,7 @@ public class EditModuleDescriptorBuilder {
     }
 
     public EditModuleDescriptorBuilder(EditModuleDescriptor descriptor) {
-        descriptor = new EditModuleDescriptor(descriptor);
+        this.descriptor = new EditModuleDescriptor(descriptor);
     }
 
     /**
