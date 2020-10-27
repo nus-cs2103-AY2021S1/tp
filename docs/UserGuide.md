@@ -220,6 +220,18 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 * Adds an entry to either category.
 * The category refers to the classification of the entry in the entry lists.
 * The category must be either 'expense' or 'revenue'.
+* Each tag can only be 1 word.
+* If multiple tags are required, do input multiple t/ prefixes
+* Each tag in entry only appears once even if added multiple times.
+
+</div>
+
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* Input expense/revenue information can be in any order
 
 </div>
 
@@ -238,6 +250,21 @@ it anymore.
 * `delete 2 c/revenue` : Deletes second entry in the revenue category (**Figure 5.2-2**)
 
 </div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* It is possible for you to use the `find` function then `delete`.
+
+</div>
+
+:warning: **Warning:**
+
+* Entry index should only be a single integer, for example, `delete 1 2 c/revenue` will not work.
+
+</div>
+
 
 ![deleteCommand1](images/commands/deleteCommand1.png)
 <p align="center"> <sub> <b>Figure 5.2-2</b>: The revenue at index 2 is deleted </sub> </p>
@@ -379,6 +406,7 @@ The `clear` command will clear all entries in the stipulated category. If you wo
 entries, use the `delete` command instead.
 
 </div>
+
 
 
 ### 5.2.7 Calculating net profits based on expenses and revenues: `profit` 
