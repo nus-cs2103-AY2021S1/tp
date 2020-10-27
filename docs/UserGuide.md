@@ -9,8 +9,8 @@ Welcome to the User Guide for Eva!
 - [3. Features](#3-features)
   * [3.1. Common Commands](#31-common-commands)
     + [3.1.1. View](#311-view--view)
-    + [3.1.2. List all persons : `list`](#312-listing-all-persons--list)
-    + [3.1.3. Find](#313-find)
+    + [3.1.2. List all persons : `list`](#312-list-all-persons--list)
+    + [3.1.3. Find a person](#313-find-a-person--find--find_type)
   * [3.2. General Commands](#32-general-commands)
     + [3.2.1. Clear all entries : `clear`](#321-clear-all-entries--clear)
     + [3.2.2. Find help : `help`](#322-find-help--help)
@@ -154,9 +154,9 @@ Examples:
 * `list -staff`
 * `list -applicant`
 
-#### 3.1.3. Find
+#### 3.1.3. Find a person : `find -FIND_TYPE`
 
-Show a list of the persons whose name contains one of the given names.
+Shows a list of the persons whose name contains one of the given names.
 
 Format `find -FIND_TYPE`
 
