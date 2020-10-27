@@ -3,6 +3,7 @@ package seedu.stock.logic.parser;
 import static seedu.stock.commons.core.Messages.MESSAGE_DUPLICATE_HEADER_FIELD;
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
@@ -30,7 +31,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_QUANTITY, PREFIX_LOCATION);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_SOURCE, PREFIX_QUANTITY, PREFIX_LOCATION,
+                        PREFIX_LOW_QUANTITY);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -42,13 +44,20 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD, AddCommand.MESSAGE_USAGE));
         }
 
+        // Checks if low quantity prefix only appear at most once in the given command.
+        if (!doesLowQuantityPrefixesAppearOnce(argMultimap, PREFIX_LOW_QUANTITY)) {
+            throw new ParseException(String.format(MESSAGE_DUPLICATE_HEADER_FIELD, AddCommand.MESSAGE_USAGE));
+        }
+
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get().toLowerCase());
         SerialNumber serialNumber = SerialNumber.generateDefaultSerialNumber();
         Source source = ParserUtil.parseSource(argMultimap.getValue(PREFIX_SOURCE).get().toLowerCase());
         Quantity quantity = ParserUtil.parseQuantity(argMultimap.getValue(PREFIX_QUANTITY).get());
+        Quantity updatedQuantity = ParserUtil.parseLowQuantity(quantity,
+                argMultimap.getValue(PREFIX_LOW_QUANTITY));
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get().toLowerCase());
 
-        Stock stock = new Stock(name, serialNumber, source, quantity, location);
+        Stock stock = new Stock(name, serialNumber, source, updatedQuantity, location);
 
         return new AddCommand(stock);
     }
@@ -67,6 +76,14 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static boolean doesPrefixesAppearOnce(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() == 1);
+    }
+
+    /**
+     * Returns true if all of the low quantity prefix appears at most one time in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean doesLowQuantityPrefixesAppearOnce(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getAllValues(prefix).size() <= 1);
     }
 
 }

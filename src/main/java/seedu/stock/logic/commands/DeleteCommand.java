@@ -53,6 +53,7 @@ public class DeleteCommand extends Command {
         if (targetSerialNumbers.size() == 0) {
             throw new CommandException(Messages.MESSAGE_NO_SERIAL_NUMBERS_GIVEN);
         }
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownList = model.getFilteredStockList();
         List<Stock> stocksDeleted = new ArrayList<>();
         List<SerialNumber> unknownSerialNumbers = new ArrayList<>();

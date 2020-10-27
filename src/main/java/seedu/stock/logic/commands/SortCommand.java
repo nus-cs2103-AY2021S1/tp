@@ -54,4 +54,21 @@ public class SortCommand extends Command {
         logger.log(Level.INFO, "Sorting successful");
         return new CommandResult(String.format(MESSAGE_SORT_STOCK_SUCCESS, SortUtil.getFieldDescription(fieldToSort)));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SortCommand)) {
+            return false;
+        }
+
+        // state check
+        SortCommand castedOther = (SortCommand) other;
+        return fieldToSort.equals(castedOther.fieldToSort) && isReversed == castedOther.isReversed;
+    }
 }
