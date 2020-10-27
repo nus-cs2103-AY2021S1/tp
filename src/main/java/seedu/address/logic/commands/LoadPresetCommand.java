@@ -5,15 +5,18 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
+import seedu.address.model.order.OrderItem;
 import seedu.address.model.preset.Preset;
 import seedu.address.model.vendor.Name;
 import seedu.address.storage.Storage;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
 public class LoadPresetCommand extends PresetCommand {
 
@@ -31,12 +34,20 @@ public class LoadPresetCommand extends PresetCommand {
         if (!model.isSelected()) {
             throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
-//        try {
-//            Optional<List<Preset>> lists = storage.readPresetManager();
-//            lists.ifPresent(list -> model.setOrder(list.get(model.getVendorIndex()).getOrderItems()));
-//        } catch (DataConversionException | IOException | IndexOutOfBoundsException e) {
-//            throw new CommandException("Presets cannot be read.");
-//        }
+
+        try {
+            List<List<Preset>> allLists = storage.readPresetManager()
+                    .orElseThrow(() -> new CommandException(FILE_OPS_ERROR_MESSAGE));
+            allLists.get(model.getVendorIndex())
+                    .stream()
+                    .filter(preset -> preset.getName().equals(presetName.toString()))
+                    .findFirst()
+                    .map(Preset::getOrderItems)
+                    .ifPresent(model::setOrder);
+
+        } catch (DataConversionException | IOException | IndexOutOfBoundsException e) {
+            throw new CommandException("Presets cannot be read.");
+        }
         return new CommandResult(Messages.MESSAGE_PRESET_LOAD_SUCCESS, false, false, true);
     }
 

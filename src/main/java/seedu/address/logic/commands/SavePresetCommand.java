@@ -5,10 +5,12 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
+import seedu.address.model.preset.Preset;
 import seedu.address.model.vendor.Name;
 import seedu.address.storage.Storage;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
@@ -28,7 +30,20 @@ public class SavePresetCommand extends PresetCommand {
         }
 
         try {
-            //TODO: Change to index
+            List<List<Preset>> allLists = storage.readPresetManager()
+                    .orElseThrow(() -> new CommandException(FILE_OPS_ERROR_MESSAGE));
+            //TODO: UPDATE ERROR THROW
+            int currentIndex = model.getVendorIndex();
+            if (currentIndex >= allLists.size()) {
+                throw new CommandException("dab");
+            }
+            // check entire menu???? whether order is valid
+            List<Preset> currentVendorPresets = allLists.get(model.getVendorIndex());
+            Optional<Preset> preset = currentVendorPresets.stream()
+                    .filter(x -> x.getName().equals(presetName.toString()))
+                    .findFirst();
+            preset.ifPresent(x -> model.setOrder(x.getOrderItems()));
+
             storage.savePresetManager(model.getOrderManager(), presetName.toString(), model.getVendorIndex());
         } catch (IOException | DataConversionException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
