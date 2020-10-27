@@ -298,6 +298,35 @@ When an `Appointment` is successfully added to a patient, a success message will
 
 ![result for 'add appointment'](images/addAppt.png)
 
+### Editing an Appointment: `editAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to edit an existing `Appointment` for a patient in **Hospify**.
+
+Format: `editAppt NRIC oldappt/DATE TIME newappt/DATE TIME`
+
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Note on different appointment parameters:**<br>
+
+* There are two separate `Appointment` timings specified in the format
+
+* The old `Appointment` timing is preceded by a `oldappt/` prefix
+
+* The new `Appointment` timing is preceded by a `newappt/` prefix
+</div>
+
+* The `Appointment` to edit must be an existing appointment of the patient.
+* Only the date and timing of the `Appointment` can be changed. The name/description cannot be changed.
+* `NRIC` represents the `NRIC` of the patient whose `Appointment` you are editing.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-`addAppt`-(by-Gabriel-Teo-Yu-Xiang)) command section.
+
+Examples:
+* `editAppt S0000001A oldappt/28/09/2022 20:00 newappt/30/09/2022 15:00`
+
+When an `Appointment` is successfully edited, a success message will appear in the message box as shown in the figure below.<br>
+
+![result for 'edit appointment'](images/editAppt.png)
+
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
 By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit) patients by including the `mr/MEDICAL_RECORD_URL` field. Now, let us explore how we can make use of this feature to edit patients' medical record.
