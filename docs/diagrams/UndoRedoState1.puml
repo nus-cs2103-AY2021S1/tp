@@ -3,20 +3,21 @@
 skinparam ClassFontColor #000000
 skinparam ClassBorderColor #000000
 
-title After command "delete 5"
+title After command "delete 3"
 
-package States <<rectangle>> {
-    class State1 as "__ab0:AddressBook__"
-    class State2 as "__ab1:AddressBook__"
-    class State3 as "__ab2:AddressBook__"
+package States {
+    class State1 as "__currState:ResiReg__"
+    package undoStatesStack {
+        class State2 as "__stateBeforeDelete:ResiReg__"
+    }
+    package redoStatesStack { }
 }
 
-State1 -[hidden]right-> State2
-State2 -[hidden]right-> State3
+State1-[hidden]right-> redoStatesStack
+State1-[hidden]right-> undoStatesStack
+undoStatesStack-[hidden]right-> redoStatesStack
 
-hide State3
+class Pointer1 as "Top Element" #FFFFF
 
-class Pointer as "Current State" #FFFFF
-
-Pointer -up-> State2
+Pointer1 -up-> State2
 @end
