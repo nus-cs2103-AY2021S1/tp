@@ -24,13 +24,14 @@ import nustorage.model.ReadOnlyFinanceAccount;
 class JsonFinanceAccountStorageTest {
 
     private static final Path TEST_DATA_FOLDER =
-            Paths.get("src", "test", "data", "JsonFinanceAccountStorageTest");
+        Paths.get("src", "test", "data", "JsonFinanceAccountStorageTest");
 
     private static final Path TEST_DATA_FILE =
-            Paths.get("src", "test", "data", "JsonFinanceAccountStorageTest", "financeAccount.json");
+        Paths.get("src", "test", "data", "JsonFinanceAccountStorageTest", "financeAccount.json");
 
     private static final Path TEST_DATA_TARGET_FILE =
-            Paths.get("src", "test", "data", "JsonFinanceAccountStorageTest", "testSave.json");
+        Paths.get("src", "test", "data", "JsonFinanceAccountStorageTest", "testSave.json");
+
 
     @BeforeAll
     @AfterAll
@@ -38,7 +39,9 @@ class JsonFinanceAccountStorageTest {
         try {
             // Delete the save target file if it exists before and after the test
             Files.delete(TEST_DATA_TARGET_FILE);
-        } catch (NoSuchFileException ignored) {}
+        } catch (NoSuchFileException ignored) {
+            // ignored
+        }
     }
 
 
@@ -50,7 +53,7 @@ class JsonFinanceAccountStorageTest {
 
 
     private Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath)
-            throws NullPointerException, DataConversionException {
+        throws NullPointerException, DataConversionException {
         return new JsonFinanceAccountStorage(TEST_DATA_FOLDER).readFinanceAccount(filePath);
     }
 
@@ -63,21 +66,20 @@ class JsonFinanceAccountStorageTest {
     @Test
     void readFinanceAccount_validInputs_returnsNonEmptyOptional() {
         assertTrue(() -> {
-                    try {
-                        return readFinanceAccount().isPresent();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        return false;
-                    }
-                }
-        );
+            try {
+                return readFinanceAccount().isPresent();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        });
     }
 
 
     @Test
     void readFinanceAccount_validFilePath_returnsCorrectFinanceAccount() throws DataConversionException {
         Optional<ReadOnlyFinanceAccount> testOptionalFinanceAccount =
-                new JsonFinanceAccountStorage(TEST_DATA_FOLDER).readFinanceAccount(TEST_DATA_FILE);
+            new JsonFinanceAccountStorage(TEST_DATA_FOLDER).readFinanceAccount(TEST_DATA_FILE);
         assertEquals(testOptionalFinanceAccount, readFinanceAccount(TEST_DATA_FILE));
     }
 
@@ -91,24 +93,22 @@ class JsonFinanceAccountStorageTest {
     @Test
     void readFinanceAccount_invalidJsonFilePath_returnsEmptyOptional() {
         // nonExistentAccount.json is a file that does not exist in the directory
-        assertTrue(
-                () -> {
-                    try {
-                        return readFinanceAccount(
-                                Paths.get(String.valueOf(TEST_DATA_FOLDER), "nonExistentAccount.json")).isEmpty();
-                    } catch (DataConversionException e) {
-                        return false;
-                    }
-                }
-        );
+        assertTrue(() -> {
+            try {
+                return readFinanceAccount(
+                    Paths.get(String.valueOf(TEST_DATA_FOLDER), "nonExistentAccount.json")).isEmpty();
+            } catch (DataConversionException e) {
+                return false;
+            }
+        });
     }
 
 
     @Test
     void readFinanceAccount_invalidJsonFile_throwsDataConversionException() {
         // invalidRecord.json is a file that does not follow the json file convention
-        assertThrows(DataConversionException.class,
-                () -> readFinanceAccount(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidRecord.json"))
+        assertThrows(DataConversionException.class, () ->
+            readFinanceAccount(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidRecord.json"))
         );
     }
 
@@ -116,8 +116,8 @@ class JsonFinanceAccountStorageTest {
     @Test
     void readFinanceAccount_invalidFinanceAccountFile_throwsDataConversionException() {
         // invalidRecord.json is a file that does not follow the json file convention
-        assertThrows(DataConversionException.class,
-                () -> readFinanceAccount(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidFinanceAccount.json"))
+        assertThrows(DataConversionException.class, () ->
+            readFinanceAccount(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidFinanceAccount.json"))
         );
     }
 
@@ -134,7 +134,7 @@ class JsonFinanceAccountStorageTest {
     void saveFinanceAccount(ReadOnlyFinanceAccount toSave, Path filePath) {
         try {
             new JsonFinanceAccountStorage(TEST_DATA_FOLDER)
-                    .saveFinanceAccount(toSave, filePath);
+                .saveFinanceAccount(toSave, filePath);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -143,28 +143,22 @@ class JsonFinanceAccountStorageTest {
 
     @Test
     void saveFinanceAccount_nullFinanceAccount_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> saveFinanceAccount(null,
-                        Paths.get(String.valueOf(TEST_DATA_FOLDER), "someFinanceAccount.json"))
+        assertThrows(NullPointerException.class, () -> saveFinanceAccount(null,
+            Paths.get(String.valueOf(TEST_DATA_FOLDER), "someFinanceAccount.json"))
         );
     }
 
 
     @Test
     void saveFinanceAccount2_nullFinanceAccount_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> saveFinanceAccount(null)
-        );
+        assertThrows(NullPointerException.class, () -> saveFinanceAccount(null));
     }
 
 
     @Test
     void saveFinanceAccount_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> saveFinanceAccount(new FinanceAccount(), null)
-        );
+        assertThrows(NullPointerException.class, () -> saveFinanceAccount(new FinanceAccount(), null));
     }
-
 
 
     @Test

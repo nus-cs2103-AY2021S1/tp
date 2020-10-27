@@ -24,13 +24,13 @@ import nustorage.model.ReadOnlyInventory;
 class JsonInventoryStorageTest {
 
     private static final Path TEST_DATA_FOLDER =
-            Paths.get("src", "test", "data", "JsonInventoryStorageTest");
+        Paths.get("src", "test", "data", "JsonInventoryStorageTest");
 
     private static final Path TEST_DATA_FILE =
-            Paths.get("src", "test", "data", "JsonInventoryStorageTest", "inventory.json");
+        Paths.get("src", "test", "data", "JsonInventoryStorageTest", "inventory.json");
 
     private static final Path TEST_DATA_TARGET_FILE =
-            Paths.get("src", "test", "data", "JsonInventoryStorageTest", "testSave.json");
+        Paths.get("src", "test", "data", "JsonInventoryStorageTest", "testSave.json");
 
 
     @BeforeAll
@@ -40,6 +40,7 @@ class JsonInventoryStorageTest {
             // Delete the save target file if it exists before and after the test
             Files.delete(TEST_DATA_TARGET_FILE);
         } catch (NoSuchFileException ignored) {
+            // ignored
         }
     }
 
@@ -52,7 +53,7 @@ class JsonInventoryStorageTest {
 
 
     private Optional<ReadOnlyInventory> readInventory(Path filePath)
-            throws NullPointerException, DataConversionException {
+        throws NullPointerException, DataConversionException {
         return new JsonInventoryStorage(TEST_DATA_FOLDER).readInventory(filePath);
     }
 
@@ -65,21 +66,20 @@ class JsonInventoryStorageTest {
     @Test
     void readInventory_validInputs_returnsNonEmptyOptional() {
         assertTrue(() -> {
-                    try {
-                        return readInventory().isPresent();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        return false;
-                    }
-                }
-        );
+            try {
+                return readInventory().isPresent();
+            } catch (Exception e) {
+                e.printStackTrace();
+                return false;
+            }
+        });
     }
 
 
     @Test
     void readInventory_validFilePath_returnsCorrectFinanceAccount() throws DataConversionException {
         Optional<ReadOnlyInventory> testOptionalFinanceAccount =
-                new JsonInventoryStorage(TEST_DATA_FOLDER).readInventory(TEST_DATA_FILE);
+            new JsonInventoryStorage(TEST_DATA_FOLDER).readInventory(TEST_DATA_FILE);
         assertEquals(testOptionalFinanceAccount, readInventory(TEST_DATA_FILE));
     }
 
@@ -93,42 +93,38 @@ class JsonInventoryStorageTest {
     @Test
     void readInventory_invalidJsonFilePath_returnsEmptyOptional() {
         // nonExistentAccount.json is a file that does not exist in the directory
-        assertTrue(
-                () -> {
-                    try {
-                        return readInventory(
-                                Paths.get(String.valueOf(TEST_DATA_FOLDER), "nonExistentAccount.json")).isEmpty();
-                    } catch (DataConversionException e) {
-                        return false;
-                    }
-                }
-        );
+        assertTrue(() -> {
+            try {
+                return readInventory(
+                    Paths.get(String.valueOf(TEST_DATA_FOLDER), "nonExistentAccount.json")).isEmpty();
+            } catch (DataConversionException e) {
+                return false;
+            }
+        });
     }
 
 
     @Test
     void readInventory_invalidJsonFile_throwsDataConversionException() {
         // invalidRecord.json is a file that does not follow the json file convention
-        assertThrows(DataConversionException.class,
-                () -> readInventory(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidRecord.json"))
-        );
+        assertThrows(DataConversionException.class, () ->
+            readInventory(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidRecord.json")));
     }
 
 
     @Test
     void readInventory_invalidFinanceAccountFile_throwsDataConversionException() {
         // invalidRecord.json is a file that does not follow the json file convention
-        assertThrows(DataConversionException.class,
-                () -> readInventory(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidInventory.json"))
-        );
+        assertThrows(DataConversionException.class, () ->
+            readInventory(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidInventory.json")));
     }
+
 
     @Test
     void readInventory_invalidFinanceAccountFile2_throwsDataConversionException() {
         // invalidRecord.json is a file that does not follow the json file convention
-        assertThrows(DataConversionException.class,
-                () -> readInventory(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidInventory2.json"))
-        );
+        assertThrows(DataConversionException.class, () ->
+            readInventory(Paths.get(String.valueOf(TEST_DATA_FOLDER), "invalidInventory2.json")));
     }
 
 
@@ -144,7 +140,7 @@ class JsonInventoryStorageTest {
     void saveFinanceAccount(ReadOnlyInventory toSave, Path filePath) {
         try {
             new JsonInventoryStorage(TEST_DATA_FOLDER)
-                    .saveInventory(toSave, filePath);
+                .saveInventory(toSave, filePath);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -153,26 +149,20 @@ class JsonInventoryStorageTest {
 
     @Test
     void saveFinanceAccount_nullFinanceAccount_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> saveFinanceAccount(null,
-                        Paths.get(String.valueOf(TEST_DATA_FOLDER), "someFinanceAccount.json"))
-        );
+        assertThrows(NullPointerException.class, () -> saveFinanceAccount(null,
+            Paths.get(String.valueOf(TEST_DATA_FOLDER), "someFinanceAccount.json")));
     }
 
 
     @Test
     void saveFinanceAccount2_nullFinanceAccount_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> saveFinanceAccount(null)
-        );
+        assertThrows(NullPointerException.class, () -> saveFinanceAccount(null));
     }
 
 
     @Test
     void saveFinanceAccount_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class,
-                () -> saveFinanceAccount(new Inventory(), null)
-        );
+        assertThrows(NullPointerException.class, () -> saveFinanceAccount(new Inventory(), null));
     }
 
 
