@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
-<HBox fx:id="placeHolder2" alignment="CENTER_LEFT" styleClass="pane-with-round-border" xmlns="http://javafx.com/javafx/8"
+<VBox fx:id="placeHolder2" alignment="CENTER_LEFT" styleClass="pane-with-round-border" xmlns="http://javafx.com/javafx/8"
       xmlns:fx="http://javafx.com/fxml/1">
     <padding>
         <Insets top="20" right="15" bottom="15" left="15" />
     </padding>
-    <ScrollPane fitToWidth="true">
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
         <VBox alignment="CENTER_LEFT">
             <padding>
                 <Insets left="15" right="15" />
@@ -27,5 +27,5 @@
             </HBox>
         </VBox>
     </ScrollPane>
-</HBox>
+</VBox>
 
