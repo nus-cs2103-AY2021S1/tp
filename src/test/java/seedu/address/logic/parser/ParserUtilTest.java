@@ -17,6 +17,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.SchoolType;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.Feedback;
 import seedu.address.model.student.academic.exam.Score;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
@@ -69,7 +70,6 @@ public class ParserUtilTest {
     private static final String VALID_ATTENDANCE_DATE = "23/9/2019";
     private static final String VALID_ATTENDANCE_STATUS = "attended";
     private static final String VALID_FEEDBACK = "attentive";
-    
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -533,13 +533,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseFeedback_validStatusWithoutWhiteSpace_returnsFeedbackString() throws Exception {
-        assertEquals(VALID_FEEDBACK, ParserUtil.parseFeedback(VALID_FEEDBACK));
+        assertEquals(new Feedback(VALID_FEEDBACK), ParserUtil.parseFeedback(VALID_FEEDBACK));
     }
 
     @Test
     public void parseFeedback_validStatusWithWhiteSpace_returnsFeedbackString() throws Exception {
         String statusWithWhiteSpace = WHITESPACE + VALID_FEEDBACK + WHITESPACE;
-        assertEquals(VALID_FEEDBACK, ParserUtil.parseFeedback(statusWithWhiteSpace));
+        assertEquals(new Feedback(VALID_FEEDBACK), ParserUtil.parseFeedback(statusWithWhiteSpace));
     }
 
 }
