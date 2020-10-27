@@ -23,7 +23,7 @@
                 <padding>
                     <Insets top="15"/>
                 </padding>
-            <Label fx:id="note"  styleClass="cell_small_label" text="\$note"/>
+            <Label fx:id="note" wrapText="true" styleClass="cell_small_label" text="\$note"/>
             </HBox>
         </VBox>
     </ScrollPane>
