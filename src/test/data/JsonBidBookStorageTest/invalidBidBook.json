@@ -1,0 +1,7 @@
+{
+  "bids" : [ {
+    "propertyId" : "Bid with invalid propertyId field: pr8f8",
+    "bidderId" : "B2",
+    "bidAmount" : 999999.0
+  } ]
+}

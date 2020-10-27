@@ -73,6 +73,10 @@ public class EditBidCommand extends Command {
         if (!bidToEdit.isSameBid(editedBid) && model.hasBid(editedBid)) {
             throw new CommandException(MESSAGE_DUPLICATE_BID);
         }
+        if (bidToEdit.isSameBid(editedBid)) {
+            throw new CommandException(MESSAGE_NOT_EDITED);
+        }
+
 
         model.setBid(bidToEdit, editedBid);
         model.updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
@@ -89,7 +93,6 @@ public class EditBidCommand extends Command {
 
         PropertyId updatedPropertyId = editBidDescriptor.getPropertyId().orElse(bidToEdit.getPropertyId());
         BidderId updatedBidderId = editBidDescriptor.getBidderId().orElse(bidToEdit.getBidderId());
-        double test = 345.55;
         Price updatedBidAmount = editBidDescriptor.getBidAmount().orElse(bidToEdit.getBidAmount());
 
         return new Bid(updatedPropertyId, updatedBidderId, updatedBidAmount);
