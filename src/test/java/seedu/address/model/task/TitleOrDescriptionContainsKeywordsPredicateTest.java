@@ -60,6 +60,11 @@ public class TitleOrDescriptionContainsKeywordsPredicateTest {
         // Mixed-case keywords
         predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("cS2103", "PrOjEcT"));
         assertTrue(predicate.test(new ToDoBuilder().withTitle("CS2103 Project").build()));
+
+        // Keywords match description or title
+        predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("Project", "random", "Low"));
+        assertTrue(predicate.test(new ToDoBuilder().withTitle("Lecture").withDescription("random")
+                .withPriority("Low").build()));
     }
 
     @Test
@@ -72,10 +77,5 @@ public class TitleOrDescriptionContainsKeywordsPredicateTest {
         // Non-matching keyword
         predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("Lecture"));
         assertFalse(predicate.test(new ToDoBuilder().withTitle("CS2103 Project").build()));
-
-        // Keywords match phone, email and address, but does not match name
-        predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("Project", "random", "Low"));
-        assertFalse(predicate.test(new ToDoBuilder().withTitle("Lecture").withDescription("random")
-                .withPriority("Low").build()));
     }
 }
