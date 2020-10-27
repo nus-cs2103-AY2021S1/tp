@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
 import java.util.Comparator;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.project.TaskSorterCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
