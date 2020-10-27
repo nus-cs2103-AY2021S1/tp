@@ -15,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Collections;
 import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,6 +26,7 @@ import seedu.address.model.recipe.RecipeImage;
  */
 public class ImageParser {
     private static final String DIRECTORY_NAME = "data/";
+    private boolean isDoneLoading = false;
 
     /**
      * Parses a String of image path to
@@ -47,16 +48,28 @@ public class ImageParser {
                     }
                 }
                 URL url = new URL(imagePath);
-                InputStream in = new BufferedInputStream(url.openStream());
-                ByteArrayOutputStream out = new ByteArrayOutputStream();
-                byte[] buf = new byte[1024];
-                int n = 0;
-                while (-1 != (n = in.read(buf))) {
-                    out.write(buf, 0, n);
+                CompletableFuture<byte[]> completableFuture =
+                        CompletableFuture.supplyAsync(() -> {
+                            try {
+                                InputStream in = new BufferedInputStream(url.openStream());
+                                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                                byte[] buf = new byte[1024];
+                                int n = 0;
+                                while (-1 != (n = in.read(buf))) {
+                                    out.write(buf, 0, n);
+                                }
+                                out.close();
+                                in.close();
+                                return out.toByteArray();
+                            } catch (Exception e) {
+                                return null;
+                            }
+                        });
+                while (!completableFuture.isDone()) {
+                    this.isDoneLoading = false;
                 }
-                out.close();
-                in.close();
-                byte[] response = out.toByteArray();
+                this.isDoneLoading = true;
+                byte[] response = completableFuture.get();
                 //imagePath = AddRecipeCommandParser.class.getResource("/images").getPath() + "/" + filename;
                 imagePath = DIRECTORY_NAME + filename;
                 //imagePath = getPathsFromResourceJAR("data") + "/" + filename;
@@ -74,14 +87,18 @@ public class ImageParser {
                 //imagePath = file.getPath();
                 imagePath = "file://" + imagePath;
             }
-        } catch (IOException | URISyntaxException | NullPointerException
-                | NoSuchElementException | IllegalArgumentException e) {
+        } catch (Exception e) {
             imagePath = "images/default.jpg";
         }
 
         //return new RecipeImage("images/" + filename);
         return new RecipeImage(imagePath);
     }
+
+    public boolean isDoneLoading() {
+        return this.isDoneLoading;
+    }
+
 
     /**
      * Get all paths from a folder that inside the JAR file.
