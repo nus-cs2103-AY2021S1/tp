@@ -216,7 +216,6 @@ public class ParserUtil {
         }
         return trimmedTaskName;
     }
-
     /**
      * Parses a {@code String progress} into a {@code Double}.
      * Leading and trailing whitespaces will be trimmed.

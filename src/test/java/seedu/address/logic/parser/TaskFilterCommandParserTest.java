@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.project.TaskFilterCommand;
 import seedu.address.model.person.GitUserName;
+import seedu.address.model.project.Deadline;
 import seedu.address.model.task.Date;
 import seedu.address.model.task.Task;
 
@@ -74,15 +75,15 @@ class TaskFilterCommandParserTest {
     }
     @Test
     public void parse_validPrefixInvalidValue_failure() {
-        assertParseFailure(parser, INVALID_TASK_DEADLINE_DESC_A, Task.DEADLINE_MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, INVALID_TASK_DEADLINE_DESC_B, Task.DEADLINE_MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, INVALID_TASK_DEADLINE_DESC_C, Task.DEADLINE_MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TASK_DEADLINE_DESC_A, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TASK_DEADLINE_DESC_B, Deadline.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, INVALID_TASK_DEADLINE_DESC_C, Deadline.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, INVALID_TASK_PROGRESS_DESC_A, Task.PROGRESS_MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, INVALID_TASK_PROGRESS_DESC_B, Task.PROGRESS_MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, INVALID_TASK_PROGRESS_DESC_C, Task.PROGRESS_MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, INVALID_TASK_IS_DONE_DESC, Task.IS_DONE_MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, INVALID_TASK_ASSIGNEE_DESC, GitUserName.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, INVALID_TIME_RANGE_DESC_A, Date.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, INVALID_TIME_RANGE_DESC_B, TaskFilterCommand.MESSAGE_USAGE);
+        assertParseFailure(parser, INVALID_TIME_RANGE_DESC_B, TaskFilterCommand.MESSAGE_INVALID_TIME_RANGE);
     }
 }

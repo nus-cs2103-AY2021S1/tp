@@ -86,7 +86,7 @@ class JsonAdaptedTask {
         }
         if (deadline != null) {
             if (!Deadline.isValidDeadline(deadline)) {
-                throw new IllegalValueException(Task.DEADLINE_MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(Deadline.MESSAGE_CONSTRAINTS);
             }
         }
         if (progress == null) {

@@ -27,8 +27,6 @@ public class Task implements Comparable<Task> {
             "Task description can be any values, and it should not be blank";
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
             "Publish date should only be in the format of dd-MM-yyyy";
-    public static final String DEADLINE_MESSAGE_CONSTRAINTS =
-            "Publish date should only be in the format of yyyy-MM-dd";
     public static final String PROGRESS_MESSAGE_CONSTRAINTS =
             "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
     public static final String IS_DONE_MESSAGE_CONSTRAINTS =
