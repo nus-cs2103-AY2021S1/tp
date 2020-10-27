@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.expense.model.budget.exceptions.CategoryBudgetNotFoundException;
 import seedu.expense.model.budget.exceptions.DuplicateCategoryBudgetException;
 import seedu.expense.model.expense.Amount;
 
@@ -58,6 +59,18 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     }
 
     /**
+     * Removes a category-budget to the list.
+     * The category-budget must already exist in the list.
+     */
+    public void remove(CategoryBudget toDelete) {
+        requireNonNull(toDelete);
+        if (!contains(toDelete)) {
+            throw new CategoryBudgetNotFoundException();
+        }
+        internalList.remove(toDelete);
+    }
+
+    /**
      * Calculates the sum of the budgets in the category-budgets list.
      * @return sum of budgets.
      */
@@ -72,16 +85,6 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
             sum += i.next().getAmount().asDouble();
         }
         return sum;
-    }
-
-    /**
-     * Calculates the sum of the budgets in the category-budgets list that matches {@code predicate}.
-     * @return sum of filtered budgets.
-     */
-    public double tallyAmounts(Predicate<CategoryBudget> predicate) {
-        return filteredList.stream()
-            .map(budget -> budget.getAmount().asDouble())
-            .reduce(0.0, (partialSum, amount) -> partialSum + amount);
     }
 
     public void setBudgets(UniqueCategoryBudgetList replacement) {
