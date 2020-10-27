@@ -222,7 +222,31 @@ __Result:__ finance account is listed.
 
 ---
 
-#### 4.3.1. Quit the programme: `exit`
+#### 4.3.1. Switch to inventory: `goto_inventory`
+
+Switches to the inventory tab in the programme.
+
+__Format:__ `goto_inventory`
+
+__Example:__ `goto_inventory`
+
+__Result:__ Inventory tab is switched to.
+
+---
+
+#### 4.3.2. Switch to finance: `goto_finance`
+
+Switches to the finance tab in the programme.
+
+__Format:__ `goto_finance`
+
+__Example:__ `goto_finance`
+
+__Result:__ Finance tab is switched to.
+
+---
+
+#### 4.3.3. Quit the programme: `exit`
 
 Saves data locally in a data file and exits the programme.
 
@@ -236,11 +260,11 @@ __Result:__ Programme terminates.
 
 ---
 
-#### 4.3.2. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
+#### 4.3.4. Undo/Redo the previous command: `undo`/`redo`[coming in v2.0]`
 
 [_This feature is planned for v2.0_]
 
-Undo or redo the previous command
+Undo or redo the previous command.
 
 __Format:__ `undo` or `redo`
   
