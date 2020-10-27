@@ -341,41 +341,25 @@ Examples:
 ![GUI export command example](images/CommandImagesForUG/ExportGUI.png)
 
 
-### Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-<div markdown="block" class="alert alert-info">
-
-:information_source:
-
-* Exits McGymmy and closes the McGymmy window.
-* Data will be automatically saved (see also section on *Saving the data* below).
-* All additional input after the *command word* `exit` will be ignored. E.g. `exit` and `exit 123` will have the same effect.
-
-</div>
-
-
 ### Creating a macro command : `macro`
 
 Adds a macro to run several commands in succession.
 
 *__WARNING:__* this is an advanced feature!
 
-Arguments to the macro can be substituted in the commands using the syntax:
-`\ARGUMENT_NAME`.
-
-Unnamed arguments can be substituted using the syntax: `\$`
-
-Format: `macro SHORTCUT ARGUMENT_1 ARGUMENT_2 ... ; COMMAND_1 ARGUMENTS_TO_COMMAND \REUSED_ARGUMENT; [COMMAND_2; ...]` <br>
+Format: `macro SHORTCUT FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; [COMMAND_2 PARAMETERS_TO_COMMAND_2; ...]` <br>
 
 <div markdown="block" class="alert alert-info">
 
 :information_source:
 
-* Create a macro with name `SHORTCUT` and arguments `ARGUMENT_1` and `ARGUMENT_2` which executes `COMMAND_1; COMMAND_2; ...`.
+* Create a macro with name `SHORTCUT` which takes in parameters `FLAG_1 FLAG_2...` which executes `COMMAND_1; COMMAND_2; ...`.
+
+* Parameters to the macro can be substituted in the `PARAMETERS_TO_COMMAND` using the syntax: `\FLAG_NAME`.
+
+* Flag-less parameters can be substituted using the syntax: `\$`.
+
+* Read the examples below for more information.
 
 </div>
 
@@ -397,6 +381,23 @@ Examples:
 
 </div>
 
+
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:
+
+* Exits McGymmy and closes the McGymmy window.
+* Data will be automatically saved (see also section on *Saving the data* below).
+* All additional input after the *command word* `exit` will be ignored. E.g. `exit` and `exit 123` will have the same effect.
+
+</div>
 
 
 ### Undoing the previous command : `undo`
