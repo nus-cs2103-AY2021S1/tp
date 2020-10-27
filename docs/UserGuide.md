@@ -117,7 +117,7 @@ Note how the app contains some sample data.<br>
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` or `<in angular brackets>` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
@@ -319,39 +319,39 @@ Format: `add s- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT]`
 
 Format: `add a- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [id/INTERVIEW_DATE]`
 
-#### 3.5.3. Add a comment to staff in Eva: `add <index> s- c/`
+#### 3.5.3. Add a comment to staff in Eva: `add INDEX s- c/`
 
-Format: `add <index_of_staff> s- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DESCRIPTION`
+Format: `add INDEX_OF_STAFF s- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DESCRIPTION`
 
-#### 3.5.4. Add a comment to applicant in Eva: `add <index> a- c/`
+#### 3.5.4. Add a comment to applicant in Eva: `add INDEX a- c/`
 
-Format: `add <index_of_applicant> a- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DESCRIPTION`
+Format: `add INDEX_OF_APPLICANT a- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DESCRIPTION`
 
-#### 3.5.5. Add leave to staff in Eva: `add <index> l/ `
+#### 3.5.5. Add leave to staff in Eva: `add INDEX l/ `
 
-Format: `add <index_of_staff> l/ d/DATE (IN DD/MM/YYYY)`
+Format: `add INDEX_OF_STAFF l/ d/DATE (IN DD/MM/YYYY)`
 
 ### 3.6. Quick Delete (Experienced Users): `delete`
 
-#### 3.6.1. Delete a staff from Eva: `delete <index_of_staff> s-`
+#### 3.6.1. Delete a staff from Eva: `delete INDEX_OF_STAFF s-`
 
-Format: `delete <index_of_staff> s-`
+Format: `delete INDEX_OF_STAFF s-`
 
-#### 3.6.2. Delete a applicant from Eva: `delete <index_of_applicant> a-`
+#### 3.6.2. Delete a applicant from Eva: `delete INDEX_OF_APPLICANT a-`
 
-Format: `delete <index_of_applicant> a-`
+Format: `delete INDEX_OF_APPLICANT a-`
 
-#### 3.6.3. Delete a comment from staff in Eva: `delete <index> s- c/`
+#### 3.6.3. Delete a comment from staff in Eva: `delete INDEX s- c/`
 
-Format: `delete <index_of_staff> s- c/ ti/TITLE`
+Format: `delete INDEX_OF_STAFF s- c/ ti/TITLE`
 
-#### 3.6.4. Delete a comment from applicant in Eva: `delete <index> a- c/`
+#### 3.6.4. Delete a comment from applicant in Eva: `delete INDEX a- c/`
 
-Format: `delete <index_of_applicant> a- c/ ti/TITLE`
+Format: `delete INDEX_OF_APPLICANT a- c/ ti/TITLE`
 
-#### 3.6.5. Delete leave from staff in Eva: `delete <index> l/ `
+#### 3.6.5. Delete leave from staff in Eva: `delete INDEX l/ `
 
-Format: `delete <index_of_staff> l/ d/DATE (IN DD/MM/YYYY/)`
+Format: `delete INDEX_OF_STAFF l/ d/DATE (IN DD/MM/YYYY/)`
 
 ### 3.7. Quick Edit (Experienced Users): `edit`
 
@@ -455,8 +455,8 @@ _{explain the feature here}_
 
 | Action                | Format, Examples                                                                                                 |
 |-----------------------|------------------------------------------------------------------------------------------------------------------|
-| **AddApplicant**      | `to be updated` <br> e.g., `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **DeleteApplicant**   | `to be updated` <br> e.g., `addleave 2 l/d:08/10/2020 d:10/10/2020 l/d:20/10/2020`                               |
+| **AddApplicant**      | `addapplicant` <br> e.g., `addapplicant n/John Doe p/98765432 e/jd@example.com a/John street, block 123, #01-01` |
+| **DeleteApplicant**   | `delapplicant` <br> e.g., `delapplicant 1`                                                                       |
 | **AddApplication**    | `addapplication INDEX [filepath]` <br> e.g., `addapplication 1 C:\Users\Public\Downloads\resume.txt`             |
 | **DeleteApplication** | `deleteapplication INDEX` <br> e.g., `deleteapplication 1`                                                       |
 | **SetAppStatus**      | `setappstatus INDEX NEW_APPLICATION_STATUS` <br> e.g., `setappstatus 1 processing`                               |
