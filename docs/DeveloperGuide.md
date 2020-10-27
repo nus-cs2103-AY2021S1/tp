@@ -131,32 +131,55 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on the implementation of certain features.
 
-### Add recipe feature
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
+All the lifeline with the destroy marker (x) should be end with the mark (x) but due to a limitation of 
+PlantUML, the lifeline reaches the end of diagram.
+</div>
 
-Add recipe feature allows users to add their personal recipes into the collection.
+### Add features
+Add features (`Add Recipe` and `Add Ingredient`) allows users to add the recipes and ingredients into their respective collection list.
 
 #### Implementation
-Substitutability is used in Command and Parser:
-* `AddRecipeCommand` extends `Command`
+Command and Parser make use of Substitutability:
+* `AddRecipeCommand` and  `AddIngredientCommand` extends `Command`
 * `AddRecipeCommandParser` implements `Parser<AddRecipeCommand>`
+* `AddIngredientCommandParser` implements `Parser<AddIngredientCommand>`
 
-The following sequence diagram shows how add recipe operation works when `execute(addR n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy)` API call:
+The following sequence diagram shows how add operation works when 
+`execute(addR n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy)` 
+or 
+`execute("addF i/tomato")`
+API call:
 
-![AddRecipeSequenceDiagram](images/AddRecipeSequence.png)
+![AddSequenceDiagram](images/implementation/AddSequence.png)
 
-1. `LogicManager` receives user input and undergoes logic operation for output.
-1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
-1. `WishfulShrinkingParser` creates `AddRecipeCommandParser` to parse and validate the user input.
-1. `AddRecipeCommandParser` creates `AddRecipeCommand` with successfully parsed input.
-1. `LogicManager` executes `AddRecipeCommand`.
-1. Pass the `Recipe` to `Model` which responsible in adding it to `UniqueRecipeList`.
-1. `AddRecipeCommand` return a `CommandResult` back to `LogicManager`.
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
 
-#### Design consideration:
-##### Aspect 1: Concern while adding a new feature
+Some term in the sequence diagram above has changed to a common substitutable term:
+* AddCommandParser : `AddRecipeCommandParser` or `AddIngredientCommandParser`
+* info: `n/Salad i/Veggies - 100g img/images/healthy3.jpg instr/Eat tag/healthy` or `i/tomato`
+* add(type): `addRecipe(type)` or `addIngredient(type)`
+* type: `recipe` or `ingredient`
+</div>
+
+Given below is an example usage scenario and how the mechanism behaves:
+
+1. User inputs add recipe/ingredients command to add recipe/ingredients into the recipe list/fridge.
+
+1. After successful parsing of user input, the `AddRecipeCommand#execute(Model model)` or `AddIngredientCommand#execute(Model model)` method is called.
+
+1. The recipe/ingredients that the user has input will be saved into Wishful Shrinking.
+
+1. After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design consideration (Add Recipe):
+##### Aspect 1: Concern while adding the first feature
 * Workflow must be consistent with other commands.
+
 ##### Aspect 2: Should we allow adding duplicated recipes ?
 * **Alternative 1 (current choice):** Restricts to unique recipes.
   * Pros: Storage will contain unique items.
@@ -166,139 +189,100 @@ The following sequence diagram shows how add recipe operation works when `execut
   * Pros: Users will not be restricted to adding unique recipes.
   * Cons: Storage will contain unnecessarily duplicated items.
 
+#### Design Considerations (Add Ingredient):
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with add recipe command.
+
+##### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity 
+* **Alternative 1 (current choice):** Add a quantity field in the Ingredient class as well as a IngredientParser class that parses the user ingredients that the user has input into an arraylist of Ingredient objects
+  * Pros: Easy to implement.
+  * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ","
+
 ### Eat recipe feature
 
-Eat Recipe feature is used to record the user daily consumption. This feature will work with list consumption 
-feature to output the total calories' user ate . 
+Eat Recipe feature allows user to record their daily consumption. This feature will work with list consumption 
+feature to output the total calories that user ate . 
 
 #### Implementation
-Substitutability is used in Command and Parser:
+Command and Parser make use of Substitutability:
 * `EatRecipeCommand` extends `Command`
 * `EatRecipeCommandParser` implements `Parser<EatRecipeCommand>`
 
 Given bellow is the simplified step on how eat recipe is done:
 
 Step 1: User input is change into command.
-![EatRecipeStep1](images/EatRecipeStep1.png)
+![EatRecipeStep1](images/implementation/EatRecipeStep1.png)
 
 Step 2: Execute the command (make a copy of recipe from recipeList).
-![EatRecipeStep2](images/EatRecipeStep2.png)
+![EatRecipeStep2](images/implementation/EatRecipeStep2.png)
 
 Step 3: Add the copy recipe into consumptionList.
-![EatRecipeStep3](images/EatRecipeStep3.png)
+![EatRecipeStep3](images/implementation/EatRecipeStep3.png)
 
 
 The following sequence diagram shows how eat recipe operation works when `execute(eatR 1)` API call:
 
-![EatRecipeSequenceDiagram](images/EatRecipeSequenceDiagram.png)
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** The lifeline for `EatRecipeCommandParser` should end at the destroy marker (X) but due to a limitation of 
-PlantUML, the lifeline reaches the end of diagram.
-</div>
+![EatRecipeSequenceDiagram](images/implementation/EatRecipeSequence.png)
+
+Given below is an example usage scenario and how the mechanism behaves:
 
 1. User inputs eat recipe command to add a recipe to consumption list.
+
 1. After successful parsing the user inputs, `EatRecipeCommand#method` method is called.
+
 1. After successfully added recipe into consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** Delete a recipe in recipeList would not affect the consumptionList
-</div>
-
 #### Design consideration:
-##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other adding commands e.g. add recipe and ingredient.
-##### Aspect 2: What are the informations to extract from a recipe and save in consumptionList 
+##### Aspect 1: What are the informations to extract from a recipe and save in consumptionList 
 * **Alternative 1 (current choice):** Saves all the informations in recipe.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Saves the recipe's data that going to use while listing consumption.
-  * Pros: Will use less memory (only the information being used is copied into consumptionList).
+  * Pros: Will use less memory (Consumption list only save related information).
   * Cons: Not future proof (need to restructure the whole command if wanted to show more information from the recipe)
 
-### Edit Recipe feature
+### List feature
+List features (`List Recipes`, `List Ingredients` and `List Consumption`) allows user to list out all the item that was saved in the respective list.
+List Consumption feature will also calculate and show the total calories consume. 
 
 #### Implementation
-This feature allows users to edit an existing recipe its index in the recipe list.
+Command and Parser make use of Substitutability:
+* `ListRecipeCommand`, `ListIngredientCommand` and `ListConsumptionCommand` extends `Command`
 
-Substitutability is used in Command and Parser:
-* `EditRecipeCommand` extends `Command`
-* `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
+The following sequence diagram shows how eat recipe operation works when `execute(recipes)`, `execute(fridge)` or `execute(calories)` API call:
 
-Given below is an example usage scenario and how the mechanism behaves at each step.
+![ListSequenceDiagram](images/implementation/ListSequence.png)
 
-![EditRecipeSequence](images/EditRecipeSequence.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
 
-1. User inputs the edit recipe command followed by an index specifying the recipe to edit, then the
- values of fields to be modified.
+Some term in the sequence diagram above has changed to a common substitutable term:
+* userInput: `recipes`, `fridge` or `calories`
+* ListCommand: `ListRecipeCommand`, `ListIngredientCommand` or `ListConusmptionCommand`
+* getFilteredList(): `getFilteredRecipeList()`, `getFilteredIngredientList()` or `getFilteredConsumptionList()`
+* Type: `Recipe`, `Ingredient` or `Consumption`
+</div>
 
-2. After successful parsing of user input, the `EditRecipeCommand#execute(Model model)` method is called.
+Given below is an example usage scenario and how the mechanism behaves:
 
-3. The recipe that the user has input will be saved into Wishful Shrinking's recipe list.
+1. User inputs the list command.
 
-4. After the successful adding of the recipe, a `CommandResult` object is instantiated and returned to
- `LogicManager`.
+1. After successful parsing the user inputs, `ListRecipeCommand#execute(Model model)`, `ListIngredientCommand#execute(Model model)` or `ListConsumptionCommand#execute(Model model)` method is called.
 
-#### Design Considerations
-##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other edit commands e.g edit ingredient command.
-
-##### Aspect 2: How do we provide users with ease in editing an ingredient 
-* **Alternative 1 (current choice):** User can directly edit the command that added the existing recipe
-  * Pros: Easy for users to edit a recipe.
-  * Cons: Involves another command to set the command box to the command of the recipe to edit.
-
-* **Alternative 2:** User need to retype the existing recipe's field if they want to modify using the existing
- recipe
-  * Pros: Easy to implement.
-  * Cons: Not user friendly.
-
-### Get Edit Recipe feature
-
-#### Implementation
-This feature allows users to get the command of an existing recipe to edit.
-
-Substitutability is used in Command and Parser:
-* `GetEditRecipeCommand` extends `Command`
-* `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
-
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-![GetEditRecipeSequence](images/GetEditRecipeSequence.png)
-
-1. User inputs the get edit recipe command followed by an index specifying the recipe to edit.
-
-2. After successful parsing of user input, the `GetEditRecipeCommand#execute(Model model)` method is called.
-
-3. The edited recipe that the user has input will be saved into Wishful Shrinking's recipe list.
-
-4. After the successful adding of the recipe, a `CommandResult` object is instantiated and returned to
- `LogicManager`.
-
-#### Design Considerations
-##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other get edit commands e.g get edit ingredient command.
-
-### List Consumption feature
-
-List Consumption feature is used to list out all the recipes that user ate. This feature will also calculate 
-the total calories. 
-
-#### Implementation
-Substitutability is used in Command and Parser:
-* `ListConsumptionCommand` extends `Command`
-
-The following sequence diagram shows how eat recipe operation works when `execute(calories)` API call:
-
-![ListConsumptionSequenceDiagram](images/ListConsumptionSequenceDiagram.png)
-
-1. User inputs the list consumption command to add recipe to consumption list.
-1. After successful parsing the user inputs, `ListConsumptionCommand#method` method is called.
 1. After successfully fetch the consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
-#### Design consideration:
+#### Design consideration(List Recipes):
+##### Aspect 1: Concern while adding a feature
+* Workflow must be consistent with other commands.
+
+#### Design consideration(List Ingredients):
 ##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other adding commands e.g. list recipe and ingredient.
+* Workflow must be consistent with list ingredient command and list consumption command.
+
+#### Design consideration (List Consumption):
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other list recipe command and list ingredient command.
 ##### Aspect 2: What are the informations to list from a recipe in consumption list
 * **Alternative 1 (current choice):** Listing recipe with images, name and calories.
   * Pros: Cleaner UI.
@@ -308,220 +292,201 @@ The following sequence diagram shows how eat recipe operation works when `execut
   * Pros: All the data saved are being used. 
   * Cons: Showing too much unimportant information.
 
-
-### Delete recipe feature
+### Delete feature
+Delete features (`Delete Recipe`, `Delete Ingredient` and `Delete Consumption`) allows users to delete the saved item from the respective list.
 
 #### Implementation
-This feature allows users to delete the recipes they have eaten in the calorie tracker.
-
-Substitutability is used in Command and Parser:
-* `DeleteRecipeCommand` extends `Command`
+Command and Parser make use of Substitutability:
+* `DeleteRecipeCommand`, `DeleteIngredientCommand` and `DeleteConsumptionCommand` extends `Command`
 * `DeleteRecipeCommandParser` implements `Parser<DeleteRecipeCommand>`
+* `DeleteIngredientCommandParser` implements `Parser<DeleteIngredientCommand>`
+* `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>`
 
-The following sequence diagram shows how eat recipe operation works when `execute(deleteR 1)` API call:
+The following sequence diagram shows how eat recipe operation works when `execute(deleteR 1)`, `execute(deleteF 1)` or `execute(deleteC 1)` API call:
 
-![DeleteRecipeSequence](images/DeleteRecipeSequence.png)
+![DeleteSequence](images/implementation/DeleteSequence.png)
+
 <div markdown="span" class="alert alert-info">:information_source: 
-**Note:** The lifeline for `DeleteRecipeCommandParser` should end at the destroy marker (X) but due to a limitation of 
-PlantUML, the lifeline reaches the end of diagram.
+**Note:** 
+
+Some term in the sequence diagram above has changed to a common substitutable term:
+* delete: `deleteR`, `deleteF` or `deleteC`
+* DeleteCommand: `DeleteRecipeCommand`, `DeleteIngredientCommand` or `DeleteConusmptionCommand`
+* DeleteCommandParser: `DeleteRecipeCommandParser`, `DeleteIngredientCommandParser` or `DeleteConusmptionCommandParser`
+* deleteType(1): `deleteRecipe(1)`, `deleteIngredient(1)` or `deleteConsumption(1)`
+* remove(key): `removeRecipe(key)`, `removeIngredient(key)`, `removeConsumption(key)`
 </div>
 
-1. `LogicManager` receive user input and undergoes logic operation for output.
-1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
-1. `WishfulShrinkingParser` create `DeleteRecipeCommandParser` to parse and validate the user input.
-1. `DeleteRecipeCommandParser` create `DeleteRecipeCommand` with successfully parsed input.
-1. `LogicManager` execute `DeleteRecipeCommand`.
-1. `DeleteRecipeCommand` get the list of recipe.
-1. Pass the recipe to `Model` which responsible in deleting it from recipes list.
-1. `DeleteRecipeCommand` return a `CommandResult` back to `LogicManager`.
+Given below is an example usage scenario and how the mechanism behaves:
+1. User inputs delete command to delete a specific item from the list.
 
-#### Design consideration:
+1. After successful parsing of user input, the `DeleteRecipeCommand#execute(Model model)`, `DeleteIngredientCommand#execute(Model model)` or `DeleteConsumptionCommand#execute(Model model)` method is called.
+
+1. The item that user has specified by using index will be deleted from the respective list.
+
+1. After the successful deleting of an `Consumption`, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design consideration Recipe (Delete Recipe):
 ##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other deleting commands e.g. delete ingredient and delete consumption.
-##### Aspect 2: What are the information to list a recipe from a list of recipes
-* **Alternative 1 (current choice):** Listing recipe with name.
-  * Pros: Cleaner UI.
-  * Cons: Other details that is not used become an extra data in memory.
+* Workflow must be consistent with other commands.
 
-* **Alternative 2:** Listing the whole recipe's information.
-  * Pros: All the data saved are being used.
-  * Cons: Showing too much unimportant information.
+#### Design consideration (Delete Ingredient/ Delete Consumption):
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other deleting commands
 
-
-### List Recipe Feature
+### Edit feature
+This edit feature (`Edit Recipe` and `Edit Ingredient`) allows users to edit an existing recipe/ingredient in the recipe list/firdge.
 
 #### Implementation
-This feature allows user to list out all the recipes that was saved.
-
-Substitutability is used in Command:
-* `DeleteRecipeCommand` extends `Command`
-
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-The following sequence diagram shows how list recipes operation works when `execute(recipes)` API call:
-
-![ListRecipeSequence](images/ListRecipesSequence.png)
-
-1. `LogicManager` receive user input and undergoes logic operation for output.
-1. `LogicManager` will pass the input to `WishfulShrinkingParser`.
-1. `WishfulShrinkingParser` create `ListRecipesCommand` to validate the user input.
-1. `LogicManager` execute `ListRecipesCommand`.
-1. `ListRecipesCommand` get the list of recipes.
-1. `ListRecipesCommand` return a `CommandResult` back to `LogicManager`.
-
-#### Design consideration:
-##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other listing commands e.g. fridge and calories.
-
-
-### Add Ingredient feature
-
-#### Implementation
-This feature allows users to add ingredients into the fridge.
-
-Substitutability is used in Command and Parser:
-* `AddIngredientCommand` extends `Command`
-* `AddIngredientCommandParser` implements `Parser<AddIngredientCommand>`
-
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-The following sequence diagram shows how add ingredients operation works when `execute("addF i/tomato")` API call:
-
-![AddIngredientSequence](images/AddIngredientSequence.png)
-
-1. User inputs the add ingredient command to add ingredients into the fridge.
-
-2. After successful parsing of user input, the `AddIngredientCommand#execute(Model model)` method is called.
-
-3. The ingredients that the user has input will be saved into Wishful Shrinking's fridge of ingredients.
-
-4. After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to `LogicManager`.
-
-#### Design Considerations
-##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other adding commands e.g. add recipe and eat recipe for consumption.
-
-##### Aspect 2: How do we successfully parse the ingredients the user has added with the optional ingredient quantity 
-* **Alternative 1 (current choice):** Add a quantity field in the Ingredient class as well as a IngredientParser class that parses the user ingredients that the user has input into an arraylist of Ingredient objects
-  * Pros: Easy to implement.
-  * Cons: The parser may confuse ingredients that have prefixes that Wishful Shrinking uses to identify fields in the names, eg "-" or ","
-
-### List Ingredients Feature
-
-#### Implementation
-This feature allows user to list out all the ingredients that is saved in the fridge.
-
-Substitutability is used in Command:
-* `ListIngredientCommand` extends `Command`
-
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-The following sequence diagram shows how list ingredients operation works when `execute(fridge)` API call:
-
-![ListIngredientsSequence](images/ListIngredientsSequence.png)
-
-1. User inputs the list ingredient command to show all ingredients from the ingredient list.
-
-2. After successful parsing of user input, the `ListIngredientCommand#execute(Model model)` method is called.
-
-3. After successfully generating a list of recipes, a `CommandResult` object is instantiated and returned to
- `LogicManager`.
-
-#### Design consideration:
-##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other listing commands e.g. fridge and calories.
-
-### Edit Ingredient feature
-
-#### Implementation
-This feature allows users to edit an existing ingredient in the fridge using its index in the ingredient list.
-
-Substitutability is used in Command and Parser:
-* `EditIngredientCommand` extends `Command`
+Command and Parser make use of Substitutability:
+* `EditRecipeCommand` and `EditIngredientCommand` extends `Command`
+* `EditRecipeCommandParser` implements `Parser<EditRecipeCommand>`
 * `EditIngredientCommandParser` implements `Parser<EditIngredientCommand>`
 
-Given below is an example usage scenario and how the mechanism behaves at each step.
+The following sequence diagram shows how recommend operation works when `execute("editR 1 n/Pea soup")` or `execute("editF 1 i/tomato")` API call:
 
-![EditIngredientSequence](images/EditIngredientSequence.png)
+![EditSequence](images/implementation/EditSequence.png)
 
-1. User inputs the edit ingredient command followed by an index specifying the ingredient to edit, then the
- values of
-  fields to be modified.
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
 
-2. After successful parsing of user input, the `EditIngredientCommand#execute(Model model)` method is called.
+Some term in the sequence diagram above has changed to a common substitutable term:
+* edit: `editR`or `editF`
+* EditCommand: `EditRecipeCommand` or `EditIngredientCommand`
+* EditCommandParser: `EditRecipeCommandParser` or `EditIngredientCommandParser`
+* updateFilteredList(predicate): `updateFilteredRecipeList(predicate)` or `updateFilteredIngredientList(predicate)`
+* set(old, new): `setRecipe(oldRecipe, new Recipe)` or `setIngredient(oldIngredient, newIngredient)`
+</div>
 
-3. The ingredient that the user has input will be saved into Wishful Shrinking's fridge of ingredients.
+Given below is an example usage scenario and how the mechanism behaves:
+1. User inputs the edit command followed by an index specifying the recipe/ingredient to edit, then the values of fields to be modified.
 
-4. After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to
- `LogicManager`.
+1. After successful parsing of user input, the `EditRecipeCommand#execute(Model model)`  or `EditIngredientCommand#execute(Model model)` method is called.
 
-#### Design Considerations
+1. The recipe/ingredient that the user has input will be saved into Wishful Shrinking's recipe list/fridge.
+
+1. After the successful editing of the recipe, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design Considerations(Edit Recipe)
 ##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other edit commands e.g edit recipe command.
+* Workflow must be consistent with other commands.
 
-##### Aspect 2: How do we provide users with ease in editing an ingredient 
-* **Alternative 1 (current choice):** User can directly edit the command that added the existing ingredient
-  * Pros: Easy for users to edit an ingredient.
-  * Cons: Involves another command to set the command box to the command of the ingredient to edit.
+#### Design Considerations（Edit Ingredient)
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with edit recipe command.
+
+#### Common Design Consideration
+##### Aspect 1: How do we provide users with ease in editing an ingredient 
+* **Alternative 1 (current choice):** User can directly edit the command that added the existing recipe/ingredient
+  * Pros: Easy for users to edit recipe/ingredient.
+  * Cons: Involves another command to set the command box to the command of the recipe/ingredient to edit.
 
 * **Alternative 2:** User need to retype the existing ingredient's field if they want to modify from the
  existing ingredient
   * Pros: Easy to implement.
   * Cons: Not user friendly.
 
-### Get Edit Ingredient feature
+### Get edit feature
+Get edit features (Get Edit Recipe and Get Edit Ingredient) allows users to get the command of an existing recipe/ingredients to edit.
 
 #### Implementation
-This feature allows users to get the command of an existing ingredient to edit.
-
-Substitutability is used in Command and Parser:
-* `GetEditIngredientCommand` extends `Command`
+Command and Parser make use of Substitutability:
+* `GetEditRecipeCommand` and `GetEditIngredientCommand` extends `Command`
+* `GetEditRecipeCommandParser` implements `Parser<GetEditRecipeCommand>`
 * `GetEditIngredientCommandParser` implements `Parser<GetEditIngredientCommand>`
 
-Given below is an example usage scenario and how the mechanism behaves at each step.
+The following sequence diagram shows how eat recipe operation works when `execute(editR 1)` or `execute(editF 1)` API call:
 
-![GetEditIngredientSequence](images/GetEditIngredientSequence.png)
+![GetEditSequence](images/implementation/GetEditSequence.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
 
-1. User inputs the get edit ingredient command followed by an index specifying the ingredient to edit.
+Some term in the sequence diagram above has changed to a common substitutable term:
+* delete: `editR` or `editF`
+* GetEditCommand: `GetEditRecipeCommand` or `GetEditIngredientCommand`
+* GetEditCommandParser: `GetEditRecipeCommandParser` or `GetEditIngredientCommandParser`
+* commandType: `recipeCommand` or `ingredientCommand`
+</div>
 
-2. After successful parsing of user input, the `GetEditIngredientCommand#execute(Model model)` method is called.
+Given below is an example usage scenario and how the mechanism behaves:
+1. User inputs the get edit command followed by an index specifying the recipe/ ingrdient to edit.
 
-3. The edited ingredient that the user has input will be saved into Wishful Shrinking's ingredient list.
+1. After successful parsing of user input, the `GetEditRecipeCommand#execute(Model model)`  or `GetEditIngredientCommand#execute(Model model)` method is called.
 
-4. After the successful adding of the ingredient, a `CommandResult` object is instantiated and returned to
+1. The edited recipe/ingredient that the user has input will be saved into Wishful Shrinking's recipe list/ fridge.
+
+1. After the successful editing of the recipe, a `CommandResult` object is instantiated and returned to
+ `LogicManager`.
+
+#### Design Considerations (Get Edit Recipe)
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other get edit commands.
+
+#### Design Considerations (Get Edit Ingredient)
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other get edit commands e.g get edit recipe command.
+
+### Select Recipe feature
+Select Recipe features allows users to get the existing recipe from the recipe list.
+
+#### Implementation
+Command and Parser make use of Substitutability:
+* `SelectRecipeCommand` extends `Command`
+* `SelectRecipeCommandParser` implements `Parser<SelectRecipeCommand>`
+
+The following sequence diagram shows how eat recipe operation works when `execute(selectR 1)` API call:
+
+![SelectRecipeSequence](images/SelectRecipeSequence.png)
+
+Given below is an example usage scenario and how the mechanism behaves:
+1. User inputs the select recipe command followed by an index specifying the recipe.
+
+1. After successful parsing of user input, the `SelectRecipeCommand#execute(Model model)` method is called.
+
+1. After successfully getting the recipe from the filtered recipe list, a `CommandResult` object is instantiated and returned to
  `LogicManager`.
 
 #### Design Considerations
 ##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other get edit commands e.g get edit recipe command.
-
+* Workflow must be consistent with other commands
 
 ### Search Recipe feature
+Search features (Search Recipe and Search Ingredient) allow user to search for recipe/ingrdient in the recipe list/fridge based on the name.
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Search Recipe would able to search based on tag or ingredient.
+</div>
 
 #### Implementation
-This feature allows users search for recipes in the recipe list based on the name, tags or ingredients.
-
-Substitutability is used in Command and Parser:
-* `SearchRecipeCommand` extends `Command`
+Command and Parser make use of Substitutability:
+* `SearchRecipeCommand` and `SearchIngredientCommand` extends `Command`
 * `SearchRecipeCommandParser` implements `Parser<SearchRecipeCommand>`
+* `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>`
 
-Given below is an example usage scenario and how the mechanism behaves at each step.
+The following sequence diagram shows how search recipe operation works when `execute("searchR n/burger")` or `execute("searchF avocado")`API call:
 
-The following sequence diagram shows how search recipe operation works when `execute("searchR n/burger")` API call:
+![SearchSequence](images/implementation/SearchSequence.png)
 
-![SearchRecipeSequence](images/SearchRecipeSequence.png)
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
 
+Some term in the sequence diagram above has changed to a common substitutable term:
+* search: `searchR` or `searchF`
+* info: `n/burger` or `avocado`
+* updateFilteredList(predicate): `updateFilteredRecipeList(predicate)` or `updateFilteredIngredientList(predicate)`
+</div>
+
+Given below is an example usage scenario and how the mechanism behaves:
 1. User inputs the search recipe command to search for the recipes they want.
 
-2. After successful parsing of user input, the `SearchRecipeCommand#execute(Model model)` method is called.
+1. After successful parsing of user input, the `SearchRecipeCommand#execute(Model model)` or `SearchIngredientCommand#execute(Model model)` method is called.
 
-3. The list of recipes that fit the user's search will be returned to the user.
+1. The list of recipes that fit the user's search will be returned to the user.
 
-4. After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+1. After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
-#### Design Considerations
+#### Design Considerations (Search Recipe)
 ##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other searching commands e.g. search recipe.
+* Workflow must be consistent with other commands
 
 ##### Aspect 2: How do we successfully search and filter the recipes based on the user' search 
 * **Alternative 1 (current choice):** User can only search for recipes based on one fields at a time
@@ -532,81 +497,9 @@ The following sequence diagram shows how search recipe operation works when `exe
   * Pros: Harder to implement.
   * Cons: User's can filter the recipes by two or three fields at once
 
-### Search Ingredient feature
-This feature allows users search ingredient in the ingredient list based on the name.
-
-#### Implementation
-
-Substitutability is used in Command and Parser:
-* `SearchIngredientCommand` extends `Command`
-* `SearchIngredientCommandParser` implements `Parser<SearchIngredientCommand>`
-
-The following sequence diagram shows how eat recipe operation works when `execute(searchF avocado)` API call:
-
-![SearchIngredientSequence](images/SearchIngredientSequence.png)
-<div markdown="span" class="alert alert-info">:information_source: 
-**Note:** The lifeline for `SearchIngredientCommandParser` should end at the destroy marker (X) but due to a limitation of 
-PlantUML, the lifeline reaches the end of diagram.
-</div>
-
-1. User inputs the search ingredient command to search for the ingredient from the ingredient list.
-1. After successful parsing of user input, the `SearchIngredientCommand#execute(Model model)` method is called.
-1. The list of ingredient that fit the user's search will be returned to the user.
-1. After the successful searching of the recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
-
-#### Design Considerations
+#### Design Considerations (Search Ingredient)
 ##### Aspect 1: Concern while adding a new feature
 * Workflow must be consistent with other searching commands e.g. search recipe.
-
-### Delete consumption feature
-
-#### Implementation
-This feature allows users to delete the recipes they have consumed in the consumption list.
-
-Substitutability is used in Command and Parser:
-* `DeleteConsumptionCommand` extends `Command`
-* `DeleteConsumptionCommandParser` implements `Parser<DeleteConsumptionCommand>`
-
-The following sequence diagram shows how eat Consumption operation works when `execute(deleteC 1)` API call:
-
-![DeleteConsumptionSequence](images/DeleteConsumptionSequence.png)
-
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-1. User inputs the delete consumption command to delete a `Consumption` from the `ConsumptionList`.
-1. After successful parsing of user input, the `DeleteConsumptionCommand#execute(Model model)` method is called.
-1. The `Consumption` that the user has specified by using index will be deleted from the `ConsumptionList`.
-1. After the successful deleting of an `Consumption`, a `CommandResult` object is instantiated and returned to `LogicManager`.
-
-#### Design consideration:
-##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other deleting commands e.g. delete recipe and delete ingredient.
-
-### Delete ingredient feature
-
-#### Implementation
-This feature allows users to delete the ingredients they have in the fridge.
-
-Substitutability is used in Command and Parser:
-* `DeleteIngredientCommand` extends `Command`
-* `DeleteIngredientCommandParser` implements `Parser<DeleteIngredientCommand>`
-
-The following sequence diagram shows how eat Ingredient operation works when `execute(deleteF 1)` API call:
-
-![DeleteIngredientSequence](images/DeleteIngredientSequence.png)
-
-Given below is an example usage scenario and how the mechanism behaves at each step.
-
-1. User inputs the delete ingredient command to delete an ingredient from the `UniqueIngredientList`.
-1. After successful parsing of user input, the `DeleteIngredientCommand#execute(Model model)` method is called.
-1. The Ingredient that the user has specified by using index will be deleted from the `UniqueIngredienList`.
-1. After the successful deleting of an `Ingredient`, a `CommandResult` object is instantiated and returned to `LogicManager`.
-
-
-#### Design consideration:
-##### Aspect 1: Concern while adding a new feature
-* Workflow must be consistent with other deleting commands e.g. delete recipe and delete consumption.
-
 
 ### Recommend feature
 
@@ -620,21 +513,61 @@ Given below is an example usage scenario and how the mechanism behaves at each s
 
 The following sequence diagram shows how recommend operation works when `execute("recommend")` API call:
 
-![RecommendSequence](images/RecommendSequence.png)
+![RecommendSequence](images/implementation/RecommendSequence.png)
 
 1. User inputs the recommend command to get the recommended recipes.
 
-2. After successful parsing of user input, the `RecommendCommand#execute(Model model)` method is called.
+1. After successful parsing of user input, the `RecommendCommand#execute(Model model)` method is called.
 
-3. The list of recommended recipes will be returned to the user.
+1. The list of recommended recipes will be returned to the user.
 
-4. After the successful recommending of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
+1. After the successful recommending of recipes, a `CommandResult` object is instantiated and returned to `LogicManager`.
 
 #### Design Considerations
 ##### Aspect : How do we quickly and accurately compare ingredients in each recipe and the user's fridge
 * **Alternative 1 (current choice):** Compare the exact ingredients in each recipe to the users ingredients in the fridge
   * Pros: Easy to implement
   * Cons: Slow to compare, the ingredients might not match if the spellings are different, or if the ingredient has similar names, eg mozarella and cheese. Other than that, if users do not input basic ingredients into their fridge, eg salt and pepper, the recipe might not get recommended to them.
+
+### Clear feature
+Clear features (`Clear Recipes`, `Clear Ingredients` and `Clear Consumption`) allows user to clear all the item that was saved in the respective list. 
+
+#### Implementation
+Command and Parser make use of Substitutability:
+* `ClearRecipeCommand`, `ClearIngredientCommand` and `ClearConsumptionCommand` extends `Command`
+
+The following sequence diagram shows how eat recipe operation works when `execute(clearR)`, `execute(clearF)` or `execute(clearC)` API call:
+
+![ClearSequenceDiagram](images/implementation/ClearSequence.png)
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** 
+
+Some term in the sequence diagram above has changed to a common substitutable term:
+* clear: `clearR`, `clearF` or `clearC`
+* ClearCommand: `ClearRecipeCommand`, `ClearIngredientCommand` or `ClearConusmptionCommand`
+* clearType(): `clearRecipe()`, `clearIngredient()` or `clearConsumption()`
+</div>
+
+Given below is an example usage scenario and how the mechanism behaves:
+
+1. User inputs the clear command.
+
+1. After successful parsing the user inputs, `ClearRecipeCommand#execute(Model model)`, `ClearIngredientCommand#execute(Model model)` or `ClearConsumptionCommand#execute(Model model)` method is called.
+
+1. After successfully fetch the consumption list, a `CommandResult` object is instantiated and returned to `LogicManager`.
+
+#### Design consideration(Clear Recipes):
+##### Aspect 1: Concern while adding a feature
+* Workflow must be consistent with other commands.
+
+#### Design consideration(CLear Ingredients):
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with clear ingredient command and clear consumption command.
+
+#### Design consideration (Clear Consumption):
+##### Aspect 1: Concern while adding a new feature
+* Workflow must be consistent with other clear recipe command and clear ingredient command.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -708,60 +641,24 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 *{More to be added}*
 
 ### Use cases
+For all use cases below, the **System** is the `Wishful Shrinking` and the **Actor** is the `User`, unless specified otherwise.
 
-
-(For all use cases below, the **System** is the `WishfulShrinking` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Delete a recipe**
-
-**MSS**
-
-1.  User requests to list recipes
-2.  WishfulShrinking shows a list of recipes
-3.  User requests to delete a specific recipe in the list
-4.  WishfulShrinking deletes the recipe
-(For all use cases below, the **System** is `Wishful Shrinking` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: Add ingredients**
-
-**MSS**
-
-  1. User chooses to add ingredients into the fridge.
-  2. Wishful Shrinking adds the specified ingredients into the fridge.
-
-
-     Use case ends.
-	
+#### Recipe related use cases
 **Use case: Add a recipe**
 
 **MSS**
 
   1. User chooses to add a recipe to the list of recipes.
-  2. Wishful Shrinking adds the recipe to the list of recipes.
-
-     Use case ends.
-	  
-**Use case: View ingredients**
-
-**MSS**
-
-  1. User requests to view all ingredients that are in the fridge.
-  2. Wishful Shrinking lists all the ingredients that are in the fridge.
+  1. Wishful Shrinking adds the recipe to the list of recipes.
 
      Use case ends.
 
-**Extensions**
-
-* 2a. The fridge is empty.
-
-  Use case ends.  
-  
- **Use case: View recipes**
+**Use case: View recipes**
 
 **MSS**
 
   1. User requests to view all recipes that are in the recipe collection.
-  2. Wishful Shrinking lists all the recipes that are in the recipe collection, with their respective ingredients.
+  1. Wishful Shrinking lists all the recipes that are in the recipe collection, with their respective ingredients.
 
      Use case ends.
 
@@ -769,16 +666,82 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list of recipes is empty.
 
-  Use case ends.  
+  Use case ends.
+  
+**Use case: Delete a recipe**
+
+**MSS**
+
+  1. User requests to view the recipes in the recipe collection.
+  1. Wishful Shrinking shows a list of recipes that are in the recipe collection.
+  1. User requests to delete a specific recipe in the list.
+  1. Wishful Shrinking deletes the recipe.
+
+     Use case ends.
+
+**Extensions**
+
+* 2a. The list of recipes is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. Wishful Shrinking shows an error message.
+
+      Use case resumes at step 2.
+      
+**Use case: Search for recipe**
+
+**MSS**
+
+  1. User wants to search for recipes by their title in the recipe collection.
+  1. Wishful Shrinking lists the recipes that has the specified title, if present.
+
+  Use case ends. 
+
+**Use case: Clear all recipes in recipe list**
+
+**MSS**
+
+  1. User requests to clear all the recipes in the recipe list.
+  1. Wishful Shrinking empty the recipe list.
+
+     Use case ends.
+     
+#### Fridge's ingredient related use cases
+**Use case: Add ingredients**
+
+**MSS**
+
+  1. User chooses to add ingredients into the fridge.
+  1. Wishful Shrinking adds the specified ingredients into the fridge.
+
+   Use case ends.
+	  
+**Use case: View ingredients**
+
+**MSS**
+
+  1. User requests to view all ingredients that are in the fridge.
+  1. Wishful Shrinking lists all the ingredients that are in the fridge.
+
+     Use case ends.
+
+**Extensions**
+
+* 2a. The fridge is empty.
+
+  Use case ends. 
 	  
 **Use case: Delete an ingredient**
 
 **MSS**
 
   1. User requests to view the ingredients in the fridge.
-  2. Wishful Shrinker shows a list of ingredients that are in the fridge.
-  3. User requests to delete a specific ingredient in the list.
-  4. Wishful Shrinking deletes the ingredient.
+  1. Wishful Shrinking shows a list of ingredients that are in the fridge.
+  1. User requests to delete a specific ingredient in the list.
+  1. Wishful Shrinking deletes the ingredient.
 
      Use case ends.
 
@@ -794,62 +757,79 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 	  
-**Use case: Delete a recipe**
-
-**MSS**
-
-  1. User requests to view the recipes in the recipe collection.
-  2. Wishful Shrinker shows a list of recipes that are in the recipe collection.
-  3. User requests to delete a specific recipe in the list.
-  4. Wishful Shrinking deletes the recipe.
-
-     Use case ends.
-
-**Extensions**
-
-* 2a. The list of recipes is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. WishfulShrinking shows an error message.
-
-      Use case resumes at step 2.
-	  
 **Use case: Search for ingredient**
 
 **MSS**
 
   1. User wants to search for ingredients by their name in the fridge.
-  2. Wishful Shrinking lists the ingredients in the fridge that has the specified name, if present.
+  1. Wishful Shrinking lists the ingredients in the fridge that has the specified name, if present.
 
      Use case ends.
-	
-**Use case: Search for recipe**
+
+**Use case: Clear all ingredients in fridge**
 
 **MSS**
 
-  1. User wants to search for recipes by their title in the recipe collection.
-  2. Wishful Shrinking lists the recipes that has the specified title, if present.
+  1. User requests to clear all the recipes in the consumption list.
+  1. Wishful Shrinking empty the fridge.
+
+     Use case ends.
+
+#### Consumption related use cases
+**Use case: Eat Recipe**
+
+**MSS**
+
+  1. User requests to view recipes in the recipe list.
+  1. Wishful Shrinking shows a list of recipes that are in the recipe list.
+  1. User requests to eat a specific recipe in the list.
+  1. Wishful Shrinking add the recipe to consumption list.
+
+     Use case ends.
+
+**Extensions**
+
+* 2a. The recipe list is empty.
 
   Use case ends.
-	
-**Use case: Track calories**
+
+* 3a. The given index is invalid.
+
+    * 3a1. Wishful Shrinking shows an error message.
+
+      Use case resumes at step 2.
+      
+**Use case: View recipes ate**
 
 **MSS**
 
-  1. User wants to keep track of the food that they have eaten.
-  2. Wishful Shrinking adds the recipes that the user has input to the calorie tracker.
+  1. User requests to view all recipes that are in the consumption list.
+  1. Wishful Shrinking lists all recipes that are in the consumption list.
 
      Use case ends.
 
+**Extensions**
+
+* 2a. The consumption list is empty.
+
+    Use case ends.  
+
+**Use case: Clear all recipes in consumption list**
+
+**MSS**
+
+  1. User requests to clear all the recipes in the consumption list.
+  1. Wishful Shrinking empty the consumption list.
+
+     Use case ends.
+
+#### Other use cases
 **Use case: View help**
 
 **MSS**
 
   1. User wants to view all valid commands they can use.
-  2. Wishful Shrinking shows all valid commands.
+  1. Wishful Shrinking shows all valid commands.
 
      Use case ends.
 
@@ -858,13 +838,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 recipes and ingredients without a noticeable sluggishness in performance for typical usage.
-3.  Reserve an amount of 5MB memory for the baseline recipe data.
-4.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.  
-5.  Searching-related features might be slow if there are more than 2000 recipes or ingredients in the database.
-6.  The application does not need internet connection.
-7.  The application uses local database.
-8.  The local database will be immediately updated after each updating command.
+1.  Should be able to hold up to 1000 recipes and ingredients without a noticeable sluggishness in performance for typical usage.
+1.  Reserve an amount of 5MB memory for the baseline recipe data.
+1.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.  
+1.  Searching-related features might be slow if there are more than 2000 recipes or ingredients in the database.
+1.  The application does not need internet connection.
+1.  The application uses local database.
+1.  The local database will be immediately updated after each updating command.
 
 ### Glossary
 
