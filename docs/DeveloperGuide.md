@@ -169,27 +169,6 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 Both options are equally feasible. However, Alternative 1 was chosen to avoid confusion for prospective users.
 
-### Assign feature
-
-#### Implementation
-
-The assign feature is facilitated by `AssignCommand` and `AssignCommandParser`.
-It uses an operation `AddressBook#assignInstructor()` which is exposed in the `Model` interface as `Model#assignInstructor()`.
-Then, the `assignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#assignInstructor()` will add the instructor to the module's set of instructors.
-
-#### Design consideration:
-
-##### Aspect: How to store assignments
-* **Alternative 1 (current choice):** A module has a set of instructors assigned to it.
-  * Pros: More efficient to list the instructors of a certain module.
-  * Cons: Less efficient to list the modules of a certain instructor.
-
-* **Alternative 2:** An instructor has a set of modules they are assigned to.
-  * Pros: More efficient to list the modules of a certain instructor.
-  * Cons: Less efficient to list the instructors of a certain module.
-
-Both are equally viable options but Alternative 1 was chosen so `Person` would not have to be redesigned or have too many fields.
-
 ### Deleting Module feature
 
 #### Implementation
@@ -234,6 +213,27 @@ The following sequence diagram shows how the deleting of the module works:
 * **Alternative 2:** Deletes a module based on the index of the module list.
  * Pros : Dean does not have to memorise all the module code, can simply delete based on what is shown in the module list.
  * Cons : Less intuitive.
+
+### Assign feature
+
+#### Implementation
+
+The assign feature is facilitated by `AssignCommand` and `AssignCommandParser`.
+It uses an operation `AddressBook#assignInstructor()` which is exposed in the `Model` interface as `Model#assignInstructor()`.
+Then, the `assignInstructor()` operation is called in both `UniqueModuleList` and `Module`. `Module#assignInstructor()` will add the instructor to the module's set of instructors.
+
+#### Design consideration:
+
+##### Aspect: How to store assignments
+* **Alternative 1 (current choice):** A module has a set of instructors assigned to it.
+  * Pros: More efficient to list the instructors of a certain module.
+  * Cons: Less efficient to list the modules of a certain instructor.
+
+* **Alternative 2:** An instructor has a set of modules they are assigned to.
+  * Pros: More efficient to list the modules of a certain instructor.
+  * Cons: Less efficient to list the instructors of a certain module.
+
+Both are equally viable options but Alternative 1 was chosen so `Person` would not have to be redesigned or have too many fields.
 
 ### Unassign feature
 
@@ -306,6 +306,31 @@ All operations on `UniqueModuleList` will be done on the active semester. `Addre
 * **Alternative 2:** There is only one module list and there is a filter to only show modules of a particular semester.
   * Pros: More efficient to list the modules of a certain instructor.
   * Cons: Need to add semester field to modules and commands, will have two copies of the same module if held in both semesters, more code to change.
+
+### Clear all modules feature
+
+#### Implementation
+
+It implements the following operations:
+* `AddressBook#clearMod()` — Clear all modules from the list.  
+
+These operations are exposed in the `Model` interface as `Model#clearMod()` and `UniqueModuleList` class as `UniqueModuleList#clearAll()`
+
+The following sequence diagram shows how the mclear operation works:
+
+![UndoRedoState0](images/MclearCommandSequenceDiagram.png)
+
+Clearing all modules from the module list
+
+a. Prerequisites : Clear all modules from module list using `mclear` There are 3 modules with module codes `CS2100`, `CS2101`, `CS2102` in FaculType.
+
+b. Test case : `mclear` <br>
+Expected : Success message saying "All modules deleted"
+
+c. Test case : `mclear` on an empty module list <br>
+Expected : Error message saying "Module list is already empty".
+
+{ more test cases ... }
 
 ### \[Proposed\] Undo/redo feature
 
