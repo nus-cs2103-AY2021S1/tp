@@ -81,6 +81,7 @@ public class UpdateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
 
         List<SerialNumber> indexes = updateStockDescriptor.getSerialNumbers();
@@ -121,8 +122,6 @@ public class UpdateCommand extends Command {
             model.setStock(stockToUpdate, updatedStock);
             updatedStocks.add(updatedStock);
         }
-
-        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
 
         return new CommandResult(String.format(MESSAGE_UPDATE_STOCK_SUCCESS, stocksAsString(updatedStocks)));
     }
