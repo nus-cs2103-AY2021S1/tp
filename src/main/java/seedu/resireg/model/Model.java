@@ -341,4 +341,6 @@ public interface Model {
      * Saves the current ResiReg state for undo/redo.
      */
     void saveStateResiReg();
+
+    AppMode getAppMode();
 }

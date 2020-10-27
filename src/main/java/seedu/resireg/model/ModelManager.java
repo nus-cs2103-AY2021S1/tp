@@ -404,6 +404,10 @@ public class ModelManager implements Model {
         versionedResiReg.save();
     }
 
+    @Override
+    public AppMode getAppMode() {
+        return AppMode.NORMAL;
+    }
 
     @Override
     public boolean equals(Object obj) {
