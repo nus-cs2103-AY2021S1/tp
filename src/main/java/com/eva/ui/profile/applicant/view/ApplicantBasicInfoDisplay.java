@@ -16,7 +16,7 @@ public class ApplicantBasicInfoDisplay extends UiPart<Region> {
 
     public final Applicant applicant;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox displayPane;
     @FXML
     private Label name;

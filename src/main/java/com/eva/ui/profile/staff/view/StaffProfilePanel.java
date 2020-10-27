@@ -4,6 +4,7 @@ import static com.eva.commons.core.PanelState.STAFF_PROFILE;
 
 import com.eva.commons.core.PanelState;
 import com.eva.model.current.view.CurrentViewStaff;
+import com.eva.model.current.view.ReadOnlyCurrentViewStaff;
 import com.eva.model.person.staff.Staff;
 import com.eva.ui.UiPart;
 import com.eva.ui.profile.CommentListPanel;
@@ -21,7 +22,7 @@ public class StaffProfilePanel extends UiPart<Region> {
 
     private static final String FXML = "StaffProfilePanel.fxml";
 
-    public final CurrentViewStaff staff;
+    public final ReadOnlyCurrentViewStaff staff;
 
     private StaffBasicInfoDisplay staffBasicInfoDisplay;
     private LeaveInfoDisplay leaveInfoDisplay;
@@ -40,7 +41,7 @@ public class StaffProfilePanel extends UiPart<Region> {
     /**
      * Creates a {@code StaffProfilePanel} with the given {@code Staff}.
      */
-    public StaffProfilePanel(CurrentViewStaff staff) {
+    public StaffProfilePanel(ReadOnlyCurrentViewStaff staff) {
         super(FXML);
         this.staff = staff;
     }
