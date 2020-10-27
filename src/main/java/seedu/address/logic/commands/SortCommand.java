@@ -32,9 +32,10 @@ public class SortCommand extends Command {
                 return null;
         }
 
+        @Override
         public int compare(Task task1, Task task2) {
             TaskDate date1 = getDate(task1), date2 = getDate(task2);
-            if (date1 != null && date1 != null) return date1.compareTo(date2);
+            if (date1 != null && date2 != null) return date1.compareTo(date2);
             else if (date1 == null) return -1;
             else return 0;
         }
@@ -44,8 +45,11 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> lastShownList = model.getFilteredTaskList();
+        lastShownList.sort(new SortByDate());
 
-
+        for (Task t : lastShownList){
+            System.out.println(t.getTitle());
+        }
 
         return null;
     }
