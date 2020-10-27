@@ -15,9 +15,9 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Patient objects.
  */
-public class PersonBuilder {
+public class PatientBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
     public static final String DEFAULT_NRIC = "S0000001A";
@@ -36,9 +36,9 @@ public class PersonBuilder {
     private MedicalRecord medicalRecord;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code PatientBuilder} with the default details.
      */
-    public PersonBuilder() {
+    public PatientBuilder() {
         name = new Name(DEFAULT_NAME);
         nric = new Nric(DEFAULT_NRIC);
         phone = new Phone(DEFAULT_PHONE);
@@ -50,9 +50,9 @@ public class PersonBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the PatientBuilder with the data of {@code patientToCopy}.
      */
-    public PersonBuilder(Patient patientToCopy) {
+    public PatientBuilder(Patient patientToCopy) {
         name = patientToCopy.getName();
         nric = patientToCopy.getNric();
         phone = patientToCopy.getPhone();
@@ -64,58 +64,58 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Patient} that we are building.
      */
-    public PersonBuilder withName(String name) {
+    public PatientBuilder withName(String name) {
         this.name = new Name(name);
         return this;
     }
 
     /**
-     * Sets the {@code Nric} of the {@code Person} that we are building.
+     * Sets the {@code Nric} of the {@code Patient} that we are building.
      */
-    public PersonBuilder withNric(String nric) {
+    public PatientBuilder withNric(String nric) {
         this.nric = new Nric(nric);
         return this;
     }
 
     /**
-     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code Person} that we are building.
+     * Parses the {@code allergies} into a {@code Set<Allergy>} and set it to the {@code Patient} that we are building.
      */
-    public PersonBuilder withAllergies(String ... allergies) {
+    public PatientBuilder withAllergies(String ... allergies) {
         this.allergies = SampleDataUtil.getAllergySet(allergies);
         return this;
     }
 
     /**
      * Parses the {@code appointments} into a {@code Set<Appointment>}
-     * and set it to the {@code Person} that we are building.
+     * and set it to the {@code Patient} that we are building.
      */
-    public PersonBuilder withAppointments(String ... appointments) {
+    public PatientBuilder withAppointments(String ... appointments) {
         this.appointments = SampleDataUtil.getAppointmentSet(appointments);
         return this;
     }
 
     /**
-     * Sets the {@code Address} of the {@code Person} that we are building.
+     * Sets the {@code Address} of the {@code Patient} that we are building.
      */
-    public PersonBuilder withAddress(String address) {
+    public PatientBuilder withAddress(String address) {
         this.address = new Address(address);
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Person} that we are building.
+     * Sets the {@code Phone} of the {@code Patient} that we are building.
      */
-    public PersonBuilder withPhone(String phone) {
+    public PatientBuilder withPhone(String phone) {
         this.phone = new Phone(phone);
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code Person} that we are building.
+     * Sets the {@code Email} of the {@code Patient} that we are building.
      */
-    public PersonBuilder withEmail(String email) {
+    public PatientBuilder withEmail(String email) {
         this.email = new Email(email);
         return this;
     }
@@ -125,7 +125,7 @@ public class PersonBuilder {
      * @param url
      * @return
      */
-    public PersonBuilder withMedicalRecord(String url) {
+    public PatientBuilder withMedicalRecord(String url) {
         this.medicalRecord = new MedicalRecord(url);
         return this;
     }

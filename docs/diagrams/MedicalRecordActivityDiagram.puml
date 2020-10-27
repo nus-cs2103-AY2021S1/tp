@@ -8,8 +8,8 @@ start
 if () then ([user wants to access
       Medical Record])
     :Find the patient;
-    :Copy medical record url using
-           the 'Copy MR url' button;
+    :  Copy medical record url
+    using the 'MR URL' button;
     :Paste and access the link on
     a web browser to view record;
 else ([else])

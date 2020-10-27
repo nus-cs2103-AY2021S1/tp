@@ -2,6 +2,7 @@ package seedu.address.logic.commands.appointmentcommand;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPOINTMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 
 import java.util.HashSet;
@@ -33,11 +34,14 @@ public class AddApptCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds an appointment for the patient specified "
-            + "by the index number used in the displayed person list. \n"
+            + "by the index number used in the displayed patient list. \n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] \n"
+            + "[" + PREFIX_APPOINTMENT + "APPOINTMENT TIME] "
+            + "[" + PREFIX_DESCRIPTION + "APPOINTMENT DESCRIPTION]"
+            + "\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_APPOINTMENT + "28/09/2020 20:00";
+            + PREFIX_APPOINTMENT + "28/09/2022 20:00 "
+            + PREFIX_DESCRIPTION + "Eye Check-up";
 
     public static final String MESSAGE_ADD_APPT_SUCCESS = "Added appointment successfully!";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
@@ -47,7 +51,7 @@ public class AddApptCommand extends Command {
     private final Appointment appointment;
 
     /**
-     * @param index of the person in the filtered person list to add appointment to
+     * @param index of the patient in the filtered patient list to add appointment to
      * @param appointment the appointment to add to the patient
      */
     public AddApptCommand(Index index, Appointment appointment) {
@@ -70,7 +74,7 @@ public class AddApptCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
 
-        Patient changedPatient = createChangedPerson(patientToAddAppt, appointment);
+        Patient changedPatient = createChangedPatient(patientToAddAppt, appointment);
 
         assert !patientToAddAppt.equals(changedPatient) : "changedPatient should be different from original";
 
@@ -83,7 +87,7 @@ public class AddApptCommand extends Command {
      * Creates and returns a {@code Patient} with the details of {@code patientToAddAppt}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Patient createChangedPerson(Patient patientToAddAppt, Appointment appointment) {
+    private static Patient createChangedPatient(Patient patientToAddAppt, Appointment appointment) {
         assert patientToAddAppt != null : "Patient to add Appointment should not be null!";
 
         Name updatedName = patientToAddAppt.getName();

@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to Hospify. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a patient to Hospify. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_NRIC + "NRIC "
@@ -46,7 +46,7 @@ public class AddCommand extends Command {
     private final Patient toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code Patient}
      */
     public AddCommand(Patient patient) {
         requireNonNull(patient);

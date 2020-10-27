@@ -19,12 +19,12 @@ import seedu.address.model.patient.Patient;
 @JsonRootName(value = "addressbook")
 class JsonSerializableHospify {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
 
     private final List<JsonAdaptedPatient> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableHospify} with the given patients.
      */
     @JsonCreator
     public JsonSerializableHospify(@JsonProperty("persons") List<JsonAdaptedPatient> persons) {
@@ -46,15 +46,15 @@ class JsonSerializableHospify {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public HospifyBook toModelType() throws IllegalValueException {
-        HospifyBook addressBook = new HospifyBook();
+        HospifyBook hospifyBook = new HospifyBook();
         for (JsonAdaptedPatient jsonAdaptedPatient : persons) {
             Patient patient = jsonAdaptedPatient.toModelType();
-            if (addressBook.hasPatient(patient)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            if (hospifyBook.hasPatient(patient)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
             }
-            addressBook.addPatient(patient);
+            hospifyBook.addPatient(patient);
         }
-        return addressBook;
+        return hospifyBook;
     }
 
 }

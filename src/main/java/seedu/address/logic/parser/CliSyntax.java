@@ -13,5 +13,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_ALLERGY = new Prefix("t/");
     public static final Prefix PREFIX_NRIC = new Prefix("ic/");
     public static final Prefix PREFIX_APPOINTMENT = new Prefix("appt/");
+    public static final Prefix PREFIX_APPOINTMENT_OLD = new Prefix("oldappt/");
+    public static final Prefix PREFIX_APPOINTMENT_NEW = new Prefix("newappt/");
     public static final Prefix PREFIX_MEDICAL_RECORD = new Prefix("mr/");
+    public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
 }

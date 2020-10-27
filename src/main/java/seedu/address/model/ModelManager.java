@@ -68,14 +68,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
+    public Path getHospifyFilePath() {
         return userPrefs.getHospifyFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setHospifyFilePath(addressBookFilePath);
+    public void setHospifyFilePath(Path hospifyFilePath) {
+        requireNonNull(hospifyFilePath);
+        userPrefs.setHospifyFilePath(hospifyFilePath);
     }
 
     //=========== HospifyBook ================================================================================

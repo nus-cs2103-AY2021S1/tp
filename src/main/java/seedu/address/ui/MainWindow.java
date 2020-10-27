@@ -23,6 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
+    protected static AppointmentWindow appointmentWindow;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -34,7 +35,6 @@ public class MainWindow extends UiPart<Stage> {
     private PatientListPanel patientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private AppointmentWindow appointmentWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -113,13 +113,13 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        patientListPanel = new PatientListPanel(logic.getFilteredPersonList());
+        patientListPanel = new PatientListPanel(logic.getFilteredPatientList());
         personListPanelPlaceholder.getChildren().add(patientListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHospifyFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -154,8 +154,12 @@ public class MainWindow extends UiPart<Stage> {
      * Opens Appointment Window.
      */
     public void handleShowAppt() {
-        appointmentWindow.setAppointmentWindow(logic.getFilteredPersonList().get(0));
-        appointmentWindow.show();
+        appointmentWindow.setAppointmentWindow(logic.getFilteredPatientList().get(0));
+        if (appointmentWindow.isShowing()) {
+            appointmentWindow.focus();
+        } else {
+            appointmentWindow.show();
+        }
     }
 
     void show() {
@@ -171,6 +175,7 @@ public class MainWindow extends UiPart<Stage> {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        appointmentWindow.hide();
         primaryStage.hide();
     }
 
@@ -194,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowAppointment()) {
-                if (logic.getFilteredPersonList().size() != 1) {
+                if (logic.getFilteredPatientList().size() != 1) {
                     logger.info("Parse exception: Patient not found - " + commandText);
                     throw new ParseException("Patient not found");
                 } else {

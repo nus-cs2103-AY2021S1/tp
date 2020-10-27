@@ -27,6 +27,6 @@ public interface Storage extends HospifyStorage, UserPrefsStorage {
     Optional<ReadOnlyHospifyBook> readHospifyBook() throws DataConversionException, IOException;
 
     @Override
-    void saveHospifyBook(ReadOnlyHospifyBook addressBook) throws IOException;
+    void saveHospifyBook(ReadOnlyHospifyBook hospifyBook) throws IOException;
 
 }
