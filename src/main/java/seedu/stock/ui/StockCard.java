@@ -53,6 +53,7 @@ public class StockCard extends UiPart<Region> {
 
         String stockName = upperFirst(stock.getName().fullName);
         name.setText(stockName);
+        name.getStyleClass().add("list-cell-text");
 
         String serial = stock.getSerialNumber().getSerialNumberAsString().toUpperCase();
         serialNumber.setText(serial);
@@ -66,7 +67,6 @@ public class StockCard extends UiPart<Region> {
 
         bookmark.setVisible(stock.getIsBookmarked());
 
-
         if (stock.getNotes().size() != 0) {
             StringBuilder notesAppended = new StringBuilder();
             for (int i = 0; i < stock.getNotes().size(); i++) {
@@ -74,6 +74,30 @@ public class StockCard extends UiPart<Region> {
                         .append(stock.getNotes().get(i)).append("\n");
             }
             notes.setText(notesAppended.toString());
+        }
+
+        // checks if the stock is low in quantity
+        if (stock.getQuantity().isLowOnQuantity()) {
+            id.getStyleClass().clear();
+            id.getStyleClass().add("list-cell-text-low");
+
+            name.getStyleClass().clear();
+            name.getStyleClass().add("list-cell-text-low");
+
+            serialNumber.getStyleClass().clear();
+            serialNumber.getStyleClass().add("list-cell-text-low");
+
+            quantity.getStyleClass().clear();
+            quantity.getStyleClass().add("list-cell-text-low");
+
+            source.getStyleClass().clear();
+            source.getStyleClass().add("list-cell-text-low");
+
+            locationStored.getStyleClass().clear();
+            locationStored.getStyleClass().add("list-cell-text-low");
+
+            notes.getStyleClass().clear();
+            notes.getStyleClass().add("list-cell-text-low");
         }
 
     }

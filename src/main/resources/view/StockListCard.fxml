@@ -30,7 +30,7 @@
         <!--      location-->
         <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
         <!--      notes-->
-        <ColumnConstraints hgrow="NEVER"  minWidth="100" maxWidth="100"/>
+        <ColumnConstraints hgrow="ALWAYS"  minWidth="100" />
     </columnConstraints>
 
     <VBox fx:id="bookmark" styleClass="bookmark" GridPane.columnIndex="0" visible="\$bookmark"/>
