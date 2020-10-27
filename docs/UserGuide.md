@@ -14,13 +14,19 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 <div markdown="span" class="alert alert-info">
 
-**:information_source: Provides additional notes and constraints for certain information.**
+**:information_source: Provides additional information.**
 
 </div>
 
 <div markdown="span" class="alert alert-primary">
 
 **:bulb: Provides tips while performing the feature stated.**
+
+</div>
+
+<div markdown="span" class="alert alert-warning">
+
+**:exclamation: Provides input constraints for the command.**
 
 </div>
 
@@ -44,9 +50,9 @@ This guide serves to provide a reference for first-time users to get familiar wi
    * **`list`** : Lists all animals.
    * **`exit`** : Exits the app.
 
-1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic Features](#basic-features) are listed first, followed by additional [Advanced Features](#advanced-features) which may be useful for the user.
+1. You can refer to the features below for the details of each command. For the convenience of new users, the [Basic features](#basic-features) are listed first, followed by additional [Advanced features](#advanced-features) which may be useful for the user.
 
-## Basic Features
+## Basic features
 
 <div markdown="block" class="alert alert-info">
 
@@ -108,11 +114,20 @@ Adds an animal under the care of the user.
 
 Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 
-Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `ID` should contain only numbers with no leading zeroes.
+
+* `ID` should be at least 3 digits long.
+
+* `ID` of animal to add must not already exist in the zookeep book.
+
+* `FEED TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -127,11 +142,18 @@ Deletes the animal with the specified `ID`. `ID` refers to the id number shown i
 
 Format: `delete ID`
 
-Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `ID` should contain only numbers with no leading zeroes.
+
+* `ID` should be at least 3 digits long.
+
+* `ID` of animal to delete must exist in the zookeep book.
+</div>
 
 Example:
-* `delete 193` deletes the individual animal with id 193.
+* `delete 193` deletes the individual animal with `ID` 193.
 
 ---
 
@@ -151,7 +173,7 @@ Format: `redo`
 
 ---
 
-## Advanced Features
+## Advanced features
 
 The following features are additional ones which some users may find them useful.
 
@@ -161,11 +183,20 @@ Appends information to the fields of the animal with the specified `ID`. `ID` re
 
 Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 
-Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long.
-
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `ID` should contain only numbers with no leading zeroes.
+
+* `ID` should be at least 3 digits long.
+
+* `ID` of animal must exist in the zookeep book.
+
+* `FEED TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -179,12 +210,22 @@ Examples:
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
 </div>
 
-Conditions:
-* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* `ID` should contain only numbers with no leading zeroes.
+
+* `ID` should be at least 3 digits long.
+
+* `ID` of animal must exist in the zookeep book.
+
+* `FEED TIME` must be a valid time in 24 hour format.
+</div>
 
 Examples:
 * `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
@@ -197,6 +238,7 @@ Examples:
 Finds and lists all animals in the `ZooKeep` book whose fields contain any of the specified argument keywords (at least 1).
 
 Format: `find KEYWORD [MORE KEYWORDS]...`
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Keyword matching is case insensitive.
 </div>
@@ -224,23 +266,21 @@ Examples:
 
 Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name.
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Constraints:**<br>
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
 
 * File name can only contain alphanumeric characters, hyphens `-` and underscores `_`.
 
 * File name must be at least 1 character long and at most 100 characters long.
 
-* File name must not already exist in the data folder.
-
+* File name must not already exist in the `data/snapshots` folder.
 </div>
 
 Format: `snap FILE_NAME`
 
 Example:
 * `snap zookeepbook_19-10-2020` saves the current state of the zookeep book data as a file named 
-`zookeepbook_19-10-2020.json`, located in the data folder.
+`zookeepbook_19-10-2020.json`, located in the `data/snapshots` folder.
 
 ---
 
