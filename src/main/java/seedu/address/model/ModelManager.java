@@ -297,7 +297,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void undoTodoList() throws VersionedListException{
+    public void undoTodoList() throws VersionedListException {
         assert accessPointer >= 0;
         try {
             versionedTodoList.undo();
