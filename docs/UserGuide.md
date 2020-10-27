@@ -1,17 +1,37 @@
 ---
 layout: page
-title: ProductiveNUS
+title: User Guide
 ---
 
-ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) contained in a **Graphical User Interface** (GUI). ProductiveNUS allows you to keep track of all your lessons and assignments at hand and type in your assignments quickly so that no time is wasted.
+**ProductiveNUS is a desktop application** made for you, a School of Computing (SoC) student in National University of Singapore (NUS), to manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your academic tasks more efficiently via the [Command Box](#gui-terminologies). 
+
+As a **student from the SoC in NUS**, you tend to have a heavy workload. ProductiveNUS helps improve your productivity by enhancing your organisational skills. Apart from simply keeping track of your tasks, ProductiveNUS is capable of scheduling them for you so you will never miss any deadlines. ProductiveNUS is also compatible with NUSMods, meaning all your timetable information can be imported easily into the application so all your academic tasks can be found in just one application.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Table of Contents
-1. Getting started
-2. Features
-3. FAQ
-4. Summary of commands supported
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+### GUI terminologies
+
+### Icon usages
+Wondering what each icon is used for? You can refer to the table below to find out.
+
+| Icon        | Icon usage                                               | Box color                                                     |
+|-------------|----------------------------------------------------------|---------------------------------------------------------------|
+| :clipboard: | - Notes about the command format <br> - Pointers to note | <div markdown="span" class="alert alert-info"> Green </div>   |
+| :bulb:      | - Tip                                                    | <div markdown="span" class="alert alert-success"> Blue </div> |
+
+### Command syntax and terminologies
+
+All commands and their examples are demarcated with `markups`. `Markups` appear as a grey box as shown.
+
+You can find out more about the command terminologies here:
+
+* Prefix: An indicator to identify your input.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -27,34 +47,6 @@ ProductiveNUS is a **desktop application for managing and scheduling your academ
 
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-
-   Some example commands you can try:
-
-   * **`add`**`n/Lab report 3 d/23-04-2020 1230 mod/CS2100` : Adds an assignment named `Lab report 3` to your schedule.
-
-   * **`delete`**`3` : Deletes the 3rd assignment shown in the current list.
-
-   * **`import url/YOUR_NUSMODS_URL`** : Imports your timetable.
-
-   * **`list`**`2` : Lists assignments with deadline 2 days from current date (48 hours from current date and time).
-   
-   * **`find`**`n/Lab` : Finds assignments with names that contain the word 'Lab'.
-
-   * **`remind`**`3` : Sets reminders for the 3rd assignment which will be displayed in `Your Reminders` section.
-   
-   * **`unremind`**`3` : Removes the 3rd assignment from `Your Reminders` section.
-
-   * **`prioritize`**`3 priority/HIGH` : Sets a "HIGH" priority tag for the 3rd assignment.
-   
-   * **`unprioritize`**`3` : Removes the priority tag for the 3rd assignment.
-   
-   * **`done`**`3` : Marks the 3rd assignment as done.
-  
-   * **`undone`**`3` : Marks the 3rd assignment as not done.
-   
-   * **`exit`** : Exits the application.
-
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -63,7 +55,7 @@ ProductiveNUS is a **desktop application for managing and scheduling your academ
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:notebook_with_decorative_cover: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME_OF_ASSIGNMENT`, `NAME_OF_ASSIGNMENT` is a parameter which can be used as `add n/Assignment 2`.
@@ -74,6 +66,9 @@ ProductiveNUS is a **desktop application for managing and scheduling your academ
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE`, `d/DEADLINE n/NAME_OF_ASSIGNMENT` is also acceptable.
+  
+* All instances of `INDEX` **must be a positive integer**.<br>
+  e.g. 1, 2, 3, …​
 
 </div>
 
@@ -83,8 +78,11 @@ Adds an assignment into your schedule.
 
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]`
 
-**Tip:**
-You can include the `remind` tag when adding the assignment instead of using the `remind` command after adding the assignment.
+<div markdown="span" class="alert alert-success">
+   
+**:bulb: Tip:**
+You can include `remind` when adding an assignment instead of using the `remind` command to set reminders after adding an assignment.
+</div>
 
 Examples:
 * `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
@@ -155,11 +153,12 @@ Examples:
 
 ### Setting reminders for assignments : `remind`
 
-Format: `remind INDEX`
+Format: `remind INDEX [MORE_INDEXES]`
 
-You can set reminders for specific assignments which will be displayed in `Your Reminders` section (Highlighted in red in the figure below).
+You can set reminders for specific assignments which will be displayed in `Your Reminders` (Highlighted in red in the figure below) for your easy referral.
 
    ![UserGuideYourReminders](images/UserGuideYourReminders.png)
+   *Figure 1: `Your Reminders` highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
 
@@ -167,10 +166,22 @@ For example, `remind 1` will set reminders for the first assignment in your assi
 
       ---------------------------Figure of GUI with CS1231S Homework (Highlighted red) added into Your Reminders----------------------------
 
-**Pointers to note:**
+You can set reminders for **more than one** assignments at a time as well. 
+
+For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list and adds both assignments to `Your Reminders`.
+
+
+      ---------------------------Figure of GUI with second and fourth assignment (Highlighted red) added into Your Reminders----------------------------
+
+
+<div markdown="block" class="alert alert-primary">
+  
+**:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `remind` will not work.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` must be found in your assignment list.
+
+</div>
 
 ### Removing reminders for assignments : `unremind`
 
@@ -184,14 +195,18 @@ For example, `unremind 1` will remove the first assignment in `Your Reminders` (
 
       ---------------------------------Figure of GUI after CS2106 Lab is removed from Your Reminders----------------------------------
 
-**Pointers to note:**
+<div markdown="block" class="alert alert-primary">
+  
+**:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `unremind` will not work.
 * `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` must be found in `Your Reminders`.
 
+</div>
+
 ### Setting priority for assignments : `prioritize`
 
-Sets a priority tag for the specified assignment.
+Sets a priority for the specified assignment.
 
 Format: `prioritize INDEX priority/PRIORITY`
 
@@ -203,7 +218,7 @@ Format: `prioritize INDEX priority/PRIORITY`
 
 ### Removing priority for assignments : `unprioritize`
 
-Removes a priority tag for the specified assignment.
+Removes a priority for the specified assignment.
 
 Format: `unprioritze INDEX`
 
@@ -247,22 +262,21 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
-
-| Action           | Format                                                                                         | Examples                                           |
-|------------------|------------------------------------------------------------------------------------------------|----------------------------------------------------|
-| **add**          | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
-| **delete**       | `delete INDEX [MORE_INDEXES]`                                                                  | `delete 3`<br>`delete 2 3 4`                       |
-| **import**       | `import url/NUSMODS_URL`                                                                       |                                                    |
-| **list**         | `list [NUMBER_OF_DAYS]`                                                                        | `list 2`<br>`list`                                 |
-| **find**         | `find PREFIX/ KEYWORD [MORE_KEYWORD]`                                                          | `find mod/CS2103T CS2100`<br>`find p/HIGH`         |
-| **remind**       | `remind INDEX`                                                                                 | `remind 5`                                         |
-| **unremind**     | `unremind INDEX`                                                                               | `unremind 2`                                       |
-| **prioritize**   | `prioritize INDEX p/PRIORITY`                                                                  | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW`      |
-| **unprioritize** | `unprioritize INDEX`                                                                           | `unprioritize 1`                                   |
-| **done**         | `done INDEX`                                                                                   | `done 4`                                           |
-| **undone**       | `undone INDEX`                                                                                 | `undone 2`                                         |
-| **help**         | `help`                                                                                         | `help`                                             |
-| **exit**         | `exit`                                                                                         | `exit`                                             |
+| Action           | Format                                                                                         | Examples                                                            |
+|------------------|------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| **add**          | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334`                  |
+| **delete**       | `delete INDEX [MORE_INDEXES]`                                                                  | `delete 3`<br>`delete 2 3 4`                                        |
+| **import**       | `import url/NUSMODS_URL`                                                                       | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
+| **list**         | `list [NUMBER_OF_DAYS]`                                                                        | `list 2`<br>`list`                                                  |
+| **find**         | `find PREFIX/ KEYWORD [MORE_KEYWORD]`                                                          | `find mod/CS2103T CS2100`<br>`find p/HIGH`                          |
+| **remind**       | `remind INDEX [MORE_INDEXES]`                                                                  | `remind 5`<br>`remind 2 4 5`                                        |
+| **unremind**     | `unremind INDEX`                                                                               | `unremind 2`                                                        |
+| **prioritize**   | `prioritize INDEX p/PRIORITY`                                                                  | `prioritize 3 p/HIGH`<br>`prioritize 1 p/LOW`                       |
+| **unprioritize** | `unprioritize INDEX`                                                                           | `unprioritize 1`                                                    |
+| **done**         | `done INDEX`                                                                                   | `done 4`                                                            |
+| **undone**       | `undone INDEX`                                                                                 | `undone 2`                                                          |
+| **help**         | `help`                                                                                         | `help`                                                              |
+| **exit**         | `exit`                                                                                         | `exit`                                                              |
 
 --------------------------------------------------------------------------------------------------------------------
 
