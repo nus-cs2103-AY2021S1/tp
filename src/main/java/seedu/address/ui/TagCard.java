@@ -50,14 +50,18 @@ public class TagCard extends UiPart<Region> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    public void showTagInfo() throws CommandException, ParseException {
+    public void showTagInfo() {
         MainWindow mainWindow = MainWindow.getInstance();
         if (mainWindow == null) {
             return;
         }
 
         String showInfoCommand = "show t/" + tag.getTagName();
-        mainWindow.executeCommand(showInfoCommand);
+        try {
+            mainWindow.executeCommand(showInfoCommand);
+        } catch (CommandException | ParseException exception) {
+            // do nothing
+        }
     }
 
     @Override
