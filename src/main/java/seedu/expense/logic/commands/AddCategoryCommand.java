@@ -7,6 +7,10 @@ import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.Model;
 import seedu.expense.model.tag.Tag;
 
+/**
+ * Adds a new category tag into the tag list if the given argument is valid.
+ * Duplicate category tag is not allowed.
+ */
 public class AddCategoryCommand extends Command {
 
     public static final String COMMAND_WORD = "addCat";
