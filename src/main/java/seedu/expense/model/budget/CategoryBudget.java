@@ -65,4 +65,18 @@ public class CategoryBudget implements Budget {
     public String toString() {
         return String.format("Budget: %s", amount.toString());
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof CategoryBudget)) {
+            return false;
+        }
+
+        CategoryBudget otherCategoryBudget = (CategoryBudget) other;
+        return otherCategoryBudget.getTag().equals(getTag());
+    }
 }
