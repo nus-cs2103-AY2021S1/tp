@@ -24,6 +24,7 @@ import seedu.address.logic.commands.SetAllCommand;
 import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.commands.SetDefaultCommand;
 import seedu.address.logic.commands.TodayCommand;
+import seedu.address.logic.commands.TomorrowCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientListCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientResetAllCommand;
@@ -81,6 +82,9 @@ public class AddressBookParser {
 
         case TodayCommand.COMMAND_WORD:
             return new TodayCommand();
+
+        case TomorrowCommand.COMMAND_WORD:
+            return new TomorrowCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
