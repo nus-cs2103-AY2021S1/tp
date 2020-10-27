@@ -5,7 +5,7 @@ title: User Guide
 
 Choose a topic from the table of contents to get started on your **Wishful Shrinking journey**. 
 
-##Table of Contents
+## Table of Contents
 
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
@@ -50,7 +50,7 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
 8. [Command Summary](#8-command-summary)
         
         
-   
+
 
 # 1. Overview <a id="1-overview"></a>
 Welcome to the Wishful Shrinking User Guide! In this section, you will be given an overview of what Wishful
