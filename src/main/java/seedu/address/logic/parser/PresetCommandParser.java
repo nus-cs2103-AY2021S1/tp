@@ -12,11 +12,11 @@ public class PresetCommandParser implements Parser<PresetCommand> {
         String[] argsArr = trimArgs.split(" ");
         ParserUtil.checkArgsLength(argsArr, PresetCommand.COMMAND_WORD, PresetCommand.MESSAGE_USAGE, 2, 2);
 
-        String saveOrLoad = argsArr[1].trim().toLowerCase();
+        String saveOrLoad = argsArr[0].trim().toLowerCase();
         assert saveOrLoad.equals("save") || saveOrLoad.equals("load");
 
         boolean save = saveOrLoad.equals("save");
-        Name presetName = ParserUtil.parseName(argsArr[2]);
+        Name presetName = ParserUtil.parseName(argsArr[1]);
 
         return new PresetCommand(save, presetName);
     }
