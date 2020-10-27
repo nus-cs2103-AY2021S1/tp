@@ -1,6 +1,7 @@
 package seedu.zookeep.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.zookeep.model.Model.PREDICATE_SHOW_ALL_ANIMALS;
 
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ANIMAL_DISPLAYED_ID);
         }
         model.deleteAnimal(animalToDelete);
+        model.updateFilteredAnimalList(PREDICATE_SHOW_ALL_ANIMALS);
         return new CommandResult(String.format(MESSAGE_DELETE_ANIMAL_SUCCESS, animalToDelete));
     }
 
