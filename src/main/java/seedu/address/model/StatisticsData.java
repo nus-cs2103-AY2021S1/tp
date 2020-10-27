@@ -3,10 +3,13 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tag.Tag;
 
 public class StatisticsData {
+    private static final Logger logger = LogsCenter.getLogger(StatisticsData.class);
     private HashMap<Tag, Integer[]> stats;
 
     /**
@@ -14,6 +17,7 @@ public class StatisticsData {
      * tasks and lessons for each module tag.
      */
     public StatisticsData() {
+        logger.info("New StatisticsData object created");
         this.stats = new HashMap<>();
     }
     /**
@@ -21,6 +25,7 @@ public class StatisticsData {
      */
     public void addTag(Tag tag) {
         requireNonNull(tag);
+        logger.info("New tag added to StatisticsData object");
         Integer[] defaultValue = new Integer[]{0, 0};
         stats.put(tag, defaultValue);
     }
