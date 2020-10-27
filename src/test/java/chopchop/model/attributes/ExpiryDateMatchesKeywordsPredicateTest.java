@@ -54,4 +54,3 @@ public class ExpiryDateMatchesKeywordsPredicateTest {
         assertFalse(predicate.test(new IngredientBuilder().withDate("2103-10-03").build()));
     }
 }
-

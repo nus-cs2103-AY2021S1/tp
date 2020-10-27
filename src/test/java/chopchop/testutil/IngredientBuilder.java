@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import chopchop.model.attributes.ExpiryDate;
+import chopchop.model.attributes.Tag;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.attributes.Tag;
 import chopchop.model.attributes.Quantity;
@@ -21,7 +22,7 @@ public class IngredientBuilder {
     private Set<Tag> tags;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code IngredientBuilder} with the default details.
      */
     public IngredientBuilder() {
         qty     = Count.of(DEFAULT_QTY);
@@ -31,7 +32,7 @@ public class IngredientBuilder {
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the IngredientBuilder with the data of {@code ingredientToCopy}.
      */
     public IngredientBuilder(Ingredient indToCopy) {
         name = indToCopy.getName();

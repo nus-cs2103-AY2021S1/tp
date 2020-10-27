@@ -1,7 +1,7 @@
 package chopchop.logic.commands;
 
 import static chopchop.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static chopchop.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static chopchop.logic.commands.CommandTestUtil.showIngredientAtIndex;
 import static chopchop.testutil.TypicalReferences.INDEXED_FIRST;
 import static chopchop.testutil.TypicalIngredients.getTypicalIngredientBook;
 
@@ -36,7 +36,7 @@ public class ListIngredientCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
 
-        showPersonAtIndex(model, INDEXED_FIRST);
+        showIngredientAtIndex(model, INDEXED_FIRST);
         assertCommandSuccess(new ListIngredientCommand(), model, expectedModel);
     }
 }
