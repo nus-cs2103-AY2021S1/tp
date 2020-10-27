@@ -127,8 +127,7 @@ t/ | TAG | Recipe tag
    corresponding lists e.g. `deleteR 1` `editF 2`.
 
 * Parameters can be in **any order**. The only exception is if one of the parameter is an INDEX, in this case
-, **INDEX must be the first parameter**.
-<br>
+, **INDEX must be the first parameter**. <br>
   e.g. if the command specifies `n/NAME i/INGREDIENTS`, then `i/INGREDIENTS n/NAME` is also acceptable.
   e.g. if the command specifies `INDEX n/NAME i/INGREDIENTS`, then `n/NAME INDEX i/INGREDIENTS` is not acceptable.
 </div>
