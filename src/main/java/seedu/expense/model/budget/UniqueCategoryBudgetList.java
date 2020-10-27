@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.expense.model.budget.exceptions.CategoryBudgetNotFoundException;
 import seedu.expense.model.budget.exceptions.DuplicateCategoryBudgetException;
 import seedu.expense.model.expense.Amount;
+import seedu.expense.model.tag.Tag;
 
 /**
  * A list of category-budgets that enforces uniqueness between its elements and does not allow nulls.
@@ -76,9 +77,9 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
      */
     public double tallyAmounts() {
         int size = filteredList.size();
-        double sum = internalList.size() != size || size == 1 //filteredlist not filtered or only one budget
-            ? 0
-            : defaultCategory.getAmount().asDouble();
+        double sum = internalList.size() == size && size != 1 || isAllDefaultCategory()
+            ? defaultCategory.getAmount().asDouble()
+            : 0;
         assert sum >= 0;
         Iterator<CategoryBudget> i = iterator();
         while (i.hasNext()) {
@@ -142,6 +143,11 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     @Override
     public void topupBudget(Amount toAdd) {
         defaultCategory.topupBudget(toAdd);
+    }
+
+    private boolean isAllDefaultCategory() {
+        Tag defaultTag = new Tag("Default");
+        return filteredList.stream().allMatch(budget -> budget.getTag().equals(defaultTag));
     }
 
     @Override
