@@ -163,6 +163,7 @@ public class ModelManager implements Model {
     @Override
     public void assignInstructor(Person instructor, ModuleCode moduleCode) {
         addressBook.assignInstructor(instructor, moduleCode);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
