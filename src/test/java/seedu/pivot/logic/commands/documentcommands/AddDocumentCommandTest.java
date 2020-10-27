@@ -116,5 +116,8 @@ public class AddDocumentCommandTest {
         public void updateFilteredCaseList(Predicate<Case> predicate) {
             return;
         }
+
+        @Override
+        public void commitPivot(String command) {}
     }
 }

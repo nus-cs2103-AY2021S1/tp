@@ -86,6 +86,7 @@ public class EditCommand extends Command {
         }
 
         model.setCase(caseToEdit, editedCase);
+        model.commitPivot(String.format(MESSAGE_EDIT_CASE_SUCCESS, editedCase));
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
         return new CommandResult(String.format(MESSAGE_EDIT_CASE_SUCCESS, editedCase));
     }
