@@ -726,9 +726,7 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting an animal
 
-1. Deleting an animal while all animals are being shown
-
-   1. Prerequisites: List all animals using the `list` command. Multiple animals in the list.
+1. Deleting an animal
 
    1. Test case: `delete 123`<br>
       Expected: The animal with an ID of 123 deleted from the list. Details of the deleted animal shown in the status message. Timestamp in the status bar is updated.
@@ -736,21 +734,7 @@ testers are expected to do more *exploratory* testing.
    1. Test case: `delete 0`<br>
       Expected: No animal is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than the requisite size)<br>
-      Expected: Similar to previous.
-
-1. Deleting an animal while not all animals are being shown
-   
-   1. Prerequisites: Use `find 455` command to list animals that contain 455 in any of their fields. 
-      2 animals are listed: an anaconda named 455 and a lion named Simba with an ID of 455.
-   
-   1. Test case: `delete 455`<br>
-      Expected: Simba with an ID of 455 is deleted from the list. Details of the deleted animal shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 123`<br>
-      Expected: No animal is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than the requisite size)<br>
+   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is smaller than all 3 digit numbers)<br>
       Expected: Similar to previous.
 
 ### Saving data
