@@ -30,7 +30,7 @@ Given below are my contributions to the project.
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=authorship&tabAuthor=GabrielTeo&tabRepo=AY2021S1-CS2103T-W15-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code~other)
 
 * **Project management**:
-  * Managed releases `v1.3` (1 releases) on GitHub
+  * Managed releases `v1.3(trial)` and `v1.3` (2 releases) on GitHub
 
 * **Enhancements to existing features**:
   * Edited `find` command to take in both name and `NRIC`, returning all patients that match the keywords and `NRIC` (Pull request [\#47]())
