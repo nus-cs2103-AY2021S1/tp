@@ -51,6 +51,7 @@ public class SampleDataUtil {
     public static ReadOnlyExpenseBook getSampleExpenseBook() {
         ExpenseBook sampleAb = new ExpenseBook();
 
+        sampleAb.topupBudget(new Amount(500));
         for (Expense sampleExpense : getSampleExpenses()) {
             sampleAb.addExpense(sampleExpense);
         }
