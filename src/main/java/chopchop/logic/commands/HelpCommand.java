@@ -13,8 +13,6 @@ import chopchop.model.Model;
  */
 public class HelpCommand extends Command {
 
-    private static final String USER_GUIDE_BASE_URL = "https://ay2021s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
-
     private static final String METHOD_NAME_GET_CMD = "getCommandString";
     private static final String METHOD_NAME_GET_HELP = "getCommandHelp";
     private static final String METHOD_NAME_GET_UG_LINK = "getUserGuideSection";
@@ -34,7 +32,9 @@ public class HelpCommand extends Command {
     public CommandResult execute(Model model, HistoryManager historyManager) {
 
         if (helpCommand.isEmpty() || helpCommand.get().isEmpty()) {
-            return CommandResult.help();
+            return CommandResult.message("Refer to the")
+                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL, /* newline: */ false)
+                .appending("for more detailed help", /* newline: */ false);
         }
 
         var cmd = helpCommand.get();
@@ -42,7 +42,7 @@ public class HelpCommand extends Command {
         var cls = getCommandClassFor(cmd, this.helpTarget.orElse(""));
         if (cls == null) {
             return CommandResult.error("Unknown command '%s'; see the User Guide for a list of commands: %s",
-                cmd, USER_GUIDE_BASE_URL);
+                cmd, Strings.USER_GUIDE_BASE_URL);
         }
 
         var cmdStr = invokeMethod(cls, METHOD_NAME_GET_CMD);
@@ -57,7 +57,8 @@ public class HelpCommand extends Command {
         if (cmdUgLink != null) {
             ret = ret
                 .appending("see the", /* newline: */ true)
-                .appendingLink("User Guide", USER_GUIDE_BASE_URL + "#" + cmdUgLink, /* newline: */ false);
+                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + cmdUgLink,
+                    /* newline: */ false);
         }
 
         return ret;
@@ -210,7 +211,7 @@ public class HelpCommand extends Command {
             return "edit";
         }
         public static String getCommandHelp() {
-            return "Edits items; see 'edit recipe' or 'edit ingredient'";
+            return "Edits an item; see 'edit recipe' or 'edit ingredient'";
         }
     }
 }

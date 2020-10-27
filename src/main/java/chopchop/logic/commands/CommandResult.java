@@ -215,5 +215,20 @@ public class CommandResult {
         static Part link(String text, String url) {
             return new Part(text, url, true);
         }
+
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == this) {
+                return true;
+            } else if (!(obj instanceof Part)) {
+                return false;
+            }
+
+            var other = (Part) obj;
+            return Objects.equals(this.url, other.url)
+                && Objects.equals(this.text, other.text)
+                && Objects.equals(this.isLink, other.isLink)
+                && Objects.equals(this.appendNewline, other.appendNewline);
+        }
     }
 }
