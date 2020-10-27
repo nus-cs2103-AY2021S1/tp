@@ -35,12 +35,13 @@ public class EditMeetingCommand extends Command {
             + "by the index number used in the displayed meeting list. "
             + "Existing values will be overwritten by the input values.\n"
             + "\n\nParameters: \nINDEX (must be a positive integer) "
-            + "\n[" + PREFIX_MEETING_BIDDER_ID + "B-ID] "
-            + "\n[" + PREFIX_MEETING_PROPERTY_ID + "P-ID] "
-            + "\n[" + PREFIX_MEETING_TIME + "TIME] "
-            + "\n[" + PREFIX_MEETING_VENUE + "VENUE]...\n"
+            + "\n[" + PREFIX_MEETING_BIDDER_ID + "B12] "
+            + "\n[" + PREFIX_MEETING_PROPERTY_ID + "P14] "
+            + "\n[" + PREFIX_MEETING_TIME + "20-10-2020] "
+            + "\n[" + PREFIX_MEETING_VENUE + "bedok]\n"
             + "\nExample: " + COMMAND_WORD + " 1 "
-            + PREFIX_MEETING_VENUE + "EUNOS ";
+            + PREFIX_MEETING_VENUE + "eunos "
+            + PREFIX_MEETING_TIME + "20-10-2019 ";
 
     public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

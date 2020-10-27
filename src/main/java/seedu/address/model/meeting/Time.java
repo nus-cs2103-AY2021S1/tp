@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Time {
 
-    public static final String MESSAGE_CONSTRAINTS = "Time should only contain numbers, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Date should only contain numbers, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,

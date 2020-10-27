@@ -23,10 +23,10 @@ public class FindMeetingCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all meetings whose venues contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "\n\nParameters: </v /b /p /t> [MORE_KEYWORDS]...\n"
-            + "\nExample: " + COMMAND_WORD + "/v bedok\n"
-            + "\nExample: " + COMMAND_WORD + "/t 2300hrs\n"
-            + "\nExample: " + COMMAND_WORD + "/b b10\n"
-            + "\nExample: " + COMMAND_WORD + "/p p10\n";
+            + "\nExample: " + COMMAND_WORD + " v/ bedok\n"
+            + "\nExample: " + COMMAND_WORD + " t/ 20-10-2020\n"
+            + "\nExample: " + COMMAND_WORD + " b/ B10\n"
+            + "\nExample: " + COMMAND_WORD + " p/ P10\n";
 
     private final VenueContainsKeywordsPredicate venuePredicate;
     private final TimeContainsKeywordsPredicate timePredicate;
