@@ -61,6 +61,12 @@ public interface Model {
     /** Returns the Taskmaster */
     ReadOnlyTaskmaster getTaskmaster();
 
+    /**
+     * Replaces the contents of the session list with {@code sessions}.
+     * {@code sessions} must not contain duplicate sessions.
+     */
+    void setSessions(List<Session> sessions);
+
     void changeSession(SessionName sessionName);
 
     /**

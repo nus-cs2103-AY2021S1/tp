@@ -17,6 +17,8 @@ import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
 
+import java.util.ArrayList;
+
 
 public class MarkCommandTest {
 
@@ -56,4 +58,20 @@ public class MarkCommandTest {
         MarkCommand markCommand = new MarkCommand(indexTooBig, AttendanceType.PRESENT);
         assertCommandFailure(markCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
+
+    @Test
+    public void execute_emptySessionList_exceptionThrown() {
+        model.setSessions(new ArrayList<>());
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_STUDENT, AttendanceType.PRESENT);
+        String expectedMessage = "There are no sessions yet!";
+        assertCommandFailure(markCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_nullCurrentSession_exceptionThrown() {
+        MarkCommand markCommand = new MarkCommand(INDEX_FIRST_STUDENT, AttendanceType.PRESENT);
+        String expectedMessage = "Please select a session first!";
+        assertCommandFailure(markCommand, model, expectedMessage);
+    }
+
 }

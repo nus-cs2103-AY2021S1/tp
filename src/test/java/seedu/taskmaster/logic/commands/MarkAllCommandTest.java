@@ -1,8 +1,10 @@
 package seedu.taskmaster.logic.commands;
 
+import static seedu.taskmaster.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.taskmaster.testutil.TypicalStudents.getTypicalTaskmaster;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -39,5 +41,20 @@ public class MarkAllCommandTest {
         expectedModel.markAllStudents(students, AttendanceType.ABSENT);
         String expectedMessage = String.format(MarkAllCommand.MESSAGE_MARK_ALL_SUCCESS, AttendanceType.ABSENT);
         assertCommandSuccess(markAllCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_emptySessionList_exceptionThrown() {
+        model.setSessions(new ArrayList<>());
+        MarkAllCommand markAllCommand = new MarkAllCommand(AttendanceType.PRESENT);
+        String expectedMessage = "There are no sessions yet!";
+        assertCommandFailure(markAllCommand, model, expectedMessage);
+    }
+
+    @Test
+    public void execute_nullCurrentSession_exceptionThrown() {
+        MarkAllCommand markAllCommand = new MarkAllCommand(AttendanceType.PRESENT);
+        String expectedMessage = "Please select a session first!";
+        assertCommandFailure(markAllCommand, model, expectedMessage);
     }
 }

@@ -52,7 +52,6 @@ public class MarkCommand extends Command {
         }
 
         Student studentToMark = lastShownList.get(index);
-
         try {
             model.markStudent(studentToMark, attendanceType);
         } catch (SessionException sessionException) {

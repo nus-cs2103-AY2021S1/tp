@@ -30,9 +30,7 @@ public class MarkAllCommand extends MarkCommand {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         List<Student> lastShownList = model.getFilteredStudentList();
-
         try {
             model.markAllStudents(lastShownList, attendanceType);
         } catch (SessionException sessionException) {

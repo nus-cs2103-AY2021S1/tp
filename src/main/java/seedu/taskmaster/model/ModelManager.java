@@ -98,6 +98,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void setSessions(List<Session> sessions) {
+        taskmaster.setSessions(sessions);
+    }
+
+    @Override
     public void changeSession(SessionName sessionName) {
         taskmaster.changeSession(sessionName);
     }
