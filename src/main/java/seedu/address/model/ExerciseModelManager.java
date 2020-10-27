@@ -34,7 +34,7 @@ public class ExerciseModelManager implements ExerciseModel {
     public ExerciseModelManager(ReadOnlyExerciseBook exerciseBook, ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(exerciseBook, userPrefs);
-        logger.fine("Initializing with address book: " + exerciseBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with exercise book: " + exerciseBook + " and user prefs " + userPrefs);
 
         this.exerciseBook = new ExerciseBook(exerciseBook);
         this.userPrefs = new UserPrefs(userPrefs);
