@@ -88,8 +88,8 @@ public class AddressBookTest {
         addressBook.clearContacts();
         AddressBook temp = getTypicalAddressBook();
         temp.clearContacts();
-        assertEquals(addressBook.getSemOneModuleList(), temp.getSemOneModuleList() );
-        assertEquals(addressBook.getSemTwoModuleList(), temp.getSemTwoModuleList() );
+        assertEquals(addressBook.getSemOneModuleList(), temp.getSemOneModuleList());
+        assertEquals(addressBook.getSemTwoModuleList(), temp.getSemTwoModuleList());
     }
 
     @Test

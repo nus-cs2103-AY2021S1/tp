@@ -11,8 +11,9 @@ import seedu.address.model.Model;
 public class MlistCommand extends Command {
 
     public static final String COMMAND_WORD = "mlist";
-
     public static final String MESSAGE_SUCCESS = "Listed all modules";
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + " : Lists all modules"
+        + "\nExample: " + COMMAND_WORD;
 
 
     @Override

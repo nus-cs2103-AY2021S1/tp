@@ -63,7 +63,6 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_reset() throws Exception {
         assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD) instanceof ResetCommand);
-        assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD + " 3") instanceof ResetCommand);
     }
 
     @Test
@@ -92,7 +91,6 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
-        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test
@@ -121,13 +119,11 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
-        assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
     }
 
     @Test
     public void parseCommand_listContacts() throws Exception {
         assertTrue(parser.parseCommand(ClistCommand.COMMAND_WORD) instanceof ClistCommand);
-        assertTrue(parser.parseCommand(ClistCommand.COMMAND_WORD + " 3") instanceof ClistCommand);
     }
 
     @Test
@@ -138,7 +134,6 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_listModules() throws Exception {
         assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD) instanceof MlistCommand);
-        assertTrue(parser.parseCommand(MlistCommand.COMMAND_WORD + " 3") instanceof MlistCommand);
     }
 
     @Test
