@@ -25,6 +25,8 @@ To navigate around this user guide, you may use the hyperlinks provided at the t
 
 1. **:bulb: Tip:** - represents a useful tip
 
+1. **:warning: Important:** - represents important information
+
 ## Quick start
 
 Ensure you have Java `11` or above installed in your Computer. If not, you may download Java `11`from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html).
@@ -258,6 +260,43 @@ Format: `sort name`<br>
 Examples:
 * `sort name` would result in the patients to be sorted by their name in ascending order.
 * `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order.
+
+### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to schedule an `Appointment` for a patient in **Hospify**.
+
+Format: `addAppt NRIC appt/DATE TIME d/DESCRIPTION`
+
+* `NRIC` represents the `NRIC` of the patient you are adding an `Appointment` to.
+* `DATE` and `TIME` represent the date and time of the `Appointment` respectively.
+* `DESCRIPTION` represents the name or brief description of the `Appointment`.
+  e.g. `Eye Check-up` or `Physiotherapy Session`
+
+<div markdown="span" class="alert alert-warning">
+
+**:warning: Important:** `DATE` and `TIME` parameters must be specified in the following formats:
+
+</div>
+
+- Date format:
+
+Format | Example
+------ | -------
+dd/MM/yyyy | 28/09/2022
+
+- Time format:
+
+Format | Example
+------ | -------
+HH:mm | 20:00
+
+Examples:
+* `addAppt S1234567A appt/25/12/2020 15:00 d/Foot Therapy`
+* `addAppt S0000001A appt/28/09/2022 20:00 d/Eye Check-up`
+
+When an `Appointment` is successfully added to a patient, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+
+![result for 'add appointment'](images/addAppt.png)
 
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
