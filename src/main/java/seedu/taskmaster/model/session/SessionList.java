@@ -20,6 +20,11 @@ public interface SessionList extends Iterable<Session> {
 
     int getNumberOfSessions();
 
+    /**
+     * Returns true if there are no sessions in the session list.
+     */
+    boolean isEmpty();
+
     void setSessions(SessionListManager replacement);
 
     /**
