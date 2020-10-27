@@ -88,9 +88,6 @@ public class TagCommand extends Command {
         model.commitAddressBook();
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toTag));
-
-
-
     }
 
     @Override
