@@ -10,6 +10,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_A;
 import static seedu.address.testutil.property.TypicalProperties.PROPERTY_B;
+import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -18,6 +19,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.bidbook.BidBook;
 import seedu.address.model.bidderaddressbook.BidderAddressBook;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
@@ -137,6 +139,7 @@ public class ModelManagerTest {
 
     @Test
     public void hasProperty_propertyInPropertyBook_returnsTrue() {
+        modelManager.setSellerAddressBook(getTypicalSellerAddressBook());
         modelManager.addProperty(PROPERTY_A);
         assertTrue(modelManager.hasProperty(PROPERTY_A));
     }

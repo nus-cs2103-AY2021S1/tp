@@ -32,6 +32,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.bidder.Bidder;
 import seedu.address.model.person.seller.Seller;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.InvalidSellerIdException;
 import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.model.propertybook.ReadOnlyPropertyBook;
 import seedu.address.model.selleraddressbook.ReadOnlySellerAddressBook;
@@ -317,8 +318,15 @@ public class ModelManager implements Model {
         propertyBook.removePropertyByPropertyId(propertyId);
     }
 
+    private boolean isValidProperty(Property property) {
+        return sellerAddressBook.containsSellerId(property.getSellerId());
+    }
+
     @Override
     public Property addProperty(Property property) {
+        if (!isValidProperty(property)) {
+            throw new InvalidSellerIdException();
+        }
         Property added = propertyBook.addProperty(property);
         updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
         return added;
@@ -336,6 +344,9 @@ public class ModelManager implements Model {
 
     @Override
     public void setProperty(Property target, Property editedProperty) {
+        if (!isValidProperty(editedProperty)) {
+            throw new InvalidSellerIdException();
+        }
         requireAllNonNull(target, editedProperty);
         propertyBook.setProperty(target, editedProperty);
     }

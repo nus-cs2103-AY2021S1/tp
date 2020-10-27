@@ -17,6 +17,7 @@ import seedu.address.logic.commands.EntityType;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.property.Property;
+import seedu.address.model.property.exceptions.InvalidSellerIdException;
 import seedu.address.ui.UiManager;
 
 /**
@@ -64,8 +65,12 @@ public class AddPropertyCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
         }
 
-        Property added = model.addProperty(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, added)).setEntity(EntityType.PROPERTY);
+        try {
+            Property added = model.addProperty(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, added)).setEntity(EntityType.PROPERTY);
+        } catch (InvalidSellerIdException e) {
+            throw new CommandException(e.getMessage());
+        }
     }
 
     @Override

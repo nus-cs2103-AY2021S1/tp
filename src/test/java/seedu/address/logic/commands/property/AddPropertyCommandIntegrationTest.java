@@ -11,11 +11,13 @@ import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddres
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bidbook.BidBook;
+import seedu.address.model.id.PropertyId;
 import seedu.address.model.property.Property;
 import seedu.address.testutil.property.PropertyBuilder;
 
@@ -33,7 +35,7 @@ public class AddPropertyCommandIntegrationTest {
     }
 
     @Test
-    public void execute_newProperty_success() {
+    public void execute_newProperty_success() throws CommandException {
         Property validProperty = new PropertyBuilder()
                 .withPropertyId(DEFAULT_PROPERTY_ID.toString())
                 .build();
@@ -50,7 +52,8 @@ public class AddPropertyCommandIntegrationTest {
         expectedModel.addProperty(validProperty);
 
         assertCommandSuccess(new AddPropertyCommand(validProperty), model,
-                String.format(AddPropertyCommand.MESSAGE_SUCCESS, validProperty), expectedModel);
+                String.format(AddPropertyCommand.MESSAGE_SUCCESS,
+                        validProperty.setId(new PropertyId(3))), expectedModel);
     }
 
     @Test
