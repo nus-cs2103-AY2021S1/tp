@@ -6,7 +6,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Student;
@@ -111,6 +110,9 @@ public class Trackr implements ReadOnlyTrackr<Module> {
         return moduleList.getUniqueTutorialGroupList(targetModule).getUniqueStudentList(targetTg);
     }
 
+    /**
+     * Adds Student to Trackr.
+     */
     public void addStudent(Module targetModule, TutorialGroup targetTg, Student student) {
         requireNonNull(student);
         moduleList.getUniqueTutorialGroupList(targetModule).addStudent(student, targetTg);

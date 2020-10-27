@@ -6,9 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.TaskList;
-import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class Module {
 
