@@ -327,6 +327,25 @@ When an `Appointment` is successfully edited, a success message will appear in t
 
 ![result for 'edit appointment'](images/editAppt.png)
 
+### Deleting an Appointment: `deleteAppt` (by Gabriel Teo Yu Xiang)
+
+This command allows you to delete an existing `Appointment` for a patient in **Hospify**.
+
+Format: `deleteAppt NRIC appt/DATE TIME`
+
+* The `Appointment` to delete must be an existing appointment of the patient.
+* The `Appointment` name/description does not need to be specified, since **Hospify** does not allow multiple appointments of the same timing for the same patient, and every appointment will have a unique timing.
+* `NRIC` represents the `NRIC` of the patient whose `Appointment` you are deleting.
+* `DATE` and `TIME` represent the date and time of the `Appointment` to be deleted.
+* `DATE` and `TIME` formats follow the same format as specified in the [`addAppt`](#adding-an-appointment-`addAppt`-(by-Gabriel-Teo-Yu-Xiang)) command section.
+
+Examples:
+* `deleteAppt S0000001A appt/28/09/2022 20:00`
+
+When an `Appointment` is successfully deleted, a success message will appear in the message box, and the number of upcoming appointments will be updated and reflected as shown in the figure below.<br>
+
+![result for 'delete appointment'](images/deleteAppt.png)
+
 ### Using the Medical Record feature: `mr/` (by Cedric Lim Jun Wei)
 
 By now we have learnt that we can [`add`](#adding-a-patient-add-by-cedric-lim-jun-wei) and [`edit`](#editing-a-patient-edit) patients by including the `mr/MEDICAL_RECORD_URL` field. Now, let us explore how we can make use of this feature to edit patients' medical record.

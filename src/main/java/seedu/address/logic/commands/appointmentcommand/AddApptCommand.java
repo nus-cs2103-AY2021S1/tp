@@ -45,7 +45,7 @@ public class AddApptCommand extends Command {
 
     public static final String MESSAGE_ADD_APPT_SUCCESS = "Added appointment successfully!";
     public static final String MESSAGE_DUPLICATE_APPOINTMENT =
-            "This patient already has an appointment with this timing";
+            "This patient already has an appointment with this timing!";
 
     private final Nric nric;
     private final Appointment appointment;
