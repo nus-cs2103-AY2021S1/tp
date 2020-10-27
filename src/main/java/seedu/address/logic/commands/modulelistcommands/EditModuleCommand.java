@@ -81,6 +81,7 @@ public class EditModuleCommand extends Command {
 
         model.setModule(module, editedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 
