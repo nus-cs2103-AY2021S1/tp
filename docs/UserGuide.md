@@ -15,13 +15,14 @@
     + [3.2.3 Locating students: `find` (By: Choon Siong)](#323-locating-students---find---by--choon-siong-)
     + [3.2.4 Listing all students: `list`](#324-listing-all-students---list-)
     + [3.2.5 Deleting a student: `delete`](#325-deleting-a-student---delete-)
-    + [3.2.6 Finding students with overdue fees: `overdue` (By: Ying Gao)](#326-finding-students-with-overdue-fees---overdue---by--ying-gao-)
-    + [3.2.7 Managing details for a student: `detail` (By: Vaishak)](#327-managing-details-for-a-student---detail---by--vaishak-)
-        + [3.2.7.1 Adding a detail: `detail add`](#3271-adding-a-detail---detail-add-)
-        + [3.2.7.2 Editing a detail: `detail edit`](#3272-editing-a-detail---detail-edit-)
-        + [3.2.7.3 Deleting a detail: `detail delete`](#3273-deleting-a-detail---detail-delete-)
-    + [3.2.8 Clearing all entries: `clear`](#328-clearing-all-entries---clear-)
-  * [3.3 Student Academics Features](#33-student-academics-features)
+    + [3.2.6 Sorting the list of students: `sort` (By: Choon Siong)](#326-sorting-the-list-of-students---sort---by--choon-siong-)
+    + [3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)](#327-finding-students-with-overdue-fees---overdue---by--ying-gao-)
+    + [3.2.8 Managing details for a student: `detail` (By: Vaishak)](#328-managing-details-for-a-student---detail---by--vaishak-)
+        + [3.2.8.1 Adding a detail: `detail add`](#3281-adding-a-detail---detail-add-)
+        + [3.2.8.2 Editing a detail: `detail edit`](#3282-editing-a-detail---detail-edit-)
+        + [3.2.8.3 Deleting a detail: `detail delete`](#3283-deleting-a-detail---detail-delete-)
+    + [3.2.9 Clearing all entries: `clear`](#328-clearing-all-entries---clear-)
+  * [3.3 Student Academics Features](#33-stude9t-academics-features)
     + [3.3.1 Recording questions from a student: `question` (By: Ying Gao)](#331-recording-questions-from-a-student---question---by--ying-gao-)
         + [3.3.1.1 Adding a question: `question add`](#3311-adding-a-question---question-add-)
         + [3.3.1.2 Resolving a question: `question solve`](#3312-resolving-a-question---question-solve-)
@@ -196,7 +197,6 @@ Format: `find [n/NAME] [s/SCHOOL] [y/YEAR]`
 * Only full words will be matched. e.g `han` will not match `hans`.
 * For the name, students with a name that matches any whole keyword specified for the name will be considered to match for the name.
 * For the school, students with a school that contains any keyword specified for the school will be considered to match for the school.
-* For the year, students with a year that contains any keywords specified for the year will be considered to match for the year.
 * Only students matching all criteria specified will be returned (i.e `AND` search).
 
 Examples:
@@ -204,8 +204,6 @@ Examples:
 * `find n/Alex david` does not match `Alexis Davinder`.
 * `find s/yishun sec` matches `Yishun Secondary School` and `Yishun Town Secondary School`.
 * `find s/yishun secondary` does not match `Yishun Sec`
-* `find y/sec 3` matches `sec 3`, `Secondary 3`
-* `find y/sec 3` matches `sec 4`
 * `find n/alex s/yishun y/sec 3` searches for all students who match all of `n/alex`, `s/yishun` and `y/sec 3`.
 
 #### 3.2.4 Listing all students: `list`
@@ -230,13 +228,30 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in **Reeve**.
 * `find n/Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-#### 3.2.6 Finding students with overdue fees: `overdue` (By: Ying Gao)
+#### 3.2.6 Sorting the list of students: `sort` (By: Choon Siong)  
+  
+Sorts the list of students by a specified comparison means. The comparison means must be their name, class time or year.
+
+Format: `sort COMPARISON_MEANS`
+
+* The valid options for the sorting method `COMPARISON_MEANS` are `name`, `classTime` or `year`. 
+* Only one option for the sorting method can be specified.
+* The sorting method is case sensitive when being specified
+* Sorting methods:
+	* `name`: Sorts students by their name in alphabetical order. This is case insensitive.
+	* `classTime`: Sorts students by the the time of their class first by the day than the time.
+	* `year` Sorts students by the school year they are in with `Primary` type years coming before `Secondary` type coming before `JC` type. 
+
+Examples:
+* `sort year` to sort students by their year
+
+#### 3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)
 
 Finds students whose date of last payment is more than a month ago.
 
 Format: `unpaid`
 
-#### 3.2.7 Managing details for a student: `detail` (By: Vaishak) 
+#### 3.2.8 Managing additional details for a student: `detail` (By: Vaishak) 
 
 You can add, edit or delete a detail for a specified student.
 
@@ -258,19 +273,11 @@ Examples:
 * `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 
-#### 3.2.7.1 Adding a detail: `detail add`
+#### 3.2.8.1 Adding a detail: `detail add`
 
 You can add a detail to a specified student in **Reeve**.
 
-Format: `detail add STUDENT_INDEX t/DETAIL_TEXT`
-
-* Adds the given detail to the student at the specified `STUDENT_INDEX`.
-
-Examples:  
-* `detail add 1 t/Smart` adds the "Smart" detail to the 1st student in **Reeve**.
-* `detail add 4 t/Handsome` adds the "Handsome" detail to the 4th student in **Reeve**.
-
-#### 3.2.7.2 Editing a detail: `detail edit`
+#### 3.2.8.2 Editing a detail: `detail edit`
 
 You can edit an existing detail to a specified student in **Reeve**.
 
@@ -282,7 +289,7 @@ Examples:
 * `detail edit 1 i/2 t/Handsome` edits the 2nd detail for the 1st student in **Reeve**, to "Handsome".
 * `detail edit 5 i/8 t/Smart` edits the 8th detail for the 5th student in **Reeve**, to "Smart".
 
-#### 3.2.7.3 Deleting a detail: `detail delete`
+#### 3.2.8.3 Deleting a detail: `detail delete`
 
 You can delete an existing detail to a specified student in **Reeve**.
 
@@ -294,7 +301,7 @@ Examples:
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in **Reeve**.
 * `detail delete 4 i/1` deletes the 1st detail for the 4th student in **Reeve**.
 
-#### 3.2.8 Clearing all entries: `clear`
+#### 3.2.9 Clearing all entries: `clear`
 
 Clears all student data from **Reeve**.
 
@@ -520,6 +527,7 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE] [n/NAME] [p/PHONE] [v/CLASS_VENUE] [s/SCHOOL] [sb/SUBJECT] [y/YEAR] [t/CLASS_TIME] [a/ADDITIONAL_DETAILS]`<br> e.g.,`edit 1 n/Alex p/99999999 s/Meridian Junior College`
 **Find** | `find [n/NAME] [s/SCHOOL] [y/YEAR] [sb/SUBJECT]`<br> e.g., `find n/alex s/yishun`
+**Sort** | `sort COMPARISON_MEANS`<br> e.g. `sort year`
 **List** | `list`
 **Help** | `help`
 **Add exam** | `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE` <br> e.g. `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60`
