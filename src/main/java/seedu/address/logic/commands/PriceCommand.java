@@ -7,6 +7,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.food.PriceWithinRangePredicate;
+import seedu.address.storage.Storage;
 
 public class PriceCommand extends Command {
 
@@ -22,7 +23,7 @@ public class PriceCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
 
         if (!model.isSelected()) {
@@ -33,5 +34,12 @@ public class PriceCommand extends Command {
         return new CommandResult(
                 String.format(Messages.MESSAGE_FOOD_LISTED_PRICE_CONTEXT,
                         model.getFilteredFoodListSize(), predicate));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof PriceCommand // instanceof handles nulls
+                && predicate.equals(((PriceCommand) other).predicate)); // state check
     }
 }

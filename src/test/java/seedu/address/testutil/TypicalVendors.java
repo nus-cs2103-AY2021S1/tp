@@ -16,6 +16,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.AddressBook;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.Menu;
+import seedu.address.model.menu.MenuManager;
 import seedu.address.model.vendor.Vendor;
 
 /**
@@ -44,10 +45,10 @@ public class TypicalVendors {
             .withEmail("anna@example.com").withAddress("4th street").withMenu(menu).build();
 
     // Manually added
-    //    public static final Vendor HOON = new VendorBuilder().withName("Hoon Meier").withPhone("8482424")
-    //            .withEmail("stefan@example.com").withAddress("little india").withMenu(menu).build();
-    //    public static final Vendor IDA = new VendorBuilder().withName("Ida Mueller").withPhone("8482131")
-    //            .withEmail("hans@example.com").withAddress("chicago ave").build();
+    public static final Vendor HOON = new VendorBuilder().withName("Hoon Meier").withPhone("8482424")
+                .withEmail("stefan@example.com").withAddress("little india").withMenu(menu).build();
+    public static final Vendor IDA = new VendorBuilder().withName("Ida Mueller").withPhone("8482131")
+                .withEmail("hans@example.com").withAddress("chicago ave").withMenu(menu).build();
 
     // Manually added - Vendor's details found in {@code CommandTestUtil}
     //    public static final Vendor AMY = new VendorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
@@ -79,6 +80,15 @@ public class TypicalVendors {
         List<Vendor> vendors = getTypicalVendors();
         for (Vendor v : vendors) {
             menus.add(v.getMenu().asUnmodifiableObservableList());
+        }
+        return menus;
+    }
+
+    public static List<MenuManager> getManagers() {
+        List<MenuManager> menus = new ArrayList<>();
+        List<Vendor> vendors = getTypicalVendors();
+        for (Vendor v : vendors) {
+            menus.add(new MenuManager(v.getMenu()));
         }
         return menus;
     }

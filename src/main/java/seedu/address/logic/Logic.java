@@ -34,7 +34,7 @@ public interface Logic {
     ReadOnlyAddressBook getAddressBook();
 
     /** Returns an unmodifiable view of the filtered list of vendors */
-    ObservableList<Vendor> getFilteredVendorList();
+    ObservableList<Vendor> getObservableVendorList();
 
     /** Returns an unmodifiable view of the filtered list of foods */
     ObservableList<Food> getFilteredFoodList();

@@ -129,7 +129,7 @@ public class MainWindow extends UiPart<Stage> {
         foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
         setFoodListDisplay(false);
 
-        vendorListPanel = new VendorListPanel(logic.getFilteredVendorList());
+        vendorListPanel = new VendorListPanel(logic.getObservableVendorList());
         vendorListPanelPlaceholder.getChildren().add(vendorListPanel.getRoot());
 
         orderItemListPanel = new OrderItemListPanel(logic.getFilteredOrderItemList());
@@ -246,7 +246,13 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+<<<<<<< HEAD
+            if (commandResult.isVendor()) {
+                handleVendor();
+            }
+=======
             // TODO: add commandResult.isUpdatedMenu?
+>>>>>>> b040565e8e11b3921757f96f5cc132c307b8fe86
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

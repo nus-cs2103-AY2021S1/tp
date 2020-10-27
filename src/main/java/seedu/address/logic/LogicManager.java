@@ -50,7 +50,7 @@ public class LogicManager implements Logic {
 
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
-        commandResult = command.execute(model);
+        commandResult = command.execute(model, );
 
         if (commandResult.isPreset()) {
 //            try {
@@ -79,8 +79,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Vendor> getFilteredVendorList() {
-        return model.getFilteredVendorList();
+    public ObservableList<Vendor> getObservableVendorList() {
+        return model.getAddressBook().getVendorList();
     }
 
     @Override
@@ -95,7 +95,7 @@ public class LogicManager implements Logic {
 
     @Override
     public ObservableList<OrderItem> getFilteredOrderItemList() {
-        return model.getFilteredOrderItemList();
+        return model.getObservableOrderItemList();
     }
 
     @Override

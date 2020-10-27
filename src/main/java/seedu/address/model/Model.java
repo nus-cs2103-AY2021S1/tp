@@ -20,9 +20,7 @@ public interface Model {
     /**
      * {@code Predicate} that always evaluate to true
      */
-    Predicate<Vendor> PREDICATE_SHOW_ALL_VENDORS = unused -> true;
     Predicate<Food> PREDICATE_SHOW_ALL_FOODS = unused -> true;
-    Predicate<OrderItem> PREDICATE_SHOW_ALL_ORDERITEMS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,16 +53,6 @@ public interface Model {
     void setAddressBookFilePath(Path addressBookFilePath);
 
     /**
-     * Returns the user prefs' address book file path.
-     */
-    Path getMenuManagerFolderPath();
-
-    /**
-     * Sets the user prefs' address book file path.
-     */
-    void setMenuManagerFolderPath(Path menuManagerFolderPath);
-
-    /**
      * Replaces menu manager data with the data in {@code menuManager}.
      */
 
@@ -81,30 +69,12 @@ public interface Model {
     boolean hasVendor(Vendor vendor);
 
     /**
-     * Deletes the given vendor.
-     * The vendor must exist in the address book.
-     */
-    void deleteVendor(Vendor target);
-
-    /**
-     * Adds the given vendor.
-     * {@code vendor} must not already exist in the address book.
-     */
-    void addVendor(Vendor vendor);
-
-    /**
      * Selects the vendor with index {@code vendorIndex} .
      * {@code vendorIndex} must be a valid index in the model.
      */
     void selectVendor(int vendorIndex);
 
-
-    /**
-     * Replaces the given vendor {@code target} with {@code editedVendor}.
-     * {@code target} must exist in the address book.
-     * The vendor identity of {@code editedVendor} must not be the same as another existing vendor in the address book.
-     */
-    void setVendor(Vendor target, Vendor editedVendor);
+    ObservableList<Vendor> getObservableVendorList();
 
     /**
      * Replaces address book data with the data in {@code menuManager}.
@@ -116,24 +86,12 @@ public interface Model {
      */
     ReadOnlyMenuManager getMenuManager(int index);
 
-    /**
-     * Returns true if a food with the same identity as {@code food} exists in the address book.
-     */
-    boolean hasFood(Food food, int index);
+    void sortFoodBy(String sortedBy, boolean ascending, boolean toggle);
+
+    void showDefaultMenu();
 
     /**
-     * Deletes the given food.
-     * The food must exist in the menu manager.
-     */
-    void deleteFood(Food target, int index);
-
-    /**
-     * Adds the given food.
-     * {@code food} must not already exist in the menu manager.
-     */
-    void addFood(Food food, int index);
-
-    /**
+<<<<<<< HEAD
      * Replaces the given food {@code target} with {@code editedFood}.
      * {@code target} must exist in the menu manager.
      * The food identity of {@code editedFood} must not be the same as another existing food in the address book.
@@ -152,7 +110,6 @@ public interface Model {
     void setOrder(List<OrderItem> orderItems);
 
     /**
-
      * Replaces OrderManager data with the data in {@code orderManager}.
      */
     void setOrderManager(ReadOnlyOrderManager orderManager);
@@ -180,27 +137,6 @@ public interface Model {
     void addOrderItem(OrderItem orderItem);
 
     /**
-     * Replaces the given OrderItem {@code target} with {@code editedOrderItem}.
-     * {@code target} must exist in the menu manager.
-     * The OrderItem identity of {@code editedOrderItem}
-     * must not be the same as another existing orderItem in the address book.
-     */
-    void setOrderItem(OrderItem target, OrderItem editedOrderItem);
-
-    /**
-     * Returns an unmodifiable view of the filtered vendor list
-     */
-    ObservableList<Vendor> getFilteredVendorList();
-
-
-    /**
-     * Updates the filter of the filtered vendor list to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredVendorList(Predicate<Vendor> predicate);
-
-    /**
      * Returns an unmodifiable view of the filtered food list at the corresponding index
      */
     ObservableList<Food> getFilteredFoodList();
@@ -217,8 +153,6 @@ public interface Model {
      */
     void resetOrder();
 
-    void setVendorIndex(int vendorIndex);
-
     /**
      * Updates the filter of the filtered food list at the corresponding index to filter by the given {@code predicate}.
      *
@@ -229,7 +163,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of the filtered orderItem list at the corresponding index
      */
-    ObservableList<OrderItem> getFilteredOrderItemList();
+    ObservableList<OrderItem> getObservableOrderItemList();
 
     int getOrderSize();
 
@@ -243,13 +177,4 @@ public interface Model {
 
     boolean isSelected();
 
-    /**
-     * Updates the filter of the filtered orderItem list at the
-     * corresponding index to filter by the given {@code predicate}.
-     *
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredOrderItemList(Predicate<OrderItem> predicate);
-
-    void updateVendor();
 }

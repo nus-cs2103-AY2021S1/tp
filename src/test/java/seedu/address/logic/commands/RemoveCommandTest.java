@@ -17,7 +17,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.order.OrderItem;
+import seedu.address.model.order.OrderManager;
 import seedu.address.testutil.OrderItemBuilder;
+import seedu.address.testutil.TypicalVendors;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -27,7 +29,8 @@ public class RemoveCommandTest {
 
 
     private Model initialiseModel() {
-        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
         model.selectVendor(0);
         model.addOrderItem(NUGGETS);
         return model;
@@ -38,11 +41,12 @@ public class RemoveCommandTest {
         Model model = initialiseModel();
         Index first = Index.fromOneBased(1);
         RemoveCommand removeCommand = new RemoveCommand(first);
-        List<OrderItem> lastShownList = model.getFilteredOrderItemList();
+        List<OrderItem> lastShownList = model.getObservableOrderItemList();
         OrderItem orderItemToRemove = lastShownList.get(first.getZeroBased());
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, orderItemToRemove);
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
         expectedModel.selectVendor(0);
 
         assertCommandSuccess(removeCommand, model, expectedMessage, expectedModel);
@@ -56,7 +60,8 @@ public class RemoveCommandTest {
         OrderItem itemRemoved = new OrderItemBuilder(NUGGETS).withQuantity(1).build();
         OrderItem remainingItems = new OrderItemBuilder(NUGGETS).withQuantity(4).build();
 
-        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
+                new OrderManager());
         expectedModel.selectVendor(0);
         expectedModel.addOrderItem(remainingItems);
 
@@ -68,7 +73,7 @@ public class RemoveCommandTest {
     @Test
     public void execute_invalidIndex_throwsCommandException() {
         Model model = initialiseModel();
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredVendorList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getObservableVendorList().size() + 1);
         RemoveCommand removeCommand = new RemoveCommand(outOfBoundIndex);
 
         assertCommandFailure(removeCommand, model, ParserUtil.MESSAGE_INVALID_ORDERITEM_DISPLAYED_INDEX);
@@ -96,12 +101,4 @@ public class RemoveCommandTest {
         assertFalse(removeFirstCommand.equals(removeSecondCommand));
     }
 
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoVendor(Model model) {
-        model.updateFilteredVendorList(p -> false);
-
-        assertTrue(model.getFilteredVendorList().isEmpty());
-    }
 }

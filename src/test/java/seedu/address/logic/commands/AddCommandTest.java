@@ -30,6 +30,7 @@ public class AddCommandTest {
         Index index = Index.fromOneBased(1);
         AddCommand addCommand = new AddCommand(index);
 
+
         ObservableList<Food> menu = model.getFilteredFoodList();
         Food firstItem = menu.get(0);
         OrderItem addedItem = new OrderItem(firstItem, 1);

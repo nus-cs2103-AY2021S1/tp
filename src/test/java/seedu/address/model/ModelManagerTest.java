@@ -3,7 +3,6 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_VENDORS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalVendors.ALICE;
 import static seedu.address.testutil.TypicalVendors.BENSON;
@@ -80,15 +79,15 @@ public class ModelManagerTest {
         assertFalse(modelManager.hasVendor(ALICE));
     }
 
-    @Test
-    public void hasVendor_vendorInAddressBook_returnsTrue() {
-        modelManager.addVendor(ALICE);
-        assertTrue(modelManager.hasVendor(ALICE));
-    }
+    //@Test
+    //public void hasVendor_vendorInAddressBook_returnsTrue() {
+    //        modelManager.addVendor(ALICE);
+    //        assertTrue(modelManager.hasVendor(ALICE));
+    //}
 
     @Test
     public void getFilteredVendorList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredVendorList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getObservableVendorList().remove(0));
     }
 
     @Test
@@ -118,9 +117,6 @@ public class ModelManagerTest {
         //        String[] keywords = ALICE.getName().fullName.split("\\s+");
         //        modelManager.updateFilteredFoodList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         //        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
-
-        // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredVendorList(PREDICATE_SHOW_ALL_VENDORS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
