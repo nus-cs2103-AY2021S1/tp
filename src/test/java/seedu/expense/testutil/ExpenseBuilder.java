@@ -1,7 +1,6 @@
 package seedu.expense.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Date;
@@ -9,7 +8,6 @@ import seedu.expense.model.expense.Description;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.Remark;
 import seedu.expense.model.tag.Tag;
-import seedu.expense.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Expense objects.
@@ -25,7 +23,7 @@ public class ExpenseBuilder {
     private Amount amount;
     private Date date;
     private Remark remark;
-    private Set<Tag> tags;
+    private Tag tag;
 
     /**
      * Creates a {@code ExpenseBuilder} with the default details.
@@ -35,7 +33,7 @@ public class ExpenseBuilder {
         amount = new Amount(DEFAULT_AMOUNT);
         date = new Date(DEFAULT_DATE);
         remark = new Remark(DEFAULT_REMARK);
-        tags = new HashSet<>();
+        tag = DEFAULT_TAG;
     }
 
     /**
@@ -46,7 +44,7 @@ public class ExpenseBuilder {
         amount = expenseToCopy.getAmount();
         date = expenseToCopy.getDate();
         remark = expenseToCopy.getRemark();
-        tags = new HashSet<>(expenseToCopy.getTags());
+        tag = expenseToCopy.getTag();
     }
 
     /**
@@ -58,10 +56,10 @@ public class ExpenseBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Expense} that we are building.
+     * Parses the {@code tag} into a {@code Tag} and set it to the {@code Expense} that we are building.
      */
-    public ExpenseBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public ExpenseBuilder withTag(String tag) {
+        this.tag = new Tag(tag);
         return this;
     }
 
@@ -90,7 +88,7 @@ public class ExpenseBuilder {
     }
 
     public Expense build() {
-        return new Expense(description, amount, date, remark, tags);
+        return new Expense(description, amount, date, remark, tag);
     }
 
 }

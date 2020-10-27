@@ -27,10 +27,13 @@ public class CommandTestUtil {
 
     public static final String VALID_DESCRIPTION_FOOD = "Caifan lunch";
     public static final String VALID_DESCRIPTION_BUS = "Coach ride to Malacca";
+    public static final String VALID_DESCRIPTION_MISC = "Miscellaneous";
     public static final String VALID_AMOUNT_FOOD = "3.80";
     public static final String VALID_AMOUNT_BUS = "63";
+    public static final String VALID_AMOUNT_MISC = "4.20";
     public static final String VALID_DATE_FOOD = "04-10-2020";
     public static final String VALID_DATE_BUS = "09-11-2020";
+    public static final String VALID_DATE_MISC = "15-12-2020";
     public static final String VALID_REMARK_FOOD = "The usual: Steamed egg, ladies finger, sweet n sour pork.";
     public static final String VALID_REMARK_BUS = "We're going on a trip??";
     public static final String VALID_TAG_FOOD = "Food";
@@ -38,8 +41,10 @@ public class CommandTestUtil {
 
     public static final String DESCRIPTION_DESC_FOOD = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_FOOD;
     public static final String DESCRIPTION_DESC_BUS = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BUS;
+    public static final String DESCRIPTION_DESC_MISC = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MISC;
     public static final String AMOUNT_DESC_FOOD = " " + PREFIX_AMOUNT + VALID_AMOUNT_FOOD;
     public static final String AMOUNT_DESC_BUS = " " + PREFIX_AMOUNT + VALID_AMOUNT_BUS;
+    public static final String AMOUNT_DESC_MISC = " " + PREFIX_AMOUNT + VALID_AMOUNT_MISC;
     public static final String DATE_DESC_FOOD = " " + PREFIX_DATE + VALID_DATE_FOOD;
     public static final String DATE_DESC_BUS = " " + PREFIX_DATE + VALID_DATE_BUS;
     public static final String TAG_DESC_FOOD = " " + PREFIX_TAG + VALID_TAG_FOOD;
@@ -59,10 +64,10 @@ public class CommandTestUtil {
     static {
         DESC_FOOD = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_FOOD)
                 .withAmount(VALID_AMOUNT_FOOD).withDate(VALID_DATE_FOOD)
-                .withTags(VALID_TAG_FOOD).build();
+                .withTag(VALID_TAG_FOOD).build();
         DESC_BUS = new EditExpenseDescriptorBuilder().withDescription(VALID_DESCRIPTION_BUS)
                 .withAmount(VALID_AMOUNT_BUS).withDate(VALID_DATE_BUS)
-                .withTags(VALID_TAG_TRANSPORT, VALID_TAG_FOOD).build();
+                .withTag(VALID_TAG_TRANSPORT).build();
     }
 
     /**

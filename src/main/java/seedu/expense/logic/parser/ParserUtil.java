@@ -1,6 +1,7 @@
 package seedu.expense.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -89,6 +90,10 @@ public class ParserUtil {
     public static Tag parseTag(String tag) throws ParseException {
         requireNonNull(tag);
         String trimmedTag = tag.trim();
+        if (trimmedTag.isEmpty()) { // reset the tag to the default tag
+            return DEFAULT_TAG;
+        }
+
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }

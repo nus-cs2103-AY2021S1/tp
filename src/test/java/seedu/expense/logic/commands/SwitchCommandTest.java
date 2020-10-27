@@ -175,7 +175,7 @@ class SwitchCommandTest {
                 updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
             } else {
                 updateFilteredBudgetList(budget -> budget.getTag().equals(category));
-                updateFilteredExpenseList(expense -> expense.getTags().contains(category));
+                updateFilteredExpenseList(expense -> expense.getTag().equals(category));
             }
         }
 

@@ -1,7 +1,5 @@
 package seedu.expense.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -52,9 +50,7 @@ public class ExpenseCard extends UiPart<Region> {
         amount.setText("$" + expense.getAmount().toString());
         date.setText(expense.getDate().toString());
         remark.setText(expense.getRemark().value);
-        expense.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        tags.getChildren().add(new Label(expense.getTag().tagName));
     }
 
     @Override

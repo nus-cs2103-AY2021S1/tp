@@ -25,7 +25,7 @@ public class TagsMatchesPredicate implements Predicate<Expense> {
     @Override
     public boolean test(Expense expense) {
         for (Tag t: this.tags) {
-            if (expense.getTags().contains(t)) {
+            if (expense.getTag().equals(t)) {
                 return true;
             }
         }
