@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.stock.commons.util.SortUtil;
 import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.StockBook;
 import seedu.stock.model.stock.AccumulatedQuantity;
@@ -36,17 +37,32 @@ public class TypicalStocks {
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = PINEAPPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_FOURTH_STOCK = ORANGE.getSerialNumber();
+    public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown");
 
     public static final String RESERVED_NON_EXISTENCE_SOURCE = "$NON-EXISTENT-SOURCE";
 
     private TypicalStocks() {} // prevents instantiation
 
     /**
-     * Returns an {@code StockBook} with all the typical stocks.
+     * Returns a {@code StockBook} with all the typical stocks.
      */
     public static StockBook getTypicalStockBook() {
         StockBook inventory = new StockBook();
         for (Stock stock : getTypicalStocks()) {
+            inventory.addStock(stock);
+        }
+        return inventory;
+    }
+
+    /**
+     * Returns a {@code StockBook} with all the typical stocks sorted by serial number.
+     * @return
+     */
+    public static StockBook getTypicalStockBookSortedSerialNumber() {
+        List<Stock> typicalStocks = getTypicalStocks();
+        typicalStocks.sort(SortUtil.generateComparator(SortUtil.Field.SERIALNUMBER));
+        StockBook inventory = new StockBook();
+        for (Stock stock : typicalStocks) {
             inventory.addStock(stock);
         }
         return inventory;
