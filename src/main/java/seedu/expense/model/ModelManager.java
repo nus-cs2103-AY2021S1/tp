@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -176,6 +177,13 @@ public class ModelManager implements Model {
     public void setAlias(AliasEntry target, AliasEntry editedExpense) throws IllegalArgumentException {
         requireAllNonNull(target, editedExpense);
         aliasMap.setAlias(target, editedExpense);
+    }
+
+    //=========== Sorted Expense List Accessors ==============================================================
+
+    @Override
+    public void sortExpenseList(Comparator<Expense> expenseComparator) {
+        expenseBook.sortExpenses(expenseComparator);
     }
 
     //=========== Filtered Expense List Accessors =============================================================
