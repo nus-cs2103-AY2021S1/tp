@@ -1,8 +1,8 @@
-package com.eva.ui.profile;
+package com.eva.ui.profile.staff.view;
 
 import java.util.Comparator;
 
-import com.eva.model.person.Person;
+import com.eva.model.person.staff.Staff;
 import com.eva.ui.UiPart;
 
 import javafx.fxml.FXML;
@@ -11,10 +11,10 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
-public class BasicInfoDisplay extends UiPart<Region> {
-    private static final String FXML = "BasicInfoDisplay.fxml";
+public class StaffBasicInfoDisplay extends UiPart<Region> {
+    private static final String FXML = "StaffBasicInfoDisplay.fxml";
 
-    public final Person person;
+    public final Staff staff;
 
     @FXML
     private HBox displayPane;
@@ -30,17 +30,17 @@ public class BasicInfoDisplay extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code BasicInfoDisplay} with the given {@code Person}.
+     * Creates a {@code StaffBasicInfoDisplay} with the given {@code Person}.
      */
-    public BasicInfoDisplay(Person person) {
+    public StaffBasicInfoDisplay(Staff staff) {
         super(FXML);
-        this.person = person;
-        name.setText(this.person.getName().fullName);
-        phone.setText(this.person.getPhone().value);
-        address.setText(this.person.getAddress().value);
-        email.setText(this.person.getEmail().value);
+        this.staff = staff;
+        name.setText(this.staff.getName().fullName);
+        phone.setText(this.staff.getPhone().value);
+        address.setText(this.staff.getAddress().value);
+        email.setText(this.staff.getEmail().value);
         tags.getChildren().add(new Label("staff"));
-        person.getTags().stream()
+        staff.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -53,12 +53,12 @@ public class BasicInfoDisplay extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof BasicInfoDisplay)) {
+        if (!(other instanceof StaffBasicInfoDisplay)) {
             return false;
         }
 
         // state check
-        BasicInfoDisplay card = (BasicInfoDisplay) other;
-        return person.equals(card.person);
+        StaffBasicInfoDisplay card = (StaffBasicInfoDisplay) other;
+        return staff.equals(card.staff);
     }
 }

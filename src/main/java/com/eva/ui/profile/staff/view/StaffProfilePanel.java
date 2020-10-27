@@ -6,7 +6,6 @@ import com.eva.commons.core.PanelState;
 import com.eva.model.current.view.CurrentViewStaff;
 import com.eva.model.person.staff.Staff;
 import com.eva.ui.UiPart;
-import com.eva.ui.profile.BasicInfoDisplay;
 import com.eva.ui.profile.CommentListPanel;
 
 import javafx.fxml.FXML;
@@ -22,7 +21,7 @@ public class StaffProfilePanel extends UiPart<Region> {
 
     public final CurrentViewStaff staff;
 
-    private BasicInfoDisplay basicInfoDisplay;
+    private StaffBasicInfoDisplay staffBasicInfoDisplay;
     private LeaveInfoDisplay leaveInfoDisplay;
     private CommentListPanel commentListPanel;
 
@@ -53,8 +52,8 @@ public class StaffProfilePanel extends UiPart<Region> {
     public void fillInnerParts() {
         if (this.staff.getCurrentView().isPresent()) {
             Staff currentStaff = this.staff.getCurrentView().get();
-            basicInfoDisplay = new BasicInfoDisplay(currentStaff);
-            basicInfoPlaceholder.getChildren().add(basicInfoDisplay.getRoot());
+            staffBasicInfoDisplay = new StaffBasicInfoDisplay(currentStaff);
+            basicInfoPlaceholder.getChildren().add(staffBasicInfoDisplay.getRoot());
             commentListPanel = new CommentListPanel(staff.getCommentList());
             commentListPanelPlaceholder.getChildren().add(commentListPanel.getRoot());
 
