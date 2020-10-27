@@ -99,4 +99,25 @@ public class Attendance {
     public Feedback getFeedback() {
         return feedback;
     }
+
+    @Override
+    public String toString() {
+        return getUserInputDate() + " " + getAttendanceStatus() + " " + getFeedback();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Attendance)) {
+            return false;
+        }
+
+        Attendance other = (Attendance) obj;
+        return other.getLessonDate().equals(getLessonDate())
+                && other.getAttendanceStatus() == getAttendanceStatus()
+                && other.getFeedback().equals(getFeedback());
+    }
 }

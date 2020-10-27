@@ -194,7 +194,9 @@ public class Student {
                 && otherStudent.getYear().equals(getYear())
                 && otherStudent.getAdmin().equals(getAdmin())
                 && otherStudent.getAcademic().equals(getAcademic())
-                && otherStudent.getQuestions().equals(getQuestions());
+                && otherStudent.getQuestions().equals(getQuestions())
+                && otherStudent.getExams().equals(getExams())
+                && otherStudent.getAcademic().equals(getAcademic());
     }
 
     @Override

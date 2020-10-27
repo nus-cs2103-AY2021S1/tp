@@ -28,4 +28,22 @@ public class Feedback {
         return test.matches(VALIDATION_REGEX);
     }
 
+    @Override
+    public String toString() {
+        return "feedback: " + this.feedback;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+
+        if (!(obj instanceof Feedback)) {
+            return false;
+        }
+
+        Feedback other = (Feedback) obj;
+        return other.feedback.equals(feedback);
+    }
 }

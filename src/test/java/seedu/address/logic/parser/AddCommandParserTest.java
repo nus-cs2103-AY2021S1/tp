@@ -55,7 +55,8 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Student expectedStudent = new StudentBuilder(BOB).withQuestions().build();
+        Student expectedStudent = new StudentBuilder(BOB).withQuestions()
+                .withExams().withAttendances().build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB
@@ -106,6 +107,7 @@ public class AddCommandParserTest {
         expectedStudent = new StudentBuilder(BOB)
                 .withDetails(VALID_ADDITIONAL_DETAILS_BOB, VALID_ADDITIONAL_DETAILS_AMY)
                 .withQuestions()
+                .withExams().withAttendances()
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
                 + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB + PAYMENT_DATE_DESC_AMY
@@ -116,7 +118,8 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero additional details
-        Student expectedStudent = new StudentBuilder(AMY).withQuestions().withDetails().build();
+        Student expectedStudent = new StudentBuilder(AMY).withQuestions().withDetails()
+                .withExams().withAttendances().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + SCHOOL_DESC_AMY + YEAR_DESC_AMY
                         + CLASS_VENUE_DESC_AMY + CLASS_TIME_DESC_AMY + FEE_DESC_AMY + PAYMENT_DATE_DESC_AMY,
                 new AddCommand(expectedStudent));
