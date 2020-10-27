@@ -365,11 +365,12 @@ Format: `addF i/INGREDIENT [ -QUANTITY][, MORE INGREDIENTS [ -QUANTITY]]`
 
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after, only accepts alphanumeric characters, forward
+`QUANTITY` is separated with a mandatory space before the dash and after, only accepts alphanumeric characters
+, forward
  slashes and full stops.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-Multiple ingredients are separated by `,`.
+Multiple ingredients are separated by a comma.
 </div> 
 
 Examples:
@@ -423,18 +424,18 @@ Format: `editF INDEX i/INGREDIENT [ -QUANTITY]`
 * The index refers to the index number shown in the displayed Ingredient List.
 * `INGREDIENT` can take in an optional `Quantity` e.g. i/Tomato -2 whole.
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-`QUANTITY` is separated with a mandatory space before `-` and after, only accepts alphanumeric characters, forward
- slashes and full stops.
+`QUANTITY` is separated with a mandatory space before the dash and after, only accepts alphanumeric characters
+, forward slashes and full stops.
 </div>
 <div markdown="span" class="alert alert-primary">:memo: **Note:**
-Multiple ingredients are separated by `,`.
+Multiple ingredients are separated by a comma.
 </div> 
 
 * All fields are optional, but **at least** the ingredient index and one of the fields must be present to edit
  an ingredient.
 * You are not allowed to edit an ingredient into an already existing ingredient in the Fridge.
 <div markdown="span" class="alert alert-success">:bulb: **Tip:**
-    Specified fields will permanently override existing values with the new values- the edit is not cumulative. Typing `editF INDEX` and then hitting `Enter` will insert the information of the ingredient at the specified `INDEX` into the command box, letting you directly modify the existing ingredient.
+    Specified fields will permanently override existing values with the new values- the edit is not cumulative. Typing editF INDEX and then hitting Enter will insert the information of the ingredient at the specified INDEX into the command box, letting you directly modify the existing ingredient.
 </div> 
 
 Examples:
