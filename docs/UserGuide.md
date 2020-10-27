@@ -2,8 +2,13 @@
 layout: page
 title: User Guide
 ---
-* Table of Contents
-{:toc}
+<!-- TOC adapted from
+https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff 
+-->
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 ---
 
@@ -17,7 +22,7 @@ With some experience in typing, NUStorage can manage your inventory and finance 
 
 Interested? Read on to get [started](#2-quick-start-guide)!
 
-If you see a acronym that you don't understand, kindly refer to the [glossary](#6-glossary).
+If you see a acronym that you don't understand, kindly refer to the [glossary](#7-glossary-and-terms).
 
 ---
 
@@ -238,7 +243,7 @@ __Result:__ Programme terminates.
 Undo or redo the previous command
 
 __Format:__ `undo` or `redo`
-
+  
 __Example:__ `undo` or `redo`
 
 __Result:__ Undo or redo the previous command.
@@ -247,7 +252,6 @@ __Result:__ Undo or redo the previous command.
 
 ## 5. Command Summary
 
-Action | Format & Examples
 --------|------------------
 __Add inventory__ | `add_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `add_inventory i/MacBook pro q/200 c/50`
 __Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4`
@@ -261,17 +265,9 @@ __Exit programme__ | `exit`
 
 ---
 
-## 6. Glossary
+## 6. FAQs
 
-1. `CLI`: command line interface.
-2. `GUI`: graphical user interface.
-3. `.jar`: The file type that NUStorage is released in. This is similar to the `.exe` files in Windows and `.app` files in MacOS.
-
----
-
-## 7. FAQs
-
-### 7.1. How do I migrate the data to another computer?
+### 6.1. How do I migrate the data to another computer?
 
 WARNING: doing so will overwrite the existing data you may have on the other device. Please make sure you make a backup before migrating data.
 
@@ -282,12 +278,20 @@ Steps to migrate data:
 3. Place the two files under the directory `./data`.
 4. Restart NUStorage on the other device to load the data.
 
-### 7.2. How do I combine data from two devices?
+### 6.2. How do I combine data from two devices?
 
 Currently, NUStorage does not support the merging of data between different devices. NUStorage only supports moving of data from one device to another. Please see FAQ 6.1 regarding how to migrate data.
 
-### 7.3. Can I directly modify the storage file?
+### 6.3. Can I directly modify the storage file?
 
 Modifying the storage file is possible but NOT RECOMMENDED! Doing so may result in a complete data loss.
+
+---
+
+## 7. Glossary and Terms
+
+1. `CLI`: command line interface.
+2. `GUI`: graphical user interface.
+3. `.jar`: The file type that NUStorage is released in. This is similar to the `.exe` files in Windows and `.app` files in MacOS.
 
 ---

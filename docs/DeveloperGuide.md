@@ -2,8 +2,13 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+<!-- TOC adapted from
+https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff 
+-->
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 ---
 
@@ -21,9 +26,6 @@ The architecture diagram given below shows the high-level design of the software
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-<div markdown="span" class="alert alert-primary">
-
-</div>
 
 Given below is a quick overview of each of the components.
 
