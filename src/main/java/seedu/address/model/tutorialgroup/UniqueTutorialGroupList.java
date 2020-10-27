@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -117,6 +118,14 @@ public class UniqueTutorialGroupList implements Iterable<TutorialGroup> {
         if (index >= 0) {
             internalList.get(index).addStudent(student);
         }
+    }
+
+    public Stream<TutorialGroup> stream() {
+        return internalList.stream();
+    }
+
+    public int size() {
+        return internalList.size();
     }
 
     @Override
