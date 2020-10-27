@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private SalesRecordListPanel salesRecordListPanel;
     private IngredientResultDisplay ingredientResultDisplay;
     private HelpWindow helpWindow;
+    private CalendarView calendarView;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -57,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane calendar;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -129,6 +133,9 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        calendarView = new CalendarView();
+        calendar.getChildren().add(calendarView.getRoot());
     }
 
     /**
