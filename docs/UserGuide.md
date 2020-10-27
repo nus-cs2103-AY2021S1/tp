@@ -215,6 +215,26 @@ Examples:
 
 ![find_command_example](images/CommandImagesForUG/Find.png)
 
+### Clearing food items: `clear`
+
+Clear food items currently shown in the list.
+
+Format: `clear`
+
+Examples:
+* `clear` - clears food items
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:
+
+* Clears all food item that is shown on the list.
+* You can clear specific groups of item by using find then clear.
+
+</div>
+
+![find_command_example](images/CommandImagesForUG/Clear.png)
+
 ### Listing all food items : `list`
 
 Shows a list of all food items in McGymmy.
