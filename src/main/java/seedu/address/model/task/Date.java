@@ -72,7 +72,9 @@ public class Date {
             return isValidDay && isValidMonth;
         }
     }
-
+    public boolean isBefore(Date other) {
+        return this.date.isBefore(other.date);
+    }
     public LocalDate getDate() {
         return this.date;
     }
