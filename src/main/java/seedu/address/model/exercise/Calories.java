@@ -1,6 +1,5 @@
 package seedu.address.model.exercise;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class Calories {
@@ -22,9 +21,12 @@ public class Calories {
      * @param calories A valid input.
      */
     public Calories(String calories) {
-        requireNonNull(calories);
-        checkArgument(isValidCalories(calories), MESSAGE_CONSTRAINTS);
-        value = calories;
+        if (calories == null) {
+            value = "0";
+        } else {
+            checkArgument(isValidCalories(calories), MESSAGE_CONSTRAINTS);
+            value = calories;
+        }
     }
 
     /**
