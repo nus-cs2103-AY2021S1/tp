@@ -25,5 +25,10 @@ public class Name extends Alphanumeric {
         return isValidAlphanum(name, CAN_BE_BLANK);
     }
 
-
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof Name // instanceof handles nulls
+                && getAlphaNum().equals(((Name) other).getAlphaNum())); // state check
+    }
 }

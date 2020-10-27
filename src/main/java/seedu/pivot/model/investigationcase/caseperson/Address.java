@@ -17,7 +17,7 @@ public class Address {
      */
     public Address(String address) {
         requireNonNull(address);
-        value = address;
+        value = address.trim();
     }
 
     @Override

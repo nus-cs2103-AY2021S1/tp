@@ -2,22 +2,24 @@ package seedu.pivot.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.pivot.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.pivot.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.logic.commands.CommandTestUtil.showPersonAtIndex;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.EDIT_CASE_DESCRIPTOR_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.EDIT_CASE_DESCRIPTOR_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.EditCommand.EditCaseDescriptor;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
 import seedu.pivot.model.Pivot;
@@ -32,7 +34,13 @@ import seedu.pivot.testutil.EditCaseDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    public void setUp() {
+        StateManager.resetState();
+        model = new ModelManager(getTypicalPivot(), new UserPrefs());
+    }
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -57,9 +65,9 @@ public class EditCommandTest {
         Case lastCase = model.getFilteredCaseList().get(indexLastPerson.getZeroBased());
 
         CaseBuilder personInList = new CaseBuilder(lastCase);
-        Case editedCase = personInList.withTitle(VALID_NAME_BOB).withTags(VALID_TAG_HUSBAND).build();
+        Case editedCase = personInList.withTitle(VALID_TITLE_BOB).withTags(VALID_TAG_HUSBAND).build();
 
-        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB)
+        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditCommand editCommand = new EditCommand(indexLastPerson, descriptor);
@@ -86,12 +94,12 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
 
         Case caseInFilteredList = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Case editedCase = new CaseBuilder(caseInFilteredList).withTitle(VALID_NAME_BOB).build();
+        Case editedCase = new CaseBuilder(caseInFilteredList).withTitle(VALID_TITLE_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB).build());
+                new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CASE_SUCCESS, editedCase);
 
@@ -112,7 +120,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
 
         // edit person in filtered list into a duplicate in address book
         Case caseInList = model.getPivot().getCaseList().get(INDEX_SECOND_PERSON.getZeroBased());
@@ -125,7 +133,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCaseList().size() + 1);
-        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB).build();
+        EditCaseDescriptor descriptor = new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
@@ -137,23 +145,23 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPivot().getCaseList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditCaseDescriptorBuilder().withTitle(VALID_NAME_BOB).build());
+                new EditCaseDescriptorBuilder().withTitle(VALID_TITLE_BOB).build());
 
         assertCommandFailure(editCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, EDIT_CASE_DESCRIPTOR_AMY);
 
         // same values -> returns true
-        EditCommand.EditCaseDescriptor copyDescriptor = new EditCaseDescriptor(DESC_AMY);
+        EditCommand.EditCaseDescriptor copyDescriptor = new EditCaseDescriptor(EDIT_CASE_DESCRIPTOR_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -167,10 +175,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, EDIT_CASE_DESCRIPTOR_AMY)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, EDIT_CASE_DESCRIPTOR_BOB)));
     }
 
 }

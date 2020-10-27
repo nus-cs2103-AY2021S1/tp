@@ -1,5 +1,6 @@
 package seedu.pivot.model.investigationcase;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -9,6 +10,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.testutil.CaseBuilder;
 import seedu.pivot.testutil.CasePersonBuilder;
 
@@ -138,7 +142,90 @@ public class DetailsContainsKeywordsPredicateTest {
                 .withStatus("CLOSED").withVictims(
                         new CasePersonBuilder().withName("Janice").withGender("F").buildVictim())
                 .build()));
+    }
 
-        //TODO: Possible test issue, mention of email here.
+    //TODO: Test with more documents
+    @Test
+    public void test_getDocumentsInfo_returnsString() {
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(Collections.emptyList());
+        Case testCase = new CaseBuilder().withTitle("Bank Robbery")
+                .withDocument("Evidence found at Scene", "evidence1.txt")
+                .build();
+        String expectedOutput = "Evidence found at Scene evidence1.txt ";
+        assertEquals(predicate.getDocumentsInfo(testCase), expectedOutput);
+    }
+
+    @Test
+    public void test_getSuspectsInfo_returnsString() {
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(Collections.emptyList());
+        Suspect suspectOne = new CasePersonBuilder().withName("Janice").withGender("F").withPhone("91234567")
+                .withEmail("alice@gmail.com").withAddress("123 Main Street").buildSuspect();
+        Suspect suspectTwo = new CasePersonBuilder().withName("Tom").withGender("M").withPhone("91234567")
+                .withEmail("tom@gmail.com").withAddress("123 Main Street").buildSuspect();
+        Case testCase = new CaseBuilder().withTitle("Bank Robbery")
+                .withSuspects(suspectOne, suspectTwo)
+                .build();
+        String expectedOutput = "Janice F 91234567 alice@gmail.com 123 Main Street Tom M 91234567 tom@gmail.com "
+                + "123 Main Street ";
+        assertEquals(predicate.getSuspectsInfo(testCase), expectedOutput);
+    }
+
+    @Test
+    public void test_getWitnessesInfo_returnsString() {
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(Collections.emptyList());
+        Witness witnessOne = new CasePersonBuilder().withName("Janice").withGender("F").withPhone("91234567")
+                .withEmail("alice@gmail.com").withAddress("123 Main Street").buildWitness();
+        Witness witnessTwo = new CasePersonBuilder().withName("Tom").withGender("M").withPhone("91234567")
+                .withEmail("tom@gmail.com").withAddress("123 Main Street").buildWitness();
+
+        Case testCase = new CaseBuilder().withTitle("Bank Robbery")
+                .withWitnesses(witnessOne, witnessTwo)
+                .build();
+        String expectedOutput = "Janice F 91234567 alice@gmail.com 123 Main Street Tom M 91234567 tom@gmail.com "
+                + "123 Main Street ";
+        assertEquals(predicate.getWitnessesInfo(testCase), expectedOutput);
+    }
+
+    @Test
+    public void test_getVictimsInfo_returnsString() {
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(Collections.emptyList());
+        Victim victimOne = new CasePersonBuilder().withName("Janice").withGender("F").withPhone("91234567")
+                .withEmail("alice@gmail.com").withAddress("123 Main Street").buildVictim();
+        Victim victimTwo = new CasePersonBuilder().withName("Tom").withGender("M").withPhone("91234567")
+                .withEmail("tom@gmail.com").withAddress("123 Main Street").buildVictim();
+
+        Case testCase = new CaseBuilder().withTitle("Bank Robbery")
+                .withVictims(victimOne, victimTwo)
+                .build();
+        String expectedOutput = "Janice F 91234567 alice@gmail.com 123 Main Street Tom M 91234567 tom@gmail.com "
+                + "123 Main Street ";
+        assertEquals(predicate.getVictimsInfo(testCase), expectedOutput);
+    }
+
+    @Test
+    public void test_appendPersonDetails() {
+        StringBuilder test = new StringBuilder();
+        DetailsContainsKeywordsPredicate predicate = new DetailsContainsKeywordsPredicate(Collections.emptyList());
+        String expectedOutput = "Janice F 91234567 janice@gmail.com 123 Main Street ";
+
+        Victim victim = new CasePersonBuilder().withName("Janice")
+                .withGender("F").withPhone("91234567").withEmail("janice@gmail.com")
+                        .withAddress("123 Main Street").buildVictim();
+        predicate.appendPersonDetails(test, victim);
+        assertEquals(test.toString(), expectedOutput);
+
+        test = new StringBuilder();
+        Suspect suspect = new CasePersonBuilder().withName("Janice")
+                .withGender("F").withPhone("91234567").withEmail("janice@gmail.com")
+                .withAddress("123 Main Street").buildSuspect();
+        predicate.appendPersonDetails(test, suspect);
+        assertEquals(test.toString(), expectedOutput);
+
+        test = new StringBuilder();
+        Witness witness = new CasePersonBuilder().withName("Janice")
+                .withGender("F").withPhone("91234567").withEmail("janice@gmail.com")
+                .withAddress("123 Main Street").buildWitness();
+        predicate.appendPersonDetails(test, witness);
+        assertEquals(test.toString(), expectedOutput);
     }
 }

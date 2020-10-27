@@ -27,7 +27,13 @@ public class DeleteCaseCommand extends DeleteCommand {
 
     private final Index targetIndex;
 
+    /**
+     * Creates an DeleteCaseCommand to delete the {@code Case} specified at {@code Index}.
+     *
+     * @param targetIndex Index of Case to be deleted from PIVOT.
+     */
     public DeleteCaseCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
