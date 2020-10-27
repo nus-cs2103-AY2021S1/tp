@@ -9,7 +9,8 @@ import seedu.address.model.student.academic.Attendance;
 public abstract class AttendanceCommand extends Command {
 
     public static final String COMMAND_WORD = "attendance";
-    public static final String MESSAGE_USAGE = "";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or deletes an Attendance from a student in "
+             + " Reeve. \n" + "SUPPORTED COMMANDS: add, delete";
 
     /**
      * Creates a new Student, with the provided attendance.

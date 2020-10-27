@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FEEDBACK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
@@ -19,7 +22,15 @@ import seedu.address.model.student.academic.Attendance;
 public class AddAttendanceCommand extends AttendanceCommand {
 
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = "";
+    public static final String MESSAGE_USAGE = AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": adds an Attendance to the student identified "
+            + "by the index number used in the displayed student list. \n"
+            + "Parameters: STUDENT_INDEX (must be a positive integer) "
+            + PREFIX_ATTENDANCE_DATE + "LESSON_DATE " + PREFIX_ATTENDANCE_STATUS + "ATTENDANCE_STATUS "
+            + PREFIX_ATTENDANCE_FEEDBACK + "FEEDBACK\n"
+            + "Example: " + AttendanceCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
+            + PREFIX_ATTENDANCE_DATE + "14/02/2020 " + PREFIX_ATTENDANCE_STATUS + "attended "
+            + PREFIX_ATTENDANCE_FEEDBACK + "attentive";
     public static final String MESSAGE_SUCCESS = "Attendance added for %s: %s";
     public static final String MESSAGE_INVALID_ATTENDANCE_DATE =
             "There is already an existing attendance for the entered date! Please use another date, or delete the "
