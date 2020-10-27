@@ -376,13 +376,13 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 ### 3.4 Patient Appointment Commands
 
-#### 3.4.1 Adding an appointment for patient: `addapp`
+#### 3.4.1 Adding an appointment: `addapp`
 
 Add an appointment for the specified patient.
 
 Format: `addapp INDEX st/APPOINTMENT DATETIME d/DURATION`
 
-* `INDEX` refers to the patient's index number as shown in the displayed patient list. 
+* `INDEX` refers to the patient's index number as shown in the displayed patient list in the patient tab. 
     * It **must be a positive number**, eg. 1, 2, 3, …​
 * `APPOINTMENT DATETIME` refers to the date and starting time of the appointment. 
     * It follows the format of `yyyy-MM-dd HH:mm`. 
@@ -397,7 +397,7 @@ Format: `addapp INDEX st/APPOINTMENT DATETIME d/DURATION`
 
 </div>
 
-Example: You want to add an appointment with the 1st patient on the list.
+Example: You want to add an appointment with the first patient on the list.
 
 Step 1: Input `addapp 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
 
@@ -412,9 +412,23 @@ Step 3: If your newly added appointment is happening within a week from today, y
 
 </div>
 
+#### 3.4.2 Deleting an appointment: `deleteapp`
 
+Delete a specified appointment from the appointment database.
+
+
+Format: `deleteapp INDEX`
+
+* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab. 
+    * It **must be a positive number**, eg. 1, 2, 3, …​
     
+Example: You want to delete your most upcoming appointment as your patient could not come.
 
+Step 1: Input `deleteapp 1` and press Enter.
+
+Step 2: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
+    
+#### 3.4.3 Editing an appointment: `editapp`
 
 ### 3.5 Retrieving past commands using arrow keys
 
