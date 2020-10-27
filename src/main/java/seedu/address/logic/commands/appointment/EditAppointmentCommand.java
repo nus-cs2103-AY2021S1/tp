@@ -81,7 +81,7 @@ public class EditAppointmentCommand extends Command {
             temp.remove(appointmentToEdit);
             if (temp.clashes(editedAppointment)) {
                 throw new CommandException(MESSAGE_CONFLICTING_APPOINTMENT);
-            };
+            }
         }
 
         model.setAppointment(appointmentToEdit, editedAppointment);
