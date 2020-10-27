@@ -273,14 +273,14 @@ Creates a snapshot of the current zookeep book data, saved as a file with the us
 
 * File name must be at least 1 character long and at most 100 characters long.
 
-* File name must not already exist in the data folder.
+* File name must not already exist in the `data/snapshots` folder.
 </div>
 
 Format: `snap FILE_NAME`
 
 Example:
 * `snap zookeepbook_19-10-2020` saves the current state of the zookeep book data as a file named 
-`zookeepbook_19-10-2020.json`, located in the `data/snapshots` directory.
+`zookeepbook_19-10-2020.json`, located in the `data/snapshots` folder.
 
 ---
 
