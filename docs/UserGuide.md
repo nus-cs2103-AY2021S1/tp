@@ -5,7 +5,7 @@ title: User Guide
 
 Choose a topic from the table of contents to get started on your **Wishful Shrinking journey**. 
 
-## Table of Contents
+## Table of Contents <a id="toc"></a>
 
 1. [Overview](#1-overview)
     - [1.1. Introduction](#11-introduction)
@@ -105,7 +105,7 @@ t/ | TAG | Recipe tag
 **:information_source: Notes about the command format:**<br>
 
 * All prefixes must be preceded by a space.<br>
-   e.g ` t/` or ` i/`
+   e.g ` t/`, ` i/`
 
 * All commands are **case-sensitive**.<br>
   e.g. in `addR`, `add` is in small letters while `R` is in capital letters.
@@ -225,9 +225,9 @@ Multiple ingredients are separated by `,`.
    
       Image | File Path | Image | File Path
       --------|------------------|---------|----------------
-      <img src="images/healthy1.jpg" width="100" height="100"> | images/healthy1.jpg | <img src="images/healthy4.jpg" width="100" height="100"> | images/healthy4.jpg
-      <img src="images/healthy2.jpg" width="100" height="100"> | images/healthy2.jpg | <img src="images/healthy5.jpg" width="100" height="100"> | images/healthy5.jpg
-      <img src="images/healthy3.jpg" width="100" height="100"> | images/healthy3.jpg | <img src="images/healthy6.jpg" width="100" height="100"> | images/healthy6.jpg
+      <img src="images/healthy1.png" width="100" height="100"> | images/healthy1.png | <img src="images/healthy4.png" width="100" height="100"> | images/healthy4.png
+      <img src="images/healthy2.png" width="100" height="100"> | images/healthy2.png | <img src="images/healthy5.png" width="100" height="100"> | images/healthy5.png
+      <img src="images/healthy3.png" width="100" height="100"> | images/healthy3.png | <img src="images/healthy6.png" width="100" height="100"> | images/healthy6.png
    
 * `INSTRUCTION` will take in a series of instruction text and Wishful Shrinking will automatically separate each
  step of the instruction based on the end of a sentence, indicated by a `.`.
