@@ -34,8 +34,8 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private FoodListPanel foodListPanel;
@@ -309,18 +309,24 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
-            //Update the graphs
-            summaryPanel.setTotalMacronutrients(getFoodListPanel().getCurrentCalories(),
-                    getFoodListPanel().getCurrentProteins(),
-                    getFoodListPanel().getCurrentCarbs(),
-                    getFoodListPanel().getCurrentFats());
+            updateGraph();
 
             return commandResult;
         } catch (CommandException | ParseException e) {
+            updateGraph();
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;
         }
+    }
+
+    private void updateGraph() {
+        //Update the graphs
+        summaryPanel.setTotalMacronutrients(
+                getFoodListPanel().getCurrentCalories(),
+                getFoodListPanel().getCurrentProteins(),
+                getFoodListPanel().getCurrentCarbs(),
+                getFoodListPanel().getCurrentFats()
+        );
     }
 }

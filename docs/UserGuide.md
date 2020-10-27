@@ -193,6 +193,7 @@ Examples:
 :information_source:
 
 * Filters the displayed list of food items to only include food items corresponding to the provided parameters.
+* `KEYWORDS` and `WORDS_IN_NAME` are nor case sensitive but `WORDS_IN_TAG` is case sensitive.
 
 </div>
 
@@ -343,23 +344,27 @@ Examples:
 
 ![GUI export command example](images/CommandImagesForUG/ExportGUI.png)
 
+### Undoing the previous command : `undo`
 
-### Exiting the program : `exit`
+Undoes the change made by the previous command
 
-You can exit the program when you are done editing McGymmy
-
-Format: `exit`
+Format: `undo`
 
 <div markdown="block" class="alert alert-info">
 
 :information_source:
 
-* Exits McGymmy and closes the McGymmy window.
-* Data will be automatically saved (see also section on *Saving the data* below).
-* All additional input after the *command word* `exit` will be ignored. E.g. `exit` and `exit 123` will have the same effect.
+* Undo command can be called multiple times.
+* Help command will be ignored when undoing. 
+For example, if the user calls the following commands in sequence:
+`add -n Burger`, `help edit`, `undo`, the undo command will undo the adding operation, not the help one.
+* Calling `undo` after 2 or more consecutive `list` calls only undoes the listing operation once.
+* Calling `undo` after 2 or more consecutive `find` calls with the same sequence of keyword only undoes the find operation once.
+* All additional input after the *command word* `undo` will be ignored. E.g. `undo` and `undo 123` will have the same effect.
+
+![Undo command example](images/CommandImagesForUG/Undo.png)
 
 </div>
-
 
 ### Creating a macro command : `macro`
 
@@ -367,18 +372,21 @@ Adds a macro to run several commands in succession.
 
 *__WARNING:__* this is an advanced feature!
 
-Arguments to the macro can be substituted in the commands using the syntax:
-`\ARGUMENT_NAME`.
-
-Unnamed arguments can be substituted using the syntax: `\$`
-
-Format: `macro SHORTCUT ARGUMENT_1 ARGUMENT_2 ... ; COMMAND_1 ARGUMENTS_TO_COMMAND \REUSED_ARGUMENT; [COMMAND_2; ...]` <br>
+Format: `macro MACRONAME FLAG_1 FLAG_2 ... ; COMMAND_1 PARAMETERS_TO_COMMAND_1; [COMMAND_2 PARAMETERS_TO_COMMAND_2; ...]` <br>
 
 <div markdown="block" class="alert alert-info">
 
 :information_source:
 
-* Create a macro with name `SHORTCUT` and arguments `ARGUMENT_1` and `ARGUMENT_2` which executes `COMMAND_1; COMMAND_2; ...`.
+* Create a macro with name `MACRONAME` which takes in parameters `FLAG_1 FLAG_2...` which executes `COMMAND_1; COMMAND_2; ...`.
+
+* Parameters to the macro can be substituted in the `PARAMETERS_TO_COMMAND` using the syntax: `\FLAG_NAME`.
+
+* Flag-less parameters can be substituted using the syntax: `\$`.
+
+* Using `undo` after creating a macro using this command will remove it.
+
+* Read the examples below for more information.
 
 </div>
 
@@ -400,27 +408,48 @@ Examples:
 
 </div>
 
+### List all macros : `listmacro`
 
+Displays information on the available macros in the terminal.
 
-### Undoing the previous command : `undo`
+Format: `listmacro [macro]`
 
-Undoes the change made by the previous command
+Examples:
+* `listmacro` - this will display all available macros.
+* `listmacro kfc` - this will display information on the `kfc` macro.
 
-Format: `undo`
+![List Macro command example](images/CommandImagesForUG/Listmacro.png)
+
+### Deleting a macro: `remmacro`
+
+Deletes the given macro.
+
+Format: `remmacro MACRONAME`
 
 <div markdown="block" class="alert alert-info">
 
 :information_source:
 
-* Undo command can be called multiple times.
-* Help command will be ignored when undoing. 
-For example, if the user calls the following commands in sequence:
-`add -n Burger`, `help edit`, `undo`, the undo command will undo the adding operation, not the help one.
-* Calling `undo` after 2 or more consecutive `list` calls only undoes the listing operation once.
-* Calling `undo` after 2 or more consecutive `find` calls with the same sequence of keyword only undoes the find operation once.
-* All additional input after the *command word* `undo` will be ignored. E.g. `undo` and `undo 123` will have the same effect.
+* Deletes the macro with the name `MACRONAME`.
+* If you accidentally delete a macro you need, `undo` can revert it.
 
-![Undo command example](images/CommandImagesForUG/Undo.png)
+</div>
+
+![delete macro example](images/CommandImagesForUG/Deletemacro.png)
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+<div markdown="block" class="alert alert-info">
+
+:information_source:
+
+* Exits McGymmy and closes the McGymmy window.
+* Data will be automatically saved (see also section on *Saving the data* below).
+* All additional input after the *command word* `exit` will be ignored. E.g. `exit` and `exit 123` will have the same effect.
 
 </div>
 
