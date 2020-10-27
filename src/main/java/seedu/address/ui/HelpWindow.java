@@ -49,7 +49,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "|            | e.g. done 1:20, done 1:20 2:60 3:120                  |\n"
             + "|--------------------------------------------------------------------|\n"
             + "|    find    | find ATTRIBUTE:SEARCH_PHRASE ...                      |\n"
-            + "|            | e.g.find title:dinner type:deadline date:02-02-2020   |\n"
+            + "|            | e.g.find title:assignment date:02-02-2020 tag:CS2040  |\n"
             + "|--------------------------------------------------------------------|\n"
             + "|    edit    | edit INDEX [title:TITLE] [date:DATE]                  |\n"
             + "|            | [desc:DESCRIPTION] [type:TYPE] [tag:MODULE_CODE]      |\n"
