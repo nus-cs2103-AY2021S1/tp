@@ -280,6 +280,7 @@ Action | Format, Examples
 **Find** | `find keyword...` <br>  e.g. `find general important`
 **List** | `list`
 **Review** | `review`
+**Quiz** | `quiz`
 **Sort** | <code>sort <success&#124;reviewed> <-a&#124;-d></code> <br> e.g. `sort success -a`
 **View** | `view INDEX` <br> e.g. `view 1`
 **Exit** | `exit`
