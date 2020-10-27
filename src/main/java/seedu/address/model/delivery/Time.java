@@ -25,10 +25,12 @@ public class Time implements Comparable<Time> {
      * @param minutes A valid time in minutes.
      * @param endTime A LocalDateTime that the delivery should be done by.
      */
-    public Time(String minutes, LocalDateTime endTime) {
-        requireNonNull(endTime);
+    public Time(String minutes, String endTime) {
+        requireNonNull(minutes, endTime);
+
+        LocalDateTime time = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
         this.minutes = minutes;
-        this.endTime = endTime;
+        this.endTime = time;
     }
 
     /**
@@ -40,7 +42,7 @@ public class Time implements Comparable<Time> {
         long min = Long.parseLong(minutes);
         LocalDateTime endTime = LocalDateTime.now().plusMinutes(min);
 
-        return new Time(minutes, endTime);
+        return new Time(minutes, endTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss")));
     }
 
     /**

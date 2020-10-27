@@ -102,8 +102,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AARON = "Jl Koro koro kuru kuru Blk 251";
     public static final String VALID_ORDER_DAMITH = "Chicken rice 1x, not spicy";
     public static final String VALID_ORDER_AARON = "Iced Kopi x2, Prata plain x3";
-    public static final String VALID_TIME_AARON = "28 October 2020 00:00:00";
-    public static final String VALID_TIME_DAMITH = "28 October 2020 00:00:00";
+    public static final String VALID_TIME_AARON = "0";
+    public static final String VALID_TIME_DAMITH = "0";
 
     public static final String NAME_DESC_DAMITH = " " + PREFIX_NAME + VALID_NAME_DAMITH;
     public static final String NAME_DESC_AARON = " " + PREFIX_NAME + VALID_NAME_AARON;
@@ -131,7 +131,6 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_AARON)
                 .withAddress(VALID_ADDRESS_AARON)
                 .withOrder(VALID_ORDER_AARON)
-                .withTime
                 .build();
         DESC_DAMITH = new EditDeliveryDescriptorBuilder()
                 .withName(VALID_NAME_DAMITH)

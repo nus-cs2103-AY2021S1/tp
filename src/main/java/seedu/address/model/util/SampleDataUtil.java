@@ -1,6 +1,5 @@
 package seedu.address.model.util;
 
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -49,12 +48,12 @@ public class SampleDataUtil {
                 new Phone("87438807"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 new Order("2x Chicken Rice, 1x Ice Milo"),
-                new Time("15", LocalDateTime.now())),
+                new Time("15", "28 October 2020 00:00:00")),
             new Delivery(new DeliveryName("Bernice Yu"),
                 new Phone("99272758"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 new Order("2x Duck Rice, 1x Ayutaka Green Tea"),
-                new Time("45", LocalDateTime.now()))};
+                new Time("45", "28 October 2020 00:00:00"))};
     }
 
 

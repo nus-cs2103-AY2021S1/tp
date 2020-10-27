@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import seedu.address.model.delivery.Address;
 import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
@@ -35,10 +32,7 @@ public class DeliveryBuilder {
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         order = new Order(DEFAULT_ORDER);
-
-        LocalDateTime endTime = LocalDateTime.parse(DEFAULT_ENDTIME,
-                DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
-        time = new Time("0", endTime);
+        time = new Time("0", DEFAULT_ENDTIME);
     }
 
     /**
@@ -88,8 +82,7 @@ public class DeliveryBuilder {
      * Sets the {@code Time} of the {@code Delivery} that we are building.
      */
     public DeliveryBuilder withTime(String time) {
-        LocalDateTime endTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
-        this.time = new Time("0", endTime);
+        this.time = new Time("0", time);
         return this;
     }
 

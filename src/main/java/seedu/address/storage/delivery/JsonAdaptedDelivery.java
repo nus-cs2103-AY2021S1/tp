@@ -1,8 +1,8 @@
 package seedu.address.storage.delivery;
 
-import java.time.LocalDateTime;
+/*import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
+import java.time.format.DateTimeParseException;*/
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -95,14 +95,14 @@ public class JsonAdaptedDelivery {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
 
-        LocalDateTime time = LocalDateTime.now();
+        /*
         try {
-            time = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
+            LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
         } catch (DateTimeParseException e) {
             throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
-        }
+        }*/
 
-        final Time modelTime = new Time("0", time);
+        final Time modelTime = new Time("0", endTime);
 
         return new Delivery(modelName, modelPhone, modelAddress, modelOrder, modelTime);
 

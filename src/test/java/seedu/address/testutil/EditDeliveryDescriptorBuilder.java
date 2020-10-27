@@ -1,8 +1,5 @@
 package seedu.address.testutil;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import seedu.address.logic.commands.deliverycommand.DeliveryEditCommand;
 import seedu.address.model.delivery.Address;
 import seedu.address.model.delivery.Delivery;
@@ -74,8 +71,7 @@ public class EditDeliveryDescriptorBuilder {
      * Sets the {@code order} of the {@code EditDeliveryDescriptor} that we are building.
      */
     public EditDeliveryDescriptorBuilder withTime(String time) {
-        LocalDateTime endTime = LocalDateTime.parse(time, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
-        descriptor.setTime(new Time("0", endTime));
+        descriptor.setTime(new Time("0", time));
         return this;
     }
 

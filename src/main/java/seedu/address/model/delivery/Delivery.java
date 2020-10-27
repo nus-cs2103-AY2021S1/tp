@@ -79,8 +79,7 @@ public class Delivery {
         return otherDelivery.getName().equals(getName())
                 && otherDelivery.getPhone().equals(getPhone())
                 && otherDelivery.getAddress().equals(getAddress())
-                && otherDelivery.getOrder().equals(getOrder())
-                && otherDelivery.getTime().equals(getTime());
+                && otherDelivery.getOrder().equals(getOrder());
     }
 
     @Override

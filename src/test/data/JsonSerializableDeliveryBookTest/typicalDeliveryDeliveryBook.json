@@ -4,11 +4,13 @@
     "name" : "Kelvin",
     "phone" : "91234332",
     "address" : "Clementi Blk 235 #11-111",
-    "order" : "Char Kway Teow"
+    "order" : "Char Kway Teow",
+    "endTime" : "28 October 2020 00:27:56"
   }, {
     "name" : "Marcus",
     "phone" : "8198264",
     "address" : "Jurong Blk 231 #15-123",
-    "order" : "Seafood Hor Fun x5"
+    "order" : "Seafood Hor Fun x5",
+    "endTime" : "28 October 2020 00:27:56"
   } ]
 }

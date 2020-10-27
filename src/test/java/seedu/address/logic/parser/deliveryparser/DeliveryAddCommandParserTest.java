@@ -82,8 +82,8 @@ public class DeliveryAddCommandParserTest {
                 expectedMessage);
 
         // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_DAMITH + VALID_PHONE_DAMITH + VALID_ADDRESS_DAMITH + VALID_ADDRESS_DAMITH,
-                expectedMessage);
+        assertParseFailure(parser, VALID_NAME_DAMITH + VALID_PHONE_DAMITH
+                        + VALID_ADDRESS_DAMITH + VALID_ORDER_DAMITH, expectedMessage);
     }
 
     @Test
