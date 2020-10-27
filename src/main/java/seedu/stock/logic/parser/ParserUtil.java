@@ -152,7 +152,6 @@ public class ParserUtil {
         List<String> values = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
 
         if (values.isEmpty()) {
-
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
 
