@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-**ProductiveNUS is a desktop application** made for you, a School of Computing (SoC) student in National University of Singapore (NUS), to manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your academic tasks more efficiently via the [Command Box](#gui-terminologies). 
+**ProductiveNUS is a desktop application** made for you, a School of Computing (SoC) student in National University of Singapore (NUS), to manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a [Command Box](#gui-terminologies). If you are fast at typing, you can manage your academic tasks more efficiently via the [Command Box](#gui-terminologies). 
 
 As a **student from the SoC in NUS**, you tend to have a heavy workload. ProductiveNUS helps improve your productivity by enhancing your organisational skills. Apart from simply keeping track of your tasks, ProductiveNUS is capable of scheduling them for you so you will never miss any deadlines. ProductiveNUS is also compatible with NUSMods, meaning all your timetable information can be imported easily into the application so all your academic tasks can be found in just one application.
 
