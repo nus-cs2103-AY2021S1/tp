@@ -94,6 +94,41 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getIsArchiveMode_init_returnsFalse() {
+        assertFalse(modelManager.getIsArchiveMode());
+    }
+
+    @Test
+    public void setIsArchiveMode_setTrue_returnsTrue() {
+        modelManager.setIsArchiveMode(true);
+        assertTrue(modelManager.getIsArchiveMode());
+    }
+
+    @Test
+    public void setIsArchiveMode_setFalse_returnsFalse() {
+        modelManager.setIsArchiveMode(false);
+        assertFalse(modelManager.getIsArchiveMode());
+    }
+
+    @Test
+    public void getIsArchiveModeProperty_init_returnsFalse() {
+        assertFalse(modelManager.getIsArchiveModeProperty().get());
+    }
+
+    @Test
+    public void setIsArchiveMode_setTrue_updatesIsArchiveModeProperty() {
+        modelManager.setIsArchiveMode(true);
+        assertTrue(modelManager.getIsArchiveModeProperty().get());
+    }
+
+    @Test
+    public void setIsArchiveMode_setFalse_updatesIsArchiveModeProperty() {
+        modelManager.setIsArchiveMode(false);
+        assertFalse(modelManager.getIsArchiveModeProperty().get());
+    }
+
+
+    @Test
     public void equals() {
         ClientList clientList = new ClientListBuilder().withPerson(ALICE).withPerson(BENSON).build();
         ClientList differentClientList = new ClientList();
@@ -128,5 +163,11 @@ public class ModelManagerTest {
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setClientListFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(clientList, differentUserPrefs)));
+
+        // different isArchiveMode -> returns false
+        ModelManager modelManagerCopyInArchiveMode = new ModelManager(clientList, userPrefs);
+        modelManagerCopyInArchiveMode.setIsArchiveMode(true);
+        assertFalse(modelManager.equals(modelManagerCopyInArchiveMode));
+
     }
 }

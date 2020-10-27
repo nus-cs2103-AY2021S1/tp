@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
- * Deletes a person identified using it's displayed index from the client list.
+ * Deletes a person identified using its displayed index from the client list.
  */
 public class DeleteCommand extends Command {
 
