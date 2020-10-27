@@ -85,7 +85,6 @@ public class BidBook implements ReadOnlyBidBook {
     @Override
     public String toString() {
         return listOfBids.asUnmodifiableObservableBidList().size() + " bids";
-        // TODO: refine later
     }
 
     @Override

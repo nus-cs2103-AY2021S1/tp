@@ -5,17 +5,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showBidAtIndex;
-import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BIDDER_ID_BID_B;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BID_A;
-import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BID_AMOUNT_BID_B;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_BID_B;
 import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_PROPERTY_ID_BID_A;
-import static seedu.address.logic.commands.bids.BidCommandTestUtil.VALID_PROPERTY_ID_BID_B;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_BID;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_BID;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.bidder.TypicalBidder.getTypicalBidderAddressBook;
 import static seedu.address.testutil.bids.TypicalBid.getTypicalBidBook;
+import static seedu.address.testutil.property.TypicalProperties.getTypicalPropertyBook;
 import static seedu.address.testutil.seller.TypicalSeller.getTypicalSellerAddressBook;
 
 import org.junit.jupiter.api.Test;
@@ -25,12 +23,12 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.bidcommands.EditBidCommand;
 import seedu.address.logic.commands.bidcommands.EditBidCommand.EditBidDescriptor;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.MeetingBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.bid.Bid;
-import seedu.address.model.propertybook.PropertyBook;
 import seedu.address.testutil.bids.BidBuilder;
 import seedu.address.testutil.bids.EditBidDescriptorBuilder;
 
@@ -40,12 +38,12 @@ import seedu.address.testutil.bids.EditBidDescriptorBuilder;
 public class EditBidCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalBidBook(),
-            new PropertyBook(), getTypicalBidderAddressBook(),
+            getTypicalPropertyBook(), getTypicalBidderAddressBook(),
             getTypicalSellerAddressBook(), new MeetingBook());
 
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredBidList_success() {
+    public void execute_allFieldsSpecifiedUnfilteredBidList_success() throws CommandException {
         Bid editedBid = new BidBuilder().build();
         EditBidDescriptor descriptor = new EditBidDescriptorBuilder(editedBid).build();
         EditBidCommand editBidCommand = new EditBidCommand(INDEX_FIRST_BID, descriptor);
@@ -53,7 +51,7 @@ public class EditBidCommandTest {
         String expectedMessage = String.format(EditBidCommand.MESSAGE_EDIT_BID_SUCCESS,
                 model.getFilteredBidList().get(0), editedBid);
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
+                model.getPropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
 
         expectedModel.setBid(model.getFilteredBidList().get(0), editedBid);
 
@@ -61,59 +59,13 @@ public class EditBidCommandTest {
     }
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastBid = Index.fromOneBased(model.getFilteredBidList().size());
-        Bid lastBid = model.getFilteredBidList().get(indexLastBid.getZeroBased());
-
-        BidBuilder bidInList = new BidBuilder(lastBid);
-        Bid editedBid = bidInList.withPropertyId(VALID_PROPERTY_ID_BID_B).withBidderId(VALID_BIDDER_ID_BID_B)
-                .withBidAmount(VALID_BID_AMOUNT_BID_B).build();
-
-        EditBidDescriptor descriptor = new EditBidDescriptorBuilder().withPropertyId(VALID_PROPERTY_ID_BID_B)
-                .withBidderId(VALID_BIDDER_ID_BID_B)
-                .withBidAmount(VALID_BID_AMOUNT_BID_B).build();
-        EditBidCommand editBidCommand = new EditBidCommand(indexLastBid, descriptor);
-
-        String expectedMessage = String.format(EditBidCommand.MESSAGE_EDIT_BID_SUCCESS, lastBid, editedBid);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
-
-        expectedModel.setBid(lastBid, editedBid);
-
-        assertCommandSuccess(editBidCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_noFieldSpecifiedUnfilteredList_success() {
+    public void execute_noFieldSpecifiedUnfilteredList_failure() {
         EditBidCommand editBidCommand = new EditBidCommand(INDEX_FIRST_BID, new EditBidDescriptor());
         Bid editedBid = model.getFilteredBidList().get(INDEX_FIRST_BID.getZeroBased());
 
-        String expectedMessage = String.format(EditBidCommand.MESSAGE_EDIT_BID_SUCCESS,
+        String expectedMessage = String.format(EditBidCommand.MESSAGE_NOT_EDITED,
                 model.getFilteredBidList().get(0), editedBid);
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
-        assertCommandSuccess(editBidCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_filteredList_success() {
-        showBidAtIndex(model, INDEX_FIRST_BID);
-
-        Bid bidInFilteredList = model.getFilteredBidList().get(INDEX_FIRST_BID.getZeroBased());
-        Bid editedBid = new BidBuilder(bidInFilteredList).withPropertyId(VALID_PROPERTY_ID_BID_A).build();
-        EditBidCommand editBidCommand = new EditBidCommand(INDEX_FIRST_BID,
-                new EditBidDescriptorBuilder().withPropertyId(VALID_PROPERTY_ID_BID_A).build());
-
-        String expectedMessage = String.format(EditBidCommand.MESSAGE_EDIT_BID_SUCCESS,
-                model.getFilteredBidList().get(0), editedBid);
-
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), model.getBidBook(),
-                new PropertyBook(), model.getBidderAddressBook(), model.getSellerAddressBook(), new MeetingBook());
-
-        expectedModel.setBid(model.getFilteredBidList().get(0), editedBid);
-
-        assertCommandSuccess(editBidCommand, model, expectedMessage, expectedModel);
+        assertCommandFailure(editBidCommand, model, expectedMessage);
     }
 
     @Test

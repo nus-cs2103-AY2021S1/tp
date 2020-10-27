@@ -152,7 +152,7 @@ public interface Model extends BidderModel, SellerModel, PropertyModel {
      * {@code target} must exist in the bid book.
      * The bid identity of {@code editedBid} must not be the same as another existing bid in the bid book.
      */
-    void setBid(Bid target, Bid editedBid);
+    void setBid(Bid target, Bid editedBid) throws CommandException;
 
     //=========== MeetingManager ================================================================================
 

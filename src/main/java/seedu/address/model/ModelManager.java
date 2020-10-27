@@ -210,7 +210,7 @@ public class ModelManager implements Model {
 
     @Override
     public void addBid(Bid bid) throws CommandException {
-        isValidBid(bid);
+        checkIsValidBid(bid);
         bidBook.addBid(bid);
         updateSortedBidList(bidComparator);
         updateFilteredBidList(PREDICATE_SHOW_ALL_BIDS);
@@ -219,6 +219,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredBidList(Predicate<Bid> predicate) {
         requireNonNull(predicate);
+        updateSortedBidList(bidComparator);
         filteredBids.setPredicate(predicate);
     }
 
@@ -233,7 +234,7 @@ public class ModelManager implements Model {
      * @param bid bid to validate
      * @throws CommandException
      */
-    private void isValidBid(Bid bid) throws CommandException {
+    private void checkIsValidBid(Bid bid) throws CommandException {
         requireNonNull(bid);
         if (!containsPropertyId(bid.getPropertyId())) {
             throw new CommandException(MESSAGE_INVALID_PROPERTY_ID);
@@ -262,9 +263,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setBid(Bid target, Bid editedBid) {
+    public void setBid(Bid target, Bid editedBid) throws CommandException {
         requireAllNonNull(target, editedBid);
-
+        checkIsValidBid(editedBid);
         bidBook.setBid(target, editedBid);
     }
 

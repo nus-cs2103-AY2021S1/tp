@@ -34,7 +34,7 @@ public class EditBidDescriptorBuilder {
     /**
      * Sets the {@code PropertyId} of the {@code EditBidDescriptor} that we are building.
      */
-    public seedu.address.testutil.bids.EditBidDescriptorBuilder withPropertyId(String id) {
+    public EditBidDescriptorBuilder withPropertyId(String id) {
         descriptor.setPropertyId(new PropertyId(id));
         return this;
     }
@@ -42,7 +42,7 @@ public class EditBidDescriptorBuilder {
     /**
      * Sets the {@code BidderId} of the {@code EditBidDescriptor} that we are building.
      */
-    public seedu.address.testutil.bids.EditBidDescriptorBuilder withBidderId(String id) {
+    public EditBidDescriptorBuilder withBidderId(String id) {
         descriptor.setBidderId(new BidderId(id));
         return this;
     }
@@ -51,7 +51,7 @@ public class EditBidDescriptorBuilder {
      * Parses the {@code BidAmount} and set it to the {@code EditBidDescriptor}
      * that we are building.
      */
-    public seedu.address.testutil.bids.EditBidDescriptorBuilder withBidAmount(double amt) {
+    public EditBidDescriptorBuilder withBidAmount(double amt) {
         descriptor.setBidAmount(new Price(amt));
         return this;
     }

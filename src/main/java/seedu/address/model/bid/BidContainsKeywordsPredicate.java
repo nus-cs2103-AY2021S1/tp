@@ -24,7 +24,9 @@ public class BidContainsKeywordsPredicate implements Predicate<Bid> {
         return (keywords.stream().anyMatch(keyword ->
                 StringUtil.containsWordIgnoreCase(bid.getPropertyId().toString(), keyword)))
                 || (keywords.stream().anyMatch(keyword ->
-                StringUtil.containsWordIgnoreCase(bid.getBidderId().toString(), keyword)));
+                StringUtil.containsWordIgnoreCase(bid.getBidderId().toString(), keyword)))
+                || (keywords.stream().anyMatch(keyword ->
+                StringUtil.containsWordIgnoreCase(bid.getBidAmount().toString(), keyword)));
     }
 
     @Override
