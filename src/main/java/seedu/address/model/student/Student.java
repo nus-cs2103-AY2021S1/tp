@@ -36,7 +36,7 @@ public class Student {
      */
     public Student(Name name, Phone phone, School school, Year year,
                    Admin admin, List<Question> questions, List<Exam> exams, Academic academic) {
-        requireAllNonNull(name, phone, school, year, admin);
+        requireAllNonNull(name, phone, school, year, admin, academic);
         this.name = name;
         this.phone = phone;
         this.school = school;
