@@ -9,10 +9,10 @@ import java.util.logging.Logger;
 
 import seedu.address.MainApp;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.appointmentcommand.AddApptCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.patient.Appointment;
+import seedu.address.model.patient.Nric;
 
 /**
  * Parses input arguments and creates a new AddApptCommand object
@@ -33,10 +33,10 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPOINTMENT);
 
-        Index index;
+        Nric nric;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            nric = ParserUtil.parseNric(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddApptCommand.MESSAGE_USAGE), pe);
@@ -53,6 +53,6 @@ public class AddApptCommandParser implements Parser<AddApptCommand> {
 
         assert !appointment.equals(new Appointment()) : "Appointment should not be empty!";
 
-        return new AddApptCommand(index, appointment);
+        return new AddApptCommand(nric, appointment);
     }
 }
