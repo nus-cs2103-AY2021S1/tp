@@ -16,7 +16,7 @@ import seedu.address.model.exercise.Template;
  */
 public class TemplateListPanel extends UiPart<Region> {
     private static final String FXML = "TemplateListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+    private final Logger logger = LogsCenter.getLogger(ExerciseListPanel.class);
 
     @FXML
     private ListView<Template> templateListView;
