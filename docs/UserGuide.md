@@ -402,9 +402,9 @@ Examples:
 
 ### 3.4 Miscellaneous Features
 
-### 3.4.1 Scheduling: `schedule`
+#### 3.4.1 Scheduling: `schedule`
 
-### Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)
+#### Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)
 
 List the events that the user has on a timetable. The classes that user has with students will also be included.
 
@@ -416,7 +416,7 @@ Format: `schedule view [mode/View_Mode] [date/Date_To_View]`
 
 Example: (To include screenshot)
 
-### Adding events to the schedule: `schedule add`
+#### Adding events to the schedule: `schedule add`
 
 Adds a new event to the schedule.
 
@@ -431,7 +431,7 @@ Example:
 `schedule add eventName/Meeting startDateTime/2020-10-25T10:00 endDateTime/2020-10-25T11:00 description/speak to students' parents recurrence/none`
 creates a meeting event from 10am - 11am on 25th October 2020, this is a non-recurring event.
 
-###  List events: `schedule list`
+####  List events: `schedule list`
 
 Lists events.
 
@@ -439,7 +439,7 @@ Format: `schedule list`
 
 * Outputs a list of events on the same panel as the student list. 
 
-### Delete events on the schedule: `schedule delete`
+#### Delete events on the schedule: `schedule delete`
 
 Deletes an event on the schedule.
 
