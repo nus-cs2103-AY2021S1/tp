@@ -1,0 +1,23 @@
+{
+  "financeRecords" : [ {
+    "id" : 1854081695,
+    "amount" : 121100.0,
+    "dateTime" : "2020-10-27T14:28:34.667625",
+    "hasInventory" : false
+  }, {
+    "id" : 1624720381,
+    "amount" : 14980.0,
+    "dateTime" : "2020-10-27T14:29:00.92798",
+    "hasInventory" : false
+  }, {
+    "id" : 162493881,
+    "amount" : 200.0,
+    "dateTime" : "2020-10-27T14:29:49.495621",
+    "hasInventory" : false
+  }, {
+    "id" : 275413734,
+    "amount" : 2110.0,
+    "dateTime" : "2020-10-27T14:30:02.848215",
+    "hasInventory" : false
+  } ]
+}

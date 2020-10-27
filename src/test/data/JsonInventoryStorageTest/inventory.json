@@ -1,0 +1,18 @@
+{
+  "inventoryRecords" : [ {
+    "itemName" : "iPhone",
+    "quantity" : 100,
+    "dateTime" : "2020-10-27T14:28:34.666464",
+    "financeId" : 1854081695
+  }, {
+    "itemName" : "iPad",
+    "quantity" : 20,
+    "dateTime" : "2020-10-27T14:29:00.927947",
+    "financeId" : 1624720381
+  }, {
+    "itemName" : "apples",
+    "quantity" : 17,
+    "dateTime" : "2020-10-27T14:29:16.352225",
+    "financeId" : -1
+  } ]
+}
