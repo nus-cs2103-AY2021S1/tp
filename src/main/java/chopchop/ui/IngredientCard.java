@@ -3,8 +3,6 @@
 
 package chopchop.ui;
 
-import java.util.Comparator;
-
 import chopchop.model.ingredient.Ingredient;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -55,9 +53,7 @@ public class IngredientCard extends UiPart<Region> {
 
         this.ingredient.getExpiryDate().ifPresentOrElse(exp -> {
             this.expiryDate.setText(exp.toString());
-        }, () -> {
-            this.expiryBox.setVisible(false);
-        });
+        }, () -> this.expiryBox.setVisible(false));
 
         this.ingredient.getTags().stream()
             .map(Object::toString)
