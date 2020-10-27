@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_END_DATE_CS2103
 import static seedu.address.logic.commands.CommandTestUtil.VALID_END_TIME_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_DATE_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_START_TIME_CS2103T;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_CS2103T;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;

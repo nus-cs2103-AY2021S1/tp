@@ -2,11 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -30,35 +26,12 @@ public class CommandTestUtil {
     public static final String VALID_DATE_TIME_BOB = "01-01-2020 00:00";
     public static final String VALID_DESCRIPTION_AMY = "amy,example.com";
     public static final String VALID_DESCRIPTION_BOB = "bob,example.com";
-    public static final String VALID_TYPE_AMY = "todo";
     public static final String VALID_TYPE_BOB = "deadline";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
-    public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
-    public static final String DATE_TIME_DESC_AMY = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_AMY;
-    public static final String DATE_TIME_DESC_BOB = " " + PREFIX_DATE_TIME + VALID_DATE_TIME_BOB;
-    public static final String DESCRIPTION_DESC_AMY = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_AMY;
-    public static final String DESCRIPTION_DESC_BOB = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_BOB;
-    public static final String TYPE_DESC_AMY = " " + PREFIX_TYPE + VALID_TYPE_AMY;
-    public static final String TYPE_DESC_BOB = " " + PREFIX_TYPE + VALID_TYPE_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
-
-    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Homework&"; // '&' not allowed in titles
-    public static final String INVALID_DATE_TIME_DESC = " " + PREFIX_DATE_TIME
-            + "32-11-2000 19:00"; // 32nd day not allowed
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "bob@yahoo"; // '@' not allowed
-    public static final String INVALID_TYPE_DESC = " " + PREFIX_TYPE; // empty string not allowed for type
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
-
-    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
-    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-
     public static final String VALID_TITLE_CS2103T = "CS2103T Lecture";
     public static final String VALID_DESC_CS2103T = "Best lecture ever!";
-    public static final String VALID_DAY_CS2103T = "Monday";
     public static final String VALID_START_TIME_CS2103T = "12:00";
     public static final String VALID_END_TIME_CS2103T = "14:00";
     public static final String VALID_START_DATE_CS2103T = "01-01-2020";

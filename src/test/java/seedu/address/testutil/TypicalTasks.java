@@ -54,7 +54,8 @@ public class TypicalTasks {
             .withDescription("dicuss v1.3 content").withTag("CS2103T").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    public static final Deadline DEADLINE_TEST = new DeadlineBuilder().withTitle(VALID_TITLE_AMY).withDeadlineDateTime(VALID_DATE_TIME_AMY)
+    public static final Deadline DEADLINE_TEST = new DeadlineBuilder()
+            .withTitle(VALID_TITLE_AMY).withDeadlineDateTime(VALID_DATE_TIME_AMY)
             .withDescription(VALID_DESCRIPTION_AMY).withTag(VALID_TAG_FRIEND).build();
     public static final Event EVENT_TEST = new EventBuilder().withTitle(VALID_TITLE_BOB)
             .withStartDateTime(VALID_DATE_TIME_BOB).withEndDateTime(VALID_DATE_TIME_BOB)
