@@ -45,13 +45,23 @@ public class LessonCommandParser implements Parser<LessonCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonCommand.MESSAGE_USAGE));
         }
         Description description = Description.defaultDescription();
+
+        assert argMultimap.getValue(PREFIX_TITLE).isPresent() : "prefix title is missing";
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+<<<<<<< Updated upstream
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         LocalDate startDate = null;
         LocalDate endDate = null;
         LocalTime startTime = null;
         LocalTime endTime = null;
         DayOfWeek dayOfWeek = null;
+=======
+        LocalDate startDate;
+        LocalDate endDate;
+        LocalTime startTime;
+        LocalTime endTime;
+        DayOfWeek dayOfWeek;
+>>>>>>> Stashed changes
 
         if (argMultimap.getValue(PREFIX_START_DATE).isPresent()
                 && argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
