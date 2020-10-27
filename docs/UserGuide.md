@@ -27,7 +27,8 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.1.7 Closing the recipe drawer : `close`](#close-recipe)
         * [5.1.8 Searching for a recipe: `searchR`](#search-recipe)
         * [5.1.9 Recommending recipes : `recommend`](#recommend-recipe)
-        * [5.1.10 Clearing all recipes : `clearR`](#clear-recipe) <br>
+        * [5.1.10 Clearing all recipes : `clearR`](#clear-recipe) 
+        <br>
     - [5.2 Fridge-related Commands](#52-ingredient-related-commands)
         * [5.2.1 Adding an ingredient: `addF`](#add-ingredient)
         * [5.2.2 Listing all ingredients : `fridge`](#list-ingredient)
@@ -35,12 +36,14 @@ Choose a topic from the table of contents to get started on your **Wishful Shrin
         * [5.2.4 Editing an ingredient: `editF`](#edit-ingredient)
         * [5.2.5 Getting an ingredient to edit: `editF`](#get-edit-ingredient)
         * [5.2.6 Searching for an Ingredient: `searchF`](#search-ingredient)
-        * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient) <br>
+        * [5.2.7 Clearing all ingredients : `clearF`](#clear-ingredient) 
+        <br>
     - [5.3 Consumption-related Commands](#53-consumption-related-commands)
         * [5.3.1 Eating a recipe : `eatR`](#eat-consumption)
         * [5.3.2 Listing all recipes eaten : `calories`](#list-consumption)
         * [5.3.3 Deleting a recipe eaten: `deleteC`](#delete-consumption)
-        * [5.3.4 Clearing all consumed recipes : `clearC`](#clear-consumption) <br>
+        * [5.3.4 Clearing all consumed recipes : `clearC`](#clear-consumption) 
+        <br>
     - [5.4 Miscellaneous Commands](#54-miscellaneous-commands)
         * [5.4.1 Viewing help : `help`](#help)
         * [5.4.2 Exiting the program : `exit`](#exit)
