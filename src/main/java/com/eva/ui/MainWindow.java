@@ -158,11 +158,6 @@ public class MainWindow extends UiPart<Stage> {
         default:
             throw new AssertionError("No such tab name: " + panelState);
         }
-        /*
-        GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                (int) primaryStage.getX(), (int) primaryStage.getY(), logic.getPanelState());
-        logic.setGuiSettings(guiSettings);
-        */
     }
 
     /**

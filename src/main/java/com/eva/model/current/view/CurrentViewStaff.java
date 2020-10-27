@@ -77,6 +77,6 @@ public class CurrentViewStaff {
 
     @Override
     public int hashCode() {
-        return Objects.hash(currentView, leaves);
+        return Objects.hash(currentView, leaves, comments);
     }
 }
