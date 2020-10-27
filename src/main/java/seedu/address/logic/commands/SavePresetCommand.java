@@ -30,6 +30,9 @@ public class SavePresetCommand extends PresetCommand {
         if (!model.isSelected()) {
             throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);
         }
+        if (model.getOrderSize() == 0) {
+            throw new CommandException(ParserUtil.MESSAGE_PRESET_SAVE_NO_ORDER);
+        }
 
         try {
             List<List<Preset>> allLists = storage.readPresetManager()

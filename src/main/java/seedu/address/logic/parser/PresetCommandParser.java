@@ -12,18 +12,14 @@ public class PresetCommandParser implements Parser<PresetCommand> {
 
     @Override
     public PresetCommand parse(String args) throws ParseException {
-        String trimArgs = args.trim();
-        String[] argsArr = trimArgs.split(" ");
-        ParserUtil.checkArgsLength(argsArr, PresetCommand.COMMAND_WORD, PresetCommand.MESSAGE_USAGE, 1, 2);
+        String[] argsArr = ParserUtil.checkPresetSyntax(args);
+        ParserUtil.checkArgsLength(argsArr, PresetCommand.COMMAND_WORD, PresetCommand.MESSAGE_USAGE, 2, 2);
 
-        String saveOrLoad = argsArr[0].trim().toLowerCase();
-        //TODO: make parserutil function for this
-        assert saveOrLoad.equals("save") || saveOrLoad.equals("load")
-                || saveOrLoad.equals("s") || saveOrLoad.equals("l");
+        String saveOrLoad = argsArr[0];
 
         boolean save = saveOrLoad.equals("save") || saveOrLoad.equals("s");
         Optional<Name> presetName = Optional.empty();
-        if (argsArr.length == 2) {
+        if (!argsArr[1].equals("")) {
             presetName = Optional.of(ParserUtil.parseName(argsArr[1]));
         }
 
