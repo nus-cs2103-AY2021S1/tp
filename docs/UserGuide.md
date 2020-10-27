@@ -1,22 +1,24 @@
 ---
 layout: page
-title: ProductiveNUS User Guide
+title: User Guide
 ---
 ## Table of Contents
 {toc:}
 
 --------------------------------------------------------------------------------------------------------------------
 ## Introduction
-**ProductiveNUS is a desktop application** made for you, a School of Computing (SoC) student in National University of Singapore (NUS), to manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your academic tasks more efficiently via the Command Box (put a hyperlink to terminologies related to GUI).
+Welcome to ProductiveNUS User Guide! :blue_book:
+
+**ProductiveNUS is a desktop application** made for you, **a School of Computing (SoC) student in National University of Singapore (NUS)**, to **manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a [Command line](#gui-terminologies). If you are fast at typing, you can manage your academic tasks more efficiently.
 
 As a **student from the SoC in NUS**, you tend to have a **heavy workload**. ProductiveNUS helps **improve your productivity** by **enhancing your organisational skills**. Apart from simply **keeping track of your tasks**, ProductiveNUS is capable of **scheduling** them for you so you will never **miss any deadlines**. ProductiveNUS is also compatible with NUSMods, meaning all your **timetable information can be imported easily** into the application so all your academic tasks can be found in just one application.
 
 --------------------------------------------------------------------------------------------------------------------
 ## About
 This user guide provides you with the necessary information on how to become an expert user of ProductiveNUS. 
-Before moving on to the next section, [Getting started](#getting-started), you can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following subsections.  
+Before moving on to the next section, [Getting started](#getting-started), you can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
 
-### GUI Terminologies
+### GUI terminologies
 The figure below shows the GUI of ProductiveNUS, with its components labelled. 
 
 
@@ -76,22 +78,29 @@ Format: `delete INDEX [MORE_INDEXES]`
 
 You can delete assignments from your assignment list by specifying the assignment `INDEX` as shown in your list.
 
-You can delete **one or more than one** assignment at a time. Here is an example with steps to follow:
+You can delete **one or more** assignments at a time. Here is an example with steps to follow:
 
 1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command line as per their indexes that are circled and labelled in the figure.
+
+DIAGRAM
+
 2) The two assignments are no longer displayed and are successfully deleted from your assignment list. 
 3) A "Deleted assignments" message that includes the information of your deleted assignments will be displayed in the Command Box.
+
+DIAGRAM
 
 More examples:
 * `delete 1`
 * `delete 2 3 1`
 
-**Pointers to note:**
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
 * At least one index must be **present**. For example, `delete` without any index will not work.
 * The indexes **must be a positive integer** 1, 2, 3, …​
 * The indexes **must be found in your assignment list**.
 * The indexes **must not be duplicated**. For example, `delete 3 3` will not work.
-
+</div>
 
 ### Importing your timetable : `import`
 
@@ -109,30 +118,39 @@ Examples:
 
 Format: `list [NUMBER_OF_DAYS]`
 
-You can list your assignments altogether with just typing `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that are within the current date (and time) and `NUMBER_OF_DAYS` later.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date (and time) and `NUMBER_OF_DAYS` later (in number of hours).
 
-Tip:
-You can key in a `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
-For example, `list 2` will show you assignments that are due 2 days (48 hours) from the current date (and current time).
+The `NUMBER_OF_DAYS` in hours is multiplied by 24.
 
-Examples: 
-- `list` lists all your assignments.
-- `list 3` lists all your assignments with deadline 3 days (72 hours) from the current date (and current time). For example, If the current date and time is 24/10/2020 12:00 pm, all assignments due from this date and time to 27/10/2020 12:00PM will be displayed.
+For example, `list 3` lists all your assignments that are due within 3 days (72 hours) from the current date (and current time). If the current date and time is 24/10/2020 12:00 pm, all assignments due from this date and time to 27/10/2020 12:00PM will be displayed.
+
+DIAGRAM
+
+<div markdown="span" class="alert alert-success">
+**:bulb: Tip:**
+You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
+
+</div>
+
+More examples: 
+- `list`
+- `list 7`
  
-**Pointers to note:**
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
 * `NUMBER_OF_DAYS` **must be a positive integer** 1, 2, 3, …​
 * **Only one** number can be keyed in. For example, `list 1 2` will not work. 
-
+</div>
 
 ### Finding assignments : `find`
 
 Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 
-You can find your assignments based on keywords (and prefixes) you enter. The types of keywords are the name, module code, deadline and priority level of assignments. 
-You can find assignments with multiple keywords of the same type to speed up your search!
+You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
 
 Here is the table of prefixes used:
-| Prefix | Syntax with examples                                            | Examples                             | Remarks                                                                                                                                                                                                                                        |
+| Prefix | Syntax                                                          | Examples                             | Remarks                                                                                                                                                                                                                                        |
 |--------|-----------------------------------------------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | n/     | n/NAME_OF_ASSIGNMENT  [MORE NAME_OF_ASSIGNMENT]                 | n/Tutorial n/tutorial essay          | Case insensitive                                                                                                                                                                                                                               |
 | mod/   | mod/MODULE_CODE  [MORE MODULE_CODE]                             | mod/ST2334 mod/CS2100 cs2103t        | Case insensitive                                                                                                                                                                                                                               |
@@ -140,16 +158,22 @@ Here is the table of prefixes used:
 | p/     | p/PRIORITY_OF_ASSIGNMENT  [MORE PRIORITY_OF_ASSIGNMENT]         | p/high p/LOW                         | Case insensitive                                                                                                                                                                                                                               |
 
 
-Here is an example of a usage scenario:
-1) You want to find assignments from the modules CS2100 and ST2334.
-2) You can simply key in `find mod/CS2100 ST2334` to view these assignments quickly.
-3) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
-4) A "listed your assignments" message will be displayed in the command box.
+Here is an example with steps to follow:
+1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
 
-**Points to note:**
+DIAGRAM
+
+2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
+3) A "listed your assignments" message will be displayed in the command box.
+
+DIAGRAM
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
 * `DATE_OR_TIME_OF_ASSIGNMENT` must have dates in the format **dd-MM-yyyy** or times in the format **HHmm** (24 hour).
-* You can only **find assignments with keywords of the same type**. For example, `find n/Assignment d/23-10-2020` will not work.
-
+* You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
+</div>
 
 ### Setting reminders for assignments : `remind`
 
