@@ -76,8 +76,6 @@ public class DeleteApptCommand extends Command {
         appointments.remove(appointment);
         Patient newPatient = createNewPatient(patientToDeleteAppt, appointments);
 
-        assert !patientToDeleteAppt.equals(newPatient) : "New patient should be different from original";
-
         model.setPatient(patientToDeleteAppt, newPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(String.format(MESSAGE_DELETE_APPT_SUCCESS, newPatient));

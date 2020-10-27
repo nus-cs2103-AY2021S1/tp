@@ -87,8 +87,6 @@ public class EditApptCommand extends Command {
         appointments.add(appointmentToAdd);
         Patient newPatient = createNewPatient(patientToEditAppt, appointments);
 
-        //assert !patientToEditAppt.equals(newPatient) : "New patient should be different from original";
-
         model.setPatient(patientToEditAppt, newPatient);
         model.updateFilteredPatientList(PREDICATE_SHOW_ALL_PATIENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_APPT_SUCCESS, newPatient));
