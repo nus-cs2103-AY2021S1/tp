@@ -51,7 +51,7 @@ public class CraftItemCommand extends Command {
             + "product quantity";
     public static final String MESSAGE_INSUFFICIENT_INGREDIENTS = "Crafting failed, insufficient "
             + "ingredients in inventory.";
-    public static final String MESSAGE_RECIPE_NOT_FOUND = "No relevant recipes found in the recipe list";
+    public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipes to craft this item found in the recipe list";
     public static final String MESSAGE_INDEX_OUT_OF_RANGE = "Recipe ID is out of range";
 
     private static final Logger logger = LogsCenter.getLogger(CraftItemCommand.class);

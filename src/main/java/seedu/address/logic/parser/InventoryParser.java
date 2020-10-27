@@ -76,10 +76,6 @@ public class InventoryParser {
             return new DeleteItemCommandParser().parse(arguments);
         case ViewDetailsCommand.COMMAND_WORD:
             return new ViewDetailsCommandParser().parse(arguments);
-        case CraftItemCommand.COMMAND_WORD:
-            return new CraftItemCommandParser().parse(arguments);
-        case CheckCraftCommand.COMMAND_WORD:
-            return new CheckCraftCommandParser().parse(arguments);
 
         // Recipe commands start here
         case AddRecipeCommand.COMMAND_WORD:
@@ -90,6 +86,12 @@ public class InventoryParser {
             return new ListRecipeCommandParser().parse(arguments);
         case ClearRecipeCommand.COMMAND_WORD:
             return new ClearRecipeCommand();
+
+        // Crafting commands start here
+        case CraftItemCommand.COMMAND_WORD:
+            return new CraftItemCommandParser().parse(arguments);
+        case CheckCraftCommand.COMMAND_WORD:
+            return new CheckCraftCommandParser().parse(arguments);
 
         // Utility commands start here
         case UndoCommand.COMMAND_WORD:

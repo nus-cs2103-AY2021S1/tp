@@ -46,6 +46,9 @@ public class CheckCraftCommandTest {
         expectedModel = new ModelStubWithItemAndRecipeList(getTypicalItemList(), recipeList);
     }
 
+    /**
+     * Tests for success when item can be crafted with 1 recipe.
+     */
     @Test
     public void execute_craftable_success() {
         CheckCraftCommand ccc = new CheckCraftCommand(APPLE.getName(), new Quantity("3"));
@@ -54,6 +57,9 @@ public class CheckCraftCommandTest {
         assertCommandSuccess(ccc, model, expectedMessage, expectedModel);
     }
 
+    /**
+     * Tests for success when item cannot be crafted with any recipe.
+     */
     @Test
     public void execute_uncraftable_success() {
         CheckCraftCommand ccc = new CheckCraftCommand(APPLE.getName(), new Quantity("200"));

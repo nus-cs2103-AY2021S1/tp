@@ -33,7 +33,7 @@ public class CheckCraftCommand extends Command {
 
     public static final String MESSAGE_INVALID_QUANTITY = "Please enter a valid quantity";
     public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
-    public static final String MESSAGE_RECIPE_NOT_FOUND = "No relevant recipes found in the recipe list";
+    public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipes to craft this item found in the recipe list";
 
     private final String itemName;
     private final int quantity;

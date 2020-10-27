@@ -11,7 +11,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.item.Quantity;
 
 /**
- * Parses input arguments and creates a new CraftItemCommand object
+ * Parses input arguments and creates a new CheckCraftCommand object
  */
 public class CheckCraftCommandParser implements Parser<CheckCraftCommand> {
 
