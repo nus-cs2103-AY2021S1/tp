@@ -81,7 +81,7 @@ public class AttendanceTest {
     }
 
     @Test
-    public void equals_Test() {
+    public void equals_test() {
 
         // different object
         assertNotEquals(VALID_ATTENDANCE, "hey");

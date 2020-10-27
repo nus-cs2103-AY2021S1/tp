@@ -5,7 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.ATTENDANCE_COMMAND_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 
 import java.time.LocalDate;
 import java.util.regex.Matcher;
@@ -76,7 +75,7 @@ public class AttendanceCommandParser implements Parser<AttendanceCommand> {
     private DeleteAttendanceCommand parseDeleteAttendanceCommand(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, ATTENDANCE_COMMAND_PREFIXES);
 
-        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_INDEX, PREFIX_ATTENDANCE_DATE)) {
+        if (!areRequiredPrefixesPresent(argMultimap, PREFIX_ATTENDANCE_DATE)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteAttendanceCommand.MESSAGE_USAGE));
         }

@@ -33,7 +33,7 @@ public class FeedbackTest {
     }
 
     @Test
-    public void equals_Test() {
+    public void equals_test() {
         assertEquals(VALID_FEEDBACK, VALID_FEEDBACK);
 
         assertNotEquals(VALID_FEEDBACK, "lass");

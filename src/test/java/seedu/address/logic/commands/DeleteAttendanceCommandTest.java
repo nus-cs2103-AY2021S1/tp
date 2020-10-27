@@ -14,6 +14,8 @@ import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
@@ -25,8 +27,6 @@ import seedu.address.model.student.academic.Attendance;
 import seedu.address.model.student.academic.Feedback;
 import seedu.address.testutil.StudentBuilder;
 
-import java.time.LocalDate;
-
 public class DeleteAttendanceCommandTest {
 
     private static final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
@@ -35,7 +35,7 @@ public class DeleteAttendanceCommandTest {
             .getAttendance().get(0).getLessonDate();
     private static final String USER_INPUT_DATE = model.getFilteredStudentList().get(0)
             .getAttendance().get(0).getUserInputDate();
-    private final Attendance VALID_ATTENDANCE = new Attendance(USER_INPUT_DATE, "attended",
+    private final Attendance validAttendance = new Attendance(USER_INPUT_DATE, "attended",
             new Feedback("sleepy"));
 
     @Test
@@ -55,7 +55,7 @@ public class DeleteAttendanceCommandTest {
     @Test
     public void execute_validStudentIndexUnfilteredList_success() {
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withAttendances(VALID_ATTENDANCE).build();
+        Student clone = new StudentBuilder(asker).withAttendances(validAttendance).build();
         DeleteAttendanceCommand deleteAttendanceCommand =
                 new DeleteAttendanceCommand(TEST_INDEX_FIRST_STUDENT, TEST_DATE);
         Student expectedStudent = new StudentBuilder(ALICE).withAttendances().build();
@@ -92,7 +92,7 @@ public class DeleteAttendanceCommandTest {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Student clone = new StudentBuilder(asker).withAttendances(VALID_ATTENDANCE).build();
+        Student clone = new StudentBuilder(asker).withAttendances(validAttendance).build();
         model.setStudent(asker, clone);
 
         DeleteAttendanceCommand command = new DeleteAttendanceCommand(INDEX_FIRST_PERSON,

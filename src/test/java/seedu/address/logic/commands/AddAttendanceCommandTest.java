@@ -27,7 +27,7 @@ import seedu.address.testutil.StudentBuilder;
 public class AddAttendanceCommandTest {
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private final Attendance VALID_ATTENDANCE = new Attendance("12/02/2020", "attended",
+    private final Attendance validAttendance = new Attendance("12/02/2020", "attended",
             new Feedback("sleepy"));
 
     @Test
@@ -42,7 +42,7 @@ public class AddAttendanceCommandTest {
         assertThrows(NullPointerException.class, () ->
                 new AddAttendanceCommand(testIndex, null));
         assertThrows(NullPointerException.class, () ->
-                new AddAttendanceCommand(null, VALID_ATTENDANCE));
+                new AddAttendanceCommand(null, validAttendance));
     }
 
     @Test
@@ -50,12 +50,12 @@ public class AddAttendanceCommandTest {
         Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withAttendances().build();
         AddAttendanceCommand addAttendanceCommand =
-                new AddAttendanceCommand(INDEX_FIRST_PERSON, VALID_ATTENDANCE);
-        Student expectedStudent = new StudentBuilder(ALICE).withAttendances(VALID_ATTENDANCE).build();
+                new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance);
+        Student expectedStudent = new StudentBuilder(ALICE).withAttendances(validAttendance).build();
         model.setStudent(asker, clone);
 
         String expectedMessage = String.format(AddAttendanceCommand.MESSAGE_SUCCESS, clone.getName(),
-                VALID_ATTENDANCE);
+                validAttendance);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
@@ -67,7 +67,7 @@ public class AddAttendanceCommandTest {
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
         AddAttendanceCommand command =
-                new AddAttendanceCommand(outOfBounds, VALID_ATTENDANCE);
+                new AddAttendanceCommand(outOfBounds, validAttendance);
 
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
@@ -81,11 +81,11 @@ public class AddAttendanceCommandTest {
 
         model.setStudent(asker, clone);
 
-        AddAttendanceCommand command = new AddAttendanceCommand(INDEX_FIRST_PERSON, VALID_ATTENDANCE);
-        Student expectedStudent = new StudentBuilder(BENSON).withAttendances(VALID_ATTENDANCE).build();
+        AddAttendanceCommand command = new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance);
+        Student expectedStudent = new StudentBuilder(BENSON).withAttendances(validAttendance).build();
 
         String expectedMessage = String.format(AddAttendanceCommand.MESSAGE_SUCCESS, clone.getName(),
-                VALID_ATTENDANCE);
+                validAttendance);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
@@ -99,14 +99,14 @@ public class AddAttendanceCommandTest {
 
         Index outOfBounds = INDEX_SECOND_PERSON;
         AddAttendanceCommand command =
-                new AddAttendanceCommand(outOfBounds, VALID_ATTENDANCE);
+                new AddAttendanceCommand(outOfBounds, validAttendance);
 
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        AddAttendanceCommand addAttendanceCommand = new AddAttendanceCommand(INDEX_FIRST_PERSON, VALID_ATTENDANCE);
+        AddAttendanceCommand addAttendanceCommand = new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance);
 
         // same object -> return true;
         assertTrue(addAttendanceCommand.equals(addAttendanceCommand));
@@ -115,13 +115,13 @@ public class AddAttendanceCommandTest {
         assertFalse(addAttendanceCommand.equals("hello"));
 
         // same fields -> return true;
-        assertTrue(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_FIRST_PERSON, VALID_ATTENDANCE)));
+        assertTrue(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_FIRST_PERSON, validAttendance)));
 
         // different index -> return false;
-        assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_SECOND_PERSON, VALID_ATTENDANCE)));
+        assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_SECOND_PERSON, validAttendance)));
 
         // different attendance -> return false;
-        Attendance altAttendance =  new Attendance("17/02/2020", "unattended", new Feedback("sleepy"));
+        Attendance altAttendance = new Attendance("17/02/2020", "unattended", new Feedback("sleepy"));
         assertFalse(addAttendanceCommand.equals(new AddAttendanceCommand(INDEX_FIRST_PERSON, altAttendance)));
     }
 }
