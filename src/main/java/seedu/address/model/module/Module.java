@@ -173,6 +173,15 @@ public class Module {
     }
 
     /**
+     * Sets the GradeTracker for this module.
+     *
+     * @return the module.
+     */
+    public Module setGradeTracker(GradeTracker gradeTracker) {
+        return new Module(this.getName(), zoomLink, gradeTracker, this.tags);
+    }
+
+    /**
      * Returns the modular credits for this module
      */
     public ModularCredits getModularCredits() {
