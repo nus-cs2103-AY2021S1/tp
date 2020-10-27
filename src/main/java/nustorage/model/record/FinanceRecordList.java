@@ -5,6 +5,7 @@ import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,6 +52,14 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
         }
 
         internalList.set(index, editedRecord);
+    }
+
+    public FinanceRecord getFinanceRecord(int recordId) {
+        Optional<FinanceRecord> record = internalList.stream().filter(r -> r.getID() == recordId).findFirst();
+        if (record.isEmpty()) {
+            throw new FinanceRecordNotFoundException();
+        }
+        return record.get();
     }
 
     /**
