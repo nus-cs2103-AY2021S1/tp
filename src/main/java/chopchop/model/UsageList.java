@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,8 +57,8 @@ public class UsageList<T extends Usage> {
         }
     }
 
-    public ObservableList<T> getUsageList() {
-        return FXCollections.observableArrayList(this.usages);
+    public List<T> getUsageList() {
+        return this.usages;
     }
 
     public int getUsageCount() {
@@ -104,10 +105,22 @@ public class UsageList<T extends Usage> {
 
     public List<T> getRecentlyUsed(int n) {
         assert n >= 0;
+        Collections.sort(this.usages, new Comparator<T>() {//just in case
+            @Override
+            public int compare(final T o1, final T o2) {
+                if (o1.getDate().compareTo(o2.getDate()) < 0) {
+                    return -1;
+                } else if (o1.getDate().compareTo(o2.getDate()) == 0) {
+                    return Integer.compare(o2.getName().compareTo(o1.getName()), 0);
+                } else {
+                    return 1;
+                }
+            }
+        });
         int len = this.usages.size();
         List<T> output = new ArrayList<>();
         int i = len - 1;
-        while (i >= 0 && n > 0) {
+        while (i >= 0 && n > 0) { //by right this should make sense cuz its a stack
             output.add(this.usages.get(i));
             i--;
             n--;
@@ -129,8 +142,19 @@ public class UsageList<T extends Usage> {
                 outputLst.add(new Pair<>(i.getName(), k));
             }
         }
-        Comparator<Pair<String, Integer>> compare = (p1, p2)-> p1.snd() < p2.snd() ? 1 : 0;
-        outputLst.sort(compare);
+        Collections.sort(outputLst, new Comparator<Pair<String, Integer>>() {
+            @Override
+            public int compare(final Pair<String, Integer> o1, final Pair<String, Integer> o2) {
+                if (o1.snd() < o2.snd()) {
+                    return 1;
+                } else if (o1.snd().equals(o2.snd())) {
+                    return Integer.compare(o1.fst().compareTo(o2.fst()), 0);
+                } else {
+                    return -1;
+                }
+            }
+        });
+
         return outputLst.stream()
             .map(x -> new Pair<>(x.fst(), "No. of times made: " + x.snd().toString()))
             .collect(Collectors.toList());
