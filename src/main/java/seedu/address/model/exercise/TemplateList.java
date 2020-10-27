@@ -6,14 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.parser.AddTemplateCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 public class TemplateList {
     private static ArrayList<Template> list = new ArrayList<Template>();
+    private static ObservableList<Template> observableList = FXCollections.observableArrayList();
 
     public static List<Template> getList() {
         return list;
+    }
+
+    public static ObservableList<Template> getObservableList() {
+        return observableList;
     }
 
     public static Template getTemp(String name) {
@@ -28,6 +35,7 @@ public class TemplateList {
 
     public static void addTemplate(Template template) {
         list.add(template);
+        observableList.add(template);
     }
 
     /**

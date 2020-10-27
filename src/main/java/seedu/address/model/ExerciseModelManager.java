@@ -138,6 +138,12 @@ public class ExerciseModelManager implements ExerciseModel {
         return filteredExercises;
     }
 
+    @Override
+    public ObservableList<Template> getFilteredTemplateList() {
+
+        return TemplateList.getObservableList();
+    }
+
     public HashMap<String, Integer> getCaloriesByDay() {
         return exerciseBook.getCaloriesByDay();
     }

@@ -104,6 +104,11 @@ public interface ExerciseModel {
     void updateFilteredExerciseList(Predicate<Exercise> predicate);
 
     /**
+     * Returns the filtered Template list
+     */
+    ObservableList<Template> getFilteredTemplateList();
+
+    /**
      * Save to the specified File
      */
     void archive(Path path);
