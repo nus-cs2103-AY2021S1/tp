@@ -1,6 +1,6 @@
 # User Guide
 
-Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
+Bamboo (v1.3) is a **simple desktop app for managing personal finance, optimized for use via a Command Line Interface (CLI),** and targeted at college students. If you can type fast, Bamboo v1.2 can get your financial management tasks done faster than traditional GUI apps.
 
 ---
 
@@ -14,7 +14,7 @@ Bamboo (v1.2.1) is a **simple desktop app for managing personal finance, optimiz
 ## Quick Start <a name="QuickStart"></a>
 
 1. Download Java Version 11
-2. Download [Bamboo v1.2](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.2.1).
+2. Download [Bamboo v1.3](https://github.com/AY2021S1-CS2103-W14-3/tp/releases/tag/v1.3).
 
 ## Features <a name="Features"></a>
 
