@@ -2,7 +2,7 @@ package seedu.address.logic.parser.appointment;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_PATIENTIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_PATIENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_STARTTIME;
@@ -31,7 +31,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APP_PATIENTNAME, PREFIX_APP_PATIENTIC,
-                        PREFIX_APP_STARTTIME, PREFIX_APP_ENDTIME);
+                        PREFIX_APP_STARTTIME, PREFIX_APP_DURATION);
 
         Index index;
 
@@ -55,11 +55,9 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
             editAppointmentDescriptor.setStartTime(ParserUtil.parseDateTime(
                     argMultimap.getValue(PREFIX_APP_STARTTIME).get()));
         }
-        if (argMultimap.getValue(PREFIX_APP_ENDTIME).isPresent()) {
-            editAppointmentDescriptor.setEndTime(ParserUtil.parseDateTime(
-                    argMultimap.getValue(PREFIX_APP_ENDTIME).get()));
+        if (argMultimap.getValue(PREFIX_APP_DURATION).isPresent()) {
+            editAppointmentDescriptor.setDuration(Integer.parseInt(argMultimap.getValue(PREFIX_APP_DURATION).get()));
         }
-        // do not handle duration for now
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);

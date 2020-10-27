@@ -1,7 +1,7 @@
 package seedu.address.logic.commands.appointment;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_ENDTIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_PATIENTIC;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_PATIENTNAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_STARTTIME;
@@ -37,10 +37,10 @@ public class EditAppointmentCommand extends Command {
             + "[" + PREFIX_APP_PATIENTNAME + "PATIENT_NAME] "
             + "[" + PREFIX_APP_PATIENTIC + "PATIENT_IC] "
             + "[" + PREFIX_APP_STARTTIME + "START_TIME] "
-            + "[" + PREFIX_APP_ENDTIME + "END_TIME]\n"
+            + "[" + PREFIX_APP_DURATION + "DURATION_IN_MINUTES]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_APP_STARTTIME + "2020-10-23 11:00 "
-            + PREFIX_APP_ENDTIME + "2020-10-23 11:40";
+            + PREFIX_APP_DURATION + "40";
 
     public static final String MESSAGE_EDIT_APPOINTMENT_SUCCESS = "Edited Appointment: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -74,7 +74,7 @@ public class EditAppointmentCommand extends Command {
         Appointment appointmentToEdit = lastShownList.get(index.getZeroBased());
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
 
-        // for editing appointment time
+        // check if the updated appointment clashes with other appointments
         if (!appointmentToEdit.isSameAppointmentTime(editedAppointment)) {
             UniqueAppointmentList temp = new UniqueAppointmentList();
             temp.setAppointments(model.getFilteredAppointmentList());
@@ -98,12 +98,42 @@ public class EditAppointmentCommand extends Command {
             editAppointmentDescriptor) throws CommandException {
         assert appointmentToEdit != null;
 
+        long oldDuration = appointmentToEdit.getStartTime().computeDuration(appointmentToEdit.getEndTime());
         Name updatedPatientName = editAppointmentDescriptor.getPatientName().orElse(appointmentToEdit.getPatientName());
         IcNumber updatedPatientIc = editAppointmentDescriptor.getPatientIc().orElse(appointmentToEdit.getPatientIc());
-        AppointmentDateTime updatedStartTime = editAppointmentDescriptor.getStartTime()
-                .orElse(appointmentToEdit.getStartTime());
-        AppointmentDateTime updatedEndTime = editAppointmentDescriptor.getEndTime()
-                .orElse(appointmentToEdit.getEndTime());
+        AppointmentDateTime updatedStartTime = appointmentToEdit.getStartTime();
+        AppointmentDateTime updatedEndTime = appointmentToEdit.getEndTime();
+
+        // when start edited, duration not edited
+        // update endTime based on updated startTime
+        if (editAppointmentDescriptor.getStartTime().isPresent()
+                && !editAppointmentDescriptor.getDuration().isPresent()) {
+            updatedStartTime = editAppointmentDescriptor.getStartTime().get();
+            updatedEndTime = new AppointmentDateTime(updatedStartTime.getDateTimeStr(), (int) oldDuration);
+        }
+
+        // when start not edited, duration edited
+        // update endTime based on updated duration
+        if (!editAppointmentDescriptor.getStartTime().isPresent()
+                && editAppointmentDescriptor.getDuration().isPresent()) {
+            updatedEndTime = new AppointmentDateTime(appointmentToEdit.getStartTime().getDateTimeStr(),
+                    editAppointmentDescriptor.getDuration().get());
+        }
+
+        // when start edited, duration edited
+        // update endTime based on updated startTime and duration
+        if (editAppointmentDescriptor.getStartTime().isPresent()
+                && editAppointmentDescriptor.getDuration().isPresent()) {
+            updatedStartTime = editAppointmentDescriptor.getStartTime().get();
+            updatedEndTime = new AppointmentDateTime(updatedStartTime.getDateTimeStr(),
+                    editAppointmentDescriptor.getDuration().get());
+        }
+
+        // when start not edited, duration not edited
+        // no need to update startTime and endTime
+        if (!editAppointmentDescriptor.getStartTime().isPresent()
+                && !editAppointmentDescriptor.getDuration().isPresent()) {
+        }
 
         if (updatedStartTime.compareTo(updatedEndTime) >= 0) {
             throw new CommandException(Messages.MESSAGE_INVALID_APPOINTMENT_START_END);
@@ -138,7 +168,7 @@ public class EditAppointmentCommand extends Command {
         private Name patientName;
         private IcNumber patientIc;
         private AppointmentDateTime startTime;
-        private AppointmentDateTime endTime;
+        private Integer duration;
 
         public EditAppointmentDescriptor() {}
 
@@ -150,14 +180,14 @@ public class EditAppointmentCommand extends Command {
             setPatientName(toCopy.patientName);
             setPatientIc(toCopy.patientIc);
             setStartTime(toCopy.startTime);
-            setEndTime(toCopy.endTime);
+            setDuration(toCopy.duration);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(patientName, patientIc, startTime, endTime);
+            return CollectionUtil.isAnyNonNull(patientName, patientIc, startTime, duration);
         }
 
         public void setPatientName(Name patientName) {
@@ -184,12 +214,12 @@ public class EditAppointmentCommand extends Command {
             return Optional.ofNullable(startTime);
         }
 
-        public void setEndTime(AppointmentDateTime endTime) {
-            this.endTime = endTime;
+        public void setDuration(Integer duration) {
+            this.duration = duration;
         }
 
-        public Optional<AppointmentDateTime> getEndTime() {
-            return Optional.ofNullable(endTime);
+        public Optional<Integer> getDuration() {
+            return Optional.ofNullable(duration);
         }
 
         @Override
@@ -210,7 +240,7 @@ public class EditAppointmentCommand extends Command {
             return getPatientName().equals(e.getPatientName())
                     && getPatientIc().equals(e.getPatientIc())
                     && getStartTime().equals(e.getStartTime())
-                    && getStartTime().equals(e.getEndTime());
+                    && getDuration().equals(e.getDuration());
         }
     }
 }

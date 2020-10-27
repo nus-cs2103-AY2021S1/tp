@@ -3,6 +3,7 @@ package seedu.address.model.appointment;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -40,6 +41,14 @@ public class AppointmentDateTime {
         requireNonNull(duration);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER).plusMinutes(duration);
+    }
+
+    public String getDateTimeStr() {
+        return this.dateTime.format(DATE_TIME_FORMATTER);
+    }
+
+    public long computeDuration(AppointmentDateTime other) {
+        return Duration.between(this.dateTime, other.dateTime).toMinutes();
     }
 
     /**

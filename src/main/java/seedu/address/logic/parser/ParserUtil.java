@@ -213,7 +213,7 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dateTimeStr, durationStr} is invalid.
      */
-    public static AppointmentDateTime parseDuration(String dateTimeStr, String durationStr) throws ParseException {
+    public static AppointmentDateTime parseDurationWithStart(String dateTimeStr, String durationStr) throws ParseException {
         requireNonNull(dateTimeStr, durationStr);
         String trimmedDateTime = dateTimeStr.trim();
         String trimmedDuration = durationStr.trim();
@@ -225,5 +225,21 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_DURATION);
         }
         return new AppointmentDateTime(trimmedDateTime, duration);
+    }
+
+    /**
+     * Parses a {@code String durationStr} into an {@code Integer}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code durationStr} is invalid.
+     */
+    public static int parseDuration(String durationStr) throws ParseException {
+        requireNonNull(durationStr);
+        String trimmedDuration = durationStr.trim();
+        int duration = Integer.parseInt(trimmedDuration);
+        if (duration <= 0) {
+            throw new ParseException(MESSAGE_INVALID_DURATION);
+        }
+        return duration;
     }
 }
