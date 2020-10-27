@@ -48,14 +48,14 @@ public class DeleteCommandParser implements Parser<Command> {
         } else if (!deleteStaffCommand.isEmpty() && !deleteCommentCommand.isEmpty()) {
             return new DeleteCommentCommandParser()
                     .parse(" " + index.getOneBased() + " s- " + deleteCommentCommand.get());
-        } else if (!deleteStaffCommand.isEmpty()) {
-            return new DeleteStaffCommandParser()
-                    .parse(" " + index.getOneBased());
         } else if (!deleteLeaveCommand.isEmpty()) {
             return new DeleteLeaveCommandParser()
                     .parse(" " + index.getOneBased()
                             + " " + deleteLeaveCommand.get());
-        } else if (!deleteApplicantCommand.isEmpty()) {
+        } else if (!deleteStaffCommand.isEmpty() && deleteStaffCommand.get().length() < 1) {
+            return new DeleteStaffCommandParser()
+                    .parse(" " + index.getOneBased());
+        } else if (!deleteApplicantCommand.isEmpty() && deleteApplicantCommand.get().length() < 1) {
             return new DeleteApplicantCommandParser()
                     .parse(" " + index.getOneBased()
                         + " " + deleteApplicantCommand.get());

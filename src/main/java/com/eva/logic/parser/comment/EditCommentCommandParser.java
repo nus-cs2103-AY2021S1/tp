@@ -10,22 +10,25 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.eva.commons.core.index.Index;
-import com.eva.logic.commands.CommentCommand;
 import com.eva.logic.commands.DeleteCommentCommand;
 import com.eva.logic.commands.EditCommand;
+import com.eva.logic.commands.EditCommentCommand;
 import com.eva.logic.parser.ArgumentMultimap;
 import com.eva.logic.parser.ArgumentTokenizer;
+import com.eva.logic.parser.Parser;
 import com.eva.logic.parser.ParserUtil;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 
-public class DeleteCommentCommandParser {
+public class EditCommentCommandParser implements Parser<EditCommentCommand> {
+
     /**
-     * For consolidated delete commands
+     * Creates edit comment command object
      * @param args
-     * @throws ParseException
+     * @return EditCommentCommand object
+     * @throws ParseException When comment input does not exist
      */
-    public CommentCommand parse(String args) throws ParseException {
+    public EditCommentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_APPLICANT, PREFIX_STAFF);
@@ -36,31 +39,31 @@ public class DeleteCommentCommandParser {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteCommentCommand.MESSAGE_DELETECOMMENT_USAGE), pe);
+                    EditCommentCommand.MESSAGE_EDIT_COMMENT_USAGE), pe);
         }
 
-        CommentCommand.CommentPersonDescriptor commentPersonDescriptor =
-                new CommentCommand.CommentPersonDescriptor();
+        EditCommand.EditPersonDescriptor editPersonDescriptor =
+                new EditCommand.EditPersonDescriptor();
         if (argMultimap.getAllValues(PREFIX_APPLICANT).size() != 0) {
             parseCommentsForEdit(argMultimap.getAllValues(PREFIX_APPLICANT))
-                    .ifPresent(commentPersonDescriptor::setComments);
+                    .ifPresent(editPersonDescriptor::setComments);
         } else if (argMultimap.getAllValues(PREFIX_STAFF).size() != 0) {
             parseCommentsForEdit(argMultimap.getAllValues(PREFIX_STAFF))
-                    .ifPresent(commentPersonDescriptor::setComments);
+                    .ifPresent(editPersonDescriptor::setComments);
         } else {
             throw new ParseException(DeleteCommentCommand.MISSING_PERSONTYPE_MESSAGE);
         }
 
-        if (!commentPersonDescriptor.isAnyFieldEdited()) {
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         if (!argMultimap.getValue(PREFIX_APPLICANT).isEmpty()) {
-            return new DeleteCommentCommand(index, commentPersonDescriptor, "applicant");
+            return new EditCommentCommand(index, editPersonDescriptor, "applicant");
         } else if (!argMultimap.getValue(PREFIX_STAFF).isEmpty()) {
-            return new DeleteCommentCommand(index, commentPersonDescriptor, "staff");
+            return new EditCommentCommand(index, editPersonDescriptor, "staff");
         }
-        return new DeleteCommentCommand(index, commentPersonDescriptor, "staff");
+        return new EditCommentCommand(index, editPersonDescriptor, "staff");
     }
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
@@ -72,7 +75,7 @@ public class DeleteCommentCommandParser {
 
         if (comments.isEmpty() || comments.size() == 1
                 && comments.contains("")) {
-            throw new ParseException(DeleteCommentCommand.MESSAGE_DELETECOMMENT_USAGE);
+            throw new ParseException(EditCommentCommand.MESSAGE_EDIT_COMMENT_USAGE);
         }
         return Optional.of(ParserUtil.parseComments(comments));
     }

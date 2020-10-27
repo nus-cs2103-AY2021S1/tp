@@ -1,8 +1,13 @@
 package com.eva.logic.parser;
 
 import static com.eva.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_APPLICANT;
-import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
+import static com.eva.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static com.eva.logic.parser.CliSyntax.PREFIX_COMMENT;
+import static com.eva.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static com.eva.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_NAME;
+import static com.eva.logic.parser.CliSyntax.PREFIX_PHONE;
+import static com.eva.logic.parser.CliSyntax.PREFIX_TAG;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
@@ -11,60 +16,44 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.eva.commons.core.index.Index;
-import com.eva.logic.commands.Command;
+import com.eva.logic.commands.EditApplicantCommand;
 import com.eva.logic.commands.EditCommand;
+import com.eva.logic.commands.EditCommand.EditPersonDescriptor;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
+import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.tag.Tag;
 
 
 /**
  * Parses input arguments and creates a new EditCommand object
  */
-public class EditCommandParser implements Parser<Command> {
+public class EditApplicantCommandParser implements Parser<EditApplicantCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parse(String args) throws ParseException {
+    public EditApplicantCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap;
-
-        ArgumentMultimap typeMap =
-                ArgumentTokenizer.tokenize(args, PREFIX_APPLICANT, PREFIX_STAFF);
-
-        boolean isApplicant = (!typeMap.getValue(PREFIX_APPLICANT).isEmpty());
-        boolean isStaff = (!typeMap.getValue(PREFIX_STAFF).isEmpty());
+        argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+                        PREFIX_ADDRESS, PREFIX_TAG, PREFIX_COMMENT, PREFIX_INTERVIEW_DATE);
 
         Index index;
 
         try {
-            index = ParserUtil.parseIndex(typeMap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        }
-
-        if (isApplicant) {
-            return new EditApplicantCommandParser().parse(" " + index.getOneBased()
-                    + " " + typeMap.getValue(PREFIX_APPLICANT).get());
-        } else {
-            return new EditStaffCommandParser().parse(" " + index.getOneBased()
-                    + " " + typeMap.getValue(PREFIX_STAFF).get());
-        }
-
-        /*Index index;
-
-        try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditApplicantCommand.MESSAGE_USAGE), pe);
         }
-
 
         EditPersonDescriptor editPersonDescriptor = new EditCommand.EditPersonDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            System.out.println("here");
             editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
@@ -88,15 +77,10 @@ public class EditCommandParser implements Parser<Command> {
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
-        if (!argMultimap.getValue(PREFIX_APPLICANT).isEmpty()) {
-            ApplicationStatus applicationStatus = new ApplicationStatus("received");
-            editPersonDescriptor.setApplicationStatus(applicationStatus);
-            return new EditCommand(index, editPersonDescriptor, "applicant");
-        } else if (!argMultimap.getValue(PREFIX_STAFF).isEmpty()) {
-            return new EditCommand(index, editPersonDescriptor, "staff");
-        } else {
-            throw new ParseException(MESSAGE_NO_APPLICANTORSTAFF);
-        }*/
+        ApplicationStatus applicationStatus = new ApplicationStatus("received");
+        editPersonDescriptor.setApplicationStatus(applicationStatus);
+        return new EditApplicantCommand(index, editPersonDescriptor);
+
     }
 
     /**
