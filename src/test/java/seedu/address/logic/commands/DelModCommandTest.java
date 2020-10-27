@@ -45,18 +45,22 @@ class DelModCommandTest {
     @Test
     void execute_deleteEmptyModules_deleteFail() {
         try {
-            CommandResult commandResult = new DelModCommand(NON_EXISTENT_MODULE_CODE).execute(modelStubWithNoModules);
+            CommandResult commandResult = new DelModCommand(NON_EXISTENT_MODULE_CODE)
+                    .execute(modelStubWithNoModules);
         } catch (CommandException e) {
-            assertEquals(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, e.getMessage());
+            assertEquals(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, NON_EXISTENT_MODULE_CODE),
+                    e.getMessage());
         }
     }
 
     @Test
     void execute_deleteNonExistentModuleCode_deleteFail() {
         try {
-            CommandResult commandResult = new DelModCommand(NON_EXISTENT_MODULE_CODE).execute(modelStubWithModules);
+            CommandResult commandResult = new DelModCommand(NON_EXISTENT_MODULE_CODE)
+                    .execute(modelStubWithModules);
         } catch (CommandException e) {
-            assertEquals(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, e.getMessage());
+            assertEquals(String.format(Messages.MESSAGE_MODULE_DOES_NOT_EXIST, NON_EXISTENT_MODULE_CODE),
+                    e.getMessage());
         }
     }
 

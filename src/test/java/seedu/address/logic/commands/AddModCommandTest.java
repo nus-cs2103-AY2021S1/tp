@@ -43,7 +43,8 @@ public class AddModCommandTest {
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_DUPLICATE_MODULE, () -> addModCommand.execute(modelStub));
+                String.format(Messages.MESSAGE_DUPLICATE_MODULE, validModule.getModuleCode()), ()
+                -> addModCommand.execute(modelStub));
     }
 
     @Test

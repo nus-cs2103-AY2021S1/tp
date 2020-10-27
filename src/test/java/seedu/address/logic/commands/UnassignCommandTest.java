@@ -17,6 +17,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -53,8 +54,9 @@ public class UnassignCommandTest {
 
         CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes).execute(modelStub);
 
-        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON, moduleCodes),
-            commandResult.getFeedbackToUser());
+        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS,
+                validPerson.getName(), CS2103.getModuleCode()),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -64,8 +66,9 @@ public class UnassignCommandTest {
 
         CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON).execute(modelStub);
 
-        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON),
-            commandResult.getFeedbackToUser());
+        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS,
+                validPerson.getName(), "all modules"),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -80,8 +83,9 @@ public class UnassignCommandTest {
 
         CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes).execute(modelStub);
 
-        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON, moduleCodes),
-            commandResult.getFeedbackToUser());
+        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS,
+                validPerson.getName(), CS2103.getModuleCode()),
+                commandResult.getFeedbackToUser());
     }
 
     @Test
@@ -92,8 +96,9 @@ public class UnassignCommandTest {
 
         CommandResult commandResult = new UnassignCommand(INDEX_FIRST_PERSON).execute(modelStub);
 
-        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS, INDEX_FIRST_PERSON),
-            commandResult.getFeedbackToUser());
+        assertEquals(String.format(UnassignCommand.MESSAGE_UNASSIGNMENT_SUCCESS,
+                validPerson.getName(), "all modules"),
+                commandResult.getFeedbackToUser());
     }
 
     @BeforeEach
@@ -109,8 +114,12 @@ public class UnassignCommandTest {
         moduleCodes.add(CS2103.getModuleCode());
         UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes);
 
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Person instructor = lastShownList.get(INDEX_FIRST_PERSON.getZeroBased());
+
         assertCommandFailure(unassignCommand, model,
-            String.format(Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST, VALID_MODULE_CODE_CS2103));
+            String.format(Messages.MESSAGE_INSTRUCTOR_IS_NOT_ASSIGNED,
+                    instructor.getName(), VALID_MODULE_CODE_CS2103));
     }
 
     @Test
@@ -119,8 +128,12 @@ public class UnassignCommandTest {
         moduleCodes.add(CS2103.getModuleCode());
         UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes);
 
+        List<Person> lastShownList = model.getFilteredPersonList();
+        Person instructor = lastShownList.get(INDEX_FIRST_PERSON.getZeroBased());
+
         assertCommandFailure(unassignCommand, model,
-            String.format(Messages.MESSAGE_INSTRUCTOR_DOES_NOT_EXIST, VALID_MODULE_CODE_CS2103));
+            String.format(Messages.MESSAGE_INSTRUCTOR_IS_NOT_ASSIGNED,
+                    instructor.getName(), VALID_MODULE_CODE_CS2103));
     }
 
     @Test
@@ -130,7 +143,8 @@ public class UnassignCommandTest {
         moduleCodes.add(cs60.getModuleCode());
         UnassignCommand unassignCommand = new UnassignCommand(INDEX_FIRST_PERSON, moduleCodes);
 
-        assertCommandFailure(unassignCommand, model, Messages.MESSAGE_MODULE_DOES_NOT_EXIST);
+        assertCommandFailure(unassignCommand, model, String.format(
+                Messages.MESSAGE_MODULE_DOES_NOT_EXIST, cs60.getModuleCode()));
     }
 
     @Test
