@@ -41,7 +41,7 @@ public class PolicyList {
      * Returns true if the hashtable contains the key as the given argument using String.
      */
     public boolean contains(String policyName) {
-        return policies.contains(policyName);
+        return policies.containsKey(policyName);
     }
 
     /**

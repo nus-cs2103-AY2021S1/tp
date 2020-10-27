@@ -68,7 +68,7 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePersonInArchive_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
+        AddCommand addCommand = new AddCommand(validPerson, null);
 
         Person validPersonInArchive = new PersonBuilder().addToArchive().build();
         ModelStub modelStub = new ModelStubWithPerson(validPersonInArchive);

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPolicies.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,12 +38,12 @@ public class CommandTestUtil {
     public static final String VALID_PRIORITY_HIGH = "h";
     public static final String VALID_PRIORITY_LOW = "l";
     public static final String VALID_PRIORITY_UNDEFINED = "u";
-    public static final String VALID_POLICY_NAME_AMY = "Life Time";
+    public static final String VALID_POLICY_NAME_AMY = LIFE_TIME_NAME;
+    public static final String VALID_POLICY_NAME_BOB = SAVINGS_NAME;
     public static final String VALID_POLICY_DESCRIPTION_AMY
-            = "Covers death, serious illnesses, and disabilities.";
-    public static final String VALID_POLICY_NAME_BOB = "Savings Scheme";
+            = LIFE_TIME_DESCRIPTION;
     public static final String VALID_POLICY_DESCRIPTION_BOB
-            = "Profits of up to 10% of input.";
+            = SAVINGS_DESCRIPTION;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -58,7 +59,12 @@ public class CommandTestUtil {
     public static final String NOTE_DESC_CAT = " " + PREFIX_NOTE + VALID_NOTE_CAT;
     public static final String PRIORITY_DESC_AMY = " " + PREFIX_PRIORITY + VALID_PRIORITY_HIGH;
     public static final String PRIORITY_DESC_BOB = " " + PREFIX_PRIORITY + VALID_PRIORITY_LOW;
-    public static final String POLICY_DESC_AMY = " " + PREFIX_POLICY_NAME + VALID_POLICY_NAME_AMY;
+    public static final String POLICY_NAME_DESC_AMY = " " + PREFIX_POLICY_NAME + VALID_POLICY_NAME_AMY;
+    public static final String POLICY_NAME_DESC_BOB = " " + PREFIX_POLICY_NAME + VALID_POLICY_NAME_BOB;
+    public static final String POLICY_DESCRIPTION_DESC_AMY =
+            " " + PREFIX_POLICY_DESCRIPTION + VALID_POLICY_DESCRIPTION_AMY;
+    public static final String POLICY_DESCRIPTION_DESC_BOB =
+            " " + PREFIX_POLICY_DESCRIPTION + VALID_POLICY_DESCRIPTION_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -70,6 +76,8 @@ public class CommandTestUtil {
                     + "abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuvwxyz"; // clientsource limited to 50 characters.
     public static final String INVALID_NOTE_DESC = " " + PREFIX_NOTE; // empty string not allowed for notes.
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "xdz";
+    public static final String INVALID_POLICY_NAME_DESC = " " + PREFIX_POLICY_NAME + "@!";
+    public static final String INVALID_POLICY_DESCRIPTION_DESC = " " + PREFIX_POLICY_DESCRIPTION + " ";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
