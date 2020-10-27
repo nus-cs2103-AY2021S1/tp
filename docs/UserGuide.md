@@ -201,7 +201,7 @@ Format: `list`
 
 ### Reviewing all flashcards: `review`
 
-Review the current list of flashcards. This puts the user in review mode and the user can no 
+Reviews the current list of flashcards. This puts the user in review mode and the user can no 
 longer input commands to the textbox.
 
 Upon entering review mode, the following user input will be recognised:
@@ -230,7 +230,7 @@ Examples:
     - `success -a` shows a list of all flashcards sorted according to success rate in ascending order
     - `success -d` shows a list of all flashcards sorted according to success rate in descending order
 
-<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequency of a flashcard is only affected by quiz mode.
+<div markdown="span" class="alert alert-primary">:memo: Note: The review and success frequencies of a flashcard are only affected by quiz mode.
 </div>
     
 ### Views a flashcard  : `view`
