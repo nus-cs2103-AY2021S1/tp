@@ -2,29 +2,31 @@
 layout: page
 title: User Guide
 ---
+Welcome to the User Guide for Eva!
+
 - [1. Introduction](#1-introduction)
 - [2. Getting Started](#2-getting-started)
 - [3. Features](#3-features)
   * [3.1. Common Commands](#31-common-commands)
     + [3.1.1. View](#311-view--view)
-    + [3.1.2. Listing all persons : `list`](#312-listing-all-persons--list)
+    + [3.1.2. List all persons : `list`](#312-listing-all-persons--list)
     + [3.1.3. Find](#313-find)
   * [3.2. General Commands](#32-general-commands)
-    + [3.2.1. Clearing all entries : `clear`](#321-clearing-all-entries--clear)
-    + [3.2.2. Finding help : `help`](#322-finding-help--help)
-    + [3.2.3. Exiting the program : `exit`](#323-exiting-the-program--exit)
+    + [3.2.1. Clear all entries : `clear`](#321-clearing-all-entries--clear)
+    + [3.2.2. Find help : `help`](#322-finding-help--help)
+    + [3.2.3. Exit the program : `exit`](#323-exiting-the-program--exit)
   * [3.3. Staff commands](#33-staff-commands)
-    + [3.3.1. Adding a staff: `addstaff`](#331-adding-a-staff-addstaff)
-    + [3.3.2. Deleting a staff: `delstaff`](#332-deleting-a-staff-delstaff)
+    + [3.3.1. Add a staff: `addstaff`](#331-adding-a-staff-addstaff)
+    + [3.3.2. Delete a staff: `delstaff`](#332-deleting-a-staff-delstaff)
     + [3.3.3. Record leave taken by staff: `addleave`](#333-record-leave-taken-by-staff-addleave)
     + [3.3.4. Delete leave taken by staff: `deleteleave`](#334-delete-leave-taken-by-staff-deleteleave)
     + [3.3.5. Edit leave taken by staff: `editleave`](#335-edit-leave-taken-by-staff-editleave)
   * [3.4. Applicant commands](#34-applicant-commands)
-    + [3.4.1 Adding an applicant: `addapplicant`](#341-adding-an-applicant-addapplicant)
-    + [3.4.2. Deleting an applicant: `delapplicant`](#342-deleting-an-applicant-delapplicant)
-    + [3.4.3. Adding an application: `addapplication`](#343-adding-an-application-addapplication)
-    + [3.4.4. Deleting an application: `deleteapplication`](#344-deleting-an-application-deleteapplication)
-    + [3.4.5. Setting of application status: `setappstatus`](#345-setting-of-application-status-settappstatus)
+    + [3.4.1 Add an applicant: `addapplicant`](#341-adding-an-applicant-addapplicant)
+    + [3.4.2. Delete an applicant: `delapplicant`](#342-deleting-an-applicant-delapplicant)
+    + [3.4.3. Add an application: `addapplication`](#343-adding-an-application-addapplication)
+    + [3.4.4. Delete an application: `deleteapplication`](#344-deleting-an-application-deleteapplication)
+    + [3.4.5. Set application status: `setappstatus`](#345-setting-of-application-status-settappstatus)
   * [3.5. Centralised Add (Experienced users): `add`](#35-centralised-add-experienced-users-add)
     + [3.5.1. Add a staff to application: `add s-`](#351-add-a-staff-to-application-add-s-)
     + [3.5.2. Add a applicant to application: `add a-`](#352-add-a-applicant-to-application-add-a-)
@@ -45,7 +47,7 @@ title: User Guide
       + [3.7.2.1 Edit general information of staff : `edit INDEX a-`](#3721-edit-general-information-of-staff--edit-index-a-)
       + [3.7.2.2 Edit comment of an applicant: `edit INDEX a- c/`](#3722-edit-comment-of-an-applicant-edit-index-a--c)
       + [3.7.2.3 Edit Interview Date of an applicant: `edit INDEX a- id/`](#3723-edit-interview-date-of-an-applicant-edit-index-a--id)
-  * [3.8. Archiving data files `[coming in v2.0]`](#37-archiving-data-files---coming-in-v20--)
+  * [3.8. Archive data files `[coming in v2.0]`](#37-archiving-data-files---coming-in-v20--)
 - [4. FAQ](#4-faq)
 - [5. Command summary](#5-command-summary)
   * [5.1. Common](#51-common)
@@ -56,7 +58,8 @@ title: User Guide
 ## 1. Introduction
 
 Eva is a simple and lightweight application that **handles HR related administrative tasks**, 
-like managing staff performance and recruitment of applicants, faster than a typical mouse/GUI driven app.
+like managing staff performance and recruitment of applicants, faster than a typical mouse/GUI driven app. 
+This application is better suited for start-ups with a size of about 5-30 staff. 
 
 This user guide takes you through the basics of Eva and helps you get moving straightaway.
 
@@ -70,10 +73,11 @@ This user guide takes you through the basics of Eva and helps you get moving str
 
 1. Copy the file to the folder you want to use as the _home folder_ for Eva.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. 
+Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+1. Type a command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    
    <div markdown="block" class="alert alert-info">
    
@@ -127,7 +131,7 @@ This user guide takes you through the basics of Eva and helps you get moving str
 
 
 Note: Once any change is made to the data from the commands below, the data is saved in the hard disk. 
-There is no need to save manually.
+There is no need to save manually. <br>
 ### 3.1. Common Commands
 #### 3.1.1. View : `view`
 
@@ -138,7 +142,7 @@ Format: `view INDEX`
 Examples:
 * `view 1`
 
-#### 3.1.2. Listing all persons : `list`
+#### 3.1.2. List all persons : `list`
 
 Shows a list of all persons in the application.
 
@@ -152,13 +156,13 @@ Examples:
 
 ### 3.2. General Commands
 
-#### 3.2.1. Clearing all entries : `clear`
+#### 3.2.1. Clear all entries : `clear`
 
-Clears all entries from the application.
+Clears all entries from Eva.
 
 Format: `clear`
 
-#### 3.2.2. Finding help : `help`
+#### 3.2.2. Find help : `help`
 
 Shows a message explaining how to access the help page.
 
@@ -166,16 +170,17 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-#### 3.2.3. Exiting the program : `exit`
+#### 3.2.3. Exit the program : `exit`
 
 Exits the program. 
 
 Format: `exit`
 
 ### 3.3. Staff commands
-#### 3.3.1. Adding a staff: `addstaff`
 
-Adds a staff to the application.
+#### 3.3.1. Add a staff: `addstaff`
+
+Adds a staff to Eva.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​[c/COMMENTS]…`
 
@@ -186,9 +191,9 @@ Examples:
 * `addstaff n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 * `addstaff n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
 
-#### 3.3.2. Deleting a staff: `delstaff`
+#### 3.3.2. Delete a staff: `delstaff`
 
-Deletes a staff from the application. 
+Deletes a staff from Eva. 
 
 Format: `delstaff INDEX`
 
@@ -197,7 +202,7 @@ Examples:
 
 #### 3.3.3. Record leave taken by staff: `addleave`
 
-Records leave taken by a staff that is in the eva database.
+Records leave taken by a staff that is in Eva.
 Format: `addleave INDEX l/d/DATE [d/DATE]`
 
 <div markdown="span" class="alert alert-primary">
@@ -229,9 +234,9 @@ Examples:
 
 ### 3.4. Applicant commands
 
-#### 3.4.1 Adding an applicant: `addapplicant`
+#### 3.4.1 Add an applicant: `addapplicant`
 
-Adds an applicant to the Eva.
+Adds an applicant to Eva.
 
 Format: `addapplicant n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [id/INTERVIEW_DATE] [t/TAG]…​[c/COMMENTS]…`
 
@@ -247,7 +252,7 @@ Examples:
 * `addapplicant n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 id/22/11/2020`
 * `addapplicant n/Betsy Crowe t/friend e/betsycrowe@example.com a/Betsy street, block 123, #01-01 p/1234567 t/Role: Developer`
 
-#### 3.4.2. Deleting an applicant: `delapplicant`
+#### 3.4.2. Delete an applicant: `delapplicant`
 
 Deletes an applicant with the specified index on the displayed list in Eva. 
 
@@ -257,7 +262,7 @@ Examples:
 * `delapplicant 1`
 
 
-#### 3.4.3. Adding an application: `addapplication`
+#### 3.4.3. Add an application: `addapplication`
 
 Adds an application to an applicant under Eva.
 
@@ -268,7 +273,7 @@ Format: `addapplication INDEX [filepath]`
 Examples:
 * `addapplication 1 C:\Users\Public\Downloads\resume.txt`
 
-#### 3.4.4. Deleting an application: `deleteapplication`
+#### 3.4.4. Delete an application: `deleteapplication`
 
 Deletes an application from an applicant under Eva.
 
@@ -277,7 +282,7 @@ Format: `deleteapplication INDEX`
 Examples:
 * `deleteapplication 1`
 
-#### 3.4.5 Setting of application status: `setappstatus`
+#### 3.4.5 Set application status: `setappstatus`
 [This feature is coming soon] <br>
 Sets the application status of an applicant with the specified index on the displayed list in Eva.
 
@@ -296,45 +301,45 @@ Examples:
 
 These are some shortcuts you can use for the commands above.
 
-#### 3.5.1. Add a staff to application: `add s-`
+#### 3.5.1. Add a staff to Eva: `add s-`
 
 Format: `add s- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT]`
 
-#### 3.5.2. Add a applicant to application: `add a-`
+#### 3.5.2. Add a applicant to Eva: `add a-`
 
 Format: `add a- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [id/INTERVIEW_DATE]`
 
-#### 3.5.3. Add a comment to staff in application: `add <index> s- c/`
+#### 3.5.3. Add a comment to staff in Eva: `add <index> s- c/`
 
 Format: `add <index_of_staff> s- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DESCRIPTION`
 
-#### 3.5.4. Add a comment to applicant in application: `add <index> a- c/`
+#### 3.5.4. Add a comment to applicant in Eva: `add <index> a- c/`
 
 Format: `add <index_of_applicant> a- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DESCRIPTION`
 
-#### 3.5.5. Add leave to staff in application: `add <index> l/ `
+#### 3.5.5. Add leave to staff in Eva: `add <index> l/ `
 
 Format: `add <index_of_staff> l/ d/DATE (IN DD/MM/YYYY)`
 
 ### 3.6. Quick Delete (Experienced Users): `delete`
 
-#### 3.6.1. Delete a staff from application: `delete <index_of_staff> s-`
+#### 3.6.1. Delete a staff from Eva: `delete <index_of_staff> s-`
 
 Format: `delete <index_of_staff> s-`
 
-#### 3.6.2. Delete a applicant from application: `delete <index_of_applicant> a-`
+#### 3.6.2. Delete a applicant from Eva: `delete <index_of_applicant> a-`
 
 Format: `delete <index_of_applicant> a-`
 
-#### 3.6.3. Delete a comment from staff in application: `delete <index> s- c/`
+#### 3.6.3. Delete a comment from staff in Eva: `delete <index> s- c/`
 
 Format: `delete <index_of_staff> s- c/ ti/TITLE`
 
-#### 3.6.4. Delete a comment from applicant in application: `delete <index> a- c/`
+#### 3.6.4. Delete a comment from applicant in Eva: `delete <index> a- c/`
 
 Format: `delete <index_of_applicant> a- c/ ti/TITLE`
 
-#### 3.6.5. Delete leave from staff in application: `delete <index> l/ `
+#### 3.6.5. Delete leave from staff in Eva: `delete <index> l/ `
 
 Format: `delete <index_of_staff> l/ d/DATE (IN DD/MM/YYYY/)`
 
@@ -362,11 +367,11 @@ Format: `edit INDEX s- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
 
 Format: `edit INDEX s- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIPTION`
 
-#### 3.7.2 Edit an applicant
+#### 3.7.2 Edit an applicant 
 
 Edits specified fields of applicant
 
-##### 3.7.2.1 Edit general information of staff : `edit INDEX a-`
+##### 3.7.2.1 Edit general information of applicant : `edit INDEX a-`
 
 *Fields: Name, Address, Email, Phone, Tag*
 
@@ -393,7 +398,7 @@ Format: `edit INDEX a- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIP
 Format: `edit INDEX a- id/ NEW_DATE_OF_INTERVIEW`
 
 
-### 3.8. Archiving data files `[coming in v2.0]`
+### 3.8. Archive data files `[coming in v2.0]`
 
 ##
 
