@@ -1,3 +1,4 @@
+## Introduction
 PropertyFree is adapted from AB3, which is a desktop application for managing property listing. Leveraging on Command 
 Line Interface for those who are more comfortable with typing than with Graphical User Interface (GUI).
 
@@ -28,159 +29,144 @@ calendar for property agents to manage their schedule be it for property viewing
 It is optimized for CLI users so that the bookkeeping can be done faster by typing in commands.
 
 
-# Property Features
+# Features
+
+> **Command format**
+> - Words in `UPPER_CASE` are the parameters to be supplied by the user. e.g. in `add-p n/PROPERTY_NAME`, `PROPERTY_NAME` is a parameter which can be used as `add-p n/Sunrise Residences`.
+> - Items in square brackets are optional. e.g. `edit-p [n/PROPERTY_NAME]` implies that `PROPERTY_NAME` is an optional parameter.
+> - Parameters can be in any order. e.g. if the command specified `add-p n/PROPERTY_NAME a/ADDRESS`, `add-p a/ADDRESS n/PROPERTY_NAME` is also acceptable.
+
+## Viewing help 
+
+Format: `help`  
+Displays a link to this User Guide.
 
 ---
 
-## Addition of Property Listing
+# Property Features
 
-Adds a property listing and its relevant details to the list of properties.
+## Adding a property: 
 
-- Command:  `add -p`
-- Format: `add -p n/PROPERTY_NAME s/SELLER_ID ab/ASKING_BID d/DESCRIPTION t/TYPE a/ADDRESS r/IS_RENTAL`
+Adds a property and its relevant details to the property list.
+
+- Command:  `add-p`
+- Format: `add-p n/PROPERTY_NAME s/SELLER_ID ap/ASKING_PRICE t/TYPE a/ADDRESS r/IS_RENTAL`
+
+:warning: The seller id must exist inside the seller list.
 
 Example:
 
-```java
-add -p n/Sunrise s/C12345678 ab/100 d/Beautiful home t/landed a/99 Sunrise Street r/No
+```
+add-p n/Sunrise s/S1 ap/100 t/Landed a/99 Sunrise Street r/No
 ```
 
 Expected Output:
 
-```java
-Property
-    Id: P23
-		Name: Sunrise
-		Seller id: C12345678
-		Asking bid: $100
-		Description: Beautiful home
-		Type: Landed
-		Address: 99 Sunrise Street
-		Rental: No
-Has been added!
+```
+New property added: Sunrise
+Property Id: P1
+Address: 99 Sunrise Street
+Property type: Landed
+Asking price: $100.00
+Seller Id: S1
 ```
 
-💡 IS_RENTAL can be the following format : Yes / yes / Y / y or No / no / N / n
+💡 ```IS_RENTAL``` can be the following format : Yes / yes / Y / y or No / no / N / n
 
-## **Deletion of Property Listing**
+## Listing all properties
 
-Deletes a property listing that the seller no longer wants to sell.
+Command: `list-p`  
+Shows a list of all properties in the property list.  
 
-- Command: `delete -p`
-- Format: `delete -p PROPERTY_ID`
+Expected Output: `Listed all properties.`
+
+## Editing a property
+
+Edits an existing property in the property list.  
+
+- Command: `edit-p`
+- Format: `edit-p INDEX [n/NAME] [a/ADDRESS] [s/SELLER_ID] [ap/ASKING_PRICE] [t/PROPERTY_TYPE] [r/IS_RENTAL]`
+
+> - Edits the property at the specified INDEX, which refers to the index shown on the displayed property list. The index must be a **positive integer** 1, 2, 3...
+> - At least one optional field must be provided.
+> - Existing values will be updated to the input values.
+> - All other values will remain the same.
 
 Example:
 
-```java
-delete -p P23
+```
+edit-p 1 n/Cove Residences a/23 Cove Street
+```
+Edits the property name and address of the first property to `Cove Residences` and `23 Cove Street` respectively.
+
+Expected output:
+```
+Edited Property: Cove Residences
+Property id: P4
+Address: 23 Cove Street
+Property type: HDB
+Asking price: $99.00
+Seller id: S20
 ```
 
-Expected Output:
+## Finding properties
 
-```java
-Property P23 has been deleted.
-```
+Find properties that satisfy all of the user's filters.  
+Format: `find-p [p/PROPERTY_ID_KEYWORDS] [n/NAME_KEYWORDS] [a/ADDRESS_KEYWORDS] [s/SELLER_ID_KEYWORDS] [t/PROPERTY_TYPE_KEYWORDS] [ap/ASKING_PRICE_FILTER] [r/IS_RENTAL] [c/IS_CLOSED_DEAL]`
 
-## **Editing Property Listing**
+|   |   |
+|---|---|
+|💡|<p>Format for attributes that search by keywords (property name, address, seller id, property id, property type): keywords delimited by whitespace. <br>For example, `n/Sunrise Cove a/Street Road`<br><br> Format for asking price filter: `< / <= / == / > / >= PRICE`<br>For example, `ap/<= 100`<br><br>Format for is rental: `y / yes / n / no`<br><br>Format for is closed deal: `close` or `active`</p>|
 
-Edits a property listing.
-
-- Command: `edit -p`
-- Format: `edit -p PROPERTY_ID [n/PROPERTY_NAME] [s/SELLER_ID] 
-[ab/ASKING_BID] [d/DESCRIPTION] [t/TYPE] [r/IS_RENTAL]`
+> - The search is case insensitive for all attributes. e.g. `cove` will match `Cove`.
+> - For keywords-based search, the order of keywords does not matter. e.g. `Street Main` will match with `Main Street`.
+> - Only full words will be matched. e.g. `Sun` will not match `Sunrise`.
+> - Properties matching at least one keyword is considered a match. e.g. `Sunrise View` will match `Sunrise Avenue`.
+> - The search returns properties matching **all** options. e.g. The command `find-p n/Sunrise ap/< 100` will return the property with name `Sunrise Avenue` and asking price `99` but not the property with name `Sunrise Avenue` with asking price of `500`.
 
 Example:
 
-```java
-edit -p P23 ab/200
+```
+find-p n/Cove Sunrise ap/<= 100 r/no
 ```
 
-💡 Only the parameter provided will be updated while all other details remain the same.
+Expected output:
+```
+2 properties listed!
+```
+Displays all properties whose names contains either `Cove` or `Sunrise`, asking price is less than or equals to `100`, **and** is not a rental property.
+
+## Deleting a property
+
+Deletes a property listing from the property list.
+
+- Command: `delete-p`
+- Format: `delete-p PROPERTY_ID` or `delete-p INDEX`
+
+> - Deletes the property at the specified INDEX or with the specified PROPERTY_ID.
+> - The index refers to the index shown on the displayed property list.
+> - The index must be a **positive number** e.g. 1, 2, 3,...
+
+Examples:
+
+```
+delete-p P23
+```
+Deletes the property whose property id is `P23`.
+
+```
+delete-p 5
+```
+Deletes the fifth property in the property list.
 
 Expected Output:
-
-```java
-Property
-    Id: P23
-		Name: Sunrise
-		Seller id: S12345678
-		Asking bid: $200
-		Description: Beautiful home
-		Address: 99 Sunrise Street
-		Type: Landed
-		Rental: No
-Has been updated!
 ```
-
-## **View List of Property**
-
-Shows a picture of a the current property in the list.
-
-- Command: `view -p`
-- Format: `view -p`
-
-Example:
-
-```java
-view -p
-```
-
-Expected Output:
-
-```java
-These are your current property listings!
-
-1. Punggol Avenue 3 Block 46 #12-345
-2. Chinatown Avenue 4 Block 44 #11-111
-```
-
-## **Search for a Property**
-
-Searches for a property according to the address, property id or description of the property.
-
-- Command: `search -p`
-- Format: `search -p [PROPERTY_ID] [n/PROPERTY_NAME] [d/DESCRIPTION]`
-
-Example:
-
-```java
-search -p Chinatown
-```
-
-Expected Output:
-
-```java
-Search Results:
-1. Chinatown Avenue 4 Block 44 #11-111
-```
-
-## **Sort Property List**
-
-Sorts the property accordingly to how I want it: property name (alphabetically), asking bid, type of housing, deal type (rental or sale)
-
-- Command: `sort-p`
-- Format:
-
-    `sort-p name` 
-
-    `sort-p bid` 
-
-    `sort-p housing` 
-
-    `sort-p deal` 
-
-Example:
-
-```java
-sort -p name
-```
-
-Expected Output:
-
-```java
-Your property list is sorted!
-1. Chinatown Avenue 4 Block 44 #11-111 
-2. Punggol Avenue 3 Block 46 #12-345
+Deleted Property: Sunrise Avenue
+Property id: P23
+Address: Block 123
+Property type: HDB
+Asking price: $100.00
+Seller id: S2
 ```
 
 ---
