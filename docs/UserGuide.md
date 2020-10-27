@@ -50,7 +50,7 @@ Examples:
 
 ### Listing all modules and contacts : `list`
 
-Shows a list of all modules and contacts in FaculType.
+Shows a list of all contacts in FaculType and all modules in the active semester.
 
 Format: `list`
 
@@ -62,7 +62,7 @@ Format: `clist`
 
 ### Listing all modules : `mlist`
 
-Shows a list of all modules in FaculType.
+Shows a list of all modules in the active semester.
 
 Format: `mlist`
 
@@ -81,7 +81,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [d/DEPARTMENT] [o/OFFICE] [t/TA
 
 Examples:
 *  `edit 1 d/Computing o/COM2-01-02` edits the department and office of the 1st contact to be `Computing` and `COM2-01-02` respectively.
-*  `edit 2 n/Betsy Crower t/` edits the name of the 2nd contact to be `Betsy Crower` and clears all existing tags.
+*  `edit 2 n/Betsy Crowe t/` edits the name of the 2nd contact to be `Betsy Crowe` and clears all existing tags.
 
 ### Adding or updating a remark : `remark`
 
@@ -131,36 +131,36 @@ Examples:
 
 ### Adding a module: `addmod`
 
-Adds a new module to FaculType.
+Adds a new module to the active semester.
 
 Format : `addmod m/MODULE_CODE n/MODULE_NAME`
 
-* `MODULE_CODE` must be unique.
+* Adds the `MODULE_CODE` specified to the active semester. The `MODULE_CODE` must not exist in the active semester in the first place.
 
 Examples:
-* `addmod m/CS2103 n/Software Engineering` adds a module named `Software Engineering` with code `CS2103` to FaculType.
-* `addmod m/CS2102 n/Database Systems` adds a module named `Database Systems` with code `CS2102` to FaculType.
+* `addmod m/CS2103 n/Software Engineering` adds a module named `Software Engineering` with code `CS2103` to the active semester.
+* `addmod m/CS2102 n/Database Systems` adds a module named `Database Systems` with code `CS2102` to the active semester.
 
 ### Deleting a module: `delmod`
 
-Deletes a module from FaculType.
+Deletes a module from the active semester.
 
 Format: `delmod m/MODULE_CODE`
 
-* Deletes the `MODULE_CODE` specified from FaculType. The `MODULE_CODE` **must exist** in FaculType in the first place.
+* Deletes the `MODULE_CODE` specified from the active semester. The `MODULE_CODE` **must exist** in the active semester in the first place.
 
 Examples:
-* `delmod m/CS2103` deletes the existing module with code `CS2103` from FaculType.
-* `delmod m/CS2102` deletes the existing module with code `CS2102` from FaculType.
+* `delmod m/CS2103` deletes the existing module with code `CS2103` from the active semester.
+* `delmod m/CS2102` deletes the existing module with code `CS2102` from the active semester.
 
 ### Finding modules : `findmod`
 
-Finds all modules that match the given fields.
+Finds all modules in the active semester that match the given fields.
 
 Format : `findmod [m/MODULE_CODE] [n/MODULE_NAME] [i/INSTRUCTOR]`
 
-* The search is insensitive. e.g. `cs2103` will match `CS2103` in FaculType.
-* Partial words will be matched. e.g. `database` will match `Database Systems` in FaculType.
+* The search is insensitive. e.g. `cs2103` will match `CS2103`.
+* Partial words will be matched. e.g. `database` will match `Database Systems`.
 * The order of the keywords do not matter. e.g. `Statistics and Probability` will match `Probability and Statistics`.
 * At least one of the optional fields must be provided.
 
@@ -173,35 +173,43 @@ and instructors with names containing `Bob`.
 
 ### Assigning an instructor to modules : `assign`
 
-Assigns an instructor to one or more modules.
+Assigns a contact to one or more modules in the active semester. The contact will be an instructor in those modules.
 
 Format: `assign INDEX m/MODULE_CODE [m/MODULE_CODE]…​`
 
-* Assigns the contact at the specified `INDEX` to every `MODULE_CODE` specified. All `MODULE_CODE` **must exist** in FaculType in the first place.
+* Assigns the contact at the specified `INDEX` to every `MODULE_CODE` specified. All `MODULE_CODE` **must be unique** and **must exist** in the active semester in the first place.
 
 Examples :
 * `assign 1 m/CS3233` Assigns the contact at index 1 to the existing module with code `CS3233`.
-* `assign 2 m/CS2030S` Assigns the contact at index 1 to the existing module with code `CS2030S`.
+* `assign 2 m/CS2030S` Assigns the contact at index 2 to the existing module with code `CS2030S`.
 * `assign 3 m/CS2100 m/CS2106` Assigns the contact at index 3 to the existing modules with codes `CS2100` and `CS2106`.
 
-### Unassigning an instructor from modules : `assign`
+### Unassigning an instructor from modules : `unassign`
 
-Unassigns an instructor from one or more modules.
+Unassigns a contact from one or more modules in the active semester. The contact will no longer be an instructor in those modules.
 
 Format: `unassign INDEX m/MODULE_CODE [m/MODULE_CODE]…​`
 
-* Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. The contact **must be assigned** to all `MODULE_CODE` in the first place.
-
+* Unassigns the contact at the specified `INDEX` from every `MODULE_CODE` specified. The contact **must be assigned** to all `MODULE_CODE` in the active semester in the first place.
+* You can unassign the contact from all modules in the active semester by typing `m/`
+        without specifying any module codes after it.
+    
 Examples :
 * `unassign 1 m/CS3233` Unassigns the contact at index 1 from the existing module with code `CS3233`.
-* `unassign 2 m/CS2030S` Unassigns the contact at index 1 from the existing module with code `CS2030S`.
 * `unassign 3 m/CS2100 m/CS2106` Unassigns the contact at from 3 to the existing modules with codes `CS2100` and `CS2106`.
+* `unassign 2 m/` Unassigns the contact at index 2 from all modules in the active semester.
 
 ### Clearing all assignments : `unassignall`
 
-Unassigns all instructor from all modules.
+Unassigns all contacts from all modules in the active semester.
 
 Format: `unassignall`
+
+### Switching the active semester : `switch`
+
+Switches the active semester from Semester 1 to Semester 2 and vice versa.
+
+Format: `switch`
 
 ### Reseting FaculType : `reset`
 
@@ -217,7 +225,7 @@ Format : `cclear`
 
 ### Clearing all modules : `mclear`
 
-Clears all entries of modules in FaculType.
+Clears all entries of modules in the active semester.
 
 Format : `mclear`
 
@@ -258,6 +266,7 @@ Action | Format, Examples
 **Assign a contact** | `assign INDEX m/MODULE_CODE [m/MODULE_CODE]…​` <br> e.g. `assign 3 m/CS2100 m/CS2106`
 **Unassign a contact** | `unassign INDEX m/MODULE_CODE [m/MODULE_CODE]…​` <br> e.g. `unassign 3 m/CS2100 m/CS2106`
 **Unassign all contacts** | `unassignall`
+**Switch active semester** | `switch`
 **Clear all data** | `reset`
 **Clear all contacts** | `cclear`
 **Clear all modules** | `mclear`

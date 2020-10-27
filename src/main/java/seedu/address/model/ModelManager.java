@@ -25,7 +25,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final FilteredList<Module> filteredModules;
+    private FilteredList<Module> filteredModules;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -39,7 +39,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredModules = new FilteredList<>(this.addressBook.getModuleList().asUnmodifiableObservableList());
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
     }
 
     public ModelManager() {
@@ -123,7 +123,6 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         addressBook.setPerson(target, editedPerson);
     }
 
@@ -135,7 +134,7 @@ public class ModelManager implements Model {
 
     @Override
     public boolean isEmptyModuleList() {
-        return addressBook.getModuleList().isEmptyList();
+        return addressBook.getModuleList().isEmpty();
     }
 
     @Override
@@ -164,6 +163,7 @@ public class ModelManager implements Model {
     @Override
     public void assignInstructor(Person instructor, ModuleCode moduleCode) {
         addressBook.assignInstructor(instructor, moduleCode);
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
@@ -191,6 +191,16 @@ public class ModelManager implements Model {
         return addressBook.moduleCodeHasInstructor(moduleCode, instructor);
     }
 
+    @Override
+    public void switchModuleList() {
+        addressBook.switchModuleList();
+        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
+    }
+
+    @Override
+    public int getSemester() {
+        return addressBook.getSemester();
+    }
 
     //=========== Filtered Person List Accessors =============================================================
 

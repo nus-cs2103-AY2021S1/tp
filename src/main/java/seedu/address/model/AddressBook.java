@@ -21,7 +21,9 @@ import seedu.address.model.person.UniquePersonList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
-    private final UniqueModuleList modules;
+    private UniqueModuleList activeModules;
+    private final UniqueModuleList semOneModules;
+    private final UniqueModuleList semTwoModules;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -32,7 +34,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         persons = new UniquePersonList();
-        modules = new UniqueModuleList();
+        semOneModules = new UniqueModuleList();
+        semTwoModules = new UniqueModuleList();
+        activeModules = semOneModules;
     }
 
     public AddressBook() {}
@@ -56,11 +60,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Replaces the contents of the person list with {@code modules}.
+     * Replaces the contents of the active module list with {@code modules}.
      * {@code modules} must not contain duplicate modules.
      */
-    public void setModules(UniqueModuleList modules) {
-        this.modules.setModules(modules);
+    public void setActiveModules(List<Module> modules) {
+        this.activeModules.setModules(modules);
+    }
+
+    /**
+     * Replaces the contents of the semester one list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setSemOneModules(List<Module> modules) {
+        this.semOneModules.setModules(modules);
+    }
+
+    /**
+     * Replaces the contents of the semester two list with {@code modules}.
+     * {@code modules} must not contain duplicate modules.
+     */
+    public void setSemTwoModules(List<Module> modules) {
+        this.semTwoModules.setModules(modules);
     }
 
     /**
@@ -70,7 +90,8 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
-        setModules(newData.getModuleList());
+        setSemOneModules(newData.getSemOneModuleList());
+        setSemTwoModules(newData.getSemTwoModuleList());
     }
 
 
@@ -98,7 +119,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
-
+        reassignEditedInstructor(target, editedPerson);
         persons.setPerson(target, editedPerson);
     }
 
@@ -119,7 +140,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Module with the {@code moduleCode} must exist in the address book.
      */
     public void removeModule(ModuleCode moduleCode) {
-        modules.removeModuleWithCode(moduleCode);
+        activeModules.removeModuleWithCode(moduleCode);
     }
 
     /**
@@ -127,50 +148,82 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeModule(Module key) {
-        modules.remove(key);
+        activeModules.remove(key);
     }
 
     /**
      * Removes all the modules from the list.
      */
     public void clearMod() {
-        modules.clearAll();
+        activeModules.clearAll();
     }
 
     //// module-level operations
     /**
-     * Returns true if a module with the same identity as {@code module} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the active module list.
      */
     public boolean hasModule(Module module) {
         requireNonNull(module);
-        return modules.contains(module);
+        return activeModules.contains(module);
     }
 
     /**
-     * Returns true if a module with the same module code as {@code moduleCode} exists in the address book.
+     * Returns true if a module with the same identity as {@code module} exists in the semester one module list.
+     */
+    public boolean hasSemOneModule(Module module) {
+        requireNonNull(module);
+        return semOneModules.contains(module);
+    }
+
+    /**
+     * Returns true if a module with the same identity as {@code module} exists in the semester two module list.
+     */
+    public boolean hasSemTwoModule(Module module) {
+        requireNonNull(module);
+        return semTwoModules.contains(module);
+    }
+
+    /**
+     * Returns true if a module with the same module code as {@code moduleCode} exists in the active module list.
      */
     public boolean hasModuleCode(ModuleCode moduleCode) {
         requireNonNull(moduleCode);
-        return modules.containsModuleCode(moduleCode);
+        return activeModules.containsModuleCode(moduleCode);
     }
 
     /**
      * Adds a module to the address book.
-     * The module must not already exist in the address book.
+     * The module must not already exist in the active module list.
      */
     public void addModule(Module m) {
-        modules.add(m);
+        activeModules.add(m);
     }
 
     /**
-     * Replaces the given person {@code target} in the list with {@code editedModule}.
+     * Adds a module to the semester one module list.
+     * The module must not already exist in the semester one module list.
+     */
+    public void addSemOneModule(Module m) {
+        semOneModules.add(m);
+    }
+
+    /**
+     * Adds a module to the semester two module list.
+     * The module must not already exist in the semester two module list.
+     */
+    public void addSemTwoModule(Module m) {
+        semTwoModules.add(m);
+    }
+
+    /**
+     * Replaces the given module {@code target} in the list with {@code editedModule}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedModule} must not be the same as another existing person in the address book.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the address book.
      */
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
 
-        modules.setModule(target, editedModule);
+        activeModules.setModule(target, editedModule);
     }
 
     /**
@@ -180,11 +233,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void assignInstructor(Person instructor, ModuleCode moduleCode) {
         requireAllNonNull(instructor, moduleCode);
 
-        modules.assignInstructor(instructor, moduleCode);
+        activeModules.assignInstructor(instructor, moduleCode);
     }
 
     public void unassignAllInstructors() {
-        modules.unassignAllInstructors();
+        activeModules.unassignAllInstructors();
     }
 
     /**
@@ -194,7 +247,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void unassignInstructor(Person instructor, ModuleCode moduleCode) {
         requireAllNonNull(instructor, moduleCode);
 
-        modules.unassignInstructor(instructor, moduleCode);
+        activeModules.unassignInstructor(instructor, moduleCode);
     }
 
     /**
@@ -205,7 +258,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void unassignInstructorFromAll(Person instructor) throws CommandException {
         requireAllNonNull(instructor);
 
-        modules.unassignInstructorFromAll(instructor);
+        activeModules.unassignInstructorFromAll(instructor);
     }
 
     /**
@@ -215,7 +268,21 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean moduleCodeHasInstructor(ModuleCode moduleCode, Person instructor) {
         requireAllNonNull(instructor, moduleCode);
-        return modules.moduleCodeHasInstructor(moduleCode, instructor);
+        return activeModules.moduleCodeHasInstructor(moduleCode, instructor);
+    }
+
+    /**
+     * Switches the active module list.
+     * */
+    public void switchModuleList() {
+        activeModules = activeModules == semOneModules ? semTwoModules : semOneModules;
+    }
+
+    /**
+     * Returns the active semester.
+     */
+    public int getSemester() {
+        return activeModules == semOneModules ? 1 : 2;
     }
 
     //// util methods
@@ -231,9 +298,37 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.asUnmodifiableObservableList();
     }
 
-    public UniqueModuleList getModuleList() {
-        // Currently no support for "contains" method for observable list
-        return modules;
+    @Override
+    public ObservableList<Module> getModuleList() {
+        return activeModules.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Module> getSemOneModuleList() {
+        return semOneModules.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Module> getSemTwoModuleList() {
+        return semTwoModules.asUnmodifiableObservableList();
+    }
+
+    private void reassignEditedInstructor(Person target, Person editedPerson) {
+        for (Module m: semOneModules) {
+            if (m.hasInstructor(target)) {
+                m.unassignInstructor(target);
+                m.assignInstructor(editedPerson);
+                semOneModules.setModule(m, m);
+            }
+        }
+
+        for (Module m: semTwoModules) {
+            if (m.hasInstructor(target)) {
+                m.unassignInstructor(target);
+                m.assignInstructor(editedPerson);
+                semTwoModules.setModule(m, m);
+            }
+        }
     }
 
     @Override
@@ -241,11 +336,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
                 && persons.equals(((AddressBook) other).persons)
-                && modules.equals(((AddressBook) other).modules));
+                && activeModules.equals(((AddressBook) other).activeModules)
+                && semOneModules.equals(((AddressBook) other).semOneModules)
+                && semTwoModules.equals(((AddressBook) other).semTwoModules));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(persons.hashCode(), modules.hashCode());
+        return Objects.hash(persons.hashCode(), activeModules.hashCode());
     }
 }

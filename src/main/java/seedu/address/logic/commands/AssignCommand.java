@@ -25,7 +25,8 @@ public class AssignCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Assigns an instructor to one or more modules. "
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_MODULE_CODE + "MODULE CODE\n"
+            + PREFIX_MODULE_CODE + "MODULE CODE "
+            + "[" + PREFIX_MODULE_CODE + "MODULE CODE]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_CODE + "CS2103";
 

@@ -12,6 +12,8 @@ import seedu.address.testutil.builders.ModuleCodeBuilder;
  */
 public class TypicalModuleCodes {
 
+    public static final ModuleCode CS50_CODE = new ModuleCodeBuilder()
+            .withCode("CS50").build();
     public static final ModuleCode CS1010S_CODE = new ModuleCodeBuilder()
             .withCode("CS1010S").build();
     public static final ModuleCode CS1101S_CODE = new ModuleCodeBuilder()
@@ -26,6 +28,7 @@ public class TypicalModuleCodes {
     private TypicalModuleCodes() {} // prevents instantiation
 
     public static List<ModuleCode> getTypicalModuleCodes() {
-        return new ArrayList<>(Arrays.asList(CS1010S_CODE, CS1101S_CODE, CS2030_CODE, CS2100_CODE, CS2103_CODE));
+        return new ArrayList<>(Arrays.asList(CS50_CODE, CS1010S_CODE, CS1101S_CODE,
+                CS2030_CODE, CS2100_CODE, CS2103_CODE));
     }
 }
