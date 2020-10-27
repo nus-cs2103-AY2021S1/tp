@@ -223,6 +223,25 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 
 </div>
 
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+* Each tag can only be 1 word.
+* If multiple tags are required, do input multiple t/ prefixes
+* Each tag in entry only appears once even if added multiple times.
+
+</div>
+
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* Input expense/revenue information can be in any order
+
+</div>
+
 ### 5.2.2 Deleting an entry: `delete`
 
 You can use this command to remove an entry (expense/revenue) from the tracker when you do not want to keep track of 
@@ -238,6 +257,21 @@ it anymore.
 * `delete 2 c/revenue` : Deletes second entry in the revenue category (**Figure 5.2-2**)
 
 </div>
+
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* It is possible for you to use the `find` function then `delete`.
+
+</div>
+
+:warning: **Warning:**
+
+* Entry index should only be a single integer, for example, `delete 1 2 c/revenue` will not work.
+
+</div>
+
 
 ![deleteCommand1](images/commands/deleteCommand1.png)
 <p align="center"> <sub> <b>Figure 5.2-2</b>: The revenue at index 2 is deleted </sub> </p>
@@ -379,6 +413,15 @@ The `clear` command will clear all entries in the stipulated category. If you wo
 entries, use the `delete` command instead.
 
 </div>
+
+<div markdown="block" class="alert alert-danger">
+
+:warning: **Warning:**
+
+* The `clear` command clears all expense/revenue entries, even after filtering using find command.
+
+</div>
+
 
 
 ### 5.2.7 Calculating net profits based on expenses and revenues: `profit` 
