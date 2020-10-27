@@ -41,18 +41,18 @@ Thus we recommend you to start by first understanding how McGymmy works at a hig
 
 ## Quick start
 
-Double click on the jar file to open the GUI.
-Type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
+To get started, you will double click on the jar file to open the GUI.
+You can type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 Refer to the features below for details of each command.
 
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Please ensure that you have Java `11` or above installed in your Computer.
 
-1. Download the latest `mcgymmy.jar` from [here](https://github.com/AY2021S1-CS2103T-W17-3/tp).
+1. You have to download the latest `mcgymmy.jar` from [here](https://github.com/AY2021S1-CS2103T-W17-3/tp).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your McGymmy.
+1. Afterwards, copy the file to the folder you want to use as the _home folder_ for your McGymmy.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. You should notice a GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
 
    ![Ui](images/Ui.png)
 
@@ -83,13 +83,13 @@ For example in `add -n scrambled eggs -p 100`, `add` is a *Command Word* and `-n
 
 **How to intepret the each command's format**:
 
-We will follow the following convention for each command's format:
+You should follow the following convention for each command's format:
 
 `COMMAND_WORD PARAMETERS [OPTIONAL_PARAMETERS]`, e.g. `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`.
 
 * `COMMAND_WORD` is the name of the command to be executed, and is always the first word in the *command*.
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add -n NAME -p PROTEIN`, `NAME` and `PROTEIN` are parameters which can be used as `add bacon -p 200`.
   
 * Prefixes that precede parameters represent flags that indicate which parameter is being referenced. Parameters that are not preceded by a flag are denoted as flag-less parameters. For simplicity, the [flag + parameter input] together will be referenced as a single parameter.<br>
