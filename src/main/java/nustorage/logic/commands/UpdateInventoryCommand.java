@@ -70,6 +70,7 @@ public class UpdateInventoryCommand extends Command {
         FinanceRecord oldFinanceRecord = model.getFinanceRecord(inventoryRecordToUpdate.getFinanceId());
         double cost = oldFinanceRecord.getCost();
         FinanceRecord newFinanceRecord = new FinanceRecord(updatedInventoryRecord.getQuantity() * cost, cost);
+        updatedInventoryRecord.setFinanceRecord(newFinanceRecord);
         model.setFinanceRecord(oldFinanceRecord, newFinanceRecord);
         model.setInventoryRecord(inventoryRecordToUpdate, updatedInventoryRecord);
         model.updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);

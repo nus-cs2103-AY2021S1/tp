@@ -50,12 +50,10 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
-
     @Override
     public Inventory getInventory() {
         throw new AssertionError("This method should not be called.");
     }
-
 
     @Override
     public boolean hasInventoryRecord(InventoryRecord inventoryRecord) {
@@ -94,6 +92,11 @@ public class ModelStub implements Model {
 
     @Override
     public FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public FinanceRecord getFinanceRecord(Integer id) {
         throw new AssertionError("This method should not be called.");
     }
 
