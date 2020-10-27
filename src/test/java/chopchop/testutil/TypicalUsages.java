@@ -1,7 +1,6 @@
 package chopchop.testutil;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import chopchop.model.UsageList;
 import chopchop.model.attributes.units.Mass;
@@ -87,7 +86,8 @@ public class TypicalUsages {
             RECIPE_A_D, RECIPE_B_D, RECIPE_A_E, RECIPE_B_E, RECIPE_A_F, RECIPE_B_F));
     }
     public static UsageList<IngredientUsage> getIngredientUsageList() {
-        return new UsageList<>(Arrays.asList(INGREDIENT_A_A, INGREDIENT_B_A, INGREDIENT_A_B, INGREDIENT_B_B, INGREDIENT_A_C, INGREDIENT_B_C,
-            INGREDIENT_A_D, INGREDIENT_B_D, INGREDIENT_A_E, INGREDIENT_B_E, INGREDIENT_A_F, INGREDIENT_B_F));
+        return new UsageList<>(Arrays.asList(INGREDIENT_A_A, INGREDIENT_B_A, INGREDIENT_A_B, INGREDIENT_B_B,
+            INGREDIENT_A_C, INGREDIENT_B_C, INGREDIENT_A_D, INGREDIENT_B_D, INGREDIENT_A_E, INGREDIENT_B_E,
+            INGREDIENT_A_F, INGREDIENT_B_F));
     }
 }

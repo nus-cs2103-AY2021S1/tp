@@ -1,4 +1,4 @@
-package chopchop.model.Usage;
+package chopchop.model.usage;
 
 import static chopchop.testutil.TypicalUsages.RECIPE_A_A;
 import static chopchop.testutil.TypicalUsages.RECIPE_A_B;
@@ -19,8 +19,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 import chopchop.commons.util.Pair;
 import chopchop.model.UsageList;
-import chopchop.model.usage.IngredientUsage;
-import chopchop.model.usage.RecipeUsage;
 import chopchop.testutil.TypicalUsages;
 
 public class UsageListTest {

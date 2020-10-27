@@ -105,7 +105,7 @@ public class UsageList<T extends Usage> {
 
     public List<T> getRecentlyUsed(int n) {
         assert n >= 0;
-        Collections.sort(this.usages, new Comparator<T>() {//just in case
+        Collections.sort(this.usages, new Comparator<T>() { //just in case
             @Override
             public int compare(final T o1, final T o2) {
                 if (o1.getDate().compareTo(o2.getDate()) < 0) {
