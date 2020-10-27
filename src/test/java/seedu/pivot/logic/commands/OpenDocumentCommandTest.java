@@ -1,8 +1,8 @@
 package seedu.pivot.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.documentcommands.OpenDocumentCommand.MESSAGE_OPEN_DOCUMENT_SUCCESS;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 

@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.BeforeAll;

@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_CASES_LISTED_OVERVIEW;
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.testutil.TypicalCases.CARL;
-import static seedu.pivot.testutil.TypicalCases.ELLE;
-import static seedu.pivot.testutil.TypicalCases.FIONA;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
+import static seedu.pivot.testutil.TypicalCases.CARL_KURZ_FIRE;
+import static seedu.pivot.testutil.TypicalCases.ELLE_MEYER_SHOOTING;
+import static seedu.pivot.testutil.TypicalCases.FIONA_KUNZ_KIDNAPPING;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 
 import java.util.Arrays;
@@ -71,7 +71,8 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredCaseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredCaseList());
+        assertEquals(Arrays.asList(CARL_KURZ_FIRE, ELLE_MEYER_SHOOTING,
+                FIONA_KUNZ_KIDNAPPING), model.getFilteredCaseList());
     }
 
     /**

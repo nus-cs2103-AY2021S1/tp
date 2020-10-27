@@ -21,15 +21,17 @@ public class Phone {
      */
     public Phone(String phone) {
         requireNonNull(phone);
-        checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+        String trimmedPhone = phone.trim();
+        checkArgument(isValidPhone(trimmedPhone), MESSAGE_CONSTRAINTS);
+        value = trimmedPhone;
     }
 
     /**
      * Returns true if a given string is a valid phone number.
      */
     public static boolean isValidPhone(String test) {
-        return test.isBlank() || test.matches(VALIDATION_REGEX);
+        String trimmedTest = test.trim();
+        return trimmedTest.isBlank() || trimmedTest.matches(VALIDATION_REGEX);
     }
 
     @Override

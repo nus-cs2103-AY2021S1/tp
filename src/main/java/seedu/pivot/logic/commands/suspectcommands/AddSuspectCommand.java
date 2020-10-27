@@ -38,8 +38,8 @@ public class AddSuspectCommand extends AddCommand {
             + PREFIX_EMAIL + "john@email.com "
             + PREFIX_ADDRESS + "Blk 123";
 
-    private static final String MESSAGE_ADD_SUSPECT_SUCCESS = "New suspect added: %1$s";
-    private static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
+    public static final String MESSAGE_ADD_SUSPECT_SUCCESS = "New suspect added: %1$s";
+    public static final String MESSAGE_DUPLICATE_SUSPECT = "This suspect already exists in the case.";
     private static final Logger logger = LogsCenter.getLogger(AddSuspectCommand.class);
 
     private final Index index;
