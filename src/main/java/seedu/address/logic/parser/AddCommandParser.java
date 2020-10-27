@@ -42,7 +42,7 @@ public class AddCommandParser implements ExerciseParser<AddCommand> {
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
 
-        Exercise exercise = new Exercise(name, description, date, calories);
+        Exercise exercise = new Exercise(name, description, date, calories, null);
 
         return new AddCommand(exercise);
     }

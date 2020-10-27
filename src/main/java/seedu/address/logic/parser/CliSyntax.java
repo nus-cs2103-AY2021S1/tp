@@ -13,6 +13,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_CALORIES = new Prefix("c/");
     public static final Prefix PREFIX_KEYWORD = new Prefix("k/");
     public static final Prefix PREFIX_TEMP = new Prefix("temp/");
+    public static final Prefix PREFIX_MUSCLE = new Prefix("m/");
 
     //AB3 prefix
     public static final Prefix PREFIX_PHONE = new Prefix("p/");

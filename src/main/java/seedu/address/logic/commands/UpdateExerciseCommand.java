@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.ExerciseModel.PREDICATE_SHOW_ALL_EXERCISE;
 
@@ -19,6 +20,7 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
 
 
@@ -36,12 +38,14 @@ public class UpdateExerciseCommand extends CommandForExercise {
             + "[" + PREFIX_NAME + "EXERCISE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_CALORIES + "CALORIES]\n"
+            + "[" + PREFIX_CALORIES + "CALORIES] "
+            + "[" + PREFIX_MUSCLE + "MUSCLES_WORKED]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Push up"
-            + PREFIX_DESCRIPTION + "30"
-            + PREFIX_DATE + "09-07-2020"
-            + PREFIX_CALORIES + "260";
+            + PREFIX_NAME + "Push up "
+            + PREFIX_DESCRIPTION + "30 "
+            + PREFIX_DATE + "09-07-2020 "
+            + PREFIX_CALORIES + "260 "
+            + PREFIX_MUSCLE + "chest,arm";
 
     public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited Exercise: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -96,8 +100,10 @@ public class UpdateExerciseCommand extends CommandForExercise {
                 .orElse(exerciseToEdit.getDescription());
         Date updatedDate = editExerciseDescriptor.getDate().orElse(exerciseToEdit.getDate());
         Calories updatedCalories = editExerciseDescriptor.getCalories().orElse(exerciseToEdit.getCalories());
+        List<Muscle> updatedMusclesWorked = editExerciseDescriptor.getMusclesWorked()
+                                                .orElse(exerciseToEdit.getMusclesWorked());
 
-        return new Exercise(updatedName, updatedDescription, updatedDate, updatedCalories);
+        return new Exercise(updatedName, updatedDescription, updatedDate, updatedCalories, updatedMusclesWorked);
     }
 
     @Override
@@ -128,8 +134,10 @@ public class UpdateExerciseCommand extends CommandForExercise {
         private Date date;
 
         // data field
+        // Functional dependencies: see Exercise class
         private Description description;
         private Calories calories;
+        private List<Muscle> musclesWorked;
 
         public EditExerciseDescriptor() {
         }
@@ -143,6 +151,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
             setDate(toCopy.date);
             setDescription(toCopy.description);
             setCalories(toCopy.calories);
+            setMusclesWorked(toCopy.musclesWorked);
         }
 
         /**
@@ -184,6 +193,14 @@ public class UpdateExerciseCommand extends CommandForExercise {
             return Optional.ofNullable(calories);
         }
 
+        public void setMusclesWorked(List<Muscle> musclesWorked) {
+            this.musclesWorked = musclesWorked;
+        }
+
+        public Optional<List<Muscle>> getMusclesWorked() {
+            return Optional.ofNullable(musclesWorked);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -201,8 +218,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
 
             return getName().equals(e.getName())
                     && getDate().equals(e.getDate())
-                    && getDescription().equals(e.getDescription())
-                    && getCalories().equals(e.getCalories());
+                    && getDescription().equals(e.getDescription());
         }
     }
 }

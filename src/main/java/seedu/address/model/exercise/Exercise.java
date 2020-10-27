@@ -2,7 +2,9 @@ package seedu.address.model.exercise;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Represents an exercise in the exercise book.
@@ -14,18 +16,22 @@ public class Exercise {
     private final Date date;
 
     // Data fields
+    // FDs
+    // Name -> musclesWorked, calories (hence left out in equality checks)
     private final Description description;
     private final Calories calories;
+    private final List<Muscle> musclesWorked;
 
     /**
      * Every field except for calories must be present and not null.
      */
-    public Exercise(Name name, Description description, Date date, Calories calories) {
+    public Exercise(Name name, Description description, Date date, Calories calories, List<Muscle> musclesWorked) {
         requireAllNonNull(name, description, date, calories);
         this.name = name;
         this.description = description;
         this.date = date;
         this.calories = calories;
+        this.musclesWorked = musclesWorked;
     }
 
     public Name getName() {
@@ -44,9 +50,17 @@ public class Exercise {
         return calories;
     }
 
+    public List<Muscle> getMusclesWorked() {
+        return musclesWorked;
+    }
+
+    public String getMusclesWorkedDescription() {
+        return Muscle.muscleListToString(musclesWorked);
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(name, description, date, calories);
+        return Objects.hash(name, description, date);
     }
 
     @Override
@@ -59,7 +73,10 @@ public class Exercise {
                 .append(" Date: ")
                 .append(getDate())
                 .append(" Calories: ")
-                .append(getCalories());
+                .append(getCalories())
+                .append(" Muscles worked:")
+                .append(getMusclesWorkedDescription());
+
         return builder.toString();
     }
 
@@ -77,8 +94,7 @@ public class Exercise {
 
         return otherExercise.getName().equals(getName())
                 && otherExercise.getDescription().equals(getDescription())
-                && otherExercise.getDate().equals(getDate())
-                && otherExercise.getCalories().equals(getCalories());
+                && otherExercise.getDate().equals(getDate());
     }
 
     /**

@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.address.storage.JsonAdaptedExercise.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalExercise.PUSH_UP;
 
@@ -10,6 +10,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
 
 /*
@@ -27,6 +28,8 @@ public class JsonAdaptedExerciseTest {
     private static final String VALID_DESCRIPTION = PUSH_UP.getDescription().toString();
     private static final String VALID_DATE = PUSH_UP.getDate().toString();
     private static final String VALID_CALORIES = PUSH_UP.getCalories().toString();
+    private static final String VALID_MUSCLES = PUSH_UP.getMusclesWorkedDescription();
+
 
     /* Unable to return due to use of Exercise Stub
     @Test
@@ -38,17 +41,19 @@ public class JsonAdaptedExerciseTest {
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedExercise person =
-                new JsonAdaptedExercise(INVALID_NAME, VALID_DESCRIPTION, VALID_DATE, VALID_CALORIES);
+        JsonAdaptedExercise exercise =
+                new JsonAdaptedExercise(INVALID_NAME, VALID_DESCRIPTION,
+                                                VALID_DATE, VALID_CALORIES, VALID_MUSCLES);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedExercise person = new JsonAdaptedExercise(null, VALID_DESCRIPTION, VALID_DATE, VALID_CALORIES);
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(null, VALID_DESCRIPTION,
+                                                VALID_DATE, VALID_CALORIES, VALID_MUSCLES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     /*
@@ -63,9 +68,10 @@ public class JsonAdaptedExerciseTest {
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
-        JsonAdaptedExercise person = new JsonAdaptedExercise(VALID_NAME, null, VALID_DATE, VALID_CALORIES);
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, null,
+                                                VALID_DATE, VALID_CALORIES, VALID_MUSCLES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
     /*
     @Test
@@ -79,9 +85,10 @@ public class JsonAdaptedExerciseTest {
 
     @Test
     public void toModelType_nullDate_throwsIllegalValueException() {
-        JsonAdaptedExercise person = new JsonAdaptedExercise(VALID_NAME, VALID_DESCRIPTION, null, VALID_CALORIES);
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_DESCRIPTION,
+                                        null, VALID_CALORIES, VALID_MUSCLES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 
     /*
@@ -97,8 +104,17 @@ public class JsonAdaptedExerciseTest {
 
     @Test
     public void toModelType_nullCalories_throwsIllegalValueException() {
-        JsonAdaptedExercise person = new JsonAdaptedExercise(VALID_NAME, VALID_DESCRIPTION, VALID_DATE, null);
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_DESCRIPTION,
+                                            VALID_DATE, null, VALID_MUSCLES);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Calories.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullMusclesWorked_throwsIllegalValueException() {
+        JsonAdaptedExercise exercise = new JsonAdaptedExercise(VALID_NAME, VALID_DESCRIPTION,
+                VALID_DATE, VALID_CALORIES, null);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Muscle.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, exercise::toModelType);
     }
 }

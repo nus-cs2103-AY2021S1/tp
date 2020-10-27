@@ -86,7 +86,7 @@ class JsonAdaptedExercise {
         final Date modelDate = new Date(date);
 
         if (calories == null) {
-            throw new IllegalValueException("Person's Calories field is missing!");
+            throw new IllegalValueException("Exercise's Calories field is missing!");
         }
         if (!Calories.isValidCalories(calories)) {
             throw new IllegalValueException("Invalid Calories");
@@ -94,7 +94,7 @@ class JsonAdaptedExercise {
         final Calories modelCalories = new Calories(calories);
 
         if (musclesWorked == null) {
-            throw new IllegalValueException("Exercise's muscles field is missing!");
+            throw new IllegalValueException("Exercise's Muscle field is missing!");
         }
         List<Muscle> musclesWorkedLst = Muscle.stringToMuscleList(musclesWorked);
 

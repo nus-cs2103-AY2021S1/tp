@@ -57,7 +57,7 @@ public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand>
             calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
         }
 
-        Exercise exercise = new Exercise(name, description, date, calories);
+        Exercise exercise = new Exercise(name, description, date, calories, null);
 
         return new AddCommand(exercise);
     }
