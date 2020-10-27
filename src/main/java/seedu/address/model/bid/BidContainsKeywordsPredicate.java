@@ -11,6 +11,10 @@ import seedu.address.commons.util.StringUtil;
 public class BidContainsKeywordsPredicate implements Predicate<Bid> {
     private final List<String> keywords;
 
+    /**
+     * constructor to make BidContainsKeywordsPredicate
+     * @param keywords list of specified key words
+     */
     public BidContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }

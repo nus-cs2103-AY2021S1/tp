@@ -9,7 +9,7 @@ import seedu.address.model.price.Price;
 public class Bid {
 
     public static final String MESSAGE_CONSTRAINTS_BID_AMOUNT =
-            "Bid Amount should only contain numerical values, and it should not be blank";
+            "Bid Amount should only contain numerical values, \nand it should not be blank";
 
     private PropertyId propertyId;
     private BidderId bidderId;
@@ -27,24 +27,28 @@ public class Bid {
         this.bidAmount = bidAmount;
     }
 
+    /**
+     * retrieves the propertyId
+     * @return the property id of a given bid
+     */
     public PropertyId getPropertyId() {
         return propertyId;
     }
 
+    /**
+     * retrieves the bidderId
+     * @return the bidder id of a given bid
+     */
     public BidderId getBidderId() {
         return bidderId;
     }
 
+    /**
+     * retrieves the bid amount
+     * @return the bid amount of a given bid
+     */
     public Price getBidAmount() {
         return bidAmount;
-    }
-
-    public boolean isValidPropertyId() {
-        return false; //will check against propertyList to see if propertyId exists
-    }
-
-    public boolean isValidBidderId() {
-        return false; //will check against bidderList to see if propertyId exists
     }
 
     /**
@@ -88,11 +92,11 @@ public class Bid {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append("Bid of ")
+        builder.append("\nBid of ")
                 .append(getBidAmount())
-                .append(" by ")
+                .append("\nby ")
                 .append(getBidderId())
-                .append(" to property: ")
+                .append("\nto property: ")
                 .append(getPropertyId());
 
         return builder.toString();

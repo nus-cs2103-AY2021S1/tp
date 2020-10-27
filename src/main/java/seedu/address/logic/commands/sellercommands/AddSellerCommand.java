@@ -17,11 +17,11 @@ public class AddSellerCommand extends Command {
     public static final String COMMAND_WORD = "add-s";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a seller to the seller address book. "
-            + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + "\n\nParameters: "
+            + "\n" + PREFIX_NAME + "NAME "
+            + "\n" + PREFIX_PHONE + "PHONE "
+            + "\n" + "[" + PREFIX_TAG + "TAG]\n"
+            + "\n" + "Example:\n" + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_TAG + "seller ";

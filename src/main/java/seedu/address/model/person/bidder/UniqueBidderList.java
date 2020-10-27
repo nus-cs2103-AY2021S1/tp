@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.id.BidderId;
+import seedu.address.model.id.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -108,6 +109,18 @@ public class UniqueBidderList implements Iterable<Bidder> {
         }
 
         internalList.setAll(bidders);
+    }
+
+    /**
+     * Checks if the bidder list contains a bidder with the given id.
+     *
+     * @param id The specified id.
+     * @return True if the bidder list contains the bidder with the given id.
+     */
+    public boolean containsBidderId(Id id) {
+        requireNonNull(id);
+        return internalList.filtered(bidder -> bidder.getId().equals(id))
+                .size() > 0;
     }
 
     /**

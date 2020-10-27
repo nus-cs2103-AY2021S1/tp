@@ -25,6 +25,8 @@ import seedu.address.logic.commands.biddercommands.DeleteBidderCommand;
 import seedu.address.logic.commands.biddercommands.EditBidderCommand;
 import seedu.address.logic.commands.biddercommands.FindBidderCommand;
 import seedu.address.logic.commands.biddercommands.ListBidderCommand;
+import seedu.address.logic.commands.calendarnavigation.NextCalendarNavigationCommand;
+import seedu.address.logic.commands.calendarnavigation.PrevCalendarNavigationCommand;
 import seedu.address.logic.commands.meetingcommands.AddMeetingCommand;
 import seedu.address.logic.commands.meetingcommands.DeleteMeetingCommand;
 import seedu.address.logic.commands.meetingcommands.EditMeetingCommand;
@@ -83,12 +85,14 @@ public class AddressBookParser {
      */
     public Command parseCommand(String userInput) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
+
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
 
         case AddCommand.COMMAND_WORD:
@@ -197,6 +201,13 @@ public class AddressBookParser {
 
         case EditSellerCommand.COMMAND_WORD:
             return new EditSellerCommandParser().parse(arguments);
+
+        // ----------------- CALENDAR NAVIGATION ------------ //
+        case NextCalendarNavigationCommand.COMMAND_WORD:
+            return new NextCalendarNavigationCommand();
+
+        case PrevCalendarNavigationCommand.COMMAND_WORD:
+            return new PrevCalendarNavigationCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
