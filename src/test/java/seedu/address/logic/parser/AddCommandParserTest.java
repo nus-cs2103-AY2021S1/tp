@@ -33,6 +33,7 @@ import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.YEAR_DESC_BOB;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.model.student.admin.PaymentDate.TODAY;
 import static seedu.address.testutil.TypicalStudents.AMY;
 import static seedu.address.testutil.TypicalStudents.BOB;
 
@@ -116,9 +117,9 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero additional details
-        Student expectedStudent = new StudentBuilder(AMY).withQuestions().withDetails().build();
+        Student expectedStudent = new StudentBuilder(AMY).withQuestions().withDetails().withPaymentDate(TODAY).build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + SCHOOL_DESC_AMY + YEAR_DESC_AMY
-                        + CLASS_VENUE_DESC_AMY + CLASS_TIME_DESC_AMY + FEE_DESC_AMY + PAYMENT_DATE_DESC_AMY,
+                        + CLASS_VENUE_DESC_AMY + CLASS_TIME_DESC_AMY + FEE_DESC_AMY,
                 new AddCommand(expectedStudent));
     }
 
@@ -155,10 +156,6 @@ public class AddCommandParserTest {
         //missing fee prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
                 + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + PAYMENT_DATE_DESC_BOB, expectedMessage);
-
-        //missing payment date prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + SCHOOL_DESC_BOB
-                + YEAR_DESC_BOB + CLASS_VENUE_DESC_BOB + CLASS_TIME_DESC_BOB + FEE_DESC_BOB, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, "", expectedMessage);
