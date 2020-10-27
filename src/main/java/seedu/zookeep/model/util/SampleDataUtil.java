@@ -21,16 +21,19 @@ public class SampleDataUtil {
         return new Animal[] {
             new Animal(new Name("Letho"), new Id("325"),
                 new Species("Blue Tongue Skink"),
-                getMedicalConditionSet("Healthy"), getFeedTimeSet("1234")),
+                getMedicalConditionSet("Respiratory Infection", "Cachexia"), getFeedTimeSet("0600", "1700")),
             new Animal(new Name("Sulyvahn"), new Id("29381"),
                 new Species("Boa Constrictor"),
-                getMedicalConditionSet("Inclusion Body Disease"), getFeedTimeSet("0608")),
+                getMedicalConditionSet("Inclusion Body Disease"), getFeedTimeSet("1800")),
             new Animal(new Name("Nemo"), new Id("123"),
                 new Species("Clownfish"),
-                getMedicalConditionSet("Healthy"), getFeedTimeSet("1307")),
-            new Animal(new Name("Ivan"), new Id("242111"),
+                getMedicalConditionSet("Brooklynella"), getFeedTimeSet("1345", "1830")),
+            new Animal(new Name("Hashbrown"), new Id("2103"),
+                new Species("Cat"),
+                getMedicalConditionSet("Cataracts"), getFeedTimeSet("1200", "1900")),
+            new Animal(new Name("Ivan"), new Id("24211"),
                 new Species("Badger"),
-                getMedicalConditionSet("Healthy"), getFeedTimeSet("1307"))
+                getMedicalConditionSet(), getFeedTimeSet()),
         };
     }
 

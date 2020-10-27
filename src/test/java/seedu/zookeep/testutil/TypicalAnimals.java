@@ -24,7 +24,7 @@ public class TypicalAnimals {
     public static final Animal AHMENG = new AnimalBuilder().withName("Ahmeng")
             .withSpecies("Orangutan")
             .withId("123")
-            .withMedicalConditions("Healthy").build();
+            .withMedicalConditions("Deceased").build();
     public static final Animal BUTTERCUP = new AnimalBuilder().withName("Buttercup").withId("456")
             .withSpecies("Reticulated Python")
             .withMedicalConditions("Skin Infection", "Inclusion Body Disease")
@@ -32,7 +32,7 @@ public class TypicalAnimals {
     public static final Animal COCO = new AnimalBuilder().withName("Coco").withId("125")
             .withSpecies("Chihuahua").build();
     public static final Animal ESTHER = new AnimalBuilder().withName("Esther").withId("126")
-            .withSpecies("Pig").withMedicalConditions("Healthy").build();
+            .withSpecies("Pig").withMedicalConditions("Swine Flu").build();
     public static final Animal GRECIA = new AnimalBuilder().withName("Grecia").withId("134")
             .withSpecies("Toucan").build();
     public static final Animal NEMO = new AnimalBuilder().withName("Nemo").withId("1212")
