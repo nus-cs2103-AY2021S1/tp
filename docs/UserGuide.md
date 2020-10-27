@@ -105,7 +105,7 @@ t/ | TAG | Recipe tag
 **:information_source: Notes about the command format:**<br>
 
 * All prefixes must be preceded by a space.<br>
-   e.g ` t/` ` i/`
+   e.g ` t/`, ` i/`
 
 * All commands are **case-sensitive**.<br>
   e.g. in `addR`, `add` is in small letters while `R` is in capital letters.
