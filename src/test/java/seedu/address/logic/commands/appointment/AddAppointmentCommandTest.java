@@ -1,9 +1,19 @@
 package seedu.address.logic.commands.appointment;
 
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.GuiSettings;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
 
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CliniCal;
@@ -14,16 +24,6 @@ import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 import seedu.address.testutil.AppointmentBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
-
 public class AddAppointmentCommandTest {
 
     @Test
@@ -33,13 +33,15 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
-        AddAppointmentCommandTest.ModelStubAcceptingAppointmentAdded modelStub = new AddAppointmentCommandTest.ModelStubAcceptingAppointmentAdded();
+        AddAppointmentCommandTest.ModelStubAcceptingAppointmentAdded modelStub = new AddAppointmentCommandTest
+                .ModelStubAcceptingAppointmentAdded();
         Appointment validAppointment = new AppointmentBuilder().withPatientName("Alice").withPatientIC("S1234567A")
                 .withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
 
         CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
 
-        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddAppointmentCommand.MESSAGE_SUCCESS, validAppointment),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validAppointment), modelStub.appointmentsAdded);
     }
 
@@ -48,8 +50,10 @@ public class AddAppointmentCommandTest {
         Appointment validAppointment = new AppointmentBuilder().withPatientName("Alice").withPatientIC("S1234567A")
                 .withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
-        AddAppointmentCommandTest.ModelStub modelStub = new AddAppointmentCommandTest.ModelStubWithAppointment(validAppointment);
-        assertThrows(CommandException.class, AddAppointmentCommand.MESSAGE_CONFLICTING_APP, () -> addAppointmentCommand.execute(modelStub));
+        AddAppointmentCommandTest.ModelStub modelStub = new AddAppointmentCommandTest
+                .ModelStubWithAppointment(validAppointment);
+        assertThrows(CommandException.class, AddAppointmentCommand
+                .MESSAGE_CONFLICTING_APP, () -> addAppointmentCommand.execute(modelStub));
     }
 
     @Test
@@ -62,20 +66,20 @@ public class AddAppointmentCommandTest {
         AddAppointmentCommand addBobAppointmentCommand = new AddAppointmentCommand(bobAppointment);
 
         // same object -> returns true
-        assertTrue(addAliceAppointmentCommand.equals(addAliceAppointmentCommand));
+        Assertions.assertTrue(addAliceAppointmentCommand.equals(addAliceAppointmentCommand));
 
         // same values -> returns true
         AddAppointmentCommand addAliceCommandCopy = new AddAppointmentCommand(aliceAppointment);
-        assertTrue(addAliceAppointmentCommand.equals(addAliceCommandCopy));
+        Assertions.assertTrue(addAliceAppointmentCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceAppointmentCommand.equals(1));
+        Assertions.assertFalse(addAliceAppointmentCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceAppointmentCommand.equals(null));
+        Assertions.assertFalse(addAliceAppointmentCommand.equals(null));
 
         // different patient -> returns false
-        assertFalse(addAliceAppointmentCommand.equals(addBobAppointmentCommand));
+        Assertions.assertFalse(addAliceAppointmentCommand.equals(addBobAppointmentCommand));
     }
 
     /**

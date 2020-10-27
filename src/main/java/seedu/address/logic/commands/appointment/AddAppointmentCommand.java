@@ -52,6 +52,9 @@ public class AddAppointmentCommand extends AppointmentCommand {
         this.endTime = endTime;
     }
 
+    /**
+     * Creates an AddAppointmentCommand to add the specified {@code Appointment}
+     */
     public AddAppointmentCommand(Appointment appointment) {
         requireNonNull(appointment);
         toAdd = appointment;
