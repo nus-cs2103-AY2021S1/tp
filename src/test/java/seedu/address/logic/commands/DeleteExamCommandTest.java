@@ -48,7 +48,7 @@ public class DeleteExamCommandTest {
 
     @Test
     public void execute_validStudentIndexUnfilteredList_success() {
-        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withExams(dummyExam).build();
         DeleteExamCommand deleteExamCommand =
                 new DeleteExamCommand(INDEX_FIRST_PERSON, TEST_INDEX_FIRST_EXAM);
@@ -66,7 +66,7 @@ public class DeleteExamCommandTest {
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getSortedStudentList().size() + 1);
         DeleteExamCommand command = new DeleteExamCommand(outOfBoundsStudentIndex,
                 TEST_INDEX_FIRST_EXAM);
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -74,7 +74,7 @@ public class DeleteExamCommandTest {
 
     @Test
     public void execute_invalidExamIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsExamIndex = Index.fromOneBased(model.getFilteredStudentList().get(0).getExams().size() + 1);
+        Index outOfBoundsExamIndex = Index.fromOneBased(model.getSortedStudentList().get(0).getExams().size() + 1);
         DeleteExamCommand invalidCommand = new DeleteExamCommand(INDEX_FIRST_PERSON,
                 outOfBoundsExamIndex);
 
@@ -85,7 +85,7 @@ public class DeleteExamCommandTest {
     public void execute_validStudentIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withExams(dummyExam).build();
         model.setStudent(asker, clone);
 
@@ -117,7 +117,7 @@ public class DeleteExamCommandTest {
     public void execute_invalidExamIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Index outOfBoundsExamIndex = Index.fromOneBased(model.getFilteredStudentList().get(0).getExams().size() + 1);
+        Index outOfBoundsExamIndex = Index.fromOneBased(model.getSortedStudentList().get(0).getExams().size() + 1);
         DeleteExamCommand invalidCommand = new DeleteExamCommand(TEST_INDEX_FIRST_EXAM,
                 outOfBoundsExamIndex);
 

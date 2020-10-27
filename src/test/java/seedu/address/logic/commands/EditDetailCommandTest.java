@@ -64,7 +64,7 @@ public class EditDetailCommandTest {
 
     @Test
     public void execute_validStudentIndexUnfilteredList_success() {
-        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_WRONG_DETAIL).build();
         Detail detail = new Detail(TEST_CORRECT_DETAIL);
         EditDetailCommand editAdditionalDetailCommand = new EditDetailCommand(
@@ -83,7 +83,7 @@ public class EditDetailCommandTest {
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getSortedStudentList().size() + 1);
         Detail detail = new Detail(TEST_CORRECT_DETAIL);
         EditDetailCommand invalidCommand = new EditDetailCommand(
                 outOfBoundsStudentIndex, TEST_INDEX_FIRST_DETAIL, detail);
@@ -94,7 +94,7 @@ public class EditDetailCommandTest {
     @Test
     public void execute_invalidDetailIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundsDetailIndex =
-                Index.fromOneBased(model.getFilteredStudentList().get(0).getDetails().size() + 1);
+                Index.fromOneBased(model.getSortedStudentList().get(0).getDetails().size() + 1);
         Detail detail = new Detail(TEST_CORRECT_DETAIL);
         EditDetailCommand invalidCommand = new EditDetailCommand(
                 TEST_INDEX_FIRST_STUDENT, outOfBoundsDetailIndex, detail);
@@ -106,7 +106,7 @@ public class EditDetailCommandTest {
     public void execute_validStudentIndexFilteredList_success() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails(TEST_WRONG_DETAIL).build();
         Detail detail = new Detail(TEST_CORRECT_DETAIL);
         EditDetailCommand editAdditionalDetailCommand = new EditDetailCommand(
@@ -127,7 +127,7 @@ public class EditDetailCommandTest {
     public void execute_invalidStudentIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getSortedStudentList().size() + 1);
         Detail detail = new Detail(TEST_CORRECT_DETAIL);
         EditDetailCommand invalidCommand = new EditDetailCommand(
                 outOfBoundsStudentIndex, TEST_INDEX_FIRST_DETAIL, detail);
@@ -140,7 +140,7 @@ public class EditDetailCommandTest {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Index outOfBoundsDetailIndex =
-                Index.fromOneBased(model.getFilteredStudentList().get(0).getDetails().size() + 1);
+                Index.fromOneBased(model.getSortedStudentList().get(0).getDetails().size() + 1);
         Detail detail = new Detail(TEST_CORRECT_DETAIL);
         EditDetailCommand invalidCommand = new EditDetailCommand(
                 TEST_INDEX_FIRST_STUDENT, outOfBoundsDetailIndex, detail);
