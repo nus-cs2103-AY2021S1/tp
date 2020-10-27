@@ -56,7 +56,7 @@ This guide serves to provide a reference for first-time users to get familiar wi
   e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[f/FEEDING TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
+  e.g. `[f/FEED TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
@@ -101,10 +101,13 @@ Format: `clear`
 
 Adds an animal under the care of the user.
 
-Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+
+Conditions:
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
+An animal can have any number of medical conditions and feed times (including 0).
 </div>
 
 Examples:
@@ -118,6 +121,9 @@ Examples:
 Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `delete ID`
+
+Conditions:
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
 
 Example:
 * `delete 193` deletes the individual animal with id 193.
@@ -148,13 +154,18 @@ The following features are additional ones which some users may find them useful
 
 Appends information to the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+
+Conditions:
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
+An animal can have any number of medical conditions and feed times (including 0).
 </div>
 
 Examples:
-* `append 1307 f/1900` appends a feeding time of 1900 to the animal identified by ID 1307.
+* `append 1307 f/1900` appends a feed time of 1900 to the animal identified by ID 1307.
+* `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
 
 ---
 
@@ -162,10 +173,13 @@ Examples:
 
 Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…​`
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An animal can have any number of medical conditions and feeding times (including 0).
+An animal can have any number of medical conditions and feed times (including 0).
 </div>
+
+Conditions:
+* `ID` field should only contain numbers with no leading zeroes, and it should be at least 3 digits long
 
 Examples:
 * `replace 1307 i/2910` replaces the ID of animal 1307 with 2910.
@@ -184,7 +198,7 @@ Keyword matching is case insensitive.
 
 Example:
 * `find Ahmeng Buttercup Coco` finds all animals with the fields (name) containing any of the specified keywords.
-* `find 1200` finds all animals with the field (id or feeding time) containing the specified keyword.
+* `find 1200` finds all animals with the field (id or feed time) containing the specified keyword.
 
 ---
 
@@ -197,7 +211,7 @@ Format: `sort CATEGORY`
 Examples:
 * `sort name` sorts all animals by name in alphabetical order.
 * `sort id` sorts all animals by id in ascending order.
-* `sort feedtime` sorts all animals by feeding time from the earliest to the latest (chronological order).
+* `sort feedtime` sorts all animals by feed time from the earliest to the latest (chronological order).
 
 ---
 
@@ -225,23 +239,18 @@ Example:
 
 ---
 
-<div markdown="block" class="alert alert-info">
-
-**:information_source: Note for manually saving data:**<br>
-
-Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
-By default, the preferred file name is `zookeepbook.json`
-There is no need to save manually, though you can create a copy of the current data with the `snap` command which will be explained below.
-
-</div>
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ZooKeep home folder.
 
-**Q**: Can I record the feeding times of a specific animal in any order I prefer?<br>
-**A**: The feeding time will be arranged in chronological order regardless of the order entered for easier reference.
+**Q**: How can I manually save new data that I enter into the application?<br>
+**A**: Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
+       By default, the preferred file name is `zookeepbook.json`.
+       There is no need to save manually, though a copy of the current data can be created with the `snap` command.
+
+**Q**: Can I record the feed times of a specific animal in any order I prefer?<br>
+**A**: The feed time will be arranged in chronological order regardless of the order entered for easier reference.
 
 **Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
 **A**: The find feature will only list animals with the exact specified keyword provided.
@@ -257,12 +266,12 @@ Action | Format, Examples
 **Exit** | `exit`
 **List** | `list`
 **Clear** | `clear`
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEEDING TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEED TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
-**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEEDING TIME]…`
-**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEEDING TIME]…` 
+**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…` 
 **Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
 **Sort** | `sort CATEGORY` <br> e.g. `sort name` 
 **Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
