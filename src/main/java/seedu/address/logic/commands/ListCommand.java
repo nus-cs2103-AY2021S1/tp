@@ -13,7 +13,7 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Lists all persons and modules"
+    public static final String MESSAGE_USAGE = "\n" + COMMAND_WORD + " : Lists all persons and modules"
         + "\nExample: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Listed all persons and modules";

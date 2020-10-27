@@ -64,29 +64,11 @@ public class AddressBookParser {
         case DeleteCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
-        case ResetCommand.COMMAND_WORD:
-            return new ResetCommand();
-
         case RemarkCommand.COMMAND_WORD:
             return new RemarkCommandParser().parse(arguments);
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommandParser().parse(arguments);
-
-        case CclearCommand.COMMAND_WORD:
-            return new CclearCommand();
-
-        case MclearCommand.COMMAND_WORD:
-            return new MclearCommand();
-
-        case ClistCommand.COMMAND_WORD:
-            return new ClistCommand();
-
-        case MlistCommand.COMMAND_WORD:
-            return new MlistCommand();
 
         case AddModCommand.COMMAND_WORD:
             return new AddModCommandParser().parse(arguments);
@@ -100,21 +82,32 @@ public class AddressBookParser {
         case AssignCommand.COMMAND_WORD:
             return new AssignCommandParser().parse(arguments);
 
-        case UnassignallCommand.COMMAND_WORD:
-            return new UnassignallCommandParser().parse(arguments);
-
         case UnassignCommand.COMMAND_WORD:
             return new UnassignCommandParser().parse(arguments);
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
+        case ResetCommand.COMMAND_WORD:
 
         case HelpCommand.COMMAND_WORD:
-            return new HelpCommand();
+
+        case ExitCommand.COMMAND_WORD:
+
+        case UnassignallCommand.COMMAND_WORD:
+
+        case MlistCommand.COMMAND_WORD:
+
+        case ClistCommand.COMMAND_WORD:
+
+        case MclearCommand.COMMAND_WORD:
+
+        case CclearCommand.COMMAND_WORD:
+
+        case ListCommand.COMMAND_WORD:
+            return new OneWordCommandParser().parse(userInput);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
+
 
 }
