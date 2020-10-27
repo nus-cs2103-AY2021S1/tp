@@ -49,7 +49,8 @@ public class ExerciseCard extends UiPart<Region> {
         date.setText(exercise.getDate().value);
         description.setText(exercise.getDescription().value);
         calories.setText(exercise.getCalories().isPresent() ? exercise.getCalories().get().value : "None");
-        muscles.setText(exercise.getMusclesWorkedDescription() == null ? "None" : exercise.getMusclesWorkedDescription());
+        muscles.setText(exercise.getMusclesWorkedDescription() == null
+                                ? "None" : exercise.getMusclesWorkedDescription());
     }
 
     @Override
