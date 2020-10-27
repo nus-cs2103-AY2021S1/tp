@@ -188,24 +188,52 @@ Examples:
 * `find bernice s0000003a` returns `Bernice Yu`, `Charlotte Oliveiro`
   ![result for 'find bernice s0000003a'](images/findbernices0000003aResult.png)
 
-### Deleting a patient: `delete`
+### Deleting a patient: `delete` (by Cao Qin)
 
 Deletes the specified patient from **Hospify**.
 
 Format: `delete INDEX`<br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; or `delete NRIC`
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: About the format of `delete` command:**<br>
 * Deletes the patient at the specified `INDEX` or `NRIC`
-* The index refers to the index number shown in the displayed patient list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` refers to the index number shown in the displayed patient list.
+* The `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `NRIC` refers to the `NRIC` of the patient to be deleted.
 * The `NRIC` entered is **case-sensitive**. e.g. `s1234567a` will **not** match `S1234567A`
 * Only full `NRIC`s will be matched e.g. `S12345` will **not** match `S1234567A`
+</div>
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in **Hospify**.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
-* `delete S7654321A` deletes `Tom Lee` (whose NRIC is S7654321A).
+
+scenario 1:
+
+* `list`(shown in Figure 2.4 below) followed by `delete 2`(shown in Figure 2.5 below) deletes the 2nd patient in **Hospify**.
+
+  ![result for 'list'](images/listResult.png)
+  Figure 2.4 result of `list` command
+  
+  ![result for 'delete 2'](images/deleteTwoResult.png)
+  Figure 2.5 result of `delete 2` command
+  
+scenario 2:
+  
+* `find Oliveiro`(shown in Figure 2.6 below) followed by `delete 1`(shown in Figure 2.7 below) deletes the 1st patient in the results of the `find` command.
+
+  ![result for 'find Oliveiro'](images/findOliveiro.png)
+  Figure 2.6 result of `find Oliveiro` command
+  
+  ![result for 'delete 1'](images/deleteOliveiroResult.png)
+  Figure 2.7 result of `delete 1` command
+
+scenario 3:
+
+* `delete S0000004A`(shown in Figure 2.8 below) deletes `David Li` (whose NRIC is S0000004A).
+
+  ![result for 'delete S0000004A'](images/deleteDavidResult.png)
+  Figure 2.8 result of `delete S0000004A` command
 
 ### Counting total number of patients: `count`
 
