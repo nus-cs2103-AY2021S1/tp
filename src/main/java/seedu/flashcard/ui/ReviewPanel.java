@@ -69,7 +69,7 @@ public class ReviewPanel extends StudyPanel {
 
     private void handleUserNextFlashcardInput() {
         if (!studyManager.hasNextFlashcard()) {
-            parent.setResultDisplayMessage("This are no more flashcards to be reviewed\n" + HELP_MESSAGE);
+            parent.setResultDisplayMessage("There are no more flashcards to be reviewed\n" + HELP_MESSAGE);
         } else {
             showFlashcard(studyManager.getNextFlashcard());
         }
@@ -77,7 +77,7 @@ public class ReviewPanel extends StudyPanel {
 
     private void handleUserPreviousFlashcardInput() {
         if (!studyManager.hasPreviousFlashcard()) {
-            parent.setResultDisplayMessage("This are no more previous flashcards to be reviewed\n"
+            parent.setResultDisplayMessage("There are no more previous flashcards to be reviewed\n"
                     + HELP_MESSAGE);
         } else {
             showFlashcard(studyManager.getPrevFlashcard());
