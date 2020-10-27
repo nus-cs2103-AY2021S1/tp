@@ -10,6 +10,7 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -33,13 +34,13 @@ public class RecipeBuilder {
                     new Instruction("5) Lay cheese and ham on the mustard half; lay avocado, onion slices, "
                             + "tomato slices, egg salad, and lettuce on the other half")));
 
-    public static final String DEFAULT_RECIPE_IMAGE = "images/sandwich.jpeg";
+    public static final RecipeImage DEFAULT_RECIPE_IMAGE = new RecipeImage("images/sandwich.jpeg");
 
     private Name name;
     private ArrayList<Ingredient> ingredients;
     private ArrayList<Instruction> instructions;
     private Calories calories;
-    private String recipeImage;
+    private RecipeImage recipeImage;
     private Set<Tag> tags;
 
     /**
@@ -114,7 +115,7 @@ public class RecipeBuilder {
      * Sets the recipe image of the {@code Recipe} that we are building.
      */
     public RecipeBuilder withRecipeImage(String recipeImage) {
-        this.recipeImage = recipeImage;
+        this.recipeImage = new RecipeImage(recipeImage);
         return this;
     }
 

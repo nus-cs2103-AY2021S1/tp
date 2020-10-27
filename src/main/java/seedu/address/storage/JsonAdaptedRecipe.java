@@ -16,6 +16,7 @@ import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Instruction;
 import seedu.address.model.recipe.Name;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.RecipeImage;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,7 +28,7 @@ class JsonAdaptedRecipe {
 
     private final String name;
     private final ArrayList<Instruction> instruction;
-    private final String recipeImage;
+    private final RecipeImage recipeImage;
     private final ArrayList<Ingredient> ingredients;
     private final Integer calories;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
@@ -38,7 +39,7 @@ class JsonAdaptedRecipe {
     @JsonCreator
     public JsonAdaptedRecipe(@JsonProperty("name") String name,
                              @JsonProperty("instruction") ArrayList<Instruction> instruction,
-                             @JsonProperty("recipeImage") String recipeImage,
+                             @JsonProperty("recipeImage") RecipeImage recipeImage,
                              @JsonProperty("ingredients") ArrayList<Ingredient> ingredients,
                              @JsonProperty("calories") Integer calories,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
@@ -100,7 +101,7 @@ class JsonAdaptedRecipe {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     String.class.getSimpleName()));
         }
-        final String modelRecipeImage = recipeImage;
+        final RecipeImage modelRecipeImage = recipeImage;
 
         if (ingredients == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
