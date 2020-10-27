@@ -17,6 +17,7 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.Grade;
+import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Criterion;
 import seedu.address.model.task.Date;
@@ -188,7 +189,7 @@ public class ParserUtil {
     public static ModularCredits parseModularCredits(String modularCredits) throws ParseException {
         double trimmedModularCredits;
         if (!ModularCredits.isValidModularCredits(modularCredits)) {
-            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+            throw new ParseException(ModularCredits.MESSAGE_CONSTRAINTS);
         } else {
             trimmedModularCredits = Double.parseDouble(modularCredits.trim());
         }
@@ -204,6 +205,19 @@ public class ParserUtil {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         return trimmedGrade;
+    }
+    /**
+     * Parses a {@code String modularCredits}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static GradePoint parseGradePoint(String gradePoint) throws ParseException {
+        double trimmedGradePoint;
+        if (!GradePoint.isValidGradePoint(gradePoint)) {
+            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+        } else {
+            trimmedGradePoint = Double.parseDouble(gradePoint.trim());
+        }
+        return new GradePoint(trimmedGradePoint);
     }
 
     // ==================== TodoList ===============================================================

@@ -1,6 +1,7 @@
 package seedu.address.model.module.grade;
 
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
@@ -12,9 +13,10 @@ import seedu.address.model.module.grade.comparator.AssignmentNameComparator;
 public class GradeTracker implements ReadOnlyGradeTracker {
     public static final String MESSAGE_INVALID_GRADE =
             "Grades should be provided in the range from 0.00 to 1.00.";
+    public static final String MESSAGE_INVALID_GRADEPOINT =
+            "GradePoint should be given as a decimal from 0.00 to 5.00.";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT =
             "Assignments cannot be repeated.";
-
     private final UniqueAssignmentList assignments;
     private final AssignmentNameComparator comparator = new AssignmentNameComparator();
     /*
@@ -28,12 +30,23 @@ public class GradeTracker implements ReadOnlyGradeTracker {
         assignments = new UniqueAssignmentList();
     }
     private Grade grade;
+    private GradePoint gradePoint;
 
     /**
-     * Creates a GradeTracker that stores the assignments and grades for a module.
+     * Creates a GradeTracker that stores the assignment, grades and grade point for a module.
      */
     public GradeTracker() {
         this.grade = new Grade(0);
+        gradePoint = null;
+    }
+
+    /**
+     * Creates a GradeTracker that stores the assignment, grades and grade point for a module.
+     * @param gradePoint GradePoint for a completed module
+     */
+    public GradeTracker(double gradePoint) {
+        this.grade = new Grade(0);
+        this.gradePoint = new GradePoint(gradePoint);
     }
 
     public void setGrade(Grade newGrade) {
@@ -42,6 +55,14 @@ public class GradeTracker implements ReadOnlyGradeTracker {
 
     public Grade getGrade() {
         return grade;
+    }
+
+    public void setGradePoint(GradePoint newGradePoint) {
+        this.gradePoint = newGradePoint;
+    }
+
+    public Optional<GradePoint> getGradePoint() {
+        return Optional.ofNullable(gradePoint);
     }
 
     public void addAssignment(Assignment newAssignment) {
@@ -66,6 +87,8 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     public ObservableList<Assignment> getAssignments() {
         return assignments.asUnmodifiableObservableList();
     }
+
+
 
     /**
      * Checks if the Grade Tracker is valid.
