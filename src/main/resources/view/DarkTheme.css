@@ -192,9 +192,11 @@
     -fx-border-radius: 10;
     -fx-background-radius: 20 20 20 20;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 0, 0);
-
 }
 
+.progress-bar > .bar {
+    -fx-accent: #65789d;
+}
 .status-bar {
     -fx-background-color: #3c4b6e;
 }

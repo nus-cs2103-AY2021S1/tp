@@ -30,6 +30,7 @@
            <Insets bottom="20" left="20" right="20" top="20" />
        </padding>
          <Label fx:id="question" styleClass="question-display"/>
+       <Label fx:id="errorMessage" visible="false" text="You have yet to review this flashcard!" styleClass="stats-display"/>
          <PieChart fx:id="pieChart"></PieChart>
          <Label fx:id="reviewCount" styleClass="stats-display"/>
          <Label fx:id="correctCount" styleClass="stats-display"/>

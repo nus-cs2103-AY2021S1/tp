@@ -24,7 +24,7 @@
             <Insets bottom="15" />
         </padding>
         <ProgressBar fx:id="progressBar" prefWidth="400"></ProgressBar>
-        <Label fx:id="progressLabel" ></Label>
+        <Label fx:id="progressLabel" styleClass="stats-display" ></Label>
     </VBox>
 
     <VBox VBox.vgrow="ALWAYS" styleClass="pane-with-no-border" HBox.hgrow = "ALWAYS" GridPane.rowIndex="1" GridPane.columnIndex="1">

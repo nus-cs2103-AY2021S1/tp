@@ -36,6 +36,9 @@ public class FlashcardStatsCard extends UiPart<Region> {
     @FXML
     private Label correctCount;
 
+    @FXML
+    private Label errorMessage;
+
     /**
      * Creates a {@code FlashcardListCard} with the given {@code Flashcard} and index to display.
      */
@@ -53,6 +56,10 @@ public class FlashcardStatsCard extends UiPart<Region> {
             PieChart.Data wrongPie = new PieChart.Data(String.format("Wrong (%.1f%%)", failureRate), failureFrequency);
             pieChart.setData(FXCollections.observableArrayList(successPie, wrongPie));
             pieChart.setLegendVisible(false);
+        } else {
+            errorMessage.setVisible(true);
+            pieChart.setVisible(false);
+            pieChart.managedProperty().bind(pieChart.visibleProperty());
         }
         reviewCount.setText("Reviewed count: " + reviewedFrequency);
         correctCount.setText("Correct count: " + successFrequency);

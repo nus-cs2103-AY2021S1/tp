@@ -17,6 +17,7 @@ import seedu.flashcard.logic.Logic;
 import seedu.flashcard.logic.commands.CommandResult;
 import seedu.flashcard.logic.commands.exceptions.CommandException;
 import seedu.flashcard.logic.parser.exceptions.ParseException;
+import seedu.flashcard.model.flashcard.Flashcard;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -33,7 +34,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private FlashcardListPanel flashcardListPanel;
-    private FlashcardViewCard flashcardViewCard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -140,8 +140,6 @@ public class MainWindow extends UiPart<Stage> {
 
         studyPanePlaceholder.setVisible(false);
         studyPanePlaceholder.managedProperty().bind(studyPanePlaceholder.visibleProperty());
-
-        flashcardViewCardPlaceholder.getChildren().add(new FlashcardStatsCard(logic.getFilteredFlashcardList().get(0)).getRoot());
     }
 
     /**
@@ -212,8 +210,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleView(int viewIndex, boolean showAnswer) {
         flashcardViewCardPlaceholder.getChildren().clear();
-        flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex), showAnswer);
+        FlashcardViewCard flashcardViewCard = new FlashcardViewCard(logic.getFilteredFlashcardList().get(viewIndex), showAnswer);
         flashcardViewCardPlaceholder.getChildren().add(flashcardViewCard.getRoot());
+    }
+
+    /**
+     * Executes stats view function
+     */
+    private void handleStatsView(int viewIndex) {
+        flashcardViewCardPlaceholder.getChildren().clear();
+        FlashcardStatsCard flashcardStatsCard = new FlashcardStatsCard(logic.getFilteredFlashcardList().get(viewIndex));
+        flashcardViewCardPlaceholder.getChildren().add(flashcardStatsCard.getRoot());
     }
 
     public FlashcardListPanel getFlashcardListPanel() {
@@ -245,6 +252,7 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowStats() && commandResult.getViewIndex() != null) {
                 //TODO
+                handleStatsView(commandResult.getViewIndex());
             }
 
             if (commandResult.isViewMode() && commandResult.getViewIndex() != null) {
