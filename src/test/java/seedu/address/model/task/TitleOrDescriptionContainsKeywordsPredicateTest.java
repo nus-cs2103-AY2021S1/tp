@@ -11,21 +11,24 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.ToDoBuilder;
 
-public class TitleContainsKeywordsPredicateTest {
+public class TitleOrDescriptionContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TitleContainsKeywordsPredicate firstPredicate = new TitleContainsKeywordsPredicate(firstPredicateKeywordList);
-        TitleContainsKeywordsPredicate secondPredicate = new TitleContainsKeywordsPredicate(secondPredicateKeywordList);
+        TitleOrDescriptionContainsKeywordsPredicate firstPredicate =
+                new TitleOrDescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
+        TitleOrDescriptionContainsKeywordsPredicate secondPredicate =
+                new TitleOrDescriptionContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TitleContainsKeywordsPredicate firstPredicateCopy = new TitleContainsKeywordsPredicate(
+        TitleOrDescriptionContainsKeywordsPredicate firstPredicateCopy =
+                new TitleOrDescriptionContainsKeywordsPredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -42,36 +45,37 @@ public class TitleContainsKeywordsPredicateTest {
     @Test
     public void test_titleContainsKeywords_returnsTrue() {
         // One keyword
-        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(
+        TitleOrDescriptionContainsKeywordsPredicate predicate = new TitleOrDescriptionContainsKeywordsPredicate(
                 Collections.singletonList("Lecture"));
         assertTrue(predicate.test(new ToDoBuilder().withTitle("Weekly Lecture").build()));
 
         // Multiple keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("CS2103", "Project"));
+        predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("CS2103", "Project"));
         assertTrue(predicate.test(new ToDoBuilder().withTitle("CS2103 Project").build()));
 
         // Only one matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("CS2103", "Project"));
+        predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("CS2103", "Project"));
         assertTrue(predicate.test(new ToDoBuilder().withTitle("CS2103 Lecture").build()));
 
         // Mixed-case keywords
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("cS2103", "PrOjEcT"));
+        predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("cS2103", "PrOjEcT"));
         assertTrue(predicate.test(new ToDoBuilder().withTitle("CS2103 Project").build()));
+
+        // Keywords match description or title
+        predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("Project", "random", "Low"));
+        assertTrue(predicate.test(new ToDoBuilder().withTitle("Lecture").withDescription("random")
+                .withPriority("Low").build()));
     }
 
     @Test
     public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TitleContainsKeywordsPredicate predicate = new TitleContainsKeywordsPredicate(Collections.emptyList());
+        TitleOrDescriptionContainsKeywordsPredicate predicate =
+                new TitleOrDescriptionContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ToDoBuilder().withTitle("Lecture").build()));
 
         // Non-matching keyword
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Lecture"));
+        predicate = new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList("Lecture"));
         assertFalse(predicate.test(new ToDoBuilder().withTitle("CS2103 Project").build()));
-
-        // Keywords match phone, email and address, but does not match name
-        predicate = new TitleContainsKeywordsPredicate(Arrays.asList("Project", "random", "Low"));
-        assertFalse(predicate.test(new ToDoBuilder().withTitle("Lecture").withDescription("random")
-                .withPriority("Low").build()));
     }
 }

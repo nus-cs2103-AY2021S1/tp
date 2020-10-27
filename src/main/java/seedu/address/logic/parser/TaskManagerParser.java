@@ -16,6 +16,7 @@ import seedu.address.logic.commands.EditDeadlineCommand;
 import seedu.address.logic.commands.EditEventCommand;
 import seedu.address.logic.commands.EditTodoCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -79,6 +80,9 @@ public class TaskManagerParser {
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommandParser().parse(arguments);
+
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
