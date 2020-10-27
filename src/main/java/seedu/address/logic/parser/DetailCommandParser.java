@@ -5,9 +5,9 @@ import static seedu.address.logic.commands.DetailCommand.MESSAGE_USAGE;
 import static seedu.address.logic.parser.CliSyntax.COMMAND_PREFIXES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
+import static seedu.address.logic.parser.ReeveParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -19,8 +19,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.student.admin.Detail;
 
 public class DetailCommandParser implements Parser<DetailCommand> {
-
-    private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
 
     /**
      * Parses user input into command for execution.

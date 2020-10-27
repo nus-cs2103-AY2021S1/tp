@@ -92,7 +92,7 @@ public class ReeveParser {
             return new DetailCommandParser().parse(arguments);
 
         case ExamCommand.COMMAND_WORD:
-            return new ExamCommandParser().parseExamCommand(arguments);
+            return new ExamCommandParser().parse(arguments);
 
         case AttendanceCommand.COMMAND_WORD:
             return new AttendanceCommandParser().parse(arguments);
