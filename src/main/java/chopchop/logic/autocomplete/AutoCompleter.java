@@ -136,8 +136,14 @@ public class AutoCompleter {
             var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
             this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
 
-            return tryCompletionUsing(List.of(completion), orig, partial)
-                .orElse(orig);
+            if (nested) {
+                // TODO:
+                // System.out.printf("completing: %s, orig: '%s', partial: '%s'\n", completion, orig, partial);
+                // return orig + completion.substring(partial.length()) + " ";
+                return orig;
+            } else {
+                return completion + " ";
+            }
         }
     }
 
@@ -422,7 +428,7 @@ public class AutoCompleter {
 
                 // this is tricky. first, get the command you want help for:
                 var helpedCmd = args.getFirstWordFromRemaining();
-                if (commandRequiresTarget(helpedCmd)) {
+                if (commandRequiresTarget(helpedCmd) && sv.words().size() > 1) {
                     return RequiredCompletion.NESTED_TARGET_NAME;
                 }
 
