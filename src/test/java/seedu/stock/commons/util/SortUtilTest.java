@@ -126,4 +126,47 @@ public class SortUtilTest {
         toTestComparator.sort(serialNumberComparator);
         assertEquals(copy, toTestComparator);
     }
+
+    @Test
+    public void generateComparator_generalComparator_success() {
+        List<Stock> copy = new ArrayList<>(toTestComparator);
+        Comparator<Stock> expectedComparator = new Comparator<>() {
+            @Override
+            public int compare(Stock a, Stock b) {
+                int pointsA = 0;
+                int pointsB = 0;
+
+                if (a.getIsBookmarked()) {
+                    pointsA += 2;
+                }
+
+                if (b.getIsBookmarked()) {
+                    pointsB += 2;
+                }
+
+                if (a.getQuantity().isLowOnQuantity()) {
+                    pointsA++;
+                }
+
+                if (b.getQuantity().isLowOnQuantity()) {
+                    pointsB++;
+                }
+
+                String serialNumberA = a.getSerialNumber().toString();
+                String serialNumberB = b.getSerialNumber().toString();
+
+                if (pointsA == pointsB) {
+                    return serialNumberA.compareTo(serialNumberB);
+                } else if (pointsA > pointsB) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+        };
+        Comparator<Stock> generalComparator = SortUtil.generateComparator(SortUtil.Field.BOOKMARK);
+        copy.sort(expectedComparator);
+        toTestComparator.sort(generalComparator);
+        assertEquals(copy, toTestComparator);
+    }
 }
