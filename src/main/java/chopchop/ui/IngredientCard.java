@@ -16,7 +16,7 @@ public class IngredientCard extends UiPart<Region> {
     private Button cardPane;
 
     @FXML
-    private Label name;
+    private Label ingredientName;
 
     /**
      * Creates a {@code RecipeCard} with the given {@code Recipe}.
@@ -24,7 +24,7 @@ public class IngredientCard extends UiPart<Region> {
     public IngredientCard(Ingredient ingredient) {
         super(FXML);
         this.ingredient = ingredient;
-        name.setText(displayFormatter(ingredient));
+        ingredientName.setText(displayFormatter(ingredient));
     }
 
     /**

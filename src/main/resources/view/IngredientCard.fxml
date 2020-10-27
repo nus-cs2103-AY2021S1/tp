@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <Button mnemonicParsing="false" prefHeight="125.0" prefWidth="148.0" styleClass="recipe-button">
+    <Button fx:id="ingredientCard" mnemonicParsing="false" prefHeight="125.0" prefWidth="148.0" styleClass="recipe-button">
         <graphic>
-            <Label fx:id="name" styleClass="recipe_name_label" text="\$name" wrapText="true" />
+            <Label fx:id="ingredientName" styleClass="recipe_name_label" text="\$name" wrapText="true" />
         </graphic></Button>
 </StackPane>

@@ -18,10 +18,10 @@ public class RecipeCard extends UiPart<Region> {
     private final int id;
 
     @FXML
-    private Label name;
+    private Label recipeName;
 
     @FXML
-    private Label index;
+    private Label recipeIndex;
 
 
 
@@ -32,8 +32,8 @@ public class RecipeCard extends UiPart<Region> {
         super(FXML);
         this.recipe = recipe;
         this.id = id;
-        name.setText(recipe.getName());
-        index.setText(String.valueOf(id));
+        recipeName.setText(recipe.getName());
+        recipeIndex.setText(String.valueOf(id));
     }
 
     @FXML
