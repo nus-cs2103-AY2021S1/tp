@@ -45,7 +45,6 @@ public class GradeTracker implements ReadOnlyGradeTracker {
      * @param gradePoint GradePoint for a completed module
      */
     public GradeTracker(double gradePoint) {
-        this.assignments = new ArrayList<>();
         this.grade = new Grade(0);
         this.gradePoint = new GradePoint(gradePoint);
     }
@@ -63,11 +62,6 @@ public class GradeTracker implements ReadOnlyGradeTracker {
     }
 
     public Optional<GradePoint> getGradePoint() {
-        /*if (gradePoint.isPresent()) {
-            return Optional.of(gradePoint.get().gradePoint);
-        } else {
-            return Optional.empty();
-        }*/
         return Optional.ofNullable(gradePoint);
     }
 
