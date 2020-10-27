@@ -28,5 +28,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_PROPERTY_ASKING_PRICE = new Prefix("ap/");
     public static final Prefix PREFIX_PROPERTY_TYPE = new Prefix("t/");
     public static final Prefix PREFIX_PROPERTY_IS_RENTAL = new Prefix("r/");
+    public static final Prefix PREFIX_PROPERTY_IS_CLOSED_DEAL = new Prefix("c/");
+    public static final Prefix PREFIX_PROPERTY_PROPERTY_ID = new Prefix("p/");
 
 }
