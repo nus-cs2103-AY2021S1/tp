@@ -50,4 +50,7 @@ deactivate Model
 Model --> RestoreCommand
 deactivate Model
 
+[<--RestoreCommand
+deactivate RestoreCommand
+
 @enduml
