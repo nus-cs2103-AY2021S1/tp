@@ -2,16 +2,18 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.Preset.Preset;
 import seedu.address.model.order.ReadOnlyOrderManager;
 
-public interface OrderManagerStorage {
+public interface PresetManagerStorage {
     /**
      * Returns the file path of the data file.
      */
-    Path getOrderManagerFilePath();
+    Path getPresetManagerFilePath();
 
     /**
      * Returns OrderManager data as a {@link ReadOnlyOrderManager}.
@@ -19,22 +21,22 @@ public interface OrderManagerStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyOrderManager> readOrderManager() throws DataConversionException, IOException;
+    Optional<List<Preset>> readPresetManager() throws DataConversionException, IOException;
 
     /**
-     * @see #getOrderManagerFilePath()
+     * @see #getPresetManagerFilePath()
      */
-    Optional<ReadOnlyOrderManager> readOrderManager(Path filePath) throws DataConversionException, IOException;
+    Optional<List<Preset>> readPresetManager(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyOrderManager} to the storage.
      * @param orderManager cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveOrderManager(ReadOnlyOrderManager orderManager) throws IOException;
+    void savePresetManager(ReadOnlyOrderManager orderManager, String name, int index) throws IOException;
 
     /**
-     * @see #saveOrderManager(ReadOnlyOrderManager)
+     * @see #savePresetManager(ReadOnlyOrderManager, String name, int index)
      */
-    void saveOrderManager(ReadOnlyOrderManager orderManager, Path filePath) throws IOException;
+    void savePresetManager(ReadOnlyOrderManager orderManager, Path filePath, String name, int index) throws IOException;
 }
