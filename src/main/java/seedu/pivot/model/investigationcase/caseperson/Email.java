@@ -36,15 +36,17 @@ public class Email {
      */
     public Email(String email) {
         requireNonNull(email);
-        checkArgument(isValidEmail(email), MESSAGE_CONSTRAINTS);
-        value = email;
+        String trimmedEmail = email.trim();
+        checkArgument(isValidEmail(trimmedEmail), MESSAGE_CONSTRAINTS);
+        value = trimmedEmail;
     }
 
     /**
      * Returns if a given string is a valid email.
      */
     public static boolean isValidEmail(String test) {
-        return test.isBlank() || test.matches(VALIDATION_REGEX);
+        String trimmedTest = test.trim();
+        return trimmedTest.isBlank() || trimmedTest.matches(VALIDATION_REGEX);
     }
 
     @Override
