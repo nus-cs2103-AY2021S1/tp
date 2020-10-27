@@ -1,6 +1,8 @@
 package seedu.address.commons.core.index;
 
 
+import seedu.address.model.person.GitUserName;
+
 /**
  * Represents a unique Git username of a teammate
  *
@@ -18,6 +20,17 @@ public class GitUserIndex {
 
     public String getGitUserName() {
         return uniqueGitUserIndex;
+    }
+
+    /**
+     * Checks validity of GitUserIndex
+     * @param gitUserName String of gitusername passed in
+     * @return boolean to indicate validity of gitusername
+     */
+    public boolean isValidGitUserIndex(String gitUserName) {
+        String trimmedGitUserName = gitUserName.trim();
+        return GitUserName.isValidGitUserName(trimmedGitUserName);
+
     }
 
     @Override

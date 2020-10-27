@@ -107,8 +107,7 @@ public class EditTeammateCommand extends Command {
         GitUserName gitUserName = personToEdit.getGitUserName();
         Phone updatedPhone = editTeammateDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editTeammateDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editTeammateDescriptor.getAddress()
-            .orElse(personToEdit.getAddress());
+        Address updatedAddress = editTeammateDescriptor.getAddress().orElse(personToEdit.getAddress());
         HashMap<ProjectName, Participation> updatedParticipation =
             editTeammateDescriptor.getParticipation().orElse(personToEdit.getParticipations());
         Person editedPerson = new Person(updatedTeammateName, gitUserName, updatedPhone, updatedEmail, updatedAddress,
