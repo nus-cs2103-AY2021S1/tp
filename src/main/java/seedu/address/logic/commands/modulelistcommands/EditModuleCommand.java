@@ -98,9 +98,9 @@ public class EditModuleCommand extends Command {
         // return new Module(updatedName, updatedEmail, updatedAddress, updatedTags);
         ModuleName moduleName = editModuleDescriptor.getModuleName().orElse(moduleToEdit.getName());
         ZoomLink zoomLink = editModuleDescriptor.getZoomLink().orElse(moduleToEdit.getLink());
-        GradeTracker gradeTracker = gradeTracker = moduleToEdit.getGradeTracker();
-        if (editModuleDescriptor.gradePoint != null) {
-            gradeTracker.setGradePoint(editModuleDescriptor.gradePoint);
+        GradeTracker gradeTracker = moduleToEdit.getGradeTracker();
+        if (editModuleDescriptor.getGradePoint().isPresent()) {
+            gradeTracker.setGradePoint(editModuleDescriptor.getGradePoint().get());
         }
         ModularCredits modularCredits = editModuleDescriptor
                 .getModularCredits().orElse((moduleToEdit.getModularCredits()));
@@ -242,6 +242,9 @@ public class EditModuleCommand extends Command {
         }
         public Optional<ModularCredits> getModularCredits() {
             return Optional.ofNullable(modularCredits);
+        }
+        public Optional<GradePoint> getGradePoint() {
+            return Optional.ofNullable(gradePoint);
         }
 
         @Override
