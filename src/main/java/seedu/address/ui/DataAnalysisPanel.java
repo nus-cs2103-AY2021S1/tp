@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,8 +15,6 @@ import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
 import seedu.address.storage.Statistics;
 
-import java.time.LocalDate;
-import java.util.logging.Logger;
 
 public class DataAnalysisPanel extends UiPart<Region> {
     private static final String FXML = "DataAnalysisPanel.fxml";
@@ -27,6 +28,10 @@ public class DataAnalysisPanel extends UiPart<Region> {
     @FXML
     private Pane statsSummaryPanelPlaceholder;
 
+    /**
+     * Creates a Data Analysis Panel UI.
+     * @param lessonList lesson list to be analysed.
+     */
     public DataAnalysisPanel(ObservableList<Lesson> lessonList) {
         super(FXML);
         loadPieChart(lessonList);

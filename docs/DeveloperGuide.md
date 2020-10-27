@@ -492,22 +492,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 
 2. Should be able to hold up to 1000 tasks without a noticeable sluggishness in performance for typical usage.
-   <<<<<<< HEAD
 
-3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
-   =======
+3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using a mouse.
 
-4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using a mouse.
+4. The product should be easy to use by a novice with no experience of using a task management application.
 
-5. The product should be easy to use by a novice with no experience of using a task management application.
+5. The size of built-in module data should not exceed 10mb.
 
-6. The size of built-in module data should not exceed 10mb.
+6. Documentation should be easy to read with proper highlighting.
 
-7. Documentation should be easy to read with proper highlighting.
-
-8. The source code should be open source.
-
->>>>>>> 40c48479e0967772ef6be58268c9d0236e38d3f4
+7. The source code should be open source.
 
 *{More to be added}*
 
