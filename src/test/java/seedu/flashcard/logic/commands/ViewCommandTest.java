@@ -35,19 +35,6 @@ class ViewCommandTest {
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_failure() {
-        Flashcard flashcardToView = model.getFilteredFlashcardList()
-                .get(INDEX_FIRST_FLASHCARD.getZeroBased());
-        ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_FLASHCARD, true);
-        CommandResult expectedCommandResult = new CommandResult(
-                String.format(ViewCommand.MESSAGE_VIEW_FLASHCARD_SUCCESS,
-                        flashcardToView), INDEX_FIRST_FLASHCARD.getZeroBased(), false);
-        ModelManager expectedModel = new ModelManager(model.getFlashcardDeck(), new UserPrefs());
-        assertCommandSuccess(viewCommand, model, expectedCommandResult, expectedModel);
-    }
-
-
-    @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredFlashcardList().size() + 1);
         ViewCommand viewCommand = new ViewCommand(outOfBoundIndex, false);
