@@ -18,14 +18,17 @@ public class TitleOrDescriptionContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TitleOrDescriptionContainsKeywordsPredicate firstPredicate = new TitleOrDescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
-        TitleOrDescriptionContainsKeywordsPredicate secondPredicate = new TitleOrDescriptionContainsKeywordsPredicate(secondPredicateKeywordList);
+        TitleOrDescriptionContainsKeywordsPredicate firstPredicate =
+                new TitleOrDescriptionContainsKeywordsPredicate(firstPredicateKeywordList);
+        TitleOrDescriptionContainsKeywordsPredicate secondPredicate =
+                new TitleOrDescriptionContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TitleOrDescriptionContainsKeywordsPredicate firstPredicateCopy = new TitleOrDescriptionContainsKeywordsPredicate(
+        TitleOrDescriptionContainsKeywordsPredicate firstPredicateCopy =
+                new TitleOrDescriptionContainsKeywordsPredicate(
                 firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
@@ -62,7 +65,8 @@ public class TitleOrDescriptionContainsKeywordsPredicateTest {
     @Test
     public void test_titleDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TitleOrDescriptionContainsKeywordsPredicate predicate = new TitleOrDescriptionContainsKeywordsPredicate(Collections.emptyList());
+        TitleOrDescriptionContainsKeywordsPredicate predicate =
+                new TitleOrDescriptionContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new ToDoBuilder().withTitle("Lecture").build()));
 
         // Non-matching keyword
