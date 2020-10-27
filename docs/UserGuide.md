@@ -11,6 +11,8 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Adding a student: `add`](#Adding-a-student-add "Goto Adding-a-student-add")
     - [Listing all students: `list`](#Listing-all-students-list "Goto Listing-all-students-list")
     - [Deleting a student: `delete`](#Deleting-a-student-delete "Goto Deleting-a-student-delete")
+    - [Adding a session: `session`](#Adding-a-session-session "Goto Adding-a-session-session")
+    - [Changing the current session: `goto`](#Changing-the-current-session-goto "Goto Changing-the-current-session-goto")
     - [Marking a student's attendance: `mark`](#Marking-a-student’s-attendance-mark "Goto Marking-a-students-attendance-mark")
     - [Storing students' attendance records: `store_record`](#Storing-students’-attendance-records-store_record "Goto Storing-students'-attendance-records")
     - [Loading students' attendance records: `load_record`](#Loading-students’-attendance-records-load_record "Goto Loading-students'-attendance-records")
@@ -52,6 +54,20 @@ delete INDEX
 ```
 - Deletes the student at the specified `INDEX` number shown in the displayed student list.
 - The `INDEX` **must be a positive integer**.
+
+### Adding a session: `session`
+Adds a session into the session list.
+```
+session s/SESSION_NAME dt/SESSION_DATE_TIME
+```
+- The `SESSION_DATE_TIME` must be of the format `dd-MM-yyyy HHmm`.
+
+### Changing the current session: `goto`
+Changes the current session to the session with the specified name.
+```
+goto s/SESSION_NAME
+```
+- The `SESSION_NAME` must belong to one of the existing sessions in the session list.
 
 ### Marking a student's attendance: `mark`
 Marks the attendance of the specified student from the student list.
@@ -100,15 +116,18 @@ exit
 ```
 
 ## Command Summary
-| Action | Format, Examples                                                                                        |
-|--------|---------------------------------------------------------------------------------------------------------|
-| Add    | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br> e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu```|
-| List   | ```list```                                                                                               |
-| Delete | ```delete INDEX``` <br> e.g., ```delete 3```                                                             |
-| Mark   | `mark INDEX a/ATTENDANCE_TYPE` <br> e.g., `mark 1 a/present`                                             |
-| Store Attendance | `store_record fn/FILENAME` <br> e.g., `store_record tutorial01`                                |
-| Load Attendance | `load_record fn/FILENAME`
-| Clear  | ```clear```                                                                                              |
+| Action            | Format, Examples                                                                                              |
+|-------------------|---------------------------------------------------------------------------------------------------------------|
+| Add student       | ```add n/NAME i/NUSNET_ID e/EMAIL``` <br> e.g., ```add n/John Doe Kai Jie i/E9412345 e/e9412345@u.nus.edu```  |
+| List students     | ```list```                                                                                               |
+| Delete student    | ```delete INDEX``` <br> e.g., ```delete 3```                                                             |
+| Add session       | ```session s/SESSION_NAME dt/SESSION_DATE_TIME``` <br> e.g., ```session s/CS2103 Tutorial 1 dt/23-10-2020 0900```|
+| Change session    | ```goto s/SESSION_NAME``` <br> e.g., ```goto s/CS2103 Tutorial 1```
+| Mark              | ```mark INDEX a/ATTENDANCE_TYPE``` <br> e.g., `mark 1 a/present`                                             |
+| Mark all          | ```mark all a/ATTENDANCE_TYPE``` <br> e.g., `mark all a/present`
+| Store Attendance  | ```store_record fn/FILENAME``` <br> e.g., `store_record tutorial01`                                |
+| Load Attendance   | ```load_record fn/FILENAME```
+| Clear             | ```clear```                                                                                              |
 
 
 ## Frequently Asked Questions (FAQ)
