@@ -102,6 +102,8 @@ Note how the app contains some sample data.<br>
 
    * **`deleteleave`**`1 10/10/2020` : Deletes the leave record containing the date `10/10/2020` from the 1st person in the current list.
 
+   * **`find`**`-s Doe` : Finds the staff whose name contains "Doe".
+   
    * **`clear`** : Clears the database.
 
    * **`exit`** : Exits the app.
@@ -153,6 +155,14 @@ Examples:
 * `list -applicant`
 
 #### 3.1.3. Find
+
+Show a list of the persons whose name contains one of the given names.
+
+Format `find -FIND_TYPE`
+
+Examples:
+* `find -staff Doe`
+* `find -applicant John`
 
 ### 3.2. General Commands
 
@@ -420,7 +430,7 @@ _{explain the feature here}_
 | Action   | Format, Examples                                                                                                           |
 |----------|----------------------------------------------------------------------------------------------------------------------------|
 | **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com` |
-| **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                 |
+| **Find** | `find [-applicant ⎮ -staff] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find -applicant James Jake`                                                                 |
 | **List** | `list`<br> e.g., `list -staff`                                                                                             |
 | **View** | `view INDEX`<br> e.g., `view 2`                                                                                            |
 
