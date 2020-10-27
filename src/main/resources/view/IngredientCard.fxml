@@ -4,16 +4,19 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <Button mnemonicParsing="false" prefHeight="125.0" prefWidth="148.0" styleClass="recipe-button">
+    <Button mnemonicParsing="false" prefHeight="125.0" prefWidth="148.0" styleClass="ingredient-button">
         <graphic>
          <VBox>
             <children>
                <HBox>
                   <children>
-                      <Label fx:id="ingredientName" styleClass="recipe_name_label" text="\$name" wrapText="true" prefWidth="90.0"/>
-                      <Label fx:id="ingredientQty" text="\$qty" prefWidth="35.0"/>
+                      <Label fx:id="ingredientName" prefHeight="50.0" prefWidth="107.0" text="\$name" wrapText="true" />
+                      <Label fx:id="ingredientQty" prefHeight="50.0" prefWidth="30.0" text="\$qty" />
                   </children>
                </HBox>
+               <FlowPane fx:id="tags" maxHeight="55.0" maxWidth="-Infinity" prefHeight="35.0" prefWidth="148.0"
+                         VBox.vgrow="NEVER" prefWrapLength="55.0"/>
+               <Label fx:id="expiryDate" prefHeight="20.0" prefWidth="132.0" text="Label" alignment="TOP_LEFT"/>
             </children>
          </VBox>
         </graphic></Button>
