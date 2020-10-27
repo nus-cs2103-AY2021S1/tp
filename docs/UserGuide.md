@@ -3,22 +3,21 @@ layout: page
 title: ProductiveNUS User Guide
 ---
 ## Table of Contents
-1. Introduction
-2. How to use?
-3. Getting started
-4. Summary of commands supported
-5. Features
+{toc:}
 
 --------------------------------------------------------------------------------------------------------------------
-## 1. Introduction
-As a **student from the School of Computing (SoC) in National University of Singapore (NUS)**, you may probably be suffering from a **high workload** and be **facing difficulties in managing your academic schedule**. With possible **poor organisational skills** and a **lack of planning**, you may often find yourself **leaving assignments to be done at the last minute**. When the deadlines for your assignments are nearing, you feel **overwhelmed** and start to look back at your **disorganised timeline**.
+## Introduction
+**ProductiveNUS is a desktop application** made for you, a School of Computing (SoC) student in National University of Singapore (NUS), to manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your academic tasks more efficiently via the Command Box (put a hyperlink to terminologies related to GUI).
 
-**ProductiveNUS is desktop application made for you to manage and schedule your academic tasks** via a **Graphical User Interface (GUI)**; 
-which provides you with an intuitive interface and immediate visual feedback. It uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a Command Box. If you are fast at typing, you can manage your academic tasks more efficiently via this Command Box.
-
+As a **student from the SoC in NUS**, you tend to have a **heavy workload**. ProductiveNUS helps **improve your productivity** by **enhancing your organisational skills**. Apart from simply **keeping track of your tasks**, ProductiveNUS is capable of **scheduling** them for you so you will never **miss any deadlines**. ProductiveNUS is also compatible with NUSMods, meaning all your **timetable information can be imported easily** into the application so all your academic tasks can be found in just one application.
 
 --------------------------------------------------------------------------------------------------------------------
-## 2. How to use?
+## About
+This user guide provides you with the necessary information on how to become an expert user of ProductiveNUS. 
+Before moving on to the next section, [Getting started](#getting-started), you can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following subsections.  
+
+### GUI Terminologies
+The figure below shows the GUI of ProductiveNUS, with its components labelled. 
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -35,32 +34,6 @@ which provides you with an intuitive interface and immediate visual feedback. It
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-
-   Some example commands you can try:
-
-   * **`add`**`n/Lab report 3 d/23-04-2020 1230 mod/CS2100` : Adds an assignment named `Lab report 3` to your schedule.
-
-   * **`delete`**`3` : Deletes the 3rd assignment shown in the current list.
-
-   * **`import url/YOUR_NUSMODS_URL`** : Imports your timetable.
-
-   * **`list`**`2` : Lists assignments with deadline 2 days from current date (48 hours from current date and time).
-   
-   * **`find`**`n/Lab` : Finds assignments with names that contain the word 'Lab'.
-
-   * **`remind`**`3` : Sets reminders for the 3rd assignment which will be displayed in `Your Reminders` section.
-   
-   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section).
-
-   * **`prioritize`**`3 priority/HIGH` : Sets a "HIGH" priority tag for the 3rd assignment.
-   
-   * **`unprioritize`**`3` : Removes the priority tag for the 3rd assignment.
-   
-   * **`done`**`3` : Marks the 3rd assignment as done.
-  
-   * **`undone`**`3` : Marks the 3rd assignment as not done.
-   
-   * **`exit`** : Exits the application.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -99,20 +72,18 @@ Examples:
 
 ### Deleting assignments : `delete`
 
-Format: `delete INDEX [MORE INDEXES]`
+Format: `delete INDEX [MORE_INDEXES]`
 
 You can delete assignments from your assignment list by specifying the assignment `INDEX` as shown in your list.
 
-You can delete **one or more than one** assignment at a time. Here is an example of a usage scenario:
+You can delete **one or more than one** assignment at a time. Here is an example with steps to follow:
 
-1) You have completed some of your assignments ("Statistics tutorial" and "Biology lab report" as shown in the figure below), and would like to delete them from your assignment list.
-2) You can simply enter `delete 1 3` into the command line as per their indexes as circled and labelled in the figure.
-3) The assignments "Statistics tutorial" and "Biology lab report" are no longer displayed and are successfully deleted from your assignment list. 
-4) A "Deleted assignments" message will be displayed in the command box.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command line as per their indexes that are circled and labelled in the figure.
+2) The two assignments are no longer displayed and are successfully deleted from your assignment list. 
+3) A "Deleted assignments" message that includes the information of your deleted assignments will be displayed in the Command Box.
 
-Examples:
+More examples:
 * `delete 1`
-* `delete 4 5`
 * `delete 2 3 1`
 
 **Pointers to note:**
@@ -155,17 +126,19 @@ Examples:
 
 ### Finding assignments : `find`
 
-You can find your assignments based on keywords (and prefixes) you enter. The types of keywords are the name, module code, deadline and priority level of assignments. You can find assignments with multiple keywords of the same type.
+Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
+
+You can find your assignments based on keywords (and prefixes) you enter. The types of keywords are the name, module code, deadline and priority level of assignments. 
+You can find assignments with multiple keywords of the same type to speed up your search!
 
 Here is the table of prefixes used:
 | Prefix | Syntax with examples                                            | Examples                             | Remarks                                                                                                                                                                                                                                        |
 |--------|-----------------------------------------------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | n/     | n/NAME_OF_ASSIGNMENT  [MORE NAME_OF_ASSIGNMENT]                 | n/Tutorial n/tutorial essay          | Case insensitive                                                                                                                                                                                                                               |
 | mod/   | mod/MODULE_CODE  [MORE MODULE_CODE]                             | mod/ST2334 mod/CS2100 cs2103t        | Case insensitive                                                                                                                                                                                                                               |
-| d/     | d/DATE_OR_TIME_OF_ASSIGNMENT  [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Date keywords are irrespective of time  and time keywords are irrespective of date. For example, find d/1300 25-11-2020 will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).  |
+| d/     | d/DATE_OR_TIME_OF_ASSIGNMENT  [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Date keywords are irrespective of time  and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).  |
 | p/     | p/PRIORITY_OF_ASSIGNMENT  [MORE PRIORITY_OF_ASSIGNMENT]         | p/high p/LOW                         | Case insensitive                                                                                                                                                                                                                               |
 
-Format: `find PREFIX/ KEYWORD [MORE KEYWORDS]`
 
 Here is an example of a usage scenario:
 1) You want to find assignments from the modules CS2100 and ST2334.
