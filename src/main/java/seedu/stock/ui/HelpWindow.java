@@ -24,6 +24,9 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String FIND = "FIND\n";
     public static final String FINDEXACT = "FINDEXACT\n";
     public static final String UPDATE = "UPDATE\n";
+    public static final String NOTE = "NOTE\n";
+    public static final String STATISTICS = "STATISTICS\n";
+    public static final String SORT = "SORT\n";
     public static final String EXIT = "EXIT\n";
 
     public static final String COMMAND_DESCRIPTION = "COMMAND DESCRIPTION";
@@ -49,10 +52,18 @@ public class HelpWindow extends UiPart<Stage> {
                     + "n/<name> \nsn/<serial number> \nl/<location> \ns/<source>";
 
     public static final String UPDATE_DESCRIPTION =
-            "update sn/<Serial Number of product> (followed by combination of any):\n"
+            "update sn/<serial number> (followed by combination of any):\n"
                     + "iq/<+/-><quantity to increment/decrement> \nnq/<new quantity> \nn/<new name>\n"
                     + "l/<new location in warehouse> \ns/<new source of stock>\n"
                     + "NOTE: only either of iq/ or nq/ can be provided.\n";
+
+    public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note for stock>\n"
+            + "noteview sn/<serial number>\n"
+            + "notedelete sn/<serial number> ni/<note index>";
+
+    public static final String STATISTICS_DESCRIPTION = "stats st/source\nstats st/source-qd-<source company>";
+
+    public static final String SORT_DESCRIPTION = "sort o/<order> by/<field>";
 
     public static final String EXIT_DESCRIPTION = "exit";
 
@@ -118,6 +129,24 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
+    private Label noteMethod;
+
+    @FXML
+    private Label noteMessage;
+
+    @FXML
+    private Label statsMethod;
+
+    @FXML
+    private Label statsMessage;
+
+    @FXML
+    private Label sortMethod;
+
+    @FXML
+    private Label sortMessage;
+
+    @FXML
     private Label url;
 
     @FXML
@@ -154,6 +183,18 @@ public class HelpWindow extends UiPart<Stage> {
         //Update Method
         updateMethod.setText(UPDATE);
         updateMessage.setText(UPDATE_DESCRIPTION);
+
+        //Update Method
+        noteMethod.setText(NOTE);
+        noteMessage.setText(NOTE_DESCRIPTION);
+
+        //Update Method
+        sortMethod.setText(SORT);
+        sortMessage.setText(SORT_DESCRIPTION);
+
+        //Update Method
+        statsMethod.setText(UPDATE);
+        statsMessage.setText(UPDATE_DESCRIPTION);
 
         //Find Method
         findMethod.setText(FIND);

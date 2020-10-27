@@ -101,17 +101,17 @@
 }
 
 
-
 .list-cell-text {
-    -fx-font-family: "Quicksand";
+    -fx-font-family: "Montserrat";
     -fx-font-size: 14px;
     -fx-text-fill: #000000;
 }
 
 .list-cell-text-low {
-    -fx-font-family: "Quicksand";
+    -fx-font-family: "Montserrat";
     -fx-font-size: 14px;
     -fx-text-fill: #ff0000;
+    -fx-font-weight: bold;
 }
 
 .list-cell-header {

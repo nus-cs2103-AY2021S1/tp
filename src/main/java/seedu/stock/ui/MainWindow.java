@@ -75,7 +75,7 @@ public class MainWindow extends UiPart<Stage> {
         helpWindow = new HelpWindow();
         statisticsWindow = new StatisticsWindow();
         //custom fonts
-        scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap");
+        scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
     }
 
     public Stage getPrimaryStage() {
