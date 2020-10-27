@@ -29,7 +29,7 @@ import seedu.address.testutil.StudentBuilder;
 
 public class DeleteAttendanceCommandTest {
 
-    private static final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private static Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final Index TEST_INDEX_FIRST_STUDENT = INDEX_FIRST_PERSON;
     private static final LocalDate TEST_DATE = model.getFilteredStudentList().get(0)
             .getAttendance().get(0).getLessonDate();
@@ -54,7 +54,7 @@ public class DeleteAttendanceCommandTest {
 
     @Test
     public void execute_validStudentIndexUnfilteredList_success() {
-        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withAttendances(validAttendance).build();
         DeleteAttendanceCommand deleteAttendanceCommand =
                 new DeleteAttendanceCommand(TEST_INDEX_FIRST_STUDENT, TEST_DATE);
@@ -72,7 +72,7 @@ public class DeleteAttendanceCommandTest {
 
     @Test
     public void execute_invalidStudentIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
+        Index outOfBoundsStudentIndex = Index.fromOneBased(model.getSortedStudentList().size() + 1);
         DeleteAttendanceCommand command = new DeleteAttendanceCommand(outOfBoundsStudentIndex,
                 TEST_DATE);
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -88,12 +88,13 @@ public class DeleteAttendanceCommandTest {
     }
 
     @Test
-    public void execute_validStudentIndexFilteredList_throwsCommandException() {
-        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+    public void execute_validStudentIndexFilteredList_success() {
+        Model newModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        showPersonAtIndex(newModel, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = newModel.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withAttendances(validAttendance).build();
-        model.setStudent(asker, clone);
+        newModel.setStudent(asker, clone);
 
         DeleteAttendanceCommand command = new DeleteAttendanceCommand(INDEX_FIRST_PERSON,
                 TEST_DATE);
@@ -102,10 +103,10 @@ public class DeleteAttendanceCommandTest {
         String expectedMessage = String.format(DeleteAttendanceCommand.MESSAGE_SUCCESS,
                 clone.getName(), USER_INPUT_DATE);
 
-        ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(newModel.getReeve(), new UserPrefs());
         expectedModel.setStudent(clone, expectedStudent);
 
-        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertCommandSuccess(command, newModel, expectedMessage, expectedModel);
     }
 
     @Test
