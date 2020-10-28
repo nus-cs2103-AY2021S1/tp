@@ -132,7 +132,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 ## **Implementation**
 
-This section describes some noteworthy details on how certain features are implemented.
+This section describes some noteworthy details on how certain features were implemented.
 
 ### Add Exercise feature
 
@@ -184,6 +184,78 @@ Step 2. `DeleteExCommandParser` parses the user input and creates a `DeleteExCom
 Step 3: `DeleteExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is deleted exercise from `Model`.
 
 ![](images/DeleteExDiagram.png)
+
+### Add Log feature
+The adding of Logs are the core to the functionality of FixMyAbs. Users are able to add information related to that 
+exercise log, which will then allow them to track their fitness progress and details regarding their workout.  
+
+The mechanism is facilitated by a `Log` class. A `Log` class has `Exercise`, `Rep`, `Comment` and `LocalDateTime`.
+
+//TODO
+Add class diagram here 
+
+A user can add a `Log`to the `LogBook` by executing the `add` command.
+
+##### Example usage scenario
+Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the 
+application.
+
+Step 1. The user executes the command `add e/Pushups r/50 c/Managed to increase to 50 reps today!`. `FixMyAbsParser`
+creates a new `AddCommandParser` and calls the `AddCommandParser#parse()` method.
+
+Step 2. The user input is passed into the `AddCommandParser#parse()` method and instances of `Exercise`, `Rep` and
+`Comment` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to
+the `Log` constructor, and a new `Log` object is created as a result. Each `Log` instantiates with a new `dateTime` 
+field, which calls the `LocalDateTime#now()` method alongside the current system clock of the user's computer.`
+
+Step 3. A new `AddCommand` is returned with the created `Log` object as a parameter. The `Log` object is then added
+to the `Model`.
+
+The following sequence diagram shows how the `Add Log` feature works:
+
+//TODO
+Add sequence diagram
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Find Log feature
+To find specific exercise logs, users are able to search for logs based on the exercise name. This will allow them
+to easily track the number of logs for a certain exercise, as well as its details.
+
+The mechanism is supported by the `NameContainsKeywordsPredicate`, which checks if the user keyword input is matches
+any name of the exercises in the list of exercise logs. The `NameContainsKeywordsPredicate#test()` method is used to 
+check this.
+
+//TODO
+Add class diagram here 
+
+A user can find a `Log` by executing the `find` command.
+
+##### Example usage scenario
+Given below is an example usage scenario and how the `find log` mechanism behaves at each step after launching the 
+application.
+
+Step 1. The user executes the command `find Push ups`. `FixMyAbsParser` creates a new `FindCommandParser` and calls the 
+`FindCommandParser#parse()` method.
+
+Step 2. The user input is passed into the `FindCommandParser#parse()` method, which then creates a new 
+`NameContainsKeywordsPredicate` object, with the user input as the parameter. This object checks if there is a match
+between the keyword and the tested `Log`. 
+
+Step 3. As a result of the `FindCommandParser#parse()` method, a new `FindCommand` is returned with the created 
+`NameContainsKeywordsPredicate` object as a parameter. Upon calling `FindCommand#execute()`, the model is updated 
+through `Model#updateFilteredLogList()`, and the new filtered log list is displayed to the user.
+
+The following sequence diagram shows how the `Find Log` feature works:
+
+//TODO
+Add sequence diagram
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### \[Proposed\] Undo/redo feature
 
