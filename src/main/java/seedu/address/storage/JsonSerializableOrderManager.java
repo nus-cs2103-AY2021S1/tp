@@ -8,7 +8,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.order.OrderItem;
 import seedu.address.model.order.OrderManager;
 import seedu.address.model.order.ReadOnlyOrderManager;
@@ -56,7 +58,11 @@ public class JsonSerializableOrderManager {
             if (orderManager.hasOrderItem(orderItem)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_ORDERITEM);
             }
-            orderManager.addOrderItem(orderItem);
+            try {
+                orderManager.addOrderItem(orderItem);
+            } catch (CommandException e) {
+                throw new IllegalValueException(Messages.MESSAGE_ORDERITEM_QUANTITY_EXCEED);
+            }
         }
         return orderManager;
     }

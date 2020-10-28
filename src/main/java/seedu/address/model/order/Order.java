@@ -47,10 +47,15 @@ public class Order implements Iterable<OrderItem> {
      */
     public void add(OrderItem toAdd) {
         requireNonNull(toAdd);
+        int newQuantity = toAdd.getQuantity() + getQuantity(toAdd);
+        if (newQuantity > 100) {
+            throw new IllegalArgumentException();
+        }
+        assert(newQuantity <= 100);
         if (contains(toAdd)) {
             int index = internalList.indexOf(toAdd);
             OrderItem existingItem = internalList.get(index);
-            toAdd.setQuantity(toAdd.getQuantity() + existingItem.getQuantity());
+            toAdd.setQuantity(newQuantity);
             setOrderItem(existingItem, toAdd);
         } else {
             internalList.add(toAdd);
@@ -157,6 +162,20 @@ public class Order implements Iterable<OrderItem> {
     public int getQuantity(int index) {
         assert(index < internalList.size());
         return internalList.get(index).getQuantity();
+    }
+
+    /**
+     * Gets the quantity of the orderItem in current order equal to the {@code orderItem}. Returns 0 if it doesn't
+     * exist.
+     */
+    public int getQuantity(OrderItem orderItem) {
+        requireNonNull(orderItem);
+        try {
+            OrderItem foundItem = getOrderItem(orderItem.getName());
+            return foundItem.getQuantity();
+        } catch (OrderItemNotFoundException e) {
+            return 0;
+        }
     }
 
     @Override

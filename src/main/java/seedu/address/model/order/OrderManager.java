@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Stack;
 
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Wraps all data at the address-book level
@@ -96,9 +98,13 @@ public class OrderManager implements ReadOnlyOrderManager {
      * Adds a orderItem to the address book.
      * The orderItem must not already exist in the address book.
      */
-    public void addOrderItem(OrderItem f) {
-        order.add(f);
-        saveChanges();
+    public void addOrderItem(OrderItem orderItem) throws CommandException {
+        try {
+            order.add(orderItem);
+            saveChanges();
+        } catch (IllegalArgumentException e) {
+            throw new CommandException(Messages.MESSAGE_ORDERITEM_QUANTITY_EXCEED);
+        }
     }
 
 

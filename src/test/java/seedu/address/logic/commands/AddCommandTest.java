@@ -6,10 +6,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
@@ -36,7 +38,11 @@ public class AddCommandTest {
         OrderItem addedItem = new OrderItem(firstItem, 1);
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
-        expectedModel.addOrderItem(addedItem);
+        try {
+            expectedModel.addOrderItem(addedItem);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
         String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);
@@ -55,7 +61,11 @@ public class AddCommandTest {
         OrderItem addedItem = new OrderItem(secondItem, 3);
 
         Model expectedModel = TypicalModel.getModelManagerWithMenu();
-        expectedModel.addOrderItem(addedItem);
+        try {
+            expectedModel.addOrderItem(addedItem);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
         String expectedMessage = String.format(AddCommand.MESSAGE_ADD_SUCCESS, addedItem);
 
         assertCommandSuccess(addCommand, model, expectedMessage, expectedModel);

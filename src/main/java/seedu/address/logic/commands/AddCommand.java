@@ -64,7 +64,11 @@ public class AddCommand extends Command {
         }
 
         OrderItem orderItem = new OrderItem(menu.get(index), quantity);
-        model.addOrderItem(orderItem);
+        try {
+            model.addOrderItem(orderItem);
+        } catch (CommandException e) {
+            throw e;
+        }
         return new CommandResult(String.format(MESSAGE_ADD_SUCCESS, orderItem));
     }
 

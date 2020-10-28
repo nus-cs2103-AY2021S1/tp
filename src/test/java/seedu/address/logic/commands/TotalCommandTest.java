@@ -3,9 +3,11 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.TotalCommand.MESSAGE_RESULT;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
@@ -23,8 +25,12 @@ public class TotalCommandTest {
         for (int i = 0; i < 5; i++) {
             OrderItem orderItem = new OrderItem(menu.get(i), i + 6);
             calculatedTotal += orderItem.getPrice() * (i + 6);
-            model.addOrderItem(orderItem);
-            expectedModel.addOrderItem(orderItem);
+            try {
+                model.addOrderItem(orderItem);
+                expectedModel.addOrderItem(orderItem);
+            } catch (CommandException e) {
+                Assertions.assertTrue(false);
+            }
         }
         String expectedMessage = String.format(MESSAGE_RESULT, calculatedTotal);
 

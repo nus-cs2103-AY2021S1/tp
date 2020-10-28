@@ -14,5 +14,6 @@ public class Messages {
     public static final String MESSAGE_VENDORS_LISTED_OVERVIEW = "%1$d food listed!";
     public static final String MESSAGE_AMBIGUOUS_COMMAND = "Ambiguous command. The following commands matches the "
             + "prefix: %s";
+    public static final String MESSAGE_ORDERITEM_QUANTITY_EXCEED = "Cannot have more than 100 of the an order item.";
 
 }

@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.ReadOnlyMenuManager;
 import seedu.address.model.order.OrderItem;
@@ -113,8 +114,9 @@ public interface Model {
     /**
      * Adds the given orderItem.
      * {@code orderItem} if orderItem exists in order manageradd to the current quantity.
+     * @throws CommandException if after adding, there is more than 100 of the same order item
      */
-    void addOrderItem(OrderItem orderItem);
+    void addOrderItem(OrderItem orderItem) throws CommandException;
 
     /**
      * Returns an unmodifiable view of the filtered food list at the corresponding index

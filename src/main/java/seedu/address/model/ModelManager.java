@@ -15,6 +15,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.food.Food;
 import seedu.address.model.menu.MenuManager;
 import seedu.address.model.menu.ReadOnlyMenuManager;
@@ -224,9 +225,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addOrderItem(OrderItem orderItem) {
+    public void addOrderItem(OrderItem orderItem) throws CommandException {
         requireNonNull(orderItem);
-        orderManager.addOrderItem(orderItem);
+        try {
+            orderManager.addOrderItem(orderItem);
+        } catch (CommandException e) {
+            throw e;
+        }
     }
 
     @Override
