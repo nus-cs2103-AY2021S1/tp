@@ -102,27 +102,27 @@ Examples:
 
 Deallocates a room for a student i.e denotes that the student no longer occupies the room. 
 
-Format: `deallocate ri/<room_index> si/<student_index>`
-* Deallocates a room to the student at the specified `room_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list, 
-and the `student_index` refers to the index number shown in the displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
-* The room at `room_index` must be allocated to the student at `student_index`. Otherwise, an error message is displayed accordingly. 
+Format: `deallocate si/<student_index>`
+* Deallocates a room to the student at the specified `student_index`. The `student_index` refers to the index number shown in the displayed students list. The `student_index` **must be positive a integer** 1, 2, 3, …​
+* The student at `student_index` must have been allocated a room. Otherwise, an error message is displayed.
 
 Examples:
-* `deallocate ri/1 si/1` deallocates the room at `room_index` 1 for the student at `student_index` 1. 
+* `deallocate si/1` deallocates the room for the student at `student_index` 1. 
 
-#### 6. Edit a room allocation for a student : `reallocate`
+#### 6. Reallocating a room for a student : `reallocate`
 
-Edits a room allocation for a student, by first deallocating the student's current room, and then allocating a specified room to the student.
+Reallocates a room for a student, by editing the allocation relating a student to its current room.
 
 Format: `reallocate si/<student_index> ri/<room_index>`
 
-* Reallocates the room at `room_index` to the student at the specified `student_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list, 
-and the `student_index` refers to the index number shown in the displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
+* Reallocates the room at `room_index` to the student at the specified `student_index`. The `room_index` refers to the
+ index number shown in the displayed rooms list, and the `student_index` refers to the index number shown in the 
+ displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
 * The student at `student_index` must currently have a room allocation (which is not the specified room). Otherwise, an error message is displayed accordingly. 
 * The room at `room_index` must currently be vacant. Otherwise, an error message is displayed accordingly. 
 
 Examples:
-* `reallocate si/1 ri/2` first deallocates the room currently allocated to student with index 1, then  allocates the room at index 2 to the student.
+* `reallocate si/1 ri/2` edits the allocation of the student with index 1's current room to the room with index 2.
 
 #### 7. Archiving a Semester
 

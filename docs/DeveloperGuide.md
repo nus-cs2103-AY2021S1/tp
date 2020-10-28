@@ -155,6 +155,48 @@ Classes used by multiple components are in the `seedu.resireg.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Allocation/ deallocation/ reallocation feature
+
+The allocation/ deallocation/ reallocation feature is facilitated by `Allocation`. It is an association class of the
+unique identifiers of a `Student` and a `Room` to which the `Student` is allocated to. The `Allocation` association
+class includes the `Student`'s `StudentId` and the allocated `Room`'s `Floor` and `RoomNumber`.
+
+#### Implementation
+
+When a `Student` is allocated a `Room` using `AllocateCommand`, an `Allocation` instance is created and added to the
+`UniqueAllocationList`. Likewise, when a `Student` is deallocated or reallocated a different `Room` using `DeallocateCommand` and
+`ReallocateCommand` respectively, the `Allocation` relating to the `Student` is removed from `ResiReg` in the former
+and edited in the latter.
+
+#### Design consideration:
+
+##### Aspect: How to associate the allocation between a student and a room
+
+- **Alternative 1:** A student has a room.
+
+  - Pros: Trivial implementation.
+  - Cons: Storage redundancy as a student now has a copy of a room.
+  
+- **Alternative 2:** A room has a student.
+
+  - Pros: Trivial implementation.
+  - Cons: Storage redundancy as a room now has a copy of a student.
+  
+- **Alternative 3:** A student has a room and a room has a student.
+
+  - Pros: Easy implementation.
+  - Cons: Cyclic dependency between a room and a student.
+  
+- **Alternative 4 (final choice):** A student's room allocation is referred to by an association class.
+
+  - Pros: Natural representation of the allocation.
+  - Cons: Require more overhead code.
+
+Having attempted a `Student` having a `Room` attribute and/or vice versa, it inevitably ends
+up with a cyclic dependency in various parts of the code, such as the `Student` or `Room`'s `toString()` methods or
+their `JsonAdapted` variants, which is undesired. Therefore, the room allocation functionality was refactored into
+the `Allocation` association class (alternative 4).
+
 ### Undo/redo feature
 
 #### Implementation
