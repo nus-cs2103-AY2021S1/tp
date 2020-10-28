@@ -4,9 +4,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_ES2660;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_ES2660;
-
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 //import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -14,7 +11,9 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.testutil.EditModuleDescriptorBuilder;
 
