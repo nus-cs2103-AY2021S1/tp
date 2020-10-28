@@ -48,4 +48,33 @@ public class ItemPrecursorTest {
         editedApple = new ItemPrecursorBuilder(APPLE_PRECURSOR).withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
         assertFalse(APPLE_PRECURSOR.equals(editedApple));
     }
+
+    @Test
+    public void isSameItem() {
+        // same object -> returns true
+        assertTrue(APPLE_PRECURSOR.isSameItem(APPLE_PRECURSOR));
+
+        // null -> returns false
+        assertFalse(APPLE_PRECURSOR.isSameItem(null));
+
+        // different quantity and description -> returns true
+        ItemPrecursor editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR)
+                .withQuantity(VALID_ITEM_QUANTITY_BANANA)
+                .withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
+        assertTrue(APPLE_PRECURSOR.isSameItem(editedApplePrecursor));
+
+        // different name -> returns false
+        editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR).withName(VALID_ITEM_NAME_BANANA).build();
+        assertFalse(APPLE_PRECURSOR.isSameItem(editedApplePrecursor));
+
+        // same name, same quantity -> returns true
+        editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR)
+                .withDescription(VALID_ITEM_DESCRIPTION_BANANA).build();
+        assertTrue(APPLE_PRECURSOR.isSameItem(editedApplePrecursor));
+
+        // same name, same description -> returns true
+        editedApplePrecursor = new ItemPrecursorBuilder(APPLE_PRECURSOR)
+                .withQuantity(VALID_ITEM_QUANTITY_BANANA).build();
+        assertTrue(APPLE_PRECURSOR.isSameItem(editedApplePrecursor));
+    }
 }

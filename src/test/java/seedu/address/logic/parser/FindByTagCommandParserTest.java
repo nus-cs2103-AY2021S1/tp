@@ -8,28 +8,26 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.FindItemCommand;
-import seedu.address.model.item.NameMatchesKeywordsPredicate;
+import seedu.address.logic.commands.FindByTagCommand;
+import seedu.address.model.item.TagMatchesKeywordsPredicate;
 
-public class FindItemCommandParserTest {
-
-    private FindItemCommandParser parser = new FindItemCommandParser();
+public class FindByTagCommandParserTest {
+    private FindByTagCommandParser parser = new FindByTagCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                FindItemCommand.MESSAGE_USAGE));
+                FindByTagCommand.MESSAGE_USAGE));
     }
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
-        FindItemCommand expectedFindCommand =
-                new FindItemCommand(new NameMatchesKeywordsPredicate(Arrays.asList("Apple", "Banana")));
+        FindByTagCommand expectedFindCommand =
+                new FindByTagCommand(new TagMatchesKeywordsPredicate(Arrays.asList("Apple", "Banana")));
         assertParseSuccess(parser, "Apple, Banana", expectedFindCommand);
 
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Apple, \n \t Banana  \t", expectedFindCommand);
+        // space between same input
+        assertParseSuccess(parser, "Apple , Banana", expectedFindCommand);
     }
-
 }

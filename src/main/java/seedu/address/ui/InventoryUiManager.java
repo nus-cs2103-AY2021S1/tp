@@ -20,7 +20,7 @@ public class InventoryUiManager implements Ui {
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(InventoryUiManager.class);
-    private static final String ICON_APPLICATION = "/images/inventoryinator.png";
+    private static final String ICON_APPLICATION = "/images/icon.jpg";
 
     private Logic logic;
     private InventoryMainWindow mainWindow;

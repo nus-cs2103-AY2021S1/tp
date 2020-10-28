@@ -33,6 +33,9 @@ public class UniqueItemListTest {
         uList.add(APPLE);
 
         assertEquals(1, uList.asUnmodifiableObservableList().size());
+
+        // duplicate add -> duplicate error
+        assertThrows(DuplicateItemException.class, () -> uList.add(APPLE));
     }
 
     @Test
