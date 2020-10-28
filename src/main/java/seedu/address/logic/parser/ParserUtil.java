@@ -14,6 +14,7 @@ import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
 import seedu.address.model.project.RepoUrl;
 import seedu.address.model.tag.ProjectTag;
+import seedu.address.model.task.Date;
 import seedu.address.model.task.Task;
 
 /**
@@ -148,18 +149,81 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String info}.
+     * Parses a {@code String description}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code info} is invalid.
+     * @throws ParseException if the given {@code description} is invalid.
      */
-    public static String parseTaskBasicInformation(String info) throws ParseException {
-        requireNonNull(info);
-        String trimmedInfo = info.trim();
-        if (!Task.isValidAttribute(trimmedInfo)) {
+    public static String parseTaskDescription(String description) throws ParseException {
+        requireNonNull(description);
+        String trimmedDescription = description.trim();
+        if (!Task.isValidTaskDescription(trimmedDescription)) {
+            throw new ParseException(Task.DESCRIPTION_MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDescription;
+    }
+
+    /**
+     * Parses a {@code String date} into a {@code Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new Date(trimmedDate);
+    }
+
+    /**
+     * Parses a {@code String taskName}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code taskName} is invalid.
+     */
+    public static String parseTaskName(String taskName) throws ParseException {
+        requireNonNull(taskName);
+        String trimmedTaskName = taskName.trim();
+        if (!Task.isValidTaskName(trimmedTaskName)) {
             throw new ParseException(Task.NAME_MESSAGE_CONSTRAINTS);
         }
-        return trimmedInfo;
+        return trimmedTaskName;
+    }
+    /**
+     * Parses a {@code String progress} into a {@code Double}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code progress} is invalid.
+     */
+    public static Double parseTaskProgress(String progress) throws ParseException {
+        requireNonNull(progress);
+        String trimmedTaskProgress = progress.trim();
+        if (!Task.isValidProgress(trimmedTaskProgress)) {
+            throw new ParseException(Task.PROGRESS_MESSAGE_CONSTRAINTS);
+        }
+        try {
+            return Double.parseDouble(progress);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Task.PROGRESS_MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String doneStatus} into a {@code Boolean}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code doneStatus} is invalid.
+     */
+    public static Boolean parseDoneStatus(String doneStatus) throws ParseException {
+        requireNonNull(doneStatus);
+        String trimmedDoneStatus = doneStatus.trim();
+        if (!Task.isValidIsDone(trimmedDoneStatus)) {
+            throw new ParseException(Task.IS_DONE_MESSAGE_CONSTRAINTS);
+        }
+        return Boolean.parseBoolean(doneStatus);
     }
 
 }

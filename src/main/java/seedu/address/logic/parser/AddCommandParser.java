@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.ArgumentMultimapUtil.arePrefixesPresent;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
@@ -36,10 +36,10 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_DEADLINE, PREFIX_REPOURL,
-                        PREFIX_PROJECT_DESCRIPTION, PREFIX_PROJECT_TAG, PREFIX_TASK);
+                    PREFIX_DESCRIPTION, PREFIX_PROJECT_TAG, PREFIX_TASK);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_PROJECT_NAME,
-                PREFIX_PROJECT_DESCRIPTION, PREFIX_DEADLINE, PREFIX_REPOURL)
+            PREFIX_DESCRIPTION, PREFIX_DEADLINE, PREFIX_REPOURL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -48,7 +48,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
         RepoUrl repoUrl = ParserUtil.parseRepoUrl(argMultimap.getValue(PREFIX_REPOURL).get());
         ProjectDescription projectDescription = ParserUtil.projectDescription(argMultimap.getValue(
-                PREFIX_PROJECT_DESCRIPTION).get());
+            PREFIX_DESCRIPTION).get());
         Set<ProjectTag> projectTagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_PROJECT_TAG));
         Set<Task> taskList = ParserUtil.parseTasks(argMultimap.getAllValues(PREFIX_TASK));
 

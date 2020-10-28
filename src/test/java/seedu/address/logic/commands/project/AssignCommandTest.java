@@ -45,7 +45,7 @@ public class AssignCommandTest {
     public void execute_invalidIndexValidPerson_throwsCommandException() {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
-        Index outOfBoundIndex = Index.fromOneBased(project.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(project.getFilteredSortedTaskList().size() + 1);
         model.enter(project);
         project.addParticipation(ALICE);
         AssignCommand assignCommand = new AssignCommand(outOfBoundIndex, ALICE.getGitUserNameString());
@@ -59,7 +59,7 @@ public class AssignCommandTest {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         project.addParticipation(ALICE);
-        Task taskToAssign = project.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToAssign = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Participation assignee = project.getParticipation(ALICE.getGitUserNameString());
         assignee.addTask(taskToAssign);
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
@@ -77,7 +77,7 @@ public class AssignCommandTest {
         model.addParticipation(project.getParticipation(ALICE.getGitUserNameString()));
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());
 
-        Task taskToAssign = project.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToAssign = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
         Participation assignee = project.getParticipation(ALICE.getGitUserNameString());
         AssignCommand assignCommand = new AssignCommand(INDEX_FIRST_TASK, ALICE.getGitUserNameString());
 
@@ -105,7 +105,7 @@ public class AssignCommandTest {
         project.addParticipation(ALICE);
         model.addParticipation(project.getParticipation(ALICE.getGitUserNameString()));
         project.updateTaskFilter(x -> true);
-        Task taskToAssign = project.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        Task taskToAssign = project.getFilteredSortedTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         Participation assignee = project.getParticipation(ALICE.getGitUserNameString());
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToAssign.getTaskName()));
         ModelManager expectedModel = new ModelManager(model.getProjectCatalogue(), new UserPrefs());

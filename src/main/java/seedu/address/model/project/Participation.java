@@ -103,6 +103,10 @@ public class Participation {
 
     public Set<Task> getTasks() {
         return tasks;
+    }}
+
+    public void setPerson(Person person) {
+        this.person = person.getGitUserNameString();
     }
 
     @Override
@@ -120,7 +124,6 @@ public class Participation {
                 && otherParticipation.getPerson().equals(getPerson())
                 && otherParticipation.getRole().equals(getRole())
                 && otherParticipation.getTasks().equals(getTasks());
-
     }
 
     /**

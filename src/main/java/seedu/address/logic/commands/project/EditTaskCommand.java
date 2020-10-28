@@ -1,10 +1,10 @@
 package seedu.address.logic.commands.project;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
 import java.time.LocalDate;
@@ -36,9 +36,9 @@ public class EditTaskCommand extends Command {
             + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_PROJECT_NAME + "TASKNAME] "
+            + "[" + PREFIX_TASK_NAME + "TASKNAME] "
             + "[" + PREFIX_TASK_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PROJECT_DESCRIPTION + "TASKDESCRIPTION] "
+            + "[" + PREFIX_DESCRIPTION + "TASKDESCRIPTION] "
             + "[" + PREFIX_TASK_PROGRESS + "TASK PROGRESS]...\n"
             + "[" + PREFIX_TASK_IS_DONE + "TASK STATUS]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -66,7 +66,7 @@ public class EditTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Task> lastShownList = project.getFilteredTaskList();
+        List<Task> lastShownList = project.getFilteredSortedTaskList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -97,7 +97,7 @@ public class EditTaskCommand extends Command {
         assert taskToEdit != null;
 
         String updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
-        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
+        Deadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline().orElse(null));
         Double updatedProgress = editTaskDescriptor.getProgress().orElse(taskToEdit.getProgress());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
         String updatedTaskDescription = editTaskDescriptor.getTaskDescription()

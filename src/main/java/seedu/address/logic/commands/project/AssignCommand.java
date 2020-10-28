@@ -44,7 +44,7 @@ public class AssignCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         Project project = model.getProjectToBeDisplayedOnDashboard().get();
-        List<Task> lastShownTaskList = project.getFilteredTaskList();
+        List<Task> lastShownTaskList = project.getFilteredSortedTaskList();
 
         if (targetIndex.getZeroBased() >= lastShownTaskList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);

@@ -2,7 +2,7 @@ package seedu.address.logic.commands.global;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
@@ -26,14 +26,14 @@ public class AddCommand extends Command {
             + PREFIX_PROJECT_NAME + "PROJECT NAME "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_REPOURL + "REPOURL "
-            + PREFIX_PROJECT_DESCRIPTION + "PROJECT DESCRIPTION "
+            + PREFIX_DESCRIPTION + "PROJECT DESCRIPTION "
             + "[" + PREFIX_PROJECT_TAG + "TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PROJECT_NAME + "The Blair project "
             + PREFIX_DEADLINE + "29-02-2020 00:00:00"
             + PREFIX_REPOURL + "http://github.com/a/b.git "
-            + PREFIX_PROJECT_DESCRIPTION + "Coding in Greenwich "
+            + PREFIX_DESCRIPTION + "Coding in Greenwich "
             + PREFIX_PROJECT_TAG + "challenging "
             + PREFIX_PROJECT_TAG + "WFH"
             + PREFIX_TASK + "Write User Guide";

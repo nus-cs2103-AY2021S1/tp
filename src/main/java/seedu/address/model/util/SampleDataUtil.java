@@ -82,6 +82,17 @@ public class SampleDataUtil {
         };
     }
 
+    public static Task[] getSampleTasks() {
+        return new Task[] {
+            generateTask(task1),
+            generateTask(task2),
+            generateTask(task3),
+            generateTask(task4),
+            generateTask(task5),
+            generateTask(task6)
+        };
+    }
+
     public static Project[] getSampleProjects() {
 
         return new Project[]{
@@ -135,15 +146,23 @@ public class SampleDataUtil {
     }
 
     /**
+     * Generates a task from a String list describing the attributes of the task
+     * @param s the String list describing the attributes of the task
+     * @return  the task corresponds to the input String list
+     */
+    public static Task generateTask(List<String> s) {
+        return new Task(s.get(0),
+            s.get(1),
+            s.get(2) == null ? null : new Deadline(s.get(2)),
+            Double.parseDouble(s.get(3)),
+            Boolean.parseBoolean(s.get(4)));
+    }
+    /**
      * Returns a task set containing the list of strings given.
      */
     public static Set<Task> getTaskSet(List<String>... strings) {
         return Arrays.stream(strings)
-                .map(s -> new Task(s.get(0),
-                        s.get(1),
-                        s.get(2) == null ? null : new Deadline(s.get(2)),
-                        Double.parseDouble(s.get(3)),
-                        Boolean.parseBoolean(s.get(4))))
+                .map(s -> generateTask(s))
                 .collect(Collectors.toSet());
     }
 

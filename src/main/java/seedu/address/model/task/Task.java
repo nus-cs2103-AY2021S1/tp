@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.person.GitUserName;
@@ -15,19 +16,17 @@ import seedu.address.model.project.Participation;
  * Represents a Task of a project.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public class Task implements Comparable<Task> {
 
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "[^\\s].*";
     public static final String DESCRIPTION_VALIDATION_REGEX = "[^\\s].*";
 
     public static final String NAME_MESSAGE_CONSTRAINTS =
-            "Task names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Task name can be any values, and it should not be blank";
     public static final String DESCRIPTION_MESSAGE_CONSTRAINTS =
-            "Task descriptions should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Task description can be any values, and it should not be blank";
     public static final String PUBLISH_DATE_MESSAGE_CONSTRAINTS =
             "Publish date should only be in the format of dd-MM-yyyy";
-    public static final String DEADLINE_MESSAGE_CONSTRAINTS =
-            "Publish date should only be in the format of yyyy-MM-dd";
     public static final String PROGRESS_MESSAGE_CONSTRAINTS =
             "Progress values should only contain integers between 0 and 100 inclusive, and it should not be blank";
     public static final String IS_DONE_MESSAGE_CONSTRAINTS =
@@ -59,13 +58,6 @@ public class Task {
         this.assignees = new HashSet<>();
     }
 
-    /**
-     * Returns true if a given string is a valid attribute.
-     */
-    public static boolean isValidAttribute(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
     public String getTaskName() {
         return taskName;
     }
@@ -78,8 +70,8 @@ public class Task {
         return publishDate;
     }
 
-    public Deadline getDeadline() {
-        return deadline;
+    public Optional<Deadline> getDeadline() {
+        return Optional.ofNullable(deadline);
     }
 
     public Double getProgress() {
@@ -101,6 +93,20 @@ public class Task {
     public boolean hasAnyAssignee() {
         return !assignees.isEmpty();
     }
+
+    /**
+     * Returns true if the task's due date is between the given start date and end date.
+     * @param start the start date of the time range
+     * @param end   the end date of the time range
+     */
+    public boolean isDueBetween(Date start, Date end) {
+        assert (start != null && end != null);
+        if (this.deadline == null) {
+            return false;
+        }
+        return this.deadline.isWithinTimeRange(start, end);
+    }
+
 
     /**
      * Checks if the task has an assignee whose name matches the given name.
@@ -213,14 +219,6 @@ public class Task {
         //        if (!(getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))) {
         //            return false;
         //        }
-        //        //            && getPublishDate().equals(task.getPublishDate())
-        //        return Objects.equals(getDeadline(), task.getDeadline());
-        //        return task.getProgress().equals(getProgress())
-        //                && getTaskName().equals(task.getTaskName())
-        //                && getDescription().equals(task.getDescription())
-        //                //            && getPublishDate().equals(task.getPublishDate())
-        //                && getDeadline().equals(task.getDeadline());
-
     }
 
     @Override
@@ -259,10 +257,29 @@ public class Task {
         } else if ((day == 30 || day == 31) && month == 2) {
             return false;
         } else if (day == 31 && (month == 4 || month == 6
-                || month == 9 || month == 11)) {
+            || month == 9 || month == 11)) {
             return false;
         } else {
             return isValidDay && isValidMonth;
+        }
+    }
+
+    /**
+     * By default, two tasks are compared using their deadlines.
+     * Tasks with no deadline are consider "larger",
+     * so that they will be listed at the end when sorted by default.
+     * @param task  the task to compare with
+     */
+    @Override
+    public int compareTo(Task task) {
+        if (this.deadline == null && task.deadline == null) {
+            return 0;
+        } else if (this.deadline == null) {
+            return 1;
+        } else if (task.deadline == null) {
+            return -1;
+        } else {
+            return this.deadline.compareTo(task.deadline);
         }
     }
 

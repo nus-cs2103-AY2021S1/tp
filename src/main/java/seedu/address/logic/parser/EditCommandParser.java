@@ -3,8 +3,8 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
@@ -36,8 +36,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_DEADLINE, PREFIX_REPOURL,
-                        PREFIX_PROJECT_DESCRIPTION, PREFIX_PROJECT_TAG, PREFIX_TASK, PREFIX_MEETING);
+            ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_DEADLINE, PREFIX_REPOURL,
+                PREFIX_DESCRIPTION, PREFIX_PROJECT_TAG, PREFIX_TASK, PREFIX_MEETING);
 
         Index index;
 
@@ -50,7 +50,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         EditProjectDescriptor editProjectDescriptor = new EditProjectDescriptor();
         if (argMultimap.getValue(PREFIX_PROJECT_NAME).isPresent()) {
             editProjectDescriptor.setProjectName(ParserUtil.parseProjectName(
-                    argMultimap.getValue(PREFIX_PROJECT_NAME).get()));
+                argMultimap.getValue(PREFIX_PROJECT_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_DEADLINE).isPresent()) {
             editProjectDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get()));
@@ -58,9 +58,9 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_REPOURL).isPresent()) {
             editProjectDescriptor.setRepoUrl(ParserUtil.parseRepoUrl(argMultimap.getValue(PREFIX_REPOURL).get()));
         }
-        if (argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION).isPresent()) {
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editProjectDescriptor.setProjectDescription(ParserUtil.projectDescription(argMultimap
-                    .getValue(PREFIX_PROJECT_DESCRIPTION).get()));
+                .getValue(PREFIX_DESCRIPTION).get()));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_PROJECT_TAG)).ifPresent(editProjectDescriptor::setTags);
         parseTasksForEdit(argMultimap.getAllValues(PREFIX_TASK)).ifPresent(editProjectDescriptor::setTasks);

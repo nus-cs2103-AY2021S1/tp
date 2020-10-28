@@ -2,7 +2,7 @@ package seedu.address.logic.commands.global;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REPOURL;
@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_PROJECT_NAME + "PROJECTNAME] "
             + "[" + PREFIX_DEADLINE + "DEADLINE] "
             + "[" + PREFIX_REPOURL + "REPOURL] "
-            + "[" + PREFIX_PROJECT_DESCRIPTION + "PROJECTDESCRIPTION] "
+            + "[" + PREFIX_DESCRIPTION + "PROJECTDESCRIPTION] "
             + "[" + PREFIX_PROJECT_TAG + "PROJECT TAG]...\n"
             + "[" + PREFIX_TASK + "TASK]...\n"
             + "Example: " + COMMAND_WORD + " 1 "

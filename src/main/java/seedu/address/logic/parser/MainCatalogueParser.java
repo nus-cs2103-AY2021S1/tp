@@ -21,11 +21,13 @@ import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
+import seedu.address.logic.commands.project.DeleteTeammateCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
+import seedu.address.logic.commands.project.TaskSorterCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.commands.project.ViewTeammateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -132,6 +134,13 @@ public class MainCatalogueParser {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
+        case TaskSorterCommand.COMMAND_WORD:
+            if (status != Status.PROJECT_LIST) {
+                return new TaskSorterCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
         case NewTeammateCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new NewTeammateCommandParser().parse(arguments);
@@ -142,6 +151,13 @@ public class MainCatalogueParser {
         case AddTaskCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new AddTaskCommandParser().parse(arguments);
+            } else {
+                throw new InvalidScopeException(Status.PROJECT, status);
+            }
+
+        case DeleteTeammateCommand.COMMAND_WORD:
+            if (status != Status.PROJECT_LIST) {
+                return new DeleteTeammateCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }

@@ -72,7 +72,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * One and only one Item in parenthesis should be supplied by the user
-  e.g. `(ta/ASSIGNEE NAME) (td/DEADLINE) (tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020 10:00:00" or "".
+  e.g. `(ta/ASSIGNEE NAME) || (td/DEADLINE) || (tn/TASK NAME)` can be used as "ta/Alice", "td/31-12-2020 10:00:00" or as "tn/group meeting", but not as "ta/Alice td/31-12-2020 10:00:00" or "".
 
 * Items in square brackets are optional.<br>
   e.g `n/NAME [tg/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
@@ -232,7 +232,7 @@ Format: `edittask (INDEX) [n/TASK_NAME] [tp/TASK_PROGRESS] [done/TASK_STATUS] [t
 
 Example: `edittask 3 tn/Finish project status/true` changes the name of task 3 in the list to Finish project, and the done status to true, indicating the task is completed.
 
-### Filter tasks `filtert `
+### Filter tasks `filter `
 
 Filters tasks in the task list by various predicates:
   - by assignee's name
@@ -241,7 +241,7 @@ Filters tasks in the task list by various predicates:
   - by progress
   - by task's name
 
-Format: `filtert [ta/TASK_ASSIGNEE_NAME] [td/DEADLINE] [done/ DONE_STATUS] [tp/TASK PROGRESS] [tn/TASK_NAME]` 
+Format: `filter (ta/TASK_ASSIGNEE_NAME)||(td/DEADLINE)||(done/DONE_STATUS)||(tp/TASK PROGRESS)||(tn/TASK_NAME)` 
   - User may choose one predicate to filter tasks by
   - Assignee name is the name of the Teammate who is assigned to the task
   - Deadline of the task follows the format *DD-MM-YYYY hh:mm:ss*
@@ -250,7 +250,7 @@ Format: `filtert [ta/TASK_ASSIGNEE_NAME] [td/DEADLINE] [done/ DONE_STATUS] [tp/T
   - Task Name can be any alphanumeric value (containing only alphabets and / or numbers).
 -  
 
-Example: `filtert done/true` filters all the tasks that are done, and displays the done tasks to the user.
+Example: `filter done/true` filters all the tasks that are done, and displays the done tasks to the user.
 
 ### View details of a task `viewtask `
 

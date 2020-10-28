@@ -28,7 +28,9 @@ public class TypicalProjects {
             .withProjectDescription("An app for you to speak your mind")
             .withRepoUrl("https://github.com/a/a.git")
             .withDeadline("21-03-2020 00:00:00")
-            .withTags("linguistics").withTasks(SampleDataUtil.getTask1(), SampleDataUtil.getTask2()).build();
+            .withTags("linguistics")
+            .withTasks(SampleDataUtil.getTask1(), SampleDataUtil.getTask2())
+            .build();
     public static final Project BRICK = new ProjectBuilder().withProjectName("Brick No Meier")
             .withProjectDescription("To destroy the brick and mortar")
             .withRepoUrl("https://github.com/b/b.git")

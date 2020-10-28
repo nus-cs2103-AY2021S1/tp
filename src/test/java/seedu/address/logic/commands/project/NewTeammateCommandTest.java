@@ -2,8 +2,8 @@ package seedu.address.logic.commands.project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalPersons.DESC_A;
 import static seedu.address.testutil.TypicalPersons.DESC_B;
 import static seedu.address.testutil.TypicalPersons.DESC_C;
@@ -59,21 +59,21 @@ public class NewTeammateCommandTest {
         NewTeammateCommand newTeammateCommand3 = new NewTeammateCommand(DESC_C);
 
         // same object -> returns true
-        assertTrue(newTeammateCommand1.equals(newTeammateCommand1));
+        assertEquals(newTeammateCommand1, newTeammateCommand1);
 
         // same values -> returns true
         NewTeammateCommand newTeammateCommand1copy = new NewTeammateCommand(DESC_A);
-        assertTrue(newTeammateCommand1.equals(newTeammateCommand1copy));
+        assertEquals(newTeammateCommand1copy, newTeammateCommand1);
 
         // different types -> returns false
         assertFalse(newTeammateCommand1.equals("this test will return false"));
 
         // null -> returns false
-        assertFalse(newTeammateCommand1.equals(null));
+        assertNotEquals(newTeammateCommand1, null);
 
         // different tasks -> returns false
-        assertFalse(newTeammateCommand1.equals(newTeammateCommand2));
-        assertFalse(newTeammateCommand2.equals(newTeammateCommand3));
+        assertNotEquals(newTeammateCommand2, newTeammateCommand1);
+        assertNotEquals(newTeammateCommand3, newTeammateCommand2);
     }
 
 
