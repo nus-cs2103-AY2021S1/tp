@@ -387,8 +387,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the item being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
 ### Help Window
 There are 2 types of help window: `help summary` and `help start`.
 The `logic` behind help command is similar to other commands in terms of `parsing`.
@@ -489,6 +487,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01 - Delete an item**
 
+**Actor**: User
+
 **MSS**
 
 1.  User requests to list items
@@ -511,6 +511,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 **Use case: UC02 - Adding existing item's quantity or tags**
+
+**Actor**: User
 
 **MSS**
 
@@ -538,11 +540,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC03 - Editing an item**
 
+**Actor**: User
+
 **MSS**
 
-1. User request to list all item or specific item using the find-command
-2. InventoryBook show the list of corresponding items.
-3. User request to edit a specific item in the list.
+1. User requests to list all items or a specific item using the find-command
+2. InventoryBook shows the list of corresponding items.
+3. User requests to edit a specific item in the list.
 4. InventoryBook edits the item.
 
    Use case ends.
@@ -573,6 +577,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC04 - User opens help window**
 
+**Actor**: User
+
 **MSS**
 
 1. User requests to open up help start window.
@@ -589,8 +595,46 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3a1. OneShelf does **not** open a new Help Start Window.
 
   Use case ends.
+   
+**Use case: UC05 - Undoing a command**
 
+**Actor**: User
 
+**MSS**
+
+1. User executes a command (e.g. <u>deletes an item (UC01)</u>).
+2. User realises executing the command was a mistake and requests to undo it.
+3. OneShelf reverts the data and UI to the state it was in before the command executed (e.g. puts the deleted item back into the inventory).
+
+    Use Case ends.
+
+**Extensions**
+
+* 3a. There are no more commands to undo
+
+  * 3a1. OneShelf gives an appropriate message informing the user that there are no more previous states to revert to.
+  
+  Use case ends.
+  
+**Use case: UC06 - Redoing an undone command**
+
+**Actor**: User
+
+**MSS**
+
+1. User <u>undoes a command (UC05)<u>.
+2. User requests OneShelf to redo the command
+3. OneShelf brings the data and UI to the state it was in after the undone command was executed.
+
+    Use Case ends.
+
+**Extensions**
+
+* 4a. There are no more commands to redo
+
+  * 4a1. OneShelf gives an appropriate message informing the user that there are no more redoable states to go to.
+  
+  Use case ends.
 
 ### Non-Functional Requirements
 
@@ -692,6 +736,47 @@ if there is no existing same item. If there is an existing same item,
    1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size or
    x is a negative number)<br>
       Expected: Similar to previous.
+      
+### Undoing a command
+
+1. Undoing a command before any commands have been entered.
+    
+    1. Prerequisites: No commands have been entered yet.
+    
+    1. Test case: `undo` <br>
+        Expected: Error message is shown, stating that undo cannot be performed.
+        
+1. Undoing after a command has executed
+
+    1. Prerequisites: The last command entered was `clear-i`, which cleared all of 5 items in the inventory book.
+    
+    1. Test case: `undo` <br>
+        Expected: The inventory book is restored to the state where it had 5 items. Success message is displayed.
+      
+### Redoing an undone command
+
+1. Redoing a command before any commands have been undone.
+    
+    1. Prerequisites: No commands have been undone yet.
+    
+    1. Test case: `redo` <br>
+        Expected: Error message is shown, stating that redo cannot be performed.
+        
+    <div markdown="span" class="alert alert-primary">:bulb: **Note:** you can restart the application if you have entered commands previously
+    </div>
+1. Redoing after a command that changes the `InventoryBook` or `DeliveryBook` has executed
+
+    1. Prerequisites: The last command entered changed the Inventory/Delivery book.
+    
+    1. Test case: `redo` <br>
+        Expected: Error message is shown, stating that redo cannot be performed.
+        
+1. Undoing after a command has been undone
+
+    1. Prerequisites: A `clear-i` command was entered, which cleared all of 5 items in the inventory book. It was followed by an `undo` command.
+    
+    1. Test case: `redo` <br>
+        Expected: The inventory book is restored to the state where all its items were cleared. Success message is displayed. 
 
 ### Saving data
 
