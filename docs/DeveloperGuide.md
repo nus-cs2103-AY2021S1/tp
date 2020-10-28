@@ -303,11 +303,11 @@ The following sequence diagram shows how the import operation works:
 
 
 
-### Undo/redo feature
+### Undo feature
 
 #### Implementation
 
-The proposed undo/redo mechanism is facilitated by `ModelManager` and `History`.
+The proposed undo mechanism is facilitated by `ModelManager` and `History`.
 `History` pairs `ReadOnlyMcGymmy` and `Predicate<Food>` gotten from `ModelManager` into a pair, then store multiple pairs of different versions in a stack, with the most recent version on top.
 Whenever there is a change to either `ModelManager`'s data or filter predicate, `ModelManager` will pass itself into `History` to be checked and saved in the stack.
 If `History` recognizes there is no change between the current state and the previous state, it will not save the current state to its stack.
@@ -374,13 +374,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How undo executes
 
-* **Alternative 1 (current choice):** Saves the entire McGymmy database.
+* **Alternative 1 (current choice):** Saves the entire ModelManger database.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Individual command knows how to undo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the food item being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
@@ -589,11 +589,12 @@ Use case ends.
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **Private diet detail**: Diet details that is not meant to be shared with others.
 * `Flag`: A dash followed by a letter to denote the start of a parameter. For example, in `-n Chicken Rice`, `-n` is a flag for name and `Chicken Rice` is the input that will be processed by the application.
 * **McGymmy/MG**: The name of this application
 * **Command Line Interface (CLI)**: A command-line interface (CLI) processes commands to a computer program in the form of lines of text.
 * **Graphical User Interface (GUI)**: A visual way of interacting with a computer using items such as windows, icons, and menus, used by most modern operating systems.
+* **Macro command**: A command that allows you to execute multiple built-in commands sequentially with just one line of input
+* **Built-in commands**: Any other commands except Macro Command
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -609,9 +610,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+   1. Download the JAR file and copy into any folder
 
-   1. Double-click the jar file
+   1. Double-click the JAR file
       <br>
       Expected: Shows the GUI with a set of sample food items. The window size may not be optimum.
 
@@ -619,7 +620,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.
+   1. Re-launch the app by double-clicking the JAR file.
       <br>
       Expected: The most recent window size and location is retained.
 
@@ -643,7 +644,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. Delete the 'data' file if any. Relaunch the app by double-clicking the jar file.
+   1. Delete the 'data' file if any. Relaunch the app by double-clicking the JAR file.
    <br>
    Expected: A new data file is generated
 
