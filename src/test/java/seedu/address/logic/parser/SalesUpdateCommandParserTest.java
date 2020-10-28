@@ -23,21 +23,16 @@ public class SalesUpdateCommandParserTest {
         int numBsbbtSold = 20;
         HashMap<Drink, Integer> sales = new HashMap<>();
         sales.put(Drink.BSBM, numBsbmSold);
-        sales.put(Drink.BSBBT, 0);
-        sales.put(Drink.BSBGT, 0);
-        sales.put(Drink.BSPM, 0);
-        sales.put(Drink.BSPBT, 0);
-        sales.put(Drink.BSPGT, 0);
 
         // have one item
-        String userInput = SalesUpdateCommand.COMMAND_WORD + " " + PREFIX_BSBM + numBsbmSold;
+        String userInput = " " + PREFIX_BSBM.toString() + numBsbmSold;
         SalesUpdateCommand expectedCommand = new SalesUpdateCommand(sales);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // have two item
         sales.put(Drink.BSBBT, numBsbbtSold);
-        userInput = SalesUpdateCommand.COMMAND_WORD + " " + PREFIX_BSBM + numBsbmSold
-                + " " + PREFIX_BSBBT + numBsbbtSold;
+        userInput = " " + PREFIX_BSBM.toString() + numBsbmSold
+                + " " + PREFIX_BSBBT.toString() + numBsbbtSold;
         expectedCommand = new SalesUpdateCommand(sales);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

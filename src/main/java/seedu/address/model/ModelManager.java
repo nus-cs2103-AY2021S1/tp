@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -192,11 +193,7 @@ public class ModelManager implements Model {
 
     @Override
     public void overwrite(Map<Drink, Integer> salesInput) {
-        if (isEmptySalesBook()) {
-            salesBook.setRecord(salesInput);
-        } else {
-            salesBook.overwriteSales(salesInput);
-        }
+        salesBook.overwriteSales(salesInput);
     }
 
     @Override
@@ -225,6 +222,17 @@ public class ModelManager implements Model {
     public void addIngredient(Ingredient ingredient) {
         ingredientBook.addIngredient(ingredient);
         updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
+    }
+
+    /**
+     * Returns an ArrayList of ingredients that are in shortage. If
+     * no ingredient is in shortage, return an empty ArrayList.
+     *
+     * @return an ArrayList of ingredients that are in shortage
+     */
+    @Override
+    public ArrayList<Ingredient> findIngredientInShortage() {
+        return ingredientBook.findIngredientInShortage();
     }
 
 

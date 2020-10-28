@@ -132,9 +132,8 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 
 </div>
 
-#### 2.1 Updating the number of drinks sold for the day : `s-update`
-Updates tCheck on the number of each type of drink sold for the current day, based on the sales data provided by the
-user.
+#### 2.1 Updating the number of drinks sold : `s-update`
+Updates the number of drinks sold for each drink type as given in the user input.
 
 Format: `s-update A/NUM B/NUM C/NUM ...`
 * `A`, `B`, `C` are abbreviations for the drink types.
@@ -143,6 +142,14 @@ Format: `s-update A/NUM B/NUM C/NUM ...`
 Example:
 * `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
  Brown Sugar Boba Black Tea `BSBBT` to 120.
+ 
+ <div markdown="span" class="alert alert-primary">
+ 
+:information_source: Note about the update: <br>
+
+The record in tCheck will be overwritten by the input that you provide. <br>
+ 
+ </div>
 
 #### 2.2 Listing the number of drinks sold for the day : `s-list`
 Shows a list of all types of drinks sold for the current day.
@@ -175,7 +182,7 @@ Examples:
 
 * Unit of measurement for ingredients:<br>
     * - Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
-    * - Unit for liquids (Milk and Oolong Tea) : **L**<br>
+    * - Unit for liquids (Milk, Black Tea and Green Tea) : **L**<br>
 
 * All ingredients' levels are set to 0.<br>
 
@@ -187,7 +194,8 @@ Examples:
     * - Milk<br>
     * - Pearl<br>
     * - Boba<br>
-    * - Oolong Tea<br>
+    * - Black Tea<br>
+    * - Green Tea<br>
     * - Brown Sugar<br>
 
 </div>
@@ -226,24 +234,41 @@ Format: `i-set-default`
 Example:
 * `i-set-default`
 
-#### 3.4 Viewing a single ingredient's level : `i-view-single`
-Shows the ingredient's level of a particular type of ingredient which is specified by the user’s command.
+#### 3.4 Listing all ingredients' levels : `i-list`
+Lists the ingredient's levels of all ingredient types.
+
+Format: `i-list`
+
+#### 3.5 Viewing a single ingredient's level : `i-view-single`
+Shows the ingredient's level of a particular type of ingredient that is specified by the user’s command.
 
 Format: `i-view-single i/INGREDIENT_NAME`
 
 Example:
-* `i-view-single i/Milk`
-Shows the amount of milk which is recorded by tCheck.
+* `i-view-single i/Green Tea`
+Shows the amount of green tea recorded by tCheck.
 
-#### 3.5 Resetting all ingredients' levels to zero : `i-reset-all`
-Sets all ingredients' levels to zero.
+#### 3.7 Resetting all ingredients' levels to zero : `i-reset-all`
+Resets all types of ingredients' levels to zero in tCheck.
 
 Format: `i-reset-all`
 
-#### 3.6 Listing all ingredients' levels : `i-list`
-Shows the ingredient's levels of all ingredient types.
+#### 3.6 Listing all ingredients that user should restock : `i-restock`
+Lists the ingredient's levels of all ingredient types that fall below their minimum stock levels and require the user to 
+restock. 
 
-Format: `i-list`
+The table below shows the minimum stock levels of different types of ingredients:
+
+Ingredient Type | Minimum Stock Level
+-------|------------------------------
+**Milk** | 5 L
+**Pearl** | 5 KG
+**Boba** | 5 KG
+**Black Tea** | 5 L
+**Green Tea** | 5 L
+**Brown Sugar** | 5 KG
+
+Format: `i-restock`
 
 ### 4. Commands - Contact details <a name="commands-contact-details"></a>
 

@@ -2,6 +2,7 @@ package seedu.address.model.ingredient;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -28,10 +29,16 @@ class UniqueIngredientListTest {
         assertThrows(NullPointerException.class, () -> uniqueIngredientList.contains(null));
     }
 
-    /*@Test
+    @Test
     public void contains_ingredientInList_returnsTrue() {
-        assertTrue(uniqueIngredientList.contains(OOLONG_TEA));
-    }*/
+        uniqueIngredientList.add(new Ingredient(new IngredientName("Black Tea")));
+        uniqueIngredientList.add(new Ingredient(new IngredientName("Green Tea")));
+        uniqueIngredientList.add(new Ingredient(new IngredientName("Boba")));
+        uniqueIngredientList.add(new Ingredient(new IngredientName("Pearl")));
+        uniqueIngredientList.add(new Ingredient(new IngredientName("Milk")));
+        uniqueIngredientList.add(new Ingredient(new IngredientName("Brown Sugar")));
+        assertTrue(uniqueIngredientList.contains(BLACK_TEA));
+    }
 
     @Test
     public void setIngredient_nullTargetIngredient_throwsNullPointerException() {
@@ -51,28 +58,30 @@ class UniqueIngredientListTest {
                 .setIngredient(new Ingredient(new IngredientName("Olong Tea")), BLACK_TEA_VALID_AMOUNT));
     }
 
-    /*@Test
+    @Test
     public void setIngredient_editedIngredientIsSameIngredient_throwsNoChangeIngredientException() {
 
         assertThrows(NoChangeIngredientException.class, ()
-            -> uniqueIngredientList.setIngredient(OOLONG_TEA, OOLONG_TEA));
-    }*/
+            -> uniqueIngredientList.setIngredient(BLACK_TEA, BLACK_TEA));
+    }
 
-    /*@Test
+    @Test
     public void setIngredient_editedIngredientHasDifferentAmount_success() {
-        System.out.println(uniqueIngredientList);
-        myIngredientList.setIngredient(OOLONG_TEA, OOLONG_TEA_VALID_AMOUNT);
+        myIngredientList.add(new Ingredient(new IngredientName("Black Tea")));
+        myIngredientList.setIngredient(BLACK_TEA, BLACK_TEA_VALID_AMOUNT);
 
         UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
-        expectedUniqueIngredientList.setIngredient(OOLONG_TEA, OOLONG_TEA_VALID_AMOUNT);
+        expectedUniqueIngredientList.add(new Ingredient(new IngredientName("Black Tea")));
+        expectedUniqueIngredientList.setIngredient(BLACK_TEA, BLACK_TEA_VALID_AMOUNT);
         assertEquals(expectedUniqueIngredientList, myIngredientList);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void setIngredient_editedIngredientHasNoChange_throwsNoChangeIngredientException() {
-        assertThrows(NoChangeIngredientException.class, () -> uniqueIngredientList.setIngredient(OOLONG_TEA,
+
+        assertThrows(NoChangeIngredientException.class, () -> uniqueIngredientList.setIngredient(BLACK_TEA,
                 BOBA));
-    }*/
+    }
 
     @Test
     public void setIngredients_nullUniqueIngredientList_throwsNullPointerException() {
@@ -94,18 +103,26 @@ class UniqueIngredientListTest {
                 (List<Ingredient>) null));
     }
 
-    /*@Test
+    @Test
     public void setIngredients_list_replacesOwnListWithProvidedList() {
         internalList.add(new Ingredient(new IngredientName("Milk")));
         internalList.add(new Ingredient(new IngredientName("Pearl")));
         internalList.add(new Ingredient(new IngredientName("Boba")));
-        internalList.add(new Ingredient(new IngredientName("Oolong Tea"), new Amount("90")));
+        internalList.add(new Ingredient(new IngredientName("Black Tea"), new Amount("90")));
+        internalList.add(new Ingredient(new IngredientName("Green Tea")));
         internalList.add(new Ingredient(new IngredientName("Brown Sugar")));
         uniqueIngredientList.setIngredients(internalList);
+
         UniqueIngredientList expectedUniqueIngredientList = new UniqueIngredientList();
-        expectedUniqueIngredientList.setIngredient(OOLONG_TEA, OOLONG_TEA_VALID_AMOUNT);
+        expectedUniqueIngredientList.add(new Ingredient(new IngredientName("Milk")));
+        expectedUniqueIngredientList.add(new Ingredient(new IngredientName("Pearl")));
+        expectedUniqueIngredientList.add(new Ingredient(new IngredientName("Boba")));
+        expectedUniqueIngredientList.add(new Ingredient(new IngredientName("Black Tea")));
+        expectedUniqueIngredientList.add(new Ingredient(new IngredientName("Green Tea")));
+        expectedUniqueIngredientList.add(new Ingredient(new IngredientName("Brown Sugar")));
+        expectedUniqueIngredientList.setIngredient(BLACK_TEA, BLACK_TEA_VALID_AMOUNT);
         assertEquals(expectedUniqueIngredientList, uniqueIngredientList);
-    }*/
+    }
 
     @Test
     public void setIngredients_listWithDuplicateIngredients_throwsNoChangeIngredientException() {
