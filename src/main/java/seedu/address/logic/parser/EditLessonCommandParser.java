@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.commons.core.index.Index;
@@ -21,15 +22,15 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class EditLessonCommandParser implements Parser<EditLessonCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditTaskCommand
+     * and returns an EditTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_DAY,
-                        PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_START_TIME, PREFIX_END_TIME);
+                        PREFIX_START_DATE, PREFIX_END_DATE, PREFIX_START_TIME, PREFIX_END_TIME, PREFIX_TAG);
 
         Index index;
 
@@ -62,6 +63,9 @@ public class EditLessonCommandParser implements Parser<EditLessonCommand> {
         }
         if (argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
             editLessonDescriptor.setEndDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editLessonDescriptor.setTag(ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get()));
         }
 
         if (!editLessonDescriptor.isAnyFieldEdited()) {
