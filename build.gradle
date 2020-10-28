@@ -51,7 +51,7 @@ task coverage(type: JacocoReport) {
 }
 
 dependencies {
-    String testFxVersion = '4.0.16-alpha'
+    String testFxVersion = '4.0.15-alpha'
     String jUnitVersion = '5.4.0'
     String javaFxVersion = '11'
 
