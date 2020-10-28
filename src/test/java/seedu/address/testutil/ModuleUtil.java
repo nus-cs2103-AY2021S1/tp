@@ -3,7 +3,7 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
+// import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
@@ -31,7 +31,7 @@ public class ModuleUtil {
     public static String getModuleDetails(Module module) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + module.getName().fullName + " ");
-        sb.append(PREFIX_ZOOM_LINK + module.getLink().value + " ");
+        // sb.append(PREFIX_ZOOM_LINK + module.getLink().value + " ");
         sb.append(PREFIX_MODULAR_CREDITS + module.getModularCredits().toString() + " ");
         module.getTags().stream().forEach(s -> sb.append(PREFIX_TAG + s.tagName + " "));
         return sb.toString();

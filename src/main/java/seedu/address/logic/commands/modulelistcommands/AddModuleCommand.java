@@ -20,7 +20,6 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the module list. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
-            + PREFIX_ZOOM_LINK + "ZOOM LINK "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "CS2100 "
             + PREFIX_ZOOM_LINK + "www.zoom.com";
@@ -59,7 +58,7 @@ public class AddModuleCommand extends Command {
             AddModuleCommand temp = (AddModuleCommand) other;
             Module temp2 = temp.module;
             return this.module.getName().equals(temp2.getName())
-                    && this.module.getLink().equals(temp2.getLink())
+                    && this.module.getAllLinks().equals(temp2.getAllLinks())
                     && this.module.getModularCredits().equals(temp2.getModularCredits());
         } else {
             return false;
