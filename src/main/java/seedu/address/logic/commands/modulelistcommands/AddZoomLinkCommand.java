@@ -52,7 +52,7 @@ public class AddZoomLinkCommand extends Command {
         }
 
         Module moduleToAddLink = lastShownList.get(moduleID);
-        Module updatedModule = moduleToAddLink.addZoomLink(zoomLink);
+        Module updatedModule = moduleToAddLink.addZoomLink("", zoomLink);
         model.setModule(moduleToAddLink, updatedModule);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         model.commitModuleList();
