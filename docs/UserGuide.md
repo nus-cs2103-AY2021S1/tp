@@ -3,11 +3,13 @@
 title: User Guide
 ---
 
-# Your guide to QuickCache
+# Welcome to QuickCache User Guide
 
 **QuickCache** is a desktop app for managing flashcards, optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). 
 
-If you are a student who can type fast and loves organizing your study materials, QuickCache can get your flashcard management tasks done faster than any traditional GUI appplication.
+If you are a student who can type fast and loves organizing your study materials, **QuickCache** can get your flashcard management tasks done faster than any traditional GUI appplication.
+
+The **QuickCache User Guide** helps you get started with using **QuickCache**. This user guide aims to walk you through the robust features that **QuickCache** has to offer and take you from zero to hero. Don't like reading? A summary is available at the end for your reference.
 
 **Table of Contents**
 
@@ -165,6 +167,7 @@ To view a flashcard you can open it by its index.
 
 	![OpenIndexStep3](./images/OpenIndexStep3.png)
 	
+
 You have successfully opened a flashcard!
 
 ### Editing a flashcard: `edit INDEX q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..` <a name="editing-a-flashcard"></a>
@@ -202,7 +205,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 </div>
 
 #### Finding by question: `find q/KEYWORD1 q/KEYWORD2 ..` <a name="finding-by-question"></a>
-	
+
 <div markdown="block" class="alert alert-info">
 
 :information_source:<br>
@@ -224,7 +227,7 @@ To find flashcards, you can find them by specifying keywords within their questi
 	![FindQuestionStep3](./images/FindQuestionStep3.png)
 
 #### Finding by tags: `find t/TAG1 t/TAG2 ..` <a name="finding-by-tags"></a>
-	
+
 <div markdown="block" class="alert alert-info">
 
 :information_source: Tags are case-sensitive.
@@ -299,6 +302,7 @@ You can delete a flashcard based on the index shown in the last displayed list.
 
 	![DeleteIndexStep3](./images/DeleteIndexStep3.png)
 	
+
 You have successfully deleted a flashcard!
 
 #### Deleting by tags : `delete t/TAG1` <a name="deleting-by-tags"></a>
@@ -330,40 +334,54 @@ Format: `clear`
 
 #### Containing an open-ended question : `test INDEX ans/ANSWER` <a name="testing-oeq"></a>
 
-<div markdown="block" class="alert alert-info">
-:bulb: Answer is <b>case insensitive</b>.
-</div>
-<div markdown="block" class="alert alert-danger">
-The index <b>must be a positive integer</b> 1, 2, 3, ...
-</div>
-
 You can test yourself with a flashcard containing open-ended question by specifying an answer.
 
-1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.s
+
     ![TestStep1](./images/TestStep1.png)
+    
 2. Using the indices of the displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the answer `a computer organization module`, you can enter `test 2 ans/a computer organization module`.
+
+    <div markdown="block" class="alert alert-info">
+    :bulb: Answer is <b>case insensitive</b>.
+    </div>
+    <div markdown="block" class="alert alert-danger">
+    The index <b>must be a positive integer</b> 1, 2, 3, ...
+    </div>
+
     ![TestOpenStep2](./images/TestOpenStep2.png)
+    
 3. Press enter and QuickCache will tell you whether you got the question right.
+
     ![TestOpenStep3](./images/TestOpenStep3.png)
 
 You have successfully tested yourself on an open-ended question!
 
 #### Containing a multiple choice question : `test INDEX o/OPTION` <a name="testing-mcq"></a>
 
-<div markdown="block" class="alert alert-danger">
-The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
-</div>
-
 You can also test yourself a flashcard containing a multiple choice question by specifying an option.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+
     ![TestStep1](./images/TestStep1.png)
+    
 2. Using the indices of the displayed list, enter the `open` command followed by the index of the flashcard you want to see the options of. For example, if you want to see the options from the second flashcard in the displayed list, you can enter `open 1`.
+
     ![TestMCQStep2](./images/TestMCQStep2.png)
+    
 3. Using the indices of the previous displayed list, enter the `test` command followed by the index of the flashcard you want to test and what you think the answer to the question is. For example, if you want to test the second flashcard in the displayed list with the 2nd option, you can enter `test 1 o/2`.
+
+    <div markdown="block" class="alert alert-danger">
+    The index and option <b>must both be a positive integer</b> 1, 2, 3, ...
+    </div>
+
     ![TestMCQStep3](./images/TestMCQStep3.png)
+    
 4. Press enter and QuickCache will tell you whether you got the question right.
+
     ![TestMCQStep4](./images/TestMCQStep4.png)
+    
+
 You have successfully tested yourself on a multiple choice question!
 
 ### Displaying statistics <a name="displaying-statistics"></a>
@@ -381,15 +399,15 @@ Statistics include:
 
 You can display the statistics of a specified flashcard in a Pie Chart based on the last displayed list.
 
-<div markdown="block" class="alert alert-info">
-:information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
-</div>
-
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
 	![StatsIndexStep1](./images/StatsIndexStep1.png)
 	
 2. Using the indices of the displayed list, enter the stats command followed by the index of the flashcard you want to view the statistics of. For example, if you want to view the statistics of the first flashcard in the displayed list, you can enter `stats 1`.
+
+    <div markdown="block" class="alert alert-info">
+    :information_source: The INDEX refers to the the index number shown on the last displayed flashcard list and it <strong>must be a positive integer</strong>.
+    </div>
 
 	![StatsIndexStep2](./images/StatsIndexStep2.png)
 	
@@ -403,11 +421,11 @@ You have successfully displayed the statistics of a flashcard!
 
 You can also display the statistics of multiple flashcards in a Pie Chart by specifying tags. 
 
-<div markdown="block" class="alert alert-info">
-:bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation in the aggregation in the aggregation in the aggregation.
-</div>
-
 1. In the user input box, enter the stats command together with the tags that you want to use as the criteria. For example, if you want to display statistics for all flashcards with the tag `MCQ`, type `stats t/MCQ`.
+
+    <div markdown="block" class="alert alert-info">
+    :bulb: You can specify more than one tag to be used when displaying statistics of multiple flashcards. Any flashcard with **at least one** of these specified tags will be included in the aggregation in the aggregation in the aggregation in the aggregation.
+    </div>
 
     ![StatsTagsStep1](./images/StatsTagsStep1.png)
 
@@ -461,38 +479,51 @@ You have successfully cleared the statistics of a flashcard!
 
 #### Exporting a set of flashcards : `export FILE_NAME` <a name="export"></a>
 
-<div markdown="block" class="alert alert-info">
-:bulb: The filename specified includes the file format extension e.g. file.json
-</div>
-
 You can export all flashcards from the last displayed list into a file named `FILE_NAME` for backup or sharing with your friends.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
+
     ![ExportStep1](./images/ExportStep1.png)
 2. In the user input box, enter the `export` command together with the `FILE_NAME` you would like to save the flashcards into. For example, if you would like the file to be named as `josiah-flashcard.json`, you can enter `export josiah-flashcard.json`.
+
+    <div markdown="block" class="alert alert-info">
+    :bulb: The filename specified includes the file format extension e.g. file.json
+    </div>
+    
     ![ExportStep2](./images/ExportStep2.png)
+    
 3. Press enter and the file containing the flashcards will be exported into the `export` folder, located in the same directory as `QuickCache.jar`
+
     ![ExportStep3a](./images/ExportStep3a.png)
+    
     ![ExportStep3b](./images/ExportStep3b.png)
+    
     ![ExportStep3c](./images/ExportStep3c.png)
 
 Voila! You have successfully exported your flashcards into a file.
 
 #### Importing a set of flashcards : `import FILE_NAME` <a name="import"></a>
 
-<div markdown="block" class="alert alert-info">
-:bulb: The filename specified includes the file format extension e.g. file.json and duplicate flashcards will be ignored.
-</div>
-
 You can import external flashcards into your local QuickCache as well. 
 
 1. Create an `import` folder in the same directory as where `QuickCache.jar` is located.
+
     ![ImportStep1](./images/ImportStep1.png)
+    
 2. Place the file that you want to import in the `import` folder.
+
     ![ImportStep2](./images/ImportStep2.png)
+    
 3. In the user input box, enter the `import` command together with the name of the file you would like to import the flashcards from. For example, if the file to import from is named `joshua-flashcard.json`, you can enter `import joshua-flashcard.json`.
+
+    <div markdown="block" class="alert alert-info">
+    :bulb: The filename specified includes the file format extension e.g. file.json and duplicate flashcards will be ignored.
+    </div>
+
     ![ImportStep3](./images/ImportStep3.png)
+    
 4. Press enter and the flashcards within the file will be imported in your local QuickCache.
+
     ![ImportStep4](./images/ImportStep4.png)
 
 Good job! You have successfully imported flashcards from an external file.
