@@ -20,10 +20,9 @@ public class CopyCommand extends Command {
     public static final String COMMAND_WORD = "copy";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies the email/phone number of the persons "
-            + "whose names contain any of "
-            + "the specified names (case-insensitive), modules and tags "
+            + "who have the specified names (case-insensitive), modules or tags.\n"
             + "Parameters: email/phone (depending on what is to be copied) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_NAME + "FULL_NAME] "
             + "[" + PREFIX_MODULE + "MODULE] "
             + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " "

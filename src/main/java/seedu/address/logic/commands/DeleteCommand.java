@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "contact delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the name used in the displayed person list.\n"
+            + ": Deletes the persons who have the specified names (case-insensitive), modules or tags.\n"
             + "Parameters: "
             + "[" + PREFIX_NAME + "FULL_NAME] "
             + "[" + PREFIX_MODULE + "MODULE] "

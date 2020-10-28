@@ -141,6 +141,14 @@ The mechanism to clear all contacts is facilitated by `ClearCommand`. It extends
 
 This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
 
+#### Resetting the AddressBook
+
+Execution Code Snippet :
+
+`model.setAddressBook(new AddressBook());`
+
+The above code snippet sets the AddressBook in the `model` to a new `AddressBook` object. Thus, resetting the AddressBook.
+
 Given below is the sequence diagram of how the mechanism behaves when called using the `contact clear` command.
 
 ![ClearSequenceDiagram](images/ClearSequenceDiagram.png)
@@ -153,11 +161,142 @@ The mechanism to list all contacts is facilitated by `ListCommand`. It extends `
 
 This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
 
+#### Displaying all Persons in Modduke
+
+Execution Code Snippet :
+
+`model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);`
+
+The above code snippet updates the `FilteredList` of Persons in the `model` using the `PREDICATE_SHOW_ALL_PERSONS`. This fills the `FilteredList` with all Persons in the AddressBook and displays it.
+
 Given below is the sequence diagram of how the mechanism behaves when called using the `contact list` command.
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-#### Proposed Implementation
+### Deleting Contacts
+
+The mechanism to delete contacts is facilitated by `DeleteCommand`. It extends `Command` and implements the following methods:
+
+* `DeleteCommand#execute` - Deletes Persons in the AddressBook according to the user input.
+
+This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
+
+#### Parsing the User Input
+
+The parsing of user input for `DeleteCommand` is facilitated by `DeleteCommandParser`. It extends `Parser` and implements the following methods:
+
+* `DeleteCommandParser#parse` - Parses the user input and returns the appropriate DeleteCommand
+
+##### Checking for Argument Prefixes
+
+Code Snippet:
+
+```
+if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_MODULE)) {
+    // implementation
+} else if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG)) {
+    // implementation
+} else if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE)) {
+    // implementation
+} else if (arePrefixesPresent(argMultimap, PREFIX_MODULE, PREFIX_TAG)) {
+    // implementation
+} else if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+    // implementation
+} else if (arePrefixesPresent(argMultimap, PREFIX_TAG)) {
+    // implementation
+} else if (arePrefixesPresent(argMultimap, PREFIX_MODULE)) {
+    // implementation
+} else {
+    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+}
+
+```
+The above code snippet will check the prefixes present in the argument. It starts by checking if all valid prefixes are present, 
+then a combination of 2 prefixes, then lone prefixes and throws a `ParseException` if there are no prefixes present.
+
+##### Choosing a Predicate
+
+In order to find the Persons in the AddressBook who match the given arguments, `DeleteCommandParser` will pass the appropriate Predicate into 
+`DeleteCommand`. These are Predicates available and the code snippets of their `test` methods:
+* `FullNameMatchesKeywordPredicate` - Finds Persons whose full names match the given arguments following the `n/` prefix
+```
+return keywords.stream()
+        .anyMatch(keyword -> person.getName().fullName.toLowerCase().equals(keyword.toLowerCase()));
+```
+* `PersonHasTagsPredicate` - Finds Persons who have the tags that match the given arguments following the `t/` prefix
+```
+return tags.stream()
+        .anyMatch(tag -> person.getTags().contains(tag));
+```
+* `PersonHasTagsAndNamePredicate` - Finds Persons whose full names match the given arguments following the `n/` prefix or have the tags that match the given arguments following the `t/` prefix
+```
+return names.stream()
+        .anyMatch(keyword -> person.getName().fullName.toLowerCase().equals(keyword.toLowerCase()))
+        ||
+        tags.stream()
+        .anyMatch(tag -> person.getTags().contains(tag));
+```
+
+#### Checking if Person is in a Module
+
+In order to find Persons who are in the given Modules, a `List` of `ModuleNames` is passed into the `DeleteCommand` by the `DeleteCommandParser`. 
+Then the `DeleteCommand#execute` method calls `model#GetUpdatedFilteredPersonList` with its `predicate` and the `List` to retrieve Persons in the give Modules.
+
+Retrieving Modules Code Snippet:
+
+```
+List<Module> moduleList = new ArrayList<>();
+for (ModuleName name : modules) {
+    Module m = moduleBook.getModule(name)
+            .orElseThrow(() -> new CommandException(
+                    String.format("Module %s does not exist.", name.toString())));
+    moduleList.add(m);
+}
+```
+The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and will look through the `moduleBook` for the given Module. If the Module exists, it adds it to the `List` module.
+
+Combining Predicates Code Snippet:
+
+```
+Predicate<Person> combined = x -> predicate.test(x)
+        || moduleList.stream()
+        .anyMatch(m -> m.getClassmates().contains(x));
+return new FilteredList(filteredPersons, combined);
+```
+The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and it creates a new `Predicate` that checks if a Person passes 
+the predicate passed into the method or is in any of the Modules in the `List` module. Then it uses this `Predicate` to obtain a `FilteredList` 
+of Persons that satisfy the `Predicate`.
+
+##### No given Modules
+
+If there are no given Modules, then the `DeleteCommand#execute` method calls `model#GetUpdatedFilteredPersonList` with its `predicate` only.
+                                    
+Obtaining FilteredList Code Snippet:
+```
+return new FilteredList(filteredPersons, predicate);
+```
+
+The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and it will simply use the given `predicate` to 
+obtain a `FilteredList` of Persons that satisfy the `Predicate`.
+
+#### Deleting the Filtered Persons
+
+Once the `DeleteCommand` has retrieved the `FilteredList` of Persons, it will delete all Persons in that `FilteredList` from Modduke.
+
+Deleting Persons Code Snippet:
+```
+people.stream().forEach(p -> {
+    model.deletePerson(p); // delete in AddressBook
+    model.updatePersonInMeetingBook(p); // delete in MeetingBook
+    model.updatePersonInModuleBook(p); // delete in ModuleBook
+});
+```
+The above code snippet will iterate through all Persons in the `FilteredList` and delete them from the `AddressBook`, `MeetingBook` and `ModuleBook`.
+
+#### Activity Diagram
+Given below is the sequence diagram of how the mechanism behaves when called using the `contact delete` command.
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
