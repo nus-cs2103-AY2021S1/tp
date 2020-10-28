@@ -5,6 +5,7 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_LECT
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASKDATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
@@ -32,6 +33,7 @@ import seedu.address.logic.commands.AddDeadlineCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.TaskDate;
 import seedu.address.model.task.Title;
 import seedu.address.testutil.DeadlineBuilder;
 
@@ -114,8 +116,8 @@ public class AddDeadlineCommandParserTest {
                 + TASKDATE_DESC_PROJECT + TAG_DESC_PROJECT, Priority.MESSAGE_CONSTRAINTS);
 
         // invalid date
-        // assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + PRIORITY_DESC_PROJECT
-        //         + INVALID_TASKDATE_DESC + TAG_DESC_PROJECT, TaskDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + PRIORITY_DESC_PROJECT
+                + INVALID_TASKDATE_DESC + TAG_DESC_PROJECT, TaskDate.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + PRIORITY_DESC_PROJECT

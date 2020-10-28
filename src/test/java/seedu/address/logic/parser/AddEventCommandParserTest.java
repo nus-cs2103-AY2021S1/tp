@@ -5,6 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_LECT
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PROJECT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASKDATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASKTIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
@@ -35,6 +37,8 @@ import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Priority;
+import seedu.address.model.task.TaskDate;
+import seedu.address.model.task.TaskTime;
 import seedu.address.model.task.Title;
 import seedu.address.testutil.EventBuilder;
 
@@ -128,12 +132,12 @@ public class AddEventCommandParserTest {
         // TODO: Fix Invalid DateTime Checks.
 
         // invalid date
-        // assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + PRIORITY_DESC_PROJECT
-        //         + INVALID_TASKDATE_DESC + TASKTIME_DESC_PROJECT + TAG_DESC_PROJECT, TaskDate.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + PRIORITY_DESC_PROJECT
+                + INVALID_TASKDATE_DESC + TASKTIME_DESC_PROJECT + TAG_DESC_PROJECT, TaskDate.MESSAGE_CONSTRAINTS);
 
         // invalid time
-        // assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + PRIORITY_DESC_PROJECT
-        //         + TASKDATE_DESC_PROJECT + INVALID_TASKTIME_DESC + TAG_DESC_PROJECT, TaskTime.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + PRIORITY_DESC_PROJECT
+                + TASKDATE_DESC_PROJECT + INVALID_TASKTIME_DESC + TAG_DESC_PROJECT, TaskTime.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + PRIORITY_DESC_PROJECT
