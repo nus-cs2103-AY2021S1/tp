@@ -89,13 +89,16 @@ There are many versions of Java `11` listed. Select the correct version based on
   e.g. if the command specifies `n/NAME ic/ NRIC p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME ic/S1234567A` is also acceptable.
 </div>
 
-### Displaying usage instructions: `help`
+### Displaying usage instructions: `help` (By Peh Jun Siang)
 
-Shows a list of basic commands (and their usages) supported by **Hospify**.
-
-![tp_help_command](images/helpMessage.png)
+The `help` command shows a list of all the commands and their usages supported by **Hospify**.
 
 Format: `help`
+![tp_help_command](images/helpWindow.png)
+**:bulb: Tip:** You can click on the headers `COMMAND` and `USAGE` to sort the commands in a descending or ascending manner.
+
+**:bulb: Tip:** You can copy the URL of the **Hospify User Guide** to your clipboard to view a more detailed description
+for the commands.
 
 ### Adding a patient: `add` (by Cedric Lim Jun Wei)
 
@@ -260,6 +263,24 @@ Format: `sort name`<br>
 Examples:
 * `sort name` would result in the patients to be sorted by their name in ascending order.
 * `sort NRIC` would result in the patients to be sorted by their NRIC in ascending order.
+
+### Showing Appointments of a Patient: `showAppt` (by Peh Jun Siang)
+
+The `showAppt` command shows you all the appointments of a patient in a table for ease of viewing.
+Unlike other commands, you can click on the patient's information to show the appointments **without needing to enter any commands**.
+
+1. Using the `GUI`\
+You can simply **double click** on the patient to display all the appointments of that patient.
+![show appointments via gui](images/showAppt/showAppt_gui.PNG)
+
+2. Using the `Command Line`\
+If the number of patients is too large, it might be difficult to find the patient's information to click.
+In that case, you can use the command line to show the patient's appointments.
+![show appointments via gui](images/showAppt/showAppt_input.PNG)
+
+Format: `showAppt NRIC`
+
+Example: `showAppt S1234567A`
 
 ### Adding an Appointment: `addAppt` (by Gabriel Teo Yu Xiang)
 
