@@ -48,7 +48,7 @@ public class EditLessonCommand extends Command {
             + "[" + PREFIX_END_TIME + "TIME] "
             + "[" + PREFIX_START_DATE + "DATE] "
             + "[" + PREFIX_END_DATE + "DATE] \n"
-            + "Example: " + COMMAND_WORD + " "
+            + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TITLE + "CS2103T Lecture "
             + PREFIX_DESCRIPTION + "Most exciting lecture in NUS! "
             + PREFIX_DAY + "Mon "

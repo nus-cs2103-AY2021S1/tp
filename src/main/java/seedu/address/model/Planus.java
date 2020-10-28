@@ -143,9 +143,9 @@ public class Planus implements ReadOnlyPlanus {
     }
 
     /**
-     * Replaces the given task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the PlaNus task list.
-     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
+     * Replaces the given lesson {@code target} in the list with {@code editedLesson}.
+     * {@code target} must exist in the PlaNus lesson list.
+     * The lesson identity of {@code editedLesson} must not be the same as another existing lesson in the lesson list.
      */
     public void setLesson(Lesson target, Lesson editedLesson) {
         requireNonNull(editedLesson);
