@@ -19,11 +19,11 @@ This User Guide will provide a general overview of installation, current feature
 --------------------------------------------------------------------------------------------------------------------
 ## 2. Quick Start
 
-Refer to this video for a quick tutorial on OneShelf Installation Guide:
-<br>
 <a name="installationvideo"></a>
-[![](http://img.youtube.com/vi/W460SJkRMMM/0.jpg)](http://www.youtube.com/watch?v=W460SJkRMMM "One Shelf Installation Guide")
+Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
+<br>
 
+[![](http://img.youtube.com/vi/W460SJkRMMM/0.jpg)](http://www.youtube.com/watch?v=W460SJkRMMM "One Shelf Installation Guide")
 <br>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -32,22 +32,23 @@ Refer to this video for a quick tutorial on OneShelf Installation Guide:
 
 1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
+<a name="uiwithannotationpng"></a>
 1. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
     <br>
-    <a name="uiwithannotationpng"></a>
+    
     ![Ui](images/UiWithAnnotation.png) 
     Figure 1: Introduction to OneShelf User Interface
-
     <br>
     
+   <a name="uihelpstart"></a>
 1. Type the command `help start` in the command box and press Enter to execute it. <br>
-   A new help window shown below (Figure 2) should appear on your desktop.
+   A new help window shown below should appear on your desktop. You are strongly encouraged to follow
+   the steps in the help window if you are a new user.
     <br>
-    <a name="uihelpstart"></a>
+    
     ![Help Window](images/UiHelpStart.png) 
     Figure 2: Help Start Window
-    
     <br>
 
 1. Refer to the [Features](#3-features) below for details of each command.
@@ -56,12 +57,12 @@ Refer to this video for a quick tutorial on OneShelf Installation Guide:
 
 ## <a name="3-features"></a>3. Features
 
-OneShelf has 2 main components, namely are:
+**OneShelf** has 2 main components, namely are:
 1. Inventory items
 2. Pending deliveries
 
 From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
-*You may want to refer to the [Glossary](#6-glossary)*
+*You may want to refer to the [glossary](#6-glossary)*
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -72,10 +73,13 @@ Things to note for the commands:
 * Commands with suffix of `-i` refer to `item` related commands, while those with suffix of `-d` refer to `delivery` related commands. <br>
   e.g. `add-i` is used to add an `item` and `add-d` is used to add a `delivery`
   
-* In the format of commands, `INDEX` refers to the numbering that is displayed.
   <a name="index"></a>
-  <br> ![Index](images/Index.png)
+* In the format of commands, `INDEX` refers to the numbering that is displayed.
+  <br> 
+  
+  ![Index](images/Index.png)
   <br>
+  Figure 3: Index Annotation
   <br>
 
 * In the format of commands, words in `UPPER_CASE` are what you would input.<br>
@@ -103,7 +107,7 @@ Things to note for the commands:
 
 ##### 3.1.1.a `help start`
 
-If you are a first time user, we strongly encourage you to enter `help start` and follow the guide to kick-start your journey in OneShelf.
+If you are a first time user, we strongly encourage you to follow the guide to kick-start your journey in **OneShelf**.
 
 Format: `help start`
 
@@ -117,8 +121,8 @@ A new help window similar to [Figure 2](#uihelpstart) should appear on your desk
 
 ##### 3.1.1.b `help summary`
 
-We understand that even if you are not a first time user, it is not easy to remember all the commands instantaneously.
-Should you require reference of summary commands, you can enter `help summary`.
+We understand that even if you are not a first time user, it is not easy to remember all the commands.
+Should you require any quick reference of commands, you can enter `help summary`.
 
 Format: `help summary`
 
@@ -126,15 +130,19 @@ To open up `help summary` window, you can also do the following:
 * Press `F2`
 * Click on `Help` located at the top toolbar and then click `Summary F2`
     
-A new help window similar to Figure 3 below should appear on your desktop.
+A new help window similar to Figure 4 below should appear on your desktop.
 <a name="helpsummary"></a>
-<br>![Help Summary Screenshot](images/HelpSummaryWindow.png)<br>
-Figure 3: Help Summary Window
+<br>
+
+![Help Summary Screenshot](images/HelpSummaryWindow.png)
+<br>
+Figure 4: Help Summary Window
+<br>
 
 
 #### 3.1.2 Adding an item or delivery: `add-i` or `add-d`
 
-Adds inventory item or pending delivery to OneShelf.
+Adds inventory item or pending delivery to **OneShelf**.
 
 ##### 3.1.2.a `add-i`
 
@@ -191,7 +199,7 @@ Example:
 
 #### 3.1.3 Removing quantity from an item: `remove-i`
 
-Removes a specified quantity of an existing item from OneShelf.
+Removes a specified quantity of an existing item from **OneShelf**.
 
 Format: `remove-i INDEX q/QUANTITY`
 * Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`.
@@ -430,13 +438,13 @@ Format: `exit`
 ### 3.2 General Features
 #### 3.2.1 Saving the data
 
-OneShelf data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+**OneShelf** data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 
 
 #### 3.2.2 Scrolling through command history
 
-OneShelf commands are traversable (up to 20 commands) much like Window's command prompt. 
+**OneShelf** commands are traversable (up to 20 commands) much like Window's command prompt. 
 By pressing the arrow up key traversing you're able to traverse previous commands and 
 by pressing the arrow down key you're able to traverse into next commands.
 
@@ -545,3 +553,4 @@ You may refer to the [video](#installationvideo) of installation guide.
 * **Delivery**: Delivery order that has yet to be delivered out from the restaurant
 * **Book**: There are 2 types of book, namely: Inventory Book and Delivery Book which stores the data of your 
 inventory items and pending deliveries respectively
+* **Index**: The number indicated for each particular inventory item or pending delivery in the list.

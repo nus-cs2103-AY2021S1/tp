@@ -49,7 +49,7 @@ Given below are my contributions to the project.
     * Added documentation for the features `clear`, `edit`, `help` in v1.1
     * Updated documentation for the features `clear-i`, `clear-d`, `list-i`, `list-d` in v1.2
     * Added numberings, introduction, GUI annotated diagram, quick start installation guide video, FAQ in v1.3
-    * Updated documentation for `add-i`, `add-d`, `help start` and `help summary`, `list-i`, `list-d` in v1.3
+    * Updated documentation for `add-i`, `add-d`, `help start` and `help summary`, `delete-i`, `delete-d` in v1.3
   * Developer Guide:
     * Added introduction with target audience, purpose of document and summary of document
     * Updated UI Class Diagram and description
