@@ -6,6 +6,7 @@ package seedu.pivot.model.investigationcase;
  */
 public class Description extends Alphanumeric {
 
+    //TODO: Might want to change validation check
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces";
     private static final boolean CAN_BE_BLANK = true;
