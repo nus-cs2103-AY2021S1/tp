@@ -60,7 +60,7 @@ public class DeliveryCard extends UiPart<Region> {
         time.setText(delivery.getTime().toString());
 
         endTime = delivery.getEndTime();
-        initialize();
+        initializeDeliveryCountdown();
     }
 
     @Override
@@ -85,7 +85,7 @@ public class DeliveryCard extends UiPart<Region> {
     /**
      * Initializes the local date time.
      */
-    private void initialize() {
+    private void initializeDeliveryCountdown() {
         Timeline clock = new Timeline(new KeyFrame(Duration.ZERO, e -> {
             LocalDateTime currentTime = LocalDateTime.now();
 
