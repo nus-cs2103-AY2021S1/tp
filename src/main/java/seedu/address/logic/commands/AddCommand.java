@@ -56,7 +56,7 @@ public class AddCommand extends Command {
     public static final String MESSAGE_POLICY_NOT_FOUND =
             "The policy name is not found in the policy list.\n"
             + "Please add the policy into the policy list prior to adding the person.\n"
-            + "You can add policy by using the addp command.";
+            + "You can add a new policy by using the addp command.";
 
     private final Person toAdd;
     private final PolicyName policyName;

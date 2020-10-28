@@ -63,6 +63,7 @@ public class ClientListParser {
 
         case ClearPolicyCommand.COMMAND_WORD:
             return new ClearPolicyCommand();
+            
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
