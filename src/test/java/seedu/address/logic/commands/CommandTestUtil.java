@@ -53,10 +53,9 @@ public class CommandTestUtil {
     public static final String TAG_DESC_LECTURE = " " + PREFIX_TAG + VALID_TAG_LECTURE;
 
     public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + "Do your homework!";
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION;
     public static final String INVALID_PRIORITY_DESC = " " + PREFIX_PRIORITY + "Nope";
-    public static final String INVALID_TASKDATE_DESC = "2020/12/31";
-    public static final String INVALID_TASKTIME_DESC = "12 NOON";
+    public static final String INVALID_TASKDATE_DESC = " " + PREFIX_TASK_DATE + "2020/12/31";
+    public static final String INVALID_TASKTIME_DESC = " " + PREFIX_TASK_TIME + "12 NOON";
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "lect*";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

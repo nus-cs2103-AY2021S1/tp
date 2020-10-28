@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PROJECT;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TITLE_DESC;
@@ -28,7 +27,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.ToDo;
@@ -75,12 +73,10 @@ public class AddTodoCommandParserTest {
                 + TAG_DESC_PROJECT, expectedMessage);
 
         // missing description prefix
-        assertParseFailure(parser, TITLE_DESC_PROJECT + VALID_DESCRIPTION_PROJECT + PRIORITY_DESC_PROJECT
-                + TAG_DESC_PROJECT, expectedMessage);
+        // description is optional as of v1.3
 
         // missing priority prefix
-        assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + VALID_PRIORITY_PROJECT
-                + TAG_DESC_PROJECT, expectedMessage);
+        // priority is optional as of v1.3
 
         // all prefixes missing
         assertParseFailure(parser, VALID_TITLE_PROJECT + VALID_DESCRIPTION_PROJECT + VALID_PRIORITY_PROJECT
@@ -94,8 +90,7 @@ public class AddTodoCommandParserTest {
                 + TAG_DESC_PROJECT, Title.MESSAGE_CONSTRAINTS);
 
         // invalid description
-        assertParseFailure(parser, TITLE_DESC_PROJECT + INVALID_DESCRIPTION_DESC + PRIORITY_DESC_PROJECT
-                + TAG_DESC_PROJECT, Description.MESSAGE_CONSTRAINTS);
+        // description is optional as of v1.3
 
         // invalid priority
         assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + INVALID_PRIORITY_DESC
@@ -106,7 +101,7 @@ public class AddTodoCommandParserTest {
                 + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first value reported
-        assertParseFailure(parser, INVALID_TITLE_DESC + INVALID_DESCRIPTION_DESC + PRIORITY_DESC_PROJECT
+        assertParseFailure(parser, INVALID_TITLE_DESC + INVALID_PRIORITY_DESC
                 + TAG_DESC_PROJECT, Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
