@@ -16,6 +16,7 @@ import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.visit.Visit;
 import seedu.address.model.visit.VisitHistory;
 
 /**
@@ -31,7 +32,7 @@ public class PatientBuilder {
     public static final String DEFAULT_PROFILE_PICTURE = "data/stock_picture.png";
     public static final String DEFAULT_SEX = "F";
     public static final String DEFAULT_BLOODTYPE = "A+";
-    public static final VisitHistory DEFAULT_VISIT_HISTORY = new VisitHistory(new ArrayList<>());
+    public static final VisitHistory DEFAULT_VISIT_HISTORY = new VisitHistory(new ArrayList<Visit>());
 
     private Name name;
     private Phone phone;

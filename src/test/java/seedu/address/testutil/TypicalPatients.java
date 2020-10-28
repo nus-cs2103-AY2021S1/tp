@@ -58,11 +58,11 @@ public class TypicalPatients {
     public static final Patient FIONA = new PatientBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withIcNumber("S6787656F").withAddress("little tokyo").withEmail("lydia@example.com")
             .withProfilePicture("data/stock_picture.png").withSex("F").withBloodType("A+")
-        .withVisitHistory(TypicalVisits.getTypicalVisitHistoryFiona()).withColorTag("None").build();
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryFiona()).withColorTag("None").build();
     public static final Patient GEORGE = new PatientBuilder().withName("George Best").withPhone("9482442")
             .withIcNumber("S2444153G").withAddress("4th street").withEmail("anna@example.com")
             .withProfilePicture("data/stock_picture.png").withSex("M").withBloodType("B+")
-        .withVisitHistory(TypicalVisits.getTypicalVisitHistoryGeorge()).withColorTag("None").build();
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryGeorge()).withColorTag("None").build();
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withPhone("8482424")

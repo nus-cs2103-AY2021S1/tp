@@ -26,7 +26,7 @@ public class JsonSerializableCliniCalTest {
                 JsonSerializableCliniCal.class).get();
         CliniCal cliniCalFromFile = dataFromFile.toModelType();
         CliniCal typicalPatientsCliniCal = TypicalPatients.getTypicalCliniCal();
-        assertEquals(cliniCalFromFile, typicalPatientsCliniCal);
+        assertEquals(cliniCalFromFile.getPatientList(), typicalPatientsCliniCal.getPatientList());
     }
 
     @Test
