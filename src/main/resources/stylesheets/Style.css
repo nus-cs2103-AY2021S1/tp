@@ -126,6 +126,52 @@
     -fx-font-size: 36px;
 }
 
+/* -------------------- RECIPE CARD THINGS -------------------- */
+.recipe-card-number {
+    -fx-font-size: 14px;
+    -fx-padding: 12px;
+}
+
+.recipe-card-button {
+    -fx-border-color: #795548;
+    -fx-border-radius: 6px;
+    -fx-background-color: #efebe9;
+    -fx-background-radius: 6px;
+    -fx-content-display: top;
+}
+
+.recipe-card-button:hover {
+    -fx-background-color: #d7ccc8;
+}
+
+.recipe-card-button:pressed {
+    -fx-background-color: #bcaaa4;
+}
+
+.recommendationCardContainer {
+    -fx-background-color: #e8eaf6;
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI";
+    -fx-font-color: #212121;
+    -fx-background-radius: 6;
+    -fx-border-color: #3f51b5;
+    -fx-border-radius: 6;
+    -fx-padding: 12 20 0 12;
+}
+
+.recommendationContainer {
+    -fx-padding: 0 16 0 0;
+}
+
+.recommendationText,
+.recommendationText .scroll-pane,
+.recommendationText .scroll-pane .viewport,
+.recommendationText .scroll-pane .content {
+    -fx-background-color: #e8eaf6;
+    -fx-padding: 0;
+}
+
+
 
 
 
@@ -216,42 +262,6 @@
     -fx-hgap: 6;
     -fx-vgap: 6;
 }
-
-/* -------------------- RECIPE CARD THINGS -------------------- */
-.rcName {
-    -fx-font-size: 11.5pt;
-    -fx-text-align: center;
-    -fx-text-alignment: center;
-    -fx-vertical-align: center;
-}
-.rcNameFlow {
-    -fx-text-alignment: center;
-    -fx-vertical-align: center;
-}
-.rcNumber {
-    -fx-font-size: 11pt;
-}
-.rcButton {
-    -fx-padding: 4;
-    -fx-border-color: #795548;
-    -fx-background-radius: 4;
-    -fx-border-radius: 4;
-    -fx-background-color: #efebe9;
-    -fx-font-size: 12pt;
-    -fx-text-fill: #212121;
-    -fx-font-color: #212121;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-    -fx-focus-color: #d7ccc8;
-    -fx-faint-focus-color: #d7ccc8;
-}
-.rcButton:hover {
-    -fx-background-color: #d7ccc8;
-}
-.rcButton:pressed {
-    -fx-background-color: transparent;
-}
-
-
 
 /* -------------------- INGREDIENT CARD THINGS -------------------- */
 .icName {

@@ -7,7 +7,6 @@
 
 <?import javafx.geometry.Insets?>
 <BorderPane prefHeight="472.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <stylesheets><URL value="@../stylesheets/Style.css" /></stylesheets>
    <padding><Insets top="8" bottom="12" /></padding>
    <left>
       <HBox BorderPane.alignment="CENTER">

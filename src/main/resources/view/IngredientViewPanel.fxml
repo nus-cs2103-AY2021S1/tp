@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.FlowPane?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <bottom>
-        <ScrollPane fx:id="ingredientPanel" pannable="true" prefHeight="422.0" prefWidth="624.0" vbarPolicy="NEVER" BorderPane.alignment="TOP_CENTER">
-            <content>
-                <GridPane fx:id="ingredientGridView" gridLinesVisible="true" hgap="12" vgap="12" />
-            </content>
-        </ScrollPane>
-    </bottom>
-</BorderPane>
+<ScrollPane fx:id="ingredientPanel" fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/10.0.2-internal"
+            xmlns:fx="http://javafx.com/fxml/1">
+    <FlowPane fx:id="ingredientGridView" orientation="VERTICAL" hgap="12" vgap="12"/>
+</ScrollPane>

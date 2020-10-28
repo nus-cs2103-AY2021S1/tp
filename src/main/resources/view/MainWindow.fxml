@@ -31,7 +31,7 @@
                     </MenuBar>
                 </top>
                 <right>
-                    <VBox prefWidth="280.0" styleClass="sidebar">
+                    <VBox prefWidth="300.0" styleClass="sidebar">
                         <StackPane fx:id="commandOutputPlaceholder"
                                    styleClass="sidebar-container, command-output-container"
                                    prefHeight="140.0"/>
