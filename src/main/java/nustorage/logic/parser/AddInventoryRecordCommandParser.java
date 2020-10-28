@@ -40,8 +40,8 @@ public class AddInventoryRecordCommandParser implements Parser<AddInventoryRecor
         InventoryRecord inventoryRecord = new InventoryRecord(itemDescription, quantity);
 
         if (argMultimap.getValue(PREFIX_ITEM_COST).isPresent()) {
-            double cost = ParserUtil.parseItemCost(argMultimap.getValue(PREFIX_ITEM_COST).get());
-            FinanceRecord financeRecord = new FinanceRecord(cost * quantity);
+            double cost = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_ITEM_COST).get());
+            FinanceRecord financeRecord = new FinanceRecord(cost * quantity, true);
             return new AddInventoryRecordCommand(inventoryRecord, Optional.of(financeRecord));
         }
 

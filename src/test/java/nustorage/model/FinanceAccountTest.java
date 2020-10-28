@@ -1,23 +1,27 @@
 package nustorage.model;
 
-import static nustorage.logic.commands.CommandTestUtil.AMOUNT_A;
+import static nustorage.logic.commands.CommandTestUtil.AMOUNT_B;
+import static nustorage.logic.commands.CommandTestUtil.ID_B;
 import static nustorage.testutil.Assert.assertThrows;
 import static nustorage.testutil.TypicalFinanceRecords.RECORD_A;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import nustorage.model.record.FinanceRecord;
+import nustorage.model.record.exceptions.DuplicateFinanceRecordException;
 import nustorage.testutil.FinanceRecordBuilder;
 
-public class FinanceTest {
+public class FinanceAccountTest {
     private FinanceAccount finance = new FinanceAccount();
 
     @Test
@@ -35,6 +39,17 @@ public class FinanceTest {
         FinanceAccount newData = new FinanceAccount();
         finance.resetData(newData);
         assertEquals(newData, finance);
+    }
+
+    @Test
+    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+        // Two persons with the same identity fields
+        FinanceRecord record = new FinanceRecordBuilder(RECORD_A).build();
+        FinanceRecord editedRecord = new FinanceRecordBuilder(RECORD_A).build();
+        List<FinanceRecord> newRecords = Arrays.asList(record, editedRecord);
+        FinanceAccountStub newData = new FinanceAccountStub(newRecords);
+
+        assertThrows(DuplicateFinanceRecordException.class, () -> finance.resetData(newData));
     }
 
     @Test
@@ -57,7 +72,7 @@ public class FinanceTest {
     public void hasFinanceRecord_financeRecordWithSameIdentityFieldsInFinanceWithDifferentIds_returnsFalse() {
         finance.addFinanceRecord(RECORD_A);
         FinanceRecord financeRecord = new FinanceRecordBuilder(
-                RECORD_A).withAmount(AMOUNT_A).build();
+                RECORD_A).withAmount(AMOUNT_B).withId(ID_B).build();
         // will return false since both the records although have the same field
         // but have different ids.
         assertFalse(finance.hasFinanceRecord(financeRecord));
@@ -71,10 +86,10 @@ public class FinanceTest {
     /**
      * A stub ReadonlyFinance whose financeRecords list can violate interface constraints.
      */
-    private static class FinanceStub implements ReadOnlyFinanceAccount {
+    private static class FinanceAccountStub implements ReadOnlyFinanceAccount {
         private final ObservableList<FinanceRecord> financeRecords = FXCollections.observableArrayList();
 
-        FinanceStub(Collection<FinanceRecord> financeRecords) {
+        FinanceAccountStub(Collection<FinanceRecord> financeRecords) {
             this.financeRecords.setAll(financeRecords);
         }
 
