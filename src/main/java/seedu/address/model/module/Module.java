@@ -210,6 +210,7 @@ public class Module {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
     /**
      * Adds a grade to the GradeTracker of the module.
      *
@@ -247,7 +248,8 @@ public class Module {
 
     @Override
     public String toString() {
-        return String.format("The zoom link for %s is %s", getName(), getLink());
+        return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getLink(),
+                getModularCredits().toString());
     }
 
     /**
