@@ -86,7 +86,7 @@ public class UnlabelCommand extends Command {
 
         Tag editedTag = new Tag(tagName, fileAddress, editedLabel);
 
-        // Adds the edited tag from the model
+        // Adds the edited tag to the model
         model.addTag(editedTag);
 
         model.commitAddressBook();
