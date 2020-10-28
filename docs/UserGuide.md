@@ -72,6 +72,7 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
     * source of stock
     * location stored in warehouse
 * Adding / Deleting **optional notes** to stocks
+* Viewing all notes of a stock
 * **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
 * **Print** to generate file for printing of stock list.
 * **Storage** into csv and json files.
@@ -108,6 +109,7 @@ Action | Format, Examples
 **FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `findexact n/umbrella s/ntuc`
 **Note** | `note sn/<serial number> nt/<note>`
 **NoteDelete** | `notedelete sn/<serial number> ni<note index>`
+**NoteView** | `noteview sn/<serial number>`
 **Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number> n/<new name>` <br> `update sn/<serial number> iq/<+/-><increment value>` <br> `update sn/<serial number> nq/<new quantity>` <br> `update sn/<serial number> l/<new location>` <br> `update sn/<serial number> s/<new source>` <br> `update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
 **Statistics** | `stats st/source`<br>`stats st/source-qd-<source company>`
 **Print** | `print fn/<file name>`
@@ -388,8 +390,8 @@ Example Usages:
 
 Stock | Details
 ------| --------
-**Stock 1** | Name: banana<br> Serial Number: ntuc1<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
-**Stock 2** | Name: chicken<br> Serial Number: sheng siong1<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
+**Stock 1** | Name: Banana<br> Serial Number: NTUC1<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
+**Stock 2** | Name: Chicken<br> Serial Number: SHENG SIONG1<br> Source: Sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry section
 
 Command: `note sn/sheng siong1 nt/chicken will expire soon` will add note with index 1 in note column for Stock 2. <br>
 
@@ -433,6 +435,24 @@ To delete ALL notes from a stock, note index to specify is 0.
 * After command: `notedelete sn/sheng siong1 ni/0`: <br>
 
 ![after note delete0](images/notedelete_img2.jpg)
+
+### Viewing all notes of a stock: `noteview`
+Views all notes of the stock specified by its serial number.
+* Required field(s):
+    1. Serial number of stock
+
+<h5>Format</h5>
+`noteview sn/<serial number>`
+
+<h5>Example usages</h5>
+
+* Before: <br>
+
+![before](images/noteview_img1.jpg)
+
+* After command: `noteview sn/ntuc1`: <br>
+
+![after note delete1](images/noteview_img2.jpg)
 
 ### Generating statistics: `stats`
 Generates a statistical view in a pie chart depicting the target fields.
