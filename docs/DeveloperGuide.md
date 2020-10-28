@@ -195,7 +195,7 @@ The mechanism is facilitated by a `Log` class. A `Log` class has `Exercise`, `Re
 
 A user can add a `Log`to the `LogBook` by executing the `add` command.
 
-##### Example usage scenario
+#### Example usage scenario
 Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the 
 application.
 
@@ -212,10 +212,9 @@ to the `Model`.
 
 The following sequence diagram shows how the `Add Log` feature works:
 
-//TODO
-Add sequence diagram
+![AddLogClassDiagram](images/AddLogSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -232,7 +231,7 @@ Add class diagram here
 
 A user can find a `Log` by executing the `find` command.
 
-##### Example usage scenario
+#### Example usage scenario
 Given below is an example usage scenario and how the `find log` mechanism behaves at each step after launching the 
 application.
 
