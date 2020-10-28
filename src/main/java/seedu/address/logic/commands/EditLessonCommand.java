@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CALENDAR_TASKS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -24,6 +25,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -105,6 +107,7 @@ public class EditLessonCommand extends Command {
 
         model.setLesson(lessonToEdit, editedLesson);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS, editedLesson));
     }
@@ -123,9 +126,10 @@ public class EditLessonCommand extends Command {
         LocalDate updatedEndDate = editLessonDescriptor.getEndDate().orElse(lessonToEdit.getEndDate());
         LocalTime updatedStartTime = editLessonDescriptor.getStartTime().orElse(lessonToEdit.getStartTime());
         LocalTime updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
+        Tag updatedTag = editLessonDescriptor.getTag().orElse(lessonToEdit.getTag());
 
-        return new Lesson(updatedTitle, updatedDescription, updatedDayOfWeek, updatedStartTime, updatedEndTime,
-                updatedStartDate, updatedEndDate);
+        return new Lesson(updatedTitle, updatedTag, updatedDescription, updatedDayOfWeek,
+                updatedStartTime, updatedEndTime, updatedStartDate, updatedEndDate);
     }
 
     @Override
@@ -158,6 +162,7 @@ public class EditLessonCommand extends Command {
         private LocalDate endDate;
         private LocalTime startTime;
         private LocalTime endTime;
+        private Tag tag;
 
         public EditLessonDescriptor() {}
 
@@ -173,6 +178,7 @@ public class EditLessonCommand extends Command {
             setEndDate(toCopy.endDate);
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);
+            setTag(toCopy.tag);
         }
 
         /**
@@ -238,6 +244,14 @@ public class EditLessonCommand extends Command {
             return Optional.ofNullable(endTime);
         }
 
+        public void setTag(Tag tag) {
+            this.tag = tag;
+        }
+
+        public Optional<Tag> getTag() {
+            return Optional.ofNullable(tag);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -259,7 +273,8 @@ public class EditLessonCommand extends Command {
                     && getStartTime().equals(e.getStartTime())
                     && getEndTime().equals(e.getEndTime())
                     && getStartDate().equals(e.getStartDate())
-                    && getEndDate().equals(e.getEndDate());
+                    && getEndDate().equals(e.getEndDate())
+                    && getTag().equals(e.getTag());
         }
     }
 }

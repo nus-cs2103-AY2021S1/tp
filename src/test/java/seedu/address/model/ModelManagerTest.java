@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.ALICE;
-import static seedu.address.testutil.TypicalTasks.BENSON;
+import static seedu.address.testutil.TypicalTasks.DEADLINE1;
+import static seedu.address.testutil.TypicalTasks.DEADLINE2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTask_taskNotInPlanus_returnsFalse() {
-        assertFalse(modelManager.hasTask(ALICE));
+        assertFalse(modelManager.hasTask(DEADLINE1));
     }
 
     @Test
     public void hasTask_taskInPlanus_returnsTrue() {
-        modelManager.addTask(ALICE);
-        assertTrue(modelManager.hasTask(ALICE));
+        modelManager.addTask(DEADLINE1);
+        assertTrue(modelManager.hasTask(DEADLINE1));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Planus planus = new PlanusBuilder().withTask(ALICE).withTask(BENSON).build();
+        Planus planus = new PlanusBuilder().withTask(DEADLINE1).withTask(DEADLINE2).build();
         Planus differentPlanus = new Planus();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
-        predicate.setKeyword(PREFIX_TITLE, ALICE.getTitle().title);
+        predicate.setKeyword(PREFIX_TITLE, DEADLINE1.getTitle().title);
         modelManager.updateFilteredTaskList(predicate);
         assertFalse(modelManager.equals(new ModelManager(planus, userPrefs)));
 

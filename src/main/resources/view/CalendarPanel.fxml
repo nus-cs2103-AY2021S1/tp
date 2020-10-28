@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane fx:id="calendar" alignment="CENTER" gridLinesVisible="true" prefHeight="450.0" styleClass="grid-pane" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
+    <columnConstraints>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints fillHeight="false" minHeight="30.0" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+        <RowConstraints minHeight="70.0" valignment="CENTER" vgrow="ALWAYS" />
+        <RowConstraints minHeight="70.0" valignment="CENTER" vgrow="ALWAYS" />
+        <RowConstraints minHeight="70.0" valignment="CENTER" vgrow="ALWAYS" />
+        <RowConstraints minHeight="70.0" valignment="CENTER" vgrow="ALWAYS" />
+    </rowConstraints>
+    <children>
+        <Label fx:id="column1" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" />
+        <Label fx:id="column2" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" GridPane.columnIndex="1" />
+        <Label fx:id="column3" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" GridPane.columnIndex="2" />
+        <Label fx:id="column4" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" GridPane.columnIndex="3" />
+        <Label fx:id="column5" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" GridPane.columnIndex="4" />
+        <Label fx:id="column6" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" GridPane.columnIndex="5" />
+        <Label fx:id="column7" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" GridPane.columnIndex="6" />
+    </children>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
+</GridPane>

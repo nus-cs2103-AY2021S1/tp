@@ -1,16 +1,21 @@
 {
-  "tasks": [ {
-    "title": "Alice Pauline",
-    "dateTime": "01-01-2020 12:00",
-    "description": "alice,example.com",
-    "type": "event",
-    "tagged": [ "friends" ],
-    "status" : "Incomplete"
+  "deadlines" : [ {
+    "title" : "Valid Task",
+    "deadlineDateTime" : "25-11-2020 09:00",
+    "description" : "",
+    "doneDateTime" : "24-10-2020 04:07",
+    "duration" : 10,
+    "tag" : "CS2102",
+    "status" : "incomplete"
   }, {
-    "title": "Alice Pauline",
-    "dateTime": "01-01-2020 12:00",
-    "description": "pauline,example.com",
-    "type": "event",
-    "status" : "Incomplete"
-  } ]
+    "title" : "Valid Task",
+    "deadlineDateTime" : "25-11-2020 09:00",
+    "description" : "",
+    "doneDateTime" : "24-10-2020 04:07",
+    "duration" : 10,
+    "tag" : "CS2102",
+    "status" : "incomplete"
+  }],
+  "events" : [ ],
+  "lessons" : [ ]
 }

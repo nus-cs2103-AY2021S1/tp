@@ -18,8 +18,20 @@ public class DoneCommandParser implements Parser<DoneCommand> {
      */
     public DoneCommand parse(String args) throws ParseException {
         try {
-            Index[] indexes = ParserUtil.parseVarargsIndex(args);
-            return new DoneCommand(indexes);
+
+            String[] splited = args.trim().split(" ");
+            Index[] indexes = new Index[splited.length];
+            int[] durations = new int[splited.length];
+            for (int i = 0; i < splited.length; i++) {
+                String[] pair = splited[i].trim().split(":");
+                if (pair.length <= 1) {
+                    throw new ParseException(
+                            String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE));
+                }
+                indexes[i] = ParserUtil.parseIndex(pair[0]);
+                durations[i] = Integer.parseInt((pair[1]));
+            }
+            return new DoneCommand(indexes, durations);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DoneCommand.MESSAGE_USAGE), pe);

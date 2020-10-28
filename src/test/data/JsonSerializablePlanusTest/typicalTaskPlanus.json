@@ -1,53 +1,59 @@
 {
   "_comment": "Planus save file which contains the same Tasks values as in TypicalTasks#getTypicalPlanus()",
-  "tasks" : [ {
-    "title" : "Alice Pauline",
-    "dateTime" : "01-01-2020 12:00",
-    "description" : "alice,example.com",
-    "type" : "event",
-    "tagged" : [ "friends" ],
-    "status" : "Incomplete"
+  "deadlines" : [ {
+    "title" : "Submit Developer Guide",
+    "deadlineDateTime" : "01-01-2020 12:00",
+    "description" : "Submit through luminus",
+    "doneDateTime" : "01-01-1000 00:00",
+    "duration" : -1,
+    "tag" : "CS2103T",
+    "status" : "incomplete"
   }, {
-    "title" : "Benson Meier",
-    "dateTime" : "02-02-2020 12:00",
-    "description" : "johnd,example.com",
-    "type" : "event",
-    "tagged" : [ "owesMoney", "friends" ],
-    "status" : "Incomplete"
+    "title" : "Assignment 3",
+    "deadlineDateTime" : "02-02-2020 12:59",
+    "description" : "important",
+    "doneDateTime" : "24-10-2020 04:07",
+    "duration" : 20,
+    "tag" : "CS2102",
+    "status" : "complete"
   }, {
-    "title" : "Carl Kurz",
-    "dateTime" : "03-03-2020 12:00",
-    "description" : "heinz,example.com",
-    "type" : "event",
-    "tagged" : [ ],
-    "status" : "Complete"
+    "title" : "GEQ Readings",
+    "deadlineDateTime" : "01-01-1000 00:00",
+    "description" : "15 pages reading",
+    "doneDateTime" : "01-01-1000 00:00",
+    "duration" : -1,
+    "tag" : "GEQ1000",
+    "status" : "incomplete"
   }, {
-    "title" : "Daniel Meier",
-    "dateTime" : "04-04-2020 12:00",
-    "description" : "cornelia,example.com",
-    "type" : "event",
-    "tagged" : [ "friends" ],
-    "status" : "Incomplete"
+    "title" : "Grade Mission",
+    "deadlineDateTime" : "04-04-2020 12:00",
+    "description" : "grading all student mission",
+    "doneDateTime" : "01-01-1000 00:00",
+    "duration" : -1,
+    "tag" : "CS1101S",
+    "status" : "incomplete"
+  } ],
+  "events" : [{
+      "title" : "Project meeting",
+      "startDateTime" : "05-05-2020 12:00",
+      "endDateTime" : "05-05-2020 14:00",
+      "description" : "discuss v1.3 content",
+      "isLesson" : false,
+      "tag" : "CS2103T"
+    }, {
+    "title" : "Project meeting2",
+    "startDateTime" : "05-05-2020 14:00",
+    "endDateTime" : "05-05-2020 16:00",
+    "description" : "discuss project database diagram",
+    "isLesson" : false,
+    "tag" : "CS2102"
   }, {
-    "title" : "Elle Meyer",
-    "dateTime" : "05-05-2020 12:00",
-    "description" : "werner,example.com",
-    "type" : "event",
-    "tagged" : [ ],
-    "status" : "Incomplete"
-  }, {
-    "title" : "Fiona Kunz",
-    "dateTime" : "06-06-2020 12:00",
-    "description" : "lydia,example.com",
-    "type" : "event",
-    "tagged" : [ ],
-    "status" : "Incomplete"
-  }, {
-    "title" : "George Best",
-    "dateTime" : "07-07-2020 12:00",
-    "description" : "anna,example.com",
-    "type" : "event",
-    "tagged" : [ ],
-    "status" : "Incomplete"
-  } ]
+    "title" : "Project meeting3",
+    "startDateTime" : "05-05-2020 18:00",
+    "endDateTime" : "05-05-2020 20:00",
+    "description" : "discuss v1.3 content",
+    "isLesson" : false,
+    "tag" : "CS2103T"
+  }],
+  "lessons" : [ ]
 }

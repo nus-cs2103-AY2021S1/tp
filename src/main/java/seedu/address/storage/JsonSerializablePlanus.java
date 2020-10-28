@@ -13,7 +13,8 @@ import seedu.address.model.Planus;
 import seedu.address.model.ReadOnlyPlanus;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.event.Event;
 
 /**
  * An Immutable Planus that is serializable to JSON format.
@@ -23,15 +24,20 @@ class JsonSerializablePlanus {
 
     public static final String MESSAGE_DUPLICATE_TASK = "Task list contains duplicate task(s).";
 
-    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedDeadline> deadlines = new ArrayList<>();
+    private final List<JsonAdaptedEvent> events = new ArrayList<>();
     private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
+    private final List<JsonAdaptedEvent> calendar = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonSerializablePlanus} with the given tasks.
      */
     @JsonCreator
-    public JsonSerializablePlanus(@JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
-        this.tasks.addAll(tasks);
+    public JsonSerializablePlanus(@JsonProperty("deadlines") List<JsonAdaptedDeadline> deadlines,
+                                  @JsonProperty("events") List<JsonAdaptedEvent> events) {
+        this.deadlines.addAll(deadlines);
+        this.events.addAll(events);
     }
 
     /**
@@ -40,11 +46,15 @@ class JsonSerializablePlanus {
      * @param source future changes to this will not affect the created {@code JsonSerializablePlanus}.
      */
     public JsonSerializablePlanus(ReadOnlyPlanus source) {
-        Type lessonType = new Type("lesson");
-        // avoid storing tasks with type lesson
-        tasks.addAll(source.getTaskList().stream().filter(task -> !task.getType().equals(lessonType))
-                .map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        deadlines.addAll(source.getTaskList().stream()
+                .filter(task -> task instanceof Deadline)
+                .map(task -> (Deadline) task)
+                .map(JsonAdaptedDeadline::new).collect(Collectors.toList()));
+        events.addAll(source.getTaskList().stream().filter(task -> task instanceof Event).map(task -> (Event) task)
+                .filter(event -> !event.isLesson()).map(JsonAdaptedEvent::new).collect(Collectors.toList()));
         lessons.addAll(source.getLessonList().stream().map(JsonAdaptedLesson::new).collect(Collectors.toList()));
+        calendar.addAll(source.getCalendarList().stream().map(task -> (Event) task)
+                .map(JsonAdaptedEvent::new).collect(Collectors.toList()));
     }
 
     /**
@@ -54,12 +64,21 @@ class JsonSerializablePlanus {
      */
     public Planus toModelType() throws IllegalValueException {
         Planus planus = new Planus();
-        for (JsonAdaptedTask jsonAdaptedTask : tasks) {
-            Task task = jsonAdaptedTask.toModelType();
-            if (planus.hasTask(task)) {
+        for (JsonAdaptedDeadline jsonAdaptedDeadline : deadlines) {
+            Deadline deadline = jsonAdaptedDeadline.toModelType();
+            if (planus.hasTask(deadline)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
-            planus.addTask(task);
+            planus.addTask(deadline);
+        }
+
+        for (JsonAdaptedEvent jsonAdaptedEvent : events) {
+            Event event = jsonAdaptedEvent.toModelType();
+            if (planus.hasTask(event)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
+            }
+            planus.addTask(event);
+            planus.addTaskToCalendar(event);
         }
 
         for (JsonAdaptedLesson jsonAdaptedLesson : lessons) {
@@ -71,6 +90,7 @@ class JsonSerializablePlanus {
                     throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
                 }
                 planus.addTask(task);
+                planus.addTaskToCalendar(task);
             }
             planus.addLesson(lesson);
         }

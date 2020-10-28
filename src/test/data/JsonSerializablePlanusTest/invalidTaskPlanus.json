@@ -1,9 +1,13 @@
 {
-  "tasks": [ {
-    "title": "Hans Muster",
-    "dateTime": "01-01-2020 12:00",
-    "description": "invalid@email!3e",
-    "type": "event",
-    "status" : "Incomplete"
-  } ]
+  "deadlines" : [ {
+    "title" : "Valid Task",
+    "deadlineDateTime" : "25-11-2020 09:00",
+    "description" : "@",
+    "doneDateTime" : "24-10-2020 04:07",
+    "duration" : 10,
+    "tag" : "",
+    "status" : "incomplete"
+  }],
+  "events" : [ ],
+  "lessons" : [ ]
 }

@@ -5,59 +5,61 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.model.Planus;
-import seedu.address.model.task.State;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.event.Event;
 
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
  */
 public class TypicalTasks {
 
-    public static final Task ALICE = new TaskBuilder().withTitle("Alice Pauline")
-            .withType("event").withDescription("alice,example.com")
-            .withDateTime("01-01-2020 12:00")
-            .withTags("friends").build();
-    public static final Task BENSON = new TaskBuilder().withTitle("Benson Meier")
-            .withType("event")
-            .withDescription("johnd,example.com").withDateTime("02-02-2020 12:00")
-            .withTags("owesMoney", "friends").build();
-    public static final Task CARL = new TaskBuilder().withTitle("Carl Kurz").withDateTime("03-03-2020 12:00")
-            .withDescription("heinz,example.com").withType("event").withStatus(State.COMPLETE).build();
-    public static final Task DANIEL = new TaskBuilder().withTitle("Daniel Meier").withDateTime("04-04-2020 12:00")
-            .withDescription("cornelia,example.com").withType("event").withTags("friends").build();
-    public static final Task ELLE = new TaskBuilder().withTitle("Elle Meyer").withDateTime("05-05-2020 12:00")
-            .withDescription("werner,example.com").withType("event").build();
-    public static final Task FIONA = new TaskBuilder().withTitle("Fiona Kunz").withDateTime("06-06-2020 12:00")
-            .withDescription("lydia,example.com").withType("event").build();
-    public static final Task GEORGE = new TaskBuilder().withTitle("George Best").withDateTime("07-07-2020 12:00")
-            .withDescription("anna,example.com").withType("event").build();
+    public static final Deadline DEADLINE1 = new DeadlineBuilder().withTitle("Submit Developer Guide")
+            .withDescription("Submit through luminus")
+            .withDeadlineDateTime("01-01-2020 12:00").withIncompleteStatus()
+            .withTag("CS2103T").build();
+    public static final Deadline DEADLINE2 = new DeadlineBuilder().withTitle("Assignment 3")
+            .withDeadlineDateTime("02-02-2020 12:59").withTag("CS2102").withCompleteStatus()
+            .withDuration(20).withDescription("important").withDoneDateTime("24-10-2020 04:07").build();
+    public static final Deadline DEADLINE3 = new DeadlineBuilder().withTitle("GEQ Readings")
+            .withNullDeadlineDateTime().withDescription("15 pages reading")
+            .withIncompleteStatus().withTag("GEQ1000").build();
+    public static final Deadline DEADLINE4 = new DeadlineBuilder().withTitle("Grade Mission")
+            .withDeadlineDateTime("04-04-2020 12:00").withIncompleteStatus()
+            .withDescription("grading all student mission").withTag("CS1101S").build();
+    public static final Event EVENT1 = new EventBuilder().withTitle("Project meeting")
+            .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
+            .withDescription("discuss v1.3 content").withTag("CS2103T").build();
+    public static final Event EVENT2 = new EventBuilder().withTitle("Project meeting2")
+            .withStartDateTime("05-05-2020 14:00").withEndDateTime("05-05-2020 16:00")
+            .withDescription("discuss project database diagram").withTag("CS2102").build();
+    public static final Event EVENT3 = new EventBuilder().withTitle("Project meeting3")
+            .withStartDateTime("05-05-2020 18:00").withEndDateTime("05-05-2020 20:00")
+            .withDescription("discuss v1.3 content").withTag("CS2103T").build();
+
 
     // Manually added
-    public static final Task HOON = new TaskBuilder().withTitle("Hoon Meier").withDateTime("08-08-2020 12:00")
-            .withDescription("stefan,example.com").withType("event").build();
-    public static final Task IDA = new TaskBuilder().withTitle("Ida Mueller").withDateTime("09-09-2020 12:00")
-            .withDescription("hans,example.com").withType("event").build();
+    public static final Deadline DEADLINE5 = new DeadlineBuilder().withTitle("Assignment 10")
+            .withDeadlineDateTime("02-02-2020 12:59").withTag("CS2102").withCompleteStatus().build();
+    public static final Event EVENT4 = new EventBuilder().withTitle("Project meeting 2020")
+            .withStartDateTime("05-05-2020 12:00").withEndDateTime("05-05-2020 14:00")
+            .withDescription("dicuss v1.3 content").withTag("CS2103T").build();
 
     // Manually added - Task's details found in {@code CommandTestUtil}
-    public static final Task AMY = new TaskBuilder().withTitle(VALID_TITLE_AMY).withDateTime(VALID_DATE_TIME_AMY)
-            .withDescription(VALID_DESCRIPTION_AMY).withType(VALID_TYPE_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Task BOB = new TaskBuilder().withTitle(VALID_TITLE_BOB).withDateTime(VALID_DATE_TIME_BOB)
-            .withDescription(VALID_DESCRIPTION_BOB).withType(VALID_TYPE_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
-
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    public static final Deadline DEADLINE_TEST = new DeadlineBuilder()
+            .withTitle(VALID_TITLE_AMY).withDeadlineDateTime(VALID_DATE_TIME_AMY)
+            .withDescription(VALID_DESCRIPTION_AMY).withTag(VALID_TAG_FRIEND).build();
+    public static final Event EVENT_TEST = new EventBuilder().withTitle(VALID_TITLE_BOB)
+            .withStartDateTime(VALID_DATE_TIME_BOB).withEndDateTime(VALID_DATE_TIME_BOB)
+            .withDescription(VALID_DESCRIPTION_BOB).withTag(VALID_TAG_FRIEND).build();
 
     private TypicalTasks() {} // prevents instantiation
 
@@ -73,6 +75,6 @@ public class TypicalTasks {
     }
 
     public static List<Task> getTypicalTasks() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(DEADLINE1, DEADLINE2, DEADLINE3, DEADLINE4, EVENT1, EVENT2, EVENT3));
     }
 }

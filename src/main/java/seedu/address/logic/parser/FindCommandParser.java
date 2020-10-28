@@ -3,26 +3,24 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_SEARCH_PHRASE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.task.DateTime;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.State;
-import seedu.address.model.task.Status;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.deadline.Status;
 
 
 /**
@@ -37,19 +35,19 @@ public class FindCommandParser implements Parser<FindCommand> {
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
-                                            PREFIX_DESCRIPTION, PREFIX_TYPE, PREFIX_STATUS, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE,
+                                            PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TITLE,
-                PREFIX_DESCRIPTION, PREFIX_DATE_TIME, PREFIX_TYPE, PREFIX_STATUS, PREFIX_TAG)) {
+                PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         setKeyword(PREFIX_TITLE, argMultimap, predicate);
         setKeyword(PREFIX_DESCRIPTION, argMultimap, predicate);
-        setKeyword(PREFIX_TYPE, argMultimap, predicate);
-        setKeyword(PREFIX_DATE_TIME, argMultimap, predicate);
+        setKeyword(PREFIX_DATE, argMultimap, predicate);
         setKeyword(PREFIX_STATUS, argMultimap, predicate);
+        setKeyword(PREFIX_TAG, argMultimap, predicate);
 
         return new FindCommand(predicate);
     }
@@ -73,14 +71,14 @@ public class FindCommandParser implements Parser<FindCommand> {
             if (prefix.equals(PREFIX_DESCRIPTION) && !Description.isValidDescription(trimmed)) {
                 throw new ParseException(Description.SEARCH_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_TYPE) && !Type.isValidType(trimmed)) {
-                throw new ParseException(Type.SEARCH_CONSTRAINTS);
+            if (prefix.equals(PREFIX_DATE) && !DateUtil.isValidDate(trimmed)) {
+                throw new ParseException(DateUtil.SEARCH_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_DATE_TIME) && !DateTime.isValidSearchPhrase(trimmed)) {
-                throw new ParseException(DateTime.SEARCH_CONSTRAINTS);
-            }
-            if (prefix.equals(PREFIX_STATUS) && State.toState(trimmed) == null) {
+            if (prefix.equals(PREFIX_STATUS) && !Status.isValidStatus(trimmed)) {
                 throw new ParseException(Status.SEARCH_CONSTRAINTS);
+            } //now the status only have a boolean value of isCompleted.
+            if (prefix.equals(PREFIX_TAG) && !Tag.isValidTagName(trimmed)) {
+                throw new ParseException(Tag.SEARCH_CONSTRAINTS);
             }
         }
         values.forEach(val -> predicate.setKeyword(prefix, val));

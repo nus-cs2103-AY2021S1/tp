@@ -1,46 +1,34 @@
 package seedu.address.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.lesson.Date;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "R@te movie";
     private static final String INVALID_DATE_TIME = "1-1-2020 12:00";
     private static final String INVALID_DATE = "1-1-2020";
     private static final String INVALID_TIME = "12:0";
-    private static final String INVALID_TYPE = " ";
     private static final String INVALID_DESCRIPTION = "@example";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_TITLE = "Rate movie";
     private static final String VALID_DATE_TIME = "01-01-2020 12:00";
-    private static final String VALID_DATE = "01-01-2020";
     private static final String VALID_TIME = "12:00";
-    private static final String VALID_TYPE = "todo";
     private static final String VALID_DESCRIPTION = "rachel,example.com";
     private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -120,18 +108,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
-        LocalDate expectedDate = new Date(VALID_DATE).value;
-        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DATE));
-    }
-
-    @Test
-    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
-        String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
-        LocalDate expectedDate = new Date(VALID_DATE).value;
-        assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhitespace));
-    }
-    @Test
     public void parseTime_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTime((String) null));
     }
@@ -152,27 +128,6 @@ public class ParserUtilTest {
         String timeWithWhitespace = WHITESPACE + VALID_TIME + WHITESPACE;
         LocalTime expectedTime = new Time(VALID_TIME).value;
         assertEquals(expectedTime, ParserUtil.parseTime(timeWithWhitespace));
-    }
-    @Test
-    public void parseType_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseType((String) null));
-    }
-    @Test
-    public void parseType_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseType(INVALID_TYPE));
-    }
-
-    @Test
-    public void parseType_validValueWithoutWhitespace_returnsType() throws Exception {
-        Type expectedType = new Type(VALID_TYPE);
-        assertEquals(expectedType, ParserUtil.parseType(VALID_TYPE));
-    }
-
-    @Test
-    public void parseType_validValueWithWhitespace_returnsTrimmedType() throws Exception {
-        String typeWithWhitespace = WHITESPACE + VALID_TYPE + WHITESPACE;
-        Type expectedType = new Type(VALID_TYPE);
-        assertEquals(expectedType, ParserUtil.parseType(typeWithWhitespace));
     }
 
     @Test
@@ -223,24 +178,6 @@ public class ParserUtilTest {
 
     @Test
     public void parseTags_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTags(null));
-    }
-
-    @Test
-    public void parseTags_collectionWithInvalidTags_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    }
-
-    @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-        assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    }
-
-    @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
-
-        assertEquals(expectedTagSet, actualTagSet);
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(null));
     }
 }

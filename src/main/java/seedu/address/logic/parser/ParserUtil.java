@@ -6,20 +6,18 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.lesson.Date;
 import seedu.address.model.lesson.Time;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.deadline.DeadlineDateTime;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -27,6 +25,8 @@ import seedu.address.model.task.Type;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String DAY_MESSAGE_CONSTRAINTS = "Day should be in the format of MON, TUE,"
+            + " ..., SUN or MONDAY, TUESDAY, ..., SUNDAY";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -79,14 +79,47 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code dateTime} is invalid.
      */
-    public static DateTime parseDateTime(String dateTime) throws ParseException {
+    public static DeadlineDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        if (!DeadlineDateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
-        return new DateTime(trimmedDateTime);
+        return new DeadlineDateTime(trimmedDateTime);
     }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static StartDateTime parseStartDateTime(String date, String time) throws ParseException {
+        requireNonNull(date, time);
+        String trimmedDate = date.trim();
+        String trimmedtime = time.trim();
+        if (!StartDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+        }
+        return StartDateTime.createStartDateTime(trimmedDate, trimmedtime);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into a {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static EndDateTime parseEndDateTime(String date, String time) throws ParseException {
+        requireNonNull(date, time);
+        String trimmedDate = date.trim();
+        String trimmedtime = time.trim();
+        if (!EndDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+        }
+        return EndDateTime.createEndDateTime(trimmedDate, trimmedtime);
+    }
+
 
     /**
      * Parses a {@code String time} into a {@code LocalTime}.
@@ -114,8 +147,8 @@ public class ParserUtil {
         requireNonNull(date);
         String trimmedDate = date.trim();
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        if (!Date.isValidDate(trimmedDate)) {
-            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        if (!DateUtil.isValidDate(trimmedDate)) {
+            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return LocalDate.parse(trimmedDate, parser);
     }
@@ -153,22 +186,8 @@ public class ParserUtil {
         case "SUNDAY":
             return DayOfWeek.SUNDAY;
         default:
-            throw new ParseException(DateTime.DAY_MESSAGE_CONSTRAINTS);
+            throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
         }
-    }
-    /**
-     * Parses a {@code String type} into an {@code Type}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code type} is invalid.
-     */
-    public static Type parseType(String type) throws ParseException {
-        requireNonNull(type);
-        String trimmedType = type.trim();
-        if (!Type.isValidType(trimmedType)) {
-            throw new ParseException(Type.MESSAGE_CONSTRAINTS);
-        }
-        return new Type(trimmedType);
     }
 
     /**
@@ -199,17 +218,5 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 }

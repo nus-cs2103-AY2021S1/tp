@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyPlanus;
+import seedu.address.model.StatisticsData;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 
@@ -36,6 +37,12 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of lessons */
     ObservableList<Lesson> getFilteredLessonList();
+
+    /** Returns an unmodifiable view of the filtered list of calendar tasks */
+    ObservableList<Task> getFilteredCalendarList();
+
+    /** Returns an unmodifiable view of the filtered list of calendar tasks */
+    StatisticsData getStatisticsData();
 
     /**
      * Returns the user prefs' PlaNus file path.

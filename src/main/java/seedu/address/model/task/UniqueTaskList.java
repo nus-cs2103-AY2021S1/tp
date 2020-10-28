@@ -3,11 +3,13 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -46,6 +48,7 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
@@ -118,14 +121,14 @@ public class UniqueTaskList implements Iterable<Task> {
      * {@code tasks} must not contain duplicate tasks.
      * each task in tasks must exist in the list.
      */
-    public void markAsDone(Task[] tasks) {
-        requireNonNull(tasks);
-        for (int i = 0; i < tasks.length; i++) {
-            int index = internalList.indexOf(tasks[i]);
+    public void markAsDone(Deadline[] deadlines, int[] durations) {
+        requireNonNull(deadlines);
+        for (int i = 0; i < deadlines.length; i++) {
+            int index = internalList.indexOf(deadlines[i]);
             if (index == -1) {
                 throw new TaskNotFoundException();
             }
-            internalList.set(index, tasks[i].markAsDone());
+            internalList.set(index, deadlines[i].markAsDone(durations[i]));
         }
     }
 

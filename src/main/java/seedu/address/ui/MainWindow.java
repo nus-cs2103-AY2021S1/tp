@@ -33,6 +33,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private LessonListPanel lessonListPanel;
+    private CalendarPanel calendarPanel;
+    private DataAnalysisPanel dataAnalysisPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -47,6 +49,12 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane lessonListPanelPlaceholder;
+
+    @FXML
+    private StackPane dataAnalysisPanelPlaceholder;
+
+    @FXML
+    private StackPane calendarPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -121,6 +129,12 @@ public class MainWindow extends UiPart<Stage> {
         lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
         lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
 
+        calendarPanel = new CalendarPanel(logic.getFilteredCalendarList());
+        calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
+
+        dataAnalysisPanel = new DataAnalysisPanel(logic.getStatisticsData());
+        dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -175,6 +189,11 @@ public class MainWindow extends UiPart<Stage> {
         return taskListPanel;
     }
 
+    private void updateDataAnalysisPanel() {
+        dataAnalysisPanel = new DataAnalysisPanel(logic.getStatisticsData());
+        dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -185,6 +204,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            updateDataAnalysisPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

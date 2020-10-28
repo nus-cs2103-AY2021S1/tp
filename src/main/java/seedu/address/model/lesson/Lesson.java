@@ -3,24 +3,28 @@ package seedu.address.model.lesson;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DayOfWeek;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Objects;
 
-import seedu.address.model.task.DateTime;
+import seedu.address.commons.util.DateUtil;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.Type;
+import seedu.address.model.task.event.EndDateTime;
+import seedu.address.model.task.event.Event;
+import seedu.address.model.task.event.StartDateTime;
 
 /**
  * Lesson class to store information about a module's lessons.
  */
 public class Lesson {
     private final Title title;
+    private final Tag tag;
     private final Description description;
     private final DayOfWeek dayOfWeek;
     private final LocalTime startTime;
@@ -33,10 +37,11 @@ public class Lesson {
     /**
      * Every field must be present and not null.
      */
-    public Lesson(Title title, Description description, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime,
-                  LocalDate startDate, LocalDate endDate) {
+    public Lesson(Title title, Tag tag, Description description, DayOfWeek dayOfWeek, LocalTime startTime,
+                  LocalTime endTime, LocalDate startDate, LocalDate endDate) {
         requireAllNonNull(title, description, dayOfWeek, startTime, endTime, startDate, endDate);
         this.title = title;
+        this.tag = tag;
         this.description = description;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
@@ -66,6 +71,12 @@ public class Lesson {
     public LocalDate getEndDate() {
         return endDate;
     }
+    public Tag getTag() {
+        return tag;
+    }
+    private int getTimeTaken() {
+        return (int) Duration.between(startTime, endTime).toMinutes();
+    }
     /**
      * Creates recurring event tasks based on the lesson's details.
      * @return a list of recurring tasks to add.
@@ -77,17 +88,44 @@ public class Lesson {
         }
         ArrayList<Task> tasksToAdd = new ArrayList<>();
         while (currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate)) {
-            LocalDateTime localDateTime = LocalDateTime.of(currentDate, getStartTime());
-            String dateTime = localDateTime.format(DateTime.FORMATTER);
-            DateTime eventDateTime = new DateTime(dateTime);
-            Task taskToAdd = new Task(title, eventDateTime, description, new Type("lesson"), new HashSet<>());
-            tasksToAdd.add(taskToAdd);
+            LocalDateTime localStartDateTime = LocalDateTime.of(currentDate, getStartTime());
+            LocalDateTime localEndDateTime = LocalDateTime.of(currentDate, getEndTime());
+            String startDateTimeString = localStartDateTime.format(DateUtil.DATETIME_FORMATTER);
+            String endDateTimeString = localEndDateTime.format(DateUtil.DATETIME_FORMATTER);
+            StartDateTime startDateTime = new StartDateTime(startDateTimeString);
+            EndDateTime endDateTime = new EndDateTime(endDateTimeString);
+            Event eventToAdd = Event.createLessonEvent(title, startDateTime, endDateTime, description, tag);
+            tasksToAdd.add(eventToAdd);
             currentDate = currentDate.plusDays(7);
         }
         associatedTasks = tasksToAdd;
         return tasksToAdd;
     }
 
+    /**
+     * Calculates the total number of hours this lesson takes within a specified time period.
+     */
+    public int timeTakenWithinPeriod(LocalDate startDate, LocalDate endDate) {
+        requireAllNonNull(startDate, endDate);
+        return numberOfLessonsWithinPeriod(startDate, endDate) * getTimeTaken();
+    }
+    /**
+     * Calculates the number of lessons within a specified time period.
+     */
+    private int numberOfLessonsWithinPeriod(LocalDate start, LocalDate end) {
+        LocalDate currentDate = getStartDate();
+        while (!((currentDate.getDayOfWeek()).equals(this.dayOfWeek)
+            && ((currentDate.isAfter(start)) || currentDate.isEqual(start)))) {
+            currentDate = currentDate.plusDays(1);
+        }
+        int counter = 0;
+        while ((currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate))
+            && (currentDate.isBefore(start) || currentDate.isBefore(end))) {
+            counter++;
+            currentDate = currentDate.plusDays(7);
+        }
+        return counter;
+    }
     /**
      * Returns the set of tasks the lesson created.
      * @return an array list of tasks created by the lesson.
@@ -115,7 +153,7 @@ public class Lesson {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(title, description, dayOfWeek, startTime, endTime, startDate, endDate);
+        return Objects.hash(title, tag, description, dayOfWeek, startTime, endTime, startDate, endDate);
     }
     @Override
     public String toString() {
@@ -123,6 +161,8 @@ public class Lesson {
         builder.append(getTitle())
                 .append(" Description: ")
                 .append(getDescription())
+                .append(" Tag: ")
+                .append(getTag())
                 .append(" Day: ")
                 .append(getDayOfWeek())
                 .append(" Start Time: ")

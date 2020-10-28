@@ -7,14 +7,17 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.event.Event;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> !(task instanceof Event && ((Event) task).isLesson());
     Predicate<Lesson> PREDICATE_SHOW_ALL_LESSONS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_CALENDAR_TASKS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -65,6 +68,11 @@ public interface Model {
     boolean hasLesson(Lesson lesson);
 
     /**
+     * Returns true if a task with the same identity as {@code task} exists in PlaNus.
+     */
+    boolean hasCalendarTask(Task task);
+
+    /**
      * Deletes the given task.
      * The task must exist in PlaNus.
      */
@@ -74,7 +82,7 @@ public interface Model {
      * Mark the given array of tasks to be done.
      * The tasks must exist in PlaNus.
      */
-    void markAsDone(Task[] targets);
+    void markAsDone(Deadline[] targets, int[] durations);
 
     /**
      * Adds the given task.
@@ -87,6 +95,12 @@ public interface Model {
      * {@code lesson} must not already exist in PlaNus.
      */
     void addLesson(Lesson lesson);
+
+    /**
+     * Adds the given task.
+     * {@code task} must not already exist in PlaNus.
+     */
+    void addTaskToCalendar(Task task);
 
     /**
      * Replaces the given task {@code target} with {@code editedTask}.
@@ -102,11 +116,21 @@ public interface Model {
      */
     void setLesson(Lesson target, Lesson editedLesson);
 
+    /**
+     * Replaces the given task {@code target} with {@code editedTask}.
+     * {@code target} must exist in PlaNus.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the task list.
+     */
+    void setCalendarTasks(Task target, Task editedTask);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
     /** Returns an unmodifiable view of the filtered lesson list */
     ObservableList<Lesson> getFilteredLessonList();
+
+    /** Returns an unmodifiable view of the filtered calendar list */
+    ObservableList<Task> getFilteredCalendarList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
@@ -119,4 +143,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredLessonList(Predicate<Lesson> predicate);
+
+    /**
+     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredCalendar(Predicate<Task> predicate);
 }

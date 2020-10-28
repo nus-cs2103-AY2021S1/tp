@@ -3,25 +3,25 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PlaNus" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PlaNus" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/planus.png" />
   </icons>
   <scene>
     <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
 
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
@@ -44,27 +44,55 @@
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-            <SplitPane dividerPositions="0.5" orientation="VERTICAL" VBox.vgrow="ALWAYS">
-              <items>
-              <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
-                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-              </VBox>
-                  <VBox minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
+            <HBox VBox.vgrow="ALWAYS">
+               <children>
+                  <SplitPane dividerPositions="0.5" minWidth="700.0" orientation="VERTICAL" HBox.hgrow="ALWAYS">
+                     <items>
+                    <VBox fx:id="taskList" styleClass="pane-with-border">
+                           <children>
+                              <Label styleClass="label-bright" text="Tasks:" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin></Label>
+                         <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                           </children>
+                    </VBox>
+                        <VBox styleClass="pane-with-border">
+                           <children>
+                              <Label styleClass="label-bright" text="Lessons:">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin></Label>
+                              <StackPane fx:id="lessonListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                     </items>
+                  </SplitPane>
+                  <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>
-                        <StackPane fx:id="lessonListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="calendarPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        <Separator VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="dataAnalysisPanelPlaceholder" VBox.vgrow="ALWAYS" />
                      </children>
-                     <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </padding>
                   </VBox>
-              </items>
-            </SplitPane>
+               </children>
+            </HBox>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
+         <stylesheets>
+            <URL value="@Extensions.css" />
+            <URL value="@DarkTheme.css" />
+         </stylesheets>
     </Scene>
   </scene>
 </fx:root>

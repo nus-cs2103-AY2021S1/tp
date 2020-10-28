@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Tests that a {@code Task}'s given attribute matches any of the keywords given.
@@ -79,18 +81,20 @@ public class TaskContainsKeywordsPredicate implements Predicate<Task> {
         }
 
         if (prefix.equals("date:")) {
+            String dateTime = task.getDate().format(DateUtil.DATE_FORMATTER);
             return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getDateTime().toString(), keyword));
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(dateTime, keyword));
         }
 
-        if (prefix.equals("type:")) {
-            return words.stream()
-                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getType().value, keyword));
-        }
         if (prefix.equals("status:")) {
-            // must be an exact match here
+            return task instanceof Deadline && words.stream()
+                    .anyMatch(keyword -> ((Deadline) task).getStatus().toString().toLowerCase()
+                            .equals(keyword.toLowerCase()));
+        }
+
+        if (prefix.equals("tag:")) {
             return words.stream()
-                    .anyMatch(keyword -> task.getStatus().value.toString().toLowerCase().equals(keyword.toLowerCase()));
+                    .anyMatch(keyword -> StringUtil.matchesWordIgnoreCase(task.getTag().tagName, keyword));
         }
 
         return false;
