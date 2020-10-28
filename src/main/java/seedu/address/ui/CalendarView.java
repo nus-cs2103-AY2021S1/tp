@@ -33,9 +33,9 @@ public class CalendarView extends UiPart<Region> {
     private static final String FXML = "CalendarView.fxml";
     private static final String[] MONTHS = {"January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"};
-    private static final int TOTALNUMOFDATEGRID = 42;
-    private static final int NUMOFDAYSPERWEEK = 7;
-
+    private static final int TOTAL_NUM_OF_DATEGRID = 42;
+    private static final int NUM_OF_DAYS_PER_WEEK = 7;
+    
     private int[] simulateGridPane = new int[42];
     private int day;
     private int month;
@@ -179,7 +179,7 @@ public class CalendarView extends UiPart<Region> {
     private void fill() {
         currentMonthBalance = getNumberOfDaysInTheMonth();
         int firstDayOfMonth = firstDayOfTheMonth.getDayOfWeek().getValue();
-        previousMonthBalance = firstDayOfMonth % NUMOFDAYSPERWEEK;
+        previousMonthBalance = firstDayOfMonth % NUM_OF_DAYS_PER_WEEK;
         int firstDay = getNumberOfDaysInPreviousMonth() - previousMonthBalance + 1;
 
         for (int i = 0; i < previousMonthBalance; i++) {
@@ -191,7 +191,7 @@ public class CalendarView extends UiPart<Region> {
             simulateGridPane[previousMonthBalance + i] = i + 1;
         }
 
-        nextMonthBalance = TOTALNUMOFDATEGRID - currentMonthBalance - previousMonthBalance;
+        nextMonthBalance = TOTAL_NUM_OF_DATEGRID - currentMonthBalance - previousMonthBalance;
         int pointerInNextMonth = currentMonthBalance + previousMonthBalance;
         for (int i = 0; i < nextMonthBalance; i++) {
             simulateGridPane[pointerInNextMonth + i] = i + 1;
@@ -215,7 +215,7 @@ public class CalendarView extends UiPart<Region> {
                 VBox holder = placeHolderForLabel();
 
                 if ((currentDateGrid < previousMonthBalance)
-                        || (currentDateGrid > TOTALNUMOFDATEGRID - 1 - nextMonthBalance)) {
+                        || (currentDateGrid > TOTAL_NUM_OF_DATEGRID - 1 - nextMonthBalance)) {
                     holder.setBlendMode(BlendMode.SOFT_LIGHT);
                 }
 
