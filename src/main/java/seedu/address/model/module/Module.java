@@ -1,7 +1,9 @@
 package seedu.address.model.module;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.model.module.grade.Assignment;
@@ -17,22 +19,23 @@ import seedu.address.model.tag.Tag;
  */
 public class Module {
     private final ModuleName name;
-    private final ZoomLink zoomLink;
     private final GradeTracker gradeTracker;
     private final ModularCredits modularCredits;
 
     // Data fields
+    private final Map<String, ZoomLink> zoomLinks = new HashMap<>();
     private final Set<Tag> tags = new HashSet<>();
+
     /**
      * Represents the module object constructor.
      * @param name name of module
-     * @param zoomLink zoom link attached to module
+     * @param zoomLinks zoom links attached to module
      * @param gradeTracker grade tracker attached to module
      * @param tags tag attached to module
      */
-    public Module(ModuleName name, ZoomLink zoomLink, GradeTracker gradeTracker, Set<Tag> tags) {
+    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks, GradeTracker gradeTracker, Set<Tag> tags) {
         this.name = name;
-        this.zoomLink = zoomLink;
+        this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = gradeTracker;
         this.tags.addAll(tags);
         this.modularCredits = new ModularCredits();
@@ -41,14 +44,14 @@ public class Module {
     /**
      * Represents the module object constructor.
      * @param name name of module
-     * @param zoomLink zoom link attached to module
+     * @param zoomLinks zoom links attached to module
      * @param gradeTracker grade tracker attached to module
      * @param tags tag attached to module
      */
-    public Module(ModuleName name, ZoomLink zoomLink, GradeTracker gradeTracker, Set<Tag> tags,
+    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks, GradeTracker gradeTracker, Set<Tag> tags,
                   ModularCredits modularCredits) {
         this.name = name;
-        this.zoomLink = zoomLink;
+        this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = gradeTracker;
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
@@ -57,12 +60,12 @@ public class Module {
     /**
      * Represents the module object constructor.
      * @param name name of module
-     * @param zoomLink zoom link attached to module
+     * @param zoomLinks zoom links attached to module
      * @param tags tag attached to module
      */
-    public Module(ModuleName name, ZoomLink zoomLink, Set<Tag> tags, ModularCredits modularCredits) {
+    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks, Set<Tag> tags, ModularCredits modularCredits) {
         this.name = name;
-        this.zoomLink = zoomLink;
+        this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = new GradeTracker();
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
@@ -71,20 +74,20 @@ public class Module {
     /**
      * Represents the module object constructor.
      * @param name name of module
-     * @param zoomLink zoom link attached to module
+     * @param zoomLinks zoom links attached to module
      */
-    public Module(ModuleName name, ZoomLink zoomLink, ModularCredits modularCredits) {
+    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks, ModularCredits modularCredits) {
         this.name = name;
-        this.zoomLink = zoomLink;
+        this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = new GradeTracker();
         this.modularCredits = modularCredits;
     }
+
     /**
      * Represents the module object constructor.
      */
     public Module() {
         this.name = null;
-        this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
         this.modularCredits = new ModularCredits();
     }
@@ -95,7 +98,6 @@ public class Module {
      */
     public Module(ModuleName name) {
         this.name = name;
-        this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
         this.modularCredits = new ModularCredits();
     }
@@ -103,11 +105,11 @@ public class Module {
     /**
      * Represents the module object constructor.
      * @param name name of module
-     * @param zoomLink zoom link attached to module
+     * @param zoomLinks zoom link attached to module
      */
-    public Module(ModuleName name, ZoomLink zoomLink) {
+    public Module(ModuleName name, Map<String, ZoomLink> zoomLinks) {
         this.name = name;
-        this.zoomLink = zoomLink;
+        this.zoomLinks.putAll(zoomLinks);
         this.gradeTracker = new GradeTracker();
         this.modularCredits = new ModularCredits();
     }
@@ -120,7 +122,6 @@ public class Module {
      */
     public Module(ModuleName name, Set<Tag> tags, ModularCredits modularCredits) {
         this.name = name;
-        this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
@@ -135,13 +136,11 @@ public class Module {
      */
     public Module(ModuleName name, Set<Tag> tags, ModularCredits modularCredits, GradePoint gradePoint) {
         this.name = name;
-        this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
         gradeTracker.setGradePoint(gradePoint);
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
     }
-
 
     /**
      * Represents the module object constructor.
@@ -150,7 +149,6 @@ public class Module {
      */
     public Module(ModuleName name, GradeTracker gradeTracker) {
         this.name = name;
-        this.zoomLink = null;
         this.gradeTracker = gradeTracker;
         this.modularCredits = new ModularCredits();
     }
@@ -165,20 +163,59 @@ public class Module {
     }
 
     /**
-     * Returns the zoom link of the module.
-     * @return ZoomLink zoom link.
+     * Returns the zoom link based on the specified key.
+     *
+     * @param key the specified key
+     * @return zoom link or null if the key does not exist.
      */
-    public ZoomLink getLink() {
-        return this.zoomLink;
+    public ZoomLink getLink(String key) {
+        assert key != null;
+        return this.zoomLinks.get(key);
+    }
+
+    /**
+     * Returns all of the zoom links related to this module.
+     *
+     * @return a Map containing all the zoom links
+     */
+    public Map<String, ZoomLink> getAllLinks() {
+        return Collections.unmodifiableMap(this.zoomLinks);
+    }
+
+    /** Returns true if this module contains the specified zoom link even
+     *  though it has different key.
+     *
+     * @param link the specified zoom link
+     * @return trye if this module contains the zoom link, false otherwise.
+     */
+    public boolean containsLink(ZoomLink link) {
+        assert link != null;
+        return this.zoomLinks.containsValue(link);
     }
 
     /**
      * Adds the zoom link for this module.
-     * @param zoomLink zoom link.
-     * @return Module a new Module with the input zoom link.
+     *
+     * @param key name to indicate the zoom link
+     * @param link zoom link
+     * @return module containing the updated zoom links
      */
-    public Module addZoomLink(ZoomLink zoomLink) {
-        return new Module(this.getName(), zoomLink, this.gradeTracker, this.tags);
+    public Module addZoomLink(String key, ZoomLink link) {
+        Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
+        updatedLinks.put(key, link);
+        return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
+    }
+
+    /**
+     * Deletes the zoom link based on the specified key.
+     *
+     * @param key name of the zoom link to be deleted
+     * @return module containing the updated zoom links
+     */
+    public Module deleteZoomLink(String key) {
+        Map<String, ZoomLink> updatedLinks = new HashMap<>(this.zoomLinks);
+        updatedLinks.remove(key);
+        return new Module(this.name, updatedLinks, this.gradeTracker, this.tags, this.modularCredits);
     }
 
     /**
@@ -196,7 +233,7 @@ public class Module {
      * @return the module.
      */
     public Module setGradeTracker(GradeTracker gradeTracker) {
-        return new Module(this.getName(), zoomLink, gradeTracker, this.tags);
+        return new Module(this.getName(), this.zoomLinks, gradeTracker, this.tags);
     }
 
     /**
@@ -215,7 +252,7 @@ public class Module {
     public Module addAssignment(Assignment assignment) {
         if (!gradeTracker.isDuplicateAssignment(assignment)) {
             gradeTracker.addAssignment(assignment);
-            return new Module(name, zoomLink, gradeTracker, tags);
+            return new Module(name, zoomLinks, gradeTracker, tags);
         } else {
             return this;
         }
@@ -238,7 +275,7 @@ public class Module {
     public Module addGrade(Grade grade) {
         if (Grade.isValidGrade(grade.gradeResult)) {
             gradeTracker.setGrade(grade);
-            return new Module(name, zoomLink, gradeTracker, tags);
+            return new Module(name, zoomLinks, gradeTracker, tags);
         } else {
             return this;
         }
@@ -266,7 +303,7 @@ public class Module {
 
     @Override
     public String toString() {
-        return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getLink(),
+        return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getAllLinks(),
                 getModularCredits().toString());
     }
 
@@ -286,9 +323,12 @@ public class Module {
 
         Module otherModule = (Module) other;
         return otherModule.getName().equals(getName())
-                && otherModule.getLink().equals(getLink());
+                && otherModule.getAllLinks().equals(getAllLinks());
         /*return otherModule.getName().equals(getName())
                 && otherModule.getLink().equals(getLink())
+=======
+                && otherModule.getAllLinks().equals(getAllLinks())
+>>>>>>> 3e988789be18b4cca14aad8411d2b89c81a34f08
                 && otherModule.getModularCredits().equals((getModularCredits()))
                 && otherModule.getGradeTracker().equals(getGradeTracker());*/
     }

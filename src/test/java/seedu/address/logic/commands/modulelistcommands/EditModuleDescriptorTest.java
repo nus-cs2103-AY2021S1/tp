@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2030;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2103T;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULENAME_CS2103T;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_UNGRADED_MODULE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
 
 import org.junit.jupiter.api.Test;

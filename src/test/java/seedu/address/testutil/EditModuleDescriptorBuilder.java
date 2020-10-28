@@ -8,7 +8,7 @@ import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
-import seedu.address.model.module.ZoomLink;
+// import seedu.address.model.module.ZoomLink;
 import seedu.address.model.tag.Tag;
 
 
@@ -33,7 +33,7 @@ public class EditModuleDescriptorBuilder {
     public EditModuleDescriptorBuilder(Module module) {
         descriptor = new EditModuleDescriptor();
         descriptor.setModuleName(module.getName());
-        descriptor.setZoomLink(module.getLink());
+        // descriptor.setZoomLink(module.getLink());
         descriptor.setModularCredits(module.getModularCredits());
         descriptor.setTags(module.getTags());
     }
@@ -50,7 +50,7 @@ public class EditModuleDescriptorBuilder {
      * Sets the {@code ZoomLink} of the {@code EditModuleDescriptor} that we are building.
      */
     public EditModuleDescriptorBuilder withZoomLink(String zoomLink) {
-        descriptor.setZoomLink(new ZoomLink(zoomLink));
+        // descriptor.setZoomLink(new ZoomLink(zoomLink));
         return this;
     }
 

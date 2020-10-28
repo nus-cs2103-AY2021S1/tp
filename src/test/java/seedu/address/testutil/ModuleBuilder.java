@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Set;
 
 import seedu.address.model.module.ModularCredits;
@@ -82,8 +84,15 @@ public class ModuleBuilder {
         this.modularCredits = new ModularCredits(value);
         return this;
     }
+
+    /**
+     * Builds the module.
+     *
+     * @return a module
+     */
     public Module build() {
-        return new Module(moduleName, zoomLink, modularCredits);
+        //return new Module(moduleName, modularCredits);
+        return null;
     }
 
 

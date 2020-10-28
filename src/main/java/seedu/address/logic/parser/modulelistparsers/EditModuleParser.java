@@ -67,9 +67,11 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setModuleName(ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get()));
         }
+        /*
         if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
             editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get()));
         }
+        */
         if (argMultimap.getValue(PREFIX_MODULAR_CREDITS).isPresent()) {
             editModuleDescriptor.setModularCredits(ParserUtil
                     .parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get()));

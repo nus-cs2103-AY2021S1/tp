@@ -1,7 +1,9 @@
 package seedu.address.logic.commands.modulelistcommands;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
@@ -20,7 +22,7 @@ import seedu.address.model.tag.Tag;
 public class EditModuleDescriptor {
     private Set<Tag> tags;
     private ModuleName moduleName;
-    private ZoomLink zoomLink;
+    private Map<String, ZoomLink> zoomLinks;
     private GradeTracker gradeTracker;
     private ModularCredits modularCredits;
     private GradePoint gradePoint;
@@ -34,7 +36,7 @@ public class EditModuleDescriptor {
     public EditModuleDescriptor(EditModuleDescriptor toCopy) {
         setTags(toCopy.tags);
         setModuleName(toCopy.moduleName);
-        setZoomLink(toCopy.zoomLink);
+        setZoomLinks(toCopy.zoomLinks);
         setGradeTracker(toCopy.gradeTracker);
         setModularCredits(toCopy.modularCredits);
         setGradePoint(toCopy.gradePoint);
@@ -45,7 +47,7 @@ public class EditModuleDescriptor {
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldEdited() {
-        return CollectionUtil.isAnyNonNull(moduleName, zoomLink, modularCredits, gradePoint);
+        return CollectionUtil.isAnyNonNull(moduleName, zoomLinks, modularCredits, gradePoint);
     }
 
     /**
@@ -65,13 +67,25 @@ public class EditModuleDescriptor {
         return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
     }
 
+    /**
+     * Sets {@code zoomLinks} to this object's {@code zoomLinks}.
+     * A defensive copy of {@code zoomLinks} is used internally.
+     */
+    public void setZoomLinks(Map<String, ZoomLink> zoomLinks) {
+        this.zoomLinks = (zoomLinks != null) ? new HashMap<>(zoomLinks) : null;
+    }
+
+    /**
+     * Returns an unmodifiable zoomLinks map, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code zoomLinks} is null.
+     */
+    public Optional<Map<String, ZoomLink>> getZoomLinks() {
+        return (zoomLinks != null) ? Optional.of(Collections.unmodifiableMap(zoomLinks)) : Optional.empty();
+    }
 
     public void setModuleName(ModuleName moduleName) {
         this.moduleName = moduleName;
-    }
-
-    public void setZoomLink(ZoomLink zoomLink) {
-        this.zoomLink = zoomLink;
     }
 
     public void setGradeTracker(GradeTracker gradeTracker) {
@@ -92,10 +106,6 @@ public class EditModuleDescriptor {
 
     public Optional<ModuleName> getModuleName() {
         return Optional.ofNullable(moduleName);
-    }
-
-    public Optional<ZoomLink> getZoomLink() {
-        return Optional.ofNullable(zoomLink);
     }
 
     public Optional<GradeTracker> getGradeTracker() {
@@ -124,7 +134,7 @@ public class EditModuleDescriptor {
         EditModuleDescriptor e = (EditModuleDescriptor) other;
 
         return getModuleName().equals(e.getModuleName())
-                && getZoomLink().equals(e.getZoomLink())
+                && getZoomLinks().equals(e.getZoomLinks())
                 && getGradeTracker().equals(e.getGradeTracker())
                 && getModularCredits().equals(e.getModularCredits())
                 && getTags().equals(e.getTags());
