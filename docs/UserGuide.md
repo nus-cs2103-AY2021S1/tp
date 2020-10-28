@@ -18,15 +18,15 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 
 <div markdown="block" class="alert alert-info">
 
-:information_source: This indicates important notes for current feature we are looking at<br>
+:information_source: This indicates important notes for the current feature we are looking at<br>
 
 </div>
 
 ## 2. A little note from the developers
 
 Thank you for using McGymmy. We sincerely hope that McGymmy plays apart to help you achieve a healthier lifestyle.
-We understand that McGymmy may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
-Thus we recommend you to start by first understanding how McGymmy works at a high level at the Quick start section. Then, explore the Features section.
+We understand that McGymmy may be a little different from traditional GUI applications, and it may be a little difficult to start using it initially.
+Thus, we recommend you to start by first understanding how McGymmy works at a high level at the Quick start section. Then, explore the Features section.
 
 <div markdown="block" class="alert alert-info">
 
@@ -41,7 +41,7 @@ Thus we recommend you to start by first understanding how McGymmy works at a hig
 
 ## 3. Quick start
 
-To get started, you can double click on the jar file to open the GUI.
+To get started, you can double-click on the jar file to open the GUI.
 You can type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
 Refer to the features below for details of each command.
 
