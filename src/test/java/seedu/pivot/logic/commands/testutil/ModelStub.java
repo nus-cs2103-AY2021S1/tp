@@ -51,7 +51,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setPivotBook(ReadOnlyPivot newData) {
+    public void setPivot(ReadOnlyPivot newData) {
         throw new AssertionError("This method should not be called.");
     }
 
@@ -82,6 +82,31 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredCaseList(Predicate<Case> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void commitPivot(String command) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean canRedoPivot() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public String redoPivot() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean canUndoPivot() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public String undoPivot() {
         throw new AssertionError("This method should not be called.");
     }
 }
