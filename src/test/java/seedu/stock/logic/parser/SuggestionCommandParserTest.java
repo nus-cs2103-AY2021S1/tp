@@ -6,6 +6,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOW_QUANTITY_DE
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_APPLE;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.stock.logic.parser.SuggestionCommandParser.MESSAGE_SUGGESTION;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.CommandWords;
+import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
@@ -89,6 +91,26 @@ public class SuggestionCommandParserTest {
         parser = new SuggestionCommandParser("add", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.ADD_COMMAND_WORD + userInput + "\n" + AddCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_deleteCommandSuggestion_success() {
+        // EP: incorrect command word
+        String userInput = SERIAL_NUMBER_DESC_APPLE;
+        SuggestionCommandParser parser = new SuggestionCommandParser("delet");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + userInput
+                + "\n" + DeleteCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word
+        parser = new SuggestionCommandParser("delete", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + userInput
+                + "\n" + DeleteCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
