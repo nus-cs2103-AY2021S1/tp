@@ -4,15 +4,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LIST_TYPE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE_INDEX;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 import static seedu.stock.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -48,6 +52,8 @@ public class CommandTestUtil {
     public static final String VALID_SORT_ORDER_ASCENDING = "ascending";
     public static final String VALID_SORT_ORDER_DESCENDING = "descending";
     public static final String VALID_SORT_FIELD = "serialnumber";
+    public static final String VALID_NOTE = "This is a note";
+    public static final String VALID_NOTE_INDEX = "0";
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
@@ -70,6 +76,8 @@ public class CommandTestUtil {
     public static final String SORT_ORDER_ASCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_ASCENDING;
     public static final String SORT_ORDER_DESCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_DESCENDING;
     public static final String SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + VALID_SORT_FIELD;
+    public static final String NOTE_DESC = " " + PREFIX_NOTE + VALID_NOTE;
+    public static final String NOTE_INDEX_DESC = " " + PREFIX_NOTE_INDEX + VALID_NOTE_INDEX;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
     public static final String INVALID_SERIAL_NUMBER_DESC = " " + PREFIX_SERIAL_NUMBER;
@@ -84,6 +92,8 @@ public class CommandTestUtil {
     public static final String INVALID_FILE_NAME_DESC = " " + PREFIX_FILE_NAME + "test+2";
     public static final String INVALID_SORT_ORDER_DESC = " " + PREFIX_SORT_ORDER + "random";
     public static final String INVALID_SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + "note";
+    public static final String INVALID_LIST_TYPE_DESC = " " + PREFIX_LIST_TYPE + "a";
+    public static final String INVALID_STATISTICS_TYPE_DESC = " " + PREFIX_STATISTICS_TYPE + "sour";
 
     public static final String INVALID_LARGER_THAN_INT_LIMIT_QUANTITY_DESC =
                                             " " + PREFIX_QUANTITY + "10000000000000000000000";
