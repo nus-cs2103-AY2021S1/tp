@@ -1,13 +1,13 @@
 package seedu.address.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-/*import static org.junit.jupiter.api.Assertions.assertFalse;
-import static seedu.address.testutil.Assert.assertThrows;*/
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-//import java.util.Optional;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -23,7 +23,7 @@ public class JsonUserPrefsStorageTest {
     @TempDir
     public Path testFolder;
 
-    /*@Test
+    @Test
     public void readUserPrefs_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> readUserPrefs(null));
     }
@@ -66,14 +66,13 @@ public class JsonUserPrefsStorageTest {
     public void readUserPrefs_extraValuesInFile_extraValuesIgnored() throws DataConversionException {
         UserPrefs expected = getTypicalUserPrefs();
         UserPrefs actual = readUserPrefs("ExtraValuesUserPref.json").get();
-
         assertEquals(expected, actual);
     }
 
     private UserPrefs getTypicalUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
         userPrefs.setGuiSettings(new GuiSettings(1000, 500, 300, 100));
-        userPrefs.setModuleListFilePath(Paths.get("addressbook.json"));
+        userPrefs.setModuleListFilePath(Paths.get("modulelist.json"));
         return userPrefs;
     }
 
@@ -85,20 +84,19 @@ public class JsonUserPrefsStorageTest {
     @Test
     public void saveUserPrefs_nullFilePath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveUserPrefs(new UserPrefs(), null));
-    }*/
+    }
 
     /**
      * Saves {@code userPrefs} at the specified {@code prefsFileInTestDataFolder} filepath.
      */
-    /*private void saveUserPrefs(UserPrefs userPrefs, String prefsFileInTestDataFolder) {
+    private void saveUserPrefs(UserPrefs userPrefs, String prefsFileInTestDataFolder) {
         try {
             new JsonUserPrefsStorage(addToTestDataPathIfNotNull(prefsFileInTestDataFolder))
                     .saveUserPrefs(userPrefs);
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file", ioe);
         }
-    }*/
-
+    }
     @Test
     public void saveUserPrefs_allInOrder_success() throws DataConversionException, IOException {
 
