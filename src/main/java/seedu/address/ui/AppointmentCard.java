@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import seedu.address.model.appointment.Appointment;
 public class AppointmentCard extends UiPart<Region> {
 
     private static final String FXML = "AppointmentListCard.fxml";
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d MMMM yyyy - h:mma");
 
     public final Appointment appointment;
 
@@ -38,10 +40,10 @@ public class AppointmentCard extends UiPart<Region> {
 
         id.setText(displayedIndex + ". ");
         name.setText(appointment.getPatientName().fullName);
-        icNumber.setText(appointment.getPatientIc().value);
-        startTime.setText(appointment.getStartTime().toString()); //TODO: make more natural
-        duration.setText(
-                ChronoUnit.MINUTES.between(appointment.getStartTime().dateTime, appointment.getEndTime().dateTime)
+        icNumber.setText("IC: " + appointment.getPatientIc().value);
+        startTime.setText(formatter.format(appointment.getStartTime().dateTime));
+        duration.setText("Duration: "
+                + ChronoUnit.MINUTES.between(appointment.getStartTime().dateTime, appointment.getEndTime().dateTime)
                         + " minutes");
     }
 
