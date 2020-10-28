@@ -44,7 +44,7 @@ class JsonAdaptedDeadline {
                                @JsonProperty("description") String description,
                                @JsonProperty("doneDateTime") String doneDateTime,
                                @JsonProperty("duration") int duration,
-                               @JsonProperty("tagged") String tag,
+                               @JsonProperty("tag") String tag,
                                @JsonProperty("status") String status) {
         this.title = title;
         this.deadlineDateTime = deadlineDateTime;
@@ -67,7 +67,7 @@ class JsonAdaptedDeadline {
         duration = source.getTimeTaken();
         tag = source.getTag().tagName;
 
-        logger.info("Planus task with title: '" + title + "' successfully converted to adapted task object");
+        logger.info("Planus deadline with title: '" + title + "' successfully converted to adapted task object");
     }
 
     /**
@@ -92,7 +92,7 @@ class JsonAdaptedDeadline {
         final DeadlineDateTime modelDeadlineDateTime;
 
         if (deadlineDateTime.equals("")) {
-            logger.info("Deadline datetime for task with title: '" + title + "' is empty. "
+            logger.info("Deadline datetime for deadline with title: '" + title + "' is empty. "
                     + "Creating a default deadline datetime for it");
             modelDeadlineDateTime = DeadlineDateTime.createNullDeadlineDateTime();
         } else if (!DateUtil.isValidDateTime(deadlineDateTime)) {
@@ -109,7 +109,8 @@ class JsonAdaptedDeadline {
 
         final Description modelDescription;
         if (description.equals("")) {
-            logger.info("Description for task title: '" + title + "' is empty. Creating a default description for it");
+            logger.info("Description for deadline title: '" + title + "' is empty. "
+                    + "Creating a default description for it");
             modelDescription = Description.defaultDescription();
         } else if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -125,7 +126,7 @@ class JsonAdaptedDeadline {
         final DoneDateTime modelDoneDateTime;
 
         if (doneDateTime.equals("")) {
-            logger.info("Done datetime for task with title: '" + title + "' is empty. Creating a default "
+            logger.info("Done datetime for deadline with title: '" + title + "' is empty. Creating a default "
                     + "done datetime for it");
             modelDoneDateTime = DoneDateTime.createNullDoneDateTime();
         } else if (!DateUtil.isValidDateTime(doneDateTime)) {
@@ -153,7 +154,16 @@ class JsonAdaptedDeadline {
             modelDuration = new Duration(duration);
         }
 
-        final Tag modelTag = new Tag(tag);
+        final Tag modelTag;
+
+        if (tag.equals("")) {
+            logger.info("Tag for deadline title: '" + title + "' is empty. Creating a default tag for it");
+            modelTag = Tag.defaultTag();
+        } else if (!Tag.isValidTagName(tag)) {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTag = new Tag(tag);
+        }
 
         return new Deadline(modelTitle, modelDeadlineDateTime, modelDescription, modelTag, modelStatus, modelDuration,
                 modelDoneDateTime);

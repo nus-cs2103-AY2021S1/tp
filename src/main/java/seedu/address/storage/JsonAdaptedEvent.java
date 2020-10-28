@@ -38,7 +38,7 @@ class JsonAdaptedEvent {
     public JsonAdaptedEvent(@JsonProperty("title") String title, @JsonProperty("startDateTime") String startDateTime,
                             @JsonProperty("endDateTime") String endDateTime,
                             @JsonProperty("description") String description, @JsonProperty("isLesson") boolean isLesson,
-                            @JsonProperty("tagged") String tag) {
+                            @JsonProperty("tag") String tag) {
         this.title = title;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;
@@ -58,7 +58,7 @@ class JsonAdaptedEvent {
         isLesson = source.isLesson();
         tag = source.getTag().tagName;
 
-        logger.info("Planus task with title: '" + title + "' successfully converted to adapted task object");
+        logger.info("Planus event with title: '" + title + "' successfully converted to adapted task object");
     }
 
     /**
@@ -112,7 +112,7 @@ class JsonAdaptedEvent {
 
         final Description modelDescription;
         if (description.equals("")) {
-            logger.info("Description for task title: '" + title + "' is empty. Creating a default description for it");
+            logger.info("Description for event title: '" + title + "' is empty. Creating a default description for it");
             modelDescription = Description.defaultDescription();
         } else if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
@@ -120,9 +120,17 @@ class JsonAdaptedEvent {
             modelDescription = new Description(description);
         }
 
-        final Tag modelTag = new Tag(tag);
+        final Tag modelTag;
+
+        if (tag.equals("")) {
+            logger.info("Tag for event title: '" + title + "' is empty. Creating a default tag for it");
+            modelTag = Tag.defaultTag();
+        } else if (!Tag.isValidTagName(tag)) {
+            throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
+        } else {
+            modelTag = new Tag(tag);
+        }
 
         return new Event(modelTitle, modelStartDateTime, modelEndDateTime, modelDescription, modelTag, isLesson);
     }
-
 }

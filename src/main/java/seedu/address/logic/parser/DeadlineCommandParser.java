@@ -36,25 +36,23 @@ public class DeadlineCommandParser implements Parser<DeadlineCommand> {
             ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DATE_TIME,
                     PREFIX_DESCRIPTION, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DATE_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeadlineCommand.MESSAGE_USAGE));
         }
-        DeadlineDateTime deadlineDateTime = DeadlineDateTime.createNullDeadlineDateTime();
         Description description = Description.defaultDescription();
+        Tag tag = Tag.defaultTag();
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        DeadlineDateTime deadlineDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATE_TIME).get());
 
-        if (argMultimap.getValue(PREFIX_DATE_TIME).isPresent()) {
-            deadlineDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATE_TIME).get());
-        }
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
-
-        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
+        }
 
         Deadline deadline = Deadline.createDeadline(title, deadlineDateTime, description, tag);
-
         return new DeadlineCommand(deadline);
     }
 
