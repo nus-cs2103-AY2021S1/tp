@@ -42,7 +42,13 @@ public class NormalMainPanel extends MainPanel {
      */
     public NormalMainPanel() {
         super(FXML);
-        addSeparateStudentsRoomsPiechartsTabs();
+
+        // add pie chart tab
+        PiechartsOnlyTab piechartsOnlyTab = new PiechartsOnlyTab();
+        tabPane.getTabs().add(0, piechartsOnlyTab.getRoot());
+        piechartsTab = piechartsOnlyTab;
+
+        addSeparateStudentsRoomsTabs();
     }
 
     private void showTab(Tab tab) {
@@ -136,16 +142,14 @@ public class NormalMainPanel extends MainPanel {
      * Adds a students tab and a rooms tab as the first and second tab respectively in the tab pane.
      * Does not check whether such a tab or separate rooms and students tabs already exist.
      */
-    private void addSeparateStudentsRoomsPiechartsTabs() {
+    private void addSeparateStudentsRoomsTabs() {
         StudentsOnlyTab studentsOnlyTab = new StudentsOnlyTab();
         RoomsOnlyTab roomsOnlyTab = new RoomsOnlyTab();
-        PiechartsOnlyTab piechartsOnlyTab = new PiechartsOnlyTab();
         tabPane.getTabs().addAll(0, Arrays.asList(
-                studentsOnlyTab.getRoot(), roomsOnlyTab.getRoot(), piechartsOnlyTab.getRoot()));
+                studentsOnlyTab.getRoot(), roomsOnlyTab.getRoot()));
 
         studentsTab = studentsOnlyTab;
         roomsTab = roomsOnlyTab;
-        piechartsTab = piechartsOnlyTab;
 
         studentsAndRoomsAreCombined = false;
     }
@@ -168,7 +172,7 @@ public class NormalMainPanel extends MainPanel {
     void separateStudentsAndRooms() {
         if (studentsAndRoomsAreCombined) {
             tabPane.getTabs().remove(0);
-            addSeparateStudentsRoomsPiechartsTabs();
+            addSeparateStudentsRoomsTabs();
         }
     }
 
