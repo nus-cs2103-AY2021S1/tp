@@ -452,6 +452,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Use case: UC01 - Delete an item**
 
+**Actor**: User
+
 **MSS**
 
 1.  User requests to list items
@@ -474,6 +476,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 **Use case: UC02 - Adding existing item's quantity or tags**
+
+**Actor**: User
 
 **MSS**
 
@@ -500,6 +504,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. InventoryBook adds on existing item name and supplier's with input quantity.
 
 **Use case: UC03 - Editing an item**
+
+**Actor**: User
 
 **MSS**
 
@@ -536,6 +542,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         
 **Use case: UC04 - User opens help window**
 
+**Actor**: User
+
 **MSS**
 
 1. User requests to open up help start window.
@@ -555,31 +563,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     
 **Use case: UC05 - Undoing a command**
 
+**Actor**: User
+
 **MSS**
 
-1. User executes a command.
-2. OneShelf performs the appropriate action corresponding to the command.
-3. User realises executing the command was a mistake and requests to undo it.
-4. OneShelf reverts the data and UI to the state it was in before the command was executed.
+1. User executes a command (e.g. <u>deletes an item (UC01)</u>).
+2. User realises executing the command was a mistake and requests to undo it.
+3. OneShelf reverts the data and UI to the state it was in before the command executed (e.g. puts the deleted item back into the inventory).
 
     Use Case ends.
 
 **Extensions**
 
-* 4a. There are no more commands to undo
+* 3a. There are no more commands to undo
 
-  * 4a1. OneShelf gives an appropriate message informing the user that there are no more previous states to revert to.
+  * 3a1. OneShelf gives an appropriate message informing the user that there are no more previous states to revert to.
   
   Use case ends.
   
 **Use case: UC06 - Redoing an undone command**
 
+**Actor**: User
+
 **MSS**
 
-1. User undoes a command.
-2. OneShelf reverts to the state before the last command was executed.
-3. User requests OneShelf to redo the command
-4. OneShelf brings the data and UI to the state it was in after the undone command was executed.
+1. User <u>undoes a command (UC05)<u>.
+2. User requests OneShelf to redo the command
+3. OneShelf brings the data and UI to the state it was in after the undone command was executed.
 
     Use Case ends.
 
@@ -700,6 +710,8 @@ if there is no existing same item. If there is an existing same item,
     1. Test case: `redo` <br>
         Expected: Error message is shown, stating that redo cannot be performed.
         
+    <div markdown="span" class="alert alert-primary">:bulb: **Note:** you can restart the application if you have entered commands previously
+    </div>
 1. Redoing after a command that changes the `InventoryBook` or `DeliveryBook` has executed
 
     1. Prerequisites: The last command entered changed the Inventory/Delivery book.

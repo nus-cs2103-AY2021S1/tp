@@ -188,6 +188,10 @@ Edits an existing item in the Inventory book or an existing pending delivery in 
 
 Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG]`
 
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** The `|` symbol means the user must provide at least one of the fields
+separated by the `|`
+</div>
+
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 * Updates the components of an item.
 * When editing tags, the existing tags of the item will be removed
