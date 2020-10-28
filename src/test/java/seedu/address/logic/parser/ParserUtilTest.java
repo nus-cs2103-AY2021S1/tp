@@ -268,4 +268,21 @@ public class ParserUtilTest {
 
         assertEquals(expectedAllergySet, actualAllergySet);
     }
+
+    @Test
+    public void parseVisitIndex_invalidInput_throwsParseException() {
+        assertThrows(NumberFormatException.class, () -> ParserUtil.parseVisitIndex("10 a"));
+    }
+
+    @Test
+    public void parseVisitIndex_outOfRangeInput_throwsParseException() {
+        assertThrows(ParseException.class, "The visit index provided is invalid", ()
+            -> ParserUtil.parseVisitIndex(Long.toString(Integer.MAX_VALUE + 1)));
+    }
+
+    @Test
+    public void parseVisit_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, "Visits should take date in valid format.", ()
+            -> ParserUtil.parseVisit("test"));
+    }
 }
