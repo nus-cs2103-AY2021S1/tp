@@ -25,6 +25,9 @@ public class Allocation {
      * Every field must be present and not null.
      */
     public Allocation(Floor floor, RoomNumber roomNumber, StudentId studentId) {
+        assert floor != null;
+        assert roomNumber != null;
+        assert studentId != null;
         requireAllNonNull(floor, roomNumber, studentId);
         this.floor = floor;
         this.roomNumber = roomNumber;
