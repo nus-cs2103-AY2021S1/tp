@@ -8,7 +8,6 @@ import java.util.List;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.record.AttendanceType;
-import seedu.taskmaster.model.session.exceptions.NoSessionException;
 import seedu.taskmaster.model.session.exceptions.SessionException;
 import seedu.taskmaster.model.student.Student;
 

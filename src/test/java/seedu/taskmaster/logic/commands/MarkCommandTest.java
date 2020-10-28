@@ -6,6 +6,8 @@ import static seedu.taskmaster.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static seedu.taskmaster.testutil.TypicalIndexes.INDEX_SECOND_STUDENT;
 import static seedu.taskmaster.testutil.TypicalStudents.getTypicalTaskmaster;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.commons.core.Messages;
@@ -16,8 +18,6 @@ import seedu.taskmaster.model.UserPrefs;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
-
-import java.util.ArrayList;
 
 
 public class MarkCommandTest {

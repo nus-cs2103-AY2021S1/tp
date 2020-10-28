@@ -35,6 +35,10 @@ public class Session {
         this.studentRecords = studentRecords;
     }
 
+    /**
+     * Creates a session object with a {@code sessionName}, {@code sessionDateTime} and
+     * a list of students.
+     */
     public Session(SessionName sessionName,
                    SessionDateTime sessionDateTime,
                    List<Student> students) {
@@ -111,6 +115,8 @@ public class Session {
             return false;
         }
         Session otherSession = (Session) other;
-        return otherSession.getSessionName().equals(getSessionName());
+        return otherSession.getSessionName().equals(getSessionName())
+                && otherSession.getSessionDateTime().equals(getSessionDateTime())
+                && otherSession.getStudentRecords().equals(getStudentRecords());
     }
 }

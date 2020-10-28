@@ -2,16 +2,13 @@ package seedu.taskmaster.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
-import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.session.Session;
-import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionList;
 import seedu.taskmaster.model.session.SessionListManager;
 import seedu.taskmaster.model.session.SessionName;

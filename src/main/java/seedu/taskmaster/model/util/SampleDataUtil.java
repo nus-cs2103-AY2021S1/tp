@@ -70,7 +70,7 @@ public class SampleDataUtil {
         }
         Session sampleSession = new Session(
                 new SessionName("Sample session"),
-                new SessionDateTime(LocalDateTime.of(2020, 1,1,12,0)),
+                new SessionDateTime(LocalDateTime.of(2020, 1, 1, 12, 0)),
                 Arrays.asList(getSampleStudents()));
         sampleTaskmaster.addSession(sampleSession);
         return sampleTaskmaster;

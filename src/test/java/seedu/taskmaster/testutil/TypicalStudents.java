@@ -11,16 +11,15 @@ import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.taskmaster.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 
-import seedu.taskmaster.model.session.Session;
-import seedu.taskmaster.model.session.SessionDateTime;
-import seedu.taskmaster.model.session.SessionName;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.taskmaster.model.Taskmaster;
+import seedu.taskmaster.model.session.Session;
+import seedu.taskmaster.model.session.SessionDateTime;
+import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Student;
 
 /**
@@ -91,8 +90,8 @@ public class TypicalStudents {
             .withNusnetId("e0235689").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}
-    public static final Student AMY = new StudentBuilder().
-            withName(VALID_NAME_AMY)
+    public static final Student AMY = new StudentBuilder()
+            .withName(VALID_NAME_AMY)
             .withTelegram(VALID_TELEGRAM_AMY)
             .withEmail(VALID_EMAIL_AMY)
             .withNusnetId(VALID_NUSNETID_AMY)
@@ -120,7 +119,7 @@ public class TypicalStudents {
         }
         Session typicalSession = new Session(
                 new SessionName("Typical session"),
-                new SessionDateTime(LocalDateTime.of(2020, 1,1,12,0)),
+                new SessionDateTime(LocalDateTime.of(2020, 1, 1, 12, 0)),
                 getTypicalStudents());
         typicalTaskmaster.addSession(typicalSession);
         return typicalTaskmaster;
