@@ -29,7 +29,7 @@ public class CommentCommand extends Command {
 
     public static final String COMMAND_WORD = "comment";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds or delete comment to person"
-            + "To add comment: key in 'addComment INDEX <s-/a-> i/TITLE d/DATE desc/DESCRIPTION'\n"
+            + "To add comment: key in 'addComment INDEX <s-/a-> ti/TITLE d/DATE desc/DESCRIPTION'\n"
             + "To delete, key in 'deleteComment INDEX <s-/a-> ti/TITLE_TO_DELETE' \n"
             + "To edit, key in editComment INDEX <s-/a-> ti/TITLE d/DATE desc/NEW_DESCRIPTION";
     public static final String MESSAGE_ADD_COMMENT_SUCCESS = "Commented on Person: %1$s";
