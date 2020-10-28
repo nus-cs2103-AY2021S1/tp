@@ -455,7 +455,7 @@ Listed all bids
 Will delete a bid based on its number in the bid list
 
 - Command: `delete-bid`
-- Format: `delete-bid [INDEX_NUMBER_OF_BID_TO_DELETE]`
+- Format: `delete-bid <INDEX_NUMBER_OF_BID_TO_DELETE>`
 
 Example:
 
@@ -479,7 +479,8 @@ Will edit a bidder’s bid value for a specific property
 - Command: `edit-bid`
 
 #### edit-bid command can edit multiple parameters at once and can be a combination of b/ c/ or m/
-#####Example formats
+
+##### Example formats
 - Format 1: `edit-bid <index number of bid to edit> b/ [NEW_PROPERTY_ID]` (edits only the propertyId)
 - Format 2: `edit-bid <index number of bid to edit> c/ [NEW_BIDDER_ID]` (edits only the bidderId)
 - Format 3: `edit-bid <index number of bid to edit> m/ [NEW_BID_AMOUNT]` (edits only the bidAmount)
