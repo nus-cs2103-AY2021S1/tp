@@ -334,12 +334,12 @@ Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
 * Only the tag names are searched.
 * Only full words will be matched e.g. `PartTime` will not match `PartTimes`.
-* Employees whoes tag(s) matching at least one keyword will be listed in the `Employee Contact DeatailL` pane
+* Employees whose tag(s) matching at least one keyword will be listed in the `Employee Contact DeatailL` pane
  (i.e. `OR` search).  e.g. `Friday Monday` will return employees whose tags contain `Friday` or `Monday`.
 
 Examples:
 * `c-tag-find friday` returns all employees whose tags contain `friday`.
-* `c-tag-find friday parttime` returns all employees whose tag contain `friday`, `parttime`.<br>
+* `c-tag-find friday parttime` returns all employees whose tags contain `friday`, `parttime`.<br>
 
 #### 4.8 Deleting a person : `c-delete`
 
