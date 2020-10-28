@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Hashtable;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.policy.exception.DuplicatePolicyException;
 
 public class PolicyList {

@@ -189,7 +189,7 @@ class JsonAdaptedPerson {
         }
 
         final Policy modelPolicy;
-        if(policy != null) {
+        if (policy != null) {
             modelPolicy = policy.toModelType();
         } else {
             modelPolicy = null;

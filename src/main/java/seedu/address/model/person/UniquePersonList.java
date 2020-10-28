@@ -145,7 +145,7 @@ public class UniquePersonList implements Iterable<Person> {
         requireNonNull(policyList);
         int index = 0;
         for (Person p : internalList) {
-            if ((p.getPolicy() != null) &&(!policyList.contains(p.getPolicy()))) {
+            if ((p.getPolicy() != null) && (!policyList.contains(p.getPolicy()))) {
                 Person person = new Person(
                         p.getName(),
                         p.getPhone(),
@@ -168,7 +168,7 @@ public class UniquePersonList implements Iterable<Person> {
     public void clearPolicy() {
         int index = 0;
         for (Person p : internalList) {
-            if(p.getPolicy() != null)  {
+            if (p.getPolicy() != null) {
                 Person person = new Person(
                         p.getName(),
                         p.getPhone(),

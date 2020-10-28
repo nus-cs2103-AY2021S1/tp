@@ -25,7 +25,9 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code ClientListStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ClientListStorage clientListStorage, UserPrefsStorage userPrefsStorage, PolicyListStorage policyListStorage) {
+    public StorageManager(ClientListStorage clientListStorage,
+                          UserPrefsStorage userPrefsStorage,
+                          PolicyListStorage policyListStorage) {
         super();
         this.clientListStorage = clientListStorage;
         this.userPrefsStorage = userPrefsStorage;
@@ -82,7 +84,7 @@ public class StorageManager implements Storage {
     // ================ PolicyList methods ==============================
 
     @Override
-    public Path getPolicyListFilePath(){
+    public Path getPolicyListFilePath() {
         return policyListStorage.getPolicyListFilePath();
     }
 

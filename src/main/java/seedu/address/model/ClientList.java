@@ -126,7 +126,7 @@ public class ClientList implements ReadOnlyClientList {
      * The field is set to null.
      */
     public void updateClientListWithPolicyList(PolicyList policyList) {
-       persons.updateUniquePersonListWithPolicyList(policyList);
+        persons.updateUniquePersonListWithPolicyList(policyList);
     }
 
     /**

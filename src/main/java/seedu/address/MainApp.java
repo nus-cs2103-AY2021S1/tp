@@ -24,7 +24,14 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.policy.PolicyList;
 import seedu.address.model.util.SampleClientDataUtil;
 import seedu.address.model.util.SamplePolicyDataUtil;
-import seedu.address.storage.*;
+import seedu.address.storage.ClientListStorage;
+import seedu.address.storage.JsonClientListStorage;
+import seedu.address.storage.JsonPolicyListStorage;
+import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PolicyListStorage;
+import seedu.address.storage.Storage;
+import seedu.address.storage.StorageManager;
+import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
 
@@ -81,10 +88,12 @@ public class MainApp extends Application {
             }
             initialClientData = clientListOptional.orElseGet(SampleClientDataUtil::getSampleClientList);
         } catch (DataConversionException e) {
-            logger.warning("Client List data file not in the correct format. Will be starting with an empty ClientList");
+            logger.warning(
+                    "Client List data file not in the correct format. Will be starting with an empty ClientList");
             initialClientData = new ClientList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the Client List data file. Will be starting with an empty ClientList");
+            logger.warning(
+                    "Problem while reading from the Client List data file. Will be starting with an empty ClientList");
             initialClientData = new ClientList();
         }
 
@@ -97,10 +106,12 @@ public class MainApp extends Application {
             }
             initialPolicyData = policyListOptional.orElseGet(SamplePolicyDataUtil::getSamplePolicyList);
         } catch (DataConversionException e) {
-            logger.warning("Policy List data file not in the correct format. Will be starting with an empty PolicyList");
+            logger.warning(
+                    "Policy List data file not in the correct format. Will be starting with an empty PolicyList");
             initialPolicyData = new PolicyList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the \"Policy List data file. Will be starting with an empty PolicyList");
+            logger.warning(
+                    "Problem while reading from the Policy List data file. Will be starting with an empty PolicyList");
             initialPolicyData = new PolicyList();
         }
 

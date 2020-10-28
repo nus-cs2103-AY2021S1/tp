@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
-import seedu.address.model.Model;
-
 import static java.util.Objects.requireNonNull;
+
+import seedu.address.model.Model;
 
 public class ClearPolicyCommand extends Command {
     public static final String COMMAND_WORD = "clearp";
@@ -19,8 +19,7 @@ public class ClearPolicyCommand extends Command {
     public boolean equals(Object obj) {
         if (obj instanceof ClearPolicyCommand) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
     }

@@ -17,7 +17,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
-import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.PolicyDescription;
 import seedu.address.model.policy.PolicyName;
 
@@ -169,10 +168,16 @@ public class ParserUtil {
         return new Priority(trimmedPriority);
     }
 
+    /**
+     * Parses a {@code String name} into a {@code PolicyName}.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
     public static PolicyName parsePolicyName(String name) throws ParseException {
-       if(name == null) {
-           return null;
-       }
+        if (name == null) {
+            return null;
+        }
         String trimmedName = name.trim();
         if (!PolicyName.isValidPolicyName(trimmedName)) {
             throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
@@ -180,8 +185,14 @@ public class ParserUtil {
         return new PolicyName(trimmedName);
     }
 
+    /**
+     * Parses a {@code String description} into a {@code PolicyDescription}.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
     public static PolicyDescription parsePolicyDescription(String description) throws ParseException {
-        if(description == null) {
+        if (description == null) {
             return null;
         }
         String trimmedDescription = description.trim();

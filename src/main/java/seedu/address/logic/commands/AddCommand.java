@@ -1,7 +1,14 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTSOURCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -86,7 +93,11 @@ public class AddCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
-    public Person addPolicyToPerson(Model model) {
+    /**
+     * Method updates person Policy from Policy List.
+     * policyName has to be in model's policyList.
+     */
+    private Person addPolicyToPerson(Model model) {
         Policy policy = model.getPolicyList().getPolicy(policyName);
         return new Person(
                 toAdd.getName(),
