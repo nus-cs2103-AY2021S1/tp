@@ -190,6 +190,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     private void updateDataAnalysisPanel() {
+        dataAnalysisPanelPlaceholder.getChildren().remove(dataAnalysisPanel);
         dataAnalysisPanel = new DataAnalysisPanel(logic.getStatisticsData());
         dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
     }
