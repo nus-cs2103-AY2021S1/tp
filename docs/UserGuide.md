@@ -673,24 +673,23 @@ Usage: `redo`
 
 
 
+### Listing top Recipes -- **`stats recipe top`**
+Shows a list of recipes that were made the most. The list is sorted in descending order by the number of times it was made; the first recipe in the list is the recipe that was made the most number of times. The number of usages is calculated from based on current records. So, if you have just cleared your recipe usage records, 
+you will see that all recipes were made 0 times.
+Even after you delete a recipe is deleted, its past usages are still saved within ChopChop.
 
-
-
-### Listing most made Recipes — **`stats recipe most made`**
-Shows a list of the top 5 most made recipes of all time. The number of times of which each recipe is made is tracked from the start of usage of ChopChop. Even after you delete the recipe is deleted, its past usages are still saved within ChopChop.
-
-Usage: `stats recipe most made`
+Usage: `stats recipe top`
 
 Example:
 Let's say you executed `make Singapore Sling` 2 times a day for the past 1 year. Today, you decided to delete the recipe for health reasons. If you enter `stats recipe most made`, you will still see it listed as one of the most made recipes.
 
 
+### Listing Recipes recently made — **`stats recipe recent`**
+Shows a list of most recently made recipes. The list is arranged in descending chronological order; the first recipe in the list was made the most recently. 
+Even after the recipe is deleted, its past usages are still saved within ChopChop, and you will the recipe listed. However, if you have just cleared your recipe usage records, there will be no recipes shown. 
 
 
-### Listing Recipes made within a certain period — **`stats recipe`**
-The time period given can either be:
-1. A specific day.
-2. A period of time with a start date or an end date or both.
+### Listing Recipes made in a given time frame — **`stats recipe made`**
 #### 1. Listing recipes made on the specified day. 
 The day starts at 00:00 hours and ends at 23:59 hours.
 
@@ -724,10 +723,15 @@ If you enter `stats recipe` into the command box without either `[/before <DATE>
 :bulb: **Tip:** If you are only interested in what was cooked for dinner, you can specify the time period to the nearest minute. For example, `stats recipe /before 2020-02-13 20:30 /after 2020-02-13 18:30` will show a list of recipes made within this 2-hour period.
 </div>
 
+### Clearing Recipe usage records -- **`stats recipe clear`**
 
 
 
-### Listing Ingredients used within a certain period — **`stats ingredient`**
+### Listing Ingredients recently made — **`stats ingredient recent`**
+
+
+### Listing Ingredients used within a given time frame — **`stats ingredient used`**
+
 Shows a list of ingredients used within the specified time period.
 
 The time period given can either be:
@@ -737,7 +741,7 @@ The time period given can either be:
 Usage: Similar to the previous command [above](#listing-recipes-made-within-a-certain-period--stats-recipe), the only difference is the keyword is now `stats ingredient` instead of `stats recipe`.
 
 
-
+### Clearing Ingredient usage records -- **`stats ingredient clear`**
 
 
 

@@ -48,6 +48,6 @@ public class StatsRecipeRecentCommand extends Command {
     }
 
     public static String getUserGuideSection() {
-        throw new RuntimeException("listing-recent-recipe-usages--statsreciperecent");
+        throw new RuntimeException("listing-recipes-recently-made--statsreciperecent");
     }
 }

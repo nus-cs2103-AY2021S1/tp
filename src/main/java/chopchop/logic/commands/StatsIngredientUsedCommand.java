@@ -88,6 +88,6 @@ public class StatsIngredientUsedCommand extends Command {
     }
 
     public static String getUserGuideSection() {
-        throw new RuntimeException("listing-ingredients-used-in-a-given-time-frame-statsingredientused");
+        throw new RuntimeException("listing-ingredients-used-within-a-given-time-frame-statsingredientused");
     }
 }

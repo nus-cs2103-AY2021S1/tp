@@ -88,6 +88,6 @@ public class StatsRecipeMadeCommand extends Command {
     }
 
     public static String getUserGuideSection() {
-        throw new RuntimeException("listing-recipes-made-in-a-given-time-frame--statsrecipemade");
+        throw new RuntimeException("listing-recipes-made-within-a-given-time-frame--statsrecipemade");
     }
 }
