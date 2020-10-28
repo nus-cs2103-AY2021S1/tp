@@ -39,7 +39,7 @@ public class SalesBookTest {
 
     @Test
     public void setRecord_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> salesBook.setRecord((List<SalesRecordEntry>) null));
+        assertThrows(NullPointerException.class, () -> salesBook.setRecord(null));
     }
 
     @Test

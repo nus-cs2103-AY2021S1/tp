@@ -43,13 +43,17 @@ public class SalesBook implements ReadOnlySalesBook {
         setRecord(newData.getSalesRecord());
     }
 
+    /**
+     * Replaces the contents of the sales record list with {@code sales}.
+     * {@code sales} must not contain duplicate sales record entries.
+     */
     public void setRecord(List<SalesRecordEntry> sales) {
         requireNonNull(sales);
         record.setSalesRecord(sales);
     }
 
     /**
-     * Adds a salesRecordEntry to the salesbook.
+     * Adds a salesRecordEntry to the salesBook.
      */
     public void addSalesRecordEntry(SalesRecordEntry p) {
         record.add(p);
