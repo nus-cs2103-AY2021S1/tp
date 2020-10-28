@@ -5,8 +5,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
-import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.results.CommandResult;
 import seedu.address.model.Models;
 import seedu.address.model.delivery.Delivery;
@@ -25,7 +25,8 @@ public class DeliveryAddCommand extends DeliveryCommand {
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_ADDRESS + "ADDRESS "
-            + PREFIX_ORDER + "ORDER\n"
+            + PREFIX_ORDER + "ORDER"
+            + "[" + PREFIX_TIME + "TIME]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Alex Yeoh "
             + PREFIX_PHONE + "87438807 "
@@ -47,14 +48,10 @@ public class DeliveryAddCommand extends DeliveryCommand {
     }
 
     @Override
-    public CommandResult execute(Models models) throws CommandException {
+    public CommandResult execute(Models models) {
         requireNonNull(models);
         requireNonNull(models.getDeliveryModel());
         DeliveryModel deliveryModel = models.getDeliveryModel();
-
-        if (deliveryModel.hasDelivery(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DELIVERY);
-        }
 
         deliveryModel.addDelivery(toAdd);
         models.commit();

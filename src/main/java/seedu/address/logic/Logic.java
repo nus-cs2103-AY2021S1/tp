@@ -51,7 +51,7 @@ public interface Logic {
     /**
      * returns an unmodifiable view of the filtered list of deliveries
      */
-    ObservableList<Delivery> getFilteredDeliveryList();
+    ObservableList<Delivery> getFilteredAndSortedDeliveryList();
 
     /**
      * Returns the user prefs' delivery book file path.

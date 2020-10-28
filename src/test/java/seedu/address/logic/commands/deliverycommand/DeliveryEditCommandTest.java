@@ -45,15 +45,15 @@ public class DeliveryEditCommandTest {
 
         DeliveryModel expectedDeliveryModel =
                 new DeliveryModelManager(new DeliveryBook(deliveryModel.getDeliveryBook()), new UserPrefs());
-        expectedDeliveryModel.setDelivery(deliveryModel.getFilteredDeliveryList().get(1), editedDelivery);
+        expectedDeliveryModel.setDelivery(deliveryModel.getFilteredAndSortedDeliveryList().get(1), editedDelivery);
 
         assertCommandSuccess(editCommand, deliveryModel, expectedMessage, expectedDeliveryModel);
     }
 
     @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastDelivery = Index.fromOneBased(deliveryModel.getFilteredDeliveryList().size());
-        Delivery lastDelivery = deliveryModel.getFilteredDeliveryList().get(indexLastDelivery.getZeroBased());
+        Index indexLastDelivery = Index.fromOneBased(deliveryModel.getFilteredAndSortedDeliveryList().size());
+        Delivery lastDelivery = deliveryModel.getFilteredAndSortedDeliveryList().get(indexLastDelivery.getZeroBased());
 
         DeliveryBuilder deliveryInList = new DeliveryBuilder(lastDelivery);
         Delivery editedDelivery = deliveryInList
@@ -83,7 +83,7 @@ public class DeliveryEditCommandTest {
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         DeliveryEditCommand editCommand = new DeliveryEditCommand(INDEX_FIRST_ITEM,
                 new DeliveryEditCommand.EditDeliveryDescriptor());
-        Delivery editedDelivery = deliveryModel.getFilteredDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Delivery editedDelivery = deliveryModel.getFilteredAndSortedDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
 
         String expectedMessage = String.format(DeliveryEditCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedDelivery);
 
@@ -97,7 +97,8 @@ public class DeliveryEditCommandTest {
     public void execute_filteredList_success() {
         showDeliveryAtIndex(deliveryModel, INDEX_FIRST_ITEM);
 
-        Delivery deliveryInFilteredList = deliveryModel.getFilteredDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Delivery deliveryInFilteredList =
+                deliveryModel.getFilteredAndSortedDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
 
         Delivery editedDelivery = new DeliveryBuilder(deliveryInFilteredList)
                 .withName(VALID_NAME_AARON)
@@ -113,14 +114,14 @@ public class DeliveryEditCommandTest {
         DeliveryModel expectedDeliveryModel =
                 new DeliveryModelManager(new DeliveryBook(deliveryModel.getDeliveryBook()), new UserPrefs());
 
-        expectedDeliveryModel.setDelivery(deliveryModel.getFilteredDeliveryList().get(0), editedDelivery);
+        expectedDeliveryModel.setDelivery(deliveryModel.getFilteredAndSortedDeliveryList().get(0), editedDelivery);
 
         assertCommandSuccess(editCommand, deliveryModel, expectedMessage, expectedDeliveryModel);
     }
 
     @Test
     public void execute_duplicateDeliveryUnfilteredList_failure() {
-        Delivery firstDelivery = deliveryModel.getFilteredDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Delivery firstDelivery = deliveryModel.getFilteredAndSortedDeliveryList().get(INDEX_FIRST_ITEM.getZeroBased());
 
         DeliveryEditCommand.EditDeliveryDescriptor descriptor =
                 new EditDeliveryDescriptorBuilder(firstDelivery)
@@ -149,7 +150,7 @@ public class DeliveryEditCommandTest {
 
     @Test
     public void execute_invalidDeliveryIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(deliveryModel.getFilteredDeliveryList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(deliveryModel.getFilteredAndSortedDeliveryList().size() + 1);
 
         DeliveryEditCommand.EditDeliveryDescriptor descriptor = new EditDeliveryDescriptorBuilder()
                 .withName(VALID_NAME_AARON)
