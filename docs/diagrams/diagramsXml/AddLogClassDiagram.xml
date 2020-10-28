@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-10-28T13:00:43.578Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="VrfnRFeYRtCm6y7iPTXm" version="13.8.5" type="github">
+<mxfile host="app.diagrams.net" modified="2020-10-28T13:48:52.648Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.111 Safari/537.36" etag="LKv4GGuyk6YdBNh5KGRv" version="13.8.5" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="AddLogClassDiagram">
     <mxGraphModel dx="813" dy="435" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -65,13 +65,13 @@
           <mxGeometry x="350" y="200.00000000000006" as="geometry" />
         </mxCell>
         <mxCell id="cK1lefMt0vcNmcIArXoM-3" value="1" style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=12;" connectable="0" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="130" y="290.00000000000006" as="geometry" />
+          <mxGeometry x="160" y="290.00000000000006" as="geometry" />
         </mxCell>
         <mxCell id="cK1lefMt0vcNmcIArXoM-4" value="1" style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=12;" connectable="0" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="350" y="290.00000000000006" as="geometry" />
         </mxCell>
         <mxCell id="cK1lefMt0vcNmcIArXoM-5" value="1" style="resizable=0;align=right;verticalAlign=bottom;labelBackgroundColor=none;fontSize=12;" connectable="0" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="560" y="290.00000000000006" as="geometry" />
+          <mxGeometry x="540" y="290.00000000000006" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
