@@ -112,6 +112,15 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             updateStockDescriptor.setLocation(ParserUtil.parseLocation(locationLowerCased));
         }
 
+        boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
+        boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();
+        boolean isLowQuantityPresent = argMultimap.getValue(PREFIX_LOW_QUANTITY).isPresent();
+        if (!isIncrementQuantityPresent && !isNewQuantityPresent && isLowQuantityPresent) {
+            QuantityAdder zeroAdder = ParserUtil.parseQuantityAdder("0");
+            Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
+            updateStockDescriptor.setQuantityAdder(ParserUtil.parseLowQuantityAdder(zeroAdder, lowQuantity));
+        }
+
         if (!updateStockDescriptor.isAnyFieldEdited()) {
             throw new ParseException(UpdateCommand.MESSAGE_NOT_UPDATED);
         }

@@ -88,7 +88,11 @@ public class QuantityAdder {
         if (currentQuantity.signum() == -1) {
             return Optional.empty();
         }
-        return Optional.of(new Quantity(currentQuantity.toString()));
+        if (lowQuantityToBeUpdated != null) {
+            return Optional.of(new Quantity(currentQuantity.toString(), lowQuantityToBeUpdated));
+        } else {
+            return Optional.of(new Quantity(currentQuantity.toString()));
+        }
     }
 
     public QuantityAdder updateLowQuantity(String trimmedLowQuantity) {
