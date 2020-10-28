@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+import seedu.address.model.patient.Name;
 import seedu.address.model.visit.Visit;
 import seedu.address.model.visit.VisitHistory;
 
@@ -120,5 +121,13 @@ public class TypicalVisits {
     public static VisitHistory getTypicalVisitHistoryGeorge() {
         ArrayList<Visit> typicalVisits = new ArrayList<>(Collections.singletonList(VISIT_7));
         return new VisitHistory(typicalVisits);
+    }
+
+    public static VisitHistory getLongTypicalVisitList(String name) {
+        ArrayList<Visit> typicalList = new ArrayList<Visit>(Arrays.asList(VISIT_1, VISIT_2));
+        for (Visit v : typicalList) {
+            v.setPatientName(new Name(name));
+        }
+        return new VisitHistory(typicalList);
     }
 }
