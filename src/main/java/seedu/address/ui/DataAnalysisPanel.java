@@ -48,6 +48,7 @@ public class DataAnalysisPanel extends UiPart<Region> {
     private void loadPieChart(StatisticsData statsData) {
         pieChart = new PieChart();
         fillPieChart(statsData);
+        pieChart.setMaxSize(300, 300);
         pieChartPlaceholder.getChildren().add(pieChart);
         pieChart.setLabelsVisible(false);
         pieChart.setTitle("Breakdown of time spent");

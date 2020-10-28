@@ -11,7 +11,7 @@
       <Label styleClass="label-header" stylesheets="@DarkTheme.css" text="Time Analysis For The Past Week" />
       <HBox>
          <children>
-            <StackPane fx:id="pieChartPlaceholder" HBox.hgrow="ALWAYS" />
+            <StackPane fx:id="pieChartPlaceholder" HBox.hgrow="NEVER" />
             <StackPane fx:id="statsSummaryPanelPlaceholder" HBox.hgrow="ALWAYS" />
          </children>
          <padding>

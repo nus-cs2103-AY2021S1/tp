@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="1200.0" minWidth="1400.0" onCloseRequest="#handleExit" title="PlaNus" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="1005.0" minWidth="1050.0" onCloseRequest="#handleExit" title="PlaNus" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/planus.png" />
   </icons>
@@ -46,9 +46,9 @@
         </StackPane>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <SplitPane dividerPositions="0.5" minWidth="500.0" orientation="VERTICAL" HBox.hgrow="ALWAYS">
+                  <SplitPane dividerPositions="0.5" orientation="VERTICAL" HBox.hgrow="ALWAYS">
                      <items>
-                    <VBox fx:id="taskList" styleClass="pane-with-border">
+                    <VBox fx:id="taskList" minWidth="300.0" styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-header" text="Tasks:" textFill="WHITE">
                                  <font>
@@ -60,7 +60,7 @@
                          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            </children>
                     </VBox>
-                        <VBox styleClass="pane-with-border">
+                        <VBox minWidth="300.0" styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-header" text="Lessons:">
                                  <font>
@@ -77,11 +77,11 @@
                         </VBox>
                      </items>
                   </SplitPane>
-                  <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                  <VBox styleClass="pane-with-border" HBox.hgrow="SOMETIMES">
                      <children>
                         <StackPane fx:id="calendarPanelPlaceholder" VBox.vgrow="ALWAYS" />
                         <Separator VBox.vgrow="ALWAYS" />
-                        <StackPane fx:id="dataAnalysisPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="dataAnalysisPanelPlaceholder" VBox.vgrow="NEVER" />
                      </children>
                   </VBox>
                </children>
