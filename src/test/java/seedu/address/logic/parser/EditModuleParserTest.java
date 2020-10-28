@@ -54,12 +54,14 @@ public class EditModuleParserTest {
         assertParseSuccess(parser, VALID_INPUT_NO_LINK, expectedCommand);
     }
 
+    /*
     @Test
     public void parse_onlyZoomLinkSpecified_success() {
         EditModuleDescriptor descriptor = new EditModuleDescriptorBuilder().withZoomLink(VALID_ZOOMLINK_ES2660).build();
         EditModuleCommand expectedCommand = new EditModuleCommand(Index.fromOneBased(1), descriptor);
         assertParseSuccess(parser, VALID_INPUT_NO_NAME, expectedCommand);
     }
+    */
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
