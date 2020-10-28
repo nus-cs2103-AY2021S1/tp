@@ -32,7 +32,7 @@
       <VBox fx:id="bookmark" styleClass="list-cell-header" minHeight="40" GridPane.columnIndex="0" />
 
       <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="1">
-        <Label fx:id="id" styleClass="list-cell-header-text" text="ID" wrapText="true" />
+        <Label fx:id="id" styleClass="list-cell-header-text" text="No." wrapText="true" />
       </HBox>
 
 
