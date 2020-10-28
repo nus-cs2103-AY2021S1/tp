@@ -14,16 +14,18 @@ public class TutorialGroup {
     private final UniqueStudentList students;
     private LocalTime startTime;
     private LocalTime endTime;
+    private String dayOfWeek;
 
     /**
      * Constructor for Tutorial Group
      * @param tutorialGroupId
      */
-    public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime) {
+    public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime, String dayOfWeek) {
         this.tutorialGroupId = tutorialGroupId;
         this.students = new UniqueStudentList();
         this.startTime = startTime;
         this.endTime = endTime;
+        this.dayOfWeek = dayOfWeek;
     }
 
     /**
@@ -51,8 +53,8 @@ public class TutorialGroup {
         return endTime;
     }
 
-    public double getDurationInHours() {
-        return (this.startTime.until(endTime, ChronoUnit.MINUTES)) / 60.0;
+    public String getDayOfWeek() {
+        return this.dayOfWeek;
     }
 
     public ObservableList<Student> getStudents() {
