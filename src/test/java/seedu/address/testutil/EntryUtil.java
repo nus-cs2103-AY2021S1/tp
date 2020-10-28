@@ -56,7 +56,7 @@ public class EntryUtil {
     public static String getValidEditExpenseCommand() {
         // replace the info of the 1st entry in the revenue list with that of PAY_RENT
         return EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
-                + " " + getEntryDetails(TypicalEntries.PAY_RENT) + " t/";
+                + " " + getEntryDetails(TypicalEntries.PAY_RENT);
     }
 
     /**
