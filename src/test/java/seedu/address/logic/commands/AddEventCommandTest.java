@@ -146,6 +146,16 @@ public class AddEventCommandTest {
         }
 
         @Override
+        public void addRecentDeletedTask(Task task) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void retrieveRecentDeletedTask() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void sortTask(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
