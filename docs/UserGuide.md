@@ -40,9 +40,9 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
 
 1. Double-click the file to start the app. The GUI similar to *Figure 1* below should appear in a few seconds. Note how the app contains some sample data.<br>
 
-<p align="center"><img src="images/Ui.png"/></p>
+    <p align="center"><img src="images/Ui.png"/></p>
 
-<p align="center"><i>Figure 1: GUI shown upon starting ZooKeep</i></p>
+    <p align="center"><i>Figure 1: GUI shown upon starting ZooKeep</i></p>
 
 1. Type the command you want in the command box and press Enter to execute it, e.g. typing **`help`** and pressing Enter will open the help window.
    <br> Here are some example commands you can try:
