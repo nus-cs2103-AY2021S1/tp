@@ -17,6 +17,7 @@ import com.eva.commons.core.index.Index;
 import com.eva.commons.util.DateUtil;
 import com.eva.commons.util.StringUtil;
 import com.eva.logic.commands.AddLeaveCommand;
+import com.eva.logic.commands.CommentCommand;
 import com.eva.logic.parser.exceptions.ParseException;
 import com.eva.model.comment.Comment;
 import com.eva.model.person.Address;
@@ -142,7 +143,6 @@ public class ParserUtil {
      * @throws ParseException
      */
     public static Comment parseComment(String comment) throws ParseException {
-        System.out.println("reached here");
         requireNonNull(comment);
         String trimmedComment = comment.trim();
         if (!Comment.isValidAddComment(" " + trimmedComment)
@@ -161,9 +161,13 @@ public class ParserUtil {
             String title = argMultiMap.getValue(PREFIX_TITLE).get();
             String desc = argMultiMap.getValue(PREFIX_DESC).get();
             return new Comment(DateUtil.dateParsed(date), desc, title);
-        } else {
+        } else if (!argMultiMap.getValue(PREFIX_TITLE).isEmpty()
+                && argMultiMap.getValue(PREFIX_DESC).isEmpty()
+                && argMultiMap.getValue(PREFIX_DATE).isEmpty()) {
             String title = argMultiMap.getValue(PREFIX_TITLE).get();
             return new Comment(title);
+        } else {
+            throw new ParseException(CommentCommand.MESSAGE_USAGE);
         }
     }
     /**

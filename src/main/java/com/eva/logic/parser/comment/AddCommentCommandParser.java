@@ -6,7 +6,6 @@ import static com.eva.logic.parser.CliSyntax.PREFIX_STAFF;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
@@ -75,11 +74,10 @@ public class AddCommentCommandParser {
     private Optional<Set<Comment>> parseCommentsForEdit(Collection<String> comments) throws ParseException {
         assert comments != null;
 
-        if (comments.isEmpty()) {
-            return Optional.empty();
+        if (comments.isEmpty() || comments.size() == 1
+                && comments.contains("")) {
+            throw new ParseException(AddCommentCommand.MESSAGE_ADDCOMMENT_USAGE);
         }
-        Collection<String> commentSet = comments.size() == 1
-                && comments.contains("") ? Collections.emptySet() : comments;
-        return Optional.of(ParserUtil.parseComments(commentSet));
+        return Optional.of(ParserUtil.parseComments(comments));
     }
 }
