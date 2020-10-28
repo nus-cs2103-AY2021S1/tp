@@ -11,20 +11,24 @@ public class VisitHistoryTest {
     @Test
     public void equals() {
         VisitHistory visitHistory = TypicalVisits.getTypicalVisitHistory1();
-        // same object -> returns true
+
+        // Null value. Returns false
+        assertFalse(visitHistory.equals(null));
+
+        // Same object. Returns true
         assertTrue(visitHistory.equals(visitHistory));
 
-        // same values -> returns true
+        // Same values. Returns true
         VisitHistory visitHistoryCopy = new VisitHistory(visitHistory.getVisits());
         assertTrue(visitHistory.equals(visitHistoryCopy));
 
-        // different types -> returns false
+        // Different types. Returns false
         assertFalse(visitHistory.equals(1));
 
-        // null -> returns false
-        assertFalse(visitHistory.equals(null));
+        // Different types. Returns false
+        assertFalse(visitHistory.equals("test"));
 
-        // different visitList -> returns false
+        // Different visit history. Returns false
         VisitHistory otherVisitHistory = TypicalVisits.getTypicalVisitHistory2();
         assertFalse(visitHistory.equals(otherVisitHistory));
     }

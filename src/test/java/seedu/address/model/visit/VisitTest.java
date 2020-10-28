@@ -1,5 +1,6 @@
 package seedu.address.model.visit;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMMENT_ONE;
@@ -53,5 +54,37 @@ public class VisitTest {
         // different visitList -> returns false
         Visit otherVisit = TypicalVisits.VISIT_2;
         assertFalse(VISIT_1.equals(otherVisit));
+    }
+
+    @Test
+    public void getterMethods() {
+        // Valid date
+        String date = "10/10/2020";
+
+        // Invalid Day
+        String invalidDay = "35/10/2020";
+
+        // Invalid Month
+        String invalidMonth = "10/35/2020";
+
+        // Invalid Year
+        String invalidYear = "10/35/1800";
+
+        // Invalid type of date
+        String invalidType = "test";
+
+        Visit visit = new Visit(date);
+
+        boolean test = visit.isValidVisitDate(date);
+        boolean testDay = visit.isValidVisitDate(invalidDay);
+        boolean testMonth = visit.isValidVisitDate(invalidMonth);
+        boolean testYear = visit.isValidVisitDate(invalidYear);
+        boolean testType = visit.isValidVisitDate(invalidType);
+
+        assertEquals(test, true);
+        assertEquals(testDay, false);
+        assertEquals(testMonth, false);
+        assertEquals(testYear, false);
+        assertEquals(testType , false);
     }
 }
