@@ -7,8 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.SetCommand;
-import seedu.address.logic.commands.SetCommand.SetIngredientDescriptor;
+import seedu.address.logic.commands.ingredientcommands.SetCommand;
+import seedu.address.logic.commands.ingredientcommands.SetCommand.SetIngredientDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.IngredientName;
 

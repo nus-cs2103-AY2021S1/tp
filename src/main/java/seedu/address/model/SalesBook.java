@@ -43,27 +43,17 @@ public class SalesBook implements ReadOnlySalesBook {
         setRecord(newData.getSalesRecord());
     }
 
+    /**
+     * Replaces the contents of the sales record list with {@code sales}.
+     * {@code sales} must not contain duplicate sales record entries.
+     */
     public void setRecord(List<SalesRecordEntry> sales) {
         requireNonNull(sales);
         record.setSalesRecord(sales);
     }
 
     /**
-     * Sets the sales record to the sales information which is provided as a Map.
-     * This is used only at initialisation of the sales record.
-     *
-     * @param sales sales information that has been parsed.
-     */
-    public void setRecord(Map<Drink, Integer> sales) {
-        requireNonNull(sales);
-        assert !sales.isEmpty();
-        logger.fine("SalesBook is being initialised with the first user input.");
-        record.setSalesRecord(sales);
-        assert !record.isEmpty();
-    }
-
-    /**
-     * Adds a salesRecordEntry to the salesbook.
+     * Adds a salesRecordEntry to the salesBook.
      */
     public void addSalesRecordEntry(SalesRecordEntry p) {
         record.add(p);
@@ -83,7 +73,9 @@ public class SalesBook implements ReadOnlySalesBook {
 
     /**
      * Overwrites existing sales record based on the sales information which is provided as a Map.
-     * This is used after sales record has been initialised.
+     *
+     * If there was no existing sales record, then it will initialise the number sold of the
+     * drink items, that the user did not provide, to 0.
      *
      * @param sales sales information that has been parsed.
      */
@@ -92,13 +84,14 @@ public class SalesBook implements ReadOnlySalesBook {
         assert !sales.isEmpty();
         logger.fine("SalesBook is being overwritten with the new user input.");
         HashMap<Drink, Integer> newRecord = new HashMap<>();
-        // for all the sales items in sales, overwrite them in record
-        for (Drink key : sales.keySet()) {
+        for (Drink key : Drink.values()) {
             Optional<Integer> userInput = Optional.ofNullable(sales.get(key));
-            Optional<Integer> changedValue = userInput.map(x -> x == 0
-                    ? record.getSalesEntry(key).getNumberSold()
-                    : sales.get(key));
-            newRecord.put(key, changedValue.get());
+            Integer toReplace = 0;
+            if (!isEmptySalesRecord()) {
+                toReplace = record.getSalesEntry(key).getNumberSold();
+            }
+            Integer changedValue = userInput.orElse(toReplace);
+            newRecord.put(key, changedValue);
         }
         record.setSalesRecord(newRecord);
         assert !record.isEmpty();

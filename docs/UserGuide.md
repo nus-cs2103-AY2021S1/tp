@@ -132,9 +132,8 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 
 </div>
 
-#### 2.1 Updating the number of drinks sold for the day : `s-update`
-Updates tCheck on the number of each type of drink sold for the current day, based on the sales data provided by the
-user.
+#### 2.1 Updating the number of drinks sold : `s-update`
+Updates the number of drinks sold for each drink type as given in the user input.
 
 Format: `s-update A/NUM B/NUM C/NUM ...`
 * `A`, `B`, `C` are abbreviations for the drink types.
@@ -143,20 +142,35 @@ Format: `s-update A/NUM B/NUM C/NUM ...`
 Example:
 * `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
  Brown Sugar Boba Black Tea `BSBBT` to 120.
+ 
+ <div markdown="span" class="alert alert-primary">
+ 
+:information_source: Note about the update: <br>
+
+The record in tCheck will be overwritten by the input that you provide. <br>
+ 
+ </div>
 
 #### 2.2 Listing the number of drinks sold for the day : `s-list`
 Shows a list of all types of drinks sold for the current day.
 
 Format: `s-list`
 
-#### 2.3 Listing the sales record for a specific day :
-Shows a sales record for each type of mile tea on a specific date.
+#### 2.3 Finds the number of drinks by keywords : `s-find`
 
-Format: `sales YYYY-MM-DD`
-* `YYYY-MM-DD` refers to date in YYYY-MM-DD format.
+Finds all sales data of drinks that contain the KEYWORD(s).
 
-Example:
-* `sales 2020-08-01` returns the sales record for each type of milk tea on 2020-08-01.
+Format: `s-find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
+* Only the drink's abbreviated form name is searched.
+* Only full words will be matched e.g. `BSB` will not match `BSBBT`.
+* Drinks matching at least one keyword will be returned.
+  e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
+
+Examples:
+* `s-find BSBBT` returns `BSBBT`'s sales data.
+* `s-find BSBBT BSBM` returns `BSBBT`'s sales data and `BSBM`'s sales data.<br>
  
  
 ### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
@@ -168,7 +182,7 @@ Example:
 
 * Unit of measurement for ingredients:<br>
     * - Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
-    * - Unit for liquids (Milk and Oolong Tea) : **L**<br>
+    * - Unit for liquids (Milk, Black Tea and Green Tea) : **L**<br>
 
 * All ingredients' levels are set to 0.<br>
 
@@ -180,7 +194,8 @@ Example:
     * - Milk<br>
     * - Pearl<br>
     * - Boba<br>
-    * - Oolong Tea<br>
+    * - Black Tea<br>
+    * - Green Tea<br>
     * - Brown Sugar<br>
 
 </div>
@@ -219,24 +234,41 @@ Format: `i-set-default`
 Example:
 * `i-set-default`
 
-#### 3.4 Viewing a single ingredient's level : `i-view-single`
-Shows the ingredient's level of a particular type of ingredient which is specified by the user’s command.
+#### 3.4 Listing all ingredients' levels : `i-list`
+Lists the ingredient's levels of all ingredient types.
+
+Format: `i-list`
+
+#### 3.5 Viewing a single ingredient's level : `i-view-single`
+Shows the ingredient's level of a particular type of ingredient that is specified by the user’s command.
 
 Format: `i-view-single i/INGREDIENT_NAME`
 
 Example:
-* `i-view-single i/Milk`
-Shows the amount of milk which is recorded by tCheck.
+* `i-view-single i/Green Tea`
+Shows the amount of green tea recorded by tCheck.
 
-#### 3.5 Resetting all ingredients' levels to zero : `i-reset-all`
-Sets all ingredients' levels to zero.
+#### 3.7 Resetting all ingredients' levels to zero : `i-reset-all`
+Resets all types of ingredients' levels to zero in tCheck.
 
 Format: `i-reset-all`
 
-#### 3.6 Listing all ingredients' levels : `i-list`
-Shows the ingredient's levels of all ingredient types.
+#### 3.6 Listing all ingredients that user should restock : `i-restock`
+Lists the ingredient's levels of all ingredient types that fall below their minimum stock levels and require the user to 
+restock. 
 
-Format: `i-list`
+The table below shows the minimum stock levels of different types of ingredients:
+
+Ingredient Type | Minimum Stock Level
+-------|------------------------------
+**Milk** | 5 L
+**Pearl** | 5 KG
+**Boba** | 5 KG
+**Black Tea** | 5 L
+**Green Tea** | 5 L
+**Brown Sugar** | 5 KG
+
+Format: `i-restock`
 
 ### 4. Commands - Contact details <a name="commands-contact-details"></a>
 
@@ -262,8 +294,33 @@ Shows a list of all employees in the contact list.
 
 
 Format: `c-list`
+
+#### 4.3 Listing all employees who are working today: `c-today`
+
+Shows a list of all employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
+
+Format: `c-today`
+
+* The search is case-insensitive. e.g `Friday` will match `friday`.
+
+Examples:
+* Assume today is `Wednesday`, after command `c-today`, all employees whose tags contain `Wednesday` will be
+  listed out. 
+
+#### 4.4 Listing all employees who are working tomorrow: `c-tomorrow`
+
+Shows a list of all employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
+
+Format: `c-tomorrow`
+
+* The search is case-insensitive. e.g `Friday` will match `friday`.
+
+Examples:
+* Assume today were `Wednesday`, tomorrow would be `Thursday`, after command `c-tomorrow`, all employees whose
+tags contain `Thursday` will be listed out. 
   
-#### 4.3 Editing a person : `c-edit`
+
+#### 4.5 Editing a person : `c-edit`
 
 Edits the corresponding contact information in the contact list.
 
@@ -282,9 +339,9 @@ Examples:
 *  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
 
-#### 4.4 Locating persons by keywords: `c-find`
+#### 4.6 Locating persons by keywords: `c-find`
 
-Finds all contacts that contain the KEYWORD(s).
+Finds all contacts that contain the KEYWORD(s) in their names.
 
 Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
@@ -299,7 +356,24 @@ Examples:
 * `c-find John` returns `john` and `John Doe`.
 * `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
 
-#### 4.5 Deleting a person : `c-delete`
+#### 4.7 Locating persons based on matching tags: `c-tag-find`
+
+Finds all contacts that contain the KEYWORD(s) in their tags.
+
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `Friday` will match `friday`.
+* The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
+* Only the tag names are searched.
+* Only full words will be matched e.g. `PartTime` will not match `PartTimes`.
+* Employees whose tag(s) matching at least one keyword will be listed in the `Employee Contact DeatailL` pane
+ (i.e. `OR` search).  e.g. `Friday Monday` will return employees whose tags contain `Friday` or `Monday`.
+
+Examples:
+* `c-tag-find friday` returns all employees whose tags contain `friday`.
+* `c-tag-find friday parttime` returns all employees whose tags contain `friday`, `parttime`.<br>
+
+#### 4.8 Deleting a person : `c-delete`
 
 Deletes the specified employee from the contact list.
 
@@ -313,13 +387,13 @@ Examples:
 * `c-list` followed by `c-delete 2` deletes the 2nd employee in the contact list.
 * `c-find Betsy` followed by `c-delete 1` deletes the 1st employee in the results of the `c-find` command.
 
-#### 4.6 Clearing all entries : `c-clear`
+#### 4.9 Clearing all entries : `c-clear`
 
 Clears all entries from the contact list.
 
 Format: `c-clear`
 
-#### 4.7 Archiving an employee : `c-archive`
+#### 4.10 Archiving an employee : `c-archive`
 Archives the specified employee's contact detail from the tCheck.
 
 Format: `c-archive INDEX`
@@ -339,17 +413,17 @@ Examples:
 * `c-list` followed by `c-archive 2` archives the 2nd person in the employees' contact details.
 * `c-find Betsy` followed by `c-archive 1` archives the 1st person in the results of the `find` command.
 
-#### 4.8 Archiving all employees : `c-archive all`
+#### 4.11 Archiving all employees : `c-archive-all`
 Archives all employees' contact details from the tCheck.
 
-Format: `c-archive all`
+Format: `c-archive-all`
 
-#### 4.9 Listing all archived employees : `c-archive list`
+#### 4.12 Listing all archived employees : `c-archive-list`
 Shows a list of all archived employees' contact details in tCheck.
 
-Format: `c-archive list`
+Format: `c-archive-list`
 
-#### 4.10 Unarchiving an employee : `c-unarchive`
+#### 4.13 Unarchiving an employee : `c-unarchive`
 Unarchives the specified employee's contact detail from the tCheck's archived employee list.
 
 Format: `c-unarchive INDEX`
@@ -403,11 +477,13 @@ Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 t/morning shift`
 **List** | `c-list`
+**List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
-**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive all` <br>3. **List all archived data:**  `c-archive list`</br>
+**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
  

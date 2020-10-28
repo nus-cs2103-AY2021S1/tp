@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.ingredientcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
@@ -9,6 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GREEN_TEA;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MILK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PEARL;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
@@ -43,10 +48,9 @@ public class SetAllCommand extends Command {
             + PREFIX_GREEN_TEA + "30 "
             + PREFIX_BROWN_SUGAR + "10";
 
-    public static final String MESSAGE_NO_CHANGE = "All current amounts have already been "
-            + "set to the specified amounts";
+    public static final String MESSAGE_NO_CHANGE = "All ingredients have already been set to the specified amounts.";
 
-    public static final String MESSAGE_SUCCESS = "Ingredient book has been set : %1$s" + LINE_SEPARATOR;
+    public static final String MESSAGE_SUCCESS = "Ingredient book has been set : %1$s\n" + LINE_SEPARATOR;
 
     private final Amount milkAmount;
     private final Amount pearlAmount;
@@ -73,37 +77,60 @@ public class SetAllCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        List<Ingredient> lastShownList = model.getFilteredIngredientList();
+
         IngredientBook toSet = new IngredientBook();
         IngredientBook filledBook = executeHelper(toSet);
 
-        boolean isNoChange = milkAmount.equals(model.findIngredientByName(new IngredientName("Milk")).getAmount())
-                && pearlAmount.equals(model.findIngredientByName(new IngredientName("Pearl")).getAmount())
-                && bobaAmount.equals(model.findIngredientByName(new IngredientName("Boba")).getAmount())
-                && blackTeaAmount.equals(model.findIngredientByName(new IngredientName("Black Tea")).getAmount())
-                && greenTeaAmount.equals(model.findIngredientByName(new IngredientName("Green Tea")).getAmount())
-                && brownSugarAmount.equals(model.findIngredientByName(new IngredientName("Brown Sugar")).getAmount());
+        boolean isNoChange = false;
+        int checker = 0;
+
+        for (int i = 0; i < lastShownList.size(); i++) {
+            IngredientName currentName = lastShownList.get(i).getIngredientName();
+            if (currentName.equals(new IngredientName("Milk"))
+                    && lastShownList.get(i).getAmount().equals(milkAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Pearl"))
+                    && lastShownList.get(i).getAmount().equals(pearlAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Boba"))
+                    && lastShownList.get(i).getAmount().equals(bobaAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Black Tea"))
+                    && lastShownList.get(i).getAmount().equals(blackTeaAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Green Tea"))
+                && lastShownList.get(i).getAmount().equals(greenTeaAmount)) {
+                checker++;
+            } else if (currentName.equals(new IngredientName("Brown Sugar"))
+                    && lastShownList.get(i).getAmount().equals(brownSugarAmount)) {
+                checker++;
+            }
+
+            if (checker == lastShownList.size()) {
+                isNoChange = true;
+            }
+        }
 
         if (isNoChange) {
             throw new CommandException(MESSAGE_NO_CHANGE);
         }
 
-        filledBook.setIngredient(new Ingredient(new IngredientName("Milk")),
-                new Ingredient(new IngredientName("Milk"), milkAmount));
-        filledBook.setIngredient(new Ingredient(new IngredientName("Pearl")),
-                new Ingredient(new IngredientName("Pearl"), pearlAmount));
-        filledBook.setIngredient(new Ingredient(new IngredientName("Boba")),
-                new Ingredient(new IngredientName("Boba"), bobaAmount));
-        filledBook.setIngredient(new Ingredient(new IngredientName("Black Tea")),
-                new Ingredient(new IngredientName("Black Tea"), blackTeaAmount));
-        filledBook.setIngredient(new Ingredient(new IngredientName("Black Tea")),
-                new Ingredient(new IngredientName("Green Tea"), greenTeaAmount));
-        filledBook.setIngredient(new Ingredient(new IngredientName("Brown Sugar")),
-                new Ingredient(new IngredientName("Brown Sugar"), milkAmount));
+        List<Ingredient> replacementIngredients = new ArrayList<>(lastShownList.size());
+        replacementIngredients.add(new Ingredient(new IngredientName("Milk"), milkAmount));
+        replacementIngredients.add(new Ingredient(new IngredientName("Pearl"), pearlAmount));
+        replacementIngredients.add(new Ingredient(new IngredientName("Boba"), bobaAmount));
+        replacementIngredients.add(new Ingredient(new IngredientName("Black Tea"), blackTeaAmount));
+        replacementIngredients.add(new Ingredient(new IngredientName("Green Tea"), greenTeaAmount));
+        replacementIngredients.add(new Ingredient(new IngredientName("Brown Sugar"), brownSugarAmount));
 
+        filledBook.setIngredients(replacementIngredients);
         ReadOnlyIngredientBook readOnlyFilledBook = filledBook;
-        model.setIngredientBook(readOnlyFilledBook);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toSet));
+        model.setIngredientBook(readOnlyFilledBook);
+        model.updateFilteredIngredientList(Model.PREDICATE_SHOW_ALL_INGREDIENTS);
+
+        return new CommandResult(String.format(MESSAGE_SUCCESS, filledBook));
     }
 
     private static IngredientBook executeHelper(IngredientBook tempBook) {

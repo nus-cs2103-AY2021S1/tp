@@ -1,4 +1,4 @@
-/* package seedu.address.logic.commands.ingredientcommands;
+package seedu.address.logic.commands.ingredientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -84,4 +84,4 @@ public class IngredientViewSingleCommandTest {
 
     }
 
-}*/
+}

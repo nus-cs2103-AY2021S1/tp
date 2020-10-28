@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -22,6 +23,7 @@ public interface Model {
     /** {@code Predicate} that evaluates to true if person's archive status is true. */
     Predicate<Person> PREDICATE_SHOW_ALL_ARCHIVED_PERSONS = person -> (
             person.getArchiveStatus().archiveStatus);
+
     Predicate<Person> PREDICATE_SHOW_ALL_MONDAY_PERSONS = person -> (
             person.getTags().toString().toLowerCase().contains("monday"));
     Predicate<Person> PREDICATE_SHOW_ALL_TUESDAY_PERSONS = person -> (
@@ -38,7 +40,6 @@ public interface Model {
             person.getTags().toString().toLowerCase().contains("sunday"));
 
     Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
-
     Predicate<SalesRecordEntry> PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY = unused -> true;
 
     /**
@@ -85,6 +86,7 @@ public interface Model {
      * Sets the user prefs' sales book file path.
      */
     void setSalesBookFilePath(Path salesBookFilePath);
+
 
     /**
      * Sets the user prefs' ingredient book file path.
@@ -152,6 +154,13 @@ public interface Model {
 
     Ingredient findIngredientByName(IngredientName ingredientName);
 
+    /**
+     * Returns an ArrayList of ingredients that are in shortage. If
+     * no ingredient is in shortage, return an empty ArrayList.
+     *
+     * @return an ArrayList of ingredients that are in shortage
+     */
+    ArrayList<Ingredient> findIngredientInShortage();
 
     void setSalesBook(ReadOnlySalesBook salesBook);
 
@@ -195,5 +204,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIngredientList(Predicate<Ingredient> predicate);
-
 }
+
