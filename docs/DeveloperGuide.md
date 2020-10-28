@@ -594,7 +594,7 @@ Use case ends.
 * **Graphical User Interface (GUI)**: A visual way of interacting with a computer using items such as windows, icons, and menus, used by most modern operating systems.
 * **Macro command**: A command that allows you to execute multiple built-in commands sequentially with just one line of input
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* **McGymmy/MG**: The name of this application, can be used interchangeable in this guide.
+* **McGymmy/MG**: The name of this application, can be used interchangeably in this guide.
 
 --------------------------------------------------------------------------------------------------------------------
 
