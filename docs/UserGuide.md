@@ -81,15 +81,17 @@ A summary of the commands for the features currently implemented.
 
 Action | Format
 -------|---------------------------------
-**Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] 
+**Add Item** | `addi` **-n \<item name\>** \[-q \<qty\>\] \[-d \<desc\>\] \[-l \<location1, location2, …\>\] \[-t \<tag1, tag2, …\>\]
 **Add Recipe** | `addr` **-n \<product name\>** **-items \<item name\[quantity\], … >** \[-pc \<num>\] \[-d \<desc\>\]
-**Add quantity to item** | `addq` **-n \<item name\>** **-q \<qty\>**
+**Add Quantity to Item** | `addq` **-n \<item name\>** **-q \<qty\>**
+**Add Tag to Item** | `addt` **-n \<item name\>** **-t \<tag1, tag2, …\>\**
 **List Items** | `listi`
 **List Recipes** | `listr`
-**Delete item** | `deli` **-n \<item name\>**
+**Delete Item** | `deli` **-n \<item name\>**
 **Delete Recipe** | `delr` **-n \<item name\> -r index**
-**Find** | `find` **\<search strings\>**
-**View** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
+**Find Item by Name** | `find` **\<string1, string2\>**
+**Find Item by Tag** | `findt` **\<string1, string2\>**
+**View Detailed View of Item** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
 **Help** | `help` \[command\]
 **Exit** | `exit`
 
@@ -226,24 +228,50 @@ Deletes the <u>first recipe</u> of the item <u>Bob’s 28th finger</u>
 
 ### Finding an item: `find`
 
+This command allows the user to search for items in `Inventoryinator` by item name,
+ entering multiple names allows the user to search for items with name that matches any string.
+
 **NAME:**
 - `find` - finds items
 
 **SYNOPSIS:**
-- `find` **\<search strings\>**
+- `find` **\<string1, string2 ...\>**
 
 **DESCRIPTION:**
-- **search strings:** keywords to search by, space separated
+- **string{digit}:** keywords to search by, comma seperated.
 - Displays items that match or contain, case-insensitive, any of the search keywords
 
 **EXAMPLE:**
-- `find` <u>bob alice</u>
+- `find` <u>bob</u> <u>alice</u>
 
-Returns the items whose names match/ contain bob or alice, like: 
+- Returns the items whose names match/ contain <u>bob</u> or <u>alice</u>, like: 
   - Bob’s 9000th crush
   - Alice's sword
   - Little bob
 
+### Finding items by tags: `findt`
+
+This command allows the user to search for items in `Inventoryinator` by tags,
+ entering multiple tags allows the user to search for items that match any given tag.
+
+**NAME:**
+- `findt` - finds items tagged with matching tag strings
+
+**SYNOPSIS:**
+- `findt` **\<string1, string2 ...\>**
+
+**DESCRIPTION:**
+- **string{digit}:** keyword tags to search by, comma separated
+- Displays items that match the tags, case-insensitive, any of the given search keywords
+
+**EXAMPLE:**
+- `findt` <u>delic</u> <u>yummy</u>
+
+- Returns the items whose tags match/contain "delic" or "yummy", like: 
+  - Bob’s Banana tags: [<u>tuturu</u>, <u>yummy</u>]
+  - Alice's Apple tags: [<u>delicate</u>]
+  - Kim's Kiwi tags: [<u>yummy</u>, <u>delicious</u>]
+  
 ### View item `view`
 WIP as of v1.2
 
@@ -291,16 +319,15 @@ WIP as of v1.2
 **DESCRIPTION:**
 - Closes the application. 
 
-### Saving the data
-
-Inventoryinator data is saved in the hard disk automatically after any command that changes the data.
- There is no need to save manually. The format of save data is via `json file format`
-
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and run it. Then, overwrite the data files
  it creates with the files that contain the data of your previous Inventoryinator home folder.
 
+**Q**: Do I need to save my data manually in the application?
+**A**: Inventoryinator data is saved in the hard disk automatically after any command that changes the data.
+        There is no need to save manually. The format of save data is via `json file format`
 --------------------------------------------------------------------------------------------------------------------
 
+// TODO Add Glossary of Terms.

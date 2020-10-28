@@ -1,10 +1,16 @@
 package seedu.address.model.recipe;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.TypicalIngredients.INGREDIENT_1;
 import static seedu.address.testutil.TypicalIngredients.INGREDIENT_2;
+import static seedu.address.testutil.TypicalIngredients.getTypicalIngredientList;
+import static seedu.address.testutil.TypicalIngredients.getTypicalSecondIngredientList;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,6 +41,33 @@ public class IngredientListTest {
         a.remove(INGREDIENT_1);
         // list does not contain ingredient -> return false
         assertFalse(a.contains(INGREDIENT_1));
+    }
+
+    /**
+     * Test setItems.
+     */
+    @Test
+    public void setItems() {
+        IngredientList base = TypicalIngredients.getTypicalIngredientList();
+        base.setItems(getTypicalSecondIngredientList());
+
+        // replaced ingredient list -> true
+        assertEquals(getTypicalSecondIngredientList(), base);
+
+        // replace with list with duplicates -> throw exception
+        List<Ingredient> duplicateIngredients = new ArrayList<>();
+        duplicateIngredients.add(INGREDIENT_1);
+        duplicateIngredients.add(INGREDIENT_1);
+
+        assertThrows(DuplicateIngredientException.class, () -> base.setItems(duplicateIngredients));
+
+        // replace with list -> true
+        List<Ingredient> newIngredients = new ArrayList<>();
+        newIngredients.add(INGREDIENT_1);
+        newIngredients.add(INGREDIENT_2);
+        base.setItems(newIngredients);
+
+        assertEquals(base, getTypicalIngredientList());
     }
 
     /**
