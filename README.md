@@ -4,7 +4,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* CliniCal is a personal address book made for doctors. It has a GUI but most of the user interactions happen using a CLI (Command Line Interface).
+* CliniCal(Clinic Calendar) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**.
 * CliniCal comes with a built-in calendar function to allow doctors to track their schedule and record appointments.
 * For the detailed documentation of this project, see the [CliniCal Product Website](https://ay2021s1-cs2103t-w11-4.github.io/tp/).
 

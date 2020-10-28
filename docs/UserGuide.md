@@ -11,7 +11,7 @@ title: CliniCal User Guide
 
 Welcome to the CliniCal User Guide!
 
-Clinic Calendar (CliniCal) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records. 
+CliniCal(Clinic Calendar) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records. 
 
 Furthermore, CliniCal is optimized for use via a Command Line Interface (CLI) and even retains the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your work done faster than traditional GUI apps.
 
@@ -118,15 +118,15 @@ Patient commands are commands that you can utilise to make changes to your list 
 
 #### 3.2.1 Adding a patient: `add`
 
-Add your patient to the patient database.
+Add a new patient to the patient database.
 
 ![example of newly added patient](images/addExample.png)
 
 Format: `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`
 
 Examples:
-* `add n/John Doe p/98765432 ic/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01`
-* `add n/Betsy Crowe ic/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin`
+* `add n/John Doe p/98765432 ic/S3857462J e/johnd@example.com a/Pickle street, block 123, #01-01` Adds a new patient named 'John Doe' with the respective fields.
+* `add n/Betsy Crowe ic/G7667353B e/betsycrowe@example.com a/Newgate Prison p/1234567 g/penicillin` Adds a new patient named 'Betsy Crowe' with the respective fields.
 
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tips:</span>
@@ -187,7 +187,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st patient to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower g/` Edits the name of the 2nd patient to be `Betsy Crower` and clears all existing allergies.
-*  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be `red`.
+*  `edit 3 ct/red` Clears the existing color tag and edits the color tag of the 3rd patient to be <span style="color:red">red</span>.
 
 ![example of color coded patient](images/colorTagExample.png)
 
@@ -204,8 +204,8 @@ Format: `delete INDEX`
 * `INDEX` **must be a positive number** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd patient in the patient database.
-* `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the `find` command.
+* `list` followed by `delete 2` Deletes the 2nd patient in the patient database.
+* `find Betsy` followed by `delete 1` Deletes the 1st patient in the results of the `find` command.
 
 #### 3.2.5 Deleting all patients: `clear`
 
@@ -234,14 +234,14 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
 * You can search for the patient's name or IC number. 
 * Patient will be matched even if the keyword matches the search parameters only partially e.g. `Han` will match `Hans`, `9123456` will match `s9123456z`.
-* Patients matching at least one keyword will be returned (i.e. `OR` search).
+* Patients matching at least one keyword will be returned (i.e. OR search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
 
 Examples:
-* `find John` returns `john` and `John Doe`
-* `find ben` returns `benjamin`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-* `find 9123456` returns the patient with IC number `s9123456z`
+* `find John` Returns `john` and `John Doe`
+* `find ben` Returns `benjamin`
+* `find alex david` Returns `Alex Yeoh`, `David Li`<br>
+* `find 9123456` Returns the patient with the IC number `s9123456z`
 
 #### 3.2.7 Listing all patients: `list`
 
@@ -272,8 +272,7 @@ Format: `undo`
 * Does not apply for undoable commands such as `find` and `list`.
 
 Example: 
-* While trying to `addpicture` , you deleted Alex Yeoh's patient details by accident.
-* Instead of re-entering Alex Yeoh's information all over again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
+* While trying to `addpicture`, you accidentally deleted Alex Yeoh's patient details. Instead of re-entering all the information again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
 
 #### 3.2.9 Redoing a command: `redo`
 
@@ -408,11 +407,45 @@ Step 3: If your newly added appointment is happening within a week from today, y
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* You are highly recommended to use a duration of at least 60 minutes to optimise your experience with our CliniCal calendar feature.
+* You are highly recommended to use a duration of at least 30 minutes to optimise your experience with our CliniCal calendar feature.
 
 </div>
 
-#### 3.4.2 Deleting an appointment: `deleteapp`
+#### 3.4.2 Editing an appointment: `editapp`
+
+Edit an existing appointment in the calendar.
+
+Format: `editapp INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIME] [d/DURATION]`
+
+* Edits the appointment at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed appointment list. The index **must be a positive number** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+
+* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab. 
+    * It **must be a positive number**, eg. 1, 2, 3, …​
+* `PATIENT_NAME` refers to the name of the patient involved in the appointment as shown in the displayed calendar in the overview tab.
+* `PATIENT_IC` refers to the ic number of the patient involved in the appointment as shown in the displayed calendar in the overview tab. 
+* `APPOINTMENT DATETIME` refers to the date and starting time of the appointment. 
+    * It follows the format of `yyyy-MM-dd HH:mm`. 
+    * Do note that you will need to input the hour (`HH`) in  the 24-hour format. 
+* `DURATION` refers to the duration of the appointment, in minutes.
+
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* If you are having trouble converting your time to 24 hour format, you may use the time format converter at https://www.timecalculator.net/12-hour-to-24-hour-converter.
+
+</div>
+
+Example: You want to edit the time and the duration of the first appointment in the appointment list.
+
+Step 1: Input `editapp 1 st/2020-10-10 11:00 d/30` into the command box and press Enter.
+
+Step 2: On the overview tab, you can find the newly updated appointment inside the appointment list. 
+
+Step 3: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
+
+#### 3.4.3 Deleting an appointment: `deleteapp`
 
 Delete a specified appointment from the appointment database.
 
@@ -427,8 +460,6 @@ Example: You want to delete your next upcoming appointment as your patient could
 Step 1: Input `deleteapp 1` and press Enter.
 
 Step 2: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
-    
-#### 3.4.3 Editing an appointment: `editapp`
 
 ### 3.5 Retrieving past commands using arrow keys
 
@@ -473,6 +504,7 @@ Action | Format, Examples
 **Delete Visit** | `deletevisit INDEX i/VISIT_INDEX`
 **Delete Appointment** | `deleteapp INDEX` <br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
+**Edit Appointment** | `editapp INDEX` <br> e.g., `editapp 3 st/2020-11-11 10:10 d/40`
 **Edit Visit** | `editvisit INDEX i/VISIT_INDEX`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
