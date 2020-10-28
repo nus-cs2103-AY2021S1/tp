@@ -180,7 +180,7 @@ Format: `meeting add m/MODULE n/MEETING_NAME d/MEETING_DATE t/MEETING_TIME p/PAR
 * Participants added need to be contacts that are exist in the given module
 
 Examples:
-*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon, 
+*  `meeting add m/CS2103 n/weekly meeting d/2020-09-20 t/10:00 m/Jay, Roy, Jerryl, Yeeloon,
 Ekam a/Discuss sequence diagram n/Revise page 2 of textbook beforehand`
 
 ### Deleting a meeting : `meeting delete`

@@ -211,12 +211,12 @@ if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_MODULE)) {
 }
 
 ```
-The above code snippet will check the prefixes present in the argument. It starts by checking if all valid prefixes are present, 
+The above code snippet will check the prefixes present in the argument. It starts by checking if all valid prefixes are present,
 then a combination of 2 prefixes, then lone prefixes and throws a `ParseException` if there are no prefixes present.
 
 ##### Choosing a Predicate
 
-In order to find the Persons in the AddressBook who match the given arguments, `DeleteCommandParser` will pass the appropriate Predicate into 
+In order to find the Persons in the AddressBook who match the given arguments, `DeleteCommandParser` will pass the appropriate Predicate into
 `DeleteCommand`. These are Predicates available and the code snippets of their `test` methods:
 * `FullNameMatchesKeywordPredicate` - Finds Persons whose full names match the given arguments following the `n/` prefix
 ```
@@ -239,7 +239,7 @@ return names.stream()
 
 #### Checking if Person is in a Module
 
-In order to find Persons who are in the given Modules, a List of `ModuleNames` is passed into the `DeleteCommand` by the `DeleteCommandParser`. 
+In order to find Persons who are in the given Modules, a List of `ModuleNames` is passed into the `DeleteCommand` by the `DeleteCommandParser`.
 Then the `DeleteCommand#execute` method calls `model#GetUpdatedFilteredPersonList` with its `predicate` and the List to retrieve Persons in the give Modules.
 
 Retrieving Modules Code Snippet :
@@ -263,20 +263,20 @@ Predicate<Person> combined = x -> predicate.test(x)
         .anyMatch(m -> m.getClassmates().contains(x));
 return new FilteredList(filteredPersons, combined);
 ```
-The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and it creates a new `Predicate` that checks if a Person passes 
-the predicate passed into the method or is in any of the Modules in the List module. Then it uses this `Predicate` to obtain a `FilteredList` 
+The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and it creates a new `Predicate` that checks if a Person passes
+the predicate passed into the method or is in any of the Modules in the List module. Then it uses this `Predicate` to obtain a `FilteredList`
 of Persons that satisfy the `Predicate`.
 
 ##### No given Modules
 
 If there are no given Modules, then the `DeleteCommand#execute` method calls `model#GetUpdatedFilteredPersonList` with its `predicate` only.
-                                    
+
 Obtaining FilteredList Code Snippet :
 ```
 return new FilteredList(filteredPersons, predicate);
 ```
 
-The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and it will simply use the given `predicate` to 
+The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and it will simply use the given `predicate` to
 obtain a `FilteredList` of Persons that satisfy the `Predicate`.
 
 #### Deleting the Filtered Persons
@@ -313,7 +313,7 @@ The parsing of user input for `CopyCommand` is facilitated by `CopyCommandParser
 
 * `CopyCommandParser#parse` - Parses the user input and returns the appropriate CopyCommand
 
-The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `CopyCommandParser` 
+The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `CopyCommandParser`
 also identifies the preamble in the arguments.
 
 ##### Identifying the Preamble
@@ -331,7 +331,7 @@ if (preamble.equals("email")) {
     throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
 }
 ```
-The above code snippet will check the preamble in the argument. It assigns the boolean `isEmail` to `true` if the user 
+The above code snippet will check the preamble in the argument. It assigns the boolean `isEmail` to `true` if the user
 wants to copy email addresses, `false` if the user wants to copy phone numbers and throws a `ParseException` otherwise.
 
 #### Retrieving the Filtered Persons
@@ -356,8 +356,8 @@ if (isEmail) {
             .reduce("", (x, y) -> x + " " + y);
 }
 ```
-The above code snippet will check if the user wants to copy email adresses or phone numbers using the `isEmail` boolean. 
-Then it iterates through the `FilteredList` of Persons and obtains the relavant information as Strings. Then it combines 
+The above code snippet will check if the user wants to copy email adresses or phone numbers using the `isEmail` boolean.
+Then it iterates through the `FilteredList` of Persons and obtains the relavant information as Strings. Then it combines
 the Strings into a single String.
 
 Copying Information to Clipboard Code Snippet :
@@ -366,7 +366,7 @@ StringSelection selection = new StringSelection(results);
 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 clipboard.setContents(selection, selection);
 ```
-The above code snippet will then create a new `StringSelection` object using the single String of information and copy 
+The above code snippet will then create a new `StringSelection` object using the single String of information and copy
 the `StringSelection` into the user's system clipboard.
 
 #### Activity Diagram
@@ -389,7 +389,7 @@ The parsing of user input for `FindCommand` is facilitated by `FindCommandParser
 
 * `FindCommandParser#parse` - Parses the user input and returns the appropriate FindCommand
 
-The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `FindCommandParser` 
+The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `FindCommandParser`
 does not look for the `m/` prefix when parsing the arguments. So it does not pass a List of Modules into the `FindCommand`.
 
 #### Displaying the Filtered Persons
@@ -400,7 +400,7 @@ Update Filtered Person List Code Snippet :
 ```
 filteredPersons.setPredicate(predicate);
 ```
-The above code snippet is from `ModelManager#updateFilteredPersonList` and it sets predicate of the `filteredPersons` of the model 
+The above code snippet is from `ModelManager#updateFilteredPersonList` and it sets predicate of the `filteredPersons` of the model
 to the given predicate. Doing so will display the Persons who satisfy the conditions specified in the user input.
 
 #### Activity Diagram
@@ -411,7 +411,7 @@ Given below is the activity diagram of how the mechanism behaves when called usi
 
 ### Labelling Contacts
 
-The mechanism to label contacts is facilitated by `AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand`. They 
+The mechanism to label contacts is facilitated by `AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand`. They
 extends `Command` and implement the following methods:
 
 * `AddLabelCommand#execute` - Adds the specified labels to the specified Person in the AddressBook according to the user input.
@@ -421,21 +421,21 @@ These operations are exposed in the `LogicManager` class as `LogicManager#execut
 
 #### Parsing User Input
 
-The parsing of user input for `AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand` is facilitated by 
-`AddLabelCommandParser`, `ClearLabelCommandParser` and `DeleteLabelCommandParser` respectively. They extend `Parser` 
+The parsing of user input for `AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand` is facilitated by
+`AddLabelCommandParser`, `ClearLabelCommandParser` and `DeleteLabelCommandParser` respectively. They extend `Parser`
 and implement the following methods:
 
 * `AddLabelCommandParser#parse` - Parses the user input and returns the appropriate AddLabelCommand
 * `ClearLabelCommandParser#parse` - Parses the user input and returns the appropriate ClearLabelCommand
 * `DeleteLabelCommandParser#parse` - Parses the user input and returns the appropriate DeleteLabelCommand
 
-All three parsers are identical except that they return their respective commands and `AddLabelCommandParser` and `DeleteLabelCommandParser` 
+All three parsers are identical except that they return their respective commands and `AddLabelCommandParser` and `DeleteLabelCommandParser`
 parses for the `t/` prefix in the arguments.
 
 ##### Obtaining a Name Object
 
-All three parsers call `ParserUtil#parseName` to obtain a `Name` object based on the given name in the user input. 
-`AddLabelCommandParser` and `DeleteLabelCommandParser` pass in the preamble of the argument into `ParserUtil#parseName`, 
+All three parsers call `ParserUtil#parseName` to obtain a `Name` object based on the given name in the user input.
+`AddLabelCommandParser` and `DeleteLabelCommandParser` pass in the preamble of the argument into `ParserUtil#parseName`,
 while `ClearLabelCommandParser` passes in the entire argument.
 
 Parse Name Code Snippet :
@@ -446,8 +446,8 @@ if (!Name.isValidName(trimmedName)) {
 }
 return new Name(trimmedName);
 ```
-The above code snippet if from `ParserUtil#parseName` and it will check if the given name is in a valid format. If it is 
-it creates and returns a new `Name` object with the given name. Otherwise, it throws a `ParseException`. This `Name` object 
+The above code snippet if from `ParserUtil#parseName` and it will check if the given name is in a valid format. If it is
+it creates and returns a new `Name` object with the given name. Otherwise, it throws a `ParseException`. This `Name` object
 is passed into the respective command object that will be returned by each parser.
 
 ##### Obtaining a List of Tags
@@ -463,18 +463,18 @@ if (tags.size() == 1 && tags.contains("")) {
 Collection<String> tagSet = tags;
 return Optional.of(ParserUtil.parseTags(tagSet));
 ```
-The above code snippet checks for an empty String in the List of Strings. If it has an empty String, then it returns 
+The above code snippet checks for an empty String in the List of Strings. If it has an empty String, then it returns
 an empty `Optional` object. Otherwise, it returns an `Optional` of the Set with the Strings in the given List.
 
-Then both parsers check if the `Optional` object is empty. If it is, a `ParseException` is thrown. Otherwise, `AddLabelCommandParser` 
+Then both parsers check if the `Optional` object is empty. If it is, a `ParseException` is thrown. Otherwise, `AddLabelCommandParser`
 passes the Set of Strings inside the `Optional` into a `LabelPersonDescriptor` which is passed into the `AddLabelCommand`
-while `DeleteLabelCommandParser` passes the Set of Strings into the `DeleteCommand`. These commands are the commands 
+while `DeleteLabelCommandParser` passes the Set of Strings into the `DeleteCommand`. These commands are the commands
 that will be returned by each parser respectively.
 
 #### Modifying the Specified Person
 
-`AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand` will first check if there is a Person with the `Name` object 
-given by their parsers using `model#hasPersonName`. If there does not exist a Person, then a `CommandException` is thrown. 
+`AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand` will first check if there is a Person with the `Name` object
+given by their parsers using `model#hasPersonName`. If there does not exist a Person, then a `CommandException` is thrown.
 Otherwise, the Person with the name is obtained from the AddressBook. This Person is then modified by each command accordingly.
 * `AddLabelCommand` - Adds tags to the Person based on the `LabelPersonDescriptor` given by `AddLabelCommandParser`
 Adding Tags Code Snippet :
@@ -491,7 +491,7 @@ return new Person(personToLabel.getName(), personToLabel.getPhone(), personToLab
 ```
 return new Person(personToClear.getName(), personToClear.getPhone(), personToClear.getEmail(), new HashSet<>());
 ```
-* `DeleteLabelCommand` - Deletes all tags from the Person based on the Set of Strings given by `DeleteLabelCommandParser`. 
+* `DeleteLabelCommand` - Deletes all tags from the Person based on the Set of Strings given by `DeleteLabelCommandParser`.
 Throws a `CommandException` if the Person does not have a specifed tag.
 ```
 if (tags.stream().allMatch(tag -> personToEdit.getTags().contains(tag))) {
@@ -507,7 +507,7 @@ if (tags.stream().allMatch(tag -> personToEdit.getTags().contains(tag))) {
 
 #### Updating Modduke
 
-Once they have obtained the modified Person, they replace the original Person with the modified one in the `AddressBook`, 
+Once they have obtained the modified Person, they replace the original Person with the modified one in the `AddressBook`,
 `MeetingBook` and `ModuleBook`.
 
 Updating Modduke Code Snippet :
