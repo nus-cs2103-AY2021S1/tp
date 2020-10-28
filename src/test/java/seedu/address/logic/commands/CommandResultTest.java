@@ -7,6 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.visit.Visit;
+import seedu.address.testutil.TypicalPatients;
+
 public class CommandResultTest {
     @Test
     public void equals() {
@@ -87,10 +90,14 @@ public class CommandResultTest {
 
         CommandResult thirdCommand = new CommandResult("feedback", "10/11/2020", 2);
 
+        assertNotEquals(thirdCommand.getPatientProfile(), TypicalPatients.ALICE);
+        assertNotEquals(thirdCommand.getFeedbackToUser(), "test");
+        assertNotEquals(thirdCommand.getVisitIndex(), 10);
         assertNotEquals(thirdCommand.getPatientIndex(), 5);
+        assertNotEquals(thirdCommand.getVisitDate(), "9/11/2020");
+        assertNotEquals(thirdCommand.getPreviousVisit(), new Visit("10/11/2020"));
         assertEquals(thirdCommand.getPatientIndex(), 2);
         assertEquals(thirdCommand.getVisitDate(), "10/11/2020");
-        assertNotEquals(thirdCommand.getVisitDate(), "9/11/2020");
     }
 
     @Test
