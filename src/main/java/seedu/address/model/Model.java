@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -13,7 +14,7 @@ import seedu.address.model.patient.Patient;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Patient> PREDICATE_SHOW_ALL_PATIENTS = unused -> true;
-
+    Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -77,7 +78,9 @@ public interface Model {
      */
     void setPatient(Patient target, Patient editedPatient);
 
-    /** Returns an unmodifiable view of the filtered patient list */
+    /**
+     * Returns an unmodifiable view of the filtered patient list.
+     */
     ObservableList<Patient> getFilteredPatientList();
 
     /**
@@ -85,6 +88,42 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPatientList(Predicate<Patient> predicate);
+
+    /**
+     * Returns true if an appointment with the same identity as {@code appointment} exists in the CliniCal application.
+     */
+    boolean hasAppointment(Appointment appointment);
+
+    /**
+     * Deletes the given appointment.
+     * The appointment must exist in the CliniCal application.
+     */
+    void deleteAppointment(Appointment target);
+
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in the CliniCal application.
+     */
+    void addAppointment(Appointment appointment);
+
+    /**
+     * Replaces the given patient {@code target} with {@code editedAppointment}.
+     * {@code target} must exist in the CliniCal application.
+     * The appointment identity of {@code editedAppointment} must not be the same as another existing appointment
+     * in the CliniCal application.
+     */
+    void setAppointment(Appointment target, Appointment editedAppointment);
+
+    /**
+     * Returns an unmodifable view of the appointment list.
+     */
+    ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered patient list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null/
+     */
+    void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 
     /**
      * Saves the current CliniCal application state in its history.

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.CliniCal;
 import seedu.address.model.ReadOnlyCliniCal;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -20,15 +21,19 @@ import seedu.address.model.patient.Patient;
 class JsonSerializableCliniCal {
 
     public static final String MESSAGE_DUPLICATE_PATIENT = "Patients list contains duplicate patient(s).";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "Appointment list contains duplicate appointment(s).";
 
     private final List<JsonAdaptedPatient> patients = new ArrayList<>();
+    private final List<JsonAdaptedAppointment> appointments = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableCliniCal} with the given patients.
+     * Constructs a {@code JsonSerializableCliniCal} with the given patients and appointments.
      */
     @JsonCreator
-    public JsonSerializableCliniCal(@JsonProperty("patients") List<JsonAdaptedPatient> patients) {
+    public JsonSerializableCliniCal(@JsonProperty("patients") List<JsonAdaptedPatient> patients,
+                                    @JsonProperty("appointments") List<JsonAdaptedAppointment> appointments) {
         this.patients.addAll(patients);
+        this.appointments.addAll(appointments);
     }
 
     /**
@@ -38,6 +43,8 @@ class JsonSerializableCliniCal {
      */
     public JsonSerializableCliniCal(ReadOnlyCliniCal source) {
         patients.addAll(source.getPatientList().stream().map(JsonAdaptedPatient::new).collect(Collectors.toList()));
+        appointments.addAll(source.getAppointmentList().stream().map(JsonAdaptedAppointment::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +60,13 @@ class JsonSerializableCliniCal {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PATIENT);
             }
             cliniCal.addPatient(patient);
+        }
+        for (JsonAdaptedAppointment jsonAdaptedAppointment : appointments) {
+            Appointment appointment = jsonAdaptedAppointment.toModelType();
+            if (cliniCal.hasAppointment(appointment)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_APPOINTMENT);
+            }
+            cliniCal.addAppointment(appointment);
         }
         return cliniCal;
     }

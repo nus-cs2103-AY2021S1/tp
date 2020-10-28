@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PATIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAppointments.APP1;
 import static seedu.address.testutil.TypicalPatients.ALICE;
 import static seedu.address.testutil.TypicalPatients.BENSON;
 
@@ -91,6 +92,27 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPatientList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPatientList().remove(0));
+    }
+
+    @Test
+    public void hasAppointment_nullAppointment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasAppointment(null));
+    }
+
+    @Test
+    public void hasAppointment_appointmentNotInCliniCal_returnsFalse() {
+        assertFalse(modelManager.hasAppointment(APP1));
+    }
+
+    @Test
+    public void hasAppointment_appointmentInCliniCal_returnsTrue() {
+        modelManager.addAppointment(APP1);
+        assertTrue(modelManager.hasAppointment(APP1));
+    }
+
+    @Test
+    public void getFilteredAppointmentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredAppointmentList().remove(0));
     }
 
     @Test

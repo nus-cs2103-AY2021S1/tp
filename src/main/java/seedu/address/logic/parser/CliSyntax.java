@@ -20,4 +20,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_VISIT_DIAGNOSIS = new Prefix("dg/");
     public static final Prefix PREFIX_VISIT_PRESCRIPTION = new Prefix("ps/");
     public static final Prefix PREFIX_VISIT_COMMENT = new Prefix("cm/");
+    public static final Prefix PREFIX_APP_PATIENTNAME = new Prefix("pn/");
+    public static final Prefix PREFIX_APP_PATIENTIC = new Prefix("pi/");
+    public static final Prefix PREFIX_APP_STARTTIME = new Prefix("st/");
+    public static final Prefix PREFIX_APP_DURATION = new Prefix("d/");
 }
