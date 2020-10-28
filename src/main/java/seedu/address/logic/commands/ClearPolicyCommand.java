@@ -14,4 +14,14 @@ public class ClearPolicyCommand extends Command {
         model.clearPolicyList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ClearPolicyCommand) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
 }

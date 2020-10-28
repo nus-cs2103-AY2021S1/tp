@@ -7,7 +7,24 @@ import java.util.List;
 import seedu.address.model.ClientList;
 import seedu.address.model.person.Person;
 
-import static seedu.address.logic.commands.CommandTestUtil.*;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_FRIEND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_CAT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_DOG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_HIGH;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRIORITY_LOW;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_DESCRIPTION;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
+import static seedu.address.testutil.TypicalPolicies.SAVINGS_DESCRIPTION;
+import static seedu.address.testutil.TypicalPolicies.SAVINGS_NAME;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -18,28 +35,40 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253")
             .withClientSources("friends")
-            .withNote("Real Pal").withPriority("u").build();
+            .withNote("Real Pal")
+            .withPriority("u")
+            .withPolicy(LIFE_TIME_NAME, LIFE_TIME_DESCRIPTION)
+            .build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withClientSources("owesMoney", "friends").withNote("Snake").withPriority("l")
+            .withPolicy(LIFE_TIME_NAME, LIFE_TIME_DESCRIPTION)
             .build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withNote("Snake")
-            .withPriority("m").build();
+            .withPriority("m")
+            .withPolicy(LIFE_TIME_NAME, LIFE_TIME_DESCRIPTION)
+            .build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street")
             .withClientSources("friends").withNote("Snake")
+            .withPolicy(LIFE_TIME_NAME, LIFE_TIME_DESCRIPTION)
             .withPriority("h").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave").withNote("snake")
-            .withPriority("u").build();
+            .withPriority("u")
+            .withPolicy(SAVINGS_NAME, SAVINGS_DESCRIPTION)
+            .build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo").withNote("snake")
-            .withPriority("l").build();
+            .withPriority("l")
+            .withPolicy(SAVINGS_NAME, SAVINGS_DESCRIPTION)
+            .build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withAddress("4th street").withNote("Snake")
-            .withPriority("m").build();
+            .withPriority("m")
+            .withPolicy(SAVINGS_NAME, SAVINGS_DESCRIPTION).build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")

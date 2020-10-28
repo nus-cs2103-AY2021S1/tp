@@ -2,12 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_HUSBAND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NOTE_DOG;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -157,6 +152,10 @@ public class PersonTest {
 
         // different note -> returns false
         editedAlice = new PersonBuilder(ALICE).withNote(VALID_NOTE_DOG).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different policy -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPolicy(VALID_POLICY_NAME_BOB, VALID_POLICY_DESCRIPTION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 }

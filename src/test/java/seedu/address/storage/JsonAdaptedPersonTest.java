@@ -40,33 +40,14 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NOTE = BENSON.getNote().toString();
     private static final boolean VALID_IS_ARCHIVE = false;
     private static final String VALID_PRIORITY = BENSON.getPriority().toString();
-    /*private static final String VALID_POLICY_NAME = BENSON.getPolicy().getPolicyName().toString();
-    private static final String VALID_POLICY_DESCRIPTION = BENSON.getPolicy().getDescription().toString();
+    private static final String VALID_POLICY_NAME = BENSON.getPolicy().getPolicyName().value;
+    private static final String VALID_POLICY_DESCRIPTION = BENSON.getPolicy().getDescription().value;
 
-    private static final JsonAdaptedPolicy POLICY_WITH_VALID_NAME_VALID_DESCRIPTION =
-            new JsonAdaptedPolicy(
-                    VALID_POLICY_NAME,
-                    VALID_POLICY_DESCRIPTION);
-
-    private static final JsonAdaptedPolicy POLICY_WITH_INVALID_NAME_VALID_DESCRIPTION =
-            new JsonAdaptedPolicy(
-                    INVALID_POLICY_NAME,
-                    VALID_POLICY_DESCRIPTION);
-
-    private static final JsonAdaptedPolicy POLICY_WITH_VALID_NAME_INVALID_DESCRIPTION =
-            new JsonAdaptedPolicy(
-                    VALID_POLICY_NAME,
-                    INVALID_POLICY_DESCRIPTION);
-
-    private static final JsonAdaptedPolicy POLICY_WITH_INVALID_NAME_INVALID_DESCRIPTION =
-            new JsonAdaptedPolicy(
-                    INVALID_POLICY_NAME,
-                    INVALID_POLICY_DESCRIPTION);
     @Test
     public void toModelType_validPersonDetails_returnsPerson() throws Exception {
         JsonAdaptedPerson person = new JsonAdaptedPerson(BENSON);
         assertEquals(BENSON, person.toModelType());
-    }*/
+    }
 
     @Test
     public void toModelType_nullPhone_returnsPerson() throws Exception {
@@ -79,7 +60,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         Person bensonWithoutPhone = new PersonBuilder(BENSON).withoutPhone().build();
         assertEquals(bensonWithoutPhone, person.toModelType());
     }
@@ -95,7 +76,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         Person bensonWithoutEmail = new PersonBuilder(BENSON).withoutEmail().build();
         assertEquals(bensonWithoutEmail, person.toModelType());
     }
@@ -111,7 +92,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         Person bensonWithoutAddress = new PersonBuilder(BENSON).withoutAddress().build();
         assertEquals(bensonWithoutAddress, person.toModelType());
     }
@@ -127,7 +108,7 @@ public class JsonAdaptedPersonTest {
                 null,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         Person bensonWithoutNote = new PersonBuilder(BENSON).withoutNote().build();
         assertEquals(bensonWithoutNote, person.toModelType());
     }
@@ -143,8 +124,24 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 null,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         Person bensonWithoutPriority = new PersonBuilder(BENSON).withoutPriority().build();
+        assertEquals(bensonWithoutPriority, person.toModelType());
+    }
+
+    @Test
+    public void toModelType_nullPolicy_returnsPerson() throws Exception {
+        JsonAdaptedPerson person = new JsonAdaptedPerson(
+                VALID_NAME,
+                VALID_PHONE,
+                VALID_EMAIL,
+                VALID_ADDRESS,
+                VALID_CLIENTSOURCES,
+                VALID_NOTE,
+                VALID_IS_ARCHIVE,
+                VALID_PRIORITY,
+                null);
+        Person bensonWithoutPriority = new PersonBuilder(BENSON).withoutPolicy().build();
         assertEquals(bensonWithoutPriority, person.toModelType());
     }
 
@@ -159,7 +156,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -175,7 +172,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -191,7 +188,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -207,7 +204,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -223,7 +220,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -241,7 +238,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
@@ -256,7 +253,7 @@ public class JsonAdaptedPersonTest {
                 INVALID_NOTE,
                 VALID_IS_ARCHIVE,
                 VALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
@@ -271,9 +268,7 @@ public class JsonAdaptedPersonTest {
                 VALID_NOTE,
                 VALID_IS_ARCHIVE,
                 INVALID_PRIORITY,
-                null);
+                new JsonAdaptedPolicy(VALID_POLICY_NAME, VALID_POLICY_DESCRIPTION));
         assertThrows(IllegalValueException.class, person::toModelType);
     }
-
-
 }

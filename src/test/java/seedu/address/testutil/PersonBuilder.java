@@ -16,6 +16,9 @@ import seedu.address.model.policy.PolicyDescription;
 import seedu.address.model.policy.PolicyName;
 import seedu.address.model.util.SampleClientDataUtil;
 
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_DESCRIPTION;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
+
 /**
  * A utility class to help with building Person objects.
  */
@@ -28,8 +31,8 @@ public class PersonBuilder {
     public static final String DEFAULT_NOTE = "sd";
     public static final boolean DEFAULT_IS_ARCHIVE = false;
     public static final String DEFAULT_PRIORITY = "u";
-    public static final String DEFAULT_POLICY_NAME = "Life Plan";
-    public static final String DEFAULT_POLICY_DESCRIPTION = "Covers death, serious illnesses, and disabilities.";
+    public static final String DEFAULT_POLICY_NAME = LIFE_TIME_NAME; //PolicyName from typicalpolicies
+    public static final String DEFAULT_POLICY_DESCRIPTION = LIFE_TIME_DESCRIPTION; //PolicyDescription from typicalpolicies
 
     private Name name;
     private Phone phone;
@@ -53,7 +56,7 @@ public class PersonBuilder {
         note = new Note(DEFAULT_NOTE);
         isArchive = DEFAULT_IS_ARCHIVE;
         priority = new Priority(DEFAULT_PRIORITY);
-        policy = null;
+        policy = new Policy(new PolicyName(DEFAULT_POLICY_NAME), new PolicyDescription(DEFAULT_POLICY_DESCRIPTION));
     }
 
     /**

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -18,10 +19,7 @@ import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.ClientList;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyClientList;
-import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.*;
 import seedu.address.model.person.Person;
 import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.PolicyList;
@@ -74,6 +72,15 @@ public class AddCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPersonInArchive);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_policyNotInPolicyList_throwsCommandException() {
+        Model model = new ModelManager();
+        Person validPerson = new PersonBuilder().withoutPolicy().build();
+        PolicyName validPolicyName = new PolicyName(LIFE_TIME_NAME);
+        AddCommand addCommand = new AddCommand(validPerson, validPolicyName);
+        assertThrows(CommandException.class, AddCommand.MESSAGE_POLICY_NOT_FOUND, () -> addCommand.execute(model));
     }
 
     @Test
@@ -293,4 +300,14 @@ public class AddCommandTest {
 
     }
 
+    /**
+     * A Model stub that has no policies in policylist
+     */
+    private class ModelStubWithoutPolicies extends ModelStub {
+
+        @Override
+        public boolean hasPolicy(Policy policy) {
+            return false;
+        }
+    }
 }
