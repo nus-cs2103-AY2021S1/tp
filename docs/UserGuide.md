@@ -1,6 +1,5 @@
-# User Guide for Supper Striker
+# User Guide for Supper Strikers
 
-## Commands
 
 **Supper Strikers is a desktop application for managing your supper orders.** While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
@@ -69,7 +68,7 @@ See you next time!
 
 ### View/select vendor: `vendor [INDEX]`
 
-Shows the list of vendor. If an index is specified, that vendor is selected, and its menu will be shown.
+If an index is specified, the corresponding vendor is selected, and its menu will be shown.
 
 If no index is specified, displays the list of all vendors and returns to vendor mode.
 If there is an existing order, it is deleted.
