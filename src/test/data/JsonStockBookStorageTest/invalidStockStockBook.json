@@ -1,0 +1,12 @@
+{
+  "stocks": [ {
+    "name" : "ice cream",
+    "serialNumber" : "fairprice4",
+    "source" : "fairprice",
+    "quantity" : "-1000",
+    "lowQuantity" : "1",
+    "location" : "farm",
+    "notes" : [ ],
+    "isBookmarked" : false
+  } ]
+}

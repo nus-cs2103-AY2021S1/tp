@@ -4,7 +4,10 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.stock.commons.core.GuiSettings;
@@ -14,6 +17,8 @@ import seedu.stock.logic.commands.CommandResult;
 import seedu.stock.logic.commands.exceptions.CommandException;
 import seedu.stock.logic.commands.exceptions.SourceCompanyNotFoundException;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.Note;
+import seedu.stock.model.stock.Stock;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -30,15 +35,23 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private StockListPanel stockListPanel;
+    private NoteListPanel noteListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private StatisticsWindow statisticsWindow;
+
+    @FXML
+    private Scene scene;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private StackPane stockListPanelPlaceholder;
+
+
+    @FXML
+    private StackPane noteListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -61,6 +74,8 @@ public class MainWindow extends UiPart<Stage> {
 
         helpWindow = new HelpWindow();
         statisticsWindow = new StatisticsWindow();
+        //custom fonts
+        scene.getStylesheets().add("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap");
     }
 
     public Stage getPrimaryStage() {
@@ -74,6 +89,7 @@ public class MainWindow extends UiPart<Stage> {
 
         stockListPanel = new StockListPanel(logic.getFilteredStockList());
         stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
+
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -108,6 +124,11 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    @FXML
+    public void handleShowStockNotes(Stock stockToShowNotes) {
+
     }
 
     /**
@@ -155,9 +176,19 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            stockListPanel = new StockListPanel(logic.getFilteredStockList());
+            stockListPanelPlaceholder.getChildren().add(stockListPanel.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowNotes()) {
+                Stock stockToShowNotes = commandResult.getStockToShowNotes();
+                ObservableList<Note> internalNoteList = FXCollections.observableArrayList();
+                internalNoteList.addAll(stockToShowNotes.getNotes());
+                noteListPanel = new NoteListPanel(internalNoteList);
+                stockListPanelPlaceholder.getChildren().add(noteListPanel.getRoot());
             }
 
             if (commandResult.isShowStatistics()) {

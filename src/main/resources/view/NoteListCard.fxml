@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane fx:id="gridPane" HBox.hgrow="ALWAYS" >
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150" percentWidth="100.0" />
+        </columnConstraints>
+        <VBox fx:id="cardNoteBox" minHeight="70" GridPane.columnIndex="0" >
+            <padding>
+                <Insets top="5" right="5" bottom="5" left="15" />
+            </padding>
+            <HBox fx:id="cardNote" spacing="5" alignment="TOP_LEFT">
+                <Label fx:id="id" styleClass="cell_big_label" wrapText="true">
+                    <minWidth>
+                        <!-- Ensures that the label text is never truncated -->
+                        <Region fx:constant="USE_PREF_SIZE" />
+                    </minWidth>
+                </Label>
+                <Label fx:id="noteText" text="\$first" styleClass="cell_small_label" wrapText="true"/>
+            </HBox>
+        </VBox>
+    </GridPane>
+</HBox>

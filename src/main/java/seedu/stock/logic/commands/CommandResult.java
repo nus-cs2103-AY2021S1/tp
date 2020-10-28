@@ -5,6 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.Map;
 import java.util.Objects;
 
+import seedu.stock.model.stock.Stock;
+
 /**
  * Represents the result of a command execution.
  */
@@ -14,6 +16,12 @@ public class CommandResult {
 
     /** Help information should be shown to the user. */
     private final boolean showHelp;
+
+    /** Notes of the stock should be shown to user. */
+    private final boolean showNotes;
+
+    /** Stock to show notes. */
+    private final Stock stockToShowNotes;
 
     /** Statistics information should be shown to the user. */
     private final boolean showStatistics;
@@ -34,9 +42,12 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, Map<String, Integer> statisticsData,
-                         boolean showHelp, boolean showStatistics, String[] otherStatisticsDetails, boolean exit) {
+                         boolean showHelp, boolean showNotes, Stock stockToShowNotes,
+                         boolean showStatistics, String[] otherStatisticsDetails, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.showNotes = showNotes;
+        this.stockToShowNotes = stockToShowNotes;
         this.showStatistics = showStatistics;
         this.statisticsData = statisticsData;
         this.otherStatisticsDetails = otherStatisticsDetails;
@@ -48,7 +59,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, null, false, false, null, false);
+        this(feedbackToUser, null, false, false, null, false, null, false);
     }
 
     public String getFeedbackToUser() {
@@ -57,6 +68,14 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isShowNotes() {
+        return showNotes;
+    }
+
+    public Stock getStockToShowNotes() {
+        return this.stockToShowNotes;
     }
 
     public boolean isShowStatistics() {

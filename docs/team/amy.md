@@ -29,7 +29,7 @@ Given below are my contributions to the project.
   * Highlights: This enhancement comes with the ability to apply filters such as name of the stock,
   serial number, location stored and source of stock.
   Search is also case-insensitive and any stock that contains the search term will be shown.
-  
+
 * **New Feature**: Added the ability to add optional notes to existing items in the storage.
   * What it does: Allows the user to add notes to stock.
   * Justification: This feature improves the user experience as user can now add optional notes

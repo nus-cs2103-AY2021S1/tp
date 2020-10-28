@@ -1,6 +1,5 @@
 package seedu.stock.logic.commands;
 
-//import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalStocks.PINEAPPLE;
 import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;

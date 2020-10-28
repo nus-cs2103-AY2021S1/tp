@@ -2,16 +2,23 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.stock.logic.commands.CommandWords.ADD_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.BOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.DELETE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.FIND_EXACT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.NOTE_DELETE_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.NOTE_VIEW_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.PRINT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.SORT_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.STATISTICS_COMMAND_WORD;
+import static seedu.stock.logic.commands.CommandWords.UNBOOKMARK_COMMAND_WORD;
 import static seedu.stock.logic.commands.CommandWords.UPDATE_COMMAND_WORD;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LIST_TYPE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
@@ -30,6 +37,7 @@ import seedu.stock.commons.util.SortUtil.Field;
 import seedu.stock.commons.util.SortUtil.Order;
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
+import seedu.stock.logic.commands.BookmarkCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -39,16 +47,18 @@ import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.NoteDeleteCommand;
+import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
+import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
-    private static final String MESSAGE_SUGGESTION = "Do you mean: \n";
+    public static final String MESSAGE_SUGGESTION = "Do you mean: \n";
     private String faultyCommandWord;
     private String commandWord;
     private String headerErrorMessage;
@@ -92,8 +102,9 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
-                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_SORT_FIELD,
-                        PREFIX_SORT_ORDER
+                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_FILE_NAME,
+                        PREFIX_SORT_ORDER, PREFIX_SORT_FIELD, PREFIX_NOTE, PREFIX_NOTE_INDEX,
+                        PREFIX_STATISTICS_TYPE, PREFIX_LIST_TYPE, PREFIX_LOW_QUANTITY
                 );
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
@@ -159,6 +170,10 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateFindExactSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case SortCommand.COMMAND_WORD:
+            generateSortSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         case NoteCommand.COMMAND_WORD:
             generateNoteSuggestion(toBeDisplayed, argMultimap);
             break;
@@ -167,12 +182,20 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateDeleteNoteSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case NoteViewCommand.COMMAND_WORD:
+            generateNoteViewSuggestion(toBeDisplayed, argMultimap);
+            break;
+
         case PrintCommand.COMMAND_WORD:
             generatePrintSuggestion(toBeDisplayed, argMultimap);
             break;
 
-        case SortCommand.COMMAND_WORD:
-            generateSortSuggestion(toBeDisplayed, argMultimap);
+        case BookmarkCommand.COMMAND_WORD:
+            generateBookmarkSuggestion(toBeDisplayed, argMultimap);
+            break;
+
+        case UnbookmarkCommand.COMMAND_WORD:
+            generateUnbookmarkSuggestion(toBeDisplayed, argMultimap);
             break;
 
         default:
@@ -227,12 +250,50 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             toBeDisplayed.append(" " + fieldPrefix + suggestedDescription);
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + SortCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, SortCommand.MESSAGE_USAGE);
     }
+
+    /**
+     * Generates suggestion for faulty bookmark command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateBookmarkSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(BOOKMARK_COMMAND_WORD);
+
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        for (String serialNumber : keywords) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+        }
+
+        generateBodyMessage(toBeDisplayed, BookmarkCommand.MESSAGE_USAGE);
+    }
+
+    /**
+     * Generates suggestion for faulty unbookmark command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateUnbookmarkSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(UNBOOKMARK_COMMAND_WORD);
+
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        for (String serialNumber : keywords) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+        }
+
+        generateBodyMessage(toBeDisplayed, UnbookmarkCommand.MESSAGE_USAGE);
+    }
+
+
 
     /**
      * Generates suggestion for faulty find exact command.
@@ -252,11 +313,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + FindExactCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, FindExactCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -306,11 +363,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + UpdateCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, UpdateCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -331,11 +384,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + FindCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, FindCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -349,16 +398,29 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 PREFIX_SERIAL_NUMBER, PREFIX_NOTE);
         toBeDisplayed.append(NOTE_COMMAND_WORD);
 
-        for (int i = 0; i < allowedPrefixes.size(); i++) {
-            Prefix currentPrefix = allowedPrefixes.get(i);
-            toBeDisplayed.append(" ").append(currentPrefix).append(CliSyntax.getDefaultDescription(currentPrefix));
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        for (String serialNumber : keywords) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + NoteCommand.MESSAGE_USAGE);
+        for (int i = 1; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            String description = "";
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                description = argMultimap.getValue(currentPrefix).get();
+            }
+            boolean isEmpty = description.equals("");
+            if (isEmpty) {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+            } else {
+                toBeDisplayed.append(" " + currentPrefix + description);
+            }
         }
+
+        generateBodyMessage(toBeDisplayed, NoteCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -372,17 +434,55 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                 PREFIX_SERIAL_NUMBER, PREFIX_NOTE_INDEX);
         toBeDisplayed.append(NOTE_DELETE_COMMAND_WORD);
 
-        for (int i = 0; i < allowedPrefixes.size(); i++) {
-            Prefix currentPrefix = allowedPrefixes.get(i);
-            toBeDisplayed.append(" ").append(currentPrefix)
-                    .append(CliSyntax.getDefaultDescription(currentPrefix));
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        for (String serialNumber : keywords) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + NoteDeleteCommand.MESSAGE_USAGE);
+        for (int i = 1; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            String description = "";
+            boolean isValidInteger = true;
+            if (argMultimap.getValue(currentPrefix).isPresent()) {
+                description = argMultimap.getValue(currentPrefix).get();
+            }
+            try {
+                Integer.parseInt(description);
+            } catch (NumberFormatException ex) {
+                isValidInteger = false;
+            }
+            boolean isEmpty = description.equals("");
+            if (isEmpty || !isValidInteger) {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+            } else {
+                toBeDisplayed.append(" " + currentPrefix + description);
+            }
         }
+
+        generateBodyMessage(toBeDisplayed, NoteDeleteCommand.MESSAGE_USAGE);
+    }
+
+    /**
+     * Generates suggestion for faulty noteview command.
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param argMultimap The parsed user input fields.
+     */
+    private void generateNoteViewSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
+        toBeDisplayed.append(NOTE_VIEW_COMMAND_WORD);
+
+        if (!argMultimap.getValue(PREFIX_SERIAL_NUMBER).isPresent()) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + CliSyntax.getDefaultDescription(PREFIX_SERIAL_NUMBER));
+        }
+        List<String> keywords = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+        for (String serialNumber : keywords) {
+            toBeDisplayed.append(" " + PREFIX_SERIAL_NUMBER + serialNumber);
+        }
+
+        generateBodyMessage(toBeDisplayed, NoteViewCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -408,11 +508,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + DeleteCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, DeleteCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -422,25 +518,32 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param argMultimap The parsed user input fields.
      */
     private void generateStatisticsSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_STATISTICS_TYPE);
         toBeDisplayed.append(STATISTICS_COMMAND_WORD);
 
-        for (int i = 0; i < allowedPrefixes.size(); i++) {
-            Prefix currentPrefix = allowedPrefixes.get(i);
-            if (!argMultimap.getValue(currentPrefix).isPresent()) {
-                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+        Prefix typePrefix = PREFIX_STATISTICS_TYPE;
+        String[] typeDescriptions = new String[]{"source", "source-qd-"};
+
+        if (!argMultimap.getValue(typePrefix).isPresent()) {
+            toBeDisplayed.append(" " + typePrefix + CliSyntax.getDefaultDescription(typePrefix));
+        } else {
+            String description = argMultimap.getValue(typePrefix).get();
+            String suggestedDescription = description;
+            int bestEditDistanceSoFar = Integer.MAX_VALUE;
+            for (String typeDescription : typeDescriptions) {
+                int currentEditDistance = SuggestionUtil.minimumEditDistance(description, typeDescription);
+                if (currentEditDistance < bestEditDistanceSoFar) {
+                    bestEditDistanceSoFar = currentEditDistance;
+                    suggestedDescription = typeDescription;
+                }
             }
-            List<String> keywords = argMultimap.getAllValues(PREFIX_STATISTICS_TYPE);
-            for (String statisticsType : keywords) {
-                toBeDisplayed.append(" " + currentPrefix + statisticsType);
+            if (suggestedDescription.equals(typeDescriptions[0])) {
+                toBeDisplayed.append(" " + typePrefix + suggestedDescription);
+            } else {
+                toBeDisplayed.append(" " + typePrefix + suggestedDescription + "<source-company>");
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + StatisticsCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, StatisticsCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -451,7 +554,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      */
     private void generateAddSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_NAME, PREFIX_SOURCE,
-                 PREFIX_QUANTITY, PREFIX_LOCATION);
+                 PREFIX_QUANTITY, PREFIX_LOCATION, PREFIX_LOW_QUANTITY);
         toBeDisplayed.append(ADD_COMMAND_WORD);
 
         for (int i = 0; i < allowedPrefixes.size(); i++) {
@@ -468,11 +571,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             }
         }
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + AddCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, AddCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -484,11 +583,26 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     private void generateListSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.LIST_COMMAND_WORD);
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
+        Prefix typePrefix = PREFIX_LIST_TYPE;
+        String[] typeDescriptions = new String[]{"all", "bookmark", "low"};
+
+        if (!argMultimap.getValue(typePrefix).isPresent()) {
+            toBeDisplayed.append(" " + typePrefix + CliSyntax.getDefaultDescription(typePrefix));
         } else {
-            toBeDisplayed.append("\n" + ListCommand.MESSAGE_USAGE);
+            String description = argMultimap.getValue(typePrefix).get();
+            String suggestedDescription = description;
+            int bestEditDistanceSoFar = Integer.MAX_VALUE;
+            for (String typeDescription : typeDescriptions) {
+                int currentEditDistance = SuggestionUtil.minimumEditDistance(description, typeDescription);
+                if (currentEditDistance < bestEditDistanceSoFar) {
+                    bestEditDistanceSoFar = currentEditDistance;
+                    suggestedDescription = typeDescription;
+                }
+            }
+            toBeDisplayed.append(" " + typePrefix + suggestedDescription);
         }
+
+        generateBodyMessage(toBeDisplayed, ListCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -500,11 +614,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     private void generateHelpSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
         toBeDisplayed.append(CommandWords.HELP_COMMAND_WORD);
 
-        if (!bodyErrorMessage.equals("")) {
-            toBeDisplayed.append("\n" + bodyErrorMessage);
-        } else {
-            toBeDisplayed.append("\n" + HelpCommand.MESSAGE_USAGE);
-        }
+        generateBodyMessage(toBeDisplayed, HelpCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -524,6 +634,37 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
      * @param argMultimap The parsed user input fields.
      */
     private void generatePrintSuggestion(StringBuilder toBeDisplayed, ArgumentMultimap argMultimap) {
-        toBeDisplayed.append(CommandWords.PRINT_COMMAND_WORD);
+        List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_FILE_NAME);
+        toBeDisplayed.append(PRINT_COMMAND_WORD);
+
+        for (int i = 0; i < allowedPrefixes.size(); i++) {
+            Prefix currentPrefix = allowedPrefixes.get(i);
+            if (!argMultimap.getValue(currentPrefix).isPresent()) {
+                toBeDisplayed.append(" " + currentPrefix + CliSyntax.getDefaultDescription(currentPrefix));
+            }
+            List<String> keywords = argMultimap.getAllValues(PREFIX_FILE_NAME);
+
+            if (keywords.size() == 0) {
+                continue;
+            }
+
+            toBeDisplayed.append(" " + currentPrefix + keywords.get(0));
+        }
+
+        generateBodyMessage(toBeDisplayed, PrintCommand.MESSAGE_USAGE);
+    }
+
+    /**
+     * Generates the suggestion body message to be displayed to the user
+     *
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     * @param messageUsage The body message.
+     */
+    private void generateBodyMessage(StringBuilder toBeDisplayed, String messageUsage) {
+        if (!bodyErrorMessage.equals("")) {
+            toBeDisplayed.append("\n" + bodyErrorMessage);
+        } else {
+            toBeDisplayed.append("\n" + messageUsage);
+        }
     }
 }

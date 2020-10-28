@@ -2,7 +2,10 @@ package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import seedu.stock.logic.commands.ListAllCommand;
+import seedu.stock.logic.commands.ListBookmarkCommand;
 import seedu.stock.logic.commands.ListCommand;
+import seedu.stock.logic.commands.ListLowStocksCommand;
 import seedu.stock.logic.parser.exceptions.ParseException;
 
 /**
@@ -16,13 +19,30 @@ public class ListCommandParser implements Parser<ListCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ListCommand parse(String args) throws ParseException {
+        String trimmedListType = args.trim();
 
-        // Checks if all the prefixes only appear once in the given command.
-        if (!hasNoArguments(args)) {
+        // Checks if the args start with "lt/"
+        if (!trimmedListType.startsWith("lt/")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
 
-        return new ListCommand();
+        String listType = trimmedListType.substring(3);
+
+        switch (listType) {
+
+        case ListAllCommand.LIST_WORD:
+            return new ListAllCommand();
+
+        case ListBookmarkCommand.LIST_WORD:
+            return new ListBookmarkCommand();
+
+        case ListLowStocksCommand.LIST_WORD:
+            return new ListLowStocksCommand();
+
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        }
+
     }
 
     public boolean hasNoArguments(String args) {

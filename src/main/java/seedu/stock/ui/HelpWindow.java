@@ -16,48 +16,69 @@ import seedu.stock.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String HELP = "HELP \n---------------------------\n";
-    public static final String ADD = "---------------------------\nADD \n---------------------------\n";
-    public static final String LIST = "---------------------------\nLIST \n---------------------------\n";
-    public static final String DELETE = "---------------------------\nDELETE\n---------------------------\n";
-    public static final String FIND = "---------------------------\nFIND\n---------------------------\n";
-    public static final String FINDEXACT = "---------------------------\nFINDEXACT\n---------------------------\n";
-    public static final String UPDATE = "---------------------------\nUPDATE\n---------------------------\n";
-    public static final String EXIT = "---------------------------\nEXIT\n---------------------------\n";
+    public static final String COMMAND = "COMMAND";
+    public static final String HELP = "HELP";
+    public static final String ADD = "ADD";
+    public static final String LIST = "LIST";
+    public static final String DELETE = "DELETE";
+    public static final String FIND = "FIND\n";
+    public static final String FINDEXACT = "FINDEXACT\n";
+    public static final String UPDATE = "UPDATE\n";
+    public static final String NOTE = "NOTE\n";
+    public static final String STATISTICS = "STATISTICS\n";
+    public static final String SORT = "SORT\n";
+    public static final String EXIT = "EXIT\n";
 
+    public static final String COMMAND_DESCRIPTION = "COMMAND DESCRIPTION";
     public static final String HELP_DESCRIPTION =
-            "format: \nhelp\n\n";
+            "help";
 
     public static final String ADD_DESCRIPTION =
-            "format: \nadd n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>\n\n";
+            "add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>";
 
     public static final String LIST_DESCRIPTION =
-            "format: \nlist\n\n";
+            "list lt/all \nlist lt/bookmark \nlist lt/low";
 
     public static final String DELETE_DESCRIPTION =
-            "format: \ndelete sn/<serial number>\n\n"
-            + "format (multiple): \ndelete sn/<serial number> sn/<serial number 2> \n\n";
+            "delete sn/<serial number>"
+            + "delete sn/<serial number> sn/<serial number 2>";
 
     public static final String FIND_DESCRIPTION =
-            "format(any combination of): \nfind n/<name> sn/<serial number> l/<location> s/<source>\n\n";
+            "find (followed by combination of any): \n"
+                    + "n/<name> \nsn/<serial number> \nl/<location> \ns/<source>";
 
     public static final String FINDEXACT_DESCRIPTION =
-            "format(any combination of): \nfindexact n/<name> sn/<serial number> l/<location> s/<source>\n\n";
+            "findexact (followed by combination of any): \n"
+                    + "n/<name> \nsn/<serial number> \nl/<location> \ns/<source>";
 
     public static final String UPDATE_DESCRIPTION =
-            "format: \nupdate sn/<Serial Number of product> (followed by combination of any):\n"
-                    + "iq/<+/-><quantity to increment/decrement> nq/<new quantity> n/<new name>\n"
-                    + "l/<new location in warehouse> s/<new source of stock>\n"
+            "update sn/<serial number> (followed by combination of any):\n"
+                    + "iq/<+/-><quantity to increment/decrement> \nnq/<new quantity> \nn/<new name>\n"
+                    + "l/<new location in warehouse> \ns/<new source of stock>\n"
                     + "NOTE: only either of iq/ or nq/ can be provided.\n";
 
-    public static final String EXIT_DESCRIPTION = "format: \nexit\n\n";
+    public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note for stock>\n"
+            + "noteview sn/<serial number>\n"
+            + "notedelete sn/<serial number> ni/<note index>";
 
-    public static final String DISCLAIMER = "---------------------------\nFor more information refer to the guide :";
+    public static final String STATISTICS_DESCRIPTION = "stats st/source\nstats st/source-qd-<source company>";
+
+    public static final String SORT_DESCRIPTION = "sort o/<order> by/<field>";
+
+    public static final String EXIT_DESCRIPTION = "exit";
+
+    public static final String DISCLAIMER = "For more information refer to the guide :";
     public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t15-3.github.io/tp/UserGuide.html";
     public static final Hyperlink USERGUIDE_LINK = new Hyperlink(USERGUIDE_URL);
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
+
+    @FXML
+    private Label command;
+
+    @FXML
+    private Label commandDescription;
 
     @FXML
     private Label addMethod;
@@ -108,6 +129,24 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
+    private Label noteMethod;
+
+    @FXML
+    private Label noteMessage;
+
+    @FXML
+    private Label statsMethod;
+
+    @FXML
+    private Label statsMessage;
+
+    @FXML
+    private Label sortMethod;
+
+    @FXML
+    private Label sortMessage;
+
+    @FXML
     private Label url;
 
     @FXML
@@ -121,44 +160,52 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
 
+        //Comand header
+        command.setText(COMMAND);
+        commandDescription.setText(COMMAND_DESCRIPTION);
+
         //Help Method
         helpMethod.setText(HELP);
-        helpMethod.setStyle("-fx-font-size: 130%;");
         helpMessage.setText(HELP_DESCRIPTION);
 
         //Add Method
         addMethod.setText(ADD);
-        addMethod.setStyle("-fx-font-size: 130%;");
         addMessage.setText(ADD_DESCRIPTION);
 
         //List Method
         listMethod.setText(LIST);
-        listMethod.setStyle("-fx-font-size: 130%;");
         listMessage.setText(LIST_DESCRIPTION);
 
         //Delete Method
         deleteMethod.setText(DELETE);
-        deleteMethod.setStyle("-fx-font-size: 130%;");
         deleteMessage.setText(DELETE_DESCRIPTION);
 
         //Update Method
         updateMethod.setText(UPDATE);
-        updateMethod.setStyle("-fx-font-size: 130%;");
         updateMessage.setText(UPDATE_DESCRIPTION);
+
+        //Update Method
+        noteMethod.setText(NOTE);
+        noteMessage.setText(NOTE_DESCRIPTION);
+
+        //Update Method
+        sortMethod.setText(SORT);
+        sortMessage.setText(SORT_DESCRIPTION);
+
+        //Update Method
+        statsMethod.setText(UPDATE);
+        statsMessage.setText(UPDATE_DESCRIPTION);
 
         //Find Method
         findMethod.setText(FIND);
-        findMethod.setStyle("-fx-font-size: 130%;");
         findMessage.setText(FIND_DESCRIPTION);
 
         //FindExact Method
         findExactMethod.setText(FINDEXACT);
-        findExactMethod.setStyle("-fx-font-size: 130%;");
         findExactMessage.setText(FINDEXACT_DESCRIPTION);
 
         //Exit Method
         exitMethod.setText(EXIT);
-        exitMethod.setStyle("-fx-font-size: 130%;");
         exitMessage.setText(EXIT_DESCRIPTION);
 
 
@@ -166,7 +213,7 @@ public class HelpWindow extends UiPart<Stage> {
         disclaimer.setText(DISCLAIMER);
         disclaimer.setStyle("-fx-font-size: 110%;");
 
-        // setting the colours for the link
+        //setting the colours for the link
         url.setText(USERGUIDE_URL);
         url.setStyle("-fx-text-fill: #0b6ae0;");
         url.setOnMouseClicked(new EventHandler<MouseEvent>() {

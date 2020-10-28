@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.chart.*?>
-<?import javafx.stage.*?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.stage.Stage?>
 
 <?import javafx.scene.image.Image?>
 
@@ -15,7 +15,7 @@
     <scene>
         <Scene>
                 <stylesheets>
-                    <URL value="@DarkTheme.css"/>
+                    <URL value="@LightTheme.css"/>
                 </stylesheets>
                 <PieChart fx:id="statisticsPieChart" minHeight="600.0" minWidth="700.0"
                           xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">

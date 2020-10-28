@@ -35,7 +35,9 @@ public class NoteDeleteCommand extends Command {
 
     private final SerialNumber serialNumber;
     private final int index;
+
     /**
+     * Constructs a NoteDeleteCommand
      * @param serialNumber of the stock in the stock book
      * @param index of note to delete from the stock
      */
@@ -55,7 +57,10 @@ public class NoteDeleteCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
+
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
+
         Optional<Stock> stockToDeleteNote = Optional.empty();
         // Find the stock to add note to
         for (Stock currentStock : lastShownStocks) {

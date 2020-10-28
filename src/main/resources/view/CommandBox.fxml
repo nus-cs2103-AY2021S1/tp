@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox spacing="8">
-        <TextField fx:id="commandTextField" minWidth="480" onAction="#handleCommandEntered"
+    <HBox spacing="8" styleClass="command-HBox">
+        <TextField fx:id="commandTextField" prefHeight="40" minWidth="480" onAction="#handleCommandEntered"
                    promptText="How can I assist you?" styleClass="command-text-field" HBox.hgrow="ALWAYS">
         </TextField>
         <Button fx:id="enterButton" minWidth="80" onAction="#handleCommandEntered" prefHeight="40"

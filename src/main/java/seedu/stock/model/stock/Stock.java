@@ -20,6 +20,7 @@ public class Stock {
     private final Quantity quantity;
     private final Location location;
     private final List<Note> notes;
+    private boolean isBookmarked;
 
     /**
      * Every field must be present and not null.
@@ -32,6 +33,7 @@ public class Stock {
         this.quantity = quantity;
         this.location = location;
         this.notes = new ArrayList<>();
+        this.isBookmarked = false;
     }
 
     /**
@@ -46,6 +48,7 @@ public class Stock {
         this.quantity = quantity;
         this.location = location;
         this.notes = notes;
+        this.isBookmarked = false;
     }
 
     public Name getName() {
@@ -72,6 +75,26 @@ public class Stock {
         return notes;
     }
 
+    public boolean getIsBookmarked() {
+        return isBookmarked;
+    }
+
+    /**
+     * Bookmarks the stock
+     *
+     */
+    public void setBookmarked() {
+        this.isBookmarked = true;
+    }
+
+    /**
+     * Unbookmarks the stock
+     *
+     */
+    public void setUnbookmarked() {
+        this.isBookmarked = false;
+    }
+
     /**
      * Returns the values of the notes of this stock in a list.
      * @return list of string of the values of notes of stock.
@@ -95,7 +118,7 @@ public class Stock {
         StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < notes.size(); i++) {
-            builder.append(i + 1).append(". ").append(notes.get(i)).append(" ");
+            builder.append(i + 1).append(". ").append(notes.get(i)).append("\n");
         }
 
         return builder.toString();
@@ -148,7 +171,8 @@ public class Stock {
     }
 
     /**
-     * Returns true if both stocks of the same name and source, or the same serial number.
+     * Returns true if both stocks of the same name, serialnumber and source.
+     * This defines a weaker notion of equality between two stocks.
      */
     public boolean isSameStock(Stock otherStock) {
         if (otherStock == this) {
@@ -162,7 +186,8 @@ public class Stock {
     }
 
     /**
-     * Returns true if both stocks have the same name and source, or the same serial number.
+     * Returns true if both stocks have the same identity and data fields.
+     * This defines a stronger notion of equality between two stocks.
      */
     @Override
     public boolean equals(Object other) {
@@ -178,6 +203,7 @@ public class Stock {
         return (otherStock.getName().equals(getName())
                 && otherStock.getSource().equals(getSource()))
                 || otherStock.getSerialNumber().equals(getSerialNumber());
+
     }
 
     @Override

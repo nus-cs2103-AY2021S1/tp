@@ -51,7 +51,7 @@ public class FindCommandTest {
                 + sourcePredicate.toString() + "\n" + expectedMessage;
         List<Predicate<Stock>> predicateList = Arrays.asList(namePredicate, sourcePredicate);
         expectedModel.updateFilteredStockList(
-                predicateList.stream().reduce(x -> true, Predicate::or));
+                predicateList.stream().reduce(x -> false, Predicate::or));
 
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(APPLE, BANANA), model.getFilteredStockList());

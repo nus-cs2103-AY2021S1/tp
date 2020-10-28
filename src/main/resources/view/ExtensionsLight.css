@@ -1,0 +1,53 @@
+
+.error {
+    -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
+}
+
+.list-cell:empty {
+    /* Empty cells will not have alternating colours */
+    -fx-background: #F1F1F1;
+}
+
+.tag-selector {
+    -fx-border-width: 1;
+    -fx-border-color: white;
+    -fx-border-radius: 3;
+    -fx-background-radius: 3;
+}
+
+.tooltip-text {
+    -fx-text-fill: white;
+}
+
+.help-box {
+    -fx-background-color: derive(#F1F1F1, 0%);
+    -fx-border-color: derive(#000000, 0%);
+}
+
+.help-title {
+    -fx-font-family: "Quicksand";
+    -fx-font-size: 16px;
+    -fx-text-fill: #000000;
+    -fx-font-weight: bold
+}
+
+.help-text {
+    -fx-font-family: "Quicksand";
+    -fx-font-size: 13px;
+    -fx-text-fill: #000000;
+}
+
+.help-table {
+    -fx-border-color: #000000;
+}
+
+.help-table-header {
+    -fx-border-color: #000000;
+    -fx-background-color: #3e7b91;
+}
+
+.some-text{
+    -fx-font-family: "Quicksand";
+    -fx-font-size: 16px;
+    -fx-text-fill: #000000;
+}

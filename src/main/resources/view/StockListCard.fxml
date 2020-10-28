@@ -1,71 +1,74 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane fx:id="gridPane" HBox.hgrow="ALWAYS" >
+
+<?import javafx.scene.text.TextFlow?>
+<HBox id="cardPane" fx:id="cardPane" styleClass="list-cell"
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" minWidth="1010" maxWidth="1010">
+
+  <GridPane fx:id="gridPane" minWidth="1010" maxWidth="1010">
     <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150" percentWidth="70.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0"/>
+        <!--      bookmark-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="30" maxWidth="30" />
+        <!--      id-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="30" maxWidth="30" />
+        <!--      name-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="175" maxWidth="175" />
+        <!--      serial number-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="150" maxWidth="150" />
+        <!--      source-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="150" maxWidth="150" />
+        <!--      quantity-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="75" maxWidth="75" />
+        <!--      location-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
+        <!--      notes-->
+        <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
     </columnConstraints>
-    <VBox minHeight="105" GridPane.columnIndex="0" >
-      <padding>
-        <Insets top="5" right="5" bottom="5" left="15" />
-      </padding>
-      <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label" wrapText="true">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
+
+    <VBox fx:id="bookmark" styleClass="bookmark" GridPane.columnIndex="0" visible="\$bookmark"/>
+
+    <VBox styleClass="list-cell-element" prefHeight="30"  GridPane.columnIndex="1">
+
+      <Label fx:id="id" styleClass="list-cell-text" wrapText="true">
+      </Label>
+    </VBox>
+
+    <VBox  styleClass="list-cell-element"  GridPane.columnIndex="2">
+      <Label fx:id="serialNumber"  text="\$serialNumber" styleClass="list-cell-text" wrapText="true">
+      </Label>
+    </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="3">
+      <Label fx:id="name" text="\$first" styleClass="list-cell-text" wrapText="true">
+      </Label>
+    </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="4">
+        <Label fx:id="source" text="\$first"  styleClass="list-cell-text" wrapText="true">
         </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" wrapText="true"/>
-      </HBox>
-
-      <HBox>
-        <Label fx:id="serialNumberHeader" styleClass="cell_small_label_header" text="S/N: " wrapText="true" />
-        <Label fx:id="serialNumber" styleClass="cell_small_label" text="\$serialNumber" wrapText="true" />
-      </HBox>
-
-      <HBox>
-        <Label fx:id="quantityHeader" styleClass="cell_small_label_header" text="Quantity: " wrapText="true"/>
-        <Label fx:id="quantity" styleClass="cell_small_label" text="\$quantity" wrapText="true"/>
-      </HBox>
-
-
-      <HBox>
-        <Label fx:id="sourceHeader" styleClass="cell_small_label_header" text="Source: " wrapText="true"/>
-        <Label fx:id="source" styleClass="cell_small_label" text="\$source" wrapText="true" />
-      </HBox>
-
-      <HBox>
-        <Label fx:id="locationHeader" styleClass="cell_small_label_header"
-               text="Location in warehouse: " wrapText="true"/>
-        <Label fx:id="locationStored" styleClass="cell_small_label" text="\$locationStored" wrapText="true"/>
-      </HBox>
-
-
     </VBox>
 
-    <VBox fx:id="notesBox" alignment="TOP_RIGHT" minHeight="105" maxHeight="200" GridPane.columnIndex="1" >
-      <padding>
-        <Insets top="5" left="10" bottom="5" right="15" />
-      </padding>
-
-      <HBox spacing="5" >
-        <Label fx:id="notesHeader" styleClass="cell_small_label_header" text="Note: " wrapText="true"/>
-      </HBox>
-
-      <HBox>
-        <Label fx:id="notes" styleClass="cell_small_label" wrapText="true" />
-      </HBox>
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="5">
+      <Label fx:id="quantity"  text="\$quantity" styleClass="list-cell-text" wrapText="true">
+      </Label>
     </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="6">
+      <Label fx:id="locationStored"  text="\$locationStored" styleClass="list-cell-text" wrapText="true">
+      </Label>
+    </VBox>
+
+    <VBox   styleClass="list-cell-element" GridPane.columnIndex="7">
+      <Label fx:id="notes"  styleClass="list-cell-text" wrapText="true" >
+      </Label>
+    </VBox>
+
 
   </GridPane>
 </HBox>

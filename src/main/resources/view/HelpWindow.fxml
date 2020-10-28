@@ -2,135 +2,277 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.control.ScrollPane?>
 
-<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.GridPane?>
+<fx:root resizable="true" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/help_icon.png" />
+    <Image url="@/images/helpIcon.png" />
   </icons>
   <scene>
     <Scene>
-        <ScrollPane>
-            <VBox alignment="CENTER_LEFT">
-                <children>
-                    <Label fx:id="helpMethod"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+        <stylesheets>
+            <URL value="@ExtensionsLight.css"/>
+        </stylesheets>
 
-                    <Label fx:id="helpMessage"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+        <ScrollPane styleClass="help-box" prefWidth="800" prefHeight="400">
+            <VBox>
+                <GridPane maxHeight="10">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85" />
+                    </columnConstraints>
 
-                    <Label fx:id="addMethod"  >
-                        <VBox.margin>
-                            <Insets right="1.0" />
-                        </VBox.margin>
-                    </Label>
+                    <VBox GridPane.columnIndex="0" styleClass="help-table-header">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="command" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table-header">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="commandDescription" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
 
-                    <Label fx:id="addMessage"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
 
-                    <Label fx:id="listMethod"  >
-                        <VBox.margin>
-                            <Insets right="1.0" />
-                        </VBox.margin>
-                    </Label>
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="helpMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="helpMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
 
-                    <Label fx:id="listMessage"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
 
-                    <Label fx:id="deleteMethod"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="addMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="addMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
 
-                    <Label fx:id="deleteMessage"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
 
-                    <Label fx:id="findMethod"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="deleteMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="deleteMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
 
-                    <Label fx:id="findMessage"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
 
-                    <Label fx:id="findExactMethod"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                    <VBox GridPane.columnIndex="0" styleClass="help-table" >
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="listMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table" alignment="TOP_LEFT">
+                        <padding>
+                            <Insets right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="listMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
 
-                    <Label fx:id="findExactMessage"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
 
-                    <Label fx:id="updateMethod"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="findMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="findMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
 
-                    <Label fx:id="updateMessage"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
 
-                    <Label fx:id="exitMethod"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="findExactMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="findExactMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
 
-                    <Label fx:id="exitMessage"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
-                    <Label fx:id="disclaimer" >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
-                    <Label fx:id="url"  >
-                        <VBox.margin>
-                            <Insets right="5.0" />
-                        </VBox.margin>
-                    </Label>
-                </children>
-                <opaqueInsets>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-                </opaqueInsets>
-                <padding>
-                    <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
-                </padding>
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
+
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="sortMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="sortMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
+
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
+
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="noteMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="noteMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
+
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
+
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="statsMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="statsMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
+
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
+
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="updateMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="updateMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
+
+                <GridPane >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="ALWAYS"  percentWidth="15" />
+                        <ColumnConstraints hgrow="ALWAYS" percentWidth="85"  />
+                    </columnConstraints>
+
+                    <VBox GridPane.columnIndex="0" styleClass="help-table">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="exitMethod" styleClass="help-title" />
+                    </VBox>
+                    <VBox GridPane.columnIndex="1" styleClass="help-table" alignment="TOP_LEFT">
+                        <padding>
+                            <Insets top="5" right="5" bottom="5" left="5" />
+                        </padding>
+                        <Label fx:id="exitMessage" styleClass="help-title" />
+                    </VBox>
+                </GridPane>
+                <Label fx:id="disclaimer" >
+                    <VBox.margin>
+                        <Insets top="10.0" right="5.0" />
+                    </VBox.margin>
+                </Label>
+                <Label fx:id="url"  >
+                    <VBox.margin>
+                        <Insets right="5.0" />
+                    </VBox.margin>
+                </Label>
             </VBox>
         </ScrollPane>
 

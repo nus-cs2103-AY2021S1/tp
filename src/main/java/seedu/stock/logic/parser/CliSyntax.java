@@ -12,7 +12,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_NAME = new Prefix("n/");
     public static final Prefix PREFIX_SOURCE = new Prefix("s/");
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/");
+    public static final Prefix PREFIX_LOW_QUANTITY = new Prefix("lq/");
     public static final Prefix PREFIX_LOCATION = new Prefix("l/");
+    public static final Prefix PREFIX_LIST_TYPE = new Prefix("lt/");
     public static final Prefix PREFIX_SERIAL_NUMBER = new Prefix("sn/");
     public static final Prefix PREFIX_NEW_QUANTITY = new Prefix("nq/");
     public static final Prefix PREFIX_INCREMENT_QUANTITY = new Prefix("iq/");
@@ -21,13 +23,16 @@ public class CliSyntax {
     public static final Prefix PREFIX_STATISTICS_TYPE = new Prefix("st/");
     public static final Prefix PREFIX_SORT_FIELD = new Prefix("by/");
     public static final Prefix PREFIX_SORT_ORDER = new Prefix("o/");
+    public static final Prefix PREFIX_FILE_NAME = new Prefix("fn/");
 
 
     /* Prefix values descriptions */
     public static final String PREFIX_NAME_DESCRIPTION = "<name>";
     public static final String PREFIX_SOURCE_DESCRIPTION = "<source>";
     public static final String PREFIX_LOCATION_DESCRIPTION = "<location>";
+    public static final String PREFIX_LIST_TYPE_DESCRIPTION = "<list type>";
     public static final String PREFIX_QUANTITY_DESCRIPTION = "<quantity>";
+    public static final String PREFIX_LOW_QUANTITY_DESCRIPTION = "<low quantity>";
     public static final String PREFIX_SERIAL_NUMBER_DESCRIPTION = "<serial number>";
     public static final String PREFIX_NOTE_DESCRIPTION = "<note>";
     public static final String PREFIX_NOTE_INDEX_DESCRIPTION = "<note index>";
@@ -36,6 +41,7 @@ public class CliSyntax {
     public static final String PREFIX_INCREMENT_QUANTITY_DESCRIPTION = "<increment value>";
     public static final String PREFIX_SORT_FIELD_DESCRIPTION = "<field>";
     public static final String PREFIX_SORT_ORDER_DESCRIPTION = "<order>";
+    public static final String PREFIX_FILE_NAME_DESCRIPTION = "<file name>";
 
     /**
      * Returns a list containing all possible prefixes.
@@ -47,7 +53,9 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_NAME);
         allPrefixes.add(PREFIX_SOURCE);
         allPrefixes.add(PREFIX_QUANTITY);
+        allPrefixes.add(PREFIX_LOW_QUANTITY);
         allPrefixes.add(PREFIX_LOCATION);
+        allPrefixes.add(PREFIX_LIST_TYPE);
         allPrefixes.add(PREFIX_SERIAL_NUMBER);
         allPrefixes.add(PREFIX_NEW_QUANTITY);
         allPrefixes.add(PREFIX_INCREMENT_QUANTITY);
@@ -56,6 +64,7 @@ public class CliSyntax {
         allPrefixes.add(PREFIX_STATISTICS_TYPE);
         allPrefixes.add(PREFIX_SORT_FIELD);
         allPrefixes.add(PREFIX_SORT_ORDER);
+        allPrefixes.add(PREFIX_FILE_NAME);
         return allPrefixes;
     }
 
@@ -83,8 +92,12 @@ public class CliSyntax {
             return PREFIX_SOURCE_DESCRIPTION;
         } else if (prefix.equals(PREFIX_LOCATION)) {
             return PREFIX_LOCATION_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_LIST_TYPE)) {
+            return PREFIX_LIST_TYPE_DESCRIPTION;
         } else if (prefix.equals(PREFIX_QUANTITY)) {
             return PREFIX_QUANTITY_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_LOW_QUANTITY)) {
+            return PREFIX_LOW_QUANTITY_DESCRIPTION;
         } else if (prefix.equals(PREFIX_SERIAL_NUMBER)) {
             return PREFIX_SERIAL_NUMBER_DESCRIPTION;
         } else if (prefix.equals(PREFIX_NOTE)) {
@@ -101,6 +114,8 @@ public class CliSyntax {
             return PREFIX_SORT_FIELD_DESCRIPTION;
         } else if (prefix.equals(PREFIX_SORT_ORDER)) {
             return PREFIX_SORT_ORDER_DESCRIPTION;
+        } else if (prefix.equals(PREFIX_FILE_NAME)) {
+            return PREFIX_FILE_NAME_DESCRIPTION;
         } else {
             return "";
         }

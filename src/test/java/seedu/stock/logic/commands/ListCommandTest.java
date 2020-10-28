@@ -5,12 +5,14 @@ import static seedu.stock.logic.commands.CommandTestUtil.showStockAtSerialNumber
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
+import static seedu.stock.testutil.TypicalStocks.getTypicalStockBookSortedSerialNumber;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.model.Model;
 import seedu.stock.model.ModelManager;
+import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.UserPrefs;
 
 /**
@@ -24,18 +26,18 @@ public class ListCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalStockBook(), new UserPrefs(), getTypicalSerialNumberSetsBook());
-        expectedModel = new ModelManager(model.getStockBook(), new UserPrefs(), model.getSerialNumberSetsBook());
+        expectedModel = new ModelManager(getTypicalStockBookSortedSerialNumber(), new UserPrefs(),
+                new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListAllCommand(), model, ListAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showStockAtSerialNumber(model, SERIAL_NUMBER_FIRST_STOCK);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListAllCommand(), model, ListAllCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
 }

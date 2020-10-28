@@ -1,10 +1,12 @@
 package seedu.stock.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.stock.commons.core.Messages;
@@ -66,7 +68,30 @@ public class ParserUtil {
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
+
         return new Quantity(trimmedQuantity);
+    }
+
+    /**
+     * Parses a {@code Optional<String> lowQuantity} into a {@code Quantity}.
+     * Updates lowQuantity in quantity if lowQuantity is present and returns original
+     * quantity otherwise.
+     * Leading and trailing whitespaces will be trimmed if lowQuantity is present.
+     *
+     * @throws ParseException if the given {@code quantity} is invalid.
+     */
+    public static Quantity parseLowQuantity(Quantity quantity, Optional<String> lowQuantity) throws ParseException {
+        if (lowQuantity.isEmpty()) {
+            return quantity;
+        }
+
+        String trimmedLowQuantity = lowQuantity.get().trim();
+
+        if (!Quantity.isValidQuantity(trimmedLowQuantity)) {
+            throw new ParseException(Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
+        }
+
+        return quantity.updateLowQuantity(trimmedLowQuantity);
     }
 
     /**
@@ -100,6 +125,9 @@ public class ParserUtil {
     }
 
     /**
+<<<<<<< HEAD
+     * Parses a {@code String serialNumbers} into an {@code Set<SerialNumber>}.
+=======
      * Parses a {@code String note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -130,28 +158,33 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String serialNumber} into an {@code SerialNumber}.
+     * Parses a {@code String serialNumbers} into an {@code Set<SerialNumber>}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code serialNumber} is invalid.
+     * @throws ParseException if the given {@code serialNumbers} is invalid.
      */
-    public static Set<SerialNumber> parseSerialNumberSet(String serialNumber) throws ParseException {
-        requireNonNull(serialNumber);
-        String trimmedSerialNumber = serialNumber.trim();
-        String[] withoutPrefix = trimmedSerialNumber.split("sn/");
-        //a valid array after splitting should be at length 2, index 0 being an empty string and 1
-        //being the actual serial number.
-        if (withoutPrefix.length < 2) {
+    public static Set<SerialNumber> parseSerialNumbers(String serialNumbers) throws ParseException {
+        requireNonNull(serialNumbers);
+
+        //invalid input if it does not start with "sn/" as it is a confirmed invalid header.
+        if (!serialNumbers.trim().startsWith("sn/")) {
+            throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
+        }
+
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(serialNumbers, PREFIX_SERIAL_NUMBER);
+
+        List<String> values = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
+
+        if (values.isEmpty()) {
+
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
+
         Set<SerialNumber> serialNumberSet = new LinkedHashSet<>();
 
-        for (int i = 1; i < withoutPrefix.length; i++) {
-            String currentSerialNumberInString = withoutPrefix[i];
-            if (!SerialNumber.isValidSerialNumber(currentSerialNumberInString)) {
-                throw new ParseException(SerialNumber.MESSAGE_CONSTRAINTS);
-            }
-            serialNumberSet.add(new SerialNumber(currentSerialNumberInString.trim()));
+        for (int i = 0; i < values.size(); i++) {
+            String currentSerialNumberInString = values.get(i);
+            serialNumberSet.add(parseSerialNumber(currentSerialNumberInString));
         }
         return serialNumberSet;
     }

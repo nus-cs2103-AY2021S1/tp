@@ -23,7 +23,24 @@ public class SuggestionCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) {
-        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         return new CommandResult(toBeDisplayed);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof SuggestionCommand)) {
+            return false;
+        }
+
+        // state check
+        SuggestionCommand castedOther = (SuggestionCommand) other;
+        return toBeDisplayed.equals(castedOther.toBeDisplayed);
     }
 }

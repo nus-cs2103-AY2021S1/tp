@@ -8,12 +8,9 @@ import static java.util.Objects.requireNonNull;
  */
 public class SerialNumber {
     public static final String MESSAGE_CONSTRAINTS =
-            "Serial numbers should only contain words and numbers, and it should be at least 2 digits long";
-    /*
-     * The first character of the source must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
+            "Serial numbers should not be empty.";
     public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String DEFAULT_SERIAL_NUMBER = "0";
     private final String serialNumber;
 
 
@@ -45,7 +42,7 @@ public class SerialNumber {
      * @return SerialNumber of the object.
      */
     public static SerialNumber generateDefaultSerialNumber() {
-        return new SerialNumber("0");
+        return new SerialNumber(DEFAULT_SERIAL_NUMBER);
     }
 
     @Override
