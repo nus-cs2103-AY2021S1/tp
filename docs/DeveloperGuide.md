@@ -351,10 +351,23 @@ A usage scenario would be when a user wants to undo the most recent command that
 5. The `execute` method of `UndoCommand` will call the `getPreviousModel` of the `Model` object and reassign `Model`.
 6. The `execute` method returns a `CommandResult` object.
 
-### \[Proposed\] Data archiving
+### \[Implemented\] Updating of Upcoming tasks in real time
 
-_{Explain here how the data archiving feature will be implemented}_
+The displayed task list under `Upcoming tasks` updates in real time when the deadline of an assignment or the end time of a lesson has passed.
 
+#### Reasons for Implementation
+It is likely that the user will refer to the `Upcoming tasks` to quickly view what is up next on their academic schedule. It is hence important that the `Upcoming tasks` accurately reflect what is next on their academic schedule.
+
+#### Current Implementation
+- The updating of `Upcoming tasks` in real time is implemented with **multithreading**.
+- The GUI of ProductiveNUS is implemented using JavaFX. Hence, Thread safety using synchronised thread actions cannot be achieved as JavaFx is modelled to execute on a **single JavaFX-Launcher thread.**
+- Therefore, this feature makes use of `javafx.concurrent.Task<V>` for multithreading operations, which is designed to handle multithreading operations in JavaFX applications in a **thread-safe manner**.
+- A `Timer` object is used alongside `javafx.concurrent.Task` to periodically check `Upcoming tasks` every second. The `Timer` object has `isDaemon` set to true.
+- If the deadline of the upcoming assignment or the end time of the upcoming lesson has passed, the `updateTasks()` method in `AddressBook` is called.
+
+Below is an Activity Diagram illustrating the flow of activities when the application starts up.
+
+                               ------------------------------Activity diagram illustrating multithreading (will add later)--------------------------------
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -387,20 +400,19 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | student                                    | import my timetable         | better schedule my assignments with my lesson timings taken into account              |
-| `* * *`  | forgetful student                                       | receive reminders for my lessons and assignments               |  avoid forgetting to attend lessons or do my work                                                                      |
-| `* * *`  | poor time manager                                       | add and schedule assignments                |  keep track of what needs to be done                                 |
-| `* * *`  | poor time manager                                       | delete assignments          | remove assignments that i have completed or added wrongly |
-| `* * *`    | student                                       | view lessons and assignments together   | view all assignments i have to complete amidst my lessons                |
-| `* * *`      | particular student | use a scheduler with a user-friendly interface           | use the application easily and enjoyably                                                 |
-| `* * *`      | new user | navigate the UI easily           | use the application efficiently                                                 |                                      |
-| `* * *`      | slow/confused student | i can access and view my academic duties easily           | quickly find out what i need to do for the week
-| `* * *`      | experienced vim-user | use my keyboard to key in assignments           | save time tracking down my assignments                                                 ||
-| `* * `      | beginner user | view a tutorial           | benefit from the features of ProductiveNUS                                                 ||
-| `* * `      | experienced vim-user | use shortcuts in my commands            | access my academic schedule more quickly                                              ||
-*{More to be added}*
+| Priority | As a … | I want to … | So that I can… |
+|-|-|-|-|
+| `* * *` | student | import my timetable | better schedule my assignments with my lesson timings taken into account |
+| `* * *` | forgetful student | receive reminders for my lessons and assignments | avoid forgetting to attend lessons or do my work |
+| `* * *` | poor time manager | add and schedule assignments | keep track of what needs to be done |
+| `* * *` | poor time manager | delete assignments | remove assignments that i have completed or added wrongly |
+| `* * *` | student | view lessons and assignments together | view all assignments i have to complete amidst my lessons |
+| `* * *` | particular student | use a scheduler with a user-friendly interface | use the application easily and enjoyably |
+| `* * *` | new user | navigate the UI easily | use the application efficiently |
+| `* * *` | slow/confused student | i can access and view my academic duties easily | quickly find out what i need to do for the week |
+| `* * *` | experienced vim-user | use my keyboard to key in assignments | save time tracking down my assignments |
+| `* * ` | beginner user | view a tutorial | benefit from the features of ProductiveNUS |
+| `* * ` | experienced vim-user | use shortcuts in my commands | access my academic schedule more quickly |
 
 ### Use cases
 
