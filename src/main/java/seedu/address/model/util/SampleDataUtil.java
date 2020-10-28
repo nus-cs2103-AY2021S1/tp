@@ -51,12 +51,12 @@ public class SampleDataUtil {
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"),
                 new Phone("12029429"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
-                new ArchiveStatus(false),
+                new ArchiveStatus(true),
                 getTagSet("Wednesday", "Monday", "Friday", "Sunday", "PartTime")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
                 new Phone("71442629"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
-                new ArchiveStatus(false),
+                new ArchiveStatus(true),
                 getTagSet("Monday", "Tuesday", "Wednesday", "Thursday", "Saturday", "FullTime"))
         };
     }
