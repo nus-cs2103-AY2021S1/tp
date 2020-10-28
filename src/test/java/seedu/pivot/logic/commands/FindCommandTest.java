@@ -59,17 +59,20 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_CASES_LISTED_OVERVIEW, 0);
         DetailsContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateWithCurrentFilteredCaseList(predicate);
+        expectedModel.updateFilteredCaseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredCaseList());
     }
 
+    //TODO: do testing for main pg vs case pg
+
+    //TODO: do testing for archived section and non-archived section separately
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_CASES_LISTED_OVERVIEW, 3);
         DetailsContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateWithCurrentFilteredCaseList(predicate);
+        expectedModel.updateFilteredCaseList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL_KURZ_FIRE, ELLE_MEYER_SHOOTING,
                 FIONA_KUNZ_KIDNAPPING), model.getFilteredCaseList());

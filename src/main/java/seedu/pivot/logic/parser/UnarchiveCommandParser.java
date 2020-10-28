@@ -17,6 +17,12 @@ import seedu.pivot.logic.state.StateManager;
  */
 public class UnarchiveCommandParser implements Parser<UnarchiveCommand> {
 
+    private static final String MESSAGE_INCORRECT_SECTION_MAIN_PAGE = "Invalid command. "
+            + "Type 'list archive' to see cases that you can unarchive.";
+
+    private static final String MESSAGE_INCORRECT_SECTION_CASE_PAGE = "Invalid command. "
+            + "Return to the main page and type 'list archive' to see cases that you can unarchive.";
+
     /**
      * Parses the given {@code String} of arguments in the context of the UnarchiveCommand
      * and returns a UnarchiveCommand object for execution.
@@ -24,13 +30,26 @@ public class UnarchiveCommandParser implements Parser<UnarchiveCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public UnarchiveCommand parse(String args) throws ParseException {
+
         if (StateManager.atCasePage()) {
-            throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
+            if (StateManager.atDefaultSection()) {
+                throw new ParseException(MESSAGE_INCORRECT_SECTION_CASE_PAGE);
+            }
+
+            if (StateManager.atArchivedSection()) {
+                throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
+            }
         }
 
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
         if (StateManager.atMainPage()) {
-            return parseMainPage(matcher);
+            if (StateManager.atDefaultSection()) {
+                throw new ParseException(MESSAGE_INCORRECT_SECTION_MAIN_PAGE);
+            }
+
+            if (StateManager.atArchivedSection()) {
+                final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
+                return parseMainPage(matcher);
+            }
         }
 
         throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);

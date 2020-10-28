@@ -24,6 +24,7 @@ public class ListArchiveCommand extends ListCommand {
 
         assert(StateManager.atMainPage()) : "Program should be at main page";
 
+        StateManager.setArchivedSection();
         model.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
         return new CommandResult(MESSAGE_LIST_CASE_SUCCESS);
     }

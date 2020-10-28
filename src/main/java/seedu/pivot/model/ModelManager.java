@@ -167,16 +167,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateWithCurrentFilteredCaseList(Predicate<Case> predicate) {
-        requireNonNull(predicate);
-        if (filteredCases.getPredicate() != null) {
-            filteredCases.setPredicate(predicate.and(filteredCases.getPredicate()));
-        } else {
-            filteredCases.setPredicate(predicate);
-        }
-    }
-
-    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {

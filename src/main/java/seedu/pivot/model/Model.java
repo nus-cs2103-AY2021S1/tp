@@ -94,14 +94,6 @@ public interface Model {
      */
     void updateFilteredCaseList(Predicate<Case> predicate);
 
-    /**
-     * Updates the filter of the filtered case list to filter by both the given {@code predicate}
-     * and current predicate used, if any.
-     * @param predicate The predicate to be used.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateWithCurrentFilteredCaseList(Predicate<Case> predicate);
-
     void commitPivot(String command);
 
     boolean canRedoPivot();

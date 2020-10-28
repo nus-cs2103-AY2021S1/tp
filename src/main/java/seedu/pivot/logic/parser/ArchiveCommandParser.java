@@ -17,6 +17,11 @@ import seedu.pivot.logic.state.StateManager;
  */
 public class ArchiveCommandParser implements Parser<ArchiveCommand> {
 
+    private static final String MESSAGE_CASE_INCORRECT_SECTION_MAIN_PAGE = "Invalid command. "
+            + "Type 'list case' to see cases that you can archive.";
+    private static final String MESSAGE_CASE_INCORRECT_SECTION_CASE_PAGE = "Invalid command. "
+            + "Return to the Main Page and type 'list case' to see cases that you can archive.";
+
     /**
      * Parses the given {@code String} of arguments in the context of the ArchiveCommand
      * and returns a ArchiveCommand object for execution.
@@ -25,12 +30,24 @@ public class ArchiveCommandParser implements Parser<ArchiveCommand> {
      */
     public ArchiveCommand parse(String args) throws ParseException {
         if (StateManager.atCasePage()) {
-            throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
+            if (StateManager.atArchivedSection()) {
+                throw new ParseException(MESSAGE_CASE_INCORRECT_SECTION_CASE_PAGE);
+            }
+
+            if (StateManager.atDefaultSection()) {
+                throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
+            }
         }
 
-        final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
         if (StateManager.atMainPage()) {
-            return parseMainPage(matcher);
+            if (StateManager.atArchivedSection()) {
+                throw new ParseException(MESSAGE_CASE_INCORRECT_SECTION_MAIN_PAGE);
+            }
+
+            if (StateManager.atDefaultSection()) {
+                final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
+                return parseMainPage(matcher);
+            }
         }
 
         throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
@@ -66,6 +83,5 @@ public class ArchiveCommandParser implements Parser<ArchiveCommand> {
         return new ArchiveCommand(index);
 
     }
-
 
 }

@@ -16,7 +16,7 @@ import seedu.pivot.model.Model;
  */
 public class ListCaseCommand extends ListCommand {
 
-    public static final String MESSAGE_LIST_CASE_SUCCESS = "Listed all unarchived cases";
+    public static final String MESSAGE_LIST_CASE_SUCCESS = "Listed all default cases (unarchived)";
     private static final Logger logger = LogsCenter.getLogger(ListCaseCommand.class);
 
     @Override
@@ -27,6 +27,8 @@ public class ListCaseCommand extends ListCommand {
         assert(StateManager.atMainPage()) : "Program should be at main page";
 
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        StateManager.setDefaultSection();
+
         return new CommandResult(MESSAGE_LIST_CASE_SUCCESS);
     }
 

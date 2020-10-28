@@ -1,6 +1,7 @@
 package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_DEFAULT_SECTION;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_MAIN_PAGE;
 
 import java.util.List;
@@ -29,8 +30,6 @@ public class ArchiveCommand extends Command {
             + "Example: " + COMMAND_WORD + " case 1";
 
     private static final String MESSAGE_ARCHIVE_CASE_SUCCESS = "Case archived: %1$s";
-    private static final String MESSAGE_ARCHIVE_CASE_ALREADY_ARCHIVED = "This case has already been archived! "
-            + "Type 'list case' to see all unarchived cases.";
     private static final Logger logger = LogsCenter.getLogger(ArchiveCommand.class);
 
     private Index targetIndex;
@@ -43,6 +42,7 @@ public class ArchiveCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         logger.info("Archiving case ...");
 
+        assert(StateManager.atDefaultSection()) : ASSERT_DEFAULT_SECTION;
         assert(StateManager.atMainPage()) : ASSERT_MAIN_PAGE;
 
         requireNonNull(model);
@@ -53,18 +53,20 @@ public class ArchiveCommand extends Command {
             throw new CommandException(UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
         }
 
-        // if case is already archived, throw error
         Case caseToArchive = lastShownList.get(targetIndex.getZeroBased());
-        if (caseToArchive.getArchiveStatus().equals(ArchiveStatus.ARCHIVED)) {
-            throw new CommandException(MESSAGE_ARCHIVE_CASE_ALREADY_ARCHIVED);
-        }
+        assert(caseToArchive.getArchiveStatus().equals(ArchiveStatus.DEFAULT)) : ASSERT_DEFAULT_SECTION;
 
         Case updatedCase = new Case(caseToArchive.getTitle(), caseToArchive.getDescription(), caseToArchive.getStatus(),
                 caseToArchive.getDocuments(), caseToArchive.getSuspects(), caseToArchive.getVictims(),
                 caseToArchive.getWitnesses(), caseToArchive.getTags(), ArchiveStatus.ARCHIVED);
 
-        model.setCase(caseToArchive, updatedCase);
+        model.deleteCase(caseToArchive);
+        model.addCase(updatedCase);
+        //model.setCase(caseToArchive, updatedCase);
+
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_ALL_CASES);
+        model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
+
         return new CommandResult(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
     }
 

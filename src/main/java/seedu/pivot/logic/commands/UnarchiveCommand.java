@@ -1,6 +1,7 @@
 package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_ARCHIVED_SECTION;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -27,9 +28,8 @@ public class UnarchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " case 1";
 
-    private static final String MESSAGE_ARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
-    private static final String MESSAGE_ARCHIVE_CASE_NOT_ARCHIVED = "This case has not been archived! "
-            + "Type 'list archive' to see all archived cases.";
+    private static final String MESSAGE_UNARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
+
     private static final Logger logger = LogsCenter.getLogger(UnarchiveCommand.class);
 
     private Index targetIndex;
@@ -51,20 +51,21 @@ public class UnarchiveCommand extends Command {
         }
 
         Case caseToUnarchive = lastShownList.get(targetIndex.getZeroBased());
-
-        // if case has not been archived, should not be able to unarchive it
-        if (caseToUnarchive.getArchiveStatus().equals(ArchiveStatus.DEFAULT)) {
-            throw new CommandException(MESSAGE_ARCHIVE_CASE_NOT_ARCHIVED);
-        }
+        assert(caseToUnarchive.getArchiveStatus().equals(ArchiveStatus.ARCHIVED)) : ASSERT_ARCHIVED_SECTION;
 
         Case updatedCase = new Case(caseToUnarchive.getTitle(), caseToUnarchive.getDescription(),
                 caseToUnarchive.getStatus(), caseToUnarchive.getDocuments(), caseToUnarchive.getSuspects(),
                 caseToUnarchive.getVictims(), caseToUnarchive.getWitnesses(), caseToUnarchive.getTags(),
                 ArchiveStatus.DEFAULT);
 
-        model.setCase(caseToUnarchive, updatedCase);
+        model.deleteCase(caseToUnarchive);
+        model.addCase(updatedCase);
+        //model.setCase(caseToUnarchive, updatedCase);
+
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_ARCHIVED_CASES);
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
+        model.commitPivot(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase));
+
+        return new CommandResult(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase));
     }
 
     @Override

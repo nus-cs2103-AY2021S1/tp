@@ -1,8 +1,11 @@
 package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_ARCHIVED_CASES;
 
 import seedu.pivot.commons.core.UserMessages;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 
@@ -21,17 +24,27 @@ public class FindCommand extends Command {
 
     private final DetailsContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindCommand to find cases in the current section based on the given predicate.
+     *
+     * @param predicate The predicate used to filter cases.
+     */
     public FindCommand(DetailsContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
+
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        // updates the currently shown list with cases of matching keywords
-        // this ensures that UI only shows cases in archive or unarchived, based on what they looking at currently
-        model.updateWithCurrentFilteredCaseList(predicate);
+        if (StateManager.atArchivedSection()) {
+            model.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_ARCHIVED_CASES));
+        }
+
+        if (StateManager.atDefaultSection()) {
+            model.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_ALL_CASES));
+        }
 
         return new CommandResult(
                 String.format(UserMessages.MESSAGE_CASES_LISTED_OVERVIEW, model.getFilteredCaseList().size()));
