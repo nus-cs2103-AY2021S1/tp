@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.stock.logic.commands.CommandTestUtil.FILE_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LIST_TYPE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOW_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -29,6 +30,7 @@ import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.NoteDeleteCommand;
 import seedu.stock.logic.commands.NoteViewCommand;
+import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
@@ -285,6 +287,26 @@ public class SuggestionCommandParserTest {
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.NOTE_VIEW_COMMAND_WORD + userInput
                 + "\n" + NoteViewCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_printCommandSuggestion_success() {
+        // EP: incorrect command word
+        String userInput = FILE_NAME_DESC;
+        SuggestionCommandParser parser = new SuggestionCommandParser("prin");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.PRINT_COMMAND_WORD + userInput
+                + "\n" + PrintCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word
+        parser = new SuggestionCommandParser("print", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.PRINT_COMMAND_WORD + userInput
+                + "\n" + PrintCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
