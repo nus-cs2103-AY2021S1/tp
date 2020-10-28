@@ -11,6 +11,7 @@ import seedu.resireg.logic.parser.AddAliasCommandParser;
 import seedu.resireg.logic.parser.AddCommandParser;
 import seedu.resireg.logic.parser.AddRoomCommandParser;
 import seedu.resireg.logic.parser.AllocateCommandParser;
+import seedu.resireg.logic.parser.DeallocateCommandParser;
 import seedu.resireg.logic.parser.DeleteAliasCommandParser;
 import seedu.resireg.logic.parser.DeleteCommandParser;
 import seedu.resireg.logic.parser.DeleteRoomCommandParser;
@@ -66,7 +67,7 @@ public enum CommandWordEnum {
     LIST_COMMAND(ListCommand.COMMAND_WORD, ListCommand.HELP, args -> new ListCommand()),
     // allocations
     ALLOCATE_COMMAND(AllocateCommand.COMMAND_WORD, AllocateCommand.HELP, new AllocateCommandParser()::parse),
-    DEALLOCATE_COMMAND(DeallocateCommand.COMMAND_WORD, DeallocateCommand.HELP, new DeleteAliasCommandParser()::parse),
+    DEALLOCATE_COMMAND(DeallocateCommand.COMMAND_WORD, DeallocateCommand.HELP, new DeallocateCommandParser()::parse),
     REALLOCATE_COMMAND(ReallocateCommand.COMMAND_WORD, ReallocateCommand.HELP, new ReallocateCommandParser()::parse),
     // archiving
     ARCHIVE_COMMAND(ArchiveCommand.COMMAND_WORD, ArchiveCommand.HELP, unused -> new ArchiveCommand()),
