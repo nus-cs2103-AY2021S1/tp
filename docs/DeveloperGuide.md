@@ -8,7 +8,7 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 ## **Introduction**
 Welcome to OneShelf. This developer guide aims to introduce potential developers to the structure and implementation of
-OneShelf, so that you can contribute too! <br>
+**OneShelf**. <br>
 
 This guide uses a top-down approach design which covers from higher-level design to lower-level design, and
 discusses the implementation of key features as well as the rationale behind certain design decisions with 
@@ -25,7 +25,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Design**
-This section shows the design of **OneShelf**.
+This section shows the architecture design of **OneShelf**.
 
 ### Architecture
 
