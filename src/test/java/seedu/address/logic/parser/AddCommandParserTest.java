@@ -27,6 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
 import seedu.address.model.account.entry.Expense;
@@ -118,7 +119,16 @@ public class AddCommandParserTest {
         String expectedMessage = String.format(MESSAGE_MULTIPLE_PREFIXES, AddCommand.PREFIXES);
 
         // Extra prefixes
-        assertParseFailure(parser, CATEGORY_DESC_EXPENSE + CATEGORY_DESC_EXPENSE + AMOUNT_DESC_EXPENSE
+        assertParseFailure(parser, CATEGORY_DESC_EXPENSE + CATEGORY_DESC_EXPENSE
+                + AMOUNT_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE + TAG_DESC_ROSES, expectedMessage);
+    }
+
+    @Test
+    public void parse_noPrefixPresent() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddCommand.MESSAGE_USAGE);
+        // No prefix present
+        assertParseFailure(parser, "a" + CATEGORY_DESC_EXPENSE + AMOUNT_DESC_EXPENSE
                 + DESCRIPTION_DESC_EXPENSE + TAG_DESC_ROSES, expectedMessage);
     }
 
@@ -145,8 +155,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, CATEGORY_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE
                 + AMOUNT_DESC_EXPENSE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
     }
-
-
 
 }
 
