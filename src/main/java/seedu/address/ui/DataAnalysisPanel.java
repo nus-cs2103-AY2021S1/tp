@@ -19,11 +19,10 @@ public class DataAnalysisPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(DataAnalysisPanel.class);
 
     private StatsSummaryPanel statsSummaryPanel;
+    private PieChart pieChart;
 
     @FXML
     private StackPane pieChartPlaceholder;
-    @FXML
-    private PieChart pieChart;
     @FXML
     private Pane statsSummaryPanelPlaceholder;
 
@@ -37,10 +36,26 @@ public class DataAnalysisPanel extends UiPart<Region> {
         loadSummary(statsData);
     }
 
+    /**
+     * Update statistics
+     * @param newStatsData new Stats data
+     */
+    public void updateStats(StatisticsData newStatsData) {
+        fillPieChart(newStatsData);
+        loadSummary(newStatsData);
+    }
+
     private void loadPieChart(StatisticsData statsData) {
-        pieChart.setData(transformToPieChartData(statsData));
+        pieChart = new PieChart();
+        fillPieChart(statsData);
+        pieChart.setMaxSize(300, 300);
+        pieChartPlaceholder.getChildren().add(pieChart);
         pieChart.setLabelsVisible(false);
         pieChart.setTitle("Breakdown of time spent");
+    }
+
+    private void fillPieChart(StatisticsData statsData) {
+        pieChart.setData(transformToPieChartData(statsData));
     }
 
     private void loadSummary(StatisticsData statsData) {

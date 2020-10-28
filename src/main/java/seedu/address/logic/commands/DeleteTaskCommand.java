@@ -51,6 +51,11 @@ public class DeleteTaskCommand extends Command {
         }
 
         model.deleteTask(tasksToDelete);
+        for (Task task : tasksToDelete) {
+            if (model.hasCalendarTask(task)) {
+                model.deleteTaskInCalendar(new Task[]{task});
+            }
+        }
         return new CommandResult(buildMessage(tasksToDelete));
     }
 
