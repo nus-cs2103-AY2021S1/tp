@@ -23,9 +23,7 @@ public interface Model {
     /** {@code Predicate} that evaluates to true if person's archive status is true. */
     Predicate<Person> PREDICATE_SHOW_ALL_ARCHIVED_PERSONS = person -> (
             person.getArchiveStatus().archiveStatus);
-
     Predicate<Ingredient> PREDICATE_SHOW_ALL_INGREDIENTS = unused -> true;
-
     Predicate<SalesRecordEntry> PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY = unused -> true;
 
     /**
@@ -72,6 +70,7 @@ public interface Model {
      * Sets the user prefs' sales book file path.
      */
     void setSalesBookFilePath(Path salesBookFilePath);
+
 
     /**
      * Sets the user prefs' ingredient book file path.
@@ -189,5 +188,5 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredIngredientList(Predicate<Ingredient> predicate);
-
 }
+
