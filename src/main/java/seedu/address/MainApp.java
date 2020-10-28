@@ -115,6 +115,12 @@ public class MainApp extends Application {
             logger.warning("Something unexpected occurred!");
             assert model != null;
         }
+        try {
+            storage.savePresetManager(new ArrayList<>(new ArrayList<>()));
+        } catch (IOException e) {
+            logger.warning("Something unexpected occurred!");
+            assert model != null;
+        }
 
         return new ModelManager(initialData, userPrefs, initialMenuManagers, initialOrderManager);
     }
