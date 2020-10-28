@@ -25,6 +25,7 @@ public class ExerciseModelManager implements ExerciseModel {
     private final ExerciseBook exerciseBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Exercise> filteredExercises;
+    private final FilteredList<Template> filteredTemplates;
 
     /**
      * Initializes a ExerciseModelManager with the given exerciseBook and userPrefs.
@@ -37,6 +38,7 @@ public class ExerciseModelManager implements ExerciseModel {
         this.exerciseBook = new ExerciseBook(exerciseBook);
         this.userPrefs = new UserPrefs(userPrefs);
         this.filteredExercises = new FilteredList<>(this.exerciseBook.getExerciseList());
+        this.filteredTemplates = new FilteredList<>(this.exerciseBook.getTemplateList());
     }
 
     public ExerciseModelManager() {
@@ -111,7 +113,7 @@ public class ExerciseModelManager implements ExerciseModel {
     @Override
     public void addTemplate(Template template) {
         TemplateList.addTemplate(template);
-        updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
+        //updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
     }
 
     @Override
@@ -136,6 +138,12 @@ public class ExerciseModelManager implements ExerciseModel {
     public ObservableList<Exercise> getFilteredExerciseList() {
 
         return filteredExercises;
+    }
+
+    @Override
+    public ObservableList<Template> getFilteredTemplateList() {
+
+        return TemplateList.getObservableList();
     }
 
     public HashMap<String, Integer> getCaloriesByDay() {

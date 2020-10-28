@@ -17,6 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.ReadOnlyExerciseBook;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Template;
 import seedu.address.storage.StorageForExercise;
 
 /**
@@ -76,6 +77,11 @@ public class LogicManagerForExercise implements LogicForExercise {
     @Override
     public ObservableList<Exercise> getFilteredExerciseList() {
         return model.getFilteredExerciseList();
+    }
+
+    @Override
+    public ObservableList<Template> getFilteredTemplateList() {
+        return model.getFilteredTemplateList();
     }
 
     @Override

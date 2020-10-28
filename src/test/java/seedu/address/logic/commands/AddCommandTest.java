@@ -146,6 +146,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Template> getFilteredTemplateList() {
+            throw new AssertionError("this method should not be called.");
+        }
+
+        @Override
         public void archive(Path path) {
             throw new AssertionError("This method should not be called.");
         }
