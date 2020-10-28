@@ -8,7 +8,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.deadline.Deadline;
 import seedu.address.ui.UiPart;
 
 /**
