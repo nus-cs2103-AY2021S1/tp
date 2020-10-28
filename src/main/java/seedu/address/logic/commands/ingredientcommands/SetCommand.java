@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.ingredientcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ingredient.Amount;
@@ -22,10 +24,10 @@ public class SetCommand extends Command {
 
     public static final String COMMAND_WORD = "i-set";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " :set the ingredient in tCheck."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " :set the ingredient in tCheck.\n"
             + "Parameters: "
-            + PREFIX_INGREDIENT
-            + PREFIX_AMOUNT
+            + PREFIX_INGREDIENT + " "
+            + PREFIX_AMOUNT + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT + "Milk "
             + PREFIX_AMOUNT + "90 ";

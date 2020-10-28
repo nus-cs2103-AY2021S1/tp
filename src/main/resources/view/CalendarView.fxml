@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="calenderPane" xmlns="http://javafx.com/javafx/11.0" xmlns:fx="http://javafx.com/fxml/1">
+  <children>
+    <GridPane fx:id="mmyyyyGridPane" prefHeight="30.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+      </columnConstraints>
+
+      <children>
+        <Label fx:id="mmyyyyLabel" alignment="CENTER" styleClass="calendar-label-mmyyyy" text="MM YYYY" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        </Label>
+
+        <Button fx:id="leftBtn" mnemonicParsing="false" onAction="#handleLeftBtn"
+                GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+          <GridPane.margin>
+            <Insets left="0.0" />
+          </GridPane.margin>
+        </Button>
+
+        <Button fx:id="rightBtn" mnemonicParsing="false" onAction="#handRightBtn"
+                GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+          <GridPane.margin>
+            <Insets right="0.0" />
+          </GridPane.margin>
+        </Button>
+
+      </children>
+
+    </GridPane>
+
+    <GridPane fx:id="everydayGridPane" prefHeight="15.0" prefWidth="500.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      </columnConstraints>
+
+      <rowConstraints>
+        <RowConstraints minHeight="15.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+
+      <children>
+        <Label styleClass="dayLabel" text="Sun" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+          </Label>
+        <Label styleClass="dayLabel" text="Mon" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+          </Label>
+        <Label styleClass="dayLabel" text="Tue" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+          </Label>
+        <Label styleClass="dayLabel" text="Wed" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+          </Label>
+        <Label styleClass="dayLabel" text="Thu" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+          </Label>
+        <Label styleClass="dayLabel" text="Fri" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+         </Label>
+        <Label styleClass="dayLabel" text="Sat" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+          </Label>
+      </children>
+    </GridPane>
+
+    <GridPane fx:id="dateGridPane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0"
+              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints minHeight="15.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="15.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="15.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="15.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="15.0" prefHeight="20.0" vgrow="SOMETIMES" />
+        <RowConstraints minHeight="15.0" prefHeight="20.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </children>
+</AnchorPane>

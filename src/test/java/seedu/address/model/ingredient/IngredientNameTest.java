@@ -39,4 +39,5 @@ class IngredientNameTest {
         assertTrue(IngredientName.isValidIngredientName("Green Tea"));
         assertTrue(IngredientName.isValidIngredientName("Brown Sugar"));
     }
+
 }

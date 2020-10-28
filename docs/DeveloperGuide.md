@@ -142,7 +142,7 @@ tCheck allows users to record and update the sales information on the drink sold
 * `A`, `B`, `C` are abbreviations for the drink types.
 * `NUM` refers to the number of drinks sold.
 
-Currently, tCheck can only record 6 types of `Drink`s.
+Currently, tCheck supports the tracking of 6 types of `Drink`s.
 * `BSBM`  : Brown Sugar Boba Milk
 * `BSBBT` : Brown Sugar Boba Black Tea
 * `BSBGT` : Brown Sugar Boba Green Tea
@@ -153,17 +153,18 @@ Currently, tCheck can only record 6 types of `Drink`s.
 #### Completed Implementation
     
 The completed mechanism to record the sales data is facilitated by the `SalesBook`. It implements the
-`ReadOnlySalesBook` interface, which will allow the sales data to be displayed graphically (to be implemented).
+`ReadOnlySalesBook` interface, which will allow the sales data to be displayed graphically in the user interface.
 The sales data is stored in a `UniqueSalesRecordList`, which is a list of `SalesRecordEntry`. A `SalesRecordEntry`
 contains the `numberSold` for a type of `Drink`. The `SalesBook` implements the following operations:
  
- * `SalesBook#setRecord(Map<Drink, Integer> sales)`  —  Sets the sales record with the given sales data
  * `SalesBook#overwriteSales(Map<Drink, Integer> sales)`  —  Overwrites the sales record with the given sales data
  * `SalesBook#isEmptySalesRecord()`  —  Returns true if the sales record is empty
 
-If the `SalesBook` has not been initialised with the user's sales data, which means that the `SalesBook` is empty, then
-the first sales record will set the sales record with the user input. Subsequent sales update will overwrite existing
-sales record for the particular `Drink`.
+If the `SalesBook` has not been initialised with the user's sales input, which means that the `SalesBook` is empty, then
+the first sales record will set the sales record with the user input. Drink items that were not provided in the user
+input will be set to a default value of 0. 
+
+Subsequent sales update will overwrite existing sales record for the particular `Drink`.
 
 These operations are exposed in the `Model` interface as `Model#overwrite(Map<Drink, Integer> salesInput)` and 
 `Model#isEmptySalesBook()`. 
@@ -177,7 +178,7 @@ Step 2: The user executes the `s-update BSBM/100 BSBGT/120` command to record th
 120 Brown Sugar Boba Green Tea (BSBGT) were sold. The `s-update` command will initialise the sales record in `SalesBook`
 when it is executed. This is because the current `SalesBook` is empty. It calls 
 `Model#overwrite(Map<Drink, Integer> salesInput)`, which will save the sales data into the `UniqueSalesRecordList` in 
-the `SalesBook`. The other `Drink` types whose sales data were not given will be initialised to 0.
+the `SalesBook`. The other `Drink` types whose sales numbers were not given will be initialised to 0.
 
 Step 3: The user realises he left out some sales data. He executes the `s-update BSBBT/180 BSPM/64` command to record
 that 180 Brown Sugar Boba Black Tea (BSBBT) and 64 Brown Sugar Pearl Milk (BSPM) were sold. Since the `SalesBook` has 
@@ -192,11 +193,6 @@ He then executes the `s-update BSBM/110` to correct this error. The `s-update` c
 The following sequence diagram shows how the sales update operation works:
 
 ![SalesUpdateSequenceDiagram](images/SalesUpdateSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for 
-`SalesUpdateCommand` and `SalesUpdateCommandParser` should end at the destroy marker (X) but due to a limitation of
- PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 The following activity diagram summarises what happens when a user executes the `s-update` command.
 
@@ -229,6 +225,92 @@ user in the `s-update` command
     * Pros: It can can be extended more easily if there is a greater variety of drinks to store in the future.
     * Cons: There are not many operations to do with `Drink`s. It is only used to represent a constant set of
      drink types.
+     
+## \[Completed\] Finding sales data of some drinks
+  
+Finds specific drinks' sales data feature allows the user to get the sales data of a drink quickly. The command is:
+  
+* `s-find KEYWORD [MORE_KEYWORDS]` - Views sales data of drinks with the specified keywords.
+  
+#### Completed Implementation
+  
+The completed finds sales data of some drinks mechanism is facilitated by `InputContainsKeywordsPredicate`. It implements 
+Predicate<SalesRecordEntry>. 
+
+It exposes to `#Model updateFilteredSalesList(Predicate<SalesRecordEntry> predicate)`.
+  
+Given below is an example usage scenario and how the find drinks' sales data mechanism behaves at each step.
+  
+Step 1. The user launches the application. If the storage file for the sales book is empty, `SalesBook` will 
+be initialized with the six pre-defined drinks, namely `BSBM`, `BSBBT`, `BSBGT`, `BSPM`, `BSPBT` and `BSPGT`
+with the sales data of 0 for all. If the storage file for the sales book is not empty, `SalesBook` will read the  
+data from the storage file.
+  
+Step 2. The user executes `s-find BSBBT` to view BSBBT's current sales data. The `s-find BSBBT` command is
+parsed by `SalesFindCommandParser` which parses the input to get the matched drink's name and 
+returns an  `SalesFindCommand`,  which returns the drinks their sales data.
+  
+The following activity diagram shows how the find drink's sales data operation works:
+![Find Drink's Activity Diagram](images/SalesFindActivityDiagram.png) 
+
+#### Design consideration:
+  
+##### Aspect: How to find drink's sales data
+  
+  * **Current Choice**: Obtain the drink's name entered by the user, and use the
+  drink's name to find the sales data by looping through the salesbook.
+    * Pros: Code is more readable and consistent with the logic of finding employees.
+    * Cons: Every execution of the command will require one to access the sales record list loop through 
+    the list once, which may increase the time required for the operation. 
+         
+## \[Completed\] View a single ingredient's level feature
+  
+View a single ingredients' level feature allows the user to view the level of a particular ingredient when the need
+arises. The command is:
+  
+* `i-view-single i/INGREDIENT_NAME` - Views the ingredient's level of the ingredient with the specified ingredient name.
+  
+#### Completed Implementation
+  
+The completed view a single ingredient's level mechanism is facilitated by `IngredientBook`. It implements 
+`ReadOnlyIngredientBook` interface and offers methods to view the ingredients' levels from the application's 
+`ingredientBook`. Particularly, it implements the following operation:
+  
+  * `IngredientBook#findIngredientByName(IngredientName ingredientName)` — Returns the ingredient with the target 
+  ingredient name. 
+  
+This operation is exposed in the `Model` interface as `Model#findIngredientByName(IngredientName ingredientName)`.
+  
+Given below is an example usage scenario and how the view a single ingredient's level mechanism behaves at each step.
+  
+Step 1. The user launches the application. If the storage file for the ingredient book is empty, `IngredientBook` will 
+be initialized with the five pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Oolong Tea` and `Brown Suagr`, 
+with an amount of 0 for all. If the storage file for the ingredient book is not empty, `IngredientBook` will read the  
+data from the storage file.
+  
+Step 2. The user executes `i-view-single i/Milk` to view milk's current level. The `i-view-single i/Milk` command is
+parsed by `IngredientViewSingleCommandParser` which parses the ingredient to get the ingredient name and 
+returns an  `IngredientViewSingleCommand`. Logic executes the `IngredientViewSingleCommand` and calls 
+`Model#findIngredientByName(IngredientName ingredientName)`, which returns the ingredient with the ingredient name
+entered by the user.
+  
+The following activity diagram shows how the view a single ingredient level operation works:
+![View a Single Ingredient Activity Diagram](images/IngredientViewSingleActivityDiagram.png) 
+
+#### Design consideration:
+  
+##### Aspect: How find the ingredient's level executes
+  
+  * **Alternative 1 (current choice):** Obtain the ingredient name of the ingredient entered by the user, and use the
+  ingredient name to find the ingredient by looping through the ingredient list.
+    * Pros: Code is more readable.
+    * Cons: Every execution of the command will require one to access the name of the ingredient and loop through 
+    the list once, which may increase the time required for the operation. 
+    
+  * **Alternative 2:** Map the ingredient entered by the user to a index which corresponds to the index of the 
+  ingredient in the list, then find the ingredient using the index.
+    * Pros: Do not require looping through the list every time `IngredientViewSingleCommand` executes.
+    * Cons: Code may be less readable.     
   
 ### \[Completed\] Set ingredients' levels feature
 
@@ -236,15 +318,15 @@ The completed set ingredients' levels feature consists of three commands with sl
 
 * `i-set i/INGREDIENT_NAME m/AMOUNT` — Sets the level of one specific ingredient to the specified amount.
 * `i-set-default` — Sets the levels of all ingredients defined in the ingredient book to pre-determined amounts.
-* `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_BROWN_SUGAR` — Sets the levels of all ingredients defined in the ingredient book to different specified amounts for each ingredient.
+* `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` — Sets the levels of all ingredients defined in the ingredient book to different specified amounts for each ingredient.
 
 #### Completed Implementation
 
-The completed set ingredients' levels mechanism is facilitated by `IngredientBook`. It implements `ReadOnlyIngredientBook` interface and offers methods to set the application's `ingredientBook`. Particularly, it implements the following three operations:
+The completed set ingredients' levels mechanism is facilitated by `IngredientBook`. It implements `ReadOnlyIngredientBook` interface and offers methods to set the system's `ingredientBook`. Particularly, it implements the following three operations:
 
-* `IngredientBook#setIngredient(Ingredient target, Ingredient newAmount)` — Changes the amount the `target` ingredient in the ingredient book to the specified new amount.
-* `IngredientBook#setIngredients(List<Ingredient> ingredients)` — Changes the amounts of all ingredients defined in the ingredient book to the specified amounts in `ingredients` list.
-* `IngredientBook#setData(ReadOnlyIngredientBook newAmount)` — Changes the amounts of all ingredients defined in the ingredient book according to the `newAmount` ingredient book.
+* `IngredientBook#setIngredient(Ingredient target, Ingredient newAmount)` — Sets the amount the `target` ingredient in the ingredient book to the specified new amount.
+* `IngredientBook#setIngredients(List<Ingredient> ingredients)` — Sets the amounts of all ingredients defined in the ingredient book to the specified amounts in `ingredients` list.
+* `IngredientBook#setData(ReadOnlyIngredientBook newAmount)` — Sets the amounts of all ingredients defined in the ingredient book according to the `newAmount` ingredient book.
 
 These operations are exposed in the `Model` interface as `Model#setIngredient(Ingredient target, Ingredient newAMount)` and `Model#setIngredientBook(ReadOnlyIngredientBook ingredientBook)` respectively.
 
@@ -253,7 +335,7 @@ These operations are exposed in the `Model` interface as `Model#setIngredient(In
 
 Given below is an example usage scenario and how the set ingredients' levels mechanism behaves at each step.
 
-Step 1. The user launches the application. The `IngredientBook` will be initialized with the five pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Oolong Tea` and `Brown Suagr`, with an amount of 0 for all.
+Step 1. The user launches the application. The `IngredientBook` will be initialized with the six pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Black Tea` , `Green Tea` and `Brown Sugar`, with an amount of 0 for all.
 
 ![IngredientBookState0](images/IngredientBookState0.png)
 
@@ -270,8 +352,8 @@ The command calls `Model#setIngredient(Ingredient target, Ingredient newAmount)`
 
 </div>
 
-Step 4. After some time of operation, the user decides to update the ingredient book with current amounts of ingredients in his/her stall by executing the `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_BROWN_SUGAR` command. 
-In this case, the exact command entered is :  `i-set-all M/10 P/15 B/20 O/5 S/15`. The command calls `Model#setIngredient(ReadOnlyIngredientBook ingredientBook)`, causing the current ingredient book to be replaced by the `ingredientBook` with different specified amounts for each ingredient.
+Step 4. After some time of operation, the user decides to update the ingredient book with current amounts of ingredients in his/her stall by executing the `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR` command. 
+In this case, the exact command entered is :  `i-set-all M/10 P/15 B/20 L/5 G/5 S/15`. The command calls `Model#setIngredient(ReadOnlyIngredientBook ingredientBook)`, causing the current ingredient book to be replaced by the `ingredientBook` with new different specified amounts for each ingredient.
 
 The following sequence diagram shows how the set ingredients operation works, using `i-set i/INGREDIENT m/AMOUNT` as an example:
 

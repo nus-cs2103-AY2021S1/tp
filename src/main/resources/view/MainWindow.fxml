@@ -76,7 +76,7 @@
                     <Insets bottom="10" left="10" right="10" top="10" />
                  </padding>
                  <children>
-                     <StackPane fx:id="ingredientResultDisplayPlaceholder" prefHeight="78.0" prefWidth="150.0"
+                     <StackPane fx:id="ingredientListPanelPlaceholder" prefHeight="78.0" prefWidth="150.0"
                                 VBox.vgrow="ALWAYS" />
                  </children>
               </VBox>
@@ -89,15 +89,12 @@
                    <StackPane fx:id="personListPanelPlaceholder" prefHeight="78.0" prefWidth="150.0" VBox.vgrow="ALWAYS" />
                </VBox>
 
-              <VBox fx:id="personList3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="150.0" styleClass="pane-with-border-orange" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                 <padding>
-                    <Insets bottom="10" left="10" right="10" top="10" />
-                 </padding>
-                 <children>
-                    <StackPane fx:id="personListPanelPlaceholder3" prefHeight="78.0" prefWidth="150.0" VBox.vgrow="ALWAYS" />
-                 </children>
-              </VBox>
-
+               <StackPane fx:id="calendar" prefHeight="100.0" prefWidth="50.0" styleClass="pane-with-border-orange"
+                          GridPane.columnIndex="1" GridPane.rowIndex="1">
+                   <padding>
+                       <Insets bottom="0" left="100" right="100" top="0" />
+                   </padding>
+               </StackPane>
            </children>
         </GridPane>
 

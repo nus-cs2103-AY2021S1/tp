@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -12,7 +13,7 @@ public class SalesListCommand extends Command {
 
     public static final String COMMAND_WORD = "s-list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the sales of the drinks as entered. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the sales of the drinks as entered.\n"
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
@@ -35,6 +36,7 @@ public class SalesListCommand extends Command {
         if (model.isEmptySalesBook()) {
             return new CommandResult(MESSAGE_NO_RECORD_SUCCESS);
         } else {
+            model.updateFilteredSalesList(PREDICATE_SHOW_ALL_SALES_RECORD_ENTRY);
             return new CommandResult(MESSAGE_SUCCESS);
         }
     }

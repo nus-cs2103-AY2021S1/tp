@@ -1,7 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.ingredientcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyIngredientBook;
@@ -16,13 +18,14 @@ public class SetDefaultCommand extends Command {
 
     public static final String LINE_SEPARATOR = "\n";
     public static final String COMMAND_WORD = "i-set-default";
-    public static final String MESSAGE_SUCCESS = "All ingredients have been set to the default level:" + LINE_SEPARATOR
-            + "Milk : 50 L" + LINE_SEPARATOR
-            + "Pearl : 20 KG" + LINE_SEPARATOR
-            + "Boba : 20 KG" + LINE_SEPARATOR
-            + "Black Tea : 50 L" + LINE_SEPARATOR
-            + "Green Tea : 50 L" + LINE_SEPARATOR
-            + "Brown Sugar : 20 KG" + LINE_SEPARATOR;
+    public static final String MESSAGE_SUCCESS = "All ingredients have been set to the default level:\n"
+            + LINE_SEPARATOR
+            + "Milk : 50 L\n" + LINE_SEPARATOR
+            + "Pearl : 20 KG\n" + LINE_SEPARATOR
+            + "Boba : 20 KG\n" + LINE_SEPARATOR
+            + "Black Tea : 50 L\n" + LINE_SEPARATOR
+            + "Green Tea : 50 L\n" + LINE_SEPARATOR
+            + "Brown Sugar : 20 KG\n" + LINE_SEPARATOR;
 
     @Override
     public CommandResult execute(Model model) {
