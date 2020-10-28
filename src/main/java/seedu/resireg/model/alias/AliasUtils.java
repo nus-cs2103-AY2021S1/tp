@@ -13,8 +13,8 @@ public class AliasUtils {
      */
     public static Map<String, String> makeAliasToCommandWordMap(List<CommandWordAlias> aliasList) {
         return aliasList.stream().collect(Collectors.toMap(
-            commandWordAlias -> commandWordAlias.alias.alias,
-            commandWordAlias -> commandWordAlias.commandWord.commandWord
+            commandWordAlias -> commandWordAlias.getAlias().toString(),
+            commandWordAlias -> commandWordAlias.getCommandWord().toString()
         ));
     }
 }
