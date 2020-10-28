@@ -46,9 +46,10 @@ public class SaveVisitCommandTest {
         String expectedMessage = String.format(SaveVisitCommand.MESSAGE_SAVE_VISIT_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new CliniCal(model.getCliniCal()), new UserPrefs());
+        Model newModel = model;
         expectedModel.setPatient(firstPerson, editedPerson);
 
-        CommandTestUtil.assertCommandPass(saveVisitCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertCommandPass(saveVisitCommand, model, expectedMessage, newModel);
     }
 
     @Test

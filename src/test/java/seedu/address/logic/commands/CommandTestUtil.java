@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
@@ -171,7 +170,7 @@ public class CommandTestUtil {
      */
     public static void assertCommandPass(Command command, Model expectedModel,
                                          String expectedMessage, Model actualModel) {
-        assertNotEquals(expectedModel, actualModel);
+        assertEquals(expectedModel, actualModel);
     }
     /**
      * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
