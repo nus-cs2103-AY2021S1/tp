@@ -89,8 +89,8 @@ Action | Format
 **List Recipes** | `listr`
 **Delete Item** | `deli` **-n \<item name\>**
 **Delete Recipe** | `delr` **-n \<item name\> -r index**
-**Find Item by Name** | `find` **\<search strings\>**
-**Find Item by Tag** | `findt` **\<search strings\>**
+**Find Item by Name** | `find` **\<string1, string2\>**
+**Find Item by Tag** | `findt` **\<string1, string2\>**
 **View Detailed View of Item** | `view` **\<item name\>** \[-r / -c / -d (default)/ -all\]
 **Help** | `help` \[command\]
 **Exit** | `exit`

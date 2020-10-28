@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DELIMITER_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITEM_NAME_APPLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ABC;
@@ -42,6 +43,7 @@ public class AddItemTagCommandParserTest {
 
     @Test
     public void parse_noItemProvided_throwsParseException() {
-        assertParseFailure(parser, "a", AddItemTagCommand.MESSAGE_ITEM_NOT_PROVIDED);
+        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                AddItemTagCommand.MESSAGE_USAGE));
     }
 }

@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.commands.AddItemTagCommand.MESSAGE_ITEM_NOT_PROVIDED;
-import static seedu.address.logic.commands.AddItemTagCommand.MESSAGE_TAG_NOT_PROVIDED;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_TAG;
 
@@ -30,12 +29,14 @@ public class AddItemTagCommandParser implements Parser<AddItemTagCommand> {
         if (argMultimap.getValue(PREFIX_ITEM_NAME).isPresent()) {
             itemName = ItemParserUtil.parseName(argMultimap.getValue(PREFIX_ITEM_NAME).get());
         } else {
-            throw new ParseException(MESSAGE_ITEM_NOT_PROVIDED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddItemTagCommand.MESSAGE_USAGE));
         }
         if (argMultimap.getValue(PREFIX_ITEM_TAG).isPresent()) {
             tags = ItemParserUtil.parseTags(argMultimap.getAllValues(PREFIX_ITEM_TAG));
         } else {
-            throw new ParseException(MESSAGE_TAG_NOT_PROVIDED);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddItemTagCommand.MESSAGE_USAGE));
         }
 
         return new AddItemTagCommand(itemName, tags);

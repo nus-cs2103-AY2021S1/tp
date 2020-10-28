@@ -26,7 +26,7 @@ public class AddItemTagCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_ITEM_NAME + "NAME] "
             + "[" + PREFIX_ITEM_TAG + "TAG(s) TO ADD] "
-            + "Example: " + COMMAND_WORD + PREFIX_ITEM_NAME + "Iron "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_ITEM_NAME + "Iron "
             + PREFIX_ITEM_TAG + "delicious, tuturu";
 
     public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item name was not provided.";
