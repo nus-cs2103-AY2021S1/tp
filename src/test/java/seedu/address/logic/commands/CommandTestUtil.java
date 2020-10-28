@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUPPLIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -101,6 +102,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_AARON = "Jl Koro koro kuru kuru Blk 251";
     public static final String VALID_ORDER_DAMITH = "Chicken rice 1x, not spicy";
     public static final String VALID_ORDER_AARON = "Iced Kopi x2, Prata plain x3";
+    public static final String VALID_TIME_AARON = "0";
+    public static final String VALID_TIME_DAMITH = "0";
 
     public static final String NAME_DESC_DAMITH = " " + PREFIX_NAME + VALID_NAME_DAMITH;
     public static final String NAME_DESC_AARON = " " + PREFIX_NAME + VALID_NAME_AARON;
@@ -110,11 +113,14 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AARON = " " + PREFIX_ADDRESS + VALID_ADDRESS_AARON;
     public static final String ORDER_DESC_DAMITH = " " + PREFIX_ORDER + VALID_ORDER_DAMITH;
     public static final String ORDER_DESC_AARON = " " + PREFIX_ORDER + VALID_ORDER_AARON;
+    public static final String TIME_DESC_AARON = " " + PREFIX_TIME + VALID_TIME_AARON;
+    public static final String TIME_DESC_DAMITH = " " + PREFIX_TIME + VALID_TIME_DAMITH;
 
     public static final String INVALID_DELIVERYNAME_DESC = " " + PREFIX_NAME + "Salt&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phone
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for address
     public static final String INVALID_ORDER_DESC = " " + PREFIX_ORDER; // empty string not allowed for orders
+    public static final String INVALID_TIME = " " + PREFIX_TIME;
 
     public static final DeliveryEditCommand.EditDeliveryDescriptor DESC_AARON;
     public static final DeliveryEditCommand.EditDeliveryDescriptor DESC_DAMITH;
@@ -249,12 +255,12 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         DeliveryBook expectedDeliveryBook = new DeliveryBook(actualDeliveryModel.getDeliveryBook());
-        List<Delivery> expectedFilteredList = new ArrayList<>(actualDeliveryModel.getFilteredDeliveryList());
+        List<Delivery> expectedFilteredList = new ArrayList<>(actualDeliveryModel.getFilteredAndSortedDeliveryList());
         Models models = new ModelsManager(new InventoryModelManager(), actualDeliveryModel);
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(models));
         assertEquals(expectedDeliveryBook, actualDeliveryModel.getDeliveryBook());
-        assertEquals(expectedFilteredList, actualDeliveryModel.getFilteredDeliveryList());
+        assertEquals(expectedFilteredList, actualDeliveryModel.getFilteredAndSortedDeliveryList());
     }
 
     /**
@@ -277,14 +283,14 @@ public class CommandTestUtil {
      * the delivery at the given {@code targetIndex} in the {@code model}'s delivery book.
      */
     public static void showDeliveryAtIndex(DeliveryModel deliveryModel, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < deliveryModel.getFilteredDeliveryList().size());
+        assertTrue(targetIndex.getZeroBased() < deliveryModel.getFilteredAndSortedDeliveryList().size());
 
-        Delivery delivery = deliveryModel.getFilteredDeliveryList().get(targetIndex.getZeroBased());
+        Delivery delivery = deliveryModel.getFilteredAndSortedDeliveryList().get(targetIndex.getZeroBased());
         final String[] splitName = delivery.getName().fullName.split("\\s+");
         deliveryModel.updateFilteredDeliveryList(
                 new DeliveryNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, deliveryModel.getFilteredDeliveryList().size());
+        assertEquals(1, deliveryModel.getFilteredAndSortedDeliveryList().size());
     }
 
 }

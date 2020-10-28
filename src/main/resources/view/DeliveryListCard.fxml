@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
@@ -26,29 +27,44 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="name" styleClass="cell_big_label" text="\$name">
+
                <HBox.margin>
                   <Insets />
                </HBox.margin></Label>
             </HBox>
-         <HBox>
-            <children>
-               <Label styleClass="cell_small_label" text="Phone: " />
-               <Label fx:id="phone" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$phone" />
-            </children>
-            <VBox.margin>
-               <Insets bottom="10.0" />
-            </VBox.margin>
-         </HBox>
-         <HBox>
-            <children>
-               <Label styleClass="cell_small_label" text="Address: " />
-               <Label fx:id="address" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$address" />
-            </children>
-            <VBox.margin>
-               <Insets bottom="10.0" />
-            </VBox.margin>
-         </HBox>
-         <Label fx:id="order" layoutX="25.0" layoutY="72.0" text="\$order" />
+            <HBox>
+                <children>
+                   <Label styleClass="cell_small_label" text="Phone: " />
+                   <Label fx:id="phone" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$phone" />
+                </children>
+                <VBox.margin>
+                   <Insets bottom="10.0" />
+                </VBox.margin>
+            </HBox>
+            <HBox>
+                <children>
+                   <Label styleClass="cell_small_label" text="Address: " />
+                   <Label fx:id="address" layoutX="10.0" layoutY="10.0" styleClass="cell_small_label" text="\$address" />
+                </children>
+                <VBox.margin>
+                   <Insets bottom="10.0" />
+                </VBox.margin>
+            </HBox>
+            <Label fx:id="order" layoutX="25.0" layoutY="72.0" text="\$order" />
+
+            <HBox>
+                <VBox.margin>
+                    <Insets top="10.0" />
+                </VBox.margin>
+                <children>
+                    <Label styleClass="cell_small_label" style="-fx-font-weight: bold;">
+                        <graphic>
+                            <Text fx:id="time" fill="WHITE" styleClass="cell_small_label" text="\$time" />
+                        </graphic>
+                    </Label>
+                </children>
+            </HBox>
+
         </VBox>
         <rowConstraints>
             <RowConstraints />
