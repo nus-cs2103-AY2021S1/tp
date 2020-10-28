@@ -3,12 +3,20 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
+import static seedu.address.logic.parser.util.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
+import seedu.address.logic.commands.AddAccountCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.DeleteAccountCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.EditAccountNameCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.SwitchAccountCommand;
 import seedu.address.model.account.entry.Entry;
 import seedu.address.model.account.entry.Revenue;
 
@@ -45,7 +53,7 @@ public class EntryUtil {
     /**
      * Returns an edit command string for editing first expense.
      */
-    public static String getEditExpenseCommand() {
+    public static String getValidEditExpenseCommand() {
         // replace the info of the 1st entry in the revenue list with that of PAY_RENT
         return EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
             + " " + getEntryDetails(TypicalEntries.PAY_RENT) + " t/";
@@ -54,10 +62,75 @@ public class EntryUtil {
     /**
      * Returns an edit command string for editing first revenue.
      */
-    public static String getEditRevenueCommand() {
+    public static String getValidEditRevenueCommand() {
         // replace the info of the 1st entry in the revenue list with that of SELL_FLOWER_SEEDS
         return EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
             + " " + getEntryDetails(TypicalEntries.SELL_FLOWER_SEEDS);
+    }
+
+    /**
+     * Returns a find command string for finding in expense list.
+     */
+    public static String getValidFindExpenseCommand() {
+        return FindCommand.COMMAND_WORD + " " + PREFIX_CATEGORY + EXPENSE_STRING
+            + " " + PREFIX_KEYWORDS + " " + "flowers food";
+    }
+
+    /**
+     * Returns a find command string for finding in revenue list.
+     */
+    public static String getValidFindRevenueCommand() {
+        return FindCommand.COMMAND_WORD + " " + PREFIX_CATEGORY + REVENUE_STRING
+            + " " + PREFIX_KEYWORDS + " " + "canvas";
+    }
+
+    /**
+     * Returns a find command string without category.
+     */
+    public static String getValidFindGeneralCommand() {
+        return FindCommand.COMMAND_WORD + " " + PREFIX_KEYWORDS + "rent flowers";
+    }
+
+    /**
+     * Returns a clear expense command string.
+     */
+    public static String getValidClearExpenseCommand() {
+        return ClearCommand.COMMAND_WORD + " " + PREFIX_CATEGORY + EXPENSE_STRING;
+    }
+
+    /**
+     * Returns a clear revenue command string.
+     */
+    public static String getValidClearRevenueCommand() {
+        return ClearCommand.COMMAND_WORD + " " + PREFIX_CATEGORY + REVENUE_STRING;
+    }
+
+    /**
+     * Returns an add account command string.
+     */
+    public static String getValidAddAccountCommand() {
+        return AddAccountCommand.COMMAND_WORD + " " + PREFIX_NAME + "newacc";
+    }
+
+    /**
+     * Returns an edit account command string.
+     */
+    public static String getValidEditAccountCommand() {
+        return EditAccountNameCommand.COMMAND_WORD + " " + PREFIX_NAME + "anotheracc";
+    }
+
+    /**
+     * Returns an delete account command string.
+     */
+    public static String getValidDeleteAccountCommand() {
+        return DeleteAccountCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased();
+    }
+
+    /**
+     * Returns an switch account command string.
+     */
+    public static String getValidSwitchAccountCommand() {
+        return SwitchAccountCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased();
     }
 
     /**
