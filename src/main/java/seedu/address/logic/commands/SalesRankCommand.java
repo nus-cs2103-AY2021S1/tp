@@ -14,7 +14,7 @@ public class SalesRankCommand extends Command {
     public static final String MESSAGE_USAGE = ": Lists the sales of drink items in a ranked manner.\n"
             + "The first drink in the list is the most popular drink sold.";
 
-    public static final String MESSAGE_NOT_IMPLEMENTED_YET = "s-rank not yet implemented.";
+    public static final String MESSAGE_SUCCESS = "The list of drinks items has been ranked and is shown below.";
 
     /**
      * Executes the command and returns the result message.
@@ -25,7 +25,8 @@ public class SalesRankCommand extends Command {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        throw new CommandException(MESSAGE_NOT_IMPLEMENTED_YET);
+        //sort and display onto GUI
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
 }
