@@ -456,7 +456,7 @@ Action | Format, Examples
 -------|------------------------------
 **Update**| `s-update A/NUM B/NUM C/NUM ...` <br> e.g., `s-update BSBM/100 BSBBT/120`
 **List**| `s-list`
-**Find**| `sales YYYY-MM-DD`
+**Find**| `s-find KEYWORD [MORE_KEYWORDS]`
 
 ### Ingredients  Tracking
 
