@@ -24,7 +24,7 @@ import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteTaskCommand}.
  */
 public class DoneCommandTest {
 

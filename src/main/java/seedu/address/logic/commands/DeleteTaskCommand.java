@@ -14,9 +14,9 @@ import seedu.address.model.task.Task;
 /**
  * Deletes a task identified using it's displayed index from PlaNus.
  */
-public class DeleteCommand extends Command {
+public class DeleteTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete-task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the task identified by the index number used in the displayed task list.\n"
@@ -28,9 +28,9 @@ public class DeleteCommand extends Command {
     private final Index[] targetIndexes;
 
     /**
-     * Creates an DeleteCommand to to delete the tasks with {@code targetIndexes} from system.
+     * Creates an DeleteTaskCommand to to delete the tasks with {@code targetIndexes} from system.
      */
-    public DeleteCommand(Index[] targetIndexes) {
+    public DeleteTaskCommand(Index[] targetIndexes) {
         requireNonNull(targetIndexes);
         this.targetIndexes = targetIndexes;
     }
@@ -69,7 +69,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && Arrays.equals(targetIndexes, ((DeleteCommand) other).targetIndexes)); // state check
+                || (other instanceof DeleteTaskCommand // instanceof handles nulls
+                && Arrays.equals(targetIndexes, ((DeleteTaskCommand) other).targetIndexes)); // state check
     }
 }

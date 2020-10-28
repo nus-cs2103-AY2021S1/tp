@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
@@ -24,23 +24,23 @@ import seedu.address.model.task.deadline.Status;
 
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindTaskCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindCommandParser implements Parser<FindTaskCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindTaskCommand
+     * and returns a FindTaskCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE,
                                             PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
 
         if (!isAnyPrefixPresent(argMultimap, PREFIX_TITLE,
                 PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
         }
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         setKeyword(PREFIX_TITLE, argMultimap, predicate);
@@ -49,7 +49,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         setKeyword(PREFIX_STATUS, argMultimap, predicate);
         setKeyword(PREFIX_TAG, argMultimap, predicate);
 
-        return new FindCommand(predicate);
+        return new FindTaskCommand(predicate);
     }
 
     private void setKeyword(Prefix prefix,
