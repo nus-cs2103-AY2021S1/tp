@@ -149,7 +149,7 @@ Example:
 
 * Unit of measurement for ingredients:<br>
     * - Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
-    * - Unit for liquids (Milk, Black Tea and Oolong Tea) : **L**<br>
+    * - Unit for liquids (Milk, Black Tea and Green Tea) : **L**<br>
 
 * All ingredients' levels are set to 0.<br>
 
