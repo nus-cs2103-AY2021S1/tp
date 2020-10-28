@@ -106,6 +106,12 @@ public interface Model {
      */
     void addTutorialGroup(TutorialGroup tutorialGroup);
 
+    void deleteTutorialGroup(TutorialGroup tutorialGroup);
+
+    boolean hasTutorialGroup(TutorialGroup tutorialGroup);
+
+    void setTutorialGroup(TutorialGroup target, TutorialGroup edited);
+
     boolean isInTutorialGroupView();
     // Student Operations
 

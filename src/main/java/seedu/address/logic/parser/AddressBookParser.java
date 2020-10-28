@@ -100,6 +100,15 @@ public class AddressBookParser {
         case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
 
+        case DeleteTutorialGroupCommand.COMMAND_WORD:
+            return new DeleteTutorialGroupCommandParser().parse(arguments);
+
+        case EditTutorialGroupCommand.COMMAND_WORD:
+            return new EditTutorialGroupCommandParser().parse(arguments);
+
+        case FindTutorialGroupCommand.COMMAND_WORD:
+            return new FindTutorialGroupCommandParser().parse(arguments);
+            
         case DeleteStudentCommand.COMMAND_WORD:
             return new DeleteStudentCommandParser().parse(arguments);
 
