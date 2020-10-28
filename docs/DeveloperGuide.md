@@ -191,8 +191,7 @@ exercise log, which will then allow them to track their fitness progress and det
 
 The mechanism is facilitated by a `Log` class. A `Log` class has `Exercise`, `Rep`, `Comment` and `LocalDateTime`.
 
-//TODO
-Add class diagram here 
+![AddLogClassDiagram](images/AddLogClassDiagram.png)
 
 A user can add a `Log`to the `LogBook` by executing the `add` command.
 
