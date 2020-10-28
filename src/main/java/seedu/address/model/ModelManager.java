@@ -100,6 +100,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addRecentDeletedTask(Task task) {
+        taskManager.addRecentDeletedTask(task);
+    }
+
+    public void retrieveRecentDeletedTask() {
+        taskManager.retrieveRecentDeletedTask();
+    }
+
+    @Override
     public void addTask(Task task) {
         taskManager.addTask(task);
         updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);

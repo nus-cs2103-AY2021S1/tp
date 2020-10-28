@@ -27,6 +27,11 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private Task recentDeletedTask;
+
+    public UniqueTaskList() {
+        this.recentDeletedTask = null;
+    }
 
     /**
      * Returns true if the list contains an equivalent task as the given argument.
@@ -51,7 +56,7 @@ public class UniqueTaskList implements Iterable<Task> {
     /**
      * Replaces the task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the list.
-     * The yask identity of {@code editedTask} must not be the same as another existing person in the list.
+     * The task identity of {@code editedTask} must not be the same as another existing person in the list.
      */
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
@@ -95,6 +100,19 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
+    }
+
+    public void addRecentDeletedTask(Task recentDeleted) {
+        requireNonNull(recentDeleted);
+        this.recentDeletedTask = recentDeleted;
+    }
+
+    public void retrieveRecentDeletedTask() {
+        requireNonNull(this.recentDeletedTask);
+        if (contains(recentDeletedTask)) {
+            throw new DuplicateTaskException();
+        }
+        internalList.add(this.recentDeletedTask);
     }
 
     /**

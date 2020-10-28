@@ -63,6 +63,10 @@ public interface Model {
      */
     void deleteTask(Task target);
 
+    void addRecentDeletedTask(Task task);
+
+    void retrieveRecentDeletedTask();
+
     /**
      * Adds the given task.
      * {@code task} must not already exist in the task manager.
