@@ -7,8 +7,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.task.DateTime;
+import seedu.address.model.task.Task;
 import seedu.address.model.task.event.Event;
 
 /**
@@ -47,7 +50,12 @@ public class EventCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
+        ObservableList<Task> existingTasks = model.getFilteredTaskList();
+        for (Task task: existingTasks) {
+            if (task instanceof Event && ((Event) task).isSameTimeSlot(this.toAdd)) {
+                throw new CommandException(DateTime.OVERLAP_CONSTRAINTS);
+            }
+        }
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }

@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -23,9 +24,10 @@ public class DeadlineCommand extends Command {
             + PREFIX_DATE_TIME + "DEADLINE_DATE_TIME "
             + PREFIX_DESCRIPTION + "DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TITLE + "Do work "
-            + PREFIX_DATE_TIME + "01-01-2020 12:00 "
-            + PREFIX_DESCRIPTION + "Science experiment ";
+            + PREFIX_TITLE + "Do experiment "
+            + PREFIX_DATE_TIME + "28-10-2020 12:00 "
+            + PREFIX_DESCRIPTION + "Ferment grapes "
+            + PREFIX_TAG + "LSM1301";
 
     public static final String MESSAGE_SUCCESS = "New deadline added: %1$s";
     public static final String MESSAGE_DUPLICATE_DEADLINE = "This deadline already exists in PlaNus.";
@@ -43,11 +45,9 @@ public class DeadlineCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_DEADLINE);
         }
-
         model.addTask(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

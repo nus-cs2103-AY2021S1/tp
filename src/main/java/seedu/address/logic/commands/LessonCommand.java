@@ -12,9 +12,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.ArrayList;
 
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.lesson.Time;
 import seedu.address.model.task.Task;
 
 public class LessonCommand extends Command {
@@ -56,6 +58,12 @@ public class LessonCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        ObservableList<Lesson> existingLessons = model.getFilteredLessonList();
+        for (Lesson lesson: existingLessons) {
+            if (lesson.isSameTimeSlot(this.lesson)) {
+                throw new CommandException(Time.OVERLAP_CONSTRAINTS);
+            }
+        }
         ArrayList<Task> tasksToAdd = lesson.createRecurringTasks();
         for (Task taskToAdd: tasksToAdd) {
             if (model.hasTask(taskToAdd)) {
@@ -64,7 +72,6 @@ public class LessonCommand extends Command {
             model.addTask(taskToAdd);
             model.addTaskToCalendar(taskToAdd);
         }
-
         model.addLesson(lesson);
         return new CommandResult(String.format(MESSAGE_SUCCESS, lesson));
     }

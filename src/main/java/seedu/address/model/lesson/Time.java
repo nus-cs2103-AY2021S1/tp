@@ -14,6 +14,7 @@ public class Time {
     public static final String MESSAGE_CONSTRAINTS =
             "Time should be in the format of HH:mm";
     public static final String RANGE_CONSTRAINTS = "Start time should be before end time";
+    public static final String OVERLAP_CONSTRAINTS = "This lesson overlaps with an existing lesson";
     public static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("HH:mm");
     public static final LocalTime DEFAULT_TIME = LocalTime.parse("00:00", FORMATTER);
     public static final String VALIDATION_REGEX = "^(2[0-3]|[01][0-9]):([0-5][0-9])$";
@@ -30,16 +31,6 @@ public class Time {
         checkArgument(isValidTime(time), MESSAGE_CONSTRAINTS);
         value = LocalTime.parse(time, FORMATTER);
         isDefault = false;
-    }
-
-    /**
-     * Constructs a default {@code Time}.
-     *
-     * Caveat: Only called by defaultTime method.
-     */
-    private Time() {
-        value = DEFAULT_TIME; // a dummy value
-        isDefault = true;
     }
 
     /**

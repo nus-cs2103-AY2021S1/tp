@@ -65,7 +65,16 @@ public class Event extends Task {
     public LocalDateTime getStartDateTimeValue() {
         return startDateTime.getValue();
     }
-
+    /**
+     * Returns true if date and time of both events will overlap.
+     */
+    public boolean isSameTimeSlot(Event otherEvent) {
+        LocalDateTime startDateTime = getStartDateTimeValue();
+        LocalDateTime endDateTime = getEndDateTimeValue();
+        LocalDateTime otherStartDateTime = otherEvent.getStartDateTimeValue();
+        LocalDateTime otherEndDateTime = otherEvent.getEndDateTimeValue();
+        return Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
+    }
     /**
      * Returns an immutable tag, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

@@ -1,6 +1,5 @@
 package seedu.address.model.lesson;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.DayOfWeek;
@@ -140,11 +139,11 @@ public class Lesson {
      * Returns true if both lessons of the same title have the same start and end date, and the same start and end time.
      */
     public boolean isSameLesson(Lesson otherLesson) {
-        requireNonNull(otherLesson);
         if (otherLesson == this) {
             return true;
         }
-        return otherLesson.getTitle().equals(getTitle())
+        return otherLesson != null
+                && otherLesson.getTitle().equals(getTitle())
                 && otherLesson.getDayOfWeek().equals(getDayOfWeek())
                 && otherLesson.getStartTime().equals(getStartTime())
                 && otherLesson.getEndTime().equals(getEndTime())
@@ -153,10 +152,9 @@ public class Lesson {
     }
 
     /**
-     * Checks if two time slots overlap with one another.
+     * Returns true if date and time of both lessons will overlap.
      */
     public boolean isSameTimeSlot(Lesson otherLesson) {
-        requireNonNull(otherLesson);
         if (otherLesson == this) {
             return true;
         }
@@ -164,7 +162,8 @@ public class Lesson {
         LocalDateTime endDateTime = LocalDateTime.of(getEndDate(), getEndTime());
         LocalDateTime otherStartDateTime = LocalDateTime.of(otherLesson.getStartDate(), otherLesson.getStartTime());
         LocalDateTime otherEndDateTime = LocalDateTime.of(otherLesson.getEndDate(), otherLesson.getEndTime());
-        return otherLesson.getDayOfWeek().equals(getDayOfWeek())
+        return otherLesson != null
+                && otherLesson.getDayOfWeek().equals(getDayOfWeek())
                 && Task.isOverlappingTimePeriod(startDateTime, endDateTime, otherStartDateTime, otherEndDateTime);
     }
 

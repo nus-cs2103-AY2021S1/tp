@@ -152,7 +152,6 @@ public class Planus implements ReadOnlyPlanus {
 
         lessons.setLesson(target, editedLesson);
     }
-
     /**
      * Replaces the given task {@code target} in the list with {@code editedTask}.
      * {@code target} must exist in the PlaNus calendar list.
