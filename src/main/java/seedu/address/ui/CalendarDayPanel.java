@@ -30,11 +30,7 @@ public class CalendarDayPanel extends UiPart<Region> {
     }
 
     private void displayDate(LocalDateTime dateTime) {
-        if (dateTime.getDayOfMonth() == 1) {
-            date.setText(dateTime.getMonth().toString() + " " + dateTime.getDayOfMonth());
-        } else {
-            date.setText("" + dateTime.getDayOfMonth());
-        }
+        date.setText(dateTime.getMonth().toString() + " " + dateTime.getDayOfMonth());
     }
 
     class CalendarDayPanelCell extends ListCell<Task> {

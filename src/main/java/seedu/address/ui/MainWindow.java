@@ -9,7 +9,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -18,7 +17,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.StatisticsData;
 import seedu.address.storage.Statistics;
 
 /**
@@ -55,10 +53,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane lessonListPanelPlaceholder;
 
     @FXML
-    private Pane dataAnalysisPanelPlaceholder;
+    private StackPane dataAnalysisPanelPlaceholder;
 
     @FXML
-    private Pane calendarPanelPlaceholder;
+    private StackPane calendarPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
