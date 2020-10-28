@@ -59,15 +59,7 @@ public class SalesFindCommandTest {
         assertEquals(Collections.emptyList(), model.getFilteredSalesRecordList());
     }
 
-    //    @Test
-    //    public void execute_multipleKeywords_multipleDrinksFound() {
-    //        String expectedMessage = String.format(MESSAGE_DRINKS_LISTED_OVERVIEW, 3);
-    //        InputContainsKeywordsPredicate predicate = preparePredicate("BSBMT BSPM BSBBT");
-    //        SalesFindCommand command = new SalesFindCommand(predicate);
-    //        expectedModel.updateFilteredSalesList(predicate);
-    //        assertCommandSuccess(command, model, expectedMessage, expectedModel);
-    //        assertEquals(Arrays.asList(), model.getFilteredSalesRecordList());
-    //    }
+
 
     /**
      * Parses {@code userInput} into a {@code InputContainsKeywordsPredicate}.
