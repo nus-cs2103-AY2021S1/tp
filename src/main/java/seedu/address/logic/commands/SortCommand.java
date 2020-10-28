@@ -23,19 +23,7 @@ public class SortCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Task> lastShownList = model.getFilteredTaskList();
-        lastShownList.sort(new TaskDateComparator());
-        TaskDateComparator tdc = new TaskDateComparator();
-        System.out.println(lastShownList.get(0).getTitle());
-        System.out.println(lastShownList.get(2).getTitle());
-        System.out.println(tdc.getDate(lastShownList.get(0)));
-        System.out.println(tdc.getDate(lastShownList.get(2)));
-        System.out.println(tdc.compare(lastShownList.get(0), lastShownList.get(2)));
-
-        for (Task t : lastShownList){
-            System.out.println(t.getTitle());
-        }
-
+        model.sortTask(new TaskDateComparator());
         return  new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
     }
 }
