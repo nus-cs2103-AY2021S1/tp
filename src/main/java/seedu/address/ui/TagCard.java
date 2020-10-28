@@ -33,6 +33,8 @@ public class TagCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label fileAddress;
+    @FXML
+    private HBox labels;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Tag} and index to display.
@@ -43,6 +45,12 @@ public class TagCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         tagName.setText(tag.getTagName().tagName);
         fileAddress.setText(tag.getFileAddress().value);
+        for (seedu.address.model.label.Label label : tag.getLabels()) {
+            String labelText = " " + label.getLabel() + " ";
+            Label labelBox = new Label(labelText);
+            labelBox.getStyleClass().add("label-box");
+            labels.getChildren().add(labelBox);
+        }
     }
 
     /**
