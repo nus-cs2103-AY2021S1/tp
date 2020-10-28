@@ -42,6 +42,9 @@ public class CheckCraftCommand extends Command {
      * Creates a CheckCraftCommand to check if the {@code quantity} of the item with {@code itemName} may be crafted.
      */
     public CheckCraftCommand(String itemName, Quantity quantity) {
+        requireNonNull(itemName);
+        requireNonNull(quantity);
+
         this.itemName = itemName;
         this.quantity = quantity.getNumber();
     }
@@ -80,7 +83,7 @@ public class CheckCraftCommand extends Command {
     /**
      * Extracts all usable recipes and formats them for display.
      */
-    private String findRecipes(int quantity, ArrayList<Item> itemList, ArrayList<Recipe> recipeList) {
+    private String findRecipes(int quantity, List<Item> itemList, List<Recipe> recipeList) {
         StringBuilder message = new StringBuilder();
         message.append(String.format(MESSAGE_SUCCESS_CRAFTABLE, itemName, quantity)).append("\n");
         boolean isCraftable = false;

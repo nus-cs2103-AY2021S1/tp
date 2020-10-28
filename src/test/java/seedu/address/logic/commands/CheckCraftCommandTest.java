@@ -33,6 +33,9 @@ public class CheckCraftCommandTest {
     private ModelStubWithItemAndRecipeList model;
     private ModelStubWithItemAndRecipeList expectedModel;
 
+    // used to test display of recipe when crafting is possible
+    private final String recipeString = "test: Banana[6] -> Apple[4]\n";
+
     @BeforeEach
     public void setUp() {
         IngredientList ingredients = new IngredientList();
@@ -53,7 +56,7 @@ public class CheckCraftCommandTest {
     public void execute_craftable_success() {
         CheckCraftCommand ccc = new CheckCraftCommand(APPLE.getName(), new Quantity("3"));
         String expectedMessage = String.format(MESSAGE_SUCCESS_CRAFTABLE, APPLE.getName(), 3)
-                + "\ntest: Banana[6] -> Apple[4]\n";
+                + "\n" + recipeString;
         assertCommandSuccess(ccc, model, expectedMessage, expectedModel);
     }
 
