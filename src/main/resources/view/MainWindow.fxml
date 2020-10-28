@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="1005.0" minWidth="1050.0" onCloseRequest="#handleExit" title="PlaNus" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="805.0" minWidth="850.0" onCloseRequest="#handleExit" title="PlaNus" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/planus.png" />
   </icons>
@@ -48,7 +48,7 @@
                <children>
                   <SplitPane dividerPositions="0.5" orientation="VERTICAL" HBox.hgrow="ALWAYS">
                      <items>
-                    <VBox fx:id="taskList" minWidth="300.0" styleClass="pane-with-border">
+                    <VBox fx:id="taskList" minWidth="200.0" styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-header" text="Tasks:" textFill="WHITE">
                                  <font>
@@ -60,7 +60,7 @@
                          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            </children>
                     </VBox>
-                        <VBox minWidth="300.0" styleClass="pane-with-border">
+                        <VBox minWidth="200.0" styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-header" text="Lessons:">
                                  <font>
