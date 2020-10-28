@@ -16,7 +16,7 @@ public class StatusBarFooter extends UiPart<Region> {
     private static final String FXML = "StatusBarFooter.fxml";
 
     @FXML
-    private Label randomQuote;
+    private Label statusBarText;
 
     /**
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
@@ -24,7 +24,7 @@ public class StatusBarFooter extends UiPart<Region> {
     public StatusBarFooter(Path saveLocation) {
         super(FXML);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMM yyyy");
-        randomQuote.setText(formatter.format(LocalDate.now()));
+        statusBarText.setText(formatter.format(LocalDate.now()));
     }
 
 }
