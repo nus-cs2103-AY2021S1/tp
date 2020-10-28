@@ -56,9 +56,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane ingredientListPanelPlaceholder;
 
-    //    @FXML
-    //    private StackPane ingredientListPanelPlaceholder;
-
     @FXML
     private StackPane statusbarPlaceholder;
 
@@ -188,12 +185,6 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-
-            //if (commandText.startsWith("i-list")) {
-            //    ingredientResultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            //} else {
-            //    resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
-            //}
 
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
