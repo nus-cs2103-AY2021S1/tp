@@ -82,17 +82,13 @@ public class Semester {
      * Returns the successor of a given Semester. A next semester should be the second semester of the academic year if
      * the given semester is in sem 1, otherwise it should be the first semester of the next academic year.
      *
-     * @param semester the {@code Semester} to compute the next Semester for
+     * @return the successor of this semester
      */
-    public static Semester getNextSemester(Semester semester) {
-        requireAllNonNull(semester);
-        switch (semester.semesterNumber.value) {
-        case 1:
-            return new Semester(semester.academicYear, new SemesterNumber(2));
-        case 2:
-            return new Semester(new AcademicYear(semester.academicYear.value + 1), new SemesterNumber(1));
-        default:
-            throw new AssertionError("This statement should not be reachable");
+    public Semester getNextSemester() {
+        if (semesterNumber.value == 1) {
+            return new Semester(academicYear, new SemesterNumber(2));
+        } else {
+            return new Semester(new AcademicYear(academicYear.value + 1), new SemesterNumber(1));
         }
     }
 
