@@ -86,7 +86,7 @@ public class AssignCommandTest {
 
         Project projectCopy = new Project(project.getProjectName(), project.getDeadline(),
                 project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
-                new HashMap<>(), project.getTasks(), project.getMeetings());
+                new HashMap<>(), project.getTasks());
         projectCopy.addParticipation(ALICE);
         // TODO: After refining Participation getters and setters this part can be done fully via getters
         expectedModel.setProject(project, projectCopy);
@@ -114,7 +114,7 @@ public class AssignCommandTest {
 
         Project projectCopy = new Project(project.getProjectName(), project.getDeadline(),
                 project.getRepoUrl(), project.getProjectDescription(), project.getProjectTags(),
-                new HashMap<>(), project.getTasks(), project.getMeetings());
+                new HashMap<>(), project.getTasks());
         projectCopy.addParticipation(ALICE);
         expectedModel.setProject(project, projectCopy);
         expectedModel.enter(projectCopy);

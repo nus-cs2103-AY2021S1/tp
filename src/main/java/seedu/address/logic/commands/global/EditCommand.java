@@ -23,7 +23,6 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectDescription;
@@ -107,10 +106,9 @@ public class EditCommand extends Command {
         Set<ProjectTag> updatedProjectTags = editProjectDescriptor.getProjectTags().orElse(
             projectToEdit.getProjectTags());
         Set<Task> updatedTasks = editProjectDescriptor.getTasks().orElse(projectToEdit.getTasks());
-        Set<Meeting> updatedMeetings = editProjectDescriptor.getMeetings().orElse(projectToEdit.getMeetings());
 
         return new Project(updatedProjectName, updatedDeadline, updatedRepoUrl, updatedProjectDescription,
-                updatedProjectTags, new HashMap<>(), updatedTasks, updatedMeetings);
+                updatedProjectTags, new HashMap<>(), updatedTasks);
     }
 
     @Override
@@ -142,7 +140,6 @@ public class EditCommand extends Command {
         private ProjectDescription projectDescription;
         private Set<ProjectTag> projectTags;
         private Set<Task> tasks;
-        private Set<Meeting> meetings;
 
         public EditProjectDescriptor() {}
 
@@ -230,23 +227,6 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Task>> getTasks() {
             return (tasks != null) ? Optional.of(Collections.unmodifiableSet(tasks)) : Optional.empty();
-        }
-
-        /**
-         * Sets {@code tasks} to this object's {@code tasks}.
-         * A defensive copy of {@code tasks} is used internally.
-         */
-        public void setMeetings(Set<Meeting> meetings) {
-            this.meetings = (meetings != null) ? new HashSet<>(meetings) : null;
-        }
-
-        /**
-         * Returns an unmodifiable task set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tasks} is null.
-         */
-        public Optional<Set<Meeting>> getMeetings() {
-            return (meetings != null) ? Optional.of(Collections.unmodifiableSet(meetings)) : Optional.empty();
         }
 
         @Override

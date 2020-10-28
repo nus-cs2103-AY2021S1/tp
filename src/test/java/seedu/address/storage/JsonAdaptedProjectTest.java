@@ -36,9 +36,6 @@ public class JsonAdaptedProjectTest {
     private static final List<JsonAdaptedTask> VALID_TASKS = BRICK.getTasks().stream()
             .map(JsonAdaptedTask::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedMeeting> VALID_MEETINGS = BRICK.getMeetings().stream()
-            .map(JsonAdaptedMeeting::new)
-            .collect(Collectors.toList());
     private static final List<JsonParticipation> VALID_TEAMMATES = BRICK.getParticipationList().stream()
             .map(JsonParticipation::new)
             .collect(Collectors.toList());
