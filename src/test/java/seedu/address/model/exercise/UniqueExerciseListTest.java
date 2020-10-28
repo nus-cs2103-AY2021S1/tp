@@ -68,9 +68,9 @@ class UniqueExerciseListTest {
     public void setPerson_editedPersonIsSamePerson_success() {
         uniqueExerciseList.add(PUSH_UP);
         uniqueExerciseList.setPerson(PUSH_UP, PUSH_UP);
-        uniqueExerciseList expecteduniqueExerciseList = new uniqueExerciseList();
-        expecteduniqueExerciseList.add(PUSH_UP);
-        assertEquals(expecteduniqueExerciseList, uniqueExerciseList);
+        uniqueExerciseList expectedUniqueExerciseList = new uniqueExerciseList();
+        expectedUniqueExerciseList.add(PUSH_UP);
+        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
 
 
@@ -80,9 +80,9 @@ class UniqueExerciseListTest {
         Person editedPUSH_UP = new PersonBuilder(PUSH_UP).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueExerciseList.setPerson(PUSH_UP, editedPUSH_UP);
-        uniqueExerciseList expecteduniqueExerciseList = new uniqueExerciseList();
-        expecteduniqueExerciseList.add(editedPUSH_UP);
-        assertEquals(expecteduniqueExerciseList, uniqueExerciseList);
+        uniqueExerciseList expectedUniqueExerciseList = new uniqueExerciseList();
+        expectedUniqueExerciseList.add(editedPUSH_UP);
+        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
     */
 
@@ -90,9 +90,9 @@ class UniqueExerciseListTest {
     public void setExercise_editedExerciseHasDifferentIdentity_success() {
         uniqueExerciseList.add(PUSH_UP);
         uniqueExerciseList.updateExercise(PUSH_UP, SIT_UP);
-        UniqueExerciseList expecteduniqueExerciseList = new UniqueExerciseList();
-        expecteduniqueExerciseList.add(SIT_UP);
-        assertEquals(expecteduniqueExerciseList, uniqueExerciseList);
+        UniqueExerciseList expectedUniqueExerciseList = new UniqueExerciseList();
+        expectedUniqueExerciseList.add(SIT_UP);
+        assertEquals(expectedUniqueExerciseList, uniqueExerciseList);
     }
 
     @Test
@@ -121,7 +121,7 @@ class UniqueExerciseListTest {
     }
 
     @Test
-    public void setExercises_nulluniqueExerciseList_throwsNullPointerException() {
+    public void setExercises_nullUniqueExerciseList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueExerciseList.setExercises((UniqueExerciseList) null));
     }
 
@@ -174,7 +174,7 @@ class UniqueExerciseListTest {
         uniqueExerciseList.add(PUSH_UP);
         assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(PUSH_UP.getDate().value));
         assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value),
-                Integer.parseInt(PUSH_UP.getCalories().value));
+                PUSH_UP.getCalories().isPresent() ? Integer.parseInt(PUSH_UP.getCalories().get().value) : 0);
     }
 
     @Test
@@ -186,6 +186,6 @@ class UniqueExerciseListTest {
         assertEquals(uniqueExerciseList.getCaloriesByDay().get(PUSH_UP.getDate().value), 0);
         assertTrue(uniqueExerciseList.getCaloriesByDay().containsKey(SIT_UP.getDate().value));
         assertEquals(uniqueExerciseList.getCaloriesByDay().get(SIT_UP.getDate().value),
-                Integer.parseInt(SIT_UP.getCalories().value));
+                SIT_UP.getCalories().isPresent() ? Integer.parseInt(SIT_UP.getCalories().get().value) : 0);
     }
 }

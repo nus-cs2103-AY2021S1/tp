@@ -4,11 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.ExerciseModel.PREDICATE_SHOW_ALL_EXERCISE;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -19,6 +24,8 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.ExerciseTag;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
 
 
@@ -36,12 +43,17 @@ public class UpdateExerciseCommand extends CommandForExercise {
             + "[" + PREFIX_NAME + "EXERCISE] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_CALORIES + "CALORIES]\n"
+            + "[" + PREFIX_CALORIES + "CALORIES] "
+            + "[" + PREFIX_MUSCLES + "MUSCLES_WORKED] "
+            + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Push up"
-            + PREFIX_DESCRIPTION + "30"
-            + PREFIX_DATE + "09-07-2020"
-            + PREFIX_CALORIES + "260";
+            + PREFIX_NAME + "Push up "
+            + PREFIX_DESCRIPTION + "30 "
+            + PREFIX_DATE + "09-07-2020 "
+            + PREFIX_CALORIES + "260 "
+            + PREFIX_MUSCLES + "chest,arm "
+            + PREFIX_TAG + "home "
+            + PREFIX_TAG + "gym";;
 
     public static final String MESSAGE_EDIT_EXERCISE_SUCCESS = "Edited Exercise: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -95,9 +107,14 @@ public class UpdateExerciseCommand extends CommandForExercise {
         Description updatedDescription = editExerciseDescriptor.getDescription()
                 .orElse(exerciseToEdit.getDescription());
         Date updatedDate = editExerciseDescriptor.getDate().orElse(exerciseToEdit.getDate());
-        Calories updatedCalories = editExerciseDescriptor.getCalories().orElse(exerciseToEdit.getCalories());
+        Calories updatedCalories = editExerciseDescriptor.getCalories()
+                                    .orElse(exerciseToEdit.getCalories().orElse(null));
+        List<Muscle> updatedMusclesWorked = editExerciseDescriptor.getMusclesWorked()
+                                                .orElse(exerciseToEdit.getMusclesWorked().orElse(null));
+        Set<ExerciseTag> updatedTags = editExerciseDescriptor.getTags().orElse(exerciseToEdit.getExerciseTags());
 
-        return new Exercise(updatedName, updatedDescription, updatedDate, updatedCalories);
+        return new Exercise(updatedName, updatedDescription, updatedDate,
+                            updatedCalories, updatedMusclesWorked, updatedTags);
     }
 
     @Override
@@ -128,8 +145,11 @@ public class UpdateExerciseCommand extends CommandForExercise {
         private Date date;
 
         // data field
+        // Functional dependencies: see Exercise class
         private Description description;
         private Calories calories;
+        private List<Muscle> musclesWorked;
+        private Set<ExerciseTag> tags;
 
         public EditExerciseDescriptor() {
         }
@@ -143,13 +163,15 @@ public class UpdateExerciseCommand extends CommandForExercise {
             setDate(toCopy.date);
             setDescription(toCopy.description);
             setCalories(toCopy.calories);
+            setMusclesWorked(toCopy.musclesWorked);
+            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, date, description, calories);
+            return CollectionUtil.isAnyNonNull(name, date, description, calories, musclesWorked, tags);
         }
 
         public void setName(Name name) {
@@ -184,6 +206,31 @@ public class UpdateExerciseCommand extends CommandForExercise {
             return Optional.ofNullable(calories);
         }
 
+        public void setMusclesWorked(List<Muscle> musclesWorked) {
+            this.musclesWorked = musclesWorked;
+        }
+
+        public Optional<List<Muscle>> getMusclesWorked() {
+            return Optional.ofNullable(musclesWorked);
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<ExerciseTag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<ExerciseTag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -200,9 +247,9 @@ public class UpdateExerciseCommand extends CommandForExercise {
             UpdateExerciseCommand.EditExerciseDescriptor e = (UpdateExerciseCommand.EditExerciseDescriptor) other;
 
             return getName().equals(e.getName())
-                    && getDate().equals(e.getDate())
                     && getDescription().equals(e.getDescription())
-                    && getCalories().equals(e.getCalories());
+                    && getDate().equals(e.getDate())
+                    && getTags().equals(e.getTags());
         }
     }
 }

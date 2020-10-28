@@ -1,6 +1,10 @@
 package seedu.address;
 
+import static seedu.address.model.util.SampleDataUtil.getExerciseTagSet;
+
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.Config;
@@ -13,6 +17,7 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
 import seedu.address.storage.JsonExerciseBookStorage;
 import seedu.address.storage.StorageForExercise;
@@ -44,20 +49,22 @@ public class TestDriver {
                     new File("testingForExercise.json").toPath());
             ExerciseBook exerciseBook = new ExerciseBook();
             exerciseBook.resetData(jStorage.readExerciseBook().get());
+            ArrayList<Muscle> musclesWorked = new ArrayList<Muscle>(Arrays.asList(Muscle.CHEST, Muscle.LEGS));
+
             exerciseBook.addExercise(new Exercise(new Name("Hello"), new Description("Test 1"),
-                    new Date("10-10-20"), new Calories("100")));
+                    new Date("10-10-2020"), new Calories("101"), musclesWorked, getExerciseTagSet("gym")));
             exerciseBook.addExercise(new Exercise(new Name("Hello1"), new Description("Test 2"),
-                    new Date("10-10-20"), new Calories("100")));
+                    new Date("10-10-2021"), new Calories("102"), musclesWorked, getExerciseTagSet("gym")));
             exerciseBook.addExercise(new Exercise(new Name("Hello2"), new Description("Test 3"),
-                    new Date("10-10-30"), new Calories("100")));
+                    new Date("10-10-2022"), new Calories("103"), musclesWorked, getExerciseTagSet("home")));
             exerciseBook.addExercise(new Exercise(new Name("Hello3"), new Description("Test 4"),
-                    new Date("10-10-40"), new Calories("100")));
+                    new Date("10-10-2023"), new Calories("104"), musclesWorked, getExerciseTagSet("home")));
             exerciseBook.addExercise(new Exercise(new Name("Hello4"), new Description("Test 5"),
-                    new Date("10-10-50"), new Calories("100")));
+                    new Date("10-10-2024"), new Calories("105"), musclesWorked, getExerciseTagSet("home, gym")));
             jStorage.saveExerciseBook(exerciseBook);
             System.out.println(exerciseBook.toString());
         } catch (Exception err) {
-            System.out.println("Exceptions");
+            System.out.println(err.toString());
         }
     }
 }
