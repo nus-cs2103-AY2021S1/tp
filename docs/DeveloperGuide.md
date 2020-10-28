@@ -27,25 +27,30 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
 [**`Commons`**](#common-classes) represents a collection of classes used by multiple other components.
 
-The rest of the App consists of four components.
+The rest of the App consists of five components.
 
 * [**`UI`**](#ui-component): The UI of the App.
 * [**`Logic`**](#logic-component): The command executor.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
+* [**`State`**](#state-component): Holds the states of the App while the app is active.
 
-Each of the four components,
+The first four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
 * exposes its functionality using a concrete `{Component Name}Manager` class (which implements the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
+For state component, it is managed by two classes:
+* `StateManager` class which provides general access to the state of the App.
+* `UIStateManager` class which provides the GUI access to the state of the app.
+
+Example of architecture: The `Logic` component (see the class diagram given below) defines its API in the `Logic.java` interface and exposes its functionality using the `LogicManager.java` class which implements the `Logic` interface.
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
@@ -62,16 +67,24 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/Ui.java)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
+* Listens for changes to `State` data so that the UI can be updated with the modified data.
+
+The example for observing states is illustrated with the Sequence Diagram below.
+The `MainWindow` observes the `UiStateManager` for any changes to its internal state.
+Upon invoking `open case 1`, the state changes and the `MainWindow` if notified by its `Observer`.
+It then retrieves the information it requires and displays on its display panel.
+
+![Structure of the Ui Component when updating state](images/UiStateSequenceDiagram.png)
 
 ### Logic component
 
@@ -80,52 +93,74 @@ The `UI` component,
 **API** :
 [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `PivotParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
-1. The command execution can affect the `Model` (e.g. adding a person).
+1. The command execution can affect the `Model` (e.g. deleting a case).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
-Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete case 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete case 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+
+The case below follows the same execution above. However, the AddCommandParser further calls the AddCaseCommandParser which returns the respective AddCaseCommand, which has been extended from the AddCommand Class.
+
+![Interactions Inside the Logic Component for the `add case t:Stolen TV` Command](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` and `AddCaseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 ### Model component
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](hhttps://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/model/Model.java)
 
 The `Model`,
 
 * stores a `UserPref` object that represents the user’s preferences.
 * stores the address book data.
-* exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* exposes an unmodifiable `ObservableList<Case>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * does not depend on any of the other three components.
-
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
-
 
 ### Storage component
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
-* can save the address book data in json format and read it back.
+* can save Pivot's data in json format and read it back.
+
+### State component
+
+![Structure of the State Component](images/StateClassDiagram.png)
+
+**API** : [`StateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/logic/state/StateManager.java), [`UiStateManager.java`](https://github.com/AY2021S1-CS2103-F09-2/tp/blob/master/src/main/java/seedu/pivot/ui/UiStateManager.java)
+
+The `StateManager` component,
+* can set the state for an opened `Case` in the app, denoted by its `Index`.
+* can reset the state.
+* can return the state.
+* can request the `UiStateManager` to refresh its state.
+
+The `UiStateManager` component,
+* can set the state for an opened `Case` in the app, denoted by its `Index`.
+* can reset the state.
+* can refresh its state.
+
+When the `StateManager` modifies its State, it will also call upon `UiStateManager` to update its state as well.
+This triggers any observation set on the respective `State` managers by the other components.
+One such example can be found in the `UI` component.
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.pivot.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -133,41 +168,146 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Open Case/Return feature
+The `open case` command allows the user to open an investigation case listed on the `Main Page` in the GUI.
+PIVOT then extracts and displays the key information about the `Case` in the `Case Page` Panel.
+
+#### Implementation: Open Case
+The `open case` mechanism is facilitated by `OpenCaseCommand`. It extends abstract class `OpenCommand` and contains a target `Index` of the `Case` to be opened.
+It implements `OpenCaseCommand#execute()` as required in the abstract parent class. The Sequence Diagram below shows how the `OpenCaseCommand` works.
+
+![Interactions Inside the Logic Component for the `open case 1` Command](images/OpenCaseSequenceDiagram.png)
+
+As the user invokes `open case [INDEX]`, the arguments are passed from the GUI to the `Logic` component, which is then passed to the `Parser`, implemented by `PivotParser`.
+
+In `PivotParser`, the arguments are processed and passed onto the `OpenCommandParser` to further process the arguments and create a new `OpenCaseCommand`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** TWhen the user gives an invalid `type`, such as `open suspect 1`, `OpenCommandParser` will raise and error and display the proper command format for the user.
+</div>
+
+Upon invoking `OpenCaseCommand#execute()`, the class will extract the `Case` that is to be opened, and update the state in `StateManager`.
+Upon observing a change in state, the GUI will then extract the `Case` and update its display panel with the case information.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** When the user gives an invalid `Index`, such as `open case -1`, `OpenCaseCommand` will raise and error and display the proper command format for the user.
+</div>
+
+#### Implementation: Return
+The `return` mechanism is facilitated by `ReturnCommand`.
+It allows the user to close the `Case Page` panel and return to the `Main Page`.
+Its implementation is similar to the `OpenCaseCommand` except it resets the state in `StateManager` instead of setting a state.
+
+![Interactions Inside the Logic Component for the `return` Command](images/ReturnSequenceDiagram.png)
+
+### Including Documents to PIVOT
+
+#### Reference class
+The `Reference` class represents a file location in the directory `./references` of the program. A `reference` only
+exists if there is a file present at the file location in the user's local directory. The validity of a
+`reference` depends on the user's operating system and the different acceptable file names. A `reference` object must
+have a valid file name on creation.
+
+#### Document class
+The `Document` class represents a file on the user's local computer. It contains a `name` for easy viewing
+and a `reference` to the file location. It is used for tracking files that are stored in PIVOT and for opening
+of documents.
+<br>
+![Structure of the Document Component](images/DocumentClassDiagram.png)
+
+The documents are stored in a list for a particular case and you can only manipulate
+documents(adding, deleting, opening) while inside a `case`. This is because the program stores a state of which
+interface (main page or case) the user is at and will manipulate the documents according to the `document list` in that
+current `case`.
+
+#### Adding a Document
+When a user executes `add doc n:name r:reference.txt`, to add a document with the specified name and file reference
+to the current "opened" case in the state, `addDocumandCommandParser` will be invoked to parse the
+name (prefixed with n:) and reference (prefixed with r:) inputs. The program must be at an "opened" case at this point.
+ <br><br>
+`addDocumandCommandParser` will check for a valid name as well as a valid
+reference that exists in the `./references` directory. This is to prevent a user from creating a document when the
+program is active when they have yet to include the file in the program's directory. The appropriate error message
+should be returned for a better user experience. It will then successfully create a `Document` and
+return `addDocumandCommand`
+<br><br>
+`addDocumandCommand` will get the current `case` in the program `state` and adds the new `Document` to this `case`.
+It will check for duplicated documents at this point as this is where the program accesses the list of documents in the
+current state. The `model` will then be updated with the updated `case`.
+
+The following sequence diagram shows adding a document to the current case: <br>
+![Adding a document to current case](images/AddDocumentDiagram.png)
+
+#### Deleting a Document
+Deleting a document works about the same as adding a document. When a user executes `delete doc 2`, to delete the
+second `document` in the list of documents of the current "opened" case in the state. The program must be at an
+"opened" case at this point.`DeleteCommandParser` parses the given index as a `Index` object and gets the `case index`
+in the current state. It returns `DeleteDocumentCommand` if the inputs are valid.
+<br><br>
+`DeleteDocumentCommand` gets the list of documents in the current case using the `case index` and checks if the
+input `index` is within bounds. The check occurs in the `Command` rather than `DeleteDocumentParser` so that we
+can distinguish between `ParseException` and `CommandException`. The command then removes the specified `document`
+in the list and updates the `model`.
+
+The following activity diagram shows a successful delete document operation at a case page: <br>
+![Deleting a document to current case](images/DeleteDocumentDiagram.png)
+
+#### Design considerations
+##### Aspect: For `Reference` object, separate validity (of the String) and existence (of the actual file path) checks.
+* **Alternative 1 (current choice):** A reference object can be both valid but doesn't exists at the same time.
+   - Pros: A document file deletion on the user's local machine will not affect loading the current cases in the Json
+   file
+   - Cons: More prone to bugs
+
+* **Alternative 2:** A reference object must be both valid and exists to be created.
+     - Pros: A document is only created when we know there is a valid and existing `Reference`. Easier for testing.
+     - Cons: The program cannot load if there is a missing file (due to external user deletion) which was previously
+     saved in the Json file
+     
+##### Aspect: Integrate `ReferenceStorage` with current Storage Design
+* **Alternative 1 (current choice):** Separate `ReferenceStorage` to handle all `Reference` and storage interactions.
+   - Pros: Easier to implement and increases cohesion.
+   - Cons: More classes and code in the program
+
+* **Alternative 2:** Make use of `Config.java` and `UserPrefsStorage` to integrate `ReferenceStorage` such as saving
+default file paths.
+     - Pros: Makes use of existing infrastructure, lesser code and possibly lesser code duplication.
+     - Cons: Increased coupling, more prone to bugs and harder to test
+
+### Undo feature (Not yet implemented)
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo mechanism is facilitated by `VersionedPivot`. It extends `Pivot` with an undo history, stored internally as an `pivotStateStack`.
+`pivotStateStack` stores the entire Pivot at any point. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedPivot#commit()` — Saves the current Pivot state in its history.
+* `VersionePivot#undo()` — Restores the previous Pivot state from its history.
+* `VersionedPivot#redo()` — Restores a previously undone Pivot state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitPivot()` and `Model#undoPivot()` respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+Given below is an example usage scenario and how the undo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedPivot` will be initialized with the initial Pivot state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th case in Pivot. The `delete` command calls `Model#commitPivot()`, causing the modified state of Pivot after the `delete 5` command executes to be saved in the `pivotStateStack`.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add case t:Lost Wallet …​` to add a new case. The `add case` command also calls `Model#commitPivot()`, causing another modified Pivot state to be saved into the `pivotStateStack`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPivot()`, so the Pivot state will not be saved into the `pivotStateStack`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the case was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoPivot()`, which will pop the current state from the `pivotStateStack`, and return the previous Pivot state, restoring Pivot to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the size of the `pivotStateStack` is 1, it contains only the initial Pivot state, then there are no previous Pivot states to restore. The `undo` command uses `Model#canUndoPivot()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -180,19 +320,9 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify Pivot, such as `list`, will usually not call `Model#commitPivot()` or `Model#undoPivot()`. Thus, the `pivotStateStack` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -200,15 +330,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Design consideration:
 
-##### Aspect: How undo & redo executes
+##### Aspect: How undo executes
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire Pivot.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 2:** Individual command knows how to undo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the case being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -245,19 +375,19 @@ _{Explain here how the data archiving feature will be implemented}_
 * is reasonably comfortable using CLI apps
 * has a basic understanding of file paths to manage his/her files
 
-**Value proposition**:  
+**Value proposition**:
 
-A lot of detectives use physical folders, whiteboards to consolidate their investigation information. 
-This uses up a lot of physical resources such as printing papers. 
-There may also exist cluttered information across multiple cases. 
-This leads to disorganisation of evidence and documents during investigations, 
-which makes it difficult to link the investigation together. 
-Furthermore, physically looking through archive files can be time-consuming, and 
+A lot of detectives use physical folders, whiteboards to consolidate their investigation information.
+This uses up a lot of physical resources such as printing papers.
+There may also exist cluttered information across multiple cases.
+This leads to disorganisation of evidence and documents during investigations,
+which makes it difficult to link the investigation together.
+Furthermore, physically looking through archive files can be time-consuming, and
 they might miss out important information in the process.
 
-PIVOT can help to better organise investigation cases and 
-group the relevant information on a digital platform. 
-This helps investigators to manage and easily locate the required information. 
+PIVOT can help to better organise investigation cases and
+group the relevant information on a digital platform.
+This helps investigators to manage and easily locate the required information.
 It also links up relations between people for better visualisation of the case so that detectives will not miss any information.
 
 PIVOT can assist to manage investigation cases faster than a typical mouse/GUI driven app.
@@ -308,7 +438,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. The title is empty.
     * 1a1. PIVOT shows an error message.
-    
+
 	  Use case ends.
 
 **Use case: List Investigation Case**
@@ -331,12 +461,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
-  
+
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 1.
 
 **Use case: Open Investigation Case**
@@ -351,12 +481,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
-  
+
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 1.
 
 **Use case: Tag Investigation Case**
@@ -373,17 +503,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
-  
+
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 1.
-      
+
 * 5a. The given tag is invalid.
     * 5a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 5.
 
 **Use case: Add Description for an Investigation Case**
@@ -400,17 +530,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 * 2a. The list is empty.
-  
+
   Use case ends.
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 1.
-      
+
 * 5a. The given description is empty.
     * 5a1. PIVOT shows an error message.
-      
+
       Use case resumes at step 5.
 
 **Use case: Add Document to Investigation Case**
@@ -418,23 +548,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to add a document to investigation case, specifies a document title and reference
 2. PIVOT adds a new document to the investigation case
-   
+
    Use case ends.
 
 **Extensions**
 * 1a. The title is empty.
     * 1a1. PIVOT shows an error message.
-    
+
       Use case resumes at step 1.
 
 * 1b. The reference is empty.
     * 1b1. PIVOT shows an error message.
-    
+
       Use case resumes at step 1.
-    
+
 * 1c. The reference is invalid.
     * 1c1. PIVOT shows an error message.
-    
+
       Use case resumes at step 1.
 
 **Use case: List Document related to Investigation Case**
@@ -462,7 +592,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-    
+
       Use case resumes at step 1.
 
 **Use case: Open Document**
@@ -482,14 +612,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
 
 * 4a. The specified document does not exist in the saved reference.
     * 4a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
-        
+
 **Use case: Add Person[Suspect/Witness/Victim] in Investigation Case**
 
 **MSS**
@@ -509,12 +639,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
 
 * 5a. The given category of person to add is invalid.
     * 5a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
 
 **Use case: List Person[Suspect/Witness/Victim] in Investigation Case**
@@ -542,7 +672,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
     * 3a1. PIVOT shows an error message.
-    
+
         Use case resumes at step 1.
 
 **Use case: Return to the Main Page**

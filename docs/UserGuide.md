@@ -25,9 +25,9 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all investigation cases.
+   * **`list case`** : Lists all investigation cases.
 
-   * **`case`**`Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
+   * **`add case`**`t:Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
 
    * **`delete`**`case 3` : Deletes the 3rd case shown in the current list.
 
@@ -43,39 +43,47 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `[UPPER_CASE]` (with square brackets) are the parameters to be supplied by the user.<br>
-  e.g. in `case [TITLE]`, `[TITLE]` is a parameter which can be used as `case Kovan double murders`.
+* Words in `UPPER_CASE` are parameters supplied by the user. Words in `[SQUARE_BRACKETS]`(with square brackets) optional parameters to be supplied by the user.<br>
+  e.g. in `add case t:TITLE`, `TITLE` is a parameter which can be used as `add case t:Kovan double murders`.
 </div>
 
 ### Main page
 The main page of the application when the user first enters the app.
 
-#### Adding an active investigation case: `case [TITLE]`
-Adds a new investigation case which has the active tag by default.
+#### Adding an active investigation case: `add case t:TITLE [s:STATUS] [t/TAG]`
+Adds a new investigation case which has the active status by default. The user can provide 3 status types:
 
-Format: `case [TITLE]`
+1. `ACTIVE`
 
-Example: `case Kovan double murders` creates a new investigation case with the title “Kovan double murders”.
+2. `CLOSED`
+
+3. `COLD`
+
+User can tag the case they add. Tags cannot contain whitespaces.
+
+Format: `add case t:[TITLE] [s:STATUS] [t/TAG]`
+
+Example: `add case t:Kovan double murders s:Closed t/SerialKiller` creates a new investigation case with the title “Kovan double murders”, the status initalized as a closed case, tagged as SerialKiller.
 
 #### List all investigation cases: `list case`
 Lists all available investigation cases in PIVOT.
 
 Format: `list case`
 
-#### Delete an investigation case: `delete case [CASE_NO]`
+#### Delete an investigation case: `delete case CASE_NO`
 Deletes the specified investigation case.
 
-Format: `delete case [CASE_NO]`
+Format: `delete case CASE_NO`
 
-Example: `list` followed by `delete case 2` deletes the 2nd case in the investigation list.
+Example: `list case` followed by `delete case 2` deletes the 2nd case in the investigation list.
 
-#### Open an investigation case: `open case [CASE_NO]`
+#### Open an investigation case: `open case CASE_NO`
 Enters the specified investigation case where users can add more information regarding the case
 (see Investigation Case Page).
 
-Format:  `open case [CASE_NO]`
+Format:  `open case CASE_NO`
 
-Example: `list` followed by `open case 1` opens the 1st case in the investigation list.
+Example: `list case` followed by `open case 1` opens the 1st case in the investigation list.
 
 #### Exit application: `exit`
 Exits the application.
@@ -83,26 +91,28 @@ Exits the application.
 ### Investigation Case page
 The page of the application when the user opens a specified investigation case.
 
-#### Add investigation case description: `desc [DESC]`
+#### Add investigation case description: `add desc d:DESC`
 Adds the description of the investigation
 
-Format: `desc [DESC]`
+Format: `add desc d:DESC`
 
-Example: `desc Kovan double murders of twins xxx and yyy` updates the description of this investigation case to “Kovan double murders of twins xxx and yyy”.
+Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this investigation case to “Kovan double murders of twins xxx and yyy”.
 
-#### Edit investigation case tag: `tag [STATUS]`
+#### Edit investigation case tag: `tag STATUS`
 Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
 
-Format: `tag [STATUS]`
+Format: `tag STATUS`
 
 Example: `tag CLOSED` updates the tag status of this investigation case to “CLOSED”.
 
-#### Adding a document related to the case: `doc [TITLE] [RELATIVE FILEPATH]`
+#### Adding a document related to the case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document that is related to the investigation case.
 
-Format: `doc [TITLE]`
+Format: `add doc n:TITLE r:FILE_NAME`
 
-Example: `doc Case Details` adds a new document with title “Case Details” to the investigation case.
+Example: `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
+
+This document must be manually added to the references folder provided before it can be added to the PIVOT system.
 
 #### List all documents related to the case: `list doc`
 
@@ -110,28 +120,28 @@ Lists all added documents that are related to the investigation case.
 
 Format: `list doc`
 
-#### Delete document: `delete doc [DOC_NO] `
+#### Delete document: `delete doc DOC_NO `
 Deletes the specified document reference.
 
-Format: `delete doc [DOC_NO]`
+Format: `delete doc DOC_NO`
 
 Example: `delete doc 0`
 
-#### Open document: `open doc [DOC_NO]`
+#### Open document: `open doc DOC_NO`
 
 Opens the specified document reference.
 
-Format: `open doc [DOC_NO]`
+Format: `open doc DOC_NO`
 
 Example: `open doc 0`
 
-#### Adding a Suspect related to the case: `suspect [NAME]`
+#### Adding a Suspect related to the case: `add suspect n:NAME`
 
 Adds a new suspect related to the investigation case.
 
-Format: `suspect [NAME]`
+Format: `add suspect n:NAME`
 
-Example: `suspect John Doe`
+Example: `add suspect n:John Doe`
 
 #### List all suspects related to the case: `list suspect`
 
@@ -139,21 +149,21 @@ Lists all added suspects that are related to the investigation case.
 
 Format: `list suspect`
 
-#### Delete suspect: `delete suspect [SUSPECT_NO]`
+#### Delete suspect: `delete suspect SUSPECT_NO`
 
 Deletes the specified suspect from the list of suspects.
 
-Format: `delete suspect [SUSPECT_NO]`
+Format: `delete suspect SUSPECT_NO`
 
 Example: `delete suspect 0`
 
-#### Adding a victim related to the case: `victim [NAME]`
+#### Adding a victim related to the case: `add victim n:NAME`
 
 Adds a new victim that is related to the investigation case.
 
-Format: `victim [NAME]`
+Format: `add victim n:NAME`
 
-Example: `victim James Lee`
+Example: `add victim n:James Lee`
 
 #### List all victims related to the case: `list victim`
 
@@ -161,21 +171,21 @@ Lists all added victims that are related to the investigation case.
 
 Format: `list victim`
 
-#### Delete victim: `delete victim [VICTIM_NO]`
+#### Delete victim: `delete victim VICTIM_NO`
 
 Deletes the specified victim from the list of victims.
 
-Format: `delete victim [VICTIM_NO]`
+Format: `delete victim VICTIM_NO`
 
 Example: `delete victim 0`
 
-#### Add a witness related to the case: `witness [NAME]`
+#### Add a witness related to the case: `add witness n:NAME`
 
 Adds a new witness that is related to the investigation case.
 
-Format: `witness [NAME]`
+Format: `add witness n:NAME`
 
-Example: `witness John Doe`
+Example: `add witness n:John Doe`
 
 #### List all witness related to the case: `list witness`
 
@@ -183,11 +193,11 @@ Lists all added witnesses that are related to the investigation case.
 
 Format: `list witness`
 
-#### Delete suspect: `delete witness [WITNESS_NO]`
+#### Delete suspect: `delete witness WITNESS_NO`
 
 Deletes the specified witness from the list of witnesses.
 
-Format: `delete witness [WITNESS_NO]]`
+Format: `delete witness WITNESS_NO`
 
 Example: `delete witness 0`
 
@@ -222,32 +232,32 @@ User data automatically saves when there is a change in data
 
 #### Main Page Commands
 
-|Command            | Format                        | Association   |
-| ----------------- | ----------------------------- | ------------- | 
-|**case**           | `case [TITLE]`                | Investigation |
-|**list**           | `list case`                   | Investigation |
-|**delete**         | `delete case [CASE_NO]`       | Investigation |
-|**open**           | `open case [CASE_NO]`         | Investigation |
-|**exit**           | `exit`                        | General       |
+|Command            | Format                                | Association   |
+| ----------------- | ------------------------------------- | ------------- |
+|**case**           | `add case t:TITLE [s:STATUS] [t/TAG]` | Investigation |
+|**list**           | `list case`                           | Investigation |
+|**delete**         | `delete case CASE_NO`                 | Investigation |
+|**open**           | `open case CASE_NO`                   | Investigation |
+|**exit**           | `exit`                                | General       |
 
 #### Investigation Page Commands
 
 | Command           | Format                        | Association   |
 | ----------------- | ----------------------------- | ------------- |
-|**desc**           | `desc [DESC]`                 | Investigation |
-|**tag**            | `tag [STATUS]`                | Investigation |
-|**document**       | `doc [TITLE]`                 | Document      |
+|**desc**           | `add desc d:DESC`             | Investigation |
+|**tag**            | `tag STATUS`                  | Investigation |
+|**document**       | `add doc t:TITLE r:FILE_NAME` | Document      |
 |**list doc**       | `list doc`                    | Document      |
-|**delete doc**     | `delete doc [DOC_NO]`         | Document      |
-|**open doc**       | `open doc [DOC_NO]`           | Document      |
-|**suspect**        | `suspect [NAME]`              | Suspect       |
+|**delete doc**     | `delete doc DOC_NO`           | Document      |
+|**open doc**       | `open doc DOC_NO`             | Document      |
+|**suspect**        | `add suspect n:NAME`          | Suspect       |
 |**list suspect**   | `list suspect`                | Suspect       |
-|**delete suspect** | `delete suspect [SUSPECT_NO]` | Suspect       |
-|**victim**         | `victim [NAME]`               | Victim        |
+|**delete suspect** | `delete suspect SUSPECT_NO`   | Suspect       |
+|**victim**         | `add victim n:NAME`           | Victim        |
 |**list victim**    | `list victim`                 | Victim        |
-|**delete victim**  | `delete victim [VICTIM_NO]`   | Victim        |
-|**witness**        | `witness [NAME]`              | Witness       |
+|**delete victim**  | `delete victim VICTIM_NO`     | Victim        |
+|**witness**        | `add witness n:NAME`          | Witness       |
 |**list witness**   | `list witness`                | Witness       |
-|**delete witness** | `delete witness [WITNESS_NO]` | Witness       |
+|**delete witness** | `delete witness WITNESS_NO`   | Witness       |
 |**return**         | `return`                      | General       |
 |**exit**           | `exit`                        | General       |

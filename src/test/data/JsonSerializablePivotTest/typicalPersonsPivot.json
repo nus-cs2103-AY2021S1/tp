@@ -1,0 +1,103 @@
+{
+  "_comment": "PIVOT save file which contains the same Person values as in TypicalCases#getTypicalPivot()",
+  "persons" : [ {
+    "title" : "Alice Pauline Assault",
+    "description": "",
+    "status": "COLD",
+    "documents": [ {
+      "name" : "name",
+      "reference" : "test1.txt"
+    } ],
+    "witnesses": [ {
+      "name" : "Janice",
+      "gender" : "F",
+      "phone" : "",
+      "email" : "",
+      "address" : ""
+    } ],
+    "suspects": [ {
+      "name" : "Peter",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "peter@gmail.com",
+      "address" : "Blk 123"
+    } ],
+    "victims" : [ {
+      "name" : "Tom",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "tom@gmail.com",
+      "address" : "Blk 123"
+    } ],
+    "tagged" : [ "friends" ]
+  }, {
+    "title" : "Benson Meier Robbery",
+    "description": "",
+    "status": "CLOSED",
+    "documents": [ {
+      "name" : "name",
+      "reference" : "test1.txt"
+    } ],
+    "witnesses": [ {
+      "name" : "Janice",
+      "gender" : "F",
+      "phone" : "",
+      "email" : "",
+      "address" : ""
+    } ],
+    "suspects": [],
+    "victims" : [ {
+      "name" : "Tom",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "tom@gmail.com",
+      "address" : "Blk 123"
+    } ],
+    "tagged" : [ "owesMoney", "friends" ]
+  }, {
+    "title" : "Carl Kurz Fire",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ]
+  }, {
+    "title" : "Daniel Meier Shoplifting",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ "friends" ]
+  }, {
+    "title" : "Elle Meyer Shooting",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ]
+  }, {
+    "title" : "Fiona Kunz Kidnapping",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ]
+  }, {
+    "title" : "George Best Vandalism",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ]
+  } ]
+}
