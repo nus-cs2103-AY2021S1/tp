@@ -62,10 +62,10 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Hershey`.
 
 * You can choose not to include the fields in square brackets.<br>
-  e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
+  e.g `n/NAME [m/MEDICAL_CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
 
 * Fields with `…`​ after them indicate that you can enter them multiple times or omit them if unneeded.<br>
-  e.g. `[f/FEED TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
+  e.g. `[f/FEED_TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
 
 * You can enter the parameters in any order you like.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
@@ -116,7 +116,7 @@ When you get new animals assigned to you, you can use `add` to make new entries 
 important information. Compulsory entries you need to add are the animals' names, species and ID number.
 You can choose to add optional fields like medical conditions and feed times if necessary. 
 
-Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
@@ -131,7 +131,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` of animal to add must not already exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -192,7 +192,7 @@ If you forgot to add the medical conditions and/or feed times for a particular a
 append the missing information to the respective fields of the animal with the specified `ID` instead of deleting and adding
 that same animal again. `ID` here refers to the id number shown in the displayed animal list.
 
-Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+Format: `append ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
@@ -207,7 +207,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` of animal must exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -222,7 +222,7 @@ After making a mistake while entering the information of an animal in your `ZooK
 and entering all the information again, you can use this command to replace only the incorrect information in the fields
 of the animal after specifying its `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
@@ -237,7 +237,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` of animal must exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -253,7 +253,7 @@ example, you may need to find animals with the same feed times or similar medica
 You can use this command to find and list all animals in the `ZooKeep` book whose fields contain any of the specified 
 argument keywords (at least 1).
 
-Format: `find KEYWORD [MORE KEYWORDS]...`
+Format: `find KEYWORD [MORE KEYWORDS]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Keyword matching is case insensitive.
@@ -308,11 +308,11 @@ Format: `snap FILE_NAME`
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* `FILE NAME` can only contain alphanumeric characters, hyphens `-` and underscores `_`.
+* `FILE_NAME` can only contain alphanumeric characters, hyphens `-` and underscores `_`.
 
-* `FILE NAME` must be at least 1 character long and at most 100 characters long.
+* `FILE_NAME` must be at least 1 character long and at most 100 characters long.
 
-* `FILE NAME` must not already exist in the `data/snapshots` folder.
+* `FILE_NAME` must not already exist in the `data/snapshots` folder.
 </div>
 
 Example:
@@ -347,15 +347,12 @@ Action | Format, Examples
 **Exit** | `exit`
 **List** | `list`
 **Clear** | `clear`
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEED TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL_CONDITION]…​[f/FEED_TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
-**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…` <br> e.g. `append 1307 f/1900`
-**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…` <br> e.g. `replace 1307 i/2910 n/Jirachi`
-**Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
+**Append** | `append ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `append 1307 f/1900`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `replace 1307 i/2910 n/Jirachi`
+**Find** | `find KEYWORD [MORE KEYWORDS]…` <br> e.g. `find Ahmeng Buttercup Coco`
 **Sort** | `sort CATEGORY` <br> e.g. `sort name` 
 **Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
-
-
-
