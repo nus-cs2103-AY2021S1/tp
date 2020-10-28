@@ -374,15 +374,15 @@ Stock | Details
 
 Command: `note sn/sheng siong1 nt/chicken will expire soon` will add note with index 1 in note column for Stock 2. <br>
 
-![chicken note 1](images/add_note1_to_stock.png)
+![chicken note 1](images/note_img1.jpg)
 
 Command: `note sn/sheng siong1 nt/chicken order will arrive wednesday` will add note with index 2 for Stock 2. <br>
 
-![chicken note 2](images/add_note2_to_stock.png)
+![chicken note 2](images/note_img2.jpg)
 
 Command: `note sn/ntuc1 nt/banana just arrived` will add note with index 1 in note column for Stock 1. <br>
 
-![banana note 1](images/add_note1_to_banana.png)
+![banana note 1](images/note_img3.jpg)
 
 ### Deleting note(s) from stock: `notedelete`
 Deletes a note, specified by the note's index, from the stock specified by its serial number.
@@ -405,15 +405,15 @@ To delete ALL notes from a stock, note index to specify is 0.
 
 * Before: <br>
 
-![before notes](images/add_note1_to_banana.png)
+![before notes](images/note_img3.jpg)
 
 * After command: `notedelete sn/ntuc1 ni/1`: <br>
 
-![after note delete1](images/after_note_delete_1.png)
+![after note delete1](images/notedelete_img1.jpg)
 
-* After command: `notedelete sn/ntuc1 ni/0`: <br>
+* After command: `notedelete sn/sheng siong1 ni/0`: <br>
 
-![after note delete0](images/after_note_delete_0.png)
+![after note delete0](images/notedelete_img2.jpg)
 
 ### Generating statistics: `stats`
 Generates a statistical view in a pie chart depicting the target fields.
