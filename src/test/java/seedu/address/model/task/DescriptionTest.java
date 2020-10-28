@@ -14,19 +14,12 @@ public class DescriptionTest {
     }
 
     @Test
-    public void constructor_invalidDescription_throwsIllegalArgumentException() {
-        String invalidDescription = "";
-        assertThrows(IllegalArgumentException.class, () -> new Description(invalidDescription));
-    }
-
-    @Test
     public void isValidDescription() {
         // null description
         assertThrows(NullPointerException.class, () -> Description.isValidDescription(null));
 
         // invalid descriptions
-        assertFalse(Description.isValidDescription("")); // empty string
-        assertFalse(Description.isValidDescription(" ")); // spaces only
+        // No invalid descriptions
 
         // valid descriptions
         assertTrue(Description.isValidDescription("Weekly lecture"));
