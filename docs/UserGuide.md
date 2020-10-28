@@ -18,36 +18,45 @@ Welcome to the User Guide for Eva!
   * [3.3. Staff commands](#33-staff-commands)
     + [3.3.1. Add a staff: `addstaff`](#331-add-a-staff-addstaff)
     + [3.3.2. Delete a staff: `delstaff`](#332-delete-a-staff-delstaff)
-    + [3.3.3. Record leave taken by staff: `addleave`](#333-record-leave-taken-by-staff-addleave)
-    + [3.3.4. Delete leave taken by staff: `deleteleave`](#334-delete-leave-taken-by-staff-deleteleave)
-    + [3.3.5. Edit leave taken by staff: `editleave`](#335-edit-leave-taken-by-staff-editleave)
+    + [3.3.3. Edit a staff: `editstaff`](#333-edit-a-staff-editstaff)
+    + [3.3.4. Record leave taken by staff: `addleave`](#334-record-leave-taken-by-staff-addleave)
+    + [3.3.5. Delete leave taken by staff: `deleteleave`](#335-delete-leave-taken-by-staff-deleteleave)
+    + [3.3.6. Edit leave taken by staff: `editleave`](#336-edit-leave-taken-by-staff-editleave)
   * [3.4. Applicant commands](#34-applicant-commands)
     + [3.4.1 Add an applicant: `addapplicant`](#341-add-an-applicant-addapplicant)
     + [3.4.2. Delete an applicant: `delapplicant`](#342-delete-an-applicant-delapplicant)
-    + [3.4.3. Add an application: `addapplication`](#343-add-an-application-addapplication)
-    + [3.4.4. Delete an application: `deleteapplication`](#344-delete-an-application-deleteapplication)
-    + [3.4.5. Set application status: `setappstatus`](#345-set-application-status-settappstatus)
-  * [3.5. Centralised Add (Experienced users): `add`](#35-centralised-add-experienced-users-add)
-    + [3.5.1. Add a staff to application: `add s-`](#351-add-a-staff-to-application-add-s-)
-    + [3.5.2. Add a applicant to application: `add a-`](#352-add-a-applicant-to-application-add-a-)
-    + [3.5.3. Add a comment to staff in application: `add <index> s- c-`](#353-add-a-comment-to-staff-in-application-add-index-s--c-)
-    + [3.5.4. Add a comment to applicant in application: `add <index> a- c-`](#354-add-a-comment-to-applicant-in-application-add-index-a--c-)
-    + [3.5.5. Add leave to staff in application: `add <index> l/ `](#355-add-leave-to-staff-in-application-add-index-l-)
-  * [3.6. Centralised Delete (Experienced Users): `delete`](#36-centralised-delete-experienced-users-delete)
-    + [3.6.1. Delete a staff from application: `delete <index_of_staff> s-`](#361-delete-a-staff-from-application-delete-index_of_staff-s-)
-    + [3.6.2. Delete a applicant from application: `delete <index_of_applicant> a-`](#362-delete-a-applicant-from-application-delete-index_of_applicant-a-)
-    + [3.6.3. Delete a comment from staff in application: `delete <index> s- c-`](#363-delete-a-comment-from-staff-in-application-delete-index-s--c-)
-    + [3.6.4. Delete a comment from applicant in application: `delete <index> a- c-`](#364-delete-a-comment-from-applicant-in-application-delete-index-a--c-)
-    + [3.6.5. Delete leave from staff in application: `delete <index> l/ `](#365-delete-leave-from-staff-in-application-delete-index-l-)
-  * [3.7. Quick Edit (Experienced users): `edit`](#37-quick-edit-experienced-users-edit)
-    + [3.7.1. Edit a staff](#371-edit-a-staff)
-      + [3.7.1.1 Edit general information of staff : `edit INDEX s-`](#3711-edit-general-information-of-staff--edit-index-a-)
-      + [3.7.1.2 Edit comment of a staff: `edit INDEX s- c/`](#3712-edit-comment-of-a-staff-edit-index-s--c)
-    + [3.7.2 Edit an applicant](#372-edit-an-applicant)
-      + [3.7.2.1 Edit general information of staff : `edit INDEX a-`](#3721-edit-general-information-of-staff--edit-index-a-)
-      + [3.7.2.2 Edit comment of an applicant: `edit INDEX a- c/`](#3722-edit-comment-of-an-applicant-edit-index-a--c)
-      + [3.7.2.3 Edit Interview Date of an applicant: `edit INDEX a- id/`](#3723-edit-interview-date-of-an-applicant-edit-index-a--id)
-  * [3.8. Archive data files `[coming in v2.0]`](#37-archive-data-files---coming-in-v20--)
+    + [3.4.3. Edit an applicant: `editapplicant`](#343-edit-an-applicant-editapplicant)
+    + [3.4.4. Add an application: `addapplication`](#344-add-an-application-addapplication)
+    + [3.4.5. Delete an application: `deleteapplication`](#345-delete-an-application-deleteapplication)
+    + [3.4.6. Set application status: `setappstatus`](#346-set-application-status-setappstatus)
+  * [3.5. Comment commands](#35-comment-commands)
+    + [3.5.1 Add comment to a staff: `addcomment INDEX s-`](#351-add-comment-to-a-staff-addcomment-index-s-)
+    + [3.5.2 Add comment to an applicant: `addcomment INDEX a-`](#352-add-comment-to-an-applicant-addcomment-index-a-)
+    + [3.5.3 Delete comment from a staff: `deletecomment INDEX s-`](#353-delete-comment-from-a-staff-deletecomment-index-s-)
+    + [3.5.4 Delete comment from an applicant: `deletecomment INDEX a-`](#354-delete-comment-from-an-applicant-deletecomment-index-a-)
+    + [3.5.5 Edit comment on a staff: `editcomment INDEX s-`](#355-edit-comment-on-a-staff-editcomment-index-s-)
+    + [3.5.6 Edit comment on an applicant: `editcomment INDEX a-`](#356-edit-comment-on-an-applicant-editcomment-index-a-)
+  * [3.6. Centralised Add (Experienced users): `add`](#36-quick-add-experienced-users-add)
+    + [3.6.1. Add a staff to application: `add s-`](#361-add-a-staff-to-eva-add-s-)
+    + [3.6.2. Add a applicant to application: `add a-`](#362-add-a-applicant-to-eva-add-a-)
+    + [3.6.3. Add a comment to staff in application: `add <index> s- c/`](#363-add-a-comment-to-staff-in-eva-add-index-s--c)
+    + [3.6.4. Add a comment to applicant in application: `add <index> a- c/`](#364-add-a-comment-to-applicant-in-eva-add-index-a--c)
+    + [3.6.5. Add leave to staff in application: `add <index> l/ `](#365-add-leave-to-staff-in-eva-add-index-l-)
+  * [3.7. Centralised Delete (Experienced Users): `delete`](#37-quick-delete-experienced-users-delete)
+    + [3.7.1. Delete a staff from application: `delete <index_of_staff> s-`](#371-delete-a-staff-from-eva-delete-index_of_staff-s-)
+    + [3.7.2. Delete a applicant from application: `delete <index_of_applicant> a-`](#372-delete-a-applicant-from-eva-delete-index_of_applicant-a-)
+    + [3.7.3. Delete a comment from staff in application: `delete <index> s- c/`](#373-delete-a-comment-from-staff-in-eva-delete-index-s--c)
+    + [3.7.4. Delete a comment from applicant in application: `delete <index> a- c/`](#374-delete-a-comment-from-applicant-in-eva-delete-index-a--c)
+    + [3.7.5. Delete leave from staff in application: `delete <index> l/ `](#375-delete-leave-from-staff-in-eva-delete-index-l-)
+  * [3.8. Quick Edit (Experienced users): `edit`](#38-quick-edit-experienced-users-edit)
+    + [3.8.1. Edit a staff](#381-edit-a-staff)
+      + [3.8.1.1 Edit general information of staff : `edit INDEX s-`](#3811-edit-general-information-of-staff--edit-index-s-)
+      + [3.8.1.2 Edit comment of a staff: `edit INDEX s- c/`](#3812-edit-comment-of-a-staff-edit-index-s--c)
+    + [3.8.2 Edit an applicant](#382-edit-an-applicant)
+      + [3.8.2.1 Edit general information of staff : `edit INDEX a-`](#3821-edit-general-information-of-applicant--edit-index-a-)
+      + [3.8.2.2 Edit comment of an applicant: `edit INDEX a- c/`](#3822-edit-comment-of-an-applicant-edit-index-a--c)
+      + [3.8.2.3 Edit Interview Date of an applicant: `edit INDEX a- id/`](#3823-edit-interview-date-of-an-applicant-edit-index-a--id)
+  * [3.9. Archive data files `[coming in v2.0]`](#39-archive-data-files-coming-in-v20)
 - [4. FAQ](#4-faq)
 - [5. Command summary](#5-command-summary)
   * [5.1. Common](#51-common)
@@ -210,7 +219,26 @@ Format: `delstaff INDEX`
 Example:
 * `delstaff 1`
 
-#### 3.3.3. Record leave taken by staff: `addleave`
+#### 3.3.3 Edit a staff: `editstaff`
+
+Edits general details of a staff from eva (excluding leave taken)
+
+Format: `editstaff INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT]`
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* Edit of comment needs to be in required format: `c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE DESC/NEW_DESCRIPTION`
+
+</div>
+
+Example:
+* `editstaff 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
+* `editstaff 1 c/ ti/title d/10/10/2010 desc/new_description`
+
+
+#### 3.3.4. Record leave taken by staff: `addleave`
 
 Records leave taken by a staff that is in Eva. <br>
 Format: `addleave INDEX l/d/DATE [d/DATE]`
@@ -230,7 +258,7 @@ Examples:
 * `addleave 1 l/d/08/10/2020 d/10/10/2020 l/d/20/10/2020`
 * `addleave 2 l/d/10/10/2020 d/08/10/2020 l/d/09/09/2020`
 
-#### 3.3.4. Delete leave taken by staff: `deleteleave`
+#### 3.3.5. Delete leave taken by staff: `deleteleave`
 
 Removes record of leave taken by staff. <br>
 Format: `deleteleave INDEX d/DATE`
@@ -240,7 +268,7 @@ Examples:
 * `find Betsy` followed by `deleteleave 1 d/09/09/2020` deletes the leave from the 1st person in the results of the `find` command.
 * `deleteleave 2 d/09/09/2020`
 
-#### 3.3.5. Edit leave taken by staff: `editleave`
+#### 3.3.6. Edit leave taken by staff: `editleave`
 [This feature is coming soon]
 
 ### 3.4. Applicant commands
@@ -272,8 +300,27 @@ Format: `delapplicant INDEX`
 Example:
 * `delapplicant 1`
 
+#### 3.4.3 Edit an applicant: `editapplicant`
 
-#### 3.4.3. Add an application: `addapplication`
+Edits general details of an applicant from eva (excluding application status)
+
+Format: `editapplication INDEX [n/NAME] [p/PHONE_NUMBER] [a/ADDRESS] [e/EMAIL] [c/COMMENT] [id/INTERVIEW_DATE]`
+
+<div markdown="span" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* Edit of comment needs to be in required format: `c/ ti/TITLE_OF_COMMENT_TO_CHANGE d/DATE_OF_COMMENT_TO_CHANGE DESC/NEW_DESCRIPTION`
+
+</div>
+
+Example:
+* `editapplicant 1 n/NEW_NAME p/99999999 a/NEW_ADDRESS e/NEW@example.com`
+* `editapplicant 1 c/ ti/title d/10/10/2010 desc/new_description`
+* `editapplicant 1 id/ 10/10/2010`
+
+
+#### 3.4.4. Add an application: `addapplication`
 
 Adds an application to an applicant under Eva.
 
@@ -284,7 +331,7 @@ Format: `addapplication INDEX [filepath]`
 Example:
 * `addapplication 1 C:\Users\Public\Downloads\resume.txt`
 
-#### 3.4.4. Delete an application: `deleteapplication`
+#### 3.4.5. Delete an application: `deleteapplication`
 
 Deletes an application from an applicant under Eva.
 
@@ -293,7 +340,7 @@ Format: `deleteapplication INDEX`
 Example:
 * `deleteapplication 1`
 
-#### 3.4.5 Set application status: `setappstatus`
+#### 3.4.6. Set application status: `setappstatus`
 [This feature is coming soon] <br>
 Sets the application status of an applicant with the specified index on the displayed list in Eva.
 
@@ -308,59 +355,147 @@ Format: `setappstatus INDEX NEW_APPLICATION_STATUS`
 Example:
 * `setappstatus 1 received`
 
-### 3.5. Quick Add (Experienced Users): `add`
+### 3.5. Comment Commands
+
+Commands to add, delete and edit comments on staff or applicants
+ 
+#### 3.5.1 Add comment to a staff: `addcomment INDEX s-`
+
+Adds a comment to a staff under eva
+
+Format: `addcomment 1 s- ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
+
+Example:
+* `addcomment 1 s- ti/title d/10/10/2010 desc/description`
+
+#### 3.5.2 Add comment to an applicant: `addcomment INDEX a-`
+
+Adds a comment to an applicant under eva
+
+Format: `addcomment 1 a- ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/DESCRIPTIONS`
+
+Example:
+* `addcomment 1 a- ti/title d/10/10/2010 desc/description`
+
+#### 3.5.3 Delete comment from a staff: `deletecomment INDEX s-`
+
+Deletes a comment from a staff under eva
+
+Format: `deletecomment 1 s- ti/TITLE_OF_COMMENT_TO_DELETE`
+
+Example:
+* `deletecomment 1 s- ti/title`
+
+#### 3.5.4 Delete comment from an applicant: `deletecomment INDEX a-`
+
+Deletes a comment from an applicant under eva
+
+Format: `deletecomment 1 a- ti/TITLE_OF_COMMENT_TO_DELETE`
+
+Example:
+* `deletecomment 1 a- ti/title`
+
+#### 3.5.5 Edit comment on a staff: `editcomment INDEX s-`
+
+Edits the description of an existing comment on a staff under eva
+
+Format: `editcomment 1 s- ti/TITLE_OF_COMMENT_TO_EDIT d/DATE_OF_COMMENT_TO_EDIT desc/NEW_DESCRIPTION`
+
+Example: 
+* `editcomment 1 s- ti/title d/10/10/2010 desc/new_description`
+
+#### 3.5.6 Edit comment on an applicant: `editcomment INDEX a-`
+
+Edits the description of an existing comment on an applicant under eva
+
+Format: `editcomment 1 a- ti/TITLE_OF_COMMENT_TO_EDIT d/DATE_OF_COMMENT_TO_EDIT desc/NEW_DESCRIPTION`
+
+Example: 
+* `editcomment 1 a- ti/title d/10/10/2010 desc/new_description`
+
+### 3.6. Quick Add (Experienced Users): `add`
 
 These are some shortcuts you can use for the commands above.
 
-#### 3.5.1. Add a staff to Eva: `add s-`
+#### 3.6.1. Add a staff to Eva: `add s-`
 
 Format: `add s- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT]`
 
-#### 3.5.2. Add a applicant to Eva: `add a-`
+Example:
+* `add s- n/Alex p/99999999 e/hi@example.com a/address`
+
+#### 3.6.2. Add a applicant to Eva: `add a-`
 
 Format: `add a- n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG] [c/COMMENT] [id/INTERVIEW_DATE]`
 
-#### 3.5.3. Add a comment to staff in Eva: `add INDEX s- c/`
+Example: 
+* `add a- n/Alex p/99999999 e/hi@example.com a/address`
+
+#### 3.6.3. Add a comment to staff in Eva: `add INDEX s- c/`
 
 Format: `add INDEX_OF_STAFF s- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DESCRIPTION`
 
-#### 3.5.4. Add a comment to applicant in Eva: `add INDEX a- c/`
+Example:
+* `add 1 s- c/ ti/title d/10/10/2010 desc/new_description`
+
+#### 3.6.4. Add a comment to applicant in Eva: `add INDEX a- c/`
 
 Format: `add INDEX_OF_APPLICANT a- c/ ti/TITLE d/DATE (IN DD/MM/YYYY) desc/DESCRIPTION`
 
-#### 3.5.5. Add leave to staff in Eva: `add INDEX l/ `
+Example:
+* `add 1 a- c/ ti/title d/10/10/2010 desc/new_description`
+
+#### 3.6.5. Add leave to staff in Eva: `add INDEX l/ `
 
 Format: `add INDEX_OF_STAFF l/ d/DATE (IN DD/MM/YYYY)`
 
-### 3.6. Quick Delete (Experienced Users): `delete`
+Example:
+* `add 1 l/ d/10/10/2010`
 
-#### 3.6.1. Delete a staff from Eva: `delete INDEX_OF_STAFF s-`
+### 3.7. Quick Delete (Experienced Users): `delete`
+
+#### 3.7.1. Delete a staff from Eva: `delete INDEX_OF_STAFF s-`
 
 Format: `delete INDEX_OF_STAFF s-`
 
-#### 3.6.2. Delete a applicant from Eva: `delete INDEX_OF_APPLICANT a-`
+Example:
+* `delete 1 s-`
+
+#### 3.7.2. Delete a applicant from Eva: `delete INDEX_OF_APPLICANT a-`
 
 Format: `delete INDEX_OF_APPLICANT a-`
 
-#### 3.6.3. Delete a comment from staff in Eva: `delete INDEX s- c/`
+Example:
+* `delete 1 a-`
+
+#### 3.7.3. Delete a comment from staff in Eva: `delete INDEX s- c/`
 
 Format: `delete INDEX_OF_STAFF s- c/ ti/TITLE`
 
-#### 3.6.4. Delete a comment from applicant in Eva: `delete INDEX a- c/`
+Example: 
+* `delete 1 s- c/ ti/title`
+
+#### 3.7.4. Delete a comment from applicant in Eva: `delete INDEX a- c/`
 
 Format: `delete INDEX_OF_APPLICANT a- c/ ti/TITLE`
 
-#### 3.6.5. Delete leave from staff in Eva: `delete INDEX l/ `
+Example:
+* `delete 1 a- c/ ti/title`
+
+#### 3.7.5. Delete leave from staff in Eva: `delete INDEX l/ `
 
 Format: `delete INDEX_OF_STAFF l/ d/DATE (IN DD/MM/YYYY/)`
 
-### 3.7. Quick Edit (Experienced Users): `edit`
+Example:
+* `delete 1 l/ d/10/10/2010`
 
-#### 3.7.1. Edit a staff
+### 3.8. Quick Edit (Experienced Users): `edit`
+
+#### 3.8.1. Edit a staff
 
 Edits specified fields of a staff
 
-##### 3.7.1.1 Edit general information of staff : `edit INDEX s-`
+##### 3.8.1.1 Edit general information of staff : `edit INDEX s-`
 
 *Fields: Name, Address, Email, Phone, Tag*
 
@@ -369,7 +504,10 @@ Edits specified fields of a staff
 
 Format: `edit INDEX s- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
 
-##### 3.7.1.2 Edit comment of a staff: `edit INDEX s- c/`
+Example:
+* `edit 1 s- n/example a/new_address`
+
+##### 3.8.1.2 Edit comment of a staff: `edit INDEX s- c/`
 
  - Can edit descriptions of specific comments
  - Comment to be changed is identified by title and date
@@ -378,11 +516,14 @@ Format: `edit INDEX s- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
 
 Format: `edit INDEX s- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIPTION`
 
-#### 3.7.2 Edit an applicant 
+Example:
+* `edit 1 s- c/ ti/title d/10/10/2010 desc/new_description`
+
+#### 3.8.2 Edit an applicant 
 
 Edits specified fields of applicant
 
-##### 3.7.2.1 Edit general information of applicant : `edit INDEX a-`
+##### 3.8.2.1 Edit general information of applicant : `edit INDEX a-`
 
 *Fields: Name, Address, Email, Phone, Tag*
 
@@ -391,7 +532,7 @@ Edits specified fields of applicant
 
 Format: `edit INDEX a- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
 
-##### 3.7.2.2 Edit comment of an applicant: `edit INDEX a- c/`
+##### 3.8.2.2 Edit comment of an applicant: `edit INDEX a- c/`
 
  - Can edit descriptions of specific comments
  - Comment to be changed is identified by title and date
@@ -400,7 +541,10 @@ Format: `edit INDEX a- [n/NAME] [a/ADDRESS] [e/EMAIL] [p/PHONE] [t/TAG]`
 
 Format: `edit INDEX a- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIPTION`
 
-##### 3.7.2.3 Edit Interview Date of an applicant: `edit INDEX a- id/`
+Example:
+* `edit 1 a- n/example a/new_address`
+
+##### 3.8.2.3 Edit Interview Date of an applicant: `edit INDEX a- id/`
 
  - Can edit interview date of an applicant
  
@@ -408,8 +552,10 @@ Format: `edit INDEX a- c/ ti/TITLE_OF_COMMENT d/DATE_OF_COMMENT desc/NEW_DESCRIP
  
 Format: `edit INDEX a- id/ NEW_DATE_OF_INTERVIEW`
 
+Example: 
+* `edit 1 a- id/10/10/2010`
 
-### 3.8. Archive data files `[coming in v2.0]`
+### 3.9. Archive data files `[coming in v2.0]`
 
 ##
 
