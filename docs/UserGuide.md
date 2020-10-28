@@ -33,6 +33,14 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
 
+**:information_source: Notes and terminologies on archiving:**<br>
+
+* Clients not in the archive are said to be in the "active list", or the "active client list".
+
+* Upon starting up the app, users would see the active list by default.
+
+* In the "active mode", users can view the active list. In the "archive mode", users can view the archive.
+
 </div>
 
 ### Viewing help : `help`
@@ -45,10 +53,10 @@ Format: `help`
 
 ### Adding a client : `add`
 
-Adds a client to I4I.
+Adds a client to I4I's active list.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of client sources (including 0)
+A client can have any number of client sources (including 0)
 </div>
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY]`
@@ -58,8 +66,12 @@ Examples:
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/h`
    * `add n/Betsy Crowe s/friend from jac e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new.`
 
-Note: If the priority field is empty, I4I will set the priority of the client to undefined. 
-See [Priority Feature](#Priority Feature) for more information.
+Notes: 
+
+* If the priority field is empty, I4I will set the priority of the client to undefined. 
+    See [Priority Feature](#priority-feature) for more information.
+
+* 
 
 ### Listing all clients : `list`
 
@@ -73,19 +85,38 @@ Deletes the client at the given index
 
 Format: `delete CLIENT_INDEX`
 
-Example: `list` followed by `delete 2` deletes the 2nd person in I4I.
+Example: `list` followed by `delete 2` deletes the 2nd client in I4I.
 
 Notes: 
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the client at the specified `INDEX`.
 
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed client list.
 
 * The index must be a positive integer 1, 2, 3, …​
 
+### Clearing all entries : `clear`
+
+Clears all entries from the client list.
+
+<div markdown="span" class="alert alert-primary"> **Warning:**
+This command clears all clients, from both the active list and the archive.
+</div>
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+Data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 
-## Features
+## Additional Features
 
 ### Priority Feature
 
@@ -108,8 +139,8 @@ Note:
 
 Example: 
 
-* `add n/Jojo l/h` would add a user named Jojo with a high priority. 
-* `add n/Giorno` would add a user named Giorno with an undefined priority.
+* `add n/Jojo l/h` would add a client named Jojo with a high priority. 
+* `add n/Giorno` would add a client named Giorno with an undefined priority.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -124,7 +155,9 @@ Example:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY] <br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend` l/h
-**List** | `list`
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY]` <br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend l/h`
+**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Exit** | `exit`
+**List** | `list`
 **Help** | `help`
