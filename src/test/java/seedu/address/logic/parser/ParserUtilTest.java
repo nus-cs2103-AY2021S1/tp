@@ -279,10 +279,28 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, "The visit index provided is invalid", ()
             -> ParserUtil.parseVisitIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
-
+    
     @Test
     public void parseVisit_invalidInput_throwsParseException() {
         assertThrows(ParseException.class, "Visits should take date in valid format.", ()
-            -> ParserUtil.parseVisit("test"));
+                -> ParserUtil.parseVisit("test"));
+    }
+
+    @Test
+    public void parseDateTime_invalidDateTime_throwsParseException() {
+        assertThrows(ParseException.class, "Times should be entered in the format: yyyy-MM-dd HH:mm", ()
+            -> ParserUtil.parseDateTime("test"));
+    }
+
+    @Test
+    public void parseDuration_invalidDateTime_throwsParseException() {
+        assertThrows(ParseException.class, "Times should be entered in the format: yyyy-MM-dd HH:mm", ()
+                -> ParserUtil.parseDurationWithStart("test", "30"));
+    }
+
+    @Test
+    public void parseDuration_invalidDuration_throwsParseException() {
+        assertThrows(ParseException.class, "Times should be entered in the format: yyyy-MM-dd HH:mm", ()
+                -> ParserUtil.parseDurationWithStart("2020-10-10", "test"));
     }
 }
