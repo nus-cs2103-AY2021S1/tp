@@ -96,7 +96,7 @@ public class DeliveryCard extends UiPart<Region> {
 
             long seconds = tempDateTime.until(endTime, ChronoUnit.SECONDS);
 
-            if ((minutes < 0 || seconds < 0)) {
+            if ((minutes < 0 || seconds < 0)) { // OVERDUE BY: XXmin XXsec (in red)
                 String timeString = "OVERDUE BY: "
                                     + (minutes < 0 ? (-1 * minutes) : minutes)
                                     + "min "
@@ -104,13 +104,18 @@ public class DeliveryCard extends UiPart<Region> {
                                     + "sec";
                 time.setText(timeString);
                 time.setFill(Color.web("#f24e6c")); // light red
-            } else {
+            } else { // DELIVER BY: XXmin XXsec (in green)
                 String timeString = "DELIVER BY: "
                                     + minutes
                                     + "min "
                                     + seconds
                                     + "sec";
                 time.setText(timeString);
+                if (minutes < 10) {
+                    time.setFill(Color.ORANGE);
+                } else {
+                    time.setFill(Color.LIGHTGREEN);
+                }
             }
         }), new KeyFrame(Duration.seconds(1)));
         clock.setCycleCount(Animation.INDEFINITE);
