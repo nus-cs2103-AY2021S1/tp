@@ -26,7 +26,8 @@
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+          <Label fx:id="isArchived" styleClass="cell_big_label-archived" text="\$isArchived" />
+          <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <FlowPane fx:id="tags" />
          <HBox alignment="CENTER_LEFT" spacing="5">
