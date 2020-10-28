@@ -18,7 +18,7 @@ import seedu.resireg.storage.Storage;
  */
 public class DeleteCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete";
+    public static final String COMMAND_WORD = "delete-student";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Student: %1$s";
     public static final String MESSAGE_ROOM_ALLOCATION_EXISTS =

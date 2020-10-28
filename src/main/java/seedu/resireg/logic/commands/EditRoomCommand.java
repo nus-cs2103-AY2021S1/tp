@@ -26,15 +26,14 @@ import seedu.resireg.storage.Storage;
  * Edits the details of an existing room in ResiReg.
  */
 public class EditRoomCommand extends Command {
-    public static final String COMMAND_WORD = "editRoom";
+    public static final String COMMAND_WORD = "edit-room";
 
     public static final String MESSAGE_EDIT_ROOM_SUCCESS = "Edited Room: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ROOM = "This room already exists in ResiReg.";
 
     public static final Help HELP = new Help(COMMAND_WORD,
-            "Edits the details of the room identified by the index number used in the displayed room list."
-                    + "Existing values will be overwritten by the input values.",
+            "Edits the details of the room identified by the index number used in the displayed room list.",
             "Parameters: INDEX (must be a positive integer) "
                     + "[" + PREFIX_ROOM_TYPE + "ROOM_TYPE] "
                     + "[" + PREFIX_TAG + "TAG]...\n"
