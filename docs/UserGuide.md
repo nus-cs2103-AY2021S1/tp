@@ -347,7 +347,7 @@ Action | Format, Examples
 **Exit** | `exit`
 **List** | `list`
 **Clear** | `clear`
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL_CONDITION]…​[f/FEED_TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
