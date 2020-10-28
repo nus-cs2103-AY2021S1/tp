@@ -19,7 +19,7 @@ public class IngredientViewSingleCommand extends Command {
 
     public static final String COMMAND_WORD = "i-view-single";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " :views a single ingredient level in tCheck.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Views a single ingredient level in tCheck.\n"
             + "Parameters: i/INGREDIENT_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT + "Milk ";
