@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="stock-list-panel-vbox">
   <HBox>
-    <GridPane fx:id="gridPane" HBox.hgrow="ALWAYS" minHeight="40" maxHeight="40" styleClass="list-header">
+    <GridPane fx:id="gridPane" HBox.hgrow="NEVER" minHeight="40" maxHeight="40" styleClass="list-header">
       <columnConstraints>
         <ColumnConstraints hgrow="NEVER"  minWidth="31" maxWidth="31" />
         <!--      id-->
@@ -26,13 +26,13 @@
         <!--      location-->
         <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
         <!--      notes-->
-        <ColumnConstraints hgrow="ALWAYS"  minWidth="100"/>
+        <ColumnConstraints hgrow="NEVER"  minWidth="300" maxWidth="300"/>
       </columnConstraints>
 
       <VBox fx:id="bookmark" styleClass="list-cell-header" minHeight="40" GridPane.columnIndex="0" />
 
       <HBox styleClass="list-cell-header"  minHeight="40" alignment="BOTTOM_LEFT" GridPane.columnIndex="1">
-        <Label fx:id="id" styleClass="list-cell-header-text" text="ID" wrapText="true" />
+        <Label fx:id="id" styleClass="list-cell-header-text" text="No." wrapText="true" />
       </HBox>
 
 
@@ -65,7 +65,7 @@
   </HBox>
 
 
-  <ListView fx:id="stockListView" VBox.vgrow="ALWAYS" styleClass="pane-with-border-main"/>
+  <ListView fx:id="stockListView" VBox.vgrow="NEVER" styleClass="pane-with-border-main"/>
   <padding>
     <Insets right="5" left="5" />
   </padding>

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 
 <?import javafx.scene.text.TextFlow?>
 <HBox id="cardPane" fx:id="cardPane" styleClass="list-cell"
-      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" maxWidth="1080">
+      xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" minWidth="1010" maxWidth="1010">
 
-  <GridPane fx:id="gridPane" HBox.hgrow="NEVER" maxWidth="1080">
+  <GridPane fx:id="gridPane" minWidth="1010" maxWidth="1010">
     <columnConstraints>
         <!--      bookmark-->
         <ColumnConstraints hgrow="NEVER"  minWidth="30" maxWidth="30" />
@@ -30,7 +28,7 @@
         <!--      location-->
         <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
         <!--      notes-->
-        <ColumnConstraints hgrow="ALWAYS"  minWidth="100" />
+        <ColumnConstraints hgrow="NEVER"  minWidth="200" maxWidth="200"/>
     </columnConstraints>
 
     <VBox fx:id="bookmark" styleClass="bookmark" GridPane.columnIndex="0" visible="\$bookmark"/>
