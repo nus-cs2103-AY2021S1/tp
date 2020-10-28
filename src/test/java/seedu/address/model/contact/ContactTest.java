@@ -44,9 +44,9 @@ public class ContactTest {
         editedAlice = new ContactBuilder(ALICE).withTelegram(VALID_TELEGRAM_AMY).build();
         // assertTrue(ALICE.isSamePerson(editedAlice));
 
-        // same name, same telegram, different email -> returns true
+        // same name, same telegram, different email -> returns false
         editedAlice = new ContactBuilder(ALICE).withEmail(VALID_EMAIL_AMY).build();
-        assertTrue(ALICE.isSameContact(editedAlice));
+        assertFalse(ALICE.isSameContact(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
         // editedAlice = new ContactBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
