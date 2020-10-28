@@ -38,7 +38,8 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(@JsonProperty("name") String name,
                              @JsonProperty("zoomLink") String zoomLink,
                              @JsonProperty("gradeTracker") JsonAdaptedGradeTracker storedGradeTracker,
-                             @JsonProperty("modularCredits") String storedModularCredits) {
+                             @JsonProperty("modularCredits") String storedModularCredits,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.zoomLink = zoomLink;
         if (storedGradeTracker == null) {
@@ -75,9 +76,9 @@ class JsonAdaptedModule {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Module toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> moduleTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            moduleTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -88,14 +89,16 @@ class JsonAdaptedModule {
             throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
         }
         final ModuleName modelName = new ModuleName(name);
+        final ZoomLink modelLink;
         if (zoomLink == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ZoomLink.class.getSimpleName()));
-        }
-        if (!ZoomLink.isValidZoomLink(zoomLink)) {
+            /*throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ZoomLink.class.getSimpleName()));*/
+            modelLink = new ZoomLink("Not provided");
+        } else if (!ZoomLink.isValidZoomLink(zoomLink)) {
             throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
+        } else {
+            modelLink = new ZoomLink(zoomLink);
         }
-        final ZoomLink modelLink = new ZoomLink(zoomLink);
         if (gradeTracker == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     GradeTracker.class.getSimpleName()));
@@ -106,15 +109,8 @@ class JsonAdaptedModule {
         if (!ModularCredits.isValidModularCredits(modularCredits)) {
             throw new IllegalValueException(ModularCredits.MESSAGE_CONSTRAINTS);
         }
-        //email and tagging removed temporarily
-        /*if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }*/
         final ModularCredits modelModularCredits = new ModularCredits(Double.parseDouble(modularCredits));
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(moduleTags);
         return new Module(modelName, modelLink, gradeTracker.toModelType(), modelTags, modelModularCredits);
     }
 
