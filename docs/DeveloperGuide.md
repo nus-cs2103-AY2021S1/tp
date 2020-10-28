@@ -7,6 +7,22 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Introduction**
+
+### **Purpose**
+This document specified architecture, software design decisions and features for the application, ProductiveNUS. It will provide you with the essential information on its development process. 
+
+### **Scope**
+The intended audience of this document are developers, designers, and software testers.
+
+#### **About ProductiveNUS**
+ProductiveNUS is a desktop application targeted at Computing students of National University of Singapore (NUS) to help them manage and schedule their academic tasks efficiently.
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Setting up, getting started**
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
@@ -198,50 +214,88 @@ A usage scenario would be when a user wants to schedule an assignment.
 4. There is return call to `LogicManager` which then calls the overridden `execute` method of `ScheduleCommand`.
 6. The `execute` method returns a `ScheduleResult` object.
 
-### \[Implemented\] Find by specific fields feature
+### Find by specific fields feature
 
-The user can find assignments by name, module code, due date/time or priority level. 
-Multiple keywords are allowed of the same type of field. (Fields are name, module code, due date/time and priority)
+The user can find assignments by providing keywords of the following fields:
+- Name of assignment
+- Module code of assignment
+- Due date or time of assignment
+- Priority of assignment
+
+The user can find assignments with single or multiple keywords of the same type of field.
 
 #### Reasons for Implementation
-Finding assignments by only one available field, like name of assignment, restricts the user's process of finding assignments
-based on what he is interested to view in his assignment list. 
 
-In the case of finding assignments, it is likely that the user will
-want to view assignments of highest priority so that he can complete them first. It is also likely for the user to want to view 
-assignments under this particular module, or view assignments due on this particular date and time. 
+If the user can search by only one field, it would restrict the user's process of viewing assignments.
+As a student user, the following scenarios are likely:
+- The user wants to search for assignments with the highest priority, so that he knows what assignments to complete first.
+- The user wants to search for assignments due on a particular date or time, so that he can complete it and submit his assignment on time.
+- The user wants to view the details of one particular assignment with a specific name.
+- The user wants to complete all assignments under a certain module first, before moving on with his next task.
 
-Allowing finding of assignments by different fields provides more categories for the user to search by and this will make
-the finding process easier and more convenient.
+We thus concluded that finding by specific fields would be beneficial for users, and it would make it easier and more convenient for them to view assignments based on their needs.
 
 #### Current Implementation
-- The find command is a typical command used in ProductiveNUS. It extends `Command` and overrides the method `execute` in `CommandResult`.
 
+##### Prefixes used in identifying keywords
+The use of prefixes before keywords allows for validation of keywords in the user's input, with Regular Expressions.
+
+The following prefixes are used to identify the fields:
+- /n for Name
+- /mod for Module code
+- /d for Due date or time
+- /p for Priority
+
+##### Predicate classes 
+The following Predicate classes implements `Predicate<Assignment>` and are used when the user inputs keywords of its assigned field:
+- NameContainsKeywordsPredicate
+- ModuleCodeContainsKeywordsPredicate
+- DeadlineContainsKeywordsPredicate
+- PriorityContainsKeywordsPredicate
+
+Given below is the class diagram of these Predicate classes:
+
+------ CLASS DIAGRAM---------
+
+
+
+##### FindCommand Class
+- `FindCommand` extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
+
+- The constructor of `FindCommand` takes in a Predicate depending on the prefix or keywords in the user's input. 
+
+##### FindCommandParser Class
+- The `FindCommandParser` class contains private methods to parse each type of keyword field, and to check for valid input format.
 - `FindCommandParser` implements `Parser<FindCommand>` and it parses the user's input to return a `FindCommand` object.
 
-- The constructor of `FindCommand` takes in a Predicate (`NameContainsKeywordsPredicate`, `DeadlineContainsKeywordsPredicate`, `ModuleCodeContainsKeywordsPredicate` or `PriorityContainsKeywordsPredicate`)
- depending on the prefix (n/, mod/, d/, priority/) or keywords in the user's input. 
- 
-- The assignment list to be displayed is
- updated according to the Predicate passed into `FindCommand`.
- 
-It implements the following operations:
-* `find n/Assignment Lab` — Finds assignments with names that contain "Assignment" or "Lab". (Case-insensitive)
-* `find mod/CS2100 CS2103T` — Finds assignments with module codes "CS2100" or "CS2103T".
-* `find d/24-10-2020 1200` — Finds assignments with due date on 24-10-2020 (regardless of time) 
-or due time of 1200 (regardless of date).
-* `find priority/HIGH` — Finds assignments with high priority.
+Given below is the class diagram of `FindCommandParser` class:
+
+
+
+
+
+
+------ CLASS DIAGRAM---------
+
+
+
+
+
+
+
+
+
 
 #### Usage Scenario
 
-A usage scenario would be when a user wants to find assignments with the name 'Lab'.
+The following is a usage scenario of when a user wants to find assignments with the name 'Lab'.
 
-The following sequence diagram shows the sequence when LogicManager executes `find` command.
+Given below is the sequence diagram for the interactions within `LogicManager` for the `execute(find n/Lab)` API call.
 ![Interactions Inside the Logic Component for the `find n/Lab` Command](images/FindSequenceDiagram.png)
 
 1. The `execute` method of `LogicManager` is called when a user keys in an input into the application and `execute` takes in the input.
 2. The `parseCommand` method of `ProductiveNusParser` parses the user input and returns an initialized `FindCommandParser` object and further calls the `parse` method of this object to identify keywords and prefixes in the user input.
-3. If user input is valid, it returns a `FindCommand` object, which takes in a predicate. (`NameContainsKeywordsPredicate` in this example user input)
+3. If user input is valid, it returns a `FindCommand` object, which takes in `NameContainsKeywordsPredicate` with the list of keywords.
 4. There is return call to `LogicManager` which then calls the overridden `execute` method of `FindCommand`.
 5. The `execute` method of `FindCommand` will call the `updateFilteredAssignmentList` method and then the `getFilteredAssignmentListMethod` of the `Model` object.
 6. The `execute` method returns a `CommandResult` object.
