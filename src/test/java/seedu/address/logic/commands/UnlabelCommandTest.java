@@ -92,14 +92,14 @@ public class UnlabelCommandTest {
         TagName defaultTagName = new TagBuilder().build().getTagName();
 
         // All labels are valid
-        modelStub.addTag(new TagBuilder().withLabels("testLabel", "deletedLabel", VALID_LABEL).build());
+        modelStub.addTag(new TagBuilder().withLabels("testLabel", "deletedLabel", "anotherDeletedLabel").build());
         Tag firstExpectedDeletedLabelTag = new TagBuilder().build();
 
         ModelStubWithTag firstExpectedModelStub = new ModelStubWithTag(firstExpectedDeletedLabelTag);
 
         HashSet<Label> firstLabels = new HashSet<>();
         firstLabels.add(new Label("deletedLabel"));
-        firstLabels.add(new Label(VALID_LABEL));
+        firstLabels.add(new Label("anotherDeletedLabel"));
 
         UnlabelCommand firstUnlabelCommand = new UnlabelCommand(defaultTagName, firstLabels);
 
@@ -107,8 +107,8 @@ public class UnlabelCommandTest {
                 String.format(UnlabelCommand.MESSAGE_SUCCESS, firstExpectedDeletedLabelTag), firstExpectedModelStub);
 
         // Some label is invalid
-        modelStub.addTag(new TagBuilder().withLabels("testLabel", "deletedLabel", VALID_LABEL).build());
-        Tag secondExpectedDeletedLabelTag = new TagBuilder().withLabels("testLabel", VALID_LABEL).build();
+        modelStub.addTag(new TagBuilder().withLabels("testLabel", "deletedLabel").build());
+        Tag secondExpectedDeletedLabelTag = new TagBuilder().build();
 
         ModelStubWithTag secondExpectedModelStub = new ModelStubWithTag(secondExpectedDeletedLabelTag);
 

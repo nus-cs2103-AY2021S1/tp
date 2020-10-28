@@ -30,6 +30,8 @@ public class UnlabelCommand extends Command {
             + PREFIX_LABEL_NAME + "notes "
             + PREFIX_LABEL_NAME + "CS2103T";
 
+    public static final String UNLABEL_COMMAND_USAGE = COMMAND_WORD + " " + PREFIX_TAG_NAME + "<TAG_NAME>"
+            + " " + PREFIX_LABEL_NAME + "<FILEPATH>";
     public static final String MESSAGE_SUCCESS = "Tag successfully updated: %1$s";
     public static final String MESSAGE_LABEL_MISSING = "All of this label can't be found in %s:\n";
     public static final String MESSAGE_DASH = "- %s\n";

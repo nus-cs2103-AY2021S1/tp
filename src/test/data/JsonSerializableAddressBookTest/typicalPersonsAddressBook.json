@@ -7,7 +7,7 @@
   }, {
     "tagName" : "cs2101",
     "fileAddress" : "./src/test/java/seedu/address/testutil/cs2101.bat",
-    "labels": ["validLabel"]
+    "labels": ["testLabel"]
   }, {
     "tagName" : "myfile",
     "fileAddress" : "c:\\a\\b\\myfile.txt",
