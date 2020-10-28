@@ -298,6 +298,81 @@ Given below is the sequence diagram of how the mechanism behaves when called usi
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
+### Copying Email Address/Phone Number of Contacts
+
+The mechanism to delete contacts is facilitated by `CopyCommand`. It extends `Command` and implements the following methods:
+
+* `CopyCommand#execute` - Copy email addresses or phone numbers of Persons in the AddressBook according to the user input.
+
+This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
+
+#### Parsing the User Input
+
+The parsing of user input for `CopyCommand` is facilitated by `CopyCommandParser`. It extends `Parser` and implements the following methods:
+
+* `DeleteCommandParser#parse` - Parses the user input and returns the appropriate DeleteCommand
+
+The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `CopyCommandParser` 
+also identifies the preamble in the arguments.
+
+##### Identifying the Preamble
+
+Identifying Preamble Code Snippet:
+
+```
+boolean isEmail;
+String preamble = argMultimap.getPreamble().trim().toLowerCase();
+if (preamble.equals("email")) {
+    isEmail = true;
+} else if (preamble.equals("phone")) {
+    isEmail = false;
+} else {
+    throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE));
+}
+```
+The above code snippet will check the preamble in the argument. It assigns the boolean `isEmail` to `true` if the user 
+wants to copy email addresses, `false` if the user wants to copy phone numbers and throws a `ParseException` otherwise.
+
+#### Retrieving the Filtered Persons
+
+The mechanism used by `CopyCommand` to obtain the `FilteredList` of Persons is identical to that of `DeleteCommand`.
+
+#### Copying Information from the Filtered Persons
+
+Once the `CopyCommand` has retrieved the `FilteredList` of Persons, it will copy information from all Persons in that `FilteredList` from Modduke.
+
+Obtaining Information from Persons Code Snippet:
+```
+if (isEmail) {
+    // gets email addresses from Persons in people
+    results = people.stream()
+            .map(p -> p.getEmail().toString())
+            .reduce("", (x, y) -> x + " " + y);
+} else {
+    // gets phone numbers from Persons in people
+    results = people.stream()
+            .map(p -> p.getPhone().toString())
+            .reduce("", (x, y) -> x + " " + y);
+}
+```
+The above code snippet will check if the user wants to copy email adresses or phone numbers using the `isEmail` boolean. 
+Then it iterates through the `FilteredList` of Persons and obtains the relavant information as Strings. Then it combines 
+the Strings into a single String.
+
+Copying Information to Clipboard Code Snippet:
+```
+StringSelection selection = new StringSelection(results);
+Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+clipboard.setContents(selection, selection);
+```
+The above code snippet will then create a new `StringSelection` object using the single String of information and copy 
+the `StringSelection` into the user's system clipboard.
+
+#### Activity Diagram
+Given below is the sequence diagram of how the mechanism behaves when called using the `copy` command.
+
+![CopyActivityDiagram](images/CopyActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
