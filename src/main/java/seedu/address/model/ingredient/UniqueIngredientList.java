@@ -3,6 +3,7 @@ package seedu.address.model.ingredient;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -73,6 +74,24 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
             }
         }
         return null;
+    }
+
+    /**
+     * Returns an arraylist of ingredients that are in shortage. If
+     * no ingredient is in shortage, return an empty arraylist.
+     *
+     * @return an arraylist of ingredients that are in shortage
+     */
+    public ArrayList<Ingredient> findIngredientInShortage() {
+        Amount amountOfIngredient;
+        ArrayList<Ingredient> ingredientsInShortage = new ArrayList<>();
+        for (Ingredient ingredient : internalList) {
+            amountOfIngredient = ingredient.getAmount();
+            if (amountOfIngredient.isBelowRestockLevel()) {
+                ingredientsInShortage.add(ingredient);
+            }
+        }
+        return ingredientsInShortage;
     }
 
     public ObservableList<Ingredient> asUnmodifiableObservableList() {
