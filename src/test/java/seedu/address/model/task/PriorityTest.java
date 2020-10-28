@@ -15,7 +15,7 @@ public class PriorityTest {
 
     @Test
     public void constructor_invalidPriorityLevel_throwsIllegalArgumentException() {
-        String invalidPriorityLevel = "";
+        String invalidPriorityLevel = "Very High";
         assertThrows(IllegalArgumentException.class, () -> new Priority(invalidPriorityLevel));
     }
 
