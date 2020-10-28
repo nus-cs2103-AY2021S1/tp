@@ -183,11 +183,23 @@ public class Planus implements ReadOnlyPlanus {
 
     /**
      * Removes the given tasks {@code targets} from this {@code Planus}.
-     * task in targets must exist in the address book.
+     * Task in targets must exist in PlaNus.
      */
     public void removeTask(Task[] targets) {
         requireNonNull(targets);
         tasks.remove(targets);
+    }
+
+    /**
+     * Removes the given lessons {@code targets} from this {@code Planus}.
+     * Lessons in targets must exist in PlaNus.
+     * Removes all associated tasks with the lesson as well.
+     */
+    public void removeLesson(Lesson[] targets) {
+        requireNonNull(targets);
+        for (Lesson target : targets) {
+            removeTask(target.getAssociatedTasks().toArray(new Task[0]));
+        }
     }
 
     //// util methods

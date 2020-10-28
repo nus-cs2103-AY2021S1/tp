@@ -1,7 +1,5 @@
 package seedu.address.model.task;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -9,28 +7,17 @@ import java.util.function.Predicate;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.Prefix;
+import seedu.address.model.ModelContainsKeywordsPredicate;
 import seedu.address.model.task.deadline.Deadline;
 
 /**
  * Tests that a {@code Task}'s given attribute matches any of the keywords given.
  */
-public class TaskContainsKeywordsPredicate implements Predicate<Task> {
+public class TaskContainsKeywordsPredicate extends ModelContainsKeywordsPredicate<Task> implements Predicate<Task> {
     private final Map<Prefix, List<String>> keywords;
 
     public TaskContainsKeywordsPredicate() {
-        this.keywords = new HashMap<>();
-    }
-
-    public void setKeyword(Prefix attribute, String keyword) {
-        List<String> extendedKeywords = new ArrayList<>();
-        if (keywords.containsKey(attribute)) {
-            extendedKeywords = keywords.get(attribute);
-        }
-        extendedKeywords.add(keyword);
-        keywords.put(attribute, extendedKeywords);
-
-        // assert if attribute is added to keywords
-        assert keywords.containsKey(attribute) : "attribute not added to keywords";
+        keywords = super.keywords;
     }
 
     @Override

@@ -118,6 +118,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteLesson(Lesson[] targets) {
+        planus.removeLesson(targets);
+    }
+
+    @Override
     public void markAsDone(Deadline[] targets, int[] durations) {
         planus.markAsDone(targets, durations);
     }

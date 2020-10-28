@@ -16,12 +16,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DoneCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
@@ -38,10 +38,10 @@ public class PlanusParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        DeleteTaskCommand command = (DeleteTaskCommand) parser.parseCommand(
+                DeleteTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
         Index[] indexes = {INDEX_FIRST_TASK};
-        assertEquals(new DeleteCommand(indexes), command);
+        assertEquals(new DeleteTaskCommand(indexes), command);
     }
 
     @Test
@@ -62,13 +62,13 @@ public class PlanusParserTest {
     @Test
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("title:foo", "desc:bar");
-        FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + String.join(" ", keywords));
+        FindTaskCommand command = (FindTaskCommand) parser.parseCommand(
+                FindTaskCommand.COMMAND_WORD + " " + String.join(" ", keywords));
 
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "foo");
         predicate.setKeyword(PREFIX_DESCRIPTION, "bar");
-        assertEquals(new FindCommand(predicate), command);
+        assertEquals(new FindTaskCommand(predicate), command);
     }
 
     @Test
@@ -79,8 +79,8 @@ public class PlanusParserTest {
 
     @Test
     public void parseCommand_list() throws Exception {
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
-        assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD) instanceof ListTaskCommand);
+        assertTrue(parser.parseCommand(ListTaskCommand.COMMAND_WORD + " 3") instanceof ListTaskCommand);
     }
 
     @Test
