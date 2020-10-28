@@ -182,15 +182,36 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Returns true if the upcoming task is over. A task is considered over if the deadline or end time of the lesson
+     * has passed.
+     *
+     * @param upcomingTask the user's upcoming task displayed in the task list
+     * @return true if the assignment's deadline or lesson is over
+     */
+    private boolean isOver(Task upcomingTask) {
+        DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
+                .withResolverStyle(ResolverStyle.STRICT);
+
+        // If upcoming task is a lesson, check if end time of lesson has passed
+        if (upcomingTask instanceof Lesson) {
+            LocalDateTime lessonEndTime = LocalDateTime.parse(((Lesson) upcomingTask).getEndTime().value, inputFormat);
+            return lessonEndTime.isBefore(LocalDateTime.now());
+        }
+
+        assert(upcomingTask instanceof Assignment);
+
+        // Check if deadline of assignment has passed
+        LocalDateTime deadline = LocalDateTime.parse(upcomingTask.getTime().value, inputFormat);
+        return deadline.isBefore(LocalDateTime.now());
+    }
+
+    /**
      * Removes any tasks that are overdue.
      * A task is overdue if the date and time of the task is before the current date and time.
      */
     private void filterOverdueTasks() {
         tasks.getInternalList().removeIf(task -> {
-            DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
-                    .withResolverStyle(ResolverStyle.STRICT);
-            LocalDateTime time = LocalDateTime.parse(task.getTime().value, inputFormat);
-            return time.isBefore(LocalDateTime.now());
+            return isOver(task);
         });
     }
 
@@ -216,30 +237,35 @@ public class AddressBook implements ReadOnlyAddressBook {
         sortTasks();
     }
 
-    private void autoUpdateTaskList() {
-        Thread javaFx = Thread.currentThread();
-        System.out.println(javaFx.getName());
+    /**
+     * Checks upcoming tasks every second and updates the task list if a task is over.
+     */
+    private void checkTaskListEverySecond() {
+        new Timer(true).schedule(
+                new TimerTask() {
+                    @Override
+                    public void run() {
+                        System.out.println("ping");
+                        Task upcomingTask = tasks.getInternalList().get(0);
+                        boolean isOver = isOver(upcomingTask);
 
+                        if (isOver) {
+                            Platform.runLater(() -> {
+                                updateTasks();
+                            });
+                        }
+                    }
+                }, 0, 1000);
+    }
+
+    /**
+     * Updates the task list whenever a task is over.
+     */
+    private void autoUpdateTaskList() {
         javafx.concurrent.Task<Void> task = new javafx.concurrent.Task<>() {
             @Override
             protected Void call() {
-                new Timer(true).schedule(
-                        new TimerTask() {
-                            @Override
-                            public void run() {
-                                Task upcomingTask = tasks.getInternalList().get(0);
-                                DateTimeFormatter inputFormat = DateTimeFormatter.ofPattern(DEADLINE_DATE_TIME_FORMAT)
-                                        .withResolverStyle(ResolverStyle.STRICT);
-                                LocalDateTime time = LocalDateTime.parse(upcomingTask.getTime().value, inputFormat);
-                                boolean isOverdue = time.isBefore(LocalDateTime.now());
-
-                                if (isOverdue) {
-                                    Platform.runLater(() -> {
-                                        updateTasks();
-                                    });
-                                }
-                            }
-                        }, 0, 1000);
+                checkTaskListEverySecond();
                 return null;
             }
         };
