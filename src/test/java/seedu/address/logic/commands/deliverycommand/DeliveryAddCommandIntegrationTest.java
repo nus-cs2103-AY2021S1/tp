@@ -31,11 +31,4 @@ public class DeliveryAddCommandIntegrationTest {
         assertCommandSuccess(new DeliveryAddCommand(validDelivery), model,
                 String.format(DeliveryAddCommand.MESSAGE_SUCCESS, validDelivery), expectedModel);
     }
-
-    /* No such thing as duplicate delivery
-    @Test
-    public void execute_duplicateDelivery_throwsCommandException() {
-        Delivery delivery = model.getDeliveryBook().getDeliveryList().get(0);
-        assertCommandFailure(new DeliveryAddCommand(delivery), model, DeliveryAddCommand.MESSAGE_DUPLICATE_DELIVERY);
-    }*/
 }
