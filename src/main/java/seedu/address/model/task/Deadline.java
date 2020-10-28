@@ -1,5 +1,7 @@
 package seedu.address.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 import java.util.Set;
 
@@ -17,6 +19,7 @@ public class Deadline extends Task {
      */
     public Deadline(Title title, Description description, Priority priority, TaskDate deadlineDate, Set<Tag> tags) {
         super(title, description, priority, tags);
+        requireNonNull(deadlineDate);
         this.deadlineDate = deadlineDate;
     }
 
