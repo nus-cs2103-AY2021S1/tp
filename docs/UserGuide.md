@@ -491,21 +491,23 @@ McGymmy's data is saved in the hard disk automatically after any command that ch
 
 ## 7. Command summary
 
-Action     | Format, Examples
------------|------------------
-**Add**    | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020`
-**Clear**  | `clear`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**Edit**   | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`
-**Exit**   | `exit`
-**Export** | `import DIRPATH [-o FILENAME]` <br> e.g., `export c:/mcgymmy -o save_file`
-**Find**   | `find KEYWORDS` <br> e.g., `find chicken`
-**Help**   | `help [COMMAND]` <br> e.g., `help add`
-**Import** | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `import c:/mcgymmy/save_file.json`
-**List**   | `list`
-**Macro**  | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken`
-**Tag**    | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
-**UnTag**  | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
+Action       | Format, Examples
+-------------|------------------
+**Add**      | `add -n NAME [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]` <br> e.g., `add Chicken Rice -p 10 -f 5 -c 23 -d 02/09/2020`
+**Clear**    | `clear`
+**Delete**   | `delete INDEX`<br> e.g., `delete 3`
+**Edit**     | `edit INDEX [-n NAME] [-p PROTEIN] [-f FATS] [-c CARBS] [-d DATE]`<br> e.g.,`edit 2 -n Chicken Rice -p 30 -f 50 -c 60 -d 02/09/2020`
+**Exit**     | `exit`
+**Export**   | `import DIRPATH [-o FILENAME]` <br> e.g., `export c:/mcgymmy -o save_file`
+**Find**     | `find KEYWORDS` <br> e.g., `find chicken`
+**Help**     | `help [COMMAND]` <br> e.g., `help add`
+**Import**   | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `import c:/mcgymmy/save_file.json`
+**List**     | `list`
+**Macro**    | `macro SHORTCUT; COMMAND_1; [COMMAND_2;] …​` <br> e.g., `macro lunch; add Chicken`
+**RemMacro** | `remmacro MACRONAME` <br> e.g., `remmacro lunch`
+**ListMacro**| `listmacro [macro]` <br> e.g., `listmacro kfc`
+**Tag**      | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
+**UnTag**    | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
 
 ## 8. Appendix A
 List of supported input date formats, sorted from highest parsing priority to lowest parsing priority
