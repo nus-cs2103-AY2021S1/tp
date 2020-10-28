@@ -14,6 +14,7 @@ TAskmaster is a **desktop app for managing students, optimised for use via a Com
     - [Adding a session: `session`](#Adding-a-session-session "Goto Adding-a-session-session")
     - [Changing the current session: `goto`](#Changing-the-current-session-goto "Goto Changing-the-current-session-goto")
     - [Marking a student's attendance: `mark`](#Marking-a-student’s-attendance-mark "Goto Marking-a-students-attendance-mark")
+    - [Marking all students' attendance: `mark all`](#Marking-all-students'-attendance "Goto Marking-all-students'-attendance")
     - [Storing students' attendance records: `store_record`](#Storing-students’-attendance-records-store_record "Goto Storing-students'-attendance-records")
     - [Loading students' attendance records: `load_record`](#Loading-students’-attendance-records-load_record "Goto Loading-students'-attendance-records")
     - [Clear all students: `clear`](#Clearing-all-entries-clear "Goto Clearing-all-entries-clear")
