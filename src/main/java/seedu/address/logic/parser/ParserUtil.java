@@ -97,11 +97,11 @@ public class ParserUtil {
     public static StartDateTime parseStartDateTime(String date, String time) throws ParseException {
         requireNonNull(date, time);
         String trimmedDate = date.trim();
-        String trimmedtime = time.trim();
-        if (!StartDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
+        String trimmedTime = time.trim();
+        if (!StartDateTime.isValidDateTime(trimmedDate, trimmedTime)) {
             throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
         }
-        return StartDateTime.createStartDateTime(trimmedDate, trimmedtime);
+        return StartDateTime.createStartDateTime(trimmedDate, trimmedTime);
     }
 
     /**

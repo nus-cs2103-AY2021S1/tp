@@ -19,7 +19,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_DONE_TASK_TYPE = "You can only mark a deadline as done.\n"
             + "One or more task selected is not in deadline type";
     public static final String MESSAGE_INVALID_EVENT_EDIT_TYPE = "You cannot edit system generated lesson event";
+    public static final String MESSAGE_INVALID_EDIT_TYPE = "You cannot edit this task with the given attributes";
     public static final String MESSAGE_INVALID_DEADLINE_EDIT_STATUS = "You cannot edit a deadline after marked as done";
-
+    public static final String MESSAGE_START_BEFORE_END = "start time is cannot be before end time!";
 
 }
