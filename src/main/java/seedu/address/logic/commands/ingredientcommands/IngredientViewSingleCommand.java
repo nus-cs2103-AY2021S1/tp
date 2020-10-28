@@ -3,7 +3,6 @@ package seedu.address.logic.commands.ingredientcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 
-import java.util.List;
 import java.util.Optional;
 
 import seedu.address.logic.commands.Command;
