@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_EXPENSE;
 import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_REVENUE;
@@ -32,8 +33,11 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
+import seedu.address.model.account.entry.Expense;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
+import seedu.address.testutil.EntryUtil;
+import seedu.address.testutil.TypicalEntries;
 
 public class EditCommandParserTest {
 
@@ -178,6 +182,15 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parseEditCommand_editExpense() throws Exception {
+        Expense expense = TypicalEntries.PAY_RENT;
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(expense).build();
+        EditCommand actualCommand = (EditCommand) parser.parse(" 1 c/expense d/paid rent a/1000 t/");
+        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
+        assertEquals(expectedCommand, actualCommand);
     }
 
 }

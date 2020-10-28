@@ -31,7 +31,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_entryAcceptedByModel_addSuccessful() {
+    public void execute_expenseAcceptedByModel_addSuccessful() {
 
         Expense expenseStub = expenseBuilder.build();
         Model modelStub = new ModelStub();
@@ -41,6 +41,19 @@ public class AddCommandTest {
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, expenseStub),
                 commandResult.getFeedbackToUser());
         assertTrue(activeAccountStub.getEntries().contains(expenseStub));
+    }
+
+    @Test
+    public void execute_RevenueAcceptedByModel_addSuccessful() {
+
+        Revenue revenueStub = revenueBuilder.build();
+        Model modelStub = new ModelStub();
+        ActiveAccountStubAcceptingEntry activeAccountStub = new ActiveAccountStubAcceptingEntry();
+        CommandResult commandResult = new AddCommand(revenueStub).execute(modelStub, activeAccountStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, revenueStub),
+                commandResult.getFeedbackToUser());
+        assertTrue(activeAccountStub.getEntries().contains(revenueStub));
     }
 
     @Test
@@ -126,6 +139,11 @@ public class AddCommandTest {
         @Override
         public void addExpense(Expense expense) {
             entries.add(expense);
+        }
+
+        @Override
+        public void addRevenue(Revenue revenue) {
+            entries.add(revenue);
         }
 
         public ArrayList<Entry> getEntries() {

@@ -56,13 +56,13 @@ public class DeleteCommandTest {
     }
 
     @Test
-    public void execute_validIndexExpense_failure() {
+    public void execute_invalidIndexExpense_failure() {
         assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_ENTRY, expense)
                 .execute(modelStub, activeAccount));
     }
 
     @Test
-    public void execute_validIndexRevenue_failure() {
+    public void execute_invalidIndexRevenue_failure() {
         assertThrows(CommandException.class, () -> new DeleteCommand(INDEX_TENTH_ENTRY, revenue)
                 .execute(modelStub, activeAccount));
     }
@@ -88,4 +88,6 @@ public class DeleteCommandTest {
         // different person -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
+
 }
+

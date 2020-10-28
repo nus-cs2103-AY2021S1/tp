@@ -151,6 +151,10 @@ available! This will better your experience with Common Cents and your usage of 
 * **Numeric** parameters (e.g. `ENTRY_INDEX`) must be in the correct order.<br>
   e.g. if the command specifies `ENTRY_INDEX c/CATEGORY`, only `ENTRY_INDEX c/CATEGORY` is acceptable 
   and `c/CATEGORY ENTRY_INDEX` is invalid. 
+  
+* Commands with no prefix parameters (e.g. `clear`, `profit`, `listacc`) can take in extra words after the command word
+  without affecting its execution.<br>
+  e.g. the command `profit abc` works the same as `profit` and is considered valid.
 
 </div>
 
