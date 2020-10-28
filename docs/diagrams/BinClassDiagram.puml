@@ -1,0 +1,31 @@
+@startuml
+
+scale 0.5
+interface Binnable
+
+class ResiReg
+class BinItem
+class UniqueBinItemList
+class Student
+
+ResiReg *--> UniqueStudentList
+ResiReg *--> UniqueBinItemList
+
+UniqueBinItemList o--> "*" BinItem
+
+BinItem *--> "1" Binnable
+
+Binnable <|.. Student
+
+UniqueStudentList o----> Student
+
+class ResiReg {
++deleteExpiredItems()
+}
+
+class BinItem {
+-dateDeleted:LocalDate
++isExpired(daysStoredInBin:int)
+}
+
+@enduml

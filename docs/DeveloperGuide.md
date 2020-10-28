@@ -155,6 +155,66 @@ Classes used by multiple components are in the `seedu.resireg.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Bin Feature
+
+#### Implementation
+
+The bin feature is facilitated by `BinItem`, `UniqueBinItemList` classes and the interface `Binnable`. Objects that
+can be "binned" will implement the interface `Binnable`. When a `Binnable` object is deleted, it is wrapped in a
+wrapper class `BinItem` and is moved into `UniqueBinItemList`.
+
+The follow class diagram shows how bin is implemented.
+
+![image](images/BinClassDiagram.png)
+
+`BinItem` has 1 key attribute that is wrapped on top of the `Binnable` object, namely: `dateDeleted`.
+Objects in the bin stay there for 30 days by default, before they are automatically deleted forever. Both attributes are used in the
+auto-deletion mechanism of objects in the bin.
+
+Given below is an example usage scenario and how the bin mechanism behaves at each step.
+
+Step 1. When the user launches ResiReg, `ModelManager` will run `ModelManager#deleteExpiredItems()`, which will check the
+`isExpired` method of all objects in `UniqueBinItemList` against the system clock. If an object has expired as per the system clock,
+`UniqueBinItemList#remove()` is called and deletes the expired object permanently.
+
+Step 2. The user executes `delete 1` command to delete the first student in ResiReg. The `delete`
+command calls the constructor of `BinItem` with the deleted policy to create a new `BinItem` object. At this
+juncture, the attribute `dateDeleted` is created.
+
+Step 3. The `delete` command then calls `Model#addBinItem(studentToBin)` and shifts the newly created `BinItem` to
+`UniqueBinItemList`.
+
+The following sequence diagram shows how a `delete` operation involves the bin.
+
+![image](images/BinDeleteSequenceDiagram.png)
+
+Step 4. The user quits the current session and starts a new session some time later. He/she then realises that he/she
+needs the person that was deleted and wants it back, so he/she executes `restore 1` to restore the deleted person
+from the bin.
+
+Step 5. The `restore` command then calls `Model#deleteBinItem(itemToRestore)`, which removes `itemToRestore` from
+`UniqueBinItemList`. The wrapper class `BinItem` is then stripped and the internal policy item is added back to
+`UniqueStudentList`.
+
+The following sequence diagram shows how a restore command operates.
+
+![image](images/BinRestoreSequenceDiagram.png)
+
+#### Design Considerations
+
+Aspect: Which part of the architecture does Bin belong
+
+- **Alternative 1 (current choice):** included in the ResiReg model
+
+  - Pros: Lesser repeated code and unnecessary refactoring. Other features at the AddressBook level such as undo/redo
+    will not be affected with a change/modification made to Bin as it is not dependent on them.
+  - Cons: From a OOP design point of view, this is not the most direct way of structuring the program.
+
+- **Alternative 2:** As a separate entity from ResiReg
+  - Pros: More OOP like and lesser dependencies since Bin is extracted out from ResiReg. Methods related to bin
+    operations are called only from within Bin.
+  - Cons: Many sections with repeated code since its storage is structurally similar to AddressBook.
+
 ### Allocation/ deallocation/ reallocation feature
 
 The allocation/ deallocation/ reallocation feature is facilitated by `Allocation`. It is an association class of the
@@ -303,7 +363,7 @@ a reference to current state.
    - Cons: Further away from the command pattern than Alternative 1, so shifting to Alternative 2
    in how undo & redo executes will incur more additional work.
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Data archiving for semester
 
 _{Explain here how the data archiving feature will be implemented}_
 
@@ -397,9 +457,10 @@ Use case ends.
 **Extensions**
 
 - 1a. Student details are missing or invalid, or there is already a student with the same matriculation number.
-    - ResiReg shows an error message.
 
-      Use case starts over.
+  - ResiReg shows an error message.
+
+    Use case starts over.
 
 #### Use case: UC02 - Delete a student
 
@@ -415,12 +476,13 @@ Use case ends.
 **Extensions**
 
 - 1a. The list of students is empty.
-  
+
   Use case ends.
-  
+
 - 3a. The specified student does not exist.
+
   - ResiReg shows an error message.
-  
+
     Use case resumes at step 2.
 
 #### Use case: UC03 - Edit a student
@@ -439,10 +501,11 @@ Use case ends.
 - 1a. The list of students is empty.
 
   Use case ends.
-  
+
 - 3a. The specified student does not exist or the supplied details are invalid.
+
   - ResiReg shows an error message.
-  
+
     Use case resumes at step 2.
 
 #### Use case: UC04 - Allocate a room to a student
@@ -459,9 +522,10 @@ Use case ends.
 **Extensions**
 
 - 3a. Student belongs to an existing room allocation, room belongs to an existing room allocation, room does not exist or student does not exist.
-    - ResiReg shows an error message.
 
-    Use case resumes at step 2.
+  - ResiReg shows an error message.
+
+  Use case resumes at step 2.
 
 #### Use case: UC05 - Delete a room allocation for a student
 
@@ -471,20 +535,21 @@ Use case ends.
 1. ResiReg shows a list of room allocations.
 1. OHS admin requests to delete a specific room allocation.
 1. ResiReg removes the room allocation and saves the changes. The room and student are not modified.
- 
- Use case ends.
+
+Use case ends.
 
 **Extensions**
 
 - 1a. The list of room allocations is empty.
 
-    Use case ends.
+  Use case ends.
 
 - 3a. Room allocation does not exist.
-    - ResiReg shows an error message.
 
-      Use case resumes at step 2.
-      
+  - ResiReg shows an error message.
+
+    Use case resumes at step 2.
+
 #### Use case: UC06 - Edit an existing room allocation
 
 **MSS**
@@ -503,8 +568,12 @@ Use case ends.
   Use case ends.
 
 - 3a. Room allocation does not exist or details supplied are invalid.
-    - ResiReg shows an error message.
 
+<<<<<<< HEAD
+  - ResiReg shows an error message.
+
+    Use case resumes at step 2.
+=======
       Use case resumes at step 2.
       
 #### Use case: UC07 - Undo previous command
@@ -551,6 +620,7 @@ Use case ends.
     - ResiReg shows an error message.
     
       Use case ends.
+>>>>>>> fea735b51b0521c7174ae40b4f7dc4f794b1f7aa
 
 ### Non-Functional Requirements
 

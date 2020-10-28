@@ -27,7 +27,7 @@ public class ResiRegParser {
     /**
      * Creates a new ResiRegParser which can parse the commands specified in the map given.
      *
-     * @param commandWordToParserMap Mapping from command word to {@link Parser}.
+     * @param commandWordToParserMap Mapping from command word to parser.
      */
     public ResiRegParser(Map<String, Parser<Command>> commandWordToParserMap) {
         this.commandWordToParserMap = commandWordToParserMap;
@@ -55,5 +55,4 @@ public class ResiRegParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
