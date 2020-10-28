@@ -58,8 +58,11 @@ public class VisitTest {
 
     @Test
     public void getterMethods() {
-        // Valid date
-        String date = "10/10/2020";
+        // Valid date 19xx
+        String date19xxx = "10/10/1920";
+
+        // Valid date 2xxx
+        String date2xxx = "10/10/2020";
 
         // Invalid Day
         String invalidDay = "35/10/2020";
@@ -73,15 +76,17 @@ public class VisitTest {
         // Invalid type of date
         String invalidType = "test";
 
-        Visit visit = new Visit(date);
+        Visit visit = new Visit(date2xxx);
 
-        boolean test = visit.isValidVisitDate(date);
+        boolean testValid19xx = visit.isValidVisitDate(date19xxx);
+        boolean testValid2xxx = visit.isValidVisitDate(date2xxx);
         boolean testDay = visit.isValidVisitDate(invalidDay);
         boolean testMonth = visit.isValidVisitDate(invalidMonth);
         boolean testYear = visit.isValidVisitDate(invalidYear);
         boolean testType = visit.isValidVisitDate(invalidType);
 
-        assertEquals(test, true);
+        assertEquals(testValid19xx, true);
+        assertEquals(testValid2xxx, true);
         assertEquals(testDay, false);
         assertEquals(testMonth, false);
         assertEquals(testYear, false);
