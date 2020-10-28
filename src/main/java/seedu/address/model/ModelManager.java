@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.exceptions.NotInModuleViewException;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
@@ -32,6 +33,10 @@ public class ModelManager implements Model {
     private Module currentModuleInView;
     private TutorialGroup currentTgInView;
 
+    private boolean isInModuleView;
+    private boolean isInTutorialGroupView;
+    private boolean isInStudentView;
+
     /**
      * Initializes a ModelManager with the given ReadOnlyTrackrs and userPrefs.
      */
@@ -48,6 +53,10 @@ public class ModelManager implements Model {
         this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
 
         this.userPrefs = new UserPrefs(userPrefs);
+
+        this.isInModuleView = true;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = false;
     }
 
     public ModelManager() {
@@ -104,6 +113,13 @@ public class ModelManager implements Model {
     //=========== Module Operations ================================================================================
 
     @Override
+    public void setViewToModule() {
+        this.isInModuleView = true;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = false;
+    }
+
+    @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
         return moduleList.hasModule(module);
@@ -126,10 +142,18 @@ public class ModelManager implements Model {
         moduleList.setModule(target, newModuleId);
     }
 
+    @Override
+    public boolean isInModuleView() {
+        return this.isInModuleView;
+    }
+
     //=========== TutorialGroup Operations ====================================================================
 
     @Override
     public void setViewToTutorialGroup(Module target) {
+        this.isInModuleView = false;
+        this.isInTutorialGroupView = true;
+        this.isInStudentView = false;
         currentModuleInView = target;
         filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(target));
     }
@@ -140,10 +164,18 @@ public class ModelManager implements Model {
         filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(currentModuleInView));
     }
 
+    @Override
+    public boolean isInTutorialGroupView() {
+        return this.isInTutorialGroupView;
+    }
+
     //=========== Student Operations =============================================================================
 
     @Override
     public void setViewToStudent(TutorialGroup target) {
+        this.isInModuleView = false;
+        this.isInTutorialGroupView = false;
+        this.isInStudentView = true;
         currentTgInView = target;
         filteredStudents =
                 new FilteredList<>(moduleList.getStudentListOfTutorialGroup(currentModuleInView, target));
@@ -177,6 +209,11 @@ public class ModelManager implements Model {
         moduleList
                 .getUniqueStudentList(currentModuleInView, currentTgInView)
                 .setStudent(target, editedStudent);
+    }
+
+    @Override
+    public boolean isInStudentView() {
+        return this.isInStudentView;
     }
 
     //=========== Filtered Module List Accessors =============================================================

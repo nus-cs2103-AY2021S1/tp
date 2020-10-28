@@ -15,11 +15,14 @@ public class ListModuleCommand extends Command {
 
     public static final String MESSAGE_VIEWING_MODULES_SUCCESS = "Viewing All Modules";
 
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. Run listMod to go back to the module view.";
+
     public ListModuleCommand() { }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        model.setViewToModule();
         return new CommandResult(String.format(MESSAGE_VIEWING_MODULES_SUCCESS), false, false, false, false, true);
     }
 

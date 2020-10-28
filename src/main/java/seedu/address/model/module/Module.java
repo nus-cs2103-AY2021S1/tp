@@ -42,17 +42,17 @@ public class Module {
     //        this.taskList = new TaskList(taskList);
     //    }
 
-        /**
-         * Constructs an {@code Module}.
-         * @param moduleId
-         * @param tutorialGroups
-         */
-        public Module(ModuleId moduleId, UniqueTutorialGroupList tutorialGroups) {
-            requireNonNull(moduleId);
-            requireNonNull(tutorialGroups);
-            this.moduleId = moduleId;
-            this.tutorialGroups = tutorialGroups;
-        }
+    /**
+     * Constructs an {@code Module}.
+     * @param moduleId
+     * @param tutorialGroups
+     */
+    public Module(ModuleId moduleId, UniqueTutorialGroupList tutorialGroups) {
+        requireNonNull(moduleId);
+        requireNonNull(tutorialGroups);
+        this.moduleId = moduleId;
+        this.tutorialGroups = tutorialGroups;
+    }
 
 
     public ModuleId getModuleId() {
