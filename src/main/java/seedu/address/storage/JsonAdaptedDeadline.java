@@ -125,8 +125,8 @@ class JsonAdaptedDeadline {
         final DoneDateTime modelDoneDateTime;
 
         if (doneDateTime.equals("")) {
-            logger.info("Done datetime for task with title: '" + title
-                    + "' is empty. Creating a default done datetime for it");
+            logger.info("Done datetime for task with title: '" + title + "' is empty. Creating a default "
+                    + "done datetime for it");
             modelDoneDateTime = DoneDateTime.createNullDoneDateTime();
         } else if (!DateUtil.isValidDateTime(doneDateTime)) {
             throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);

@@ -2,10 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -29,10 +26,10 @@ public class CommandTestUtil {
     public static final String VALID_DATE_TIME_BOB = "01-01-2020 00:00";
     public static final String VALID_DESCRIPTION_AMY = "amy,example.com";
     public static final String VALID_DESCRIPTION_BOB = "bob,example.com";
-    public static final String VALID_TYPE_AMY = "todo";
     public static final String VALID_TYPE_BOB = "deadline";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
 
     public static final String TITLE_DESC_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String TITLE_DESC_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
@@ -54,7 +51,6 @@ public class CommandTestUtil {
 
     public static final String VALID_TITLE_CS2103T = "CS2103T Lecture";
     public static final String VALID_DESC_CS2103T = "Best lecture ever!";
-    public static final String VALID_DAY_CS2103T = "Monday";
     public static final String VALID_START_TIME_CS2103T = "12:00";
     public static final String VALID_END_TIME_CS2103T = "14:00";
     public static final String VALID_START_DATE_CS2103T = "01-01-2020";

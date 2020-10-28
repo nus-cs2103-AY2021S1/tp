@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_SEARCH_PHRASE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
@@ -15,9 +14,9 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.util.DateUtil;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.deadline.Status;
-import seedu.address.model.task.TaskContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
