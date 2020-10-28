@@ -155,13 +155,23 @@ Format: `retrieve`
 
 ### Searching for tasks by keyword : `find`
 
-Searches the current tasklist for the specified keyword(s).
+Searches current shown tasklist for the specified keyword(s).
 
 Format: `find KEYWORD1 [KEYWORD2]`
-        Searches the entire task list for the presence of the keyword(s) on any task.
-        Matching tasks are shown on a list to the user.
+        Searches the task list shown on screen for the presence of the keyword(s) in titles and descriptions of tasks.
+        Matching tasks are shown on the screen to the user.
 
 Example: `find cs2103 project`
+
+### Sorting tasks by date : `sort`
+
+Sorts the whole tasklist according to their deadline or event data in ascending order. Todo tasks would be move to the bottom of the list.
+
+Format: `sort`
+        Sorts the whole tasklist according to their deadline or event data.
+        Results would be shown on screen.
+
+Example: `sort`
 
 ### Exiting the program : `exit`
 
