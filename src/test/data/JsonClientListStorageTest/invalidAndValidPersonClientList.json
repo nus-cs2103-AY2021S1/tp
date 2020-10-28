@@ -7,7 +7,11 @@
     "clientSource": [ "friends" ],
     "note": "pwpw",
     "isArchive": false,
-    "priority": "low"
+    "priority": "low",
+    "policy" : {
+      "policyName" : "Life Time",
+      "description" : "Covers death, serious illnesses, and disabilities."
+    }
   }, {
     "name": "Person With Invalid Phone Field",
     "phone": "948asdf2424",
@@ -16,6 +20,10 @@
     "clientSource": [ "friends" ],
     "note": "pwpw",
     "isArchive": false,
-    "priority": "X"
+    "priority": "X",
+    "policy" : {
+      "policyName" : "Life Time",
+      "description" : "Covers death, serious illnesses, and disabilities."
+    }
   } ]
 }

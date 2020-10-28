@@ -18,6 +18,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.Policy;
 
 /**
  * Unarchives a person identified using its displayed index from the client list.
@@ -74,6 +75,7 @@ public class UnarchiveCommand extends Command {
         Set<ClientSource> unarchivedClientSources = personToUnarchive.getClientSources();
         Note unarchivedNote = personToUnarchive.getNote();
         Priority unarchivedPriority = personToUnarchive.getPriority();
+        Policy unarchivedPolicy = personToUnarchive.getPolicy();
 
         boolean unarchivedIsArchive = false;
 
@@ -85,7 +87,8 @@ public class UnarchiveCommand extends Command {
                 unarchivedClientSources,
                 unarchivedNote,
                 unarchivedIsArchive,
-                unarchivedPriority);
+                unarchivedPriority,
+                unarchivedPolicy);
     }
 
     @Override

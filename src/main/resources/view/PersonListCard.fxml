@@ -32,6 +32,8 @@
       <FlowPane fx:id="phone" />
       <FlowPane fx:id="address" />
       <FlowPane fx:id="email" />
+      <FlowPane fx:id="policyName" />
+      <FlowPane fx:id="policyDescription" />
       <FlowPane fx:id="note" />
       <FlowPane fx:id="priority" />
     </VBox>

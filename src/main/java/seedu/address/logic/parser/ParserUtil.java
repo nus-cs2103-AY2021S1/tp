@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -16,6 +17,8 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.PolicyDescription;
+import seedu.address.model.policy.PolicyName;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -163,5 +166,47 @@ public class ParserUtil {
             throw new ParseException(Priority.MESSAGE_CONSTRAINTS);
         }
         return new Priority(trimmedPriority);
+    }
+
+    /**
+     * Parses a {@code String name} into a {@code PolicyName}.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static PolicyName parsePolicyName(String name) throws ParseException {
+        if (name == null) {
+            return null;
+        }
+        String trimmedName = name.trim();
+        if (!PolicyName.isValidPolicyName(trimmedName)) {
+            throw new ParseException(PolicyName.MESSAGE_CONSTRAINTS);
+        }
+        return new PolicyName(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String description} into a {@code PolicyDescription}.
+     * Leading and trailing white spaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code description} is invalid.
+     */
+    public static PolicyDescription parsePolicyDescription(String description) throws ParseException {
+        if (description == null) {
+            return null;
+        }
+        String trimmedDescription = description.trim();
+        if (!PolicyDescription.isValidPolicyDescription(trimmedDescription)) {
+            throw new ParseException(PolicyDescription.MESSAGE_CONSTRAINTS);
+        }
+        return new PolicyDescription(trimmedDescription);
+    }
+
+    /**
+     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
