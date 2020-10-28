@@ -21,7 +21,6 @@ class Answer
 class Choice
 class Tag
 class Difficulty
-enum Difficulties
 class UniqueFlashcardList
 class Flashcard
 }
@@ -38,7 +37,6 @@ Flashcard *--> "1" Answer
 Flashcard *--> "*" Tag
 Flashcard *--> "1" Difficulty
 
-Difficulty *--> "1" Difficulties
 
 UniqueFlashcardList o--> "*" Flashcard
 QuickCache *--> "1" UniqueFlashcardList
