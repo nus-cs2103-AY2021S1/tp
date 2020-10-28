@@ -64,7 +64,9 @@ public class ArgName {
      */
     @Override
     public String toString() {
-        return String.format("/%s:%s", this.name, String.join(":", this.components));
+        return String.format("/%s%s%s", this.name,
+            this.components.isEmpty() ? "" : ":",
+            String.join(":", this.components));
     }
 
     @Override

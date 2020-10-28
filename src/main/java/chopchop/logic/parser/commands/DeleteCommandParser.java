@@ -70,6 +70,8 @@ public class DeleteCommandParser {
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
         if (qtys.size() > 1) {
             return Result.error("Multiple quantities specified");
+        } else if (qtys.size() == 1 && qtys.get(0).isEmpty()) {
+            return Result.error("Specified quantity cannot be emtpy");
         }
 
         return ItemReference.parse(name)

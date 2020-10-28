@@ -1,5 +1,6 @@
 package chopchop.logic.parser.commands;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.ArrayList;
 
@@ -139,9 +140,7 @@ public class EditCommandParser {
 
         var op = components.get(0);
 
-        if (components.size() != 1
-            || (!op.equals("add") && !op.equals("edit") && !op.equals("delete"))) {
-
+        if (components.size() != 1 || !List.of("add", "edit", "delete").contains(op)) {
             return Result.error("Expected either (and only) 'add', 'edit', or 'delete' after '/ingredient:'");
         }
 
@@ -149,7 +148,7 @@ public class EditCommandParser {
             return Result.error("Expected ingredient name after /ingredient:%s", op);
         }
 
-        return ensureNoArgsForDeleteAndGetOperationType("quantity", op, qty.isEmpty())
+        return ensureNoArgsForDeleteAndGetOperationType("quantity", "ingredient", op, qty.isEmpty())
             .map(kind -> new IngredientEditDescriptor(kind, ingredientName, qty));
     }
 
@@ -164,12 +163,15 @@ public class EditCommandParser {
     private static Result<TagEditDescriptor> parseTagEdit(ArgName argName, String argValue) {
 
         var comps = argName.getComponents();
-
-        if (comps.size() != 1 || (!comps.get(0).equals("add") && !comps.get(0).equals("delete"))) {
+        if (comps.isEmpty()) {
             return Result.error("Expected either /tag:add or /tag:delete");
         }
 
         var op = comps.get(0);
+        if (comps.size() != 1 || !List.of("add", "delete").contains(op)) {
+            return Result.error("Expected either /tag:add or /tag:delete");
+        }
+
         if (argValue.isEmpty()) {
             return Result.error("Expected tag name after /tag:add or /tag:delete");
         } else if (!Tag.isValidTag(argValue)) {
@@ -228,9 +230,10 @@ public class EditCommandParser {
 
         } else if (op.equals("edit") || op.equals("delete")) {
 
-            // what a mess of a function.
-
-            if (components.size() != 2 || stepNumber.isEmpty()) {
+            // either stepNumber will be valid, or component size is not 2, because:
+            // (a) if #components was > 1, then we either got a valid step number, or returned
+            // (b) if #components was <= 1, then it is != 2, so we will return here.
+            if (components.size() != 2) {
                 return Result.error("Expected number after /step:%s (eg. /step:%s:3)", op, op);
             }
 
@@ -246,25 +249,25 @@ public class EditCommandParser {
 
 
     private static Result<EditOperationType> ensureNoArgsForDeleteAndGetOperationType(
-        String editor, String op, boolean argIsEmpty) {
+        String editor, String editor2, String op, boolean argIsEmpty) {
 
         if (op.equals("add")) {
             if (argIsEmpty) {
-                return Result.error("Expected non-empty %s after /%s:%s", editor, editor, op);
+                return Result.error("Expected non-empty %s after /%s:%s", editor, editor2, op);
             }
 
             return Result.of(EditOperationType.ADD);
 
         } else if (op.equals("edit")) {
             if (argIsEmpty) {
-                return Result.error("Expected non-empty %s after /%s:%s", editor, editor, op);
+                return Result.error("Expected non-empty %s after /%s:%s", editor, editor2, op);
             }
 
             return Result.of(EditOperationType.EDIT);
 
         } else if (op.equals("delete")) {
             if (!argIsEmpty) {
-                return Result.error("Unexpected %s after /%s:%s", editor, editor, op);
+                return Result.error("Unexpected %s after /%s:%s", editor, editor2, op);
             }
 
             return Result.of(EditOperationType.DELETE);
@@ -273,5 +276,11 @@ public class EditCommandParser {
             return Result.error("Expected either /%s:add, /%s:edit, or /%s:delete",
                 editor, editor, editor);
         }
+    }
+
+    private static Result<EditOperationType> ensureNoArgsForDeleteAndGetOperationType(
+        String editor, String op, boolean argIsEmpty) {
+
+        return ensureNoArgsForDeleteAndGetOperationType(editor, editor, op, argIsEmpty);
     }
 }

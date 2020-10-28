@@ -181,29 +181,5 @@ public class CommandParserTest {
         cases.put("list recipes /uwu",                                                  false);
         cases.put("filter recipe /qty:kekw",                                            false);
         cases.put("help /uwu",                                                          false);
-
-        cases.put("add recipe",                                                         false);
-        cases.put("add recipe f /name",                                                 false);
-        cases.put("add recipe f /ingredient:add",                                       false);
-        cases.put("add recipe f /ingredient /qty 5",                                    false);
-        cases.put("add recipe f /ingredient x /ingredient",                             false);
-        cases.put("add recipe f /ingredient x /ingredient y /qty zzz",                  false);
-        cases.put("add recipe f /qty 700",                                              false);
-
-        cases.put("add ingredient",                                                     false);
-        cases.put("add ingredient f /name",                                             false);
-        cases.put("add ingredient f /qty:add",                                          false);
-        cases.put("add ingredient f /qty",                                              false);
-        cases.put("add ingredient f /qty /qty",                                         false);
-        cases.put("add ingredient f /qty 1 /qty 2",                                     false);
-        cases.put("add ingredient f /qty x",                                            false);
-        cases.put("add ingredient f /qty x y /qty zzz",                                 false);
-        cases.put("add ingredient f /expiry",                                           false);
-        cases.put("add ingredient f /expiry /expiry",                                   false);
-
-
-        cases.forEach((k, v) -> {
-            assertEquals(v, parser.parse(k).hasValue());
-        });
     }
 }
