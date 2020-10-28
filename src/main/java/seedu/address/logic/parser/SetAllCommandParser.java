@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PEARL;
 
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.SetAllCommand;
+import seedu.address.logic.commands.ingredientcommands.SetAllCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ingredient.Amount;
 

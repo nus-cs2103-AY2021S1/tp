@@ -76,7 +76,7 @@
                     <Insets bottom="10" left="10" right="10" top="10" />
                  </padding>
                  <children>
-                     <StackPane fx:id="ingredientResultDisplayPlaceholder" prefHeight="78.0" prefWidth="150.0"
+                     <StackPane fx:id="ingredientListPanelPlaceholder" prefHeight="78.0" prefWidth="150.0"
                                 VBox.vgrow="ALWAYS" />
                  </children>
               </VBox>
