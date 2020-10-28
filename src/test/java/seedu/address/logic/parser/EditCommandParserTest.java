@@ -34,6 +34,7 @@ import seedu.address.logic.commands.EditCommand.EditEntryDescriptor;
 import seedu.address.model.account.entry.Amount;
 import seedu.address.model.account.entry.Description;
 import seedu.address.model.account.entry.Expense;
+import seedu.address.model.account.entry.Revenue;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
 import seedu.address.testutil.EntryUtil;
@@ -188,7 +189,18 @@ public class EditCommandParserTest {
     public void parseEditCommand_editExpense() throws Exception {
         Expense expense = TypicalEntries.PAY_RENT;
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(expense).build();
-        EditCommand actualCommand = (EditCommand) parser.parse(" 1 c/expense d/paid rent a/1000 t/");
+        EditCommand actualCommand = parser.parse(INDEX_FIRST_ENTRY.getOneBased()
+                + " " + EntryUtil.getEntryDetails(TypicalEntries.PAY_RENT));
+        EditCommand expectedCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
+        assertEquals(expectedCommand, actualCommand);
+    }
+
+    @Test
+    public void parseEditCommand_editRevenue() throws Exception {
+        Revenue revenue = TypicalEntries.SELL_FLOWER_SEEDS;
+        EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(revenue).build();
+        EditCommand actualCommand = parser.parse(INDEX_FIRST_ENTRY.getOneBased()
+                + " " + EntryUtil.getEntryDetails(TypicalEntries.SELL_FLOWER_SEEDS));
         EditCommand expectedCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
         assertEquals(expectedCommand, actualCommand);
     }

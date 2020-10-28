@@ -146,7 +146,7 @@ public class EntryUtil {
         sb.append(PREFIX_DESCRIPTION + entry.getDescription().toString() + " ");
         sb.append(PREFIX_AMOUNT + entry.getAmount().toString() + " ");
         entry.getTags().stream().forEach(
-                s -> sb.append(PREFIX_TAG + s.tagName + " ")
+            s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();
     }

@@ -44,7 +44,7 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_RevenueAcceptedByModel_addSuccessful() {
+    public void execute_revenueAcceptedByModel_addSuccessful() {
 
         Revenue revenueStub = revenueBuilder.build();
         Model modelStub = new ModelStub();

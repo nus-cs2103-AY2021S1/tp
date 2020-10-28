@@ -108,22 +108,49 @@ are new to _Common Cents_, do not fret as this section will guide you step by st
 available! This will better your experience with _Common Cents_ and your usage of features!
 
 ## 4.1 Accounts
+Accounts in Common Cents are key features that help you better manage, categorise, and organise your finances better. 
+In Common Cents, each account has a unique name, and a unique list of expenses and revenues. 
+You can make as many accounts as you'd like in order to help you better categorise and organise your finances better!<br>
+ 
+When you first launch Common Cents, a **General Account** is made for you by default, which you may use on top of other
+accounts. You may also make new accounts and switch between them and give them their very own set of expenses and revenues.
 
 ### 4.1.1 Name
+As mentioned in the previous section, you are able to make new accounts on top of the General Account. Every account 
+**MUST** have a unique name and duplicate names are not supported, so that you are able to distinguish and identify your
+accounts better.
 
 ### 4.1.2 Expense List
+Each account will have an Expense list - that is, a list of transactions that involve expenditure on your end (i.e.
+net outflow of money). In general, expenses keyed into Common Cents have a compulsory Description and Amount, as well as 
+optional Tags. In the app user interface, each expense amount will be displayed as a negative value and all the expenses
+will be displayed as a scrollable list.
 
 ### 4.1.3 Revenue List
+Each account will also have a Revenue list - that is, a list of transactions that involve profit from your end (i.e.
+net inflow. of money). Like expenses, revenues keyed into Common Cents have a compulsory Description and Amount, as well as 
+optional Tags. In the app user interface, each revenue amount will be displayed as a positive value and all the revenues
+will be displayed as a scrollable list, right beside the expenses list.
 
 ## 4.2 Entries
+'Entry' (or 'Entries') is the term used to describe either Expense or Revenue. Each entry input into Common Cents would 
+have compulsory fields - Category (e.g. expense or revenue), Description, Amount - and optional Tags. 
 
 ### 4.2.1 Category
+Category is the field that specifies the type of Entry input that Common Cents receives from you. You can either specify 
+the category as an expense or a revenue.
 
 ### 4.2.2 Description
+Description refers to the textual information that is associated with the Entry that Common Cents receives from you, in
+order to provide more information about the Entry.  
 
 ### 4.2.3 Amount 
+Amount is the numeric value associated with the Entry that Common Cents receives from you. All amounts, for both expenses
+and revenues must be given as a positive value.
 
 ### 4.2.4 Tags
+Tags refer to short textual prompts attached to an Entry, with the purpose of giving extra information and identity for
+your Entries in Common Cents.
 
 --------------------------------------------------------------------------------------------------------------------
 
