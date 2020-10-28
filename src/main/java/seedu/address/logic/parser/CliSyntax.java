@@ -18,4 +18,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_COLORTAG = new Prefix("ct/");
     public static final Prefix PREFIX_VISIT_DATE = new Prefix("vd/");
     public static final Prefix PREFIX_VISIT_INDEX = new Prefix("i/");
+    public static final Prefix PREFIX_APP_PATIENTNAME = new Prefix("pn/");
+    public static final Prefix PREFIX_APP_PATIENTIC = new Prefix("pi/");
+    public static final Prefix PREFIX_APP_STARTTIME = new Prefix("st/");
+    public static final Prefix PREFIX_APP_DURATION = new Prefix("d/");
 }

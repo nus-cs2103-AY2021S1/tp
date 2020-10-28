@@ -91,7 +91,16 @@ public class CliniCalParser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+        /*
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
 
+        case EditAppointmentCommand.COMMAND_WORD:
+            return new EditAppointmentCommandParser().parse(arguments);
+
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
+        */
         case AddVisitCommand.COMMAND_WORD:
             return new AddVisitCommandParser().parse(arguments);
 

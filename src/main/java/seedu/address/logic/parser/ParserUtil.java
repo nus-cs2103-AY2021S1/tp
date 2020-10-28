@@ -29,6 +29,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String MESSAGE_EMPTY_VISIT_INDEX = "";
     public static final int MESSAGE_EMPTY_VISIT_INDICATOR = -1;
+    public static final String MESSAGE_INVALID_DURATION = "The given duration should be larger than 0.";
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -225,4 +226,56 @@ public class ParserUtil {
         }
         return trimmedDate;
     }
+    //    /**
+    //     * Parses a {@code String dateTime} into an {@code AppointmentDateTime}.
+    //     * Leading and trailing whitespaces will be
+    //     * trimmed.
+    //     *
+    //     * @throws ParseException if the given {@code dateTime} is invalid.
+    //     */
+    //    public static AppointmentDateTime parseDateTime(String dateTime) throws ParseException {
+    //        requireNonNull(dateTime);
+    //        String trimmedDateTime = dateTime.trim();
+    //        if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
+    //            throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
+    //        }
+    //        return new AppointmentDateTime(trimmedDateTime);
+    //    }
+    //
+    //    /**
+    //     * Parses a {@code String dateTimeStr, durationStr} into an {@code AppointmentDateTime}.
+    //     * Leading and trailing whitespaces will be trimmed.
+    //     *
+    //     * @throws ParseException if the given {@code dateTimeStr, durationStr} is invalid.
+    //     */
+    //    public static AppointmentDateTime parseDurationWithStart(String dateTimeStr, String durationStr)
+    //        throws ParseException {
+    //        requireNonNull(dateTimeStr, durationStr);
+    //        String trimmedDateTime = dateTimeStr.trim();
+    //        String trimmedDuration = durationStr.trim();
+    //        if (!AppointmentDateTime.isValidDateTime(trimmedDateTime)) {
+    //            throw new ParseException(AppointmentDateTime.MESSAGE_CONSTRAINTS);
+    //        }
+    //        int duration = Integer.parseInt(trimmedDuration);
+    //        if (duration <= 0) {
+    //            throw new ParseException(MESSAGE_INVALID_DURATION);
+    //        }
+    //        return new AppointmentDateTime(trimmedDateTime, duration);
+    //    }
+    //
+    //    /**
+    //     * Parses a {@code String durationStr} into an {@code Integer}.
+    //     * Leading and trailing whitespaces will be trimmed.
+    //     *
+    //     * @throws ParseException if the given {@code durationStr} is invalid.
+    //     */
+    //    public static int parseDuration(String durationStr) throws ParseException {
+    //        requireNonNull(durationStr);
+    //        String trimmedDuration = durationStr.trim();
+    //        int duration = Integer.parseInt(trimmedDuration);
+    //        if (duration <= 0) {
+    //            throw new ParseException(MESSAGE_INVALID_DURATION);
+    //        }
+    //        return duration;
+    //    }
 }
