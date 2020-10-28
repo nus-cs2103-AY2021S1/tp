@@ -240,7 +240,7 @@ Examples:
 
 </div>
 
-![find_command_example](images/CommandImagesForUG/Clear.png)
+![clear_command_example](images/CommandImagesForUG/Clear.png)
 
 ### 5.7 Listing all food items : `list`
 
