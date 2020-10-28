@@ -25,3 +25,11 @@ ignore:
   - "data"
   - ".github"
   - "config"
+  - "src/main/java/seedu/taskmaster/ui/CommandBox.java"
+  - "src/main/java/seedu/taskmaster/ui/HelpWindow.java"
+  - "src/main/java/seedu/taskmaster/ui/MainWindow.java"
+  - "src/main/java/seedu/taskmaster/ui/ResultDisplay.java"
+  - "src/main/java/seedu/taskmaster/ui/SessionListPanel.java"
+  - "src/main/java/seedu/taskmaster/ui/StudentListPanel.java"
+  - "src/main/java/seedu/taskmaster/ui/StudentRecordListPanel.java"
+
