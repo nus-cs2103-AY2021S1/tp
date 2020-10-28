@@ -23,7 +23,6 @@ public class Strings {
     public static final ArgName ARG_NAME            = new ArgName("name");
     public static final ArgName ARG_AFTER           = new ArgName("after");
     public static final ArgName ARG_BEFORE          = new ArgName("before");
-    public static final ArgName ARG_ON              = new ArgName("on");
 
     // command names
     public static final String COMMAND_ADD          = "add";

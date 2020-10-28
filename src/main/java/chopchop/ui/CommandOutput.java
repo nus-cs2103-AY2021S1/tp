@@ -32,6 +32,14 @@ public class CommandOutput extends UiPart<Region> {
     }
 
     /**
+     * Clear wtv is displayed.
+     */
+    public void clear() {
+        var texts = displayBox.getChildren();
+        texts.clear();
+    }
+
+    /**
      * Displays the commandResult to the user.
      *
      * @param result the command result

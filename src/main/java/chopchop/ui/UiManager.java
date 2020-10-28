@@ -7,6 +7,7 @@ import chopchop.commons.core.LogsCenter;
 import chopchop.commons.util.StringUtil;
 import chopchop.logic.Logic;
 import chopchop.logic.commands.CommandResult;
+import chopchop.model.Model;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -24,14 +25,16 @@ public class UiManager implements Ui {
     private static final String ICON_APPLICATION = "/images/recipes.png";
 
     private Logic logic;
+    private Model model;
     private MainWindow mainWindow;
 
     /**
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
-    public UiManager(Logic logic) {
+    public UiManager(Logic logic, Model model) {
         super();
         this.logic = logic;
+        this.model = model;
     }
 
     @Override
@@ -42,7 +45,7 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
+            mainWindow = new MainWindow(primaryStage, logic, model);
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
