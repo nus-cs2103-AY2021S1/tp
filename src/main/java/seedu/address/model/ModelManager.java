@@ -15,6 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ZoomLink;
 import seedu.address.model.task.Task;
 
 /**
@@ -128,6 +129,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedModule);
 
         moduleList.setModule(target, editedModule);
+    }
+
+    @Override
+    public void addZoomToModule(Module target, ZoomLink zoomLink) {
+        requireAllNonNull(target, zoomLink);
+        // moduleList.addZoomLink(target, zoomLink);
     }
 
     @Override

@@ -1,12 +1,14 @@
 package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -15,29 +17,37 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ZoomLink;
 
 /**
- * Represents the AddZoomLinkCommand class.
+ * Adds a zoom link to a module.
  */
 public class AddZoomLinkCommand extends Command {
 
-    public static final String COMMAND_WORD = "addzoomlink";
+    public static final String COMMAND_WORD = "addzoom";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a zoom link to the module. "
             + "Parameters: " + "INDEX (must be a positive integer) "
+            + PREFIX_NAME + "MODULE LESSON TYPE"
             + PREFIX_ZOOM_LINK + "ZOOM LINK "
             + "Example: " + COMMAND_WORD + " "
-            + "1" + PREFIX_ZOOM_LINK + "www.zoom.com";
+            + "1" + PREFIX_NAME + "lecture"
+            + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/j/uasoihd637bf";
 
-    private final int moduleID;
+    public static final String MESSAGE_ADD_ZOOM_SUCCESS = "Added Zoom link: %1$s";
+
+    private final Index targetIndex;
     private final ZoomLink zoomLink;
+    private final String moduleLessonType;
 
     /**
      * Creates and initialises a new AddZoomLinkCommand object.
      *
-     * @param moduleIndex Zero based index of the module in the list of modules.
-     * @param zoomLink String containing the zoom link to be added to the module.
+     * @param targetIndex Index object representing the index of the module in the module list.
+     * @param moduleLessonType String representing the type of module lesson.
+     * @param zoomLink ZoomLink object representing the zoom link to be added
+     *                 to a module for a specific lesson type.
      */
-    public AddZoomLinkCommand(int moduleIndex, ZoomLink zoomLink) {
-        this.moduleID = moduleIndex;
+    public AddZoomLinkCommand(Index targetIndex, String moduleLessonType, ZoomLink zoomLink) {
+        this.targetIndex = targetIndex;
+        this.moduleLessonType = moduleLessonType;
         this.zoomLink = zoomLink;
     }
 
@@ -47,28 +57,16 @@ public class AddZoomLinkCommand extends Command {
 
         List<Module> lastShownList = model.getFilteredModuleList();
 
-        if (moduleID >= lastShownList.size()) {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
-        Module moduleToAddLink = lastShownList.get(moduleID);
-        Module updatedModule = moduleToAddLink.addZoomLink(zoomLink);
-        model.setModule(moduleToAddLink, updatedModule);
-        model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        Module moduleToAddZoom = lastShownList.get(targetIndex.getZeroBased());
+        model.addZoom
         model.commitModuleList();
-        return new CommandResult(createSuccessMessage(updatedModule.getName().fullName));
+        return new CommandResult(String.format(MESSAGE_ADD_ZOOM_SUCCESS, zoomLink));
     }
 
-    /**
-     * Creates a success message when the zoom link has been successfully added to the desired module.
-     *
-     * @param moduleName String containing the name of the module.
-     * @return String containing the success message.
-     */
-    public String createSuccessMessage(String moduleName) {
-        String message = this.zoomLink + " has been successfully added to " + moduleName;
-        return message;
-    }
 
     /**
      * Indicates if the application session has ended.

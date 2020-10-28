@@ -7,10 +7,11 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
+import seedu.address.model.module.ZoomLink;
 
 /**
- * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Wraps all data at the module-list level
+ * Duplicates are not allowed (by .isSameModule comparison)
  */
 public class ModuleList implements ReadOnlyModuleList {
 
@@ -30,7 +31,7 @@ public class ModuleList implements ReadOnlyModuleList {
     public ModuleList() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates a ModuleList using the Modules in the {@code toBeCopied}
      */
     public ModuleList(ReadOnlyModuleList toBeCopied) {
         this();
@@ -75,8 +76,8 @@ public class ModuleList implements ReadOnlyModuleList {
 
     /**
      * Replaces the given module {@code target} in the list with {@code editedModule}.
-     * {@code target} must exist in the modulelist.
-     * The module identity of {@code editedModule} must not be the same as another existing module in the modulelist.
+     * {@code target} must exist in the module list.
+     * The module identity of {@code editedModule} must not be the same as another existing module in the module list.
      */
     public void setModule(Module target, Module editedModule) {
         requireNonNull(editedModule);
@@ -84,8 +85,16 @@ public class ModuleList implements ReadOnlyModuleList {
     }
 
     /**
+     * Adds the given {@code zoomLink} to the given module {@code target}.
+     * {@code target} must exist in the module list.
+     */
+    public void addZoomToModule(Module target, ZoomLink zoomLink) {
+
+    }
+
+    /**
      * Removes {@code key} from this {@code ModuleList}.
-     * {@code key} must exist in the modulelist.
+     * {@code key} must exist in the module list.
      */
     public void removeModule(Module key) {
         modules.remove(key);
