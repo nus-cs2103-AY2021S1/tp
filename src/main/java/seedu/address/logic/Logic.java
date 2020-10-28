@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyReeve;
+import seedu.address.model.notes.ReadOnlyNotebook;
 import seedu.address.model.student.Student;
 
 /**
@@ -29,6 +30,11 @@ public interface Logic {
      * @see seedu.address.model.Model#getReeve()
      */
     ReadOnlyReeve getAddressBook();
+
+    /**
+     * Returns the notebook.
+     */
+    ReadOnlyNotebook getNotebook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Student> getFilteredPersonList();

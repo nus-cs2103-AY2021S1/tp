@@ -46,6 +46,9 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
+    private StackPane notebookPlaceholder;
+
+    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
@@ -170,6 +173,10 @@ public class MainWindow extends UiPart<Stage> {
 
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
+    }
+
+    public Notebook getNotebookPanel() {
+        return notebook;
     }
 
     /**
