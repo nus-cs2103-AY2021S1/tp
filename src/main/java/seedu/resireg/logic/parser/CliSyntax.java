@@ -15,7 +15,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_STUDENT_INDEX = new Prefix("si/");
     // rooms
     public static final Prefix PREFIX_ROOM_INDEX = new Prefix("ri/");
-    public static final Prefix PREFIX_ROOM_FLOOR = new Prefix("f/");
+    public static final Prefix PREFIX_ROOM_FLOOR = new Prefix("fl/");
     public static final Prefix PREFIX_ROOM_NUMBER = new Prefix("n/");
     public static final Prefix PREFIX_ROOM_TYPE = new Prefix("t/");
     // both rooms and students
