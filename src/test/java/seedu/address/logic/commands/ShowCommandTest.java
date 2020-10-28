@@ -21,8 +21,6 @@ import seedu.address.testutil.TypicalTags;
 public class ShowCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
-
-
     @Test
     public void equals() {
         TagName firstPredicateTagName = new TagName("first");
