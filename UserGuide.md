@@ -35,11 +35,11 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
   
 **:information_source: Notes and terminologies on archiving:**<br>
 
-* Clients not in the archive are said to be in the “active list”, or the “active client list”.
+* Clients not in the archive are said to be in the "active list", or the "active client list".
  
 * Upon starting up the app, users would see the active list by default.
  
-* In the “active mode”, users can view the active list. In the “archive mode”, users can view the archive.
+* In the "active mode", users can view the active list. In the "archive mode", users can view the archive.
 
 </div>
 
