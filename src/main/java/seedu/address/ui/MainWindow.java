@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private LessonListPanel lessonListPanel;
+    private CalendarPanel calendarPanel;
     private DataAnalysisPanel dataAnalysisPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -131,6 +132,9 @@ public class MainWindow extends UiPart<Stage> {
 
         lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
         lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
+
+        calendarPanel = new CalendarPanel(logic.getFilteredCalendarList());
+        calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
 
         dataAnalysisPanel = new DataAnalysisPanel(Statistics.generateStatistics(LocalDate.now().minusDays(3), LocalDate.now().plusDays(3)));
         dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());

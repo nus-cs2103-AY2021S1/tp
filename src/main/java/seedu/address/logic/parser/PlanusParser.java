@@ -20,10 +20,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListLessonCommand;
-<<<<<<< HEAD
-
-=======
->>>>>>> fd2d61f4d6b1e95fb7aba8d202d424a6ae7e3b21
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

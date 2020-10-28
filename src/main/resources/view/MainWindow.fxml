@@ -62,10 +62,10 @@
                         </VBox>
                      </items>
                   </SplitPane>
-                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                  <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>
                         <Pane fx:id="calendarPanelPlaceholder" styleClass="background" VBox.vgrow="ALWAYS" />
-                        <Separator prefWidth="200.0" />
+                        <Separator VBox.vgrow="ALWAYS" />
                         <Pane fx:id="dataAnalysisPanelPlaceholder" styleClass="background" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>

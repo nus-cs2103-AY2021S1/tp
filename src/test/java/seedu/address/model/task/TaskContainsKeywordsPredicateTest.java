@@ -90,17 +90,12 @@ public class TaskContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("Alice").withDeadlineDateTime("01-01-2020 12:00")
                 .withDescription("alice,email.com").build()));
 
-
-<<<<<<< HEAD
-=======
         // type Keywords does not match tag
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TAG, "CS2040");
         assertFalse(predicate.test(new DeadlineBuilder().withTag("MA1521")
                 .withDescription("alice,email.com").build()));
 
-
->>>>>>> fd2d61f4d6b1e95fb7aba8d202d424a6ae7e3b21
         // desc Keywords does not match description
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_DESCRIPTION, "play outside");
@@ -126,10 +121,7 @@ public class TaskContainsKeywordsPredicateTest {
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "assignment");
         assertTrue(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
-<<<<<<< HEAD
-=======
         predicate.setKeyword(PREFIX_DATE, "01-01-2020");
->>>>>>> fd2d61f4d6b1e95fb7aba8d202d424a6ae7e3b21
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("random").build()));
     }

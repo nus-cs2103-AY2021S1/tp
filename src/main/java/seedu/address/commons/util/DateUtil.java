@@ -6,10 +6,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> fd2d61f4d6b1e95fb7aba8d202d424a6ae7e3b21
 public class DateUtil {
     public static final String MESSAGE_CONSTRAINTS =
             "DateTime should be in the format of dd-MM-yyyy HH:mm.";

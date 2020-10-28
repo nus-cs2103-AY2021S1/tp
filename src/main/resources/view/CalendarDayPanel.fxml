@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label fx:id="date" styleClass="label-bright" stylesheets="@DarkTheme.css" text="Label" VBox.vgrow="NEVER" />
+        <ListView fx:id="scheduleView" VBox.vgrow="ALWAYS" />
+    </children>
+</VBox>
