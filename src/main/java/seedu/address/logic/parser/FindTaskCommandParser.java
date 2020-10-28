@@ -26,7 +26,7 @@ import seedu.address.model.task.deadline.Status;
 /**
  * Parses input arguments and creates a new FindTaskCommand object
  */
-public class FindCommandParser implements Parser<FindTaskCommand> {
+public class FindTaskCommandParser implements Parser<FindTaskCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindTaskCommand
