@@ -23,6 +23,7 @@ import seedu.address.model.task.Title;
 
 public class ParserUtilTest {
     private static final String INVALID_TITLE = "Lecture$";
+    private static final String INVALID_DESCRIPTION = " ";
     private static final String INVALID_PRIORITY = "Higher";
     private static final String INVALID_TASKDATE = "20-12-31";
     private static final String INVALID_TASKTIME = "00:60";
@@ -84,6 +85,11 @@ public class ParserUtilTest {
     @Test
     public void parseDescription_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
+    }
+
+    @Test
+    public void parseDescription_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
 
     @Test
