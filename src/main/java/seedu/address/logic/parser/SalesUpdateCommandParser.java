@@ -2,16 +2,22 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSBBT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSBGT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSBM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSPBT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSPGT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSPM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.stream.Stream;
 
+import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.SalesUpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Drink;
@@ -38,28 +44,32 @@ public class SalesUpdateCommandParser implements Parser<SalesUpdateCommand> {
                 new Prefix[] {PREFIX_BSBM, PREFIX_BSBBT, PREFIX_BSBGT, PREFIX_BSPM, PREFIX_BSPBT, PREFIX_BSPGT};
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, drinkPrefixes);
 
-        int drinkCounter = 0;
+        if (!arePrefixesPresent(argMultimap, drinkPrefixes)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SalesUpdateCommand.MESSAGE_USAGE));
+        }
+
         HashMap<Drink, Integer> sales = new HashMap<>();
         // populate the map with argmultimap's values
         for (int i = 0; i < drinkPrefixes.length; i++) {
-            Optional<String> numSold = argMultimap.getValue(drinkPrefixes[i]);
-            String value = numSold.orElse("0");
-            int intValue = ParserUtil.parseNumberSold(value);
-
-            if (intValue > 0) {
-                drinkCounter++;
-            }
-
             Drink drink = Drink.valueOf(drinkPrefixes[i].toString().replace("/", ""));
-            sales.put(drink, intValue);
-        }
-
-        if (drinkCounter == 0) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SalesUpdateCommand.MESSAGE_USAGE));
+            if (argMultimap.getValue(drinkPrefixes[i]).isPresent()) {
+                int val = ParserUtil.parseNumberSold(argMultimap.getValue(drinkPrefixes[i]).get());
+                sales.put(drink, val);
+            }
         }
 
         assert !sales.isEmpty();
 
         return new SalesUpdateCommand(sales);
     }
+
+    /**
+     * Returns true if some of the prefixes contains non-empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
 }
