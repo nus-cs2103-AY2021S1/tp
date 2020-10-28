@@ -38,6 +38,7 @@ public class CommandParserTest {
 
         tests.put("delete recipe cake", "Result(DeleteRecipeCommand(cake))");
         tests.put("delete recipe #4", "Result(DeleteRecipeCommand(#4))");
+        tests.put("delete recipe #-1", "Error(Invalid index (cannot be zero or negative))");
 
         tests.put("delete ingredient milk", "Result(DeleteIngredientCommand(milk))");
 
@@ -60,6 +61,11 @@ public class CommandParserTest {
 
         tests.put("find recipe", "Error('find' command requires at least one search term)");
         tests.put("add recipe cake /", "Error(Expected argument name after '/')");
+
+        tests.put("view cake cucumber", "Result(ViewCommand(cake cucumber))");
+        tests.put("view", "Error(Recipe name cannot be empty)");
+        tests.put("view #1", "Result(ViewCommand(#1))");
+        tests.put("view #0", "Error(Invalid index (cannot be zero or negative))");
 
         tests.put("OWO", "Error(Unknown command 'OWO')");
 

@@ -40,6 +40,11 @@ public class ViewCommand extends Command {
         return CommandResult.message("Displaying recipe '%s'", recipe.getValue().getName());
     }
 
+    @Override
+    public String toString() {
+        return String.format("ViewCommand(%s)", this.item);
+    }
+
     public static String getCommandString() {
         return "view";
     }
