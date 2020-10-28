@@ -3,6 +3,7 @@ package seedu.address.ui.card;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -31,6 +32,8 @@ public class DeadlineCard extends UiPart<Region> {
     private HBox cardPane;
     @FXML
     private VBox card;
+    @FXML
+    private FlowPane tags;
     @FXML
     private Label title;
     @FXML
@@ -62,9 +65,16 @@ public class DeadlineCard extends UiPart<Region> {
         title.setText(deadline.getTitle().title);
         statusSign.setSelected(deadline.getStatus().isCompleted);
         status.setText(deadline.getStatus().toString());
+        loadTag(deadline);
         loadDescription(deadline);
         loadDateTime(deadline);
         loadDuration(deadline);
+    }
+
+    private void loadTag(Deadline deadline) {
+        if (!deadline.getTag().tagName.equals("")) {
+            tags.getChildren().add(new Label(deadline.getTag().tagName));
+        }
     }
 
     private boolean loadDateTime(Deadline deadline) {
