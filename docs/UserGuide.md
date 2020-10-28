@@ -132,7 +132,7 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 
 </div>
 
-#### 2.1 Updating the number of drinks sold for the day : `s-update`
+#### 2.1 Updating the number of drinks sold : `s-update`
 Updates the number of drinks sold for each drink type as given in the user input.
 
 Format: `s-update A/NUM B/NUM C/NUM ...`
