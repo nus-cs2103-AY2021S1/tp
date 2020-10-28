@@ -12,19 +12,20 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Title;
 import seedu.address.model.task.deadline.Status;
 
-public class FindCommandParserTest {
+public class FindTaskCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindTaskCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -35,16 +36,16 @@ public class FindCommandParserTest {
         predicate.setKeyword(PREFIX_DESCRIPTION, "play");
         predicate.setKeyword(PREFIX_DATE, "01-01-2020");
         predicate.setKeyword(PREFIX_STATUS, "incomplete");
-        FindCommand expectedFindCommand = new FindCommand(predicate);
+        FindTaskCommand expectedFindTaskCommand = new FindTaskCommand(predicate);
         assertParseSuccess(parser,
                 " title:Meet Alice desc:play date:01-01-2020 status: incomplete",
-                expectedFindCommand);
+                expectedFindTaskCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser,
                 " \n title:Meet Alice  \t desc:play \t\t\t date: \t 01-01-2020 "
                         + "\n status:incomplete",
-                expectedFindCommand);
+                expectedFindTaskCommand);
     }
 
     @Test

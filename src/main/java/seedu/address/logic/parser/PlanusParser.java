@@ -9,18 +9,18 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeadlineCommand;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DoneCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditLessonCommand;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EventCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindLessonCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LessonCommand;
-import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListLessonCommand;
+import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,18 +54,18 @@ public class PlanusParser {
             return new EventCommandParser().parse(arguments);
         case DeadlineCommand.COMMAND_WORD:
             return new DeadlineCommandParser().parse(arguments);
-        case EditCommand.COMMAND_WORD:
+        case EditTaskCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-        case FindCommand.COMMAND_WORD:
+        case FindTaskCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
         case LessonCommand.COMMAND_WORD:
             return new LessonCommandParser().parse(arguments);
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListTaskCommand.COMMAND_WORD:
+            return new ListTaskCommand();
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:

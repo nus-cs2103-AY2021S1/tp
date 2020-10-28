@@ -34,9 +34,9 @@ import seedu.address.model.task.event.StartDateTime;
 /**
  * Edits the details of an existing task in PlaNus task list.
  */
-public class EditCommand extends Command {
+public class EditTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit-task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the event/deadline identified "
             + "by the index number used in the displayed task list. "
@@ -65,7 +65,7 @@ public class EditCommand extends Command {
      * @param index of the task in the filtered task list to edit
      * @param editTaskDescriptor details to edit the task with
      */
-    public EditCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
+    public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
         requireNonNull(editTaskDescriptor);
 
@@ -166,12 +166,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditTaskCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditTaskCommand e = (EditTaskCommand) other;
         return index.equals(e.index)
                 && editTaskDescriptor.equals(e.editTaskDescriptor);
     }

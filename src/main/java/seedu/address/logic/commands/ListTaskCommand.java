@@ -9,9 +9,9 @@ import seedu.address.model.Model;
 /**
  * Lists all tasks in PlaNus task list to the user.
  */
-public class ListCommand extends Command {
+public class ListTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "list-task";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
