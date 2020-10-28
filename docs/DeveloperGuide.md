@@ -133,6 +133,89 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Autocomplete Feature
+
+This autocomplete mechanism is facilitated by `AutocompleteCommandBox`. It extends `CommandBox` with an autocomplete mode, which is a state stored internally as `isAutocompleteMode`. This feature also adds 
+a new private class `Suggestions` to facilitate suggestion generation.
+This new `AutocompleteCommandBox` class exposes one public function:
+
+* `setupAutocompletionListeners(String commandPrefix, Suppler<List<Strings>> data)` — Attaches a new autocomplete listener which triggers autocomplete mode with `commandPrefix` and generates suggestions from `data` supplier.
+
+![Structure of the UI Component](images/AutocompleteCommandBoxClassDiagram.png)
+
+The following acitivity diagram gives a high level overview of the Autocomplete mechanism:
+
+![AutocompleteActivityDiagram](images/AutocompleteActivityDiagram.png)
+
+From this diagram we see that there is 2 states of the mechanism:
+
+* `isAutocompleteMode` — Triggered by commandPrefix
+* `hasSetPrefix` — Set using `Tab` / `Shift-Tab`
+
+Prefix in the context of the autocomplete class refers to the string we use to filter out suggestions. For example, the prefix
+'ja' would give me 'jay', 'jason' as possible suggestions.
+
+#### Sample scenario : Generating name suggestions
+
+Given below is an example usage scenario and how the autocomplete mechanism behaves at each step.
+
+##### Initialization
+
+Initialisation Code Snippet : 
+```
+ AutocompleteCommandBox commandBox = new AutocompleteCommandBox(cmdExecutor);
+ commandBox.setupAutocompletionListeners("cname/", () -> logic.getFilteredPersonList().stream()
+         .map(p -> p.getName().fullName).collect(Collectors.toList()));
+
+```
+The above code snippet will first initialise the new `AutocompleteCommandBox` object and attach an autocompletion listener, the following sequence diagram describes the processes.
+See here that the commandPrefix is set to `cname/` and we are generating suggestions from the person list.
+
+
+![AutocompleteActivityDiagram](images/AutocompleteInitializationSequenceDiagram.png)
+
+Refer to the Side Note in this section on why `disableFocusTraversal()` is required.
+
+##### Triggering Autocomplete Mode
+
+After the autocomplete listener has been attached, users can trigger Autocomplete mode by typing in command prefix. In this case its `cname/`, and upon typing this prefix
+the command box text will turn yellow signalling that the user is in autocomplete mode. In this mode, anything the user types after the command prefix till the point the user presses `TAB` will be
+considered the `prefix` that will be used to generate suggestions. After `TAB` is used to set the prefix, pressing `TAB` or `Shift-TAB` will allow users to cycle through the suggestions.
+Below is the sequence diagram for this flow.
+
+![AutocompleteActivityDiagram](images/AutocompleteFlowSequenceDiagram.png)
+
+##### Exiting Autocomplete Mode
+
+There are two ways to exit autocomplete mode : by pressing `Enter` or `Backspace`. Below's sequence diagram illustrates the difference between the two.
+
+![AutocompleteActivityDiagram](images/AutocompleteExitFlowSequenceDiagram0.png)
+![AutocompleteActivityDiagram](images/AutocompleteExitFlowSequenceDiagram1.png)
+
+From the diagram, we see that pressing `backspace` only unsets the prefix but does not take the user out of the autocomplete mode, allowing user to adjust their prefix to generate more accurate suggestions.
+On the other hand, pressing `Enter` allows the user to lock in their suggestion, taking user out of the autocomplete mode and removing the command prefix.
+
+#### Design consideration:
+
+##### Aspect: Autocomplete Trigger
+
+* **Alternative 1 (current choice):** Check substring from caret position
+  * Pros: Able to support names with spaces.
+  * Cons:
+      * Slightly more difficult to implement, as there are more edge cases.
+      * Unable to support editing of suggestions.
+
+* **Alternative 2:** Using regex to match pattern (e.g. `.*<CMD_PREFIX>\S*`)
+  * Pros: 
+      * Less complex code. (Lesser Conditionals)
+      * Able to support moving caret around to adjust suggestion
+  * Cons: Unable to support names with spaces as space is the delimiter.
+
+#### Side Note
+
+Because we iterate through autocompletion suggestions using `Tab` and `Shift-Tab` which conflicts with the inbuilt
+focus traversals commands. We have to disable it using the `AutocompleteCommandBox#DisableFocusTraversal()` operation.
+
 ### Clearing all Contacts
 
 The mechanism to clear all contacts is facilitated by `ClearCommand`. It extends `Command` and implements the following methods:
@@ -533,6 +616,11 @@ Given below is the sequence diagram of how the mechanism behaves when called usi
 Given below is the sequence diagram of how the mechanism behaves when called using the `label delete` command.
 
 ![DeleteLabelSequenceDiagram](images/DeleteLabelSequenceDiagram.png)
+
+### \[Proposed\] Data archiving
+
+_{Explain here how the data archiving feature will be implemented}_
+
 
 --------------------------------------------------------------------------------------------------------------------
 
