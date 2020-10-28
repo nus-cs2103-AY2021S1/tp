@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -12,11 +11,7 @@
       <Label styleClass="label-header" stylesheets="@DarkTheme.css" text="Time Analysis For The Past Week" />
       <HBox>
          <children>
-            <StackPane fx:id="pieChartPlaceholder" HBox.hgrow="ALWAYS">
-               <children>
-                  <PieChart fx:id="pieChart" />
-               </children>
-            </StackPane>
+            <StackPane fx:id="pieChartPlaceholder" HBox.hgrow="ALWAYS" />
             <StackPane fx:id="statsSummaryPanelPlaceholder" HBox.hgrow="ALWAYS" />
          </children>
          <padding>

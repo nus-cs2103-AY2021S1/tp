@@ -51,10 +51,10 @@ public class LogicManager implements Logic {
         Command command = planusParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
-        statisticsData = Statistics.generateStatistics(LocalDate.now().minusDays(6), LocalDate.now());
 
         try {
             storage.savePlanus(model.getPlanus());
+            statisticsData = Statistics.generateStatistics(LocalDate.now().minusDays(6), LocalDate.now());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
