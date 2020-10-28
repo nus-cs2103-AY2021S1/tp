@@ -1,6 +1,5 @@
-# User Guide for Supper Striker
+# User Guide for Supper Strikers
 
-## Commands
 
 **Supper Strikers is a desktop application for managing your supper orders.** While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
@@ -51,8 +50,8 @@ will be explained below. For the sake of clarity, the whole command will be show
 </div>
 
 The application is divided into two modes, vendor mode and menu mode. Vendor mode is when a vendor is not yet selected,
-as seen by the section on the left displaying a list of vendors. In vendor mode, only vendor related command can be
-executed. We will divide the commands based on which entity do they affect.
+as seen by the section on the left displaying a list of vendors. In vendor mode, only vendor
+related commands can be executed. In menu mode, both vendor and menu commands can be executed.
 
 ## General
 
@@ -67,15 +66,16 @@ See you next time!
 
 ## Vendor related commands
 
-### View/select vendor: `vendor`
+### View/select vendor: `vendor [INDEX]`
 
-Shows the list of vendor. If an index is specified, that vendor is selected, and its menu will be shown.
+If an index is specified, the corresponding vendor is selected, and its menu will be shown.
 
-Format: `vendor [INDEX]`
+If no index is specified, displays the list of all vendors and returns to vendor mode.
+If there is an existing order, it is deleted.
 
 Examples:
-* `vendor 2` Selects the 2<sup>nd</sup> vendor in the list
-
+* `vendor 2` Selects the 2<sup>nd</sup> vendor in the list.
+* `vendor` Change back to vendor mode.
 
 ## Menu related commands
 
@@ -136,10 +136,9 @@ Adds a new food item for the user according to the index from the menu.
 Format: `add INDEX [QUANTITY]`
 
 Examples:
-* `add 1 1` add 1 quantity of item at index 1
-* `add 2 3` add 3 quantity of item at index 2
-* `add 1` add 1 quantity of item at index 1
-
+* `add 1 1` add 1 quantity of item at index 1.
+* `add 2 3` add 3 quantity of item at index 2.
+* `add 1` add 1 quantity of item at index 1.
 
 ### Removing an item : `remove`
 
