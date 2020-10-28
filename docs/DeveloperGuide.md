@@ -183,6 +183,29 @@ Step 2. `DeleteExCommandParser` parses the user input and creates a `DeleteExCom
 
 Step 3: `DeleteExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is deleted exercise from `Model`.
 
+
+### Autocomplete  feature
+
+Autocomplete feature uses following classes:
+
+- `ResultDisplay` - Displays user input.
+- `CommandBox` - CommandBox which consists of `commandTextField`
+- `LogicManager` - Implements logic between models and user interface
+
+Below is how it works:
+
+Step 1. User enters command `add`.
+
+Step 2. `commandTextField` in `CommandBox` detects changes in the user input and parse the input into
+ `showAutoCompleteResult()` method in `ResultDisplay` 
+
+Step 3: `ResultDisplay` retrieves a list of commmands from `LogicManager` by `getSuggestionList()`
+
+Step 4: `ResultDisplay` computes the result to display to the user
+
+Step 5: `ResultDisplay` display result to the user.
+
+
 ![](images/DeleteExDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
@@ -249,6 +272,7 @@ Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Sinc
 The following activity diagram summarizes what happens when a user executes a new command:
 
 ![CommitActivityDiagram](images/CommitActivityDiagram.png)
+
 
 #### Design consideration:
 
