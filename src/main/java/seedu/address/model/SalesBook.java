@@ -106,6 +106,13 @@ public class SalesBook implements ReadOnlySalesBook {
         return record.isEmpty();
     }
 
+    /**
+     * Sorts the sales record in descending order.
+     */
+    public void sortRecord() {
+        record.sort();
+    }
+
     //// util methods
 
     /**

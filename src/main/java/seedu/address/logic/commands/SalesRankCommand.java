@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Drink;
 import seedu.address.model.Model;
+import seedu.address.model.SalesBook;
 import seedu.address.model.SalesRecordEntry;
 
 /**
@@ -14,7 +16,8 @@ public class SalesRankCommand extends Command {
     public static final String MESSAGE_USAGE = ": Lists the sales of drink items in a ranked manner.\n"
             + "The first drink in the list is the most popular drink sold.";
 
-    public static final String MESSAGE_SUCCESS = "The list of drinks items has been ranked and is shown below.";
+    public static final String MESSAGE_SUCCESS = "The list of drinks items has been ranked and is shown in the"
+            + " Sales Tracker below.";
 
     /**
      * Executes the command and returns the result message.
@@ -24,8 +27,8 @@ public class SalesRankCommand extends Command {
      * @throws CommandException If an error occurs during command execution.
      */
     @Override
-    public CommandResult execute(Model model) throws CommandException {
-        //sort and display onto GUI
+    public CommandResult execute(Model model) {
+        model.sortSalesBook();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

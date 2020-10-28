@@ -176,16 +176,13 @@ public class UniqueSalesRecordList implements Iterable<SalesRecordEntry> {
     }
 
     /**
-     * Returns a sorted list of sales record entries based on the number of drinks sold in descending order.
-     * Index 0 is the drink that has the highest sales number.
-     *
-     * @param list The list of sales record entries to sort
-     * @return a sorted list of sales record entries
+     * Sorts the list of sales record entries based on the number of drinks sold in descending order.
+     * The first drink in the list is the drink with the highest sales number.
      */
-    public ObservableList<SalesRecordEntry> sort(ObservableList<SalesRecordEntry> list) {
+    public void sort() {
         Comparator<SalesRecordEntry> comparator = Comparator.comparingInt(SalesRecordEntry::getNumberSold);
-        FXCollections.sort(list, comparator);
-        return list;
+        comparator = comparator.reversed();
+        FXCollections.sort(internalList, comparator);
     }
 
     /**
