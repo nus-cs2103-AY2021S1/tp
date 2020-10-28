@@ -19,10 +19,11 @@ public class IngredientListCommand extends Command {
 
     public static final String COMMAND_WORD = "i-list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " :list the ingredient levels in tCheck."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the ingredient levels in tCheck.\n"
+            + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_SUCCESS = "Here is the list of all ingredients: \n";
+    public static final String MESSAGE_SUCCESS = "Listed all ingredients.\n";
 
     private String ingredientList = "";
 
@@ -42,12 +43,8 @@ public class IngredientListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        List<Ingredient> lastShownList = model.getFilteredIngredientList();
-        for (Ingredient i : lastShownList) {
-            ingredientList += i.toString() + LINE_SEPARATOR;
-        }
         model.updateFilteredIngredientList(PREDICATE_SHOW_ALL_INGREDIENTS);
-        return new CommandResult(MESSAGE_SUCCESS + ingredientList);
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
