@@ -305,6 +305,7 @@ Updates the details of the desired stock, requires the serial number of products
     * Quantity
     * Location in warehouse
     * Source of the stock
+    * Low quantity threshold
 * Required fields:
     1. Serial number of product
 
@@ -315,6 +316,7 @@ Prefixes:
 * `nq/<new quantity>`
 * `l/<new location>`
 * `s/<new source>`
+* `lq/<low quantity>`
 
 <h5>Format</h5>
 
@@ -334,7 +336,7 @@ Prefixes:
 
 `update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>`
 
-`update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>`
+`update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source> lq/<low quantity>`
 
 <div markdown="block" class="alert alert-warning">
 
@@ -343,28 +345,27 @@ If more than one serial number is passed and one of them are wrong (not found in
 will not update anything and shows an error message.
 </div>
 
-Values to be updated are case-sensitive.
-* e.g. `update sn/NUS1 n/Book` will update the name of the stock with serial number `NUS1` to `Book` instead of `book`.
+Values to be updated are case-insensitive.
 
 <h5>Example usages</h5>
 
 Stock | Details
 ------| --------
-**Stock 1** | Name: banana<br> Serial Number: NTUC1111<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
-**Stock 2** | Name: chicken<br> Serial Number: SHENGSIONG1111<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
-**Stock 3** | Name: guinness<br> Serial Number: COLDSTORAGE1111<br> Source: cold storage<br> Quantity: 10<br> Location in warehouse: Drinks Section
+**Stock 1** | Name: Banana<br> Serial Number: NTUC1<br> Source: Ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
+**Stock 2** | Name: Chicken<br> Serial Number: SHENGSIONG1<br> Source: Shengsiong<br> Quantity: 100<br> Location in warehouse: Poultry section
+**Stock 3** | Name: Guinness<br> Serial Number: COLDSTORAGE1<br> Source: Coldstorage<br> Quantity: 10<br> Location in warehouse: Drinks section
 
-`update sn/NTUC1111 n/Apple` will change **Stock 1** name to `Apple`.
+`update sn/Ntuc1 n/Apple` will change **Stock 1** name to `Apple`.
 
-`update sn/SHENGSIONG1111 s/cold storage l/Meat section` will change **Stock 2** source to `cold storage` and location
+`update sn/Shengsiong1 s/Coldstorage l/Meat section` will change **Stock 2** source to `Coldstorage` and location
 to `Meat section`.
 
-`update sn/NTUC1111 iq/+50 n/heineken` will change **Stock 3** name to `heineken` and increment the quantity by `50`. **Stock 3** quantity changes to `60`.
+`update sn/Ntuc1 iq/+50 n/heineken` will change **Stock 3** name to `heineken` and increment the quantity by `50`. **Stock 3** quantity changes to `60`.
 
-`update sn/SHENGSIONG1111 s/cold storage nq/50` will change **Stock 2** source to `cold storage` and quantity
-to `50`.
+`update sn/Shengsiong1 s/Coldstorage nq/50 lq/60` will change **Stock 2** source to `Coldstorage`, quantity
+to `50`, and low quantity threshold to `60` and therefore flagging the stock because `50 < 60`.
 
-`update sn/NTUC1111 sn/NTUC1111 n/Apple juice` will change **Stock 1** and **Stock 3** name to `Apple juice`.
+`update sn/Ntuc1 sn/Coldstorage1 n/Apple juice` will change **Stock 1** and **Stock 3** name to `Apple juice`.
 
 ### Adding notes to stock: `note`
 Adds a note to the stock specified, displayed in the notes column for that stock.
