@@ -19,7 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.TaskManager;
 import seedu.address.model.task.Task;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.TitleOrDescriptionContainsKeywordsPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -113,7 +113,7 @@ public class CommandTestUtil {
 
         Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
         final String[] splitTitle = task.getTitle().title.split("\\s+");
-        model.updateFilteredTaskList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+        model.updateFilteredTaskList(new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredTaskList().size());
     }

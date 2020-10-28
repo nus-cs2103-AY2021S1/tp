@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.task.TitleContainsKeywordsPredicate;
+import seedu.address.model.task.TitleOrDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.TaskManagerBuilder;
 
 public class ModelManagerTest {
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = BAKE.getTitle().title.split("\\s+");
-        modelManager.updateFilteredTaskList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredTaskList(new TitleOrDescriptionContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taskManager, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
