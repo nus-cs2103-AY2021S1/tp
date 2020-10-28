@@ -17,7 +17,6 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.GetProfitCommand;
-import seedu.address.logic.commands.GetTotalCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListAccountCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -76,9 +75,6 @@ public class CommonCentsParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case GetTotalCommand.COMMAND_WORD:
-            return new GetTotalCommandParser().parse(arguments);
 
         case GetProfitCommand.COMMAND_WORD:
             return new GetProfitCommand();
