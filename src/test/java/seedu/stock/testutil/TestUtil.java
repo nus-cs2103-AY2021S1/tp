@@ -33,9 +33,9 @@ public class TestUtil {
     }
 
     /**
-     * Returns the person in the {@code model}'s person list at {@code index}.
+     * Returns the stock in the {@code model}'s stock list at {@code index}.
      */
-    public static Stock getPerson(Model model, Index index) {
+    public static Stock getStock(Model model, Index index) {
         return model.getFilteredStockList().get(index.getZeroBased());
     }
 }

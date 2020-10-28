@@ -2,6 +2,7 @@ package seedu.stock.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.stock.logic.commands.CommandTestUtil.VALID_FILE_NAME;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
@@ -27,22 +28,26 @@ public class PrintCommandTest {
         Model expectedModel = new ModelManager(model.getStockBook(), model.getUserPrefs(),
                 getTypicalSerialNumberSetsBook());
 
-        assertCommandSuccess(new PrintCommand(), model, PrintCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new PrintCommand(VALID_FILE_NAME), model, PrintCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void equals() {
-        PrintCommand printCommand = new PrintCommand();
+        PrintCommand printCommand = new PrintCommand(VALID_FILE_NAME);
+        PrintCommand printCommandCopy = new PrintCommand(VALID_FILE_NAME);
 
         // same object -> returns true
         assertTrue(printCommand.equals(printCommand));
 
-        // same values -> returns true
-        PrintCommand printCommandCopy = new PrintCommand();
+        // same value -> returns true
         assertTrue(printCommand.equals(printCommandCopy));
 
         // different types -> returns false
         assertFalse(printCommand.equals(1));
+
+        // different values -> returns false
+        PrintCommand otherPrintCommand = new PrintCommand("test2");
+        assertFalse(printCommand.equals(otherPrintCommand));
 
     }
 
@@ -50,7 +55,7 @@ public class PrintCommandTest {
      * UserPrefs stub that creates csv file in test class.
      */
     private static class UserPrefsStub extends UserPrefs {
-        private final Path csvFilePath = Paths.get("datatest", "stocks.csv");
+        private final Path csvFilePath = Paths.get("datatest");
 
         @Override
         public Path getCsvFilePath() {

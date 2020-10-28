@@ -51,6 +51,7 @@ public class UnbookmarkCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         List<Stock> lastShownStocks = model.getFilteredStockList();
 
         List<SerialNumber> serialNumbers = targetSerialNumbers.stream().collect(Collectors.toList());
@@ -105,7 +106,6 @@ public class UnbookmarkCommand extends Command {
 
         }
 
-        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
         model.sortFilteredStockList(SortUtil.generateGeneralComparator());
 
         if (stocksNotFound.size() == serialNumbers.size()) {

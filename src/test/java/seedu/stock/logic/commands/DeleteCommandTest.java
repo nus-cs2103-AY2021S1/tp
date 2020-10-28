@@ -8,6 +8,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.showStockAtSerialNumber
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
+import static seedu.stock.testutil.TypicalStocks.UNKNOWN_SERIAL_NUMBER;
 import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 import static seedu.stock.testutil.TypicalStocks.serialNumberListAsString;
@@ -87,7 +88,6 @@ public class DeleteCommandTest {
                 model.getSerialNumberSetsBook());
 
         expectedModel.deleteStock(stockToDelete);
-        showNoStock(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -101,12 +101,13 @@ public class DeleteCommandTest {
                 .anyMatch(stock -> stock.getSerialNumber().equals(SERIAL_NUMBER_SECOND_STOCK)));
 
         Set<SerialNumber> secondSerialNumberSet = new LinkedHashSet<>();
-        secondSerialNumberSet.add(SERIAL_NUMBER_SECOND_STOCK);
+        secondSerialNumberSet.add(UNKNOWN_SERIAL_NUMBER);
 
         DeleteCommand deleteCommand = new DeleteCommand(secondSerialNumberSet);
 
         String expectedMessage = String.format(Messages.MESSAGE_SERIAL_NUMBER_NOT_FOUND,
                 serialNumberListAsString(List.copyOf(secondSerialNumberSet)));
+        model.updateFilteredStockList(Model.PREDICATE_SHOW_ALL_STOCKS);
 
         assertCommandFailure(deleteCommand, model, expectedMessage);
     }

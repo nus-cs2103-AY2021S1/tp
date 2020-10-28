@@ -3,23 +3,25 @@ layout: page
 title: User Guide
 ---
 ---
+<h3>Table of Contents</h3>
+* Table of Contents
+{:toc}
 
-<h2>Warenager’s User Guide</h2>
+--------------------------------------------------------------------------------------------------------------------
+## Introduction
+
+### Warenager’s User Guide
 
 This user guide introduces our inventory application, Warenager, and provides support
-for the usage of its functionalities. For quick reference, we have provided a summarised table of commands
-and their usage formats at the end of this guide.
+for the usage of its functionalities. For quick reference, we have provided a [summarised table of commands](#command-summary)
+and their usage formats
+at the end of this guide.
 
-<h3>About Warenager</h3>
+### About Warenager
 
 Warenager is an **inventory application** to help warehouse managers of small scale companies
 keep track of items in their warehouse. It **optimizes management tasks** for warehouse managers including but not
 exhaustive of updating, searching and sorting via Command Line Interface (CLI).
-
-<h3>Table of Contents</h3>
-
-* Table of Contents
-{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 ## Quick start
@@ -35,6 +37,23 @@ To get started using Warenager,
    Warenager are: add, delete, update, find, findexact, note, notedelete, stats, sort, print, list and help.
 
 --------------------------------------------------------------------------------------------------------------------
+## Definitions
+
+Term | Definition
+--------|------------------
+**Parameters** | Parameters are additional fields to key in during user input. e.g. `q/<source of stock>`, `n/<name>`
+**CSV File** | Comma-separated values File. It contains data separated by commas.
+
+--------------------------------------------------------------------------------------------------------------------
+## Labels
+
+Label | Meaning
+--------|------------------
+**:warning:** | Cautionary advice/Precautions
+**:information_source:** | Useful notes/summaries for sections.
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
@@ -56,12 +75,12 @@ Note: Stocks possess these fields: Name, Serial Number, Source, Quantity, Locati
 * **Bookmarking** stocks: e.g. often used stocks, search bookmark<item>.
 * **Print** to generate file for printing of stock list.
 * **Storage** into csv and json files.
-* **Personalized GUI**: e.g. company name displayed in the GUI, predefined color presets.
 
 * Upon start up of the Warenager application, stocks are by default displayed
 in order of decreasing priority: low quantity stocks, bookmarked stocks, other stocks
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 ## Commands
 
 This section provides support for the commands required to perform desired actions on Warenager.
@@ -77,6 +96,26 @@ This section provides support for the commands required to perform desired actio
   
 </div>
 
+### Command summary
+Summary of the commands required to perform certain actions is listed in this table:
+
+Action | Format, Examples
+--------|------------------
+**Add** | `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br> `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse> lq/<low quantity>` <br> e.g. `eg. add n/Banana s/NUS q/9999 l/Fruit Section` <br> e.g. `eg. add n/Banana s/NUS q/9999 l/Fruit Section lq/100`
+**List** | `list`
+**Delete** | `delete sn/<serial number>`<br> e.g. `delete sn/100`
+**Find** | Any combination of 1, 2, 3 or 4 different fields: <br> `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of stock>`<br> `find n/<name> l/<location> s/<source of stock>` <br> e.g. `find n/umbrella s/ntuc`
+**FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `findexact n/umbrella s/ntuc`
+**Note** | `note sn/<serial number> nt/<note>`
+**NoteDelete** | `notedelete sn/<serial number> ni<note index>`
+**Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number> n/<new name>` <br> `update sn/<serial number> iq/<+/-><increment value>` <br> `update sn/<serial number> nq/<new quantity>` <br> `update sn/<serial number> l/<new location>` <br> `update sn/<serial number> s/<new source>` <br> `update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
+**Statistics** | `stats st/source`<br>`stats st/source-qd-<source company>`
+**Print** | `print fn/<file name>`
+**Help** | `help`
+**Exit** | `exit`
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Viewing help : `help`
 
 Displays the list of command instructions for features in Warenager and how to use the command.
@@ -87,20 +126,29 @@ Displays the list of command instructions for features in Warenager and how to u
 
 ### Adding new stock: `add`
 Adds a new stock into the inventory. A unique serial number for the new stock will be generated by the program.
+The optional field low quantity will be set to 0 if not present in the input.
 * Required fields:
     1. Name of item
-    2. Source of stock (eg. from what company)
-    3. Quantity (default 0)
+    2. Source of stock 
+    3. Quantity 
     4. Location in warehouse
+    
+* Optional fields: 
+    1. Low Quantity
 
 <h5>Format</h5>
 
 The header fields can be in any order:<br>
 `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br>
-`add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`
+`add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity>`<br>
+`add n/<name> s/<source of stock> l/<location in warehouse> q/<quantity> lq/<low quantity>`
 
-⚠ Each specific fields specified in the `add` command should only be entered once.<br>
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+Each specific fields specified in the `add` command should only be entered once.<br>
 e.g. `add n/banana n/apple s/fairprice q/1000 l/Fruit section` is not a valid command.
+</div>
 
 ### Listing of stock: `list`
 Lists all the stock(s) in the inventory.
@@ -149,8 +197,12 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 * Multiple:
     * `find n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
 
-⚠ Each specific fields specified in the `find` command should only be entered once.<br>
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+Each specific fields specified in the `find` command should only be entered once.<br>
 e.g. `find n/banana n/apple` is not a valid command.
+</div>
 
 <h5>Search criteria</h5>
 
@@ -193,8 +245,12 @@ Any combination of 1,2,3 or 4 of the fields: <br>
 * Multiple:
     * `findexact n/<name keyword(s)> l/<location keyword(s)> s/<source keyword(s) sn/<serial number>` <br>
 
-⚠ Each specific fields specified in the `findexact` command should only be entered once.<br>
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+Each specific fields specified in the `findexact` command should only be entered once.<br>
 e.g. `findexact n/banana n/apple s/fairprice l/Fruit section` is not a valid command.
+</div>
 
 <h5>Search criteria</h5>
 * Only stocks that contain all the search keywords for all fields will be displayed. <br>
@@ -259,8 +315,12 @@ Prefixes:
 
 `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>`
 
-⚠ If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+If more than one serial number is passed and one of them are wrong (not found in the inventory list), then the command
 will not update anything and shows an error message.
+</div>
 
 Values to be updated are case-sensitive.
 * e.g. `update sn/NUS1 n/Book` will update the name of the stock with serial number `NUS1` to `Book` instead of `book`.
@@ -289,8 +349,12 @@ to `50`.
 Adds a note to the stock specified, displayed in the notes column for that stock.
 Multiple notes can be added to the stock and each note will be indexed. <br>
 
-⚠ If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+If notes are too long to be fully displayed in the notes column, ellipsis will be displayed in place of overrun.
 To view full notes for the stock, use the `noteview` command.
+</div>
 
 * Required fields:
     1. Serial number of stock
@@ -326,8 +390,12 @@ Deletes a note, specified by the note's index, from the stock specified by its s
     1. Serial number of stock
     2. Note index of note to delete
 
-⚠ Note index must be an integer.
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+Note index must be an integer.
 To delete ALL notes from a stock, note index to specify is 0.
+</div>
 
 <h5>Format</h5>
 
@@ -433,9 +501,13 @@ Sometimes user will type in wrong commands. Warenager will help such user by sug
 of the command if the command word is valid. If the command word is invalid, then Warenager will try to predict
 and suggest the closest command to whatever the user has typed.
 
-⚠ The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+The suggestion will only be made if the command format is invalid or unknown. If the command is valid, but there
 are errors such as serial number not found, then Warenager will not suggest anything to the user and instead displays
 an error message.
+</div>
 
 <h5>Example usages</h5>
 
@@ -449,17 +521,29 @@ an error message.
   Warenager will suggest: `list`
 
 ### Generates a csv file that contains all stocks: `print`
-Generates a csv file that contains all stocks. Users may want to sort the stocks using `sort` command
+Generates a csv file that contains all stocks. Csv file will be named according to the user input, and the file name
+can only contain alphanumeric characters. Users may want to sort the stocks using `sort` command
 to sort the stock in their preferred order before converting it into the csv file. The csv file is saved
-to `[root directory]/data/stocks.csv` after successfully executing the command.
+to `[root directory]/data/userInput.csv` after successfully executing the command.
+
+* Required fields:
+    1. file name
 
 <h5>Format</h5>
 
-Single: `print`
+The header fields can be in any order:<br>
+`print fn/<file name>`
+
+<div markdown="block" class="alert alert-warning">
+
+**:warning:**
+Each specific fields specified in the `print` command should only be entered once.<br>
+e.g. `print fn/stock fn/stock2` is not a valid command.
+</div>
 
 <h5>Example usages</h5>
 
-After executing the `print` command, proceed to the folder which contains Warenager. Click on the `data`
+After executing the `print fn/stocks` command, proceed to the folder which contains Warenager. Click on the `data`
 folder circled in red.
 
 ![stockCsvExample1](images/stockCsvExample1.png)
@@ -501,31 +585,5 @@ Terminates the program.
 **Q**: Can I use Warenager on another device?<br>
 **A**: Yes. Simply transfer the data files under `/data` and copy over to the same directory `/data` in the Warenager of your
 other device.
-
---------------------------------------------------------------------------------------------------------------------
-## Command summary
-Summary of the commands required to perform certain actions is listed in this table:
-
-Action | Format, Examples
---------|------------------
-**Add** | `add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>`<br> e.g. `eg. add n/Banana s/NUS q/9999 l/Fruit Section`
-**List** | `list`
-**Delete** | `delete sn/<serial number>`<br> e.g. `delete sn/100`
-**Find** | Any combination of 1, 2, 3 or 4 different fields: <br> `find n/<name>`<br>`find sn/<serial number>`<br>`find l/<location>`<br>`find s/<source of stock>`<br> `find n/<name> l/<location> s/<source of stock>` <br> e.g. `find n/umbrella s/ntuc`
-**FindExact** | Any combination of 1, 2, 3 or 4 different fields: <br> `findexact n/<name> l/<location>` <br> `findexact n/<name> l/<location> s/<source of stock> sn/<serial number>` <br> e.g. `findexact n/umbrella s/ntuc`
-**Note** | `note sn/<serial number> nt/<note>`
-**NoteDelete** | `notedelete sn/<serial number> ni<note index>`
-**Update** | Any combination of prefixes, at most one of `iq/` or `nq/` may be provided, serial number must be provided. <br> `update sn/<serial number> n/<new name>` <br> `update sn/<serial number> iq/<+/-><increment value>` <br> `update sn/<serial number> nq/<new quantity>` <br> `update sn/<serial number> l/<new location>` <br> `update sn/<serial number> s/<new source>` <br> `update sn/<serial number> n/<new name> iq/<+/-><increment value> l/<new location> s/<new source>` <br> `update sn/<serial number> n/<new name> nq/<new quantity> l/<new location> s/<new source>` <br> e.g. `update sn/NTUC1 n/Apple nq/1000 l/Fruit Section s/Fairprice`
-**Statistics** | `stats st/source`<br>`stats st/source-qd-<source company>`
-**Print** | `print`
-**Help** | `help`
-**Exit** | `exit`
-
---------------------------------------------------------------------------------------------------------------------
-## Glossary
-
-Term | Definition
---------|------------------
-**CSV File** | Comma-separated values File. It contains data separated by commas.
 
 --------------------------------------------------------------------------------------------------------------------

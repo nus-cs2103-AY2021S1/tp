@@ -1,5 +1,6 @@
 package seedu.stock.storage;
 
+//import java.nio.file.ClosedWatchServiceException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +27,7 @@ class JsonAdaptedStock {
     private final String serialNumber;
     private final String source;
     private final String quantity;
+    private final String lowQuantity;
     private final String location;
     private final List<String> notes;
     private final boolean isBookmarked;
@@ -36,12 +38,14 @@ class JsonAdaptedStock {
     @JsonCreator
     public JsonAdaptedStock(@JsonProperty("name") String name, @JsonProperty("serialNumber") String serialNumber,
                             @JsonProperty("source") String source, @JsonProperty("quantity") String quantity,
-                            @JsonProperty("location") String location, @JsonProperty("notes") List<String> notes,
+                            @JsonProperty("lowQuantity") String lowQuantity, @JsonProperty("location") String location,
+                            @JsonProperty("notes") List<String> notes,
                             @JsonProperty("isBookmarked") boolean isBookmarked) {
         this.name = name;
         this.serialNumber = serialNumber;
         this.source = source;
         this.quantity = quantity;
+        this.lowQuantity = lowQuantity;
         this.location = location;
         this.notes = notes;
         this.isBookmarked = isBookmarked;
@@ -55,6 +59,7 @@ class JsonAdaptedStock {
         serialNumber = source.getSerialNumber().getSerialNumberAsString();
         this.source = source.getSource().value;
         quantity = source.getQuantity().quantity;
+        lowQuantity = source.getQuantity().lowQuantity;
         location = source.getLocation().value;
         notes = source.getNotesValues();
         isBookmarked = source.getIsBookmarked();
@@ -70,16 +75,16 @@ class JsonAdaptedStock {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
         if (!Name.isValidName(name)) {
-            System.out.println("donkey");
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
 
         if (serialNumber == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Source.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    SerialNumber.class.getSimpleName()));
         }
         if (!SerialNumber.isValidSerialNumber(serialNumber)) {
-            throw new IllegalValueException(Source.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(SerialNumber.MESSAGE_CONSTRAINTS);
         }
         final SerialNumber modelSerialNumber = new SerialNumber(serialNumber);
 
@@ -95,10 +100,18 @@ class JsonAdaptedStock {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Quantity.class.getSimpleName()));
         }
+        if (lowQuantity == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    "lowQuantity"));
+        }
         if (!Quantity.isValidQuantity(quantity)) {
             throw new IllegalValueException(Quantity.MESSAGE_CONSTRAINTS);
         }
-        final Quantity modelQuantity = new Quantity(quantity);
+
+        if (!Quantity.isValidQuantity(lowQuantity)) {
+            throw new IllegalValueException(Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
+        }
+        final Quantity modelQuantity = new Quantity(quantity, lowQuantity);
 
         if (location == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

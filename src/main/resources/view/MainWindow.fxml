@@ -9,24 +9,28 @@
 <?import javafx.scene.layout.HBox?>
 
 
+<?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Warenager" minWidth="600" minHeight="600" maxHeight="1200" onCloseRequest="#handleExit">
+         title="Warenager" minWidth="1010" minHeight="600" maxHeight="1200" onCloseRequest="#handleExit">
   <icons>
-    <Image url="@/images/WarenagerIcon.png" />
+    <Image url="@/images/Warenager-Icon.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fx:id="scene">
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@LightTheme.css" />
+        <URL value="@ExtensionsLight.css" />
       </stylesheets>
+
       <VBox>
 
-        <StackPane HBox.hgrow="ALWAYS" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" >
+
+        <VBox fx:id="stockList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
-            <Insets top="5" right="5" left="5" />
+            <Insets top="5" bottom="5"/>
           </padding>
-        </StackPane>
+          <StackPane fx:id="stockListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+        </VBox>
 
 
         <StackPane VBox.vgrow="ALWAYS" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
@@ -36,11 +40,14 @@
           </padding>
         </StackPane>
 
-        <VBox fx:id="stockList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <StackPane fx:id="stockListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+        <StackPane HBox.hgrow="ALWAYS" fx:id="commandBoxPlaceholder" styleClass="pane-with-border" >
+          <padding>
+            <Insets top="5" right="5" bottom="5" left="5" />
+          </padding>
+        </StackPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+
       </VBox>
     </Scene>
   </scene>
