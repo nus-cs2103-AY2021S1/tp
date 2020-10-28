@@ -9,6 +9,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_NOTE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD;
@@ -50,6 +51,7 @@ public class CommandTestUtil {
     public static final String VALID_SORT_ORDER_ASCENDING = "ascending";
     public static final String VALID_SORT_ORDER_DESCENDING = "descending";
     public static final String VALID_SORT_FIELD = "serialnumber";
+    public static final String VALID_NOTE = "This is a note";
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
@@ -72,6 +74,7 @@ public class CommandTestUtil {
     public static final String SORT_ORDER_ASCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_ASCENDING;
     public static final String SORT_ORDER_DESCENDING_DESC = " " + PREFIX_SORT_ORDER + VALID_SORT_ORDER_DESCENDING;
     public static final String SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + VALID_SORT_FIELD;
+    public static final String NOTE_DESC = " " + PREFIX_NOTE + VALID_NOTE;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "donje#y"; // '#' not allowed in names
     public static final String INVALID_SERIAL_NUMBER_DESC = " " + PREFIX_SERIAL_NUMBER;
