@@ -151,7 +151,10 @@ public class Lesson {
                 && otherLesson.getStartDate().equals(getStartDate())
                 && otherLesson.getEndDate().equals(getEndDate());
     }
-    
+
+    /**
+     * Checks if two time slots overlap with one another.
+     */
     public boolean isSameTimeSlot(Lesson otherLesson) {
         requireNonNull(otherLesson);
         if (otherLesson == this) {

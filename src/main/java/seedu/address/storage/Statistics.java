@@ -9,7 +9,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.util.JsonUtil;
-import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Planus;
 import seedu.address.model.StatisticsData;
 import seedu.address.model.lesson.Lesson;
@@ -62,7 +61,7 @@ public class Statistics {
                                                LocalDate startDate, LocalDate endDate) {
         FilteredList<Task> filteredTasks = filterTasksWithinPeriod(tasks, startDate, endDate);
         for (Task task: filteredTasks) {
-            if(task.isLesson()) {
+            if (task.isLesson()) {
                 continue;
             }
             Tag currentTag = task.getTag();
