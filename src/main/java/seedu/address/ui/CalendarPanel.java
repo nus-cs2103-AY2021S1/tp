@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.deadline.Deadline;
 import seedu.address.model.task.event.Event;
 
-public class CalendarPanel extends UiPart<Region>{
+public class CalendarPanel extends UiPart<Region> {
     private static final String FXML = "CalendarPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(CalendarPanel.class);
 
@@ -38,6 +38,10 @@ public class CalendarPanel extends UiPart<Region>{
     @FXML
     private Label column7;
 
+    /**
+     * Create a CalendarPanel that holds the calendar view
+     * @param calendarList a list containing all tasks in the timeline
+     */
     public CalendarPanel(ObservableList<Task> calendarList) {
         super(FXML);
         loadDays();

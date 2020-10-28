@@ -45,15 +45,15 @@
         </StackPane>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <SplitPane dividerPositions="0.5" maxWidth="800.0" orientation="VERTICAL" HBox.hgrow="ALWAYS">
+                  <SplitPane dividerPositions="0.5" minWidth="700.0" orientation="VERTICAL" HBox.hgrow="ALWAYS">
                      <items>
-                    <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                    <VBox fx:id="taskList" styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-bright" text="Tasks:" textFill="WHITE" />
                          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            </children>
                     </VBox>
-                        <VBox minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
+                        <VBox styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-bright" text="Lessons:" />
                               <StackPane fx:id="lessonListPanelPlaceholder" VBox.vgrow="ALWAYS" />

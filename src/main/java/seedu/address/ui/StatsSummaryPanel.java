@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,8 +13,6 @@ import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.card.StatsSummaryCard;
 
-import java.util.logging.Logger;
-
 public class StatsSummaryPanel extends UiPart<Region> {
     private static final String FXML = "StatsSummaryPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(StatsSummaryPanel.class);
@@ -22,6 +22,10 @@ public class StatsSummaryPanel extends UiPart<Region> {
     @FXML
     private ListView<Tag> tagListView;
 
+    /**
+     * Create a StatsSummaryPanel to hold stats summary
+     * @param dataSet the statistic data
+     */
     public StatsSummaryPanel(StatisticsData dataSet) {
         super(FXML);
         this.dataSet = dataSet;

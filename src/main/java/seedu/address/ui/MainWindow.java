@@ -134,7 +134,8 @@ public class MainWindow extends UiPart<Stage> {
         calendarPanel = new CalendarPanel(logic.getFilteredCalendarList());
         calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
 
-        dataAnalysisPanel = new DataAnalysisPanel(Statistics.generateStatistics(LocalDate.now().minusDays(3), LocalDate.now().plusDays(3)));
+        dataAnalysisPanel = new DataAnalysisPanel(Statistics.generateStatistics(LocalDate.now().minusDays(3),
+                LocalDate.now().plusDays(3)));
         dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

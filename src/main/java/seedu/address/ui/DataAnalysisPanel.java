@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
@@ -19,6 +20,8 @@ public class DataAnalysisPanel extends UiPart<Region> {
 
     private StatsSummaryPanel statsSummaryPanel;
 
+    @FXML
+    private StackPane pieChartPlaceholder;
     @FXML
     private PieChart pieChart;
     @FXML
@@ -36,6 +39,7 @@ public class DataAnalysisPanel extends UiPart<Region> {
 
     private void loadPieChart(StatisticsData statsData) {
         pieChart.setData(transformToPieChartData(statsData));
+        pieChart.setLabelsVisible(false);
     }
 
     private void loadSummary(StatisticsData statsData) {

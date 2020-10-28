@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.LocalDateTime;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -10,8 +13,6 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.task.Task;
 import seedu.address.ui.card.CalendarDayEventCard;
 
-import java.time.LocalDateTime;
-import java.util.logging.Logger;
 
 public class CalendarDayPanel extends UiPart<Region> {
     private static final String FXML = "CalendarDayPanel.fxml";
@@ -22,6 +23,11 @@ public class CalendarDayPanel extends UiPart<Region> {
     @FXML
     private Label date;
 
+    /**
+     * Create a CalendarDayPanel object to hold day event information.
+     * @param schedule the filtered tasks that will be displayed in the calendar view
+     * @param dateTime the date time of the day cell in the calendar view
+     */
     public CalendarDayPanel(ObservableList<Task> schedule, LocalDateTime dateTime) {
         super(FXML);
         displayDate(dateTime);

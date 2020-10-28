@@ -7,7 +7,11 @@
 
 <HBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <PieChart fx:id="pieChart" HBox.hgrow="ALWAYS" />
+      <StackPane fx:id="pieChartPlaceholder" HBox.hgrow="ALWAYS">
+         <children>
+            <PieChart fx:id="pieChart" />
+         </children>
+      </StackPane>
       <StackPane fx:id="statsSummaryPanelPlaceholder" HBox.hgrow="ALWAYS" />
    </children>
    <padding>
