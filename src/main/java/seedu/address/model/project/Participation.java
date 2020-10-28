@@ -103,7 +103,7 @@ public class Participation {
 
     public Set<Task> getTasks() {
         return tasks;
-    }}
+    }
 
     public void setPerson(Person person) {
         this.person = person.getGitUserNameString();
