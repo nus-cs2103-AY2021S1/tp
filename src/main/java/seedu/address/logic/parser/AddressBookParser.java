@@ -82,6 +82,9 @@ public class AddressBookParser {
         case AddStudentCommand.COMMAND_WORD:
             return new AddStudentCommandParser().parse(arguments);
 
+        case DeleteTutorialGroupCommand.COMMAND_WORD:
+            return new DeleteTutorialGroupCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -14,7 +14,6 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;

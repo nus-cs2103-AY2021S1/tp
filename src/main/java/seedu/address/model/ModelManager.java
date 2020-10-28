@@ -165,6 +165,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTutorialGroup(TutorialGroup tutorialGroup) {
+        moduleList.deleteTutorialGroup(tutorialGroup, currentModuleInView);
+    }
+
+    @Override
     public boolean isInTutorialGroupView() {
         return this.isInTutorialGroupView;
     }
