@@ -144,7 +144,7 @@ Format: `unpaid`
 
 ### Recording questions from a student: `question`
 
-Adds, resolves or remove questions from a specified student. (written by: Ying Gao)  
+Adds, resolves or remove questions from a specified student. (written by: Ying Gao)
 
 Format: `question INDEX [a/QUESTION_ADD] [s/QUESTION_INDEX SOLUTION] [d/QUESTION_INDEX]`
 
@@ -171,11 +171,11 @@ Format: `schedule DATE`
 Examples:
 * `schedule 20/11/2020` outputs a list of students who has lessons with the user on that date
 
-### Managing additional details for a student: `detail`  
+### Managing additional details for a student: `detail`
 
-Adds, edits or deletes an additional detail for a specified student. (written by: Vaishak)  
+Adds, edits or deletes an additional detail for a specified student. (written by: Vaishak)
 
-Format: `detail [add] [edit] [delete] STUDENT_INDEX [i/DETAIL_INDEX] [d/DETAIL_TEXT]`  
+Format: `detail [add] [edit] [delete] STUDENT_INDEX [i/DETAIL_INDEX] [d/DETAIL_TEXT]`
 
 * Exactly one of the following fields must be present: `[add]`, `[edit]` or `[delete]`
 * The student index and detail index **must be positive integers** 1, 2, 3, …​
@@ -186,7 +186,7 @@ Format: `detail [add] [edit] [delete] STUDENT_INDEX [i/DETAIL_INDEX] [d/DETAIL_T
 * `detail delete` deletes the additional detail at the specified `DETAIL_INDEX`, for the student at the specified `STUDENT_INDEX`
 * `detail delete` requires the following optional field: `[i/DETAIL_INDEX]`.
 
-Examples:  
+Examples:
 * `detail add 1 d/Smart` adds the "Smart" detail to the 1st student in Reeve.
 * `detail edit 1 i/2 d/Handsome` edits the 2nd detail for the 1st student in Reeve, to "Hansome".
 * `detail delete 1 i/3` deletes the 3rd detail for the 1st student in Reeve.
