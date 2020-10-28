@@ -1,20 +1,22 @@
 package seedu.taskmaster.model.record;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.taskmaster.model.student.Name;
 import seedu.taskmaster.model.student.NusnetId;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class StudentRecordTest {
-
-    StudentRecord testRecord = new StudentRecord(
+    private StudentRecord testRecord = new StudentRecord(
             new Name("Chiau Siak"), new NusnetId("e0201166"));
-    StudentRecord testRecord2 = new StudentRecord(
+    private StudentRecord testRecord2 = new StudentRecord(
             new Name("Chiau Siak"), new NusnetId("e0201166"));
-    StudentRecord testRecord3 = new StudentRecord(
+    private StudentRecord testRecord3 = new StudentRecord(
             new Name("Chiau Siak"), new NusnetId("e0201167"));
-    StudentRecord testRecord4 = new StudentRecord(
+    private StudentRecord testRecord4 = new StudentRecord(
             new Name("Coh Ghiau Siak"), new NusnetId("e0201167"));
 
     @Test
@@ -49,10 +51,10 @@ class StudentRecordTest {
 
     @Test
     void testEquals() {
-        assertTrue(testRecord.equals(testRecord));      // same instance
-        assertTrue(testRecord.equals(testRecord2));     // same fields
-        assertFalse(testRecord.equals(testRecord3));    // different NusnetId
-        assertFalse(testRecord.equals(testRecord4));    // different name
-        assertFalse(testRecord3.equals(testRecord4));   // different in both fields
+        assertTrue(testRecord.equals(testRecord)); // same instance
+        assertTrue(testRecord.equals(testRecord2)); // same fields
+        assertFalse(testRecord.equals(testRecord3)); // different NusnetId
+        assertFalse(testRecord.equals(testRecord4)); // different name
+        assertFalse(testRecord3.equals(testRecord4)); // different in both fields
     }
 }

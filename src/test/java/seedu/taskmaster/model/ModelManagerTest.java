@@ -3,7 +3,6 @@ package seedu.taskmaster.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.taskmaster.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taskmaster.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.taskmaster.testutil.Assert.assertThrows;
 import static seedu.taskmaster.testutil.TypicalStudents.ALICE;
@@ -13,7 +12,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import javafx.collections.transformation.FilteredList;
 import org.junit.jupiter.api.Test;
 
 import seedu.taskmaster.commons.core.GuiSettings;
