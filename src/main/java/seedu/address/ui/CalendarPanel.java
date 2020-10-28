@@ -53,8 +53,6 @@ public class CalendarPanel extends UiPart<Region> {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 7; j++) {
                 FilteredList<Task> dayList = filterDayList(calendarList, startDate);
-                System.out.print(dayList.size() + " ");
-                System.out.println(calendarList.size());
                 calendar.add(loadDay(dayList, startDate).getRoot(), j, i + 1);
                 startDate = startDate.plusDays(1);
             }

@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -14,8 +15,10 @@ import seedu.address.logic.parser.PlanusParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPlanus;
+import seedu.address.model.StatisticsData;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
+import seedu.address.storage.Statistics;
 import seedu.address.storage.Storage;
 
 /**
@@ -28,6 +31,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final PlanusParser planusParser;
+    private StatisticsData statisticsData;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -36,6 +40,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         planusParser = new PlanusParser();
+        statisticsData = Statistics.generateStatistics(LocalDate.now().minusDays(6), LocalDate.now());
     }
 
     @Override
@@ -51,6 +56,8 @@ public class LogicManager implements Logic {
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
+
+        statisticsData = Statistics.generateStatistics(LocalDate.now().minusDays(6), LocalDate.now());
 
         return commandResult;
     }
@@ -73,6 +80,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Task> getFilteredCalendarList() {
         return model.getFilteredCalendarList();
+    }
+
+    @Override
+    public StatisticsData getStatisticsData() {
+        return statisticsData;
     }
 
     @Override

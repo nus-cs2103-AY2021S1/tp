@@ -134,8 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         calendarPanel = new CalendarPanel(logic.getFilteredCalendarList());
         calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
 
-        dataAnalysisPanel = new DataAnalysisPanel(Statistics.generateStatistics(LocalDate.now().minusDays(3),
-                LocalDate.now().plusDays(3)));
+        dataAnalysisPanel = new DataAnalysisPanel(logic.getStatisticsData());
         dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -192,6 +191,11 @@ public class MainWindow extends UiPart<Stage> {
         return taskListPanel;
     }
 
+    private void updateDataAnalysisPanel() {
+        dataAnalysisPanel = new DataAnalysisPanel(logic.getStatisticsData());
+        dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -202,6 +206,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            updateDataAnalysisPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
