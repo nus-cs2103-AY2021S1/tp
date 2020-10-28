@@ -19,10 +19,6 @@ public class HelpCommand extends Command {
 
     public HelpCommand() {}
 
-    public HelpCommand(String commandWord) {
-        commandDescription = commandWord;
-    }
-
     @Override
     public CommandResult execute(Model model) {
         UiManager.setCommandDescription(commandDescription);
