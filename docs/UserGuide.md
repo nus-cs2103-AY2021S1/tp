@@ -158,7 +158,7 @@ Format: `s-list`
 
 #### 2.3 Finds the number of drinks by keywords : `s-find`
 
-Find all drink where its abbreviated name matches words in KEYWORDS
+Finds all drinks where their abbreviated names match the KEYWORD(s).
 
 Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
