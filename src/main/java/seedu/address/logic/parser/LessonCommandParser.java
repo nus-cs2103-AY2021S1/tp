@@ -48,6 +48,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
 
         assert argMultimap.getValue(PREFIX_TITLE).isPresent() : "prefix title is missing";
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
+        Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         LocalDate startDate;
         LocalDate endDate;
         LocalTime startTime;
