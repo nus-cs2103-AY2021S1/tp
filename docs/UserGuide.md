@@ -17,15 +17,12 @@
    Some example commands you can try:
 
    * **`vendor`** : List all the vendors available.
-
-   * **`vendor 1`** : Select the first vendor to make a supper order for.
-
+* **`vendor 1`** : Select the first vendor to make a supper order for.
    * **`create`** : Creates a new supper order.
-
-   * **`add 1 2`** : Adds two quantity of the first item from the vendor's menu to your supper menu.
-
-   * **`exit`** : Exits the app.
-
+* **`add 1 2`** : Adds two quantity of the item at the 1st index from the vendor's menu to your supper order.
+   * **`remove 1 1`** : Removes 1 quantity of the item at the 1st index from your order
+* **`exit`** : Exits the app.
+   
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -147,13 +144,13 @@ Removes the specified item from the supper order.
 Format: `remove INDEX [QUANTITY]`
 
 * Removes the item at the specified `INDEX` of the user's supper order.
-* Quantity can be specified to indicate the number of item to be deleted. Otherwise, it deletes all the item's quantity.
+* Quantity can be specified to indicate the number of item to be deleted. Otherwise, it deletes all quantities of the item.
 * The index refers to the index number shown in the displayed supper order list.
 * The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
-* `delete 2` deletes the second item in the supper order.
-* `delete 1 2` deletes 2 instances of the first item in the supper order.
+* `remove 2` deletes the second item in the supper order.
+* `remove 1 2` deletes 2 instances of the 1st item in the supper order.
 
 
 ### Clearing the order: `clear`
