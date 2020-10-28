@@ -20,6 +20,7 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.commands.HelpCommand;
 import seedu.expense.logic.commands.ListCommand;
 import seedu.expense.logic.commands.RemarkCommand;
+import seedu.expense.logic.commands.SortCommand;
 import seedu.expense.logic.commands.SwitchCommand;
 import seedu.expense.logic.commands.TopupCommand;
 
@@ -44,7 +45,7 @@ public class AliasMap {
                         EditCommand.COMMAND_WORD, ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD,
                         HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD,
                         TopupCommand.COMMAND_WORD, AliasCommand.COMMAND_WORD, AddCategoryCommand.COMMAND_WORD,
-                        DeleteCategoryCommand.COMMAND_WORD, SwitchCommand.COMMAND_WORD
+                        DeleteCategoryCommand.COMMAND_WORD, SwitchCommand.COMMAND_WORD, SortCommand.COMMAND_WORD
                 );
     }
 
