@@ -49,14 +49,10 @@ public class DeliveryAddCommand extends DeliveryCommand {
     }
 
     @Override
-    public CommandResult execute(Models models) throws CommandException {
+    public CommandResult execute(Models models) {
         requireNonNull(models);
         requireNonNull(models.getDeliveryModel());
         DeliveryModel deliveryModel = models.getDeliveryModel();
-
-        if (deliveryModel.hasDelivery(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_DELIVERY);
-        }
 
         deliveryModel.addDelivery(toAdd);
         models.commit();
