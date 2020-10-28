@@ -61,7 +61,7 @@ public class EditCommandTest {
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder()
                 .withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withAllergies(VALID_ALLERGY_PENICILLIN).withProfilePicture(VALID_PROFILE_PICTURE_BOB)
+                .withProfilePicture(VALID_PROFILE_PICTURE_BOB).withAllergies(VALID_ALLERGY_PENICILLIN)
                 .build();
         EditCommand editCommand = new EditCommand(indexLastPatient, descriptor);
 

@@ -51,7 +51,7 @@ public class AppointmentBuilder {
     /**
      * Sets the {@code patientIC} of the {@code Appointment} that we are building.
      */
-    public AppointmentBuilder withPatientIC(String patientIC) {
+    public AppointmentBuilder withPatientIc(String patientIC) {
         this.patientIC = new IcNumber(patientIC);
         return this;
     }

@@ -58,7 +58,7 @@ public class TypicalAppointments {
     /**
      * Returns an {@code CliniCal} with all the typical appointments.
      */
-    public static CliniCal getTypicalCliniCal() {
+    public static CliniCal getTypicalCliniCalWithAppointments() {
         CliniCal ab = new CliniCal();
         for (Appointment appointment : getTypicalAppointments()) {
             ab.addAppointment(appointment);

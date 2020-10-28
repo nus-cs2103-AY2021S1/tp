@@ -35,7 +35,7 @@ public class AddAppointmentCommandTest {
     public void execute_appointmentAcceptedByModel_addSuccessful() throws Exception {
         AddAppointmentCommandTest.ModelStubAcceptingAppointmentAdded modelStub = new AddAppointmentCommandTest
                 .ModelStubAcceptingAppointmentAdded();
-        Appointment validAppointment = new AppointmentBuilder().withPatientName("Alice").withPatientIC("S1234567A")
+        Appointment validAppointment = new AppointmentBuilder().withPatientName("Alice").withPatientIc("S1234567A")
                 .withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
 
         CommandResult commandResult = new AddAppointmentCommand(validAppointment).execute(modelStub);
@@ -47,7 +47,7 @@ public class AddAppointmentCommandTest {
 
     @Test
     public void execute_conflictingAppointment_throwsCommandException() {
-        Appointment validAppointment = new AppointmentBuilder().withPatientName("Alice").withPatientIC("S1234567A")
+        Appointment validAppointment = new AppointmentBuilder().withPatientName("Alice").withPatientIc("S1234567A")
                 .withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
         AddAppointmentCommand addAppointmentCommand = new AddAppointmentCommand(validAppointment);
         AddAppointmentCommandTest.ModelStub modelStub = new AddAppointmentCommandTest
@@ -59,9 +59,9 @@ public class AddAppointmentCommandTest {
     @Test
     public void equals() {
         Appointment aliceAppointment = new AppointmentBuilder().withPatientName("Alice")
-                .withPatientIC("S1234567A").withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
+                .withPatientIc("S1234567A").withStartTime("2020-10-25 12:00").withEndTime("2020-10-25 13:00").build();
         Appointment bobAppointment = new AppointmentBuilder().withPatientName("Bob")
-                .withPatientIC("S7654321Z").withStartTime("2020-10-25 13:00").withEndTime("2020-10-25 14:00").build();
+                .withPatientIc("S7654321Z").withStartTime("2020-10-25 13:00").withEndTime("2020-10-25 14:00").build();
         AddAppointmentCommand addAliceAppointmentCommand = new AddAppointmentCommand(aliceAppointment);
         AddAppointmentCommand addBobAppointmentCommand = new AddAppointmentCommand(bobAppointment);
 

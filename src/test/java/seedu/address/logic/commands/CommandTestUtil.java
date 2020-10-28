@@ -4,6 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ALLERGY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_PATIENTIC;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_PATIENTNAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_APP_STARTTIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BLOODTYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COLORTAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -21,11 +25,13 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.appointment.EditAppointmentCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.CliniCal;
 import seedu.address.model.Model;
 import seedu.address.model.patient.NameContainsKeywordsPredicate;
 import seedu.address.model.patient.Patient;
+import seedu.address.testutil.EditAppointmentDescriptorBuilder;
 import seedu.address.testutil.EditPatientDescriptorBuilder;
 
 /**
@@ -86,7 +92,6 @@ public class CommandTestUtil {
     public static final String INVALID_BLOODTYPE_DESC = " " + PREFIX_BLOODTYPE + "C+"; // 'C' not allowed in blood types
     public static final String INVALID_ALLERGY_DESC = " " + PREFIX_ALLERGY
             + "penicillin*"; // '*' not allowed in allergies
-
     public static final String INVALID_PROFILE_PICTURE_AMY = "data/nosuchpictureexists.png";
     public static final String INVALID_COLORTAG_DESC = " " + PREFIX_COLORTAG + "gibberish"; // non-color name
 
@@ -95,6 +100,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPatientDescriptor DESC_AMY;
     public static final EditCommand.EditPatientDescriptor DESC_BOB;
+    public static final EditAppointmentCommand.EditAppointmentDescriptor DESC_FIRST;
+    public static final EditAppointmentCommand.EditAppointmentDescriptor DESC_SECOND;
 
     // for Visit
     public static final LocalDate VALID_VISITDATE_ONE = LocalDate.of(2019, 3, 19);
@@ -109,10 +116,30 @@ public class CommandTestUtil {
     // for Appointment
     public static final String VALID_PATIENT_NAME_FIRST = "Fiona Apple";
     public static final String VALID_PATIENT_NAME_SECOND = "Seth MacFarlane";
+    public static final String VALID_PATIENT_IC_FIRST = "S9631111F";
+    public static final String VALID_PATIENT_IC_SECOND = "G1984861R";
     public static final String VALID_START_TIME_FIRST = "2020-11-11 11:10";
     public static final String VALID_START_TIME_SECOND = "2020-11-11 11:40";
     public static final String VALID_END_TIME_FIRST = "2020-11-11 11:30";
     public static final String VALID_END_TIME_SECOND = "2020-11-11 11:50";
+    public static final String VALID_DURATION_FIRST = "20";
+    public static final String VALID_DURATION_SECOND = "10";
+
+    public static final String PATIENTNAME_DESC_FIRST = " " + PREFIX_APP_PATIENTNAME + VALID_PATIENT_NAME_FIRST;
+    public static final String PATIENTNAME_DESC_SECOND = " " + PREFIX_APP_PATIENTNAME + VALID_PATIENT_NAME_SECOND;
+    public static final String PATIENTIC_DESC_FIRST = " " + PREFIX_APP_PATIENTIC + VALID_PATIENT_IC_FIRST;
+    public static final String PATIENTIC_DESC_SECOND = " " + PREFIX_APP_PATIENTIC + VALID_PATIENT_IC_SECOND;
+    public static final String START_TIME_DESC_FIRST = " " + PREFIX_APP_STARTTIME + VALID_START_TIME_FIRST;
+    public static final String START_TIME_DESC_SECOND = " " + PREFIX_APP_STARTTIME + VALID_START_TIME_SECOND;
+    public static final String DURATION_DESC_FIRST = " " + PREFIX_APP_DURATION + VALID_DURATION_FIRST;
+    public static final String DURATION_DESC_SECOND = " " + PREFIX_APP_DURATION + VALID_DURATION_SECOND;
+
+    // '@' not allowed in Name
+    public static final String INVALID_PATIENTNAME_DESC = " " + PREFIX_APP_PATIENTNAME + "Jane@";
+    // '&' not allowed in IcNumber
+    public static final String INVALID_PATIENTIC_DESC = " " + PREFIX_APP_PATIENTIC + "&1234567Z";
+    // '/' not allowed in AppointmentDateTime
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_APP_STARTTIME + "2020/11/1111:50";
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
@@ -124,6 +151,16 @@ public class CommandTestUtil {
                 .withIcNumber(VALID_ICNUMBER_BOB).withAddress(VALID_ADDRESS_BOB).withEmail(VALID_EMAIL_BOB)
                 .withProfilePicture(VALID_PROFILE_PICTURE_BOB).withSex(VALID_SEX_BOB).withBloodType(VALID_BLOODTYPE_BOB)
                 .withAllergies(VALID_ALLERGY_PENICILLIN)
+                .build();
+        DESC_FIRST = new EditAppointmentDescriptorBuilder().withPatientName(VALID_PATIENT_NAME_FIRST)
+                .withPatientIc(VALID_PATIENT_IC_FIRST)
+                .withStartTime(VALID_START_TIME_FIRST)
+                .withDuration(VALID_DURATION_FIRST)
+                .build();
+        DESC_SECOND = new EditAppointmentDescriptorBuilder().withPatientName(VALID_PATIENT_NAME_SECOND)
+                .withPatientIc(VALID_PATIENT_IC_SECOND)
+                .withStartTime(VALID_START_TIME_SECOND)
+                .withDuration(VALID_DURATION_SECOND)
                 .build();
     }
 
