@@ -97,12 +97,14 @@ public class EditLessonCommand extends Command {
         ArrayList<Task> associatedTasks = lessonToEdit.getAssociatedTasks();
 
         model.deleteTask(associatedTasks.toArray(new Task[0]));
+        model.deleteTaskInCalendar(associatedTasks.toArray(new Task[0]));
         ArrayList<Task> tasksToAdd = editedLesson.createRecurringTasks();
         for (Task taskToAdd: tasksToAdd) {
             if (model.hasTask(taskToAdd)) {
                 throw new CommandException(MESSAGE_DUPLICATE_LESSON);
             }
             model.addTask(taskToAdd);
+            model.addTaskToCalendar(taskToAdd);
         }
 
         model.setLesson(lessonToEdit, editedLesson);

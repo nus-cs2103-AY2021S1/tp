@@ -199,7 +199,17 @@ public class Planus implements ReadOnlyPlanus {
         requireNonNull(targets);
         for (Lesson target : targets) {
             removeTask(target.getAssociatedTasks().toArray(new Task[0]));
+            removeTaskInCalendar(target.getAssociatedTasks().toArray(new Task[0]));
         }
+    }
+
+    /**
+     * Removes the given tasks {@code targets} from the calendar in this {@code Planus}.
+     * Task in targets must exist in PlaNus.
+     */
+    public void removeTaskInCalendar(Task[] targets) {
+        requireNonNull(targets);
+        calendarTasks.remove(targets);
     }
 
     //// util methods

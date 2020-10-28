@@ -123,6 +123,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void deleteTaskInCalendar(Task[] targets) {
+        planus.removeTaskInCalendar(targets);
+    }
+
+    @Override
     public void markAsDone(Deadline[] targets, int[] durations) {
         planus.markAsDone(targets, durations);
     }
