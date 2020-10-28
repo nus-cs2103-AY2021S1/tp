@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  * Represents a Task's date in the task manager.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
  */
-public class TaskDate implements Comparable<TaskDate>{
+public class TaskDate implements Comparable<TaskDate> {
 
     public static final String MESSAGE_CONSTRAINTS = "Date should be in the format YYYY-MM-DD";
 
