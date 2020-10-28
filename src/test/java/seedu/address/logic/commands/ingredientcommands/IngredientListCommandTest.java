@@ -50,14 +50,8 @@ public class IngredientListCommandTest {
 
         final IngredientListCommand standardCommand = new
                 IngredientListCommand();
-        String ingredientList = "";
-        final char lineSeparator = '\n';
-        List<Ingredient> lastShownList = expectedModel.getFilteredIngredientList();
-        for (Ingredient i : lastShownList) {
-            ingredientList += i.toString() + lineSeparator;
-        }
         assertCommandSuccess(standardCommand, model,
-                IngredientListCommand.MESSAGE_SUCCESS + ingredientList, expectedModel);
+                IngredientListCommand.MESSAGE_SUCCESS, expectedModel);
 
     }
 
