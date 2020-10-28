@@ -1,0 +1,8 @@
+@startuml
+
+class NameContainsKeywordsPredicate {
+List<String> keywords
+test()
+}
+
+@enduml

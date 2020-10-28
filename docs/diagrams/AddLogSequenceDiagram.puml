@@ -53,7 +53,7 @@ destroy AddCommandParser
 FixMyAbsParser --> LogicManager : a
 deactivate FixMyAbsParser
 
-LogicManager -> AddCommand : execute()
+LogicManager -> AddCommand : execute(model)
 activate AddCommand
 
 AddCommand -> Model : addLog(newLog)

@@ -222,12 +222,11 @@ should end at the destroy marker (X) but due to a limitation of PlantUML, the li
 To find specific exercise logs, users are able to search for logs based on the exercise name. This will allow them
 to easily track the number of logs for a certain exercise, as well as its details.
 
+![AddLogClassDiagram](images/NameContainsKeywordsPredicate.png) 
+
 The mechanism is supported by the `NameContainsKeywordsPredicate`, which checks if the user keyword input is matches
 any name of the exercises in the list of exercise logs. The `NameContainsKeywordsPredicate#test()` method is used to 
 check this.
-
-//TODO
-Add class diagram here 
 
 A user can find a `Log` by executing the `find` command.
 
@@ -248,10 +247,9 @@ through `Model#updateFilteredLogList()`, and the new filtered log list is displa
 
 The following sequence diagram shows how the `Find Log` feature works:
 
-//TODO
-Add sequence diagram
+![AddLogClassDiagram](images/FindLogSequenceDiagram.png) 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
