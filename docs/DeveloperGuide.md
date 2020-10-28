@@ -230,7 +230,7 @@ user in the `s-update` command
   
 Finds specific drinks' sales data feature allows the user to get the sales data of a drink quickly. The command is:
   
-* `s-find KEYWORDS [MORE_KEYWORDS]` - Views sales data of drinks with the specified keywords.
+* `s-find KEYWORD [MORE_KEYWORDS]` - Views sales data of drinks with the specified keywords.
   
 #### Completed Implementation
   
