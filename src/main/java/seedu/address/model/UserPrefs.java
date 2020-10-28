@@ -53,7 +53,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return addressBookFilePath;
     }
 
-
     public Path getSalesBookFilePath() {
         return salesBookFilePath;
     }
@@ -85,22 +84,16 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         if (!(other instanceof UserPrefs)) { //this handles null as well.
             return false;
         }
-
         UserPrefs o = (UserPrefs) other;
-
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
-
                 && salesBookFilePath.equals(o.salesBookFilePath)
-
                 && ingredientBookFilePath.equals(o.ingredientBookFilePath);
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(guiSettings, addressBookFilePath, salesBookFilePath, ingredientBookFilePath);
-
     }
 
     @Override
@@ -113,5 +106,4 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("\nLocal data file location : " + ingredientBookFilePath);
         return sb.toString();
     }
-
 }
