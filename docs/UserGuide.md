@@ -28,7 +28,7 @@ ScheDar is a **desktop app for managing tasks, optimized for use via a Command L
 
    * **`add`**`event n/project meeting d/2020-09-16 18:00 t/important` : Adds an event named `project meeting` to ScheDar.
 
-   * **`del`**`3` : Deletes the 3rd task shown in the current list.
+   * **`delete`**`3` : Deletes the 3rd task shown in the current list.
 
    * **`find`** `cs2103 project`: Searches the current task list for the specified keyword `cs2103 project`.
 
@@ -119,22 +119,38 @@ Format: `done INDEX`
 
 Example: `done 2`
 
-### Deleting a task : `del`
+### Deleting a task : `delete`
 
 Deletes the specified task from the current task list.
 
-Format: `del INDEX`
+Format: `delete INDEX`
         Deletes the task at the specified INDEX.
         The index refers to the index number shown on the task list when using the list command.
         The index must be a positive integer 1, 2, 3, …​
 
-Example: `del 1`
+Example: `delete 1`
 
-### Retrieve last-deleted task : `re`
+### Editing a task : `editTodo`/`editEvent`/`editDeadline`
+
+Add a new task(todo/event/deadline) to the ScheDar program.
+
+Format: `editTodo n/NAME d/DATETIME [t/TAG]…​`/`editEvent n/NAME d/DATETIME [t/TAG]…​`
+        /`editDeadline n/NAME d/DATETIME [t/TAG]…​`
+        Edits the task with the given type, name, date and time, and tag if any, in the task list.
+        The edited task will be placed in the same position as the original task list in the task list.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A task can have any number of tags (including 0)
+</div>
+
+Examples:
+* `edit event t/project meeting`
+
+### Retrieve last-deleted task : `retrieve`
 
 Restores the most recently deleted task.
 
-Format: `re`	
+Format: `retrieve`	
 
 
 ### Searching for tasks by keyword : `find`
@@ -183,12 +199,12 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add TYPE n/NAME d/DATETIME [t/TAG]…​` <br> e.g., `add event n/project meeting d/2020-09-16 18:00 t/important`
 **Deadline** | `dl`
-**Delete** | `del INDEX`<br> e.g., `del 1`
+**Delete** | `delete INDEX`<br> e.g., `delete 1`
 **Done** | `done INDEX`<br> e.g., `done 1`
 **Exit** | `exit`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find project meeting`
 **Help** | `help`
 **List** | `list`
 **Priority** | `pri LEVEL INDEX`<br> e.g., `pri high 2`
-**Retrieve** | `re`
+**Retrieve** | `retrieve`
 
