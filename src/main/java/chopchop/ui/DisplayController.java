@@ -8,11 +8,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-
+import javafx.scene.layout.VBox;
 
 /**
  * Controller class for the swappable display region.
@@ -20,10 +21,7 @@ import javafx.scene.layout.StackPane;
 public class DisplayController extends UiPart<Region> {
 
     private static final String FXML = "DisplayPanel.fxml";
-    private static final String WELCOME_MESSAGE = "Welcome to ChopChop! If you need any help, press 'F1'"
-            + "\nTo add recipes: add recipe <REFERENCE> [/ingredient INGREDIENT [/qty QTY1]...]... (/step STEP)..."
-            + "\nTo add recipes: add ingredient NAME [/qty QUANTITY] [/expiry DATE]"
-            + "\nNote that [] denoted optional arguments.";
+    private static final String WELCOME_MESSAGE = "Welcome to ChopChop, a food recipe management system!";
 
     private final TextDisplay textDisplay;
     private final NotificationWindow notificationWindow;
@@ -42,21 +40,19 @@ public class DisplayController extends UiPart<Region> {
     @FXML
     private Button recommendationButton;
 
-    @FXML
-    private Button favouriteButton;
-
     /**
      * Creates a {@code DisplayController} with the given {@code Logic}.
      * @param logic
      */
     public DisplayController(Logic logic) {
         super(FXML);
-        this.getRoot().getStylesheets().add("/stylesheets/Style.css");
-        textDisplay = new TextDisplay(WELCOME_MESSAGE);
-        notificationWindow = new NotificationWindow();
-        recipeObservableList = logic.getFilteredRecipeList();
-        ingredientObservableList = logic.getFilteredIngredientList();
-        recipeObservableList.addListener((ListChangeListener<Recipe>) c -> {
+        this.textDisplay = new TextDisplay(WELCOME_MESSAGE);
+        this.notificationWindow = new NotificationWindow();
+        this.recipeObservableList = logic.getFilteredRecipeList();
+        this.ingredientObservableList = logic.getFilteredIngredientList();
+
+        // TODO: Edit to account for loading of recipes/ingredients after UI
+        this.recipeObservableList.addListener((ListChangeListener<Recipe>) c -> {
             c.next();
 
             /*
@@ -64,32 +60,28 @@ public class DisplayController extends UiPart<Region> {
              * updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES).
              */
             if (c.wasReplaced() && !c.getAddedSubList().equals(c.getRemoved())) {
-                displayRecipe(c.getAddedSubList().get(0));
+                this.displayRecipe(c.getAddedSubList().get(0));
             } else if (c.wasAdded()) {
-                displayRecipe(c.getAddedSubList().get(c.getAddedSize() - 1));
+                this.displayRecipe(c.getAddedSubList().get(c.getAddedSize() - 1));
             } else {
-                displayRecipeList();
+                this.displayRecipeList();
             }
         });
-        ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> displayIngredientList());
+        this.ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> this.displayIngredientList());
 
-        displayAreaPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        this.displayAreaPlaceholder.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode().equals(KeyCode.ESCAPE)) {
-                displayWelcomeMessage();
-                resetButtons();
+                this.displayWelcomeMessage();
+                this.resetButtons();
             }
         });
-
-        resetButtons();
-
-        System.out.println(logic.getFilteredIngredientList().isEmpty());
 
         if (!logic.getFilteredRecipeList().isEmpty()) {
-            displayRecipeList();
+            this.displayRecipeList();
         } else if (!logic.getFilteredIngredientList().isEmpty()) {
-            displayIngredientList();
+            this.displayIngredientList();
         } else {
-            displayWelcomeMessage();
+            this.displayWelcomeMessage();
         }
     }
 
@@ -97,7 +89,7 @@ public class DisplayController extends UiPart<Region> {
      * Displays the RecipeViewPanel on the swappable display region.
      */
     protected void displayWelcomeMessage() {
-        displayAreaPlaceholder.getChildren().setAll(textDisplay.getRoot());
+        this.displayAreaPlaceholder.getChildren().setAll(this.textDisplay.getRoot());
     }
 
     /**
@@ -145,7 +137,6 @@ public class DisplayController extends UiPart<Region> {
         recipeButton.getStyleClass().remove("tab-button-selected");
         ingredientButton.getStyleClass().remove("tab-button-selected");
         recommendationButton.getStyleClass().remove("tab-button-selected");
-        favouriteButton.getStyleClass().remove("tab-button-selected");
     }
 
     /**
@@ -183,15 +174,6 @@ public class DisplayController extends UiPart<Region> {
      */
     @FXML
     public void handleRecommendations(ActionEvent event) {
-        // To add more code.
-        handleNotification();
-    }
-
-    /**
-     * Displays the favourites panel.
-     */
-    @FXML
-    public void handleFavourites(ActionEvent event) {
         // To add more code.
         handleNotification();
     }
