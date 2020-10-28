@@ -34,20 +34,29 @@ public class AccumulatedQuantityTest {
     }
 
     @Test
-    public void isValidAccumulatedQuantity() {
+    public void invalidAccumulatedQuantityFormats() {
         // null accumulated quantity
         assertThrows(NullPointerException.class, () -> AccumulatedQuantity.isValidAccumulatedQuantity(null));
 
-        // invalid AccumulatedQuantity
+        // invalid accumulated quantity
         assertFalse(AccumulatedQuantity.isValidAccumulatedQuantity("")); // empty string
         assertFalse(AccumulatedQuantity.isValidAccumulatedQuantity(" ")); // spaces only
         assertFalse(AccumulatedQuantity.isValidAccumulatedQuantity("^")); // only non-numeric characters
         assertFalse(AccumulatedQuantity.isValidAccumulatedQuantity("100*")); // contains non-numeric characters
         assertFalse(AccumulatedQuantity.isValidAccumulatedQuantity("100.00")); // only non-integer values
+        assertFalse(AccumulatedQuantity.isValidAccumulatedQuantity("-100")); // only negative values
+        assertFalse(AccumulatedQuantity.isValidAccumulatedQuantity(
+                Integer.toString(Integer.MAX_VALUE + 1))); // larger than INTEGER.MAX_VALUE
 
-        // valid AccumulatedQuantity
+    }
+
+    @Test
+    public void validAccumulatedQuantityFormats() {
+        // valid accumulated quantity
         assertTrue(AccumulatedQuantity.isValidAccumulatedQuantity("100")); // integer
         assertTrue(AccumulatedQuantity.isValidAccumulatedQuantity("1000000000")); // large integer
+        assertTrue(AccumulatedQuantity.isValidAccumulatedQuantity(
+                Integer.toString(Integer.MAX_VALUE))); //Max integer value
     }
 
     @Test
@@ -55,7 +64,6 @@ public class AccumulatedQuantityTest {
         AccumulatedQuantity accumulatedQuantity = new AccumulatedQuantity("100");
         AccumulatedQuantity accumulatedQuantityCopy = new AccumulatedQuantity("100");
         AccumulatedQuantity differentAccumulatedQuantity = new AccumulatedQuantity("99");
-
 
         // returns true
         assertTrue(accumulatedQuantity.equals(accumulatedQuantity)); // compare to self

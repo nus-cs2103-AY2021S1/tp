@@ -35,11 +35,13 @@ public class QuantityTest {
         assertFalse(Quantity.isValidQuantity("^")); // only non-alphanumeric characters
         assertFalse(Quantity.isValidQuantity("fdfs")); // alphabets only
         assertFalse(Quantity.isValidQuantity("-199")); // negative number
+        assertFalse(Quantity.isValidQuantity(Integer.toString(Integer.MAX_VALUE + 1))); //Overflow
 
         // valid quantity
         assertTrue(Quantity.isValidQuantity("0")); // zero
         assertTrue(Quantity.isValidQuantity("14")); // numbers only
         assertTrue(Quantity.isValidQuantity("2324254")); // large number
+        assertTrue(Quantity.isValidQuantity(Integer.toString(Integer.MAX_VALUE))); //Max integer value
     }
 
     @Test
