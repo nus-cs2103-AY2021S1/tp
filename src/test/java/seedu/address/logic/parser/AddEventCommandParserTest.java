@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_LECTURE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_PROJECT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRIORITY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASKDATE_DESC;
@@ -35,6 +36,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddEventCommand;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Description;
 import seedu.address.model.task.Event;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.TaskDate;
@@ -123,7 +125,8 @@ public class AddEventCommandParserTest {
                 + TASKDATE_DESC_PROJECT + TASKTIME_DESC_PROJECT + TAG_DESC_PROJECT, Title.MESSAGE_CONSTRAINTS);
 
         // invalid description
-        // descriptions are optional as of v1.3
+        assertParseFailure(parser, TITLE_DESC_PROJECT + INVALID_DESCRIPTION_DESC + PRIORITY_DESC_PROJECT
+                + TASKDATE_DESC_PROJECT + TASKTIME_DESC_PROJECT + TAG_DESC_PROJECT, Description.MESSAGE_CONSTRAINTS);
 
         // invalid priority
         assertParseFailure(parser, TITLE_DESC_PROJECT + DESCRIPTION_DESC_PROJECT + INVALID_PRIORITY_DESC

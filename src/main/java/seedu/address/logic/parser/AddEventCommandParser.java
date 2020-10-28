@@ -42,11 +42,11 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Description description = ParserUtil.parseDescription("");
+        Description description = ParserUtil.parseDescription("No Description");
         if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
-        Priority priority = ParserUtil.parsePriority("");
+        Priority priority = ParserUtil.parsePriority("No Priority Assigned");
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
             priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
