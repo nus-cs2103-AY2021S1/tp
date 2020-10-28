@@ -160,7 +160,7 @@ public class ModelManager implements Model {
     public List<Tag> findFilteredTagList(Predicate<Tag> predicate) {
         requireNonNull(predicate);
 
-        return getFilteredTagList().stream()
+        return filteredTags.getSource().stream()
                 .filter(predicate)
                 .collect(Collectors.toList());
     }

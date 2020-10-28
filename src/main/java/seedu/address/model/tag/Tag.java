@@ -3,6 +3,7 @@ package seedu.address.model.tag;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.HashSet;
@@ -65,7 +66,14 @@ public class Tag {
         if (!file.exists()) {
             throw new IllegalArgumentException("Tag address not valid!");
         }
-        FileAddress absAddress = new FileAddress(Paths.get(file.getAbsolutePath()).normalize().toString());
+
+        FileAddress absAddress;
+
+        try {
+            absAddress = new FileAddress(Paths.get(file.getCanonicalPath()).normalize().toString());
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Tag address not found!");
+        }
 
         return new Tag(tagName, absAddress, labels);
     }
