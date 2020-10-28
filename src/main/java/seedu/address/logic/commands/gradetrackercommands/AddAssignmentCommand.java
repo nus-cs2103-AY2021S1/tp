@@ -7,7 +7,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_RESULT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -35,6 +37,8 @@ public class AddAssignmentCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New assignment %1$s added.";
     public static final String MESSAGE_ASSIGNMENT_NOT_ADDED = "Module to add to not found.";
 
+    private final Logger logger = LogsCenter.getLogger(AddAssignmentCommand.class);
+
     private final ModuleName moduleToAdd;
     private final Assignment assignmentToAdd;
 
@@ -43,6 +47,7 @@ public class AddAssignmentCommand extends Command {
      */
     public AddAssignmentCommand(ModuleName moduleToAdd, Assignment assignment) {
         requireNonNull(assignment);
+        logger.info("Adding an assignment: " + assignment.toString());
         this.moduleToAdd = moduleToAdd;
         this.assignmentToAdd = assignment;
     }
@@ -62,6 +67,7 @@ public class AddAssignmentCommand extends Command {
             throw new CommandException(MESSAGE_ASSIGNMENT_NOT_ADDED);
         }
         module.addAssignment(assignmentToAdd);
+        logger.info("Assignment has been added: " + assignmentToAdd.toString());
         model.commitModuleList();
         return new CommandResult(String.format(MESSAGE_SUCCESS, assignmentToAdd));
     }

@@ -8,7 +8,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -42,6 +44,8 @@ public class EditAssignmentCommand extends Command {
     public static final String MESSAGE_MODULE_INVALID = "The module to edit assignment is invalid.";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the gradetracker.";
 
+    private final Logger logger = LogsCenter.getLogger(EditAssignmentCommand.class);
+
     private final Index index;
     private final ModuleName moduleName;
     private final EditAssignmentDescriptor editAssignmentDescriptor;
@@ -56,6 +60,7 @@ public class EditAssignmentCommand extends Command {
         requireNonNull(moduleName);
         requireNonNull(editAssignmentDescriptor);
 
+        logger.info("Editing assignment at position " + index.toString() + " from:" + moduleName.toString() + "");
         this.index = index;
         this.moduleName = moduleName;
         this.editAssignmentDescriptor = new EditAssignmentDescriptor(editAssignmentDescriptor);
@@ -93,6 +98,8 @@ public class EditAssignmentCommand extends Command {
 
         moduleWithAssignment.getGradeTracker().removeAssignment(assignmentToEdit);
         moduleWithAssignment.getGradeTracker().addAssignment(editedAssignment);
+
+        logger.info("Assignment has been edited: " + assignmentToEdit.toString());
 
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         return new CommandResult(String.format(MESSAGE_EDIT_ASSIGNMENT_SUCCESS, editedAssignment));
