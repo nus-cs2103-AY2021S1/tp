@@ -9,8 +9,7 @@ public class TaskDateComparator implements Comparator<Task> {
         }
         if (t instanceof Event) {
             return ((Event) t).getEventDate();
-        }
-        else {
+        } else {
             return null;
         }
     }
@@ -24,8 +23,7 @@ public class TaskDateComparator implements Comparator<Task> {
         }
         if (date1 == null) {
             return 1;
-        }
-        else {
+        } else {
             return -1;
         }
     }
