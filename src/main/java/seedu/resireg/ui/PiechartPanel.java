@@ -51,6 +51,8 @@ public class PiechartPanel extends UiPart<Region> {
     private void initData() {
         int allocatedCount = allocationList.size();
         int unallocatedCount = roomList.size() - allocatedCount;
+        assert unallocatedCount >= 0;
+
         data = FXCollections.observableArrayList();
         data.add(new PieChart.Data("Allocated Rooms: " + allocatedCount, allocatedCount));
         data.add(new PieChart.Data("Unallocated Rooms: " + unallocatedCount, unallocatedCount));
