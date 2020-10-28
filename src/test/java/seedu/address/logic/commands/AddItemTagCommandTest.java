@@ -87,6 +87,19 @@ public class AddItemTagCommandTest {
         assertThrows(CommandException.class, () -> aic.execute(modelStub));
     }
 
+    /**
+     * Tests for unsuccessful addition of tag(s) due to being already inside the item.
+     */
+    @Test
+    public void execute_duplicateTagSubset_throwsException() {
+        itemList.addItem(new ItemBuilder(apple).withTags(getTypicalTagSet()).build());
+        modelStub = new EditItemCommandTest.ModelStubWithItemList(itemList);
+
+        AddItemTagCommand aic = new AddItemTagCommand(VALID_ITEM_NAME_APPLE, Set.of(TAG_ABC));
+
+        assertThrows(CommandException.class, () -> aic.execute(modelStub));
+    }
+
     @Test
     public void equals() {
         AddItemTagCommand aic1 = new AddItemTagCommand(VALID_ITEM_NAME_APPLE, Set.of(TAG_ABC));
