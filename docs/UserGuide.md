@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management of module details.
+Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. 
+It helps them to centralize key module details, contacts and information while following their study progress through a Command Line Interface (CLI).
 
 * Table of Contents
 {:toc}
@@ -31,8 +32,16 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `addtask n/NAME`, `NAME` is a parameter which can be used as `addtask n/Week 11 quiz`.
 
+* Items in square brackets are optional. Items without square brackets are compulsory fields. <br>
+  e.g. `addtask n/NAME [p/PRIORITY]` can be used as `addtask n/Week 11 quiz p/highest` or as `addtask n/Week 11 quiz`
+  
+* Items with `...` after them can be used multiple times, including zero times. <br>
+  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/easy`, `t/friend t/important` etc.
+  
+* Argument parameters can be provided in any order.
+  e.g. If the command specifies `addtask n/NAME [p/PRIORITY]`, `addtask [p/PRIORITY] n/NAME` is also acceptable.  
 
 </div>
 
