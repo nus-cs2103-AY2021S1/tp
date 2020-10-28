@@ -10,9 +10,9 @@ import static seedu.stock.commons.util.AppUtil.checkArgument;
 public class Quantity {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Quantity numbers should be a number that is 0 or more.";
+            "Quantity numbers should be a number between 0 to 2,147,483,647.";
     public static final String LOW_QUANTITY_MESSAGE_CONSTRAINTS =
-            "Low quantity numbers should be a number more than 0 or more.";
+            "Low quantity numbers should be a number from 0 to 2,147,483,647.";
     public static final String VALIDATION_REGEX = "\\d+";
     public static final String DEFAULT_LOW_QUANTITY = "0";
     public final String quantity;
@@ -49,7 +49,14 @@ public class Quantity {
      * Returns true if a given string is a number and is more than zero or more.
      */
     public static boolean isValidQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
+        requireNonNull(test);
+        try {
+            //protective layer against huge string input.
+            Integer.parseInt(test);
+            return test.matches(VALIDATION_REGEX);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     /**
@@ -59,7 +66,13 @@ public class Quantity {
         return Integer.parseInt(quantity) <= Integer.parseInt(lowQuantity);
     }
 
+    /**
+     * Updates the low quantity field in quantity.
+     * @param newLowQuantity The new low quantity value.
+     * @return The updated Quantity.
+     */
     public Quantity updateLowQuantity(String newLowQuantity) {
+        requireNonNull(newLowQuantity);
         return new Quantity(quantity, newLowQuantity);
     }
 

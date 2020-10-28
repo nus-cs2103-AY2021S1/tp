@@ -36,18 +36,18 @@ import seedu.stock.model.stock.predicates.NameContainsKeywordsPredicate;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_APPLE = "Apple Juice";
-    public static final String VALID_NAME_BANANA = "Banana Bun";
-    public static final String VALID_SERIAL_NUMBER_APPLE = "Ntuc1";
-    public static final String VALID_SERIAL_NUMBER_BANANA = "Fairprice1";
-    public static final String VALID_SOURCE_APPLE = "Ntuc";
-    public static final String VALID_SOURCE_BANANA = "Fairprice";
+    public static final String VALID_NAME_APPLE = "apple juice";
+    public static final String VALID_NAME_BANANA = "banana bun";
+    public static final String VALID_SERIAL_NUMBER_APPLE = "ntuc1";
+    public static final String VALID_SERIAL_NUMBER_BANANA = "fairprice1";
+    public static final String VALID_SOURCE_APPLE = "ntuc";
+    public static final String VALID_SOURCE_BANANA = "fairprice";
     public static final String VALID_QUANTITY_APPLE = "2000";
     public static final String VALID_QUANTITY_BANANA = "1000";
     public static final String VALID_LOW_QUANTITY_APPLE = "0";
     public static final String VALID_LOW_QUANTITY_BANANA = "2200";
-    public static final String VALID_LOCATION_APPLE = "Fruit Section, Subsection C";
-    public static final String VALID_LOCATION_BANANA = "Fruits section, Subsection B";
+    public static final String VALID_LOCATION_APPLE = "fruit section, subsection c";
+    public static final String VALID_LOCATION_BANANA = "fruits section, subsection b";
     public static final String VALID_FILE_NAME = "test";
     public static final String VALID_SORT_ORDER_ASCENDING = "ascending";
     public static final String VALID_SORT_ORDER_DESCENDING = "descending";
@@ -57,7 +57,7 @@ public class CommandTestUtil {
 
     public static final String NAME_DESC_APPLE = " " + PREFIX_NAME + VALID_NAME_APPLE;
     public static final String NAME_DESC_BANANA = " " + PREFIX_NAME + VALID_NAME_BANANA;
-    public static final String NAME_DESC_BANANA_WITH_WHITESPACES_BETWEEN = " " + PREFIX_NAME + "Banana         Bun";
+    public static final String NAME_DESC_BANANA_WITH_WHITESPACES_BETWEEN = " " + PREFIX_NAME + "banana         bun";
     public static final String SERIAL_NUMBER_DESC_APPLE = " " + PREFIX_SERIAL_NUMBER + VALID_SERIAL_NUMBER_APPLE;
     public static final String SERIAL_NUMBER_DESC_BANANA = " " + PREFIX_SERIAL_NUMBER + VALID_SERIAL_NUMBER_BANANA;
     public static final String SOURCE_DESC_APPLE = " " + PREFIX_SOURCE + VALID_SOURCE_APPLE;
@@ -95,10 +95,14 @@ public class CommandTestUtil {
     public static final String INVALID_LIST_TYPE_DESC = " " + PREFIX_LIST_TYPE + "a";
     public static final String INVALID_STATISTICS_TYPE_DESC = " " + PREFIX_STATISTICS_TYPE + "sour";
 
+    public static final String INVALID_LARGER_THAN_INT_LIMIT_QUANTITY_DESC =
+                                            " " + PREFIX_QUANTITY + "10000000000000000000000";
+    public static final String INVALID_LARGER_THAN_INT_LIMIT_LOW_QUANTITY_DESC =
+            " " + PREFIX_LOW_QUANTITY + "10000000000000000000000";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-    public static final String DEFAULT_SERIAL_NUMBER = "0";
+    public static final String DEFAULT_SERIAL_NUMBER = "00";
 
     public static final String[] VALID_NAME_APPLE_KEYWORDS = VALID_NAME_APPLE.split("\\s+");
     public static final String[] VALID_NAME_BANANA_KEYWORDS = VALID_NAME_BANANA.split("\\s+");

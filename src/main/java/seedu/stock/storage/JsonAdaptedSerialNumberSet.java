@@ -37,7 +37,7 @@ class JsonAdaptedSerialNumberSet {
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code SerialNumberSet} object.
+     * Converts this Jackson-friendly adapted stock object into the model's {@code SerialNumberSet} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted SerialNumberSet.
      */
@@ -54,7 +54,7 @@ class JsonAdaptedSerialNumberSet {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     AccumulatedQuantity.class.getSimpleName()));
         }
-        if (!AccumulatedQuantity.isValidAccQuantity(accumulatedQuantity)) {
+        if (!AccumulatedQuantity.isValidAccumulatedQuantity(accumulatedQuantity)) {
             throw new IllegalValueException(AccumulatedQuantity.MESSAGE_CONSTRAINTS);
         }
         final AccumulatedQuantity modelAccQuantity = new AccumulatedQuantity(accumulatedQuantity);

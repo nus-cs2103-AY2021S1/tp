@@ -1,10 +1,16 @@
 package seedu.stock.model.stock;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.stock.commons.util.AppUtil.checkArgument;
+import static seedu.stock.model.stock.AccumulatedQuantity.isValidAccumulatedQuantity;
+import static seedu.stock.model.stock.Source.isValidSource;
 
 import java.util.Objects;
 
 public class SerialNumberSet {
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "SerialNumberSet should contain valid source and accumulated quantity.";
 
     private Source source;
     private AccumulatedQuantity accumulatedQuantity;
@@ -19,6 +25,7 @@ public class SerialNumberSet {
     public SerialNumberSet(Source source, AccumulatedQuantity accumulatedQuantity) {
         requireNonNull(source);
         requireNonNull(accumulatedQuantity);
+        checkArgument(isValidSerialNumberSet(source, accumulatedQuantity), MESSAGE_CONSTRAINTS);
         this.source = source;
         this.accumulatedQuantity = accumulatedQuantity;
     }
@@ -31,6 +38,13 @@ public class SerialNumberSet {
         return this.accumulatedQuantity;
     }
 
+    /**
+     * Returns true if the given source and accumulated quantity are valid.
+     */
+    public static boolean isValidSerialNumberSet(Source source, AccumulatedQuantity accumulatedQuantity) {
+        return isValidSource(source.value)
+                && isValidAccumulatedQuantity(accumulatedQuantity.getAccumulatedQuantity());
+    }
     /**
      * Returns true if both serialNumberSet has the same source company.
      */
@@ -62,9 +76,9 @@ public class SerialNumberSet {
      * @return The new SerialNumberSet.
      */
     public SerialNumberSet getNewIncrementedSerialNumberSet() {
-        Source newSource = this.source;
+        Source currSource = this.source;
         AccumulatedQuantity newAccQuantity = this.accumulatedQuantity.getIncrementedAccumulatedQuantity();
-        return new SerialNumberSet(newSource, newAccQuantity);
+        return new SerialNumberSet(currSource, newAccQuantity);
     }
 
     /**

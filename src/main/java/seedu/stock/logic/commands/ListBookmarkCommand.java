@@ -9,7 +9,7 @@ import seedu.stock.model.stock.Stock;
 import seedu.stock.model.stock.predicates.BookmarkedPredicate;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all stocks in the stock book to the user.
  */
 public class ListBookmarkCommand extends ListCommand {
 

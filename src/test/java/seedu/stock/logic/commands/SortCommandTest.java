@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.logic.commands.SortCommand.MESSAGE_SORT_STOCK_SUCCESS;
-import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
+import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStocks;
 

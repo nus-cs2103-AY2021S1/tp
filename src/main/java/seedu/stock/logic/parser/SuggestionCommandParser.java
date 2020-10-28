@@ -38,6 +38,7 @@ import seedu.stock.commons.util.SortUtil.Order;
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.BookmarkCommand;
+import seedu.stock.logic.commands.ClearCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -150,6 +151,10 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateAddSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case ClearCommand.COMMAND_WORD:
+            generateClearSuggestion(toBeDisplayed);
+            break;
+
         case DeleteCommand.COMMAND_WORD:
             generateDeleteSuggestion(toBeDisplayed, argMultimap);
             break;
@@ -203,6 +208,16 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
+    }
+
+    /**
+     * Generates suggestion for faulty clear command.
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     */
+    private void generateClearSuggestion(StringBuilder toBeDisplayed) {
+        toBeDisplayed.append(CommandWords.CLEAR_COMMAND_WORD);
+
+        generateBodyMessage(toBeDisplayed, ClearCommand.MESSAGE_USAGE);
     }
 
     /**

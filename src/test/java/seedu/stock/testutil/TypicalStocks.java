@@ -1,45 +1,41 @@
 package seedu.stock.testutil;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.stock.commons.util.SortUtil;
-import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.StockBook;
-import seedu.stock.model.stock.AccumulatedQuantity;
 import seedu.stock.model.stock.SerialNumber;
-import seedu.stock.model.stock.SerialNumberSet;
 import seedu.stock.model.stock.Stock;
 
 /**
  * A utility class containing a list of {@code Stock} objects to be used in tests.
  */
 public class TypicalStocks {
-    public static final Stock APPLE = new StockBuilder().withName("Apple Juice")
-            .withSerialNumber("Ntuc1").withSource("Ntuc")
-            .withQuantity("2000", "0").withLocation("Fruit Section, Subsection C")
+    public static final Stock APPLE = new StockBuilder().withName("apple juice")
+            .withSerialNumber("ntuc1").withSource("ntuc")
+            .withQuantity("2000", "0").withLocation("fruit section, subsection c")
             .build();
-    public static final Stock BANANA = new StockBuilder().withName("Banana Cake")
-            .withSerialNumber("Fairprice1").withSource("Fairprice")
-            .withQuantity("2103", "2200").withLocation("Fruits section, Subsection B")
+    public static final Stock BANANA = new StockBuilder().withName("banana cake")
+            .withSerialNumber("fairprice1").withSource("fairprice")
+            .withQuantity("2103", "2200").withLocation("fruits section, subsection b")
             .build();
-    public static final Stock PINEAPPLE = new StockBuilder().withName("Pineapple Tart")
-            .withSerialNumber("BengawanSolo1").withSource("BengawanSolo")
-            .withQuantity("123").withLocation("Tart Section, Subsection A")
+    public static final Stock PINEAPPLE = new StockBuilder().withName("pineapple tart")
+            .withSerialNumber("bengawansolo1").withSource("bengawansolo")
+            .withQuantity("123").withLocation("tart section, subsection a")
             .build();
-    public static final Stock ORANGE = new StockBuilder().withName("Orange")
-            .withSerialNumber("Giant1").withSource("Giant")
-            .withQuantity("111").withLocation("Fruit Section, Subsection X")
+    public static final Stock ORANGE = new StockBuilder().withName("orange")
+            .withSerialNumber("giant1").withSource("giant")
+            .withQuantity("111").withLocation("fruit section, subsection x")
             .build();
     public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = APPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_THIRD_STOCK = PINEAPPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_FOURTH_STOCK = ORANGE.getSerialNumber();
-    public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown");
+    public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown1");
 
-    public static final String RESERVED_NON_EXISTENCE_SOURCE = "$NON-EXISTENT-SOURCE";
+    public static final String RESERVED_NON_EXISTENCE_SOURCE = "$non-existent-source";
 
     private TypicalStocks() {} // prevents instantiation
 
@@ -56,7 +52,7 @@ public class TypicalStocks {
 
     /**
      * Returns a {@code StockBook} with all the typical stocks sorted by serial number.
-     * @return
+     * @return StockBook The StockBook containing typical stocks.
      */
     public static StockBook getTypicalStockBookSortedSerialNumber() {
         List<Stock> typicalStocks = getTypicalStocks();
@@ -70,16 +66,6 @@ public class TypicalStocks {
 
     public static List<Stock> getTypicalStocks() {
         return new ArrayList<>(Arrays.asList(APPLE, BANANA, ORANGE));
-    }
-
-    public static SerialNumberSetsBook getTypicalSerialNumberSetsBook() {
-        SerialNumberSetsBook serialNumbers = new SerialNumberSetsBook();
-        List<SerialNumberSet> serialNumberSets = new ArrayList<>();
-        for (Stock stock: getTypicalStocks()) {
-            serialNumberSets.add(new SerialNumberSet(stock.getSource(), new AccumulatedQuantity("1")));
-        }
-        serialNumbers.setSerialNumberSets(serialNumberSets);
-        return serialNumbers;
     }
 
     /**

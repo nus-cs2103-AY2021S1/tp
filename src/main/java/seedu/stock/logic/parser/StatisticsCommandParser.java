@@ -1,7 +1,9 @@
 package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,15 +19,22 @@ public class StatisticsCommandParser implements Parser<StatisticsCommand> {
 
     @Override
     public StatisticsCommand parse(String userInput) throws ParseException {
-        String[] trimmedStatisticsType = userInput.trim().split("st/");
-
-        //a valid input will lead to an array of index 0 as "", index 1 as the statistics type
-        if (trimmedStatisticsType.length != 2) {
-            logger.log(Level.WARNING, "Multiple headers not allowed");
+        //invalid input if it does not start with "st/" as it is a confirmed invalid header.
+        if (!userInput.trim().startsWith("st/")) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
         }
 
-        String input = trimmedStatisticsType[1].toLowerCase();
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_STATISTICS_TYPE);
+
+        List<String> values = argMultimap.getAllValues(PREFIX_STATISTICS_TYPE);
+
+        //correct input only has one value
+        if (values.size() != 1) {
+            logger.log(Level.WARNING, "Invalid format");
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatisticsCommand.MESSAGE_USAGE));
+        }
+
+        String input = values.get(0).toLowerCase();
         String type = getStatisticsType(input);
 
         switch (type) {

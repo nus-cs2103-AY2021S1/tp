@@ -68,7 +68,6 @@ public class ParserUtil {
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-
         return new Quantity(trimmedQuantity);
     }
 
@@ -176,7 +175,6 @@ public class ParserUtil {
         List<String> values = argMultimap.getAllValues(PREFIX_SERIAL_NUMBER);
 
         if (values.isEmpty()) {
-
             throw new ParseException(Messages.MESSAGE_INVALID_COMMAND_FORMAT);
         }
 

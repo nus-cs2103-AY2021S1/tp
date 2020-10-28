@@ -17,7 +17,7 @@ import seedu.stock.testutil.StockBuilder;
 public class StockTest {
 
     @Test
-    public void isSamePerson() {
+    public void isSameStock() {
         // same object -> returns true
         assertTrue(APPLE.isSameStock(APPLE));
 
@@ -29,9 +29,8 @@ public class StockTest {
                 .build();
         assertTrue(BANANA.isSameStock(editedApple));
 
-        // same name, same source, different attributes -> returns true
+        //Different attributes, same serial number -> returns true
         editedApple = new StockBuilder(APPLE)
-                .withSerialNumber(VALID_SERIAL_NUMBER_BANANA)
                 .withQuantity(VALID_QUANTITY_BANANA)
                 .withLocation(VALID_LOCATION_BANANA).build();
         assertTrue(APPLE.isSameStock(editedApple));
