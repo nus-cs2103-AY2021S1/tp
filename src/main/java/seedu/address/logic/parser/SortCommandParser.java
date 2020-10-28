@@ -26,11 +26,13 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
 
 
-        if (!sortedBy.equals(SortCommand.NAME) && !sortedBy.equals(SortCommand.PRICE)) {
+        if (!sortedBy.equals(SortCommand.NAME) && !sortedBy.equals(SortCommand.PRICE)
+                && !sortedBy.equals("name") && !sortedBy.equals("price")) {
             throw new ParseException(SortCommand.MESSAGE_USAGE);
         }
 
-        if (!ascending.equals("a") && !ascending.equals("d") && !ascending.equals("t")) {
+        if (!ascending.equals("a") && !ascending.equals("d") && !ascending.equals("t")
+                && !ascending.equals("ascending") && !ascending.equals("descending")) {
             throw new ParseException(SortCommand.MESSAGE_USAGE);
         }
 

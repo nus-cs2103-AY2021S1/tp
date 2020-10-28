@@ -6,22 +6,27 @@
 * Table of Contents
 {coming soon}
 
+--------------------------------------------------------------------------------------------------------------------
+
 1. Download the latest `supperstrikers.jar` from [here](https://github.com/AY2021S1-CS2103-T16-1/tp/releases).
 
 1. Copy the jar to the folder you want to use as the _home folder_ for your SupperStrikers.
 
-1. Double-click the jar to start the app. The GUI similar to the one below should appear in a few seconds.<br>
+1. Open a command window. Run the java -version command to ensure you are using Java 11. If not, please install Java 11 to ensure you are able to safely launch the jar file.
+
+1. Launch the jar file using the java -jar command (do not use double-clicking). The GUI similar to the one below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * **`vendor`** : List all the vendors available.
-* **`vendor 1`** : Select the first vendor to make a supper order for.
-   * **`create`** : Creates a new supper order.
-* **`add 1 2`** : Adds two quantity of the item at the 1st index from the vendor's menu to your supper order.
-   * **`remove 1 1`** : Removes 1 quantity of the item at the 1st index from your order
-* **`exit`** : Exits the app.
+   * **`vendor 1`** : Select the first vendor to make a supper order for.
+   * **`add 1 2`** : Adds two quantity of the item at the 1st index from the vendor's menu to your supper order.
+   * **`remove 1 1`** : Removes 1 quantity of the item at the 1st index from your order.
+   * **`preset save My First Preset`** : Saves your current order items locally as a preset with the name "My First Preset", which you can call it back easily by:
+   * **`preset load My First Preset`** : Loads the preset with the name "My First Preset" to your supper strikers app!
+   * **`exit`** : Exits the app.
    
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -41,7 +46,7 @@
   
 * Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless
 there is any ambiguity. For example, `help` only requires the user to type `h` to be recognized, while `sort` will
-require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The user. The commands
+require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
 will be explained below. For the sake of clarity, the whole command will be shown instead of the prefix.
 
 </div>
@@ -63,16 +68,20 @@ See you next time!
 
 ## Vendor related commands
 
-### View/select vendor: `vendor [INDEX]`
-
-If an index is specified, the corresponding vendor is selected, and its menu will be shown.
+### View/select vendor: `vendor`
 
 If no index is specified, displays the list of all vendors and returns to vendor mode.
 If there is an existing order, it is deleted.
 
+If an index is specified, the corresponding vendor is selected, and its menu will be shown.
+
+Format: `vendor [INDEX]`
+
+* `INDEX` must be a positive integer and must not exceed the size of the vendor list.
+
 Examples:
-* `vendor 2` Selects the 2<sup>nd</sup> vendor in the list.
 * `vendor` Change back to vendor mode.
+* `vendor 2` Selects the 2<sup>nd</sup> vendor in the list.
 
 ## Menu related commands
 
@@ -89,14 +98,14 @@ Sorts the menu by either price or name.
 
 Format: `sort MODE [DIRECTION]`
 
-* `MODE` must be either 'n' or 'p', meaning name and price respectively.
-* `DIRECTION` is either 'a' or 'd', meaning ascending or descending respectively.
+* `MODE` must be either 'name' or 'price', which dictates which mode it will sort by.
+* `DIRECTION` is either 'ascending' or 'descending', which dictates which direction it will sort by.
 * If `DIRECTION` is not specified, it will be treated as a toggle, and ascending direction will be sorted as descending 
 order and vice versa.
 
 Examples:
-* `sort n a` sorts the menu by name in ascending direction.
-* `sort p` sorts the menu by price in opposite direction as last sorted.
+* `sort name ascending` sorts the menu by name in ascending direction.
+* `sort price` sorts the menu by price in opposite direction as last sorted.
 
 
 ### Find food item: `find`
@@ -157,21 +166,28 @@ Examples:
 
 Removes everything from the order.
 
+Format: `clear`
+
 
 ### Undo changes to order: `undo`
 
 Undoes last change to the order.
 
+Format: `undo`
+
 
 ### Calculate total: `total`
 
-Displays the total of the order currently.
+Displays the total cost of the order currently.
+
+Format: `total`
 
 
 ### Generate order text: `submit`
 
 Displays a copy-paste-able text of the order.
 
+Format: `submit`
 
 _{coming soon}_
 
