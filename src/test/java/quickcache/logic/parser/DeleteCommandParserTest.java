@@ -5,16 +5,12 @@ import static quickcache.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static quickcache.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static quickcache.testutil.TypicalIndexes.INDEX_FIRST_FLASHCARD;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import quickcache.logic.commands.DeleteCommand;
-import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalTags;
@@ -50,7 +46,7 @@ public class DeleteCommandParserTest {
     public void parse_validTag_returnsDeleteCommand() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.TEST_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
         assertParseSuccess(parser, " t/test", DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch));
     }
 
@@ -73,10 +69,4 @@ public class DeleteCommandParserTest {
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 
-    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
-        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
-        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
-        FlashcardPredicate flashcardPredicate = new FlashcardPredicate(predicates);
-        return flashcardPredicate;
-    }
 }
