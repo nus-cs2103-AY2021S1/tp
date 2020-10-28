@@ -250,8 +250,8 @@ Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 * More than one Prefix can be specified (i.e. `AND` search).
   e.g. 'find-i n/Chicken s/NTUC' will return items matching name and supplier.
 
-Examples:
-* `find-i s/ntuc t/meat` returns item with supplier of `NTUC` and tag of `meat`.
+Example:
+* `find-i s/ntuc t/meat` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 1. Select the Command Box and type in `find-d s/ntuc t/meat`.
 
@@ -279,16 +279,18 @@ Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
 * More than one Prefix can be specified (i.e. `AND` search).
   e.g. 'find-d n/Bernice p/85783742' will return delivery matching name and phone.
  
-Examples:
-* `find-d n/alex aileen` returns `Alex` and `Aileen`'s deliveries
+Example:
+* `find-d n/alex aileen` using [Figure 1](#uiwithannotationpng) as the starting point.
 
-1. Select the Command Box and type in `find-d n/alex aileen`.
+1. Select the Command Box and type in `find-d n/alex aileen`
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display, and the number of matches will be shown.
 <br>
+<a name="findexample1"></a>
 ![find-command-2](images/find-command-2.PNG)
+
 <br>
 <br>
 
@@ -300,7 +302,8 @@ that match your find KEYWORD. If you would like to show **all** the items and de
 
 Format: `list-i` or `list-d`
 
-Example: `list-i`
+Example: 
+* `list-i` using [Result of find example](#findexample1) as a starting point.
 
 1. Select the Command Box and type in `list-i`.
 
