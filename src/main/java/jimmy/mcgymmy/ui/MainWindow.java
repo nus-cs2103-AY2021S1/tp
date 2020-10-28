@@ -149,13 +149,7 @@ public class MainWindow extends UiPart<Stage> {
         summaryPanelPlaceholder.getChildren().add(summaryPanel.getRoot());
 
         //Update current value to total calories and macronutrient values.
-        FoodListPanel foodListPanel = getFoodListPanel();
-        summaryPanel.setTotalMacronutrients(
-                foodListPanel.getCurrentCalories(),
-                foodListPanel.getCurrentProteins(),
-                foodListPanel.getCurrentCarbs(),
-                foodListPanel.getCurrentFats()
-        );
+        updateGraph();
 
         //Add listener to execute after date is changed
         datePicker.valueProperty()
@@ -310,12 +304,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
             updateGraph();
-
             return commandResult;
         } catch (CommandException | ParseException e) {
-            updateGraph();
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            updateGraph();
             throw e;
         }
     }
