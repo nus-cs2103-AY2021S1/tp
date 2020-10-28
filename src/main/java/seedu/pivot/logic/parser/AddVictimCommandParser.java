@@ -1,5 +1,6 @@
 package seedu.pivot.logic.parser;
 
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -22,8 +23,8 @@ import seedu.pivot.model.investigationcase.caseperson.Victim;
 public class AddVictimCommandParser implements Parser<AddVictimCommand> {
     @Override
     public AddVictimCommand parse(String args) throws ParseException {
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
 
-        assert(StateManager.atCasePage()) : "Program should be at case page";
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_GENDER,
                         PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
