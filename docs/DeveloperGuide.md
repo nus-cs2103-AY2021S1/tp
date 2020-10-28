@@ -261,7 +261,7 @@ The friendly syntax allows users to type in just the prefix of a command to exec
 
 The following diagram summarizes the sequence when the RemoveCommand is executed from the user input of `r 1`.
 
-![Friendly_Syntax_Architecture_Diagram](images/Friendly_Syntax_Architecture_Diagram.png)
+![Friendly_Syntax_Architecture_Diagram](images/friendly_syntax_architecture_diagram.png)
 
 Given below is an example usage scenario and how the friendly syntax behaves at the parse stage.
 

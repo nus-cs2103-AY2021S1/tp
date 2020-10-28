@@ -22,18 +22,19 @@ public class CommandResult {
     private final boolean exit;
 
     /**
-     * Vendor is being changed in this command
-     **/
-    private final boolean isVendor;
+     * Preset is being set in this command.
+     */
+    private final boolean isPreset;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isVendor) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isPreset) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.isVendor = isVendor;
+        this.isPreset = isPreset;
     }
 
     /**
@@ -56,8 +57,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isVendor() {
-        return isVendor;
+    public boolean isPreset() {
+        return isPreset;
     }
 
     @Override
@@ -74,12 +75,13 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && isPreset == otherCommandResult.isPreset;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, isVendor);
+        return Objects.hash(feedbackToUser, showHelp, exit, isPreset);
     }
 
     @Override

@@ -200,11 +200,17 @@ public class ModelManager implements Model {
         isSortedAsc = false;
     }
 
+
     //=========== OrderManager ================================================================================
 
     @Override
     public void setOrderManager(ReadOnlyOrderManager orderManager) {
         this.orderManager.resetData(orderManager);
+    }
+
+    @Override
+    public void setOrder(List<OrderItem> orderItems) {
+        this.orderManager.setOrder(orderItems);
     }
 
     @Override
