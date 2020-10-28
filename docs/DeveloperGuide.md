@@ -135,6 +135,33 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 This section describes some noteworthy details on how certain features were implemented.
 
 ### Add Exercise feature
+The adding of Exercises is one of the core functionalities of FixMyAbs. Apart from the generic exercises provided when users first start the app, users are also able to add their own exercises, which makes FixMyAbs customizable and more suited to each user's specific needs.  
+
+The mechanism is facilitated by an `Exercise` class. An `Exercise` class has `Name` and `Calories`. Calories represent the number of calories burnt per rep of the exercise.
+
+![AddLogClassDiagram](images/AddExerciseClassDiagram.png)
+
+A user can add an `Exercise`to the `LogBook` by executing the `addex` command.
+
+#### Example usage scenario
+Given below is an example usage scenario and how the `add log` mechanism behaves at each step after launching the 
+application.
+
+Step 1. The user executes the command `addex e/Jumping kicks c/2`. `FixMyAbsParser` creates a new `AddExCommandParser` and calls the `AddExCommandParser#parse()` method.
+
+Step 2. The user input is passed into the `AddExCommandParser#parse()` method and instances of `Name` and `Calories` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to the `Exercise` constructor, and a new `Exercise` object is created as a result.
+
+Step 3. A new `AddExCommand` is returned with the created `Exercise` object as a parameter. The `Exercise` object is then added to the `Model`.
+
+The following sequence diagram shows how the `Add Exercise` feature works:
+
+![AddLogClassDiagram](images/AddExerciseSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+### Add Exercise feature
 
 - AddExCommandParsers parse user input
 - AddExercise adds the exercise in the logbook
