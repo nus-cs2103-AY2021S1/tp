@@ -13,7 +13,16 @@ import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AddPolicyCommand;
+import seedu.address.logic.commands.ArchiveCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.ClearPolicyCommand;
+import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.policy.Policy;
@@ -21,7 +30,6 @@ import seedu.address.model.policy.PolicyDescription;
 import seedu.address.model.policy.PolicyName;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.TypicalPolicies;
 
 public class ClientListParserTest {
 
@@ -91,6 +99,18 @@ public class ClientListParserTest {
     public void parseCommand_clearPolicy() throws Exception {
         assertTrue(parser.parseCommand(ClearPolicyCommand.COMMAND_WORD) instanceof ClearPolicyCommand);
         assertEquals(parser.parseCommand(ClearPolicyCommand.COMMAND_WORD), new ClearPolicyCommand());
+    }
+
+    @Test
+    public void parseCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
+    @Test
+    public void parseCommand_exit() throws Exception {
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
+        assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
     }
 
     @Test

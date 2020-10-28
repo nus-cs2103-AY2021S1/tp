@@ -51,13 +51,15 @@ Adds a client to I4I.
 A person can have any number of client sources (including 0)
 </div>
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY]`
 
 Examples: 
    
-   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+   * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/h`
    * `add n/Betsy Crowe s/friend from jac e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new.`
 
+Note: If the priority field is empty, I4I will set the priority of the client to undefined. 
+See [Priority Feature](#Priority Feature) for more information.
 
 ### Listing all clients : `list`
 
@@ -81,17 +83,48 @@ Notes:
 
 * The index must be a positive integer 1, 2, 3, …​
 
+
+
+## Features
+
+### Priority Feature
+
+There are four priority settings to the priority feature - Undefined, Low, Medium and High.
+I4I would show different colored bars at the right of each client depending on the priority assigned to each client.
+
+They are: 
+ 
+|Priority Type   |Syntax  |Picture   |
+|---|---|---|
+|Undefined   |`l/undefined`,`l/u`, `l/U`   |![help message](images/Priority Bar/UndefinedPriority.png)  |
+|Low   |`l/low`,`l/l`, `l/L`    |![help message](images/Priority Bar/LowPriority.png)   |
+|Medium   |`l/medium`,`l/m`, `l/M`    |![help message](images/Priority Bar/MediumPriority.png)   |
+|High   |`l/high`,`l/h`, `l/H`    |![help message](images/Priority Bar/HighPriority.png)   |
+
+Note: 
+* If a client is not assigned a priority, I4I would automatically assign an undefined priority to the client.
+
+* Currently, one can only set the priority on adding the client. 
+
+Example: 
+
+* `add n/Jojo l/h` would add a user named Jojo with a high priority. 
+* `add n/Giorno` would add a user named Giorno with an undefined priority.
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ [coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
 
+
+
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…`​<br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend`
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY] <br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend` l/h
 **List** | `list`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Help** | `help`

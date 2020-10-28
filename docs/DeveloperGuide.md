@@ -106,35 +106,35 @@ in the list to facilitate the management of Policy objects.
 When adding the Policy field to a Person object, the Policy name has to be correct, and
 the Policy object should already be created.
 
-### \[Proposed\] Archive feature
+### Archive feature
 
-#### Proposed Implementation
+#### Implementation
 
 The archive mechanism is facilitated by `ModelManager` and `Person`. `Person` contains an archive status, stored internally as `isArchive`. 
 `ModelManager` tracks the current viewing mode of the list of `Person`, which is either the active mode or archive mode, stored internally as `isArchiveMode`.
 Additionally, `ModelManager` implements the following operations:
 
-* `ModelManager#getArchiveMode()` — Gets the current archive mode.
-* `ModelManager#setArchiveMode(boolean isArchiveMode)` — Sets the current archive mode.
+* `ModelManager#getIsArchiveMode()` — Gets the current archive mode.
+* `ModelManager#setIsArchiveMode(...)` — Sets the current archive mode.
 
-These operations are exposed in the `Model` interface as `Model#getArchiveMode()` and `Model#setArchiveMode()` respectively.
+These operations are exposed in the `Model` interface as `Model#getIsArchiveMode()` and `Model#setIsArchiveMode(...)` respectively.
 
 Given below is an example usage scenario and how the archive mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `ModelManager` will be initialized with the active mode with `isArchiveMode` set to `false`.
-There is no one in the archive i.e. all `Person`s have `isArchive` as `false`.
 
-For simplicity, we only show 2 example persons, david and ben. The user can view both of these persons as he is in the active mode.
+For simplicity, we only show 2 example persons, `david` and `ben`, who are both not in the archive, i.e. their `isArchive` is `false`. 
+The user can view both of these persons as he is in the active mode.
 
 ![Archive0](images/Archive0.png)
 
-Step 2. The user executes `archive 2` command to archive the 2nd person (ben) in the client list. 
-The `archive` command creates a new `Person` with `isArchive` set to `true`, then calls `Model#setPerson(originalPerson, editedPerson)` to update the model.
+Step 2. The user executes `archive 2` command to archive the 2nd person (`ben`) in the client list. 
+The `archive` command creates a new `Person` with `isArchive` set to `true`, then calls `Model#setPerson(...)` to update the model.
 
-This is followed by `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_ACTIVE_PERSONS)` to view all the active persons, 
-where `PREDICATE_SHOW_ALL_ACTIVE_PERSONS` is used to filter `Person`s with `isArchive` set to `false`. 
+This is followed by `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_ACTIVE)` to view all the active persons, 
+where `PREDICATE_SHOW_ALL_ACTIVE` is used to filter `Person`s with `isArchive` set to `false`. 
 
-The 2nd person (ben) would be hidden from the user's current view, so he can only see david.
+The 2nd person (`ben`) would be hidden from the user's current view, so he can only see `david`.
 
 ![Archive1](images/Archive1.png)
 
@@ -142,17 +142,16 @@ The following sequence diagram shows how the archive operation works:
 
 ![ArchiveSequenceDiagram](images/ArchiveSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ArchiveCommandParser` and `ArchiveCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 
-Step 3. The user executes `list /r` to view the archive. 
-The `list /r` command calls `ModelManager#setArchiveMode(true)` to set the viewing mode to the archive mode, 
-followed by `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVED_PERSONS)` to view the archive.
-`PREDICATE_SHOW_ALL_ARCHIVED_PERSONS` is used to filter `Person`s with `isArchive` set to `true`. 
+Step 3. The user executes `list r/` to view the archive. 
+The `list r/` command calls `ModelManager#setIsArchiveMode(true)` to set the viewing mode to the archive mode, 
+followed by `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE)` to view the archive.
+`PREDICATE_SHOW_ALL_ARCHIVE` is used to filter `Person`s with `isArchive` set to `true`. 
 
-This causes the user to only view archived persons, which is ben in this case.
+This causes the user to only view archived persons, which is `ben` in this case.
 
 ![Archive2](images/Archive2.png)
 
@@ -170,7 +169,7 @@ if it were to be implemented in future. However, this can be easily resolved usi
 
 As an example, `predicate1` could be a filter for archive, and `predicate2` could be from the find command:
 
-```java11
+```java
 Predicate<Person> composedPredicate = predicate1.and(predicate2);
 ```
 
