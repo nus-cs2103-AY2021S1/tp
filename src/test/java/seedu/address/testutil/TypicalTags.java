@@ -24,6 +24,7 @@ public class TypicalTags {
             .build();
     public static final Tag CS2101 = new TagBuilder().withTagName(VALID_TAG_NAME_CS2101)
             .withFileAddress(VALID_FILE_ADDRESS_CS2101)
+            .withLabels("validLabel")
             .build();
 
     public static final Tag MYFILE = new TagBuilder().withTagName("myfile")
