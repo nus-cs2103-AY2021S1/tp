@@ -151,7 +151,11 @@ Step 1. The user executes the command `addex e/Jumping kicks c/2`. `FixMyAbsPars
 
 Step 2. The user input is passed into the `AddExCommandParser#parse()` method and instances of `Name` and `Calories` are created using the `ParserUtil` class, from user input. These new instances are passed as parameters to the `Exercise` constructor, and a new `Exercise` object is created as a result.
 
+![AddLogClassDiagram](images/AddExerciseStep2.png)
+
 Step 3. A new `AddExCommand` is returned with the created `Exercise` object as a parameter. The `Exercise` object is then added to the `Model`.
+
+![AddLogClassDiagram](images/AddExerciseStep3.png)
 
 The following sequence diagram shows how the `Add Exercise` feature works:
 
@@ -160,57 +164,6 @@ The following sequence diagram shows how the `Add Exercise` feature works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddCommandParser` 
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
-
-### Add Exercise feature
-
-- AddExCommandParsers parse user input
-- AddExercise adds the exercise in the logbook
-
-Below is how it works:
-
-Step 1. User executes `addex e/<exercise name> c/<calories>`
-
-Step 2. `AddExCommandParser` parses user's input and creates an `AddExCommand`
-
-![](images/AddExCommand.png)
-
-Step 3: `AddExCommand` executes and adds exercise to `Model`
-
-![](images/AddExModel.png)
-
-### Edit Exercise feature
-
-Edit exercise function uses following classes:
-
-- `EditExCommandParser` - Parses user input.
-- `EdutExCommand` Deletes the exercise from the Exercise List.
-
-Below is how it works:
-
-Step 1. User executes `editex <index> [e/EXERCISE] [c/CALORIES]`.
-
-Step 2. `EditExCommandParser` parses the user input and creates a `EditExCommand` with the target index of the exercise to be deleted.
-
-Step 3: `EditExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is edited in `Model`.
-
-![](images/EditExDiagram.png)
-
-### Delete Exercise feature
-
-Delete exercise function uses following classes:
-
-- `DeleteExCommandParsers` - Parses user input.
-- `DeleteExCommand` Deletes the exercise from the Exercise List.
-
-Below is how it works:
-
-Step 1. User executes `deleteex <index>`.
-
-Step 2. `DeleteExCommandParser` parses the user input and creates a `DeleteExCommand` with the target index of the exercise to be deleted.
-
-Step 3: `DeleteExCommand` executes. `getFilteredExerciseList()` is called from the Model, to get the latest shown list of exercises. If an exercise of the given index exists in the list, it is deleted exercise from `Model`.
-
-![](images/DeleteExDiagram.png)
 
 ### Add Log feature
 The adding of Logs are the core to the functionality of FixMyAbs. Users are able to add information related to that 
