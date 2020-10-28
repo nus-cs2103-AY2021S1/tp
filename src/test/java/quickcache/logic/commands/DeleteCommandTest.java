@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +16,6 @@ import quickcache.model.Model;
 import quickcache.model.ModelManager;
 import quickcache.model.UserPrefs;
 import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Tag;
 import quickcache.testutil.TypicalFlashcards;
@@ -89,7 +86,7 @@ public class DeleteCommandTest {
     public void execute_validTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.TEST_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
 
         DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
 
@@ -117,7 +114,7 @@ public class DeleteCommandTest {
     public void execute_invalidTag_success() {
         Set<Tag> tagsToMatch = new HashSet<>();
         tagsToMatch.add(TypicalTags.INVALID_TAG);
-        FlashcardPredicate flashcardPredicate = prepareFlashcardPredicate(tagsToMatch);
+        FlashcardPredicate flashcardPredicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
 
         DeleteCommand deleteCommand = DeleteCommand.withPredicate(flashcardPredicate, tagsToMatch);
 
@@ -172,10 +169,4 @@ public class DeleteCommandTest {
         assertTrue(model.getFilteredFlashcardList().isEmpty());
     }
 
-    private FlashcardPredicate prepareFlashcardPredicate(Set<Tag> tagsToMatch) {
-        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
-        predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
-        FlashcardPredicate flashcardPredicate = new FlashcardPredicate(predicates);
-        return flashcardPredicate;
-    }
 }

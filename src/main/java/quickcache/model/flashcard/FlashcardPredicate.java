@@ -1,6 +1,8 @@
 package quickcache.model.flashcard;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 /**
@@ -19,6 +21,20 @@ public class FlashcardPredicate implements Predicate<Flashcard> {
     public FlashcardPredicate(List<Predicate<Flashcard>> predicates) {
         this.predicates = predicates;
         this.predicate = predicates.stream().reduce(Predicate::and).get();
+    }
+
+    /**
+     * Creates a flashcard predicate that only contains tag predicates.
+     * @param tagsToMatch the set of tags to be used as predicates
+     * @return a {@code FlashcardPredicate} containing only a {@code FlashcardContainsTagPredicate}
+     */
+    public static FlashcardPredicate prepareOnlyTagsFlashcardPredicate(Set<Tag> tagsToMatch) {
+        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
+
+        if (!tagsToMatch.isEmpty()) {
+            predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
+        }
+        return new FlashcardPredicate(predicates);
     }
 
     @Override

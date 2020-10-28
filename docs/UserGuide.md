@@ -109,11 +109,11 @@ Here is a quick start on how you can start using our app in your own computer.
 
 ### Viewing help : `help` <a name="help"></a>
 
-Shows a message explaning how to access the help page.
+If you want to see a step-by-step guide for all QuickCache commands, you can get the URL to the QuickCache user guide by using the help command.
 
 Format: `help`
 
-    ![help message](images/helpMessage.png)
+![HelpMessage](images/HelpMessage.png)
 
 ### Creating a new flashcard <a name="creating-a-new-flashcard"></a>
 You can add a new flashcard to the list.
@@ -122,12 +122,15 @@ You can create a flashcard that contains an open ended question which will be ad
 
 1. You can use the add command to add a flashcard with an open ended question which will be added to the list.
 For example, you can enter`add q/Sample Question ans/Sample Answer`
+
     ![addOpenEnded](images/addOpenEnded.png)
+    
 2. You have successfully created a flashcard with an open ended question and it will be saved immediately in the list.
+
     ![addOpenEnded2](images/addOpenEnded2.png)
 
 <div class="alert alert-danger">
-You cannot add a flashcard with empty question and empty answer.
+:exclamation: You cannot add a flashcard with empty question and empty answer.
 </div>
 
 #### Creating a flashcard with multiple choice question: `addmcq q/QUESTION ans/ANSWER c/FIRST_CHOICE c/SECOND_CHOICE ..` <a name="mcq"></a>
@@ -140,7 +143,7 @@ For example, you can enter `addmcq q/Sample Question ans/1  c/Sample Choice c/Sa
     ![addMCQ2](images/addMCQ2.png)
 
 <div class="alert alert-danger">
-You cannot add flashcard with missing question or missing answer or missing choice.
+:exclamation: You cannot add flashcard with missing question or missing answer or missing choice.
 <br>
 You should have at least two choices.
 </div>
@@ -175,17 +178,20 @@ You have successfully opened a flashcard!
 You can edit a flashcard that you have created previously.
 
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
-![edit](images/Edit.png)
+
+	![edit](images/Edit.png)
 2. Using the indices of the displayed list, enter the edit command followed by the index of the flashcard you want to edit. 
 For example, if you want to edit the 3rd flashcard in the displayed list, you can enter `edit 3 q/Updated Question`.
-![edit2](images/Edit2.png)
+
+	![edit2](images/Edit2.png)
 3. Press enter and QuickCache will edit the flashcard specified by the index.
-![edit3](images/Edit3.png)
+
+	![edit3](images/Edit3.png)
 
 You have successfully edited a flashcard.
 
 <div class="alert alert-danger">
-You must have at least one edited field which is different from the previous flashcard.
+:exclamation: You must have at least one edited field which is different from the previous flashcard.
 </div>
 
 ### Listing all flashcards : `list` <a name="listing-all-flashcards"></a>
@@ -325,8 +331,8 @@ You can delete a group of flashcards based on a specified tag. All flashcards th
 
 All flashcards with your specified tag(s) are now deleted!
 
-#### Clearing all entries : `clear` <a name="clear"></a>
-Clears all entries from QuickCache.
+#### Clearing all entries : `clear`
+Suppose you are in a situation where you want to get rid of all the flashcards in QuickCache. You might find it troublesome to delete each flashcard one-by-one. Instead, you can utilize the clear command to clear all flashcards on QuickCache directly.
 
 Format: `clear`
 
@@ -381,13 +387,12 @@ You can also test yourself a flashcard containing a multiple choice question by 
 
     ![TestMCQStep4](./images/TestMCQStep4.png)
     
-
 You have successfully tested yourself on a multiple choice question!
 
 ### Displaying statistics <a name="displaying-statistics"></a>
 
 <div class="alert alert-danger">
-You can only show statistics based on index or based on tags but not both!
+:exclamation: You can only show statistics based on index or based on tags but not both!
 </div>
 
 Statistics include:
@@ -484,6 +489,7 @@ You can export all flashcards from the last displayed list into a file named `FI
 1. Use the `list` command to first list all the flashcards. You can also use the `find` command to filter for a list of flashcards.
 
     ![ExportStep1](./images/ExportStep1.png)
+    
 2. In the user input box, enter the `export` command together with the `FILE_NAME` you would like to save the flashcards into. For example, if you would like the file to be named as `josiah-flashcard.json`, you can enter `export josiah-flashcard.json`.
 
     <div markdown="block" class="alert alert-info">
@@ -530,13 +536,12 @@ Good job! You have successfully imported flashcards from an external file.
 
 ### Exiting the program : `exit` <a name="exit"></a>
 
-Exits the program.
+You can exit QuickCache by using the exit command.
 
 Format: `exit`
 
 ### Saving the data <a name="save"></a>
-
-All flashcard data in QuickCache is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+For your convenience, QuickCache data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -547,6 +552,8 @@ All flashcard data in QuickCache is saved in the hard disk automatically after a
 
 --------------------------------------------------------------------------------------------------------------------
 ## Command summary <a name="command-summary"></a>
+
+If you need to quickly look up a command, we have added a table below to summarize all the commands offered by QuickCache.
 
 <table>
     <thead>
@@ -581,15 +588,32 @@ All flashcard data in QuickCache is saved in the hard disk automatically after a
             </td>
         </tr>
         <tr>
+            <td rowspan=3>
+            	<Strong>Deleting flashcard(s)</Strong></td>
+            <td rowspan=2>delete</td>
             <td rowspan=1>
-            	<Strong>Opening a flashcard</Strong></td>
-            <td>open</td>
-            <td rowspan=1>
-            	<code>open INDEX</code>
+            	<code>delete INDEX</code>
             </td>
             <td rowspan=1>
-            	<code>open 1</code>
+            	<code>delete 1</code>
             </td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<code>delete t/TAG1</code>
+        	</td>
+          <td rowspan=1>
+            	<code>delete t/Assembly</code>
+         	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>clear</td>
+          <td rowspan=1>
+            	<code>clear</code>
+         	</td>
+          <td rowspan=1>
+            	<code>clear</code>
+         	</td>
         </tr>
         <tr>
             <td rowspan=1>
@@ -604,15 +628,16 @@ All flashcard data in QuickCache is saved in the hard disk automatically after a
             </td>
         </tr>
         <tr>
-            <td rowspan=1>
-            	<Strong>Listing flashcards</Strong></td>
-            <td>list</td>
-            <td rowspan=1>
-            	<code>list</code>
-            </td>
-            <td rowspan=1>
-            	<code>list</code>
-            </td>
+        	<td rowspan=1>
+        		<Strong>Exit QuickCache</Strong>
+        	</td>
+        	<td>exit</td>
+        	<td>
+        		<code>exit</code>
+        	</td>
+        	<td>
+        		<code>exit</code>
+        	</td>
         </tr>
         <tr>
             <td rowspan=3>
@@ -643,54 +668,6 @@ All flashcard data in QuickCache is saved in the hard disk automatically after a
          	</td>
         </tr>
         <tr>
-            <td rowspan=3>
-            	<Strong>Deleting flashcard(s)</Strong></td>
-            <td rowspan=2>delete</td>
-            <td rowspan=1>
-            	<code>delete INDEX</code>
-            </td>
-            <td rowspan=1>
-            	<code>delete 1</code>
-            </td>
-        </tr>
-        <tr>
-        	<td rowspan=1>
-        		<code>delete t/TAG1</code>
-        	</td>
-          <td rowspan=1>
-            	<code>delete t/Assembly</code>
-         	</td>
-        </tr>
-        <tr>
-        	<td rowspan=1>clear</td>
-          <td rowspan=1>
-            	<code>clear</code>
-         	</td>
-          <td rowspan=1>
-            	<code>clear</code>
-         	</td>
-        </tr>
-        <tr>
-        	<td rowspan=2>
-        		<Strong>Testing a flashcard</Strong>
-        	</td>
-        	<td rowspan=2>test</td>
-        	<td rowspan=1>
-        		Open Ended: <code>test INDEX a/ANSWER</code>
-        	</td>
-        	<td rowspan=1>
-        		<code>test 2 a/lorem ipsum</code>
-        	</td>
-        </tr>
-        <tr>
-        	<td rowspan=1>
-        		MCQ: <code>test INDEX o/OPTION</code>
-        	</td>
-        	<td rowspan=1>
-        		<code>test 3 o/1</code>
-        	</td>
-        </tr>
-        <tr>
         	<td rowspan=2>
         		<Strong>Flashcard Statistics</Strong>
         	</td>
@@ -709,6 +686,18 @@ All flashcard data in QuickCache is saved in the hard disk automatically after a
         	</td>
         	<td rowspan=1>
         		<code>clearstats 1</code>
+        	</td>
+        </tr>
+        <tr>
+        	<td rowspan=1>
+        		<Strong>Get user guide URL</Strong>
+        	</td>
+        	<td>help</td>
+        	<td>
+        		<code>help</code>
+        	</td>
+        	<td>
+        		<code>help</code>
         	</td>
         </tr>
         <tr>
@@ -733,27 +722,45 @@ All flashcard data in QuickCache is saved in the hard disk automatically after a
         	</td>
         </tr>
         <tr>
+            <td rowspan=1>
+            	<Strong>Listing flashcards</Strong></td>
+            <td>list</td>
+            <td rowspan=1>
+            	<code>list</code>
+            </td>
+            <td rowspan=1>
+            	<code>list</code>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan=1>
+            	<Strong>Opening a flashcard</Strong></td>
+            <td>open</td>
+            <td rowspan=1>
+            	<code>open INDEX</code>
+            </td>
+            <td rowspan=1>
+            	<code>open 1</code>
+            </td>
+        </tr>
+        <tr>
+        	<td rowspan=2>
+        		<Strong>Testing a flashcard</Strong>
+        	</td>
+        	<td rowspan=2>test</td>
         	<td rowspan=1>
-        		<Strong>Get user guide URL</Strong>
+        		Open Ended: <code>test INDEX a/ANSWER</code>
         	</td>
-        	<td>help</td>
-        	<td>
-        		<code>help</code>
-        	</td>
-        	<td>
-        		<code>help</code>
+        	<td rowspan=1>
+        		<code>test 2 a/Sample Answer</code>
         	</td>
         </tr>
         <tr>
         	<td rowspan=1>
-        		<Strong>Exit QuickCache</Strong>
+        		MCQ: <code>test INDEX o/OPTION</code>
         	</td>
-        	<td>exit</td>
-        	<td>
-        		<code>exit</code>
-        	</td>
-        	<td>
-        		<code>exit</code>
+        	<td rowspan=1>
+        		<code>test 3 o/1</code>
         	</td>
         </tr>
     </tbody>
