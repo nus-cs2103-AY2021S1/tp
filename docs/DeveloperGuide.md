@@ -189,7 +189,7 @@ The parsing of user input for `DeleteCommand` is facilitated by `DeleteCommandPa
 
 ##### Checking for Argument Prefixes
 
-Code Snippet:
+Code Snippet :
 
 ```
 if (arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TAG, PREFIX_MODULE)) {
@@ -239,10 +239,10 @@ return names.stream()
 
 #### Checking if Person is in a Module
 
-In order to find Persons who are in the given Modules, a `List` of `ModuleNames` is passed into the `DeleteCommand` by the `DeleteCommandParser`. 
-Then the `DeleteCommand#execute` method calls `model#GetUpdatedFilteredPersonList` with its `predicate` and the `List` to retrieve Persons in the give Modules.
+In order to find Persons who are in the given Modules, a List of `ModuleNames` is passed into the `DeleteCommand` by the `DeleteCommandParser`. 
+Then the `DeleteCommand#execute` method calls `model#GetUpdatedFilteredPersonList` with its `predicate` and the List to retrieve Persons in the give Modules.
 
-Retrieving Modules Code Snippet:
+Retrieving Modules Code Snippet :
 
 ```
 List<Module> moduleList = new ArrayList<>();
@@ -253,9 +253,9 @@ for (ModuleName name : modules) {
     moduleList.add(m);
 }
 ```
-The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and will look through the `moduleBook` for the given Module. If the Module exists, it adds it to the `List` module.
+The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and will look through the `moduleBook` for the given Module. If the Module exists, it adds it to the List module.
 
-Combining Predicates Code Snippet:
+Combining Predicates Code Snippet :
 
 ```
 Predicate<Person> combined = x -> predicate.test(x)
@@ -264,14 +264,14 @@ Predicate<Person> combined = x -> predicate.test(x)
 return new FilteredList(filteredPersons, combined);
 ```
 The above code snippet is from `ModelManager#GetUpdatedFilteredPersonList` and it creates a new `Predicate` that checks if a Person passes 
-the predicate passed into the method or is in any of the Modules in the `List` module. Then it uses this `Predicate` to obtain a `FilteredList` 
+the predicate passed into the method or is in any of the Modules in the List module. Then it uses this `Predicate` to obtain a `FilteredList` 
 of Persons that satisfy the `Predicate`.
 
 ##### No given Modules
 
 If there are no given Modules, then the `DeleteCommand#execute` method calls `model#GetUpdatedFilteredPersonList` with its `predicate` only.
                                     
-Obtaining FilteredList Code Snippet:
+Obtaining FilteredList Code Snippet :
 ```
 return new FilteredList(filteredPersons, predicate);
 ```
@@ -283,7 +283,7 @@ obtain a `FilteredList` of Persons that satisfy the `Predicate`.
 
 Once the `DeleteCommand` has retrieved the `FilteredList` of Persons, it will delete all Persons in that `FilteredList` from Modduke.
 
-Deleting Persons Code Snippet:
+Deleting Persons Code Snippet :
 ```
 people.stream().forEach(p -> {
     model.deletePerson(p); // delete in AddressBook
@@ -294,13 +294,14 @@ people.stream().forEach(p -> {
 The above code snippet will iterate through all Persons in the `FilteredList` and delete them from the `AddressBook`, `MeetingBook` and `ModuleBook`.
 
 #### Activity Diagram
-Given below is the sequence diagram of how the mechanism behaves when called using the `contact delete` command.
+
+Given below is the activity diagram of how the mechanism behaves when called using the `contact delete` command.
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 ### Copying Email Address/Phone Number of Contacts
 
-The mechanism to delete contacts is facilitated by `CopyCommand`. It extends `Command` and implements the following methods:
+The mechanism to copy information from contacts is facilitated by `CopyCommand`. It extends `Command` and implements the following methods:
 
 * `CopyCommand#execute` - Copy email addresses or phone numbers of Persons in the AddressBook according to the user input.
 
@@ -310,14 +311,14 @@ This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
 
 The parsing of user input for `CopyCommand` is facilitated by `CopyCommandParser`. It extends `Parser` and implements the following methods:
 
-* `DeleteCommandParser#parse` - Parses the user input and returns the appropriate DeleteCommand
+* `CopyCommandParser#parse` - Parses the user input and returns the appropriate CopyCommand
 
 The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `CopyCommandParser` 
 also identifies the preamble in the arguments.
 
 ##### Identifying the Preamble
 
-Identifying Preamble Code Snippet:
+Identifying Preamble Code Snippet :
 
 ```
 boolean isEmail;
@@ -341,7 +342,7 @@ The mechanism used by `CopyCommand` to obtain the `FilteredList` of Persons is i
 
 Once the `CopyCommand` has retrieved the `FilteredList` of Persons, it will copy information from all Persons in that `FilteredList` from Modduke.
 
-Obtaining Information from Persons Code Snippet:
+Obtaining Information from Persons Code Snippet :
 ```
 if (isEmail) {
     // gets email addresses from Persons in people
@@ -359,7 +360,7 @@ The above code snippet will check if the user wants to copy email adresses or ph
 Then it iterates through the `FilteredList` of Persons and obtains the relavant information as Strings. Then it combines 
 the Strings into a single String.
 
-Copying Information to Clipboard Code Snippet:
+Copying Information to Clipboard Code Snippet :
 ```
 StringSelection selection = new StringSelection(results);
 Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -369,9 +370,169 @@ The above code snippet will then create a new `StringSelection` object using the
 the `StringSelection` into the user's system clipboard.
 
 #### Activity Diagram
-Given below is the sequence diagram of how the mechanism behaves when called using the `copy` command.
+
+Given below is the activity diagram of how the mechanism behaves when called using the `copy` command.
 
 ![CopyActivityDiagram](images/CopyActivityDiagram.png)
+
+### Finding Contacts
+
+The mechanism to find contacts is facilitated by `FindCommand`. It extends `Command` and implements the following methods:
+
+* `FindCommand#execute` - Display Persons in the AddressBook according to the user input.
+
+This operation is exposed in the `LogicManager` class as `LogicManager#execute`.
+
+#### Parsing the User Input
+
+The parsing of user input for `FindCommand` is facilitated by `FindCommandParser`. It extends `Parser` and implements the following methods:
+
+* `FindCommandParser#parse` - Parses the user input and returns the appropriate FindCommand
+
+The mechanism used to parse user input is very similar to that of `DeleteCommandParser`, except that `FindCommandParser` 
+does not look for the `m/` prefix when parsing the arguments. So it does not pass a List of Modules into the `FindCommand`.
+
+#### Displaying the Filtered Persons
+
+In order to display the Filtered Persons, the `FindCommand` calls `model#updateFilteredPersonList` with its `predicate`.
+
+Update Filtered Person List Code Snippet :
+```
+filteredPersons.setPredicate(predicate);
+```
+The above code snippet is from `ModelManager#updateFilteredPersonList` and it sets predicate of the `filteredPersons` of the model 
+to the given predicate. Doing so will display the Persons who satisfy the conditions specified in the user input.
+
+#### Activity Diagram
+
+Given below is the activity diagram of how the mechanism behaves when called using the `find` command.
+
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+### Labelling Contacts
+
+The mechanism to label contacts is facilitated by `AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand`. They 
+extends `Command` and implement the following methods:
+
+* `AddLabelCommand#execute` - Adds the specified labels to the specified Person in the AddressBook according to the user input.
+* `ClearLabelCommand#execute` - Clears all labels of the specified Person in the AddressBook in the user input.
+* `DeleteLabelCommand#execute` - Deletes the specified labels from the specified Person in the AddressBook according to the user input.
+These operations are exposed in the `LogicManager` class as `LogicManager#execute`.
+
+#### Parsing User Input
+
+The parsing of user input for `AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand` is facilitated by 
+`AddLabelCommandParser`, `ClearLabelCommandParser` and `DeleteLabelCommandParser` respectively. They extend `Parser` 
+and implement the following methods:
+
+* `AddLabelCommandParser#parse` - Parses the user input and returns the appropriate AddLabelCommand
+* `ClearLabelCommandParser#parse` - Parses the user input and returns the appropriate ClearLabelCommand
+* `DeleteLabelCommandParser#parse` - Parses the user input and returns the appropriate DeleteLabelCommand
+
+All three parsers are identical except that they return their respective commands and `AddLabelCommandParser` and `DeleteLabelCommandParser` 
+parses for the `t/` prefix in the arguments.
+
+##### Obtaining a Name Object
+
+All three parsers call `ParserUtil#parseName` to obtain a `Name` object based on the given name in the user input. 
+`AddLabelCommandParser` and `DeleteLabelCommandParser` pass in the preamble of the argument into `ParserUtil#parseName`, 
+while `ClearLabelCommandParser` passes in the entire argument.
+
+Parse Name Code Snippet :
+```
+String trimmedName = name.trim();
+if (!Name.isValidName(trimmedName)) {
+    throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+}
+return new Name(trimmedName);
+```
+The above code snippet if from `ParserUtil#parseName` and it will check if the given name is in a valid format. If it is 
+it creates and returns a new `Name` object with the given name. Otherwise, it throws a `ParseException`. This `Name` object 
+is passed into the respective command object that will be returned by each parser.
+
+##### Obtaining a List of Tags
+
+This is only applicable to `AddLabelCommandParser` and `DeleteLabelCommandParser`. Both parsers obtain a List of 
+Strings that follow the `t/` prefix from the argument. Then it obtains a Set of Tags Strings.
+
+Obtaining Set of Tag Strings Code Snippet:
+```
+if (tags.size() == 1 && tags.contains("")) {
+    return Optional.empty();
+}
+Collection<String> tagSet = tags;
+return Optional.of(ParserUtil.parseTags(tagSet));
+```
+The above code snippet checks for an empty String in the List of Strings. If it has an empty String, then it returns 
+an empty `Optional` object. Otherwise, it returns an `Optional` of the Set with the Strings in the given List.
+
+Then both parsers check if the `Optional` object is empty. If it is, a `ParseException` is thrown. Otherwise, `AddLabelCommandParser` 
+passes the Set of Strings inside the `Optional` into a `LabelPersonDescriptor` which is passed into the `AddLabelCommand`
+while `DeleteLabelCommandParser` passes the Set of Strings into the `DeleteCommand`. These commands are the commands 
+that will be returned by each parser respectively.
+
+#### Modifying the Specified Person
+
+`AddLabelCommand`, `ClearLabelCommand` and `DeleteLabelCommand` will first check if there is a Person with the `Name` object 
+given by their parsers using `model#hasPersonName`. If there does not exist a Person, then a `CommandException` is thrown. 
+Otherwise, the Person with the name is obtained from the AddressBook. This Person is then modified by each command accordingly.
+* `AddLabelCommand` - Adds tags to the Person based on the `LabelPersonDescriptor` given by `AddLabelCommandParser`
+Adding Tags Code Snippet :
+```
+Set<Tag> updatedTags = new HashSet<>(personToLabel.getTags());
+
+if (labelPersonDescriptor.getTags().isPresent()) {
+    updatedTags.addAll(labelPersonDescriptor.getTags().get());
+}
+
+return new Person(personToLabel.getName(), personToLabel.getPhone(), personToLabel.getEmail(), updatedTags);
+```
+* `ClearLabelCommand` - Clears all tags of the Person
+```
+return new Person(personToClear.getName(), personToClear.getPhone(), personToClear.getEmail(), new HashSet<>());
+```
+* `DeleteLabelCommand` - Deletes all tags from the Person based on the Set of Strings given by `DeleteLabelCommandParser`. 
+Throws a `CommandException` if the Person does not have a specifed tag.
+```
+if (tags.stream().allMatch(tag -> personToEdit.getTags().contains(tag))) {
+    Set<Tag> updatedTags = new HashSet<>(personToEdit.getTags());
+    updatedTags.removeAll(tags);
+    return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), updatedTags);
+} else {
+    throw new CommandException(
+            String.format("The person '%s' does not have all the tags provided.",
+                    personToEdit.getName().toString()));
+}
+```
+
+#### Updating Modduke
+
+Once they have obtained the modified Person, they replace the original Person with the modified one in the `AddressBook`, 
+`MeetingBook` and `ModuleBook`.
+
+Updating Modduke Code Snippet :
+```
+model.setPerson(personToLabel, labelledPerson);
+
+model.updatePersonInMeetingBook(personToLabel, labelledPerson);
+
+model.updatePersonInModuleBook(personToLabel, labelledPerson);
+```
+The above code snippet updates the Person in each of the three books.
+
+#### Sequence Diagram
+
+Given below is the sequence diagram of how the mechanism behaves when called using the `label add` command.
+
+![AddLabelSequenceDiagram](images/AddLabelSequenceDiagram.png)
+
+Given below is the sequence diagram of how the mechanism behaves when called using the `label clear` command.
+
+![ClearLabelSequenceDiagram](images/ClearLabelSequenceDiagram.png)
+
+Given below is the sequence diagram of how the mechanism behaves when called using the `label delete` command.
+
+![DeleteLabelSequenceDiagram](images/DeleteLabelSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
