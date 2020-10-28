@@ -2,6 +2,8 @@ package seedu.address.logic.commands.contactlistcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -9,8 +11,8 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
-
+import seedu.address.model.contact.Contact;
+import seedu.address.model.contact.FindContactCriteria;
 
 /**
  * Finds and lists all contacts in the contact list whose name contains any of the argument keywords.
@@ -27,16 +29,17 @@ public class FindContactCommand extends Command {
 
     private final Logger logger = LogsCenter.getLogger(FindContactCommand.class);
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Contact> predicate;
 
     /**
      * Creates and initialises a FindContactCommand object.
      *
-     * @param predicate Predicate to test if the Contact contains the search keyword provided by users.
+     * @param findContactCriteria FindContactCriteria that encapsulates a list of predicates to test a contact with.
      */
-    public FindContactCommand(NameContainsKeywordsPredicate predicate) {
-        requireNonNull(predicate);
-        this.predicate = predicate;
+    public FindContactCommand(FindContactCriteria findContactCriteria) {
+        requireNonNull(findContactCriteria);
+        logger.info("The find contact command is being exceuted");
+        this.predicate = findContactCriteria.getFindContactPredicate();
     }
 
     @Override
