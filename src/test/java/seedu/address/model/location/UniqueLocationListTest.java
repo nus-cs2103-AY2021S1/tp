@@ -30,6 +30,9 @@ public class UniqueLocationListTest {
         UniqueLocationList uList = new UniqueLocationList();
         uList.add(NEW_YORK);
         assertEquals(1, uList.asUnmodifiableObservableList().size());
+
+        // duplicate add -> duplicate location error
+        assertThrows(DuplicateLocationException.class, () -> uList.add(NEW_YORK));
     }
 
     @Test
@@ -129,6 +132,22 @@ public class UniqueLocationListTest {
         uList.add(DENVER);
         uList.add(NEW_YORK);
         assertThrows(NoSuchElementException.class, () -> uList.findLocationFromId(-1).get());
+    }
+
+    @Test
+    public void findLocationId_validInput_returnsId() {
+        UniqueLocationList uList = new UniqueLocationList();
+        uList.add(DENVER);
+        uList.add(NEW_YORK);
+        int id = NEW_YORK.getId();
+        assertEquals(id, uList.findLocationID(NEW_YORK));
+    }
+
+    @Test
+    public void findLocationId_invalidInput_throwsNoSuchElementException() {
+        UniqueLocationList uList = new UniqueLocationList();
+        uList.add(NEW_YORK);
+        assertThrows(NoSuchElementException.class, () -> uList.findLocationID(DENVER));
     }
 
     @Test
