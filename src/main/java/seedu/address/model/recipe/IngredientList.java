@@ -8,7 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.item.exceptions.DuplicateItemException;
 import seedu.address.model.recipe.exceptions.DuplicateIngredientException;
 import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
@@ -66,7 +65,7 @@ public class IngredientList implements Iterable<Ingredient> {
     public void setItems(List<Ingredient> ingredients) {
         requireAllNonNull(ingredients);
         if (!itemsAreUnique(ingredients)) {
-            throw new DuplicateItemException();
+            throw new DuplicateIngredientException();
         }
 
         ingredientList.setAll(ingredients);

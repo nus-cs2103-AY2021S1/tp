@@ -3,6 +3,7 @@ package seedu.address.model.item;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -41,6 +42,11 @@ public class NameMatchesKeywordsPredicateTest {
     }
 
     @Test
+    public void test_zeroKeywords_throwsException() {
+        assertThrows(AssertionError.class, () -> new NameMatchesKeywordsPredicate(Collections.emptyList()));
+    }
+
+    @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
         NameMatchesKeywordsPredicate predicate = new NameMatchesKeywordsPredicate(Collections.singletonList("Apple"));
@@ -61,12 +67,8 @@ public class NameMatchesKeywordsPredicateTest {
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
-        NameMatchesKeywordsPredicate predicate = new NameMatchesKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
-
         // Non-matching keyword
-        predicate = new NameMatchesKeywordsPredicate(Collections.singletonList("Carrot"));
+        NameMatchesKeywordsPredicate predicate = new NameMatchesKeywordsPredicate(Collections.singletonList("Carrot"));
         assertFalse(predicate.test(new ItemBuilder().withName("Apple Banana").build()));
     }
 }
