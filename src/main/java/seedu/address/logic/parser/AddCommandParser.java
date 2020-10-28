@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.stream.Stream;
 
@@ -23,6 +24,8 @@ import seedu.address.model.task.Name;
  */
 public class AddCommandParser implements Parser<AddCommand> {
 
+    private static final int NO_OCCURRENCE_FOUND = -1;
+
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -33,17 +36,20 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         boolean isRemindPresent = args.matches(".*\\bremind\\b$");
         boolean isRemindTypo = false;
+        boolean isPriorityPresent = args.matches(".*\\bpriority/\\b.*");
 
         if (!isRemindPresent) {
             isRemindTypo = args.matches(".*rem[a-z]*$");
         }
 
         if (isRemindPresent || isRemindTypo) {
+            // remove remind from args as ArgumentTokenizer cannot parse remind without prefix
             String argsWithoutRemind = args.replace(" remind", "");
             argMultimap = ArgumentTokenizer.tokenize(argsWithoutRemind, PREFIX_NAME, PREFIX_DEADLINE,
-                    PREFIX_MODULE_CODE);
+                    PREFIX_MODULE_CODE, PREFIX_PRIORITY);
         } else {
-            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_MODULE_CODE);
+            argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_DEADLINE, PREFIX_MODULE_CODE,
+                    PREFIX_PRIORITY);
         }
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE_CODE, PREFIX_DEADLINE)
@@ -56,11 +62,15 @@ public class AddCommandParser implements Parser<AddCommand> {
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
         Remind remind = new Remind();
         Schedule schedule = new Schedule();
-        Priority priority = new Priority();
         Done done = new Done();
+        Priority priority = new Priority();
 
         if (isRemindPresent) {
             remind = remind.setReminder();
+        }
+
+        if (isPriorityPresent) {
+            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
 
         Assignment assignment = new Assignment(name, deadline, moduleCode, remind, schedule, priority, done);
