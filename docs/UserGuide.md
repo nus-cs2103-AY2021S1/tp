@@ -36,7 +36,7 @@ Refer to this video for a quick tutorial on OneShelf Installation Guide:
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
     <br>
     <a name="uiwithannotationpng"></a>
-    #![Ui](images/UiWithAnnotation.png) 
+    ![Ui](images/UiWithAnnotation.png) 
     Figure 1: Introduction to OneShelf User Interface
 
     <br>
@@ -44,7 +44,8 @@ Refer to this video for a quick tutorial on OneShelf Installation Guide:
 1. Type the command `help start` in the command box and press Enter to execute it. <br>
    A new help window shown below (Figure 2) should appear on your desktop.
     <br>
-    #![Help Window](images/UiHelpStart.png) 
+    <a name="uihelpstart"></a>
+    ![Help Window](images/UiHelpStart.png) 
     Figure 2: Help Start Window
     
     <br>
@@ -59,7 +60,7 @@ OneShelf has 2 main components, namely are:
 2. Pending deliveries
 
 From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
-*You may want to refer to Figure 1 above to see the placement of each component.*
+*You may want to refer to the [Glossary](#6-glossary)*
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the item command format:**<br>
@@ -84,34 +85,34 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
 
 #### 3.1.1 Viewing help : `help`
 
-##### 3.1.1.a Help Start
+##### 3.1.1.a `help start`
+
+If you are a first time user, we strongly encourage you to enter `help start` and follow the guide to kick-start your journey in OneShelf.
 
 Format: `help start`
-If you are a first time user, we strongly encourage you to enter `help start` and follow the guide to kick-start your journey in OneShelf.
 
 To open up `help start` window, you can also do the following:
 * Press `F1` at any point in the usage of the app
 * 1. Click on `Help` located at the top toolbar
   1. Click on `Start F1`
 
-A new help window similar to Figure 1 should appear on your desktop.
+A new help window similar to [Figure 2](#uihelpstart) should appear on your desktop.
 
 ##### Help Summary
 
-##### 3.1.1.b Help Summary
+##### 3.1.1.b `help summary`
+
+We understand that even if you are not a first time user, it is not easy to remember all the commands instantaneously.
+Should you require reference of summary commands, you can enter `help summary`.
 
 Format: `help summary`
 
-We understand that even if you are not a first time user, it is not easy to remember all the commands within a single session.
-Should you need a list of summary commands, you can enter `help summary` and a new window similar to Figure 3 should appear.
-
 To open up `help summary` window, you can also do the following:
-* Press `F2` at any point in the usage of the app
-* 1. Click on `Help` located at the top toolbar
-  1. Click on `Summary F2`
+* Press `F2`
+* Click on `Help` located at the top toolbar and then click `Summary F2`
     
 A new help window similar to Figure 3 below should appear on your desktop.
-
+<a name="helpsummary"></a>
 <br>![Help Summary Screenshot](images/HelpSummaryWindow.png)<br>
 Figure 3: Help Summary Window
 
@@ -123,54 +124,51 @@ Adds inventory item or pending delivery to OneShelf.
 ##### 3.1.2.a `add-i`
 
 Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​`
-* Adds `QUANTITY` from the current quantity of an inventory item if the item already exist.
-An item is uniquely identified by its `NAME` and `SUPPLIER`.
-* Note 1: `MAX_QUANTITY` denotes the ideal stock level of that particular item.
-* Note 2: `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
+* If item does not exist in the inventory book, a new item will be added.
+* If similar inventory item already exist, The `QUANTITY` of that particular item will be increased.
+* An item which has the same `NAME` and `SUPPLIER` is considered similar.
+* `MAX_QUANTITY` denotes the ideal stock level of that particular item.
+* `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
-Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` using [Figure 1](#uiwithannotationpng) as the starting point.
+<a name="addexample1"></a>
+Example 1: Add an item using [Figure 1](#uiwithannotationpng) as the starting point.
 
-1. Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food`.
-<br>
-![add-i example one step one](images/add-i%20example%20one%20step%20one.PNG)
-<br>
-<br>
+1. Type `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` in the [Command Box](#uiwithannotationpng).
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. Success Message will be shown in the Result Display (assuming there isn't an existing same item) and added item will show up in InventoryBook.
+3. The new item will show up in Inventory Book, refer to the diagram below:
 <br>
 ![add-i example one step three](images/add-i%20example%20one%20step%20three.PNG)
 <br>
 <br>
 
-Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#uiwithannotationpng) as the starting point.
+4. Re-enter the same command in step 1. You can press key arrow up to toggle previous commands.
 
-1. Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
-<br>
-![add-i example two step one](images/add-i%20example%20two%20step%20one.PNG)
-<br>
-<br>
+5. The quantity of duck should have increased by 10KG, it should look similar to the diagram below:
+<<insert diagram>>
 
-2. Either press Enter on your keyboard or click Send to execute the command.
+Example 2: Add an item with multiple tags using the diagram from Figure ..
 
-
-3. Success Message will be shown in the Result Display and added item's quantity will combine with existing same item's quantity.
-<br>
-![add-i example two step three](images/add-i%20example%20two%20step%20three.PNG)
-<br>
-<br>
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
+<div markdown="span" class="alert alert-primary">:bulb:**Tip:**
+<li>An item can have any number of tags (including 0)</li>
 </div>
 
 ##### 3.1.2.b `add-d`
 
 Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER`
 
-Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
+Example: 
+
+1. Type `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`.
+
+2. Either press Enter on your keyboard or click Send to execute the command.
+
+3. You should now see a new pending delivery, refer to the diagram below:
+<<insert diagram>> 
+
 
 <div markdown="span" class="alert alert-primary">:bulb:**Tip:**
-<li>An item can have any number of tags (including 0)</li>
 <li>Unlike inventory item, pending delivery does not have a quantity</li>
 </div>
 
@@ -357,15 +355,7 @@ Format: `clear-i` or `clear-d`
 
 
 
-#### 3.1.9 Exiting the program: `exit`
-
-Exits the program.
-
-Format: `exit`
-
-
-
-#### 3.1.10 Undo last command: `undo`
+#### 3.1.9 Undo last command: `undo`
 
 Undoes the previous command by reverting the current data displayed to the state it was in before the last command was executed.
 
@@ -392,7 +382,7 @@ Format: `undo`
 
 
 
-#### 3.1.11 Redo last command: `redo`
+#### 3.1.10 Redo last command: `redo`
 
 Redoes the last undone command by reverting the current data displayed to the state it was in before the last undo command was executed.
 
@@ -413,6 +403,15 @@ Example 1: `redo` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 4. You should now see the items cleared again, as shown in [Step 2 of Example 1](#undoExample1Step2) of the `undo` command.
 
+
+
+#### 3.1.11 Exiting the program: `exit`
+
+Exits the program.
+
+Format: `exit`
+
+
 --------------------------------------------------------------------------------------------------------------------
 ### 3.2 General Features
 #### 3.2.1 Saving the data
@@ -432,7 +431,7 @@ by pressing the arrow down key you're able to traverse into next commands.
 #### 3.2.3 Sorting items
 
 * Inventory items are sorted based on percentage of quantity in ascending order.
-* If the maximum quantity does not exist for that particular item then it the item will be located at the end of the list.
+* If the maximum quantity does not exist for that particular item then the item will be located at the end of the list.
 * If 2 items have the same quantity, they are then sorted lexicographically.
 
 
@@ -486,9 +485,9 @@ You may refer to the [video](#installationvideo) of installation guide.
 
 
 
-## 5. Command summary
+## 5. Command Summary
 
-#### 5.1 General commands summary
+#### 5.1 General Commands Summary
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
@@ -498,7 +497,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Redo last undone command**   | `redo`  |
 |**Exit command** | `exit` |
 
-#### 5.2 Inventory summary
+#### 5.2 Inventory Summary
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
@@ -511,7 +510,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`    |
 
 
-#### 5.3 Delivery summary
+#### 5.3 Delivery Summary
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
@@ -526,7 +525,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 
 
 
-### 6. Glossary
+### <a name="6-glossary"></a>6. Glossary
 * **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
 *(i.e milk, cheese)*
 * **Delivery**: Delivery order that has yet to be delivered out from the restaurant
