@@ -1,19 +1,38 @@
 package seedu.pivot.logic.parser;
 
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_MAIN_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.logic.commands.FindCommand;
+import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
+    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+
+    @Test
+    public void parseCasePage_emptyArg_throwsParseException() {
+        StateManager.setState(index);
+        assertParseFailure(parser, "     ", MESSAGE_INCORRECT_MAIN_PAGE);
+        StateManager.resetState();
+    }
+
+    @Test
+    public void parseCasePage_validArgs_throwsParseException() {
+        StateManager.setState(index);
+        assertParseFailure(parser, "     ", MESSAGE_INCORRECT_MAIN_PAGE);
+        StateManager.resetState();
+    }
 
     @Test
     public void parse_emptyArg_throwsParseException() {

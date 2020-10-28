@@ -22,13 +22,13 @@ import seedu.pivot.model.tag.Tag;
  */
 public class Case {
 
-    private static final String DESCRIPTION_HEADER = " Description: ";
-    private static final String STATUS_HEADER = " Status: ";
-    private static final String DOCUMENTS_HEADER = " Documents: ";
-    private static final String SUSPECTS_HEADER = " Suspects: ";
-    private static final String VICTIMS_HEADER = " Victims: ";
-    private static final String WITNESSES_HEADER = " Witnesses: ";
-    private static final String TAGS_HEADER = " Tags: ";
+    private static final String DESCRIPTION_HEADER = "Description: ";
+    private static final String STATUS_HEADER = "Status: ";
+    private static final String DOCUMENTS_HEADER = "Documents: ";
+    private static final String SUSPECTS_HEADER = "Suspects: ";
+    private static final String VICTIMS_HEADER = "Victims: ";
+    private static final String WITNESSES_HEADER = "Witnesses: ";
+    private static final String TAGS_HEADER = "Tags: ";
 
     // Identity fields
     private final Title title;
@@ -152,7 +152,7 @@ public class Case {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTitle()).append("\n")
                 .append(DESCRIPTION_HEADER).append(getDescription()).append("\n")
-                .append(STATUS_HEADER).append(getStatus()).append("\n");
+                .append(STATUS_HEADER).append(getStatus());
 
         // Documents
         if (!getDocuments().isEmpty()) {

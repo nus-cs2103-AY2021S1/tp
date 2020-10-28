@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.pivot.model.Pivot;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.caseperson.Suspect;
 import seedu.pivot.model.investigationcase.caseperson.Victim;
@@ -73,6 +74,17 @@ public class TypicalCases {
             .withStatus(VALID_STATUS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
+    // Manually added - Cases that are archived
+    public static final Case JUNK_YARD_MURDER = new CaseBuilder().withTitle("Junk Yard Murder")
+            .withStatus("ACTIVE")
+            .withArchiveStatus(ArchiveStatus.ARCHIVED).build();
+    public static final Case KLOOK_SCAM = new CaseBuilder().withTitle("Klook Scam")
+            .withStatus("ACTIVE")
+            .withArchiveStatus(ArchiveStatus.ARCHIVED).build();
+    public static final Case LOUIS_HOMICIDE = new CaseBuilder().withTitle("Louis Homicide")
+            .withStatus("ACTIVE")
+            .withArchiveStatus(ArchiveStatus.ARCHIVED).build();
+
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
     private TypicalCases() {} // prevents instantiation
@@ -91,6 +103,7 @@ public class TypicalCases {
     public static List<Case> getTypicalCases() {
         return new ArrayList<>(Arrays.asList(ALICE_PAULINE_ASSAULT, BENSON_MEIER_ROBBERY,
                 CARL_KURZ_FIRE, DANIEL_MEIER_SHOPLIFTING, ELLE_MEYER_SHOOTING,
-                FIONA_KUNZ_KIDNAPPING, GEORGE_BEST_VANDALISM));
+                FIONA_KUNZ_KIDNAPPING, GEORGE_BEST_VANDALISM, JUNK_YARD_MURDER, KLOOK_SCAM,
+                LOUIS_HOMICIDE));
     }
 }
