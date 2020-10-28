@@ -18,7 +18,8 @@ public class ViewStudentCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Viewing Students of Tutorial Group: %1$s";
+    public static final String MESSAGE_SUCCESS = "Viewing students of: %1$s";
+    public static final String MESSAGE_WRONG_VIEW = "You are currently not in the tutorial group view";
 
     private final Index targetIndex;
 
@@ -28,6 +29,10 @@ public class ViewStudentCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (!model.isInTutorialGroupView()) {
+            throw new CommandException(MESSAGE_WRONG_VIEW);
+        }
+
         requireNonNull(model);
         List<TutorialGroup> lastShownList = model.getFilteredTutorialGroupList();
 
