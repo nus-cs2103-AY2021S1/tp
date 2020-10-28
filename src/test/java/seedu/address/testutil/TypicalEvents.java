@@ -19,7 +19,6 @@ public class TypicalEvents {
     public static final Event ALICE_CLASS_EVENT = new EventBuilder().withEventName("Lesson event")
             .withEventStartDateTime(LocalDateTime.parse("2020-12-03T10:15:30"))
             .withEventEndDateTime(LocalDateTime.parse("2020-12-03T10:17:30"))
-            .withDescription("Alice Pauline Sec 3")
             .withUniqueIdentifier("uidAliceLesson")
             .withRecurrence(EventRecurrence.WEEKLY)
             .build();
@@ -27,7 +26,6 @@ public class TypicalEvents {
     public static final Event TODO_EVENT = new EventBuilder().withEventName("Plan lessons")
             .withEventStartDateTime(LocalDateTime.parse("2020-11-03T10:14:30"))
             .withEventEndDateTime(LocalDateTime.parse("2020-11-03T10:16:35"))
-            .withDescription("For Benson and Carl")
             .withUniqueIdentifier("uidPlanLesson")
             .withRecurrence(EventRecurrence.DAILY)
             .build();
@@ -35,7 +33,6 @@ public class TypicalEvents {
     public static final Event RELAX_EVENT = new EventBuilder().withEventName("Watch a movie")
             .withEventStartDateTime(LocalDateTime.parse("2020-11-25T10:10:00"))
             .withEventEndDateTime(LocalDateTime.parse("2020-11-26T10:12:01"))
-            .withDescription("The fun movie")
             .withUniqueIdentifier("uidWatchMovie")
             .withRecurrence(EventRecurrence.NONE)
             .build();
