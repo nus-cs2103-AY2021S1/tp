@@ -163,7 +163,7 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the st
 
 3. The new item will show up in Inventory Book, refer to the diagram below:
 <br>
-![](images/add-i_eg1.1.PNG)
+![add-i_step_1](images/add-i_eg1.1.PNG)
 <br>
 Figure 5: Add new item of duck
 <br>
@@ -171,7 +171,7 @@ Figure 5: Add new item of duck
 4. Press key arrow up on your keyboard to toggle to previous command and press Enter. Your command should not pass 
 through as you are not allowed to add with max quantity and metric. You should receive an error message as shown below:
 <br>
-![](images/add-i_eg1.2.PNG)
+![add-i_step_2](images/add-i_eg1.2.PNG)
 <br>
 Figure 6: Error when adding maximum quantity and metric to an existing item
 <br>
@@ -182,7 +182,7 @@ Figure 6: Error when adding maximum quantity and metric to an existing item
 are adding to an existing `item` DUCK which was just added. Furthermore, a new tag of perishable should also appear.
 You can refer to the diagram below for the expected result:
 <br>
-![](images/add-i_eg1.3.PNG)
+![add-i_step3](images/add-i_eg1.3.PNG)
 <br>
 Figure 7: Successfully added quantity with new tag
 
@@ -204,7 +204,7 @@ Example 1:
 3. You should now see a new pending delivery with a default `deliver by` of 30 minutes,
  you may want to refer to the diagram below:
 <br>
-![](images/add-d_eg1.1.PNG)
+![add-d_step1](images/add-d_eg1.1.PNG)
 <br>
 Figure 8: Added Jason's delivery
 <br>
@@ -217,7 +217,7 @@ Example 2:
 2. You should now see a Hugo's delivery with `deliver by` of 10 minutes,
  you may want to refer to the diagram below:
 <br>
-![](images/add-d_eg1.2.PNG)
+![add-d_step2](images/add-d_eg1.2.PNG)
 <br>
 Figure 8: Added Jason's delivery
 <br>
@@ -364,13 +364,13 @@ Format: `delete-i INDEX` or `delete-d INDEX`
 Example 1:
 1. Assume by entering `list-i`, we have the following inventory items as shown in the diagram below:
  <br>
- ![](images/UG_delete_eg1_step1.PNG)
+ ![delete-i_step1](images/UG_delete_eg1_step1.PNG)
  <br>
  <br>
  
 2. Enter `delete-i 2` which will delete the 2nd INDEX in the inventory book. The expected result should be as shown below:
 <br>
-![](images/UG_delete_eg1_step2.PNG)
+![delete-i_step2](images/UG_delete_eg1_step2.PNG)
 <br>
 <br>
 
