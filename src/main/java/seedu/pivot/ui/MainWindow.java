@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -35,10 +36,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private static final String FXML = "MainWindow.fxml";
     private static final String EMPTY = "";
-    private static final String HEADER_DOCUMENTS = "DOCUMENTS";
-    private static final String HEADER_SUSPECTS = "SUSPECTS";
-    private static final String HEADER_WITNESSES = "WITNESSES";
-    private static final String HEADER_VICTIMS = "VICTIMS";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -94,18 +91,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane victimListPanelPlaceholder;
 
-    // Titles
     @FXML
-    private Label caseDocumentsTitle;
-
-    @FXML
-    private Label caseSuspectsTitle;
-
-    @FXML
-    private Label caseWitnessesTitle;
-
-    @FXML
-    private Label caseVictimsTitle;
+    private TabPane caseTabPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -130,6 +117,11 @@ public class MainWindow extends UiPart<Stage> {
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 updateCaseInformationPanel((Index) newValue);
             }
+        });
+
+        caseTabPane.widthProperty().addListener((observable, oldValue, newValue) -> {
+            caseTabPane.setTabMinWidth(caseTabPane.getWidth() / 4 - 20);
+            caseTabPane.setTabMaxWidth(caseTabPane.getWidth() / 4 - 20);
         });
     }
 
@@ -212,11 +204,6 @@ public class MainWindow extends UiPart<Stage> {
         caseTitle.setText(investigationCase == null ? EMPTY : investigationCase.getTitle().toString());
         caseDescription.setText(investigationCase == null ? EMPTY : investigationCase.getDescription().toString());
         caseStatus.setText(investigationCase == null ? EMPTY : investigationCase.getStatus().toString());
-
-        caseDocumentsTitle.setText(investigationCase == null ? EMPTY : HEADER_DOCUMENTS);
-        caseSuspectsTitle.setText(investigationCase == null ? EMPTY : HEADER_SUSPECTS);
-        caseWitnessesTitle.setText(investigationCase == null ? EMPTY : HEADER_WITNESSES);
-        caseVictimsTitle.setText(investigationCase == null ? EMPTY : HEADER_VICTIMS);
 
         documentListPanel = new DocumentListPanel(FXCollections.observableList(
                 investigationCase == null ? new ArrayList<>() : investigationCase.getDocuments()));
