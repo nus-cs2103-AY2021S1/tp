@@ -26,16 +26,19 @@ public class Contact {
 
 
     /**
-     * Creates and initialises a Contact object with a Name and Email field.
+     * Creates and initialises a Contact object with a Name, Email and Tag field, but
+     * without a Telegram field.
      *
      * @param name Name field of the Contact object.
      * @param email Email field of the Contact object.
+     * @param tags Set of tags of the Contact object.
      */
-    public Contact(Name name, Email email) {
+    public Contact(Name name, Email email, Set<Tag> tags) {
         requireAllNonNull(name, email);
         this.name = name;
         this.email = email;
         this.telegram = null;
+        this.tags.addAll(tags);
     }
 
     /**
@@ -44,13 +47,14 @@ public class Contact {
      * @param name Name field of the Contact object.
      * @param email Email field of the Contact object.
      * @param telegram Telegram field of the Contact object.
+     * @param tags Set of tags of the Contact object.
      */
-    public Contact(Name name, Email email, Telegram telegram) {
-        requireAllNonNull(name, email, telegram);
+    public Contact(Name name, Email email, Telegram telegram, Set<Tag> tags) {
+        requireAllNonNull(name, email, telegram, tags);
         this.name = name;
         this.email = email;
         this.telegram = telegram;
-        // this.tags.addAll(tags);
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -74,7 +78,7 @@ public class Contact {
     }
 
     /**
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
+     * Returns true if both contacts of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSameContact(Contact otherPerson) {
@@ -89,8 +93,8 @@ public class Contact {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both contacts have the same identity and data fields.
+     * This defines a stronger notion of equality between two contacts.
      */
     @Override
     public boolean equals(Object other) {

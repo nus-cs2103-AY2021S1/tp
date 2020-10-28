@@ -3,8 +3,10 @@ package seedu.address.logic.parser.contactlistparsers;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
@@ -18,6 +20,7 @@ import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new AddContactCommand object.
@@ -31,7 +34,7 @@ public class AddContactParser implements Parser<AddContactCommand> {
      */
     public AddContactCommand parse(String args) throws ParseException {
         ArgumentTokenizer tokenizer =
-                new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_TELEGRAM);
+                new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_TAG);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_EMAIL)
@@ -42,12 +45,13 @@ public class AddContactParser implements Parser<AddContactCommand> {
         Contact contact;
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
             Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
-            contact = new Contact(name, email, telegram);
+            contact = new Contact(name, email, telegram, tagList);
         } else {
-            contact = new Contact(name, email);
+            contact = new Contact(name, email, tagList);
         }
 
         return new AddContactCommand(contact);
