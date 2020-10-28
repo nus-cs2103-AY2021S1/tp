@@ -3,7 +3,10 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.*;
+import static seedu.address.testutil.TypicalTasks.DEADLINE1;
+import static seedu.address.testutil.TypicalTasks.DEADLINE5;
+import static seedu.address.testutil.TypicalTasks.EVENT4;
+import static seedu.address.testutil.TypicalTasks.getTypicalPlanus;
 
 import java.io.IOException;
 import java.nio.file.Path;

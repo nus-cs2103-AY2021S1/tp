@@ -24,6 +24,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.lesson.Lesson;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
@@ -116,17 +117,17 @@ public class EditLessonCommand extends Command {
     private static Lesson createEditedLesson(Lesson lessonToEdit, EditLessonDescriptor editLessonDescriptor) {
         assert lessonToEdit != null;
 
-//        Title updatedTitle = editLessonDescriptor.getTitle().orElse(lessonToEdit.getTitle());
-//        Description updatedDescription = editLessonDescriptor.getDescription().orElse(lessonToEdit.getDescription());
-//        DayOfWeek updatedDayOfWeek = editLessonDescriptor.getDayOfWeek().orElse(lessonToEdit.getDayOfWeek());
-//        LocalDate updatedStartDate = editLessonDescriptor.getStartDate().orElse(lessonToEdit.getStartDate());
-//        LocalDate updatedEndDate = editLessonDescriptor.getEndDate().orElse(lessonToEdit.getEndDate());
-//        LocalTime updatedStartTime = editLessonDescriptor.getStartTime().orElse(lessonToEdit.getStartTime());
-//        LocalTime updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
-//
-//        return new Lesson(updatedTitle, updatedDescription, updatedDayOfWeek, updatedStartTime, updatedEndTime,
-//                updatedStartDate, updatedEndDate);
-        return null;
+        Title updatedTitle = editLessonDescriptor.getTitle().orElse(lessonToEdit.getTitle());
+        Description updatedDescription = editLessonDescriptor.getDescription().orElse(lessonToEdit.getDescription());
+        DayOfWeek updatedDayOfWeek = editLessonDescriptor.getDayOfWeek().orElse(lessonToEdit.getDayOfWeek());
+        LocalDate updatedStartDate = editLessonDescriptor.getStartDate().orElse(lessonToEdit.getStartDate());
+        LocalDate updatedEndDate = editLessonDescriptor.getEndDate().orElse(lessonToEdit.getEndDate());
+        LocalTime updatedStartTime = editLessonDescriptor.getStartTime().orElse(lessonToEdit.getStartTime());
+        LocalTime updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
+        Tag updatedTag = editLessonDescriptor.getTag().orElse(lessonToEdit.getTag());
+
+        return new Lesson(updatedTitle, updatedTag, updatedDescription, updatedDayOfWeek,
+                updatedStartTime, updatedEndTime, updatedStartDate, updatedEndDate);
     }
 
     @Override
@@ -159,6 +160,7 @@ public class EditLessonCommand extends Command {
         private LocalDate endDate;
         private LocalTime startTime;
         private LocalTime endTime;
+        private Tag tag;
 
         public EditLessonDescriptor() {}
 
@@ -174,6 +176,7 @@ public class EditLessonCommand extends Command {
             setEndDate(toCopy.endDate);
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);
+            setTag(toCopy.tag);
         }
 
         /**
@@ -239,6 +242,14 @@ public class EditLessonCommand extends Command {
             return Optional.ofNullable(endTime);
         }
 
+        public void setTag(Tag tag) {
+            this.tag = tag;
+        }
+
+        public Optional<Tag> getTag() {
+            return Optional.ofNullable(tag);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -260,7 +271,8 @@ public class EditLessonCommand extends Command {
                     && getStartTime().equals(e.getStartTime())
                     && getEndTime().equals(e.getEndTime())
                     && getStartDate().equals(e.getStartDate())
-                    && getEndDate().equals(e.getEndDate());
+                    && getEndDate().equals(e.getEndDate())
+                    && getTag().equals(e.getTag());
         }
     }
 }

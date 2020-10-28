@@ -59,7 +59,7 @@ public class Statistics {
                 && (taskDate.isBefore(end) || taskDate.isEqual(end));
         });
     }
-    
+
     private static void updateTimeTakenForTasks(ObservableList<Task> tasks, StatisticsData stats,
                                                LocalDate startDate, LocalDate endDate) {
         FilteredList<Task> filteredTasks = filterTasksWithinPeriod(tasks, startDate, endDate);

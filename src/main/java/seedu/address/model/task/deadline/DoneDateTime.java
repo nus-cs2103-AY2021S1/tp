@@ -3,8 +3,8 @@ package seedu.address.model.task.deadline;
 import java.time.LocalDateTime;
 
 import seedu.address.commons.util.DateUtil;
-
 import seedu.address.model.task.DateTime;
+
 
 /**
  * Represents a Task's date and time in PlaNus task list.
@@ -21,11 +21,7 @@ public class DoneDateTime extends DateTime {
      */
     public DoneDateTime(String dateTime) {
         super(dateTime);
-        if (value.equals(DateUtil.DEFAULT_DATETIME)) {
-            this.isFilled = false;
-        } else {
-            this.isFilled = true;
-        }
+        this.isFilled = !value.equals(DateUtil.DEFAULT_DATETIME);
     }
 
     private DoneDateTime(LocalDateTime value) {
