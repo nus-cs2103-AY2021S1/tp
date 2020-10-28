@@ -1,5 +1,13 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.IntStream;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -8,14 +16,6 @@ import seedu.address.model.Model;
 import seedu.address.model.preset.Preset;
 import seedu.address.model.vendor.Name;
 import seedu.address.storage.Storage;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.IntStream;
-
-import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
 public class SavePresetCommand extends PresetCommand {
 

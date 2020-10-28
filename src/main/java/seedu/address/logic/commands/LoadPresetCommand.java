@@ -1,5 +1,11 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -10,17 +16,15 @@ import seedu.address.model.preset.Preset;
 import seedu.address.model.vendor.Name;
 import seedu.address.storage.Storage;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
-
-import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
-
 public class LoadPresetCommand extends PresetCommand {
 
     private final Name presetName;
     private final boolean displayAllPresets;
 
+    /**
+     * Creates a LoadPresetCommand to load the specified preset {@code Name}
+     * @param presetName
+     */
     public LoadPresetCommand(Optional<Name> presetName) {
         this.displayAllPresets = presetName.isEmpty();
         this.presetName = presetName.orElseGet(() -> new Name("Invalid"));

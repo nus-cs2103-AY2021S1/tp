@@ -24,7 +24,6 @@ import seedu.address.logic.commands.SubmitCommand;
 import seedu.address.logic.commands.TotalCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.VendorCommand;
-import seedu.address.logic.commands.PresetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -54,20 +53,20 @@ public class AddressBookParser {
         final String arguments = matcher.group("arguments");
 
         String[] commands = {
-                AddCommand.COMMAND_WORD,
-                RemoveCommand.COMMAND_WORD,
-                SortCommand.COMMAND_WORD,
-                ClearCommand.COMMAND_WORD,
-                FindCommand.COMMAND_WORD,
-                PriceCommand.COMMAND_WORD,
-                MenuCommand.COMMAND_WORD,
-                TotalCommand.COMMAND_WORD,
-                SubmitCommand.COMMAND_WORD,
-                UndoCommand.COMMAND_WORD,
-                ExitCommand.COMMAND_WORD,
-                HelpCommand.COMMAND_WORD,
-                VendorCommand.COMMAND_WORD,
-                PresetCommand.COMMAND_WORD,
+            AddCommand.COMMAND_WORD,
+            RemoveCommand.COMMAND_WORD,
+            SortCommand.COMMAND_WORD,
+            ClearCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD,
+            PriceCommand.COMMAND_WORD,
+            MenuCommand.COMMAND_WORD,
+            TotalCommand.COMMAND_WORD,
+            SubmitCommand.COMMAND_WORD,
+            UndoCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD,
+            VendorCommand.COMMAND_WORD,
+            PresetCommand.COMMAND_WORD,
         };
 
         ArrayList<String> matchingCommands = new ArrayList<>(Arrays.asList(commands));

@@ -1,11 +1,12 @@
 package seedu.address.storage;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import seedu.address.model.preset.Preset;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import seedu.address.model.preset.Preset;
 
 public class JsonAdaptedPreset {
 
@@ -16,7 +17,8 @@ public class JsonAdaptedPreset {
      * Constructs a {@code JsonAdaptedPreset} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedPreset(@JsonProperty("name") String name, @JsonProperty("orderItems") List<JsonAdaptedOrderItem> orderItems) {
+    public JsonAdaptedPreset(@JsonProperty("name") String name,
+                             @JsonProperty("orderItems") List<JsonAdaptedOrderItem> orderItems) {
         this.name = name;
         this.orderItems = orderItems;
     }

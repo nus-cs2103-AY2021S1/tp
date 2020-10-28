@@ -200,6 +200,9 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses and validates the string for Preset Command.
+     */
     public static String[] checkPresetSyntax(String saveLoad) throws ParseException {
         requireNonNull(saveLoad);
         String trimArgs = saveLoad.trim();

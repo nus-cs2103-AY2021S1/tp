@@ -1,12 +1,12 @@
 package seedu.address.logic.parser;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.LoadPresetCommand;
 import seedu.address.logic.commands.PresetCommand;
 import seedu.address.logic.commands.SavePresetCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.vendor.Name;
-
-import java.util.Optional;
 
 public class PresetCommandParser implements Parser<PresetCommand> {
 

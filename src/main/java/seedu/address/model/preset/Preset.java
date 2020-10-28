@@ -1,9 +1,9 @@
 package seedu.address.model.preset;
 
+import java.util.List;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.order.OrderItem;
-
-import java.util.List;
 
 public class Preset {
     public static final String MESSAGE_DUPLICATE_ORDERITEM = "Order contains duplicate orderItems.";
@@ -11,6 +11,9 @@ public class Preset {
     private String name;
     private List<OrderItem> orderItems;
 
+    /**
+     * Creates a Preset with the given name and the order items.
+     */
     public Preset(String name, List<OrderItem> orderItems) {
         this.name = name;
         this.orderItems = orderItems;
@@ -28,6 +31,9 @@ public class Preset {
         return this.orderItems;
     }
 
+    /**
+     * Adds an order item to the preset.
+     */
     public void addOrderItem(OrderItem orderItem) throws IllegalValueException {
         if (orderItems.contains(orderItem)) {
             throw new IllegalValueException(MESSAGE_DUPLICATE_ORDERITEM);
