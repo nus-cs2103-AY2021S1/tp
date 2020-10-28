@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.item.Item;
@@ -29,11 +30,9 @@ public class CheckCraftCommand extends Command {
             + PREFIX_ITEM_QUANTITY + "20";
 
     public static final String MESSAGE_SUCCESS_CRAFTABLE = "%2$s %1$s may be crafted with any of the recipes below:";
-    public static final String MESSAGE_SUCCESS_UNCRAFTABLE = "%2$s %1$s is not possible to craft with a single recipe";
+    public static final String MESSAGE_SUCCESS_UNCRAFTABLE = "%2$s %1$s is not possible to craft with a single recipe.";
 
-    public static final String MESSAGE_INVALID_QUANTITY = "Please enter a valid quantity";
-    public static final String MESSAGE_ITEM_NOT_FOUND = "Item to craft is not found in the item list.";
-    public static final String MESSAGE_RECIPE_NOT_FOUND = "No recipes to craft this item found in the recipe list";
+    public static final String MESSAGE_INVALID_QUANTITY = "Please enter a valid quantity.";
 
     private final String itemName;
     private final int quantity;
@@ -63,13 +62,13 @@ public class CheckCraftCommand extends Command {
         tempItemList.removeIf(x -> !x.getName().equals(itemName));
         Item item = tempItemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
-                .orElseThrow(() -> new CommandException(MESSAGE_ITEM_NOT_FOUND));
+                .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_NO_ITEM_FOUND, itemName)));
 
         ArrayList<Recipe> recipeList = new ArrayList<>(model.getFilteredRecipeList());
         // filter to only get matching recipes
         recipeList.removeIf(x -> !x.getProductName().equals(itemName));
         if (recipeList.isEmpty()) {
-            throw new CommandException(MESSAGE_RECIPE_NOT_FOUND);
+            throw new CommandException(String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, itemName));
         }
 
         ArrayList<Item> itemList = new ArrayList<>(model.getFilteredItemList());
