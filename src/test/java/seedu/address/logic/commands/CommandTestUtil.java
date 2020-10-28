@@ -2,9 +2,20 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLIENTSOURCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POLICY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPolicies.*;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_DESCRIPTION;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
+import static seedu.address.testutil.TypicalPolicies.SAVINGS_DESCRIPTION;
+import static seedu.address.testutil.TypicalPolicies.SAVINGS_NAME;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,10 +51,8 @@ public class CommandTestUtil {
     public static final String VALID_PRIORITY_UNDEFINED = "u";
     public static final String VALID_POLICY_NAME_AMY = LIFE_TIME_NAME;
     public static final String VALID_POLICY_NAME_BOB = SAVINGS_NAME;
-    public static final String VALID_POLICY_DESCRIPTION_AMY
-            = LIFE_TIME_DESCRIPTION;
-    public static final String VALID_POLICY_DESCRIPTION_BOB
-            = SAVINGS_DESCRIPTION;
+    public static final String VALID_POLICY_DESCRIPTION_AMY = LIFE_TIME_DESCRIPTION;
+    public static final String VALID_POLICY_DESCRIPTION_BOB = SAVINGS_DESCRIPTION;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;

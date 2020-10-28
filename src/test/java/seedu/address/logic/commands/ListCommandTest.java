@@ -16,9 +16,9 @@ import static seedu.address.testutil.TypicalPersons.KING;
 import static seedu.address.testutil.TypicalPersons.LINDA;
 import static seedu.address.testutil.TypicalPersons.MONK;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientList;
-import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientListOnlyArchive;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientListWithArchive;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
 import java.util.Arrays;
 
@@ -57,7 +57,10 @@ public class ListCommandTest {
         model.setIsArchiveMode(true);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE);
 
-        Model expectedModel = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs(), getTypicalPolicyList());
+        Model expectedModel = new ModelManager(
+                getTypicalClientListWithArchive(),
+                new UserPrefs(),
+                getTypicalPolicyList());
 
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS_ACTIVE, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE,
@@ -70,7 +73,10 @@ public class ListCommandTest {
         model.setIsArchiveMode(true);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE);
 
-        Model expectedModel = new ModelManager(getTypicalClientListOnlyArchive(), new UserPrefs(), getTypicalPolicyList());
+        Model expectedModel = new ModelManager(
+                getTypicalClientListOnlyArchive(),
+                new UserPrefs(),
+                getTypicalPolicyList());
         expectedModel.setIsArchiveMode(true);
         expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE);
 
@@ -80,9 +86,15 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsNotFilteredSwitchFromActiveToArchive_showsArchiveOnly() {
-        Model model = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs(), getTypicalPolicyList());
+        Model model = new ModelManager(
+                getTypicalClientListWithArchive(),
+                new UserPrefs(),
+                getTypicalPolicyList());
 
-        Model expectedModel = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs(), getTypicalPolicyList());
+        Model expectedModel = new ModelManager(
+                getTypicalClientListWithArchive(),
+                new UserPrefs(),
+                getTypicalPolicyList());
         expectedModel.setIsArchiveMode(true);
         expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_ARCHIVE);
 

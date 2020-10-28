@@ -1,12 +1,18 @@
 package seedu.address.model.policy;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
+import static seedu.address.testutil.TypicalPolicies.MISSING_FROM_LIST_POLICY;
+import static seedu.address.testutil.TypicalPolicies.MISSING_FROM_LIST_POLICY_NAME;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
 import java.util.Hashtable;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPolicies.*;
+import org.junit.jupiter.api.Test;
 
 public class PolicyListTest {
 

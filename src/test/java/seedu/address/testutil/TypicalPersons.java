@@ -1,12 +1,5 @@
 package seedu.address.testutil;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import seedu.address.model.ClientList;
-import seedu.address.model.person.Person;
-
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CLIENTSOURCE_FRIEND;
@@ -25,6 +18,13 @@ import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_DESCRIPTION;
 import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
 import static seedu.address.testutil.TypicalPolicies.SAVINGS_DESCRIPTION;
 import static seedu.address.testutil.TypicalPolicies.SAVINGS_NAME;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.address.model.ClientList;
+import seedu.address.model.person.Person;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.

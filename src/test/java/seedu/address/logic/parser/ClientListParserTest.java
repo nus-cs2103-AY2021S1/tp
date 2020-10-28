@@ -91,8 +91,8 @@ public class ClientListParserTest {
         assertEquals(new AddPolicyCommand(
                 new Policy(
                         new PolicyName(LIFE_TIME_NAME),
-                        new PolicyDescription(LIFE_TIME_DESCRIPTION)))
-                , command);
+                        new PolicyDescription(LIFE_TIME_DESCRIPTION))),
+                command);
     }
 
     @Test

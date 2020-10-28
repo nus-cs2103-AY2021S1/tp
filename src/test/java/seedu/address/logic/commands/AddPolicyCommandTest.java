@@ -1,17 +1,18 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.model.ClientList;
-import seedu.address.model.Model;
-import seedu.address.model.ModelManager;
-import seedu.address.model.UserPrefs;
-import seedu.address.model.policy.Policy;
-
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPolicies.LIFE_TIME;
 import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.model.ClientList;
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
+import seedu.address.model.UserPrefs;
+import seedu.address.model.policy.Policy;
 
 public class AddPolicyCommandTest {
 

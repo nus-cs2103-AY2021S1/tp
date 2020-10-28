@@ -1,7 +1,5 @@
 package seedu.address.model.policy;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -10,10 +8,12 @@ import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
 import static seedu.address.testutil.TypicalPolicies.SAVINGS_DESCRIPTION;
 import static seedu.address.testutil.TypicalPolicies.SAVINGS_NAME;
 
+import org.junit.jupiter.api.Test;
+
 public class PolicyTest {
-    PolicyName lifeTimeName = new PolicyName(LIFE_TIME_NAME);
-    PolicyDescription lifeTimeDescription = new PolicyDescription(LIFE_TIME_DESCRIPTION);
-    Policy lifeTimePolicy = new Policy(lifeTimeName, lifeTimeDescription);
+    private PolicyName lifeTimeName = new PolicyName(LIFE_TIME_NAME);
+    private PolicyDescription lifeTimeDescription = new PolicyDescription(LIFE_TIME_DESCRIPTION);
+    private Policy lifeTimePolicy = new Policy(lifeTimeName, lifeTimeDescription);
 
     @Test
     public void constructor_null_throwsNullPointerException() {
