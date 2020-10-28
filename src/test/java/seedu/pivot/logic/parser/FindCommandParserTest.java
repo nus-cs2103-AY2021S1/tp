@@ -17,8 +17,8 @@ import seedu.pivot.model.investigationcase.DetailsContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
     private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+    private FindCommandParser parser = new FindCommandParser();
 
     @Test
     public void parseCasePage_emptyArg_throwsParseException() {
@@ -35,12 +35,15 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_emptyArg_throwsParseException() {
+    public void parseMainPage_emptyArg_throwsParseException() {
+        StateManager.resetState();
         assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parseMainPage_validArgs_returnsFindCommand() {
+        StateManager.resetState();
+
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new DetailsContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));

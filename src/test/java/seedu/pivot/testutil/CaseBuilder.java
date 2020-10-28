@@ -145,6 +145,9 @@ public class CaseBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ArchiveStatus} of the {@code Case} that we are building.
+     */
     public CaseBuilder withArchiveStatus(ArchiveStatus archiveStatus) {
         this.archiveStatus = archiveStatus;
         return this;
