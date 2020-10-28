@@ -176,7 +176,7 @@ Format: `undo`
 
 You can use this command to quickly redo a command that was just undone by undo. For example, after you `undo` an
 accidental `delete`, you can use `redo` to perform the delete again. You can only use redo if `undo`
-was used before and no edit to the `ZooKeep` book was made in between, otherwise this command will do nothing.
+was used before and no edit to your `ZooKeep` book was made in between, otherwise this command will do nothing.
 
 Format: `redo`
 
@@ -212,13 +212,13 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 Examples:
 * `append 1307 f/1900` appends a feed time of 1900 to the animal identified by ID 1307.
-* `append 1307 m/Healthy` append a medical condition "Healthy" to the animal identified by ID 1307.
+* `append 1307 m/Flu` append a medical condition "Flu" to the animal identified by ID 1307.
 
 ---
 
 ### Replacing an animal's fields: `replace`
 
-After making a mistake while entering the information of an animal in the `ZooKeep` book, instead of deleting the animal
+After making a mistake while entering the information of an animal in your `ZooKeep` book, instead of deleting the animal
 and entering all the information again, you can use this command to replace only the incorrect information in the fields
 of the animal after specifying its `ID`. `ID` refers to the id number shown in the displayed animal list.
 
@@ -248,7 +248,7 @@ Examples:
 
 ### Finding animals by their fields: `find`
 
-You may find yourself in situations where you need to retrieve a specific group of animals from the `ZooKeep` book. For
+You may find yourself in situations where you need to retrieve a specific group of animals from your `ZooKeep` book. For
 example, you may need to find animals with the same feed times or similar medical conditions.
 You can use this command to find and list all animals in the `ZooKeep` book whose fields contain any of the specified 
 argument keywords (at least 1).
@@ -259,7 +259,7 @@ Format: `find KEYWORD [MORE KEYWORDS]...`
 Keyword matching is case insensitive.
 </div>
 
-Example:
+Examples:
 * `find Ahmeng Buttercup Coco` finds all animals with the fields (name) containing any of the specified keywords.
 * `find 1200` finds all animals with the field (id or feed time) containing the specified keyword.
 
@@ -267,7 +267,7 @@ Example:
 
 ### Sorting animals: `sort`
 
-If you need to create some sort of ordering in the `ZooKeep` book, such as a chronological order by feed times to organise
+If you need to create some sort of ordering in your `ZooKeep` book, such as a chronological order by feed times to organise
 your feeding schedule, this feature helps to sort the animals by the given category and updates the list of animals accordingly.
 
 Format: `sort CATEGORY`
@@ -352,8 +352,8 @@ Action | Format, Examples
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
-**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…`
-**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…` 
+**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…` <br> e.g. `append 1307 f/1900`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…` <br> e.g. `replace 1307 i/2910 n/Jirachi`
 **Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
 **Sort** | `sort CATEGORY` <br> e.g. `sort name` 
 **Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
