@@ -45,5 +45,4 @@ public class ResiRegParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }

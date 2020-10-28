@@ -70,5 +70,4 @@ public class HelpCommand extends Command {
                 // user guide
                 + "You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io/tp/UserGuide.html";
     }
-
 }
