@@ -7,6 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.policy.Policy;
 import seedu.address.model.policy.PolicyList;
 import seedu.address.model.util.SamplePolicyDataUtil;
 import seedu.address.testutil.ClientListBuilder;
@@ -75,6 +77,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void setPolicyListFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setPolicyListFilePath(null));
+    }
+
+    @Test
+    public void setPolicyListFilePath_validPath_setsPolicyListFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setPolicyListFilePath(path);
+        assertEquals(path, modelManager.getPolicyListFilePath());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
     }
@@ -129,6 +143,22 @@ public class ModelManagerTest {
         assertFalse(modelManager.getIsArchiveModeProperty().get());
     }
 
+    @Test
+    public void addPolicy_success() {
+        Policy policy = LIFE_TIME;
+        PolicyList policyList = new PolicyList();
+        policyList.add(policy);
+        modelManager.addPolicy(policy);
+        assertEquals(policyList, modelManager.getPolicyList());
+    }
+
+    @Test
+    public void clearPolicyList_success() {
+        Policy policy = LIFE_TIME;
+        modelManager.addPolicy(policy);
+        modelManager.clearPolicyList();
+        assertEquals(new PolicyList(), modelManager.getPolicyList());
+    }
 
     @Test
     public void equals() {
