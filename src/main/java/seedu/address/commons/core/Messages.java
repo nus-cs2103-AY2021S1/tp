@@ -123,7 +123,8 @@ public class Messages {
                 .append(DIVIDER)
                 .append("INVENTORY SPECIFIC COMMANDS\n")
                 .append(DIVIDER)
-                .append("Add inventory: add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG] [metric/METRIC]\n")
+                .append("Add inventory: add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG] "
+                        + "[metric/METRIC]\n")
                 .append("Delete an inventory item: delete-i INDEX\n")
                 .append("Edit an inventory item: edit-i INDEX [n/NAME] [q/QUANTITY]"
                         + " [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG] [metric/METRIC]\n")
