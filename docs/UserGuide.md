@@ -110,7 +110,7 @@ Examples:
 
 ### Find food item: `find`
 
-Finds and lists all food items containing any of the specified keywords in their name. Note that the keywords are 
+Finds and lists all food items containing any of the specified keywords in their name.
 case-sensitive.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
