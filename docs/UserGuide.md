@@ -29,6 +29,7 @@ as well as summary commands.
 4. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
     <br>
+    <a name="uiwithannotationpng"></a>
     #![Ui](images/UiWithAnnotation.png) 
     Figure 1: Introduction to OneShelf User Interface
 
@@ -45,7 +46,7 @@ as well as summary commands.
 6. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. Features
+## <a name="3-features"></a>3. Features
 
 OneShelf has 2 main features that it is able to store, namely are:
 1. Inventory items
@@ -114,7 +115,7 @@ An item is uniquely identified by its `NAME` and `SUPPLIER`.
 * Note 1: `MAX_QUANTITY` denotes the ideal stock level of that particular item.
 * Note 2: `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
-Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` using [Figure 1](#uiimagesuiwithannotationpng) as the starting point.
+Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 1. Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food`.
 <br>
@@ -130,7 +131,7 @@ Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` using [Figu
 <br>
 <br>
 
-Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#uiimagesuiwithannotationpng) as the starting point.
+Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 1. Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
 <br>
@@ -155,9 +156,9 @@ Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER`
 
 Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-* An item can have any number of tags (including 0)
-* Unlike inventory item, pending delivery does not have a quantity
+<div markdown="span" class="alert alert-primary">:bulb:**Tip:**
+<li>An item can have any number of tags (including 0)</li>
+<li>Unlike inventory item, pending delivery does not have a quantity</li>
 </div>
 
 
@@ -185,20 +186,44 @@ Edits an existing item in the Inventory book or an existing pending delivery in 
 
 ##### 3.1.4.a `edit-i`
 
-Format: `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`
+Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** The `|` symbol means the user must provide at least one of the fields
+separated by the `|`
+</div>
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
-* Updates ALL the components of an item, UNABLE to update a specific component of an item.
-Ie if a user wants to update the quantity, he/ she needs to specify all attributes again: name, quantity, supplier, tag, if any.
-* When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative.
+* Updates the components of an item.
+* When editing tags, the existing tags of the item will be removed
 * You can remove all the item’s tags by typing `t/` without
     specifying any tags after it.
 
-Examples:
-*  `edit-i 1 n/Chicken q/50` <br>
-Edits the name and quantity of the 1st item to be `CHICKEN` and `50` respectively.
-*  `edit-i 2 n/Spinach t/` <br>
-Edits the name of the 2nd item to be `Spinach` and clears all existing tags.
+Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Select the Command Box and type in `edit-i 3 n/CARROTS q/50`.
+
+2. Either press Enter on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
+<br>
+![edit-i example one step three](images/edit-i%20example%20one%20step%20three.png)
+<br>
+<br>
+
+Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Select the Command box and type in `edit-i 2 n/Spinach t/`
+
+2. Either press Enter on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields as shown below.
+<br>
+![add-i example two step three](images/edit-i%20example%20two%20step%20three.png)
+<br>
+<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
+</div>
+
 
 ##### 3.1.4.b `edit-d`
 
@@ -302,6 +327,22 @@ Format: `undo`
 
 * If there is a previous state available, the current state is reverted to that state
 * If the current state is the earliest possible one, it shows a message informing the user that there is nothing more to undo
+* The maximum number of previous commands you can undo is 20
+
+<a name="undoExample1"></a>Example 1: `undo` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Select the Command box and type in `clear-i`
+
+2. Either press Enter on your keyboard or click Send to execute the command.
+<br>
+![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
+<br>
+<br>
+
+3. Select the Command box and type in `undo`
+
+4. Repeat step 2
+* You should now see the same items as appearing in [Figure 1](#uiwithannotationpng)
 
 
 
@@ -315,6 +356,16 @@ Format: `redo`
 * If the current state is the latest possible one, it shows a message informing the user that there is nothing more to redo
 * After any command that changes the state of data (such as add, clear, delete, edit), the new state becomes the latest state
 (i.e. the previous undo commands are "forgotten" and `redo` will have no effect)
+
+Example 1: `redo` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Follow steps 1 - 4 of [Example 1](#undoExample1) for the `undo` command
+
+2. Select the Command box and type in `undo`
+
+3. Either press Enter on your keyboard or click Send to execute the command
+
+4. You should now see the items cleared again, as shown in [Step 2 of Example 1](#undoExample1Step2) of the `undo` command.
 
 --------------------------------------------------------------------------------------------------------------------
 ### 3.2 General Features
