@@ -588,13 +588,14 @@ Use case ends.
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X.
-* `Flag`: A dash followed by a letter to denote the start of a parameter. For example, in `-n Chicken Rice`, `-n` is a flag for name and `Chicken Rice` is the input that will be processed by the application.
-* **McGymmy/MG**: The name of this application
+* **Built-in commands**: Any other commands except Macro Command.
 * **Command Line Interface (CLI)**: A command-line interface (CLI) processes commands to a computer program in the form of lines of text.
+* **Flag**: A dash followed by a letter to denote the start of a parameter. For example, in `-n Chicken Rice`, `-n` is a flag for name and `Chicken Rice` is the input that will be processed by the application.
 * **Graphical User Interface (GUI)**: A visual way of interacting with a computer using items such as windows, icons, and menus, used by most modern operating systems.
 * **Macro command**: A command that allows you to execute multiple built-in commands sequentially with just one line of input
-* **Built-in commands**: Any other commands except Macro Command
+* **Mainstream OS**: Windows, Linux, Unix, OS-X.
+* **McGymmy/MG**: The name of this application, can be used interchangeable in this guide.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
