@@ -31,9 +31,10 @@ Class HiddenOutside #FFFFFF
 MultipleChoiceQuestion -[dashed]-|> Question
 OpenEndedQuestion -[dashed]-|> Question
 MultipleChoiceQuestion *--> "1..*" Choice
+MultipleChoiceQuestion *--> "1" Answer
+OpenEndedQuestion *--> "1" Answer
 
 Flashcard *--> "1" Question
-Flashcard *--> "1" Answer
 Flashcard *--> "*" Tag
 Flashcard *--> "1" Difficulty
 
