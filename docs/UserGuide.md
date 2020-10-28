@@ -3,19 +3,15 @@ layout: page
 title: User Guide
 ---
 
-* Table of Contents
-{:toc}
-
---------------------------------------------------------------------------------------------------------------------
-# 1. About
 **Common Cents** is your convenient at-hand **expense-tracking tool**, meant for **anyone who runs a small-scale business**. 
 With just a few commands, _Common Cents_ will keep track, categorise and calculate your income and expenditure for you! 
-You can even keep our expenses in multiple, separate accounts for seamless organisation. Amalgamating the features of a 
+You can even keep your expenses in multiple accounts for seamless organisation. Amalgamating the features of a 
 Command Line Interface (CLI) with a Graphical User Interface (GUI), _Common Cents_ is meant to be functional, intuitive and 
 faster than most traditional GUI expense-trackers out there!
 
---------------------------------------------------------------------------------------------------------------------
-# 2. User Guide Overview
+* Table of Contents
+{:toc}
+
 This User Guide will show you how to navigate the User Interface (UI), give you step-by-step instructions on using commands, tips and tricks on how to maximise your experience with _Common Cents_ and clarify most doubts that you may have.
 
 The _Common Cents_ interface and commands consist of a few levels: `Application` level, `Account` level and `Entry` level.<br>
@@ -24,8 +20,32 @@ The _Common Cents_ interface and commands consist of a few levels: `Application`
 * `Entry` level commands deal with managing the entries which are either expenses or revenues in an account.
 
 --------------------------------------------------------------------------------------------------------------------
+# 1. Quick Start
+
+1\. Ensure you have Java `11` or above installed in your Computer.
+
+2\. Download the latest `commoncents.jar`.
+
+3\. Copy the file to the folder you want to use as the _home folder_ for _Common Cents_.
+
+4\. Double-click the file to start the app. You should see the GUI similar to the one below in a few seconds (**Figure 1-1**). 
+Note how the app contains some sample expenses and revenues.<br>
+
+ ![Ui](images/Ui.png)
+ <p align="center"> <sub> <b>Figure 1-1</b>: Default GUI </sub> </p>
+
+5\. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+   * `add c/expense d/buy lunch a/5.20 t/food` : Adds an expense named "buy lunch" to the expense list.
+   * `delete 1 c/expense` : Deletes the 1st entry in the expense list.
+   * `exit` : Exits the app.
+
+6\. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
-# 3. How to identify notations
+# 2. How to identify notations
 These blocks are a few examples of notations that will be used in this document. Each block and icon 
 has a different meaning so do look out for them under our features.
 
@@ -61,36 +81,10 @@ Important cautions that needs to be known before using the feature.
 
 
 --------------------------------------------------------------------------------------------------------------------
-
-# 4. Quick Start
-
-1. Ensure you have Java `11` or above installed in your Computer.
-
-1. Download the latest `commoncents.jar`.
-
-1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
-
-1. Double-click the file to start the app. You should see the  Graphical User Interface (GUI) similar 
-to the one below in a few seconds. 
-Note how the app contains some sample expenses and revenues.<br>
-
- ![Ui](images/Ui.png)
- <p align="center"> <sub> <b>Figure</b>: Default GUI </sub> </p>
-
-1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
-   Some example commands you can try:
-
-   * `add c/expense d/buy lunch a/5.20 t/food` : Adds an expense named "buy lunch" to the expense list.
-   * `delete 1 c/expense` : Deletes the 1st entry in the expense list.
-   * `exit` : Exits the app.
-
-1. Refer to the [Features](#features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-# 5. User Interface Overview
-As you can see, **figure** below shows the default user interface (UI) of *_Common Cents_* with its components.  
+# 3. User Interface Overview
+As you can see, **figure 3-1** below shows the default user interface (UI) of _Common Cents_ with its components.  
 ![annotatedUi](images/commands/annotatedUi.PNG)
-<p align="center"> <sub> <b>Figure</b>: Default user interface of <i>Common Cents</i> </sub> </p>
+<p align="center"> <sub> <b>Figure 3-1</b>: Default user interface of <i>Common Cents</i> </sub> </p>
 
 You can find the description for each UI component shown in the table below.<br> 
 
@@ -108,32 +102,32 @@ UI component | Description
 *Revenue list* | Displays all the revenues in your current account in a panel.
 
 --------------------------------------------------------------------------------------------------------------------
-# 6. Components
-This section describes the various components that comprises Common Cents, mainly Account and Entries. If you
-are new to Common Cents, do not fret as this section will guide you step by step in understanding the components
-available! This will better your experience with Common Cents and your usage of features!
+# 4. Components
+This section describes the various components that comprises _Common Cents_, mainly Account and Entries. If you
+are new to _Common Cents_, do not fret as this section will guide you step by step in understanding the components
+available! This will better your experience with _Common Cents_ and your usage of features!
 
-## 6.1 Accounts
+## 4.1 Accounts
 
-### 6.1.1 Name
+### 4.1.1 Name
 
-### 6.1.2 Expense List
+### 4.1.2 Expense List
 
-### 6.1.3 Revenue List
+### 4.1.3 Revenue List
 
-## 6.2 Entries
+## 4.2 Entries
 
-### 6.2.1 Category
+### 4.2.1 Category
 
-### 6.2.2 Description
+### 4.2.2 Description
 
-### 6.2.3 Amount 
+### 4.2.3 Amount 
 
-### 6.2.4 Tags
+### 4.2.4 Tags
 
 --------------------------------------------------------------------------------------------------------------------
 
-# 7. Features
+# 5. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -163,14 +157,14 @@ The commands are separated into three categories: App-Level commands, Entry-Leve
 Each level interacts with _Common Cents_ differently to maximise your experience. More details about each level are 
 found in its own section below.  
 
-## 7.1 App-Level Commands
+## 5.1 App-Level Commands
 App-Level commands deals with interactions with the app, _Common Cents_, itself.
 
-### 7.1.1 Viewing help : `help`
+### 5.1.1 Viewing help : `help`
 
 You can use this command when you are at a lost or want to view an overview of how to use the application.
-This command will return a message explaining how to access the help page (Figure). 
-You can click on the `Copy URL ` button to copy the link to clipboard and paste it in your web browser. <br> 
+This command will return a message explaining how to access the help page (**Figure 5.1-1**). 
+You can click on the `Copy URL` button to copy the link to clipboard and paste it in your web browser. <br> 
 
 **Format**: `help`
 
@@ -178,14 +172,14 @@ You can click on the `Copy URL ` button to copy the link to clipboard and paste 
 
 :green_book: **Example:**
 
-* `help`: Returns help prompt.
+* `help`: Returns help prompt (**Figure 5.1-1**)
 
 </div>
 
 ![helpMessage](images/helpMessage.png)
-<p align="center"> <sub> <b>Figure</b>: Help message </sub> </p>
+<p align="center"> <sub> <b>Figure 5.1-1</b>: Help message </sub> </p>
  
-### 7.1.2 Exiting the program : `exit`
+### 5.1.2 Exiting the program : `exit`
 
 You can use this command when you are done with what you need to do and want to close the application.
 
@@ -195,17 +189,17 @@ You can use this command when you are done with what you need to do and want to 
 
 :green_book: **Example:**
 
-* `exit`: Returns exit message then quits the program in 1.5 seconds.
+* `exit`: Returns exit message then quits the program in 1.5 seconds (**Figure 5.1-2**)
 
 </div>
 
 ![exitCommand](images/commands/exitCommand.png)
-<p align="center"> <sub> <b>Figure</b>: Exit message appears in Result display </sub> </p>
+<p align="center"> <sub> <b>Figure 5.1-2</b>: Exit message appears in Result display </sub> </p>
 
-## 7.2 Entry-Level Commands
-Entry-Level commands involves managing the entries which are either expenses or revenues in an account. 
+## 5.2 Entry-Level Commands
+Entry-Level commands involve managing the entries which are either expenses or revenues in an account. 
 
-### 7.2.1 Adding an entry: `add`
+### 5.2.1 Adding an entry: `add`
 
 You can use this command when you want to add an entry (expense/revenue) to the tracker.
 
@@ -215,13 +209,13 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 
 :green_book: **Example:**
 
-* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce` (**Figure**)
+* `add c/expense d/buying supplies a/10.10 t/blogshop t/eCommerce` (**Figure 5.2-1**)
 * `add c/revenue d/sale of clothes a/200 t/blogshop t/eCommerce`
 
 </div>
 
 ![addCommand](images/commands/addCommand.png)
-<p align="center"> <sub> <b>Figure</b>: A new expense called "buying supplies" is added </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-1</b>: A new expense called "buying supplies" is added </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -230,11 +224,22 @@ You can use this command when you want to add an entry (expense/revenue) to the 
 * Adds an entry to either category.
 * The category refers to the classification of the entry in the entry lists.
 * The category must be either 'expense' or 'revenue'.
+* Each tag can only be 1 word.
+* If multiple tags are required, do input multiple t/ prefixes
+* Each tag in entry only appears once even if added multiple times.
 
 </div>
 
 
-### 7.2.2 Deleting an entry: `delete`
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* Input expense/revenue information can be in any order
+
+</div>
+
+### 5.2.2 Deleting an entry: `delete`
 
 You can use this command to remove an entry (expense/revenue) from the tracker when you do not want to keep track of 
 it anymore.
@@ -246,12 +251,27 @@ it anymore.
 :green_book: **Example:**
 
 * `delete 1 c/expense` : Deletes first entry in expense category
-* `delete 2 c/revenue` : Deletes second entry in the revenue category (**Figure**)
+* `delete 2 c/revenue` : Deletes second entry in the revenue category (**Figure 5.2-2**)
 
 </div>
 
+<div markdown="block" class="alert alert-primary">
+
+:bulb: **Tip:**
+
+* It is possible for you to use the `find` function then `delete`.
+
+</div>
+
+:warning: **Warning:**
+
+* Entry index should only be a single integer, for example, `delete 1 2 c/revenue` will not work.
+
+</div>
+
+
 ![deleteCommand1](images/commands/deleteCommand1.png)
-<p align="center"> <sub> <b>Figure</b>: The revenue at index 2 is deleted </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-2</b>: The revenue at index 2 is deleted </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -259,13 +279,13 @@ it anymore.
 
 * Deletes the entry at the specified INDEX.
 * The index refers to the index number shown in the displayed entry lists.
-* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10)
+* The index must be a positive integer (eg. 1, 2, 3), and must be within the range of the number of entries (e.g. if there are 10 entries, the INDEX given cannot be > 10).
 
 </div>
 
-### 7.2.3 Editing an entry: `edit`
+### 5.2.3 Editing an entry: `edit`
 
-You can use this to make edits to any existing entries in the tracker when the entry's details are wrongly keyed.
+You can use this to make edits to any existing entries in the tracker when the details of the entry are wrongly keyed.
 
 **Format:**
 * `edit 1 c/CATEGORY d/DESCRIPTION a/AMOUNT t/TAG`
@@ -276,32 +296,32 @@ You can use this to make edits to any existing entries in the tracker when the e
 
 :green_book: **Example:**
 
-* `edit 2 c/expense d/buy McSpicy a/8.60`: Changes the name and the amount of entry 2 to 
-`eating McSpicy` and `$8.60` respectively (**Figure**)
+* `edit 2 c/expense d/buy McSpicy a/8.60`: Changes the name and the amount of entry 2 (**Figure 5.2-3**) to 
+`buy McSpicy` and `$8.60` respectively (**Figure 5.2-4**)
 * `edit 2 c/revenue d/sell McNuggets`: Changes the name of entry 2 to `sell McNuggets` 
 * `edit 2 c/expense a/5.50`: Changes the amount of entry 2 to `$5.50`
 
 </div>
 
 ![beforeEditCommand](images/commands/beforeEditCommand.png)
-<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 before editing </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-3</b>: The targeted expense at index 2 before editing </sub> </p>
 
 ![afterEditCommand](images/commands/afterEditCommand.png)
-<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 after editing </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-4</b>: The targeted expense at index 2 after editing </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
 :information_source: **Note:**
 
-* Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified
-* The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT
-* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries 
-(e.g. if there are 10 entries, the `INDEX` given cannot be > 10)
+* Edits an entry that matches the entry name and changes the parameters of an entry depending on which are specified.
+* The tags d/ and a/ have to be used to indicate which field specifies DESCRIPTION and which field specifies AMOUNT.
+* The index must be a positive integer 1, 2, 3, and must be within the range of the number of entries
+(e.g. if there are 10 entries, the `INDEX` given cannot be > 10).
 
 </div>
 
 
-### 7.2.4 Locating entries by description: `find`
+### 5.2.4 Locating entries by description: `find`
 
 You can use this command to list expenses and/or revenues that have the given keyword(s) in their descriptions. This is 
 useful when you want to find some particular entries to [`delete`](#deleting-an-entry-delete) or [`edit`](#editing-an-entry-edit). 
@@ -314,16 +334,16 @@ If there is no expense or revenue found, the respective list will be empty.
 :green_book: **Example:** 
 
 * `find c/expense k/watercolours canvas`: Finds all expenses with keywords `watercolours` and/or `canvas` in their 
-description.
+description
 * `find c/revenue k/phone`: Finds all revenues with keyword `phone` in their 
-description.
+description
 * `find k/canvas earrings`: Finds all expenses and revenues with keywords `canvas` and/or `earrings` in their 
-description (Figure).
+description (**Figure 5.2-5**)
  
 </div>
 
 <br>![findCommand](images/commands/findCommand.PNG)
-<p align="center"> <sub> <b>Figure</b>: Find command successfully executed </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-5</b>: Find command successfully executed </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -348,8 +368,7 @@ list, with the updated `ENTRY INDEX`.
 
 </div>
 
-
-### 7.2.5 Listing all entries: `list`
+### 5.2.5 Listing all entries: `list`
 
 You can use this command to list all entries in the current account when you want to have an overview of you account.
 
@@ -364,7 +383,7 @@ You can use this command to list all entries in the current account when you wan
 </div>
 
 
-### 7.2.6 Clearing all expenses or revenue: `clear`
+### 5.2.6 Clearing all expenses or revenue: `clear`
 
 You can use this command to clear all entries from a particular category when you do not need to track them anymore.
  
@@ -375,13 +394,13 @@ You can use this command to clear all entries from a particular category when yo
 :green_book: **Example:**
 
 
-* `clear c/expense`: clears all entries visible in expense list (**Figure**). 
-* `clear c/revenue`: clears all entries visible in revenue list.
+* `clear c/expense`: Clears all entries visible in expense list (**Figure 5.2-6**)
+* `clear c/revenue`: Clears all entries visible in revenue list
 
 </div>
 
 ![clearCommand](images/commands/clearCommand.png)
-<p align="center"> <sub> <b>Figure</b>: The targeted expense at index 2 after editing </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-6</b>: The expenses in the account are cleared </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -393,7 +412,8 @@ entries, use the `delete` command instead.
 </div>
 
 
-### 7.2.7 Calculating net profits based on expenses and revenues: `profit` 
+
+### 5.2.7 Calculating net profits based on expenses and revenues: `profit` 
 
 If you wish to calculate the profits you have currently, you may use this command to do so.
  
@@ -403,24 +423,24 @@ If you wish to calculate the profits you have currently, you may use this comman
 
 :green_book: **Example:**
 
-* `profit`: Returns the profits (**Figure**) by taking the difference between the expenses and revenues.
+* `profit`: Returns the profits (**Figure 5.2-7**) by taking the difference between the expenses and revenues
 
 </div>
 
 ![profitCommand](images/commands/profitCommand.PNG)
-<p align="center"> <sub> <b>Figure</b>: Profit command successfully executed </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-7</b>: Profit command successfully executed </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
 :information_source: **Note:**
 
-The `profit` function will show deficits as a negative number should expenses be greater than revenue.
+The `profit` function will show deficits as a negative number if the total expenses is greater than the total revenue.
 </div>
 
 
-### 7.2.8 Undoing Entry-level commands: `undo`
+### 5.2.8 Undoing Entry-level commands: `undo`
 
-You can use this command to return to the state of entries prior to previous command.
+You can use this command to return to the state of the entry prior to the previous command.
 
  
 **Format:** `undo`
@@ -430,16 +450,16 @@ You can use this command to return to the state of entries prior to previous com
 :green_book: **Example:**
 
 * `undo`: Returns the state of expenses and revenues prior to the previous command. For example, if the 
-[`delete`](#deleting-an-entry-delete) command was used (**Figure**), using `undo` returns account to the state before the 
-[`delete`](#deleting-an-entry-delete) command was used (**Figure**).
+[`delete`](#deleting-an-entry-delete) command was used (**Figure 5.2-8**), using `undo` returns account to the state before the 
+[`delete`](#deleting-an-entry-delete) command was used (**Figure 5.2-9**).
 
 </div>
 
 ![deleteCommand](images/commands/deleteCommand.png)
-<p align="center"> <sub> <b>Figure</b>: Before the undo command, an expense was deleted </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-8</b>: Before the undo command, an expense was deleted </sub> </p>
 
 ![undoCommand](images/commands/undoCommand.png)
-<p align="center"> <sub> <b>Figure</b>: After the undo command, the deleted expense is added again </sub> </p>
+<p align="center"> <sub> <b>Figure 5.2-9</b>: After the undo command, the deleted expense is added again </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -461,7 +481,7 @@ before you exit the app!
 
 </div>
 
-### 7.2.9 Calculating total expenses or revenues: `total`
+### 5.2.9 Calculating total expenses or revenues: `total`
 
 You can use this command to do calculate the total expenses or revenues in your current account.
 
@@ -471,21 +491,18 @@ You can use this command to do calculate the total expenses or revenues in your 
 
 :green_book: **Example:**
 
-* `total c/expense`: Returns the sum of all the expenses.
-* `total c/revenue`: Returns the sum of all the revenues.
+* `total c/expense`: Returns the sum of all the expenses
+* `total c/revenue`: Returns the sum of all the revenues
 
 </div>
 
 (add screenshots to show the total expense/revenue message)
 
 
+## 5.3 Account-level Commands
+Account-Level commands involve managing the different accounts in the app. 
 
-
-
-## 7.3 Account-level Commands
-Account-Level commands involves managing the different accounts in the app. 
-
-### 7.3.1 Adding new account: `newacc`
+### 5.3.1 Adding new account: `newacc`
 
 You can create a new account to manage a different set of entries with this command. 
 
@@ -495,28 +512,26 @@ You can create a new account to manage a different set of entries with this comm
 
 :green_book: **Example:**
 
-* `newacc n/My Flower Shop`: adds a new account, `My Flower Shop`, with no expenses or revenues.
-* `newacc n/$uper $avers`: adds a new account, `$uper $avers`, with no expenses or revenues (**Figure**). 
+* `newacc n/My Flower Shop`: Adds a new account, `My Flower Shop`, with no expenses or revenues
+* `newacc n/$uper $avers`: Adds a new account, `$uper $avers`, with no expenses or revenues (**Figure 5.3-1**)
 
 </div>
 
 ![addAccountCommand](images/commands/addAccountCommand.png)
-<p align="center"> <sub> <b>Figure</b>: A new account called $uper $avers is added </sub> </p>
+<p align="center"> <sub> <b>Figure 5.3-1</b>: A new account called $uper $avers is added </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
 :information_source: **Note:**
 
-* The app does not automatically switch to the new account. Once the account is created, you can check it using  
-[`listacc`](#listing-accounts-you-have-listacc) or switch to it using [`switchacc`](#switching-accounts-switchacc). 
-* You cannot create a account with the same name of an existing account.
+* The app does not automatically switch to the new account. Once the account is created, you can check it using [`listacc`](#listing-accounts-you-have-listacc) or switch to it using [`switchacc`](#switching-accounts-switchacc). 
+* You cannot create an account with the same name as an existing account.
 
 </div>
 
-### 7.3.2 Deleting an account: `deleteacc`
+### 5.3.2 Deleting an account: `deleteacc`
 
-You can remove the account using this command. This command is useful for clearing accounts that you might not be using
-anymore.
+You can remove an account by using this command. This command is useful for clearing accounts you are no longer using.
 
 **Format:** `deleteacc INDEX`
 
@@ -525,12 +540,12 @@ anymore.
 :green_book: **Example:**
 
 * `deleteacc 3`: Deletes third account based on list generated by using [`listacc`](#listing-accounts-you-have-listacc)
- (**Figure**).
+ (**Figure 5.3-2**)
 
 </div>
 
 ![deleteAccountCommand](images/commands/deleteAccountCommand.png)
-<p align="center"> <sub> <b>Figure</b>: An account called My Flower Shop is deleted </sub> </p>
+<p align="center"> <sub> <b>Figure 5.3-2</b>: An account called My Flower Shop is deleted </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
@@ -552,12 +567,12 @@ If you are unsure of the account index, use [`listacc`](#listing-accounts-you-ha
 
 :warning: **Warning:**
 
-Deleting your account means all the data on entries in the account is lost as well. Also, deleting is an 
+Deleting your account means all the data of the entries in the account is lost as well. Also, deleting is an 
 irreversible action and cannot be undone. Do delete your account with caution!
 
 </div>
 
-### 7.3.3 Editing the name of the current account: `editacc`
+### 5.3.3 Editing the name of the current account: `editacc`
 
 You can edit the name of the current account you are on using this command.
 
@@ -567,25 +582,25 @@ You can edit the name of the current account you are on using this command.
 
 :green_book: **Example:**
 
-* `editacc n/Bob's Bakery`: Replaces the name of the current account, `Default Account 1` to `Bob's Bakery` (**Figure**).
+* `editacc n/Bob's Bakery`: Replaces the name of the current account, `Default Account 1` to `Bob's Bakery` (**Figure 5.3-3**)
 
 </div>
 
 ![editAccNameCommand](images/commands/editAccNameCommand.png)
-<p align="center"> <sub> <b>Figure</b>: The currently active account, "Default Account 1", is renamed to "Bob's Bakery" </sub> </p>
+<p align="center"> <sub> <b>Figure 5.3-3</b>: The currently active account, "Default Account 1", is renamed to "Bob's Bakery" </sub> </p>
 
 <div markdown="block" class="alert alert-info"> 
 
 :information_source: **Note:**
 
-* You cannot edit account names other than the account you are currently on. To edit the name
+* You can only edit the account name of the account you are currently on. To edit the name
 of another account, you can use [`switchacc`](#switching-accounts-switchacc) to switch to the other account
 and edit the name from there.
 * You cannot edit the account name to a name of another existing account.
 
 </div>
 
-### 7.3.4 Listing accounts you have: `listacc`
+### 5.3.4 Listing accounts you have: `listacc`
 
 You can check the accounts you have in the app by using this command. Each account will be numbered with an index and 
 displayed as their names.
@@ -596,17 +611,17 @@ displayed as their names.
 
 :green_book: **Example:**
 
-* `listacc`: Shows a numbered list of the account names as a message (**Figure**).
+* `listacc`: Shows a numbered list of the account names as a message (**Figure 5.3-4**)
 
 </div>
 
 ![listAccCommand](images/commands/listAccCommand.png)
-<p align="center"> <sub> <b>Figure</b>: All the accounts are listed in the Result Display </sub> </p>
+<p align="center"> <sub> <b>Figure 5.3-4</b>: All the accounts are listed in the Result Display </sub> </p>
 
-### 7.3.5 Switching accounts: `switchacc`
+### 5.3.5 Switching accounts: `switchacc`
 
 You can use this command to switch to the desired account. This is useful if you want to manage entries in the 
-account or edit the name of the desired account.
+desired account or edit the name of the desired account.
 
 **Format:** `switchacc INDEX`
 
@@ -614,13 +629,13 @@ account or edit the name of the desired account.
 
 :green_book: **Example:**
 
-* `switchacc 2`: Switches to the second account based on list generated by 
-[`listacc`](#listing-accounts-you-have-listacc) (**Figure**).
+* `switchacc 2`: Switches to the second account based on the list generated by 
+[`listacc`](#listing-accounts-you-have-listacc) (**Figure 5.3-5**)
 
 </div>
 
 ![switchAccCommand](images/commands/switchAccCommand.png)
-<p align="center"> <sub> <b>Figure</b>: Current account has been switched to "Default account 2" </sub> </p>
+<p align="center"> <sub> <b>Figure 5.3-5</b>: Current account has been switched to "Default account 2" </sub> </p>
 
 <div markdown="block" class="alert alert-primary">
 
@@ -634,38 +649,40 @@ If you are unsure of the account index, use [`listacc`](#listing-accounts-you-ha
 
 :warning: **Warning:**
 
-Once you use the `switchacc` command, all the previous states for the [`undo`](#undoing-entry-level-commands-undo) will
+Once you use the `switchacc` command, all the previous states for the [`undo`](#undoing-entry-level-commands-undo) command will
 be lost. This would mean that if you choose to switch back to the account, you cannot undo the previous entry-level
-commands anymore. Do confirm your changes to the entries in the account before you switch account!
+commands anymore. Do confirm the changes made to the entries in the account before you switch account!
 
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
-# 8. Frequently Asked Questions (FAQ)
+# 6. Frequently Asked Questions (FAQ)
 
 This section contains a few frequently asked questions with regard to _Common Cents_.
 
-## 8.1 General Inquiry
-This section features general questions about Common Cents that are not specific to the features.
+## 6.1 General Inquiry
+This section features general questions about _Common Cents_ that are not specific to the features.
 
-1. **Question:** How do I transfer my data to another Computer?<br>
+1. **Question:** How do I transfer my data to another computer?<br>
 **Answer:** Install the app in the other computer and overwrite the empty data file it creates with the file that 
-contains the data of your previous CommonCents home folder.
+contains the data of your previous _CommonCents_ home folder.
 
-2. **Question:** Where can I make bug reports?<br>
-**Answer:** You may submit a bug report directly to our team [here].
+2. **Question:** What if I notice something wrong with the application?<br>
+**Answer:** You may submit a bug report or send us a notice directly [here](https://github.com/AY2021S1-CS2103T-T13-4/tp).
 
 
 
-## 8.2 Features Inquiry
-This section features feature-related questions about Common Cents.
+## 6.2 Features Inquiry
+This section features feature-related questions about _Common Cents_.
 1. **Question:** What happens if I forget my account names?<br>
 **Answer:** You may use the `listacc` command to see a full list of your existing accounts.
 
 2. **Question:** I encountered this situation when using the features as shown in the screenshot below. I understand that the 
-prefix indicated is wrong after checking `add` section in the User Guide. However, the error message states that my category is
+prefix indicated is wrong after checking the `add` section in the User Guide. However, the error message states that my category is
 wrong. Can I clarify on this situation?<br>
-*(Insert screenshot for the case "edit 2 c/expense n/buy McSpicy a/8.60")*
+
+![errorMessage](images/commands/errorMessage.png)
+<p align="center"> <sub> <b>Figure</b>: Error message that might cause confusion </sub> </p>
 
    **Answer:** 
 Yes, the prefix indicated is wrong as it should be `d/` instead of `n/`. As a result, the category parameter is read as
@@ -673,11 +690,11 @@ Yes, the prefix indicated is wrong as it should be `d/` instead of `n/`. As a re
 are correct!** If you are unsure of the prefixes and parameters required, do check the sections under features above! 
 --------------------------------------------------------------------------------------------------------------------
 
-# 9. Command summary
+# 7. Command summary
 
 The table below summarises the above commands in the order of appearance in this User Guide for your reference. 
 
-Action | Format, Examples
+Action | Format
 --------|------------------
 [**Help**](#viewing-help--help) | `help`
 [**Exit**](#exiting-the-program--exit) | `exit`
@@ -692,13 +709,13 @@ Action | Format, Examples
 [**Total**](#calculating-total-expenses-or-revenues-total) | `total c/CATEGORY`
 [**New Account**](#adding-new-account-newacc) | `newacc n/NAME`
 [**Delete Account**](#deleting-an-account-deleteacc) | `deleteacc INDEX`
-[**Edit Account's Name**](#editing-the-name-of-the-current-account-editacc) | `editacc n/NAME`
+[**Edit Account Name**](#editing-the-name-of-the-current-account-editacc) | `editacc n/NAME`
 [**List Account**](#listing-accounts-you-have-listacc) | `listacc`
 [**Switch Account**](#switching-accounts-switchacc) | `switchacc INDEX`
 
 --------------------------------------------------------------------------------------------------------------------
 
-# Acknowledgement
+# 8. Acknowledgement
 
 * The project is a brown-field project, based on AddressBook-Level3 by the [SE-EDU initiative](https://se-education.org/).
 * The background image is [Designed by Freepik](http://www.freepik.com). 

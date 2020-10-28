@@ -3,8 +3,6 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_CATEGORY;
 
-import java.util.stream.Stream;
-
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.category.Category;
 import seedu.address.logic.commands.ClearCommand;
@@ -25,7 +23,7 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY);
 
-        boolean ifNoCategory = !arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
+        boolean ifNoCategory = !ParserUtil.arePrefixesPresent(argMultimap, PREFIX_CATEGORY);
         if (ifNoCategory) {
             boolean areInvalidArgs = !argMultimap.isPreambleEmpty();
 
@@ -47,14 +45,6 @@ public class ClearCommandParser implements Parser<ClearCommand> {
         Category category = ParserUtil.parseCategory(argMultimap.getValue(PREFIX_CATEGORY).get());
 
         return new ClearCommand(category);
-    }
-
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
 }

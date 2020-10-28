@@ -6,24 +6,70 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntries.BUY_FLOWER_POTS;
 import static seedu.address.testutil.TypicalEntries.BUY_ROSE_SEEDS;
+import static seedu.address.testutil.TypicalEntries.BUY_SHOVEL;
+import static seedu.address.testutil.TypicalEntries.BUY_STRING;
 import static seedu.address.testutil.TypicalEntries.SELL_FLOWER_POTS;
+import static seedu.address.testutil.TypicalEntries.SELL_FLOWER_SEEDS;
+import static seedu.address.testutil.TypicalEntries.SELL_HANDICRAFT;
 import static seedu.address.testutil.TypicalEntries.SELL_SUNFLOWER;
 import static seedu.address.testutil.TypicalEntries.getTypicalAccount;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.account.entry.ExpenseDescriptionContainsKeywordsPredicate;
+import seedu.address.model.account.entry.RevenueDescriptionContainsKeywordsPredicate;
 import seedu.address.model.account.entry.exceptions.EntryNotFoundException;
+
+
 
 
 public class ActiveAccountManagerTest {
     private static final String GENERAL_ACC_NAME = "General account";
     private static final Account GENERAL_ACC = new Account(new Name(GENERAL_ACC_NAME));
 
-    private ActiveAccountManager activeAccountManager = new ActiveAccountManager(GENERAL_ACC);
+    private ActiveAccountManager activeAccountManager;
 
+    @BeforeEach
+    public void setActiveAccountManager() {
+        activeAccountManager = new ActiveAccountManager(GENERAL_ACC);
+    }
     @Test
     public void constructor() {
         assertEquals(GENERAL_ACC, new Account(activeAccountManager.getAccount()));
+    }
+
+    @Test
+    public void constructor_nullPointerException() {
+        assertThrows(NullPointerException.class, () -> new ActiveAccountManager(null));
+    }
+
+    @Test
+    public void getCopy() {
+        ActiveAccount activeAccountManagerCopy = activeAccountManager.getCopy();
+        assertEquals(activeAccountManager, activeAccountManagerCopy);
+    }
+
+    @Test
+    public void setPreviousState() {
+        ActiveAccount activeAccountManagerCopy = activeAccountManager.getCopy();
+        activeAccountManager.setPreviousState();
+        ActiveAccount previousState = activeAccountManager.getPreviousState().get();
+        assertEquals(previousState, activeAccountManagerCopy);
+    }
+
+    @Test
+    public void hasNoPreviousState_emptyPreviousState_true() {
+        assertTrue(activeAccountManager.hasNoPreviousState());
+    }
+
+    @Test
+    public void hasNoPreviousState_hasPreviousState_false() {
+        activeAccountManager.setPreviousState();
+        assertFalse(activeAccountManager.hasNoPreviousState());
     }
 
     @Test
@@ -31,6 +77,35 @@ public class ActiveAccountManagerTest {
         Account account = GENERAL_ACC;
         activeAccountManager.setActiveAccount(account);
         assertEquals(account, activeAccountManager.getAccount());
+    }
+
+    @Test
+    public void setName() {
+        Name newName = new Name("test");
+        activeAccountManager.setName(newName);
+        assertEquals(newName, activeAccountManager.getAccount().getName());
+    }
+
+    @Test
+    public void removePreviousActiveAccount() {
+        activeAccountManager.setPreviousState();
+        activeAccountManager.removePreviousState();
+        assertTrue(activeAccountManager.hasNoPreviousState());
+    }
+
+    @Test
+    public void returnToPreviousState_hasPreviousState_true() {
+        ActiveAccount activeAccountManagerCopy = activeAccountManager.getCopy();
+        activeAccountManager.setPreviousState();
+        activeAccountManager.returnToPreviousState();
+        assertEquals(activeAccountManager, activeAccountManagerCopy);
+    }
+
+    @Test
+    public void returnToPreviousState_hasNoPreviousState_true() {
+        ActiveAccount activeAccountManagerCopy = activeAccountManager.getCopy();
+        activeAccountManager.returnToPreviousState();
+        assertEquals(activeAccountManager, activeAccountManagerCopy);
     }
 
     @Test
@@ -140,6 +215,26 @@ public class ActiveAccountManagerTest {
     }
 
     @Test
+    public void clearExpense() {
+        activeAccountManager.addExpense(BUY_FLOWER_POTS);
+        activeAccountManager.addExpense(BUY_ROSE_SEEDS);
+        activeAccountManager.addExpense(BUY_SHOVEL);
+        activeAccountManager.addExpense(BUY_STRING);
+        activeAccountManager.clearExpenses();
+        assertTrue(activeAccountManager.getFilteredExpenseList().isEmpty());
+    }
+
+    @Test
+    public void clearRevenue() {
+        activeAccountManager.addRevenue(SELL_SUNFLOWER);
+        activeAccountManager.addRevenue(SELL_FLOWER_POTS);
+        activeAccountManager.addRevenue(SELL_FLOWER_SEEDS);
+        activeAccountManager.addRevenue(SELL_HANDICRAFT);
+        activeAccountManager.clearRevenues();
+        assertTrue(activeAccountManager.getFilteredRevenueList().isEmpty());
+    }
+
+    @Test
     public void getFilteredExpenseList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () ->
                 activeAccountManager.getFilteredExpenseList().remove(0));
@@ -152,13 +247,86 @@ public class ActiveAccountManagerTest {
     }
 
     @Test
-    void updateFilteredExpenseList_nullPredicate_throwsNullPointerException() {
+    public void updateFilteredExpenseList_nullPredicate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> activeAccountManager.updateFilteredExpenseList(null));
     }
 
     @Test
-    void updateFilteredRevenueList_nullPredicate_throwsNullPointerException() {
+    public void updateFilteredExpenseList_expensePredicate_true() {
+        activeAccountManager.addExpense(BUY_FLOWER_POTS);
+        activeAccountManager.addExpense(BUY_ROSE_SEEDS);
+        activeAccountManager.addExpense(BUY_SHOVEL);
+        activeAccountManager.addExpense(BUY_STRING);
+        List<String> keywords = new ArrayList<>();
+        keywords.add("strings");
+        activeAccountManager.updateFilteredExpenseList(new ExpenseDescriptionContainsKeywordsPredicate(keywords));
+        assertEquals(activeAccountManager.getFilteredExpenseList().size(), 1);
+    }
+
+    @Test
+    public void updateFilteredRevenueList_nullPredicate_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> activeAccountManager.updateFilteredRevenueList(null));
+    }
+
+    @Test
+    public void updateFilteredRevenueList_revenuePredicate_true() {
+        activeAccountManager.addRevenue(SELL_HANDICRAFT);
+        activeAccountManager.addRevenue(SELL_FLOWER_SEEDS);
+        activeAccountManager.addRevenue(SELL_FLOWER_POTS);
+        activeAccountManager.addRevenue(SELL_SUNFLOWER);
+        List<String> keywords = new ArrayList<>();
+        keywords.add("flowers");
+        activeAccountManager.updateFilteredRevenueList(new RevenueDescriptionContainsKeywordsPredicate(keywords));
+        assertEquals(activeAccountManager.getFilteredRevenueList().size(), 1);
+    }
+
+    @Test
+    public void getTotalExpense() {
+        activeAccountManager.addExpense(BUY_FLOWER_POTS);
+        activeAccountManager.addExpense(BUY_ROSE_SEEDS);
+        activeAccountManager.addExpense(BUY_SHOVEL);
+        activeAccountManager.addExpense(BUY_STRING);
+        double expectedAmount = BUY_FLOWER_POTS.getAmount().getValue()
+                + BUY_ROSE_SEEDS.getAmount().getValue()
+                + BUY_SHOVEL.getAmount().getValue()
+                + BUY_STRING.getAmount().getValue();
+        assertEquals(activeAccountManager.getTotalExpenses(), expectedAmount);
+    }
+
+    @Test
+    public void getTotalRevenue() {
+        activeAccountManager.addRevenue(SELL_HANDICRAFT);
+        activeAccountManager.addRevenue(SELL_FLOWER_SEEDS);
+        activeAccountManager.addRevenue(SELL_FLOWER_POTS);
+        activeAccountManager.addRevenue(SELL_SUNFLOWER);
+        double expectedAmount = SELL_HANDICRAFT.getAmount().getValue()
+                + SELL_FLOWER_SEEDS.getAmount().getValue()
+                + SELL_FLOWER_POTS.getAmount().getValue()
+                + SELL_SUNFLOWER.getAmount().getValue();
+        assertEquals(activeAccountManager.getTotalRevenue(), expectedAmount);
+    }
+
+    @Test
+    public void getProfits() {
+        activeAccountManager.addExpense(BUY_FLOWER_POTS);
+        activeAccountManager.addExpense(BUY_ROSE_SEEDS);
+        activeAccountManager.addExpense(BUY_SHOVEL);
+        activeAccountManager.addExpense(BUY_STRING);
+
+        activeAccountManager.addRevenue(SELL_HANDICRAFT);
+        activeAccountManager.addRevenue(SELL_FLOWER_SEEDS);
+        activeAccountManager.addRevenue(SELL_FLOWER_POTS);
+        activeAccountManager.addRevenue(SELL_SUNFLOWER);
+
+        double expectedProfits = (SELL_HANDICRAFT.getAmount().getValue()
+                + SELL_FLOWER_SEEDS.getAmount().getValue()
+                + SELL_FLOWER_POTS.getAmount().getValue()
+                + SELL_SUNFLOWER.getAmount().getValue())
+                - (BUY_FLOWER_POTS.getAmount().getValue()
+                + BUY_ROSE_SEEDS.getAmount().getValue()
+                + BUY_SHOVEL.getAmount().getValue()
+                + BUY_STRING.getAmount().getValue());
+        assertEquals(activeAccountManager.getProfits(), expectedProfits);
     }
 
     @Test
