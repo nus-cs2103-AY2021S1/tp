@@ -1,5 +1,6 @@
 package seedu.pivot.logic.parser;
 
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.parser.AddCommandParser.arePrefixesPresent;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
@@ -23,7 +24,7 @@ public class AddDocumentCommandParser implements Parser<AddDocumentCommand> {
      */
     @Override
     public AddDocumentCommand parse(String args) throws ParseException {
-        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_REFERENCE);

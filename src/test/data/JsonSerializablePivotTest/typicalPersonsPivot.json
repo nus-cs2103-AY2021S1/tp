@@ -6,7 +6,7 @@
     "status": "COLD",
     "documents": [ {
       "name" : "name",
-      "reference" : "test1.txt"
+      "reference" : "validButShouldNotExist.txt"
     } ],
     "witnesses": [ {
       "name" : "Janice",

@@ -62,6 +62,7 @@ public class OpenDocumentCommandTest {
         //get first document
         Document documentMissing = firstCase.getDocuments().get(validDocIndex.getZeroBased());
 
+
         //command to execute
         OpenDocumentCommand openDoc = new OpenDocumentCommand(validDocIndex);
 
