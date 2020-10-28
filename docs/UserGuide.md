@@ -23,6 +23,7 @@ FaculType is a **desktop app** for managing **faculty members and their modules*
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
