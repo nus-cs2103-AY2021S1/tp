@@ -284,8 +284,7 @@ public class ParserUtil {
         assert criterion != null;
         String criterionAllUpperCase = criterion.toUpperCase();
         switch(criterionAllUpperCase) {
-        case("DESCRIPTION"):
-        case("DESC"):
+        case("NAME"):
             return Criterion.NAME;
         case("DATE"):
         case("DEADLINE"):
