@@ -3,12 +3,9 @@ package seedu.address.logic.commands.ingredientcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INGREDIENTS;
 
-import java.util.List;
-
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.ingredient.Ingredient;
 
 /**
  * Set the level of one specific ingredient to a specific level.
