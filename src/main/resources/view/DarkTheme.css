@@ -159,6 +159,22 @@
     -fx-font-style: italic;
 }
 
+.calendar-label-mmyyyy {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 18px;
+    -fx-text-fill: derive(#d2691e, 10%);
+}
+
+.dayLabel {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: lightskyblue;
+    -fx-font-style: italic;
+}
+#leftBtn, #rightBtn{
+    -fx-border-width: 0;
+    -fx-background-color: #383838;
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }
