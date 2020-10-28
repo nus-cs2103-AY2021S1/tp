@@ -3,7 +3,6 @@ package seedu.address.model.project;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
@@ -20,7 +19,6 @@ public class Participation {
     private String project;
     private Role role;
     private Set<Task> tasks;
-    private Set<Meeting> meetings;
 
     /**
      * Constructor for Participation
@@ -30,7 +28,6 @@ public class Participation {
         this.project = project;
         role = Role.MEMBER;
         tasks = new HashSet<>();
-        meetings = new HashSet<>();
     }
 
     /**
@@ -41,21 +38,10 @@ public class Participation {
         this.project = project;
         this.role = role;
         tasks = new HashSet<>();
-        meetings = new HashSet<>();
     }
 
     public void changeRole(Role role) {
         this.role = role;
-    }
-
-    /**
-     * Indicates attendance for the meeting.
-     *
-     * @param meeting meeting to attend
-     */
-    public void attends(Meeting meeting) {
-        meetings.add(meeting);
-        this.getProject().addMeeting(meeting);
     }
 
     /**
@@ -75,16 +61,6 @@ public class Participation {
      */
     public void deleteTask(Task task) {
         tasks.remove(task);
-    }
-
-    /**
-     * Checks whether the person is an attendee of the meeting.
-     *
-     * @param meeting meeting to check
-     * @return true if the person is an attendee of the meeting, and false otherwise
-     */
-    public boolean isAttendeeOf(Meeting meeting) {
-        return meetings.contains(meeting);
     }
 
     /**
@@ -129,10 +105,6 @@ public class Participation {
         return tasks;
     }
 
-    public Set<Meeting> getMeetings() {
-        return meetings;
-    }
-
     public void setPerson(Person person) {
         this.person = person.getGitUserNameString();
     }
@@ -150,7 +122,6 @@ public class Participation {
         Participation otherParticipation = (Participation) other;
         return otherParticipation.getProject().equals(getProject())
                 && otherParticipation.getPerson().equals(getPerson())
-                && otherParticipation.getMeetings().equals(getMeetings())
                 && otherParticipation.getRole().equals(getRole())
                 && otherParticipation.getTasks().equals(getTasks());
     }

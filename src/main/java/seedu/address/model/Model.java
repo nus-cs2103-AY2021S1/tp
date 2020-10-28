@@ -6,7 +6,6 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -185,11 +184,6 @@ public interface Model {
     void enterTeammate(Participation teammate);
 
     /**
-     * Enters the designated meeting of the current project.
-     */
-    void enterMeeting(Meeting meeting);
-
-    /**
      * Updates the project to be displayed on dashboard.
      * @param project project to be displayed on dashboard
      */
@@ -220,16 +214,6 @@ public interface Model {
      * Gets the teammate to be displayed on dashboard.
      */
     Optional<Participation> getTeammateToBeDisplayedOnDashboard();
-
-    /**
-     * Updates the meeting to be displayed on dashboard.
-     */
-    void updateMeetingToBeDisplayedOnDashboard(Meeting meeting);
-
-    /**
-     * Gets the meeting to be displayed on dashboard.
-     */
-    Optional<Meeting> getMeetingToBeDisplayedOnDashboard();
 
     /**
      * Updates the person to be displayed on dashboard.

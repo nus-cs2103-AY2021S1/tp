@@ -122,8 +122,9 @@ public class Task implements Comparable<Task> {
 
     /**
      * Checks if the task is due on the given deadline.
-     * @param deadline  the given deadline to check
-     * @return  true if the task is due on the given deadline, and false otherwise
+     *
+     * @param deadline the given deadline to check
+     * @return true if the task is due on the given deadline, and false otherwise
      */
     public boolean isDueOn(Deadline deadline) {
         assert (deadline != null);
@@ -133,6 +134,7 @@ public class Task implements Comparable<Task> {
             return this.deadline.equals(deadline);
         }
     }
+
     public boolean addAssignee(String assignee) {
         return assignees.add(assignee);
     }
@@ -199,7 +201,7 @@ public class Task implements Comparable<Task> {
         if (this == o) {
             return true;
         }
-        if (o == null || getClass() != o.getClass()) {
+        if (!(o instanceof Task)) {
             return false;
         }
         Task task = (Task) o;
@@ -208,6 +210,15 @@ public class Task implements Comparable<Task> {
                 && (getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))
                 //            && getPublishDate().equals(task.getPublishDate())
                 && Objects.equals(getDeadline(), task.getDeadline());
+        //        if (Double.compare(task.getProgress(), getProgress()) != 0) {
+        //            return false;
+        //        }
+        //        if (!getTaskName().equals(task.getTaskName())) {
+        //            return false;
+        //        }
+        //        if (!(getDescription() == task.getDescription() || getDescription().equals(task.getDescription()))) {
+        //            return false;
+        //        }
     }
 
     @Override

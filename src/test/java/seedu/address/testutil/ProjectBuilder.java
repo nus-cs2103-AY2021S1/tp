@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.Participation;
@@ -34,7 +33,6 @@ public class ProjectBuilder {
     private ProjectDescription projectDescription;
     private Set<ProjectTag> projectTags;
     private Set<Task> tasks;
-    private Set<Meeting> meetings;
     private HashMap<GitUserName, Participation> participations;
 
     /**
@@ -47,7 +45,6 @@ public class ProjectBuilder {
         projectDescription = new ProjectDescription(DEFAULT_ADDRESS);
         projectTags = new HashSet<>();
         tasks = new HashSet<>();
-        meetings = new HashSet<>();
         participations = new HashMap<>();
     }
 
@@ -61,7 +58,6 @@ public class ProjectBuilder {
         projectDescription = projectToCopy.getProjectDescription();
         projectTags = new HashSet<>(projectToCopy.getProjectTags());
         tasks = new HashSet<>(projectToCopy.getTasks());
-        meetings = new HashSet<>(projectToCopy.getMeetings());
         participations = new HashMap<>();
         participations.putAll(projectToCopy.getParticipationHashMap());
     }
@@ -88,14 +84,6 @@ public class ProjectBuilder {
      */
     public ProjectBuilder withTasks(ArrayList<String>... tasks) {
         this.tasks = SampleDataUtil.getTaskSet(tasks);
-        return this;
-    }
-
-    /**
-     * Parses the {@code tasks} into a {@code Set<Task>} and set it to the {@code Project} that we are building.
-     */
-    public ProjectBuilder withMeetings(String... meetings) {
-        this.meetings = SampleDataUtil.getMeetingSet(meetings);
         return this;
     }
 
@@ -140,7 +128,7 @@ public class ProjectBuilder {
      */
     public Project build() {
         return new Project(projectName, deadline, repoUrl, projectDescription,
-                projectTags, participations, tasks, meetings);
+                projectTags, participations, tasks);
     }
 
 }
