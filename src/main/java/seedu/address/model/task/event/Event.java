@@ -45,7 +45,7 @@ public class Event extends Task {
                                         Description description, Tag tag) {
         return new Event(title, startDateTime, endDateTime, description, tag, false);
     }
-
+    @Override
     public boolean isLesson() {
         return isLesson;
     }
