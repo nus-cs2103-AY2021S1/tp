@@ -85,14 +85,6 @@ public class ModuleList implements ReadOnlyModuleList {
     }
 
     /**
-     * Adds the given {@code zoomLink} to the given module {@code target}.
-     * {@code target} must exist in the module list.
-     */
-    public void addZoomToModule(Module target, ZoomLink zoomLink) {
-
-    }
-
-    /**
      * Removes {@code key} from this {@code ModuleList}.
      * {@code key} must exist in the module list.
      */

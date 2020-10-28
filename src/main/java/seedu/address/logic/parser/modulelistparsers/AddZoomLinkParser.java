@@ -38,23 +38,23 @@ public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddZoomLinkCommand.MESSAGE_USAGE));
         }
 
-        Index index;
+        Index moduleIndex;
         ZoomLink zoomLink;
         String moduleLessonType = argMultimap.getValue(PREFIX_NAME).get();
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            moduleIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
             zoomLink = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get());
-        } catch (ParseException pe) {
+        } catch (ParseException ex) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddZoomLinkCommand.MESSAGE_USAGE), pe);
+                    AddZoomLinkCommand.MESSAGE_USAGE), ex);
         }
 
         AddZoomDescriptor descriptor = new AddZoomDescriptor();
         descriptor.setLink(zoomLink);
         descriptor.setModuleLessonType(moduleLessonType);
 
-        return new AddZoomLinkCommand(index, descriptor);
+        return new AddZoomLinkCommand(moduleIndex, descriptor);
     }
 
     /**
