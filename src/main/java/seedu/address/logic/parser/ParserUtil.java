@@ -31,7 +31,7 @@ public class ParserUtil {
     public static final String MESSAGE_EMPTY_VISIT_INDEX = "";
     public static final int MESSAGE_EMPTY_VISIT_INDICATOR = -1;
     public static final String MESSAGE_INVALID_DURATION = "The given duration should be larger than 0.";
-  
+
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
@@ -212,12 +212,29 @@ public class ParserUtil {
             return MESSAGE_EMPTY_VISIT_INDICATOR;
         }
     }
-  
-     * Parses a {@code String dateTime} into an {@code AppointmentDateTime}.
-     * Leading and trailing whitespaces will be trimmed.
+
+    /**
+     * Validates {@code date} and  returns a  trimmed {@code trimmedDate}.
      *
-     * @throws ParseException if the given {@code dateTime} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
+    public static String parseVisit(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (Visit.isValidVisitDate(trimmedDate)) {
+            // Do nothing.
+        } else {
+            throw new ParseException(Visit.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDate;
+    }
+
+    /**
+    * Parses a {@code String dateTime} into an {@code AppointmentDateTime}.
+    * Leading and trailing whitespaces will be trimmed.
+    *
+    * @throws ParseException if the given {@code dateTime} is invalid.
+    */
     public static AppointmentDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();

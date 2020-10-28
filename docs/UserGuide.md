@@ -271,7 +271,7 @@ Format: `undo`
 * Only applies for commands that modify the patient database such as `add`, `addpicture`, `edit`, `delete` and `clear`.
 * Does not apply for undoable commands such as `find` and `list`.
 
-Example: 
+Example:
 * While trying to `addpicture` , you deleted Alex Yeoh's patient details by accident.
 * Instead of re-entering Alex Yeoh's information all over again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
 
@@ -366,7 +366,7 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 **Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in updated
             details in each text box.
-    
+
    * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box.
    * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box.
 
@@ -382,12 +382,12 @@ Add an appointment for the specified patient.
 
 Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
-* `INDEX` refers to the patient's index number as shown in the displayed patient list in the patient tab. 
+* `INDEX` refers to the patient's index number as shown in the displayed patient list in the patient tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
-* `APPOINTMENT DATETIME` refers to the date and starting time of the appointment. 
-    * It follows the format of `yyyy-MM-dd HH:mm`. 
-    * Do note that you will need to input the hour (`HH`) in  the 24-hour format. 
-   
+* `APPOINTMENT DATETIME` refers to the date and starting time of the appointment.
+    * It follows the format of `yyyy-MM-dd HH:mm`.
+    * Do note that you will need to input the hour (`HH`) in  the 24-hour format.
+
 * `DURATION` refers to the duration of the appointment, in minutes.
 
 <div markdown="block" class="alert alert-primary">
@@ -401,7 +401,7 @@ Example: You want to add an appointment with the first patient on the list.
 
 Step 1: Input `addapp 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
 
-Step 2: On the overview tab, you can find your newly added appointment saved inside the appointment list. 
+Step 2: On the overview tab, you can find your newly added appointment saved inside the appointment list.
 
 Step 3: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
 
@@ -419,15 +419,15 @@ Delete a specified appointment from the appointment database.
 
 Format: `deleteapp INDEX`
 
-* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab. 
+* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
-    
+
 Example: You want to delete your next upcoming appointment as your patient could not make it.
 
 Step 1: Input `deleteapp 1` and press Enter.
 
 Step 2: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
-    
+
 #### 3.4.3 Editing an appointment: `editapp`
 
 ### 3.5 Retrieving past commands using arrow keys

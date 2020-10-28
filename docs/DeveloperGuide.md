@@ -300,7 +300,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
     * Pros:
          * It is easier to implement as only a single List is required and all states can be accessed.
-   
+
     * Cons:
          * This requires constant updating of the `CliniCalStateList` such as purging of redundant states.
 
