@@ -594,6 +594,7 @@ Use case ends.
 * **Macro command**: A command that allows you to execute multiple built-in commands sequentially with just one line of input
 * **Mainstream OS**: Windows, Linux, Unix, OS-X.
 * **McGymmy/MG**: The name of this application, can be used interchangeably in this guide.
+* **Parameter**: Inputs given to the flag. For example, in `-n Chicken Rice`, `Chicken Rice` is the parameter passed to the flag `-n`.
 
 --------------------------------------------------------------------------------------------------------------------
 
