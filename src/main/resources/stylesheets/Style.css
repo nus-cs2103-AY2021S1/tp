@@ -1,9 +1,91 @@
-.background {
-    -fx-background-color: derive(#ffffff, 20%);
-}
 .main-pane {
-    -fx-background-color: derive(#ffffff, 20%);
+    -fx-background-color: #fafafa;
+    -fx-font-size: 16px;
+    -fx-font-family: "Source Sans Pro", sans-serif;
+    -fx-font-color: #212121;
 }
+
+.menu-bar {
+    -fx-font-size: 13px;
+}
+
+/** OVERRIDES **/
+
+.scroll-pane {
+    -fx-background-color:transparent;
+}
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color:transparent;
+}
+
+.scroll-pane .scroll-bar .thumb {
+    -fx-background-color: #757575;
+    -fx-background-radius: 10px;
+}
+
+.scroll-pane .scroll-bar .increment-button,
+.scroll-pane .scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+
+.scroll-pane .scroll-bar .increment-button .increment-arrow,
+.scroll-pane .scroll-bar .decrement-button .decrement-arrow {
+    -fx-padding: 0;
+}
+
+.hyperlink {
+    -fx-padding: 0;
+}
+
+/** END OVERRIDES **/
+
+.sidebar-container {
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-insets: 10px;
+    -fx-background-insets: 10px;
+    -fx-padding: 4px;
+}
+
+.sidebar-container .scroll-pane {
+    -fx-padding: 4px 12px;
+}
+
+.command-output-container {
+    -fx-background-color: #fbe9e7;
+    -fx-border-color: #ff7043;
+}
+
+.stats-container {
+    -fx-background-color: #fffde7;
+    -fx-border-color: #fbc02d;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .tab-bar {
     -fx-background-color: #fff3e0;
     -fx-background-radius: 4;
@@ -14,7 +96,6 @@
     -fx-padding: 2 2 2 2;
     -fx-background-radius: 4;
     -fx-background-color: transparent;
-    -fx-font-family: "Helvetica";
     -fx-font-size: 12pt;
     -fx-text-fill: #000000;
     -fx-background-insets: 0 -1 1 0, 0, 1, 2;
@@ -31,7 +112,6 @@
     -fx-padding: 2 2 2 2;
     -fx-background-radius: 4;
     -fx-background-color: ffe0b2;
-    -fx-font-family: "Helvetica";
     -fx-font-size: 12pt;
     -fx-text-fill: #000000;
     -fx-background-insets: 0 -1 1 0, 0, 1, 2;
@@ -45,22 +125,18 @@
     -fx-background-color: #ffe0b2;
 }
 .label-button {
-    -fx-font-family: "Helvetica";
     -fx-font-size: 12.5pt;
 }
 .cell_small_label {
-    -fx-font-family: "Segoe UI";
     -fx-font-size: 15px;
     -fx-text-fill: #fa47df;
 }
 .cell-big-label {
-    -fx-font-family: "Helvetica";
     -fx-font-size: 22pt;
 }
 #commandTextField {
     -fx-background-color: #eeeeee;
     -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI";
     -fx-font-color: #212121;
     -fx-prompt-text-fill: #757575;
     -fx-background-radius: 4;
@@ -88,7 +164,6 @@
     -fx-border-color: #8bc34a;
     -fx-border-radius: 6;
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI";
     -fx-font-color: #212121;
     -fx-padding: 12;
     -fx-spacing: 12;
@@ -104,7 +179,6 @@
     -fx-background-color: #fff3e0;
     -fx-border-color: #ff9800;
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI";
     -fx-font-color: #212121;
     -fx-prompt-text-fill: #212121;
     -fx-background-radius: 6;
@@ -127,7 +201,6 @@
     -fx-font-size: 11pt;
     -fx-font-color: #212121;
     -fx-prompt-text-fill: #212121;
-    -fx-font-family: "Segoe UI";
     -fx-background-color: #ffab91;
     -fx-background-radius: 5;
     -fx-padding: 4;
@@ -220,58 +293,8 @@
 }
 
 
-
-
-
-#displayBox {
-    -fx-background-color: #fbe9e7;
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI";
-    -fx-font-color: #212121;
-    -fx-background-radius: 6;
-    -fx-border-color: #ff7043;
-    -fx-border-radius: 6;
-    -fx-padding: 8 12;
-}
-#displayBox .scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
-}
-#displayBox .scroll-pane .viewport {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
-}
-#displayBox .scroll-pane .content{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
-}
-
-
 #favouriteBox {
     -fx-background-color:transparent;
-}
-#statsBox {
-    -fx-background-color: #fffde7;
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI";
-    -fx-font-color: #212121;
-    -fx-background-radius: 6;
-    -fx-border-color: #fbc02d;
-    -fx-border-radius: 6;
-    -fx-padding: 8 4;
-}
-
-#statsBox .scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
-}
-#statsBox .scroll-pane .viewport {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
-}
-#statsBox .scroll-pane .content{
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
 }
 #name {
     -fx-text-fill: #212121;
@@ -315,33 +338,4 @@
 #textDisplay .content {
     -fx-padding: 2px;
     -fx-highlight-fill: #7ecfff;
-}
-#anchor {
-    -fx-background-insets: 0;
-    -fx-background-color: transparent, white, transparent, white;
-}
-.header1 {
-    -fx-background-color: transparent;
-    -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI";
-    -fx-font-color: #575555;
-}
-.header1 .scroll-pane {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
-}
-.header1 .scroll-pane .viewport {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
-}
-.header1 .scroll-pane .content {
-    -fx-background-color: transparent;
-    -fx-background-radius: 0 0 10 10;
-}
-#pinBoxPlaceholder {
-    -fx-padding: 5;
-
-}
-#commandOutputPlaceholder {
-    -fx-padding: 5;
 }

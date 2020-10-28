@@ -51,7 +51,7 @@ public class DisplayController extends UiPart<Region> {
      */
     public DisplayController(Logic logic) {
         super(FXML);
-        this.getRoot().getStylesheets().add("/view/Style.css");
+        this.getRoot().getStylesheets().add("/stylesheets/Style.css");
         textDisplay = new TextDisplay(WELCOME_MESSAGE);
         notificationWindow = new NotificationWindow();
         recipeObservableList = logic.getFilteredRecipeList();

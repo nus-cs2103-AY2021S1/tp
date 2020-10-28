@@ -46,7 +46,7 @@ public class CommandOutput extends UiPart<Region> {
 
         if (result.isError()) {
             var foo = new Text("Error: ");
-            foo.setStyle("-fx-font-weight: bolder");
+            foo.setStyle("-fx-font-family: 'Source Sans Pro SemiBold'");
             foo.setFill(Color.RED);
 
             texts.add(foo);

@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <stylesheets><URL value="@Style.css" /></stylesheets>
+   <stylesheets><URL value="@../stylesheets/Style.css" /></stylesheets>
    <Button mnemonicParsing="false" onAction="#handleSelectRecipe" maxHeight="125.0" maxWidth="148.0"
            prefHeight="125.0" prefWidth="148.0" styleClass="rcButton"><graphic>
       <AnchorPane prefWidth="148.0" prefHeight="125.0"><children>

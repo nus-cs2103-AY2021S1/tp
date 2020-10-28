@@ -11,8 +11,9 @@ import java.util.stream.Collectors;
 import chopchop.commons.util.Pair;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 
 /**
  * The UI component that is responsible for displaying pinned information.
@@ -23,22 +24,14 @@ public class StatsBox extends UiPart<Region> {
     private static final String FXML = "PinBox.fxml";
 
     @FXML
-    private TextArea pins;
-
-    @FXML
-    private TextArea header1;
-
-    @FXML
-    private TextArea body1;
+    private TextFlow body;
 
     /**
      * Creates a {@code PinBox}.
      */
     public StatsBox() {
         super(FXML);
-        pins.setText("Statistics\n");
-        //header1.setText("COMMAND_LINE");
-        body1.setText(EMPTY_PROMPT);
+        body.getChildren().add(new Text(EMPTY_PROMPT));
     }
 
     private String formatRecords(ObservableList<Pair<String, LocalDateTime>> records) {
@@ -57,6 +50,7 @@ public class StatsBox extends UiPart<Region> {
 
     public void setBoxContent(String boxContent) {
         requireNonNull(boxContent);
-        body1.setText(boxContent);
+        body.getChildren().clear();
+        body.getChildren().add(new Text(boxContent));
     }
 }

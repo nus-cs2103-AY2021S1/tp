@@ -11,13 +11,13 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 /**
  * The manager of the UI component.
  */
 public class UiManager implements Ui {
-
     public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
@@ -30,7 +30,6 @@ public class UiManager implements Ui {
      * Creates a {@code UiManager} with the given {@code Logic}.
      */
     public UiManager(Logic logic) {
-        super();
         this.logic = logic;
     }
 
@@ -42,13 +41,12 @@ public class UiManager implements Ui {
         primaryStage.getIcons().add(getImage(ICON_APPLICATION));
 
         try {
-            mainWindow = new MainWindow(primaryStage, logic);
-            mainWindow.show(); //This should be called before creating other UI parts
-            mainWindow.fillInnerParts();
-
+            this.mainWindow = new MainWindow(primaryStage, logic);
+            this.mainWindow.show(); //This should be called before creating other UI parts
+            this.mainWindow.fillInnerParts();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
-            showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
+            this.showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
         }
     }
 
@@ -64,12 +62,10 @@ public class UiManager implements Ui {
         );
     }
 
-
     @Override
     public void displayModalDialog(AlertType type, String title, String headerText, String contentText) {
-        showAlertDialogAndWait(mainWindow.getPrimaryStage(), type, title, headerText, contentText);
+        showAlertDialogAndWait(this.mainWindow.getPrimaryStage(), type, title, headerText, contentText);
     }
-
 
     /**
      * Shows an alert dialog on {@code owner} with the given parameters.
@@ -77,8 +73,8 @@ public class UiManager implements Ui {
      */
     private static void showAlertDialogAndWait(Stage owner, AlertType type, String title, String headerText,
                                                String contentText) {
-        final Alert alert = new Alert(type);
-        alert.getDialogPane().getStylesheets().add("view/Style.css");
+        var alert = new Alert(type);
+        alert.getDialogPane().getStylesheets().add("stylesheets/Style.css");
         alert.initOwner(owner);
         alert.setTitle(title);
         alert.setHeaderText(headerText);
@@ -94,9 +90,8 @@ public class UiManager implements Ui {
     private void showFatalErrorDialogAndShutdown(String title, Throwable e) {
         logger.severe(title + " " + e.getMessage() + StringUtil.getDetails(e));
 
-        displayModalDialog(AlertType.ERROR, title, e.getMessage(), e.toString());
+        this.displayModalDialog(AlertType.ERROR, title, e.getMessage(), e.toString());
         Platform.exit();
         System.exit(1);
     }
-
 }
