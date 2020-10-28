@@ -125,9 +125,7 @@ public class ParserUtil {
     }
 
     /**
-<<<<<<< HEAD
      * Parses a {@code String serialNumbers} into an {@code Set<SerialNumber>}.
-=======
      * Parses a {@code String note} into a {@code Note}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -203,6 +201,29 @@ public class ParserUtil {
             throw new ParseException(QuantityAdder.MESSAGE_CONSTRAINTS);
         }
         return new QuantityAdder(trimmedValue);
+    }
+
+    /**
+     * Parses a {@code Optional<String> lowQuantity} into a {@code QuantityAdder}.
+     * Updates lowQuantity in quantity adder if lowQuantity is present and returns original
+     * quantity adder otherwise.
+     * Leading and trailing whitespaces will be trimmed if lowQuantity is present.
+     *
+     * @throws ParseException if the given {@code lowQuantity} is invalid.
+     */
+    public static QuantityAdder parseLowQuantityAdder(QuantityAdder quantityAdder,
+            Optional<String> lowQuantity) throws ParseException {
+        if (lowQuantity.isEmpty()) {
+            return quantityAdder;
+        }
+
+        String trimmedLowQuantity = lowQuantity.get().trim();
+
+        if (!Quantity.isValidQuantity(trimmedLowQuantity)) {
+            throw new ParseException(Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS);
+        }
+
+        return quantityAdder.updateLowQuantity(trimmedLowQuantity);
     }
 
     /**

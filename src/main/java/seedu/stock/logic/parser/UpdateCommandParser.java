@@ -5,6 +5,7 @@ import static seedu.stock.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.stock.logic.commands.UpdateCommand.MESSAGE_TOO_MANY_QUANTITY_PREFIXES;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NEW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_QUANTITY;
@@ -13,11 +14,14 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import seedu.stock.logic.commands.UpdateCommand;
 import seedu.stock.logic.commands.UpdateCommand.UpdateStockDescriptor;
 import seedu.stock.logic.parser.exceptions.ParseException;
+import seedu.stock.model.stock.Quantity;
+import seedu.stock.model.stock.QuantityAdder;
 import seedu.stock.model.stock.SerialNumber;
 
 /**
@@ -38,7 +42,7 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
-                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY
+                        PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_LOW_QUANTITY
                 );
         List<Prefix> allPrefixes = CliSyntax.getAllPossiblePrefixes();
 
@@ -88,14 +92,18 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
 
         // Update quantity with new quantity provided
         if (argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent()) {
-            String newQuantity = argMultimap.getValue(PREFIX_NEW_QUANTITY).get();
-            updateStockDescriptor.setQuantity(ParserUtil.parseQuantity(newQuantity));
+            String newQuantityDescription = argMultimap.getValue(PREFIX_NEW_QUANTITY).get();
+            Quantity newQuantity = ParserUtil.parseQuantity(newQuantityDescription);
+            Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
+            updateStockDescriptor.setQuantity(ParserUtil.parseLowQuantity(newQuantity, lowQuantity));
         }
 
         // Increment quantity with increment value provided
         if (argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent()) {
             String incrementValue = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).get();
-            updateStockDescriptor.setQuantityAdder(ParserUtil.parseQuantityAdder(incrementValue));
+            QuantityAdder toIncrement = ParserUtil.parseQuantityAdder(incrementValue);
+            Optional<String> lowQuantity = argMultimap.getValue(PREFIX_LOW_QUANTITY);
+            updateStockDescriptor.setQuantityAdder(ParserUtil.parseLowQuantityAdder(toIncrement, lowQuantity));
         }
 
         // Update location with new location provided
