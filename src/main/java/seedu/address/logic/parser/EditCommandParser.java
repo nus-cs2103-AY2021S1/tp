@@ -6,13 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
-import java.util.Optional;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -45,7 +42,11 @@ public class EditCommandParser implements Parser<EditCommand> {
                     .parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
                     .get()));
         }
-        parseTagForEdit(argMultimap.getValue(PREFIX_TAG).get()).ifPresent(editTaskDescriptor::setTag);
+        if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
+            editTaskDescriptor.setTag(ParserUtil
+                    .parseTag(argMultimap.getValue(PREFIX_TAG)
+                            .get()));
+        }
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -53,19 +54,4 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         return new EditCommand(index, editTaskDescriptor);
     }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Tag> parseTagForEdit(String tag) throws ParseException {
-        assert tag != null;
-
-        if (tag.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(new Tag(tag));
-    }
-
 }

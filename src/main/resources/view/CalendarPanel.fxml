@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane fx:id="calendar" alignment="CENTER" gridLinesVisible="true" prefHeight="450.0" styleClass="grid-pane" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="calendar" alignment="CENTER" gridLinesVisible="true" prefHeight="450.0" styleClass="grid-pane" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="80.0" />
