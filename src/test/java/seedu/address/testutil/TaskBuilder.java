@@ -1,16 +1,10 @@
 package seedu.address.testutil;
 
-import java.time.LocalDate;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
 
-import seedu.address.model.person.GitUserName;
 import seedu.address.model.project.Deadline;
-import seedu.address.model.project.Participation;
-import seedu.address.model.project.Project;
-import seedu.address.model.project.ProjectDescription;
-import seedu.address.model.project.ProjectName;
-import seedu.address.model.project.RepoUrl;
-import seedu.address.model.tag.ProjectTag;
 import seedu.address.model.task.Task;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -25,7 +19,7 @@ public class TaskBuilder {
     public static final Double DEFAULT_PROGRESS = 0.0;
     public static final Boolean DEFAULT_IS_DONE = false;
 
-    public String taskName;
+    private String taskName;
     private String description;
     private Optional<Deadline> deadline;
     private Double progress;
