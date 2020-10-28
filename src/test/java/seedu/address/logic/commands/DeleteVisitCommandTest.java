@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+//import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -10,19 +10,19 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.CliniCal;
+//import seedu.address.logic.commands.exceptions.CommandException;
+//import seedu.address.model.CliniCal;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyCliniCal;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.patient.Patient;
-import seedu.address.model.visit.Visit;
+//import seedu.address.model.visit.Visit;
 import seedu.address.model.visit.VisitHistory;
-import seedu.address.testutil.PatientBuilder;
+//import seedu.address.testutil.PatientBuilder;
 import seedu.address.testutil.TypicalIndexes;
 import seedu.address.testutil.TypicalPatients;
-import seedu.address.testutil.TypicalVisits;
+//import seedu.address.testutil.TypicalVisits;
 
 public class DeleteVisitCommandTest {
 
@@ -36,38 +36,38 @@ public class DeleteVisitCommandTest {
         assertThrows(NullPointerException.class, () -> new DeleteVisitCommand(1, null));
     }
 
-//    @Test
-//    public void execute_deleteVisitCommand_failure() {
-//        ObservableList<Patient> filteredPatientList = model.getFilteredPatientList();
-//        Index indexOfPatient = TypicalIndexes.INDEX_FIRST_PATIENT;
-//        Patient originalPatient = filteredPatientList.get(indexOfPatient.getZeroBased());
-//
-//        VisitHistory aliceVisitHistory = TypicalVisits.getTypicalVisitHistoryAlice();
-//        Patient editedPatient = new PatientBuilder(originalPatient).withVisitHistory(aliceVisitHistory).build();
-//
-//        DeleteVisitCommand deleteVisitCommand = new DeleteVisitCommand(VALID_VISIT_INDEX, indexOfPatient);
-//
-//        String expectedMessage = String.format(DeleteVisitCommand.MESSAGE_DELETE_VISIT_SUCCESS, editedPatient);
-//
-//        ReadOnlyCliniCal modelCliniCal = model.getCliniCal();
-//        ReadOnlyCliniCal cliniCal = new CliniCal(modelCliniCal);
-//        Model expectedModel = new ModelManager(cliniCal, new UserPrefs());
-//
-//        expectedModel.setPatient(originalPatient, editedPatient);
-//
-//        VisitHistory updatedVisitHistory = editedPatient.getVisitHistory();
-//        ObservableList<Visit> updatedObservableList = updatedVisitHistory.getObservableVisits();
-//        CommandResult expectedCommandResult = new CommandResult(expectedMessage, updatedObservableList);
-//
-//        try {
-//            CommandResult commandResult = deleteVisitCommand.execute(model);
-//            // Patient edited has visit history updated, hence it is no longer similar to the original visit history.
-//            assertNotEquals(expectedCommandResult, commandResult);
-//            assertNotEquals(expectedModel, model);
-//        } catch (CommandException exception) {
-//            throw new AssertionError("Command has failed", exception);
-//        }
-//    }
+    //    @Test
+    //    public void execute_deleteVisitCommand_failure() {
+    //        ObservableList<Patient> filteredPatientList = model.getFilteredPatientList();
+    //        Index indexOfPatient = TypicalIndexes.INDEX_FIRST_PATIENT;
+    //        Patient originalPatient = filteredPatientList.get(indexOfPatient.getZeroBased());
+    //
+    //        VisitHistory aliceVisitHistory = TypicalVisits.getTypicalVisitHistoryAlice();
+    //        Patient editedPatient = new PatientBuilder(originalPatient).withVisitHistory(aliceVisitHistory).build();
+    //
+    //        DeleteVisitCommand deleteVisitCommand = new DeleteVisitCommand(VALID_VISIT_INDEX, indexOfPatient);
+    //
+    //        String expectedMessage = String.format(DeleteVisitCommand.MESSAGE_DELETE_VISIT_SUCCESS, editedPatient);
+    //
+    //        ReadOnlyCliniCal modelCliniCal = model.getCliniCal();
+    //        ReadOnlyCliniCal cliniCal = new CliniCal(modelCliniCal);
+    //        Model expectedModel = new ModelManager(cliniCal, new UserPrefs());
+    //
+    //        expectedModel.setPatient(originalPatient, editedPatient);
+    //
+    //        VisitHistory updatedVisitHistory = editedPatient.getVisitHistory();
+    //        ObservableList<Visit> updatedObservableList = updatedVisitHistory.getObservableVisits();
+    //        CommandResult expectedCommandResult = new CommandResult(expectedMessage, updatedObservableList);
+    //
+    //        try {
+    //            CommandResult commandResult = deleteVisitCommand.execute(model);
+    //        // Patient edited has visit history updated, hence it is no longer similar to the original visit history.
+    //            assertNotEquals(expectedCommandResult, commandResult);
+    //            assertNotEquals(expectedModel, model);
+    //        } catch (CommandException exception) {
+    //            throw new AssertionError("Command has failed", exception);
+    //        }
+    //    }
 
     @Test
     public void execute_invalidVisitIndex_failure() {
