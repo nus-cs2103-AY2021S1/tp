@@ -32,14 +32,14 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
-
+  
 **:information_source: Notes and terminologies on archiving:**<br>
 
-* Clients not in the archive are said to be in the "active list", or the "active client list".
-
+* Clients not in the archive are said to be in the “active list”, or the “active client list”.
+ 
 * Upon starting up the app, users would see the active list by default.
-
-* In the "active mode", users can view the active list. In the "archive mode", users can view the archive.
+ 
+* In the “active mode”, users can view the active list. In the “archive mode”, users can view the archive.
 
 </div>
 
@@ -73,22 +73,80 @@ Notes:
 * If the priority field is empty, I4I will set the priority of the client to undefined. 
     See [Priority Feature](#priority-feature) for more information.
 
-* The policy must already been added into the policy list. You can do so using 
-`addp` Command. See [Add Policy Command](#adding-a-policy-addp) for more information.
+* The policy must already exist in the policy list. You can do so by using the
+`addp` command. See [Add Policy Command](#adding-a-policy) for more information.
 
-### Listing all clients : `list`
+* This command should not be used when viewing the archived client list.  
 
-Lists the entire list of clients in I4I.
+### <a name="adding-a-policy"></a>Adding a policy : `addp`
+
+Adds a Policy into the policy list.
+
+Format : `addp pn/POLICY_NAME pd/POLICY_DESCRIPTION`
+
+Examples :
+
+* `addp pn/Medishield pd/Covers COVID`
+
+Note :
+
+* Policy added must not have the same name as an existing policy.
+
+### Listing all active clients : `list`
+
+Lists the active clients in I4I.
 
 Format: `list`
 
+### Archiving an active client : `archive`
+
+Archives the client at the given index.
+
+Format: `archive CLIENT_INDEX`
+
+Example: `list` followed by `archive 2` archives the 2nd client in I4I.
+
+Notes: 
+
+* Archives the client at the specified `INDEX`.
+
+* The index refers to the index number shown in the displayed client list.
+
+* The index must be a positive integer 1, 2, 3, …​
+
+* This command should not be used in the archive mode.
+
+### Listing all archived clients : `list r/`
+
+Lists the archived clients in I4I.
+
+Format: `list r/`
+
+### Unarchiving an active client : `unarchive`
+
+Unarchives the client at the given index.
+
+Format: `unarchive CLIENT_INDEX`
+
+Example: `list r/` followed by `unarchive 2` unarchives the 2nd client in I4I.
+
+Notes: 
+
+* Unarchives the client at the specified `INDEX`.
+
+* The index refers to the index number shown in the displayed client list.
+
+* The index must be a positive integer 1, 2, 3, …​
+
+* This command should not be used in the active mode.
+
 ### Deleting a client : `delete`
 
-Deletes the client at the given index
+Deletes the client at the given index.
 
 Format: `delete CLIENT_INDEX`
 
-Example: `list` followed by `delete 2` deletes the 2nd client in I4I.
+Example: `list` followed by `delete 2` deletes the 2nd active client in I4I.
 
 Notes: 
 
@@ -108,25 +166,9 @@ This command clears all clients, from both the active list and the archive.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+Notes: 
 
-Exits the program.
-
-Format: `exit`
-
-### Adding a policy : `addp`
-
-Adds a Policy into the policy list.
-
-Format : `addp pn/POLICY_NAME pd/POLICY_DESCRIPTION`
-
-Examples :
-
-* `addp pn/Medishield pd/Covers COVID`
-
-Note :
-
-* Policy added must not have the same name as an existing policy.
+* This command does not clear the policy list.
 
 ### Clearing all policies : `clearp`
 
@@ -134,10 +176,15 @@ Clears all entries from the policy list.
 
 Format : `clearp`
 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
 ### Saving the data
 
 Data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
 
 ## Additional Features
 
@@ -190,9 +237,12 @@ Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENT_SOURCE]…​ [l/PRIORITY]` <br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend l/h`
 **Add Policy** | `addp pn/POLICY_NAME pd/POLICY_DESCRIPTION` <br>e.g., `addp pn/Medishield pd/Covers COVID`
+**Archive** | `archive INDEX`<br> e.g., `archive 3`
 **Clear Clients** | `clear`
 **Clear Policies** | `clearp`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Exit** | `exit`
-**List** | `list`
+**List Active Clients** | `list`
+**List Archived Clients** | `list r/`
 **Help** | `help`
+**Unarchive** | `unarchive INDEX`<br> e.g., `unarchive 3`
