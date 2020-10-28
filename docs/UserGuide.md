@@ -1,17 +1,46 @@
 ---
 layout: page
-title: ProductiveNUS
+title: User Guide
 ---
 
-ProductiveNUS is a **desktop application for managing and scheduling your academic tasks, optimized for use via a Command Line Interface** (CLI) contained in a **Graphical User Interface** (GUI). ProductiveNUS allows you to keep track of all your lessons and assignments at hand and type in your assignments quickly so that no time is wasted.
+## Introduction
+Welcome to ProductiveNUS User Guide! :blue_book:
+
+**ProductiveNUS is a desktop application** made for you, **a School of Computing (SoC) student in National University of Singapore (NUS)**, to **manage and schedule your academic tasks more effectively**. It makes use of a **Graphical User Interface (GUI)**, which provides you with an intuitive interface and immediate visual feedback. ProductiveNUS uses a **Command Line Interface (CLI)**; this means that you operate the application by typing commands into a [Command line](#gui-terminologies). If you are fast at typing, you can manage your academic tasks more efficiently.
+
+As a **student from the SoC in NUS**, you tend to have a **heavy workload**. ProductiveNUS helps **improve your productivity** by **enhancing your organisational skills**. Apart from simply **keeping track of your tasks**, ProductiveNUS is capable of **scheduling** them for you so you will never **miss any deadlines**. ProductiveNUS is also compatible with NUSMods, meaning all your **timetable information can be imported easily** into the application so all your academic tasks can be found in just one application.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Table of Contents
-1. Getting started
-2. Features
-3. FAQ
-4. Summary of commands supported
+
+* Table of Contents
+{:toc}
+
+--------------------------------------------------------------------------------------------------------------------
+
+## About
+This user guide provides you with the necessary information on how to become an expert user of ProductiveNUS. 
+Before moving on to the next section, [Getting started](#getting-started), you can familiarize yourself with the terminologies, syntax and icons used in this user guide by reading the following sub-sections.  
+
+### GUI terminologies
+The figure below shows the GUI of ProductiveNUS, with its components labelled. 
+
+### Icon usages
+Wondering what each icon is used for? You can refer to the table below to find out.
+
+| Icon        | Icon usage                                               | Box color |
+|-------------|----------------------------------------------------------|-----------|
+| :clipboard: | - Notes about the command format <br> - Pointers to note | Green     |
+| :bulb:      | - Tip                                                    | Blue      |
+
+### Command syntax and terminologies
+
+All commands and their examples are demarcated with `markups`. `Markups` appear as a grey box as shown.
+
+You can find out more about the command terminologies here:
+
+* Prefix: An indicator to identify your input.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -27,34 +56,6 @@ ProductiveNUS is a **desktop application for managing and scheduling your academ
 
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
-
-   Some example commands you can try:
-
-   * **`add`**`n/Lab report 3 d/23-04-2020 1230 mod/CS2100` : Adds an assignment named `Lab report 3` to your schedule.
-
-   * **`delete`**`3` : Deletes the 3rd assignment shown in the current list.
-
-   * **`import url/YOUR_NUSMODS_URL`** : Imports your timetable.
-
-   * **`list`**`2` : Lists assignments with deadline 2 days from current date (48 hours from current date and time).
-   
-   * **`find`**`n/Lab` : Finds assignments with names that contain the word 'Lab'.
-
-   * **`remind`**`3` : Sets reminders for the 3rd assignment which will be displayed in `Your Reminders` section.
-   
-   * **`unremind`**`3` : Removes reminders set for the 3rd assignment (assignment will be removed from `Your Reminders` section).
-
-   * **`prioritize`**`3 priority/HIGH` : Sets a "HIGH" priority tag for the 3rd assignment.
-   
-   * **`unprioritize`**`3` : Removes the priority tag for the 3rd assignment.
-   
-   * **`done`**`3` : Marks the 3rd assignment as done.
-  
-   * **`undone`**`3` : Marks the 3rd assignment as not done.
-   
-   * **`exit`** : Exits the application.
-
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -63,7 +64,7 @@ ProductiveNUS is a **desktop application for managing and scheduling your academ
 
 <div markdown="block" class="alert alert-info">
 
-**:information_source: Notes about the command format:**<br>
+**:clipboard: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `add n/NAME_OF_ASSIGNMENT`, `NAME_OF_ASSIGNMENT` is a parameter which can be used as `add n/Assignment 2`.
@@ -74,6 +75,9 @@ ProductiveNUS is a **desktop application for managing and scheduling your academ
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME_OF_ASSIGNMENT d/DEADLINE`, `d/DEADLINE n/NAME_OF_ASSIGNMENT` is also acceptable.
+  
+* All instances of `INDEX` **must be a positive integer**.<br>
+  e.g. 1, 2, 3, …​
 
 </div>
 
@@ -83,25 +87,45 @@ Adds an assignment into your schedule.
 
 Format: `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]`
 
-**Tip:**
-You can include the `remind` tag when adding the assignment instead of using the `remind` command after adding the assignment.
+<div markdown="span" class="alert alert-success">
+   
+**:bulb: Tip:**
+You can include `remind` when adding an assignment instead of using the `remind` command to set reminders after adding an assignment.
+</div>
 
 Examples:
 * `add n/Lab report 3 d/23-04-2020 1230 mod/CS2100`
 * `add n/Tutorial 2 d/29-06-2020 1400 mod/CS2100 remind`
 
-### Deleting an assignment : `delete`
+### Deleting assignments : `delete`
 
-Deletes the specified assignment from the assignment list.
+Format: `delete INDEX [MORE_INDEXES]`
 
-Format: `delete INDEX`
+You can delete assignments from your assignment list by specifying the assignment `INDEX` as shown in your list.
 
-* Deletes the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+You can delete **one or more** assignments at a time. Here is an example with steps to follow:
 
-Examples:
-* `list` followed by `delete 2` deletes the 2nd assignment in the assignment list.
+1) To delete assignments with the name "Statistics tutorial" and "Biology lab report" as shown in the figure below, you can simply enter `delete 1 3` into the command line as per their indexes that are circled and labelled in the figure.
+
+DIAGRAM
+
+2) The two assignments are no longer displayed and are successfully deleted from your assignment list. 
+3) A "Deleted assignments" message that includes the information of your deleted assignments will be displayed in the Command Box.
+
+DIAGRAM
+
+More examples:
+* `delete 1`
+* `delete 2 3 1`
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* At least one index must be **present**. For example, `delete` without any index will not work.
+* The indexes **must be a positive integer** 1, 2, 3, …​
+* The indexes **must be found in your assignment list**.
+* The indexes **must not be duplicated**. For example, `delete 3 3` will not work.
+</div>
 
 ### Importing your timetable : `import`
 
@@ -117,68 +141,121 @@ Examples:
 
 ### Listing assignments : `list`
 
-Format: `list [NUMBER]`
+Format: `list [NUMBER_OF_DAYS]`
 
-- Shows a list of assignments in your schedule within next `NUMBER` 
-days, starting from the current date (and current time).
-- A day represents 24 hours. 
-- `list` without `NUMBER` displays your entire list of assignments 
-stored in ProductiveNUS.
+You can list all your assignments with `list`. Alternatively, you can type `list` followed by an index `NUMBER_OF_DAYS` to list your assignments with deadlines that fall within the current date (and time) and `NUMBER_OF_DAYS` later (in number of hours).
 
+The `NUMBER_OF_DAYS` in hours is multiplied by 24.
 
-Examples: 
-- `list 2` lists all your assignments with deadline 2 days (48 hours) from the current date (and current time). 
-- `list 3` lists all your assignments with deadline 3 days (72 hours) from the current date (and current time). 
-- `list ` lists all your assignments.
+For example, `list 3` lists all your assignments that are due within 3 days (72 hours) from the current date (and current time). If the current date and time is 24/10/2020 12:00 pm, all assignments due from this date and time to 27/10/2020 12:00PM will be displayed.
+
+DIAGRAM
+
+<div markdown="span" class="alert alert-success">
+**:bulb: Tip:**
+You can use this `NUMBER_OF_DAYS` index to quickly view assignments that you need to complete soon!
+
+</div>
+
+More examples: 
+- `list`
+- `list 7`
+ 
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* `NUMBER_OF_DAYS` **must be a positive integer** 1, 2, 3, …​
+* **Only one** number can be keyed in. For example, `list 1 2` will not work. 
+</div>
 
 ### Finding assignments : `find`
 
-Format: `find PREFIX/ KEYWORD [MORE KEYWORDS]`
+Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 
-Parameters are:
-- n/ NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENTS] to find by name of assignment.
-- d/ DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] to find by the deadline (date or time) of assignment.
-- mod/ MODULE_CODE [MORE MODULE_CODE] to find by module code of assignment.
-- priority/ PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] to find by priority of assignment.
+You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
 
-- Finds assignments in your schedule by name, module code, deadline (date or time) or priority.
-- DATE_OR_TIME_OF_ASSIGNMENT is in the format dd-MM-yyyy or HHmm to enable searching by time and date of assignment separately.
-- Only one field can be searched at a time.
-- You can find assignments with multiple keywords of the same field.
+Here is the table of prefixes used:
+| Prefix | Syntax                                                          | Examples                             | Remarks                                                                                                                                                                                                                                        |
+|--------|-----------------------------------------------------------------|--------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| n/     | n/NAME_OF_ASSIGNMENT  [MORE NAME_OF_ASSIGNMENT]                 | n/Tutorial n/tutorial essay          | Case insensitive                                                                                                                                                                                                                               |
+| mod/   | mod/MODULE_CODE  [MORE MODULE_CODE]                             | mod/ST2334 mod/CS2100 cs2103t        | Case insensitive                                                                                                                                                                                                                               |
+| d/     | d/DATE_OR_TIME_OF_ASSIGNMENT  [MORE DATE_OR_TIME_OF_ASSIGNMENT] | d/24-10-2020 d/1200d/1300 25-11-2020 | Date keywords are irrespective of time  and time keywords are irrespective of date. For example, `find d/1300 25-11-2020` will list assignments with due date of 25-11-2020 (regardless of time) or with due time of 1300 (regardless of date).  |
+| p/     | p/PRIORITY_OF_ASSIGNMENT  [MORE PRIORITY_OF_ASSIGNMENT]         | p/high p/LOW                         | Case insensitive                                                                                                                                                                                                                               |
 
 
-Examples: 
-- `find n/Assignment Homework Lab` Finds all your assignments with names that has Assignment, Homework or Lab.
-- `find mod/CS2100` Finds all your assignments from the module CS2100. 
-- `find d/1200 24-10-2020` Finds all your assignments with due date of 24-10-2020 or with due time 1200.
-- `find priority/HIGH` Finds all assignments with high priority.
+Here is an example with steps to follow:
+1) To find assignments from the modules CS2100 and ST2334, you can simply key in `find mod/CS2100 ST2334`. 
+
+DIAGRAM
+
+2) Assignments from the modules CS2100 and ST2334 will appear in the assignment list.
+3) A "listed your assignments" message will be displayed in the command box.
+
+DIAGRAM
+
+<div markdown="block" class="alert alert-primary">
+
+ **:clipboard: Pointers to note:**<br>
+* `DATE_OR_TIME_OF_ASSIGNMENT` must have dates in the format **dd-MM-yyyy** or times in the format **HHmm** (24 hour).
+* You can only **find assignments with keywords of the same prefix**. For example, `find n/Assignment d/23-10-2020` will not work.
+</div>
 
 ### Setting reminders for assignments : `remind`
 
-Sets reminders for the specified assignment which will be displayed in `Your Reminders` section.
+Format: `remind INDEX [MORE_INDEXES]`
 
-Format: `remind INDEX`
+You can set reminders for specific assignments which will be displayed in `Your Reminders` (Highlighted in red in the figure below) for your easy referral.
 
-* Sets reminders for the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+   ![UserGuideYourReminders](images/UserGuideYourReminders.png)
+   *Figure 1: `Your Reminders` highlighted in red*
 
-Examples:
-* `list` followed by `remind 2` sets reminders for the 2nd assignment in the assignment list.
+You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
+
+For example, `remind 1` will set reminders for the first assignment in your assignment list ("CS1231S Homework" as shown in the figure below) and adds it to `Your Reminders`.
+
+      ---------------------------Figure of GUI with CS1231S Homework (Highlighted red) added into Your Reminders----------------------------
+
+You can set reminders for **more than one** assignments at a time as well. 
+
+For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list and adds both assignments to `Your Reminders`.
+
+
+      ---------------------------Figure of GUI with second and fourth assignment (Highlighted red) added into Your Reminders----------------------------
+
+
+<div markdown="block" class="alert alert-primary">
+  
+**:clipboard: Pointers to note:**<br>
+* At least one `INDEX` must be present. For example, `remind` will not work.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` must be found in your assignment list.
+
+</div>
 
 ### Removing reminders for assignments : `unremind`
 
-Removes reminders set for the specified assignment (assignment will be removed from `Your Reminders` section)
-
 Format: `unremind INDEX`
 
-* Removes reminders set for the assignment at the specified `INDEX`.
-* The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
+You can remove your reminded assignments from `Your Reminders` by specifying the `INDEX` of the assignment as shown in your **reminded assignments list**. 
+
+For example, `unremind 1` will remove the first assignment in `Your Reminders` ("CS2106 Lab" as shown in the figure below).
+
+      ---------------------------------Figure of GUI before CS2106 Lab is removed from Your Reminders---------------------------------
+
+      ---------------------------------Figure of GUI after CS2106 Lab is removed from Your Reminders----------------------------------
+
+<div markdown="block" class="alert alert-primary">
+  
+**:clipboard: Pointers to note:**<br>
+* At least one `INDEX` must be present. For example, `unremind` will not work.
+* `INDEX` **must be a positive integer** 1, 2, 3, …​
+* The `INDEX` must be found in `Your Reminders`.
+
+</div>
 
 ### Setting priority for assignments : `prioritize`
 
-Sets a priority tag for the specified assignment.
+Sets a priority for the specified assignment.
 
 Format: `prioritize INDEX priority/PRIORITY`
 
@@ -190,7 +267,7 @@ Format: `prioritize INDEX priority/PRIORITY`
 
 ### Removing priority for assignments : `unprioritize`
 
-Removes a priority tag for the specified assignment.
+Removes a priority for the specified assignment.
 
 Format: `unprioritze INDEX`
 
@@ -233,6 +310,26 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Command summary
+
+| Action | Format | Examples |
+|-|-|-|
+| **add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE [remind]` | `add n/Math tutorial d/21-03-2020 1100 mod/ST2334` |
+| **delete** | `delete INDEX [MORE_INDEXES]` | `delete 3` `delete 2 3 4` |
+| **import** | `import url/NUSMODS_URL` | `import url/https://nusmods.com/timetable/sem-2/share?CS2108=LEC:1` |
+| **list** | `list [NUMBER_OF_DAYS]` | `list 2` `list` |
+| **find** | `find PREFIX/ KEYWORD [MORE_KEYWORD]` | `find mod/CS2103T CS2100` `find p/HIGH` |
+| **remind** | `remind INDEX [MORE_INDEXES]` | `remind 5` `remind 2 4 5` |
+| **unremind** | `unremind INDEX` | `unremind 2` |
+| **prioritize** | `prioritize INDEX p/PRIORITY` | `prioritize 3 p/HIGH` `prioritize 1 p/LOW` |
+| **unprioritize** | `unprioritize INDEX` | `unprioritize 1` |
+| **done** | `done INDEX` | `done 4` |
+| **undone** | `undone INDEX` | `undone 2` |
+| **help** | `help` | `help` |
+| **exit** | `exit` | `exit` |
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -242,21 +339,3 @@ ProductiveNUS data are saved in the hard disk automatically after any command th
 3. Close the app in your other computer.
 4. Overwrite the newly created data file with the data file from your previous computer.
 5. All your existing data has been successfully transferred!
-
---------------------------------------------------------------------------------------------------------------------
-
-## Command summary
-
-Action | Format, Examples
---------|------------------
-**add** | `add n/NAME_OF_ASSIGNMENT d/DEADLINE_OF_ASSIGNMENT TIME_ASSIGNMENT_IS_DUE mod/MODULE​ [remind]` <br> e.g., `add n/Math tutorial d/21-03-2020 1100 mod/ST2334`
-**delete** | `delete INDEX`<br> e.g., `delete 3`
-**import** | `import url/NUSMODS_URL`
-**list** | `list [NUMBER]` e.g., `list 2`, `list`
-**find** | `find PREFIX/ KEYWORD [MORE KEYWORD]` e.g., `find mod/CS2103T CS2100`, `find priority/HIGH`
-**remind** | `remind INDEX`
-**unremind** | `unremind INDEX`
-**prioritize** | `prioritize INDEX priority/PRIORITY`
-**unprioritize** | `unprioritize INDEX`
-**done** | `done INDEX`
-**undone** | `undone INDEX`
