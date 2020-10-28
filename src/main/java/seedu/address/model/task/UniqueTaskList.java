@@ -111,11 +111,18 @@ public class UniqueTaskList implements Iterable<Task> {
         internalList.setAll(tasks);
     }
 
+    /**
+     * Records the most recently deleted task.
+     */
     public void addRecentDeletedTask(Task recentDeleted) {
         requireNonNull(recentDeleted);
         this.recentDeletedTask = recentDeleted;
     }
 
+    /**
+     * Adds the most recently deleted task into the task list {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
+     */
     public void retrieveRecentDeletedTask() {
         requireNonNull(this.recentDeletedTask);
         if (contains(recentDeletedTask)) {
