@@ -109,6 +109,11 @@ class JsonAdaptedModule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     GradeTracker.class.getSimpleName()));
         }
+        try {
+            gradeTracker.toModelType();
+        } catch (IllegalValueException illegalValueException) {
+            throw illegalValueException;
+        }
         if (!GradeTracker.isValidGradeTracker(gradeTracker.toModelType())) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }

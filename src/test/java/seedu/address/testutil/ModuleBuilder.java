@@ -25,6 +25,7 @@ public class ModuleBuilder {
 
     private ModuleName moduleName;
     private ZoomLink zoomLink;
+    private final Map<String, ZoomLink> zoomLinks = new HashMap<>();
     private ModularCredits modularCredits;
     private GradeTracker gradeTracker;
     private Set<Tag> tags;
@@ -73,6 +74,14 @@ public class ModuleBuilder {
     /**
      * Sets the {@code ZoomLink} of the {@code Module} that we are building.
      */
+    public ModuleBuilder withZoomLink(String zoomLink, String lesson) {
+        this.zoomLinks.put(lesson, new ZoomLink(zoomLink));
+        return this;
+    }
+
+    /**
+     * Sets the {@code ZoomLink} of the {@code Module} that we are building.
+     */
     public ModuleBuilder withModularCredits(double modularCredits) {
         this.modularCredits = new ModularCredits(modularCredits);
         return this;
@@ -91,8 +100,8 @@ public class ModuleBuilder {
      * @return a module
      */
     public Module build() {
-        //return new Module(moduleName, modularCredits);
-        return null;
+        return new Module(moduleName, zoomLinks, modularCredits);
+        //return null;
     }
 
 

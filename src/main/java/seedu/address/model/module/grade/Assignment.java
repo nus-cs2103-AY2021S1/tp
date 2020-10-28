@@ -30,9 +30,9 @@ public class Assignment {
      */
     public Assignment(String assignmentName, double assignmentPercentage, double assignmentResult) {
         requireNonNull(assignmentName);
-        checkArgument(isValidAssignmentName(assignmentName), MESSAGE_ASSIGNMENT_NAME_CONSTRAINTS);
+        /*checkArgument(isValidAssignmentName(assignmentName), MESSAGE_ASSIGNMENT_NAME_CONSTRAINTS);
         checkArgument(isValidAssignmentPercentage(assignmentPercentage), MESSAGE_ASSIGNMENT_PERCENTAGE_CONSTRAINTS);
-        checkArgument(isValidAssignmentResult(assignmentResult), MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+        checkArgument(isValidAssignmentResult(assignmentResult), MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);*/
         this.assignmentName = assignmentName;
         this.assignmentPercentage = assignmentPercentage;
         this.assignmentResult = assignmentResult;

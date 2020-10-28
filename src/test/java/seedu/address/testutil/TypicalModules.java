@@ -18,27 +18,27 @@ import seedu.address.model.module.Module;
 public class TypicalModules {
 
     public static final Module CS2030 = new ModuleBuilder().withName("CS2030")
-        .withZoomLink("www.cs2030zoom.us").withModularCredits(4.0).build();
+        .withZoomLink("www.cs2030zoom.us", "Tutorial").withModularCredits(4.0).build();
     public static final Module CS2101 = new ModuleBuilder().withName("CS2101")
-        .withZoomLink("www.zoom.us").withModularCredits(4.0).build();
+        .withZoomLink("www.zoom.us", "Tutorial").withModularCredits(4.0).build();
     public static final Module CS2105 = new ModuleBuilder().withName("CS2105")
-        .withZoomLink("www.zoom.us").withModularCredits(4.0).build();
+        .withZoomLink("www.zoom.us", "Tutorial").withModularCredits(4.0).build();
     public static final Module CS1101S = new ModuleBuilder().withName("CS1101S")
-        .withZoomLink("www.zoom.us").withModularCredits(4.0).build();
+        .withZoomLink("www.zoom.us", "Tutorial").withModularCredits(4.0).build();
     public static final Module IS1103 = new ModuleBuilder().withName("IS1103")
-        .withZoomLink("www.zoom.us").withModularCredits(4.0).build();
+        .withZoomLink("www.zoom.us", "Tutorial").withModularCredits(4.0).build();
 
     // Manually added
     public static final Module CS1231S = new ModuleBuilder().withName("CS1231S")
-        .withZoomLink("www.zoom.us").withModularCredits(4.0).build();
+        .withZoomLink("www.zoom.us", "Tutorial").withModularCredits(4.0).build();
     public static final Module MA1101R = new ModuleBuilder().withName("MA1101R")
-        .withZoomLink("www.zoom.us").withModularCredits(4.0).build();
+        .withZoomLink("www.zoom.us", "Tutorial").withModularCredits(4.0).build();
 
     // Manually added - Modules's details found in {@code CommandTestUtil}
     public static final Module CS2103 = new ModuleBuilder().withName(VALID_MODULENAME_CS2103T)
-        .withZoomLink(VALID_ZOOMLINK_CS2103T).withModularCredits(4.0).build();
+        .withZoomLink(VALID_ZOOMLINK_CS2103T, "Tutorial").withModularCredits(4.0).build();
     public static final Module ES2660 = new ModuleBuilder().withName(VALID_MODULENAME_ES2660)
-        .withZoomLink(VALID_ZOOMLINK_ES2660).withModularCredits(4.0).build();
+        .withZoomLink(VALID_ZOOMLINK_ES2660, "Tutorial").withModularCredits(4.0).build();
 
     private TypicalModules() {} // prevents instantiation
 
