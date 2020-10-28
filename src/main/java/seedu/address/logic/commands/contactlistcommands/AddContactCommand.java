@@ -6,6 +6,9 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 
+import java.util.logging.Logger;
+
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -34,6 +37,8 @@ public class AddContactCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New contact added: %1$s";
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in the contact list";
 
+    private final Logger logger = LogsCenter.getLogger(AddContactCommand.class);
+
     private final Contact toAdd;
 
     /**
@@ -43,6 +48,7 @@ public class AddContactCommand extends Command {
      */
     public AddContactCommand(Contact contact) {
         requireNonNull(contact);
+        logger.info("Adding a contact: " + contact.toString());
         toAdd = contact;
     }
 
@@ -55,6 +61,7 @@ public class AddContactCommand extends Command {
         }
 
         model.addContact(toAdd);
+        logger.info("Contact has been added: " + toAdd.toString());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

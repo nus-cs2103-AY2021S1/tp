@@ -89,14 +89,16 @@ class JsonAdaptedModule {
             throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
         }
         final ModuleName modelName = new ModuleName(name);
+        final ZoomLink modelLink;
         if (zoomLink == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ZoomLink.class.getSimpleName()));
-        }
-        if (!ZoomLink.isValidZoomLink(zoomLink)) {
+            /*throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ZoomLink.class.getSimpleName()));*/
+            modelLink = new ZoomLink("Not provided");
+        } else if (!ZoomLink.isValidZoomLink(zoomLink)) {
             throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
+        } else {
+            modelLink = new ZoomLink(zoomLink);
         }
-        final ZoomLink modelLink = new ZoomLink(zoomLink);
         if (gradeTracker == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     GradeTracker.class.getSimpleName()));

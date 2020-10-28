@@ -44,7 +44,7 @@ public class EditModuleCommand extends Command {
     private final EditModuleDescriptor editModuleDescriptor;
 
     /**
-     * @param index                the index of the module to edit from the display list
+     * @param index the index of the module to edit from the display list
      * @param editModuleDescriptor details to edit the Module with
      */
     public EditModuleCommand(Index index, EditModuleDescriptor editModuleDescriptor) {
@@ -117,4 +117,5 @@ public class EditModuleCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
 }

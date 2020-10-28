@@ -56,16 +56,7 @@ public class AddModuleParser implements Parser<AddModuleCommand> {
         } else {
             module = new Module(moduleName, tagList, modularCredits);
         }
-
-
-        // return new AddCommand(person);
         return new AddModuleCommand(module);
-
-        //Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        //Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-        //Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-
-        //Person person = new Person(name, email, tagList);
 
     }
 
