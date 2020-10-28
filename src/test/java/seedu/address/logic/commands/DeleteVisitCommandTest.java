@@ -33,7 +33,7 @@ public class DeleteVisitCommandTest {
 
     @Test
     public void constructor_nullValue_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteVisitCommand(1, null));
+        assertThrows(NullPointerException.class, () -> new DeleteVisitCommand(null, 1));
     }
 
     //    @Test
@@ -72,15 +72,15 @@ public class DeleteVisitCommandTest {
     @Test
     public void execute_invalidVisitIndex_failure() {
         Index indexOfPatient = TypicalIndexes.INDEX_FIRST_PATIENT;
-        DeleteVisitCommand deleteVisitCommand = new DeleteVisitCommand(INVALID_VISIT_INDEX, indexOfPatient);
+        DeleteVisitCommand deleteVisitCommand = new DeleteVisitCommand(indexOfPatient, INVALID_VISIT_INDEX);
 
         ObservableList<Patient> filteredPatientList = model.getFilteredPatientList();
         int indexOfPatientAsInt = indexOfPatient.getZeroBased();
         VisitHistory visitHistory = filteredPatientList.get(indexOfPatientAsInt).getVisitHistory();
         int sizeOfVisitHistory = visitHistory.getVisits().size();
 
-        DeleteVisitCommand deleteCommand = new DeleteVisitCommand(sizeOfVisitHistory + 1,
-                                                                  TypicalIndexes.INDEX_FIRST_PATIENT);
+        DeleteVisitCommand deleteCommand = new DeleteVisitCommand(TypicalIndexes.INDEX_FIRST_PATIENT,
+            sizeOfVisitHistory + 1);
 
         CommandTestUtil.assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_VISIT_INDEX);
         CommandTestUtil.assertCommandFailure(deleteVisitCommand, model, Messages.MESSAGE_INVALID_VISIT_INDEX);
@@ -91,8 +91,8 @@ public class DeleteVisitCommandTest {
         Index indexOfFirstPatient = TypicalIndexes.INDEX_FIRST_PATIENT;
         Index indexOfSecondPatient = TypicalIndexes.INDEX_SECOND_PATIENT;
 
-        DeleteVisitCommand firstCommand = new DeleteVisitCommand(1, indexOfFirstPatient);
-        DeleteVisitCommand secondCommand = new DeleteVisitCommand(1, indexOfSecondPatient);
+        DeleteVisitCommand firstCommand = new DeleteVisitCommand(indexOfFirstPatient, 1);
+        DeleteVisitCommand secondCommand = new DeleteVisitCommand(indexOfSecondPatient, 1);
 
         // Null value. Returns false
         assertFalse(firstCommand.equals(null));
@@ -104,7 +104,7 @@ public class DeleteVisitCommandTest {
         assertTrue(secondCommand.equals(secondCommand));
 
         // Same values. Returns true
-        DeleteVisitCommand firstCommandCopy = new DeleteVisitCommand(1, indexOfFirstPatient);
+        DeleteVisitCommand firstCommandCopy = new DeleteVisitCommand(indexOfFirstPatient, 1);
         assertTrue(firstCommand.equals(firstCommandCopy));
 
         // Different command. Returns false

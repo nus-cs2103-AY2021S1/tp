@@ -39,6 +39,6 @@ public class DeleteVisitCommandParser implements Parser<DeleteVisitCommand> {
                     DeleteVisitCommand.MESSAGE_USAGE), ive);
         }
 
-        return new DeleteVisitCommand(visitIndex, patientIndex);
+        return new DeleteVisitCommand(patientIndex, visitIndex);
     }
 }

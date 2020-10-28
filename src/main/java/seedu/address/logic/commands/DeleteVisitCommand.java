@@ -39,7 +39,7 @@ public class DeleteVisitCommand extends Command {
      * @param patientIndex Patient's index
      * @param visitIndex Visit's index
      */
-    public DeleteVisitCommand(int visitIndex, Index patientIndex) {
+    public DeleteVisitCommand(Index patientIndex, int visitIndex) {
         CollectionUtil.requireAllNonNull(patientIndex);
 
         this.patientIndex = patientIndex;
