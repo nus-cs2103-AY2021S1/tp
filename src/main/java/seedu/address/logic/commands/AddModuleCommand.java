@@ -14,6 +14,8 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds module.\n"
             + "Parameters: "
             + PREFIX_MODULE + "NAME ";
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. Run listMod to go back to the module view.";
+
 
     private final Module toAdd;
 
@@ -29,7 +31,10 @@ public class AddModuleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // TODO implement after changing model and addressbook class
+        if (!model.isInModuleView()) {
+            throw new CommandException(MESSAGE_NOT_IN_MODULE_VIEW);
+        }
+
         if (model.hasModule(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }

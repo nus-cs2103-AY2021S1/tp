@@ -1,10 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.*;
 
@@ -15,6 +11,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleId;
+
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 /**
@@ -30,11 +28,12 @@ public class EditModuleCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[MODULE_ID] "
             + "Example: " + COMMAND_WORD + " 1 "
-            + "CS2100";
+            + PREFIX_MODULE + "CS2100";
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the address book.";
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. Run listMod to go back to the module view.";
 
     private final Index index;
     private final String newModuleId;
@@ -55,6 +54,10 @@ public class EditModuleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Module> lastShownList = model.getFilteredModuleList();
+
+        if (!model.isInModuleView()) {
+            throw new CommandException(MESSAGE_NOT_IN_MODULE_VIEW);
+        }
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);

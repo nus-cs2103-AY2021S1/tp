@@ -62,6 +62,8 @@ public interface Model {
     /** Returns the module Trackr */
     ReadOnlyTrackr<Module> getModuleList();
 
+    void setViewToModule();
+
     /**
      * Returns true if a module with the same identity as {@code module} exists in trackr.
      */
@@ -86,6 +88,8 @@ public interface Model {
      */
     void setModule(Module target, String newModuleId);
 
+    boolean isInModuleView();
+
     //TutorialGroup Operations
 
     /**
@@ -100,6 +104,7 @@ public interface Model {
      */
     void addTutorialGroup(TutorialGroup tutorialGroup);
 
+    boolean isInTutorialGroupView();
     // Student Operations
 
     /**
@@ -131,6 +136,8 @@ public interface Model {
      * The student identity of {@code editedStudent} must not be the same as another existing student in trackr.
      */
     void setStudent(Student target, Student editedStudent);
+
+    boolean isInStudentView();
 
     // FilteredList Operations
 
