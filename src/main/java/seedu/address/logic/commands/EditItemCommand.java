@@ -71,9 +71,6 @@ public class EditItemCommand extends Command {
 
         // filter to only get matching and not deleted items
         itemList.removeIf(x -> !x.getName().equals(itemName));
-        if (itemList.isEmpty()) {
-            throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
-        }
 
         Item itemToEdit;
         itemToEdit = itemList.stream()

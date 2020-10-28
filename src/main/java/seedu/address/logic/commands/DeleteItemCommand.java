@@ -45,9 +45,6 @@ public class DeleteItemCommand extends Command {
 
         // filter to only get matching items
         itemList.removeIf(x -> !x.getName().equals(productName));
-        if (itemList.isEmpty()) {
-            throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
-        }
 
         Item itemToDelete;
         itemToDelete = itemList.stream()
