@@ -71,7 +71,7 @@ public class ViewMeetingCommand extends Command {
 
         model.setSelectedMeeting(meetingToView);
         return new CommandResult(String.format(MESSAGE_VIEW_MEETING_SUCCESS, meetingToView), false, false,
-                true);
+                true, false);
     }
 
     @Override
