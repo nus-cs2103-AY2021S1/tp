@@ -26,7 +26,7 @@ import seedu.resireg.model.student.Student;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final VersionedResiReg versionedResiReg;
+    private final StatefulResiReg statefulResiReg;
     private final UserPrefs userPrefs;
     private final Semester semester;
     private final ModelAwareFilteredList<Student> filteredStudents;
@@ -43,13 +43,13 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with ResiReg data: " + readOnlyResiReg + " and user prefs " + userPrefs);
 
-        versionedResiReg = new VersionedResiReg(readOnlyResiReg);
+        statefulResiReg = new StatefulResiReg(readOnlyResiReg);
         this.userPrefs = new UserPrefs(userPrefs);
-        semester = versionedResiReg.getSemester();
-        filteredStudents = new ModelAwareFilteredList<>(versionedResiReg.getStudentList());
-        filteredRooms = new ModelAwareFilteredList<>(versionedResiReg.getRoomList());
-        filteredAllocations = new ModelAwareFilteredList<>(versionedResiReg.getAllocationList());
-        filteredBinItems = new ModelAwareFilteredList<>(versionedResiReg.getBinItemList());
+        semester = statefulResiReg.getSemester();
+        filteredStudents = new ModelAwareFilteredList<>(statefulResiReg.getStudentList());
+        filteredRooms = new ModelAwareFilteredList<>(statefulResiReg.getRoomList());
+        filteredAllocations = new ModelAwareFilteredList<>(statefulResiReg.getAllocationList());
+        filteredBinItems = new ModelAwareFilteredList<>(statefulResiReg.getBinItemList());
     }
 
     public ModelManager() {
@@ -128,12 +128,12 @@ public class ModelManager implements Model {
 
     @Override
     public void setResiReg(ReadOnlyResiReg resiReg) {
-        versionedResiReg.resetData(resiReg);
+        statefulResiReg.resetData(resiReg);
     }
 
     @Override
     public ReadOnlyResiReg getResiReg() {
-        return versionedResiReg;
+        return statefulResiReg;
     }
 
     //=========== Utils  ================================================================================
@@ -149,33 +149,33 @@ public class ModelManager implements Model {
     @Override
     public boolean hasStudent(Student student) {
         requireNonNull(student);
-        return versionedResiReg.hasStudent(student);
+        return statefulResiReg.hasStudent(student);
     }
 
     @Override
     public void deleteStudent(Student target) {
-        versionedResiReg.removeStudent(target);
+        statefulResiReg.removeStudent(target);
         refilterLists();
     }
 
     @Override
     public void addStudent(Student student) {
         requireNonNull(student);
-        versionedResiReg.addStudent(student);
+        statefulResiReg.addStudent(student);
         refilterLists();
     }
 
     @Override
     public void addStudent(Student student, boolean isFront) {
         requireNonNull(student);
-        versionedResiReg.addStudent(student, isFront);
+        statefulResiReg.addStudent(student, isFront);
         refilterLists();
     }
 
     @Override
     public void setStudent(Student target, Student editedStudent) {
         requireAllNonNull(target, editedStudent);
-        versionedResiReg.setStudent(target, editedStudent);
+        statefulResiReg.setStudent(target, editedStudent);
         refilterLists();
     }
 
@@ -183,26 +183,26 @@ public class ModelManager implements Model {
     @Override
     public void setRoom(Room target, Room editedRoom) {
         requireAllNonNull(target, editedRoom);
-        versionedResiReg.setRoom(target, editedRoom);
+        statefulResiReg.setRoom(target, editedRoom);
         refilterLists();
     }
 
     @Override
     public boolean hasRoom(Room room) {
         requireNonNull(room);
-        return versionedResiReg.hasRoom(room);
+        return statefulResiReg.hasRoom(room);
     }
 
     @Override
     public void deleteRoom(Room target) {
-        versionedResiReg.removeRoom(target);
+        statefulResiReg.removeRoom(target);
         refilterLists();
     }
 
     @Override
     public void addRoom(Room room) {
         requireNonNull(room);
-        versionedResiReg.addRoom(room);
+        statefulResiReg.addRoom(room);
         refilterLists();
     }
 
@@ -210,7 +210,7 @@ public class ModelManager implements Model {
     @Override
     public boolean isAllocated(Student student) {
         requireNonNull(student);
-        return versionedResiReg.isAllocated(student);
+        return statefulResiReg.isAllocated(student);
     }
 
     /**
@@ -219,33 +219,33 @@ public class ModelManager implements Model {
     @Override
     public boolean isAllocated(Room room) {
         requireNonNull(room);
-        return versionedResiReg.isAllocated(room);
+        return statefulResiReg.isAllocated(room);
     }
 
     @Override
     public boolean hasAllocation(Allocation allocation) {
         requireNonNull(allocation);
-        return versionedResiReg.hasAllocation(allocation);
+        return statefulResiReg.hasAllocation(allocation);
     }
 
     @Override
     public void removeAllocation(Allocation target) {
         requireNonNull(target);
-        versionedResiReg.removeAllocation(target);
+        statefulResiReg.removeAllocation(target);
         refilterLists();
     }
 
     @Override
     public void addAllocation(Allocation allocation) {
         requireNonNull(allocation);
-        versionedResiReg.addAllocation(allocation);
+        statefulResiReg.addAllocation(allocation);
         refilterLists();
     }
 
     @Override
     public void setAllocation(Allocation target, Allocation editedAllocation) {
         requireAllNonNull(target, editedAllocation);
-        versionedResiReg.setAllocation(target, editedAllocation);
+        statefulResiReg.setAllocation(target, editedAllocation);
         refilterLists();
     }
 
@@ -253,32 +253,32 @@ public class ModelManager implements Model {
     @Override
     public void setBinItem(BinItem target, BinItem editedItem) {
         requireAllNonNull(target, editedItem);
-        versionedResiReg.setBinItem(target, editedItem);
+        statefulResiReg.setBinItem(target, editedItem);
         refilterLists();
     }
 
     @Override
     public boolean hasBinItem(BinItem binItem) {
         requireNonNull(binItem);
-        return versionedResiReg.hasBinItem(binItem);
+        return statefulResiReg.hasBinItem(binItem);
     }
 
     @Override
     public void deleteBinItem(BinItem target) {
-        versionedResiReg.removeBinItem(target);
+        statefulResiReg.removeBinItem(target);
         refilterLists();
     }
 
     @Override
     public void addBinItem(BinItem binItem) {
         requireNonNull(binItem);
-        versionedResiReg.addBinItem(binItem);
+        statefulResiReg.addBinItem(binItem);
         refilterLists();
     }
 
     @Override
     public void deleteExpiredBinItems() {
-        versionedResiReg.deleteExpiredBinItems(userPrefs.getDaysStoredInBin());
+        statefulResiReg.deleteExpiredBinItems(userPrefs.getDaysStoredInBin());
     }
 
     //=========== Semester =============================================================
@@ -378,41 +378,41 @@ public class ModelManager implements Model {
 
     @Override
     public boolean canUndoResiReg() {
-        return versionedResiReg.canUndo();
+        return statefulResiReg.canUndo();
     }
 
     @Override
     public boolean canRedoResiReg() {
-        return versionedResiReg.canRedo();
+        return statefulResiReg.canRedo();
     }
 
     @Override
     public void undoResiReg() {
-        versionedResiReg.undo();
+        statefulResiReg.undo();
         refilterLists();
     }
 
     @Override
     public void redoResiReg() {
-        versionedResiReg.redo();
+        statefulResiReg.redo();
         refilterLists();
     }
 
     @Override
     public void saveStateResiReg() {
-        versionedResiReg.save();
+        statefulResiReg.save();
     }
 
     //=========== AppMode =============================================================
 
     @Override
     public AppMode getAppMode() {
-        return versionedResiReg.getAppMode();
+        return statefulResiReg.getAppMode();
     }
 
     @Override
     public void finalizeRooms() {
-        versionedResiReg.finalizeRooms();
+        statefulResiReg.finalizeRooms();
     }
 
     @Override
@@ -429,7 +429,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return versionedResiReg.equals(other.versionedResiReg)
+        return statefulResiReg.equals(other.statefulResiReg)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents)
                 && filteredRooms.equals(other.filteredRooms)

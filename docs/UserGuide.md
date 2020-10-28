@@ -252,7 +252,35 @@ Clears all entries (students and rooms) from ResiReg.
 
 Format: `clear`
 
-#### 4. Exiting ResiReg : `exit`
+#### 4. Undo previous command : `undo`
+Restores the address book to the state before 
+the previous state modifying command was executed.
+
+<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-z</kbd> keyboard combination
+in the command box will execute the command as well.
+</div>
+
+#### 5. Redo previous undo command : `redo`
+Reverses the most recent undo command.
+
+<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-y</kbd> keyboard combination
+in the command box will execute the command as well.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`undo` and `redo` support the undoing and redoing respectively of commands
+that change the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
+</div>
+
+#### 6. List previously entered commands : `history`
+Lists all the commands previously entered in reverse chronological order.
+
+<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
+display the previous and next command respectively in the command box.
+
+</div>
+
+#### 7. Exiting ResiReg : `exit`
 Exits the program.
 
 Format: `exit`
