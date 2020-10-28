@@ -2,10 +2,26 @@
   "presets" : [ [ {
     "name" : "My saved Preset",
     "orderItems" : [ {
-      "name" : "Milo",
-      "price" : 0.9,
+      "name" : "Fries",
+      "price" : 1.5,
       "tagged" : [ ],
-      "quantity" : 100
+      "quantity" : 3
+    } ]
+  }, {
+    "name" : "second life",
+    "orderItems" : [ {
+      "name" : "Lemonade",
+      "price" : 2.0,
+      "tagged" : [ ],
+      "quantity" : 2
+    } ]
+  }, {
+    "name" : "I love Emilia",
+    "orderItems" : [ {
+      "name" : "Lemonade",
+      "price" : 2.0,
+      "tagged" : [ ],
+      "quantity" : 2
     } ]
   } ], [ ], [ {
     "name" : "vendor3",

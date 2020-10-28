@@ -12,8 +12,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.order.exceptions.DuplicateOrderItemException;
 import seedu.address.testutil.OrderItemBuilder;
 
@@ -62,13 +64,21 @@ public class OrderManagerTest {
 
     @Test
     public void hasOrderItem_orderItemInOrderManager_returnsTrue() {
-        orderManager.addOrderItem(PRATA);
+        try {
+            orderManager.addOrderItem(PRATA);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
         assertTrue(orderManager.hasOrderItem(PRATA));
     }
 
     @Test
     public void hasOrderItem_orderItemWithSameIdentityFieldsInOrderManager_returnsTrue() {
-        orderManager.addOrderItem(PRATA);
+        try {
+            orderManager.addOrderItem(PRATA);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
         OrderItem editedPrata = new OrderItemBuilder(PRATA).withTags(VALID_TAG_CLASSIC)
                 .build();
         assertTrue(orderManager.hasOrderItem(editedPrata));

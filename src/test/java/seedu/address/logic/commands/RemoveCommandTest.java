@@ -9,9 +9,11 @@ import static seedu.address.testutil.TypicalVendors.getTypicalAddressBook;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -32,7 +34,11 @@ public class RemoveCommandTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         model.selectVendor(0);
-        model.addOrderItem(NUGGETS);
+        try {
+            model.addOrderItem(NUGGETS);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
         return model;
     }
 
@@ -63,7 +69,11 @@ public class RemoveCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), TypicalVendors.getManagers(),
                 new OrderManager());
         expectedModel.selectVendor(0);
-        expectedModel.addOrderItem(remainingItems);
+        try {
+            expectedModel.addOrderItem(remainingItems);
+        } catch (CommandException e) {
+            Assertions.assertTrue(false);
+        }
 
         String expectedMessage = String.format(RemoveCommand.MESSAGE_REMOVE_ORDERITEM_SUCCESS, itemRemoved);
 
