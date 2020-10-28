@@ -42,6 +42,7 @@ public class ActiveAccountManager implements ActiveAccount {
      */
     private ActiveAccountManager(ReadOnlyAccount account, FilteredList<Expense> filteredExpenses,
                                  FilteredList<Revenue> filteredRevenues, Optional<ActiveAccount> previousState) {
+        requireAllNonNull(account, filteredExpenses, filteredRevenues, previousState);
         this.activeAccount = new Account(account);
         this.filteredExpenses = filteredExpenses;
         this.filteredRevenues = filteredRevenues;
