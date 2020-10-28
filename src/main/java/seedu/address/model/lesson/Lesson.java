@@ -156,7 +156,8 @@ public class Lesson {
         }
         int counter = 0;
         while ((currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate))
-            && (currentDate.isBefore(start) || currentDate.isBefore(end))) {
+            && (currentDate.isAfter(start) || currentDate.isEqual(start))
+            && (currentDate.isBefore(end) || currentDate.isEqual(end))) {
             counter++;
             currentDate = currentDate.plusDays(7);
         }

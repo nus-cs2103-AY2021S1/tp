@@ -89,8 +89,7 @@ public class StatisticsData {
         requireNonNull(tag);
         return getTotalTaskTime(tag) + getTotalLessonTime(tag);
     }
-
-    //TODO:get list of Tag
+    
     public Set<Tag> getTags() {
         return stats.keySet();
     }
@@ -106,7 +105,7 @@ public class StatisticsData {
                 .append(" | ")
                 .append(getTotalLessonTime(tag))
                 .append(" | ")
-                .append(getTotalLessonTime(tag))
+                .append(getTotalTime(tag))
                 .append("\n");
         }
         return sb.toString();

@@ -69,7 +69,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-
         return new EditCommand(index, editTaskDescriptor);
     }
 }

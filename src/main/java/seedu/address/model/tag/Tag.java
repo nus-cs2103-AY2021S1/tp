@@ -24,7 +24,8 @@ public class Tag {
     public Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
-        this.tagName = tagName;
+        String upperCaseTag = tagName.toUpperCase();
+        this.tagName = upperCaseTag;
     }
 
     /**
@@ -65,7 +66,7 @@ public class Tag {
      * Format tag as text for viewing.
      */
     public String toString() {
-        return tagName.equals("") ? "" : '[' + tagName + ']';
+        return tagName.equals("") ? "" : tagName;
     }
 
 }

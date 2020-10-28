@@ -2,12 +2,11 @@ package seedu.address.ui.card;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-//import seedu.address.model.task.DateTime;
 import seedu.address.model.task.Description;
-//import seedu.address.model.task.State;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.event.Event;
 import seedu.address.ui.UiPart;
@@ -32,6 +31,8 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private VBox card;
     @FXML
+    private FlowPane tags;
+    @FXML
     private Label title;
     @FXML
     private Label id;
@@ -54,7 +55,14 @@ public class EventCard extends UiPart<Region> {
         title.setText(event.getTitle().title);
         from.setText(event.getStartDateTime().toString());
         to.setText(event.getEndDateTime().toString());
+        loadTag(event);
         loadDescription(event);
+    }
+
+    private void loadTag(Event event) {
+        if (!event.getTag().tagName.equals("")) {
+            tags.getChildren().add(new Label(event.getTag().tagName));
+        }
     }
 
     private boolean loadDescription(Task task) {
