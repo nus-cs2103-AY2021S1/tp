@@ -1,10 +1,11 @@
-# User Guide for Supper Strikers
-
-
+---
+layout: page
+title: User Guide
+---
 **Supper Strikers is a desktop application for managing your supper orders.** While it has a GUI (Graphical User Interface), most of the user interactions happen using a CLI (Command Line Interface).
 
 * Table of Contents
-{coming soon}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -47,7 +48,7 @@
 * Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless
 there is any ambiguity. For example, `help` only requires the user to type `h` to be recognized, while `sort` will
 require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
-will be explained below. For the sake of clarity, the whole command will be shown instead of the prefix.
+will be explained below. For the sake of clarity, the whole command will be shown instead of the prefix.)
 
 </div>
 
@@ -70,13 +71,13 @@ See you next time!
 
 ### View/select vendor: `vendor`
 
-If no index is specified, displays the list of all vendors and returns to vendor mode.
-If there is an existing order, it is deleted.
-
-If an index is specified, the corresponding vendor is selected, and its menu will be shown.
+Displays the list of all vendors or selects the specified vendor.
 
 Format: `vendor [INDEX]`
 
+* If no `INDEX` is specified, it displays the list of all vendors and returns to vendor mode.
+* If an `INDEX` is specified, the corresponding vendor is selected, and its menu will be shown.
+* If there is an existing supper order, it will be deleted.
 * `INDEX` must be a positive integer and must not exceed the size of the vendor list.
 
 Examples:
@@ -141,10 +142,15 @@ Adds a new food item for the user according to the index from the menu.
 
 Format: `add INDEX [QUANTITY]`
 
+* The `INDEX` refers to the index number shown in the displayed menu list.
+* `INDEX` must be a positive integer and must not exceed the size of the menu list.
+* Quantity can be specified to indicate the number of item to be added. Otherwise, it adds one quantity of the item at the specified index.
+
 Examples:
 * `add 1 1` add 1 quantity of item at index 1.
 * `add 2 3` add 3 quantity of item at index 2.
 * `add 1` add 1 quantity of item at index 1.
+
 
 ### Removing an item : `remove`
 
@@ -152,14 +158,13 @@ Removes the specified item from the supper order.
 
 Format: `remove INDEX [QUANTITY]`
 
-* Removes the item at the specified `INDEX` of the user's supper order.
-* Quantity can be specified to indicate the number of item to be deleted. Otherwise, it deletes all quantities of the item.
-* The index refers to the index number shown in the displayed supper order list.
-* The index **must be a positive integer** 1, 2, 3, …
+* The `INDEX` refers to the index number shown in the displayed supper order list.
+* `INDEX` must be a positive integer and must not exceed the size of the supper order list.
+* Quantity can be specified to indicate the number of item to be deleted. Otherwise, it deletes all quantities of the item at the specified index.
 
 Examples:
-* `remove 2` deletes the second item in the supper order.
-* `remove 1 2` deletes 2 instances of the 1st item in the supper order.
+* `remove 2` deletes the 2<sup>nd</sup> item in the supper order.
+* `remove 1 2` deletes 2 instances of the 1<sup>st</sup> item in the supper order.
 
 
 ### Clearing the order: `clear`
@@ -189,7 +194,23 @@ Displays a copy-paste-able text of the order.
 
 Format: `submit`
 
-_{coming soon}_
+
+### Preset supper orders: `preset`
+
+Saves or Loads a preset of the user's supper order.
+
+Format: `preset MODE [NAME]`
+
+* `MODE` must be either 'save' or 'load', which dictates what the system will perform for the user's supper orders.
+* `NAME` is the preset name which the system will save the preset as, or tries to load the given preset by the given name.
+* If `NAME` is not specified, for save mode, it will save the preset with a default preset name. Meanwhile, for load mode,
+it will display all the saved presets under the current vendor to the user.
+
+Examples:
+* `preset save` saves the user's supper order with the default preset name.
+* `preset load vegan` loads the preset supper order with the preset name "vegan".
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -217,3 +238,4 @@ Action | Format
 **Undo** | `undo`
 **Total** | `total`
 **Submit** | `submit`
+**preset** | `preset MODE [NAME]`
