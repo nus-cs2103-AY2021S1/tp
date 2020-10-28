@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
@@ -17,8 +18,6 @@ import seedu.address.model.ingredient.UniqueIngredientList;
 public class IngredientBook implements ReadOnlyIngredientBook {
 
     private final UniqueIngredientList ingredients;
-
-
 
     /*
     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -92,6 +91,16 @@ public class IngredientBook implements ReadOnlyIngredientBook {
         return ingredients.findIngredientByName(ingredientName);
     }
 
+    /**
+     * Returns an arraylist of ingredients that are in shortage. If
+     * no ingredient is in shortage, return an empty arraylist.
+     *
+     * @return an arraylist of ingredients that are in shortage
+     */
+    public ArrayList<Ingredient> findIngredientInShortage() {
+        return ingredients.findIngredientInShortage();
+    }
+
     //// util methods
 
     @Override
@@ -103,7 +112,8 @@ public class IngredientBook implements ReadOnlyIngredientBook {
             builder.append(ingredients.get(i).toString()).append("\n");
         }
         return ingredients.asUnmodifiableObservableList().size()
-                + " ingredients\n"
+                + " ingredients \n"
+                + "\n" // line separator
                 + builder;
     }
 

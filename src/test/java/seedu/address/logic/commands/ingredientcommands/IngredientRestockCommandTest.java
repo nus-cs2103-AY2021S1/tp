@@ -1,12 +1,11 @@
 package seedu.address.logic.commands.ingredientcommands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -15,13 +14,13 @@ import seedu.address.model.ingredient.Amount;
 import seedu.address.model.ingredient.Ingredient;
 import seedu.address.model.ingredient.IngredientName;
 
-public class IngredientResetAllCommandTest {
+public class IngredientRestockCommandTest {
 
     @Test
-    public void execute_resetAllIngredients_success() {
+    public void execute_viewIngredientsInShortage_success() {
         Model model = new ModelManager();
         Model expectedModel = model;
-        Amount amount = new Amount ("10");
+        Amount amount = new Amount ("4");
 
         IngredientBook defaultBook = new IngredientBook();
         defaultBook.addIngredient(new Ingredient(new IngredientName("Milk"), amount));
@@ -45,30 +44,16 @@ public class IngredientResetAllCommandTest {
 
         expectedModel.setIngredientBook(defaultReadOnlyIngredientBook);
 
-        assertCommandSuccess(new IngredientResetAllCommand(), model,
-                IngredientResetAllCommand.MESSAGE_SUCCESS, expectedModel);
-
-    }
-
-
-    @Test
-    public void equals() {
-
-        final IngredientResetAllCommand standardCommand = new IngredientResetAllCommand();
-
-        // same values -> returns true
-        IngredientResetAllCommand commandWithSameValues = new IngredientResetAllCommand();
-
-        assertTrue(standardCommand.equals(commandWithSameValues));
-
-        // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
-
-        // null -> returns false
-        assertFalse(standardCommand.equals(null));
-
-        // different types -> returns false
-        assertFalse(standardCommand.equals(new ClearCommand()));
+        final IngredientRestockCommand standardCommand = new
+                IngredientRestockCommand();
+        String ingredientList = "";
+        final char lineSeparator = '\n';
+        List<Ingredient> lastShownList = expectedModel.getFilteredIngredientList();
+        for (Ingredient i : lastShownList) {
+            ingredientList += i.toString() + lineSeparator;
+        }
+        assertCommandSuccess(standardCommand, model,
+                IngredientRestockCommand.MESSAGE_SUCCESS + ingredientList, expectedModel);
 
     }
 }

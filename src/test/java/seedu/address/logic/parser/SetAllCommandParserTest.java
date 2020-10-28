@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.SetAllCommand;
+import seedu.address.logic.commands.ingredientcommands.SetAllCommand;
 import seedu.address.model.ingredient.Amount;
 
 class SetAllCommandParserTest {

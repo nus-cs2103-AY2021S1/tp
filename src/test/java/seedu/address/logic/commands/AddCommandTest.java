@@ -250,6 +250,11 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public ArrayList<Ingredient> findIngredientInShortage() {
+            throw new AssertionError("This method should not be called.");
+        }
+
     }
 
     /**
