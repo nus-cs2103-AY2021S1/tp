@@ -35,7 +35,6 @@ public class Statistics {
             JsonSerializablePlanus dataFromFile = JsonUtil.readJsonFile(filePath,
                     JsonSerializablePlanus.class).get();
             planus = dataFromFile.toModelType();
-            System.out.println(planus);
         } catch (Exception e) {
             logger.info("Failed to read PlaNus storage file in " + filePath + ": " + e.getMessage());
         }
@@ -48,7 +47,6 @@ public class Statistics {
         updateTimeTakenForTasks(planus.getTaskList(), stats, startDate, endDate);
         updateTimeTakenForLessons(planus.getLessonList(), stats, startDate, endDate);
         logger.info("Generated statistics \n" + stats.toString());
-        System.out.println(stats.toString());
         return stats;
     }
     private static FilteredList<Task> filterTasksWithinPeriod(ObservableList<Task> tasks, LocalDate start,
@@ -83,19 +81,6 @@ public class Statistics {
                 stats.addTag(currentTag);
             }
             stats.addLessonTime(currentTag, lesson.timeTakenWithinPeriod(startDate, endDate));
-        }
-    }
-
-    /**
-     * Main method
-     */
-    public static void main(String[] args) {
-        //test
-        try {
-            generateStatistics(ParserUtil.parseDate("01-05-2020"),
-                    ParserUtil.parseDate("01-05-2020"));
-        } catch (Exception e) {
-            System.out.println(e);
         }
     }
 }
