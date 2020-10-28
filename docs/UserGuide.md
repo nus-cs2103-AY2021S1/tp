@@ -53,6 +53,7 @@ Refer to this video for a quick tutorial on OneShelf Installation Guide:
 1. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ## <a name="3-features"></a>3. Features
 
 OneShelf has 2 main components, namely are:
@@ -62,14 +63,20 @@ OneShelf has 2 main components, namely are:
 From here onwards, the term `item` and `delivery` are used specifically for inventory items and pending deliveries respectively.
 *You may want to refer to the [Glossary](#6-glossary)*
 
-<div markdown="block" class="alert alert-info">
-**:information_source: Notes about the item command format:**<br>
 
+--------------------------------------------------------------------------------------------------------------------
+
+### 3.1 Command Features
+
+Things to note for the commands:
 * Commands with suffix of `-i` refer to `item` related commands, while those with suffix of `-d` refer to `delivery` related commands. <br>
   e.g. `add-i` is used to add an `item` and `add-d` is used to add a `delivery`
   
 * In the format of commands, `INDEX` refers to the numbering that is displayed.
-  <br> ![Index](images/Index.png)<br>
+  <a name="index"></a>
+  <br> ![Index](images/Index.png)
+  <br>
+  <br>
 
 * In the format of commands, words in `UPPER_CASE` are what you would input.<br>
   e.g. for a command with format `add-i n/NAME q/QUANTITY`, <br>
@@ -78,22 +85,19 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
 * In the format of commands, square brackets are to indicate optional fields. The fields in the square brackets are not mandatory to input.<br>
   e.g a command with format `n/NAME [t/TAG]` can be used as 
   1. either `n/Chicken t/Poultry` 
-  2. or just `n/Chicken`
+  1. or just `n/Chicken`
 
 * Items with `…`​ after them can be used multiple times in the same command or not at all.<br>
   e.g. `[t/TAG]…​` can be used 
   1. once: `t/brother`
-  2. or multiple times: `t/sibling t/brother t/family`
+  1. or multiple times: `t/sibling t/brother t/family`
 
 * Fields in the commands can be in any order.<br>
   e.g. a command with format `add-i n/NAME q/QUANTITY` can be used as
   1. either `add-i n/Chicken q/10`
-  2. or `add-i q/10 n/Chicken`
-
-</div>
+  1. or `add-i q/10 n/Chicken`
 
 --------------------------------------------------------------------------------------------------------------------
-### 3.1 Command Features
 
 #### 3.1.1 Viewing help : `help`
 
@@ -105,8 +109,7 @@ Format: `help start`
 
 To open up `help start` window, you can also do the following:
 * Press `F1` at any point in the usage of the app
-* 1. Click on `Help` located at the top toolbar
-  1. Click on `Start F1`
+* Click on `Help` located at the top toolbar and then click `Start F1`
 
 A new help window similar to [Figure 2](#uihelpstart) should appear on your desktop.
 
