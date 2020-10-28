@@ -397,6 +397,7 @@ Example 1: `redo` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 1. Follow steps 1 - 4 of [Example 1](#undoExample1) for the `undo` command
 
+<a name="undoExample1Step2"></a>
 2. Select the Command box and type in `undo`
 
 3. Either press Enter on your keyboard or click Send to execute the command
