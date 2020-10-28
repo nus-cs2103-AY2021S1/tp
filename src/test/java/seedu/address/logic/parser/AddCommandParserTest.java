@@ -1,6 +1,8 @@
 package seedu.address.logic.parser;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MULTIPLE_PREFIXES;
 import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_EXPENSE;
 import static seedu.address.logic.commands.CommandTestUtil.AMOUNT_DESC_REVENUE;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_EXPENSE;
@@ -72,7 +74,6 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, CATEGORY_DESC_REVENUE + DESCRIPTION_DESC_REVENUE
                 + AMOUNT_DESC_REVENUE + TAG_DESC_ROSES + TAG_DESC_SUNFLOWERS,
                 new AddCommand(revenueStubSeveralTags));
-
     }
 
     @Test
@@ -114,6 +115,15 @@ public class AddCommandParserTest {
     }
 
     @Test
+    public void parse_extraPrefixes() {
+        String expectedMessage = String.format(MESSAGE_MULTIPLE_PREFIXES, AddCommand.PREFIXES);
+
+        // Extra prefixes
+        assertParseFailure(parser, CATEGORY_DESC_EXPENSE + CATEGORY_DESC_EXPENSE + AMOUNT_DESC_EXPENSE
+                + DESCRIPTION_DESC_EXPENSE + TAG_DESC_ROSES, expectedMessage);
+    }
+
+    @Test
     public void parse_invalidField_failure() {
 
         //invalid category
@@ -131,7 +141,13 @@ public class AddCommandParserTest {
         //invalid tag
         assertParseFailure(parser, CATEGORY_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE
                 + AMOUNT_DESC_EXPENSE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+
+        //invalid tag
+        assertParseFailure(parser, CATEGORY_DESC_EXPENSE + DESCRIPTION_DESC_EXPENSE
+                + AMOUNT_DESC_EXPENSE + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
     }
+
+
 
 }
 
