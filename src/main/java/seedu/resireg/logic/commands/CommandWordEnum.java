@@ -16,8 +16,8 @@ import seedu.resireg.logic.parser.DeleteAliasCommandParser;
 import seedu.resireg.logic.parser.DeleteCommandParser;
 import seedu.resireg.logic.parser.DeleteRoomCommandParser;
 import seedu.resireg.logic.parser.EditCommandParser;
-import seedu.resireg.logic.parser.FindCommandParser;
-import seedu.resireg.logic.parser.ListRoomCommandParser;
+import seedu.resireg.logic.parser.ListRoomsCommandParser;
+import seedu.resireg.logic.parser.ListStudentsCommandParser;
 import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ReallocateCommandParser;
 import seedu.resireg.logic.parser.RestoreCommandParser;
@@ -46,7 +46,7 @@ public enum CommandWordEnum {
     LIST_ALIAS_COMMAND(ListAliasCommand.COMMAND_WORD, ListAliasCommand.HELP, args -> new ListAliasCommand(),
             AppMode.values()),
     // rooms
-    LIST_ROOM_COMMAND(ListRoomCommand.COMMAND_WORD, ListRoomCommand.HELP, new ListRoomCommandParser()::parse,
+    LIST_ROOMS_COMMAND(ListRoomsCommand.COMMAND_WORD, ListRoomsCommand.HELP, new ListRoomsCommandParser()::parse,
             AppMode.NEW, AppMode.NORMAL),
     EDIT_ROOM_COMMAND(EditRoomCommand.COMMAND_WORD, EditRoomCommand.HELP, new EditRoomCommandParser()::parse,
             AppMode.NEW, AppMode.NORMAL),
@@ -54,7 +54,7 @@ public enum CommandWordEnum {
     // ================== Normal mode =============================
     // misc
     TOGGLE_TAB_SPLIT_COMMAND(ToggleTabSplitCommand.COMMAND_WORD, ToggleTabSplitCommand.HELP,
-        args -> new ToggleTabSplitCommand(), AppMode.values()),
+            args -> new ToggleTabSplitCommand(), AppMode.values()),
     HISTORY_COMMAND(HistoryCommand.COMMAND_WORD, HistoryCommand.HELP, args -> new HistoryCommand()),
     CLEAR_COMMAND(ClearCommand.COMMAND_WORD, ClearCommand.HELP, args -> new ClearCommand()),
     // bin
@@ -66,8 +66,8 @@ public enum CommandWordEnum {
     ADD_COMMAND(AddCommand.COMMAND_WORD, AddCommand.HELP, new AddCommandParser()::parse),
     DELETE_COMMAND(DeleteCommand.COMMAND_WORD, DeleteCommand.HELP, new DeleteCommandParser()::parse),
     EDIT_COMMAND(EditCommand.COMMAND_WORD, EditCommand.HELP, new EditCommandParser()::parse),
-    FIND_COMMAND(FindCommand.COMMAND_WORD, FindCommand.HELP, new FindCommandParser()::parse),
-    LIST_COMMAND(ListCommand.COMMAND_WORD, ListCommand.HELP, args -> new ListCommand()),
+    LIST_STUDENTS_COMMAND(ListStudentsCommand.COMMAND_WORD, ListStudentsCommand.HELP,
+            new ListStudentsCommandParser()::parse),
     // allocations
     ALLOCATE_COMMAND(AllocateCommand.COMMAND_WORD, AllocateCommand.HELP, new AllocateCommandParser()::parse),
     DEALLOCATE_COMMAND(DeallocateCommand.COMMAND_WORD, DeallocateCommand.HELP, new DeallocateCommandParser()::parse),
@@ -80,7 +80,7 @@ public enum CommandWordEnum {
     DELETE_ROOM_COMMAND(DeleteRoomCommand.COMMAND_WORD, DeleteRoomCommand.HELP, new DeleteRoomCommandParser()::parse,
             AppMode.NEW),
     FINALIZE_ROOMS_COMMAND(FinalizeRoomsCommand.COMMAND_WORD, FinalizeRoomsCommand.HELP,
-        args -> new FinalizeRoomsCommand(), AppMode.NEW);
+            args -> new FinalizeRoomsCommand(), AppMode.NEW);
 
     // cache the maps from the helper functions
     private static Map<AppMode, Map<String, CommandWordEnum>> appModeToEnumMap = new HashMap<>();
@@ -91,7 +91,7 @@ public enum CommandWordEnum {
     private Help help;
     private List<AppMode> appModes;
 
-    CommandWordEnum(String commandWord, Help help, Parser<Command> commandParser, AppMode ... appModes) {
+    CommandWordEnum(String commandWord, Help help, Parser<Command> commandParser, AppMode... appModes) {
         this.commandWord = commandWord;
         this.help = help;
         this.commandParser = commandParser;
@@ -142,6 +142,5 @@ public enum CommandWordEnum {
     public List<AppMode> getAppModes() {
         return Collections.unmodifiableList(appModes);
     }
-
 
 }

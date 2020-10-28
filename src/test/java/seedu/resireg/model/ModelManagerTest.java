@@ -3,7 +3,7 @@ package seedu.resireg.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.resireg.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.resireg.testutil.Assert.assertThrows;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.ROOMS_R;
 import static seedu.resireg.testutil.TypicalCommandWordAliases.STUDENTS_ST;
@@ -181,7 +181,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(resiReg, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         modelManager.addCommandWordAlias(STUDENTS_ST);
 
         // different userPrefs -> returns false

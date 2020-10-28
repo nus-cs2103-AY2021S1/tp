@@ -79,7 +79,6 @@ public class EditRoomCommand extends Command {
                             editedRoom.getRoomNumber(),
                             allocation.getStudentId());
                     model.setAllocation(allocation, editedAllocation);
-                    // model.updateFilteredAllocationList(PREDICATE_SHOW_ALL_ALLOCATIONS);
                 }
             }
         }
