@@ -133,7 +133,8 @@ public class RemindCommandTest {
 
         RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 
-        assertCommandFailure(remindCommand, model, RemindCommand.MESSAGE_REMINDED_ASSIGNMENT);
+        assertCommandFailure(remindCommand, model, String.format(
+                RemindCommand.MESSAGE_REMINDED_ASSIGNMENT, firstAssignment));
     }
 
     @Test
@@ -150,7 +151,8 @@ public class RemindCommandTest {
 
         RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 
-        assertCommandFailure(remindCommand, model, RemindCommand.MESSAGE_REMINDED_ASSIGNMENT);
+        assertCommandFailure(remindCommand, model, String.format(
+                RemindCommand.MESSAGE_REMINDED_ASSIGNMENT, assignmentInList));
     }
 
     @Test

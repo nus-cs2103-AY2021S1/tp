@@ -35,7 +35,7 @@ public class RemindCommand extends Command {
             + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_REMIND_ASSIGNMENT_SUCCESS = "Set reminder for Assignment: %1$s";
-    public static final String MESSAGE_REMINDED_ASSIGNMENT = "This assignment already has reminders set.";
+    public static final String MESSAGE_REMINDED_ASSIGNMENT = "This assignment already has reminders set: %1$s";
 
     private final List<Index> targetIndexes;
 
@@ -63,7 +63,7 @@ public class RemindCommand extends Command {
             Assignment assignmentToRemind = lastShownList.get(targetIndex.getZeroBased());
 
             if (assignmentToRemind.isReminded() && model.hasAssignment(assignmentToRemind)) {
-                throw new CommandException(MESSAGE_REMINDED_ASSIGNMENT);
+                throw new CommandException(String.format(MESSAGE_REMINDED_ASSIGNMENT, assignmentToRemind));
             }
 
             assert(!assignmentToRemind.isReminded());
