@@ -2,7 +2,17 @@ package seedu.address.model.project;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -94,6 +104,9 @@ public class Project {
 
     public void showAllTasks() {
         this.taskFilter = SHOW_ALL_TASKS_PREDICATE;
+    }
+    public void updateTaskComparator(Comparator<Task> comparator) {
+        this.taskComparator = comparator;
     }
 
     public Optional<Task> getTaskOnView() {
