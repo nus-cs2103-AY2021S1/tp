@@ -460,6 +460,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  InventoryBook shows a list of items
 3.  User requests to delete a specific item in the list
 4.  InventoryBook deletes the item
+5.  User requests to list items
+6.  InventoryBook shows a list of items without the deleted item
 
     Use case ends.
 
@@ -467,6 +469,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
+    * 2a1. OneShelf shows an empty list.
+  
   Use case ends.
 
 * 3a. The given index is invalid.
@@ -475,13 +479,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC02 - Adding existing item's quantity or tags**
+**Use case: UC02 - Adding a new inventory item**
 
 **Actor**: User
 
 **MSS**
 
-1. User request to update item.
+1. User request to add a new inventory item.
 2. OneShelf adds the item accordingly.
 
    Use case ends.
@@ -496,12 +500,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1b. OneShelf unable to detect existing item name and supplier.
 
-  * 1b1. OneShelf adds a new item into the inventory.
+  Use case resumes at step 2.
 
+* 1c. InventoryBook detects existing item name and supplier.
+ 
+  * 1c1. InventoryBook adds on existing item name and supplier's with input quantity or new tags.
+    
   Use case ends.
-
- * 1c. InventoryBook detects existing item name and supplier.
-    * 1c1. InventoryBook adds on existing item name and supplier's with input quantity.
 
 **Use case: UC03 - Editing an item**
 
@@ -519,6 +524,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
+
+  * 2a1. OneShelf shows an empty list. 
 
   Use case ends.
 
@@ -600,6 +607,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4a1. OneShelf gives an appropriate message informing the user that there are no more redoable states to go to.
   
   Use case ends.
+  
+**Use case: UC07 - Finding a delivery**
+
+**Actor**: User
+
+**MSS**
+
+1. User finds a particular pending delivery.
+2. OneShelf returns the matching delivery.
+
+    Use Case ends.
+    
+**Extensions**
+
+* 1a. There are no matching delivery found in the list
+
+  * 1a1. OneShelf does not return any delivery.
+  
+  Use Case ends.
+  
+* 1b. Find contains an invalid prefix
+
+  * 1b1. OneShelf shows an error.
+  
+  Use Case ends.
+  
+**Use case: UC08 - Exits application**
+
+**Actor**: User
+
+**MSS**
+
+1. User exits the application.
+2. OneShelf application closes.
+
+  Use Case ends.
     
 
 ### Non-Functional Requirements
@@ -651,23 +694,51 @@ testers are expected to do more *exploratory* testing.
 
 if there is no existing same item. If there is an existing same item, 
 
-### Adding an item
+### Adding a new item
 
 1. Adding an item
     1. Test Case: `add-i n/Chicken q/123 s/NTUC`
        Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added 
        
     1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
-       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added when there is no existing same item. 
+       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added.
+       
+    1. Test Case: `add-i n/Chicken q/-10`
+       Expected: User will receive an error message as `Quantity` cannot be a negative number.
+       
+    1. Test Case: `add-i n/Chicken q/0 s/Sheng Shiong t/meat t/perishable`
+       Expected: Item with `Name` of Chicken, `Quantity` of 0 and 2 `Tag`s of meat and perishable added.
+       
+    1. Test Case: `add-i n/Chicken s/NTUC t/meat`
+       Expected: User will receive an error message as `Quantity` is a compulsory field for `add-i`.
 
 ### Adding to an existing item
 
 1. Adding to an existing item
+
+    1. Prerequisites: Item with `Name` of Chicken and `Supplier` of NTUC exists in the inventory book.
+       This item has `Quantity` of 50.
+
     1. Test Case: `add-i n/Chicken q/123 s/NTUC`
-       Expected: Item with `Name` of Chicken and `Supplier` of NTUC will have it's `Quantity` combine with input item's `Quantity`. `MaxQuantity` `Tags` `Metric` will be adopted from the existing item.
+       Expected: Item with `Name` of Chicken and `Supplier` of NTUC will have it's `Quantity` increased to 173. 
+       `MaxQuantity` `Tags` `Metric` will be adopted from the existing item.
        
-    1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
+    1. Test Case: `add-i n/Chicken q/123 s/NTUC max/500 metric/kg`
        Expected: User will receive an error message as `MaxQuantity` or `Metric` should not be defined when adding to existing item.
+       
+    1. Test Case: `add-i n/Chicken s/NTUC q/10 t/meat`
+       Expected: Meat tag should be added into the chicken supplied from NTUC, and quantity increased by 10.
+       
+### Adding a pending delivery
+
+1. Adding a pending delivery
+
+   1. Test Case: `add-d n/DAMITH p/91829722 a/Jln Bukit Batok o/Nasi lemak x2`
+       Expected: A pending delivery with `Name` of Damith, `Phone` of 91829722, `Address` of Jln Bukit Batok, 
+       `Order` of Nasi Lemak x2 and `deliver by` 30 minutes added to the delivery book.
+       
+   1. Test Case: `add-d n/DAMITH p/91829722 a/Jln Bukit Batok o/Nasi lemak x2 by/15`
+       Expected: Same delivery as the above test case is added with the exception of `deliver by` to be 15 minutes.
 
 ### Deleting an item
 
@@ -675,14 +746,14 @@ if there is no existing same item. If there is an existing same item,
 
    1. Prerequisites: List all items using the `list-i` command. Multiple items in the list.
 
-   1. Test case: `delete-i 1`<br>
+   1. Test Case: `delete-i 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete-i 0`<br>
+   1. Test Case: `delete-i 0`<br>
       Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size or 
-   x is a negative number)<br>
+   1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size, 
+   x is a negative number, or x is not an integer)<br>
       Expected: Similar to previous.
       
 ### Undoing a command
@@ -691,14 +762,14 @@ if there is no existing same item. If there is an existing same item,
     
     1. Prerequisites: No commands have been entered yet.
     
-    1. Test case: `undo` <br>
+    1. Test Case: `undo` <br>
         Expected: Error message is shown, stating that undo cannot be performed.
         
 1. Undoing after a command has executed
 
     1. Prerequisites: The last command entered was `clear-i`, which cleared all of 5 items in the inventory book.
     
-    1. Test case: `undo` <br>
+    1. Test Case: `undo` <br>
         Expected: The inventory book is restored to the state where it had 5 items. Success message is displayed.
       
 ### Redoing an undone command
@@ -707,7 +778,7 @@ if there is no existing same item. If there is an existing same item,
     
     1. Prerequisites: No commands have been undone yet.
     
-    1. Test case: `redo` <br>
+    1. Test Case: `redo` <br>
         Expected: Error message is shown, stating that redo cannot be performed.
         
     <div markdown="span" class="alert alert-primary">:bulb: **Note:** you can restart the application if you have entered commands previously
@@ -716,28 +787,28 @@ if there is no existing same item. If there is an existing same item,
 
     1. Prerequisites: The last command entered changed the Inventory/Delivery book.
     
-    1. Test case: `redo` <br>
+    1. Test Case: `redo` <br>
         Expected: Error message is shown, stating that redo cannot be performed.
         
 1. Undoing after a command has been undone
 
     1. Prerequisites: A `clear-i` command was entered, which cleared all of 5 items in the inventory book. It was followed by an `undo` command.
     
-    1. Test case: `redo` <br>
+    1. Test Case: `redo` <br>
         Expected: The inventory book is restored to the state where all its items were cleared. Success message is displayed. 
 
 ### Saving data
 
 1. Dealing with missing data files
 
-   1. Test case: First time user running OneShelf <br>
+   1. Test Case: First time user running OneShelf <br>
    Expected: OneShelf will load a sample data file.
 
 1. Dealing with corrupted data files
 
    1. Prerequisite: There is an existing json file (inventorybook.json or deliverybook.json)
 
-   1. Test case: Delete some mandatory field in the json file and launch OneShelf <br>
+   1. Test Case: Delete some mandatory field in the json file and launch OneShelf <br>
       Expected: OneShelf will load a new empty json file respectively
 
 
