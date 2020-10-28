@@ -5,6 +5,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LIST_TYPE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LOW_QUANTITY_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.INVALID_QUANTITY_DESC;
+import static seedu.stock.logic.commands.CommandTestUtil.INVALID_STATISTICS_TYPE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.LOCATION_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_APPLE;
@@ -18,6 +19,7 @@ import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
+import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 
 public class SuggestionCommandParserTest {
@@ -111,6 +113,26 @@ public class SuggestionCommandParserTest {
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.DELETE_COMMAND_WORD + userInput
                 + "\n" + DeleteCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_statisticsCommandSuggestion_success() {
+        // EP: incorrect command word
+        String userInput = INVALID_STATISTICS_TYPE_DESC;
+        SuggestionCommandParser parser = new SuggestionCommandParser("stat");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.STATISTICS_COMMAND_WORD + " st/source"
+                + "\n" + StatisticsCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word
+        parser = new SuggestionCommandParser("stats", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.STATISTICS_COMMAND_WORD + " st/source"
+                + "\n" + StatisticsCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

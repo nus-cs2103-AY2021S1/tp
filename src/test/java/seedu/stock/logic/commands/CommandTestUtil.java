@@ -14,6 +14,7 @@ import static seedu.stock.logic.parser.CliSyntax.PREFIX_SERIAL_NUMBER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_FIELD;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SORT_ORDER;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_SOURCE;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_STATISTICS_TYPE;
 import static seedu.stock.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class CommandTestUtil {
     public static final String INVALID_SORT_ORDER_DESC = " " + PREFIX_SORT_ORDER + "random";
     public static final String INVALID_SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + "note";
     public static final String INVALID_LIST_TYPE_DESC = " " + PREFIX_LIST_TYPE + "a";
+    public static final String INVALID_STATISTICS_TYPE_DESC = " " + PREFIX_STATISTICS_TYPE + "sour";
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
