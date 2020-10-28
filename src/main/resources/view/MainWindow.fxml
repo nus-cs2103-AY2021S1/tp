@@ -50,7 +50,7 @@
                      <items>
                     <VBox fx:id="taskList" styleClass="pane-with-border">
                            <children>
-                              <Label styleClass="label-bright" text="Tasks:" textFill="WHITE">
+                              <Label styleClass="label-header" text="Tasks:" textFill="WHITE">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
@@ -62,7 +62,7 @@
                     </VBox>
                         <VBox styleClass="pane-with-border">
                            <children>
-                              <Label styleClass="label-bright" text="Lessons:">
+                              <Label styleClass="label-header" text="Lessons:">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
