@@ -91,10 +91,6 @@ public class StatsCommandParser {
         var after = args.getArgument(Strings.ARG_AFTER);
         var before = args.getArgument(Strings.ARG_BEFORE);
 
-        if (before.size() + after.size() == 0) {
-            return Result.error("At least 1 search criteria must be specified");
-        }
-
         try {
 
             var arg1 = processDate(before).orElse(null);
@@ -128,10 +124,6 @@ public class StatsCommandParser {
 
         if (before.size() > 1 || after.size() > 1) {
             return Result.error("Multiple dates specified");
-        }
-
-        if (before.size() + after.size() == 0) {
-            return Result.error("At least 1 search criteria must be specified");
         }
 
         try {

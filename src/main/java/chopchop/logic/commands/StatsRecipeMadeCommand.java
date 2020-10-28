@@ -29,7 +29,7 @@ public class StatsRecipeMadeCommand extends Command {
     public StatsRecipeMadeCommand(LocalDateTime before, LocalDateTime after) {
         if (before == null && after == null) {
             var now = LocalDateTime.now();
-            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 0, 0, 0);
+            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 0, 0);
             this.after = this.before.plusDays(1);
         } else {
             this.before = before;
@@ -38,13 +38,15 @@ public class StatsRecipeMadeCommand extends Command {
     }
 
     private String getMessage() {
+        DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         String msg;
         if (this.before != null && this.after != null) {
+            var onBefore = this.before.format(onFormatter);
             var before = this.before.format(formatter);
             var after = this.after.format(formatter);
             if (this.before.plusDays(1).equals(this.after)) {
-                msg = String.format("Here is a list of ingredients used on %s", before);
+                msg = String.format("Here is a list of ingredients used on %s", onBefore);
             } else {
                 msg = String.format("Here is a list of ingredients used from the period %s to %s", after, before);
             }
