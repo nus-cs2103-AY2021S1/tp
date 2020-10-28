@@ -135,12 +135,12 @@ public class ResiReg implements ReadOnlyResiReg {
     public void resetData(ReadOnlyResiReg newData) {
         requireNonNull(newData);
 
-        setAppMode(newData.getAppMode());
         setSemester(newData.getSemester());
         setStudents(newData.getStudentList());
         setRooms(newData.getRoomList());
         setAllocations(newData.getAllocationList());
         setBinItems(newData.getBinItemList());
+        setAppMode(newData.getAppMode());
     }
 
     //// student-level operations
@@ -359,6 +359,9 @@ public class ResiReg implements ReadOnlyResiReg {
         listenerList.callListeners(this);
     }
 
+    //// methods related to AppMode
+    // AppMode can only be set internally
+
     @Override
     public AppMode getAppMode() {
         return appMode;
@@ -374,6 +377,7 @@ public class ResiReg implements ReadOnlyResiReg {
     }
 
     private void setAppMode(AppMode appMode) {
+        requireNonNull(appMode);
         if (appMode != this.appMode) {
             this.appMode = appMode;
             indicateModified();
