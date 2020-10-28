@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalAppointments.getTypicalCliniCal;
+import static seedu.address.testutil.TypicalAppointments.getTypicalCliniCalWithAppointments;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_APPOINTMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_APPOINTMENT;
 
@@ -19,7 +19,7 @@ import seedu.address.model.appointment.Appointment;
 
 public class DeleteAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalCliniCal(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalCliniCalWithAppointments(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {

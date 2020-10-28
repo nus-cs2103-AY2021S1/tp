@@ -98,7 +98,7 @@ public class EditAppointmentCommand extends Command {
             editAppointmentDescriptor) throws CommandException {
         assert appointmentToEdit != null;
 
-        long oldDuration = appointmentToEdit.getStartTime().computeDuration(appointmentToEdit.getEndTime());
+        int oldDuration = appointmentToEdit.getDuration();
         Name updatedPatientName = editAppointmentDescriptor.getPatientName().orElse(appointmentToEdit.getPatientName());
         IcNumber updatedPatientIc = editAppointmentDescriptor.getPatientIc().orElse(appointmentToEdit.getPatientIc());
         AppointmentDateTime updatedStartTime = appointmentToEdit.getStartTime();
@@ -109,7 +109,7 @@ public class EditAppointmentCommand extends Command {
         if (editAppointmentDescriptor.getStartTime().isPresent()
                 && !editAppointmentDescriptor.getDuration().isPresent()) {
             updatedStartTime = editAppointmentDescriptor.getStartTime().get();
-            updatedEndTime = new AppointmentDateTime(updatedStartTime.getDateTimeStr(), (int) oldDuration);
+            updatedEndTime = new AppointmentDateTime(updatedStartTime.getDateTimeStr(), oldDuration);
         }
 
         // when start not edited, duration edited

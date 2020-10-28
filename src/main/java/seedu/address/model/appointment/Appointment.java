@@ -66,6 +66,10 @@ public class Appointment {
         return endTime;
     }
 
+    public int getDuration() {
+        return (int) getStartTime().computeDuration(getEndTime());
+    }
+
     /**
      * Returns true if both appointments have the same patient name and appointment time.
      * This defines a stronger notion of equality between two appointments.
