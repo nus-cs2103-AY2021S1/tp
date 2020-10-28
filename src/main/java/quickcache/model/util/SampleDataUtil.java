@@ -28,9 +28,6 @@ public class SampleDataUtil {
         Choice choice7 = new Choice("iphone");
         Choice choice8 = new Choice("pepsi");
         return new Flashcard[]{
-            new Flashcard(new OpenEndedQuestion("Sample OEQ 1 (ans: SampleAns1)",
-                    new Answer("SampleAns1")
-            ), getTagSet("OEQ", "ExampleTag")),
             new Flashcard(new OpenEndedQuestion("Complete the following sentence. "
                     + "National University of ______ . (ans: Singapore)",
                     new Answer("Singapore")
