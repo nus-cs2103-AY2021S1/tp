@@ -120,8 +120,8 @@ public class MainWindow extends UiPart<Stage> {
         });
 
         caseTabPane.widthProperty().addListener((observable, oldValue, newValue) -> {
-            caseTabPane.setTabMinWidth(caseTabPane.getWidth() / 4 - 20);
-            caseTabPane.setTabMaxWidth(caseTabPane.getWidth() / 4 - 20);
+            caseTabPane.setTabMinWidth(caseTabPane.getWidth() / 4 - 25);
+            caseTabPane.setTabMaxWidth(caseTabPane.getWidth() / 4 - 25);
         });
     }
 

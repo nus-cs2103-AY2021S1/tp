@@ -61,13 +61,13 @@
                         </Label>
                         <Label fx:id="caseStatus" styleClass="label-bright" text="Default Status">
                             <padding>
-                                <Insets bottom="10" />
+                                <Insets bottom="20" />
                             </padding>
                         </Label>
 
-                        <TabPane fx:id="caseTabPane" tabClosingPolicy="UNAVAILABLE" tabDragPolicy="FIXED" VBox.vgrow="ALWAYS">
+                        <TabPane fx:id="caseTabPane" tabClosingPolicy="UNAVAILABLE" tabDragPolicy="FIXED" VBox.vgrow="ALWAYS" styleClass="tab-pane">
                             <padding>
-                                <Insets bottom="10" right="20" />
+                                <Insets bottom="10"/>
                             </padding>
                             <Tab text="Documents">
                                 <AnchorPane VBox.vgrow="ALWAYS">
