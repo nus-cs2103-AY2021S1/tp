@@ -32,6 +32,8 @@ ScheDar is a **desktop app for managing tasks, optimized for use via a Command L
 
    * **`find`** `cs2103 project`: Searches the current task list for the specified keyword `cs2103 project`.
 
+   * **`sort`** : Sorts the current list.
+
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -189,6 +191,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find project meeting`
 **Help** | `help`
 **List** | `list`
+**Sort** | `sort`
 **Priority** | `pri LEVEL INDEX`<br> e.g., `pri high 2`
 **Retrieve** | `re`
 
