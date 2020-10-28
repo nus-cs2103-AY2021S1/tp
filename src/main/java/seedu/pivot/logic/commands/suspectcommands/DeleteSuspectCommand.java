@@ -3,7 +3,7 @@ package seedu.pivot.logic.commands.suspectcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -66,7 +66,7 @@ public class DeleteSuspectCommand extends DeleteCommand {
 
         model.setCase(openCase, updatedCase);
         model.commitPivot(String.format(MESSAGE_DELETE_SUSPECT_SUCCESS, suspectToDelete));
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_SUSPECT_SUCCESS, suspectToDelete));
     }

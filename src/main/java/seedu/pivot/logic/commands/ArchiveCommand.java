@@ -34,7 +34,13 @@ public class ArchiveCommand extends Command {
 
     private Index targetIndex;
 
+    /**
+     * Creates an Archive to add the specified {@code Case} specified at {@code Index}.
+     *
+     * @param targetIndex Index of Case to be archived in PIVOT.
+     */
     public ArchiveCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -64,7 +70,7 @@ public class ArchiveCommand extends Command {
         model.addCase(updatedCase);
         //model.setCase(caseToArchive, updatedCase);
 
-        model.updateFilteredCaseList(Model.PREDICATE_SHOW_ALL_CASES);
+        model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
         model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
 
         return new CommandResult(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));

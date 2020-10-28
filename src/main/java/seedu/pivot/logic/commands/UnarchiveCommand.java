@@ -34,7 +34,13 @@ public class UnarchiveCommand extends Command {
 
     private Index targetIndex;
 
+    /**
+     * Creates an UnarchiveCommand to add the specified {@code Case} specified at {@code Index}.
+     *
+     * @param targetIndex Index of Case to be unarchived in PIVOT.
+     */
     public UnarchiveCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

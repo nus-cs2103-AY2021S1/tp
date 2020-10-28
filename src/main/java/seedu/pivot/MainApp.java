@@ -95,7 +95,7 @@ public class MainApp extends Application {
         }
 
         ModelManager modelManager = new ModelManager(initialData, userPrefs);
-        modelManager.updateFilteredCaseList(Model.PREDICATE_SHOW_ALL_CASES);
+        modelManager.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
         return modelManager;
     }
 

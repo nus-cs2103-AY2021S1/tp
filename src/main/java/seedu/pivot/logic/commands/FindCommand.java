@@ -1,8 +1,8 @@
 package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ARCHIVED_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 
 import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.logic.state.StateManager;
@@ -43,7 +43,7 @@ public class FindCommand extends Command {
         }
 
         if (StateManager.atDefaultSection()) {
-            model.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_ALL_CASES));
+            model.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_DEFAULT_CASES));
         }
 
         return new CommandResult(

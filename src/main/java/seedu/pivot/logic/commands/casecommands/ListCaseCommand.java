@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands.casecommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 
 import java.util.logging.Logger;
 
@@ -26,7 +26,7 @@ public class ListCaseCommand extends ListCommand {
 
         assert(StateManager.atMainPage()) : "Program should be at main page";
 
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
         StateManager.setDefaultSection();
 
         return new CommandResult(MESSAGE_LIST_CASE_SUCCESS);

@@ -13,7 +13,7 @@ import seedu.pivot.model.investigationcase.Case;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Case> PREDICATE_SHOW_ALL_CASES = investigationCase ->
+    Predicate<Case> PREDICATE_SHOW_DEFAULT_CASES = investigationCase ->
             investigationCase.getArchiveStatus().equals(ArchiveStatus.DEFAULT);
 
     Predicate<Case> PREDICATE_SHOW_ARCHIVED_CASES = investigationCase ->

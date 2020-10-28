@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_CASES_LISTED_OVERVIEW;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 import static seedu.pivot.model.Model.PREDICATE_SHOW_ARCHIVED_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 import static seedu.pivot.testutil.TypicalCases.CARL_KURZ_FIRE;
 import static seedu.pivot.testutil.TypicalCases.ELLE_MEYER_SHOOTING;
 import static seedu.pivot.testutil.TypicalCases.FIONA_KUNZ_KIDNAPPING;
@@ -91,7 +91,7 @@ public class FindCommandTest {
         String expectedMessage = String.format(MESSAGE_CASES_LISTED_OVERVIEW, 3);
         DetailsContainsKeywordsPredicate predicate = preparePredicate("Junk Klook Louis Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_ALL_CASES));
+        expectedModel.updateFilteredCaseList(predicate.and(PREDICATE_SHOW_DEFAULT_CASES));
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL_KURZ_FIRE, ELLE_MEYER_SHOOTING,
                 FIONA_KUNZ_KIDNAPPING), model.getFilteredCaseList());

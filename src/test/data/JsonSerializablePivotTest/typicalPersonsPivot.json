@@ -106,5 +106,38 @@
     "victims" : [],
     "tagged" : [ ],
     "archiveStatus" : "DEFAULT"
-  } ]
+  }, {
+    "title" : "Junk Yard Murder",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ],
+    "archiveStatus" : "ARCHIVED"
+  },
+    {
+      "title" : "Klook Scam",
+      "description": "",
+      "status": "ACTIVE",
+      "documents" : [ ],
+      "witnesses": [],
+      "suspects": [],
+      "victims" : [],
+      "tagged" : [ ],
+      "archiveStatus" : "ARCHIVED"
+    },
+    {
+      "title" : "Louis Homicide",
+      "description": "",
+      "status": "ACTIVE",
+      "documents" : [ ],
+      "witnesses": [],
+      "suspects": [],
+      "victims" : [],
+      "tagged" : [ ],
+      "archiveStatus" : "ARCHIVED"
+    }
+  ]
 }
