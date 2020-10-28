@@ -10,6 +10,7 @@ import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.logic.commands.exceptions.CommandException;
 import seedu.taskmaster.model.Model;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.session.exceptions.SessionException;
 import seedu.taskmaster.model.student.Student;
 
 /**
@@ -50,7 +51,11 @@ public class MarkCommand extends Command {
         }
 
         Student studentToMark = lastShownList.get(index);
-        model.markStudent(studentToMark, attendanceType);
+        try {
+            model.markStudent(studentToMark, attendanceType);
+        } catch (SessionException sessionException) {
+            throw new CommandException(sessionException.getMessage());
+        }
         return new CommandResult(String.format(MESSAGE_MARK_STUDENT_SUCCESS, studentToMark, attendanceType));
     }
 

@@ -63,6 +63,13 @@ public class SessionListManager implements SessionList {
         return false;
     }
 
+    /**
+     * Returns true if there are no sessions in the session list.
+     */
+    public boolean isEmpty() {
+        return getNumberOfSessions() == 0;
+    }
+
     @Override
     public void add(Session toAdd) {
         requireNonNull(toAdd);
