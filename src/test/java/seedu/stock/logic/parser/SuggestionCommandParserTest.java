@@ -23,6 +23,7 @@ import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
+import seedu.stock.logic.commands.UpdateCommand;
 
 public class SuggestionCommandParserTest {
     @Test
@@ -155,6 +156,26 @@ public class SuggestionCommandParserTest {
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.FIND_COMMAND_WORD + userInput
                 + "\n" + FindCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_updateCommandSuggestion_success() {
+        // EP: incorrect command word
+        String userInput = SERIAL_NUMBER_DESC_APPLE;
+        SuggestionCommandParser parser = new SuggestionCommandParser("upda");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.UPDATE_COMMAND_WORD + userInput
+                + "\n" + UpdateCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word
+        parser = new SuggestionCommandParser("update", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.UPDATE_COMMAND_WORD + userInput
+                + "\n" + UpdateCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
