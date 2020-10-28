@@ -132,9 +132,8 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 
 </div>
 
-#### 2.1 Updating the number of drinks sold for the day : `s-update`
-Updates tCheck on the number of each type of drink sold for the current day, based on the sales data provided by the
-user.
+#### 2.1 Updating the number of drinks sold : `s-update`
+Updates the number of drinks sold for each drink type as given in the user input.
 
 Format: `s-update A/NUM B/NUM C/NUM ...`
 * `A`, `B`, `C` are abbreviations for the drink types.
@@ -143,6 +142,14 @@ Format: `s-update A/NUM B/NUM C/NUM ...`
 Example:
 * `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
  Brown Sugar Boba Black Tea `BSBBT` to 120.
+ 
+ <div markdown="span" class="alert alert-primary">
+ 
+:information_source: Note about the update: <br>
+
+The record in tCheck will be overwritten by the input that you provide. <br>
+ 
+ </div>
 
 #### 2.2 Listing the number of drinks sold for the day : `s-list`
 Shows a list of all types of drinks sold for the current day.

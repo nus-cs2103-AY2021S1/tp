@@ -8,7 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +39,7 @@ public class SalesBookTest {
 
     @Test
     public void setRecord_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> salesBook.setRecord((List<SalesRecordEntry>) null));
+        assertThrows(NullPointerException.class, () -> salesBook.setRecord(null));
     }
 
     @Test
@@ -54,34 +53,20 @@ public class SalesBookTest {
     }
 
     @Test
-    public void setRecord_nullMap_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> salesBook.setRecord((Map<Drink, Integer>) null));
-    }
-
-    @Test
-    public void setRecord_mapWithAllDrinksInitialised_success() {
-        sales.put(Drink.BSBM, 80);
-        sales.put(Drink.BSBBT, 20);
-        sales.put(Drink.BSBGT, 0);
-        sales.put(Drink.BSPM, 0);
-        sales.put(Drink.BSPBT, 0);
-        sales.put(Drink.BSPGT, 0);
-
-        salesBook.setRecord(sales);
-        assertEquals(Drink.values().length, salesBook.getRecord().size());
-    }
-
-    @Test
     public void overwriteSales_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> salesBook.overwriteSales(null));
     }
 
     @Test
     public void overwriteSales_withOneDrinkItems_success() {
-        setRecord_mapWithAllDrinksInitialised_success();
-
         sales.put(Drink.BSBM, 90);
         salesBook.overwriteSales(sales);
+
+        sales.put(Drink.BSBBT, 0);
+        sales.put(Drink.BSBGT, 0);
+        sales.put(Drink.BSPM, 0);
+        sales.put(Drink.BSPGT, 0);
+        sales.put(Drink.BSPBT, 0);
 
         UniqueSalesRecordList expectedSalesRecord = new UniqueSalesRecordList();
         expectedSalesRecord.setSalesRecord(sales);
@@ -110,7 +95,7 @@ public class SalesBookTest {
 
         SalesBook differentBook = new SalesBook();
         sales.put(Drink.BSPGT, 20);
-        differentBook.setRecord(sales);
+        differentBook.overwriteSales(sales);
 
         // same values -> returns true
         assertTrue(salesBook.equals(sameBook));

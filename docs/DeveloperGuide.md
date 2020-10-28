@@ -142,7 +142,7 @@ tCheck allows users to record and update the sales information on the drink sold
 * `A`, `B`, `C` are abbreviations for the drink types.
 * `NUM` refers to the number of drinks sold.
 
-Currently, tCheck can only record 6 types of `Drink`s.
+Currently, tCheck supports the tracking of 6 types of `Drink`s.
 * `BSBM`  : Brown Sugar Boba Milk
 * `BSBBT` : Brown Sugar Boba Black Tea
 * `BSBGT` : Brown Sugar Boba Green Tea
@@ -153,17 +153,18 @@ Currently, tCheck can only record 6 types of `Drink`s.
 #### Completed Implementation
     
 The completed mechanism to record the sales data is facilitated by the `SalesBook`. It implements the
-`ReadOnlySalesBook` interface, which will allow the sales data to be displayed graphically (to be implemented).
+`ReadOnlySalesBook` interface, which will allow the sales data to be displayed graphically in the user interface.
 The sales data is stored in a `UniqueSalesRecordList`, which is a list of `SalesRecordEntry`. A `SalesRecordEntry`
 contains the `numberSold` for a type of `Drink`. The `SalesBook` implements the following operations:
  
- * `SalesBook#setRecord(Map<Drink, Integer> sales)`  —  Sets the sales record with the given sales data
  * `SalesBook#overwriteSales(Map<Drink, Integer> sales)`  —  Overwrites the sales record with the given sales data
  * `SalesBook#isEmptySalesRecord()`  —  Returns true if the sales record is empty
 
-If the `SalesBook` has not been initialised with the user's sales data, which means that the `SalesBook` is empty, then
-the first sales record will set the sales record with the user input. Subsequent sales update will overwrite existing
-sales record for the particular `Drink`.
+If the `SalesBook` has not been initialised with the user's sales input, which means that the `SalesBook` is empty, then
+the first sales record will set the sales record with the user input. Drink items that were not provided in the user
+input will be set to a default value of 0. 
+
+Subsequent sales update will overwrite existing sales record for the particular `Drink`.
 
 These operations are exposed in the `Model` interface as `Model#overwrite(Map<Drink, Integer> salesInput)` and 
 `Model#isEmptySalesBook()`. 
@@ -177,7 +178,7 @@ Step 2: The user executes the `s-update BSBM/100 BSBGT/120` command to record th
 120 Brown Sugar Boba Green Tea (BSBGT) were sold. The `s-update` command will initialise the sales record in `SalesBook`
 when it is executed. This is because the current `SalesBook` is empty. It calls 
 `Model#overwrite(Map<Drink, Integer> salesInput)`, which will save the sales data into the `UniqueSalesRecordList` in 
-the `SalesBook`. The other `Drink` types whose sales data were not given will be initialised to 0.
+the `SalesBook`. The other `Drink` types whose sales numbers were not given will be initialised to 0.
 
 Step 3: The user realises he left out some sales data. He executes the `s-update BSBBT/180 BSPM/64` command to record
 that 180 Brown Sugar Boba Black Tea (BSBBT) and 64 Brown Sugar Pearl Milk (BSPM) were sold. Since the `SalesBook` has 
@@ -192,11 +193,6 @@ He then executes the `s-update BSBM/110` to correct this error. The `s-update` c
 The following sequence diagram shows how the sales update operation works:
 
 ![SalesUpdateSequenceDiagram](images/SalesUpdateSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for 
-`SalesUpdateCommand` and `SalesUpdateCommandParser` should end at the destroy marker (X) but due to a limitation of
- PlantUML, the lifeline reaches the end of diagram.
-</div>
 
 The following activity diagram summarises what happens when a user executes the `s-update` command.
 

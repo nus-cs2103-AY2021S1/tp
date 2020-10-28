@@ -142,11 +142,7 @@ public class ModelManagerTest {
         HashMap<Drink, Integer> sales = new HashMap<>();
         sales.put(Drink.BSBM, 80);
         sales.put(Drink.BSBBT, 20);
-        sales.put(Drink.BSBGT, 0);
-        sales.put(Drink.BSPM, 0);
-        sales.put(Drink.BSPBT, 0);
-        sales.put(Drink.BSPGT, 0);
-        salesBook.setRecord(sales);
+        salesBook.overwriteSales(sales);
         SalesBook differentSalesBook = new SalesBook();
         UserPrefs userPrefs = new UserPrefs();
 
