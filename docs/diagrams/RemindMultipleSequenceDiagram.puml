@@ -1,5 +1,8 @@
 @startuml
 !include style.puml
+skinparam ParticipantFontSize 25
+skinparam ArrowFontSize 20
+skinparam FontSize 20
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -28,7 +31,7 @@ RemindCommandParser --> AddressBookParser
 deactivate RemindCommandParser
 
 AddressBookParser -> RemindCommandParser : parse("1 2")
-activate RemindCommandParser
+'activate RemindCommandParser
 
 create RemindCommand
 RemindCommandParser -> RemindCommand
@@ -38,7 +41,7 @@ RemindCommand --> RemindCommandParser : d
 deactivate RemindCommand
 
 RemindCommandParser --> AddressBookParser : d
-deactivate RemindCommandParser
+'deactivate RemindCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 RemindCommandParser -[hidden]-> AddressBookParser
 destroy RemindCommandParser
