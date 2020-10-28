@@ -89,12 +89,14 @@ public class HistoryManager implements History {
         hasReturnedCurrentCommandBefore = false;
         if (hasNextCommand()) {
             // if there exist a next command,
-            // copy commandHistory[0] to commandHistory[currentCommandIndex],
-            // store it as the new commandHistory
-            // and append the new command.
-            commandHistory = commandHistory.subList(0, currentCommandIndex + 1);
-            this.currentCommandIndex++;
+            // append the new command and
+            // shift the currentCommandHistoryIndex to the end of the list
             this.commandHistory.add(command);
+            if (isLimitReached()) {
+                // if adding the new command hits the limit, pop the first command off
+                this.commandHistory.remove(0);
+            }
+            this.currentCommandIndex = commandHistory.size() - 1;
         } else if (isLimitReached()) {
             this.commandHistory.remove(0);
             this.commandHistory.add(command);
