@@ -49,6 +49,7 @@ public class Quantity {
      * Returns true if a given string is a number and is more than zero or more.
      */
     public static boolean isValidQuantity(String test) {
+        requireNonNull(test);
         try {
             //protective layer against huge string input.
             Integer.parseInt(test);
@@ -65,7 +66,13 @@ public class Quantity {
         return Integer.parseInt(quantity) <= Integer.parseInt(lowQuantity);
     }
 
+    /**
+     * Updates the low quantity field in quantity.
+     * @param newLowQuantity The new low quantity value.
+     * @return The updated Quantity.
+     */
     public Quantity updateLowQuantity(String newLowQuantity) {
+        requireNonNull(newLowQuantity);
         return new Quantity(quantity, newLowQuantity);
     }
 

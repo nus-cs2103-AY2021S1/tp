@@ -14,21 +14,21 @@ import seedu.stock.model.stock.Stock;
  * A utility class containing a list of {@code Stock} objects to be used in tests.
  */
 public class TypicalStocks {
-    public static final Stock APPLE = new StockBuilder().withName("Apple Juice")
-            .withSerialNumber("Ntuc1").withSource("Ntuc")
-            .withQuantity("2000", "0").withLocation("Fruit Section, Subsection C")
+    public static final Stock APPLE = new StockBuilder().withName("apple juice")
+            .withSerialNumber("ntuc1").withSource("ntuc")
+            .withQuantity("2000", "0").withLocation("fruit section, subsection c")
             .build();
-    public static final Stock BANANA = new StockBuilder().withName("Banana Cake")
-            .withSerialNumber("Fairprice1").withSource("Fairprice")
-            .withQuantity("2103", "2200").withLocation("Fruits section, Subsection B")
+    public static final Stock BANANA = new StockBuilder().withName("banana cake")
+            .withSerialNumber("fairprice1").withSource("fairprice")
+            .withQuantity("2103", "2200").withLocation("fruits section, subsection b")
             .build();
-    public static final Stock PINEAPPLE = new StockBuilder().withName("Pineapple Tart")
-            .withSerialNumber("BengawanSolo1").withSource("BengawanSolo")
-            .withQuantity("123").withLocation("Tart Section, Subsection A")
+    public static final Stock PINEAPPLE = new StockBuilder().withName("pineapple tart")
+            .withSerialNumber("bengawansolo1").withSource("bengawansolo")
+            .withQuantity("123").withLocation("tart section, subsection a")
             .build();
-    public static final Stock ORANGE = new StockBuilder().withName("Orange")
-            .withSerialNumber("Giant1").withSource("Giant")
-            .withQuantity("111").withLocation("Fruit Section, Subsection X")
+    public static final Stock ORANGE = new StockBuilder().withName("orange")
+            .withSerialNumber("giant1").withSource("giant")
+            .withQuantity("111").withLocation("fruit section, subsection x")
             .build();
     public static final SerialNumber SERIAL_NUMBER_FIRST_STOCK = APPLE.getSerialNumber();
     public static final SerialNumber SERIAL_NUMBER_SECOND_STOCK = BANANA.getSerialNumber();
@@ -36,7 +36,7 @@ public class TypicalStocks {
     public static final SerialNumber SERIAL_NUMBER_FOURTH_STOCK = ORANGE.getSerialNumber();
     public static final SerialNumber UNKNOWN_SERIAL_NUMBER = new SerialNumber("unknown1");
 
-    public static final String RESERVED_NON_EXISTENCE_SOURCE = "$NON-EXISTENT-SOURCE";
+    public static final String RESERVED_NON_EXISTENCE_SOURCE = "$non-existent-source";
 
     private TypicalStocks() {} // prevents instantiation
 

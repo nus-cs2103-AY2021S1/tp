@@ -82,7 +82,7 @@ public class UpdateCommandTest {
 
     @Test
     public void execute_onlyNameUpdated_success() {
-        Stock updatedStock = new StockBuilder().withName("Mochi").build();
+        Stock updatedStock = new StockBuilder().withName("mochi").build();
         UpdateStockDescriptor descriptor = new UpdateStockDescriptorBuilder(updatedStock).build();
         UpdateCommand updateCommand = new UpdateCommand(descriptor);
 
@@ -92,6 +92,8 @@ public class UpdateCommandTest {
                 new SerialNumberSetsBook(model.getSerialNumberSetsBook()));
         expectedModel.setStock(model.getFilteredStockList().get(1), updatedStock);
 
+        System.out.println(model.getStockBook());
+        System.out.println(expectedModel.getStockBook());
         assertCommandSuccess(updateCommand, model, expectedMessage, expectedModel);
     }
 

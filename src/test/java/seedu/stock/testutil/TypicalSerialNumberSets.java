@@ -8,13 +8,13 @@ import seedu.stock.model.SerialNumberSetsBook;
 import seedu.stock.model.stock.SerialNumberSet;
 
 public class TypicalSerialNumberSets {
-    public static final SerialNumberSet NTUC = new SerialNumberSetBuilder().withSource("Ntuc")
+    public static final SerialNumberSet NTUC = new SerialNumberSetBuilder().withSource("ntuc")
             .withAccumulatedQuantity("1").build();
-    public static final SerialNumberSet FAIRPRICE = new SerialNumberSetBuilder().withSource("Fairprice")
+    public static final SerialNumberSet FAIRPRICE = new SerialNumberSetBuilder().withSource("fairprice")
             .withAccumulatedQuantity("1").build();
-    public static final SerialNumberSet BENGAWAN_SOLO = new SerialNumberSetBuilder().withSource("BengawanSolo")
+    public static final SerialNumberSet BENGAWAN_SOLO = new SerialNumberSetBuilder().withSource("bengawansolo")
             .withAccumulatedQuantity("1").build();
-    public static final SerialNumberSet GIANT = new SerialNumberSetBuilder().withSource("Giant")
+    public static final SerialNumberSet GIANT = new SerialNumberSetBuilder().withSource("giant")
             .withAccumulatedQuantity("1").build();
 
     private TypicalSerialNumberSets() {} // prevents instantiation
