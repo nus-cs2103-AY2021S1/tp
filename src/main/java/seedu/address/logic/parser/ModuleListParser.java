@@ -16,7 +16,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
 import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
-import seedu.address.logic.commands.gradetrackercommands.AddAssignmentCommand;
 import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
 import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
@@ -31,7 +30,6 @@ import seedu.address.logic.parser.contactlistparsers.AddContactParser;
 import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
 import seedu.address.logic.parser.contactlistparsers.EditContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.parser.gradetrackerparsers.AddAssignmentParser;
 import seedu.address.logic.parser.gradetrackerparsers.AddGradeParser;
 import seedu.address.logic.parser.modulelistparsers.AddCompletedModuleParser;
 import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
@@ -102,9 +100,6 @@ public class ModuleListParser implements FeatureParser {
         case ViewModuleCommand.COMMAND_WORD:
             return new ViewModuleParser().parse(arguments);
 
-        case AddAssignmentCommand.COMMAND_WORD:
-            return new AddAssignmentParser().parse(arguments);
-
         case FindContactCommand.COMMAND_WORD:
             return new FindContactParser().parse(arguments);
 
@@ -116,7 +111,6 @@ public class ModuleListParser implements FeatureParser {
 
         case AddContactCommand.COMMAND_WORD:
             return new AddContactParser().parse(arguments);
-
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
         case AddCompletedModuleCommand.COMMAND_WORD:
@@ -129,9 +123,6 @@ public class ModuleListParser implements FeatureParser {
             return new RedoParser().parse(arguments);
         //case EditGradeCommand.COMMAND_WORD:
         //            return new EditGradeParser().parse(arguments);
-
-        //case DeleteGradeCommand.COMMAND_WORD:
-        //            return new DeleteGradeParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

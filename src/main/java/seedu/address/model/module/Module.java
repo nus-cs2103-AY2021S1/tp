@@ -2,7 +2,6 @@ package seedu.address.model.module;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.module.grade.Assignment;
@@ -138,7 +137,7 @@ public class Module {
         this.name = name;
         this.zoomLink = null;
         this.gradeTracker = new GradeTracker();
-        gradeTracker.setGradePoint(Optional.of(gradePoint));
+        gradeTracker.setGradePoint(gradePoint);
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
     }
@@ -192,6 +191,15 @@ public class Module {
     }
 
     /**
+     * Sets the GradeTracker for this module.
+     *
+     * @return the module.
+     */
+    public Module setGradeTracker(GradeTracker gradeTracker) {
+        return new Module(this.getName(), zoomLink, gradeTracker, this.tags);
+    }
+
+    /**
      * Returns the modular credits for this module
      */
     public ModularCredits getModularCredits() {
@@ -214,26 +222,14 @@ public class Module {
     }
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
-
->>>>>>> bdf206181bef4a2bb9f0c4672fc8eef26adb4a1b
->>>>>>> de528d3b017ec53b005699d0a99b6975ca2fcf8b
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
     /**
-<<<<<<< HEAD
-     * Returns true if both persons of the same name have at least one other identity field that is the same.
-=======
-     * Returns true if both modules have the same name.
->>>>>>> c9a1e5c416a3d9bbe3b30949159ec3f43e463528
-=======
      * Adds a grade to the GradeTracker of the module.
      *
      * @param grade grade to add to grade tracker.
@@ -250,7 +246,6 @@ public class Module {
 
     /**
      * Returns true if both modules have the same name.
->>>>>>> de528d3b017ec53b005699d0a99b6975ca2fcf8b
      * This defines a weaker notion of equality between two modules.
      */
     public boolean isSameModule(Module otherModule) {
@@ -271,7 +266,8 @@ public class Module {
 
     @Override
     public String toString() {
-        return String.format("The zoom link for %s is %s", getName(), getLink());
+        return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getLink(),
+                getModularCredits().toString());
     }
 
     /**
