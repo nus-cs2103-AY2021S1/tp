@@ -19,7 +19,6 @@ import seedu.address.logic.commands.global.ListProjectsCommand;
 import seedu.address.logic.commands.global.StartPersonCommand;
 import seedu.address.logic.commands.global.StartProjectCommand;
 import seedu.address.logic.commands.project.AddTaskCommand;
-import seedu.address.logic.commands.project.AllMeetingsCommand;
 import seedu.address.logic.commands.project.AllTasksCommand;
 import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
@@ -122,13 +121,6 @@ public class MainCatalogueParser {
         case AllTasksCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new AllTasksCommand();
-            } else {
-                throw new InvalidScopeException(Status.PROJECT, status);
-            }
-
-        case AllMeetingsCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
-                return new AllMeetingsCommand();
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }

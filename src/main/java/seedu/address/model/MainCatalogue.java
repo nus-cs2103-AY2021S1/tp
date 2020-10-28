@@ -247,9 +247,6 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         } else if (status == Status.TEAMMATE) {
             status = Status.PROJECT;
             project.get().updateTeammateOnView(null);
-        } else if (status == Status.MEETING) {
-            status = Status.PROJECT;
-            project.get().updateMeetingOnView(null);
         }
     }
 
@@ -257,7 +254,6 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     public void enterTask(Task task) {
         status = Status.TASK;
         project.get().updateTaskOnView(task);
-        project.get().updateMeetingFilter(null);
         project.get().updateTeammateOnView(null);
     }
 
@@ -265,7 +261,6 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
     public void enterTeammate(Participation teammate) {
         status = Status.TEAMMATE;
         project.get().updateTaskOnView(null);
-        project.get().updateMeetingFilter(null);
         project.get().updateTeammateOnView(teammate);
     }
 

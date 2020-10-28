@@ -24,14 +24,14 @@ public class JsonSerializableMainCatalogueTest {
     Values from mainCatalogueFromFile and typicalProjectsMainCatalogue are the same, but throws error, not sure why yet
     TODO: Fix (LUCAS)
      */
-        @Test
-        public void toModelType_typicalProjectsFile_success() throws Exception {
-            JsonSerializableMainCatalogue dataFromFile = JsonUtil.readJsonFile(TYPICAL_PROJECTS_FILE,
-                    JsonSerializableMainCatalogue.class).get();
-            MainCatalogue mainCatalogueFromFile = dataFromFile.toModelType();
-            MainCatalogue typicalProjectsMainCatalogue = TypicalProjects.getTypicalMainCatalogue();
-            assertEquals(mainCatalogueFromFile, typicalProjectsMainCatalogue);
-        }
+    @Test
+    public void toModelType_typicalProjectsFile_success() throws Exception {
+        JsonSerializableMainCatalogue dataFromFile = JsonUtil.readJsonFile(TYPICAL_PROJECTS_FILE,
+                JsonSerializableMainCatalogue.class).get();
+        MainCatalogue mainCatalogueFromFile = dataFromFile.toModelType();
+        MainCatalogue typicalProjectsMainCatalogue = TypicalProjects.getTypicalMainCatalogue();
+        assertEquals(mainCatalogueFromFile, typicalProjectsMainCatalogue);
+    }
 
     @Test
     public void toModelType_invalidProjectFile_throwsIllegalValueException() throws Exception {

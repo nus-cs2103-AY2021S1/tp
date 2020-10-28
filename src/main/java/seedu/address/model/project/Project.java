@@ -112,6 +112,7 @@ public class Project {
 
     /**
      * Updates taskOnView with t.
+     *
      * @param t taskOnView.
      */
     public void updateTaskOnView(Task t) {
@@ -124,6 +125,7 @@ public class Project {
 
     /**
      * Updates teammateOnView with t.
+     *
      * @param p teammateOnView.
      */
     public void updateTeammateOnView(Participation p) {
@@ -310,20 +312,19 @@ public class Project {
 
         boolean taskBoolean = true;
 
-        for (int i = 0 ; i < tasks.size() ; i++){
+        for (int i = 0; i < tasks.size(); i++) {
             Object[] currentTaskArray = tasks.toArray();
             Object[] otherTaskArray = otherProject.getTasks().toArray();
 
-            for(int j = 0 ; j < otherTaskArray.length;j++){
-                if(currentTaskArray[i].equals(otherTaskArray[j])){
-                    taskBoolean=true;
+            for (int j = 0; j < otherTaskArray.length; j++) {
+                if (currentTaskArray[i].equals(otherTaskArray[j])) {
+                    taskBoolean = true;
                     break;
-                }else{
+                } else {
                     taskBoolean = false;
                 }
-//                taskBoolean = taskBoolean && currentTaskArray[i].equals(otherTaskArray[j]);
             }
-            if (!taskBoolean){
+            if (!taskBoolean) {
                 break;
             }
         }

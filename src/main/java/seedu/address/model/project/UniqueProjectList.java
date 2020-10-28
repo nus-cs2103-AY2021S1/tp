@@ -18,7 +18,7 @@ import seedu.address.model.project.exceptions.ProjectNotFoundException;
  * updating of projects uses Project#isSameProject(Project) for equality so as to ensure that the project being added
  * or updated is unique in terms of identity in the UniqueProjectList. However, the removal of a project uses
  * Project#equals(Object) so as to ensure that the project with exactly the same fields will be removed.
- *
+ * <p>
  * Supports a minimal set of list operations.
  *
  * @see Project#isSameProject(Project)
@@ -122,20 +122,20 @@ public class UniqueProjectList implements Iterable<Project> {
     @Override
     public boolean equals(Object other) {
 
-        if(!(other instanceof UniqueProjectList)){
+        if (!(other instanceof UniqueProjectList)) {
             return false;
         }
-//        boolean test = true;
-//        if(internalList.size()!=((UniqueProjectList) other).internalList.size()){
-//            return false;
-//        }
-//        for(int i = 0; i<internalList.size();i++ ){
-//            test = test && ((UniqueProjectList) other).internalList.get(i).equals(internalList.get(i));
-//        }
+        //        boolean test = true;
+        //        if(internalList.size()!=((UniqueProjectList) other).internalList.size()){
+        //            return false;
+        //        }
+        //        for(int i = 0; i<internalList.size();i++ ){
+        //            test = test && ((UniqueProjectList) other).internalList.get(i).equals(internalList.get(i));
+        //        }
         // short circuit if same object
         // instanceof handles nulls
-        return other == this ||
-                 internalList.equals(((UniqueProjectList) other).internalList);
+        return other == this
+                || internalList.equals(((UniqueProjectList) other).internalList);
     }
 
     @Override
