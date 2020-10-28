@@ -12,7 +12,7 @@ import chopchop.ui.UiPart;
  * Provides an isolated stage to test an individual {@code UiPart}.
  */
 public class UiPartExtension extends StageExtension {
-    private static final String[] CSS_FILES = {"view/DarkTheme.css", "view/Extensions.css"};
+    private static final String[] CSS_FILES = {"view/Style.css"};
 
     public void setUiPart(final UiPart<? extends Parent> uiPart) {
         try {
