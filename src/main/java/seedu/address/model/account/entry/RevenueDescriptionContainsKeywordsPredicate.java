@@ -24,4 +24,5 @@ public class RevenueDescriptionContainsKeywordsPredicate implements Predicate<Re
             || (other instanceof RevenueDescriptionContainsKeywordsPredicate // instanceof handles nulls
             && keywords.equals(((RevenueDescriptionContainsKeywordsPredicate) other).keywords)); // state check
     }
+
 }
