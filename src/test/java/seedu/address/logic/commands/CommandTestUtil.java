@@ -60,6 +60,10 @@ public class CommandTestUtil {
     public static final String VALID_ZOOMLINK_CS2030 = "www.cs2030zoom.us";
     public static final String VALID_ZOOMLINK_CS2103T = "www.cs2103tzoom.us";
     public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
+    public static final double VALID_MC_4 = 4.0;
+    public static final double VALID_MC_2 = 2.0;
+    public static final String VALID_TAG_LECTURE = "Lecture";
+    public static final String VALID_TAG_TUTORIAL = "Tutorial";
 
     public static final String NAME_DESC_CS2103T = " " + PREFIX_NAME + VALID_MODULENAME_CS2103T;
     public static final String ZOOMLINK_DESC_CS2103T = " " + PREFIX_ZOOM_LINK + VALID_ZOOMLINK_CS2103T;

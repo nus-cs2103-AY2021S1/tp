@@ -14,15 +14,20 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.NameContainsKeywordsPredicate;
+import seedu.address.model.module.Module;
 import seedu.address.testutil.ContactBuilder;
+import seedu.address.testutil.ModuleBuilder;
+import seedu.address.testutil.ModuleUtil;
 
 
 public class ModuleListParserTest {
@@ -31,9 +36,9 @@ public class ModuleListParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        //Person person = new PersonBuilder().build();
-        //AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
-        // assertEquals(new AddCommand(person), command);
+        Module module = new ModuleBuilder().build();
+        Command command = parser.parseCommand(ModuleUtil.getAddCommand(module));
+        assertEquals(new AddModuleCommand(module), command);
     }
 
     @Test
@@ -44,8 +49,8 @@ public class ModuleListParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteModuleCommand command = (DeleteModuleCommand) parser.parseCommand(
-                DeleteModuleCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        Command command = parser.parseCommand(
+                ModuleUtil.getDeleteCommand(INDEX_FIRST_PERSON.getOneBased()));
         assertEquals(new DeleteModuleCommand(INDEX_FIRST_PERSON), command);
     }
 
@@ -54,7 +59,7 @@ public class ModuleListParserTest {
         Contact person = new ContactBuilder().build();
         //EditModuleDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         //EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-        //        + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        //        + INDEX_FIRST_PERSON.getOneBased() + " " + ModuleUtil.getEditPersonDescriptorDetails(descriptor));
         //assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

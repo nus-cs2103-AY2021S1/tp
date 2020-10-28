@@ -1,14 +1,16 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.modulelistcommands.EditModuleCommand.EditModuleDescriptor;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
+import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.tag.Tag;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * A utility class to help with building EditModuleDescriptor objects.
@@ -32,6 +34,8 @@ public class EditModuleDescriptorBuilder {
         descriptor = new EditModuleDescriptor();
         descriptor.setModuleName(module.getName());
         descriptor.setZoomLink(module.getLink());
+        descriptor.setModularCredits(module.getModularCredits());
+        descriptor.setTags(module.getTags());
     }
 
     /**
@@ -43,7 +47,7 @@ public class EditModuleDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditModuleDescriptor} that we are building.
+     * Sets the {@code ZoomLink} of the {@code EditModuleDescriptor} that we are building.
      */
     public EditModuleDescriptorBuilder withZoomLink(String zoomLink) {
         descriptor.setZoomLink(new ZoomLink(zoomLink));
@@ -60,6 +64,21 @@ public class EditModuleDescriptorBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code ModularCredits} of the {@code EditModuleDescriptor} that we are building.
+     */
+    public EditModuleDescriptorBuilder withMc(double mc) {
+        descriptor.setModularCredits(new ModularCredits(mc));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Tag} of the {@code EditModuleDescriptor} that we are building.
+     */
+    public EditModuleDescriptorBuilder withTags(Set<Tag> tags) {
+        descriptor.setTags(tags);
+        return this;
+    }
     public EditModuleDescriptor build() {
         return descriptor;
     }

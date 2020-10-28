@@ -47,8 +47,8 @@ public class ModularCredits {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModuleName // instanceof handles nulls
-                && moduleCredits == ((ModularCredits) other).moduleCredits); // state check
+                || (other instanceof ModularCredits // instanceof handles nulls
+                && moduleCredits == (((ModularCredits) other).moduleCredits)); // state check
     }
 
 }

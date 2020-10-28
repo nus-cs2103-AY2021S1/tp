@@ -168,6 +168,67 @@ public class Task {
             && otherTask.getStatus().equals(getStatus());
     }
 
+    /**
+     * Returns string representing of the name of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
+    public String getNameForUi() {
+        assert this.name != null;
+        return this.name.toString();
+    }
+
+    /**
+     * Returns a set representing of the tags of the task for the UI.
+     *
+     * @return set of tags to be displayed in the UI.
+     */
+    public Set<Tag> getTagsForUi() {
+        if (this.tags == null) {
+            HashSet<Tag> defaultTags = new HashSet<>();
+            defaultTags.add(new Tag("Tags not provided"));
+            return defaultTags;
+        } else {
+            return this.tags;
+        }
+    }
+
+    /**
+     * Returns string representing of the priority of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
+    public String getPriorityForUi() {
+        if (this.priority == null) {
+            return "Priority not provided";
+        } else {
+            return this.priority.toString();
+        }
+    }
+
+    /**
+     * Returns string representing of the date of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
+    public String getDateForUi() {
+        if (this.date == null) {
+            return "Date not provided";
+        } else {
+            return this.date.toString();
+        }
+    }
+
+    /**
+     * Returns string representing of the status of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
+    public String getStatusForUi() {
+        assert this.status != null;
+        return this.status.toString();
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

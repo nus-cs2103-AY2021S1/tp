@@ -13,7 +13,7 @@ import seedu.address.model.util.SampleDataUtil;
 
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Module objects.
  */
 public class ModuleBuilder {
 
@@ -75,7 +75,13 @@ public class ModuleBuilder {
         this.modularCredits = new ModularCredits(modularCredits);
         return this;
     }
-
+    /**
+     * Sets the {@code ModuleCredits} of the {@code Module} that we are building.
+     */
+    public ModuleBuilder withMC(double value) {
+        this.modularCredits = new ModularCredits(value);
+        return this;
+    }
     public Module build() {
         return new Module(moduleName, zoomLink, modularCredits);
     }

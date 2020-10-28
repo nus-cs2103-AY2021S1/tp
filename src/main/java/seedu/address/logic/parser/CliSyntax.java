@@ -11,7 +11,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TELEGRAM = new Prefix("te/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_ZOOM_LINK = new Prefix("l/");
-    public static final Prefix PREFIX_EDIT_NAME = new Prefix("e/");
     public static final Prefix PREFIX_ADD_NEW_ASSIGNMENT = new Prefix("a/");
     public static final Prefix PREFIX_PERCENTAGE_ASSIGNMENT = new Prefix("%/");
     public static final Prefix PREFIX_RESULT_ASSIGNMENT = new Prefix("r/");
