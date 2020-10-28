@@ -38,6 +38,20 @@ class AmountTest {
     }
 
     @Test
+    public void isAmountBelowRestockLevel() {
+        Amount testAmount1 = new Amount("1");
+        Amount testAmount2 = new Amount("2");
+        Amount testAmount4 = new Amount("4");
+        Amount testAmount5 = new Amount("0");
+        Amount testAmount6 = new Amount("5");
+        assertTrue(testAmount1.isBelowRestockLevel());
+        assertTrue(testAmount2.isBelowRestockLevel());
+        assertTrue(testAmount4.isBelowRestockLevel());
+        assertTrue(testAmount5.isBelowRestockLevel());
+        assertFalse(testAmount6.isBelowRestockLevel());
+    }
+
+    @Test
     public void testToString() {
         Amount test1 = new Amount("90"); // two digits
         Amount test2 = new Amount("0"); // edge case, 0

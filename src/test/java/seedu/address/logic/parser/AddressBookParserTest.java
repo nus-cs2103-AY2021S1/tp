@@ -112,6 +112,7 @@ public class AddressBookParserTest {
         assertTrue(command instanceof IngredientViewSingleCommand);
     }
 
+    @Test
     public void parseCommand_ingredientList() throws Exception {
         assertTrue(parser.parseCommand(IngredientListCommand.COMMAND_WORD) instanceof IngredientListCommand);
         assertTrue(parser.parseCommand(IngredientListCommand.COMMAND_WORD + " 3") instanceof IngredientListCommand);
@@ -124,11 +125,6 @@ public class AddressBookParserTest {
         SalesUpdateCommand command = (SalesUpdateCommand) parser.parseCommand(userInput);
         HashMap<Drink, Integer> sales = new HashMap<>();
         sales.put(Drink.BSBM, numBsbmSold);
-        sales.put(Drink.BSBBT, 0);
-        sales.put(Drink.BSBGT, 0);
-        sales.put(Drink.BSPM, 0);
-        sales.put(Drink.BSPBT, 0);
-        sales.put(Drink.BSPGT, 0);
         assertEquals(new SalesUpdateCommand(sales), command);
     }
 
