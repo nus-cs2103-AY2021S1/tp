@@ -29,7 +29,7 @@ public class StatsSummaryCard extends UiPart<Region> {
     public StatsSummaryCard(Tag tag, StatisticsData dataSet) {
         super(FXML);
         this.tag = tag;
-        moduleCode.setText(tag.tagName);
+        moduleCode.setText(tag.tagName.equals("") ? "Untagged" : tag.tagName);
         lessonTime.setText("" + dataSet.getTotalLessonTime(tag) + " mins");
         taskTime.setText("" + dataSet.getTotalTaskTime(tag) + " mins");
         totalTime.setText("" + dataSet.getTotalTime(tag) + " mins");

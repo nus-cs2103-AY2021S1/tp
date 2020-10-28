@@ -50,10 +50,10 @@ public class CalendarPanel extends UiPart<Region> {
 
     private void loadCalendar(ObservableList<Task> calendarList) {
         LocalDateTime startDate = findCalendarStart();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 1; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
                 FilteredList<Task> dayList = filterDayList(calendarList, startDate);
-                calendar.add(loadDay(dayList, startDate).getRoot(), j, i + 1);
+                calendar.add(loadDay(dayList, startDate).getRoot(), j, i);
                 startDate = startDate.plusDays(1);
             }
         }
@@ -81,17 +81,18 @@ public class CalendarPanel extends UiPart<Region> {
     }
 
     private LocalDateTime findCalendarStart() {
-        return LocalDate.now().minusDays(10).atStartOfDay();
+        LocalDateTime today = LocalDate.now().atStartOfDay();
+        LocalDateTime start = today.minusDays(7 + today.getDayOfWeek().getValue());
+        return start;
     }
 
     private void loadDays() {
-        DayOfWeek today = LocalDate.now().getDayOfWeek();
-        column1.setText(today.minus(3).toString());
-        column2.setText(today.minus(2).toString());
-        column3.setText(today.minus(1).toString());
-        column4.setText(today.toString());
-        column5.setText(today.plus(1).toString());
-        column6.setText(today.plus(2).toString());
-        column7.setText(today.plus(3).toString());
+        column1.setText("Sunday");
+        column2.setText("Monday");
+        column3.setText("Tuesday");
+        column4.setText("Wednesday");
+        column5.setText("Thursday");
+        column6.setText("Friday");
+        column7.setText("Saturday");
     }
 }

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane gridLinesVisible="true" xmlns="http://javafx.com/javafx/11.0.0" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane gridLinesVisible="true" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <columnConstraints>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     </columnConstraints>
@@ -17,10 +17,9 @@
     </rowConstraints>
     <children>
         <Label fx:id="startTime" text="Label" />
-        <VBox GridPane.rowIndex="1">
+        <VBox alignment="CENTER" GridPane.rowIndex="1">
             <children>
                 <Label fx:id="title" text="Title" />
-                <Label fx:id="duration" text="Duration" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

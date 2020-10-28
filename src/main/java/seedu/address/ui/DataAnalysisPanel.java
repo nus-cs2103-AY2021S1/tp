@@ -40,6 +40,7 @@ public class DataAnalysisPanel extends UiPart<Region> {
     private void loadPieChart(StatisticsData statsData) {
         pieChart.setData(transformToPieChartData(statsData));
         pieChart.setLabelsVisible(false);
+        pieChart.setTitle("Breakdown of time spent");
     }
 
     private void loadSummary(StatisticsData statsData) {
@@ -51,7 +52,9 @@ public class DataAnalysisPanel extends UiPart<Region> {
         ObservableList<PieChart.Data> dataList = FXCollections.observableArrayList();
         for (Tag tag : statsData.getTags()) {
             int tagTotaltime = statsData.getTotalTime(tag);
-            PieChart.Data data = new PieChart.Data(tag.tagName, tagTotaltime);
+            PieChart.Data data = tag.tagName.equals("")
+                ? new PieChart.Data("Untagged", tagTotaltime)
+                : new PieChart.Data(tag.tagName, tagTotaltime);
             dataList.add(data);
         }
         return dataList;
