@@ -225,6 +225,92 @@ user in the `s-update` command
     * Pros: It can can be extended more easily if there is a greater variety of drinks to store in the future.
     * Cons: There are not many operations to do with `Drink`s. It is only used to represent a constant set of
      drink types.
+     
+## \[Completed\] Finding sales data of some drinks
+  
+Finds specific drinks' sales data feature allows the user to get the sales data of a drink quickly. The command is:
+  
+* `s-find KEYWORDS [MORE_KEYWORDS]` - Views sales data of drinks with the specified keywords.
+  
+#### Completed Implementation
+  
+The completed finds sales data of some drinks mechanism is facilitated by `InputContainsKeywordsPredicate`. It implements 
+Predicate<SalesRecordEntry>. 
+
+It exposes to `#Model updateFilteredSalesList(Predicate<SalesRecordEntry> predicate)`.
+  
+Given below is an example usage scenario and how the find drinks' sales data mechanism behaves at each step.
+  
+Step 1. The user launches the application. If the storage file for the sales book is empty, `SalesBook` will 
+be initialized with the six pre-defined drinks, namely `BSBM`, `BSBBT`, `BSBGT`, `BSPM`, `BSPBT` and `BSPGT`
+with the sales data of 0 for all. If the storage file for the sales book is not empty, `SalesBook` will read the  
+data from the storage file.
+  
+Step 2. The user executes `s-find BSBBT` to view BSBBT's current sales data. The `s-find BSBBT` command is
+parsed by `SalesFindCommandParser` which parses the input to get the matched drink's name and 
+returns an  `SalesFindCommand`,  which returns the drinks their sales data.
+  
+The following activity diagram shows how the find drink's sales data operation works:
+![Find Drink's Activity Diagram](images/SalesFindActivityDiagram.png) 
+
+#### Design consideration:
+  
+##### Aspect: How to find drink's sales data
+  
+  * **Current Choice**: Obtain the drink's name entered by the user, and use the
+  drink's name to find the sales data by looping through the salesbook.
+    * Pros: Code is more readable and consistent with the logic of finding employees.
+    * Cons: Every execution of the command will require one to access the sales record list loop through 
+    the list once, which may increase the time required for the operation. 
+         
+## \[Completed\] View a single ingredient's level feature
+  
+View a single ingredients' level feature allows the user to view the level of a particular ingredient when the need
+arises. The command is:
+  
+* `i-view-single i/INGREDIENT_NAME` - Views the ingredient's level of the ingredient with the specified ingredient name.
+  
+#### Completed Implementation
+  
+The completed view a single ingredient's level mechanism is facilitated by `IngredientBook`. It implements 
+`ReadOnlyIngredientBook` interface and offers methods to view the ingredients' levels from the application's 
+`ingredientBook`. Particularly, it implements the following operation:
+  
+  * `IngredientBook#findIngredientByName(IngredientName ingredientName)` — Returns the ingredient with the target 
+  ingredient name. 
+  
+This operation is exposed in the `Model` interface as `Model#findIngredientByName(IngredientName ingredientName)`.
+  
+Given below is an example usage scenario and how the view a single ingredient's level mechanism behaves at each step.
+  
+Step 1. The user launches the application. If the storage file for the ingredient book is empty, `IngredientBook` will 
+be initialized with the five pre-defined ingredients, namely `Milk`, `Pearl`, `Boba`, `Oolong Tea` and `Brown Suagr`, 
+with an amount of 0 for all. If the storage file for the ingredient book is not empty, `IngredientBook` will read the  
+data from the storage file.
+  
+Step 2. The user executes `i-view-single i/Milk` to view milk's current level. The `i-view-single i/Milk` command is
+parsed by `IngredientViewSingleCommandParser` which parses the ingredient to get the ingredient name and 
+returns an  `IngredientViewSingleCommand`. Logic executes the `IngredientViewSingleCommand` and calls 
+`Model#findIngredientByName(IngredientName ingredientName)`, which returns the ingredient with the ingredient name
+entered by the user.
+  
+The following activity diagram shows how the view a single ingredient level operation works:
+![View a Single Ingredient Activity Diagram](images/IngredientViewSingleActivityDiagram.png) 
+
+#### Design consideration:
+  
+##### Aspect: How find the ingredient's level executes
+  
+  * **Alternative 1 (current choice):** Obtain the ingredient name of the ingredient entered by the user, and use the
+  ingredient name to find the ingredient by looping through the ingredient list.
+    * Pros: Code is more readable.
+    * Cons: Every execution of the command will require one to access the name of the ingredient and loop through 
+    the list once, which may increase the time required for the operation. 
+    
+  * **Alternative 2:** Map the ingredient entered by the user to a index which corresponds to the index of the 
+  ingredient in the list, then find the ingredient using the index.
+    * Pros: Do not require looping through the list every time `IngredientViewSingleCommand` executes.
+    * Cons: Code may be less readable.     
   
 ### \[Completed\] Set ingredients' levels feature
 
