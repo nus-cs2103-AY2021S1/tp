@@ -7,6 +7,10 @@
     "clientSource": [ "friends" ],
     "note": "Fake fwen",
     "isArchive": false,
-    "priority": "low"
+    "priority": "low",
+    "policy" : {
+      "policyName" : "Life Time",
+      "description" : "Covers death, serious illnesses, and disabilities."
+    }
   } ]
 }

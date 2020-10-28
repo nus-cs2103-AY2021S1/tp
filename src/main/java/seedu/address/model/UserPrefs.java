@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path clientListFilePath = Paths.get("data" , "clientlist.json");
+    private Path policyListFilePath = Paths.get("data", "policylist.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -54,6 +55,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setClientListFilePath(Path clientListFilePath) {
         requireNonNull(clientListFilePath);
         this.clientListFilePath = clientListFilePath;
+    }
+
+    public Path getPolicyListFilePath() {
+        return policyListFilePath;
+    }
+
+    public void setPolicyListFilePath(Path policyListFilePath) {
+        requireNonNull((policyListFilePath));
+        this.policyListFilePath = policyListFilePath;
     }
 
     @Override

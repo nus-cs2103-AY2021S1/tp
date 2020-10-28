@@ -56,6 +56,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane clientSources;
     @FXML
+    private FlowPane policyName;
+    @FXML
+    private FlowPane policyDescription;
+    @FXML
     private Region fillerShape;
     @FXML
     private HBox priorityShape;
@@ -83,6 +87,11 @@ public class PersonCard extends UiPart<Region> {
 
         if (person.getNote() != null) {
             note.getChildren().add(new Label(person.getNote().noteName));
+        }
+
+        if (person.getPolicy() != null) {
+            policyName.getChildren().add(new Label("Policy name: " + person.getPolicy().getPolicyName().value));
+            policyDescription.getChildren().add(new Label("Description: " + person.getPolicy().getDescription().value));
         }
         priority.getChildren().add(new Label(person.getPriority().value));
 

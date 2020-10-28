@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.policy.PolicyList;
 
 /**
  * A list of persons that enforces uniqueness between its elements and does not allow nulls.
@@ -133,5 +134,54 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+    /**
+     * Updates internalList by checking if Persons in the UniquePersonList has
+     * Policys that are already in the policy list.
+     * If the Person's policy does not match the Policy in the PolicyList,
+     * The field is set to null.
+     */
+    public void updateUniquePersonListWithPolicyList(PolicyList policyList) {
+        requireNonNull(policyList);
+        int index = 0;
+        for (Person p : internalList) {
+            if ((p.getPolicy() != null) && (!policyList.contains(p.getPolicy()))) {
+                Person person = new Person(
+                        p.getName(),
+                        p.getPhone(),
+                        p.getEmail(),
+                        p.getAddress(),
+                        p.getClientSources(),
+                        p.getNote(),
+                        p.getIsArchive(),
+                        p.getPriority(),
+                        null);
+                internalList.set(index, person);
+            }
+            index++;
+        }
+    }
+
+    /**
+     * Set all policy field in persons to be null.
+     */
+    public void clearPolicy() {
+        int index = 0;
+        for (Person p : internalList) {
+            if (p.getPolicy() != null) {
+                Person person = new Person(
+                        p.getName(),
+                        p.getPhone(),
+                        p.getEmail(),
+                        p.getAddress(),
+                        p.getClientSources(),
+                        p.getNote(),
+                        p.getIsArchive(),
+                        p.getPriority(),
+                        null);
+                internalList.set(index, person);
+            }
+            index++;
+        }
     }
 }

@@ -15,7 +15,7 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
 ## Quick Start [coming soon]
 
 --------------------------------------------------------------------------------------------------------------------
-## Features
+## Commands
 
 <div markdown="block" class="alert alert-info">
 
@@ -25,10 +25,10 @@ Interface (CLI) while still having the benefits of a Graphic User Interface (GUI
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [s/CLIENTSOURCE]` can be used as `n/John Doe s/friend` or as `n/John Doe`.
+  e.g `n/NAME [s/CLIENT_SOURCE]` can be used as `n/John Doe s/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[s/CLIENTSOURCE]…​` can be used as ` ` (i.e. 0 times), `s/friend`, `s/friend s/family` etc.
+  e.g. `[s/CLIENT_SOURCE]…​` can be used as ` ` (i.e. 0 times), `s/friend`, `s/friend s/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -59,19 +59,22 @@ Adds a client to I4I's active list.
 A client can have any number of client sources (including 0)
 </div>
 
-Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY]`
+Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENT_SOURCE]…​ [l/PRIORITY] [pn/POLICY_NAME]`
 
 Examples: 
    
+   * `add n/Cai Shen Ye`
    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 l/h`
-   * `add n/Betsy Crowe s/friend from jac e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new.`
+   * `add n/Betsy Crowe s/friend s/enemy from jac e/betsycrowe@example.com a/Newgate Prison p/1234567 
+   o/This client is new. l/high pn/Medishield`
 
 Notes: 
 
 * If the priority field is empty, I4I will set the priority of the client to undefined. 
     See [Priority Feature](#priority-feature) for more information.
 
-* 
+* The policy must already been added into the policy list. You can do so using 
+`addp` Command. See [Add Policy Command](#adding-a-policy-addp) for more information.
 
 ### Listing all clients : `list`
 
@@ -95,7 +98,7 @@ Notes:
 
 * The index must be a positive integer 1, 2, 3, …​
 
-### Clearing all entries : `clear`
+### Clearing all clients : `clear`
 
 Clears all entries from the client list.
 
@@ -110,6 +113,26 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### Adding a policy : `addp`
+
+Adds a Policy into the policy list.
+
+Format : `addp pn/POLICY_NAME pd/POLICY_DESCRIPTION`
+
+Examples :
+
+* `addp pn/Medishield pd/Covers COVID`
+
+Note :
+
+* Policy added must not have the same name as an existing policy.
+
+### Clearing all policies : `clearp`
+
+Clears all entries from the policy list.
+
+Format : `clearp`
 
 ### Saving the data
 
@@ -142,6 +165,16 @@ Example:
 * `add n/Jojo l/h` would add a client named Jojo with a high priority. 
 * `add n/Giorno` would add a client named Giorno with an undefined priority.
 
+### Policy Feature
+
+I4I allows for insurance policies that the user's company have to be added into a policy list.
+These policies can then be added into the client list as a person's field.
+
+Policies have a name and a description.
+
+The policy list is also saved to the hard disk.
+
+Currently, 2 commands, `addp` & `clearp`, are used to control the policy list.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -155,8 +188,10 @@ Example:
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY]` <br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend l/h`
-**Clear** | `clear`
+**Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENT_SOURCE]…​ [l/PRIORITY]` <br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend l/h`
+**Add Policy** | `addp pn/POLICY_NAME pd/POLICY_DESCRIPTION` <br>e.g., `addp pn/Medishield pd/Covers COVID`
+**Clear Clients** | `clear`
+**Clear Policies** | `clearp`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Exit** | `exit`
 **List** | `list`

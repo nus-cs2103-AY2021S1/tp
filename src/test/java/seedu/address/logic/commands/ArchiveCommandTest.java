@@ -8,6 +8,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ACTIVE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientListWithArchive;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
 import java.util.Set;
 
@@ -26,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Priority;
+import seedu.address.model.policy.Policy;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for {@code ArchiveCommand}.
@@ -33,7 +35,7 @@ import seedu.address.model.person.Priority;
  */
 public class ArchiveCommandTest {
 
-    private Model model = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClientListWithArchive(), new UserPrefs(), getTypicalPolicyList());
 
     @Test
     public void execute_validIndex_success() {
@@ -42,7 +44,7 @@ public class ArchiveCommandTest {
 
         String expectedMessage = String.format(ArchiveCommand.MESSAGE_ARCHIVE_PERSON_SUCCESS, personToArchive);
 
-        ModelManager expectedModel = new ModelManager(model.getClientList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getClientList(), new UserPrefs(), model.getPolicyList());
         Person archivedPerson = createArchivedPerson(personToArchive);
         expectedModel.setPerson(personToArchive, archivedPerson);
         expectedModel.updateFilteredPersonList(PREDICATE_SHOW_ALL_ACTIVE);
@@ -99,6 +101,7 @@ public class ArchiveCommandTest {
         Set<ClientSource> archivedClientSources = personToArchive.getClientSources();
         Note archivedNote = personToArchive.getNote();
         Priority archivedPriority = personToArchive.getPriority();
+        Policy archivedPolicy = personToArchive.getPolicy();
 
         boolean archivedIsArchive = true;
 
@@ -110,7 +113,8 @@ public class ArchiveCommandTest {
                 archivedClientSources,
                 archivedNote,
                 archivedIsArchive,
-                archivedPriority);
+                archivedPriority,
+                archivedPolicy);
     }
 
 }
