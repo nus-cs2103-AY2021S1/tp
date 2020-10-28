@@ -2,16 +2,12 @@ package quickcache.logic.parser;
 
 import static quickcache.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import quickcache.commons.core.Messages;
 import quickcache.commons.core.index.Index;
 import quickcache.logic.commands.DeleteCommand;
 import quickcache.logic.parser.exceptions.ParseException;
-import quickcache.model.flashcard.Flashcard;
-import quickcache.model.flashcard.FlashcardContainsTagPredicate;
 import quickcache.model.flashcard.FlashcardPredicate;
 import quickcache.model.flashcard.Tag;
 
@@ -39,7 +35,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         DeleteCommand.MESSAGE_USAGE));
             }
             Set<Tag> tagsToMatch = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-            FlashcardPredicate predicate = getFlashcardPredicate(tagsToMatch);
+            FlashcardPredicate predicate = FlashcardPredicate.prepareOnlyTagsFlashcardPredicate(tagsToMatch);
             return DeleteCommand.withPredicate(predicate, tagsToMatch);
         } else {
             try {
@@ -50,15 +46,6 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                         String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
             }
         }
-    }
-
-    private FlashcardPredicate getFlashcardPredicate(Set<Tag> tagsToMatch) {
-        ArrayList<Predicate<Flashcard>> predicates = new ArrayList<>();
-
-        if (!tagsToMatch.isEmpty()) {
-            predicates.add(new FlashcardContainsTagPredicate(tagsToMatch));
-        }
-        return new FlashcardPredicate(predicates);
     }
 
     /**
