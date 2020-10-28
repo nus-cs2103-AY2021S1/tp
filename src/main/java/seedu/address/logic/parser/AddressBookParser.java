@@ -88,6 +88,9 @@ public class AddressBookParser {
         case EditTutorialGroupCommand.COMMAND_WORD:
             return new EditTutorialGroupCommandParser().parse(arguments);
 
+        case FindTutorialGroupCommand.COMMAND_WORD:
+            return new FindTutorialGroupCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

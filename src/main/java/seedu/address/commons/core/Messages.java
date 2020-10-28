@@ -14,5 +14,6 @@ public class Messages {
     public static final String MESSAGE_MODULES_LISTED_OVERVIEW = "%1$d modules listed!";
 
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid";
+    public static final String MESSAGE_TUTORIALS_LISTED_OVERVIEW = "%1$d Tutorial Groups listed!";
 
 }

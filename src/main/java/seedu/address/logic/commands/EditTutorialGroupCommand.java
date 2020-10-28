@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import java.time.LocalTime;
@@ -11,7 +10,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
