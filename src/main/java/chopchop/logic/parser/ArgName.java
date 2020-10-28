@@ -2,6 +2,8 @@
 
 package chopchop.logic.parser;
 
+import java.util.Objects;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,9 +24,12 @@ public class ArgName {
      * @param name the name of the argument.
      */
     public ArgName(String name) {
-        assert name != null
-            && !name.isEmpty()
-            && !name.startsWith("/");
+        Objects.requireNonNull(name);
+        if (name.isEmpty()) {
+            throw new IllegalArgumentException("argument name cannot be empty");
+        } else if (name.startsWith("/")) {
+            throw new IllegalArgumentException("argument name cannot start with '/'");
+        }
 
         this.components = new ArrayList<>();
 
@@ -34,7 +39,6 @@ public class ArgName {
         if (sv.find(':') != -1) {
 
             var parts = sv.splitBy(c -> c == ':');
-            assert parts.size() > 0;
 
             this.name = parts.get(0);
             this.components.addAll(parts.subList(1, parts.size()));
@@ -60,7 +64,7 @@ public class ArgName {
      */
     @Override
     public String toString() {
-        return "/" + this.name;
+        return String.format("/%s:%s", this.name, String.join(":", this.components));
     }
 
     @Override

@@ -17,6 +17,7 @@ import chopchop.logic.commands.Command;
 import chopchop.logic.commands.DeleteRecipeCommand;
 import chopchop.logic.commands.DeleteIngredientCommand;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
@@ -31,7 +32,7 @@ public class DeleteCommandParser {
      * @return     a DeleteCommand, if the input was valid.
      */
     public static Result<? extends Command> parseDeleteCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_DELETE);
+        ensureCommandName(args, Strings.COMMAND_DELETE);
 
         return getCommandTarget(args)
             .then(target -> {
@@ -59,10 +60,11 @@ public class DeleteCommandParser {
     private static Result<DeleteIngredientCommand> parseDeleteIngredientCommand(String name, CommandArguments args) {
 
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY))).isPresent()) {
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'delete ingredient' command doesn't support edit-arguments (found '%s')",
+                foo.get());
+        } else if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_QUANTITY))).isPresent()) {
             return Result.error("'delete ingredient' command doesn't support '%s'", foo.get());
-        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'delete ingredient' command doesn't support edit-arguments");
         }
 
         var qtys = args.getArgument(Strings.ARG_QUANTITY);
@@ -85,10 +87,11 @@ public class DeleteCommandParser {
     private static Result<DeleteRecipeCommand> parseDeleteRecipeCommand(String name, CommandArguments args) {
 
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'delete recipe' command doesn't support edit-arguments (found '%s')",
+                foo.get());
+        } else if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
             return Result.error("'delete recipe' command doesn't support '%s'", foo.get());
-        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'delete recipe' command doesn't support edit-arguments");
         }
 
         return ItemReference.parse(name).map(DeleteRecipeCommand::new);

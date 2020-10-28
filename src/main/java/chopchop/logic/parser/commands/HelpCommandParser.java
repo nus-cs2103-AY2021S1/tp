@@ -15,6 +15,7 @@ import chopchop.logic.parser.CommandArguments;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.HelpCommand;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 
 public class HelpCommandParser {
@@ -26,7 +27,7 @@ public class HelpCommandParser {
      * @return     a HelpCommand, if the input was valid.
      */
     public static Result<? extends Command> parseHelpCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_HELP);
+        ensureCommandName(args, Strings.COMMAND_HELP);
 
         // we expect no named arguments
         Optional<ArgName> foo;

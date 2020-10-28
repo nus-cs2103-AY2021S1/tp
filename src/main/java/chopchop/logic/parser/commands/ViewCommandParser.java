@@ -1,5 +1,6 @@
 package chopchop.logic.parser.commands;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 
 import chopchop.logic.commands.Command;
@@ -14,7 +15,6 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class ViewCommandParser {
-    private static final String commandName = Strings.COMMAND_VIEW;
 
     /**
      * Parses a 'view' command. Syntax:
@@ -24,7 +24,7 @@ public class ViewCommandParser {
      * @return     a ViewCommand , if the input was valid.
      */
     public static Result<? extends Command> parseViewCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_VIEW);
+        ensureCommandName(args, Strings.COMMAND_VIEW);
 
         // we expect no named arguments
         Optional<ArgName> foo;

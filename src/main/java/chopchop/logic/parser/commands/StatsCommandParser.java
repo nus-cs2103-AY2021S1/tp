@@ -3,9 +3,11 @@
 
 package chopchop.logic.parser.commands;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -33,7 +35,7 @@ public class StatsCommandParser {
      * Parses a 'stats' command. Syntax(es):
      */
     public static Result<? extends Command> parseStatsCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_STATS);
+        ensureCommandName(args, Strings.COMMAND_STATS);
 
         Optional<ArgName> foo;
         if ((foo = getFirstUnknownArgument(args, List.of(
@@ -82,10 +84,11 @@ public class StatsCommandParser {
 
         Optional<ArgName> foo;
         var supportedArgs = List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER);
-        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'stats' command doesn't support edit-arguments (found '%s')",
+                foo.get());
+        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
             return Result.error("'stats recipe' command doesn't support '%s'", foo.get());
-        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'stats' command doesn't support edit-arguments");
         }
 
         var after = args.getArgument(Strings.ARG_AFTER);
@@ -113,10 +116,11 @@ public class StatsCommandParser {
 
         Optional<ArgName> foo;
         var supportedArgs = List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER);
-        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'stats' command doesn't support edit-arguments (found '%s')",
+                foo.get());
+        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
             return Result.error("'stats ingredient' command doesn't support '%s'", foo.get());
-        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'stats' command doesn't support edit-arguments");
         }
 
         var after = args.getArgument(Strings.ARG_AFTER);

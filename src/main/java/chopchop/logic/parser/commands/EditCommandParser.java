@@ -21,6 +21,7 @@ import chopchop.logic.parser.CommandArguments;
 
 import chopchop.logic.commands.Command;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 
 public class EditCommandParser {
@@ -33,7 +34,7 @@ public class EditCommandParser {
      * @return     an AddCommand, if the input was valid.
      */
     public static Result<? extends Command> parseEditCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_EDIT);
+        ensureCommandName(args, Strings.COMMAND_EDIT);
 
         return getCommandTarget(args)
             .then(target -> {

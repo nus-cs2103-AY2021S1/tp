@@ -18,6 +18,7 @@ import chopchop.logic.commands.FindIngredientCommand;
 
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 
@@ -32,7 +33,7 @@ public class FindCommandParser {
      * @return     a FindCommand, if the input was valid.
      */
     public static Result<? extends Command> parseFindCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_FIND);
+        ensureCommandName(args, Strings.COMMAND_FIND);
 
         // we expect no named arguments. note we don't need to check for augments.
         Optional<ArgName> foo;
