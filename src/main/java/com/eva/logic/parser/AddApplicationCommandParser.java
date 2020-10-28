@@ -26,12 +26,15 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
         assert userInput != null;
         try {
             String[] substrings = userInput.split(" ");
-            if (substrings.length <= 1) {
+            if (substrings.length <= 2) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         AddApplicationCommand.MESSAGE_USAGE_2));
             }
             String indexNo = substrings[1];
             String filePath = substrings[2];
+            if (filePath.equals("sample")) {
+                filePath = "src\\main\\java\\com\\eva\\logic\\parser\\resume.txt";
+            }
             File file = new File(filePath);
             Scanner sc = new Scanner(file);
 
@@ -39,7 +42,7 @@ public class AddApplicationCommandParser implements Parser<AddApplicationCommand
             List<Experience> expList = new ArrayList<>();
 
             // Name
-            String name = sc.nextLine().split(":")[1];
+            String name = sc.nextLine().split(" ")[1];
             sc.nextLine(); // read blank line
 
             // Education

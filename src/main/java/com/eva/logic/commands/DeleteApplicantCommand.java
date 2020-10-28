@@ -48,7 +48,7 @@ public class DeleteApplicantCommand extends Command {
         Applicant applicantToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteApplicant(applicantToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_APPLICANT_SUCCESS, applicantToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_APPLICANT_SUCCESS, applicantToDelete.getName()));
     }
 
     @Override
