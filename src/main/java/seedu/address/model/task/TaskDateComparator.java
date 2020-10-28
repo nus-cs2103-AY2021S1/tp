@@ -7,7 +7,7 @@ public class TaskDateComparator implements Comparator<Task> {
         if (t instanceof Deadline) {
             return ((Deadline) t).getDeadlineDate();
         }
-        else if (t instanceof Event) {
+        if (t instanceof Event) {
             return ((Event) t).getEventDate();
         }
         else {
@@ -22,7 +22,7 @@ public class TaskDateComparator implements Comparator<Task> {
         if (date1 != null && date2 != null) {
             return date1.compareTo(date2);
         }
-        else if (date1 == null) {
+        if (date1 == null) {
             return 1;
         }
         else {

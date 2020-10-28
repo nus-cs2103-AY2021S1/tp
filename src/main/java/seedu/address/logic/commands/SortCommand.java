@@ -16,7 +16,7 @@ public class SortCommand extends Command {
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "All results sorted";
 
     @Override
-    public CommandResult execute(Model model){
+    public CommandResult execute(Model model) {
         requireNonNull(model);
         model.sortTask(new TaskDateComparator());
         return new CommandResult(MESSAGE_DELETE_TASK_SUCCESS);
