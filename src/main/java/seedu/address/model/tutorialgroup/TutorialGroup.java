@@ -32,9 +32,11 @@ public class TutorialGroup {
      * Constructor for Tutorial Group
      * @param tutorialGroupId
      */
-    public TutorialGroup(TutorialGroupId tutorialGroupId, UniqueStudentList students,  LocalTime startTime, LocalTime endTime) {
+    public TutorialGroup(TutorialGroupId tutorialGroupId, UniqueStudentList students, String dayOfWeek,
+                         LocalTime startTime, LocalTime endTime) {
         this.tutorialGroupId = tutorialGroupId;
         this.students = students;
+        this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
     }
