@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.Set;
@@ -32,19 +33,20 @@ public class AddDeadlineCommandParser implements Parser<AddDeadlineCommand> {
     public AddDeadlineCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
-                        PREFIX_TASK_DATE, PREFIX_TAG);
+                        PREFIX_TASK_DATE, PREFIX_TASK_TIME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TASK_DATE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TASK_TIME)
+                || !arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TASK_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDeadlineCommand.MESSAGE_USAGE));
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Description description = ParserUtil.parseDescription("");
+        Description description = ParserUtil.parseDescription("No Description");
         if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
             description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         }
-        Priority priority = ParserUtil.parsePriority("");
+        Priority priority = ParserUtil.parsePriority("No Priority Assigned");
         if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
             priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
         }
