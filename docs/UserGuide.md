@@ -9,7 +9,7 @@ If you can type fast, McGymmy can log your food intake faster than traditional G
 This document aims to showcase all of McGymmy's commands.
 Open this document in a modern internet browser (Mozilla Firefox, Google Chrome, or Microsoft Edge).
 
-##  Icon Legend
+##  1. Icon Legend
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** This indicates that the following text consists of tips to better utilise McGymmy
@@ -22,7 +22,7 @@ Open this document in a modern internet browser (Mozilla Firefox, Google Chrome,
 
 </div>
 
-## A little note from the developers
+## 2. A little note from the developers
 
 Thank you for using McGymmy. We sincerely hope that McGymmy plays apart to help you achieve a healthier lifestyle.
 We understand that McGymmy may be a little different from traditional GUI applications and it may be a little difficult to start using it initially.
@@ -39,7 +39,7 @@ Thus we recommend you to start by first understanding how McGymmy works at a hig
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start
+## 3. Quick start
 
 To get started, you can double click on the jar file to open the GUI.
 You can type the command in the command box and press Enter to execute it. e.g. typing help and pressing Enter will open the help window.
@@ -70,11 +70,11 @@ Refer to the features below for details of each command.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## How to use this guide
+## 4. How to use this guide
 
 Please do read this section in order to use this guide effectively
 
-##### Important
+<b>Important</b>
 The picture below shows a summary of where all the items will be.<br>
 Each of the commands explained below will have an image which shows the output.
 
@@ -92,11 +92,9 @@ If you want a table with all the commands:
 If you want to get acquainted with all the commands:
 1. Follow the format and continue reading.
 
-
-
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## 5. Features
 
 <div markdown="block" class="alert alert-info">
 
@@ -131,7 +129,7 @@ We will follow the following convention for each command's format:
 
 </div>
 
-### Viewing help : `help`
+### 5.1 Viewing help : `help`
 
 You can view information on the available commands in the terminal.
 
@@ -143,7 +141,7 @@ Examples:
 
 ![help message](images/CommandImagesForUG/Help.png)
 
-### Adding a food item: `add`
+### 5.2 Adding a food item: `add`
 
 You can add a food item to McGymmy.
 
@@ -165,7 +163,7 @@ Examples:
 
 ![add command example](images/CommandImagesForUG/Add.png)
 
-### Tagging food items : `tag`
+### 5.3 Tagging food items : `tag`
 
 You can tag a food item in McGymmy.
 
@@ -183,7 +181,7 @@ Format: `tag INDEX -t TAG_NAME`
 
 ![tag command example](images/CommandImagesForUG/Tag.png)
 
-### Tagging food items : `untag`
+### 5.4 Untagging food items : `untag`
 
 You can untag a food item in McGymmy.
 
@@ -201,7 +199,7 @@ Format: `untag INDEX -t TAG_NAME`
 
 ![untag command example](images/CommandImagesForUG/Untag.png)
 
-### Finding a food item: `find`
+### 5.5 Finding a food item: `find`
 
 You can find food items based on the keywords supplied.
 
@@ -224,7 +222,7 @@ Examples:
 
 ![find_command_example](images/CommandImagesForUG/Find.png)
 
-### Clearing food items: `clear`
+### 5.6 Clearing food items: `clear`
 
 You can clear food items currently shown in the list.
 
@@ -244,7 +242,7 @@ Examples:
 
 ![find_command_example](images/CommandImagesForUG/Clear.png)
 
-### Listing all food items : `list`
+### 5.7 Listing all food items : `list`
 
 You can view a list of all food items in McGymmy.
 
@@ -261,7 +259,7 @@ Format: `list`
 
 ![list command example](images/CommandImagesForUG/List.png)
 
-### Editing a food item : `edit`
+### 5.8 Editing a food item : `edit`
 
 You can edit the details of a food item at the specified index.
 
@@ -285,7 +283,7 @@ Examples:
 
 ![edit command example](images/CommandImagesForUG/Edit.png)
 
-### Deleting a food item: `delete`
+### 5.9 Deleting a food item: `delete`
 
 You can delete a food item at the specified index.
 
@@ -306,7 +304,7 @@ Examples:
 
 ![delete command example](images/CommandImagesForUG/Delete.png)
 
-### Importing another save file: `import`
+### 5.10 Importing another save file: `import`
 
 You can import a previously saved file into McGymmy from your local directory
 
@@ -336,7 +334,7 @@ Examples:
 
 ![GUI import command example](images/CommandImagesForUG/ImportGUI.png)
 
-### Exporting your save file to a folder: `export`
+### 5.11 Exporting your save file to a folder: `export`
 
 You can export a saved file to a folder to your local directory
 
@@ -369,7 +367,7 @@ Examples:
 
 ![GUI export command example](images/CommandImagesForUG/ExportGUI.png)
 
-### Undoing the previous command : `undo`
+### 5.12 Undoing the previous command : `undo`
 
 Undoes the change made by the previous command
 
@@ -391,7 +389,7 @@ For example, if the user calls the following commands in sequence:
 
 </div>
 
-### Creating a macro command : `macro`
+### 5.13 Creating a macro command : `macro`
 
 Adds a macro to run several commands in succession.
 
@@ -433,7 +431,7 @@ Examples:
 
 </div>
 
-### List all macros : `listmacro`
+### 5.14 List all macros : `listmacro`
 
 Displays information on the available macros in the terminal.
 
@@ -445,7 +443,7 @@ Examples:
 
 ![List Macro command example](images/CommandImagesForUG/Listmacro.png)
 
-### Deleting a macro: `remmacro`
+### 5.15 Deleting a macro: `remmacro`
 
 Deletes the given macro.
 
@@ -462,7 +460,7 @@ Format: `remmacro MACRONAME`
 
 ![delete macro example](images/CommandImagesForUG/Deletemacro.png)
 
-### Exiting the program : `exit`
+### 5.16 Exiting the program : `exit`
 
 Exits the program.
 
@@ -478,20 +476,20 @@ Format: `exit`
 
 </div>
 
-### Saving the data
+### 5.17 Saving the data
 
 McGymmy's data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## FAQ
+## 6. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous McGymmy home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Command summary
+## 7. Command summary
 
 Action     | Format, Examples
 -----------|------------------
@@ -509,7 +507,7 @@ Action     | Format, Examples
 **Tag**    | `tag INDEX -t TAG_NAME` <br> e.g., `tag 1 -t Lunch`
 **UnTag**  | `untag INDEX -t TAG_NAME` <br> e.g., `untag 1 -t Lunch`
 
-## Appendix A
+## 8. Appendix A
 List of supported input date formats, sorted from highest parsing priority to lowest parsing priority
 
 Format       | Example
