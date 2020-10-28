@@ -29,8 +29,6 @@ public class ModuleCard extends UiPart<Region> {
     private Label totalStudents;
     @FXML
     private Label totalGroups;
-    //    @FXML
-    //    private FlowPane tags;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
