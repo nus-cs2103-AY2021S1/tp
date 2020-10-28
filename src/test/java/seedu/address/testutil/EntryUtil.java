@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.util.CliSyntax.PREFIX_KEYWORDS;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.util.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 
 import seedu.address.logic.commands.AddAccountCommand;
 import seedu.address.logic.commands.AddCommand;
