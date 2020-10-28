@@ -122,12 +122,4 @@ public class TypicalVisits {
         ArrayList<Visit> typicalVisits = new ArrayList<>(Collections.singletonList(VISIT_7));
         return new VisitHistory(typicalVisits);
     }
-
-    public static VisitHistory getLongTypicalVisitList(String name) {
-        ArrayList<Visit> typicalList = new ArrayList<Visit>(Arrays.asList(VISIT_1, VISIT_2));
-        for (Visit v : typicalList) {
-            v.setPatientName(new Name(name));
-        }
-        return new VisitHistory(typicalList);
-    }
 }
