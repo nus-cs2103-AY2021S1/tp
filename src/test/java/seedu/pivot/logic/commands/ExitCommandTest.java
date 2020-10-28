@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands;
 
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.ExitCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 

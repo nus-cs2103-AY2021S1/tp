@@ -1,8 +1,6 @@
 package seedu.pivot.logic.commands;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.exceptions.CommandException;
-import seedu.pivot.model.Model;
 
 /**
  * Abstract class for opening items based on Index.
@@ -25,8 +23,6 @@ public abstract class OpenCommand extends Command {
     protected OpenCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
-
-    public abstract CommandResult execute(Model model) throws CommandException;
 
     @Override
     public boolean equals(Object other) {

@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
-import static seedu.pivot.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TITLE_AMY;
 import static seedu.pivot.testutil.Assert.assertThrows;
-import static seedu.pivot.testutil.TypicalCases.AMY;
+import static seedu.pivot.testutil.TypicalCases.AMY_BEE_DISAPPEARANCE;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -28,7 +28,9 @@ import seedu.pivot.model.UserPrefs;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.storage.JsonPivotStorage;
 import seedu.pivot.storage.JsonUserPrefsStorage;
+import seedu.pivot.storage.ReferenceStorage;
 import seedu.pivot.storage.StorageManager;
+import seedu.pivot.storage.testutil.ReferenceStorageStub;
 import seedu.pivot.testutil.CaseBuilder;
 
 public class LogicManagerTest {
@@ -40,12 +42,16 @@ public class LogicManagerTest {
     private Model model = new ModelManager();
     private Logic logic;
 
+
     @BeforeEach
     public void setUp() throws IOException {
+
+
         JsonPivotStorage pivotStorage =
                 new JsonPivotStorage(temporaryFolder.resolve("pivot.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(pivotStorage, userPrefsStorage);
+        ReferenceStorage referenceStorage = new ReferenceStorageStub(temporaryFolder.resolve("./testDirectory"));
+        StorageManager storage = new StorageManager(pivotStorage, userPrefsStorage, referenceStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -70,17 +76,21 @@ public class LogicManagerTest {
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() throws IOException {
+
+        final Path referenceTest = temporaryFolder.resolve("./testDirectory");
+
         // Setup LogicManager with JsonPivotIoExceptionThrowingStub
         JsonPivotStorage pivotStorage =
                 new JsonPivotIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPivot.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(pivotStorage, userPrefsStorage);
+        ReferenceStorage referenceStorage = new ReferenceStorageStub(temporaryFolder.resolve("./testDirectory"));
+        StorageManager storage = new StorageManager(pivotStorage, userPrefsStorage, referenceStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + NAME_DESC_AMY;
-        Case expectedCase = new CaseBuilder(AMY).withTags().build();
+        String addCommand = AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + PREFIX_WITH_TITLE_AMY;
+        Case expectedCase = new CaseBuilder(AMY_BEE_DISAPPEARANCE).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addCase(expectedCase);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

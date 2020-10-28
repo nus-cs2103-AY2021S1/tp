@@ -36,7 +36,6 @@ public class FindCommandParser implements Parser<FindCommand> {
         if (StateManager.atCasePage()) {
             throw new ParseException(MESSAGE_INCORRECT_MAIN_PAGE);
         }
-
         throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 
