@@ -215,12 +215,15 @@ public class Person {
             builder.append(" Note: ")
                     .append(getNote());
         }
+
+        if (getPolicy() != null) {
+            builder.append(" Policy: ")
+                    .append(getPolicy());
+        }
         // Not necessary to add archive status
 
         builder.append(" Priority: ")
                 .append(getPriority());
-        builder.append(" Policy: ")
-                .append(getPolicy());
 
         return builder.toString();
     }
