@@ -48,7 +48,7 @@ Format: `help`
 Adds a client to I4I.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of client sources (including 0)
+A client can have any number of client sources (including 0)
 </div>
 
 Format: `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY]`
@@ -73,16 +73,35 @@ Deletes the client at the given index
 
 Format: `delete CLIENT_INDEX`
 
-Example: `list` followed by `delete 2` deletes the 2nd person in I4I.
+Example: `list` followed by `delete 2` deletes the 2nd client in I4I.
 
 Notes: 
 
-* Deletes the person at the specified `INDEX`.
+* Deletes the client at the specified `INDEX`.
 
-* The index refers to the index number shown in the displayed person list.
+* The index refers to the index number shown in the displayed client list.
 
 * The index must be a positive integer 1, 2, 3, …​
 
+### Clearing all entries : `clear`
+
+Clears all entries from the client list.
+
+<div markdown="span" class="alert alert-primary"> **Warning:**
+This command clears all clients, from both the active list and the archive.
+</div>
+
+Format: `clear`
+
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+### Saving the data
+
+Data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 
 ## Features
@@ -125,6 +144,8 @@ Example:
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [o/NOTE] [s/CLIENTSOURCE]…​ [l/PRIORITY]` <br>e.g., `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 o/This client is new. s/friend from jc s/Jack's Girlfriend l/h`
-**List** | `list`
+**Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
+**Exit** | `exit`
+**List** | `list`
 **Help** | `help`
