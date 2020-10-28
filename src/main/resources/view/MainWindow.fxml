@@ -11,7 +11,7 @@
 
 <?import javafx.scene.control.Label?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Warenager" minWidth="910" minHeight="600" maxHeight="1200" onCloseRequest="#handleExit">
+         title="Warenager" minWidth="1010" minHeight="600" maxHeight="1200" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/Warenager-Icon.png" />
   </icons>
