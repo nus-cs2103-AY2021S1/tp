@@ -45,8 +45,8 @@ public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCom
     }
 
     private static boolean isValidStartEndTimePair(String startTimeString, String endTimeString) {
-        int startTimeInteger = Integer.valueOf(startTimeString);
-        int endTimeInteger = Integer.valueOf(endTimeString);
+        int startTimeInteger = Integer.valueOf(startTimeString.replace(":", ""));
+        int endTimeInteger = Integer.valueOf(endTimeString.replace(":", ""));
         return isValidTime(startTimeString) && isValidTime(endTimeString) && (endTimeInteger - startTimeInteger > 0);
     }
 
@@ -69,7 +69,7 @@ public class AddTutorialGroupCommandParser implements Parser<AddTutorialGroupCom
         String startTimeString = argMultimap.getValue(PREFIX_TUTORIAL_GRP_START_TIME).orElse("");
         String endTimeString = argMultimap.getValue(PREFIX_TUTORIAL_GRP_END_TIME).orElse("");
 
-        if (!isValidDayOfWeek(day) || !isValidTime(startTimeString) || !isValidTime(endTimeString)) {
+        if (!isValidDayOfWeek(day) || !isValidStartEndTimePair(startTimeString, endTimeString)){
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialGroupCommand.MESSAGE_USAGE));
         }
 

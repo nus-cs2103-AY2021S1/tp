@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exceptions.NotInModuleViewException;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
@@ -167,6 +168,17 @@ public class ModelManager implements Model {
     @Override
     public void deleteTutorialGroup(TutorialGroup tutorialGroup) {
         moduleList.deleteTutorialGroup(tutorialGroup, currentModuleInView);
+    }
+
+    @Override
+    public boolean hasTutorialGroup(TutorialGroup toCheck) {
+        return filteredTutorialGroup.contains(toCheck);
+    }
+
+    @Override
+    public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
+        requireAllNonNull(target, edited);
+        moduleList.setTutorialGroup(target, edited);
     }
 
     @Override
