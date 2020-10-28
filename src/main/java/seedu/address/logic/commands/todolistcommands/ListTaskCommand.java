@@ -8,8 +8,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-import java.util.Comparator;
-
 public class ListTaskCommand extends Command {
     public static final String COMMAND_WORD = "listtask";
 
