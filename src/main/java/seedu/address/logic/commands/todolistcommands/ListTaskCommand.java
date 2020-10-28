@@ -8,6 +8,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+import java.util.Comparator;
+
 public class ListTaskCommand extends Command {
     public static final String COMMAND_WORD = "listtask";
 
@@ -16,6 +18,7 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        model.updateSortedTodoList(null);
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(MESSAGE_SUCCESS);
     }

@@ -51,8 +51,8 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
         filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
-        filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
         sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
+        filteredTasks = new FilteredList<Task>(sortedTasks);
     }
 
     public ModelManager() {
@@ -284,7 +284,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedTodoList(Comparator<Task> comparator) {
-        requireNonNull(comparator);
+        // No assertion here because comparator value can be null to reset ordering.
         sortedTasks.setComparator(comparator);
     }
 
