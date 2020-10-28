@@ -70,6 +70,31 @@ Refer to the features below for details of each command.
 1. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## How to use this guide
+
+Please do read this section in order to use this guide effectively
+
+##### Important
+The picture below shows a summary of where all the items will be.<br>
+Each of the commands explained below will have an image which shows the output.
+
+![Usage](images/CommandImagesForUG/Usage.png)
+
+If you are just looking for a particular command:
+1. Press `ctrl-f` 
+1. Search for the command in the search bar.
+
+If you want a table with all the commands:
+1. Refer to table of contents above
+1. Click on Command Summary
+    - The command summary will show you all the commands at a glance
+
+If you want to get acquainted with all the commands:
+1. Follow the format and continue reading.
+
+
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
