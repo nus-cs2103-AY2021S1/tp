@@ -16,6 +16,7 @@ import chopchop.storage.JsonUserPrefsStorage;
 import chopchop.storage.JsonIngredientUsageStorage;
 import chopchop.storage.JsonRecipeUsageStorage;
 import chopchop.storage.StorageManager;
+import javafx.scene.input.KeyCode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -37,7 +38,7 @@ public class CommandBoxTest extends GuiUnitTest {
     private CommandBoxHandle commandBoxHandle;
     private StorageManager storageManager;
     private ModelManager modelManager;
-    private LogicManager logicManager;
+    private LogicManager logic;
 
 
     @BeforeEach
@@ -52,15 +53,16 @@ public class CommandBoxTest extends GuiUnitTest {
 
         modelManager = new ModelManager();
 
-        logicManager = new LogicManager(modelManager, storageManager);
+        logic = new LogicManager(modelManager, storageManager);
 
         CommandBox commandBox = new CommandBox(commandText -> {
             history.add(commandText);
+            logic.execute(commandText);
             if (commandText.equals(COMMAND_THAT_SUCCEEDS)) {
                 return CommandResult.message("Command successful");
             }
             throw new CommandException("Command failed");
-        }, logicManager);
+        }, logic);
         commandBoxHandle = new CommandBoxHandle(getChildNode(commandBox.getRoot(),
                 CommandBoxHandle.COMMAND_INPUT_FIELD_ID));
         uiPartExtension.setUiPart(commandBox);
@@ -68,12 +70,22 @@ public class CommandBoxTest extends GuiUnitTest {
         defaultStyleOfCommandBox = new ArrayList<>(commandBoxHandle.getStyleClass());
 
         errorStyleOfCommandBox = new ArrayList<>(defaultStyleOfCommandBox);
-        errorStyleOfCommandBox.add(CommandBox.ERROR_STYLE_CLASS);
     }
 
     @Test
     public void commandBox_startingWithSuccessfulCommand() {
         assertBehaviorForSuccessfulCommand();
+        assertBehaviorForFailedCommand();
+    }
+
+    @Test
+    public void commandBox_startingWithFailedCommand() {
+        assertBehaviorForFailedCommand();
+        assertBehaviorForSuccessfulCommand();
+
+        // verify that style is changed correctly even after multiple consecutive failed commands
+        assertBehaviorForSuccessfulCommand();
+        assertBehaviorForFailedCommand();
         assertBehaviorForFailedCommand();
     }
 
@@ -89,8 +101,79 @@ public class CommandBoxTest extends GuiUnitTest {
     private void assertBehaviorForFailedCommand() {
         commandBoxHandle.run(COMMAND_THAT_FAILS);
         assertEquals("", commandBoxHandle.getInput());
-        //assertEquals(errorStyleOfCommandBox, commandBoxHandle.getStyleClass());
+        assertEquals(errorStyleOfCommandBox, commandBoxHandle.getStyleClass());
     }
+
+    @Test
+    public void handleKeyPress_startingWithUp() {
+        // empty history
+        assertInputHistory(KeyCode.UP, "");
+        assertInputHistory(KeyCode.DOWN, "");
+
+        // one command
+        commandBoxHandle.run(COMMAND_THAT_SUCCEEDS);
+        assertInputHistory(KeyCode.UP, COMMAND_THAT_SUCCEEDS);
+        assertInputHistory(KeyCode.DOWN, "");
+
+        // two commands (latest command is failure)
+        commandBoxHandle.run(COMMAND_THAT_FAILS);
+        assertInputHistory(KeyCode.UP, COMMAND_THAT_FAILS);
+        assertInputHistory(KeyCode.UP, COMMAND_THAT_SUCCEEDS);
+        assertInputHistory(KeyCode.DOWN, COMMAND_THAT_FAILS);
+        assertInputHistory(KeyCode.DOWN, "");
+        assertInputHistory(KeyCode.DOWN, "");
+        assertInputHistory(KeyCode.UP, COMMAND_THAT_FAILS);
+
+        // insert command in the middle of retrieving previous commands
+        guiRobot.push(KeyCode.UP);
+        String thirdCommand = "list recipe";
+        commandBoxHandle.run(thirdCommand);
+        assertInputHistory(KeyCode.UP, thirdCommand);
+        assertInputHistory(KeyCode.UP, COMMAND_THAT_FAILS);
+        assertInputHistory(KeyCode.UP, COMMAND_THAT_SUCCEEDS);
+        assertInputHistory(KeyCode.DOWN, COMMAND_THAT_FAILS);
+        assertInputHistory(KeyCode.DOWN, thirdCommand);
+        assertInputHistory(KeyCode.DOWN, "");
+    }
+
+    @Test
+    public void handleKeyPress_startingWithDown() {
+        // empty history
+        assertInputHistory(KeyCode.DOWN, "");
+        assertInputHistory(KeyCode.UP, "");
+
+        // one command
+        commandBoxHandle.run(COMMAND_THAT_SUCCEEDS);
+        assertInputHistory(KeyCode.DOWN, "");
+        assertInputHistory(KeyCode.UP, COMMAND_THAT_SUCCEEDS);
+
+        // two commands
+        commandBoxHandle.run(COMMAND_THAT_FAILS);
+        assertInputHistory(KeyCode.DOWN, "");
+        assertInputHistory(KeyCode.UP, COMMAND_THAT_FAILS);
+
+        // insert command in the middle of retrieving previous commands
+        guiRobot.push(KeyCode.UP);
+        String thirdCommand = "list";
+        commandBoxHandle.run(thirdCommand);
+        assertInputHistory(KeyCode.DOWN, "");
+        assertInputHistory(KeyCode.UP, thirdCommand);
+    }
+
+    @Test
+    public void handleKeyPress_tabAutocompleteCommand() {
+        executeKeyCodes(KeyCode.L);
+        assertInputHistory(KeyCode.TAB, "list ");
+    }
+
+    @Test
+    public void handleKeyPress_tabAutocompleteTargetWithTarget() {
+        executeKeyCodes(KeyCode.L);
+        assertInputHistory(KeyCode.TAB, "list ");
+        executeKeyCodes(KeyCode.R);
+        assertInputHistory(KeyCode.TAB, "list recipe ");
+    }
+
 
     /**
      * Runs a command that succeeds, then verifies that <br>
@@ -101,5 +184,18 @@ public class CommandBoxTest extends GuiUnitTest {
         commandBoxHandle.run(COMMAND_THAT_SUCCEEDS);
         assertEquals("", commandBoxHandle.getInput());
         assertEquals(defaultStyleOfCommandBox, commandBoxHandle.getStyleClass());
+    }
+
+    private void executeKeyCodes(KeyCode... keyCodes) {
+        for (KeyCode keyCode : keyCodes) {
+            guiRobot.push(keyCode);
+        }
+    }
+    /**
+     * Pushes {@code keycode} and checks that the input in the {@code commandBox} equals to {@code expectedCommand}.
+     */
+    private void assertInputHistory(KeyCode keycode, String expectedCommand) {
+        guiRobot.push(keycode);
+        assertEquals(expectedCommand, commandBoxHandle.getInput());
     }
 }
