@@ -1,12 +1,14 @@
 package seedu.address.logic.commands.modulelistcommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -23,7 +25,8 @@ public class AddZoomLinkCommand extends Command {
 
     public static final String COMMAND_WORD = "addzoom";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a zoom link to the module. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Adds a zoom link for a specific lesson to the module. "
             + "Parameters: " + "INDEX (must be a positive integer) "
             + PREFIX_NAME + "MODULE LESSON TYPE"
             + PREFIX_ZOOM_LINK + "ZOOM LINK "
@@ -31,11 +34,13 @@ public class AddZoomLinkCommand extends Command {
             + "1" + PREFIX_NAME + "lecture"
             + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/j/uasoihd637bf";
 
-    public static final String MESSAGE_ADD_ZOOM_SUCCESS = "Added Zoom link: %1$s";
+    public static final String MESSAGE_ADD_ZOOM_SUCCESS = "Added zoom link: %1$s";
+
+    private final Logger logger = LogsCenter.getLogger(AddZoomLinkCommand.class);
 
     private final Index targetIndex;
-    private final ZoomLink zoomLink;
     private final String moduleLessonType;
+    private final ZoomLink zoomLink;
 
     /**
      * Creates and initialises a new AddZoomLinkCommand object.
@@ -46,6 +51,7 @@ public class AddZoomLinkCommand extends Command {
      *                 to a module for a specific lesson type.
      */
     public AddZoomLinkCommand(Index targetIndex, String moduleLessonType, ZoomLink zoomLink) {
+        requireAllNonNull(targetIndex, moduleLessonType, zoomLink);
         this.targetIndex = targetIndex;
         this.moduleLessonType = moduleLessonType;
         this.zoomLink = zoomLink;
@@ -64,9 +70,28 @@ public class AddZoomLinkCommand extends Command {
         Module moduleToAddZoom = lastShownList.get(targetIndex.getZeroBased());
         model.addZoom
         model.commitModuleList();
+        logger.info("Zoom link added to module");
         return new CommandResult(String.format(MESSAGE_ADD_ZOOM_SUCCESS, zoomLink));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddZoomLinkCommand)) {
+            return false;
+        }
+
+        // state check
+        AddZoomLinkCommand command = (AddZoomLinkCommand) other;
+        return targetIndex.equals(command.targetIndex)
+                && moduleLessonType.equals(command.moduleLessonType)
+                && zoomLink.equals(command.zoomLink);
+    }
 
     /**
      * Indicates if the application session has ended.
@@ -77,4 +102,5 @@ public class AddZoomLinkCommand extends Command {
     public boolean isExit() {
         return false;
     }
+
 }
