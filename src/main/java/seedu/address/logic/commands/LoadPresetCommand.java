@@ -11,11 +11,9 @@ import seedu.address.model.vendor.Name;
 import seedu.address.storage.Storage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.LogicManager.FILE_OPS_ERROR_MESSAGE;
 
 public class LoadPresetCommand extends PresetCommand {
@@ -38,16 +36,36 @@ public class LoadPresetCommand extends PresetCommand {
         try {
             List<List<Preset>> allLists = storage.readPresetManager()
                     .orElseThrow(() -> new CommandException(FILE_OPS_ERROR_MESSAGE));
-            List<OrderItem> orderItems = allLists.get(model.getVendorIndex())
+
+            int currentIndex = model.getVendorIndex();
+            if (currentIndex >= allLists.size()) {
+                throw new CommandException(FILE_OPS_ERROR_MESSAGE);
+            }
+            if (displayAllPresets) {
+                List<Preset> vendorPresets = allLists.get(currentIndex);
+                if (vendorPresets.isEmpty()) {
+                    throw new CommandException(ParserUtil.MESSAGE_PRESET_NO_SAVED_PRESETS);
+                }
+                StringBuilder message = new StringBuilder();
+                for (Preset preset:vendorPresets) {
+                    message.append(preset.getName()).append(", ");
+                }
+                String removeComma = message.toString().trim();
+                removeComma = removeComma.substring(0, removeComma.length() - 1);
+                return new CommandResult(PresetCommand.MESSAGE_DISPLAY_ALL_PRESETS + removeComma,
+                        false, false, true);
+            }
+            List<OrderItem> orderItems = allLists.get(currentIndex)
                     .stream()
                     .filter(preset -> preset.getName().equals(presetName.toString()))
                     .findFirst()
                     .map(Preset::getOrderItems)
                     .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_PRESET_NOT_FOUND,
                             presetName)));
-            model.getMenuManager(model.getVendorIndex()).getFoodList();
 
+            model.showDefaultMenu();
             model.setOrder(orderItems);
+
         } catch (DataConversionException | IOException | IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_PRESET_LOAD_ERROR);
         }

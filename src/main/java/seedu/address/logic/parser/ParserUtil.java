@@ -38,6 +38,7 @@ public class ParserUtil {
     public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign.";
     public static final String MESSAGE_INVALID_PRESET_ARGUMENT = "Save or Load preset command was not specified.";
     public static final String MESSAGE_PRESET_SAVE_NO_ORDER = "You have not added any items to your order to be saved!";
+    public static final String MESSAGE_PRESET_NO_SAVED_PRESETS = "You have not saved any presets for this vendor!";
 
     /**
      * Parses {@code inequality} into an {@code Inequality} and returns it. Leading and trailing whitespaces will be

@@ -37,7 +37,6 @@ public class SavePresetCommand extends PresetCommand {
         try {
             List<List<Preset>> allLists = storage.readPresetManager()
                     .orElseThrow(() -> new CommandException(FILE_OPS_ERROR_MESSAGE));
-            //TODO: UPDATE ERROR THROW
             int currentIndex = model.getVendorIndex();
             if (currentIndex >= allLists.size()) {
                 IntStream.rangeClosed(allLists.size(), currentIndex)
