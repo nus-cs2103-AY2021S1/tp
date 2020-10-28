@@ -14,7 +14,6 @@ import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
 import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
 import seedu.address.logic.commands.contactlistcommands.HelpContactCommand;
 import seedu.address.logic.commands.contactlistcommands.ListContactCommand;
-import seedu.address.logic.commands.contactlistcommands.ViewContactCommand;
 import seedu.address.logic.parser.FeatureParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -40,7 +39,9 @@ public class ContactListParser implements FeatureParser {
 
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
+
         switch (commandWord) {
+
         case AddContactCommand.COMMAND_WORD:
             return new AddContactParser().parse(arguments);
 
@@ -64,12 +65,6 @@ public class ContactListParser implements FeatureParser {
 
         case HelpContactCommand.COMMAND_WORD:
             return new HelpContactCommand();
-
-        case ViewContactCommand.COMMAND_WORD:
-            return new ViewContactParser().parse(arguments);
-
-        //case AddAssignmentCommand.COMMAND_WORD:
-            //return new AddAssignmentParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

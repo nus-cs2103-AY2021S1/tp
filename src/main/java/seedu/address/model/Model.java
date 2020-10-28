@@ -96,6 +96,20 @@ public interface Model {
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
 
+    /**
+     * Saves the current module list state in history.
+     */
+    void commitModuleList();
+
+    /**
+     * Restores the previous module list state from history.
+     */
+    void undoModuleList();
+
+    /**
+     * Restores the previously undone module list state from history.
+     */
+    void redoModuleList();
     // ============================ ContactList ==================================================
 
     /**
