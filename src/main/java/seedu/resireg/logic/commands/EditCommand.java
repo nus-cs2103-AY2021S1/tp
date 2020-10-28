@@ -35,15 +35,14 @@ import seedu.resireg.storage.Storage;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.EDIT_COMMAND.toString();
+    public static final String COMMAND_WORD = "edit-student";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiReg.";
 
     public static final Help HELP = new Help(COMMAND_WORD,
-            "Edits the details of the student identified by the index number used in the displayed student list."
-                    + "Existing values will be overwritten by the input values.",
+            "Edits the details of the student identified by the index number used in the displayed student list.",
             "Parameters: INDEX (must be a positive integer) "
                     + "[" + PREFIX_NAME + "NAME] "
                     + "[" + PREFIX_STUDENT_ID + "STUDENT ID] "

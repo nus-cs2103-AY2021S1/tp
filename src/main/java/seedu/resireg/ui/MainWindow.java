@@ -17,6 +17,7 @@ import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.TabView;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
+import seedu.resireg.model.AppMode;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -30,6 +31,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private AppMode previousAppMode;
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
@@ -60,6 +62,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
+        previousAppMode = null;
 
         // Set dependencies
         this.primaryStage = primaryStage;
@@ -116,9 +119,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        mainPanel = new MainPanel();
-        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
-        mainPanel.updatePanels(logic);
+        setMainPanel();
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -132,6 +133,30 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand, logic.getHistory());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
         commandBox.requestFocus(); // so the user can start entering commands right away
+    }
+
+    /**
+     * Change the {@code mainPanel} (only) if there's a change in the {@code appMode} based on the {@code logic}.
+     */
+    private void setMainPanel() {
+        if (previousAppMode == logic.getAppMode()) {
+            return;
+        }
+        previousAppMode = logic.getAppMode();
+        switch (logic.getAppMode()) {
+        case NORMAL:
+            mainPanel = new NormalMainPanel();
+            break;
+        case NEW:
+            mainPanel = new RoomCreationMainPanel();
+            break;
+        default:
+            logger.warning("Unhandled AppMode");
+            assert false : "Unhandled AppMode";
+        }
+        mainPanelPlaceholder.getChildren().clear();
+        mainPanelPlaceholder.getChildren().add(mainPanel.getRoot());
+        mainPanel.updatePanels(logic);
     }
 
     /**
@@ -210,6 +235,8 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+
+            setMainPanel(); // update the main panel if necessary
 
             mainPanel.updatePanels(logic);
 

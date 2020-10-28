@@ -19,7 +19,7 @@ import seedu.resireg.storage.Storage;
  */
 public class AddCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.ADD_COMMAND.toString();
+    public static final String COMMAND_WORD = "add-student";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s (%2$s)";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in ResiReg";

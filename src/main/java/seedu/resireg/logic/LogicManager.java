@@ -2,6 +2,8 @@ package seedu.resireg.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -9,11 +11,15 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.core.LogsCenter;
 import seedu.resireg.logic.commands.Command;
 import seedu.resireg.logic.commands.CommandResult;
+import seedu.resireg.logic.commands.CommandWordEnum;
 import seedu.resireg.logic.commands.exceptions.CommandException;
+import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ResiRegParser;
 import seedu.resireg.logic.parser.exceptions.ParseException;
+import seedu.resireg.model.AppMode;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ReadOnlyResiReg;
+import seedu.resireg.model.alias.CommandWordAlias;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.bin.BinItem;
 import seedu.resireg.model.room.Room;
@@ -31,7 +37,6 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final CommandHistory history;
-    private ResiRegParser resiRegParser; // mutable, to allow for dynamic aliasing
     private boolean isModified;
 
     /**
@@ -51,9 +56,10 @@ public class LogicManager implements Logic {
         isModified = false;
 
         CommandResult commandResult;
+        Map<String, Parser<Command>> map = CommandWordEnum.getCommandWordToParserMap(model.getAppMode());
+        addAliases(map, model.getCommandWordAliases());
         try {
-            resiRegParser = new CommandMapper(model.getCommandWordAliases()).getParser();
-            Command command = resiRegParser.parseCommand(commandText);
+            Command command = ResiRegParser.parseCommand(commandText, map);
             commandResult = command.execute(model, storage, history);
         } finally {
             history.add(commandText);
@@ -70,6 +76,16 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    private void addAliases(Map<String, Parser<Command>> map, List<CommandWordAlias> aliasList) {
+        for (CommandWordAlias alias : aliasList) {
+            String commandWord = alias.getCommandWord().commandWord;
+            String aliasString = alias.getAlias().toString();
+            if (map.containsKey(commandWord)) {
+                map.put(aliasString, map.get(commandWord));
+            }
+        }
     }
 
     @Override
@@ -120,5 +136,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public AppMode getAppMode() {
+        return model.getAppMode();
     }
 }

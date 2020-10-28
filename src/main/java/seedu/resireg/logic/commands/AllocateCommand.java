@@ -23,7 +23,7 @@ import seedu.resireg.storage.Storage;
  */
 public class AllocateCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.ALLOCATE_COMMAND.toString();
+    public static final String COMMAND_WORD = "allocate";
     public static final Help HELP = new Help(COMMAND_WORD,
             "Allocates a student to a room.",
             "Parameters: "

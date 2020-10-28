@@ -21,6 +21,7 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.commons.exceptions.DataConversionException;
 import seedu.resireg.logic.CommandHistory;
 import seedu.resireg.logic.commands.exceptions.CommandException;
+import seedu.resireg.model.AppMode;
 import seedu.resireg.model.Model;
 import seedu.resireg.model.ModelPredicate;
 import seedu.resireg.model.ReadOnlyResiReg;
@@ -354,6 +355,16 @@ public class AddCommandTest {
 
         @Override
         public void saveStateResiReg() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public AppMode getAppMode() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void finalizeRooms() {
             throw new AssertionError("This method should not be called.");
         }
     }

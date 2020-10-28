@@ -20,7 +20,7 @@ import seedu.resireg.storage.Storage;
  */
 public class DeallocateCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.DEALLOCATE_COMMAND.toString();
+    public static final String COMMAND_WORD = "deallocate";
 
     public static final Help HELP = new Help(COMMAND_WORD, "Deallocates a student from a room.",
             "Parameters: " + PREFIX_STUDENT_INDEX + "STUDENT INDEX\n"

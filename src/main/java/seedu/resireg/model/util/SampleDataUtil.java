@@ -76,7 +76,7 @@ public class SampleDataUtil {
 
     public static Allocation[] getSampleAllocations() {
         return new Allocation[]{
-            new Allocation(new Floor("11"), new RoomNumber("108"), new StudentId("E0111111"))
+            // new Allocation(new Floor("11"), new RoomNumber("108"), new StudentId("E0111111"))
         };
     }
 

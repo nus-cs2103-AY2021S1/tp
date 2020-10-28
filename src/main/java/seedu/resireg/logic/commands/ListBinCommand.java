@@ -12,7 +12,7 @@ import seedu.resireg.storage.Storage;
  */
 public class ListBinCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.LIST_BIN_COMMAND.toString();
+    public static final String COMMAND_WORD = "bin";
 
     public static final String MESSAGE_SUCCESS = "Listed all bin items";
 

@@ -20,6 +20,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.resireg.logic.commands.AddCommand;
 import seedu.resireg.logic.commands.CommandResult;
+import seedu.resireg.logic.commands.DeleteCommand;
 import seedu.resireg.logic.commands.HistoryCommand;
 import seedu.resireg.logic.commands.ListCommand;
 import seedu.resireg.logic.commands.exceptions.CommandException;
@@ -40,11 +41,14 @@ public class LogicManagerTest {
     @TempDir
     public Path temporaryFolder;
 
-    private Model model = new ModelManager();
+    private Model model;
     private Logic logic;
 
     @BeforeEach
     public void setUp() {
+        model = new ModelManager();
+        model.finalizeRooms();
+
         JsonResiRegStorage resiRegStorage =
                 new JsonResiRegStorage(temporaryFolder.resolve("resireg.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
@@ -61,7 +65,7 @@ public class LogicManagerTest {
 
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
-        String deleteCommand = "delete 9";
+        String deleteCommand = DeleteCommand.COMMAND_WORD + " 9";
         assertCommandException(deleteCommand, MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         assertHistoryCorrect(deleteCommand);
     }
@@ -88,6 +92,7 @@ public class LogicManagerTest {
                 + FACULTY_DESC_AMY + STUDENT_ID_DESC_AMY;
         Student expectedStudent = new StudentBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.finalizeRooms();
         expectedModel.addStudent(expectedStudent);
         expectedModel.saveStateResiReg();
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;

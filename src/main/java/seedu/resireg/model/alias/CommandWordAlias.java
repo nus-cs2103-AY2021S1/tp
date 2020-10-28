@@ -38,8 +38,6 @@ public class CommandWordAlias {
             || (other instanceof CommandWordAlias // instanceof handles nulls
             && alias.equals(((CommandWordAlias) other).alias) // state check
             && commandWord.equals(((CommandWordAlias) other).commandWord));
-
-
     }
 
     @Override

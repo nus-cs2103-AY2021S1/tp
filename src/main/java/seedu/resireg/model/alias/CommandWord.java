@@ -16,7 +16,7 @@ public class CommandWord {
 
     public static final String MESSAGE_CONSTRAINTS =
         "Invalid command word. Type \"help\" to see a list of command words.";
-    public static final String VALIDATION_REGEX = "^[A-Za-z]+$";
+    public static final String VALIDATION_REGEX = "^[A-Za-z-]+$";
 
     public final String commandWord;
 

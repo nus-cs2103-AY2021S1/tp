@@ -15,7 +15,7 @@ import seedu.resireg.storage.Storage;
  */
 public class AddAliasCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.ADD_ALIAS_COMMAND.toString();
+    public static final String COMMAND_WORD = "alias";
 
     public static final String MESSAGE_SUCCESS = "New alias added: %1$s";
     public static final String MESSAGE_DUPLICATE_ALIAS = "This alias already exists in ResiReg";

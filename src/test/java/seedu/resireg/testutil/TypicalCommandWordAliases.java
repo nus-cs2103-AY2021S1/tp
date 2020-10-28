@@ -24,15 +24,15 @@ public class TypicalCommandWordAliases {
         .withAlias("stu").build();
     public static final CommandWordAlias ALLOCATE_AL = new CommandWordAliasBuilder().withCommandWord("allocate")
         .withAlias("al").build();
-    public static final CommandWordAlias FIND_FI = new CommandWordAliasBuilder().withCommandWord("find")
+    public static final CommandWordAlias FIND_FI = new CommandWordAliasBuilder().withCommandWord("find-students")
         .withAlias("fi").build();
     public static final CommandWordAlias REALLOCATE_REL = new CommandWordAliasBuilder().withCommandWord("reallocate")
         .withAlias("rel").build();
 
     // Manually added
-    public static final CommandWordAlias EDIT_E = new CommandWordAliasBuilder().withCommandWord("edit")
+    public static final CommandWordAlias EDIT_E = new CommandWordAliasBuilder().withCommandWord("edit-student")
         .withAlias("e").build();
-    public static final CommandWordAlias DELETE_D = new CommandWordAliasBuilder().withCommandWord("delete")
+    public static final CommandWordAlias DELETE_D = new CommandWordAliasBuilder().withCommandWord("delete-student")
         .withAlias("d").build();
 
     // Manually added - Student's details found in {@code CommandTestUtil}

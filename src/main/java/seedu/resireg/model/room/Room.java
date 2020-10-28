@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.resireg.model.bin.Binnable;
 import seedu.resireg.model.room.roomtype.RoomType;
 import seedu.resireg.model.tag.Tag;
 
@@ -14,7 +15,7 @@ import seedu.resireg.model.tag.Tag;
  * Represents a Room in ResiReg.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Room {
+public class Room implements Binnable {
 
     // Identity fields
     private final Floor floor;

@@ -12,7 +12,7 @@ import seedu.resireg.storage.Storage;
  */
 public class RedoCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.REDO_COMMAND.toString();
+    public static final String COMMAND_WORD = "redo";
 
     public static final String MESSAGE_SUCCESS = "Redo success!";
     public static final String MESSAGE_FAILURE = "No more actions to redo!";

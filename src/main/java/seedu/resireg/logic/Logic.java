@@ -7,6 +7,7 @@ import seedu.resireg.commons.core.GuiSettings;
 import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
+import seedu.resireg.model.AppMode;
 import seedu.resireg.model.ReadOnlyResiReg;
 import seedu.resireg.model.allocation.Allocation;
 import seedu.resireg.model.bin.BinItem;
@@ -69,4 +70,6 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    AppMode getAppMode();
 }

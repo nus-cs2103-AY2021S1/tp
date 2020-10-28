@@ -34,7 +34,6 @@ public class ModelManager implements Model {
     private final ModelAwareFilteredList<Allocation> filteredAllocations;
     private final ModelAwareFilteredList<BinItem> filteredBinItems;
 
-
     /**
      * Initializes a ModelManager with the given ResiReg data and userPrefs.
      */
@@ -404,6 +403,17 @@ public class ModelManager implements Model {
         statefulResiReg.save();
     }
 
+    //=========== AppMode =============================================================
+
+    @Override
+    public AppMode getAppMode() {
+        return statefulResiReg.getAppMode();
+    }
+
+    @Override
+    public void finalizeRooms() {
+        statefulResiReg.finalizeRooms();
+    }
 
     @Override
     public boolean equals(Object obj) {

@@ -14,7 +14,7 @@ import seedu.resireg.storage.Storage;
  */
 public class FindCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.FIND_COMMAND.toString();
+    public static final String COMMAND_WORD = "find-students";
 
     public static final Help HELP = new Help(COMMAND_WORD,
             "Finds all students whose names contain any of the specified keywords (case-insensitive) and displays"

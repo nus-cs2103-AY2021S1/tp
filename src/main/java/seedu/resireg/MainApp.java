@@ -76,10 +76,13 @@ public class MainApp extends Application {
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyResiReg> resiRegOptional;
         ReadOnlyResiReg initialData;
+        boolean isRoomCreationAllowed = true;
         try {
             resiRegOptional = storage.readResiReg();
             if (!resiRegOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ResiReg");
+            } else {
+                isRoomCreationAllowed = false; // finalize rooms if succesfully loaded from existing file
             }
             initialData = resiRegOptional.orElseGet(SampleDataUtil::getSampleResiReg);
         } catch (DataConversionException e) {
@@ -93,8 +96,11 @@ public class MainApp extends Application {
         // delete expired items on start up
         ModelManager modelManager = new ModelManager(initialData, userPrefs);
         modelManager.deleteExpiredBinItems();
-
-        return new ModelManager(initialData, userPrefs);
+        // finalize rooms if necessary
+        if (!isRoomCreationAllowed) {
+            modelManager.finalizeRooms();
+        }
+        return modelManager;
     }
 
     private void initLogging(Config config) {

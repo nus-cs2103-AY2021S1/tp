@@ -8,7 +8,7 @@ import seedu.resireg.storage.Storage;
  * Toggles between showing students and rooms as separate tabs and showing students and rooms as one combined tab.
  */
 public class ToggleTabSplitCommand extends Command {
-    public static final String COMMAND_WORD = CommandWordEnum.TOGGLE_TAB_SPLIT_COMMAND.toString();
+    public static final String COMMAND_WORD = "toggle-split";
 
     public static final String MESSAGE_SUCCESS = "Toggled students/rooms split.";
 

@@ -11,7 +11,7 @@ import seedu.resireg.storage.Storage;
  * Reverts the {@code model}'s ResiReg to its previous state.
  */
 public class UndoCommand extends Command {
-    public static final String COMMAND_WORD = CommandWordEnum.UNDO_COMMAND.toString();
+    public static final String COMMAND_WORD = "undo";
 
     public static final String MESSAGE_SUCCESS = "Undo success!";
     public static final String MESSAGE_FAILURE = "No more actions to undo!";

@@ -11,7 +11,7 @@
 
     <TabPane fx:id="tabPane"
              tabClosingPolicy="UNAVAILABLE">
-        <!-- Students and rooms tabs will be created programatically -->
+        <!-- Students and rooms tabs will be created programmatically -->
         <Tab fx:id="binsTab" text="Bin">
             <VBox fx:id="binItemList"
                   VBox.vgrow="ALWAYS"
