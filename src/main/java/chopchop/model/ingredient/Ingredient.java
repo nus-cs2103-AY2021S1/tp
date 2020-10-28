@@ -190,7 +190,7 @@ public class Ingredient extends Entry {
      */
     public Pair<Ingredient, Ingredient> split(Quantity quantity)
             throws IllegalValueException, IncompatibleIngredientsException {
-        if (this.getQuantity().compareTo(quantity) < 0 || quantity.getValue() < 0) {
+        if (this.getQuantity().compareTo(quantity) < 0 || quantity.isNegative()) {
             throw new IllegalValueException(String.format("Insufficient '%s' to remove given quantity",
                     this.name.toString()));
         }
@@ -203,7 +203,8 @@ public class Ingredient extends Entry {
         for (var entry : this.sets.entrySet()) {
             if (entry.getValue().compareTo(currQuantity) < 0) {
                 currQuantity = currQuantity.subtract(entry.getValue())
-                        .orElseThrow(IncompatibleIngredientsException::new);
+                    .orElseThrow(IncompatibleIngredientsException::new);
+
             } else {
                 splitKey = entry.getKey();
                 break;
@@ -217,7 +218,7 @@ public class Ingredient extends Entry {
         var remainingQuantity = this.sets.get(splitKey).subtract(currQuantity)
                 .orElseThrow(IncompatibleIngredientsException::new);
 
-        if (remainingQuantity.getValue() != 0) {
+        if (!remainingQuantity.isZero()) {
             secondSets.put(splitKey, remainingQuantity);
         }
 
