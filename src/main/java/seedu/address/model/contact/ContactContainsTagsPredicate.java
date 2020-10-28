@@ -1,11 +1,12 @@
 package seedu.address.model.contact;
 
-import seedu.address.model.tag.Tag;
+
+import static java.util.Objects.requireNonNull;
 
 import java.util.Set;
 import java.util.function.Predicate;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.model.tag.Tag;
 
 /**
  * Tests that a {@code Contact}'s {@code Tag} matches any of the search tags provided by the user.
