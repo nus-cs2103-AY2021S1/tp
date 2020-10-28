@@ -8,7 +8,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalDeliveries.KELVIN;
 import static seedu.address.testutil.TypicalDeliveries.MARCUS;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
