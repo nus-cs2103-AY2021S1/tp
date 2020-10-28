@@ -254,10 +254,6 @@ Examples:
 * `find-i s/ntuc t/meat` returns item with supplier of `NTUC` and tag of `meat`.
 
 1. Select the Command Box and type in `find-d s/ntuc t/meat`.
-<br>
-![find-command-3](images/find-command-3.PNG)
-<br>
-<br>
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
@@ -287,10 +283,6 @@ Examples:
 * `find-d n/alex aileen` returns `Alex` and `Aileen`'s deliveries
 
 1. Select the Command Box and type in `find-d n/alex aileen`.
-<br>
-![find-command-1](images/find-command-1.PNG)
-<br>
-<br>
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
@@ -311,10 +303,6 @@ Format: `list-i` or `list-d`
 Example: `list-i`
 
 1. Select the Command Box and type in `list-i`.
-<br>
-![list-command-1](images/list-command-1.PNG)
-<br>
-<br>
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
