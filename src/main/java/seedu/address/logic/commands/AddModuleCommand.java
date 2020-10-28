@@ -14,7 +14,8 @@ public class AddModuleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds module.\n"
             + "Parameters: "
             + PREFIX_MODULE + "NAME ";
-    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. Run listMod to go back to the module view.";
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. "
+            + "Run listMod to go back to the Module view.";
 
 
     private final Module toAdd;
