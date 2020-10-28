@@ -68,8 +68,8 @@ public class FindCommandParserTest {
         assertParseFailure(parser, " title:@@", Title.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " desc:@@", Description.SEARCH_CONSTRAINTS);
         assertParseFailure(parser, " status:comple", Status.SEARCH_CONSTRAINTS);
-        assertParseFailure(parser, " date:01-01-202", DateUtil.SEARCH_CONSTRAINTS);
-        assertParseFailure(parser, " date:13", DateUtil.SEARCH_CONSTRAINTS);
+        assertParseFailure(parser, " date:01-01-202", DateUtil.SEARCH_DATE_CONSTRAINTS);
+        assertParseFailure(parser, " date:13", DateUtil.SEARCH_DATE_CONSTRAINTS);
 
         // one of the attribute is invalid
         assertParseFailure(parser, " title:abc# date: desc:edf", Title.SEARCH_CONSTRAINTS);

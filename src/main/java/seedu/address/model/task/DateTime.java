@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.model.lesson.Time;
 
 /**
  * Represents a Task's date and time in PlaNus task list.
@@ -24,7 +23,7 @@ public class DateTime {
         if (dateTime.isEmpty() || dateTime.isBlank()) {
             value = DateUtil.DEFAULT_DATETIME;
         } else {
-            checkArgument(isValidDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
+            checkArgument(isValidDateTime(dateTime), DateUtil.DATE_TIME_CONSTRAINTS);
             value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
         }
     }
@@ -45,16 +44,6 @@ public class DateTime {
      */
     public static boolean isValidDateTime(String test) {
         return DateUtil.isValidDateTime(test);
-    }
-
-    /**
-     * Returns true if a given string is a valid search phrase for date time.
-     *
-     * @param test the string value to be put to test.
-     * @return true if the test string is valid and false otherwise
-     */
-    public static boolean isValidSearchPhrase(String test) {
-        return isValidDateTime(test) || DateUtil.isValidDate(test) || Time.isValidTime(test);
     }
 
     @Override

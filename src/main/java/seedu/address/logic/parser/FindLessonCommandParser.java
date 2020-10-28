@@ -4,9 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_SEARCH_PHRASE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
@@ -14,47 +15,47 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.commons.util.DateUtil;
-import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindLessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.lesson.LessonContainsKeywordsPredicate;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Description;
-import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.model.task.Title;
-import seedu.address.model.task.deadline.Status;
 
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new FindLessonCommand object
  */
-public class FindCommandParser implements Parser<FindCommand> {
+public class FindLessonCommandParser implements Parser<FindLessonCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindCommand
-     * and returns a FindCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the FindLessonCommand
+     * and returns a FindLessonCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public FindCommand parse(String args) throws ParseException {
+    public FindLessonCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TITLE,
-                                            PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
+                PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_TIME, PREFIX_DATE_TIME, PREFIX_TAG);
 
         if (!isAnyPrefixPresent(argMultimap, PREFIX_TITLE,
-                PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+                PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_TIME, PREFIX_DATE_TIME, PREFIX_TAG)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindLessonCommand.MESSAGE_USAGE));
         }
-        TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
+        LessonContainsKeywordsPredicate predicate = new LessonContainsKeywordsPredicate();
         setKeyword(PREFIX_TITLE, argMultimap, predicate);
         setKeyword(PREFIX_DESCRIPTION, argMultimap, predicate);
         setKeyword(PREFIX_DATE, argMultimap, predicate);
-        setKeyword(PREFIX_STATUS, argMultimap, predicate);
+        setKeyword(PREFIX_TIME, argMultimap, predicate);
+        setKeyword(PREFIX_DATE_TIME, argMultimap, predicate);
         setKeyword(PREFIX_TAG, argMultimap, predicate);
 
-        return new FindCommand(predicate);
+        return new FindLessonCommand(predicate);
     }
 
     private void setKeyword(Prefix prefix,
                             ArgumentMultimap argMultimap,
-                            TaskContainsKeywordsPredicate predicate) throws ParseException {
+                            LessonContainsKeywordsPredicate predicate) throws ParseException {
         List<String> values = argMultimap.getAllValues(prefix);
         if (values.size() == 0) {
             return;
@@ -74,9 +75,12 @@ public class FindCommandParser implements Parser<FindCommand> {
             if (prefix.equals(PREFIX_DATE) && !DateUtil.isValidDate(trimmed)) {
                 throw new ParseException(DateUtil.SEARCH_DATE_CONSTRAINTS);
             }
-            if (prefix.equals(PREFIX_STATUS) && !Status.isValidStatus(trimmed)) {
-                throw new ParseException(Status.SEARCH_CONSTRAINTS);
-            } //now the status only have a boolean value of isCompleted.
+            if (prefix.equals(PREFIX_DATE_TIME) && !DateUtil.isValidDateTime(trimmed)) {
+                throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
+            }
+            if (prefix.equals(PREFIX_TIME) && !DateUtil.isValidTime(trimmed)) {
+                throw new ParseException(DateUtil.SEARCH_TIME_CONSTRAINTS);
+            }
             if (prefix.equals(PREFIX_TAG) && !Tag.isValidTagName(trimmed)) {
                 throw new ParseException(Tag.SEARCH_CONSTRAINTS);
             }

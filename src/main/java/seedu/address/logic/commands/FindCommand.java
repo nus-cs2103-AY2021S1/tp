@@ -19,7 +19,7 @@ public class FindCommand extends Command {
             + "and displays them as a list with index numbers.\n"
             + "Parameters: ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...\n"
             + "For list of all available attribute, please refer to the user guide by typing 'help' command\n"
-            + "Example: " + COMMAND_WORD + " title:meet zijian type:todo";
+            + "Example: " + COMMAND_WORD + " title:meet zijian desc:play games";
 
     private final TaskContainsKeywordsPredicate predicate;
 
