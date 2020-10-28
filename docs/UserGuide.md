@@ -2,7 +2,7 @@
 layout: page
 title: User Guide
 ---
-This guide serves to provide a reference for first-time users to get familiar with the `ZooKeep` app.
+If this is your first time using `ZooKeep`, this guide will serve to provide a reference for you to get familiar with the application.
 
 * Table of Contents
 {:toc}
@@ -58,23 +58,24 @@ This guide serves to provide a reference for first-time users to get familiar wi
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters that you will supply when entering the command.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Hershey`.
 
-* Items in square brackets are optional.<br>
+* You can choose not to include the fields in square brackets.<br>
   e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
+* Fields with `…`​ after them indicate that you can enter them multiple times or omit them if unneeded.<br>
   e.g. `[f/FEED TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
 
-* Parameters can be in any order.<br>
+* You can enter the parameters in any order you like.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
 
 </div>
 
 ### Viewing help: `help`
 
-Shows a message as shown in *Figure 2* below explaining how you can access the help page.
+If you ever need any help on how to use `ZooKeep` or want to see what features it supports, type `help` into the
+input box, and `ZooKeep` will show a message as shown in *Figure 2* below explaining how you can access the help page.
 
 <p align="center"><img src="images/helpMessage.png"/></p>
 
@@ -86,7 +87,7 @@ Format: `help`
 
 ### Exiting the program: `exit`
 
-Exits the program.
+After you finish using `ZooKeep`, you can use this command to close it.
 
 Format: `exit`
 
@@ -94,7 +95,8 @@ Format: `exit`
 
 ### Listing all animals: `list`
 
-Lists all animals under the care of the user.
+This command is convenient in cases where you need to quickly reference all the animals stored in your `ZooKeep` book or if you
+need to know how many animals are currently in your book.
 
 Format: `list`
 
@@ -102,7 +104,7 @@ Format: `list`
 
 ### Clearing all entries: `clear`
 
-Clears all entries from the app.
+You can use this to clear all the entries of your `ZooKeep` book and start the application with a clean slate.
 
 Format: `clear`
 
@@ -110,7 +112,9 @@ Format: `clear`
 
 ### Adding an animal: `add`
 
-Adds an animal under the care of the user.
+When you get new animals assigned to you, you can use `add` to make new entries for them to keep track of any
+important information. Compulsory entries you need to add are the animals' names, species and ID number.
+You can choose to add optional fields like medical conditions and feed times if necessary. 
 
 Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 
@@ -138,7 +142,8 @@ Examples:
 
 ### Deleting an animal: `delete`
 
-Deletes the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
+When a particular animal in your `ZooKeep` book is no longer under your care, you can use this command to 
+delete that animal by entering its `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `delete ID`
 
@@ -159,7 +164,9 @@ Example:
 
 ### Undoing a command: `undo`
 
-Undoes the most recently used command. No changes if no previous state exists.
+When you make a mistake in your `ZooKeep` book, such as an accidental `delete`, you can perform this operation which
+undoes the most recently used command. No changes will be made if no previous state exists, meaning that you cannot
+undo if you just started up the application.
 
 Format: `undo`
 
@@ -167,7 +174,9 @@ Format: `undo`
 
 ### Redoing an undo: `redo`
 
-Redoes the previous undo. No changes if no previous state exists.
+You can use this command to quickly redo a command that was just undone by undo. For example, after you `undo` an
+accidental `delete`, you can use `redo` to perform the delete again. You can only use redo if `undo`
+was used before and no edit to the `ZooKeep` book was made in between, otherwise this command will do nothing.
 
 Format: `redo`
 
@@ -175,11 +184,13 @@ Format: `redo`
 
 ## Advanced features
 
-The following features are additional ones which some users may find them useful.
+The following features are additional ones which you may find useful.
 
 ### Appending information to an animal's fields: `append`
 
-Appends information to the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
+If you forgot to add the medical conditions and/or feed times for a particular animal, you can use this feature to
+append the missing information to the respective fields of the animal with the specified `ID` instead of deleting and adding
+that same animal again. `ID` here refers to the id number shown in the displayed animal list.
 
 Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 
@@ -207,7 +218,9 @@ Examples:
 
 ### Replacing an animal's fields: `replace`
 
-Replaces the information in the fields of the animal with the specified `ID`. `ID` refers to the id number shown in the displayed animal list.
+After making a mistake while entering the information of an animal in the `ZooKeep` book, instead of deleting the animal
+and entering all the information again, you can use this command to replace only the incorrect information in the fields
+of the animal after specifying its `ID`. `ID` refers to the id number shown in the displayed animal list.
 
 Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
 
@@ -235,7 +248,10 @@ Examples:
 
 ### Finding animals by their fields: `find`
 
-Finds and lists all animals in the `ZooKeep` book whose fields contain any of the specified argument keywords (at least 1).
+You may find yourself in situations where you need to retrieve a specific group of animals from the `ZooKeep` book. For
+example, you may need to find animals with the same feed times or similar medical conditions.
+You can use this command to find and list all animals in the `ZooKeep` book whose fields contain any of the specified 
+argument keywords (at least 1).
 
 Format: `find KEYWORD [MORE KEYWORDS]...`
 
@@ -251,9 +267,14 @@ Example:
 
 ### Sorting animals: `sort`
 
-Sorts the animals by the given category in a specific order and updates the list of animals accordingly.
+If you need to create some sort of ordering in the `ZooKeep` book, such as a chronological order using feed times to organise
+your feeding schedule, this feature helps to sort the animals by the given category in a specific order and updates the 
+list of animals accordingly.
 
 Format: `sort CATEGORY`
+
+Condition:
+* The `CATEGORY` must be a valid field that can be found in the current `ZooKeep` book.
 
 Examples:
 * `sort name` sorts all animals by name in alphabetical order.
@@ -264,7 +285,9 @@ Examples:
 
 ### Saving a snapshot of animal data: `snap`
 
-Creates a snapshot of the current zookeep book data, saved as a file with the user specified file name.
+This command is useful for storing important archives in the `data` folder of the `ZooKeep` application, in case you need
+to refer to the information of animals that have been deleted long ago. When executed, this command will
+create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
