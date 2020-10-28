@@ -17,6 +17,9 @@ public interface Model {
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
     /** {@code Predicate} that always evaluate to true */
+    Predicate<TutorialGroup> PREDICATE_SHOW_ALL_TUTORIALGROUPS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
     Predicate<Student> PREDICATE_SHOW_ALL_STUDENTS = unused -> true;
 
     /**
@@ -48,40 +51,6 @@ public interface Model {
      * Sets the user prefs' Trackr file path.
      */
     void setTrackrFilePath(Path trackrFilePath);
-
-    // student operations
-
-    //    /**
-    //     * Replaces Trackr data with the data in {@code studentList}.
-    //     */
-    //    void setStudentList(ReadOnlyTrackr<Student> studentList);
-    //
-    //    /** Returns the student Trackr */
-    //    ReadOnlyTrackr<Student> getStudentList();
-    //
-    //    /**
-    //     * Returns true if a student with the same identity as {@code student} exists in trackr.
-    //     */
-    //    boolean hasStudent(Student student);
-    //
-    //    /**
-    //     * Deletes the given student.
-    //     * The student must exist in trackr.
-    //     */
-    //    void deleteStudent(Student target);
-    //
-    //    /**
-    //     * Adds the given student.
-    //     * {@code student} must not already exist in trackr.
-    //     */
-    //    void addStudent(Student student);
-    //
-    //    /**
-    //     * Replaces the given student {@code target} with {@code editedStudent}.
-    //     * {@code target} must exist in trackr.
-    //     * The student identity of {@code editedStudent} must not be the same as another existing student in trackr.
-    //     */
-    //    void setStudent(Student target, Student editedStudent);
 
     // Module Operations
 
@@ -115,7 +84,7 @@ public interface Model {
      * {@code target} must exist in trackr.
      * The module identity of {@code editedModule} must not be the same as another existing module in trackr.
      */
-    void setModule(Module target, Module editedModule);
+    void setModule(Module target, String newModuleId);
 
     //TutorialGroup Operations
 
@@ -131,7 +100,39 @@ public interface Model {
      */
     void addTutorialGroup(TutorialGroup tutorialGroup);
 
-    //FilteredList Operations
+    // Student Operations
+
+    /**
+     * Sets the view to the tutorial group list of the given module
+     * @param target
+     */
+    void setViewToStudent(TutorialGroup target);
+
+    /**
+     * Returns true if a student with the same identity as {@code student} exists in trackr.
+     */
+    boolean hasStudent(Student student);
+
+    /**
+     * Deletes the given student.
+     * The student must exist in trackr.
+     */
+    void deleteStudent(Student target);
+
+    /**
+     * Adds the given student.
+     * {@code student} must not already exist in trackr.
+     */
+    void addStudent(Student student);
+
+    /**
+     * Replaces the given student {@code target} with {@code editedStudent}.
+     * {@code target} must exist in trackr.
+     * The student identity of {@code editedStudent} must not be the same as another existing student in trackr.
+     */
+    void setStudent(Student target, Student editedStudent);
+
+    // FilteredList Operations
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();

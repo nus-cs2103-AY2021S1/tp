@@ -7,11 +7,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.*;
-//import seedu.address.logic.commands.AddModuleCommand;
-//import seedu.address.logic.commands.ClearCommand;
-//import seedu.address.logic.commands.DeleteCommand;
-//import seedu.address.logic.commands.FindCommand;
-//import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,40 +40,47 @@ public class AddressBookParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditModuleCommand.COMMAND_WORD:
+            return new EditModuleCommandParser().parse(arguments);
 
-            /* todo:
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
-
+        case DeleteModuleCommand.COMMAND_WORD:
+            return new DeleteModuleCommandParser().parse(arguments);
+        /*
         case ClearCommand.COMMAND_WORD:
-            return new ClearCommand();
+            return new ClearCommand();*/
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case ListTutorialGroupCommand.COMMAND_WORD:
+            return new ListTutorialGroupCommand();
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
-            */
+        case ListStudentCommand.COMMAND_WORD:
+            return new ListStudentCommand();
 
-            case ExitCommand.COMMAND_WORD:
-                return new ExitCommand();
+        case FindModuleCommand.COMMAND_WORD:
+            return new FindModuleCommandParser().parse(arguments);
 
-            case HelpCommand.COMMAND_WORD:
-                return new HelpCommand();
+        case ExitCommand.COMMAND_WORD:
+            return new ExitCommand();
 
-            case AddTutorialGroupCommand.COMMAND_WORD:
-                return new AddTutorialGroupCommandParser().parse(arguments);
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
-            case AddTaskCommand.COMMAND_WORD:
-                return new AddTaskCommandParser().parse(arguments);
+        case AddTutorialGroupCommand.COMMAND_WORD:
+            return new AddTutorialGroupCommandParser().parse(arguments);
 
-            case ViewTutorialGroupCommand.COMMAND_WORD:
-                return new ViewTutorialGroupCommandParser().parse(arguments);
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
 
-            case ViewModuleCommand.COMMAND_WORD:
-                return new ViewModuleCommandParser().parse(arguments);
+        case ViewTutorialGroupCommand.COMMAND_WORD:
+            return new ViewTutorialGroupCommandParser().parse(arguments);
+
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListModuleCommand();
+
+        case ViewStudentCommand.COMMAND_WORD:
+            return new ViewStudentCommandParser().parse(arguments);
+
+        case AddStudentCommand.COMMAND_WORD:
+            return new AddStudentCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

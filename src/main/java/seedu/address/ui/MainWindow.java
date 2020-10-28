@@ -33,14 +33,19 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ModuleListPanel moduleListPanel;
     private TutorialGroupListPanel tutorialGroupListPanel;
+    private StudentListPanel studentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ViewDisplay viewDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane viewDisplayPlaceholder;
 
     @FXML
     private StackPane listPanelPlaceholder;
@@ -117,6 +122,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        viewDisplay = new ViewDisplay();
+        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getTrackrFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -128,12 +136,27 @@ public class MainWindow extends UiPart<Stage> {
         tutorialGroupListPanel = new TutorialGroupListPanel(logic.getFilteredTutorialGroupList());
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(tutorialGroupListPanel.getRoot());
+        viewDisplay.setCurrentView("TUTORIAL GROUPS");
+        viewDisplayPlaceholder.getChildren().clear();
+        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
     }
 
     void refillInnerPartsWithModuleList() {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         listPanelPlaceholder.getChildren().clear();
         listPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
+        viewDisplay.setCurrentView("MODULES");
+        viewDisplayPlaceholder.getChildren().clear();
+        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
+    }
+
+    void refillInnerPartsWithStudentList() {
+        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+        listPanelPlaceholder.getChildren().clear();
+        listPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        viewDisplay.setCurrentView("STUDENTS");
+        viewDisplayPlaceholder.getChildren().clear();
+        viewDisplayPlaceholder.getChildren().add(viewDisplay.getRoot());
     }
 
     /**
@@ -205,6 +228,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowModuleList()) {
                 refillInnerPartsWithModuleList();
+            }
+
+            if (commandResult.isShowStudentList()) {
+                refillInnerPartsWithStudentList();
             }
 
             return commandResult;

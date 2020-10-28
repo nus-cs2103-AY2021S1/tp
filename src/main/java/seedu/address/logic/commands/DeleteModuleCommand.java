@@ -9,20 +9,25 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
+import seedu.address.model.person.Student;
 
-public class ViewTutorialGroupCommand extends Command {
-    public static final String COMMAND_WORD = "viewTG";
+/**
+ * Deletes a person identified using it's displayed index from the address book.
+ */
+public class DeleteModuleCommand extends Command {
+
+    public static final String COMMAND_WORD = "deleteMod";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views the tutorial groups identified by the index number used in the displayed module list.\n"
+            + ": Deletes the module identified by the index number used in the displayed module list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEWING_TG_SUCCESS = "Viewing Tutorial Groups of: %1$s";
+    public static final String MESSAGE_DELETE_MODULE_SUCCESS = "Deleted Module: %1$s";
 
     private final Index targetIndex;
 
-    public ViewTutorialGroupCommand(Index targetIndex) {
+    public DeleteModuleCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -35,15 +40,15 @@ public class ViewTutorialGroupCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
-        Module moduleToViewTutorialGroups = lastShownList.get(targetIndex.getZeroBased());
-        model.setViewToTutorialGroup(moduleToViewTutorialGroups);
-        return new CommandResult(String.format(MESSAGE_VIEWING_TG_SUCCESS, moduleToViewTutorialGroups), false, false, true, false, false);
+        Module moduleToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteModule(moduleToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, moduleToDelete));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewTutorialGroupCommand // instanceof handles nulls
-                && targetIndex.equals(((ViewTutorialGroupCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteModuleCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteModuleCommand) other).targetIndex)); // state check
     }
 }

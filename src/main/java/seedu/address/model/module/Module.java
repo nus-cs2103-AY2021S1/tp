@@ -2,20 +2,16 @@ package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.Task;
 import seedu.address.model.TaskList;
-import seedu.address.model.UniqueTutorialGroupList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
-
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class Module {
 
-    private final ModuleId moduleId;
+    private ModuleId moduleId;
     private UniqueTutorialGroupList tutorialGroups;
     private TaskList taskList;
 
@@ -45,22 +41,42 @@ public class Module {
     //        this.taskList = new TaskList(taskList);
     //    }
 
+        /**
+         * Constructs an {@code Module}.
+         * @param moduleId
+         * @param tutorialGroups
+         */
+        public Module(ModuleId moduleId, UniqueTutorialGroupList tutorialGroups) {
+            requireNonNull(moduleId);
+            requireNonNull(tutorialGroups);
+            this.moduleId = moduleId;
+            this.tutorialGroups = tutorialGroups;
+        }
+
 
     public ModuleId getModuleId() {
         return this.moduleId;
     }
 
-    //    public int getTotalStudents() {
-    //        return this.tutorialGroups.stream().map(TutorialGroup::getStudentList)
-    //                .map(List::size).reduce(Integer::sum).orElse(0);
-    //    }
+    public int getTotalStudents() {
+        return this.tutorialGroups.stream().map(TutorialGroup::getStudents)
+                .map(List::size).reduce(Integer::sum).orElse(0);
+    }
 
-    //    public int getTotalGroups() {
-    //        return this.tutorialGroups.size();
-    //    }
+    public void setId(String newId) {
+            this.moduleId.setId(newId);
+    }
+
+    public int getTotalGroups() {
+        return this.tutorialGroups.size();
+    }
 
     public ObservableList<TutorialGroup> getTutorialGroups() {
         return tutorialGroups.asUnmodifiableObservableList();
+    }
+
+    public UniqueTutorialGroupList getUniqueTutorialGroupList() {
+        return tutorialGroups;
     }
 
     //    public List<Task> getTaskList() {

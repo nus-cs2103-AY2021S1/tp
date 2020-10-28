@@ -11,7 +11,7 @@ public class AddModuleCommand extends Command {
     public static final String COMMAND_WORD = "addMod";
     public static final String MESSAGE_SUCCESS = "New module has been added";
     public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds module."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds module.\n"
             + "Parameters: "
             + PREFIX_MODULE + "NAME ";
 

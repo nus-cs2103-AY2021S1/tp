@@ -10,16 +10,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleId;
+import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
+import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class JsonAdaptedTutorialGroup {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutorial Group's %s field is missing!";
 
     private final String tutorialGroupId;
-    private String startTime;
-    private String endTime;
+    private final String startTime;
+    private final String endTime;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
@@ -41,9 +43,9 @@ public class JsonAdaptedTutorialGroup {
      */
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
         tutorialGroupId = source.getId().toString();
-//        startTime = source.getStartTime().toString();
-//        endTime = source.getEndTime().toString();
-        this.students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new)
+        startTime = source.getStartTime().toString();
+        endTime = source.getEndTime().toString();
+        this.students.addAll(source.getStudents().stream().map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
     }
 
@@ -54,18 +56,22 @@ public class JsonAdaptedTutorialGroup {
      */
     public TutorialGroup toModelType() throws IllegalValueException {
 
+        final UniqueStudentList modelStudents = new UniqueStudentList();
+        for (JsonAdaptedStudent student: students) {
+            modelStudents.addStudent(student.toModelType());
+        }
+
         if (tutorialGroupId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ModuleId.class.getSimpleName()));
         }
         if (!TutorialGroupId.isValidTutorialGroupId(tutorialGroupId)) {
-            throw new IllegalValueException(ModuleId.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(TutorialGroupId.MESSAGE_CONSTRAINTS);
         }
         final TutorialGroupId modelTutorialGroupId = new TutorialGroupId(tutorialGroupId);
 
-
-
-        return new TutorialGroup(modelTutorialGroupId, LocalTime.parse(startTime), LocalTime.parse(endTime));
+        return new TutorialGroup(modelTutorialGroupId, modelStudents,
+                LocalTime.parse(startTime), LocalTime.parse(endTime));
     }
 
 

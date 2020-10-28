@@ -13,7 +13,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
@@ -23,15 +22,15 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    //private final Trackr<Student> studentList;
     private final Trackr moduleList;
 
-    private FilteredList<Student> filteredStudents;
-    private FilteredList<TutorialGroup> filteredTutorialGroup;
     private FilteredList<Module> filteredModules;
+    private FilteredList<TutorialGroup> filteredTutorialGroup;
+    private FilteredList<Student> filteredStudents;
 
     private final UserPrefs userPrefs;
-    Module currentModuleInView = new Module(new ModuleId("Currently In View"));
+    private Module currentModuleInView;
+    private TutorialGroup currentTgInView;
 
     /**
      * Initializes a ModelManager with the given ReadOnlyTrackrs and userPrefs.
@@ -44,9 +43,9 @@ public class ModelManager implements Model {
 
         this.moduleList = new Trackr(moduleList);
 
-        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
-        this.filteredTutorialGroup = new FilteredList<>(FXCollections.observableArrayList());
         this.filteredModules = new FilteredList<>(this.moduleList.getList());
+        this.filteredTutorialGroup = new FilteredList<>(FXCollections.observableArrayList());
+        this.filteredStudents = new FilteredList<>(FXCollections.observableArrayList());
 
         this.userPrefs = new UserPrefs(userPrefs);
     }
@@ -90,42 +89,6 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(trackrFilePath);
     }
 
-    //=========== studentList ================================================================================
-
-    //    @Override
-    //    public void setStudentList(ReadOnlyTrackr<Student> studentList) {
-    //        //this.studentList.resetData(studentList);
-    //    }
-
-    //    @Override
-    //    public ReadOnlyTrackr<Student> getStudentList() {
-    //        //return studentList;
-    //        return new Trackr();
-    //    }
-
-    //    @Override
-    //    public boolean hasStudent(Student student) {
-    //        requireNonNull(student);
-    //        return studentList.hasObject(student);
-    //    }
-    //
-    //    @Override
-    //    public void deleteStudent(Student target) {
-    //        studentList.removeObject(target);
-    //    }
-    //
-    //    @Override
-    //    public void addStudent(Student student) {
-    //        studentList.addObject(student);
-    //        updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-    //    }
-    //
-    //    @Override
-    //    public void setStudent(Student target, Student editedStudent) {
-    //        requireAllNonNull(target, editedStudent);
-    //        studentList.setObject(target, editedStudent);
-    //    }
-
     //=========== moduleList ================================================================================
 
     @Override
@@ -158,12 +121,13 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModule(Module target, Module editedModule) {
-        requireAllNonNull(target, editedModule);
-        moduleList.setModule(target, editedModule);
+    public void setModule(Module target, String newModuleId) {
+        requireAllNonNull(target, newModuleId);
+        moduleList.setModule(target, newModuleId);
     }
 
-    //=========== TutorialGroup Operations ================================================================================
+    //=========== TutorialGroup Operations ====================================================================
+
     @Override
     public void setViewToTutorialGroup(Module target) {
         currentModuleInView = target;
@@ -174,6 +138,45 @@ public class ModelManager implements Model {
     public void addTutorialGroup(TutorialGroup target) {
         moduleList.addTutorialGroup(target, currentModuleInView);
         filteredTutorialGroup = new FilteredList<>(moduleList.getTutorialGroupListOfModule(currentModuleInView));
+    }
+
+    //=========== Student Operations =============================================================================
+
+    @Override
+    public void setViewToStudent(TutorialGroup target) {
+        currentTgInView = target;
+        filteredStudents =
+                new FilteredList<>(moduleList.getStudentListOfTutorialGroup(currentModuleInView, target));
+    }
+
+    @Override
+    public boolean hasStudent(Student student) {
+        requireNonNull(student);
+        return moduleList
+                .getUniqueStudentList(currentModuleInView, currentTgInView)
+                .contains(student);
+    }
+
+    @Override
+    public void deleteStudent(Student target) {
+        moduleList
+                .getUniqueStudentList(currentModuleInView, currentTgInView)
+                .removeStudent(target);
+    }
+
+    @Override
+    public void addStudent(Student student) {
+        moduleList.addStudent(currentModuleInView, currentTgInView, student);
+        filteredStudents =
+                new FilteredList<>(moduleList.getStudentListOfTutorialGroup(currentModuleInView, currentTgInView));
+    }
+
+    @Override
+    public void setStudent(Student target, Student editedStudent) {
+        requireAllNonNull(target, editedStudent);
+        moduleList
+                .getUniqueStudentList(currentModuleInView, currentTgInView)
+                .setStudent(target, editedStudent);
     }
 
     //=========== Filtered Module List Accessors =============================================================
