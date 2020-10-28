@@ -9,7 +9,7 @@ import seedu.address.model.lesson.LessonContainsKeywordsPredicate;
 
 public class FindLessonCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "find-lesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all lessons with the specified attribute"
             + "containing the specified valid search phrase (case-insensitive)"
@@ -29,7 +29,7 @@ public class FindLessonCommand extends Command {
         requireNonNull(model);
         model.updateFilteredLessonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+                String.format(Messages.MESSAGE_LESSONS_LISTED_OVERVIEW, model.getFilteredLessonList().size()));
     }
 
     @Override

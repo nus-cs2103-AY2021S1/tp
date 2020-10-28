@@ -24,7 +24,7 @@ public class DateTime {
         if (dateTime.isEmpty() || dateTime.isBlank()) {
             value = DateUtil.DEFAULT_DATETIME;
         } else {
-            checkArgument(isValidDateTime(dateTime), DateUtil.MESSAGE_CONSTRAINTS);
+            checkArgument(isValidDateTime(dateTime), DateUtil.DATE_TIME_CONSTRAINTS);
             value = LocalDateTime.parse(dateTime, DateUtil.DATETIME_FORMATTER);
         }
     }

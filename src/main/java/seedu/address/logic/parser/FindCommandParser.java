@@ -39,7 +39,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                                             PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG);
 
         if (!isAnyPrefixPresent(argMultimap, PREFIX_TITLE,
-                PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_TAG)) {
+                PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_STATUS, PREFIX_TAG)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         TaskContainsKeywordsPredicate predicate = new TaskContainsKeywordsPredicate();
@@ -72,7 +72,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(Description.SEARCH_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_DATE) && !DateUtil.isValidDate(trimmed)) {
-                throw new ParseException(DateUtil.SEARCH_CONSTRAINTS);
+                throw new ParseException(DateUtil.SEARCH_DATE_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_STATUS) && !Status.isValidStatus(trimmed)) {
                 throw new ParseException(Status.SEARCH_CONSTRAINTS);

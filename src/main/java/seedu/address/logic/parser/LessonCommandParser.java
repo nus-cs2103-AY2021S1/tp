@@ -47,6 +47,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
         Description description = Description.defaultDescription();
 
         assert argMultimap.getValue(PREFIX_TITLE).isPresent() : "prefix title is missing";
+        assert argMultimap.getValue(PREFIX_TAG).isPresent() : "prefix tag is missing";
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
         Tag tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         LocalDate startDate;
@@ -60,7 +61,7 @@ public class LessonCommandParser implements Parser<LessonCommand> {
             startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
             endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
         } else {
-            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
         }
         if (!isStartDateBeforeEndDate(startDate, endDate)) {
             throw new ParseException(DateUtil.RANGE_CONSTRAINTS);

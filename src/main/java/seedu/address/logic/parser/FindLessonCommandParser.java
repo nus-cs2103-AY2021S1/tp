@@ -73,13 +73,13 @@ public class FindLessonCommandParser implements Parser<FindLessonCommand> {
                 throw new ParseException(Description.SEARCH_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_DATE) && !DateUtil.isValidDate(trimmed)) {
-                throw new ParseException(DateUtil.SEARCH_CONSTRAINTS);
+                throw new ParseException(DateUtil.SEARCH_DATE_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_DATE_TIME) && !DateUtil.isValidDateTime(trimmed)) {
-                throw new ParseException(DateUtil.SEARCH_CONSTRAINTS);
+                throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_TIME) && !DateUtil.isValidTime(trimmed)) {
-                throw new ParseException(DateUtil.SEARCH_CONSTRAINTS);
+                throw new ParseException(DateUtil.SEARCH_TIME_CONSTRAINTS);
             }
             if (prefix.equals(PREFIX_TAG) && !Tag.isValidTagName(trimmed)) {
                 throw new ParseException(Tag.SEARCH_CONSTRAINTS);

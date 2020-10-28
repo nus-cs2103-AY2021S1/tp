@@ -86,7 +86,7 @@ class JsonAdaptedEvent {
         final StartDateTime modelStartDateTime;
 
         if (!DateUtil.isValidDateTime(startDateTime) || startDateTime.equals("")) {
-            throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateUtil.DATE_TIME_CONSTRAINTS);
         } else {
             modelStartDateTime = new StartDateTime(startDateTime);
         }
@@ -99,7 +99,7 @@ class JsonAdaptedEvent {
         final EndDateTime modelEndDateTime;
 
         if (!DateUtil.isValidDateTime(endDateTime) || endDateTime.equals("")) {
-            throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateUtil.DATE_TIME_CONSTRAINTS);
         } else {
             modelEndDateTime = new EndDateTime(endDateTime);
         }

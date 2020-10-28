@@ -27,8 +27,8 @@ public class EndDateTime extends DateTime {
      * @return an EndDateTime object
      */
     public static EndDateTime createEndDateTime(String date, String time) {
-        checkArgument(DateUtil.isValidDate(date), DateUtil.MESSAGE_CONSTRAINTS);
-        checkArgument(DateUtil.isValidTime(time), DateUtil.MESSAGE_CONSTRAINTS);
+        checkArgument(DateUtil.isValidDate(date), DateUtil.DATE_TIME_CONSTRAINTS);
+        checkArgument(DateUtil.isValidTime(time), DateUtil.DATE_TIME_CONSTRAINTS);
         String datetime = date + " " + time;
         return new EndDateTime(datetime);
     }
