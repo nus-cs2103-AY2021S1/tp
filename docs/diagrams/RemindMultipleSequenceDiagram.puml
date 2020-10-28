@@ -1,0 +1,85 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":RemindCommandParser" as RemindCommandParser LOGIC_COLOR
+participant "d:RemindCommand" as RemindCommand LOGIC_COLOR
+participant ":CommandLogic" as CommandLogic LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remind 2 3")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("remind 2 3")
+activate AddressBookParser
+
+create RemindCommandParser
+AddressBookParser -> RemindCommandParser
+activate RemindCommandParser
+
+RemindCommandParser --> AddressBookParser
+deactivate RemindCommandParser
+
+AddressBookParser -> RemindCommandParser : parse("1 2")
+activate RemindCommandParser
+
+create RemindCommand
+RemindCommandParser -> RemindCommand
+activate RemindCommand
+
+RemindCommand --> RemindCommandParser : d
+deactivate RemindCommand
+
+RemindCommandParser --> AddressBookParser : d
+deactivate RemindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemindCommandParser -[hidden]-> AddressBookParser
+destroy RemindCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> RemindCommand : execute()
+activate RemindCommand
+
+RemindCommand -> CommandLogic : checkForDuplicatedIndexes([2, 3])
+activate CommandLogic
+
+CommandLogic -> RemindCommand
+deactivate CommandLogic
+
+RemindCommand -> CommandLogic : checkForInvalidIndexes([2, 3])
+activate CommandLogic
+
+CommandLogic -> RemindCommand
+deactivate CommandLogic
+
+loop 2 times
+    'Not very sure how to label the call method for this
+    RemindCommand -> Model : setAssignment(assignmentAtIndex, remindedAssignment)
+    activate Model
+    
+    Model --> RemindCommand
+    deactivate Model
+end
+
+create CommandResult
+RemindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemindCommand
+deactivate CommandResult
+
+RemindCommand --> LogicManager : result
+deactivate RemindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
