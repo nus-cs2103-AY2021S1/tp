@@ -87,8 +87,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Delivery> getFilteredDeliveryList() {
-        return deliveryModel.getFilteredDeliveryList();
+    public ObservableList<Delivery> getFilteredAndSortedDeliveryList() {
+        return deliveryModel.getFilteredAndSortedDeliveryList();
     }
 
     @Override

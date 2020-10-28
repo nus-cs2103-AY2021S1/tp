@@ -156,7 +156,7 @@ public class DeliveryAddCommandTest {
         }
 
         @Override
-        public ObservableList<Delivery> getFilteredDeliveryList() {
+        public ObservableList<Delivery> getFilteredAndSortedDeliveryList() {
             throw new AssertionError("This method should not be called.");
         }
 

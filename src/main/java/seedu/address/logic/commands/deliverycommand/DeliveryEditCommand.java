@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
+import seedu.address.model.delivery.Time;
 import seedu.address.model.deliverymodel.DeliveryModel;
 
 /**
@@ -34,9 +36,10 @@ public class DeliveryEditCommand extends DeliveryCommand {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "ITEM_NAME] "
-            + "[" + PREFIX_PHONE + "phone] "
-            + "[" + PREFIX_ADDRESS + "address] "
-            + "[" + PREFIX_ORDER + "TAG]...\n"
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_ORDER + "ORDER] "
+            + "[" + PREFIX_TIME + "TIME]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91111111 ";
 
@@ -64,7 +67,7 @@ public class DeliveryEditCommand extends DeliveryCommand {
         requireNonNull(models);
         requireNonNull(models.getDeliveryModel());
         DeliveryModel deliveryModel = models.getDeliveryModel();
-        List<Delivery> lastShownList = deliveryModel.getFilteredDeliveryList();
+        List<Delivery> lastShownList = deliveryModel.getFilteredAndSortedDeliveryList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
@@ -96,8 +99,9 @@ public class DeliveryEditCommand extends DeliveryCommand {
         Phone updatedPhone = editDeliveryDescriptor.getPhone().orElse(deliveryToEdit.getPhone());
         Address updatedAddress = editDeliveryDescriptor.getAddress().orElse(deliveryToEdit.getAddress());
         Order updatedOrder = editDeliveryDescriptor.getOrder().orElse(deliveryToEdit.getOrder());
+        Time updatedTime = editDeliveryDescriptor.getTime().orElse(deliveryToEdit.getTime());
 
-        return new Delivery(updatedName, updatedPhone, updatedAddress, updatedOrder);
+        return new Delivery(updatedName, updatedPhone, updatedAddress, updatedOrder, updatedTime);
     }
 
     @Override
@@ -127,6 +131,7 @@ public class DeliveryEditCommand extends DeliveryCommand {
         private Phone phone;
         private Address address;
         private Order order;
+        private Time time;
 
         public EditDeliveryDescriptor() {}
 
@@ -139,13 +144,14 @@ public class DeliveryEditCommand extends DeliveryCommand {
             setPhone(toCopy.phone);
             setAddress(toCopy.address);
             setOrder(toCopy.order);
+            setTime(toCopy.time);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(deliveryName, phone, address, order);
+            return CollectionUtil.isAnyNonNull(deliveryName, phone, address, order, time);
         }
 
         public void setDeliveryName(DeliveryName deliveryName) {
@@ -178,6 +184,14 @@ public class DeliveryEditCommand extends DeliveryCommand {
 
         public Optional<Order> getOrder() {
             return Optional.ofNullable(order);
+        }
+
+        public void setTime(Time time) {
+            this.time = time;
+        }
+
+        public Optional<Time> getTime() {
+            return Optional.ofNullable(time);
         }
 
         @Override

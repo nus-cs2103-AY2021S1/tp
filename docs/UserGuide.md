@@ -58,19 +58,31 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the item command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add-i n/Chicken`.
+* Commands with suffix of `-i` refer to `item` related commands, while those with suffix of `-d` refer to `delivery` related commands. <br>
+  e.g. `add-i` is used to add an `item` and `add-d` is used to add a `delivery`
+  
+* In the format of commands, `INDEX` refers to the numbering that is displayed.
+  <br> ![Index](images/Index.png)<br>
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/Chicken t/Poultry` or as `n/Chicken`.
+* In the format of commands, words in `UPPER_CASE` are what you would input.<br>
+  e.g. for a command with format `add-i n/NAME q/QUANTITY`, <br>
+  replace `NAME` and `QUANTITY` with your input: `add-i n/Chicken q/10`.
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+* In the format of commands, square brackets are to indicate optional fields. The fields in the square brackets are not mandatory to input.<br>
+  e.g a command with format `n/NAME [t/TAG]` can be used as 
+  1. either `n/Chicken t/Poultry` 
+  2. or just `n/Chicken`
 
-* Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME q/QUANTITY`, `q/QUANTITY n/NAME` is also acceptable.
+* Items with `…`​ after them can be used multiple times in the same command or not at all.<br>
+  e.g. `[t/TAG]…​` can be used 
+  1. once: `t/brother`
+  2. or multiple times: `t/sibling t/brother t/family`
 
-*Note: The above notes are also applicable for `delivery`.*
+* Fields in the commands can be in any order.<br>
+  e.g. a command with format `add-i n/NAME q/QUANTITY` can be used as
+  1. either `add-i n/Chicken q/10`
+  2. or `add-i q/10 n/Chicken`
+
 </div>
 
 --------------------------------------------------------------------------------------------------------------------

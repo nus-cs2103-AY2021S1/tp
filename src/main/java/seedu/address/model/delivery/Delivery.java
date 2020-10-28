@@ -2,6 +2,7 @@ package seedu.address.model.delivery;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -17,16 +18,18 @@ public class Delivery {
     //Data fields
     private final Address address;
     private final Order order;
+    private final Time time;
 
     /**
      * Every field must be present and not null.
      */
-    public Delivery(DeliveryName name, Phone phone, Address address, Order order) {
-        requireAllNonNull(name, phone, address, order);
+    public Delivery(DeliveryName name, Phone phone, Address address, Order order, Time time) {
+        requireAllNonNull(name, phone, address, order, time);
         this.name = name;
         this.phone = phone;
         this.address = address;
         this.order = order;
+        this.time = time;
     }
 
     public DeliveryName getName() {
@@ -43,6 +46,14 @@ public class Delivery {
 
     public Order getOrder() {
         return order;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public LocalDateTime getEndTime() {
+        return this.time.endTime;
     }
 
     @Override

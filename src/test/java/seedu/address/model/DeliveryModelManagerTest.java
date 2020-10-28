@@ -76,7 +76,8 @@ public class DeliveryModelManagerTest {
 
     @Test
     public void getFilteredDeliveryList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredDeliveryList().remove(0));
+        assertThrows(
+                UnsupportedOperationException.class, () -> modelManager.getFilteredAndSortedDeliveryList().remove(0));
     }
 
     @Test

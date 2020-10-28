@@ -22,7 +22,6 @@ import seedu.address.model.delivery.exception.DuplicateDeliveryException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Delivery#isSameDelivery(Delivery)
  */
 public class UniqueDeliveryList implements Iterable<Delivery> {
     private final ObservableList<Delivery> internalList = FXCollections.observableArrayList();

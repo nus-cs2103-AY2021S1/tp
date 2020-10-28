@@ -39,7 +39,7 @@ public class DeliveryFindCommand extends DeliveryCommand {
         deliveryModel.updateFilteredDeliveryList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_DELIVERIES_LISTED_OVERVIEW,
-                        deliveryModel.getFilteredDeliveryList().size()));
+                        deliveryModel.getFilteredAndSortedDeliveryList().size()));
     }
 
     @Override
