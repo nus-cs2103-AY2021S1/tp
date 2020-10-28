@@ -66,11 +66,19 @@ dependencies {
 }
 
 run {
-    enableAssertions = true
+    enableAssertions = false
 }
 
 shadowJar {
-    archiveName = 'addressbook.jar'
+    archiveName = 'calo.jar'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Main': 'tp.src.main.java.Main'
+        )
+    }
 }
 
 defaultTasks 'clean', 'test'
