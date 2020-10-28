@@ -112,30 +112,27 @@ Examples:
 
 Deallocates a room for a student i.e denotes that the student no longer occupies the room.
 
-Format: `deallocate ri/<room_index> si/<student_index>`
-
-- Deallocates a room to the student at the specified `room_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list,
-  and the `student_index` refers to the index number shown in the displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
-- The room at `room_index` must be allocated to the student at `student_index`. Otherwise, an error message is displayed accordingly.
+Format: `deallocate si/<student_index>`
+* Deallocates a room to the student at the specified `student_index`. The `student_index` refers to the index number shown in the displayed students list. The `student_index` **must be positive a integer** 1, 2, 3, …​
+* The student at `student_index` must have been allocated a room. Otherwise, an error message is displayed.
 
 Examples:
+* `deallocate si/1` deallocates the room for the student at `student_index` 1. 
 
-- `deallocate ri/1 si/1` deallocates the room at `room_index` 1 for the student at `student_index` 1.
+#### 6. Reallocating a room for a student : `reallocate`
 
-#### 6. Edit a room allocation for a student : `reallocate`
-
-Edits a room allocation for a student, by first deallocating the student's current room, and then allocating a specified room to the student.
+Reallocates a room for a student, by editing the allocation relating a student to its current room.
 
 Format: `reallocate si/<student_index> ri/<room_index>`
 
-- Reallocates the room at `room_index` to the student at the specified `student_index` and `student_index`. The `room_index` refers to the index number shown in the displayed rooms list,
-  and the `student_index` refers to the index number shown in the displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
-- The student at `student_index` must currently have a room allocation (which is not the specified room). Otherwise, an error message is displayed accordingly.
-- The room at `room_index` must currently be vacant. Otherwise, an error message is displayed accordingly.
+* Reallocates the room at `room_index` to the student at the specified `student_index`. The `room_index` refers to the
+ index number shown in the displayed rooms list, and the `student_index` refers to the index number shown in the 
+ displayed students list. Both indices **must be positive integers** 1, 2, 3, …​
+* The student at `student_index` must currently have a room allocation (which is not the specified room). Otherwise, an error message is displayed accordingly. 
+* The room at `room_index` must currently be vacant. Otherwise, an error message is displayed accordingly. 
 
 Examples:
-
-- `reallocate si/1 ri/2` first deallocates the room currently allocated to student with index 1, then allocates the room at index 2 to the student.
+* `reallocate si/1 ri/2` edits the allocation of the student with index 1's current room to the room with index 2.
 
 #### 7. Archiving a Semester
 
@@ -281,7 +278,7 @@ Format: `aliases​`
 
 Example: `aliases`
 
-#### 4. Adding an alias : `alias`
+#### 5. Adding an alias : `alias`
 
 Adds an alias for a command word to ResiReg.
 
@@ -295,7 +292,7 @@ Examples:
 - `alias c/set-bin-expiry a/sb` adds an alias `sb` for the `set-bin-expiry` command. Henceforth, `sb` and `set-bin-expiry` command will have the same effect
 - `alias c/rooms a/r` adds an alias `r` for the `rooms` command. Henceforth, `r` and `rooms` command will have the same effect. Note that filtering flags such as `--allocated` and `--vacant` remain unchanged.
 
-#### 4. Deleting an alias : `dealias`
+#### 6. Deleting an alias : `dealias`
 
 Deletes an alias for a command word to ResiReg.
 
@@ -307,7 +304,7 @@ Examples:
 
 - `dealias c/set-bin-expiry a/sb` removes the an alias `sb` for the `set-bin-expiry` command. Henceforth, typing `sb` will lead to an error message.
 
-#### 5. Asking for help as a first time user : `help`
+#### 7. Asking for help as a first time user : `help`
 
 Shows a list of all available commands and their purpose to understand the usage of the commands.
 
@@ -328,7 +325,7 @@ clear: Clears list of students.
 You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io/tp/UserGuide.html
 ```
 
-#### 6. Checking the syntax for a command
+#### 8. Checking the syntax for a command
 
 Shows the purpose, syntax, and parameters of a command if you need to use the command but are unsure of its syntax.
 
@@ -348,14 +345,41 @@ Parameters: [--vacant | --allocated]
 Example: rooms
 ```
 
-#### 7. Clearing all entries : `clear`
+#### 9. Clearing all entries : `clear`
 
 Clears all entries (students, rooms, allocations and bin items) from ResiReg.
 
 Format: `clear`
 
-#### 4. Exiting ResiReg : `exit`
+#### 10. Undo previous command : `undo`
+Restores the address book to the state before 
+the previous state modifying command was executed.
 
+<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-z</kbd> keyboard combination
+in the command box will execute the command as well.
+</div>
+
+#### 11. Redo previous undo command : `redo`
+Reverses the most recent undo command.
+
+<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>ctrl-y</kbd> keyboard combination
+in the command box will execute the command as well.
+</div>
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+`undo` and `redo` support the undoing and redoing respectively of commands
+that change the state of ResiReg, which comprises of: students, rooms, allocations, semesters and bin items.
+</div>
+
+#### 12. List previously entered commands : `history`
+Lists all the commands previously entered in reverse chronological order.
+
+<div markdown="span" class="alert alert-info">:information_source: Pressing the <kbd>up</kbd> and <kbd>down</kbd> arrows will 
+display the previous and next command respectively in the command box.
+
+</div>
+
+#### 13. Exiting ResiReg : `exit`
 Exits the program.
 
 Format: `exit`
@@ -389,7 +413,7 @@ Just type in the `help` command!
 | _delete student_      | `delete <index>` e.g.`delete 2`                                                                                                                           |
 | _list bin items_      | `bin`                                                                                                                                                     |
 | _restore bin item_    | `restore <index>` e.g. `restore 2`                                                                                                                        |
-| \_set bin expiry time | `set-bin-expiry <number_of_days>` e.g. `set-bin-expiry 30`                                                                                                |
+| _set bin expiry time_ | `set-bin-expiry <number_of_days>` e.g. `set-bin-expiry 30`                                                                                                |
 | _list aliases_        | `aliases`                                                                                                                                                 |
 | _add alias_           | `alias c/<command_word> a/<alias>` e.g. `alias c/rooms a/r`                                                                                               |
 | _delete alias_        | `dealias c/<command_word> a/<alias>` e.g. `alias c/rooms a/r`                                                                                             |

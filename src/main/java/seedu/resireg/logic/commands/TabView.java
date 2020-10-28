@@ -7,4 +7,5 @@ public enum TabView {
     STUDENTS,
     ROOMS,
     BIN_ITEMS,
+    PIECHART,
 }
