@@ -267,19 +267,33 @@ Example:
 
 ### Sorting animals: `sort`
 
-If you need to create some sort of ordering in the `ZooKeep` book, such as a chronological order using feed times to organise
-your feeding schedule, this feature helps to sort the animals by the given category in a specific order and updates the 
-list of animals accordingly.
+If you need to create some sort of ordering in the `ZooKeep` book, such as a chronological order by feed times to organise
+your feeding schedule, this feature helps to sort the animals by the given category and updates the list of animals accordingly.
 
 Format: `sort CATEGORY`
 
-Condition:
-* The `CATEGORY` must be a valid field that can be found in the current `ZooKeep` book.
+These are the category options you can sort the animals by:
 
-Examples:
+* `name`: Sorts all animals by their name in alphabetical order.
+* `id`: Sorts all animals by their id in ascending order.
+* `feedtime`: Sorts all animals by their earliest feed time in chronological order.
+* `medical`: Sorts all animals by their number of medical conditions in ascending order.
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The category input is case insensitive.
+</div>
+
+<div markdown="block" class="alert alert-warning">
+**:exclamation: Constraints:**<br>
+
+* The `CATEGORY` must be a valid sorting category as specified above.
+
+* Only one sorting category can be specified at a time.
+
+</div>
+
+Example:
 * `sort name` sorts all animals by name in alphabetical order.
-* `sort id` sorts all animals by id in ascending order.
-* `sort feedtime` sorts all animals by feed time from the earliest to the latest (chronological order).
 
 ---
 
