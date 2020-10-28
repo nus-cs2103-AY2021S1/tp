@@ -61,8 +61,14 @@ public class ModuleBuilder {
         return this;
     }
 
+    /**
+     * Builds the module.
+     *
+     * @return a module
+     */
     public Module build() {
-        return new Module(moduleName, zoomLink, modularCredits);
+        // return new Module(moduleName, zoomLink, modularCredits);
+        return null;
     }
 
 }
