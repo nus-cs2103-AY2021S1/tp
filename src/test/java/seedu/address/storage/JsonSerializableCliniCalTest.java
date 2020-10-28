@@ -1,7 +1,6 @@
 package seedu.address.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -22,13 +21,12 @@ public class JsonSerializableCliniCalTest {
     private static final Path DUPLICATE_PATIENT_FILE = TEST_DATA_FOLDER.resolve("duplicatePatientCliniCal.json");
 
     @Test
-    public void toModelType_typicalPatientsFile_failure() throws Exception {
-        // Modified Test Case from success and equals
+    public void toModelType_typicalPatientsFile_success() throws Exception {
         JsonSerializableCliniCal dataFromFile = JsonUtil.readJsonFile(TYPICAL_PATIENTS_FILE,
                 JsonSerializableCliniCal.class).get();
         CliniCal cliniCalFromFile = dataFromFile.toModelType();
         CliniCal typicalPatientsCliniCal = TypicalPatients.getTypicalCliniCal();
-        assertNotEquals(cliniCalFromFile, typicalPatientsCliniCal);
+        assertEquals(cliniCalFromFile, typicalPatientsCliniCal);
     }
 
     @Test

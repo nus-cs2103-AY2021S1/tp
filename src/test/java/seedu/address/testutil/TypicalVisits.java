@@ -25,6 +25,7 @@ public class TypicalVisits {
             .withPatientName("Benson Meier")
             .withDiagnosis("Depression")
             .withPrescription("Antifreeze")
+            .withComment("")
             .build();
     public static final Visit VISIT_3 = new VisitBuilder()
             .withVisitDate(LocalDate.of(2018, 10, 5))
@@ -38,6 +39,7 @@ public class TypicalVisits {
             .withPatientName("Daniel Meier")
             .withDiagnosis("Back Pain")
             .withPrescription("Painkiller")
+            .withComment("")
             .build();
     public static final Visit VISIT_5 = new VisitBuilder()
             .withVisitDate(LocalDate.of(2016, 8, 18))
@@ -47,18 +49,18 @@ public class TypicalVisits {
             .withComment("Need to be quarantined immediately")
             .build();
     public static final Visit VISIT_6 = new VisitBuilder()
+            .withVisitDate(LocalDate.of(2017, 1, 25))
             .withPatientName("Fiona Kunz")
-            .withVisitDate(LocalDate.of(2001, 1, 12))
-            .withDiagnosis("ABC")
-            .withPrescription("ABC")
-            .withComment("ABC")
+            .withDiagnosis("Fever")
+            .withPrescription("Paracetamol")
+            .withComment("Dislikes swallowing pills")
             .build();
     public static final Visit VISIT_7 = new VisitBuilder()
+            .withVisitDate(LocalDate.of(2018, 9, 13))
             .withPatientName("George Best")
-            .withVisitDate(LocalDate.of(2001, 2, 12))
-            .withDiagnosis("XYZ")
-            .withPrescription("XYZ")
-            .withComment("XYZ")
+            .withDiagnosis("Sprained ankle")
+            .withPrescription("Painkillers")
+            .withComment("Follow up in 2 weeks")
             .build();
 
     private TypicalVisits() {} // prevents instantiation

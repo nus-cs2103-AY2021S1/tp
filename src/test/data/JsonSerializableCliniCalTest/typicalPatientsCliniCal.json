@@ -95,11 +95,11 @@
     "phone" : "9482427",
     "icNumber": "S6787656F",
     "visitHistory" : [ {
-      "visitDate" : "12/01/2001",
+      "visitDate" : "25/01/2017",
       "patientName" : "Fiona Kunz",
-      "diagnosis" : "ABC",
-      "prescription" : "ABC",
-      "comment" : "ABC"
+      "diagnosis" : "Fever",
+      "prescription" : "Paracetamol",
+      "comment" : "Dislikes swallowing pills"
     } ],
     "address" : "little tokyo",
     "email" : "lydia@example.com",
@@ -113,11 +113,11 @@
     "phone" : "9482442",
     "icNumber": "S2444153G",
     "visitHistory" : [ {
-      "visitDate" : "12/02/2001",
+      "visitDate" : "13/09/2018",
       "patientName" : "George Best",
-      "diagnosis" : "XYZ",
-      "prescription" : "XYZ",
-      "comment" : "XYZ"
+      "diagnosis" : "Sprained ankle",
+      "prescription" : "Painkillers",
+      "comment" : "Follow up in 2 weeks"
     } ],
     "address" : "4th street",
     "email" : "anna@example.com",
