@@ -249,7 +249,7 @@ The following sequence diagram shows the sequence when LogicManager executes `fi
 
 
 ### \[Implemented\] Remind assignments feature
-The user can set reminders for assignments.
+The user can set reminders for a single assignment or multiple assignments at a time.
 Reminded assignments will be displayed in the `Your Reminders` section in ProductiveNUS for easy referral.
 
 #### Reasons for Implementation
@@ -258,19 +258,33 @@ It is likely that the user will want to receive reminders for assignments with d
 Displaying reminded assignments in a list separate from the main assignment list allows for easy referral and is hence more convenient for the user.
 
 #### Current Implementation
-- The remind command is a typical command used in ProductiveNUS.
-- It extends `Command` and overrides the method `execute` in `CommandResult`.
+- The remind command extends abstract class `Command` and overrides the method `execute` in `CommandResult`.
 - `RemindCommandParser` implements `Parser<RemindCommand>` and it parses the user's input to return a `RemindCommand` object.
-- The constructor of `RemindCommand` takes in an `Index` which is parsed from the zero based index of the user's input.
+- The constructor of `RemindCommand` takes in `List<Index>`, and each `Index` in `List<Index>` is parsed from the zero based index of the user's input.
 
 It implements the following operations:
 * `remind 3` - Sets reminders for the 3rd assignment in the displayed assignment list.
-* `remind 2` - Sets reminders for the 2nd assignment in the displayed assignment list.
+* `remind 1 4` - Sets reminders for the 1st and 4th assignment in the displayed assignment list.
+
+#### Usage Scenario
+The following is a usage scenario of when the user wants to set reminders for the 2nd and 3rd assignment in their displayed assignment list.
+
+Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("remind 2 3")` API call.
+![Interactions Inside the Logic Component for the `remind 2 3` Command](images/RemindMultipleSequenceDiagram.png)
+
+1. `execute("remind 2 3")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
+1. `parseCommand("remind 2 3")` parses the String `"remind 2 3"` and returns an initialized `RemindCommandParser` object. 
+1. `parseCommand("remind 2 3")` calls the `parse` method in `RemindCommandParser` and checks if indexes inputted are valid.
+1. If the indexes are valid, it returns a `RemindCommand` object, which takes in `List<Index>` containing `Index` `2` and `3`.
+1. There is return call to `LogicManager` which then calls the overridden `execute` method of `RemindCommand`.
+1. The `execute` method of `RemindCommand` will call the `checkForDuplicatedIndexes` method of `CommandLogic` to check for duplicated indexes 
+1. The `checkForInvalidIndexes` method of the `CommandLogic` is then called to check for any indexes not found in the displayed assignment list.
+1. The `setAssignment` method of `Model` is repeatedly called, once for each `Index` in `List<Index>`. In this case, the loop terminates after 2 times.
+1. A `CommandResult` object is returned from `execute()`.
 
 
 
 ### \[Implemented\] List by days feature
-
 The user can list all his assignments (`list` without a subsequent argument index), or list assignments with deadlines 
 within a number of days from the current date (and time), with the number being the user input after `list`. 
 
@@ -336,23 +350,6 @@ A usage scenario would be when a user wants to undo the most recent command that
 4. There is return call to `LogicManager` which then calls the overridden `execute` method of `UndoCommand`.
 5. The `execute` method of `UndoCommand` will call the `getPreviousModel` of the `Model` object and reassign `Model`.
 6. The `execute` method returns a `CommandResult` object.
-
-### \[Coming up\] Delete multiple assignments feature
-The user can delete multiple assignments at a time, when more than one index is keyed in.
-
-#### Reasons for Implementation
-It will provide convenience to users who want to delete more than one assignment at a time, and it makes the deleting process faster.
-
-
-#### Current Implementation
-- The `delete` command is a typical command used in ProductiveNUS. 
-- It extends `Command` and overrides the method `execute` in `CommandResult`.
-- `DeleteCommandParser` implements `Parser<DeleteCommand>` and it parses the user's input (index of the assignment as a positive integer)) to return a `DeleteCommand` object.
-- The constructor of `DeleteCommand` takes in an `Index` which is parsed from the one based index of the user's input.
- 
-It can implement the following operations:
-* `delete 1 3` — Deletes the assignment at the first and third index in list.
-* `delete 1` — Deletes the assignment at the first index in list.
 
 ### \[Proposed\] Data archiving
 
