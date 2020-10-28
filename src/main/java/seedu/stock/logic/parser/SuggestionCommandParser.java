@@ -58,7 +58,7 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
-    private static final String MESSAGE_SUGGESTION = "Do you mean: \n";
+    public static final String MESSAGE_SUGGESTION = "Do you mean: \n";
     private String faultyCommandWord;
     private String commandWord;
     private String headerErrorMessage;
@@ -104,7 +104,7 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
                         args, PREFIX_SERIAL_NUMBER, PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY,
                         PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION, PREFIX_QUANTITY, PREFIX_FILE_NAME,
                         PREFIX_SORT_ORDER, PREFIX_SORT_FIELD, PREFIX_NOTE, PREFIX_NOTE_INDEX,
-                        PREFIX_STATISTICS_TYPE, PREFIX_LIST_TYPE
+                        PREFIX_STATISTICS_TYPE, PREFIX_LIST_TYPE, PREFIX_LOW_QUANTITY
                 );
         List<String> allCommandWords = CommandWords.getAllCommandWords();
         StringBuilder toBeDisplayed = new StringBuilder();
