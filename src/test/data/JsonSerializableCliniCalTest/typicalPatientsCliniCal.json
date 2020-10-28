@@ -1,5 +1,5 @@
 {
-  "_comment": "CliniCal save file which contains the same Patient values as in TypicalPatients#getTypicalCliniCal()",
+  "_comment": "CliniCal save file which contains the same Patient and Appointment values as in TypicalPatients#getTypicalCliniCal()",
   "patients" : [ {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -126,5 +126,6 @@
     "bloodType": "B+",
     "tagged" : [ ],
     "color" : "None"
-  } ]
+  } ],
+  "appointments" : []
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="CliniCal" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="1400" onCloseRequest="#handleExit" title="CliniCal" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/stethoscope.png" />
   </icons>
@@ -52,12 +52,12 @@
                 </Tab>
                 <Tab text="Patients">
                   <content>
-                       <VBox fx:id="patientList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                         <padding>
-                           <Insets bottom="10" left="10" right="10" top="10" />
-                         </padding>
-                         <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                       </VBox>
+                    <VBox fx:id="patientList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                      <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                      </padding>
+                      <StackPane fx:id="patientListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
                   </content>
                 </Tab>
               </tabs>

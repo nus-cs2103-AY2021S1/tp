@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Patient;
 
 /**
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final CliniCal cliniCal;
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPatients;
+    private final FilteredList<Appointment> filteredAppointments;
     private final VersionedCliniCal versionedCliniCal;
 
     /**
@@ -36,6 +38,7 @@ public class ModelManager implements Model {
         this.cliniCal = new CliniCal(cliniCal);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPatients = new FilteredList<>(this.cliniCal.getPatientList());
+        filteredAppointments = new FilteredList<>(this.cliniCal.getAppointmentList());
         this.versionedCliniCal = new VersionedCliniCal(this.cliniCal);
     }
 
@@ -90,6 +93,8 @@ public class ModelManager implements Model {
         return cliniCal;
     }
 
+    //=========== Patient ==================================================================================
+
     @Override
     public boolean hasPatient(Patient patient) {
         requireNonNull(patient);
@@ -112,6 +117,32 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPatient);
 
         cliniCal.setPatient(target, editedPatient);
+    }
+
+    //=========== Appointment ==============================================================================
+
+    @Override
+    public boolean hasAppointment(Appointment appointment) {
+        requireNonNull(appointment);
+        return cliniCal.hasAppointment(appointment);
+    }
+
+    @Override
+    public void deleteAppointment(Appointment target) {
+        cliniCal.removeAppointment(target);
+    }
+
+    @Override
+    public void addAppointment(Appointment toAdd) {
+        cliniCal.addAppointment(toAdd);
+        updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+    }
+
+    @Override
+    public void setAppointment(Appointment target, Appointment editedAppointment) {
+        requireAllNonNull(target, editedAppointment);
+
+        cliniCal.setAppointment(target, editedAppointment);
     }
 
     //=========== Undo/Redo ===============================================================================
@@ -168,6 +199,22 @@ public class ModelManager implements Model {
         filteredPatients.setPredicate(predicate);
     }
 
+    //=========== Filtered Appointment List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * {@code versionedCliniCal}
+     */
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return filteredAppointments;
+    }
+
+    @Override
+    public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
+        requireNonNull(predicate);
+        filteredAppointments.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -184,7 +231,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return cliniCal.equals(other.cliniCal)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPatients.equals(other.filteredPatients);
+                && filteredPatients.equals(other.filteredPatients)
+                && filteredAppointments.equals(other.filteredAppointments);
     }
 
 }

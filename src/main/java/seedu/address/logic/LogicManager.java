@@ -18,6 +18,7 @@ import seedu.address.logic.parser.CliniCalParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyCliniCal;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Patient;
 import seedu.address.model.patient.Phone;
@@ -118,6 +119,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Patient> getFilteredPatientList() {
         return model.getFilteredPatientList();
+    }
+
+    @Override
+    public ObservableList<Appointment> getFilteredAppointmentList() {
+        return model.getFilteredAppointmentList();
     }
 
     @Override

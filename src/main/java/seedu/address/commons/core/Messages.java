@@ -17,6 +17,4 @@ public class Messages {
         "The appointment index provided is invalid";
     public static final String MESSAGE_INVALID_VISIT_HISTORY_INDEX = "The visit history index provided is invalid";
     public static final String MESSAGE_INVALID_VISIT_INDEX = "The visit index provided is invalid";
-
-
 }

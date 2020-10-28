@@ -20,5 +20,6 @@
     "sex": "F",
     "bloodType": "A+",
     "color" : "green"
-  } ]
+  } ],
+  "appointments" : []
 }

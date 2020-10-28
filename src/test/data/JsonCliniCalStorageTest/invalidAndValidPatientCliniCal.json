@@ -21,5 +21,6 @@
     "sex": "M",
     "bloodType": "A+",
     "color" : "None"
-  } ]
+  } ],
+  "appointments" : []
 }
