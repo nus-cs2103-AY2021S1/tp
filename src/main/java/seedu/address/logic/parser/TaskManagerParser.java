@@ -12,7 +12,11 @@ import seedu.address.logic.commands.AddTodoCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DoneCommand;
+import seedu.address.logic.commands.EditDeadlineCommand;
+import seedu.address.logic.commands.EditEventCommand;
+import seedu.address.logic.commands.EditTodoCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -59,14 +63,30 @@ public class TaskManagerParser {
         case DoneCommand.COMMAND_WORD:
             return new DoneCommandParser().parse(arguments);
 
+        case EditDeadlineCommand.COMMAND_WORD:
+            return new EditDeadlineCommandParser().parse(arguments);
+
+        case EditEventCommand.COMMAND_WORD:
+            return new EditEventCommandParser().parse(arguments);
+
+        case EditTodoCommand.COMMAND_WORD:
+            return new EditTodoCommandParser().parse(arguments);
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommandParser().parse(arguments);
 
+        case FindCommand.COMMAND_WORD:
+            return new FindCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+
         }
     }
 }
