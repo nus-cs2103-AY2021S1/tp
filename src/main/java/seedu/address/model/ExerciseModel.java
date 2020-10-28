@@ -1,11 +1,13 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Template;
 
 /**
  * The API of the Model component.
@@ -42,6 +44,11 @@ public interface ExerciseModel {
     Path getExerciseBookFilePath();
 
     /**
+     * Returns the HashMap that contains the amount of calories burnt per day.
+     */
+    HashMap<String, Integer> getCaloriesByDay();
+
+    /**
      * Sets the user prefs' address book file path.
      */
     void setExerciseBookFilePath(Path addressBookFilePath);
@@ -72,6 +79,9 @@ public interface ExerciseModel {
      * {@code exercise} must not already exist in the address book.
      */
     void addExercise(Exercise exercise);
+
+
+    void addTemplate(Template template);
 
     /**
      * Replaces the given Exercise {@code target} with {@code editedExercise}.

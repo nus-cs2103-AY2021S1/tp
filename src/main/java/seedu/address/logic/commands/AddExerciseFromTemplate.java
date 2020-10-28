@@ -3,37 +3,31 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ExerciseModel;
 import seedu.address.model.exercise.Exercise;
 
-/**
- * Adds an exercise to Calo.
- */
-public class AddCommandForExercise extends CommandForExercise {
+public class AddExerciseFromTemplate extends CommandForExercise {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "addt";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to Calo. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an exercise to Calo using template. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_DESCRIPTION + "DESCRIPTION"
+            + PREFIX_TEMP + "TEMPLATE NAME "
             + PREFIX_DATE + "DATE "
             + "[" + PREFIX_CALORIES + "CALORIES]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "running "
-            + PREFIX_DESCRIPTION + "10 mins "
+            + PREFIX_TEMP + "PUSH_UP "
             + PREFIX_DATE + "31-12-2020 "
-            + PREFIX_CALORIES + "100 kcal ";
+            + PREFIX_CALORIES + "100";
 
     public static final String MESSAGE_SUCCESS = "New exercise added: %1$s";
 
     private final Exercise toAdd;
 
-    public AddCommandForExercise(Exercise toAdd) {
+    public AddExerciseFromTemplate(Exercise toAdd) {
         this.toAdd = toAdd;
     }
 
@@ -44,12 +38,4 @@ public class AddCommandForExercise extends CommandForExercise {
         model.addExercise(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommandForExercise) other).toAdd)); // state check
-    }
-
 }

@@ -35,6 +35,8 @@ public class ExerciseCard extends UiPart<Region> {
     private Label description;
     @FXML
     private Label calories;
+    //    @FXML
+    //    private Label muscles;
 
     /**
      * Creates a {@code ExerciseCode} with the given {@code Exercise} and index to display.
@@ -46,7 +48,9 @@ public class ExerciseCard extends UiPart<Region> {
         name.setText(exercise.getName().fullName);
         date.setText(exercise.getDate().value);
         description.setText(exercise.getDescription().value);
-        calories.setText(exercise.getCalories().value);
+        calories.setText(exercise.getCalories().isPresent() ? exercise.getCalories().get().value : "None");
+        //        muscles.setText(exercise.getMusclesWorkedDescription() == null
+        //                                ? "None" : exercise.getMusclesWorkedDescription());
     }
 
     @Override

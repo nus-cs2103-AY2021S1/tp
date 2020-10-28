@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
@@ -15,6 +16,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
+import seedu.address.model.exercise.ExerciseTag;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
@@ -64,7 +67,10 @@ public class ParserUtil {
      * @throws ParseException if the given {@code Date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
+        if (date == null) {
+            return new Date(null);
+        }
+
         String trimmedDate = date.trim();
         if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
@@ -79,13 +85,62 @@ public class ParserUtil {
      * @throws ParseException if the given {@code Calories} is invalid.
      */
     public static Calories parseCalories(String calories) throws ParseException {
-        requireNonNull(calories);
+        if (calories == null) {
+            return new Calories(null);
+        }
+
         String trimmedCalories = calories.trim();
         if (!Calories.isValidCalories(trimmedCalories)) {
             throw new ParseException(Calories.MESSAGE_CONSTRAINTS);
         }
         return new Calories(trimmedCalories);
     }
+
+    /**
+     * Parses a {@code String musclesWorked} into {@code MusclesWorked}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code musclesWorked} is invalid.
+     */
+    public static List<Muscle> parseMusclesWorked(String musclesWorked) throws ParseException {
+        if (musclesWorked == null) {
+            return null;
+        }
+
+        String trimmedMusclesWorked = musclesWorked.trim();
+        if (!Muscle.isValidMusclesWorked(trimmedMusclesWorked)) {
+            throw new ParseException(Muscle.MESSAGE_CONSTRAINTS);
+        }
+        return Muscle.stringToMuscleList(musclesWorked);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code ExerciseTag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static ExerciseTag parseExerciseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!ExerciseTag.isValidTagName(trimmedTag)) {
+            throw new ParseException(ExerciseTag.MESSAGE_CONSTRAINTS);
+        }
+        return new ExerciseTag(trimmedTag);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<ExerciseTag>}.
+     */
+    public static Set<ExerciseTag> parseExerciseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<ExerciseTag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseExerciseTag(tagName));
+        }
+        return tagSet;
+    }
+
 
     //AB3 parse
 

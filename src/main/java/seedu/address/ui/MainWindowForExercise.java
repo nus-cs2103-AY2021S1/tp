@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.io.IOException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -23,7 +24,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindowForExercise extends UiPart<Stage> {
 
-    private static final String FXML = "MainWindow.fxml";
+    private static final String FXML = "MainWindowForExercise.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -34,12 +35,16 @@ public class MainWindowForExercise extends UiPart<Stage> {
     private ExerciseListPanel exerciseListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CaloriesGraph caloriesGraph;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private StackPane personListPanelPlaceholder;
 
     @FXML
     private StackPane exerciseListPanelPlaceholder;
@@ -49,6 +54,9 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane caloriesGraphPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -107,7 +115,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
     }
 
     /**
-     * Fil  ls up all the placeholders of this window.
+     * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
         exerciseListPanel = new ExerciseListPanel(logic.getFilteredExerciseList());
@@ -121,6 +129,9 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        caloriesGraph = new CaloriesGraph(logic.getCaloriesByDay());
+        caloriesGraphPlaceholder.getChildren().add(caloriesGraph.getRoot());
     }
 
     /**
@@ -172,11 +183,12 @@ public class MainWindowForExercise extends UiPart<Stage> {
      *
      * @see seedu.address.logic.Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, IOException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            caloriesGraph.generateGraph();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -187,7 +199,7 @@ public class MainWindowForExercise extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | IOException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

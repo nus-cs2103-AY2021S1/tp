@@ -1,5 +1,6 @@
 package seedu.address.model.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -12,6 +13,8 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.ExerciseTag;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -63,16 +66,27 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<ExerciseTag> getExerciseTagSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(ExerciseTag::new)
+                .collect(Collectors.toSet());
+    }
+
     private static Exercise[] getSampleExercises() {
+        ArrayList<Muscle> musclesWorked = new ArrayList<Muscle>(Arrays.asList(Muscle.CHEST, Muscle.LEGS));
         return new Exercise[]{
             new Exercise(new seedu.address.model.exercise.Name("Push Up"), new Description("Did 52 within 60 seconds"),
-                    new Date("01-10-2020"), new Calories("100")),
+                    new Date("01-10-2020"), new Calories("100"), musclesWorked, getExerciseTagSet("gym")),
             new Exercise(new seedu.address.model.exercise.Name("Sit Up"), new Description("Did 50"),
-                    new Date("01-10-2020"), new Calories("120")),
+                    new Date("01-10-2020"), new Calories("120"), musclesWorked, getExerciseTagSet("gym")),
             new Exercise(new seedu.address.model.exercise.Name("2 4km"), new Description("11:30"),
-                    new Date("04-10-2020"), new Calories("100")),
+                    new Date("04-10-2020"), new Calories("100"), musclesWorked, getExerciseTagSet("gym")),
             new Exercise(new seedu.address.model.exercise.Name("Pull Up"),
-                    new Description("20 with Added Weight: 5 kg "), new Date("05-10-2020"), new Calories("100"))
+                    new Description("20 with Added Weight: 5 kg "), new Date("05-10-2020"),
+                    new Calories("100"), musclesWorked, getExerciseTagSet("gym"))
         };
     }
 

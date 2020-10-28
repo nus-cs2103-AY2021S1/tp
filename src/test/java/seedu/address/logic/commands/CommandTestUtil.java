@@ -7,11 +7,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -38,26 +40,39 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_PUSH_UP = "Push Up Description";
     public static final String VALID_DATE_PUSH_UP = "10-10-2020";
     public static final String VALID_CALORIES_PUSH_UP = "100";
+    public static final String VALID_MUSCLES_PUSH_UP = "chest";
+    public static final String VALID_TAG_GYM = "gym";
+    public static final String VALID_TAG_HOUSE = "house";
 
     public static final String VALID_NAME_SIT_UP = "Sit Up";
     public static final String VALID_DESCRIPTION_SIT_UP = "Sit Up Description";
     public static final String VALID_DATE_SIT_UP = "10-10-2020";
     public static final String VALID_CALORIES_SIT_UP = "100";
+    public static final String VALID_MUSCLES_SIT_UP = "ab";
 
     public static final String NAME_DESC_PUSH_UP = " " + PREFIX_NAME + VALID_NAME_PUSH_UP;
     public static final String DESCRIPTION_DESC_PUSH_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_PUSH_UP;
     public static final String DATE_DESC_PUSH_UP = " " + PREFIX_DATE + VALID_DATE_PUSH_UP;
     public static final String CALORIES_DESC_PUSH_UP = " " + PREFIX_CALORIES + VALID_CALORIES_PUSH_UP;
+    public static final String MUSCLES_DESC_PUSH_UP = " " + PREFIX_MUSCLES + VALID_MUSCLES_PUSH_UP;
+    public static final String TAG_DESC_GYM = " " + PREFIX_TAG + VALID_TAG_GYM;
+    public static final String TAG_DESC_HOUSE = " " + PREFIX_TAG + VALID_TAG_HOUSE;
+
 
     public static final String NAME_DESC_SIT_UP = " " + PREFIX_NAME + VALID_NAME_SIT_UP;
     public static final String DESCRIPTION_DESC_SIT_UP = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_SIT_UP;
     public static final String DATE_DESC_SIT_UP = " " + PREFIX_DATE + VALID_DATE_SIT_UP;
     public static final String CALORIES_DESC_SIT_UP = " " + PREFIX_CALORIES + VALID_CALORIES_SIT_UP;
+    public static final String MUSCLES_DESC_SIT_UP = " " + PREFIX_MUSCLES + VALID_MUSCLES_SIT_UP;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_DATE_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_CALORIES_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+
+    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "run&"; // '&' not allowed in names
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION; // description should not be empty
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "2020-10-10"; // date of incorrect format
+    public static final String INVALID_CALORIES_DESC = " " + PREFIX_CALORIES + "abc"; // calories should be numbers
+    public static final String INVALID_MUSCLES_DESC = " " + PREFIX_MUSCLES + "abs,chest"; // abs should be ab
+    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -92,7 +107,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
-    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    //    public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     //    public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     //    public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -104,10 +119,10 @@ public class CommandTestUtil {
         // Calo
         DESC_PUSH_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_PUSH_UP)
                 .withDescription(VALID_DESCRIPTION_PUSH_UP).withDate(VALID_DATE_PUSH_UP)
-                .withCalories(VALID_CALORIES_PUSH_UP).build();
+                .withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_FRIEND).build();
         DESC_SIT_UP = new EditExerciseDescriptorBuilder().withName(VALID_NAME_SIT_UP)
                 .withDescription(VALID_DESCRIPTION_SIT_UP).withDate(VALID_DATE_SIT_UP)
-                .withCalories(VALID_CALORIES_SIT_UP).build();
+                .withCalories(VALID_CALORIES_SIT_UP).withTags(VALID_TAG_GYM, VALID_TAG_HOUSE).build();
 
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -145,7 +160,7 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException ce) {
+        } catch (CommandException | IOException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
     }

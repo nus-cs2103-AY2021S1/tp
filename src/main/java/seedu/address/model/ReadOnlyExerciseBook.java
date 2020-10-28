@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import java.util.HashMap;
+
 import javafx.collections.ObservableList;
 import seedu.address.model.exercise.Exercise;
 
@@ -13,4 +15,6 @@ public interface ReadOnlyExerciseBook {
      * This list will not contain any duplicate persons.
      */
     ObservableList<Exercise> getExerciseList();
+
+    HashMap<String, Integer> getCaloriesByDay();
 }

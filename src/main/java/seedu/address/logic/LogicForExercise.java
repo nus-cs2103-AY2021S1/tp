@@ -1,6 +1,8 @@
 package seedu.address.logic;
 
+import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -12,11 +14,13 @@ import seedu.address.model.exercise.Exercise;
 
 public interface LogicForExercise {
 
-    public CommandResult execute(String commandText) throws CommandException, ParseException;
+    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException;
 
     public ReadOnlyExerciseBook getExerciseBook();
 
     public ObservableList<Exercise> getFilteredExerciseList();
+
+    public HashMap<String, Integer> getCaloriesByDay();
 
     public Path getExerciseBookFilePath();
 

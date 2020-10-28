@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Template;
+import seedu.address.model.exercise.TemplateList;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -106,6 +109,12 @@ public class ExerciseModelManager implements ExerciseModel {
     }
 
     @Override
+    public void addTemplate(Template template) {
+        TemplateList.addTemplate(template);
+        updateFilteredExerciseList(PREDICATE_SHOW_ALL_EXERCISE);
+    }
+
+    @Override
     public void setExercise(Exercise target, Exercise editedExercise) {
         requireAllNonNull(target, editedExercise);
 
@@ -125,7 +134,12 @@ public class ExerciseModelManager implements ExerciseModel {
      */
     @Override
     public ObservableList<Exercise> getFilteredExerciseList() {
+
         return filteredExercises;
+    }
+
+    public HashMap<String, Integer> getCaloriesByDay() {
+        return exerciseBook.getCaloriesByDay();
     }
 
     @Override

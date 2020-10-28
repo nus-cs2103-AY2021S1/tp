@@ -2,6 +2,7 @@ package seedu.address.logic;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.HashMap;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -40,7 +41,7 @@ public class LogicManagerForExercise implements LogicForExercise {
     }
 
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, IOException {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult = null;
@@ -62,17 +63,14 @@ public class LogicManagerForExercise implements LogicForExercise {
         return commandResult;
     }
 
-    private void archiveMethod(Path path) throws CommandException {
-        try {
-            storage.saveExerciseBook(model.getExerciseBook(), path);
-        } catch (IOException ioe) {
-            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
-        }
-    }
-
     @Override
     public ReadOnlyExerciseBook getExerciseBook() {
         return model.getExerciseBook();
+    }
+
+    @Override
+    public HashMap<String, Integer> getCaloriesByDay() {
+        return model.getCaloriesByDay();
     }
 
     @Override
