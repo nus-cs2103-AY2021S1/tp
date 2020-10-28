@@ -90,8 +90,11 @@
                </VBox>
 
                <StackPane fx:id="calendar" prefHeight="100.0" prefWidth="50.0" styleClass="pane-with-border-orange"
-                          GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-
+                          GridPane.columnIndex="1" GridPane.rowIndex="1">
+                   <padding>
+                       <Insets bottom="0" left="100" right="100" top="0" />
+                   </padding>
+               </StackPane>
            </children>
         </GridPane>
 

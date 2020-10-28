@@ -63,7 +63,7 @@
           </Label>
         <Label styleClass="dayLabel" text="Wed" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
           </Label>
-        <Label styleClass="dayLabel" text="Thur" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        <Label styleClass="dayLabel" text="Thu" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
           </Label>
         <Label styleClass="dayLabel" text="Fri" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
          </Label>
@@ -75,13 +75,13 @@
     <GridPane fx:id="dateGridPane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="0.0"
               AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
       <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
-        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" prefWidth="100.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
+        <ColumnConstraints hgrow="SOMETIMES" minWidth="20.0" />
       </columnConstraints>
       <rowConstraints>
         <RowConstraints minHeight="15.0" prefHeight="20.0" vgrow="SOMETIMES" />

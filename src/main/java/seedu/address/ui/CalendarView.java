@@ -35,7 +35,7 @@ public class CalendarView extends UiPart<Region> {
         "July", "August", "September", "October", "November", "December"};
     private static final int TOTAL_NUM_OF_DATEGRID = 42;
     private static final int NUM_OF_DAYS_PER_WEEK = 7;
-    
+
     private int[] simulateGridPane = new int[42];
     private int day;
     private int month;
