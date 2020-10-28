@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.calendar.Calendar;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.lesson.UniqueLessonList;
 import seedu.address.model.task.Task;
@@ -19,6 +20,7 @@ public class Planus implements ReadOnlyPlanus {
 
     private final UniqueTaskList tasks;
     private final UniqueLessonList lessons;
+    private final Calendar calendarTasks;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -30,12 +32,13 @@ public class Planus implements ReadOnlyPlanus {
     {
         tasks = new UniqueTaskList();
         lessons = new UniqueLessonList();
+        calendarTasks = new Calendar();
     }
 
     public Planus() {}
 
     /**
-     * Creates an Planus using the Tasks in the {@code toBeCopied}
+     * Creates a Planus using the Tasks in the {@code toBeCopied}
      */
     public Planus(ReadOnlyPlanus toBeCopied) {
         this();
@@ -60,6 +63,14 @@ public class Planus implements ReadOnlyPlanus {
     }
 
     /**
+     * Replaces the contents of the task list with {@code tasks}.
+     * {@code tasks} must not contain duplicate tasks.
+     */
+    public void setCalendarTasks(List<Task> tasks) {
+        this.calendarTasks.setCalendarList(tasks);
+    }
+
+    /**
      * Resets the existing data of this {@code Planus} with {@code newData}.
      */
     public void resetData(ReadOnlyPlanus newData) {
@@ -67,6 +78,7 @@ public class Planus implements ReadOnlyPlanus {
 
         setTasks(newData.getTaskList());
         setLessons(newData.getLessonList());
+        setCalendarTasks(newData.getCalendarList());
     }
 
     //// task-level operations
@@ -88,6 +100,14 @@ public class Planus implements ReadOnlyPlanus {
     }
 
     /**
+     * Returns true if a task with the same identity as {@code lesson} exists in the PlaNus calendar list.
+     */
+    public boolean hasCalendarTask(Task task) {
+        requireNonNull(task);
+        return calendarTasks.contains(task);
+    }
+
+    /**
      * Adds a task to PlaNus.
      * The task must not already exist in the PlaNus task list.
      */
@@ -101,6 +121,14 @@ public class Planus implements ReadOnlyPlanus {
      */
     public void addLesson(Lesson lesson) {
         lessons.add(lesson);
+    }
+
+    /**
+     * Adds an event or lesson to PlaNus calendar.
+     * The task must not already exist in the PlaNus calendar list.
+     */
+    public void addTaskToCalendar(Task task) {
+        calendarTasks.add(task);
     }
 
     /**
@@ -126,8 +154,19 @@ public class Planus implements ReadOnlyPlanus {
     }
 
     /**
-     * Marks the given tasks {@code targets} in the list as done.
-     * Task in targets must exist in PlaNus.
+     * Replaces the given task {@code target} in the list with {@code editedTask}.
+     * {@code target} must exist in the PlaNus calendar list.
+     * The task identity of {@code editedTask} must not be the same as another existing task in the calendar list.
+     */
+    public void setCalendarTask(Task target, Task editedTask) {
+        requireNonNull(editedTask);
+
+        calendarTasks.setCalendarTask(target, editedTask);
+    }
+
+    /**
+     * Mark the given tasks {@code targets} in the list as done.
+     * task in targets must exist in PlaNus.
      */
     public void markAsDone(Deadline[] targets, int[] durations) {
         requireNonNull(targets);
@@ -179,6 +218,11 @@ public class Planus implements ReadOnlyPlanus {
     @Override
     public ObservableList<Lesson> getLessonList() {
         return lessons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Task> getCalendarList() {
+        return calendarTasks.asUnmodifiableObservableList();
     }
 
     @Override

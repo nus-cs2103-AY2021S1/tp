@@ -41,8 +41,10 @@ class JsonAdaptedDeadline {
     @JsonCreator
     public JsonAdaptedDeadline(@JsonProperty("title") String title,
                                @JsonProperty("deadlineDateTime") String deadlineDateTime,
-           @JsonProperty("description") String description, @JsonProperty("doneDateTime") String doneDateTime,
-                               @JsonProperty("duration") int duration, @JsonProperty("tagged") String tag,
+                               @JsonProperty("description") String description,
+                               @JsonProperty("doneDateTime") String doneDateTime,
+                               @JsonProperty("duration") int duration,
+                               @JsonProperty("tagged") String tag,
                                @JsonProperty("status") String status) {
         this.title = title;
         this.deadlineDateTime = deadlineDateTime;

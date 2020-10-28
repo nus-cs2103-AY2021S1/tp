@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
     private final FilteredList<Lesson> filteredLessons;
+    private final FilteredList<Task> filteredCalendar;
 
     /**
      * Initializes a ModelManager with the given planus and userPrefs.
@@ -39,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTasks = new FilteredList<>(this.planus.getTaskList());
         filteredLessons = new FilteredList<>(this.planus.getLessonList());
+        filteredCalendar = new FilteredList<>(this.planus.getCalendarList());
     }
 
     public ModelManager() {
@@ -105,6 +107,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasCalendarTask(Task task) {
+        requireNonNull(task);
+        return planus.hasCalendarTask(task);
+    }
+
+    @Override
     public void deleteTask(Task[] targets) {
         planus.removeTask(targets);
     }
@@ -132,6 +140,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addTaskToCalendar(Task task) {
+        planus.addTaskToCalendar(task);
+        updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
+    }
+
+    @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
 
@@ -143,6 +158,12 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedLesson);
 
         planus.setLesson(target, editedLesson);
+    }
+
+    @Override
+    public void setCalendarTasks(Task target, Task editedTask) {
+        requireAllNonNull(target, editedTask);
+        planus.setCalendarTask(target, editedTask);
     }
 
     //=========== Filtered Task List Accessors =============================================================
@@ -165,6 +186,15 @@ public class ModelManager implements Model {
         return filteredLessons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedPlanus}
+     */
+    @Override
+    public ObservableList<Task> getFilteredCalendarList() {
+        return filteredCalendar;
+    }
+
     @Override
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
@@ -175,6 +205,12 @@ public class ModelManager implements Model {
     public void updateFilteredLessonList(Predicate<Lesson> predicate) {
         requireNonNull(predicate);
         filteredLessons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredCalendar(Predicate<Task> predicate) {
+        requireAllNonNull(predicate);
+        filteredCalendar.setPredicate(predicate);
     }
 
     @Override
@@ -194,7 +230,8 @@ public class ModelManager implements Model {
         return planus.equals(other.planus)
                 && userPrefs.equals(other.userPrefs)
                 && filteredTasks.equals(other.filteredTasks)
-                && filteredLessons.equals(other.filteredLessons);
+                && filteredLessons.equals(other.filteredLessons)
+                && filteredCalendar.equals(other.filteredCalendar);
     }
 
 }
