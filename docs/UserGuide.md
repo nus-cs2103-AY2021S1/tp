@@ -376,7 +376,7 @@ Format: `undo`
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 <br>
-![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
+![edit-i example one step three](images/undo-example-one-step-two.png)
 <br>
 <br>
 
@@ -402,7 +402,7 @@ Example 1: `redo` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 1. Follow steps 1 - 4 of [Example 1](#undoExample1) for the `undo` command
 
-2. Select the Command box and type in `undo`
+2. Select the Command box and type in `redo`
 
 3. Either press Enter on your keyboard or click Send to execute the command
 
