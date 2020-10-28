@@ -35,7 +35,7 @@ public class AddDeadlineCommandParser implements Parser<AddDeadlineCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
                         PREFIX_TASK_DATE, PREFIX_TASK_TIME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TASK_TIME)
+        if (arePrefixesPresent(argMultimap, PREFIX_TASK_TIME)
                 || !arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TASK_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDeadlineCommand.MESSAGE_USAGE));
