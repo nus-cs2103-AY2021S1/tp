@@ -11,7 +11,6 @@ public class Priority {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Priority level should be Low, Medium or High";
-    public static final String VALIDATION_STRING_PRIORITY_BLANK = "";
     public static final String VALIDATION_STRING_PRIORITY_NONE = "NO PRIORITY ASSIGNED";
     public static final String VALIDATION_STRING_PRIORITY_LOW = "LOW";
     public static final String VALIDATION_STRING_PRIORITY_MEDIUM = "MEDIUM";
@@ -28,7 +27,6 @@ public class Priority {
         requireNonNull(level);
         checkArgument(isValidPriority(level), MESSAGE_CONSTRAINTS);
         switch(level.toUpperCase()) {
-        case "":
         case"NO PRIORITY ASSIGNED":
             this.level = PriorityLevel.NONE;
             break;
@@ -50,8 +48,7 @@ public class Priority {
      * Returns true if a given string is a valid priority level.
      */
     public static boolean isValidPriority(String test) {
-        return test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_BLANK)
-                || test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_NONE)
+        return test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_NONE)
                 || test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_LOW)
                 || test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_MEDIUM)
                 || test.toUpperCase().equals(VALIDATION_STRING_PRIORITY_HIGH);
