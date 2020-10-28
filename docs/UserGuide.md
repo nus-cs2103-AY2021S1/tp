@@ -133,13 +133,14 @@ Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC]
 <a name="addexample1"></a>
 Example 1: Add an item using [Figure 1](#uiwithannotationpng) as the starting point.
 
+
 1. Type `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` in the [Command Box](#uiwithannotationpng).
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
 3. The new item will show up in Inventory Book, refer to the diagram below:
 <br>
-![add-i example one step three](images/add-i%20example%20one%20step%20three.PNG)
+![add-i example one step three](images/add-i_example_one_step_three.PNG)
 <br>
 <br>
 
@@ -166,7 +167,6 @@ Example:
 
 3. You should now see a new pending delivery, refer to the diagram below:
 <<insert diagram>> 
-
 
 <div markdown="span" class="alert alert-primary">:bulb:**Tip:**
 <li>Unlike inventory item, pending delivery does not have a quantity</li>
@@ -217,7 +217,7 @@ Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as t
 
 3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
 <br>
-![edit-i example one step three](images/edit-i%20example%20one%20step%20three.png)
+![edit-i example one step three](images/edit-i_example_one_step_three.png)
 <br>
 <br>
 
@@ -229,11 +229,9 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
 
 3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields as shown below.
 <br>
-![add-i example two step three](images/edit-i%20example%20two%20step%20three.png)
+![add-i example two step three](images/edit-i_example_two_step_three.png)
 <br>
 <br>
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
-</div>
 
 
 ##### 3.1.4.b `edit-d`
