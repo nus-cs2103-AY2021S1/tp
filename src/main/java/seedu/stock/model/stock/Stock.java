@@ -180,6 +180,8 @@ public class Stock {
         }
 
         return otherStock != null
+                && (otherStock.getName().equals(getName())
+                && otherStock.getSource().equals(getSource()))
                 && otherStock.getSerialNumber().equals(getSerialNumber());
     }
 

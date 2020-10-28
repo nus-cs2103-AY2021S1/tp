@@ -68,7 +68,6 @@ public class ParserUtil {
         if (!Quantity.isValidQuantity(trimmedQuantity)) {
             throw new ParseException(Quantity.MESSAGE_CONSTRAINTS);
         }
-
         return new Quantity(trimmedQuantity);
     }
 

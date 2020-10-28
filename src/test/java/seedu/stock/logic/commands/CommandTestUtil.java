@@ -85,6 +85,10 @@ public class CommandTestUtil {
     public static final String INVALID_SORT_ORDER_DESC = " " + PREFIX_SORT_ORDER + "random";
     public static final String INVALID_SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + "note";
 
+    public static final String INVALID_LARGER_THAN_INT_LIMIT_QUANTITY_DESC =
+                                            " " + PREFIX_QUANTITY + "10000000000000000000000";
+    public static final String INVALID_LARGER_THAN_INT_LIMIT_LOW_QUANTITY_DESC =
+            " " + PREFIX_LOW_QUANTITY + "10000000000000000000000";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

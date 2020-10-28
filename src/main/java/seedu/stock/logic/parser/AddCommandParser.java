@@ -36,6 +36,7 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_LOCATION, PREFIX_SOURCE, PREFIX_QUANTITY)
                 || !argMultimap.getPreamble().isEmpty()) {
+            System.out.println("thrown 1");
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
@@ -58,7 +59,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Location location = ParserUtil.parseLocation(argMultimap.getValue(PREFIX_LOCATION).get().toLowerCase());
 
         Stock stock = new Stock(name, serialNumber, source, updatedQuantity, location);
-
         return new AddCommand(stock);
     }
 

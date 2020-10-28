@@ -44,6 +44,8 @@ public class UpdateCommand extends Command {
             + "Note that only one of " + PREFIX_INCREMENT_QUANTITY
             + "and " + PREFIX_NEW_QUANTITY
             + "can be specified. \n"
+            + "Note that quantities should only have values from 0"
+            + "and 2,147,483,647\n"
             + "You may provide more than one serial number \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_SERIAL_NUMBER + "CS2103 "
