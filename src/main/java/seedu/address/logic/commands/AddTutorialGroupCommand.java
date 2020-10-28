@@ -24,7 +24,7 @@ public class AddTutorialGroupCommand extends Command {
         + PREFIX_TUTORIAL_GRP + "TUTORIAL_GROUP_CODE "
         + PREFIX_TUTORIAL_GRP_DAY + "MON/TUE/WED/THU/FRI "
         + PREFIX_TUTORIAL_GRP_START_TIME + "11:00 "
-        + PREFIX_TUTORIAL_GRP_END_TIME + "13:00 ";
+        + PREFIX_TUTORIAL_GRP_END_TIME + "13:00 (End Time must be later than Start Time)";
 
     private final TutorialGroup toAdd;
 
