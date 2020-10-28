@@ -156,24 +156,14 @@ Finds all sales data of drinks that contain the KEYWORD(s).
 Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
-* Only the drink's short form name is searched.
+* Only the drink's abbreviated form name is searched.
 * Only full words will be matched e.g. `BSB` will not match `BSBBT`.
-* Drinks matching at least one keyword will be returned (i.e. `OR` search).
+* Drinks matching at least one keyword will be returned.
   e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
 
 Examples:
-* `s-find BSBBT` returns `BSBBT`.
-* `s-find BSBBT BSBM` returns `BSBBT`, `BSBM`.<br>
-
-
-#### 2.4 Listing the sales record for a specific day :
-Shows a sales record for each type of mile tea on a specific date.
-
-Format: `sales YYYY-MM-DD`
-* `YYYY-MM-DD` refers to date in YYYY-MM-DD format.
-
-Example:
-* `sales 2020-08-01` returns the sales record for each type of milk tea on 2020-08-01.
+* `s-find BSBBT` returns `BSBBT`'s sales data.
+* `s-find BSBBT BSBM` returns `BSBBT`'s sales data and `BSBM`'s sales data.<br>
  
  
 ### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
