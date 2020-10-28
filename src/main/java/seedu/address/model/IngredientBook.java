@@ -19,8 +19,6 @@ public class IngredientBook implements ReadOnlyIngredientBook {
 
     private final UniqueIngredientList ingredients;
 
-
-
     /*
     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -114,7 +112,8 @@ public class IngredientBook implements ReadOnlyIngredientBook {
             builder.append(ingredients.get(i).toString()).append("\n");
         }
         return ingredients.asUnmodifiableObservableList().size()
-                + " ingredients\n"
+                + " ingredients \n"
+                + "\n" // line separator
                 + builder;
     }
 

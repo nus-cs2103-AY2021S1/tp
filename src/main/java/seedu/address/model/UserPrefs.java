@@ -66,7 +66,6 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         this.addressBookFilePath = addressBookFilePath;
     }
 
-
     public void setSalesBookFilePath(Path salesBookFilePath) {
         requireNonNull(salesBookFilePath);
         this.salesBookFilePath = salesBookFilePath;
@@ -85,9 +84,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         if (!(other instanceof UserPrefs)) { //this handles null as well.
             return false;
         }
-
         UserPrefs o = (UserPrefs) other;
-
         return guiSettings.equals(o.guiSettings)
                 && addressBookFilePath.equals(o.addressBookFilePath)
                 && salesBookFilePath.equals(o.salesBookFilePath)
@@ -104,10 +101,9 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal data file location : " + addressBookFilePath);
+        sb.append("\nLocal data file location : " + ingredientBookFilePath);
         sb.append("\nLocal data file location : " + salesBookFilePath);
         sb.append("\nLocal data file location : " + ingredientBookFilePath);
-
         return sb.toString();
     }
-
 }

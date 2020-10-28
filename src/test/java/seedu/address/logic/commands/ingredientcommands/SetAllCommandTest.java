@@ -1,20 +1,23 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.ingredientcommands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-//import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-//import seedu.address.model.AddressBook;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.model.AddressBook;
 import seedu.address.model.IngredientBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-//import seedu.address.model.ReadOnlyIngredientBook;
+import seedu.address.model.ReadOnlyIngredientBook;
 import seedu.address.model.SalesBook;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.ingredient.Amount;
+import seedu.address.model.ingredient.Ingredient;
+import seedu.address.model.ingredient.IngredientName;
 
 
 /**
@@ -34,7 +37,7 @@ class SetAllCommandTest {
     private final Model model = new ModelManager(getTypicalAddressBook(), new SalesBook(),
             new IngredientBook(), new UserPrefs());
 
-    /*@Test
+    @Test
     public void execute_allFieldsSpecified_success() {
 
         SetAllCommand setAllCommand = new SetAllCommand(MILK_AMOUNT, PEARL_AMOUNT,
@@ -79,7 +82,7 @@ class SetAllCommandTest {
         model.setIngredientBook(filledBook);
 
         assertCommandSuccess(setAllCommand, model, expectedMessage, expectedModel);
-    }*/
+    }
 
     @Test
     public void equals() {

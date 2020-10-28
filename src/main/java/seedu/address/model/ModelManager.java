@@ -193,11 +193,7 @@ public class ModelManager implements Model {
 
     @Override
     public void overwrite(Map<Drink, Integer> salesInput) {
-        if (isEmptySalesBook()) {
-            salesBook.setRecord(salesInput);
-        } else {
-            salesBook.overwriteSales(salesInput);
-        }
+        salesBook.overwriteSales(salesInput);
     }
 
     @Override

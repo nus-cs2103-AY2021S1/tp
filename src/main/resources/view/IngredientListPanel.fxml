@@ -5,6 +5,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="header" text="\$Label" styleClass="list-panel-header"/>
-    <ListView fx:id="salesRecordEntryListView" VBox.vgrow="ALWAYS" />
+    <Label fx:id="header" text="\$Label" styleClass="ingredient-list-panel-header"/>
+    <ListView fx:id="ingredientListView" VBox.vgrow="ALWAYS" />
 </VBox>

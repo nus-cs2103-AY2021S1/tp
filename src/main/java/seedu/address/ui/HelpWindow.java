@@ -41,6 +41,7 @@ public class HelpWindow extends UiPart<Stage> {
             + "s-list: Shows a list of all types of drinks sold for the current day.\n"
             + "s-update A/NUM B/NUM C/NUM ...: Asks the user to enter the number of each type of drink sold for the "
             + "current day.\n"
+            + "s-find KEYWORD [MORE_KEYWORDS]: Finds all drinks that contain the KEYWORD(s).\n"
             + "help: Displays a brief explanation of the list of commands, and a link to the help page, "
             + "which is the user guide.\n"
             + "exit: Exits the program.\n";
