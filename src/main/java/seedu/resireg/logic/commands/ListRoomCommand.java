@@ -22,7 +22,7 @@ import seedu.resireg.storage.Storage;
 /**
  * Lists rooms in ResiReg to the user, optionally filtered by some criteria.
  */
-public class ListRoomsCommand extends Command {
+public class ListRoomCommand extends Command {
     public static final String COMMAND_WORD = "rooms";
     public static final String COMMAND_VACANT_FLAG = "vacant";
     public static final String COMMAND_ALLOCATED_FLAG = "allocated";
@@ -42,7 +42,7 @@ public class ListRoomsCommand extends Command {
 
     private final RoomFilter filter;
 
-    public ListRoomsCommand(RoomFilter filter) {
+    public ListRoomCommand(RoomFilter filter) {
         this.filter = filter;
     }
 
@@ -58,8 +58,8 @@ public class ListRoomsCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListRoomsCommand) // instanceof handles nulls
-                && filter.equals(((ListRoomsCommand) other).filter);
+                || (other instanceof ListRoomCommand) // instanceof handles nulls
+                && filter.equals(((ListRoomCommand) other).filter);
     }
 
     /**

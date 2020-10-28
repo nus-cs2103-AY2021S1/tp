@@ -151,8 +151,8 @@ public class DeleteCommandTest {
         assertCommandSuccess(new UndoCommand(), model, history, UndoCommand.MESSAGE_SUCCESS, expectedModel);
 
         // remove filtering
-        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
-        expectedModel.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_STUDENTS);
+        model.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        expectedModel.updateFilteredStudentList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         assertNotEquals(toDelete, model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased()));
         // redo -> delete same second student in unfiltered student list

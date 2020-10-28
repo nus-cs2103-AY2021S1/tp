@@ -3,7 +3,7 @@ package seedu.resireg.testutil;
 import java.util.Arrays;
 import java.util.Collection;
 
-import seedu.resireg.logic.commands.ListRoomsCommand.RoomFilter;
+import seedu.resireg.logic.commands.ListRoomCommand.RoomFilter;
 import seedu.resireg.model.room.Floor;
 import seedu.resireg.model.room.RoomNumber;
 import seedu.resireg.model.room.roomtype.RoomType;
