@@ -287,8 +287,33 @@ Shows a list of all employees in the contact list.
 
 
 Format: `c-list`
+
+#### 4.3 Listing all employees who are working today: `c-today`
+
+Shows a list of all employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
+
+Format: `c-today`
+
+* The search is case-insensitive. e.g `Friday` will match `friday`.
+
+Examples:
+* Assume today is `Wednesday`, after command `c-today`, all employees whose tags contain `Wednesday` will be
+  listed out. 
+
+#### 4.4 Listing all employees who are working tomorrow: `c-tomorrow`
+
+Shows a list of all employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
+
+Format: `c-tomorrow`
+
+* The search is case-insensitive. e.g `Friday` will match `friday`.
+
+Examples:
+* Assume today were `Wednesday`, tomorrow would be `Thursday`, after command `c-tomorrow`, all employees whose
+tags contain `Thursday` will be listed out. 
   
-#### 4.3 Editing a person : `c-edit`
+
+#### 4.5 Editing a person : `c-edit`
 
 Edits the corresponding contact information in the contact list.
 
@@ -307,9 +332,9 @@ Examples:
 *  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
 
-#### 4.4 Locating persons by keywords: `c-find`
+#### 4.6 Locating persons by keywords: `c-find`
 
-Finds all contacts that contain the KEYWORD(s).
+Finds all contacts that contain the KEYWORD(s) in their names.
 
 Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
@@ -324,7 +349,24 @@ Examples:
 * `c-find John` returns `john` and `John Doe`.
 * `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
 
-#### 4.5 Deleting a person : `c-delete`
+#### 4.7 Locating persons based on matching tags: `c-tag-find`
+
+Finds all contacts that contain the KEYWORD(s) in their tags.
+
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
+
+* The search is case-insensitive. e.g `Friday` will match `friday`.
+* The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
+* Only the tag names are searched.
+* Only full words will be matched e.g. `PartTime` will not match `PartTimes`.
+* Employees whose tag(s) matching at least one keyword will be listed in the `Employee Contact DeatailL` pane
+ (i.e. `OR` search).  e.g. `Friday Monday` will return employees whose tags contain `Friday` or `Monday`.
+
+Examples:
+* `c-tag-find friday` returns all employees whose tags contain `friday`.
+* `c-tag-find friday parttime` returns all employees whose tags contain `friday`, `parttime`.<br>
+
+#### 4.8 Deleting a person : `c-delete`
 
 Deletes the specified employee from the contact list.
 
@@ -338,13 +380,13 @@ Examples:
 * `c-list` followed by `c-delete 2` deletes the 2nd employee in the contact list.
 * `c-find Betsy` followed by `c-delete 1` deletes the 1st employee in the results of the `c-find` command.
 
-#### 4.6 Clearing all entries : `c-clear`
+#### 4.9 Clearing all entries : `c-clear`
 
 Clears all entries from the contact list.
 
 Format: `c-clear`
 
-#### 4.7 Archiving an employee : `c-archive`
+#### 4.10 Archiving an employee : `c-archive`
 Archives the specified employee's contact detail from the tCheck.
 
 Format: `c-archive INDEX`
@@ -364,17 +406,17 @@ Examples:
 * `c-list` followed by `c-archive 2` archives the 2nd person in the employees' contact details.
 * `c-find Betsy` followed by `c-archive 1` archives the 1st person in the results of the `find` command.
 
-#### 4.8 Archiving all employees : `c-archive all`
+#### 4.11 Archiving all employees : `c-archive-all`
 Archives all employees' contact details from the tCheck.
 
-Format: `c-archive all`
+Format: `c-archive-all`
 
-#### 4.9 Listing all archived employees : `c-archive list`
+#### 4.12 Listing all archived employees : `c-archive-list`
 Shows a list of all archived employees' contact details in tCheck.
 
-Format: `c-archive list`
+Format: `c-archive-list`
 
-#### 4.10 Unarchiving an employee : `c-unarchive`
+#### 4.13 Unarchiving an employee : `c-unarchive`
 Unarchives the specified employee's contact detail from the tCheck's archived employee list.
 
 Format: `c-unarchive INDEX`
@@ -428,11 +470,13 @@ Action | Format, Examples
 -------|------------------------------
 **Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 t/morning shift`
 **List** | `c-list`
+**List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
 **Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
-**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive all` <br>3. **List all archived data:**  `c-archive list`</br>
+**Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
 
  
