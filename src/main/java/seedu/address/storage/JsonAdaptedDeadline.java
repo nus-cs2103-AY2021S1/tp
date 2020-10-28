@@ -39,9 +39,12 @@ class JsonAdaptedDeadline {
      * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
-    public JsonAdaptedDeadline(@JsonProperty("title") String title, @JsonProperty("deadlineDateTime") String deadlineDateTime,
-           @JsonProperty("description") String description, @JsonProperty("doneDateTime") String doneDateTime,
-                               @JsonProperty("duration") int duration, @JsonProperty("tagged") String tag,
+    public JsonAdaptedDeadline(@JsonProperty("title") String title,
+                               @JsonProperty("deadlineDateTime") String deadlineDateTime,
+                               @JsonProperty("description") String description,
+                               @JsonProperty("doneDateTime") String doneDateTime,
+                               @JsonProperty("duration") int duration,
+                               @JsonProperty("tagged") String tag,
                                @JsonProperty("status") String status) {
         this.title = title;
         this.deadlineDateTime = deadlineDateTime;
@@ -122,7 +125,8 @@ class JsonAdaptedDeadline {
         final DoneDateTime modelDoneDateTime;
 
         if (doneDateTime.equals("")) {
-            logger.info("Done datetime for task with title: '" + title + "' is empty. Creating a default done datetime for it");
+            logger.info("Done datetime for task with title: '" + title
+                    + "' is empty. Creating a default done datetime for it");
             modelDoneDateTime = DoneDateTime.createNullDoneDateTime();
         } else if (!DateUtil.isValidDateTime(doneDateTime)) {
             throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);

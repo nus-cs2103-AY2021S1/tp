@@ -2,9 +2,9 @@ package seedu.address.model.task;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import seedu.address.model.tag.Tag;
-
 import java.time.LocalDate;
+
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents a Task in the PlaNus task list.

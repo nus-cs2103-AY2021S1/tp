@@ -13,7 +13,7 @@ public class StatisticsData {
     private HashMap<Tag, Integer[]> stats;
 
     /**
-     * Creates a statistics data object which can store information that summarises how much time is spent on 
+     * Creates a statistics data object which can store information that summarises how much time is spent on
      * tasks and lessons for each module tag.
      */
     public StatisticsData() {

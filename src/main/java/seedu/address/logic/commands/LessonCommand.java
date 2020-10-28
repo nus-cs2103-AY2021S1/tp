@@ -62,6 +62,7 @@ public class LessonCommand extends Command {
                 throw new CommandException(MESSAGE_DUPLICATE_LESSON);
             }
             model.addTask(taskToAdd);
+            model.addTaskToCalendar(taskToAdd);
         }
 
         model.addLesson(lesson);

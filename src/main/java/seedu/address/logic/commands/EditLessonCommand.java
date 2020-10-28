@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CALENDAR_TASKS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
@@ -105,6 +106,7 @@ public class EditLessonCommand extends Command {
 
         model.setLesson(lessonToEdit, editedLesson);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS, editedLesson));
     }
@@ -116,16 +118,16 @@ public class EditLessonCommand extends Command {
     private static Lesson createEditedLesson(Lesson lessonToEdit, EditLessonDescriptor editLessonDescriptor) {
         assert lessonToEdit != null;
 
-//        Title updatedTitle = editLessonDescriptor.getTitle().orElse(lessonToEdit.getTitle());
-//        Description updatedDescription = editLessonDescriptor.getDescription().orElse(lessonToEdit.getDescription());
-//        DayOfWeek updatedDayOfWeek = editLessonDescriptor.getDayOfWeek().orElse(lessonToEdit.getDayOfWeek());
-//        LocalDate updatedStartDate = editLessonDescriptor.getStartDate().orElse(lessonToEdit.getStartDate());
-//        LocalDate updatedEndDate = editLessonDescriptor.getEndDate().orElse(lessonToEdit.getEndDate());
-//        LocalTime updatedStartTime = editLessonDescriptor.getStartTime().orElse(lessonToEdit.getStartTime());
-//        LocalTime updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
-//
-//        return new Lesson(updatedTitle, updatedDescription, updatedDayOfWeek, updatedStartTime, updatedEndTime,
-//                updatedStartDate, updatedEndDate);
+    // Title updatedTitle = editLessonDescriptor.getTitle().orElse(lessonToEdit.getTitle());
+    // Description updatedDescription = editLessonDescriptor.getDescription().orElse(lessonToEdit.getDescription());
+    // DayOfWeek updatedDayOfWeek = editLessonDescriptor.getDayOfWeek().orElse(lessonToEdit.getDayOfWeek());
+    // LocalDate updatedStartDate = editLessonDescriptor.getStartDate().orElse(lessonToEdit.getStartDate());
+    // LocalDate updatedEndDate = editLessonDescriptor.getEndDate().orElse(lessonToEdit.getEndDate());
+    // LocalTime updatedStartTime = editLessonDescriptor.getStartTime().orElse(lessonToEdit.getStartTime());
+    // LocalTime updatedEndTime = editLessonDescriptor.getEndTime().orElse(lessonToEdit.getEndTime());
+    //
+    //  return new Lesson(updatedTitle, updatedDescription, updatedDayOfWeek, updatedStartTime, updatedEndTime,
+    //       updatedStartDate, updatedEndDate);
         return null;
     }
 

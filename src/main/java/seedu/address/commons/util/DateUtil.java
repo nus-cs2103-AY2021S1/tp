@@ -1,10 +1,10 @@
 package seedu.address.commons.util;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import static seedu.address.commons.util.AppUtil.checkArgument;
 
 public class DateUtil {
     public static final String MESSAGE_CONSTRAINTS =

@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -89,13 +88,6 @@ public class TaskContainsKeywordsPredicateTest {
                 .withDescription("alice,email.com").build()));
 
 
-        // type Keywords does not match type
-        predicate = new TaskContainsKeywordsPredicate();
-        predicate.setKeyword(PREFIX_TYPE, "deadline");
-        assertFalse(predicate.test(new DeadlineBuilder().withDeadlineDateTime("01-01-2020 12:00")
-                .withDescription("alice,email.com").build()));
-
-
         // desc Keywords does not match description
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_DESCRIPTION, "play outside");
@@ -121,7 +113,6 @@ public class TaskContainsKeywordsPredicateTest {
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TITLE, "assignment");
         assertTrue(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
-        predicate.setKeyword(PREFIX_TYPE, "event");
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("submit assignment").build()));
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("random").build()));
     }
