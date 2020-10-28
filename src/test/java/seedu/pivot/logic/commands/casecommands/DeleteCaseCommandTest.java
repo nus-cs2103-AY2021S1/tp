@@ -99,5 +99,8 @@ public class DeleteCaseCommandTest {
         public void deleteCase(Case target) {
             caseList.remove(target);
         }
+
+        @Override
+        public void commitPivot(String command) {}
     }
 }

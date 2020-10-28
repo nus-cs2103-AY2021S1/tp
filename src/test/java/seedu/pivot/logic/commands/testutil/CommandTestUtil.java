@@ -34,6 +34,14 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
+    public static final String VALID_CASEPERSON_NAME_AMY = "Amy";
+    public static final String VALID_CASEPERSON_NAME_BOB = "Bob";
+    public static final String VALID_GENDER_AMY = "F";
+    public static final String VALID_GENDER_BOB = "M";
+
+    public static final String INVALID_CASEPERSON_NAME = "James&";
+
+
     public static final String PREFIX_WITH_TITLE_AMY = " " + PREFIX_TITLE + VALID_TITLE_AMY;
     public static final String PREFIX_WITH_TITLE_BOB = " " + PREFIX_TITLE + VALID_TITLE_BOB;
 
@@ -45,7 +53,7 @@ public class CommandTestUtil {
     // '&' not allowed in title
     public static final String PREFIX_WITH_INVALID_TITLE_AMY = " " + PREFIX_TITLE + "James&";
     public static final String PREFIX_WITH_INVALID_STATUS = " " + PREFIX_STATUS + "status";
-    public static final String PREIFX_WITH_INVALID_TAG = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String PREFIX_WITH_INVALID_TAG = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

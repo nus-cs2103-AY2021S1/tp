@@ -17,8 +17,10 @@ import seedu.pivot.logic.commands.FindCommand;
 import seedu.pivot.logic.commands.HelpCommand;
 import seedu.pivot.logic.commands.ListCommand;
 import seedu.pivot.logic.commands.OpenCommand;
+import seedu.pivot.logic.commands.RedoCommand;
 import seedu.pivot.logic.commands.ReturnCommand;
 import seedu.pivot.logic.commands.UnarchiveCommand;
+import seedu.pivot.logic.commands.UndoCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 
 /**
@@ -83,6 +85,12 @@ public class PivotParser {
 
         case UnarchiveCommand.COMMAND_WORD:
             return new UnarchiveCommandParser().parse(arguments);
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

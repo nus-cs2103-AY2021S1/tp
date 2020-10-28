@@ -52,7 +52,7 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setPivotBook(ReadOnlyPivot addressBook);
+    void setPivot(ReadOnlyPivot addressBook);
 
     /** Returns the AddressBook */
     ReadOnlyPivot getPivot();
@@ -101,4 +101,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateWithCurrentFilteredCaseList(Predicate<Case> predicate);
+
+    void commitPivot(String command);
+
+    boolean canRedoPivot();
+
+    String redoPivot();
+
+    boolean canUndoPivot();
+
+    String undoPivot();
+
 }

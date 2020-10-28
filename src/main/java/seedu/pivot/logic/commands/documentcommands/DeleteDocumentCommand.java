@@ -3,6 +3,7 @@ package seedu.pivot.logic.commands.documentcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -71,6 +72,8 @@ public class DeleteDocumentCommand extends DeleteCommand {
 
         //update model
         model.setCase(stateCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_DELETE_DOCUMENT_SUCCESS, documentToDelete));
+        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_DOCUMENT_SUCCESS, documentToDelete));
     }

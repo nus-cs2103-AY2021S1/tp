@@ -80,6 +80,8 @@ public class AddSuspectCommand extends AddCommand {
                 openCase.getTags(), openCase.getArchiveStatus());
 
         model.setCase(openCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
+
         return new CommandResult(String.format(MESSAGE_ADD_SUSPECT_SUCCESS, suspect));
     }
 

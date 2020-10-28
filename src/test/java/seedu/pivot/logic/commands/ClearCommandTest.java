@@ -24,7 +24,7 @@ public class ClearCommandTest {
     public void execute_nonEmptyPivot_success() {
         Model model = new ModelManager(getTypicalPivot(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPivot(), new UserPrefs());
-        expectedModel.setPivotBook(new Pivot());
+        expectedModel.setPivot(new Pivot());
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_CLEAR_SUCCESS, expectedModel);
     }

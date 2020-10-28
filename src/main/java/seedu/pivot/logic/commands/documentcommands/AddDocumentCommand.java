@@ -80,6 +80,7 @@ public class AddDocumentCommand extends AddCommand {
                 stateCase.getTags(), stateCase.getArchiveStatus());
 
         model.setCase(stateCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
 
         return new CommandResult(String.format(MESSAGE_ADD_DOCUMENT_SUCCESS, this.doc));
     }

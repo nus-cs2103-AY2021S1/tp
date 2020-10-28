@@ -2,6 +2,7 @@ package seedu.pivot.logic.commands.documentcommands;
 
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
 
 import java.io.IOException;
 import java.util.List;
@@ -37,7 +38,7 @@ public class OpenDocumentCommand extends OpenCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(StateManager.atCasePage()) : "Program should be at case page";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
         Index caseIndex = StateManager.getState();
 
         //get current case in state
