@@ -1,0 +1,10 @@
+package seedu.address.logic.commands;
+
+import org.junit.jupiter.api.Test;
+
+class SalesRankCommandTest {
+
+    @Test
+    void execute() {
+    }
+}
