@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class DoneCommand extends Command {
 
         Task taskToMarkDone = lastShownList.get(targetIndex.getZeroBased());
         model.doneTask(taskToMarkDone);
+        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(String.format(MESSAGE_DONE_TASK_SUCCESS, taskToMarkDone));
     }
 
