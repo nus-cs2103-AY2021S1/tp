@@ -11,11 +11,7 @@ public class FileAddress {
 
     public static final String MESSAGE_CONSTRAINTS = "File address can only take a valid file path!";
 
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "([a-zA-z])?:?([\\\\/\\s[a-zA-Z0-9]+\\.]*)?";
+    public static final String VALIDATION_REGEX = "([a-zA-z]:)?([()&%$#@!^\\-_\\\\/\\sa-zA-Z0-9+.]*)?";
 
     public final String value;
 
