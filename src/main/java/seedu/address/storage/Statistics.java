@@ -41,7 +41,7 @@ public class Statistics {
         }
         if (planus == null) {
             logger.info("Unable to get statistics summary as storage file is not found.");
-            return null;
+            return stats;
         }
         logger.info("Generating summary for statistics.");
 
