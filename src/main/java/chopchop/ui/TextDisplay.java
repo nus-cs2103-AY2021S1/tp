@@ -19,6 +19,6 @@ public class TextDisplay extends UiPart<Region> {
     public TextDisplay(String text) {
         super(FXML);
         // Have to decide what to do with this real estate uwu
-        textDisplay.setText(text);
+        this.textDisplay.setText(text);
     }
 }

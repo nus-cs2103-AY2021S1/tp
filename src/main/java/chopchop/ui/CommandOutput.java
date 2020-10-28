@@ -6,8 +6,6 @@ import chopchop.logic.commands.CommandResult;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 

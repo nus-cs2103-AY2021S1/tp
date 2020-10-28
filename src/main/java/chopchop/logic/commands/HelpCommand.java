@@ -56,7 +56,7 @@ public class HelpCommand extends Command {
         var ret = CommandResult.message("%s: %s", cmdStr, cmdHelp);
         if (cmdUgLink != null) {
             ret = ret
-                .appending("see the", /* newline: */ true)
+                .appending("see the ", /* newline: */ true)
                 .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + cmdUgLink,
                     /* newline: */ false);
         }

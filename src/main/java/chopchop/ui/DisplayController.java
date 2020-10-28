@@ -1,19 +1,19 @@
 package chopchop.ui;
 
+import chopchop.MainApp;
 import chopchop.logic.Logic;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 
 /**
  * Controller class for the swappable display region.
@@ -22,9 +22,9 @@ public class DisplayController extends UiPart<Region> {
 
     private static final String FXML = "DisplayPanel.fxml";
     private static final String WELCOME_MESSAGE = "Welcome to ChopChop, a food recipe management system!";
+    private static final String NOTIFICATION_MESSAGE = "Feature will be coming soon!!";
 
     private final TextDisplay textDisplay;
-    private final NotificationWindow notificationWindow;
     private final ObservableList<Recipe> recipeObservableList;
     private final ObservableList<Ingredient> ingredientObservableList;
 
@@ -47,7 +47,6 @@ public class DisplayController extends UiPart<Region> {
     public DisplayController(Logic logic) {
         super(FXML);
         this.textDisplay = new TextDisplay(WELCOME_MESSAGE);
-        this.notificationWindow = new NotificationWindow();
         this.recipeObservableList = logic.getFilteredRecipeList();
         this.ingredientObservableList = logic.getFilteredIngredientList();
 
@@ -56,11 +55,12 @@ public class DisplayController extends UiPart<Region> {
             c.next();
 
             /*
+             * TODO: Make logic more robust
              * Check if a recipe was replaced in the recipe book, with an extra check to account for
              * updateFilteredRecipeList(PREDICATE_SHOW_ALL_ENTRIES).
              */
             if (c.wasReplaced() && !c.getAddedSubList().equals(c.getRemoved())) {
-                this.displayRecipe(c.getAddedSubList().get(0));
+                this.displayRecipe(c.getAddedSubList().get(c.getAddedSize() - 1));
             } else if (c.wasAdded()) {
                 this.displayRecipe(c.getAddedSubList().get(c.getAddedSize() - 1));
             } else {
@@ -123,41 +123,45 @@ public class DisplayController extends UiPart<Region> {
      * Opens the notification window or focuses on it if it's already opened.
      */
     public void handleNotification() {
-        if (!notificationWindow.isShowing()) {
-            notificationWindow.show();
-        } else {
-            notificationWindow.focus();
-        }
+        var image = new ImageView(MainApp.class.getResource("/images/timer.png").toExternalForm());
+        image.setFitHeight(40);
+        image.setFitWidth(40);
+
+        var alert = new Alert(Alert.AlertType.INFORMATION, NOTIFICATION_MESSAGE);
+        alert.setTitle("Notification");
+        alert.setHeaderText(null);
+        alert.setGraphic(image);
+        alert.showAndWait();
     }
 
     /**
      * Resets buttons in navigation bar to default style.
      */
     private void resetButtons() {
-        recipeButton.getStyleClass().remove("tab-button-selected");
-        ingredientButton.getStyleClass().remove("tab-button-selected");
-        recommendationButton.getStyleClass().remove("tab-button-selected");
+        this.recipeButton.getStyleClass().remove("tab-button-selected");
+        this.ingredientButton.getStyleClass().remove("tab-button-selected");
+        this.recommendationButton.getStyleClass().remove("tab-button-selected");
     }
 
     /**
      * Changes the recipe button style to selected.
      */
     private void selectRecipeButton() {
-        resetButtons();
-        recipeButton.getStyleClass().add("tab-button-selected");
+        this.resetButtons();
+        this.recipeButton.getStyleClass().add("tab-button-selected");
     }
 
     private void selectIngredientButton() {
-        resetButtons();
-        ingredientButton.getStyleClass().add("tab-button-selected");
+        this.resetButtons();
+        this.ingredientButton.getStyleClass().add("tab-button-selected");
     }
 
     /**
      * Displays the recipe panel.
      */
     @FXML
-    public void handleRecipePanel(ActionEvent event) {
-        displayRecipeList();
+    public void handleRecipePanel() {
+        this.displayRecipeList();
     }
 
 
@@ -165,16 +169,16 @@ public class DisplayController extends UiPart<Region> {
      * Displays the recipe panel.
      */
     @FXML
-    public void handleIngredientPanel(ActionEvent event) {
-        displayIngredientList();
+    public void handleIngredientPanel() {
+        this.displayIngredientList();
     }
 
     /**
      * Displays the recommendations panel.
      */
     @FXML
-    public void handleRecommendations(ActionEvent event) {
+    public void handleRecommendations() {
         // To add more code.
-        handleNotification();
+        this.handleNotification();
     }
 }
