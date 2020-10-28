@@ -7,7 +7,7 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
-public class StatsRecipeRecentlyMadeCommand extends Command {
+public class StatsRecipeRecentCommand extends Command {
     public static final String COMMAND_WORD = "stats recipe recently made";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : Shows a list"
         + "of recipes recently used. (Capped at 10 recipes)";

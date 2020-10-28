@@ -7,7 +7,7 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
-public class StatsIngredientRecentlyUsedCommand extends Command {
+public class StatsIngredientRecentCommand extends Command {
     public static final String COMMAND_WORD = "stats ingredient recently used";
     public static final String MESSAGE_USAGE = COMMAND_WORD + " : Shows a list of"
         + "ingredients that are recently used. (Capped at 10 ingredients)";

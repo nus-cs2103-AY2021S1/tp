@@ -10,7 +10,7 @@ import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
-public class StatsIngredientDateCommand extends Command {
+public class StatsIngredientUsedCommand extends Command {
     public static final String COMMAND_WORD = "stats ingredient used";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of ingredient. "
@@ -27,7 +27,7 @@ public class StatsIngredientDateCommand extends Command {
      * On takes precedence over before and after.
      * If on is specified together with before and after, only 'on' is considered.
      */
-    public StatsIngredientDateCommand(LocalDateTime before, LocalDateTime after) {
+    public StatsIngredientUsedCommand(LocalDateTime before, LocalDateTime after) {
         if (before == null && after == null) {
             var now = LocalDateTime.now();
             this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfYear(), 0, 0, 0);
@@ -68,9 +68,9 @@ public class StatsIngredientDateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this
-            || (other instanceof StatsIngredientDateCommand
-            && this.before.equals(((StatsIngredientDateCommand) other).before)
-            && this.after.equals(((StatsIngredientDateCommand) other).after));
+            || (other instanceof StatsIngredientUsedCommand
+            && this.before.equals(((StatsIngredientUsedCommand) other).before)
+            && this.after.equals(((StatsIngredientUsedCommand) other).after));
     }
 
     @Override

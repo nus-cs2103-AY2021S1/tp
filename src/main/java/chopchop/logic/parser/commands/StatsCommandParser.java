@@ -17,9 +17,11 @@ import chopchop.commons.util.Result;
 import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
-import chopchop.logic.commands.StatsIngredientDateCommand;
-import chopchop.logic.commands.StatsRecipeDateCommand;
-import chopchop.logic.commands.StatsRecipeMostMadeCommand;
+import chopchop.logic.commands.StatsIngredientClearCommand;
+import chopchop.logic.commands.StatsIngredientUsedCommand;
+import chopchop.logic.commands.StatsRecipeClearCommand;
+import chopchop.logic.commands.StatsRecipeMadeCommand;
+import chopchop.logic.commands.StatsRecipeTopCommand;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 
@@ -43,13 +45,19 @@ public class StatsCommandParser {
 
                 switch (target.fst()) {
                 case RECIPE:
-                    if (target.snd().equals("most made")) {
-                        return Result.of(new StatsRecipeMostMadeCommand());
+                    if (target.snd().equals("top")) {
+                        return Result.of(new StatsRecipeTopCommand());
+                    }
+                    if (target.snd().equals("clear")) {
+                        return Result.of(new StatsRecipeClearCommand());
                     }
 
                     return parseDateRecipeCommand(target.snd().strip(), args);
 
                 case INGREDIENT:
+                    if (target.snd().equals("clear")) {
+                        return Result.of(new StatsIngredientClearCommand());
+                    }
                     return parseDateIngredientCommand(target.snd().strip(), args);
 
                 default:
@@ -58,9 +66,10 @@ public class StatsCommandParser {
             });
     }
 
-    private static Result<StatsRecipeDateCommand> parseDateRecipeCommand(String name, CommandArguments args) {
-        if (!name.isBlank()) {
-            return Result.error("just 'stats recipe' will do. Do not specify name.");
+    private static Result<StatsRecipeMadeCommand> parseDateRecipeCommand(String name, CommandArguments args) {
+        if (!name.equals("used")) {
+            return Result.error("This is an invalid command. Try 'stats recipe used', 'stats recipe top', "
+                + "stats recipe recent' or 'stats ingredient clear'");
         }
 
         Optional<ArgName> foo;
@@ -83,7 +92,7 @@ public class StatsCommandParser {
             var arg1 = processDate(before).orElse(null);
             var arg2 = processDate(after).orElse(null);
 
-            return Result.of(new StatsRecipeDateCommand(arg1, arg2));
+            return Result.of(new StatsRecipeMadeCommand(arg1, arg2));
 
         } catch (Exception e) {
 
@@ -91,10 +100,11 @@ public class StatsCommandParser {
         }
     }
 
-    private static Result<StatsIngredientDateCommand> parseDateIngredientCommand(String name, CommandArguments args) {
+    private static Result<StatsIngredientUsedCommand> parseDateIngredientCommand(String name, CommandArguments args) {
 
-        if (!name.isBlank()) {
-            return Result.error("Just 'stats ingredient' will do. Do not specify name.");
+        if (!name.equals("used")) {
+            return Result.error("This is an invalid command. Try 'stats ingredient used',"
+                + "stats ingredient recent' or 'stats ingredient clear'");
         }
 
         Optional<ArgName> foo;
@@ -120,7 +130,7 @@ public class StatsCommandParser {
             var arg1 = processDate(before).orElse(null);
             var arg2 = processDate(after).orElse(null);
 
-            return Result.of(new StatsIngredientDateCommand(arg1, arg2));
+            return Result.of(new StatsIngredientUsedCommand(arg1, arg2));
 
         } catch (Exception e) {
             return Result.error("Unable to parse date");
