@@ -52,7 +52,8 @@ public class DeleteModuleCommand extends Command {
 
         model.deleteModule(module);
         model.updateModuleInMeetingBook(module);
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, module));
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, module), false, false,
+                true);
     }
 
     @Override
