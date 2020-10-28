@@ -75,6 +75,11 @@ public class AddItemTagCommand extends Command {
 
         // adds all tags including overlaps, as the datastructure underlying is a set
         tags.addAll(itemToEdit.getTags());
+
+        if (itemToEdit.getTags().equals(tags)) {
+            throw new CommandException(MESSAGE_TAG_NOT_ADDED);
+        }
+
         EditItemDescriptor editItemDescriptor = new EditItemDescriptor();
 
         editItemDescriptor.setName(itemToEdit.getName());

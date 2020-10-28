@@ -35,7 +35,6 @@ public class AddItemTagCommandIntegrationTest {
         model = new ModelManager(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
         expectedModel = new ModelManager(new ItemList(), new LocationList(), new RecipeList(), new UserPrefs());
         apple = new ItemBuilder(APPLE).withTags(getSingleTagSet()).build();
-        model.addItem(apple);
     }
 
     @Test
@@ -48,7 +47,7 @@ public class AddItemTagCommandIntegrationTest {
      */
     @Test
     public void execute_addTag_success() {
-
+        model.addItem(apple);
         AddItemTagCommand aic = new AddItemTagCommand(VALID_ITEM_NAME_APPLE, Set.copyOf(getTypicalTagSet()));
 
         // expected model should contain the edited apple
@@ -65,6 +64,7 @@ public class AddItemTagCommandIntegrationTest {
      */
     @Test
     public void execute_nullModel_throwsException() {
+        model.addItem(apple);
         AddItemTagCommand aic = new AddItemTagCommand(VALID_ITEM_NAME_APPLE, Set.copyOf(getTypicalTagSet()));
 
         assertThrows(NullPointerException.class, () -> aic.execute(null));
@@ -75,6 +75,18 @@ public class AddItemTagCommandIntegrationTest {
      */
     @Test
     public void execute_duplicateTag_throwsException() {
+        model.addItem(new ItemBuilder(apple).withTags(getTypicalTagSet()).build());
+
+        AddItemTagCommand aic = new AddItemTagCommand(VALID_ITEM_NAME_APPLE, Set.of(TAG_ABC));
+
+        assertThrows(CommandException.class, () -> aic.execute(model));
+    }
+
+    /**
+     * Tests for unsuccessful addition of tag(s) due to being already inside the item.
+     */
+    @Test
+    public void execute_duplicateTagSubset_throwsException() {
 
         AddItemTagCommand aic = new AddItemTagCommand(VALID_ITEM_NAME_APPLE, Set.of(TAG_ABC));
 
