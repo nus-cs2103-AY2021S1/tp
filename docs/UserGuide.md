@@ -40,7 +40,7 @@ not be so obvious!
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start `[Release coming soon]` <a name="quick-start"></a>
+## Quick start <a name="quick-start"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
