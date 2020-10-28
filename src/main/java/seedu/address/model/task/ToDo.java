@@ -18,4 +18,23 @@ public class ToDo extends Task {
     public ToDo(Title title, Description description, Priority priority, DoneStatus status, Set<Tag> tags) {
         super(title, description, priority, status, tags);
     }
+
+    /**
+     * Returns true if two tasks of the same title and description.
+     * This defines a weaker notion of equality between two tasks.
+     */
+    @Override
+    public boolean isSameTask(Task otherTask) {
+        if (otherTask == this) {
+            return true;
+        }
+
+        if (!(otherTask instanceof ToDo)) {
+            return false;
+        }
+
+        return otherTask != null
+                && otherTask.getTitle().equals(getTitle())
+                && otherTask.getDescription().equals(getDescription());
+    }
 }
