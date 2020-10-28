@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
-import seedu.address.model.patient.Name;
 import seedu.address.model.visit.Visit;
 import seedu.address.model.visit.VisitHistory;
 
