@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
+import seedu.address.storage.Storage;
 
 /**
  * Sorts the current selected menu.
@@ -44,7 +45,7 @@ public class SortCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         if (!model.isSelected()) {
             throw new CommandException(ParserUtil.MESSAGE_VENDOR_NOT_SELECTED);

@@ -28,7 +28,7 @@ class JsonAdaptedOrderItem {
     private final int quantity;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedOrderItem} with the given orderItem details.
      */
     @JsonCreator
     public JsonAdaptedOrderItem(@JsonProperty("name") String name, @JsonProperty("price") double price,

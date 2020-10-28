@@ -9,6 +9,7 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
 import seedu.address.model.order.OrderItem;
+import seedu.address.storage.Storage;
 
 //TODO change to fit vendor better
 /**
@@ -49,7 +50,7 @@ public class AddCommand extends Command {
 
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult execute(Model model, Storage storage) throws CommandException {
         requireNonNull(model);
         // Todo: This index value will be that of the chosen vendor. As of now the first menu on the list is chosen
         assert model != null;

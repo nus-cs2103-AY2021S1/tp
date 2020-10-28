@@ -36,6 +36,9 @@ public class ParserUtil {
     public static final String MESSAGE_TOO_MANY_ARGUMENTS = "%s command should not have more than %s arguments. \n %s";
     public static final String MESSAGE_INVALID_PRICE = "%s is not a non-negative unsigned real number.";
     public static final String MESSAGE_INVALID_INEQUALITY = "%s is not a valid inequality sign.";
+    public static final String MESSAGE_INVALID_PRESET_ARGUMENT = "Save or Load preset command was not specified.";
+    public static final String MESSAGE_PRESET_SAVE_NO_ORDER = "You have not added any items to your order to be saved!";
+    public static final String MESSAGE_PRESET_NO_SAVED_PRESETS = "You have not saved any presets for this vendor!";
 
     /**
      * Parses {@code inequality} into an {@code Inequality} and returns it. Leading and trailing whitespaces will be
@@ -195,6 +198,29 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses and validates the string for Preset Command.
+     */
+    public static String[] checkPresetSyntax(String saveLoad) throws ParseException {
+        requireNonNull(saveLoad);
+        String trimArgs = saveLoad.trim();
+        int firstSpace = trimArgs.indexOf(' ');
+        String[] argsArr = new String[2];
+
+        argsArr[0] = trimArgs;
+        argsArr[1] = "";
+        if (firstSpace != -1) {
+            argsArr[0] = trimArgs.substring(0, firstSpace).trim().toLowerCase();
+            argsArr[1] = trimArgs.substring(firstSpace + 1).trim();
+        }
+
+        if (!argsArr[0].equals("save") && !argsArr[0].equals("load")
+                && !argsArr[0].equals("s") && !argsArr[0].equals("l")) {
+            throw new ParseException(MESSAGE_INVALID_PRESET_ARGUMENT);
+        }
+        return argsArr;
     }
 
     /**

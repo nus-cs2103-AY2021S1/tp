@@ -93,6 +93,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -171,8 +172,12 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Displays menu if vendor has been selected, otherwise display vendor list.
      */
-    void displayMenu() {
+    void updateMenu() {
         boolean bool = logic.isSelected();
+
+        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
+        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
+
         setVendorListDisplay(!bool);
         setFoodListDisplay(bool);
         setOrderItemListDisplay(true);
@@ -218,16 +223,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    /**
-     * Updates the UI to display the menu of the selected vendor.
-     */
-    @FXML
-    public void handleVendor() {
-        foodListPanel = new FoodListPanel(logic.getFilteredFoodList());
-        foodListPanelPlaceholder.getChildren().add(foodListPanel.getRoot());
-        displayMenu();
-    }
-
     public VendorListPanel getVendorListPanel() {
         return vendorListPanel;
     }
@@ -242,6 +237,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            updateMenu();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -251,9 +247,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isVendor()) {
-                handleVendor();
-            }
+            // TODO: add commandResult.isUpdatedMenu?
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
@@ -261,4 +255,6 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+
 }

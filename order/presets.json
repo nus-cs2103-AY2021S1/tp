@@ -1,0 +1,19 @@
+{
+  "presets" : [ [ {
+    "name" : "My saved Preset",
+    "orderItems" : [ {
+      "name" : "Milo",
+      "price" : 0.9,
+      "tagged" : [ ],
+      "quantity" : 100
+    } ]
+  } ], [ ], [ {
+    "name" : "vendor3",
+    "orderItems" : [ {
+      "name" : "Steak",
+      "price" : 16.9,
+      "tagged" : [ ],
+      "quantity" : 1
+    } ]
+  } ] ]
+}

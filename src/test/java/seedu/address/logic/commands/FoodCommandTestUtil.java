@@ -17,6 +17,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.food.Food;
 import seedu.address.model.food.NameContainsKeywordsPredicate;
+import seedu.address.storage.StorageManager;
 
 /**
  * Contains helper methods for testing commands.
@@ -60,7 +61,7 @@ public class FoodCommandTestUtil {
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
                                             Model expectedModel) {
         try {
-            CommandResult result = command.execute(actualModel);
+            CommandResult result = command.execute(actualModel, new StorageManager());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
@@ -91,7 +92,7 @@ public class FoodCommandTestUtil {
         //check first filtered food list
         List<Food> expectedFilteredList = new ArrayList<>(actualModel.getFilteredFoodList());
 
-        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel, new StorageManager()));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredFoodList());
     }
