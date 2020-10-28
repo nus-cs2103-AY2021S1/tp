@@ -124,7 +124,7 @@ public class UniqueIngredientList implements Iterable<Ingredient> {
     }
 
     private boolean ingredientsAreUnique(List<Ingredient> ingredients) {
-        for (int i = 0; i < ingredients.size() - 1; i++) {
+        for (int i = 0; i < ingredients.size(); i++) {
             for (int j = i + 1; j < ingredients.size(); j++) {
                 if (ingredients.get(i).isSameIngredient(ingredients.get(j))) {
                     return false;
