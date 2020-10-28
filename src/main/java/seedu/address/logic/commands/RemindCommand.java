@@ -55,6 +55,7 @@ public class RemindCommand extends Command {
         targetIndexes.sort(CommandLogic.INDEX_COMPARATOR);
 
         CommandLogic.checkForDuplicatedIndexes(targetIndexes);
+        //TODO: should be RemindCommand.MESSAGE_USAGE
         CommandLogic.checkForInvalidIndexes(targetIndexes, model, DeleteCommand.MESSAGE_USAGE);
 
         for (Index targetIndex : targetIndexes) {
