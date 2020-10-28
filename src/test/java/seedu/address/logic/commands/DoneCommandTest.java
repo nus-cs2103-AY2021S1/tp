@@ -12,6 +12,9 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ASSIGNMENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ASSIGNMENT;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
@@ -20,10 +23,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
-import seedu.address.model.assignment.Done;
 import seedu.address.testutil.AssignmentBuilder;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -140,7 +140,7 @@ public class DoneCommandTest {
         secondCommandIndexes.add(INDEX_SECOND_ASSIGNMENT);
 
         DoneCommand markFirstCommandDone = new DoneCommand(firstCommandIndexes);
-        DoneCommand markSecondCommandDone= new DoneCommand(secondCommandIndexes);
+        DoneCommand markSecondCommandDone = new DoneCommand(secondCommandIndexes);
 
         // same object -> returns true
         assertTrue(markFirstCommandDone.equals(markFirstCommandDone));
@@ -148,7 +148,7 @@ public class DoneCommandTest {
 
         // same values -> returns true
         DoneCommand markFirstCommandDoneCopy = new DoneCommand(firstCommandIndexes);
-        assertTrue(markFirstCommandDone.equals( markFirstCommandDoneCopy));
+        assertTrue(markFirstCommandDone.equals(markFirstCommandDoneCopy));
 
         DoneCommand markSecondCommandDoneCopy = new DoneCommand(secondCommandIndexes);
         assertTrue(markSecondCommandDone.equals(markSecondCommandDoneCopy));

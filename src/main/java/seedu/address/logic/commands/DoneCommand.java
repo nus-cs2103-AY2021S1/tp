@@ -6,7 +6,6 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ASSIGNMENT;
 import java.util.ArrayList;
 import java.util.List;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -37,6 +36,8 @@ public class DoneCommand extends Command {
             + COMMAND_WORD + " 1 2 3";
 
     public static final String MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS = "Marks assignment as done: %1$s";
+    public static final String MESSAGE_MARK_ASSIGNMENTS_AS_DONE_SUCCESS = "Mark assignments as done: %1$s";
+    // TODO: update description
     public static final String MESSAGE_ALREADY_MARKED_ASSIGNMENT_AS_DONE = "This assignment is already marked as done.";
 
     private final List<Index> targetIndexes;
@@ -61,6 +62,8 @@ public class DoneCommand extends Command {
         CommandLogic.checkForDuplicatedIndexes(targetIndexes);
         CommandLogic.checkForInvalidIndexes(targetIndexes, model, DoneCommand.MESSAGE_USAGE);
 
+        boolean isMultipleIndexes = targetIndexes.size() > 1;
+
         for (Index targetIndex : targetIndexes) {
             Assignment assignmentToMarkDone = lastShownList.get(targetIndex.getZeroBased());
 
@@ -76,7 +79,9 @@ public class DoneCommand extends Command {
             assignmentsToMarkDone.add(assignmentToMarkDone);
         }
 
-        return new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS, assignmentsToMarkDone));
+        return isMultipleIndexes
+                ? new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENTS_AS_DONE_SUCCESS, assignmentsToMarkDone))
+                : new CommandResult(String.format(MESSAGE_MARK_ASSIGNMENT_AS_DONE_SUCCESS, assignmentsToMarkDone));
     }
 
     /**
