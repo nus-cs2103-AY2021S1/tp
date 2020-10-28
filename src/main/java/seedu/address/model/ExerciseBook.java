@@ -31,6 +31,7 @@ public class ExerciseBook implements ReadOnlyExerciseBook {
     }
 
     public ExerciseBook() {
+        TemplateList.load();
     }
 
     /**
