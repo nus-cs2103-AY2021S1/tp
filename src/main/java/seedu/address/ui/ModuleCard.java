@@ -35,7 +35,7 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label zoomLink;
+    private FlowPane zoomLinks;
     @FXML
     private Label modularCredits;
     @FXML
@@ -51,7 +51,8 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
-        zoomLink.setText(module.getLink().getLink());
+        module.getAllLinks().forEach((key, link) -> zoomLinks.getChildren().add(new Label(key + " Link : "
+                + link.getLink())));
         modularCredits.setText(module.getModularCredits().toString());
         module.getGradeTracker().getAssignments().stream()
                 .sorted(Comparator.comparing(assignment -> assignment.assignmentName))

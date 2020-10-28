@@ -67,8 +67,9 @@ public class AddZoomLinkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
-        Module moduleToAddZoom = lastShownList.get(targetIndex.getZeroBased());
-        model.addZoom
+        Module moduleToAddLink = lastShownList.get(targetIndex.getZeroBased());
+        Module updatedModule = moduleToAddLink.addZoomLink("", zoomLink);
+        model.setModule(moduleToAddLink, updatedModule);
         model.commitModuleList();
         logger.info("Zoom link added to module");
         return new CommandResult(String.format(MESSAGE_ADD_ZOOM_SUCCESS, zoomLink));
