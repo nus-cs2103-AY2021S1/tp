@@ -1,7 +1,9 @@
 package seedu.address.storage;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -12,9 +14,9 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.ExerciseTag;
 import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.tag.Tag;
 
 /**
  * Jackson-friendly version of {@link Exercise}.
@@ -37,7 +39,7 @@ class JsonAdaptedExercise {
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("phone") String description,
                                @JsonProperty("email") String date, @JsonProperty("address") String calories,
                                @JsonProperty("musclesWorked") String musclesWorked,
-                               JsonProperty("tagged") List<JsonAdaptedExerciseTag> tagged) {
+                               @JsonProperty("tagged") List<JsonAdaptedExerciseTag> tagged) {
         this.name = name;
         this.description = description;
         this.date = date;
@@ -68,7 +70,7 @@ class JsonAdaptedExercise {
      * @throws IllegalValueException if there were any data constraints violated in the adapted exercise.
      */
     public Exercise toModelType() throws IllegalValueException {
-        final List<Tag> exerciseTags = new ArrayList<>();
+        final List<ExerciseTag> exerciseTags = new ArrayList<>();
         for (JsonAdaptedExerciseTag tag : tagged) {
             exerciseTags.add(tag.toModelType());
         }
@@ -116,6 +118,8 @@ class JsonAdaptedExercise {
             musclesWorkedLst = Muscle.stringToMuscleList(musclesWorked);
         }
 
-        return new Exercise(modelName, modelDescription, modelDate, modelCalories, musclesWorkedLst);
+        final Set<ExerciseTag> modelTags = new HashSet<>(exerciseTags);
+        return new Exercise(modelName, modelDescription, modelDate, modelCalories, musclesWorkedLst, modelTags);
     }
 }
+

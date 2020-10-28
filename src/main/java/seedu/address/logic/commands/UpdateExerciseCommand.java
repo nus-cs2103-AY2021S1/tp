@@ -51,7 +51,7 @@ public class UpdateExerciseCommand extends CommandForExercise {
             + PREFIX_DESCRIPTION + "30 "
             + PREFIX_DATE + "09-07-2020 "
             + PREFIX_CALORIES + "260 "
-            + PREFIX_MUSCLES + "chest,arm"
+            + PREFIX_MUSCLES + "chest,arm "
             + PREFIX_TAG + "home "
             + PREFIX_TAG + "gym";;
 

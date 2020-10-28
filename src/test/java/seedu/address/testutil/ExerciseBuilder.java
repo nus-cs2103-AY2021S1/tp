@@ -100,7 +100,7 @@ public class ExerciseBuilder {
      * Parses the {@code tags} into a {@code Set<ExerciseTag>} and set it to the {@code Exercise} that we are building.
      */
     public ExerciseBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = SampleDataUtil.getExerciseTagSet(tags);
         return this;
     }
 

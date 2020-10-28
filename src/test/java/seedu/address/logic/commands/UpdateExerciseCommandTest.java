@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_CALORIES_PUSH_U
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_GYM;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExerciseAtIndex;
@@ -58,12 +59,12 @@ class UpdateExerciseCommandTest {
 
         ExerciseBuilder exerciseInList = new ExerciseBuilder(lastExercise);
         Exercise editedExercise = exerciseInList.withName(VALID_NAME_PUSH_UP).withDescription(VALID_DESCRIPTION_PUSH_UP)
-                .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
+                .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_GYM).build();
 
         UpdateExerciseCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder()
                 .withName(VALID_NAME_PUSH_UP)
                 .withDescription(VALID_DESCRIPTION_PUSH_UP)
-                .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).build();
+                .withDate(VALID_DATE_PUSH_UP).withCalories(VALID_CALORIES_PUSH_UP).withTags(VALID_TAG_GYM).build();
         UpdateExerciseCommand updateExerciseCommand = new UpdateExerciseCommand(indexLastExercise, descriptor);
 
         String expectedMessage = String.format(UpdateExerciseCommand.MESSAGE_EDIT_EXERCISE_SUCCESS, editedExercise);
