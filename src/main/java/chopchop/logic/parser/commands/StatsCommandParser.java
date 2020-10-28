@@ -18,9 +18,11 @@ import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.StatsIngredientClearCommand;
+import chopchop.logic.commands.StatsIngredientRecentCommand;
 import chopchop.logic.commands.StatsIngredientUsedCommand;
 import chopchop.logic.commands.StatsRecipeClearCommand;
 import chopchop.logic.commands.StatsRecipeMadeCommand;
+import chopchop.logic.commands.StatsRecipeRecentCommand;
 import chopchop.logic.commands.StatsRecipeTopCommand;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
@@ -48,6 +50,9 @@ public class StatsCommandParser {
                     if (target.snd().equals("top")) {
                         return Result.of(new StatsRecipeTopCommand());
                     }
+                    if (target.snd().equals("recent")) {
+                        return Result.of(new StatsRecipeRecentCommand());
+                    }
                     if (target.snd().equals("clear")) {
                         return Result.of(new StatsRecipeClearCommand());
                     }
@@ -57,6 +62,9 @@ public class StatsCommandParser {
                 case INGREDIENT:
                     if (target.snd().equals("clear")) {
                         return Result.of(new StatsIngredientClearCommand());
+                    }
+                    if (target.snd().equals("recent")) {
+                        return Result.of(new StatsIngredientRecentCommand());
                     }
                     return parseDateIngredientCommand(target.snd().strip(), args);
 
@@ -69,7 +77,7 @@ public class StatsCommandParser {
     private static Result<StatsRecipeMadeCommand> parseDateRecipeCommand(String name, CommandArguments args) {
         if (!name.equals("used")) {
             return Result.error("This is an invalid command. Try 'stats recipe used', 'stats recipe top', "
-                + "stats recipe recent' or 'stats ingredient clear'");
+                + "stats recipe recent' or 'stats recipe clear'");
         }
 
         Optional<ArgName> foo;

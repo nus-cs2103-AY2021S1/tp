@@ -24,8 +24,7 @@ public class StatsRecipeMadeCommand extends Command {
 
     /**
      * Creates an StatsRecipeDateCommand to add the specified {@code Ingredient}.
-     * On takes precedence over before and after.
-     * If on is specified together with before and after, only 'on' is considered.
+     * If both before and after are not specified, it is assumed that the time frame is today.
      */
     public StatsRecipeMadeCommand(LocalDateTime before, LocalDateTime after) {
         if (before == null && after == null) {
@@ -45,16 +44,16 @@ public class StatsRecipeMadeCommand extends Command {
             var before = this.before.format(formatter);
             var after = this.after.format(formatter);
             if (this.before.plusDays(1).equals(this.after)) {
-                msg = String.format("Here is the list of ingredients used on %s", before);
+                msg = String.format("Here is a list of ingredients used on %s", before);
             } else {
-                msg = String.format("Here is the list of ingredients used from the period %s to %s", after, before);
+                msg = String.format("Here is a list of ingredients used from the period %s to %s", after, before);
             }
         } else if (this.before != null) {
             var before = this.before.format(formatter);
-            msg = String.format("Here is the list of ingredients used before %s", before);
+            msg = String.format("Here is a list of ingredients used before %s", before);
         } else {
             var before = this.after.format(formatter);
-            msg = String.format("Here is the list of ingredients used after %s", before);
+            msg = String.format("Here is a list of ingredients used after %s", before);
         }
         return msg;
     }
@@ -75,18 +74,18 @@ public class StatsRecipeMadeCommand extends Command {
 
     @Override
     public String toString() {
-        return String.format("StatsRecipeDateCommand");
+        return String.format("StatsRecipeMadeCommand");
     }
 
     public static String getCommandString() {
-        return "stats recipe";
+        return "stats recipe made";
     }
 
     public static String getCommandHelp() {
-        return "Shows recipes that were cooked in a given timeframe";
+        return "Shows recipes that were made in a given time frame";
     }
 
     public static String getUserGuideSection() {
-        throw new RuntimeException("Travis pls implement this");
+        throw new RuntimeException("listing-recipes-made-in-a-given-time-frame--statsrecipemade");
     }
 }

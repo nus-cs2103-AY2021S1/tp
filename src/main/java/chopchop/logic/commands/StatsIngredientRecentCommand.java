@@ -33,4 +33,21 @@ public class StatsIngredientRecentCommand extends Command {
             return CommandResult.message("Unable to generate ingredient recently used");
         }
     }
+
+    @Override
+    public String toString() {
+        return "StatsIngredientRecentCommand";
+    }
+
+    public static String getCommandString() {
+        return "stats ingredient recent";
+    }
+
+    public static String getCommandHelp() {
+        return "Shows the ingredients that were recently used by recipes that were made";
+    }
+
+    public static String getUserGuideSection() {
+        throw new RuntimeException("listing-recent-ingredient-usages-statsingredientrecent");
+    }
 }
