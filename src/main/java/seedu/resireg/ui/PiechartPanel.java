@@ -57,6 +57,7 @@ public class PiechartPanel extends UiPart<Region> {
     }
 
     private void setChart() {
+        logger.info("Setting data for chart");
         piechart.setData(data);
         piechart.setTitle("Room Allocations");
     }
