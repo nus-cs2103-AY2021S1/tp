@@ -45,5 +45,4 @@ public class MeetingListPanel extends UiPart<Region> {
             }
         }
     }
-
 }

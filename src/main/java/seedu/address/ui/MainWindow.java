@@ -80,6 +80,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        timelineWindow = new TimelineWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -217,6 +218,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
                 (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
+        timelineWindow.hide();
         primaryStage.hide();
     }
 

@@ -1,45 +1,58 @@
 package seedu.address.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
-import javafx.stage.Stage;
-import seedu.address.commons.core.LogsCenter;
-
 import java.util.logging.Logger;
 
-public class TimelineWindow extends UiPart<Stage>{
+import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
+import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.Logic;
+import seedu.address.model.meeting.Meeting;
 
-    /**
-    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103-f10-2.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-     **/
-
+/**
+ * Controller for a help page
+ */
+public class TimelineWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(TimelineWindow.class);
     private static final String FXML = "TimelineWindow.fxml";
-     
-    @FXML
-    private Button copyButton;
+
+    private Logic logic;
 
     @FXML
-    private Label helpMessage;
+    private HBox top;
+    @FXML
+    private HBox bottom;
 
     /**
      * Creates a new TimelineWindow.
      *
      * @param root Stage to use as the root of the TimelineWindow.
      */
-    public TimelineWindow(Stage root) {
+    public TimelineWindow(Stage root, Logic logic) {
         super(FXML, root);
+
+        this.logic = logic;
+
+        for (int i = 0; i < logic.getFilteredMeetingList().size(); i++) {
+            if (i % 2 == 0) {
+                top.getChildren().addAll(
+                        new TimelineMeetingCard(logic.getFilteredMeetingList().get(i)).getRoot());
+                bottom.getChildren().addAll(new EmptyCard().getRoot());
+            } else {
+                bottom.getChildren().addAll(
+                        new TimelineMeetingCard(logic.getFilteredMeetingList().get(i)).getRoot());
+                top.getChildren().addAll(new EmptyCard().getRoot());
+            }
+        }
     }
 
     /**
-     * Creates a new HelpWindow.
+     * Creates a new TimelineWindow.
      */
-    public TimelineWindow() {
-        this(new Stage());
+    public TimelineWindow(Logic logic) {
+        this(new Stage(), logic);
     }
 
     /**

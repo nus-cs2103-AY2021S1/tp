@@ -5,7 +5,7 @@ import seedu.address.model.Model;
 public class ToggleCommand extends Command {
     public static final String COMMAND_WORD = "toggle";
 
-    public static final String MESSAGE_TOGGLE_ACKNOWLEDGEMENT = "The view of the app has been toggled as requested";
+    public static final String MESSAGE_TOGGLE_ACKNOWLEDGEMENT = "The view of the app has been toggled";
 
     @Override
     public CommandResult execute(Model model) {
