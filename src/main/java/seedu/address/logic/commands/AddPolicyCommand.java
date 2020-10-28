@@ -35,7 +35,7 @@ public class AddPolicyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPolicy(toAdd)) {
+        if (model.hasPolicy(toAdd.getPolicyName())) {
             throw new CommandException(MESSAGE_DUPLICATE_POLICY);
         }
 
