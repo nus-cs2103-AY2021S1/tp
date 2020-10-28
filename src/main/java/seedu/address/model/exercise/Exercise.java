@@ -29,7 +29,8 @@ public class Exercise {
     /**
      * Every field except for calories must be present and not null.
      */
-    public Exercise(Name name, Description description, Date date, Calories calories, List<Muscle> musclesWorked, Set<ExerciseTag> tags) {
+    public Exercise(Name name, Description description, Date date,
+                    Calories calories, List<Muscle> musclesWorked, Set<ExerciseTag> tags) {
         requireAllNonNull(name, description, tags);
         this.name = name;
         this.description = description;

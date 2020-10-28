@@ -18,9 +18,10 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.ExerciseTag;
 import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
-import seedu.address.model.exercise.ExerciseTag;
+
 
 /**
  * Parses input arguments and creates a new AddCommand object

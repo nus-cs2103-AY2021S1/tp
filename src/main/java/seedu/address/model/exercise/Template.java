@@ -28,7 +28,8 @@ public class Template {
      * @param musclesWorked muscles worked
      * @param tags tags
      */
-    public Template(String name, String description, Integer calories, List<Muscle> musclesWorked, Set<ExerciseTag> tags) {
+    public Template(String name, String description, Integer calories,
+                    List<Muscle> musclesWorked, Set<ExerciseTag> tags) {
         requireAllNonNull(name, description, calories, musclesWorked, tags);
         this.name = name;
         this.description = description;
