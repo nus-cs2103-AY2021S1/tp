@@ -85,7 +85,26 @@ public class TaskManager implements ReadOnlyTaskManager {
 
     public void sort(Comparator<Task> comparator) {
         tasks.sort(comparator);
-    };
+    }
+
+    /**
+     * Stores the most recently deleted task {@code key} in this {@code TaskManager}.
+     */
+    public void addRecentDeletedTask(Task key) {
+        tasks.addRecentDeletedTask(key);
+    }
+
+    /**
+     * Retrieves the most recently deleted task {@code key} in this {@code TaskManager}.
+     */
+    public void retrieveRecentDeletedTask() {
+        tasks.retrieveRecentDeletedTask();
+    }
+
+    /**
+     * Marks {@code key} as done in this {@code TaskManager}.
+     * {@code key} must exist in the task manager.
+     */
 
     public void doneTask(Task key) {
         key.markDone();

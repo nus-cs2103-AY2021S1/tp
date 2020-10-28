@@ -66,6 +66,9 @@ public interface Model {
 
     void sortTask(Comparator<Task> comparator);
 
+    void addRecentDeletedTask(Task task);
+
+    void retrieveRecentDeletedTask();
     /**
      * Adds the given task.
      * {@code task} must not already exist in the task manager.
