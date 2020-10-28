@@ -95,13 +95,6 @@ public class JsonAdaptedDelivery {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Time.class.getSimpleName()));
         }
 
-        /*
-        try {
-            LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
-        } catch (DateTimeParseException e) {
-            throw new IllegalValueException(Time.MESSAGE_CONSTRAINTS);
-        }*/
-
         final Time modelTime = new Time("0", endTime);
 
         return new Delivery(modelName, modelPhone, modelAddress, modelOrder, modelTime);

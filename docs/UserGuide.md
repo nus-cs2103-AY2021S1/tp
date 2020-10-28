@@ -67,7 +67,7 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
   e.g. for a command with format `add-i n/NAME q/QUANTITY`, <br>
   replace `NAME` and `QUANTITY` with your input: `add-i n/Chicken q/10`.
 
-* In the format of commands, square brackets are to indicate optional fields. The square brackets are not necessary.<br>
+* In the format of commands, square brackets are to indicate optional fields. The fields in the square brackets are not mandatory to input.<br>
   e.g a command with format `n/NAME [t/TAG]` can be used as 
   1. either `n/Chicken t/Poultry` 
   2. or just `n/Chicken`
