@@ -36,6 +36,7 @@ import seedu.stock.logic.commands.PrintCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
+import seedu.stock.logic.commands.UnbookmarkCommand;
 import seedu.stock.logic.commands.UpdateCommand;
 
 public class SuggestionCommandParserTest {
@@ -329,6 +330,26 @@ public class SuggestionCommandParserTest {
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.BOOKMARK_COMMAND_WORD + userInput
                 + "\n" + BookmarkCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_unbookmarkCommandSuggestion_success() {
+        // EP: incorrect command word
+        String userInput = SERIAL_NUMBER_DESC_BANANA;
+        SuggestionCommandParser parser = new SuggestionCommandParser("unbookma");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.UNBOOKMARK_COMMAND_WORD + userInput
+                + "\n" + UnbookmarkCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word
+        parser = new SuggestionCommandParser("unbookmark", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.UNBOOKMARK_COMMAND_WORD + userInput
+                + "\n" + UnbookmarkCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
