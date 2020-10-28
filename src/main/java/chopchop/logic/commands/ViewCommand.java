@@ -51,4 +51,11 @@ public class ViewCommand extends Command {
     public static String getUserGuideSection() {
         return "viewing-recipes--view";
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this
+                || (other instanceof ViewCommand
+                && this.item.equals(((ViewCommand) other).item));
+    }
 }
