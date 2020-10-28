@@ -371,8 +371,8 @@ Example Usages:
 
 Stock | Details
 ------| --------
-**Stock 1** | Name: banana<br> Serial Number: ntuc1<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits Section
-**Stock 2** | Name: chicken<br> Serial Number: sheng siong1<br> Source: sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry Section
+**Stock 1** | Name: Banana<br> Serial Number: NTUC1<br> Source: ntuc<br> Quantity: 5<br> Location in warehouse: Fruits section
+**Stock 2** | Name: Chicken<br> Serial Number: SHENG SIONG1<br> Source: Sheng siong<br> Quantity: 100<br> Location in warehouse: Poultry section
 
 Command: `note sn/sheng siong1 nt/chicken will expire soon` will add note with index 1 in note column for Stock 2. <br>
 
