@@ -20,6 +20,7 @@ import nustorage.logic.commands.FindInventoryRecordCommand;
 import nustorage.logic.commands.HelpCommand;
 import nustorage.logic.commands.ListFinanceRecordsCommand;
 import nustorage.logic.commands.ListInventoryCommand;
+import nustorage.logic.commands.UpdateInventoryCommand;
 import nustorage.logic.parser.exceptions.ParseException;
 
 /**
@@ -62,6 +63,9 @@ public class NuStorageParser {
 
         case FindInventoryRecordCommand.COMMAND_WORD:
             return new FindInventoryRecordCommandParser().parse(arguments);
+
+        case UpdateInventoryCommand.COMMAND_WORD:
+            return new UpdateInventoryCommandParser().parse(arguments);
 
         case AddFinanceCommand.COMMAND_WORD:
             return new AddFinanceCommandParser().parse(arguments);

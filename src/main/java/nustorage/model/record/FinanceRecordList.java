@@ -86,7 +86,21 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
      */
     public void setFinanceRecords(List<FinanceRecord> financeRecords) {
         requireAllNonNull(financeRecords);
+        if (!financeRecordsAreUnique(financeRecords)) {
+            throw new DuplicateFinanceRecordException();
+        }
         internalList.setAll(financeRecords);
+    }
+
+    private boolean financeRecordsAreUnique(List<FinanceRecord> financeRecords) {
+        for (int i = 0; i < financeRecords.size() - 1; i++) {
+            for (int j = i + 1; j < financeRecords.size(); j++) {
+                if (financeRecords.get(i).isSameRecord(financeRecords.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**
