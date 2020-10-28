@@ -45,4 +45,12 @@ public class DeleteCommandParserTest {
         // Extra prefixes
         assertParseFailure(parser, "1 c/revenue c/revenue", expectedMessage);
     }
+
+    @Test
+    public void parse_noPrefixPresent() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE);
+        // No prefix present
+        assertParseFailure(parser, "c/revenue", expectedMessage);
+    }
+
 }
