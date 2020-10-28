@@ -81,7 +81,7 @@ public class LogicManager implements Logic {
     private void addAliases(Map<String, Parser<Command>> map, List<CommandWordAlias> aliasList) {
         for (CommandWordAlias alias : aliasList) {
             String commandWord = alias.getCommandWord().commandWord;
-            String aliasString = alias.getAlias().alias;
+            String aliasString = alias.getAlias().toString();
             if (map.containsKey(commandWord)) {
                 map.put(aliasString, map.get(commandWord));
             }
