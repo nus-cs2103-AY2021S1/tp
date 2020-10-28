@@ -186,7 +186,7 @@ __Result:__ record at index `1` is removed from the finance account records.
 
 ---
 
-#### 4.2.3. Edit record in finance: `edit_finance`
+#### 4.2.3. Edit a finance record: `edit_finance`
 
 Edits the specified record in the finance account.
 
@@ -215,6 +215,18 @@ __Example:__ `list_finance`
 __Result:__ finance account is listed.
 
 ![List finance result example](images/commands/list_finance_result.jpg)
+
+---
+
+#### 4.2.5. Find a specific finance record: `find_finance`
+
+Find any records that matches the given parameters. 
+
+__Format:__ `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]`
+
+__Example:__ `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes` to find records with ID containing "10", took place between 30st Oct 2019 to 23rd Mar 2020 (inclusive), and has a corresponding item record.
+
+__Result:__ finance records that fit the paramaters are listed
 
 ---
 
