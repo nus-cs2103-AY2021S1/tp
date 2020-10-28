@@ -58,7 +58,7 @@ import seedu.stock.logic.parser.exceptions.ParseException;
 
 public class SuggestionCommandParser implements Parser<SuggestionCommand> {
 
-    private static final String MESSAGE_SUGGESTION = "Do you mean: \n";
+    public static final String MESSAGE_SUGGESTION = "Do you mean: \n";
     private String faultyCommandWord;
     private String commandWord;
     private String headerErrorMessage;
