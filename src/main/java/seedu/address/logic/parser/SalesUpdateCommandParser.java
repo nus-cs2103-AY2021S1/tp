@@ -2,22 +2,16 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSBBT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSBGT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSBM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSPBT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSPGT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BSPM;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMERGENCY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.HashMap;
-import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.SalesUpdateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Drink;
@@ -44,8 +38,7 @@ public class SalesUpdateCommandParser implements Parser<SalesUpdateCommand> {
                 new Prefix[] {PREFIX_BSBM, PREFIX_BSBBT, PREFIX_BSBGT, PREFIX_BSPM, PREFIX_BSPBT, PREFIX_BSPGT};
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, drinkPrefixes);
 
-        if (!arePrefixesPresent(argMultimap, drinkPrefixes)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, drinkPrefixes) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SalesUpdateCommand.MESSAGE_USAGE));
         }
 
