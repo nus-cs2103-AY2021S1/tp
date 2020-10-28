@@ -30,7 +30,7 @@ public class ViewTaskCommandTest {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        Index outOfBoundIndex = Index.fromOneBased(project.getFilteredTaskList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(project.getFilteredSortedTaskList().size() + 1);
         ViewTaskCommand viewTaskCommand = new ViewTaskCommand(outOfBoundIndex);
 
         assertCommandFailure(viewTaskCommand, model, Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
@@ -41,7 +41,7 @@ public class ViewTaskCommandTest {
         Model model = new ModelManager(getTypicalMainCatalogue(), new UserPrefs());
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
-        Task taskToView = project.getFilteredTaskList().get(INDEX_FIRST_TASK.getZeroBased());
+        Task taskToView = project.getFilteredSortedTaskList().get(INDEX_FIRST_TASK.getZeroBased());
 
         ViewTaskCommand viewTaskCommand = new ViewTaskCommand(INDEX_FIRST_TASK);
 
@@ -60,7 +60,7 @@ public class ViewTaskCommandTest {
         Project project = model.getFilteredProjectList().get(INDEX_FIRST_PROJECT.getZeroBased());
         model.enter(project);
         project.updateTaskFilter(x -> true);
-        Task taskToView = project.getFilteredTaskList().get(INDEX_SECOND_TASK.getZeroBased());
+        Task taskToView = project.getFilteredSortedTaskList().get(INDEX_SECOND_TASK.getZeroBased());
         project.updateTaskFilter(task -> task.getTaskName().contains(taskToView.getTaskName()));
 
         ViewTaskCommand viewTaskCommand = new ViewTaskCommand(INDEX_FIRST_TASK);

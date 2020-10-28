@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.address.commons.core.index.GitUserIndex;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectName;
@@ -88,6 +89,16 @@ public class Person {
         return allPeople;
     }
 
+    public static void setPerson(Person person) {
+        for (int i = 0; i < allPeople.size(); i++) {
+            String gitUserName = allPeople.get(i).getGitUserNameString();
+            String toFind = person.getGitUserNameString();
+            if (gitUserName.equals(toFind)) {
+                allPeople.set(i, person);
+            }
+        }
+    }
+
     public HashMap<ProjectName, Participation> getParticipations() {
         return this.listOfParticipations;
     }
@@ -99,6 +110,20 @@ public class Person {
         List<Project> projects = Collections.emptyList();
         listOfParticipations.values().forEach(p -> projects.add(p.getProject()));
         return projects;
+    }
+
+    /**
+     * Gets a person from the universal list of persons from the GitUserName
+     */
+    public static Person getPersonFromList(GitUserIndex gitUserIndex) {
+        for (Person p : allPeople) {
+            String indexToCompare = p.getGitUserNameString();
+            String gitUserName = gitUserIndex.getGitUserName();
+            if (indexToCompare.equals(gitUserName)) {
+                return p;
+            }
+        }
+        return null;
     }
 
     /**

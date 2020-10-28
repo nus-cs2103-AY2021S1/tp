@@ -2,10 +2,10 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_IS_DONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_PROGRESS;
 
 import java.util.Collection;
@@ -33,7 +33,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     public EditTaskCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_PROJECT_NAME, PREFIX_TASK_DEADLINE, PREFIX_PROJECT_DESCRIPTION,
+                ArgumentTokenizer.tokenize(args, PREFIX_TASK_NAME, PREFIX_TASK_DEADLINE, PREFIX_DESCRIPTION,
                         PREFIX_TASK_PROGRESS, PREFIX_TASK_IS_DONE);
 
         Index index;
@@ -45,24 +45,23 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
         }
 
         EditTaskCommand.EditTaskDescriptor editTaskDescriptor = new EditTaskCommand.EditTaskDescriptor();
-        if (argMultimap.getValue(PREFIX_PROJECT_NAME).isPresent()) {
-            editTaskDescriptor.setTaskName(ParserUtil.parseTaskBasicInformation(
-                    argMultimap.getValue(PREFIX_PROJECT_NAME).get()));
+        if (argMultimap.getValue(PREFIX_TASK_NAME).isPresent()) {
+            editTaskDescriptor.setTaskName(ParserUtil.parseTaskName(
+                    argMultimap.getValue(PREFIX_TASK_NAME).get()));
         }
         if (argMultimap.getValue(PREFIX_TASK_DEADLINE).isPresent()) {
             editTaskDescriptor.setDeadline(ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_TASK_DEADLINE).get()));
         }
-        if (argMultimap.getValue(PREFIX_PROJECT_DESCRIPTION).isPresent()) {
-            editTaskDescriptor.setTaskDescription(ParserUtil.parseTaskBasicInformation(argMultimap
-                    .getValue(PREFIX_PROJECT_DESCRIPTION).get()));
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editTaskDescriptor.setTaskDescription(ParserUtil.parseTaskDescription(argMultimap
+                    .getValue(PREFIX_DESCRIPTION).get()));
         }
         if (argMultimap.getValue(PREFIX_TASK_PROGRESS).isPresent()) {
-            editTaskDescriptor.setProgress(Double.parseDouble(ParserUtil.parseTaskBasicInformation(argMultimap
-                    .getValue(PREFIX_TASK_PROGRESS).get())));
+            editTaskDescriptor.setProgress(ParserUtil.parseTaskProgress(
+                argMultimap.getValue(PREFIX_TASK_PROGRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_TASK_IS_DONE).isPresent()) {
-            editTaskDescriptor.setIsDone(Boolean.parseBoolean(ParserUtil.parseTaskBasicInformation(argMultimap
-                    .getValue(PREFIX_TASK_IS_DONE).get())));
+            editTaskDescriptor.setIsDone(ParserUtil.parseDoneStatus(argMultimap.getValue(PREFIX_TASK_IS_DONE).get()));
         }
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);

@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_DESCRIPTION_B;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PROJECT_TAG_A;
+import static seedu.address.logic.commands.TaskCommandTestUtil.PLAN_MEETING;
 import static seedu.address.logic.commands.TeammateTestUtil.VALID_TEAMMATE_ADDRESS_B;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalProjects.APEAKAPP;
 import static seedu.address.testutil.TypicalProjects.getTypicalMainCatalogue;
-import static seedu.address.testutil.TypicalTasks.PLAN_MEETING;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -63,8 +63,8 @@ public class MainCatalogueTest {
         Project editedApeakapp = new ProjectBuilder(APEAKAPP).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_B).withTags(
             VALID_PROJECT_TAG_A)
-                .withTasks(SampleDataUtil.getTask4())
-                .build();
+            .withTasks(SampleDataUtil.getTask4())
+            .build();
         List<Project> newProjects = Arrays.asList(APEAKAPP, editedApeakapp);
         MainCatalogueStub newData = new MainCatalogueStub(newProjects, Collections.emptyList());
 
@@ -104,8 +104,8 @@ public class MainCatalogueTest {
         Project editedAlice = new ProjectBuilder(APEAKAPP).withProjectDescription(
             VALID_PROJECT_DESCRIPTION_B).withTags(
             VALID_PROJECT_TAG_A)
-                .withTasks(SampleDataUtil.getTask1())
-                .build();
+            .withTasks(SampleDataUtil.getTask1())
+            .build();
         assertTrue(mainCatalogue.hasProject(editedAlice));
     }
 
@@ -117,7 +117,7 @@ public class MainCatalogueTest {
     @Test
     public void hasPerson_personNotInMainCatalogue_returnsFalse() {
         assertFalse(
-                mainCatalogue.hasPerson(ALICE));
+            mainCatalogue.hasPerson(ALICE));
     }
 
     @Test
@@ -191,6 +191,7 @@ public class MainCatalogueTest {
     private static class MainCatalogueStub implements ReadOnlyMainCatalogue {
         private final ObservableList<Project> projects = FXCollections.observableArrayList();
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Participation> participations = FXCollections.observableArrayList();
         private Status status = Status.PROJECT_LIST;
 
         MainCatalogueStub(Collection<Project> projects, Collection<Person> persons) {
@@ -209,8 +210,18 @@ public class MainCatalogueTest {
         }
 
         @Override
+        public ObservableList<Participation> getParticipationList() {
+            return participations;
+        }
+
+        @Override
         public Status getStatus() {
             return status;
+        }
+
+        @Override
+        public void setStatus(Status status) {
+            // TODO: Add content if test case need this.
         }
 
         @Override
@@ -240,11 +251,6 @@ public class MainCatalogueTest {
 
         @Override
         public void enterMeeting(Meeting meeting) {
-            // TODO: Add content if test case need this.
-        }
-
-        @Override
-        public void setStatus(Status status) {
             // TODO: Add content if test case need this.
         }
     }

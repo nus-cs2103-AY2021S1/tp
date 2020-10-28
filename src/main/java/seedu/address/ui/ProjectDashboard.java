@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
@@ -63,8 +62,7 @@ public class ProjectDashboard extends UiPart<Region> {
         projectDescription.setText("Project description: " + this.project.getProjectDescription().value);
         repoUrl.setText("Project repourl: " + this.project.getRepoUrl().value);
         header1.setText("Tasks: ");
-        this.project.getFilteredTaskList().stream()
-                .sorted(Comparator.comparing(task -> task.taskName))
+        this.project.getFilteredSortedTaskList()
                 .forEach(task -> tasks.getChildren().add(new Label(task.taskName)));
         header2.setText("Teammates: ");
         this.project.getTeammates().stream()

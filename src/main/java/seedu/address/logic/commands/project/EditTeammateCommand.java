@@ -76,19 +76,19 @@ public class EditTeammateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        Project project = model.getFilteredProjectList().get(0);
+        Project project = model.getProjectToBeDisplayedOnDashboard().get();
         List<Participation> lastShownList = project.getTeammates();
 
-        if (!project.getTeammatePresence(gitUserIndex)) {
+        if (!project.hasParticipation(gitUserIndex.getGitUserName())) {
             throw new CommandException(Messages.MESSAGE_INVALID_TEAMMATE_DISPLAYED_NAME);
         }
+        Participation participation = project.getParticipation(gitUserIndex.getGitUserName());
 
-        int indexOfteammate = project.getTeammateIndex(gitUserIndex);
-        Participation teammateToEdit = lastShownList.get(indexOfteammate);
-        Participation editedTeammate = createEditedTeammate(teammateToEdit, editTeammateDescriptor);
-
-        project.removeParticipation(teammateToEdit);
-        project.addParticipation(editedTeammate);
+        Person oldTeammate = Person.getPersonFromList(gitUserIndex);
+        Person editedTeammate = createEditedTeammate(participation, editTeammateDescriptor);
+        Person.setPerson(editedTeammate);
+        model.deletePerson(oldTeammate);
+        model.addPerson(editedTeammate);
 
         return new CommandResult(String.format(MESSAGE_EDIT_TEAMMATE_SUCCESS, editedTeammate));
     }
@@ -97,7 +97,7 @@ public class EditTeammateCommand extends Command {
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Participation createEditedTeammate(Participation teammateToEdit,
+    private static Person createEditedTeammate(Participation teammateToEdit,
                                                       EditTeammateDescriptor editTeammateDescriptor) {
         assert teammateToEdit != null;
 
@@ -107,8 +107,7 @@ public class EditTeammateCommand extends Command {
         GitUserName gitUserName = personToEdit.getGitUserName();
         Phone updatedPhone = editTeammateDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editTeammateDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editTeammateDescriptor.getAddress()
-            .orElse(personToEdit.getAddress());
+        Address updatedAddress = editTeammateDescriptor.getAddress().orElse(personToEdit.getAddress());
         HashMap<ProjectName, Participation> updatedParticipation =
             editTeammateDescriptor.getParticipation().orElse(personToEdit.getParticipations());
         Person editedPerson = new Person(updatedTeammateName, gitUserName, updatedPhone, updatedEmail, updatedAddress,
@@ -116,7 +115,7 @@ public class EditTeammateCommand extends Command {
 
         // TODO: take note gitUserName is not changed
         // TODO: add fields for participation update, and change the return value
-        return teammateToEdit;
+        return editedPerson;
     }
 
     @Override

@@ -82,5 +82,6 @@
     "projectTagged" : [ ],
     "occupied" : [ ]
   } ],
-  "persons": [ ]
+  "persons": [ ],
+
 }
