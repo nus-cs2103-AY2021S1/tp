@@ -9,7 +9,6 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.project.Deadline;
 import seedu.address.model.project.ProjectDescription;
 import seedu.address.model.project.ProjectName;
@@ -146,29 +145,6 @@ public class ParserUtil {
             taskSet.add(parseTask(taskName));
         }
         return taskSet; //TODO: parse tasks in a more meaningful way
-    }
-
-    /**
-     * Parses a {@code String meeting} into a {@code Meeting}.
-     * Leading and trailing whitespaces will be trimmed.
-     */
-    public static Meeting parseMeeting(String meeting) {
-        requireNonNull(meeting);
-        String trimmedMeeting = meeting.trim();
-        return new Meeting(meeting);
-    }
-
-
-    /**
-     * Parses {@code Collection<String> meetingTiming} into a {@code Set<Meeting>}.
-     */
-    public static Set<Meeting> parseMeetings(Collection<String> meetings) {
-        requireNonNull(meetings);
-        final Set<Meeting> meetingSet = new HashSet<>();
-        for (String meetingTime : meetings) {
-            meetingSet.add(parseMeeting(meetingTime));
-        }
-        return meetingSet;
     }
 
     /**

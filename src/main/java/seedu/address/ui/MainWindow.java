@@ -40,7 +40,6 @@ public class MainWindow extends UiPart<Stage> {
     private EmptyDashboard emptyProjectDashboard;
     private TaskDashboard taskDashboard;
     private TeammateDashboard teammateDashboard;
-    private MeetingDashboard meetingDashboard;
     private EmptyDashboard emptyAttributesDashboard;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -176,8 +175,6 @@ public class MainWindow extends UiPart<Stage> {
         } else if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
                 && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()
                 && logic.getMeetingToBeDisplayedOnDashboard().isPresent()) {
-            meetingDashboard = new MeetingDashboard(logic.getMeetingToBeDisplayedOnDashboard());
-            projectAttributesDashboardPlaceHolder.getChildren().add(meetingDashboard.getRoot());
         } else if (logic.getTaskToBeDisplayedOnDashboard().isEmpty()
                 && logic.getTeammateToBeDisplayedOnDashboard().isEmpty()
                 && logic.getMeetingToBeDisplayedOnDashboard().isEmpty()) {

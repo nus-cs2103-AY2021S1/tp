@@ -1,7 +1,6 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -65,9 +64,4 @@ public interface ReadOnlyMainCatalogue {
      * @param teammate
      */
     void enterTeammate(Participation teammate);
-
-    /**
-     * Enters a designated meeting of a project.
-     */
-    void enterMeeting(Meeting meeting);
 }

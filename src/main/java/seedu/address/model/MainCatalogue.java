@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.project.Participation;
@@ -268,14 +267,6 @@ public class MainCatalogue implements ReadOnlyMainCatalogue {
         project.get().updateTaskOnView(null);
         project.get().updateMeetingFilter(null);
         project.get().updateTeammateOnView(teammate);
-    }
-
-    @Override
-    public void enterMeeting(Meeting meeting) {
-        status = Status.MEETING;
-        project.get().updateTaskOnView(null);
-        project.get().updateTeammateOnView(null);
-        project.get().updateMeetingOnView(meeting);
     }
 
     //// util methods

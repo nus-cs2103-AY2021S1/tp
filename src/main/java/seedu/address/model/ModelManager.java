@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.project.Participation;
 import seedu.address.model.project.Project;
@@ -34,7 +33,6 @@ public class ModelManager implements Model {
     private Optional<Project> projectToBeDisplayedOnDashboard;
     private Optional<Task> taskToBeDisplayedOnDashboard;
     private Optional<Participation> teammateToBeDisplayedOnDashboard;
-    private Optional<Meeting> meetingToBeDisplayedOnDashboard;
     private Optional<Person> personToBeDisplayedOnDashboard;
 
     /**
@@ -56,7 +54,6 @@ public class ModelManager implements Model {
         this.projectToBeDisplayedOnDashboard = Optional.empty();
         this.taskToBeDisplayedOnDashboard = Optional.empty();
         this.teammateToBeDisplayedOnDashboard = Optional.empty();
-        this.meetingToBeDisplayedOnDashboard = Optional.empty();
         this.personToBeDisplayedOnDashboard = Optional.empty();
     }
 
@@ -219,9 +216,6 @@ public class ModelManager implements Model {
         case TASK:
             taskToBeDisplayedOnDashboard = Optional.empty();
             break;
-        case MEETING:
-            meetingToBeDisplayedOnDashboard = Optional.empty();
-            break;
         case TEAMMATE:
             teammateToBeDisplayedOnDashboard = Optional.empty();
             break;
@@ -238,7 +232,6 @@ public class ModelManager implements Model {
     public void enterTask(Task task) {
         mainCatalogue.enterTask(task);
         this.teammateToBeDisplayedOnDashboard = Optional.empty();
-        this.meetingToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateTaskOnView(task);
         updateTaskToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTaskOnView().get());
     }
@@ -246,19 +239,9 @@ public class ModelManager implements Model {
     @Override
     public void enterTeammate(Participation teammate) {
         mainCatalogue.enterTeammate(teammate);
-        this.meetingToBeDisplayedOnDashboard = Optional.empty();
         this.taskToBeDisplayedOnDashboard = Optional.empty();
         this.projectToBeDisplayedOnDashboard.get().updateTeammateOnView(teammate);
         updateTeammateToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getTeammateOnView().get());
-    }
-
-    @Override
-    public void enterMeeting(Meeting meeting) {
-        mainCatalogue.enterMeeting(meeting);
-        this.taskToBeDisplayedOnDashboard = Optional.empty();
-        this.teammateToBeDisplayedOnDashboard = Optional.empty();
-        this.projectToBeDisplayedOnDashboard.get().updateMeetingOnView(meeting);
-        updateMeetingToBeDisplayedOnDashboard(this.projectToBeDisplayedOnDashboard.get().getMeetingOnView().get());
     }
 
     //=========== Filtered Project List Accessors =============================================================
@@ -372,18 +355,6 @@ public class ModelManager implements Model {
     @Override
     public Optional<Participation> getTeammateToBeDisplayedOnDashboard() {
         return teammateToBeDisplayedOnDashboard;
-    }
-
-    //=========== Meeting To Be Displayed On DashBoard Accessors ======================================================
-    @Override
-    public void updateMeetingToBeDisplayedOnDashboard(Meeting meeting) {
-        requireNonNull(meeting);
-        this.meetingToBeDisplayedOnDashboard = Optional.of(meeting);
-    }
-
-    @Override
-    public Optional<Meeting> getMeetingToBeDisplayedOnDashboard() {
-        return meetingToBeDisplayedOnDashboard;
     }
 
     //=========== Person To Be Displayed On DashBoard Accessors ======================================================

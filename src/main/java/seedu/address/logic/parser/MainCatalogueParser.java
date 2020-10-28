@@ -25,10 +25,8 @@ import seedu.address.logic.commands.project.AssignCommand;
 import seedu.address.logic.commands.project.EditTaskCommand;
 import seedu.address.logic.commands.project.EditTeammateCommand;
 import seedu.address.logic.commands.project.LeaveCommand;
-import seedu.address.logic.commands.project.MeetingFilterCommand;
 import seedu.address.logic.commands.project.NewTeammateCommand;
 import seedu.address.logic.commands.project.TaskFilterCommand;
-import seedu.address.logic.commands.project.ViewMeetingCommand;
 import seedu.address.logic.commands.project.ViewTaskCommand;
 import seedu.address.logic.commands.project.ViewTeammateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -142,13 +140,6 @@ public class MainCatalogueParser {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }
 
-        case MeetingFilterCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
-                return new MeetingFilterCommandParser().parse(arguments);
-            } else {
-                throw new InvalidScopeException(Status.PROJECT, status);
-            }
-
         case NewTeammateCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new NewTeammateCommandParser().parse(arguments);
@@ -187,13 +178,6 @@ public class MainCatalogueParser {
         case ViewTeammateCommand.COMMAND_WORD:
             if (status != Status.PROJECT_LIST) {
                 return new ViewTeammateCommandParser().parse(arguments);
-            } else {
-                throw new InvalidScopeException(Status.PROJECT, status);
-            }
-
-        case ViewMeetingCommand.COMMAND_WORD:
-            if (status != Status.PROJECT_LIST) {
-                return new ViewMeetingCommandParser().parse(arguments);
             } else {
                 throw new InvalidScopeException(Status.PROJECT, status);
             }

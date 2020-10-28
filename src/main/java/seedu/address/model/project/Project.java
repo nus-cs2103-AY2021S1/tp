@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -16,7 +15,6 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.GitUserIndex;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.GitUserName;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.ProjectTag;
@@ -28,7 +26,6 @@ import seedu.address.model.task.Task;
  */
 public class Project {
     private static final Predicate<Task> SHOW_ALL_TASKS_PREDICATE = task -> true;
-    private static final Predicate<Meeting> SHOW_ALL_MEETINGS_PREDICATE = meeting -> true;
     // List of all Projects
     private static ArrayList<Project> allProjects = new ArrayList<>();
 
@@ -42,20 +39,17 @@ public class Project {
     private final Set<ProjectTag> projectTags = new HashSet<>();
     private final HashMap<GitUserName, Participation> listOfParticipations = new HashMap<>();
     private Predicate<Task> taskFilter = SHOW_ALL_TASKS_PREDICATE;
-    private Predicate<Meeting> meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
     private final Set<Task> tasks = new HashSet<>();
-    private final Set<Meeting> meetings = new HashSet<>();
     // Display helper
     private Optional<Task> taskOnView;
     private Optional<Participation> teammateOnView;
-    private Optional<Meeting> meetingOnView;
 
     /**
      * Every field must be present and not null.
      */
     public Project(ProjectName projectName, Deadline deadline, RepoUrl repoUrl, ProjectDescription projectDescription,
                    Set<ProjectTag> projectTags,
-                   HashMap<GitUserName, Participation> listOfParticipations, Set<Task> tasks, Set<Meeting> meetings) {
+                   HashMap<GitUserName, Participation> listOfParticipations, Set<Task> tasks) {
         requireAllNonNull(projectName, deadline, repoUrl, projectDescription, projectTags,
                 tasks);
         this.projectName = projectName;
@@ -67,12 +61,8 @@ public class Project {
             this.listOfParticipations.putAll(listOfParticipations);
         }
         this.tasks.addAll(tasks);
-        if (meetings != null) {
-            this.meetings.addAll(meetings);
-        }
         this.taskOnView = Optional.empty();
         this.teammateOnView = Optional.empty();
-        this.meetingOnView = Optional.empty();
         allProjects.add(this);
     }
 
@@ -92,16 +82,8 @@ public class Project {
         return projectDescription;
     }
 
-    public Set<Meeting> getMeetings() {
-        return meetings;
-    }
-
     public static ArrayList<Project> getAllProjects() {
         return allProjects;
-    }
-
-    public boolean addMeeting(Meeting meeting) {
-        return meetings.add(meeting);
     }
 
     public boolean addTask(Task task) {
@@ -120,23 +102,12 @@ public class Project {
         this.taskFilter = SHOW_ALL_TASKS_PREDICATE;
     }
 
-    public void updateMeetingFilter(Predicate<Meeting> predicate) {
-        this.meetingFilter = predicate;
-    }
-
-    public void showAllMeetings() {
-        this.meetingFilter = SHOW_ALL_MEETINGS_PREDICATE;
-    }
-
     public Optional<Task> getTaskOnView() {
         return taskOnView;
     }
 
     public Optional<Participation> getTeammateOnView() {
         return this.teammateOnView;
-    }
-    public Optional<Meeting> getMeetingOnView() {
-        return this.meetingOnView;
     }
 
     /**
@@ -161,29 +132,6 @@ public class Project {
         } else {
             teammateOnView = Optional.of(p);
         }
-    }
-
-    /**
-     * Updates meetingOnView with m.
-     * @param m meetingOnView.
-     */
-    public void updateMeetingOnView(Meeting m) {
-        if (m == null) {
-            meetingOnView = Optional.empty();
-        } else {
-            meetingOnView = Optional.of(m);
-        }
-    }
-
-    /**
-     * Gets all attendees of a specific meeting
-     */
-    public Set<Person> getAttendeesOfMeeting(Meeting meeting) {
-        HashSet<Person> attendees = new HashSet<>();
-        for (Map.Entry<GitUserName, Participation> entry : listOfParticipations.entrySet()) {
-            attendees.add(entry.getValue().getPerson());
-        }
-        return attendees;
     }
 
     /**
@@ -330,12 +278,6 @@ public class Project {
         return tasks.stream().filter(taskFilter).collect(Collectors.toList());
     }
 
-    /**
-     * Returns the filtered list of meetings that is last shown.
-     */
-    public List<Meeting> getFilteredMeetingList() {
-        return meetings.stream().filter(meetingFilter).collect(Collectors.toList());
-    }
     /**
      * Returns true if both projects of the same projectName have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two projects.

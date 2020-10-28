@@ -22,7 +22,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
@@ -241,11 +240,6 @@ public class MainCatalogueTest {
 
         @Override
         public void enterTeammate(Participation teammate) {
-            // TODO: Add content if test case need this.
-        }
-
-        @Override
-        public void enterMeeting(Meeting meeting) {
             // TODO: Add content if test case need this.
         }
 
