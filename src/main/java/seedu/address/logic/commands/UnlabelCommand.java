@@ -86,23 +86,23 @@ public class UnlabelCommand extends Command {
 
         Tag editedTag = new Tag(tagName, fileAddress, editedLabel);
 
-        // Deletes the edited tag from the model
+        // Adds the edited tag from the model
         model.addTag(editedTag);
 
         model.commitAddressBook();
 
-        if (labels.isEmpty()) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, editedTag));
+        if (!labels.isEmpty()) {
+            StringBuilder builder = new StringBuilder();
+            builder.append(String.format(MESSAGE_LABEL_MISSING, tagName));
+
+            labels.forEach(label -> builder.append(String.format(MESSAGE_DASH, label)));
+
+            builder.append(MESSAGE_INVALID_LABEL);
+            return new CommandResult(builder.toString());
         }
 
-        StringBuilder builder = new StringBuilder();
-        builder.append(String.format(MESSAGE_LABEL_MISSING, tagName));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, editedTag));
 
-        labels.forEach(label -> builder.append(String.format(MESSAGE_DASH, label)));
-
-        builder.append(MESSAGE_INVALID_LABEL);
-
-        return new CommandResult(builder.toString());
     }
 
     @Override

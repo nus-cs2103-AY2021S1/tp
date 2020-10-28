@@ -56,6 +56,10 @@ public class UnlabelCommandTest {
 
         // different labels -> returns false
         assertFalse(firstUnlabelCommand.equals(secondUnlabelCommand));
+
+        // different tagName but same labels -> return false
+        UnlabelCommand diffTagNameUnlabelCommand = new UnlabelCommand(oldTagName, emptyLabels);
+        assertFalse(firstUnlabelCommand.equals(diffTagNameUnlabelCommand));
     }
 
     @Test

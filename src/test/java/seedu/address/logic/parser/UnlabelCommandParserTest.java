@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LABEL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_CS2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LABEL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LABEL_DESC;
@@ -39,20 +40,19 @@ public class UnlabelCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnlabelCommand.MESSAGE_USAGE);
 
         // missing tag name prefix
-        assertParseFailure(parser, VALID_TAG_NAME_CS2103 + VALID_LABEL_DESC,
-                expectedMessage);
+        assertParseFailure(parser, VALID_TAG_NAME_CS2103 + VALID_LABEL_DESC, expectedMessage);
 
         // missing tag
-        assertParseFailure(parser, VALID_LABEL_DESC,
-                expectedMessage);
+        assertParseFailure(parser, VALID_LABEL_DESC, expectedMessage);
 
         // missing label name prefix
-        assertParseFailure(parser, TAG_DESC_CS2103 + VALID_LABEL,
-                expectedMessage);
+        assertParseFailure(parser, TAG_DESC_CS2103 + VALID_LABEL, expectedMessage);
 
         // missing label
-        assertParseFailure(parser, TAG_DESC_CS2103,
-                expectedMessage);
+        assertParseFailure(parser, TAG_DESC_CS2103, expectedMessage);
+
+        // has preamble
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_TAG_NAME_CS2103 + VALID_LABEL, expectedMessage);
