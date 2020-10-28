@@ -13,7 +13,7 @@ only Command Line Interface. If you are a restaurant manager
 who prefers to use the Command Line Interface and needs to keep
 track of inventory items and pending deliveries, **OneShelf** is for you.
 <br><br>
-This User Guide will provide a general overview of installation, existing features, and a sneak peek for upcoming features.
+This User Guide will provide a general overview of installation, current features, and a sneak peek for upcoming features.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ This User Guide will provide a general overview of installation, existing featur
 
 Refer to this video for a quick tutorial on OneShelf Installation Guide:
 <br>
-
+<a name="installationvideo"></a>
 [![](http://img.youtube.com/vi/W460SJkRMMM/0.jpg)](http://www.youtube.com/watch?v=W460SJkRMMM "One Shelf Installation Guide")
 
 <br>
@@ -32,25 +32,27 @@ Refer to this video for a quick tutorial on OneShelf Installation Guide:
 
 1. Copy the file to the folder you want to use as the _home folder_ for this application.
 
-1. Double-click the file to start the app. Similar GUI shown below (Figure 1) should appear in a few seconds. <br>
+1. Double-click the file to start the app. The similar GUI shown below (Figure 1) should appear in a few seconds. <br>
    *Note how the app contains some sample data but the installed version on your desktop might have a different data set.*
-   <br>
-   ![Ui](images/UiWithAnnotation.png)
-   Figure 1: Introduction to OneShelf User Interface
-   <br>
-   
-1. Type the command `help start` in the command box and press Enter to execute it. <br>
-   A new help window shown below (Figure 2) should appear on your desktop and you are welcomed to follow the
-   guide given in the Help Start Window.
-   <br> 
-   ![Help Window](images/UiHelpStart.png) 
-   Figure 2: Help Start Window
-   <br>
+    <br>
+    <a name="uiwithannotationpng"></a>
+    #![Ui](images/UiWithAnnotation.png) 
+    Figure 1: Introduction to OneShelf User Interface
 
-1. Refer to the [Features](#features) below for details of each command.
+    <br>
+    
+1. Type the command `help start` in the command box and press Enter to execute it. <br>
+   A new help window shown below (Figure 2) should appear on your desktop.
+    <br>
+    #![Help Window](images/UiHelpStart.png) 
+    Figure 2: Help Start Window
+    
+    <br>
+
+1. Refer to the [Features](#3-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-## 3. Features
+## <a name="3-features"></a>3. Features
 
 OneShelf has 2 main components, namely are:
 1. Inventory items
@@ -82,7 +84,7 @@ From here onwards, the term `item` and `delivery` are used specifically for inve
 
 #### 3.1.1 Viewing help : `help`
 
-##### Help Start
+##### 3.1.1.a Help Start
 
 Format: `help start`
 If you are a first time user, we strongly encourage you to enter `help start` and follow the guide to kick-start your journey in OneShelf.
@@ -96,6 +98,8 @@ A new help window similar to Figure 1 should appear on your desktop.
 
 ##### Help Summary
 
+##### 3.1.1.b Help Summary
+
 Format: `help summary`
 
 We understand that even if you are not a first time user, it is not easy to remember all the commands within a single session.
@@ -108,33 +112,66 @@ To open up `help summary` window, you can also do the following:
     
 A new help window similar to Figure 3 below should appear on your desktop.
 
-<br> ![Help Summary Screenshot](images/HelpSummaryWindow.png) <br>
+<br>![Help Summary Screenshot](images/HelpSummaryWindow.png)<br>
 Figure 3: Help Summary Window
 
 
-
-#### 3.1.2 Adding an item: `add-i` or `add-d`
+#### 3.1.2 Adding an item or delivery: `add-i` or `add-d`
 
 Adds inventory item or pending delivery to OneShelf.
 
-Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​`
+##### 3.1.2.a `add-i`
+
+Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​`
 * Adds `QUANTITY` from the current quantity of an inventory item if the item already exist.
-An item is uniquely identified by its NAME and SUPPLIER.
+An item is uniquely identified by its `NAME` and `SUPPLIER`.
+* Note 1: `MAX_QUANTITY` denotes the ideal stock level of that particular item.
+* Note 2: `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
-Examples: `add-i n/CHICKEN q/10 s/NTUC max/50`
+Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` using [Figure 1](#uiwithannotationpng) as the starting point.
 
-Assuming that your inventory item is empty, entering the above command would add a new chicken item that was previously purchased from NTUC. <br>
-By entering `add-i n/CHICKEN q/10 max/50`, a new inventory item would be added instead of increasing the quantity since the second chicken has no supplier. <br>
-On the other hand, by entering `add-i n/CHICKEN q/10 s/NTUC` again would increase the quantity of Chicken from NTUC to be 20kg.
+1. Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food`.
+<br>
+![add-i example one step one](images/add-i%20example%20one%20step%20one.PNG)
+<br>
+<br>
 
+2. Either press Enter on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display (assuming there isn't an existing same item) and added item will show up in InventoryBook.
+<br>
+![add-i example one step three](images/add-i%20example%20one%20step%20three.PNG)
+<br>
+<br>
+
+Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
+<br>
+![add-i example two step one](images/add-i%20example%20two%20step%20one.PNG)
+<br>
+<br>
+
+2. Either press Enter on your keyboard or click Send to execute the command.
+
+
+3. Success Message will be shown in the Result Display and added item's quantity will combine with existing same item's quantity.
+<br>
+![add-i example two step three](images/add-i%20example%20two%20step%20three.PNG)
+<br>
+<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
+</div>
+
+##### 3.1.2.b `add-d`
 
 Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER`
 
 Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-* An item can have any number of tags (including 0)
-* Unlike inventory item, pending delivery does not have a quantity
+<div markdown="span" class="alert alert-primary">:bulb:**Tip:**
+<li>An item can have any number of tags (including 0)</li>
+<li>Unlike inventory item, pending delivery does not have a quantity</li>
 </div>
 
 
@@ -156,25 +193,52 @@ Examples:
 
 
 
-#### 3.1.4 Editing an item : `edit-i` or `edit-d`
+#### 3.1.4 Editing an item or delivery: `edit-i` or `edit-d`
 
 Edits an existing item in the Inventory book or an existing pending delivery in the Delivery book.
 
-Format: `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`
+##### 3.1.4.a `edit-i`
+
+Format: `edit-i INDEX [n/NAME | q/QUANTITY | s/SUPPLIER | max/MAX_QUANTITY | t/TAG]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** The `|` symbol means the user must provide at least one of the fields
+separated by the `|`
+</div>
 
 * Edits the item at the specified `INDEX`. The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
-* Updates ALL the components of an item, UNABLE to update a specific component of an item.
-Ie if a user wants to update the quantity, he/ she needs to specify all attributes again: name, quantity, supplier, tag, if any.
-* When editing tags, the existing tags of the item will be removed i.e adding of tags is not cumulative.
+* Updates the components of an item.
+* When editing tags, the existing tags of the item will be removed
 * You can remove all the item’s tags by typing `t/` without
     specifying any tags after it.
 
-Examples:
-*  `edit-i 1 n/Chicken q/50` <br>
-Edits the name and quantity of the 1st item to be `CHICKEN` and `50` respectively.
-*  `edit-i 2 n/Spinach t/` <br>
-Edits the name of the 2nd item to be `Spinach` and clears all existing tags.
+Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as the starting point.
 
+1. Select the Command Box and type in `edit-i 3 n/CARROTS q/50`.
+
+2. Either press Enter on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
+<br>
+![edit-i example one step three](images/edit-i%20example%20one%20step%20three.png)
+<br>
+<br>
+
+Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Select the Command box and type in `edit-i 2 n/Spinach t/`
+
+2. Either press Enter on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields as shown below.
+<br>
+![add-i example two step three](images/edit-i%20example%20two%20step%20three.png)
+<br>
+<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
+</div>
+
+
+##### 3.1.4.b `edit-d`
 
 Format: `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
 
@@ -184,9 +248,11 @@ Edits the name and phone number of the 1st item to be `AARON` and `91111233` res
 
 
 
-#### 3.1.5 Locating items by keywords: `find-i` or `find-d`
+#### 3.1.5 Locating items or delivery by keywords: `find-i` or `find-d`
 
-Finds items or deliveries whose atributes contain any of the given keywords.
+Finds items or deliveries whose attributes contain any of the given keywords.
+
+##### 3.1.5.a `find-i`
 
 Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 
@@ -203,6 +269,7 @@ Examples:
 * `find-i n/Chicken` returns `chicken` and `chicken salad` items.
 * `find-i s/Cold Storage t/meat` returns item with supplier of Cold Storage and tags of meat.
 
+##### 3.1.5.b `find-d`
 
 Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
 
@@ -222,7 +289,7 @@ Examples:
 
 
 
-#### 3.1.6 Listing all items : `list-i` or `list-d`
+#### 3.1.6 Listing all items or delivery: `list-i` or `list-d`
 
 After entering `find-i` or `find-d`, the placeholder in your application will only show the items or deliveries
 that match your find KEYWORD. If you would like to show **all** the items and deliveries again,
@@ -232,7 +299,7 @@ Format: `list-i` or `list-d`
 
 
 
-#### 3.1.7 Deleting an item : `delete-i` or `delete-d`
+#### 3.1.7 Deleting an item or delivery: `delete-i` or `delete-d`
 
 Deletes an item or delivery from inventory book or delivery book respectively. Delete command is especially useful
 for delivery as you would often need to delete a pending delivery once it has been delivered.
@@ -282,7 +349,7 @@ Example 2:
 
 
 
-#### 3.1.8 Clearing all entries : `clear-i` or `clear-d`
+#### 3.1.8 Clearing all entries: `clear-i` or `clear-d`
 
 Clears all entries from the Inventory/ Delivery book.
 
@@ -290,7 +357,7 @@ Format: `clear-i` or `clear-d`
 
 
 
-#### 3.1.9 Exiting the program : `exit`
+#### 3.1.9 Exiting the program: `exit`
 
 Exits the program.
 
@@ -298,7 +365,7 @@ Format: `exit`
 
 
 
-#### 3.1.10 Undo last command : `undo`
+#### 3.1.10 Undo last command: `undo`
 
 Undoes the previous command by reverting the current data displayed to the state it was in before the last command was executed.
 
@@ -306,10 +373,26 @@ Format: `undo`
 
 * If there is a previous state available, the current state is reverted to that state
 * If the current state is the earliest possible one, it shows a message informing the user that there is nothing more to undo
+* The maximum number of previous commands you can undo is 20
+
+<a name="undoExample1"></a>Example 1: `undo` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Select the Command box and type in `clear-i`
+
+2. Either press Enter on your keyboard or click Send to execute the command.
+<br>
+![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
+<br>
+<br>
+
+3. Select the Command box and type in `undo`
+
+4. Repeat step 2
+* You should now see the same items as appearing in [Figure 1](#uiwithannotationpng)
 
 
 
-#### 3.1.11 Redo last command : `redo`
+#### 3.1.11 Redo last command: `redo`
 
 Redoes the last undone command by reverting the current data displayed to the state it was in before the last undo command was executed.
 
@@ -320,6 +403,16 @@ Format: `redo`
 * After any command that changes the state of data (such as add, clear, delete, edit), the new state becomes the latest state
 (i.e. the previous undo commands are "forgotten" and `redo` will have no effect)
 
+Example 1: `redo` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Follow steps 1 - 4 of [Example 1](#undoExample1) for the `undo` command
+
+2. Select the Command box and type in `undo`
+
+3. Either press Enter on your keyboard or click Send to execute the command
+
+4. You should now see the items cleared again, as shown in [Step 2 of Example 1](#undoExample1Step2) of the `undo` command.
+
 --------------------------------------------------------------------------------------------------------------------
 ### 3.2 General Features
 #### 3.2.1 Saving the data
@@ -328,9 +421,11 @@ OneShelf data are saved in the hard disk automatically after any command that ch
 
 
 
-#### 3.2.2 Scroll through command history
+#### 3.2.2 Scrolling through command history
 
-OneShelf commands are traversable much like Window's command prompt with the arrow up key traversing into previous commands and arrow down key traversing into next commands.
+OneShelf commands are traversable (up to 20 commands) much like Window's command prompt. 
+By pressing the arrow up key traversing you're able to traverse previous commands and 
+by pressing the arrow down key you're able to traverse into next commands.
 
 
 
@@ -343,7 +438,7 @@ OneShelf commands are traversable much like Window's command prompt with the arr
 
 --------------------------------------------------------------------------------------------------------------------
 ### 3.3 Coming Soon
-#### 3.3.1 Countdown to deliver [`Coming Soon]`
+#### 3.3.1 Countdown to deliver `[Coming Soon]`
 
 Allows user to input a countdown timer when adding a new delivery so that the user will be able to keep track
 the deliveries that needs to be delivered out based on their urgency
@@ -376,12 +471,16 @@ Notify the user if a certain stock is below threshold
 
 ## 4. FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another Computer? <br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Inventory/ DeliveryBook home folder.
 
-**Q**: I am unable to open up the application by double clicking on oneshelf.jar file, what should I do?
-**A**: You may refer to ![this installation guide](https://www.computerhope.com/issues/ch001343.htm#:~:text=To%20open%20a%20jar%20file%20in%20Windows%2C%20you%20must%20have,view%20the%20file%20(decompression).)
-or enter `java -jar oneshelf.jar` in the command prompt. *Note: Refer to the video of installation guide*
+**Q**: I am unable to open up the application by double clicking on oneshelf.jar file, what should I do? <br>
+**A**: If double clicking does not work, you may use the command prompt to open **OneShelf**.
+You may refer to the [video](#installationvideo) of installation guide.
+
+**Q**: Help! I've accidentally typed `clear-i` or `clear-d` and wiped all my data! <br>
+**A**: Use the [Undo Command](#3110-undo-last-command-undo) to reset your data back.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -422,3 +521,14 @@ or enter `java -jar oneshelf.jar` in the command prompt. *Note: Refer to the vid
 |**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`   |
 |**List Delivery**   | `list-d` |
 |**Find in Delivery**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`   |
+
+--------------------------------------------------------------------------------------------------------------------
+
+
+
+### 6. Glossary
+* **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
+*(i.e milk, cheese)*
+* **Delivery**: Delivery order that has yet to be delivered out from the restaurant
+* **Book**: There are 2 types of book, namely: Inventory Book and Delivery Book which stores the data of your 
+inventory items and pending deliveries respectively

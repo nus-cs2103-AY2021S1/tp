@@ -120,7 +120,7 @@ public class Item {
                 .append(getSupplier())
                 .append("\n")
                 .append("Tags: ");
-        getTags().forEach(builder::append);
+        getTags().forEach(x -> builder.append(x).append(" "));
         if (maxQuantity.isPresent()) {
             builder.append("\n")
                     .append("Max Quantity: ")
