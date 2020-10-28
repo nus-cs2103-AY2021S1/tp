@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.modulelistcommands.AddZoomDescriptor;
 import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -33,14 +34,13 @@ public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
         ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ZOOM_LINK)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddZoomLinkCommand.MESSAGE_USAGE));
         }
 
         Index index;
         ZoomLink zoomLink;
-        String moduleLessonType = argMultimap.getValue(PREFIX_NAME).get();;
+        String moduleLessonType = argMultimap.getValue(PREFIX_NAME).get();
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -49,7 +49,12 @@ public class AddZoomLinkParser implements Parser<AddZoomLinkCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddZoomLinkCommand.MESSAGE_USAGE), pe);
         }
-        return new AddZoomLinkCommand(index.getZeroBased(), zoomLink);
+
+        AddZoomDescriptor descriptor = new AddZoomDescriptor();
+        descriptor.setLink(zoomLink);
+        descriptor.setModuleLessonType(moduleLessonType);
+
+        return new AddZoomLinkCommand(index, descriptor);
     }
 
     /**

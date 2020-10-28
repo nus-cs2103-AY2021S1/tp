@@ -8,7 +8,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ZoomLink;
 import seedu.address.model.task.Task;
 
 /**
@@ -87,11 +86,6 @@ public interface Model {
      * The module identity of {@code editedModule} must not be the same as another existing module in the module.
      */
     void setModule(Module target, Module editedModule);
-
-    /**
-     * Adds the given {@code zoomLink} to the given module {@code target}.
-     */
-    void addZoomToModule(Module target, ZoomLink zoomLink);
 
     /** Returns an unmodifiable view of the filtered module list */
     ObservableList<Module> getFilteredModuleList();

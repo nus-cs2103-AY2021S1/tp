@@ -34,44 +34,44 @@ public class AddZoomLinkCommand extends Command {
             + "1" + PREFIX_NAME + "lecture"
             + PREFIX_ZOOM_LINK + "https://nus-sg.zoom.us/j/uasoihd637bf";
 
-    public static final String MESSAGE_ADD_ZOOM_SUCCESS = "Added zoom link: %1$s";
+    public static final String MESSAGE_ADD_ZOOM_SUCCESS = "Added Zoom Link: %1$s";
 
     private final Logger logger = LogsCenter.getLogger(AddZoomLinkCommand.class);
 
     private final Index targetIndex;
-    private final String moduleLessonType;
-    private final ZoomLink zoomLink;
+    private final AddZoomDescriptor descriptor;
 
     /**
      * Creates and initialises a new AddZoomLinkCommand object.
      *
      * @param targetIndex Index object representing the index of the module in the module list.
-     * @param moduleLessonType String representing the type of module lesson.
-     * @param zoomLink ZoomLink object representing the zoom link to be added
-     *                 to a module for a specific lesson type.
+     * @param descriptor Encapsulates details of the zoom link to be added.
      */
-    public AddZoomLinkCommand(Index targetIndex, String moduleLessonType, ZoomLink zoomLink) {
-        requireAllNonNull(targetIndex, moduleLessonType, zoomLink);
+    public AddZoomLinkCommand(Index targetIndex, AddZoomDescriptor descriptor) {
+        requireAllNonNull(targetIndex, descriptor);
+        logger.info("Executing command to add a zoom link to a module");
         this.targetIndex = targetIndex;
-        this.moduleLessonType = moduleLessonType;
-        this.zoomLink = zoomLink;
+        this.descriptor = new AddZoomDescriptor(descriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
         List<Module> lastShownList = model.getFilteredModuleList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
         }
 
+        ZoomLink zoomLink = descriptor.getZoomLink();
+        String moduleLessonType = descriptor.getModuleLessonType();
+
         Module moduleToAddLink = lastShownList.get(targetIndex.getZeroBased());
-        Module updatedModule = moduleToAddLink.addZoomLink("", zoomLink);
+        Module updatedModule = moduleToAddLink.addZoomLink(moduleLessonType, zoomLink);
+
         model.setModule(moduleToAddLink, updatedModule);
+        logger.info("Zoom link added to the module");
         model.commitModuleList();
-        logger.info("Zoom link added to module");
         return new CommandResult(String.format(MESSAGE_ADD_ZOOM_SUCCESS, zoomLink));
     }
 
@@ -90,8 +90,7 @@ public class AddZoomLinkCommand extends Command {
         // state check
         AddZoomLinkCommand command = (AddZoomLinkCommand) other;
         return targetIndex.equals(command.targetIndex)
-                && moduleLessonType.equals(command.moduleLessonType)
-                && zoomLink.equals(command.zoomLink);
+                && descriptor.equals(command.descriptor);
     }
 
     /**
