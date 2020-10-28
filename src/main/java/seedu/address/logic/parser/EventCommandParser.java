@@ -56,7 +56,7 @@ public class EventCommandParser implements Parser<EventCommand> {
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
             tag = ParserUtil.parseTag(argMultimap.getValue(PREFIX_TAG).get());
         }
-
+        System.out.println(tag.tagName);
         Event event = Event.createUserEvent(title, startDateTime, endDateTime, description, tag);
 
         return new EventCommand(event);

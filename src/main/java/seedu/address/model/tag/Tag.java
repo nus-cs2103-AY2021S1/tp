@@ -65,7 +65,7 @@ public class Tag {
      * Format tag as text for viewing.
      */
     public String toString() {
-        return tagName.equals("") ? "" : '[' + tagName + ']';
+        return tagName.equals("") ? "" : tagName;
     }
 
 }

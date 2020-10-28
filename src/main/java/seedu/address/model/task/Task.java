@@ -56,7 +56,10 @@ public abstract class Task implements Comparable<Task> {
      * This defines a strong notion of equality between two tasks to allow recurring tasks yet preventing duplicates.
      */
     public abstract boolean isSameTask(Task otherTask);
-
+    /**
+     * Returns true if tasks is a lesson.
+     */
+    public abstract boolean isLesson();
     /**
      * Returns true if both tasks have the same identity and data fields.
      * This defines a stronger notion of equality between two tasks.

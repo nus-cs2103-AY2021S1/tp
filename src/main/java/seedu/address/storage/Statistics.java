@@ -64,6 +64,9 @@ public class Statistics {
                                                LocalDate startDate, LocalDate endDate) {
         FilteredList<Task> filteredTasks = filterTasksWithinPeriod(tasks, startDate, endDate);
         for (Task task: filteredTasks) {
+            if(task.isLesson()) {
+                continue;
+            }
             Tag currentTag = task.getTag();
             if (!stats.contains(currentTag)) {
                 stats.addTag(currentTag);
