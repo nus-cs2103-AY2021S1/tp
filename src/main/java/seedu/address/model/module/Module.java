@@ -8,6 +8,7 @@ import java.util.Set;
 
 import seedu.address.model.module.grade.Assignment;
 import seedu.address.model.module.grade.Grade;
+import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.module.grade.GradeTracker;
 import seedu.address.model.tag.Tag;
 
@@ -127,6 +128,23 @@ public class Module {
         this.tags.addAll(tags);
         this.modularCredits = modularCredits;
     }
+
+    /**
+     * Represents the module object constructor.
+     * @param name name of module
+     * @param tags tag attached to module
+     * @param modularCredits modular credits for module
+     * @param gradePoint grade point attached to module
+     */
+    public Module(ModuleName name, Set<Tag> tags, ModularCredits modularCredits, GradePoint gradePoint) {
+        this.name = name;
+        this.zoomLink = null;
+        this.gradeTracker = new GradeTracker();
+        gradeTracker.setGradePoint(gradePoint);
+        this.tags.addAll(tags);
+        this.modularCredits = modularCredits;
+    }
+
 
     /**
      * Represents the module object constructor.
@@ -267,6 +285,7 @@ public class Module {
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
+
     /**
      * Adds a grade to the GradeTracker of the module.
      *
@@ -304,7 +323,8 @@ public class Module {
 
     @Override
     public String toString() {
-        return String.format("The zoom link for %s is %s", getName(), getLink());
+        return String.format("Module Name: %s, ZoomLink: %s, MCs: %s", getName(), getLink(),
+                getModularCredits().toString());
     }
 
     /**
