@@ -57,33 +57,6 @@ public class JsonCommonCentsStorageTest {
             "invalidAndValidAccountCommonCents.json"));
     }
 
-    /*
-    @Test
-    public void readAndSaveCommonCents_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempCommonCents.json");
-        CommonCents original = getTypicalCommonCents();
-        JsonCommonCentsStorage jsonCommonCentsStorage = new JsonCommonCentsStorage(filePath);
-
-        // Save in new file and read back
-        jsonCommonCentsStorage.saveCommonCents(original, filePath);
-        ReadOnlyCommonCents readBack = jsonCommonCentsStorage.readCommonCents(filePath).get();
-        assertEquals(original, new CommonCents(readBack));
-
-        // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
-        jsonCommonCentsStorage.saveCommonCents(original, filePath);
-        readBack = jsonCommonCentsStorage.readCommonCents(filePath).get();
-        assertEquals(original, new CommonCents(readBack));
-
-        // Save and read without specifying file path
-        original.addPerson(IDA);
-        jsonCommonCentsStorage.saveCommonCents(original); // file path not specified
-        readBack = jsonCommonCentsStorage.readCommonCents().get(); // file path not specified
-        assertEquals(original, new CommonCents(readBack));
-    }
-     */
-
     @Test
     public void saveCommonCents_nullCommonCents_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> saveCommonCents(null, "SomeFile.json"));
