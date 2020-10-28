@@ -6,6 +6,7 @@ import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -27,6 +28,8 @@ public class DisplayController extends UiPart<Region> {
     private final TextDisplay textDisplay;
     private final ObservableList<Recipe> recipeObservableList;
     private final ObservableList<Ingredient> ingredientObservableList;
+    private FilteredList<Recipe> recommendedRecipeObservableList;
+    private FilteredList<Recipe> expiringRecipeObservableList;
 
     @FXML
     private StackPane displayAreaPlaceholder;
@@ -49,6 +52,8 @@ public class DisplayController extends UiPart<Region> {
         this.textDisplay = new TextDisplay(WELCOME_MESSAGE);
         this.recipeObservableList = logic.getFilteredRecipeList();
         this.ingredientObservableList = logic.getFilteredIngredientList();
+        this.recommendedRecipeObservableList = logic.getRecommendedRecipeList();
+        this.expiringRecipeObservableList = logic.getExpiringRecipeList();
 
         // TODO: Edit to account for loading of recipes/ingredients after UI
         this.recipeObservableList.addListener((ListChangeListener<Recipe>) c -> {
@@ -120,6 +125,16 @@ public class DisplayController extends UiPart<Region> {
     }
 
     /**
+     * Displays the RecommendationViewPanel on the swappable display region.
+     */
+    protected void displayRecommendationList() {
+        var recommendationViewPanel = new RecommendationViewPanel(this.recommendedRecipeObservableList,
+                this.expiringRecipeObservableList);
+        this.displayAreaPlaceholder.getChildren().setAll(recommendationViewPanel.getRoot());
+        this.selectRecommendationButton();
+    }
+
+    /**
      * Opens the notification window or focuses on it if it's already opened.
      */
     public void handleNotification() {
@@ -156,6 +171,11 @@ public class DisplayController extends UiPart<Region> {
         this.ingredientButton.getStyleClass().add("tab-button-selected");
     }
 
+    private void selectRecommendationButton() {
+        this.resetButtons();
+        this.recommendationButton.getStyleClass().add("tab-button-selected");
+    }
+
     /**
      * Displays the recipe panel.
      */
@@ -179,6 +199,6 @@ public class DisplayController extends UiPart<Region> {
     @FXML
     public void handleRecommendations() {
         // To add more code.
-        this.handleNotification();
+        this.displayRecommendationList();
     }
 }
