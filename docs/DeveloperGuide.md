@@ -164,8 +164,8 @@ The `Model`,
 **API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W17-3/tp/tree/master/src/main/java/jimmy/mcgymmy/storage/Storage.java)
 
 The `Storage` component,
-* can save `UserPref` objects in json format and read it back.
-* can save the McGymmy data in json format and read it back.
+* can save `UserPref` objects in JSON format and read it back.
+* can save the McGymmy data in JSON format and read it back.
 
 ### Common classes
 
