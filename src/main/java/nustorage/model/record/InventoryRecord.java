@@ -3,20 +3,17 @@ package nustorage.model.record;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Class to record movement in the Inventory.
  */
 public class InventoryRecord {
 
-    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
-
     private final LocalDateTime dateTime;
     private final int quantity;
     private final String itemName;
     private int financeId;
-    private String UiUsableIndex;
+    private String uiUsableIndex;
 
     /**
      * Constructs an InventoryRecord.
@@ -27,7 +24,7 @@ public class InventoryRecord {
         this.quantity = 0;
         this.dateTime = LocalDateTime.now();
         this.financeId = -1;
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     /**
@@ -40,7 +37,7 @@ public class InventoryRecord {
         this.quantity = quantity;
         this.dateTime = LocalDateTime.now();
         this.financeId = -1;
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     /**
@@ -54,7 +51,7 @@ public class InventoryRecord {
         this.quantity = quantity;
         this.dateTime = dateTime;
         this.financeId = -1;
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     /**
@@ -69,7 +66,7 @@ public class InventoryRecord {
         this.quantity = quantity;
         this.dateTime = dateTime;
         this.financeId = financeId;
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     public void setFinanceRecord(FinanceRecord financeRecord) {
@@ -104,11 +101,11 @@ public class InventoryRecord {
     }
 
     public String getUiUsableIndex() {
-        return this.UiUsableIndex;
+        return this.uiUsableIndex;
     }
 
     public void setUiUsableIndex(int i) {
-        this.UiUsableIndex = "" + i;
+        this.uiUsableIndex = "" + i;
     }
 
     @Override

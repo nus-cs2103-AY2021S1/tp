@@ -1,16 +1,17 @@
 package nustorage.model.record;
 
+import static nustorage.commons.util.DateTimeUtil.DATETIME_FORMAT;
+
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class FinanceRecord {
 
-    private static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd MMM yyyy HH:mm");
-
     private final int id;
     private LocalDateTime dateTime;
+    private final boolean hasInventory;
     private double amount;
-    private String UiUsableIndex;
+    private String uiUsableIndex;
+    private double cost;
 
     /**
      * Constructs a {@code Finance Record}.
@@ -21,7 +22,21 @@ public class FinanceRecord {
         id = this.hashCode();
         this.amount = amount;
         this.dateTime = LocalDateTime.now();
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.hasInventory = false;
+        this.uiUsableIndex = "" + uiUsableIndex;
+    }
+
+    /**
+     * Constructs a {@code Finance Record}.
+     *
+     * @param amount Amount of the transaction.
+     */
+    public FinanceRecord(double amount, boolean hasInventory) {
+        id = this.hashCode();
+        this.amount = amount;
+        this.dateTime = LocalDateTime.now();
+        this.hasInventory = hasInventory;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     /**
@@ -34,7 +49,8 @@ public class FinanceRecord {
         id = this.hashCode();
         this.amount = amount;
         this.dateTime = dateTime;
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.hasInventory = false;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     /**
@@ -44,11 +60,27 @@ public class FinanceRecord {
      * @param amount Amount of the transaction.
      * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(int id, double amount, LocalDateTime dateTime) {
+    public FinanceRecord(int id, double amount, LocalDateTime dateTime, boolean hasInventory) {
         this.id = id;
         this.amount = amount;
         this.dateTime = dateTime;
-        this.UiUsableIndex = "" + UiUsableIndex;
+        this.hasInventory = hasInventory;
+        this.uiUsableIndex = "" + uiUsableIndex;
+    }
+
+    /**
+     * Constructs a {@code Finance Record}.
+     *
+     * @param amount the amount of the transaction
+     * @param cost the cost of each item
+     */
+    public FinanceRecord(double amount, double cost) {
+        this.amount = amount;
+        this.id = this.hashCode();;
+        this.dateTime = LocalDateTime.now();
+        this.cost = cost;
+        this.hasInventory = true;
+        this.uiUsableIndex = "" + uiUsableIndex;
     }
 
     public int getID() {
@@ -59,6 +91,14 @@ public class FinanceRecord {
         return amount;
     }
 
+    public double getCost() {
+        return cost;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -67,12 +107,16 @@ public class FinanceRecord {
         return DATETIME_FORMAT.format(dateTime);
     }
 
+    public boolean taggedToInventory() {
+        return hasInventory;
+    }
+
     public String getUiUsableIndex() {
-        return UiUsableIndex;
+        return uiUsableIndex;
     }
 
     public void setUiUsableIndex(int i) {
-        this.UiUsableIndex = "" + i;
+        this.uiUsableIndex = "" + i;
     }
 
     /**
@@ -118,6 +162,4 @@ public class FinanceRecord {
                 getDatetimeString(),
                 amount);
     }
-
-
 }

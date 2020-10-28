@@ -20,7 +20,7 @@ class JsonAdaptedFinanceRecord {
     private final int id;
     private final double amount;
     private final LocalDateTime dateTime;
-
+    private final boolean hasInventory;
 
     /**
      * Constructs a {@code JsonAdaptedFinanceRecord} with the given record details.
@@ -28,12 +28,13 @@ class JsonAdaptedFinanceRecord {
     @JsonCreator
     public JsonAdaptedFinanceRecord(@JsonProperty("id") int id,
                                     @JsonProperty("amount") double amount,
-                                    @JsonProperty("dateTime") LocalDateTime dateTime) {
+                                    @JsonProperty("dateTime") LocalDateTime dateTime,
+                                    @JsonProperty("hasInventory") boolean hasInventory) {
         this.id = id;
         this.amount = amount;
         this.dateTime = dateTime;
+        this.hasInventory = hasInventory;
     }
-
 
     /**
      * Converts a given {@code FinanceRecord} into this class for Jackson use.
@@ -44,6 +45,7 @@ class JsonAdaptedFinanceRecord {
         this.id = source.getID();
         this.amount = source.getAmount();
         this.dateTime = source.getDateTime();
+        this.hasInventory = source.taggedToInventory();
     }
 
 
@@ -69,7 +71,9 @@ class JsonAdaptedFinanceRecord {
         }
         final LocalDateTime modelDateTime = this.dateTime;
 
-        return new FinanceRecord(modelId, modelAmount, modelDateTime);
+        final boolean modelHasInventory = this.hasInventory;
+
+        return new FinanceRecord(modelId, modelAmount, modelDateTime, modelHasInventory);
 
     }
 

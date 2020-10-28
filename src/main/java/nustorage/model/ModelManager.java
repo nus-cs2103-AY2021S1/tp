@@ -4,7 +4,6 @@ package nustorage.model;
 import static java.util.Objects.requireNonNull;
 import static nustorage.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,7 +11,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import nustorage.commons.core.GuiSettings;
 import nustorage.commons.core.LogsCenter;
-import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
@@ -26,32 +24,21 @@ public class ModelManager implements Model {
 
     private final Inventory inventory;
     private final FinanceAccount financeAccount;
-    private final AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<InventoryRecord> filteredInventory;
     private final FilteredList<FinanceRecord> filteredFinance;
-
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
-
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
-
         this.inventory = new Inventory();
         this.financeAccount = new FinanceAccount();
         filteredInventory = new FilteredList<>(this.inventory.getInventoryRecordList());
         filteredFinance = new FilteredList<>(this.financeAccount.getFinanceList());
-
-        this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
-
 
     /**
      * Initializes a ModelManager with the given financeAccount, inventory and userPrefs
@@ -70,17 +57,7 @@ public class ModelManager implements Model {
         this.inventory = new Inventory(inventory);
         filteredInventory = new FilteredList<>(this.inventory.getInventoryRecordList());
         this.userPrefs = new UserPrefs(userPrefs);
-
-        // duplicate so programme runs. will be deleted.
-        this.addressBook = new AddressBook();
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
     }
-
-
-    // public ModelManager() {
-    //     this(new AddressBook(), new UserPrefs());
-    // }
-
 
     public ModelManager() {
         this(new FinanceAccount(), new Inventory(), new UserPrefs());
@@ -88,25 +65,21 @@ public class ModelManager implements Model {
 
     //=========== UserPrefs ==================================================================================
 
-
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
         requireNonNull(userPrefs);
         this.userPrefs.resetData(userPrefs);
     }
 
-
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
         return userPrefs;
     }
 
-
     @Override
     public GuiSettings getGuiSettings() {
         return userPrefs.getGuiSettings();
     }
-
 
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
@@ -116,16 +89,13 @@ public class ModelManager implements Model {
 
     //=========== Inventory ================================================================================
 
-
     public void addInventoryRecord(InventoryRecord newRecord) {
         inventory.addInventoryRecord(newRecord);
     }
 
-
     public ObservableList<InventoryRecord> getFilteredInventory() {
         return filteredInventory;
     }
-
 
     /**
      * Applies a predicate to the Inventory and returns those that pass it.
@@ -148,14 +118,12 @@ public class ModelManager implements Model {
         return inventory.hasInventoryRecord(inventoryRecord);
     }
 
-
     @Override
     public void setInventoryRecord(InventoryRecord target, InventoryRecord editedInventoryRecord) {
         requireAllNonNull(target, editedInventoryRecord);
 
         inventory.setInventoryRecord(target, editedInventoryRecord);
     }
-
 
     @Override
     public void deleteInventoryRecord(InventoryRecord target) {
@@ -166,18 +134,15 @@ public class ModelManager implements Model {
 
     //=========== FinanceAccount ================================================================================
 
-
     @Override
     public void addFinanceRecord(FinanceRecord newRecord) {
         financeAccount.addFinanceRecord(newRecord);
     }
 
-
     @Override
     public ObservableList<FinanceRecord> getFilteredFinanceList() {
         return filteredFinance;
     }
-
 
     @Override
     public void setFinanceRecord(FinanceRecord target, FinanceRecord editedFinanceRecord) {
@@ -186,13 +151,21 @@ public class ModelManager implements Model {
         financeAccount.setFinanceRecord(target, editedFinanceRecord);
     }
 
+    @Override
+    public FinanceRecord getFinanceRecord(Integer target) {
+        requireAllNonNull(target);
+        return financeAccount.getFinanceRecord(target);
+    }
 
+    @Override
+    public FinanceRecord getFinanceRecord(InventoryRecord inventoryRecord) {
+        return financeAccount.getFinanceRecord(inventoryRecord.getFinanceId());
+    }
     // @Override
     // public List<FinanceRecord> viewFinanceRecords() {
     //     // TODO: DORA IMPLEMENT VIEW FINANCE RECORDS.
     //     return null;
     // }
-
 
     @Override
     public void updateFilteredFinanceList(Predicate<FinanceRecord> predicate) {
@@ -200,94 +173,16 @@ public class ModelManager implements Model {
         filteredFinance.setPredicate(predicate);
     }
 
-
     @Override
     public void deleteFinanceRecord(FinanceRecord target) {
         requireNonNull(target);
         financeAccount.removeFinanceRecord(target);
     }
 
-
     @Override
     public FinanceAccount getFinanceAccount() {
         return financeAccount;
     }
-
-
-    //=========== AddressBook ================================================================================
-
-
-    @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
-    }
-
-
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
-    }
-
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
-    }
-
-
-    @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
-    }
-
-
-    @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-
-    @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
-    }
-
-    //=========== Filtered Person List Accessors =============================================================
-
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
-
 
     @Override
     public boolean equals(Object obj) {
@@ -303,9 +198,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
-                && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+        return filteredInventory.equals(other.getFilteredInventory())
+                && filteredFinance.equals(other.getFilteredFinanceList())
+                && userPrefs.equals(other.userPrefs);
     }
 
 }

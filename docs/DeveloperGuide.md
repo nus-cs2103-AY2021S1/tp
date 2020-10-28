@@ -26,9 +26,6 @@ The architecture diagram given below shows the high-level design of the software
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-<div markdown="span" class="alert alert-primary">
-
-</div>
 
 Given below is a quick overview of each of the components.
 
@@ -101,7 +98,9 @@ Classes in this component:
 
 #### 2.3.2. UI component
 
-Given below is the class diagram of the UI component of NUStorage.
+This section shows the structure and logic of the `UI` component of NUStorage. It shows a generalised view of the `UI` component within the packages.
+
+Given below is the class diagram of the `UI` component of NUStorage.
 
 ![Structure of the UI Component](images/UiComponent.png)<br>
 Figure 3: Class Diagram of UI Component.
@@ -122,11 +121,17 @@ The `UI` component:
 
 #### 2.3.3. Logic component
 
+This section shows the structure and logic of the `Logic` component of NUStorage. It shows a generalised view of the `Logic` component within the packages.
+
+Given below is the class diagram of the `Logic` component of NUStorage.
+
 ![Structure of the Logic Component](images/LogicClassDiagram.png)<br>
 Figure 4: Class Diagram of Logic Component.
 
 **API**:
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/logic/Logic.java)
+
+An outline of how a command is processed through `Logic` is as follows:
 
 1. `Logic` uses the `NuStorageParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
@@ -140,6 +145,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 Figure 5: Sequence Diagram of Delete Finance Command.
 
 #### 2.3.4. Model component
+
+This section shows the structure and logic of the `Model` component of NUStorage. It shows a generalised view of the `Model` component within the packages.
+
+Given below is the class diagram of the `Model` component.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)<br>
 Figure 6: Class Diagram of Model Component.
@@ -155,9 +164,9 @@ The `Model`,
 
 #### 2.3.5. Storage component
 
-This section shows the structure and logic of the storage component of NUStorage. All storage-related classes are stored in the package `nustorage.storage`.
+This section shows the structure and logic of the `Storage` component of NUStorage. All storage-related classes are stored in the package `nustorage.storage`.
 
-Given below is the class diagram of the `storage` component.
+Given below is the class diagram of the `Storage` component.
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)<br>
 Figure 7: Class Diagram of Storage Component.
