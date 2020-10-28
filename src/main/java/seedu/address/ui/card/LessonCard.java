@@ -2,6 +2,7 @@ package seedu.address.ui.card;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
@@ -29,6 +30,8 @@ public class LessonCard extends UiPart<Region> {
     @FXML
     private VBox card;
     @FXML
+    private FlowPane tags;
+    @FXML
     private Label title;
     @FXML
     private Label id;
@@ -55,6 +58,13 @@ public class LessonCard extends UiPart<Region> {
         time.setText(lesson.getStartTime().toString() + " - " + lesson.getEndTime().toString());
         recurrence.setText(lesson.getStartDate().toString() + " to " + lesson.getEndDate().toString());
         loadDescription(lesson);
+        loadTag(lesson);
+    }
+
+    private void loadTag(Lesson lesson) {
+        if (!lesson.getTag().tagName.equals("")) {
+            tags.getChildren().add(new Label(lesson.getTag().tagName));
+        }
     }
 
     private boolean loadDescription(Lesson lesson) {
