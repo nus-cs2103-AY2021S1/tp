@@ -1,6 +1,5 @@
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.Strings.ARG_QUANTITY;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Optional;
@@ -19,18 +18,6 @@ import chopchop.model.ingredient.Ingredient;
  * If no quantity is specified, the ingredient will be deleted.
  */
 public class DeleteIngredientCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "delete ingredient";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Removes the given quantity of an ingredient identified by the index number or name used in the "
-            + "displayed ingredient list. "
-            + "If no quantity is specified, the ingredient will be deleted. "
-            + "Parameters: "
-            + "INDEX (must be a positive integer) / NAME "
-            + "[" + ARG_QUANTITY + " QUANTITY]\n"
-            + "Example: " + COMMAND_WORD
-            + " Chili "
-            + ARG_QUANTITY + " 3";
 
     private final ItemReference item;
     private final Optional<Quantity> quantity;
@@ -113,5 +100,17 @@ public class DeleteIngredientCommand extends Command implements Undoable {
     public String toString() {
         return String.format("DeleteIngredientCommand(%s%s)", this.item,
             this.quantity.map(q -> String.format(" (%s)", q)).orElse(""));
+    }
+
+    public static String getCommandString() {
+        return "delete ingredient";
+    }
+
+    public static String getCommandHelp() {
+        return "Deletes an ingredient, or removes some quantity of an existing ingredient";
+    }
+
+    public static String getUserGuideSection() {
+        return "deleting-ingredients--deleteingredient";
     }
 }

@@ -11,8 +11,8 @@ public class Volume implements Quantity {
     private static double RATIO_TEASPOON    = 0.005;    // and metric tea and tablespoons.
     private static double RATIO_TABLESPOON  = 0.015;
 
-    private static String UNIT_LITRE        = "l";
-    private static String UNIT_MILLILITRE   = "ml";
+    private static String UNIT_LITRE        = "L";
+    private static String UNIT_MILLILITRE   = "mL";
     private static String UNIT_CUP          = "cup";
     private static String UNIT_CUPS         = "cups";   // this is for convenience.
     private static String UNIT_TEASPOON     = "tsp";
@@ -125,7 +125,7 @@ public class Volume implements Quantity {
         } else if (unit.equalsIgnoreCase(UNIT_TEASPOON)) {
             ratio = RATIO_TEASPOON;
         } else {
-            return Result.error("Cnknown unit '%s'", unit);
+            return Result.error("Unknown unit '%s'", unit);
         }
 
         return Result.of(new Volume(value, ratio));

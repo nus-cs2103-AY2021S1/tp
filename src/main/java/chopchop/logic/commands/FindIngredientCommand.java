@@ -13,14 +13,6 @@ import chopchop.ui.DisplayNavigator;
  */
 public class FindIngredientCommand extends Command {
 
-    public static final String COMMAND_WORD = "find ingredient";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all ingredients whose content contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " sugar";
-
-
     private final NameContainsKeywordsPredicate predicate;
 
     /**
@@ -54,5 +46,17 @@ public class FindIngredientCommand extends Command {
     @Override
     public String toString() {
         return String.format("FindIngredientCommand(keywords: %s)", this.predicate.getKeywords());
+    }
+
+    public static String getCommandString() {
+        return "find ingredient";
+    }
+
+    public static String getCommandHelp() {
+        return "Finds ingredients by searching for keywords in their names";
+    }
+
+    public static String getUserGuideSection() {
+        return "find-ingredients--findingredient";
     }
 }

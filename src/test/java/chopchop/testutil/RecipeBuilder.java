@@ -5,15 +5,17 @@ import chopchop.model.recipe.Recipe;
 import chopchop.model.attributes.Step;
 import chopchop.model.ingredient.IngredientReference;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Set;
 
 public class RecipeBuilder {
 
     public static final String DEFAULT_NAME = "Egg";
+    public static final String DEFAULT_INGREDIENT_NAME = "Egg";
     public static final String DEFAULT_STEP = "Heat it for 15 minutes.";
     public static final String DEFAULT_TAG = "simple";
 
@@ -27,7 +29,8 @@ public class RecipeBuilder {
      */
     public RecipeBuilder() {
         name = DEFAULT_NAME;
-        ingredients = new ArrayList<>();
+        ingredients = new ArrayList<>(
+            Arrays.asList(new IngredientReference(DEFAULT_INGREDIENT_NAME, Optional.empty())));
         steps = new ArrayList<>(Arrays.asList(new Step(DEFAULT_STEP)));
         tags = new HashSet<>(Arrays.asList(new Tag(DEFAULT_TAG)));
     }

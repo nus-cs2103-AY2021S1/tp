@@ -203,6 +203,7 @@ public class AutoCompleterTest {
         cases.put("edit recipe /qty:e",                     "edit recipe /qty:e");
         cases.put("edit recipe /qty:e:f:g",                 "edit recipe /qty:e:f:g");
         cases.put("edit recipe cake /step:add:",            "edit recipe cake /step:add:");
+        cases.put("edit recipe cake /step:",                "edit recipe cake /step:");
 
         runTests(cases);
     }
@@ -215,6 +216,8 @@ public class AutoCompleterTest {
         cases.put("f",                                      List.of("find", "filter"));
         cases.put("add recipe cake /ingredient b",          List.of("add recipe cake /ingredient Banana",
             "add recipe cake /ingredient Baked beans"));
+
+        cases.put("help f",                                 List.of("help find", "help filter"));
 
         cases.forEach((k, v) -> {
             var completer = new AutoCompleter();
@@ -229,6 +232,18 @@ public class AutoCompleterTest {
         });
     }
 
+    @Test
+    public void test_helpCompletions() {
+
+        var cases = new HashMap<String, String>();
+
+        cases.put("help a",                                 "help add");
+        cases.put("help d",                                 "help delete");
+        cases.put("help add r",                             "help add recipe");
+
+        runTests(cases);
+    }
+
 
     @Test
     public void test_noCompletions() {
@@ -241,12 +256,15 @@ public class AutoCompleterTest {
         cases.put("add",                                    "add");
         cases.put("add owo /q",                             "add owo /q");
         cases.put("add recipe",                             "add recipe");
+        cases.put("add recipe /ingredient qqq",             "add recipe /ingredient qqq");
         cases.put("find recipe",                            "find recipe");
         cases.put("find recipe /",                          "find recipe /");
         cases.put("filter owo /f",                          "filter owo /f");
         cases.put("list /f",                                "list /f");
         cases.put("list /tag t",                            "list /tag t");
         cases.put("list /qty 5",                            "list /qty 5");
+        cases.put("undo f",                                 "undo f");
+        cases.put("filter owo /f ",                         "filter owo /f");
 
         runTests(cases);
     }
@@ -295,6 +313,7 @@ public class AutoCompleterTest {
         public ReadOnlyEntryBook<Recipe> getRecipeBook() {
             return this.recipes;
         }
+
     }
 
 }

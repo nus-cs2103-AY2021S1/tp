@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-    <Button fx:id="ingredientCard" mnemonicParsing="false" prefHeight="125.0" prefWidth="148.0" styleClass="recipe-button">
-        <graphic>
-            <Label fx:id="ingredientName" styleClass="recipe_name_label" text="\$name" wrapText="true" />
-        </graphic></Button>
+  <stylesheets><URL value="@Style.css" /></stylesheets>
+  <Button mnemonicParsing="false" maxHeight="125.0" maxWidth="148.0"
+          prefHeight="125.0" prefWidth="148.0" styleClass="icButton"><graphic>
+
+    <AnchorPane maxWidth="148.0" maxHeight="125.0" prefWidth="148.0" prefHeight="125.0"><children>
+      <Label fx:id="index" styleClass="icNumber" AnchorPane.topAnchor="6" AnchorPane.leftAnchor="6"/>
+
+      <Label fx:id="quantity" styleClass="icQuantity" prefHeight="18.0"
+             AnchorPane.topAnchor="6" AnchorPane.rightAnchor="6" />
+
+      <VBox alignment="CENTER" AnchorPane.topAnchor="18" AnchorPane.bottomAnchor="36"
+            AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"><children>
+
+        <HBox alignment="CENTER" minHeight="18" maxHeight="50"><children>
+           <Label fx:id="ingredientName" styleClass="icName" minHeight="18" maxHeight="50" wrapText="true" />
+        </children></HBox>
+
+        <HBox fx:id="expiryBox" alignment="CENTER"><children>
+          <Label styleClass="icExpiry" text="exp: "/>
+          <Label fx:id="expiryDate" styleClass="icExpiry"/>
+        </children></HBox>
+      </children></VBox>
+
+      <FlowPane fx:id="tagList" styleClass="icTagList" maxHeight="35.0" maxWidth="-Infinity"
+                prefHeight="30.0" prefWidth="148.0" prefWrapLength="140.0"
+                AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.bottomAnchor="0"/>
+    </children></AnchorPane>
+  </graphic></Button>
 </StackPane>

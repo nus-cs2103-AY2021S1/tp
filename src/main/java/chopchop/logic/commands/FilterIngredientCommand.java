@@ -17,15 +17,6 @@ import chopchop.ui.DisplayNavigator;
  */
 public class FilterIngredientCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter ingredient";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters and gets all ingredients whose tag(s) "
-            + "contain any of the specified keywords (case-insensitive) and expire before the "
-            + "earliest specified date (keywords) and displays them as a list with index numbers.\n"
-            + "Parameters: /FIELD_NAME KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + "/expiry 2020-12-12 /tag favourite /tag handmade /expiry 2020-11-07\n"
-            + "Note: Tag names should be split into single words";
-
     private final TagContainsKeywordsPredicate tagPredicates;
     private final ExpiryDateMatchesKeywordsPredicate expPredicate;
 
@@ -70,4 +61,16 @@ public class FilterIngredientCommand extends Command {
             && expPredicate.equals(((FilterIngredientCommand) other).expPredicate)); // state check
     }
 
+
+    public static String getCommandString() {
+        return "filter ingredient";
+    }
+
+    public static String getCommandHelp() {
+        return "Filters ingredients by one or more criteria (tags and expiry dates)";
+    }
+
+    public static String getUserGuideSection() {
+        return "filtering-ingredients--filteringredient";
+    }
 }

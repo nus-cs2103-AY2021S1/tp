@@ -65,6 +65,8 @@ public class DisplayController extends UiPart<Region> {
              */
             if (c.wasReplaced() && !c.getAddedSubList().equals(c.getRemoved())) {
                 displayRecipe(c.getAddedSubList().get(0));
+            } else if (c.wasAdded()) {
+                displayRecipe(c.getAddedSubList().get(c.getAddedSize() - 1));
             } else {
                 displayRecipeList();
             }

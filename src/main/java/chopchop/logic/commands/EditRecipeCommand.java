@@ -27,12 +27,6 @@ import chopchop.model.recipe.Recipe;
  * Edits a recipe identified using it's displayed index or name from the recipe book.
  */
 public class EditRecipeCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "edit recipe";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits the recipe identified by the index number or name used in the displayed recipe list.\n"
-            + "Parameters: INDEX (must be a positive integer) / NAME\n"
-            + "Example: " + COMMAND_WORD + " 1";
 
     private final ItemReference item;
     private final RecipeEditDescriptor recipeEditDescriptor;
@@ -237,5 +231,17 @@ public class EditRecipeCommand extends Command implements Undoable {
     @Override
     public String toString() {
         return String.format("EditRecipeCommand(%s)", this.item);
+    }
+
+    public static String getCommandString() {
+        return "edit recipe";
+    }
+
+    public static String getCommandHelp() {
+        return "Edits an existing recipe";
+    }
+
+    public static String getUserGuideSection() {
+        return "editing-recipes--editrecipe";
     }
 }

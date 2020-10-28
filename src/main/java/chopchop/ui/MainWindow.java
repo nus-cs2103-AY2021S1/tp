@@ -8,6 +8,7 @@ import chopchop.logic.Logic;
 import chopchop.logic.commands.CommandResult;
 import chopchop.logic.commands.exceptions.CommandException;
 import chopchop.logic.parser.exceptions.ParseException;
+import chopchop.model.Model;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -29,6 +30,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private Stage primaryStage;
     private Logic logic;
+    private Model model;
 
     // Independent Ui parts residing in this Ui container
     private HelpWindow helpWindow;
@@ -57,12 +59,13 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic) {
+    public MainWindow(Stage primaryStage, Logic logic, Model model) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
+        this.model = model;
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -119,7 +122,7 @@ public class MainWindow extends UiPart<Stage> {
         this.commandOutput = commandOutput;
         commandOutputPlaceholder.getChildren().add(commandOutput.getRoot());
 
-        StatsBox statsOutput = new StatsBox();
+        StatsBox statsOutput = new StatsBox(model.getRecentlyUsedRecipe(10));
         this.statsOutput = statsOutput;
         pinBoxPlaceholder.getChildren().add(statsOutput.getRoot());
 
@@ -165,8 +168,8 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.show();
     }
 
-    void showCommandOutput(String text, boolean isError) {
-        this.commandOutput.setFeedbackToUser(text, isError);
+    void showCommandOutput(CommandResult output) {
+        this.commandOutput.setFeedbackToUser(output);
     }
 
 
@@ -188,27 +191,35 @@ public class MainWindow extends UiPart<Stage> {
      * @see chopchop.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+
         try {
-            CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getMessage());
+            var result = logic.execute(commandText);
+            logger.info("Result: " + result.toString());
 
-            this.commandOutput.setFeedbackToUser(commandResult.getMessage(), commandResult.isError());
+            if (result.isStatsOutput()) {
+                this.commandOutput.clear(); // clear cmd box
+                var res = result.getStatsMessage();
+                this.statsOutput.setStatsMessage(result.toString(), res.size() == 0);
+                this.statsOutput.renderList(result.getStatsMessage());
+            } else {
+                this.commandOutput.setFeedbackToUser(result);
+                this.statsOutput.setStatsMessage("", false); // clear stats box
+            }
 
-            if (commandResult.shouldShowHelp()) {
+            if (result.shouldShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.shouldExit()) {
+            if (result.shouldExit()) {
                 handleExit();
             }
 
-            return commandResult;
+            return result;
 
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
-            this.statsOutput.setBoxContent(e.getMessage());
 
-            commandOutput.setFeedbackToUser(e.getMessage(), /* isError: */ true);
+            commandOutput.setFeedbackToUser(CommandResult.error(e.getMessage(), /* isError: */ true));
             throw e;
         }
     }

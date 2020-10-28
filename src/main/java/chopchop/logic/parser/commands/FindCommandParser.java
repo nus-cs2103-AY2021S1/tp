@@ -40,7 +40,7 @@ public class FindCommandParser {
             return Result.error("'find' command doesn't support '%s'", foo.get());
         }
 
-        return getCommandTarget(args)
+        return getCommandTarget(args, /* acceptsPlural: */ true)
             .then(target -> {
                 var words = new StringView(target.snd()).words();
 

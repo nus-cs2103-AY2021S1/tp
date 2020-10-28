@@ -44,6 +44,8 @@ public class MainApp extends Application {
     public static final Version VERSION = new Version(0, 6, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
+    private static MainApp singletonInstance;
+
 
     protected Ui ui;
     protected Logic logic;
@@ -53,6 +55,8 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
+        MainApp.singletonInstance = this;
+
         logger.info("=============================[ Initializing ChopChop ]===========================");
         super.init();
 
@@ -74,11 +78,12 @@ public class MainApp extends Application {
             recipeUsageStorage, ingredientUsageStorage,
             userPrefsStorage);
 
+
         this.model = new ModelManager(new EntryBook<>(), new EntryBook<>(),
             new UsageList<>(), new UsageList<>(), userPrefs);
 
         this.logic = new LogicManager(this.model, this.storage);
-        this.ui = new UiManager(this.logic);
+        ui = new UiManager(logic, model);
     }
 
     private void loadEntries() {
@@ -261,6 +266,7 @@ public class MainApp extends Application {
         this.loadEntries();
     }
 
+
     @Override
     public void stop() {
         logger.info("============================ [ Stopping ChopChop ] =============================");
@@ -271,6 +277,13 @@ public class MainApp extends Application {
         }
     }
 
+
+    /**
+     * Returns the singleton instance of the MainApp
+     */
+    public static MainApp the() {
+        return MainApp.singletonInstance;
+    }
 
 
 

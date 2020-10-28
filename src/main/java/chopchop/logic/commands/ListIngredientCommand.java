@@ -33,4 +33,16 @@ public class ListIngredientCommand extends Command {
     public String toString() {
         return String.format("ListIngredientCommand");
     }
+
+    public static String getCommandString() {
+        return "list ingredient";
+    }
+
+    public static String getCommandHelp() {
+        return "Lists all ingredients, clearing any search filters";
+    }
+
+    public static String getUserGuideSection() {
+        return "list-ingredients--listingredient";
+    }
 }

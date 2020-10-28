@@ -4,27 +4,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <StackPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <stylesheets>
-      <URL value="@Style.css" />
-   </stylesheets>
-   <Button fx:id="recipeCard" mnemonicParsing="false" onAction="#handleSelectRecipe" prefHeight="125.0" prefWidth="148.0" styleClass="recipe-button">
-      <graphic>
-         <VBox alignment="CENTER">
-            <children>
-               <HBox>
-                  <children>
-                     <Label fx:id="recipeIndex" alignment="CENTER" prefHeight="26.0" prefWidth="38.0" styleClass="recipe_name_label" text="\$index" wrapText="false" />
-                     <ImageView fitHeight="60.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../images/meal.png" />
-                        </image>
-                     </ImageView>
-                  </children>
-               </HBox>
-               <Label fx:id="recipeName" alignment="CENTER" styleClass="recipe_name_label" text="\$name" wrapText="false" />
-            </children>
-         </VBox>
-      </graphic></Button>
+   <stylesheets><URL value="@Style.css" /></stylesheets>
+   <Button mnemonicParsing="false" onAction="#handleSelectRecipe" maxHeight="125.0" maxWidth="148.0"
+           prefHeight="125.0" prefWidth="148.0" styleClass="rcButton"><graphic>
+      <AnchorPane prefWidth="148.0" prefHeight="125.0"><children>
+         <Label fx:id="recipeIndex" styleClass="rcNumber" AnchorPane.topAnchor="6" AnchorPane.leftAnchor="6"/>
+
+         <VBox spacing="-5" alignment="CENTER"
+               AnchorPane.topAnchor="10"
+               AnchorPane.bottomAnchor="3"
+               AnchorPane.leftAnchor="0"
+               AnchorPane.rightAnchor="0"><children>
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+               <image><Image url="@../images/meal.png" /></image>
+            </ImageView>
+
+            <HBox VBox.vgrow="ALWAYS" alignment="CENTER"><children>
+               <Label fx:id="recipeName" styleClass="rcName" wrapText="true" />
+            </children></HBox>
+         </children></VBox>
+
+      </children></AnchorPane>
+   </graphic></Button>
 </StackPane>

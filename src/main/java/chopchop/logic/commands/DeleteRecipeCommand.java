@@ -12,12 +12,6 @@ import chopchop.model.recipe.Recipe;
  * Deletes a recipe identified using it's displayed index or name from the recipe book.
  */
 public class DeleteRecipeCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "delete recipe";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the recipe identified by the index number or name used in the displayed recipe list.\n"
-            + "Parameters: INDEX (must be a positive integer) / NAME\n"
-            + "Example: " + COMMAND_WORD + " 1";
 
     private final ItemReference item;
     private Recipe recipe;
@@ -63,5 +57,17 @@ public class DeleteRecipeCommand extends Command implements Undoable {
     @Override
     public String toString() {
         return String.format("DeleteRecipeCommand(%s)", this.item);
+    }
+
+    public static String getCommandString() {
+        return "delete recipe";
+    }
+
+    public static String getCommandHelp() {
+        return "Deletes a recipe";
+    }
+
+    public static String getUserGuideSection() {
+        return "deleting-recipes--deleterecipe";
     }
 }

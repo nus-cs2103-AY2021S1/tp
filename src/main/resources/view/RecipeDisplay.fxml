@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
 <?import javafx.geometry.Insets?>
 <BorderPane prefHeight="472.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
-   <padding>
-      <Insets top="8" bottom="12" />
-   </padding>
+   <stylesheets><URL value="@Style.css" /></stylesheets>
+   <padding><Insets top="8" bottom="12" /></padding>
    <left>
       <HBox BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="470.0" prefWidth="288.0">
+            <VBox spacing="10" prefHeight="470.0" prefWidth="288.0">
                <children>
-                  <VBox>
-                     <VBox.margin>
-                        <Insets bottom="12.0" />
-                     </VBox.margin>
+                  <AnchorPane minHeight="30.0" maxHeight="70" prefWidth="200.0" maxWidth="200.0">
                      <children>
-                        <TextArea fx:id="recipeName" prefHeight="160.0" prefWidth="200.0" editable="false" wrapText="true"/>
+                        <Label styleClass="rvRecipeName" maxHeight="70" prefWidth="200.0" fx:id="recipeName" wrapText="true"
+                               AnchorPane.topAnchor="5.0" AnchorPane.leftAnchor="5.0"/>
+                     </children>
+                  </AnchorPane>
+                  <VBox styleClass="rvTagDisplay" prefWidth="200.0">
+                     <children>
+                        <FlowPane styleClass="rvTagList" fx:id="tagList" />
                      </children>
                   </VBox>
-                  <TextArea fx:id="ingredientDisplay" prefHeight="360.0" prefWidth="200.0" editable="false" wrapText="true"/>
+                  <VBox styleClass="rvIngredientDisplay" VBox.vgrow="ALWAYS" prefWidth="200.0">
+                     <children>
+                        <Label styleClass="rvIngredientHeader" fx:id="ingredientHeader" underline="true"/>
+                        <TextFlow styleClass="rvIngredientList" fx:id="ingredientList" />
+                     </children>
+                  </VBox>
                </children>
             </VBox>
          </children>
@@ -30,7 +39,12 @@
    <right>
       <HBox BorderPane.alignment="CENTER_LEFT">
          <children>
-            <TextArea fx:id="instructionDisplay" prefHeight="465.0" prefWidth="310.0" editable="false" wrapText="true"/>
+            <VBox styleClass="rvStepDisplay" prefHeight="465.0" prefWidth="310.0">
+               <children>
+                  <Label styleClass="rvStepHeader" fx:id="stepHeader" underline="true" />
+                  <TextFlow styleClass="rvStepList" fx:id="stepList" />
+               </children>
+            </VBox>
          </children>
       </HBox>
    </right>

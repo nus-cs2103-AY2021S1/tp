@@ -2,6 +2,7 @@ package chopchop.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import chopchop.logic.commands.CommandResult;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
@@ -31,30 +32,55 @@ public class CommandOutput extends UiPart<Region> {
     }
 
     /**
+     * Clear wtv is displayed.
+     */
+    public void clear() {
+        var texts = displayBox.getChildren();
+        texts.clear();
+    }
+
+    /**
      * Displays the commandResult to the user.
      *
-     * @param message the message to display
-     * @param isError whether or not the message should be styled as an error
+     * @param result the command result
      */
-    public void setFeedbackToUser(String message, boolean isError) {
-        requireNonNull(message);
+    public void setFeedbackToUser(CommandResult result) {
+        requireNonNull(result);
 
         var texts = displayBox.getChildren();
         texts.clear();
 
-        if (isError) {
+        boolean shouldUnCaps = false;
+
+        if (result.isError()) {
             var foo = new Text("Error: ");
             foo.setStyle("-fx-font-weight: bolder");
             foo.setFill(Color.RED);
 
             texts.add(foo);
-
-            // a little dirty, but... whatever.
-            if (message.length() > 0) {
-                message = message.substring(0, 1).toLowerCase() + message.substring(1);
-            }
+            shouldUnCaps = true;
         }
 
-        texts.add(new Text(message));
+
+        for (var part : result.getParts()) {
+            var msg = part.getText();
+
+            if (shouldUnCaps) {
+                shouldUnCaps = false;
+                if (msg.length() > 0) {
+                    msg = msg.substring(0, 1).toLowerCase() + msg.substring(1);
+                }
+            }
+
+            if (part.isLink()) {
+                texts.add(new ClickableLink(msg, part.getUrl()));
+            } else {
+                texts.add(new Text(msg));
+            }
+
+            if (part.appendNewline()) {
+                texts.add(new Text("\n"));
+            }
+        }
     }
 }

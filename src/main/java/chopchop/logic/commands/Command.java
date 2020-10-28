@@ -12,6 +12,13 @@ import chopchop.model.recipe.Recipe;
 
 /**
  * Represents a command with hidden internal logic and the ability to be executed.
+ * In addition to the instance methods described here, all command classes should
+ * contain the following STATIC methods:
+ *
+ * {@code String getCommandString()}    -- the command string (eg. "add recipe")
+ * {@code String getCommandHelp()}      -- a brief description of what the command does
+ * {@code String getUserGuideSection()} -- the ref portion (ONLY) (eg. #foo-bar) of its UG section
+ *
  */
 public abstract class Command {
 
@@ -24,7 +31,6 @@ public abstract class Command {
      * @throws CommandException If an error occurs during command execution.
      */
     public abstract CommandResult execute(Model model, HistoryManager historyManager) throws CommandException;
-
 
     /**
      * Resolves the ingredient reference, or returns an error message.

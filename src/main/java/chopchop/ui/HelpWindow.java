@@ -3,6 +3,7 @@ package chopchop.ui;
 import java.util.logging.Logger;
 
 import chopchop.commons.core.LogsCenter;
+import chopchop.commons.util.Strings;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,8 +16,7 @@ import javafx.stage.Stage;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2021s1-cs2103t-t10-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
+    public static final String HELP_MESSAGE = "Refer to the user guide: " + Strings.USER_GUIDE_BASE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
@@ -96,7 +96,7 @@ public class HelpWindow extends UiPart<Stage> {
     private void copyUrl() {
         final Clipboard clipboard = Clipboard.getSystemClipboard();
         final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
+        url.putString(Strings.USER_GUIDE_BASE_URL);
         clipboard.setContent(url);
     }
 }

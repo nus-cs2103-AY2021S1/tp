@@ -47,12 +47,12 @@ public class FindIngredientCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different values -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
+    public void execute_zeroKeywords_noIngredientFound() {
         var predicate = preparePredicate(" ");
         var command = new FindIngredientCommand(predicate);
         expectedModel.updateFilteredIngredientList(predicate);
