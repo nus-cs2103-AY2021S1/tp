@@ -3,6 +3,7 @@ package seedu.address.logic.commands.ingredientcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INGREDIENT;
 
+import java.util.List;
 import java.util.Optional;
 
 import seedu.address.logic.commands.Command;
@@ -50,9 +51,8 @@ public class IngredientViewSingleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        Ingredient ingredientToView = model.findIngredientByName(target);
-
+        Ingredient ingredientToView;
+        ingredientToView = model.findIngredientByName(target);
         return new CommandResult(String.format(MESSAGE_SUCCESS, ingredientToView));
     }
 
