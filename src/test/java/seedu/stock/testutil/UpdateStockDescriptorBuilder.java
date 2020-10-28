@@ -13,7 +13,7 @@ import seedu.stock.model.stock.Source;
 import seedu.stock.model.stock.Stock;
 
 /**
- * A utility class to help with building EditStockDescriptor objects.
+ * A utility class to help with building UpdateStockDescriptor objects.
  */
 public class UpdateStockDescriptorBuilder {
 
