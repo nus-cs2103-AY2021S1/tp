@@ -26,11 +26,13 @@ public class RemindCommand extends Command {
     public static final String COMMAND_WORD = "remind";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Sets reminders for the assignment identified by the index number "
+            + ": Sets reminders for assignment(s) identified by the index numbers "
             + "used in the displayed assignment list."
             + " Assignments with reminders set are permanently shown in the displayed reminders list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + "Parameters: INDEX [MORE_INDEXES] (must be a positive integer)\n"
+            + "Examples: \n"
+            + COMMAND_WORD + " 1 \n"
+            + COMMAND_WORD + " 1 2";
 
     public static final String MESSAGE_REMIND_ASSIGNMENT_SUCCESS = "Set reminder for Assignment: %1$s";
     public static final String MESSAGE_REMINDED_ASSIGNMENT = "This assignment already has reminders set.";
@@ -55,7 +57,7 @@ public class RemindCommand extends Command {
         targetIndexes.sort(CommandLogic.INDEX_COMPARATOR);
 
         CommandLogic.checkForDuplicatedIndexes(targetIndexes);
-        CommandLogic.checkForInvalidIndexes(targetIndexes, model, DeleteCommand.MESSAGE_USAGE);
+        CommandLogic.checkForInvalidIndexes(targetIndexes, model, RemindCommand.MESSAGE_USAGE);
 
         for (Index targetIndex : targetIndexes) {
             Assignment assignmentToRemind = lastShownList.get(targetIndex.getZeroBased());

@@ -100,7 +100,7 @@ public class RemindCommandTest {
     @Test
     public void execute_validMultipleIndexesUnfilteredList_success() {
         indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
-        indexesToRemind.add(INDEX_SECOND_ASSIGNMENT); // Two indexes of assignments to delete
+        indexesToRemind.add(INDEX_SECOND_ASSIGNMENT); // Two indexes of assignments to remind
 
         Assignment firstAssignmentToRemind = model.getFilteredAssignmentList()
                 .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
