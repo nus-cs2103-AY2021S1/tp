@@ -154,7 +154,7 @@ Format: `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC]
 * `TAG` could be used to categorise items. EG: Duck can be tagged as meat. 
 
 <a name="addexample1"></a>
-Example 1: Add an item using [Figure 1](#uiwithannotationpng) as the starting point.
+Example 1: Add an item using [Figure 1](#uiwithannotationpng) data set as the starting point.
 
 
 1. Type `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` in the [Command Box](#uiwithannotationpng).
@@ -163,35 +163,67 @@ Example 1: Add an item using [Figure 1](#uiwithannotationpng) as the starting po
 
 3. The new item will show up in Inventory Book, refer to the diagram below:
 <br>
-![add-i example one step three](images/add-i_example_one_step_three.PNG)
+![](images/add-i_eg1.1.PNG)
 <br>
+Figure 5: Add new item of duck
 <br>
 
-4. Re-enter the same command in step 1. You can press key arrow up to toggle previous commands.
+4. Press key arrow up on your keyboard to toggle to previous command and press Enter. Your command should not pass 
+through as you are not allowed to add with max quantity and metric. You should receive an error message as shown below:
+<br>
+![](images/add-i_eg1.2.PNG)
+<br>
+Figure 6: Error when adding maximum quantity and metric to an existing item
+<br>
+ 
+   *Note: If you want to edit the maximum quantity or metric of an existing item, refer to [edit](#edit) feature*
 
-5. The quantity of duck should have increased by 10KG, it should look similar to the diagram below:
-<<insert diagram>>
-
-Example 2: Add an item with multiple tags using the diagram from Figure ..
+5. Repeat step 1 and 2 above but with the command: `add-i n/DUCK q/10 s/NTUC t/perishable`. Notice that you 
+are adding to an existing `item` DUCK which was just added. Furthermore, a new tag of perishable should also appear.
+You can refer to the diagram below for the expected result:
+<br>
+![](images/add-i_eg1.3.PNG)
+<br>
+Figure 7: Successfully added quantity with new tag
 
 <div markdown="span" class="alert alert-primary">:bulb:**Tip:**
 <li>An item can have any number of tags (including 0)</li>
+<li>Adding exactly the same tag to an existing item will not result in duplicated tags</li>
 </div>
 
 ##### 3.1.2.b `add-d`
 
-Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER`
+Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/]`
 
-Example: 
+Example 1: 
 
-1. Type `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`.
+1. Type `add-d n/JASON p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`.
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 
-3. You should now see a new pending delivery, refer to the diagram below:
-<<insert diagram>> 
+3. You should now see a new pending delivery with a default `deliver by` of 30 minutes,
+ you may want to refer to the diagram below:
+<br>
+![](images/add-d_eg1.1.PNG)
+<br>
+Figure 8: Added Jason's delivery
+<br>
+
+Example 2: 
+
+1. Repeat step 1 and 2 as above but with the command:
+ `add-d n/HUGO p/91123421 a/Blk 253 BUKIT TIMAH o/Fish fillet x1 by/10`.
+
+2. You should now see a Hugo's delivery with `deliver by` of 10 minutes,
+ you may want to refer to the diagram below:
+<br>
+![](images/add-d_eg1.2.PNG)
+<br>
+Figure 8: Added Jason's delivery
+<br>
 
 <div markdown="span" class="alert alert-primary">:bulb:**Tip:**
+<li>Pending deliveries are automatically sorted based on their `deliver by` time</li>
 <li>Unlike inventory item, pending delivery does not have a quantity</li>
 </div>
 
@@ -203,7 +235,7 @@ Removes a specified quantity of an existing item from **OneShelf**.
 
 Format: `remove-i INDEX q/QUANTITY`
 * Subtracts `QUANTITY` from the current quantity of an item at the specified `INDEX`.
-The index refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
+The [index](#index) refers to the index number shown in the displayed item list. The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
 * `remove-i 1 q/10`
@@ -213,7 +245,7 @@ Examples:
 </div>
 
 
-
+<a name="edit"></a>
 #### 3.1.4 Editing an item or delivery: `edit-i` or `edit-d`
 
 Edits an existing item in the Inventory book or an existing pending delivery in the Delivery book.
@@ -342,29 +374,9 @@ Example 1:
 <br>
 <br>
 
-Example 2:
-1. Assume by entering `list-d`, we have the following deliveries as shown in the diagram below:
-<br>
-![](images/UG_delete_eg2_step1.PNG)
-<br>
-<br>
-
-2. Enter `find-d n/DAMITH` and the expected result should be as shown below:
-<br>
-![](images/UG_delete_eg2_step2.PNG) 
-<br>
-<br>
-
-3. `delete-d 1` will delete the INDEX 1 which is DAMITH. <br>
-*Note: INDEX 1 does not refer to ALEX YEOH as shown in Step 1.*
-<br>
-<br>
-
-4. Enter `list-d` and you should notice that DAMITH is no longer in the delivery book.
-<br>
-![](images/UG_delete_eg2_step3.PNG)
-<br>
-<br>
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+* delete-d behaves similarly to delete-i, but deletes a delivery instead of an inventory item
+</div>
 
 
 
@@ -435,7 +447,9 @@ Format: `exit`
 
 
 --------------------------------------------------------------------------------------------------------------------
+
 ### 3.2 General Features
+
 #### 3.2.1 Saving the data
 
 **OneShelf** data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -450,39 +464,41 @@ by pressing the arrow down key you're able to traverse into next commands.
 
 
 
-#### 3.2.3 Sorting items
+#### 3.2.3 Sorting
+
+##### 3.2.3.1 Sorting Inventory Items
 
 * Inventory items are sorted based on percentage of quantity in ascending order.
 * If the maximum quantity does not exist for that particular item then the item will be located at the end of the list.
 * If 2 items have the same quantity, they are then sorted lexicographically.
 
+##### 3.2.3.2 Sorting Pending Deliveries
+
+* Pending deliveries are sorted based on deliver by timing.
 
 --------------------------------------------------------------------------------------------------------------------
+
 ### 3.3 Coming Soon
-#### 3.3.1 Countdown to deliver `[Coming Soon]`
 
-Allows user to input a countdown timer when adding a new delivery so that the user will be able to keep track
-the deliveries that needs to be delivered out based on their urgency
-
-#### 3.3.2 Statistics `[Coming Soon]`
+#### 3.3.1 Statistics `[Coming Soon]`
 
 Prints the total amount of delivery and reservation for the day
 
 
 
-#### 3.3.3 Scheduling `[Coming Soon]`
+#### 3.3.2 Scheduling `[Coming Soon]`
 
 Allows user to know when to do restocking
 
 
 
-#### 3.3.4 Prices of items `[Coming Soon]`
+#### 3.3.3 Prices of items `[Coming Soon]`
 
 Look up prices on a 'supplier' database
 
 
 
-#### 3.3.5 Notification `[Coming Soon]`
+#### 3.3.4 Notification `[Coming Soon]`
 
 Notify the user if a certain stock is below threshold
 
@@ -523,10 +539,10 @@ You may refer to the [video](#installationvideo) of installation guide.
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
-|**Add to Inventory**    | `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
+|**Add to Inventory**    | `add-i n/NAME q/QUANTITY [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]...​` <br> e.g., `add n/Chicken q/3 s/ShengSiong t/Poultry` |
 |**Clear from Inventory**  | `clear-i`            |
 |**Delete from Inventory** | `delete-i INDEX`<br> e.g., `delete 3`         |
-|**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`    |
+|**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`    |
 |**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`     |
 |**List Inventory**   | `list-i` |
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`    |
@@ -536,7 +552,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 
 | Action    | Format, Examples                                                                                    |
 |-----------|-----------------------------------------------------------------------------------------------------|
-|**Add to Delivery**    | `add-d` <br> e.g `add-d n/Alex Yeoh p/87438807 a/Blk 30 Geylang Street 29, #06-40 o/2x Chicken Rice, 1x Ice Milo` |
+|**Add to Delivery**    | `add-d n/NAME p/PHONE a/ADDRESS o/ORDER [by/TIME]` <br> e.g `add-d n/Alex Yeoh p/87438807 a/Blk 30 Geylang Street 29, #06-40 o/2x Chicken Rice, 1x Ice Milo by/15` |
 |**Clear from Delivery**  | `clear-d`               |
 |**Delete from Delivery** | `delete-d INDEX`<br> e.g., `delete 3`     |
 |**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`   |
