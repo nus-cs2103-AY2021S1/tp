@@ -63,6 +63,7 @@ public class DeleteLeaveCommand extends Command {
 
         if (removedLeave.isPresent()) {
             model.deleteStaffLeave(target, removedLeave.get());
+            model.setStaff(target, target); // force refresh staff model to update the leave list.
             model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
             return new CommandResult(String.format(MESSAGE_SUCCESS, removedLeave.get(), target.getName()));
         } else {

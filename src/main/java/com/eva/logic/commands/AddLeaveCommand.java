@@ -71,6 +71,7 @@ public class AddLeaveCommand extends Command {
             model.addStaffLeave(staffToTakeLeave, leave);
             sb.append(leave.toString()).append(", ");
         }
+        model.setStaff(staffToTakeLeave, staffToTakeLeave); //force update model to update leave list.
         model.updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFFS);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, staffToTakeLeave.getName(), sb));
