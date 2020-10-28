@@ -156,7 +156,7 @@ Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER`
 
 Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 
-<div markdown="span" class="alert alert-primary">:bulb:**Tip:** <br>
+<div markdown="1" class="alert alert-primary">:bulb:**Tip:** <br>
 * An item can have any number of tags (including 0)
 * Unlike inventory item, pending delivery does not have a quantity
 </div>
