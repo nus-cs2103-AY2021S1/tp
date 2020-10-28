@@ -2,8 +2,6 @@ package seedu.address.testutil;
 
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventRecurrence;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.Admin;
 
 import java.time.LocalDateTime;
 
@@ -15,14 +13,12 @@ public class EventBuilder {
     public static final String DEFAULT_EVENT_NAME = "Lesson event";
     public static final LocalDateTime DEFAULT_START_DATE_TIME = LocalDateTime.of(2020, 12, 25, 21, 30);
     public static final LocalDateTime DEFAULT_END_DATE_TIME = LocalDateTime.of(2020, 12, 25, 23, 30);
-    public static final String DEFAULT_DESCRIPTION = "Pauline, Sec 2";
     public static final EventRecurrence DEFAULT_RECURRENCE = EventRecurrence.NONE;
     public static final String DEFAULT_UNIQUE_IDENTIFIER = "defaultUID";
 
     private String eventName;
     private LocalDateTime eventStartDateTime;
     private LocalDateTime eventEndDateTime;
-    private String description;
     private String uniqueIdentifier;
     private EventRecurrence recurrence;
 
@@ -33,7 +29,6 @@ public class EventBuilder {
         this.eventName = DEFAULT_EVENT_NAME;
         this.eventStartDateTime = DEFAULT_START_DATE_TIME;
         this.eventEndDateTime = DEFAULT_END_DATE_TIME;
-        this.description = DEFAULT_DESCRIPTION;
         this.uniqueIdentifier = DEFAULT_UNIQUE_IDENTIFIER;
         this.recurrence = DEFAULT_RECURRENCE;
     }
@@ -45,7 +40,6 @@ public class EventBuilder {
         this.eventName = eventToCopy.getEventName();
         this.eventStartDateTime = eventToCopy.getEventStartDateTime();
         this.eventEndDateTime = eventToCopy.getEventEndDateTime();
-        this.description = eventToCopy.getDescription();
         this.uniqueIdentifier = eventToCopy.getUniqueIdentifier();
         this.recurrence = eventToCopy.getRecurrence();
     }
@@ -75,14 +69,6 @@ public class EventBuilder {
     }
 
     /**
-     * Sets the {@code description} of the {@code Event} that we are building.
-     */
-    public EventBuilder withDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    /**
      * Sets the {@code uniqueIdentifier} of the {@code Event} that we are building.
      */
     public EventBuilder withUniqueIdentifier(String uniqueIdentifier) {
@@ -103,7 +89,7 @@ public class EventBuilder {
      */
     public Event build() {
         return new Event(eventName, eventStartDateTime, eventEndDateTime,
-                description, uniqueIdentifier, recurrence);
+                uniqueIdentifier, recurrence);
     }
 
 }
