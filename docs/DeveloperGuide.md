@@ -261,7 +261,7 @@ The following activity diagram shows how the find drink's sales data operation w
   
 ##### Aspect: How to find drink's sales data
   
-  * **Alternative 1 (current choice):** Obtain the drink's name entered by the user, and use the
+  * **Current Choice**: Obtain the drink's name entered by the user, and use the
   drink's name to find the sales data by looping through the salesbook.
     * Pros: Code is more readable and consistent with the logic of finding employees.
     * Cons: Every execution of the command will require one to access the sales record list loop through 
