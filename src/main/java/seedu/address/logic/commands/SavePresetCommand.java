@@ -22,7 +22,7 @@ public class SavePresetCommand extends PresetCommand {
     private final Name presetName;
 
     public SavePresetCommand(Optional<Name> presetName) {
-        this.presetName = presetName.orElseGet(() -> new Name("My saved Preset"));
+        this.presetName = presetName.orElseGet(() -> new Name("Default Preset"));
     }
 
     @Override
