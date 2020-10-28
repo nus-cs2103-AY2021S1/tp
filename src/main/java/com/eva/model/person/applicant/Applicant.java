@@ -124,7 +124,7 @@ public class Applicant extends Person {
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         builder.append(" Interview Date: ")
-                .append(getInterviewDate().isEmpty() ? "Interview date not set yet" : getInterviewDate())
+                .append(getInterviewDate().isEmpty() ? "Interview date not set yet" : getInterviewDate().get())
                 .append(" Application Status: ")
                 .append(getApplicationStatus());
         return builder.toString();
