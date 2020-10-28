@@ -22,6 +22,7 @@ import seedu.resireg.logic.parser.Parser;
 import seedu.resireg.logic.parser.ReallocateCommandParser;
 import seedu.resireg.logic.parser.RestoreCommandParser;
 import seedu.resireg.logic.parser.SetBinExpiryCommandParser;
+import seedu.resireg.logic.parser.exceptions.EditRoomCommandParser;
 import seedu.resireg.model.AppMode;
 
 /**
@@ -46,6 +47,8 @@ public enum CommandWordEnum {
             AppMode.values()),
     // rooms
     LIST_ROOM_COMMAND(ListRoomCommand.COMMAND_WORD, ListRoomCommand.HELP, new ListRoomCommandParser()::parse,
+            AppMode.NEW, AppMode.NORMAL),
+    EDIT_ROOM_COMMAND(EditRoomCommand.COMMAND_WORD, EditRoomCommand.HELP, new EditRoomCommandParser()::parse,
             AppMode.NEW, AppMode.NORMAL),
 
     // ================== Normal mode =============================
