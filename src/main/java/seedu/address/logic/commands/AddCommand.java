@@ -18,13 +18,13 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the academic schedule. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the academic schedule.\n"
             + "Parameters: "
             + PREFIX_NAME + "ASSIGNMENT NAME "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_MODULE_CODE + "MODULE "
             + "[" + PREFIX_PRIORITY + "PRIORITY" + "]"
-            + "[remind] "
+            + "[remind]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Lab report 3 "
             + PREFIX_DEADLINE + "23-04-2020 1230 "
