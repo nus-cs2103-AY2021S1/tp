@@ -105,11 +105,7 @@ public class CraftItemCommand extends Command {
         List<Item> tempItemList = new ArrayList<>(model.getFilteredItemList());
         // filter to only get matching items
         tempItemList.removeIf(x -> !x.getName().equals(itemName));
-        if (tempItemList.isEmpty()) {
-            throw new CommandException(MESSAGE_ITEM_NOT_FOUND);
-        }
-        Item itemToCraft;
-        itemToCraft = tempItemList.stream()
+        Item itemToCraft = tempItemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
                 .orElseThrow(() -> new CommandException(MESSAGE_ITEM_NOT_FOUND));
 
