@@ -5,6 +5,6 @@
 <?import javafx.scene.control.Label?>
 
 <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-  <Label fx:id="header_personList" text="\$Label" styleClass="list-panel-header"/>
+  <Label fx:id="headerPersonList" text="\$Label" styleClass="list-panel-header"/>
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
 </VBox>

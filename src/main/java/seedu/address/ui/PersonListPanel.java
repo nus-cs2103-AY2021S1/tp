@@ -19,7 +19,7 @@ public class PersonListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
 
     @FXML
-    private Label header_personList;
+    private Label headerPersonList;
     @FXML
     private ListView<Person> personListView;
 
@@ -28,7 +28,7 @@ public class PersonListPanel extends UiPart<Region> {
      */
     public PersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        header_personList.setText("Employees' contact details");
+        headerPersonList.setText("Employees' contact details");
         personListView.setItems(personList);
         personListView.setCellFactory(listView -> new PersonListViewCell());
     }
