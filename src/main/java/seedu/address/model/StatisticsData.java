@@ -89,7 +89,7 @@ public class StatisticsData {
         requireNonNull(tag);
         return getTotalTaskTime(tag) + getTotalLessonTime(tag);
     }
-    
+
     public Set<Tag> getTags() {
         return stats.keySet();
     }

@@ -11,16 +11,16 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeadlineCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DoneCommand;
-import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EditLessonCommand;
+import seedu.address.logic.commands.EditTaskCommand;
 import seedu.address.logic.commands.EventCommand;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.FindLessonCommand;
+import seedu.address.logic.commands.FindTaskCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LessonCommand;
-import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.ListLessonCommand;
+import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
