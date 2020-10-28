@@ -15,7 +15,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.delivery.exception.DeliveryNotFoundException;
-import seedu.address.model.delivery.exception.DuplicateDeliveryException;
 import seedu.address.testutil.DeliveryBuilder;
 
 public class UniqueDeliveryListTest {
@@ -50,12 +49,6 @@ public class UniqueDeliveryListTest {
     @Test
     public void add_nullDelivery_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueDeliveryList.add(null));
-    }
-
-    @Test
-    public void add_duplicateDelivery_throwsDuplicateDeliveryException() {
-        uniqueDeliveryList.add(KELVIN);
-        assertThrows(DuplicateDeliveryException.class, () -> uniqueDeliveryList.add(KELVIN));
     }
 
     @Test
@@ -129,13 +122,6 @@ public class UniqueDeliveryListTest {
         UniqueDeliveryList expectedUniqueDeliveryList = new UniqueDeliveryList();
         expectedUniqueDeliveryList.add(MARCUS);
         assertEquals(expectedUniqueDeliveryList, uniqueDeliveryList);
-    }
-
-    @Test
-    public void setDeliveries_listWithDuplicateDeliverys_throwsDuplicateDeliveryException() {
-        List<Delivery> listWithDuplicateDeliverys = Arrays.asList(KELVIN, KELVIN);
-        assertThrows(DuplicateDeliveryException.class, () -> uniqueDeliveryList
-                .setDeliveries(listWithDuplicateDeliverys));
     }
 
     @Test
