@@ -71,14 +71,6 @@ public class EditModuleDescriptorBuilder {
         descriptor.setModularCredits(new ModularCredits(mc));
         return this;
     }
-
-    /**
-     * Sets the {@code Tag} of the {@code EditModuleDescriptor} that we are building.
-     */
-    public EditModuleDescriptorBuilder withTags(Set<Tag> tags) {
-        descriptor.setTags(tags);
-        return this;
-    }
     public EditModuleDescriptor build() {
         return descriptor;
     }

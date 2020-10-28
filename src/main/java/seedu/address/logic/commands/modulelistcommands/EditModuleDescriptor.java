@@ -126,6 +126,7 @@ public class EditModuleDescriptor {
         return getModuleName().equals(e.getModuleName())
                 && getZoomLink().equals(e.getZoomLink())
                 && getGradeTracker().equals(e.getGradeTracker())
-                && getModularCredits().equals(e.getModularCredits());
+                && getModularCredits().equals(e.getModularCredits())
+                && getTags().equals(e.getTags());
     }
 }
