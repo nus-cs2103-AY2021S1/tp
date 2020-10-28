@@ -10,20 +10,20 @@ import seedu.address.model.task.TaskContainsKeywordsPredicate;
  * Finds and lists all tasks in PlaNus whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindCommand extends Command {
+public class FindTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "find";
+    public static final String COMMAND_WORD = "find-task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks with the specified attribute"
             + "containing the specified valid search phrase (case-insensitive)"
             + "and displays them as a list with index numbers.\n"
             + "Parameters: ATTRIBUTE_1:SEARCH_PHRASE ATTRIBUTE_2:SEARCH_PHRASE ...\n"
             + "For list of all available attribute, please refer to the user guide by typing 'help' command\n"
-            + "Example: " + COMMAND_WORD + " title:meet zijian type:todo";
+            + "Example: " + COMMAND_WORD + " title:meet zijian desc:play games";
 
     private final TaskContainsKeywordsPredicate predicate;
 
-    public FindCommand(TaskContainsKeywordsPredicate predicate) {
+    public FindTaskCommand(TaskContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -39,7 +39,7 @@ public class FindCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommand // instanceof handles nulls
-                && predicate.equals(((FindCommand) other).predicate)); // state check
+                || (other instanceof FindTaskCommand // instanceof handles nulls
+                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
     }
 }

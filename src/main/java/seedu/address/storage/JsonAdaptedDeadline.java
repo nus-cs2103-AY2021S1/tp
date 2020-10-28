@@ -99,7 +99,7 @@ class JsonAdaptedDeadline {
                     + "Creating a default deadline datetime for it");
             modelDeadlineDateTime = DeadlineDateTime.createNullDeadlineDateTime();
         } else if (!DateUtil.isValidDateTime(deadlineDateTime)) {
-            throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateUtil.DATE_TIME_CONSTRAINTS);
         } else {
             modelDeadlineDateTime = new DeadlineDateTime(deadlineDateTime);
         }
@@ -133,7 +133,7 @@ class JsonAdaptedDeadline {
                     + "done datetime for it");
             modelDoneDateTime = DoneDateTime.createNullDoneDateTime();
         } else if (!DateUtil.isValidDateTime(doneDateTime)) {
-            throw new IllegalValueException(DateUtil.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DateUtil.DATE_TIME_CONSTRAINTS);
         } else {
             modelDoneDateTime = new DoneDateTime(doneDateTime);
         }

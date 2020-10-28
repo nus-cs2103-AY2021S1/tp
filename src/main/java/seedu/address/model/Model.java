@@ -79,6 +79,12 @@ public interface Model {
     void deleteTask(Task[] targets);
 
     /**
+     * Deletes the given lesson.
+     * The lesson must exist in PlaNus.
+     */
+    void deleteLesson(Lesson[] targets);
+
+    /**
      * Mark the given array of tasks to be done.
      * The tasks must exist in PlaNus.
      */
