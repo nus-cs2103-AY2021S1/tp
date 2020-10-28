@@ -492,15 +492,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                       | set a budget                                                                                         | track if I am sticking to my financial goals                           |
 | `* * *`  | user                                       | top up a budget                                                                                      |                                                                        |
 | `* * *`  | user                                       | edit an expense                                                                                      |                                                                        |
-| `* *`    | organized user                             | categorise my expenditure                                                                            | better manage specific aspects of my spending                          |
+| `* *`    | organized user                             | categorise my expenditure                                                                            | better segregate and manage various areas of my spending               |
 | `* *`    | new user                                   | use a help command                                                                                   | refer to instructions when I forget how to use the App                 |
-| `* *`    | cautious user                              | set a password for Bamboo                                                                            | keep my expenses private                                               |
-| `* *`    | user with many expenses                    | find expenses via date, keywords, or category                                                        | locate an expense easily                                               |
-| `* *`    | careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting                             |
+| `* *`    | efficient user                             | customise my command words                                                                           | customize my user experience and workflow according to my preferences  |
+| `* *`    | user with many expenses                    | find expenses via date, keywords, or category                                                        | locate a specific expense easily                                       |
+| `* *`    | careless user                              | sort expenses based on date, description, or amount                                                  | organise my expenses better and gain a big picture view                |
 | `*`      | meticulous user                            | track my saving progress to buy big ticket items                                                     | know how far away am I from the target                                 |
 | `*`      | user who likes to see progress             | use the progress tracker to motivate myself                                                          | keep working at saving up                                              |
 | `*`      | cautious user                              | view my ledger data in a human-readable format and only edit the file when commands are executed     | be assured that the accounts are updated and accurate                  |
 | `*`      | long-time user                             | archive older data from my view                                                                      | manage my expenses easier                                              |
+| `stretch`| careless user                              | revert my commands                                                                                   | easily undo changes I made to my budgeting
 | `stretch`| user who likes to plan in advance          | simulate future spending                                                                             | visualize my journey towards my financial goals                        |
 | `stretch`| forgetful user                             | receive notifications of budget limits and bill payments                                             | better plan for daily expenditure and make payments on time            |
 
@@ -511,10 +512,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 (For all use cases below, the System is the Bamboo and the Actor is the user, unless specified otherwise)
 
 #### Use case U1: Add an expense
-
-**Preconditions:** (Needed for v1.2.1)
-
-* User is logged in.
 
 **MSS**
 
@@ -532,10 +529,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case U2: Top-up budget
 
-**Preconditions:** (Needed for v1.2.1)
-
-- User is logged in.
-
 **MSS**
 
 1. User requests to top up budget by an amount he provides.
@@ -551,10 +544,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 #### Use case U3: Delete an expense
-
-**Preconditions:** (Needed for v1.2.1)
-
-* User is logged in.
 
 **MSS**
 
@@ -579,10 +568,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case U4: Edit an expense
 
-**Preconditions:** (Needed for v1.2.1)
-
-* User is logged in.
-
 **MSS**
 
 1. User requests to list expenses (U5).
@@ -604,10 +589,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case U5: List all expenses
 
-**Preconditions:** (Needed for v1.2.1)
-
-* User is logged in.
-
 **MSS**
 
 1. User requests to list all expenses.
@@ -617,8 +598,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 #### Use case U6: Add a remark to an expense
 
-**Preconditions:** (Needed for v1.2.1)
-* User is logged in.
+**Preconditions:**
 * Expense List is not empty.
 
 **MSS**
@@ -633,23 +613,97 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Bamboo shows an error message.
     Use case ends.
 
-####Use case U7: Find an expense
-
-**Preconditions:** (Needed for v1.2.1)
-
-* User is logged in.
+#### Use case U7: Find an expense
 
 **MSS**
 
 1. User requests to find expense by certain identifiers and search terms.
-2. Bamboo shows a list of expenses which match the identifiers and search terms.
-3. Bamboo lists all expenses and shows the new budget balance.
+2. Bamboo shows a list of expenses which match the identifiers and search terms, and shows the overall budget balance.
    Use case ends.
 
 **Extensions**
 
 * 1a. The given field values are invalid.
     * 1a1. Bamboo shows an error message.
+      Use case ends.
+      
+#### Use case U8: Sort expense list
+**MSS**
+
+1. User requests to sort currently displayed expenses by certain sort criterion.
+2. Bamboo sorts the currently displayed expenses according to user-specified sort criterion. 
+3. Bamboo displays the sorted expenses to the user with the budget balance.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given field values are invalid.
+    * 1a1. Bamboo shows an error message.
+      Use case ends.
+
+#### Use case U9: Add category 
+**MSS**
+
+1. User requests to add a new category with a user-specified category name.
+2. Bamboo creates a new category with the user-specified name and shows a success message.
+3. Bamboo lists all expenses and shows the budget balance.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given field values are invalid.
+    * 1a1. Bamboo shows an error message.
+      Use case ends.
+* 1b. The given category name already exists.
+    * 1b1. Bamboo shows an error message.
+      Use case ends.
+
+#### Use case U10: Delete category 
+Similar to U9, except it's the opposite.
+
+**Extensions**
+
+* 1a. The given field values are invalid.
+    * 1a1. Bamboo shows an error message.
+      Use case ends.
+* 1b. The given category name does not exist.
+    * 1b1. Bamboo shows an error message.
+      Use case ends.
+* 1c. The given category name is restricted e.g. `Default` category.
+    * 1c1. Bamboo shows an error message.
+      Use case ends.
+
+#### Use case U11: Switch category 
+**MSS**
+
+1. User requests to switch to a user-specified category
+2. Bamboo shows all expenses which are tagged under the user-specified category, 
+along with the budget for that category.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given field values are invalid.
+    * 1a1. Bamboo shows an error message.
+      Use case ends.
+* 1b. The given category does not exist.
+    * 1b1. Bamboo shows an error message.
+      Use case ends.
+
+#### Use case U12: Change Command Keyword 
+**MSS**
+
+1. User requests to change command keyword to a user-defined string.
+2. Bamboo maps the command linked to the original command keyword to the user-defined string.
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given field values are invalid.
+    * 1a1. Bamboo shows an error message.
+      Use case ends.
+* 1b. The user-defined string is already a command keyword.
+    * 1b1. Bamboo shows an error message.
       Use case ends.
 
 ### Non-Functional Requirement

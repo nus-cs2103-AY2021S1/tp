@@ -8,13 +8,13 @@ participant ":ExpenseBook" as ExpenseBook MODEL_COLOR
 participant ":UniqueExpenseList" as UniqueExpenseList MODEL_COLOR
 end box
 
-[-> Model : sortExpenses(c)
+[-> Model : sortExpenseList(cmp)
 activate Model
 
-Model -> ExpenseBook : sort(c)
+Model -> ExpenseBook : sortExpenses(cmp)
 activate ExpenseBook
 
-ExpenseBook -> UniqueExpenseList : sort(c)
+ExpenseBook -> UniqueExpenseList : sortExpenses(cmp)
 activate UniqueExpenseList
 
 UniqueExpenseList --> ExpenseBook
