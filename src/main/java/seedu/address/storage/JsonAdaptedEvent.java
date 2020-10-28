@@ -121,7 +121,6 @@ class JsonAdaptedEvent {
         }
 
         final Tag modelTag;
-
         if (tag.equals("")) {
             logger.info("Tag for event title: '" + title + "' is empty. Creating a default tag for it");
             modelTag = Tag.defaultTag();

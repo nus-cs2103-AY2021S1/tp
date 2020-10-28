@@ -6,7 +6,7 @@
     "description" : "Submit through luminus",
     "doneDateTime" : "01-01-1000 00:00",
     "duration" : -1,
-    "tagged" : "CS2103T",
+    "tag" : "CS2103T",
     "status" : "incomplete"
   }, {
     "title" : "Assignment 3",
@@ -14,7 +14,7 @@
     "description" : "important",
     "doneDateTime" : "24-10-2020 04:07",
     "duration" : 20,
-    "tagged" : "CS2102",
+    "tag" : "CS2102",
     "status" : "complete"
   }, {
     "title" : "GEQ Readings",
@@ -22,7 +22,7 @@
     "description" : "15 pages reading",
     "doneDateTime" : "01-01-1000 00:00",
     "duration" : -1,
-    "tagged" : "GEQ1000",
+    "tag" : "GEQ1000",
     "status" : "incomplete"
   }, {
     "title" : "Grade Mission",
@@ -30,7 +30,7 @@
     "description" : "grading all student mission",
     "doneDateTime" : "01-01-1000 00:00",
     "duration" : -1,
-    "tagged" : "CS1101S",
+    "tag" : "CS1101S",
     "status" : "incomplete"
   } ],
   "events" : [{
