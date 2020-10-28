@@ -107,8 +107,8 @@ public class EditLessonCommand extends Command {
 
         model.setLesson(lessonToEdit, editedLesson);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-        model.updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
+        model.updateFilteredCalendar(PREDICATE_SHOW_ALL_CALENDAR_TASKS);
         return new CommandResult(String.format(MESSAGE_EDIT_LESSON_SUCCESS, editedLesson));
     }
 
@@ -185,7 +185,8 @@ public class EditLessonCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, description, dayOfWeek, startDate, endDate, startTime, endTime);
+            return CollectionUtil.isAnyNonNull(title, description, dayOfWeek,
+                    startDate, endDate, startTime, endTime, tag);
         }
 
         public void setTitle(Title title) {

@@ -20,7 +20,7 @@ import seedu.address.model.task.deadline.Status;
 
 public class FindTaskCommandParserTest {
 
-    private FindCommandParser parser = new FindCommandParser();
+    private FindTaskCommandParser parser = new FindTaskCommandParser();
 
     @Test
     public void parse_emptyArg_throwsParseException() {

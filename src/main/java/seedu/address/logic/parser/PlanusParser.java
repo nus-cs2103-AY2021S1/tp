@@ -55,13 +55,13 @@ public class PlanusParser {
         case DeadlineCommand.COMMAND_WORD:
             return new DeadlineCommandParser().parse(arguments);
         case EditTaskCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+            return new EditTaskCommandParser().parse(arguments);
         case DeleteTaskCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteTaskCommandParser().parse(arguments);
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
         case FindTaskCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+            return new FindTaskCommandParser().parse(arguments);
         case LessonCommand.COMMAND_WORD:
             return new LessonCommandParser().parse(arguments);
         case ListTaskCommand.COMMAND_WORD:
