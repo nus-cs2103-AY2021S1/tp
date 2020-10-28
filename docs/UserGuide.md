@@ -141,12 +141,12 @@ Format: `s-list`
 
 #### 1.3 Finds the number of drinks by keywords : `s-find`
 
-Finds all sales data of drinks that contain the KEYWORD(s).
+Finds all drinks where their abbreviated names match the KEYWORD(s).
 
 Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
-* Only the drink's abbreviated form name is searched.
+* Only the drink's abbreviated name is searched.
 * Only full words will be matched e.g. `BSB` will not match `BSBBT`.
 * Drinks matching at least one keyword will be returned.
   e.g. `BSBBT BSBM` will return `BSBBT`, `BSBM`.
