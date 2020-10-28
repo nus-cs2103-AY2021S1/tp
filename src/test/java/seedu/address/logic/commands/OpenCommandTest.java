@@ -84,6 +84,13 @@ class OpenCommandTest {
         if (Desktop.isDesktopSupported()) {
             Tag correctTag = new TagBuilder().build();
             Tag correctTag2 = new TagBuilder().withTagName("anotherTag").build();
+            String os = System.getProperty("os.name").toLowerCase();
+            if (!os.startsWith("windows")) {
+                correctTag = new TagBuilder()
+                        .withFileAddress(VALID_MAC_FILE_ADDRESS_TESTFILE).build();
+                correctTag2 = new TagBuilder().withFileAddress(VALID_MAC_FILE_ADDRESS_TESTFILE)
+                        .withTagName("anotherTag").build();
+            }
             OpenCommand openCommand = new OpenCommand(new Label(VALID_LABEL));
             Model modelStub = new ModelStubWithTagAndTaglist();
             modelStub.addTag(correctTag);
