@@ -112,16 +112,22 @@ public class ModuleListParser implements FeatureParser {
 
         case AddContactCommand.COMMAND_WORD:
             return new AddContactParser().parse(arguments);
+
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
+
         case AddCompletedModuleCommand.COMMAND_WORD:
             return new AddCompletedModuleParser().parse(arguments);
+
         case CalculateCapCommand.COMMAND_WORD:
             return new CalculateCapParser().parse(arguments);
+
         case UndoCommand.COMMAND_WORD:
             return new UndoParser().parse(arguments);
+
         case RedoCommand.COMMAND_WORD:
             return new RedoParser().parse(arguments);
+
         //case EditGradeCommand.COMMAND_WORD:
         //            return new EditGradeParser().parse(arguments);
         default:
