@@ -16,6 +16,7 @@ public class Time implements Comparable<Time> {
             "Time is in minutes, should only contain numbers, and it should be at least 1 digit long, \n"
                     + "and it should be greater than or equals to 0";
     public static final String VALIDATION_REGEX = "\\d{1,}";
+    public static final String TIME_FORMAT_PATTERN = "dd MMMM yyyy HH:mm:ss";
     public final String minutes;
     public final LocalDateTime endTime;
 
@@ -28,7 +29,7 @@ public class Time implements Comparable<Time> {
     public Time(String minutes, String endTime) {
         requireNonNull(minutes, endTime);
 
-        LocalDateTime time = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
+        LocalDateTime time = LocalDateTime.parse(endTime, DateTimeFormatter.ofPattern(TIME_FORMAT_PATTERN));
         this.minutes = minutes;
         this.endTime = time;
     }
@@ -42,7 +43,7 @@ public class Time implements Comparable<Time> {
         long min = Long.parseLong(minutes);
         LocalDateTime endTime = LocalDateTime.now().plusMinutes(min);
 
-        return new Time(minutes, endTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss")));
+        return new Time(minutes, endTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT_PATTERN)));
     }
 
     /**
@@ -54,7 +55,7 @@ public class Time implements Comparable<Time> {
 
     @Override
     public String toString() {
-        return endTime.format(DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss"));
+        return endTime.format(DateTimeFormatter.ofPattern(TIME_FORMAT_PATTERN));
     }
 
     @Override
