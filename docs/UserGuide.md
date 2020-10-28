@@ -78,7 +78,7 @@ Notes:
 
 * This command should not be used when viewing the archived client list.  
 
-### <a name="adding-a-policy"></a>Adding a policy : `addp`
+### Adding a policy : `addp` <a name="adding-a-policy"></a>
 
 Adds a Policy into the policy list.
 
