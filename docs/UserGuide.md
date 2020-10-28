@@ -18,7 +18,7 @@ FixMyAbs is a desktop app for managing exercises, optimized for use via a Comman
 1. Copy the file to the folder you want to use as the home folder for your FixMyAbs.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui-v1.1.png)
+   ![Ui](images/screenshots/v1.3homescreen.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -60,6 +60,7 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+![Ui](images/screenshots/v1.3help.png)
 
 ### Adding a log: `add`
 
@@ -71,11 +72,18 @@ Examples:
 * `add e/situp r/50`
 * `add e/situp r/1 c/my abs hurt :(`
 
+![Ui](images/screenshots/v1.3add.png)
+
+Success: 
+![Ui](images/screenshots/v1.3add_success.png)
+
 ### Listing exercise logs : `list`
 
 Shows a list of all exercise logs logged by the user in the application.
 
 Format: `list`
+
+![Ui](images/screenshots/v1.3list_success.png)
 
 ### Editing a exercise log : `edit`
 
@@ -87,10 +95,14 @@ Format: `edit INDEX [r/REPS] [c/COMMENT]`
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-
 Examples:
 *  `edit 1 c/no abs were hurt` Edits the log at index 1, with a comment of `no abs were hurt`.
 *  `edit 1 r/20 c/no abs were hurt` Edits the log at index 1, with reps of `20` and a comment of `no abs were hurt`.
+
+![Ui](images/screenshots/v1.3edit.png)
+
+Success:
+![Ui](images/screenshots/v1.3edit_success.png)
 
 ### Deleting a log : `delete`
 
@@ -105,11 +117,18 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2`deletes the 2nd log.
 
+![Ui](images/screenshots/v1.3delete.png)
+
+Success:
+![Ui](images/screenshots/v1.3delete_success.png)
+
 ### Exiting the program : `exit`
 
 Exits the program.
 
 Format: `exit`
+
+![Ui](images/screenshots/v1.3exit.png)
 
 ### Saving the data
 
