@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     private ModuleListPanel moduleListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private TimelineWindow timelineWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -193,6 +194,16 @@ public class MainWindow extends UiPart<Stage> implements Observer {
         }
     }
 
+    @FXML
+    public void handleToggle() {
+        logger.info("UI toggle triggered");
+        if (!timelineWindow.isShowing()) {
+            timelineWindow.show();
+        } else {
+            timelineWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -234,6 +245,9 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
             if (commandResult.isTriggerUpdate()) {
                 update();
+            }
+            if (commandResult.isToggle()) {
+                handleToggle();
             }
 
             return commandResult;
