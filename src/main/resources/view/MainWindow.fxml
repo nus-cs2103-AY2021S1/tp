@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
-<?import javafx.scene.Scene?>
-<?import javafx.stage.Stage?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
 
-<?import javafx.scene.chart.StackedAreaChart?>
 <fx:root onCloseRequest="#handleExit" title="ChopChop" type="Stage" xmlns="http://javafx.com/javafx/10.0.2-internal"
          xmlns:fx="http://javafx.com/fxml/1">
     <scene>
@@ -33,7 +31,7 @@
                     </MenuBar>
                 </top>
                 <right>
-                    <VBox prefWidth="280.0">
+                    <VBox prefWidth="280.0" styleClass="sidebar">
                         <StackPane fx:id="commandOutputPlaceholder"
                                    styleClass="sidebar-container, command-output-container"
                                    prefHeight="140.0"/>
@@ -42,9 +40,10 @@
                     </VBox>
                 </right>
                 <center>
-                    <StackPane fx:id="displayPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity"
-                               minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="610.0"/>
-                    <StackPane fx:id="commandBoxPlaceholder" prefHeight="20.0" prefWidth="610.0"/>
+                    <VBox styleClass="content-pane">
+                        <StackPane fx:id="commandBoxPlaceholder" styleClass="command-input-container" />
+                        <StackPane fx:id="displayPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
                 </center>
             </BorderPane>
         </Scene>

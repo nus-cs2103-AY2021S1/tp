@@ -18,9 +18,6 @@ public class CommandOutput extends UiPart<Region> {
 
     private static final String FXML = "CommandOutput.fxml";
 
-    private static final Font boldFont = Font.font(Font.getDefault().getFamily(),
-        FontWeight.BOLD, Font.getDefault().getSize());
-
     @FXML
     private TextFlow displayBox;
 
@@ -39,15 +36,15 @@ public class CommandOutput extends UiPart<Region> {
     public void setFeedbackToUser(CommandResult result) {
         requireNonNull(result);
 
-        var texts = displayBox.getChildren();
+        var texts = this.displayBox.getChildren();
         texts.clear();
 
-        boolean shouldUnCaps = false;
+        var shouldUnCaps = false;
 
         if (result.isError()) {
             var foo = new Text("Error: ");
             foo.setStyle("-fx-font-family: 'Source Sans Pro SemiBold'");
-            foo.setFill(Color.RED);
+            foo.setFill(Color.valueOf("#ff1744"));
 
             texts.add(foo);
             shouldUnCaps = true;

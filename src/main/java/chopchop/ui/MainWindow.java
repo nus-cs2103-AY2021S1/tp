@@ -93,10 +93,8 @@ public class MainWindow extends UiPart<Stage> {
         var commandBox = new CommandBox(this::executeCommand, this.logic);
         this.commandBox = commandBox;
         commandBoxPlaceholder.getChildren().setAll(commandBox.getRoot());
-        primaryStage.addEventFilter(KeyEvent.ANY, event -> {
-            if (event.getEventType() == KeyEvent.KEY_TYPED) {
-                commandBox.setFocus(event.getCharacter());
-            }
+        primaryStage.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            commandBox.setFocus(event.getCharacter());
         });
     }
 

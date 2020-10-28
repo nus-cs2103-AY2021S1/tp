@@ -82,6 +82,8 @@ public class DisplayController extends UiPart<Region> {
 
         resetButtons();
 
+        System.out.println(logic.getFilteredIngredientList().isEmpty());
+
         if (!logic.getFilteredRecipeList().isEmpty()) {
             displayRecipeList();
         } else if (!logic.getFilteredIngredientList().isEmpty()) {
@@ -122,9 +124,7 @@ public class DisplayController extends UiPart<Region> {
     protected void displayIngredientList() {
         IngredientViewPanel ingredientViewPanel = new IngredientViewPanel(ingredientObservableList);
         displayAreaPlaceholder.getChildren().setAll(ingredientViewPanel.getRoot());
-        resetButtons();
-        ingredientButton.getStyleClass().clear();
-        ingredientButton.getStyleClass().add("tab-button-selected");
+        selectIngredientButton();
     }
 
     /**
@@ -142,14 +142,10 @@ public class DisplayController extends UiPart<Region> {
      * Resets buttons in navigation bar to default style.
      */
     private void resetButtons() {
-        recipeButton.getStyleClass().clear();
-        recipeButton.getStyleClass().add("tab-button");
-        ingredientButton.getStyleClass().clear();
-        ingredientButton.getStyleClass().add("tab-button");
-        recommendationButton.getStyleClass().clear();
-        recommendationButton.getStyleClass().add("tab-button");
-        favouriteButton.getStyleClass().clear();
-        favouriteButton.getStyleClass().add("tab-button");
+        recipeButton.getStyleClass().remove("tab-button-selected");
+        ingredientButton.getStyleClass().remove("tab-button-selected");
+        recommendationButton.getStyleClass().remove("tab-button-selected");
+        favouriteButton.getStyleClass().remove("tab-button-selected");
     }
 
     /**
@@ -157,8 +153,12 @@ public class DisplayController extends UiPart<Region> {
      */
     private void selectRecipeButton() {
         resetButtons();
-        recipeButton.getStyleClass().clear();
         recipeButton.getStyleClass().add("tab-button-selected");
+    }
+
+    private void selectIngredientButton() {
+        resetButtons();
+        ingredientButton.getStyleClass().add("tab-button-selected");
     }
 
     /**
