@@ -119,7 +119,7 @@ Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` using [Figu
 
 1. Select the Command Box and type in `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food`.
 <br>
-![add-i example one step one](images/add-i%20example%20one%20step%20one.PNG)
+![add-i example one step one](images/add-i_example_one_step_one.PNG)
 <br>
 <br>
 
@@ -127,7 +127,7 @@ Example 1: `add-i n/DUCK q/10 s/NTUC max/50 metric/KG t/meat t/food` using [Figu
 
 3. Success Message will be shown in the Result Display (assuming there isn't an existing same item) and added item will show up in InventoryBook.
 <br>
-![add-i example one step three](images/add-i%20example%20one%20step%20three.PNG)
+![add-i example one step three](images/add-i_example_one_step_three.PNG)
 <br>
 <br>
 
@@ -135,7 +135,7 @@ Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#uiwithannotationpng) as 
 
 1. Select the Command box and type in `add-i n/Tuna q/20 s/NTUC`
 <br>
-![add-i example two step one](images/add-i%20example%20two%20step%20one.PNG)
+![add-i example two step one](images/add-i_example_two_step_one.PNG)
 <br>
 <br>
 
@@ -144,7 +144,7 @@ Example 2: `add-i n/Tuna q/20 s/NTUC` using [Figure 1](#uiwithannotationpng) as 
 
 3. Success Message will be shown in the Result Display and added item's quantity will combine with existing same item's quantity.
 <br>
-![add-i example two step three](images/add-i%20example%20two%20step%20three.PNG)
+![add-i example two step three](images/add-i_example_two_step_three.PNG)
 <br>
 <br>
 <div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
@@ -156,9 +156,9 @@ Format: `add-d n/NAME p/PHONE a/ADDRESS o/ORDER`
 
 Examples: `add-d n/DAMITH p/91111111 a/Blk 251 Orchard Road o/Nasi goreng x1`
 
-<div markdown="span" class="alert alert-primary">:bulb:**Tip:**
-<li>An item can have any number of tags (including 0)</li>
-<li>Unlike inventory item, pending delivery does not have a quantity</li>
+<div markdown="1" class="alert alert-primary">:bulb:**Tip:** <br>
+* An item can have any number of tags (including 0)
+* Unlike inventory item, pending delivery does not have a quantity
 </div>
 
 
@@ -206,7 +206,7 @@ Example 1: `edit-i 3 n/CARROTS q/50` using [Figure 1](#uiwithannotationpng) as t
 
 3. Success Message will be shown in the Result Display and the 3rd item will show up with its updated fields as shown below.
 <br>
-![edit-i example one step three](images/edit-i%20example%20one%20step%20three.png)
+![edit-i example one step three](images/edit-i_example_one_step_three.png)
 <br>
 <br>
 
@@ -218,11 +218,9 @@ Example 2: `edit-i 2 n/Spinach t/` using [Figure 1](#uiwithannotationpng) as the
 
 3. Success Message will be shown in the Result Display and the 2nd item will show up with its updated fields as shown below.
 <br>
-![add-i example two step three](images/edit-i%20example%20two%20step%20three.png)
+![add-i example two step three](images/edit-i_example_two_step_three.png)
 <br>
 <br>
-<div markdown="span" class="alert alert-primary">:bulb: **Note:** Notice how Tuna's `Quantity` increased from 24 to 44
-</div>
 
 
 ##### 3.1.4.b `edit-d`
