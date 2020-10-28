@@ -22,26 +22,26 @@ The _Common Cents_ interface and commands consist of a few levels: `Application`
 --------------------------------------------------------------------------------------------------------------------
 # 1. Quick Start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1\. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `commoncents.jar`.
+2\. Download the latest `commoncents.jar`.
 
-1. Copy the file to the folder you want to use as the _home folder_ for CommonCents.
+3\. Copy the file to the folder you want to use as the _home folder_ for _Common Cents_.
 
-1. Double-click the file to start the app. You should see the GUI similar to the one below in a few seconds (**Figure 1-1**). 
+4\. Double-click the file to start the app. You should see the GUI similar to the one below in a few seconds (**Figure 1-1**). 
 Note how the app contains some sample expenses and revenues.<br>
 
  ![Ui](images/Ui.png)
  <p align="center"> <sub> <b>Figure 1-1</b>: Default GUI </sub> </p>
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
+5\. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `add c/expense d/buy lunch a/5.20 t/food` : Adds an expense named "buy lunch" to the expense list.
    * `delete 1 c/expense` : Deletes the 1st entry in the expense list.
    * `exit` : Exits the app.
 
-1. Refer to the [Features](#features) below for details of each command.
+6\. Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 [comment]: <> (Copy the blocks below and edit your message)
