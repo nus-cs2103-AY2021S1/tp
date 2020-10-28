@@ -15,7 +15,7 @@ public class AddressTest {
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "#@$";
+        String invalidAddress = "::";
         assertThrows(IllegalArgumentException.class, () -> new FileAddress(invalidAddress));
     }
 
@@ -25,7 +25,7 @@ public class AddressTest {
         assertThrows(NullPointerException.class, () -> FileAddress.isValidFileAddress(null));
 
         // invalid addresses
-        assertFalse(FileAddress.isValidFileAddress("!@#$")); // symbols
+        assertFalse(FileAddress.isValidFileAddress("*")); // forbidden symbol
         assertFalse(FileAddress.isValidFileAddress(" ")); // spaces only
 
         // valid addresses
