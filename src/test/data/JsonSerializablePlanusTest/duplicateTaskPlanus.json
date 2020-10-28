@@ -5,7 +5,7 @@
     "description" : "",
     "doneDateTime" : "24-10-2020 04:07",
     "duration" : 10,
-    "tagged" : "CS2102",
+    "tag" : "CS2102",
     "status" : "incomplete"
   }, {
     "title" : "Valid Task",
@@ -13,7 +13,7 @@
     "description" : "",
     "doneDateTime" : "24-10-2020 04:07",
     "duration" : 10,
-    "tagged" : "CS2102",
+    "tag" : "CS2102",
     "status" : "incomplete"
   }],
   "events" : [ ],

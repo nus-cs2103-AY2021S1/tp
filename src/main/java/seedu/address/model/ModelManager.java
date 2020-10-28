@@ -38,7 +38,7 @@ public class ModelManager implements Model {
 
         this.planus = new Planus(planus);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTasks = new FilteredList<>(this.planus.getTaskList());
+        filteredTasks = new FilteredList<>(this.planus.getTaskList().filtered(PREDICATE_SHOW_ALL_TASKS));
         filteredLessons = new FilteredList<>(this.planus.getLessonList());
         filteredCalendar = new FilteredList<>(this.planus.getCalendarList());
     }

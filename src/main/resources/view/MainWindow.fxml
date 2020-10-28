@@ -13,6 +13,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="PlaNus" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
@@ -49,13 +50,28 @@
                      <items>
                     <VBox fx:id="taskList" styleClass="pane-with-border">
                            <children>
-                              <Label styleClass="label-bright" text="Tasks:" textFill="WHITE" />
+                              <Label styleClass="label-bright" text="Tasks:" textFill="WHITE">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin></Label>
                          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            </children>
                     </VBox>
                         <VBox styleClass="pane-with-border">
                            <children>
-                              <Label styleClass="label-bright" text="Lessons:" />
+                              <Label styleClass="label-bright" text="Lessons:">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </VBox.margin></Label>
                               <StackPane fx:id="lessonListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>

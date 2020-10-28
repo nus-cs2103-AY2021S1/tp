@@ -1,8 +1,5 @@
 package seedu.address.ui.card;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -19,8 +16,6 @@ public class CalendarDayEventCard extends UiPart<Region> {
     private Label startTime;
     @FXML
     private Label title;
-    @FXML
-    private Label duration;
 
     /**
      * Create a CalendarDayEventCard that holds day events
@@ -31,19 +26,12 @@ public class CalendarDayEventCard extends UiPart<Region> {
         this.event = task;
         setStartTime(task);
         title.setText(task.getTitle().toString());
-        setDuration(task);
     }
 
     private void setStartTime(Task task) {
         Event event = (Event) task;
-        LocalDateTime dateTime = event.getStartDateTimeValue();
-        startTime.setText(dateTime.toLocalTime().toString());
-    }
-
-    private void setDuration(Task task) {
-        Event event = (Event) task;
-        String time = "" + Duration.between(event.getStartDateTimeValue(), event.getEndDateTimeValue()).toMinutes();
-        duration.setText(time);
+        startTime.setText(event.getStartDateTimeValue().toLocalTime().toString() + " - "
+            + event.getEndDateTimeValue().toLocalTime().toString());
     }
 
     @Override

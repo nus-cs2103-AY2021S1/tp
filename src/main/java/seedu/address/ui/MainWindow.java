@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -17,7 +16,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.storage.Statistics;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -134,8 +132,7 @@ public class MainWindow extends UiPart<Stage> {
         calendarPanel = new CalendarPanel(logic.getFilteredCalendarList());
         calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
 
-        dataAnalysisPanel = new DataAnalysisPanel(Statistics.generateStatistics(LocalDate.now().minusDays(3),
-                LocalDate.now().plusDays(3)));
+        dataAnalysisPanel = new DataAnalysisPanel(logic.getStatisticsData());
         dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -192,6 +189,11 @@ public class MainWindow extends UiPart<Stage> {
         return taskListPanel;
     }
 
+    private void updateDataAnalysisPanel() {
+        dataAnalysisPanel = new DataAnalysisPanel(logic.getStatisticsData());
+        dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -202,6 +204,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            updateDataAnalysisPanel();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

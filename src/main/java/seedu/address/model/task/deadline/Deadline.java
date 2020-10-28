@@ -100,7 +100,7 @@ public class Deadline extends Task {
     /**
      * Returns true if both deadlines of the same title, date and time.
      */
-    public boolean isSameDeadline(Deadline otherDeadline) {
+    private boolean isSameDeadline(Deadline otherDeadline) {
         if (otherDeadline == this) {
             return true;
         }

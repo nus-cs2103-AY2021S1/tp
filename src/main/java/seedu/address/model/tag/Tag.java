@@ -12,6 +12,7 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String SEARCH_CONSTRAINTS = "Search phrase for tag names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String DEFAULT_TAG = "";
 
     public final String tagName;
 
@@ -24,6 +25,21 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+    }
+
+    /**
+     * Constructs a default {@code Tag}.
+     */
+    private Tag() {
+        tagName = DEFAULT_TAG;
+    }
+
+    /**
+     * Create a placeholder {@code Tag} that has an empty tag value.
+     * @return an empty tag.
+     */
+    public static Tag defaultTag() {
+        return new Tag();
     }
 
     /**
@@ -46,10 +62,10 @@ public class Tag {
     }
 
     /**
-     * Format state as text for viewing.
+     * Format tag as text for viewing.
      */
     public String toString() {
-        return '[' + tagName + ']';
+        return tagName.equals("") ? "" : '[' + tagName + ']';
     }
 
 }

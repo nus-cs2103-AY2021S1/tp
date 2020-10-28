@@ -8,13 +8,14 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.lesson.Lesson;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.deadline.Deadline;
+import seedu.address.model.task.event.Event;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Task> PREDICATE_SHOW_ALL_TASKS = task -> !(task instanceof Event && ((Event) task).isLesson());
     Predicate<Lesson> PREDICATE_SHOW_ALL_LESSONS = unused -> true;
     Predicate<Task> PREDICATE_SHOW_ALL_CALENDAR_TASKS = unused -> true;
 
