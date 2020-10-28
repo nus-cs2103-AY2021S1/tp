@@ -23,6 +23,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -75,9 +76,15 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void execute_validCommand_success() throws Exception {
+    public void execute_validCommandString_success() throws Exception {
         String listCommand = ListCommand.COMMAND_WORD;
         assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+    }
+
+    @Test
+    public void execute_validCommandObject_success() throws Exception {
+        Command saveVisitCommand = new ListCommand();
+        assertCommandObjectSuccess(saveVisitCommand, ListCommand.MESSAGE_SUCCESS, model);
     }
 
     @Test
@@ -129,6 +136,20 @@ public class LogicManagerTest {
      */
     private void assertCommandSuccess(String inputCommand, String expectedMessage,
             Model expectedModel) throws CommandException, ParseException {
+        CommandResult result = logic.execute(inputCommand);
+        assertEquals(expectedMessage, result.getFeedbackToUser());
+        assertEquals(expectedModel, model);
+    }
+
+    /**
+     * Executes the command and confirms that
+     * - no exceptions are thrown <br>
+     * - the feedback message is equal to {@code expectedMessage} <br>
+     * - the internal model manager state is the same as that in {@code expectedModel} <br>
+     * @see #assertCommandFailure(String, Class, String, Model)
+     */
+    private void assertCommandObjectSuccess(Command inputCommand, String expectedMessage,
+                                            Model expectedModel) throws CommandException {
         CommandResult result = logic.execute(inputCommand);
         assertEquals(expectedMessage, result.getFeedbackToUser());
         assertEquals(expectedModel, model);

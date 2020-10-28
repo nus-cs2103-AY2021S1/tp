@@ -30,10 +30,17 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("different")));
 
         // different idx value -> returns false
-        //assertFalse(commandResult.equals(new CommandResult("feedback", 1, null)));
+        assertFalse(commandResult.equals(new CommandResult("feedback", null)));
+
+        // different idx value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", null, null,
+                                                   1, 1)));
+
+        // different idx value -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", null, null)));
 
         // different date value -> returns false
-        //assertFalse(commandResult.equals(new CommandResult("feedback", 0, "true")));
+        assertFalse(commandResult.equals(new CommandResult("feedback", "true", 1)));
     }
 
     @Test
@@ -47,10 +54,43 @@ public class CommandResultTest {
         assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
 
         // different idx value -> returns different hashcode
-        //assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", 1, null).hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", null, 1).hashCode());
 
         // different date value -> returns different hashcode
-        //assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", 0, "false").hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("feedback", "false", 1).hashCode());
+    }
+
+    @Test
+    public void getterMethods() {
+        // Test for all false parameters
+        CommandResult firstCommand = new CommandResult("feedback", false, false,
+                                        false, false, false, false);
+
+        assertEquals(firstCommand.isDisplayProfile(), false);
+        assertEquals(firstCommand.isAddVisit(), false);
+        assertEquals(firstCommand.isDisplayVisitHistory(), false);
+        assertEquals(firstCommand.isEditVisit(), false);
+        assertEquals(firstCommand.isExit(), false);
+        assertEquals(firstCommand.isShowHelp(), false);
+
+        // Test for display profile parameter
+        CommandResult secondCommand = new CommandResult("feedback", false, false,
+                false, false, true, false);
+
+        assertEquals(secondCommand.isDisplayProfile(), true);
+        assertEquals(secondCommand.isAddVisit(), false);
+        assertEquals(secondCommand.isDisplayVisitHistory(), false);
+        assertEquals(secondCommand.isEditVisit(), false);
+        assertEquals(secondCommand.isExit(), false);
+        assertEquals(secondCommand.isShowHelp(), false);
+        assertNotEquals(secondCommand.isDisplayProfile(), false);
+
+        CommandResult thirdCommand = new CommandResult("feedback", "10/11/2020", 2);
+
+        assertNotEquals(thirdCommand.getPatientIndex(), 5);
+        assertEquals(thirdCommand.getPatientIndex(), 2);
+        assertEquals(thirdCommand.getVisitDate(), "10/11/2020");
+        assertNotEquals(thirdCommand.getVisitDate(), "9/11/2020");
     }
 
     @Test
