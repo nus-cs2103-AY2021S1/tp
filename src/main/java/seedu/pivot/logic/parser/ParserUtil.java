@@ -2,6 +2,11 @@ package seedu.pivot.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.pivot.logic.parser.CliSyntax.PREFIX_PHONE;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -9,6 +14,8 @@ import java.util.Set;
 
 import seedu.pivot.commons.core.index.Index;
 import seedu.pivot.commons.util.StringUtil;
+import seedu.pivot.logic.commands.EditCommand;
+import seedu.pivot.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Reference;
@@ -216,4 +223,36 @@ public class ParserUtil {
         return new Email(trimmedEmail);
     }
 
+    /**
+     * Parses the fields of a CasePerson that are to be edited into an EditPersonDescriptor.
+     * @param argMultimap Contains the fields of a CasePerson that are to be edited.
+     * @return An EditPersonDescriptor.
+     * @throws ParseException If no fields are edited.
+     */
+    public static EditPersonDescriptor parseEditedPersonFields(ArgumentMultimap argMultimap) throws ParseException {
+        requireNonNull(argMultimap);
+
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            editPersonDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()));
+        }
+        if (argMultimap.getValue(PREFIX_GENDER).isPresent()) {
+            editPersonDescriptor.setGender(ParserUtil.parseGender(argMultimap.getValue(PREFIX_GENDER).get()));
+        }
+        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
+            editPersonDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+        }
+        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
+            editPersonDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+        }
+        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
+            editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+        }
+
+        if (!editPersonDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+        }
+
+        return editPersonDescriptor;
+    }
 }
