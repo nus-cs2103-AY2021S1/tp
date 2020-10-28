@@ -1,8 +1,5 @@
 package seedu.address.ui.card;
 
-import java.time.Duration;
-import java.time.LocalDateTime;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
