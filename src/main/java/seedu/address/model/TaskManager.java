@@ -88,7 +88,7 @@ public class TaskManager implements ReadOnlyTaskManager {
      */
     public void sort(Comparator<Task> comparator) {
         tasks.sort(comparator);
-    };
+    }
 
     /**
      * Marks {@code key} as done in this {@code TaskManager}.
