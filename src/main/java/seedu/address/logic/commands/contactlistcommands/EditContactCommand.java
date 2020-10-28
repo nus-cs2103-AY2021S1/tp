@@ -9,7 +9,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
@@ -38,11 +40,14 @@ public class EditContactCommand extends Command {
             + "[" + PREFIX_TELEGRAM + "TELEGRAM]..."
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
+            + PREFIX_NAME + "johndoe"
             + PREFIX_EMAIL + "johndoe@example.com";
 
     public static final String MESSAGE_EDIT_CONTACT_SUCCESS = "Edited Contact: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_CONTACT = "This contact already exists in the contact list.";
+
+    private final Logger logger = LogsCenter.getLogger(EditContactCommand.class);
 
     private final Index index;
     private final EditContactDescriptor editContactDescriptor;
@@ -55,8 +60,11 @@ public class EditContactCommand extends Command {
         requireNonNull(index);
         requireNonNull(editContactDescriptor);
 
+        assert index.getZeroBased() >= 0 : "zero based index must be non-negative";
+
         this.index = index;
         this.editContactDescriptor = new EditContactDescriptor(editContactDescriptor);
+        logger.info("Edited a contact");
     }
 
     @Override
@@ -78,6 +86,7 @@ public class EditContactCommand extends Command {
         model.setContact(contactToEdit, editedContact);
         model.updateFilteredContactList(PREDICATE_SHOW_ALL_CONTACTS);
         model.commitContactList();
+        logger.info("Contact has been edited");
         return new CommandResult(String.format(MESSAGE_EDIT_CONTACT_SUCCESS, editedContact));
     }
 
@@ -88,12 +97,24 @@ public class EditContactCommand extends Command {
     private static Contact createEditedContact(Contact contactToEdit, EditContactDescriptor editContactDescriptor) {
         assert contactToEdit != null;
 
+        Contact editedContact;
         Name updatedName = editContactDescriptor.getName().orElse(contactToEdit.getName());
         Email updatedEmail = editContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
-        Telegram updatedTelegram = editContactDescriptor.getTelegram().orElse(contactToEdit.getTelegramUsername());
         Set<Tag> updatedTags = editContactDescriptor.getTags().orElse(contactToEdit.getTags());
 
-        return new Contact(updatedName, updatedEmail, updatedTelegram, updatedTags);
+        if (editContactDescriptor.getTelegram().isPresent()) {
+            Telegram updatedTelegram = editContactDescriptor
+                    .getTelegram().get();
+            editedContact = new Contact(updatedName, updatedEmail, updatedTelegram, updatedTags);
+        } else if (contactToEdit.getTelegram().isPresent()) {
+            Telegram telegram = contactToEdit.getTelegram().get();
+            editedContact = new Contact(updatedName, updatedEmail, telegram, updatedTags);
+        } else {
+            editedContact = new Contact(updatedName, updatedEmail, updatedTags);
+        }
+
+        return editedContact;
+
     }
 
     @Override
