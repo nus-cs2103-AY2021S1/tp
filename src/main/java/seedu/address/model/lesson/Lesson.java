@@ -89,7 +89,7 @@ public class Lesson {
         ArrayList<Task> tasksToAdd = new ArrayList<>();
         while (currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate)) {
             LocalDateTime localStartDateTime = LocalDateTime.of(currentDate, getStartTime());
-            LocalDateTime localEndDateTime = LocalDateTime.of(currentDate, getStartTime());
+            LocalDateTime localEndDateTime = LocalDateTime.of(currentDate, getEndTime());
             String startDateTimeString = localStartDateTime.format(DateUtil.DATETIME_FORMATTER);
             String endDateTimeString = localEndDateTime.format(DateUtil.DATETIME_FORMATTER);
             StartDateTime startDateTime = new StartDateTime(startDateTimeString);
