@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientList;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -24,8 +25,8 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalClientList(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalClientList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClientList(), new UserPrefs(), getTypicalPolicyList());
+    private Model expectedModel = new ModelManager(getTypicalClientList(), new UserPrefs(), getTypicalPolicyList());
 
     @Test
     public void equals() {

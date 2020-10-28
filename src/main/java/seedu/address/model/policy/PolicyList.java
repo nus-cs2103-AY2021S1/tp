@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Hashtable;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.policy.exception.DuplicatePolicyException;
 
 public class PolicyList {
     private final Hashtable<String, Policy> policies;
@@ -22,11 +22,25 @@ public class PolicyList {
     }
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the hashtable contains an equivalent policy as the given argument.
      */
     public boolean contains(Policy toCheck) {
         requireNonNull(toCheck);
         return policies.contains(toCheck);
+    }
+
+    /**
+     * Returns true if the hashtable contains the key as the given argument using PolicyName.
+     */
+    public boolean contains(PolicyName policyName) {
+        return policies.containsKey(policyName.value);
+    }
+
+    /**
+     * Returns true if the hashtable contains the key as the given argument using String.
+     */
+    public boolean contains(String policyName) {
+        return policies.containsKey(policyName);
     }
 
     /**
@@ -36,9 +50,9 @@ public class PolicyList {
     public void add(Policy toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicatePolicyException();
         }
-        policies.put(toAdd.getPolicyName().policyName, toAdd);
+        policies.put(toAdd.getPolicyName().value, toAdd);
     }
 
     /**
@@ -70,7 +84,7 @@ public class PolicyList {
      * else returns null.
      */
     public Policy getPolicy(PolicyName name) {
-        return policies.get(name.policyName);
+        return policies.get(name.value);
     }
 
     /**

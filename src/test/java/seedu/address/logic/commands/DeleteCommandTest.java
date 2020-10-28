@@ -8,6 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalClientList;
+import static seedu.address.testutil.TypicalPolicies.getTypicalPolicyList;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +25,7 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalClientList(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalClientList(), new UserPrefs(), getTypicalPolicyList());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +34,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getClientList(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getClientList(), new UserPrefs(), getTypicalPolicyList());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +57,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, personToDelete);
 
-        Model expectedModel = new ModelManager(model.getClientList(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getClientList(), new UserPrefs(), getTypicalPolicyList());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 

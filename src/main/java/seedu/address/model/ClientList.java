@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.policy.PolicyList;
 
 /**
  * Wraps all data at the client-list level
@@ -116,5 +117,22 @@ public class ClientList implements ReadOnlyClientList {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    /**
+     * Updates Clientlist by checking if Persons in the UniquePersonList has Policys that are
+     * already in the policy list.
+     * If the Person's policy does not match the Policy in the PolicyList,
+     * The field is set to null.
+     */
+    public void updateClientListWithPolicyList(PolicyList policyList) {
+        persons.updateUniquePersonListWithPolicyList(policyList);
+    }
+
+    /**
+     * Clear all policy fields in persons.
+     */
+    public void clearPolicy() {
+        persons.clearPolicy();
     }
 }

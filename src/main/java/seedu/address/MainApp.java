@@ -21,10 +21,14 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyClientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.policy.PolicyList;
+import seedu.address.model.util.SampleClientDataUtil;
+import seedu.address.model.util.SamplePolicyDataUtil;
 import seedu.address.storage.ClientListStorage;
 import seedu.address.storage.JsonClientListStorage;
+import seedu.address.storage.JsonPolicyListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.PolicyListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -57,7 +61,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ClientListStorage clientListStorage = new JsonClientListStorage(userPrefs.getClientListFilePath());
-        storage = new StorageManager(clientListStorage, userPrefsStorage);
+        PolicyListStorage policyListStorage = new JsonPolicyListStorage(userPrefs.getPolicyListFilePath());
+        storage = new StorageManager(clientListStorage, userPrefsStorage, policyListStorage);
 
         initLogging(config);
 
@@ -75,22 +80,44 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyClientList> clientListOptional;
-        ReadOnlyClientList initialData;
+        ReadOnlyClientList initialClientData;
         try {
             clientListOptional = storage.readClientList();
             if (!clientListOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample ClientList");
+                logger.info("Client List data file not found. Will be starting with a sample ClientList");
             }
-            initialData = clientListOptional.orElseGet(SampleDataUtil::getSampleClientList);
+            initialClientData = clientListOptional.orElseGet(SampleClientDataUtil::getSampleClientList);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty ClientList");
-            initialData = new ClientList();
+            logger.warning(
+                    "Client List data file not in the correct format. Will be starting with an empty ClientList");
+            initialClientData = new ClientList();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty ClientList");
-            initialData = new ClientList();
+            logger.warning(
+                    "Problem while reading from the Client List data file. Will be starting with an empty ClientList");
+            initialClientData = new ClientList();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        Optional<PolicyList> policyListOptional;
+        PolicyList initialPolicyData;
+        try {
+            policyListOptional = storage.readPolicyList();
+            if (!policyListOptional.isPresent()) {
+                logger.info("Policy List data file not found. Will be starting with a sample PolicyList");
+            }
+            initialPolicyData = policyListOptional.orElseGet(SamplePolicyDataUtil::getSamplePolicyList);
+        } catch (DataConversionException e) {
+            logger.warning(
+                    "Policy List data file not in the correct format. Will be starting with an empty PolicyList");
+            initialPolicyData = new PolicyList();
+        } catch (IOException e) {
+            logger.warning(
+                    "Problem while reading from the Policy List data file. Will be starting with an empty PolicyList");
+            initialPolicyData = new PolicyList();
+        }
+
+        initialClientData.updateClientListWithPolicyList(initialPolicyData);
+
+        return new ModelManager(initialClientData, userPrefs, initialPolicyData);
     }
 
     private void initLogging(Config config) {

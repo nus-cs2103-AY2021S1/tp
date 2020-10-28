@@ -9,6 +9,7 @@ import java.util.Set;
 
 import seedu.address.model.clientsource.ClientSource;
 import seedu.address.model.note.Note;
+import seedu.address.model.policy.Policy;
 
 /**
  * Represents a Person in the client list.
@@ -28,13 +29,14 @@ public class Person {
     private final Note note;
     private final boolean isArchive;
     private final Priority priority;
+    private final Policy policy;
 
     /**
      * Only name, client sources, priority need to be non-null.
      * By default, Person is not in archive
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources, Note note,
-                  Priority priority) {
+                  Priority priority, Policy policy) {
         requireAllNonNull(name, clientSources, priority);
         this.name = name;
         this.phone = phone;
@@ -44,13 +46,14 @@ public class Person {
         this.note = note;
         this.isArchive = false;
         this.priority = priority;
+        this.policy = policy;
     }
 
     /**
      * Only name, client sources, priority, archive status need to be non-null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Set<ClientSource> clientSources,
-                  Note note, boolean isArchive, Priority priority) {
+                  Note note, boolean isArchive, Priority priority, Policy policy) {
         requireAllNonNull(name, clientSources, isArchive, priority);
         this.name = name;
         this.phone = phone;
@@ -60,6 +63,7 @@ public class Person {
         this.note = note;
         this.isArchive = isArchive;
         this.priority = priority;
+        this.policy = policy;
     }
 
     public Name getName() {
@@ -96,6 +100,10 @@ public class Person {
 
     public Priority getPriority() {
         return priority;
+    }
+
+    public Policy getPolicy() {
+        return policy;
     }
 
     /**
@@ -164,7 +172,8 @@ public class Person {
                 && equalsNullable(otherPerson.getAddress(), getAddress())
                 && otherPerson.getClientSources().equals(getClientSources())
                 && equalsNullable(otherPerson.getNote(), getNote())
-                && (otherPerson.getIsArchive() == getIsArchive());
+                && (otherPerson.getIsArchive() == getIsArchive())
+                && equalsNullable(otherPerson.getPolicy(), getPolicy());
     }
 
     private boolean equalsNullable(Object obj, Object otherObj) {
@@ -178,7 +187,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, clientSources, note, isArchive, priority);
+        return Objects.hash(name, phone, email, address, clientSources, note, isArchive, priority, policy);
     }
 
     @Override
@@ -210,6 +219,8 @@ public class Person {
 
         builder.append(" Priority: ")
                 .append(getPriority());
+        builder.append(" Policy: ")
+                .append(getPolicy());
 
         return builder.toString();
     }

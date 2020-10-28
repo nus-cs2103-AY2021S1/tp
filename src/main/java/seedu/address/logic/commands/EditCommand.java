@@ -115,7 +115,9 @@ public class EditCommand extends Command {
                 updatedAddress,
                 updatedClientSources,
                 updatedNote,
-                updatedPriority);
+                updatedPriority,
+                personToEdit.getPolicy()
+        );
     }
 
     @Override

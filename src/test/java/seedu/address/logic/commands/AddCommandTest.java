@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPolicies.LIFE_TIME_NAME;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -20,16 +21,20 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ClientList;
 import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyClientList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.PolicyList;
+import seedu.address.model.policy.PolicyName;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddCommand(null, null));
     }
 
     @Test
@@ -37,7 +42,7 @@ public class AddCommandTest {
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Person validPerson = new PersonBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validPerson, null).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
@@ -47,7 +52,7 @@ public class AddCommandTest {
     public void execute_inArchiveMode_throwsCommandException() {
         ModelStubInArchiveMode modelStub = new ModelStubInArchiveMode();
         Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
+        AddCommand addCommand = new AddCommand(validPerson, null);
 
         assertThrows(CommandException.class,
                 AddCommand.MESSAGE_DISABLE_IN_ARCHIVE_MODE, () -> addCommand.execute(modelStub));
@@ -56,7 +61,7 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
+        AddCommand addCommand = new AddCommand(validPerson, null);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
@@ -65,7 +70,7 @@ public class AddCommandTest {
     @Test
     public void execute_duplicatePersonInArchive_throwsCommandException() {
         Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
+        AddCommand addCommand = new AddCommand(validPerson, null);
 
         Person validPersonInArchive = new PersonBuilder().addToArchive().build();
         ModelStub modelStub = new ModelStubWithPerson(validPersonInArchive);
@@ -74,17 +79,26 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_policyNotInPolicyList_throwsCommandException() {
+        Model model = new ModelManager();
+        Person validPerson = new PersonBuilder().withoutPolicy().build();
+        PolicyName validPolicyName = new PolicyName(LIFE_TIME_NAME);
+        AddCommand addCommand = new AddCommand(validPerson, validPolicyName);
+        assertThrows(CommandException.class, AddCommand.MESSAGE_POLICY_NOT_FOUND, () -> addCommand.execute(model));
+    }
+
+    @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
         Person bob = new PersonBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        AddCommand addAliceCommand = new AddCommand(alice, null);
+        AddCommand addBobCommand = new AddCommand(bob, null);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddCommand addAliceCommandCopy = new AddCommand(alice, null);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -185,6 +199,41 @@ public class AddCommandTest {
         public void setIsArchiveMode(boolean isArchiveMode) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public Path getPolicyListFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPolicyListFilePath(Path path) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PolicyList getPolicyList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPolicy(Policy policy) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPolicy(Policy policy) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPolicy(PolicyName policyName) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearPolicyList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -255,4 +304,14 @@ public class AddCommandTest {
 
     }
 
+    /**
+     * A Model stub that has no policies in policylist
+     */
+    private class ModelStubWithoutPolicies extends ModelStub {
+
+        @Override
+        public boolean hasPolicy(Policy policy) {
+            return false;
+        }
+    }
 }

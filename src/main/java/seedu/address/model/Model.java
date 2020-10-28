@@ -8,6 +8,9 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.IsArchivePredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.policy.Policy;
+import seedu.address.model.policy.PolicyList;
+import seedu.address.model.policy.PolicyName;
 
 /**
  * The API of the Model component.
@@ -110,4 +113,39 @@ public interface Model {
      * @param isArchiveMode Archive mode to be set.
      */
     void setIsArchiveMode(boolean isArchiveMode);
+
+    /**
+     * Returns the user prefs' policy list file path.
+     */
+    Path getPolicyListFilePath();
+
+    /**
+     * Sets the user prefs' policy list file path.
+     */
+    void setPolicyListFilePath(Path policyListFilePath);
+
+    /** Returns the PolicyList */
+    PolicyList getPolicyList();
+
+    /**
+     * Adds the given policy.
+     * {@code policy} must not already exist in the client list.
+     */
+    void addPolicy(Policy policy);
+
+    /**
+     * Returns true if a policy with the same identity as {@code policy} exists in the policy list.
+     */
+    boolean hasPolicy(Policy policy);
+
+    /**
+     * Returns true if a policy with the same policy name as {@code policy} exists in the policy list.
+     */
+    boolean hasPolicy(PolicyName policyName);
+
+    /**
+     * Clear policy list data.
+     * Additionally, clears all policy field in client list.
+     */
+    void clearPolicyList();
 }
