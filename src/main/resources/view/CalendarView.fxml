@@ -23,14 +23,14 @@
         <Button fx:id="leftBtn" mnemonicParsing="false" onAction="#handleLeftBtn"
                 GridPane.halignment="LEFT" GridPane.valignment="CENTER">
           <GridPane.margin>
-            <Insets left="100.0" />
+            <Insets left="0.0" />
           </GridPane.margin>
         </Button>
 
         <Button fx:id="rightBtn" mnemonicParsing="false" onAction="#handRightBtn"
                 GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
           <GridPane.margin>
-            <Insets right="100.0" />
+            <Insets right="0.0" />
           </GridPane.margin>
         </Button>
 
