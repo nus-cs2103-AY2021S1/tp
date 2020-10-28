@@ -15,6 +15,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindByTagCommand;
+import seedu.address.logic.commands.FindByTagTodayCommand;
+import seedu.address.logic.commands.FindByTagTomorrowCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -79,6 +82,15 @@ public class AddressBookParser {
 
         case ArchiveAllCommand.COMMAND_WORD:
             return new ArchiveAllCommand();
+
+        case FindByTagTodayCommand.COMMAND_WORD:
+            return new FindByTagTodayCommand();
+
+        case FindByTagTomorrowCommand.COMMAND_WORD:
+            return new FindByTagTomorrowCommand();
+
+        case FindByTagCommand.COMMAND_WORD:
+            return new TagFindCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

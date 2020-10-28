@@ -24,10 +24,10 @@ public class SetCommand extends Command {
 
     public static final String COMMAND_WORD = "i-set";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " :set the ingredient in tCheck."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " :set the ingredient in tCheck.\n"
             + "Parameters: "
-            + PREFIX_INGREDIENT
-            + PREFIX_AMOUNT
+            + PREFIX_INGREDIENT + " "
+            + PREFIX_AMOUNT + "\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT + "Milk "
             + PREFIX_AMOUNT + "90 ";

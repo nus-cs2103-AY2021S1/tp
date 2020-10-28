@@ -19,9 +19,8 @@ public class IngredientViewSingleCommand extends Command {
 
     public static final String COMMAND_WORD = "i-view-single";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " :views a single ingredient level in tCheck."
-            + "Parameters: "
-            + PREFIX_INGREDIENT
+    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Views a single ingredient level in tCheck.\n"
+            + "Parameters: i/INGREDIENT_NAME\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INGREDIENT + "Milk ";
 
@@ -51,9 +50,8 @@ public class IngredientViewSingleCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        Ingredient ingredientToView = model.findIngredientByName(target);
-
+        Ingredient ingredientToView;
+        ingredientToView = model.findIngredientByName(target);
         return new CommandResult(String.format(MESSAGE_SUCCESS, ingredientToView));
     }
 

@@ -13,7 +13,7 @@ public class SalesListCommand extends Command {
 
     public static final String COMMAND_WORD = "s-list";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the sales of the drinks as entered. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists the sales of the drinks as entered.\n"
             + "Parameters: There are no parameters.\n"
             + "Example: " + COMMAND_WORD;
 
