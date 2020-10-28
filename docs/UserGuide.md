@@ -47,7 +47,7 @@
 * Friendly syntax is supported! For any command, typing the prefix of the command will already be recognized, unless
 there is any ambiguity. For example, `help` only requires the user to type `h` to be recognized, while `sort` will
 require user to at least type `so` since typing `s` by itself will conflict with another command `submit` (The commands
-will be explained below. For the sake of clarity, the whole command will be shown instead of the prefix.
+will be explained below. To minimize confusion, the whole command will be shown instead of the prefix.
 
 </div>
 
