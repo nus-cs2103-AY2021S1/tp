@@ -2,24 +2,31 @@
   "_comment": "fileAddressBook save file which contains the same Person values as in TypicalTags#getTypicalfileAddressBook()",
   "tags" : [ {
     "tagName" : "cs2103",
-    "fileAddress" : "c:\\a\\b\\cs2103.txt"
+    "fileAddress" : "./src/test/java/seedu/address/testutil/cs2103.bat",
+    "labels": ["testLabel"]
   }, {
-    "tagName" : "Benson Meier",
-    "fileAddress" : "c:\\a\\b\\benson.txt"
+    "tagName" : "cs2101",
+    "fileAddress" : "./src/test/java/seedu/address/testutil/cs2101.bat",
+    "labels": ["testLabel"]
   }, {
-    "tagName" : "Carl Kurz",
-    "fileAddress" : "c:\\a\\b\\carl.txt"
+    "tagName" : "myfile",
+    "fileAddress" : "c:\\a\\b\\myfile.txt",
+    "labels": ["project", "myfile"]
   }, {
-    "tagName" : "Daniel Meier",
-    "fileAddress" : "c:\\a\\b\\daniel.txt"
+    "tagName" : "myfile 2",
+    "fileAddress" : "c:\\a\\b\\myfile2.txt",
+    "labels": ["project"]
   }, {
-    "tagName" : "Elle Meyer",
-    "fileAddress" : "c:\\a\\b\\elle.txt"
+    "tagName" : "myfile 3",
+    "fileAddress" : "c:\\a\\b\\myfile3.txt",
+    "labels": ["testLabel"]
   }, {
-    "tagName" : "Fiona Kunz",
-    "fileAddress" : "c:\\a\\b\\fiona.txt"
+    "tagName" : "myfile 4",
+    "fileAddress" : "c:\\a\\b\\myfile4.txt",
+    "labels": ["testLabel"]
   }, {
-    "tagName" : "George Best",
-    "fileAddress" : "c:\\a\\b\\george.txt"
+    "tagName" : "myfile 5",
+    "fileAddress" : "c:\\a\\b\\myfile5.txt",
+    "labels": ["testLabel"]
   } ]
 }

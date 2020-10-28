@@ -43,6 +43,26 @@ public class RetagCommandTest {
     }
 
     @Test
+    public void execute_newTagNameInTagList_throwCommandException() {
+        // Retag a tag with a Tag name that is already in model
+        Tag duplicateTag = new TagBuilder().withTagName("CS1231").build();
+        Tag tagToRetag = new TagBuilder().build();
+        TagName oldTagName = tagToRetag.getTagName();
+        TagName newTagName = new TagName("CS1231");
+
+        ModelStubWithTagAndTaglist expectedModelStub = new ModelStubWithTagAndTaglist();
+        expectedModelStub.addTag(tagToRetag);
+        expectedModelStub.commitAddressBook();
+        expectedModelStub.addTag(duplicateTag);
+        expectedModelStub.commitAddressBook();
+
+        RetagCommand retagCommand = new RetagCommand(oldTagName, newTagName);
+
+        assertThrows(CommandException.class,
+                RetagCommand.MESSAGE_DUPLICATE_TAG, () -> retagCommand.execute(expectedModelStub));
+    }
+
+    @Test
     public void execute_oldTagNotInModel_throwCommandException() {
         TagName oldTagName = new TagName("noExist");
         TagName newTagName = new TagName("noMatter");
@@ -77,6 +97,7 @@ public class RetagCommandTest {
 
         RetagCommand retagCommand1 = new RetagCommand(oldTagName, newTagName);
         RetagCommand retagCommand2 = new RetagCommand(newTagName, oldTagName);
+        RetagCommand retagCommand3 = new RetagCommand(oldTagName, oldTagName);
 
         // same object -> returns true
         assertTrue(retagCommand1.equals(retagCommand1));
@@ -93,5 +114,8 @@ public class RetagCommandTest {
 
         // different tagName -> returns false
         assertFalse(retagCommand1.equals(retagCommand2));
+        assertFalse(retagCommand1.equals(retagCommand3));
+        assertFalse(retagCommand2.equals(retagCommand3));
+
     }
 }

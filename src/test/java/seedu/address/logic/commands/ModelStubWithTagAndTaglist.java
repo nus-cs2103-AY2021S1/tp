@@ -14,7 +14,10 @@ public class ModelStubWithTagAndTaglist extends ModelStub {
     private final CurrentPath currentPath;
     private int commitCount;
 
-    ModelStubWithTagAndTaglist() {
+    /**
+     * Creates a ModelStubWithTagAndTagList object.
+     */
+    public ModelStubWithTagAndTaglist() {
         tags = new ArrayList<>();
         currentPath = new CurrentPath(System.getProperty("user.dir"), new FileList());
         commitCount = 0;
