@@ -1,6 +1,7 @@
 package seedu.stock.logic.parser;
 
 import static seedu.stock.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.stock.logic.commands.CommandTestUtil.INVALID_LIST_TYPE_DESC;
 import static seedu.stock.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.stock.logic.parser.SuggestionCommandParser.MESSAGE_SUGGESTION;
 
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.HelpCommand;
+import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
 
 public class SuggestionCommandParserTest {
@@ -43,6 +45,25 @@ public class SuggestionCommandParserTest {
         parser = new SuggestionCommandParser("help", "error message");
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.HELP_COMMAND_WORD + "\n" + HelpCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_listCommandSuggestion_success() {
+        // EP: incorrect command word
+        String userInput = INVALID_LIST_TYPE_DESC;
+        SuggestionCommandParser parser = new SuggestionCommandParser("lis");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.LIST_COMMAND_WORD + " lt/all"
+                + "\n" + ListCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word
+        parser = new SuggestionCommandParser("list", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.LIST_COMMAND_WORD + " lt/all" + "\n" + ListCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

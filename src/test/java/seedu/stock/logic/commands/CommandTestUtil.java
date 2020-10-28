@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_FILE_NAME;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_INCREMENT_QUANTITY;
+import static seedu.stock.logic.parser.CliSyntax.PREFIX_LIST_TYPE;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_LOW_QUANTITY;
 import static seedu.stock.logic.parser.CliSyntax.PREFIX_NAME;
@@ -84,6 +85,7 @@ public class CommandTestUtil {
     public static final String INVALID_FILE_NAME_DESC = " " + PREFIX_FILE_NAME + "test+2";
     public static final String INVALID_SORT_ORDER_DESC = " " + PREFIX_SORT_ORDER + "random";
     public static final String INVALID_SORT_FIELD_DESC = " " + PREFIX_SORT_FIELD + "note";
+    public static final String INVALID_LIST_TYPE_DESC = " " + PREFIX_LIST_TYPE + "a";
 
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
