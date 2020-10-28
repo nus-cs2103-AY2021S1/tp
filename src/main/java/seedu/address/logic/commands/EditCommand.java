@@ -34,6 +34,7 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
+import seedu.address.model.visit.VisitHistory;
 
 /**
  * Edits the details of an existing patient in the CliniCal application.
@@ -45,7 +46,7 @@ public class EditCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the patient identified "
             + "by the index number used in the displayed patient list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: INDEX (must be a positive number) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_ICNUMBER + "NRIC] "
@@ -53,8 +54,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_SEX + "SEX] "
             + "[" + PREFIX_BLOODTYPE + "BLOODTYPE] "
-            + "[" + PREFIX_ALLERGY + "ALLERGY]...\n"
-            + "[" + PREFIX_COLORTAG + "COLORTAG]...\n"
+            + "[" + PREFIX_ALLERGY + "ALLERGY] "
+            + "[" + PREFIX_COLORTAG + "COLORTAG]\n\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -110,6 +111,8 @@ public class EditCommand extends Command {
         Name updatedName = editPatientDescriptor.getName().orElse(patientToEdit.getName());
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         IcNumber updatedIcNumber = editPatientDescriptor.getIcNumber().orElse(patientToEdit.getIcNumber());
+        VisitHistory updatedVisitHistory =
+            editPatientDescriptor.getVisitHistory().orElse(patientToEdit.getVisitHistory());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         ProfilePicture updatedProfilePicture = editPatientDescriptor.getProfilePicture()
@@ -118,7 +121,7 @@ public class EditCommand extends Command {
         BloodType updatedBloodtype = editPatientDescriptor.getBloodType().orElse(patientToEdit.getBloodType());
         Set<Allergy> updatedAllergies = editPatientDescriptor.getAllergies().orElse(patientToEdit.getAllergies());
         ColorTag updatedColorTag = editPatientDescriptor.getColorTag().orElse(patientToEdit.getColorTag());
-        return new Patient(updatedName, updatedPhone, updatedIcNumber,
+        return new Patient(updatedName, updatedPhone, updatedIcNumber, updatedVisitHistory,
                 updatedAddress, updatedEmail, updatedProfilePicture,
                 updatedSex, updatedBloodtype, updatedAllergies, updatedColorTag);
     }
@@ -149,6 +152,7 @@ public class EditCommand extends Command {
         private Name name;
         private Phone phone;
         private IcNumber icNumber;
+        private VisitHistory visitHistory;
         private Address address;
         private Email email;
         private ProfilePicture profilePicture;
@@ -167,6 +171,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setIcNumber(toCopy.icNumber);
+            setVisitHistory(toCopy.visitHistory);
             setAddress(toCopy.address);
             setEmail(toCopy.email);
             setProfilePicture(toCopy.profilePicture);
@@ -202,6 +207,14 @@ public class EditCommand extends Command {
 
         public void setIcNumber(IcNumber icNumber) {
             this.icNumber = icNumber;
+        }
+
+        public Optional<VisitHistory> getVisitHistory() {
+            return Optional.ofNullable(visitHistory);
+        }
+
+        public void setVisitHistory(VisitHistory visitHistory) {
+            this.visitHistory = visitHistory;
         }
 
         public Optional<IcNumber> getIcNumber() {

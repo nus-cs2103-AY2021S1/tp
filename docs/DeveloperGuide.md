@@ -280,9 +280,9 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Current Implementation:** Saves the entire patient details in CliniCal application.
 
   * Pros:
-       * It is easier to implement as the entire list of patients would be saved. The list of patients can then be 
+       * It is easier to implement as the entire list of patients would be saved. The list of patients can then be
   easily loaded to be used or saved for future use by `Model`.
-  
+
   * Cons:
        * This may have performance issues in terms of memory usage.
 
@@ -290,28 +290,28 @@ The following activity diagram summarizes what happens when a user executes a ne
 
   * Pros:
        * The application will use less memory (e.g. for `delete`, just save the patient being deleted).
-  
+
   * Cons:
        * The implementation of undo/redo for each specific command must be correct.
-  
+
 ##### 3.1.2.2 Aspect: Choice of data structure to store CliniCal application states
-  
+
  * **Current Implementation:** List with `currentStatePointer` pointing to the current CliniCal state.
-  
+
     * Pros:
          * It is easier to implement as only a single List is required and all states can be accessed.
-    
+
     * Cons:
          * This requires constant updating of the `CliniCalStateList` such as purging of redundant states.
-  
+
  * **Alternative Implementation:** Two Stacks - CommandsExecutedStack and RedoStack
-  
+
     * Pros:
-         * The more intuitive solution as a stack follows the Last In First Out principle. There would be no need for 
+         * The more intuitive solution as a stack follows the Last In First Out principle. There would be no need for
     any `currentStatePointer` since the current state would be at the top of the stacks.
-    
+
     * Cons:
-         * Harder to implement as two separate stacks would have to be tracked and there would be more dependencies to 
+         * Harder to implement as two separate stacks would have to be tracked and there would be more dependencies to
     implement before and after the execution of every command.
 
 ### 3.2 Add Profile Picture feature
@@ -331,7 +331,7 @@ This feature comprises the `AddProfilePictureCommand` class. Given below is an e
 
 Step 1. User input is parsed to obtain the patient index and file path of the desired profile picture.
 
-Step 2. After successful parsing of user input, the `AddProfilePictureCommand#execute(Model model)` method is called. 
+Step 2. After successful parsing of user input, the `AddProfilePictureCommand#execute(Model model)` method is called.
 
 Step 3. The `StorageManager#addPicture` method is then called which adds the desired profile picture to the specified patient.
 
@@ -357,7 +357,7 @@ Step 5. As a result of the successful update of the patient's profile picture, a
         * Exception handling is simplified as informing the user of invalid file path will be similar to when an invalid command is given.
 
     * Cons:
-        * It is harder to store and update patient's profile pictures. 
+        * It is harder to store and update patient's profile pictures.
         * New dependencies need to be created to associate with the newly created `ImageCommand` class.
         * Thus, our team decided to implement the first alternative as it follows the existing architecture closely and minimizes the risk of breaking the existing architecture.
 
@@ -368,19 +368,19 @@ Step 5. As a result of the successful update of the patient's profile picture, a
     * Pros:
         * User do not need to convert `.jpg` to `.png` file or vice versa before setting desired image file as profile picture.
         * This enhances usability.
-    
-    * Cons: 
+
+    * Cons:
         * Non-image files are still stored in 'data' folder even though the patient's profile picture in CliniCal will not be updated visually.
 
 * **Alternative Implementation:** Accept only some types of files i.e `.jpg` and `.png`.
 
-    * Pros: 
+    * Pros:
         * Acts as a form of validation check and non-image files will not be stored in the 'data' folder. This helps to save disk space.
 
-    * Cons: 
-        * User is only limited to certain types of image files. 
-        * As such, our team decided to implement the first alternative as this design maximizes application usability. 
-        * User will not need to spend additional time converting their images into accepted file types. 
+    * Cons:
+        * User is only limited to certain types of image files.
+        * As such, our team decided to implement the first alternative as this design maximizes application usability.
+        * User will not need to spend additional time converting their images into accepted file types.
         * Furthermore, our team assessed that users can easily delete non-image files from the 'data' folder if the need arises.
 
 _{more aspects and alternatives to be added}_
@@ -388,9 +388,9 @@ _{more aspects and alternatives to be added}_
 ### 3.3 View Command History feature
 
 #### 3.3.1 Implementation
-This feature allows users to view history of recently used commands. 
+This feature allows users to view history of recently used commands.
 
-All entered user inputs (including those in format format or fails to execute) will be stored into a Stack data structure named `commandHistory` 
+All entered user inputs (including those in format format or fails to execute) will be stored into a Stack data structure named `commandHistory`
 due to its Last In First Out (LIFO) property which allows the most recently used command to display first.
 
 The mechanism utilises the `CommandHistory#getCommandHistory()` to retrieve a list of past used commands from `commandHistory`.
@@ -424,25 +424,25 @@ Step 4. As a result of successful retrieval of the command history, a `CommandRe
 ##### 3.3.2.2 Aspect: How commands are stored
 * **Current Implementation:** Store all entered commands
 
-   * Pros: 
+   * Pros:
        * It is easy to implement.
        * The user can check what went wrong with the previous command.
-       
+
    * Cons:
        * The application will need more memory to store both valid and invalid commands.
-       
+
 * **Alternative Implementation:** Store only commands that are successfully executed
 
-   * Pros: 
+   * Pros:
        * User do not need to view invalid commands.
-       
+
    * Cons:
        * User cannot check what went wrong with the previous command.
-       
+
 ### 3.4 Clear Command History feature
 
 #### 3.4.1 Implementation
-This feature allows users to clear history of recently used commands. 
+This feature allows users to clear history of recently used commands.
 
 The mechanism utilises the `CommandHistory#clearHistory` to clear all stored commands from `commandHistory`.
 
@@ -464,9 +464,9 @@ Step 3. The `CommandHistory#clearHistory` is then called which will clear all co
 ##### 3.4.2.1 Aspect: Choice of Data Structure to clear commands
 * **Current Implementation:** Use of stack ADT
 
-    * Pros: 
+    * Pros:
         * Easy to implement clear function.
-        
+
     * Cons:
         * Command history is not persistent so recently used commands is only kept during the same usage.
 
@@ -485,7 +485,7 @@ Step 1. The user launches the application for the first time. The `CommandHistor
     <em style="color:#CC5500">Figure 21. Initial CommandHistory</em>
 </p>
 
-Step 2. The user executes `delete 5` command to delete the 5th patient in the patient data list. 
+Step 2. The user executes `delete 5` command to delete the 5th patient in the patient data list.
 The Logic Manager calls `CommandHistory#addUsedCommand()` to add a new command to the stack named `commandHistory`.
 
 <p align="center">
@@ -494,7 +494,7 @@ The Logic Manager calls `CommandHistory#addUsedCommand()` to add a new command t
     <em style="color:#CC5500">Figure 22. CommandHistory after "delete 5" command</em>
 </p>
 
-Step 3. The user now decides to reuse `delete 5` in the command history and press the up arrow key (↑). 
+Step 3. The user now decides to reuse `delete 5` in the command history and press the up arrow key (↑).
 The actionListener of the TextField will detect the up arrow key being pressed and calls `CommandHistory#peekNext()`.
 This will shift the currentStatePointer to the right, pointing to the `delete 5` command and returns it.
 
@@ -504,7 +504,7 @@ This will shift the currentStatePointer to the right, pointing to the `delete 5`
     <em style="color:#CC5500">Figure 23. CommandHistory after pressing up arrow</em>
 </p>
 
-Step 4. The user now decides not to reuse `delete 5` and go back to the previous command before `delete 5`, i.e. empty. 
+Step 4. The user now decides not to reuse `delete 5` and go back to the previous command before `delete 5`, i.e. empty.
 The user will now press the down arrow key (↓) and the actionListener of the TextField will detect the down arrow key being pressed and calls `CommandHistory#peekPrev()`.
 This will shift the currentStatePointer to the left, pointing to the initial state that is empty and returns it.
 
@@ -537,12 +537,12 @@ The following sequence diagram shows how the up down arrow key mechanism works:
         * Users require less time to peek through all commands stored in commandHistory as it does not include invalid commands.
     * Cons:
         * Users cannot edit invalid commands and will need to spend more time to retype the valid command.
-        
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **4. Documentation**
 
-This section highlights the documentation outline used for this software project. 
+This section highlights the documentation outline used for this software project.
 
 Refer to the guide: [_Documentation Guide_](Documentation.md)
 
@@ -550,7 +550,7 @@ Refer to the guide: [_Documentation Guide_](Documentation.md)
 
 ## **5. Testing**
 
-This section highlights the kind of test cases that are included in CliniCal's codebase. It also shows 
+This section highlights the kind of test cases that are included in CliniCal's codebase. It also shows
 how these test cases can be run on IntelliJ.
 
 Refer to the guide: [_Testing guide_](Testing.md)
@@ -696,55 +696,55 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. CliniCal shows an error message.
 
     Use case resumes at step 1.
-  
+
 ##### Use case: UC05 - Add a patient's profile picture using drag and drop
-  
+
   **MSS**
-  
+
 1.  User selects the desired profile picture and drags it onto the specified patient profile in CliniCal.
 2.  User releases mouse button.
 3.  CliniCal adds the profile picture to the specified patient.
 4.  CliniCal shows an updated list of patients.
-  
+
     Use case ends.
-  
+
   **Extensions**
-  
+
   * 1a. The file being dragged into ClinCal application is not a valid image file.
       * 1a1. Patient profile picture is not updated.
-  
+
     Use case resumes at step 1.
-    
+
   * 1b. The profile picture is not dragged onto a valid space that represents patient profile in CliniCal.
      * 1b1. Patient profile picture is not updated.
-     
+
     Use case resumes at step 1.
-         
+
 ##### Use case: UC06 - Undo a command
 
 **MSS**
-   
+
 1. User keys in command to undo the previous command.
 2. CliniCal shows the command that has been undone.
 
     Use case ends.
-    
+
 **Extensions**
-    
+
   * 1a. There are no more previous commands to undo.<br>
     Use case ends.
 
 ##### Use case: UC07 - Redo a command
 
 **MSS**
-   
+
 1. User keys in command to redo the previous undone command.
 2. CliniCal shows the command that has been redone.
 
     Use case ends.
-    
+
 **Extensions**
-    
+
   * 1a. There are no more commands to redo.<br>
   Use case ends.
 
@@ -761,7 +761,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The command history is empty.<br>
     Use case ends.
-      
+
 ##### Use case: UC09 - Clear command history
 
 **MSS**

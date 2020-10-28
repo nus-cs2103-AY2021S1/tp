@@ -21,9 +21,9 @@ public class AddProfilePictureCommand extends Command {
     public static final String COMMAND_WORD = "addpicture";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a profile picture to the patient specified by "
-            + "the index. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_FILE_PATH + "File path to the image"
+            + "the index. \n"
+            + "Parameters: INDEX (must be a positive number) "
+            + PREFIX_FILE_PATH + "File path to the image \n\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_FILE_PATH + "downloads/profile_picture";
 
@@ -62,8 +62,8 @@ public class AddProfilePictureCommand extends Command {
         ProfilePicture profilePicture = new ProfilePicture(filePath);
 
         Patient patientEdited = new Patient(patientToEdit.getName(), patientToEdit.getPhone(),
-                patientToEdit.getIcNumber(), patientToEdit.getAddress(), patientToEdit.getEmail(), profilePicture,
-                patientToEdit.getSex(), patientToEdit.getBloodType(),
+                patientToEdit.getIcNumber(), patientToEdit.getVisitHistory(), patientToEdit.getAddress(),
+                patientToEdit.getEmail(), profilePicture, patientToEdit.getSex(), patientToEdit.getBloodType(),
                 patientToEdit.getAllergies(), patientToEdit.getColorTag());
 
         model.setPatient(patientToEdit, patientEdited);

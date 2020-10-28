@@ -4,6 +4,13 @@
     "name": "Alice Pauline",
     "phone": "94351253",
     "icNumber": "S4623454A",
+    "visitHistory" : [ {
+      "visitDate" : "15/05/2020",
+      "patientName" : "Alice Pauline",
+      "diagnosis" : "Headache",
+      "prescription" : "Aspirin",
+      "comment" : "No need for follow up"
+    } ],
     "address": "123, Jurong West Ave 6, #08-111",
     "email": "alice@example.com",
     "profilePicture" : "data/stock_picture.png",
@@ -15,6 +22,13 @@
     "name" : "Benson Meier",
     "phone" : "98765432",
     "icNumber": "S7435696B",
+    "visitHistory" : [ {
+      "visitDate" : "27/03/2019",
+      "patientName" : "Benson Meier",
+      "diagnosis" : "Depression",
+      "prescription" : "Antifreeze",
+      "comment" : ""
+    } ],
     "address" : "311, Clementi Ave 2, #02-25",
     "email" : "johnd@example.com",
     "profilePicture" : "data/stock_picture.png",
@@ -26,6 +40,13 @@
     "name" : "Carl Kurz",
     "phone" : "95352563",
     "icNumber": "S8864424C",
+    "visitHistory" : [ {
+      "visitDate" : "05/10/2018",
+      "patientName" : "Carl Kurz",
+      "diagnosis" : "Obesity",
+      "prescription" : "Peloton",
+      "comment" : "Need to check daily"
+    } ],
     "address" : "wall street",
     "email" : "heinz@example.com",
     "profilePicture" : "data/stock_picture.png",
@@ -37,6 +58,13 @@
     "name" : "Daniel Meier",
     "phone" : "87652533",
     "icNumber": "G3011359D",
+    "visitHistory" : [ {
+      "visitDate" : "10/12/2017",
+      "patientName" : "Daniel Meier",
+      "diagnosis" : "Back Pain",
+      "prescription" : "Painkiller",
+      "comment" : ""
+    } ],
     "address" : "10th street",
     "email" : "cornelia@example.com",
     "profilePicture" : "data/stock_picture.png",
@@ -48,6 +76,13 @@
     "name" : "Elle Meyer",
     "phone" : "9482224",
     "icNumber": "S6131369E",
+    "visitHistory" : [ {
+      "visitDate" : "18/08/2016",
+      "patientName" : "Elle Meyer",
+      "diagnosis" : "COVID-19",
+      "prescription" : "Remdesivir",
+      "comment" : "Need to be quarantined immediately"
+    } ],
     "address" : "michegan ave",
     "email" : "werner@example.com",
     "profilePicture" : "data/stock_picture.png",
@@ -59,6 +94,13 @@
     "name" : "Fiona Kunz",
     "phone" : "9482427",
     "icNumber": "S6787656F",
+    "visitHistory" : [ {
+      "visitDate" : "25/01/2017",
+      "patientName" : "Fiona Kunz",
+      "diagnosis" : "Fever",
+      "prescription" : "Paracetamol",
+      "comment" : "Dislikes swallowing pills"
+    } ],
     "address" : "little tokyo",
     "email" : "lydia@example.com",
     "profilePicture" : "data/stock_picture.png",
@@ -70,6 +112,13 @@
     "name" : "George Best",
     "phone" : "9482442",
     "icNumber": "S2444153G",
+    "visitHistory" : [ {
+      "visitDate" : "13/09/2018",
+      "patientName" : "George Best",
+      "diagnosis" : "Sprained ankle",
+      "prescription" : "Painkillers",
+      "comment" : "Follow up in 2 weeks"
+    } ],
     "address" : "4th street",
     "email" : "anna@example.com",
     "profilePicture" : "data/stock_picture.png",

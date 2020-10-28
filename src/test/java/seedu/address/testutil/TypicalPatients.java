@@ -34,31 +34,35 @@ public class TypicalPatients {
     public static final Patient ALICE = new PatientBuilder().withName("Alice Pauline").withPhone("94351253")
             .withIcNumber("S4623454A").withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withProfilePicture("data/stock_picture.png").withSex("F").withBloodType("A+")
-            .withAllergies("aspirin").withColorTag("None").build();
+            .withAllergies("aspirin").withColorTag("None")
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryAlice()).build();
     public static final Patient BENSON = new PatientBuilder().withName("Benson Meier").withPhone("98765432")
             .withIcNumber("S7435696B").withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com")
             .withProfilePicture("data/stock_picture.png").withSex("M").withBloodType("B+")
-            .withAllergies("penicillin", "sulfa").withColorTag("None").build();
+            .withAllergies("penicillin", "sulfa").withColorTag("None")
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryBenson()).build();
     public static final Patient CARL = new PatientBuilder().withName("Carl Kurz").withPhone("95352563")
             .withIcNumber("S8864424C").withAddress("wall street").withEmail("heinz@example.com")
             .withProfilePicture("data/stock_picture.png").withSex("M").withBloodType("O+")
-            .withColorTag("None").build();
+            .withColorTag("None")
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryCarl()).build();
     public static final Patient DANIEL = new PatientBuilder().withName("Daniel Meier").withPhone("87652533")
             .withIcNumber("G3011359D").withAddress("10th street").withEmail("cornelia@example.com")
-            .withProfilePicture("data/stock_picture.png").withSex("M").withBloodType("O+")
-            .withAllergies("aspirin").withColorTag("None").build();
+            .withProfilePicture("data/stock_picture.png").withSex("M").withBloodType("O+").withAllergies("aspirin")
+            .withColorTag("None")
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryDaniel()).build();
     public static final Patient ELLE = new PatientBuilder().withName("Elle Meyer").withPhone("9482224")
             .withIcNumber("S6131369E").withAddress("michegan ave").withEmail("werner@example.com")
             .withProfilePicture("data/stock_picture.png").withSex("F").withBloodType("AB+")
-            .withColorTag("None").build();
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryElle()).withColorTag("None").build();
     public static final Patient FIONA = new PatientBuilder().withName("Fiona Kunz").withPhone("9482427")
             .withIcNumber("S6787656F").withAddress("little tokyo").withEmail("lydia@example.com")
             .withProfilePicture("data/stock_picture.png").withSex("F").withBloodType("A+")
-            .withColorTag("None").build();
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryFiona()).withColorTag("None").build();
     public static final Patient GEORGE = new PatientBuilder().withName("George Best").withPhone("9482442")
             .withIcNumber("S2444153G").withAddress("4th street").withEmail("anna@example.com")
             .withProfilePicture("data/stock_picture.png").withSex("M").withBloodType("B+")
-            .withColorTag("None").build();
+            .withVisitHistory(TypicalVisits.getTypicalVisitHistoryGeorge()).withColorTag("None").build();
 
     // Manually added
     public static final Patient HOON = new PatientBuilder().withName("Hoon Meier").withPhone("8482424")
