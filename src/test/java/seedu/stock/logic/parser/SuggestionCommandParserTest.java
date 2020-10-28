@@ -12,6 +12,7 @@ import static seedu.stock.logic.commands.CommandTestUtil.NAME_DESC_APPLE;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.NOTE_INDEX_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_APPLE;
+import static seedu.stock.logic.commands.CommandTestUtil.SERIAL_NUMBER_DESC_BANANA;
 import static seedu.stock.logic.commands.CommandTestUtil.SORT_FIELD_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.SORT_ORDER_DESCENDING_DESC;
 import static seedu.stock.logic.commands.CommandTestUtil.SOURCE_DESC_APPLE;
@@ -21,6 +22,7 @@ import static seedu.stock.logic.parser.SuggestionCommandParser.MESSAGE_SUGGESTIO
 import org.junit.jupiter.api.Test;
 
 import seedu.stock.logic.commands.AddCommand;
+import seedu.stock.logic.commands.BookmarkCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.FindCommand;
@@ -307,6 +309,26 @@ public class SuggestionCommandParserTest {
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.PRINT_COMMAND_WORD + userInput
                 + "\n" + PrintCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_bookmarkCommandSuggestion_success() {
+        // EP: incorrect command word
+        String userInput = SERIAL_NUMBER_DESC_BANANA;
+        SuggestionCommandParser parser = new SuggestionCommandParser("bookma");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.BOOKMARK_COMMAND_WORD + userInput
+                + "\n" + BookmarkCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word
+        parser = new SuggestionCommandParser("bookmark", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.BOOKMARK_COMMAND_WORD + userInput
+                + "\n" + BookmarkCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
