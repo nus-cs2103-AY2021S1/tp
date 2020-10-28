@@ -52,7 +52,7 @@ Given below are my contributions to the project.
     * Updated documentation for `add-i`, `add-d`, `help start` and `help summary`, `delete-i`, `delete-d` in v1.3
   * Developer Guide:
     * Added introduction with target audience, purpose of document and summary of document
-    * Added MSS and Manual Testing
+    * Added Use Cases and Manual Testing
     * Updated UI Class Diagram and description
     * Updated Glossary
     * Provided description for all components before Diagrams and standardize Figure numbers
