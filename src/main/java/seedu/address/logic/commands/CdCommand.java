@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FILE_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PARENT_PATH;
 
 import java.io.File;
+import java.io.IOException;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -83,18 +84,26 @@ public class CdCommand extends Command {
         }
 
         File pathToSet = new File(absolutePathString);
+        String canonicalPath;
+
         if (!pathToSet.exists()) {
             throw new CommandException(String.format(MESSAGE_PATH_NOT_FOUND, addressString));
         }
 
         if (!pathToSet.isDirectory()) {
-            throw new CommandException(String.format(MESSAGE_PATH_INVALID, absolutePathString));
+            throw new CommandException(String.format(MESSAGE_PATH_INVALID, addressString));
         }
 
-        FileAddress newPath = new FileAddress(absolutePathString);
+        try {
+            canonicalPath = pathToSet.getCanonicalPath();
+        } catch (IOException exception) {
+            throw new CommandException(exception.getMessage());
+        }
+
+        FileAddress newPath = new FileAddress(canonicalPath);
         currentPath.setAddress(newPath);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, absolutePathString));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, canonicalPath));
     }
 
     @Override

@@ -53,4 +53,17 @@ public class CurrentPath {
 
         childrenFiles.setFiles(files);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        } else if (obj == null) {
+            return false;
+        } else if (!(obj instanceof CurrentPath)) {
+            return false;
+        }
+        CurrentPath other = (CurrentPath) obj;
+        return this.address.equals(other.address) && this.childrenFiles.equals(other.childrenFiles);
+    }
 }

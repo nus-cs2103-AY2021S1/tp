@@ -6,7 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -22,8 +21,6 @@ public class JsonSerializableAddressBookTest {
     private static final Path DUPLICATE_TAG_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
 
     @Test
-    @Disabled
-    // TODO update json to match typical tags after typical tags are confirmed
     public void toModelType_typicalTagsFile_success() throws Exception {
         JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TAGS_FILE,
                 JsonSerializableAddressBook.class).get();

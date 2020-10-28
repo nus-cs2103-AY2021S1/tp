@@ -8,7 +8,6 @@ public class ThemeSetTest {
 
     public static final String DEFAULT_THEME_NAME = "Default Theme";
     public static final String DARK_THEME_NAME = "Dark Theme";
-    public static final String GALAXY_THEME_NAME = "Galaxy Theme";
     public static final String INVALID_THEME_NAME = "hahaha";
 
     @Test
@@ -21,12 +20,6 @@ public class ThemeSetTest {
     public void getTheme_getDarkTheme_success() {
         Theme themeGet = ThemeSet.getTheme(DARK_THEME_NAME);
         assertTrue(themeGet.equals(ThemeSet.DARK_THEME));
-    }
-
-    @Test
-    public void getTheme_getGalaxyTheme_success() {
-        Theme themeGet = ThemeSet.getTheme(GALAXY_THEME_NAME);
-        assertTrue(themeGet.equals(ThemeSet.GALAXY_THEME));
     }
 
     @Test

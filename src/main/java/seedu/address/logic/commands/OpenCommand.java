@@ -5,12 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
-import javafx.collections.transformation.FilteredList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tag.TagName;
+import seedu.address.model.tag.TagNameEqualsKeywordPredicate;
 
 public class OpenCommand extends Command {
 
@@ -44,8 +45,7 @@ public class OpenCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         // Check if tagName is in tag list
-        FilteredList<Tag> tagList =
-                model.getAddressBook().getTagList().filtered(x -> x.getTagName().equals(tagName));
+        List<Tag> tagList = model.findFilteredTagList(new TagNameEqualsKeywordPredicate(tagName));
         if (tagList.isEmpty()) {
             throw new CommandException(String.format(MESSAGE_TAG_NOT_FOUND, tagName.toString()));
         }

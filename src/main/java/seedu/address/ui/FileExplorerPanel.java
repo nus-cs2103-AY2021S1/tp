@@ -5,11 +5,13 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TitledPane;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.explorer.CurrentPath;
 
 /**
@@ -22,7 +24,7 @@ public class FileExplorerPanel extends UiPart<Region> {
     private CurrentPath currentPath;
 
     @FXML
-    private TitledPane currentPathDisplay;
+    private Label currentPathDisplay;
     @FXML
     private ListView<File> fileListView;
 
@@ -51,6 +53,20 @@ public class FileExplorerPanel extends UiPart<Region> {
      */
     public void updateCurrentPath() {
         currentPathDisplay.setText(currentPath.getAddress().value);
+    }
+
+    /**
+     * Changes the current directory to the parent directory.
+     */
+    public void cdToParentPath() {
+        MainWindow mainWindow = MainWindow.getInstance();
+
+        String command = "cd ../";
+        try {
+            mainWindow.executeCommand(command);
+        } catch (CommandException | ParseException exception) {
+            // do nothing
+        }
     }
 
     /**

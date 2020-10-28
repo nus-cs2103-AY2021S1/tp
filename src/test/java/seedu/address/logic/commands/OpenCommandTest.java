@@ -24,7 +24,6 @@ import seedu.address.testutil.TagBuilder;
 class OpenCommandTest {
 
     private Model typicalModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    // Change to true to enable testing of opening files
 
     @Test
     public void equals() {
@@ -60,7 +59,7 @@ class OpenCommandTest {
     }
 
     @Test
-    public void execute_tagNameInModel_success() throws Exception {
+    public void execute_tagNameInModel_success() {
         if (Desktop.isDesktopSupported()) {
             Tag correctTag = new TagBuilder().build();
             String os = System.getProperty("os.name").toLowerCase();
@@ -69,12 +68,12 @@ class OpenCommandTest {
                         .withFileAddress(VALID_MAC_FILE_ADDRESS_TESTFILE).build();
             }
             OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
-            Model modelStubWithAddressBook = new ModelStubWithAddressBook();
-            modelStubWithAddressBook.addTag(correctTag);
+            Model modelStubWithTag = new ModelStubWithTag(new TagBuilder().build());
+            modelStubWithTag.addTag(correctTag);
 
             String expectedMessage = String.format(OpenCommand.MESSAGE_SUCCESS, correctTag);
 
-            assertCommandSuccess(openCommand, modelStubWithAddressBook, expectedMessage, modelStubWithAddressBook);
+            assertCommandSuccess(openCommand, modelStubWithTag, expectedMessage, modelStubWithTag);
         }
     }
 
@@ -84,11 +83,11 @@ class OpenCommandTest {
             Tag correctTag = new TagBuilder().withTagName("test")
                     .withFileAddress(".\\src\\test\\java\\seedu\\address\\testutil\\testFileNotHere.bat").build();
             OpenCommand openCommand = new OpenCommand(correctTag.getTagName());
-            Model modelStubWithAddressBook = new ModelStubWithAddressBook();
-            modelStubWithAddressBook.addTag(correctTag);
+            Model modelStubWithTag = new ModelStubWithTag(new TagBuilder().build());
+            modelStubWithTag.addTag(correctTag);
 
             assertThrows(CommandException.class, String.format(OpenCommand.MESSAGE_FILE_NOT_FOUND,
-                    correctTag.getFileAddress().value), () -> openCommand.execute(modelStubWithAddressBook));
+                    correctTag.getFileAddress().value), () -> openCommand.execute(modelStubWithTag));
         }
     }
 

@@ -19,7 +19,7 @@ import seedu.address.model.tag.TagName;
 
 public class ParserUtilTest {
     private static final String INVALID_FILE_NAME = "R@chel";
-    private static final String INVALID_FILE_ADDRESS = " ";
+    private static final String INVALID_FILE_ADDRESS = "dsf/asdf??";
     private static final String INVALID_LABEL_1 = "L@bel";
     private static final String INVALID_LABEL_2 = "L8bel!";
 

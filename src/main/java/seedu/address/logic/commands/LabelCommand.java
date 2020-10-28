@@ -4,9 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LABEL_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG_NAME;
 
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Set;
 
+import seedu.address.commons.util.FileUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.label.Label;
@@ -35,6 +37,8 @@ public class LabelCommand extends Command {
     public static final String MESSAGE_TAG_NOT_FOUND = "Tag: %s not found!"
             + " Please make sure that Tag is present before labeling.";
     public static final String MESSAGE_DUPLICATE_LABEL = "Duplicate Label!";
+    public static final String MESSAGE_FILE_NOT_FOUND = "File not found at %s!"
+            + " Please make sure that file is present before adding a label.";
 
     private final TagName tagName;
     private final Set<Label> labels;
@@ -68,7 +72,9 @@ public class LabelCommand extends Command {
         // Get file address, previous labels
         FileAddress fileAddress = tagToChange.getFileAddress();
 
-        assert fileAddress.isValidFileAddress(fileAddress.value);
+        if (!FileUtil.isFileExists(Paths.get(fileAddress.value))) {
+            throw new CommandException(String.format(MESSAGE_FILE_NOT_FOUND, fileAddress));
+        }
 
         Set<Label> previousLabels = tagToChange.getLabels();
         // Delete old tag

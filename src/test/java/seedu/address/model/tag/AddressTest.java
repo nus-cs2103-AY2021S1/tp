@@ -15,7 +15,7 @@ public class AddressTest {
 
     @Test
     public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
+        String invalidAddress = "#@$";
         assertThrows(IllegalArgumentException.class, () -> new FileAddress(invalidAddress));
     }
 
@@ -25,12 +25,19 @@ public class AddressTest {
         assertThrows(NullPointerException.class, () -> FileAddress.isValidFileAddress(null));
 
         // invalid addresses
-        assertFalse(FileAddress.isValidFileAddress("")); // empty string
+        assertFalse(FileAddress.isValidFileAddress("!@#$")); // symbols
         assertFalse(FileAddress.isValidFileAddress(" ")); // spaces only
 
         // valid addresses
         assertTrue(FileAddress.isValidFileAddress("d:\\a\\b\\abc.txt"));
-        assertTrue(FileAddress.isValidFileAddress("d:\\a\\b")); // one character
+        assertTrue(FileAddress.isValidFileAddress("d:\\haha\\..")); // appending ..
+        assertTrue(FileAddress.isValidFileAddress("d:\\haha\\.")); // appending .
+        assertTrue(FileAddress.isValidFileAddress("z:\\a\\b\\abc.txt")); // z drive
+        assertTrue(FileAddress.isValidFileAddress("d")); // one character
+        assertTrue(FileAddress.isValidFileAddress("d:/ab/abc.txt")); // backward slash
+        assertTrue(FileAddress.isValidFileAddress("/usr/abc.txt")); // linux
+        assertTrue(FileAddress.isValidFileAddress("./")); // root
+        assertTrue(FileAddress.isValidFileAddress(".\\")); // root
         assertTrue(FileAddress.isValidFileAddress(
                 "a:\\b\\c\\d\\e\\f\\g.exe")); // long address
     }

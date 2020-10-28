@@ -68,7 +68,7 @@ public class RetagCommand extends Command {
         // Check if newTagName is in tag list
         List<Tag> newTagList = model.findFilteredTagList(new TagNameEqualsKeywordPredicate(newTagName));
         if (!newTagList.isEmpty() && !newTagName.equals(oldTagName)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_TAG));
+            throw new CommandException(MESSAGE_DUPLICATE_TAG);
         }
 
         // Get oldTagName
