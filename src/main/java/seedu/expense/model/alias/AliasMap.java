@@ -99,8 +99,11 @@ public class AliasMap {
 
     public String getValue(String aliasString) throws IllegalArgumentException {
         requireNonNull(aliasString);
-        if (!this.aliasMap.containsKey(aliasString)) {
+        if (!this.aliasMap.containsKey(aliasString) && !RESERVED_KEYWORDS.contains(aliasString)) {
             throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, aliasString));
+        }
+        if (!this.aliasMap.containsKey(aliasString) && RESERVED_KEYWORDS.contains(aliasString)) {
+            return aliasString;
         }
         return this.aliasMap.get(aliasString);
     }
@@ -123,6 +126,10 @@ public class AliasMap {
         requireNonNull(prev);
         requireNonNull(update);
         assert (prev.getValue().equals(update.getValue())) : "Must replace the same value (command) alias";
+        if (!this.aliasMap.containsKey(prev.getKey()) && RESERVED_KEYWORDS.contains(prev.getKey())) {
+            addAlias(update);
+            return;
+        }
         if (!this.aliasMap.containsKey(prev.getKey())) {
             throw new IllegalArgumentException(String.format(ALIAS_NOT_FOUND, prev.getKey()));
         }
