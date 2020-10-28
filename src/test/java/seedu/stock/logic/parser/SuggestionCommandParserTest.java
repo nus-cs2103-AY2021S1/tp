@@ -28,6 +28,7 @@ import seedu.stock.logic.commands.HelpCommand;
 import seedu.stock.logic.commands.ListCommand;
 import seedu.stock.logic.commands.NoteCommand;
 import seedu.stock.logic.commands.NoteDeleteCommand;
+import seedu.stock.logic.commands.NoteViewCommand;
 import seedu.stock.logic.commands.SortCommand;
 import seedu.stock.logic.commands.StatisticsCommand;
 import seedu.stock.logic.commands.SuggestionCommand;
@@ -264,6 +265,26 @@ public class SuggestionCommandParserTest {
         expectedSuggestionMessage = "error message" + "\n"
                 + MESSAGE_SUGGESTION + CommandWords.NOTE_DELETE_COMMAND_WORD + userInput
                 + "\n" + NoteDeleteCommand.MESSAGE_USAGE;
+        expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_noteViewCommandSuggestion_success() {
+        // EP: incorrect command word
+        String userInput = SERIAL_NUMBER_DESC_APPLE;
+        SuggestionCommandParser parser = new SuggestionCommandParser("notevie");
+        String expectedSuggestionMessage = MESSAGE_UNKNOWN_COMMAND + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.NOTE_VIEW_COMMAND_WORD + userInput
+                + "\n" + NoteViewCommand.MESSAGE_USAGE;
+        SuggestionCommand expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // EP: correct command word
+        parser = new SuggestionCommandParser("noteview", "error message");
+        expectedSuggestionMessage = "error message" + "\n"
+                + MESSAGE_SUGGESTION + CommandWords.NOTE_VIEW_COMMAND_WORD + userInput
+                + "\n" + NoteViewCommand.MESSAGE_USAGE;
         expectedCommand = new SuggestionCommand(expectedSuggestionMessage);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
