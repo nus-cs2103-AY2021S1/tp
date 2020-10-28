@@ -7,20 +7,26 @@ import java.time.LocalDate;
 
 import seedu.address.model.Model;
 
-public class TodayCommand extends Command {
-    public static final String COMMAND_WORD = "c-today";
+/**
+ * Finds and lists all persons in address book whose tag(s) contains the next-day's day (i.e. Monday, Tuesday, etc).
+ *
+ * For example, assume today is Tuesday, after command "c-tomorrow", all employees whose tag(s) contains
+ * "wednesday", case-insensitive, will be listed out.
+ */
+public class FindByTagTomorrowCommand extends Command {
+    public static final String COMMAND_WORD = "c-tomorrow";
 
-    public static final String MESSAGE_SUCCESS = "Today is %2$s."
-            + "\nThere are total %1$s employees working today."
+    public static final String MESSAGE_SUCCESS = "Tomorrow is %2$s."
+            + "\nThere are total %1$s employees working tomorrow."
             + "\nThey are listed below.";
-    public static final String MESSAGE_NO_EMPLOYEE = "Today is %1$s."
-            + "\nBased on the contact list, no employee is working today.";
+    public static final String MESSAGE_NO_EMPLOYEE = "Tomorrow is %1$s."
+            + "\nBased on the contact list, no employee is working tomorrow.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        LocalDate todayDate = LocalDate.now();
-        DayOfWeek dayOfWeek = todayDate.getDayOfWeek();
+        LocalDate tmrDate = LocalDate.now().plusDays(1);
+        DayOfWeek dayOfWeek = tmrDate.getDayOfWeek();
 
         switch (dayOfWeek) {
         case SUNDAY:
@@ -48,10 +54,12 @@ public class TodayCommand extends Command {
             model.updateFilteredPersonList(person -> false);
 
         }
+
         if (model.getFilteredPersonList().size() == 0) {
-            return new CommandResult(String.format(MESSAGE_NO_EMPLOYEE, todayDate.getDayOfWeek()));
+            return new CommandResult(String.format(MESSAGE_NO_EMPLOYEE, tmrDate.getDayOfWeek()));
         }
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredPersonList().size(),
-                todayDate.getDayOfWeek()));
+                tmrDate.getDayOfWeek()));
     }
 }

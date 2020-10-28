@@ -7,21 +7,26 @@ import java.time.LocalDate;
 
 import seedu.address.model.Model;
 
+/**
+ * Finds and lists all persons in address book whose tag(s) contains today's day (i.e. Monday, Tuesday, etc).
+ *
+ * For example, assume today is Tuesday, after command "c-today", all employees whose tag(s) contains
+ * "tuesday", case-insensitive, will be listed out.
+ */
+public class FindByTagTodayCommand extends Command {
+    public static final String COMMAND_WORD = "c-today";
 
-public class TomorrowCommand extends Command {
-    public static final String COMMAND_WORD = "c-tomorrow";
-
-    public static final String MESSAGE_SUCCESS = "Tomorrow is %2$s."
-            + "\nThere are total %1$s employees working tomorrow."
+    public static final String MESSAGE_SUCCESS = "Today is %2$s."
+            + "\nThere are total %1$s employees working today."
             + "\nThey are listed below.";
-    public static final String MESSAGE_NO_EMPLOYEE = "Tomorrow is %1$s."
-            + "\nBased on the contact list, no employee is working tomorrow.";
+    public static final String MESSAGE_NO_EMPLOYEE = "Today is %1$s."
+            + "\nBased on the contact list, no employee is working today.";
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        LocalDate tmrDate = LocalDate.now().plusDays(1);
-        DayOfWeek dayOfWeek = tmrDate.getDayOfWeek();
+        LocalDate todayDate = LocalDate.now();
+        DayOfWeek dayOfWeek = todayDate.getDayOfWeek();
 
         switch (dayOfWeek) {
         case SUNDAY:
@@ -47,12 +52,12 @@ public class TomorrowCommand extends Command {
             break;
         default:
             model.updateFilteredPersonList(person -> false);
-
         }
+
         if (model.getFilteredPersonList().size() == 0) {
-            return new CommandResult(String.format(MESSAGE_NO_EMPLOYEE, tmrDate.getDayOfWeek()));
+            return new CommandResult(String.format(MESSAGE_NO_EMPLOYEE, todayDate.getDayOfWeek()));
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, model.getFilteredPersonList().size(),
-                tmrDate.getDayOfWeek()));
+                todayDate.getDayOfWeek()));
     }
 }

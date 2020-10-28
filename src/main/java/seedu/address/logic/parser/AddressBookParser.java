@@ -15,6 +15,9 @@ import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindByTagCommand;
+import seedu.address.logic.commands.FindByTagTodayCommand;
+import seedu.address.logic.commands.FindByTagTomorrowCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -23,9 +26,6 @@ import seedu.address.logic.commands.SalesUpdateCommand;
 import seedu.address.logic.commands.SetAllCommand;
 import seedu.address.logic.commands.SetCommand;
 import seedu.address.logic.commands.SetDefaultCommand;
-import seedu.address.logic.commands.TagFindCommand;
-import seedu.address.logic.commands.TodayCommand;
-import seedu.address.logic.commands.TomorrowCommand;
 import seedu.address.logic.commands.UnarchiveCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientListCommand;
 import seedu.address.logic.commands.ingredientcommands.IngredientResetAllCommand;
@@ -81,13 +81,13 @@ public class AddressBookParser {
         case ArchiveAllCommand.COMMAND_WORD:
             return new ArchiveAllCommand();
 
-        case TodayCommand.COMMAND_WORD:
-            return new TodayCommand();
+        case FindByTagTodayCommand.COMMAND_WORD:
+            return new FindByTagTodayCommand();
 
-        case TomorrowCommand.COMMAND_WORD:
-            return new TomorrowCommand();
+        case FindByTagTomorrowCommand.COMMAND_WORD:
+            return new FindByTagTomorrowCommand();
 
-        case TagFindCommand.COMMAND_WORD:
+        case FindByTagCommand.COMMAND_WORD:
             return new TagFindCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
