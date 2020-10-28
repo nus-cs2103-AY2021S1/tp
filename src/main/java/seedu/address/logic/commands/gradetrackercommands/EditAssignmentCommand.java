@@ -96,8 +96,7 @@ public class EditAssignmentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_ASSIGNMENT);
         }
 
-        moduleWithAssignment.getGradeTracker().removeAssignment(assignmentToEdit);
-        moduleWithAssignment.getGradeTracker().addAssignment(editedAssignment);
+        moduleWithAssignment.getGradeTracker().setAssignment(assignmentToEdit, editedAssignment);
 
         logger.info("Assignment has been edited: " + assignmentToEdit.toString());
 
@@ -111,7 +110,7 @@ public class EditAssignmentCommand extends Command {
      */
     private static Assignment createEditedAssignment(Assignment assignmentToEdit,
                                                      EditAssignmentDescriptor editAssignmentDescriptor) {
-        assert assignmentToEdit != null;
+        assert assignmentToEdit != null : "The assignment to be edited must currently exist.";
         assert !assignmentToEdit.getAssignmentName().isEmpty();
 
         AssignmentName assignmentName = editAssignmentDescriptor.getAssignmentName().orElse(assignmentToEdit

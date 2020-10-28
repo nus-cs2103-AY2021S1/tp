@@ -22,7 +22,7 @@ public class AssignmentResult {
     }
 
     /**
-     * Returns true if a given string is a valid assignment result.
+     * Returns true if a given double is a valid assignment result.
      */
     public static boolean isValidAssignmentResult(double test) {
         if (test <= 1 && test >= 0) {

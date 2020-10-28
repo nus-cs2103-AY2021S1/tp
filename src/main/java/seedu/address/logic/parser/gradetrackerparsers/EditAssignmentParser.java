@@ -36,12 +36,6 @@ public class EditAssignmentParser implements Parser<EditAssignmentCommand> {
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditAssignmentCommand.MESSAGE_USAGE), pe);
-        }
-
-        try {
             moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,

@@ -36,9 +36,7 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
         ArgumentMultimap argMultimap = tokenizer.tokenize();
         if ((!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ASSIGNMENT_NAME,
                 PREFIX_ASSIGNMENT_PERCENTAGE, PREFIX_ASSIGNMENT_RESULT)
-                || !argMultimap.getPreamble().isEmpty()) && (argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).isPresent()
-                        && argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).isPresent()
-                        && argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).isPresent())) {
+                || !argMultimap.getPreamble().isEmpty())) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddAssignmentCommand.MESSAGE_USAGE));
         }
 
@@ -46,18 +44,8 @@ public class AddAssignmentParser implements Parser<AddAssignmentCommand> {
         try {
             assignmentName = ParserUtil.parseAssignmentName(
                     argMultimap.getValue(PREFIX_ASSIGNMENT_NAME).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAssignmentCommand.MESSAGE_USAGE), pe);
-        }
-        try {
             assignmentPercentage = ParserUtil.parseAssignmentPercentage(
                     argMultimap.getValue(PREFIX_ASSIGNMENT_PERCENTAGE).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddAssignmentCommand.MESSAGE_USAGE), pe);
-        }
-        try {
             assignmentResult = ParserUtil.parseAssignmentResult(
                     argMultimap.getValue(PREFIX_ASSIGNMENT_RESULT).get());
         } catch (ParseException pe) {
