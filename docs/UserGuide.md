@@ -17,10 +17,10 @@ This guide will help you to get started with tCheck, and provide useful tips alo
     * [About this document](#about-this-document)
     * [Quick start](#quick-start)
     * [Features](#features)
-        * [Commands - General](#commands-general)
         * [Commands - Sales Tracking](#commands-sales-tracking) 
         * [Commands - Ingredients Tracking](#commands-ingredients-tracking)
         * [Commands - Contact details](#commands-contact-details)
+        * [Commands - General](#commands-general)
     * [Command summary](#command-summary)
 
 --------------------------------------------------------------------------------------------------------------------
@@ -90,26 +90,7 @@ not be so obvious!
 
 </div>
 
-### 1. Commands - General <a name="commands-general"></a>
-#### 1.1 Viewing help : `help`
-
-Displays a brief explanation of the list of commands, and a link to the help page, which is the user guide.
-
-Format: `help`
-
-#### 1.2 Exiting the program : `exit`
-
-Exits the program.
-
-Format: `exit`
-
-#### 1.3 Saving the data :
-
-All tCheck data (i.e. contact details, ingredient data, sales data) are saved in the hard disk automatically after any
- command that changes the data. There is no need to save manually.
-
-
-### 2. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
+### 1. Commands - Sales Tracking <a name="commands-sales-tracking"></a>
 
 <div markdown="span" class="alert alert-primary">
 
@@ -132,7 +113,7 @@ Currently, there are 6 types of drinks that can be tracked by tCheck's sales tra
 
 </div>
 
-#### 2.1 Updating the number of drinks sold for the day : `s-update`
+#### 1.1 Updating the number of drinks sold for the day : `s-update`
 Updates tCheck on the number of each type of drink sold for the current day, based on the sales data provided by the
 user.
 
@@ -144,12 +125,12 @@ Example:
 * `s-update BSBM/100 BSBBT/120` Updates the sales of Brown Sugar Boba Milk `BSBM` to 100 and
  Brown Sugar Boba Black Tea `BSBBT` to 120.
 
-#### 2.2 Listing the number of drinks sold for the day : `s-list`
+#### 1.2 Listing the number of drinks sold for the day : `s-list`
 Shows a list of all types of drinks sold for the current day.
 
 Format: `s-list`
 
-#### 2.3 Listing the sales record for a specific day :
+#### 1.3 Listing the sales record for a specific day :
 Shows a sales record for each type of mile tea on a specific date.
 
 Format: `sales YYYY-MM-DD`
@@ -159,7 +140,7 @@ Example:
 * `sales 2020-08-01` returns the sales record for each type of milk tea on 2020-08-01.
  
  
-### 3. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
+### 2. Commands - Ingredients Tracking <a name="commands-ingredients-tracking"></a>
 
     
 <div markdown="span" class="alert alert-primary">
@@ -168,7 +149,7 @@ Example:
 
 * Unit of measurement for ingredients:<br>
     * - Unit for solid items / jelly (Pearl, Boba and Brown Sugar) : **KG**<br>
-    * - Unit for liquids (Milk and Oolong Tea) : **L**<br>
+    * - Unit for liquids (Milk, Black Tea and Oolong Tea) : **L**<br>
 
 * All ingredients' levels are set to 0.<br>
 
@@ -180,12 +161,13 @@ Example:
     * - Milk<br>
     * - Pearl<br>
     * - Boba<br>
-    * - Oolong Tea<br>
+    * - Black Tea<br>
+    * - Green Tea<br>
     * - Brown Sugar<br>
 
 </div>
 
-#### 3.1 Setting one ingredient's level : `i-set`
+#### 2.1 Setting one ingredient's level : `i-set`
 
 Sets the level of one single ingredient predefined in the ingredient book to the specified amount.
 
@@ -197,29 +179,29 @@ Example:
 * `i-set i/Milk m/15`
 
 
-#### 3.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
+#### 2.2 Setting all ingredients' levels to different specified amounts : `i-set-all`
 
 Sets all ingredients' levels to different specified amounts according to user inputs.
 
-Format: `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA O/AMOUNT_FOR_OOLONG_TEA S/AMOUNT_FOR_SUGAR`
+Format: `i-set-all M/AMOUNT_FOR_MILK P/AMOUNT_FOR_PEARL B/AMOUNT_FOR_BOBA L/AMOUNT_FOR_BLACK_TEA G/AMOUNT_FOR_GREEN_TEA S/AMOUNT_FOR_BROWN_SUGAR`
 
-* Sets all ingredients' levels as such : Milk : `AMOUNT_FOR_MILK` L, Pearl : `AMOUNT_FOR_PREAL` KG, Boba : `AMOUNT_FOR_BOBA` KG, Oolong Tea : `AMOUNT_FOR_OOLONG_TEA` L, Brown Sugar : `AMOUNT_FOR_BROWN_SUGAR` KG.
+* Sets all ingredients' levels as such : Milk : `AMOUNT_FOR_MILK` L, Pearl : `AMOUNT_FOR_PEARL` KG, Boba : `AMOUNT_FOR_BOBA` KG, Black Tea : `AMOUNT_FOR_BLACK_TEA` L, Green Tea: `AMOUNT_FOR_GREEN_TEA`, Brown Sugar : `AMOUNT_FOR_BROWN_SUGAR` KG.
 
 Example:
-* `i-set-all M/20 P/20 B/20 O/50 S/50`
+* `i-set-all M/20 P/20 B/20 L/50 G/80 S/50`
 
-#### 3.3 Setting all ingredients to different levels : `i-set-default`
+#### 2.3 Setting all ingredients to different levels : `i-set-default`
 
 Sets all ingredients' levels to their pre-determined default levels for a stall.
 
 Format: `i-set-default`
 
-* Sets all ingredients' levels to their default levels : Milk : 50 L, Pearl : 20 KG, Boba : 20 KG, Oolong Tea : 50 L, Brown Sugar : 20 KG.
+* Sets all ingredients' levels to their default levels : Milk : 50 L, Pearl : 20 KG, Boba : 20 KG, Black Tea : 50 L, Green Tea : 50 L, Brown Sugar : 20 KG.
 
 Example:
 * `i-set-default`
 
-#### 3.4 Viewing a single ingredient's level : `i-view-single`
+#### 2.4 Viewing a single ingredient's level : `i-view-single`
 Shows the ingredient's level of a particular type of ingredient which is specified by the user’s command.
 
 Format: `i-view-single i/INGREDIENT_NAME`
@@ -228,19 +210,19 @@ Example:
 * `i-view-single i/Milk`
 Shows the amount of milk which is recorded by tCheck.
 
-#### 3.5 Resetting all ingredients' levels to zero : `i-reset-all`
+#### 2.5 Resetting all ingredients' levels to zero : `i-reset-all`
 Sets all ingredients' levels to zero.
 
 Format: `i-reset-all`
 
-#### 3.6 Listing all ingredients' levels : `i-list`
+#### 2.6 Listing all ingredients' levels : `i-list`
 Shows the ingredient's levels of all ingredient types.
 
 Format: `i-list`
 
-### 4. Commands - Contact details <a name="commands-contact-details"></a>
+### 3. Commands - Contact details <a name="commands-contact-details"></a>
 
-#### 4.1 Adding an employee : `c-add`
+#### 3.1 Adding an employee : `c-add`
 
 Adds an employee to the contact list.
 
@@ -256,14 +238,14 @@ Examples:
 * `c-add n/John Doe p/98765432 e/81234567`.
 * `c-add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`.
 
-#### 4.2 Listing all employees : `c-list`
+#### 3.2 Listing all employees : `c-list`
 
 Shows a list of all employees in the contact list.
 
 
 Format: `c-list`
   
-#### 4.3 Editing a person : `c-edit`
+#### 3.3 Editing a person : `c-edit`
 
 Edits the corresponding contact information in the contact list.
 
@@ -282,7 +264,7 @@ Examples:
 *  `c-edit 2 n/Betsy Crower t/` Edits the name of the 2nd employee to be `Betsy Crower` and clears all existing tags.
 
 
-#### 4.4 Locating persons by keywords: `c-find`
+#### 3.4 Locating persons by keywords: `c-find`
 
 Finds all contacts that contain the KEYWORD(s).
 
@@ -299,7 +281,7 @@ Examples:
 * `c-find John` returns `john` and `John Doe`.
 * `c-find alex david` returns `Alex Yeoh`, `David Li`.<br>
 
-#### 4.5 Deleting a person : `c-delete`
+#### 3.5 Deleting a person : `c-delete`
 
 Deletes the specified employee from the contact list.
 
@@ -313,13 +295,13 @@ Examples:
 * `c-list` followed by `c-delete 2` deletes the 2nd employee in the contact list.
 * `c-find Betsy` followed by `c-delete 1` deletes the 1st employee in the results of the `c-find` command.
 
-#### 4.6 Clearing all entries : `c-clear`
+#### 3.6 Clearing all entries : `c-clear`
 
 Clears all entries from the contact list.
 
 Format: `c-clear`
 
-#### 4.7 Archiving an employee : `c-archive`
+#### 3.7 Archiving an employee : `c-archive`
 Archives the specified employee's contact detail from the tCheck.
 
 Format: `c-archive INDEX`
@@ -339,17 +321,17 @@ Examples:
 * `c-list` followed by `c-archive 2` archives the 2nd person in the employees' contact details.
 * `c-find Betsy` followed by `c-archive 1` archives the 1st person in the results of the `find` command.
 
-#### 4.8 Archiving all employees : `c-archive all`
+#### 3.8 Archiving all employees : `c-archive all`
 Archives all employees' contact details from the tCheck.
 
 Format: `c-archive all`
 
-#### 4.9 Listing all archived employees : `c-archive list`
+#### 3.9 Listing all archived employees : `c-archive list`
 Shows a list of all archived employees' contact details in tCheck.
 
 Format: `c-archive list`
 
-#### 4.10 Unarchiving an employee : `c-unarchive`
+#### 3.10 Unarchiving an employee : `c-unarchive`
 Unarchives the specified employee's contact detail from the tCheck's archived employee list.
 
 Format: `c-unarchive INDEX`
@@ -368,15 +350,26 @@ Then, `c-unarchive INDEX` can be used to unarchive a specific employee.
 Examples:
 * `c-archive-list` followed by `c-unarchive 2` unarchives the 2nd person in the archived employees' contact details.
 
+### 4. Commands - General <a name="commands-general"></a>
+#### 4.1 Viewing help : `help`
 
+Displays a brief explanation of the list of commands, and a link to the help page, which is the user guide.
+
+Format: `help`
+
+#### 4.2 Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+#### 4.3 Saving the data :
+
+All tCheck data (i.e. contact details, ingredient data, sales data) are saved in the hard disk automatically after any
+ command that changes the data. There is no need to save manually.
+ 
+ 
 ## Command summary <a name="command-summary"></a>
-
-### General
-
-Action | Format, Examples
--------|------------------------------
-**Help** | `help`
-**Exit** | `exit`
 
 ### Sales Tracking
 
@@ -409,5 +402,12 @@ Action | Format, Examples
 **Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive all` <br>3. **List all archived data:**  `c-archive list`</br>
 **Unarchive** | `c-unarchive INDEX`<br> e.g., `c-unarchive 1` 
+
+### General
+
+Action | Format, Examples
+-------|------------------------------
+**Help** | `help`
+**Exit** | `exit`
 
  
