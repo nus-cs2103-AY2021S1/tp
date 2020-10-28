@@ -135,6 +135,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setSessions(List<Session> sessions) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void changeSession(SessionName sessionName) {
             throw new AssertionError("This method should not be called.");
         }

@@ -2,19 +2,18 @@ package seedu.taskmaster.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
-import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.session.Session;
-import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionList;
 import seedu.taskmaster.model.session.SessionListManager;
 import seedu.taskmaster.model.session.SessionName;
+import seedu.taskmaster.model.session.exceptions.NoSessionException;
+import seedu.taskmaster.model.session.exceptions.NoSessionSelectedException;
 import seedu.taskmaster.model.student.NusnetId;
 import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.UniqueStudentList;
@@ -40,17 +39,8 @@ public class Taskmaster implements ReadOnlyTaskmaster {
      */
     {
         students = new UniqueStudentList();
-
-        // TODO: Current session is a default placeholder for now
-        currentSession = new Session(
-                new SessionName("Default session"),
-                new SessionDateTime(LocalDateTime.now()),
-                StudentRecordListManager.of(students.asUnmodifiableObservableList()));
-
-        // TODO: For now, SessionList is initialised to a list with one default placeholder session
-        List<Session> sessionList = new ArrayList<>();
-        sessionList.add(currentSession);
-        sessions = SessionListManager.of(sessionList);
+        currentSession = null;
+        sessions = SessionListManager.of(new ArrayList<>());
     }
 
     public Taskmaster() {}
@@ -75,15 +65,21 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
+     * Replaces the contents of the session list with {@code sessions}.
+     * {@code sessions} must not contain duplicate sessions.
+     */
+    public void setSessions(List<Session> sessions) {
+        this.sessions.setSessions(sessions);
+    }
+
+    /**
      * Resets the existing data of this {@code Taskmaster} with {@code newData}.
      */
     public void resetData(ReadOnlyTaskmaster newData) {
         requireNonNull(newData);
         setStudents(newData.getStudentList());
-        currentSession = new Session(
-                new SessionName("Placeholder session"),
-                new SessionDateTime(LocalDateTime.now()),
-                StudentRecordListManager.of(newData.getStudentList()));
+        setSessions(newData.getSessionList());
+        currentSession = null;
     }
 
     /* Session-Level Operations */
@@ -160,34 +156,73 @@ public class Taskmaster implements ReadOnlyTaskmaster {
     }
 
     /**
-     * Marks the attendance of a {@code target} student with
-     * {@code attendanceType} in the current session.
+     * Marks the attendance of a {@code target} student with {@code attendanceType} in the current session.
+     *
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void markStudent(Student target, AttendanceType attendanceType) {
+    public void markStudent(Student target, AttendanceType attendanceType)
+            throws NoSessionException, NoSessionSelectedException {
         assert target != null;
         assert attendanceType != null;
+
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
         currentSession.markStudentAttendance(target.getNusnetId(), attendanceType);
     }
 
     /**
      * Marks the attendance of a student given the {@code nusnetId}
      * with {@code attendanceType} in the current session.
+     *
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
+    public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType)
+            throws NoSessionException, NoSessionSelectedException {
         assert nusnetId != null;
         assert attendanceType != null;
+
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
         currentSession.markStudentAttendance(nusnetId, attendanceType);
     }
 
     /**
      * Marks the attendance of all students represented by their {@code nusnetIds} in the {@code studentRecordList}
      * of the {@code currentSession}, with the given {@code attendanceType}.
+     *
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType) {
+    public void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType)
+            throws NoSessionException, NoSessionSelectedException {
         assert nusnetIds != null;
         assert attendanceType != null;
+
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
         currentSession.markAllStudents(nusnetIds, attendanceType);
     }
+
     /* Util Methods */
 
     @Override
@@ -203,8 +238,20 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
     /**
      * Returns an unmodifiable view of the {@code StudentRecordList} of the current session.
+     *
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
      */
-    public ObservableList<StudentRecord> getStudentRecordList() {
+    public ObservableList<StudentRecord> getStudentRecordList()
+            throws NoSessionException, NoSessionSelectedException {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
         return currentSession.getStudentRecords();
     }
 
@@ -215,16 +262,39 @@ public class Taskmaster implements ReadOnlyTaskmaster {
 
     /**
      * Sets the {@code AttendanceType} of all {@code StudentRecords} to NO_RECORD in the current session.
+     *
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void clearAttendance() {
+    public void clearAttendance() throws NoSessionException, NoSessionSelectedException {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
         currentSession.clearAttendance();
     }
 
     /**
      * Updates the {@code StudentRecordList} of the current session with the data in {@code studentRecords}.
-     * @throws StudentNotFoundException
+     *
+     * @throws StudentNotFoundException If the operation is unable to find the specified student.
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
      */
-    public void updateStudentRecords(List<StudentRecord> studentRecords) throws StudentNotFoundException {
+    public void updateStudentRecords(List<StudentRecord> studentRecords)
+            throws StudentNotFoundException, NoSessionException {
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
         currentSession.updateStudentRecords(studentRecords);
     }
 

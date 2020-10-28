@@ -7,7 +7,9 @@ import javafx.collections.ObservableList;
 import seedu.taskmaster.model.record.AttendanceType;
 import seedu.taskmaster.model.record.StudentRecord;
 import seedu.taskmaster.model.record.StudentRecordList;
+import seedu.taskmaster.model.record.StudentRecordListManager;
 import seedu.taskmaster.model.student.NusnetId;
+import seedu.taskmaster.model.student.Student;
 import seedu.taskmaster.model.student.exceptions.StudentNotFoundException;
 
 /**
@@ -31,6 +33,18 @@ public class Session {
         this.sessionName = sessionName;
         this.sessionDateTime = sessionDateTime;
         this.studentRecords = studentRecords;
+    }
+
+    /**
+     * Creates a session object with a {@code sessionName}, {@code sessionDateTime} and
+     * a list of students.
+     */
+    public Session(SessionName sessionName,
+                   SessionDateTime sessionDateTime,
+                   List<Student> students) {
+        this.sessionName = sessionName;
+        this.sessionDateTime = sessionDateTime;
+        this.studentRecords = StudentRecordListManager.of(students);
     }
 
     public SessionName getSessionName() {
@@ -101,6 +115,8 @@ public class Session {
             return false;
         }
         Session otherSession = (Session) other;
-        return otherSession.getSessionName().equals(getSessionName());
+        return otherSession.getSessionName().equals(getSessionName())
+                && otherSession.getSessionDateTime().equals(getSessionDateTime())
+                && otherSession.getStudentRecords().equals(getStudentRecords());
     }
 }
