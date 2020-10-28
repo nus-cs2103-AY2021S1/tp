@@ -36,15 +36,20 @@ public class AddEventCommandParser implements Parser<AddEventCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
                         PREFIX_TASK_DATE, PREFIX_TASK_TIME, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
-                PREFIX_TASK_DATE, PREFIX_TASK_TIME, PREFIX_TAG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_TITLE, PREFIX_TASK_DATE, PREFIX_TASK_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddEventCommand.MESSAGE_USAGE));
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        Priority priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        Description description = ParserUtil.parseDescription("");
+        if (arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
+        Priority priority = ParserUtil.parsePriority("");
+        if (arePrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            priority = ParserUtil.parsePriority(argMultimap.getValue(PREFIX_PRIORITY).get());
+        }
         TaskDate eventDate = ParserUtil.parseTaskDate(argMultimap.getValue(PREFIX_TASK_DATE).get());
         TaskTime eventTime = ParserUtil.parseTaskTime(argMultimap.getValue(PREFIX_TASK_TIME).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
