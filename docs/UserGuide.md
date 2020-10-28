@@ -74,11 +74,11 @@ Notes:
     See [Priority Feature](#priority-feature) for more information.
 
 * The policy must already exist in the policy list. You can do so by using the
-`addp` command. See [Add Policy Command](#adding-a-policy) for more information.
+`addp` command. See [Add Policy Command](#adding-a-policy--addp-) for more information.
 
 * This command should not be used when viewing the archived client list.  
 
-### <a name="adding-a-policy"></a>Adding a policy : `addp`
+### Adding a policy : `addp`
 
 Adds a Policy into the policy list.
 
