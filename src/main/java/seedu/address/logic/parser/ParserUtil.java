@@ -83,7 +83,7 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         if (!DeadlineDateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
         }
         return new DeadlineDateTime(trimmedDateTime);
     }
@@ -97,11 +97,11 @@ public class ParserUtil {
     public static StartDateTime parseStartDateTime(String date, String time) throws ParseException {
         requireNonNull(date, time);
         String trimmedDate = date.trim();
-        String trimmedtime = time.trim();
-        if (!StartDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
-            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+        String trimmedTime = time.trim();
+        if (!StartDateTime.isValidDateTime(trimmedDate, trimmedTime)) {
+            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
         }
-        return StartDateTime.createStartDateTime(trimmedDate, trimmedtime);
+        return StartDateTime.createStartDateTime(trimmedDate, trimmedTime);
     }
 
     /**
@@ -115,7 +115,7 @@ public class ParserUtil {
         String trimmedDate = date.trim();
         String trimmedtime = time.trim();
         if (!EndDateTime.isValidDateTime(trimmedDate, trimmedtime)) {
-            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
         }
         return EndDateTime.createEndDateTime(trimmedDate, trimmedtime);
     }
@@ -148,7 +148,7 @@ public class ParserUtil {
         String trimmedDate = date.trim();
         DateTimeFormatter parser = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         if (!DateUtil.isValidDate(trimmedDate)) {
-            throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
+            throw new ParseException(DateUtil.DATE_TIME_CONSTRAINTS);
         }
         return LocalDate.parse(trimmedDate, parser);
     }

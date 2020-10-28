@@ -54,7 +54,7 @@ public class JsonAdaptedDeadlineTest {
         JsonAdaptedDeadline task =
                 new JsonAdaptedDeadline(VALID_TITLE, INVALID_DATE_TIME, VALID_DESCRIPTION, VALID_DATE_TIME, 1,
                         VALID_TAG, VALID_STATUS);
-        String expectedMessage = DateUtil.MESSAGE_CONSTRAINTS;
+        String expectedMessage = DateUtil.DATE_TIME_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, task::toModelType);
     }
 

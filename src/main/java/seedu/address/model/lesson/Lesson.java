@@ -82,12 +82,9 @@ public class Lesson {
      * @return a list of recurring tasks to add.
      */
     public ArrayList<Task> createRecurringTasks() {
-        LocalDate currentDate = getStartDate();
-        while (!(currentDate.getDayOfWeek()).equals(this.dayOfWeek)) {
-            currentDate = currentDate.plusDays(1);
-        }
+        LocalDate currentDate = offsetStartDate();
         ArrayList<Task> tasksToAdd = new ArrayList<>();
-        while (currentDate.isBefore(this.endDate) || currentDate.isEqual(this.endDate)) {
+        while (!currentDate.isAfter(this.endDate)) {
             LocalDateTime localStartDateTime = LocalDateTime.of(currentDate, getStartTime());
             LocalDateTime localEndDateTime = LocalDateTime.of(currentDate, getEndTime());
             String startDateTimeString = localStartDateTime.format(DateUtil.DATETIME_FORMATTER);
@@ -96,10 +93,49 @@ public class Lesson {
             EndDateTime endDateTime = new EndDateTime(endDateTimeString);
             Event eventToAdd = Event.createLessonEvent(title, startDateTime, endDateTime, description, tag);
             tasksToAdd.add(eventToAdd);
-            currentDate = currentDate.plusDays(7);
+            currentDate = currentDate.plusWeeks(1);
         }
         associatedTasks = tasksToAdd;
         return tasksToAdd;
+    }
+
+    /**
+     * Calculates if a given time is within the start and end time of the lesson.
+     * @param time a LocalTime object to be tested.
+     * @return true if the given time is within the period of the lesson and false otherwise.
+     */
+    public boolean periodContainsGivenTime(LocalTime time) {
+        return !(time.isBefore(startTime) || time.isAfter(endTime));
+    }
+
+    /**
+     * Calculates if the lesson happens on the given date.
+     * @param date the date to be tested.
+     * @return true if the lesson happens on the given date and false otherwise.
+     */
+    public boolean happensOnDate(LocalDate date) {
+        LocalDate currentDate = offsetStartDate();
+        while (!currentDate.isAfter(this.endDate)) {
+            if (currentDate.equals(date)) {
+                return true;
+            }
+            currentDate = currentDate.plusWeeks(1);
+        }
+        return false;
+    }
+
+    /**
+     * Calculates if a lesson happens on a given date time.
+     * @param dateTime a LocalDateTime object to be tested.
+     * @return true if the lesson happens on the date time and false otherwise.
+     */
+    public boolean happensOnDateTime(LocalDateTime dateTime) {
+        LocalDate date = dateTime.toLocalDate();
+        LocalTime time = dateTime.toLocalTime();
+        if (!happensOnDate(date)) {
+            return false;
+        }
+        return periodContainsGivenTime(time);
     }
 
     /**
@@ -175,5 +211,17 @@ public class Lesson {
                 .append(" End Date: ")
                 .append(getEndDate());
         return builder.toString();
+    }
+
+    /**
+     * Offsets the start date to match the day of first lesson.
+     * @return a LocalDate object representing the offset start date.
+     */
+    private LocalDate offsetStartDate() {
+        LocalDate currentDate = getStartDate();
+        while (!(currentDate.getDayOfWeek()).equals(this.dayOfWeek)) {
+            currentDate = currentDate.plusDays(1);
+        }
+        return currentDate;
     }
 }
