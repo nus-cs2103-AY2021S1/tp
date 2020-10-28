@@ -44,7 +44,6 @@ import seedu.address.logic.commands.UpdateExerciseCommand;
 import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
-import seedu.address.model.exercise.Exercise;
 import seedu.address.model.exercise.ExerciseTag;
 import seedu.address.model.exercise.Name;
 import seedu.address.testutil.EditExerciseDescriptorBuilder;
@@ -190,7 +189,8 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_EXERCISE;
         String userInput = targetIndex.getOneBased() + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP
-                + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP + TAG_DESC_HOUSE + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP + TAG_DESC_HOUSE
+                + NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
                 + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP + TAG_DESC_HOUSE
                 + NAME_DESC_SIT_UP + DESCRIPTION_DESC_SIT_UP + DATE_DESC_SIT_UP + CALORIES_DESC_SIT_UP
                 + MUSCLES_DESC_SIT_UP + TAG_DESC_GYM;

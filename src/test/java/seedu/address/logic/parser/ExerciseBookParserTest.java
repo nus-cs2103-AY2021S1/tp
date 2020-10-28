@@ -16,9 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ArchiveCommand;
-import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -33,7 +31,6 @@ import seedu.address.model.exercise.PropertiesMatchPredicateForExercise;
 import seedu.address.testutil.EditExerciseDescriptorBuilder;
 import seedu.address.testutil.ExerciseBuilder;
 import seedu.address.testutil.ExerciseUtil;
-import seedu.address.testutil.PersonUtil;
 
 
 public class ExerciseBookParserTest {
@@ -68,7 +65,8 @@ public class ExerciseBookParserTest {
     public void parseCommand_edit() throws Exception {
         Exercise exercise = new ExerciseBuilder().build();
         UpdateExerciseCommand.EditExerciseDescriptor descriptor = new EditExerciseDescriptorBuilder(exercise).build();
-        UpdateExerciseCommand command = (UpdateExerciseCommand) parser.parseCommand(UpdateExerciseCommand.COMMAND_WORD + " "
+        UpdateExerciseCommand command = (UpdateExerciseCommand) parser.parseCommand(
+                UpdateExerciseCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_EXERCISE.getOneBased() + " " + ExerciseUtil.getEditExerciseDescriptorDetails(descriptor));
         assertEquals(new UpdateExerciseCommand(INDEX_FIRST_EXERCISE, descriptor), command);
     }
@@ -95,8 +93,8 @@ public class ExerciseBookParserTest {
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-                -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), (
+            ) -> parser.parseCommand(""));
     }
 
     @Test
