@@ -24,7 +24,7 @@ public class IngredientCardHandle extends NodeHandle<Node> {
 
 
     /**
-     * Constructs a {@code IngredientCard} with the given {@code ingredientCardNode}.
+     * Constructs a {@code IngredientCardHandle} with the given {@code ingredientCardNode}.
      */
     public IngredientCardHandle(Node ingredientCardNode) {
         super(ingredientCardNode);
