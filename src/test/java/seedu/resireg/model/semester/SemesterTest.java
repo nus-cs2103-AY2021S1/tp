@@ -59,12 +59,12 @@ class SemesterTest {
             .withSemesterNumber(1)
             .build();
         // should proceed to current year sem 2
-        assertEquals(Semester.getNextSemester(AY2020_SEM_1), AY2020_SEM_2);
+        assertEquals(AY2020_SEM_1.getNextSemester(), AY2020_SEM_2);
         // should wrap over to next year sem 1
-        assertEquals(Semester.getNextSemester(AY2020_SEM_2), nextSemester);
+        assertEquals(AY2020_SEM_2.getNextSemester(), nextSemester);
 
         // not equals
-        assertNotEquals(Semester.getNextSemester(AY2020_SEM_1), nextSemester);
-        assertNotEquals(Semester.getNextSemester(AY2020_SEM_1), AY2020_SEM_1);
+        assertNotEquals(AY2020_SEM_1.getNextSemester(), nextSemester);
+        assertNotEquals(AY2020_SEM_1.getNextSemester(), AY2020_SEM_1);
     }
 }

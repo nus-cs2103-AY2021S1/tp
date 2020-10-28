@@ -78,7 +78,7 @@ public class ResiReg implements ReadOnlyResiReg {
         newResiReg.setBinItems(toBeCopied.getBinItemList());
 
         Semester currentSemester = toBeCopied.getSemester();
-        newResiReg.semester = Semester.getNextSemester(currentSemester);
+        newResiReg.semester = currentSemester.getNextSemester();
 
         return newResiReg;
     }
