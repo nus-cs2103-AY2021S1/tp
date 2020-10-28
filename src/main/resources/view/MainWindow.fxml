@@ -48,7 +48,7 @@
                <children>
                   <SplitPane dividerPositions="0.5" orientation="VERTICAL" HBox.hgrow="ALWAYS">
                      <items>
-                    <VBox fx:id="taskList" minWidth="200.0" styleClass="pane-with-border">
+                    <VBox fx:id="taskList" minWidth="300.0" styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-header" text="Tasks:" textFill="WHITE">
                                  <font>
@@ -60,7 +60,7 @@
                          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            </children>
                     </VBox>
-                        <VBox minWidth="200.0" styleClass="pane-with-border">
+                        <VBox minWidth="300.0" styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-header" text="Lessons:">
                                  <font>
