@@ -78,11 +78,12 @@ public class MainApp extends Application {
             recipeUsageStorage, ingredientUsageStorage,
             userPrefsStorage);
 
+
         this.model = new ModelManager(new EntryBook<>(), new EntryBook<>(),
             new UsageList<>(), new UsageList<>(), userPrefs);
 
         this.logic = new LogicManager(this.model, this.storage);
-        this.ui = new UiManager(this.logic);
+        ui = new UiManager(logic, model);
     }
 
     private void loadEntries() {

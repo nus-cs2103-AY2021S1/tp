@@ -32,7 +32,7 @@ public class StatsCommandParser {
         assert args.getCommand().equals(Strings.COMMAND_STATS);
 
         Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(Strings.ARG_ON,
+        if ((foo = getFirstUnknownArgument(args, List.of(
             Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
             return Result.error("'stats' command doesn't support '%s'", foo.get());
         }
@@ -64,34 +64,26 @@ public class StatsCommandParser {
         }
 
         Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_ON, Strings.ARG_BEFORE, Strings.ARG_AFTER);
+        var supportedArgs = List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER);
         if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
             return Result.error("'stats recipe' command doesn't support '%s'", foo.get());
         } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
             return Result.error("'stats' command doesn't support edit-arguments");
         }
 
-        var on = args.getArgument(Strings.ARG_ON);
         var after = args.getArgument(Strings.ARG_AFTER);
         var before = args.getArgument(Strings.ARG_BEFORE);
 
-        if (on.size() > 1 || before.size() > 1 || after.size() > 1) {
-            return Result.error("Multiple dates specified");
-        }
-
-        if (on.size() == 1 && ((before.size() + after.size()) > 0)) {
-            return Result.error("'on' should not be used together with 'before' or 'after'");
-        } else if (on.size() + before.size() + after.size() == 0) {
+        if (before.size() + after.size() == 0) {
             return Result.error("At least 1 search criteria must be specified");
         }
 
         try {
 
-            var arg1 = processDate(on).orElse(null);
-            var arg2 = processDate(before).orElse(null);
-            var arg3 = processDate(after).orElse(null);
+            var arg1 = processDate(before).orElse(null);
+            var arg2 = processDate(after).orElse(null);
 
-            return Result.of(new StatsRecipeDateCommand(arg1, arg2, arg3));
+            return Result.of(new StatsRecipeDateCommand(arg1, arg2));
 
         } catch (Exception e) {
 
@@ -106,33 +98,29 @@ public class StatsCommandParser {
         }
 
         Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_ON, Strings.ARG_BEFORE, Strings.ARG_AFTER);
+        var supportedArgs = List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER);
         if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
             return Result.error("'stats ingredient' command doesn't support '%s'", foo.get());
         } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
             return Result.error("'stats' command doesn't support edit-arguments");
         }
 
-        var on = args.getArgument(Strings.ARG_ON);
         var after = args.getArgument(Strings.ARG_AFTER);
         var before = args.getArgument(Strings.ARG_BEFORE);
 
-        if (on.size() > 1 || before.size() > 1 || after.size() > 1) {
+        if (before.size() > 1 || after.size() > 1) {
             return Result.error("Multiple dates specified");
         }
 
-        if (on.size() == 1 && (before.size() + after.size()) != 0) {
-            return Result.error("'on' should not be used together with 'before' or 'after'");
-        } else if (on.size() + before.size() + after.size() == 0) {
+        if (before.size() + after.size() == 0) {
             return Result.error("At least 1 search criteria must be specified");
         }
 
         try {
-            var arg1 = processDate(on).orElse(null);
-            var arg2 = processDate(before).orElse(null);
-            var arg3 = processDate(after).orElse(null);
+            var arg1 = processDate(before).orElse(null);
+            var arg2 = processDate(after).orElse(null);
 
-            return Result.of(new StatsIngredientDateCommand(arg1, arg2, arg3));
+            return Result.of(new StatsIngredientDateCommand(arg1, arg2));
 
         } catch (Exception e) {
             return Result.error("Unable to parse date");

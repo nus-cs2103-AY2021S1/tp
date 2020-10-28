@@ -1,6 +1,7 @@
 package chopchop.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -158,13 +159,6 @@ public interface Model {
     /** Returns the UsageList of ingredient */
     UsageList<IngredientUsage> getIngredientUsageList();
 
-
-    /** Sets the RecipeUsageList */
-    void setRecipeUsageList(UsageList<RecipeUsage> list);
-
-    /** Sets the IngredientUsageList */
-    void setIngredientUsageList(UsageList<IngredientUsage> list);
-
     void addRecipeUsage(Recipe recipe);
 
     void removeRecipeUsage(Recipe recipe);
@@ -172,4 +166,14 @@ public interface Model {
     void addIngredientUsage(IngredientReference ingredient);
 
     void removeIngredientUsage(IngredientReference ingredient);
+
+    /** Sets the RecipeUsageList */
+    void setRecipeUsageList(UsageList<RecipeUsage> rl);
+
+    /** Sets the IngredientUsageList */
+    void setIngredientUsageList(UsageList<IngredientUsage> rl);
+
+    List<RecipeUsage> getRecentlyUsedRecipe(int n);
+
+    List<IngredientUsage> getRecentlyUsedIngredient(int n);
 }

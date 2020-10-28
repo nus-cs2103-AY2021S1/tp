@@ -1,6 +1,7 @@
 package chopchop.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
@@ -161,16 +162,6 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void setRecipeUsageList(UsageList<RecipeUsage> usages) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
-    public void setIngredientUsageList(UsageList<IngredientUsage> usages) {
-        throw new AssertionError("This method should not be called.");
-    }
-
-    @Override
     public void addRecipeUsage(Recipe recipe) {
         throw new AssertionError("This method should not be called.");
     }
@@ -187,6 +178,26 @@ public class ModelStub implements Model {
 
     @Override
     public void removeIngredientUsage(IngredientReference ingredient) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setRecipeUsageList(UsageList<RecipeUsage> rl) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setIngredientUsageList(UsageList<IngredientUsage> rl) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public List<RecipeUsage> getRecentlyUsedRecipe(int n) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public List<IngredientUsage> getRecentlyUsedIngredient(int n) {
         throw new AssertionError("This method should not be called.");
     }
 }
