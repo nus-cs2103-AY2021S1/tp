@@ -5,10 +5,16 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-
 <VBox xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="moduleCode" text="Label" />
+      <HBox>
+         <children>
+            <Label text="Total" />
+            <Region minWidth="50.0" HBox.hgrow="ALWAYS" />
+            <Label fx:id="totalTime" text="Label" />
+         </children>
+      </HBox>
       <HBox>
          <children>
             <Label text="Lesson" />

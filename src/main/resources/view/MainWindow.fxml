@@ -11,7 +11,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -46,15 +45,15 @@
         </StackPane>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <SplitPane dividerPositions="0.5" orientation="VERTICAL">
+                  <SplitPane dividerPositions="0.5" minWidth="700.0" orientation="VERTICAL" HBox.hgrow="ALWAYS">
                      <items>
-                    <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                    <VBox fx:id="taskList" styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-bright" text="Tasks:" textFill="WHITE" />
                          <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
                            </children>
                     </VBox>
-                        <VBox minWidth="340.0" prefWidth="340.0" styleClass="pane-with-border">
+                        <VBox styleClass="pane-with-border">
                            <children>
                               <Label styleClass="label-bright" text="Lessons:" />
                               <StackPane fx:id="lessonListPanelPlaceholder" VBox.vgrow="ALWAYS" />
@@ -62,11 +61,11 @@
                         </VBox>
                      </items>
                   </SplitPane>
-                  <VBox prefHeight="200.0" prefWidth="100.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                  <VBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                      <children>
-                        <Pane fx:id="calendarPanelPlaceholder" styleClass="background" VBox.vgrow="ALWAYS" />
-                        <Separator prefWidth="200.0" />
-                        <Pane fx:id="dataAnalysisPanelPlaceholder" styleClass="background" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="calendarPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                        <Separator VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="dataAnalysisPanelPlaceholder" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>

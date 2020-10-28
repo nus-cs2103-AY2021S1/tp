@@ -90,13 +90,11 @@ public class TaskContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new DeadlineBuilder().withTitle("Alice").withDeadlineDateTime("01-01-2020 12:00")
                 .withDescription("alice,email.com").build()));
 
-
         // type Keywords does not match tag
         predicate = new TaskContainsKeywordsPredicate();
         predicate.setKeyword(PREFIX_TAG, "CS2040");
         assertFalse(predicate.test(new DeadlineBuilder().withTag("MA1521")
                 .withDescription("alice,email.com").build()));
-
 
         // desc Keywords does not match description
         predicate = new TaskContainsKeywordsPredicate();

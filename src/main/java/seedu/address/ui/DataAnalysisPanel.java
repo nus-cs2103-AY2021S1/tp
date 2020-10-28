@@ -1,6 +1,5 @@
 package seedu.address.ui;
 
-import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -9,20 +8,20 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.lesson.Lesson;
 import seedu.address.model.StatisticsData;
 import seedu.address.model.tag.Tag;
-import seedu.address.storage.Statistics;
 
 
 public class DataAnalysisPanel extends UiPart<Region> {
     private static final String FXML = "DataAnalysisPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(DataAnalysisPanel.class);
 
-    private StatisticsData dataSet = Statistics.generateStatistics(LocalDate.now().minusDays(3), LocalDate.now().plusDays(3));
     private StatsSummaryPanel statsSummaryPanel;
 
+    @FXML
+    private StackPane pieChartPlaceholder;
     @FXML
     private PieChart pieChart;
     @FXML
@@ -30,30 +29,29 @@ public class DataAnalysisPanel extends UiPart<Region> {
 
     /**
      * Creates a Data Analysis Panel UI.
-     * @param lessonList lesson list to be analysed.
+     * @param statsData lesson list to be analysed.
      */
-    public DataAnalysisPanel(ObservableList<Lesson> lessonList) {
+    public DataAnalysisPanel(StatisticsData statsData) {
         super(FXML);
-        loadPieChart(lessonList);
-        loadSummary(lessonList);
+        loadPieChart(statsData);
+        loadSummary(statsData);
     }
 
-    private void loadPieChart(ObservableList<Lesson> lessonList) {
-        pieChart.setData(transformToPieChartData(lessonList));
+    private void loadPieChart(StatisticsData statsData) {
+        pieChart.setData(transformToPieChartData(statsData));
+        pieChart.setLabelsVisible(false);
     }
 
-    private void loadSummary(ObservableList<Lesson> lessonList) {
-        statsSummaryPanel = new StatsSummaryPanel(lessonList, dataSet);
+    private void loadSummary(StatisticsData statsData) {
+        statsSummaryPanel = new StatsSummaryPanel(statsData);
         statsSummaryPanelPlaceholder.getChildren().add(statsSummaryPanel.getRoot());
     }
 
-    private ObservableList<PieChart.Data> transformToPieChartData(ObservableList<Lesson> lessonList) {
+    private ObservableList<PieChart.Data> transformToPieChartData(StatisticsData statsData) {
         ObservableList<PieChart.Data> dataList = FXCollections.observableArrayList();
-        for (Lesson lesson : lessonList) {
-            Tag tag = lesson.getTag();
-            int tagTotaltime = dataSet.getTotalTime(tag);
+        for (Tag tag : statsData.getTags()) {
+            int tagTotaltime = statsData.getTotalTime(tag);
             PieChart.Data data = new PieChart.Data(tag.tagName, tagTotaltime);
-            System.out.println(tagTotaltime);
             dataList.add(data);
         }
         return dataList;

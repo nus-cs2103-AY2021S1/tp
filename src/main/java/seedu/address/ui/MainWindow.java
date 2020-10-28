@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -8,7 +9,6 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.storage.Statistics;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -34,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private TaskListPanel taskListPanel;
     private LessonListPanel lessonListPanel;
+    private CalendarPanel calendarPanel;
     private DataAnalysisPanel dataAnalysisPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -51,10 +53,10 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane lessonListPanelPlaceholder;
 
     @FXML
-    private Pane dataAnalysisPanelPlaceholder;
+    private StackPane dataAnalysisPanelPlaceholder;
 
     @FXML
-    private Pane calendarPanelPlaceholder;
+    private StackPane calendarPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -129,7 +131,11 @@ public class MainWindow extends UiPart<Stage> {
         lessonListPanel = new LessonListPanel(logic.getFilteredLessonList());
         lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
 
-        dataAnalysisPanel = new DataAnalysisPanel(logic.getFilteredLessonList());
+        calendarPanel = new CalendarPanel(logic.getFilteredCalendarList());
+        calendarPanelPlaceholder.getChildren().add(calendarPanel.getRoot());
+
+        dataAnalysisPanel = new DataAnalysisPanel(Statistics.generateStatistics(LocalDate.now().minusDays(3),
+                LocalDate.now().plusDays(3)));
         dataAnalysisPanelPlaceholder.getChildren().add(dataAnalysisPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
