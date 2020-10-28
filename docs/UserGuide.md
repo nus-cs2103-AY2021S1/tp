@@ -483,10 +483,10 @@ Sort the inventory by a specific field and order.
 
 Stock | Details
 ------| --------
-**Stock 1** | Name: Chicken Breast<br> Serial Number: Fairprice1<br> Quantity: 10<br> Source: Fairprice<br> Location in warehouse: Poultry Section
-**Stock 2** | Name: Pork Belly<br> Serial Number: Fairprice2<br> Quantity: 25<br> Source: Fairprice<br> Location in warehouse: Poultry Section
-**Stock 3** | Name: Coca Cola<br> Serial Number: NTUC1<br> Quantity: 100<br> Source: NTUC<br> Location in warehouse: Drinks Section
-**Stock 4** | Name: Sprite<br> Serial Number: NTUC2<br> Quantity: 100<br> Source: NTUC<br> Location in warehouse: Drinks Section
+**Stock 1** | Name: Chicken breast<br> Serial Number: FAIRPRICE1<br> Quantity: 10<br> Source: Fairprice<br> Location in warehouse: Poultry section
+**Stock 2** | Name: Pork belly<br> Serial Number: FAIRPRICE2<br> Quantity: 25<br> Source: Fairprice<br> Location in warehouse: Poultry section
+**Stock 3** | Name: Coca cola<br> Serial Number: NTUC1<br> Quantity: 100<br> Source: Ntuc<br> Location in warehouse: Drinks section
+**Stock 4** | Name: Sprite<br> Serial Number: NTUC2<br> Quantity: 100<br> Source: Ntuc<br> Location in warehouse: Drinks section
 
 Command: `sort o/descending by/quantity` will sort based on quantity and in descending order. <br>
 
