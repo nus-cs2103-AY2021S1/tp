@@ -51,7 +51,7 @@ public class Person {
     public Person(PersonName personName, GitUserName gitUserName, Phone phone, Email email, Address address,
                   HashMap<ProjectName,
         Participation> listOfParticipations) {
-        requireAllNonNull(personName, phone, email, address);
+        requireAllNonNull(personName, gitUserName,phone, email, address);
         this.personName = personName;
         this.gitUserName = gitUserName;
         this.phone = phone;
