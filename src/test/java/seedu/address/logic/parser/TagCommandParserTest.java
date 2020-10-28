@@ -29,7 +29,6 @@ public class TagCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() throws ParseException {
         String commandString = FILE_ADDRESS_DESC_CS2101 + TAG_DESC_CS2101 + VALID_LABEL_DESC;
-        System.out.println(commandString);
         Tag toTag = TypicalTags.CS2101;
         TagCommand expectedTagCommand = new TagCommand(toTag);
         assertParseSuccess(new TagCommandParser(), commandString, expectedTagCommand);

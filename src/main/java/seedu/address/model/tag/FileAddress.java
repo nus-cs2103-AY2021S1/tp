@@ -15,7 +15,7 @@ public class FileAddress {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = "([a-zA-z])?:?([\\\\/[a-zA-Z0-9]+\\.]*)?";
+    public static final String VALIDATION_REGEX = "([a-zA-z])?:?([\\\\/\\s[a-zA-Z0-9]+\\.]*)?";
 
     public final String value;
 
@@ -34,7 +34,7 @@ public class FileAddress {
      * Returns true if a given string is a valid file address.
      */
     public static boolean isValidFileAddress(String test) {
-        return test.matches(VALIDATION_REGEX) && test.length() != 0;
+        return test.matches(VALIDATION_REGEX) && test.length() != 0 && !test.matches("\\s+");
     }
 
     /**
