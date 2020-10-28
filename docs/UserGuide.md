@@ -265,13 +265,13 @@ Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
 Example:
 * `find-i s/ntuc t/meat` using [Figure 1](#uiwithannotationpng) as the starting point.
 
-1. Select the Command Box and type in `find-d s/ntuc t/meat`.
+1. Select the Command Box and type in `find-i s/ntuc t/meat`.
 
 2. Either press 'Enter' on your keyboard or click Send to execute the command.
 
 3. Success Message will be shown in the Result Display, and the number of matches will be shown.
 <br>
-![find-command-4](images/find-command-4.PNG)
+![find-command-4](images/find-command-1.PNG)
 <br>
 <br>
 
@@ -315,7 +315,7 @@ that match your find KEYWORD. If you would like to show **all** the items and de
 Format: `list-i` or `list-d`
 
 Example: 
-* `list-i` using [Result of find example](#findexample1) as a starting point.
+* `list-i` using the result of [find example](#findexample1) as a starting point.
 
 1. Select the Command Box and type in `list-i`.
 
@@ -323,7 +323,7 @@ Example:
 
 3. Success Message will be shown in the Result Display.
 <br>
-![list-command-2](images/list-command-2.PNG)
+![list-command-1](images/list-command-1.PNG)
 <br>
 <br>
 
