@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -96,6 +97,20 @@ public interface Model {
      */
     void updateFilteredModuleList(Predicate<Module> predicate);
 
+    /**
+     * Saves the current module list state in history.
+     */
+    void commitModuleList();
+
+    /**
+     * Restores the previous module list state from history.
+     */
+    void undoModuleList() throws VersionedListException;
+
+    /**
+     * Restores the previously undone module list state from history.
+     */
+    void redoModuleList() throws VersionedListException;
     // ============================ ContactList ==================================================
 
     /**
@@ -145,6 +160,21 @@ public interface Model {
      * @return Path contact list file path.
      */
     public Path getContactListFilePath();
+
+    /**
+     * Saves the current contact list state in history.
+     */
+    void commitContactList();
+
+    /**
+     * Restores the previous contact list state from history.
+     */
+    void undoContactList() throws VersionedListException;
+
+    /**
+     * Restores the previously undone contact list state from history.
+     */
+    void redoContactList() throws VersionedListException;
 
     // ============================ TodoList ==================================================
 
@@ -197,4 +227,34 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedTodoList(Comparator<Task> comparator);
+
+    /**
+     * Saves the current todo list state in history.
+     */
+    void commitTodoList();
+
+    /**
+     * Restores the previous todo list state from history.
+     */
+    void undoTodoList() throws VersionedListException;
+
+    /**
+     * Restores the previously undone todo list state from history.
+     */
+    void redoTodoList() throws VersionedListException;
+
+    /**
+     * Saves the current CAP5Buddy list state in history.
+     */
+    void commit(int type);
+
+    /**
+     * Restores the previous CAP5Buddy state from history.
+     */
+    void undo() throws VersionedListException;
+
+    /**
+     * Restores the previously undone CAP5Buddy state from history.
+     */
+    void redo() throws VersionedListException;
 }

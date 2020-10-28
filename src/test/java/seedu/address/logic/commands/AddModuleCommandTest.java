@@ -251,6 +251,63 @@ public class AddModuleCommandTest {
         public void updateSortedTodoList(Comparator<Task> comparator) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void commitModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void commit(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void redo() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

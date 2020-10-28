@@ -1,6 +1,6 @@
 package seedu.address.ui;
 
-// import java.util.Comparator;
+import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -35,9 +35,11 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label zoomLink;
+    private FlowPane zoomLinks;
     @FXML
     private Label modularCredits;
+    @FXML
+    private FlowPane assignments;
     @FXML
     private FlowPane tags;
 
@@ -49,12 +51,14 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         name.setText(module.getName().fullName);
-        if (module.getLink() == null) {
-            zoomLink.setText("No link provided");
-        } else {
-            zoomLink.setText(module.getLink().getLink());
-        }
+        module.getAllLinks().forEach((key, link) -> zoomLinks.getChildren().add(new Label(key + " Link : "
+                + link.getLink())));
         modularCredits.setText(module.getModularCredits().toString());
+        module.getGradeTracker().getAssignments().stream()
+                .sorted(Comparator.comparing(assignment -> assignment.assignmentName))
+                .forEach(assignment -> assignments.getChildren().add(new Label(assignment.assignmentName)));
+        assignments.setHgap(10);
+        assignments.setVgap(10);
         //module.getTags().stream()
         //        .sorted(Comparator.comparing(tag -> tag.tagName))
         //        .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

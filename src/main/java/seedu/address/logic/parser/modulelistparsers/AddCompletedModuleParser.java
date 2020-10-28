@@ -22,8 +22,6 @@ import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.tag.Tag;
 
-
-
 /**
  * Parses input arguments and creates a new AddCompletedModuleCommand object
  */

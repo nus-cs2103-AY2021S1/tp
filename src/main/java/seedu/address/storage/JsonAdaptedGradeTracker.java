@@ -2,7 +2,6 @@ package seedu.address.storage;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -74,13 +73,13 @@ public class JsonAdaptedGradeTracker {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADE);
         }
         final Grade modelGrade = new Grade(grade);
-        final Optional<GradePoint> modelGradePoint;
+        final GradePoint modelGradePoint;
         if (gradePoint == null) {
-            modelGradePoint = Optional.empty();
+            modelGradePoint = null;
         } else if (!GradePoint.isValidGradePoint(gradePoint)) {
             throw new IllegalValueException(GradeTracker.MESSAGE_INVALID_GRADEPOINT);
         } else {
-            modelGradePoint = Optional.of(new GradePoint(Double.parseDouble(gradePoint)));
+            modelGradePoint = new GradePoint(Double.parseDouble(gradePoint));
         }
         modelGradeTracker.setGrade(modelGrade);
         modelGradeTracker.setGradePoint(modelGradePoint);
