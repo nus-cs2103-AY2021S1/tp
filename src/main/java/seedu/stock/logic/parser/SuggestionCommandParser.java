@@ -325,7 +325,8 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     private void generateUpdateSuggestion(StringBuilder toBeDisplayed,
             ArgumentMultimap argMultimap) throws ParseException {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER,
-                PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION);
+                PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION,
+                PREFIX_LOW_QUANTITY);
         toBeDisplayed.append(UPDATE_COMMAND_WORD);
         boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
         boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();
