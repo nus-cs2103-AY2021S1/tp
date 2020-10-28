@@ -12,7 +12,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":SalesBook" as SalesBook MODEL_COLOR
 end box
 
 [-> LogicManager : execute(salesUpdate)
@@ -41,9 +40,6 @@ deactivate SalesUpdateCommand
 SalesUpdateCommandParser -> AddressBookParser : s
 deactivate SalesUpdateCommandParser
 
-SalesUpdateCommandParser -[hidden]-> AddressBookParser : s
-destroy SalesUpdateCommandParser
-
 AddressBookParser --> LogicManager : s
 deactivate AddressBookParser
 
@@ -52,12 +48,6 @@ activate SalesUpdateCommand
 
 SalesUpdateCommand -> Model : overwrite(sales)
 activate Model
-
-Model -> SalesBook : overwrite(sales)
-activate SalesBook
-
-SalesBook --> Model :
-deactivate SalesBook
 
 Model --> SalesUpdateCommand :
 deactivate Model
@@ -71,9 +61,6 @@ deactivate CommandResult
 
 SalesUpdateCommand -> LogicManager : result
 deactivate SalesUpdateCommand
-
-SalesUpdateCommand -[hidden]-> LogicManager : result
-destroy SalesUpdateCommand
 
 [<--LogicManager
 deactivate LogicManager
