@@ -299,21 +299,21 @@ Example:
 
 ### Saving a snapshot of animal data: `snap`
 
-This command is useful for storing important archives in the `data` folder of the `ZooKeep` application, in case you need
+This command is useful for storing important archives in the `data/snapshots` folder of the `ZooKeep` application, in case you need
 to refer to the information of animals that have been deleted long ago. When executed, this command will
 create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
+
+Format: `snap FILE_NAME`
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* File name can only contain alphanumeric characters, hyphens `-` and underscores `_`.
+* `FILE NAME` can only contain alphanumeric characters, hyphens `-` and underscores `_`.
 
-* File name must be at least 1 character long and at most 100 characters long.
+* `FILE NAME` must be at least 1 character long and at most 100 characters long.
 
-* File name must not already exist in the `data/snapshots` folder.
+* `FILE NAME` must not already exist in the `data/snapshots` folder.
 </div>
-
-Format: `snap FILE_NAME`
 
 Example:
 * `snap zookeepbook_19-10-2020` saves the current state of the zookeep book data as a file named 
@@ -323,22 +323,21 @@ Example:
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ZooKeep home folder.
+**Q**: How do I transfer my data to a new computer?<br>
+**A**: First, install the app on your new computer. Next, copy over the `zookeepbook.json` file
+       from your old computer and paste it into the `data` folder of your new computer.
 
 **Q**: How can I manually save new data that I enter into the application?<br>
-**A**: Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
-       By default, the preferred file name is `zookeepbook.json`.
-       There is no need to save manually, though a copy of the current data can be created with the `snap` command.
+**A**: You do not need to manually save data as animal data is saved in the hard disk 
+       automatically as a file named `zookeepbook.json` after any command that changes the data. 
+       Please do not manually edit this file as it may result in loss of data or unexpected 
+       behaviour when running the application.
 
 **Q**: Can I record the feed times of a specific animal in any order I prefer?<br>
 **A**: The feed time will be arranged in chronological order regardless of the order entered for easier reference.
 
 **Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
 **A**: The find feature will only list animals with the exact specified keyword provided.
-
-**Q**: Can I manually edit the ZooKeep data file?<br>
-**A**: No, manually editing the data file may result in loss of data or unexpected behaviour when running the application.
 
 ## Command summary
 
