@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -16,6 +17,7 @@ import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
 import seedu.expense.model.tag.Tag;
 
 /**
@@ -134,6 +136,15 @@ public class ModelManager implements Model {
         expenseBook.topupBudget(amount);
     }
 
+    @Override
+    public void topupCategoryBudget(Tag category, Amount amount) throws CategoryNotFoundException {
+        if (!expenseBook.containsCategory(category)) {
+            throw new CategoryNotFoundException();
+        }
+
+        expenseBook.topupCategoryBudget(category, amount);
+    }
+
     //=========== AliasMap ================================================================================
 
     @Override
@@ -168,6 +179,13 @@ public class ModelManager implements Model {
         aliasMap.setAlias(target, editedExpense);
     }
 
+    //=========== Sorted Expense List Accessors ==============================================================
+
+    @Override
+    public void sortExpenseList(Comparator<Expense> expenseComparator) {
+        expenseBook.sortExpenses(expenseComparator);
+    }
+
     //=========== Filtered Expense List Accessors =============================================================
 
     /**
@@ -197,14 +215,8 @@ public class ModelManager implements Model {
     @Override
     public void updateExpenseBookCategory(Tag category) {
         requireNonNull(category);
-
-        if (category.equals(ExpenseBook.DEFAULT_TAG)) {
-            updateFilteredBudgetList(PREDICATE_SHOW_ALL_BUDGETS);
-            updateFilteredExpenseList(PREDICATE_SHOW_ALL_EXPENSES);
-        } else {
-            updateFilteredBudgetList(budget -> budget.getTag().equals(category));
-            updateFilteredExpenseList(expense -> expense.getTag().equals(category));
-        }
+        updateFilteredBudgetList(budget -> budget.getTag().equals(category));
+        updateFilteredExpenseList(expense -> expense.getTag().equals(category));
     }
 
     /**

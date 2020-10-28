@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.expense.model.budget.exceptions.CategoryBudgetNotFoundException;
 import seedu.expense.model.budget.exceptions.DuplicateCategoryBudgetException;
 import seedu.expense.model.expense.Amount;
+import seedu.expense.model.tag.Tag;
 
 /**
  * A list of category-budgets that enforces uniqueness between its elements and does not allow nulls.
@@ -76,9 +77,9 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
      */
     public double tallyAmounts() {
         int size = filteredList.size();
-        double sum = internalList.size() != size || size == 1 //filteredlist not filtered or only one budget
-            ? 0
-            : defaultCategory.getAmount().asDouble();
+        double sum = internalList.size() == size && size != 1 || isAllDefaultCategory()
+            ? defaultCategory.getAmount().asDouble()
+            : 0;
         assert sum >= 0;
         Iterator<CategoryBudget> i = iterator();
         while (i.hasNext()) {
@@ -107,8 +108,6 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
 
     /**
      * Filters this list's filtered list by {@code predicate}
-     *
-     * @param predicate
      */
     public void filterCategoryBudget(Predicate<CategoryBudget> predicate) {
         requireNonNull(predicate);
@@ -134,6 +133,21 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
         return defaultCategory;
     }
 
+    /**
+     * Tops up the {@code CategoryBudget} that matches the specified category by the given amount {@code toAdd}.
+     */
+    public void topupCategoryBudget(Tag category, Amount toAdd) {
+        requireAllNonNull(category, toAdd);
+
+        if (category.equals(DEFAULT_TAG)) {
+            topupBudget(toAdd);
+        }
+
+        internalList.stream()
+                .filter(categoryBudget -> categoryBudget.getTag().equals(category))
+                .forEach(categoryBudget -> categoryBudget.topupBudget(toAdd));
+    }
+
     @Override
     public Amount getAmount() {
         return new Amount(tallyAmounts());
@@ -142,6 +156,11 @@ public class UniqueCategoryBudgetList implements Budget, Iterable<CategoryBudget
     @Override
     public void topupBudget(Amount toAdd) {
         defaultCategory.topupBudget(toAdd);
+    }
+
+    private boolean isAllDefaultCategory() {
+        Tag defaultTag = new Tag("Default");
+        return filteredList.stream().allMatch(budget -> budget.getTag().equals(defaultTag));
     }
 
     @Override

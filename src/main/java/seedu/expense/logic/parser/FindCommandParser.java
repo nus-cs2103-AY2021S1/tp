@@ -3,7 +3,6 @@ package seedu.expense.logic.parser;
 import static seedu.expense.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.expense.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.expense.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,8 +11,7 @@ import seedu.expense.logic.commands.FindCommand;
 import seedu.expense.logic.parser.exceptions.ParseException;
 import seedu.expense.model.expense.Date;
 import seedu.expense.model.expense.DateMatchesPredicate;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
-import seedu.expense.model.expense.TagsMatchesPredicate;
+import seedu.expense.model.expense.DescriptionContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -34,12 +32,10 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, //PREFIX_AMOUNT,
-                        PREFIX_DATE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_DATE);
 
         String keywords = "";
         List<String> dates = argMultimap.getAllValues(PREFIX_DATE);
-        List<String> tags = argMultimap.getAllValues(PREFIX_TAG);
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             keywords = argMultimap.getValue(PREFIX_DESCRIPTION).get();
             if (keywords.isEmpty()) {
@@ -54,17 +50,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Date.MESSAGE_CONSTRAINTS));
             }
         }
-        if (tags.size() == 1 && tags.get(0).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MISSING_ARGUMENTS));
-        }
-        if (keywords.isEmpty() && dates.isEmpty() && tags.isEmpty()) {
+        if (keywords.isEmpty() && dates.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
         return new FindCommand(
-                new NameContainsKeywordsPredicate(Arrays.asList(keywords.trim().split("\\s+"))),
-                new DateMatchesPredicate(dates),
-                new TagsMatchesPredicate(tags)
+                new DescriptionContainsKeywordsPredicate(Arrays.asList(keywords.trim().split("\\s+"))),
+                new DateMatchesPredicate(dates)
         );
     }
 

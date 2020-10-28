@@ -20,6 +20,7 @@ import seedu.expense.model.expense.Date;
 import seedu.expense.model.expense.Description;
 import seedu.expense.model.expense.Expense;
 import seedu.expense.model.expense.Remark;
+import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
 import seedu.expense.model.tag.Tag;
 
 /**
@@ -67,6 +68,10 @@ public class EditCommand extends Command {
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_EXPENSE_DISPLAYED_INDEX);
+        }
+
+        if (editExpenseDescriptor.getTag().isPresent() && !model.hasCategory(editExpenseDescriptor.getTag().get())) {
+            throw new CategoryNotFoundException();
         }
 
         Expense expenseToEdit = lastShownList.get(index.getZeroBased());

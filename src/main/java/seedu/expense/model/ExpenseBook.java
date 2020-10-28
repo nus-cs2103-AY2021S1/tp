@@ -2,6 +2,7 @@ package seedu.expense.model;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -110,6 +111,10 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
         budgets.topupBudget(amount);
     }
 
+    public void topupCategoryBudget(Tag category, Amount amount) {
+        budgets.topupCategoryBudget(category, amount);
+    }
+
     public boolean containsCategory(Tag tag) {
         return tags.contains(tag);
     }
@@ -212,6 +217,14 @@ public class ExpenseBook implements ReadOnlyExpenseBook, Statistics {
     @Override
     public double tallyExpenses() {
         return expenses.tallyExpenses();
+    }
+
+    /**
+     * Sort expenses in Expense List according to comparator provided.
+     * @param comparator
+     */
+    public void sortExpenses(Comparator<Expense> comparator) {
+        expenses.sortExpenses(comparator);
     }
 
     /**

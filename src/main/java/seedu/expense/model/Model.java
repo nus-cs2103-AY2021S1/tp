@@ -1,6 +1,7 @@
 package seedu.expense.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -11,6 +12,7 @@ import seedu.expense.model.budget.Budget;
 import seedu.expense.model.budget.CategoryBudget;
 import seedu.expense.model.expense.Amount;
 import seedu.expense.model.expense.Expense;
+import seedu.expense.model.expense.exceptions.CategoryNotFoundException;
 import seedu.expense.model.tag.Tag;
 
 /**
@@ -107,6 +109,11 @@ public interface Model {
     void setAlias(AliasEntry target, AliasEntry editedExpense);
 
     /**
+     * Returns an unmodifiable view of the sorted expense list
+     */
+    void sortExpenseList(Comparator<Expense> expenseComparator);
+
+    /**
      * Returns an unmodifiable view of the filtered expense list
      */
     ObservableList<Expense> getFilteredExpenseList();
@@ -141,6 +148,12 @@ public interface Model {
      * Adds the given amount to the budget.
      */
     void topupBudget(Amount amount);
+
+    /**
+     * Adds the given amount to the {@code CategoryBudget} that corresponding to the specified {@code category}.
+     *
+     */
+    void topupCategoryBudget(Tag category, Amount amount) throws CategoryNotFoundException;
 
     /**
      * Checks if the given Tag is present in any of the category budget.

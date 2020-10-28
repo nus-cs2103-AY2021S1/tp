@@ -16,8 +16,8 @@ import seedu.expense.commons.core.index.Index;
 import seedu.expense.logic.commands.exceptions.CommandException;
 import seedu.expense.model.ExpenseBook;
 import seedu.expense.model.Model;
+import seedu.expense.model.expense.DescriptionContainsKeywordsPredicate;
 import seedu.expense.model.expense.Expense;
-import seedu.expense.model.expense.NameContainsKeywordsPredicate;
 import seedu.expense.testutil.EditExpenseDescriptorBuilder;
 
 /**
@@ -121,7 +121,7 @@ public class CommandTestUtil {
 
         Expense expense = model.getFilteredExpenseList().get(targetIndex.getZeroBased());
         final String[] splitName = expense.getDescription().fullDescription.split("\\s+");
-        model.updateFilteredExpenseList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredExpenseList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredExpenseList().size());
     }

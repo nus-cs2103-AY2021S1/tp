@@ -9,6 +9,7 @@ import static seedu.expense.testutil.Assert.assertThrows;
 import static seedu.expense.testutil.TypicalExpenses.getTypicalExpenseBook;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -41,7 +42,7 @@ class SwitchCommandTest {
 
     @Test
     void execute_noMatchingKeywords_noCategoryFound() {
-        Tag foodTag = new Tag(VALID_TAG_FOOD);
+        Tag foodTag = new Tag("Potato");
         SwitchCommand command = new SwitchCommand(foodTag);
         ModelStub modelStub = new ModelStub();
         assertThrows(CommandException.class, String.format(SwitchCommand.MESSAGE_INVALID_CATEGORY,
@@ -190,6 +191,11 @@ class SwitchCommandTest {
         }
 
         @Override
+        public void topupCategoryBudget(Tag category, Amount amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addCategory(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
@@ -214,6 +220,11 @@ class SwitchCommandTest {
 
         @Override
         public void setAlias(AliasEntry prev, AliasEntry next) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortExpenseList(Comparator<Expense> expenseComparator) {
             throw new AssertionError("This method should not be called.");
         }
 

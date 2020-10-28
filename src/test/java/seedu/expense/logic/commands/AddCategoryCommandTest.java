@@ -9,6 +9,7 @@ import static seedu.expense.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -181,6 +182,11 @@ public class AddCategoryCommandTest {
         }
 
         @Override
+        public void topupCategoryBudget(Tag category, Amount amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addCategory(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
@@ -197,6 +203,11 @@ public class AddCategoryCommandTest {
 
         @Override
         public void setAlias(AliasEntry prev, AliasEntry curr) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortExpenseList(Comparator<Expense> expenseComparator) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -3,6 +3,7 @@ package seedu.expense.model.expense;
 import static java.util.Objects.requireNonNull;
 import static seedu.expense.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -10,6 +11,7 @@ import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.expense.model.expense.exceptions.DuplicateExpenseException;
 import seedu.expense.model.expense.exceptions.ExpenseNotFoundException;
 
@@ -153,6 +155,13 @@ public class UniqueExpenseList implements Iterable<Expense> {
         return sum;
     }
 
+    /**
+     * Sort expenses in Expense List according to comparator provided.
+     * @param comparator
+     */
+    public void sortExpenses(Comparator<Expense> comparator) {
+        internalList.setAll(new SortedList<Expense>(this.internalList, comparator));
+    }
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

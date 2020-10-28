@@ -3,9 +3,11 @@ package seedu.expense.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.expense.model.ExpenseBook.DEFAULT_TAG;
 import static seedu.expense.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -37,7 +39,7 @@ public class TopupCommandTest {
         ModelStub modelStub = new ModelStub();
         Amount validAmount = new Amount("1");
         CommandResult commandResult = new TopupCommand(validAmount).execute(modelStub);
-        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, validAmount.asDouble()),
+        assertEquals(String.format(TopupCommand.MESSAGE_SUCCESS, DEFAULT_TAG.tagName, validAmount.asDouble()),
                 commandResult.getFeedbackToUser());
         assertEquals(validAmount, modelStub.budgets.getAmount());
     }
@@ -173,6 +175,11 @@ public class TopupCommandTest {
         }
 
         @Override
+        public void topupCategoryBudget(Tag category, Amount amount) {
+            budgets.topupCategoryBudget(category, amount);
+        }
+
+        @Override
         public void addCategory(Tag tag) {
             throw new AssertionError("This method should not be called.");
         }
@@ -194,6 +201,11 @@ public class TopupCommandTest {
 
         @Override
         public void setAlias(AliasEntry prev, AliasEntry next) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortExpenseList(Comparator<Expense> expenseComparator) {
             throw new AssertionError("This method should not be called.");
         }
 

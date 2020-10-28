@@ -81,8 +81,11 @@ public class TypicalExpenses {
         for (Expense expense : getTypicalExpenses()) {
             eb.addExpense(expense);
         }
-        eb.getBudgets().topupBudget(new Amount("10"));
+        eb.addCategory(new Tag("Girlfriend"));
+        eb.addCategory(new Tag("Shopping"));
+        eb.addCategory(new Tag(VALID_TAG_FOOD));
         eb.addCategory(new Tag(VALID_TAG_TRANSPORT));
+        eb.getBudgets().topupBudget(new Amount("10"));
         return eb;
     }
 
