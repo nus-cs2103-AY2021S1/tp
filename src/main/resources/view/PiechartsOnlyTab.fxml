@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<Tab xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" text="Statistics">
+    <VBox fx:id="roomList"
+          VBox.vgrow="ALWAYS"
+          styleClass="pane-with-border"
+          minWidth="340" prefWidth="340">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+        <StackPane fx:id="piechartPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+    </VBox>
+</Tab>

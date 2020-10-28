@@ -23,6 +23,7 @@ public class MainPanel extends UiPart<Region> {
 
     private StudentsTab studentsTab;
     private RoomsTab roomsTab;
+    private PiechartsTab piechartsTab;
 
     @FXML
     private Tab binsTab;
@@ -30,6 +31,7 @@ public class MainPanel extends UiPart<Region> {
     private StudentListPanel studentListPanel;
     private RoomListPanel roomListPanel;
     private BinItemListPanel binItemListPanel;
+    private PiechartPanel piechartPanel;
 
     @FXML
     private TabPane tabPane;
@@ -41,7 +43,7 @@ public class MainPanel extends UiPart<Region> {
      */
     public MainPanel() {
         super(FXML);
-        addSeparateStudentsRoomsTabs();
+        addSeparateStudentsRoomsPiechartsTabs();
     }
 
     private void showTab(Tab tab) {
@@ -56,6 +58,10 @@ public class MainPanel extends UiPart<Region> {
         showTab(roomsTab.getTab());
     }
 
+    private void showPiechartsPanel() {
+        showTab(piechartsTab.getTab());
+    }
+
     /**
      * Changes the tab displayed based on the toggle.
      *
@@ -68,6 +74,9 @@ public class MainPanel extends UiPart<Region> {
             break;
         case STUDENTS:
             showStudentPanel();
+            break;
+        case PIECHART:
+            showPiechartsPanel();
             break;
         case BIN_ITEMS:
             showTab(binsTab);
@@ -93,10 +102,16 @@ public class MainPanel extends UiPart<Region> {
                 logic.getFilteredAllocationList(),
                 logic.getFilteredStudentList());
 
+        piechartPanel = new PiechartPanel(
+                logic.getFilteredStudentList(),
+                logic.getFilteredAllocationList(),
+                logic.getFilteredRoomList());
+
         binItemListPanel = new BinItemListPanel(logic.getFilteredBinItemList());
 
         studentsTab.setStudentListPanel(studentListPanel);
         roomsTab.setRoomListPanel(roomListPanel);
+        piechartsTab.setPiechartPanel(piechartPanel);
 
         binItemListPanelPlaceholder.getChildren()
             .add(binItemListPanel.getRoot());
@@ -120,13 +135,16 @@ public class MainPanel extends UiPart<Region> {
      * Adds a students tab and a rooms tab as the first and second tab respectively in the tab pane.
      * Does not check whether such a tab or separate rooms and students tabs already exist.
      */
-    private void addSeparateStudentsRoomsTabs() {
+    private void addSeparateStudentsRoomsPiechartsTabs() {
         StudentsOnlyTab studentsOnlyTab = new StudentsOnlyTab();
         RoomsOnlyTab roomsOnlyTab = new RoomsOnlyTab();
-        tabPane.getTabs().addAll(0, Arrays.asList(studentsOnlyTab.getRoot(), roomsOnlyTab.getRoot()));
+        PiechartsOnlyTab piechartsOnlyTab = new PiechartsOnlyTab();
+        tabPane.getTabs().addAll(0, Arrays.asList(
+                studentsOnlyTab.getRoot(), roomsOnlyTab.getRoot(), piechartsOnlyTab.getRoot()));
 
         studentsTab = studentsOnlyTab;
         roomsTab = roomsOnlyTab;
+        piechartsTab = piechartsOnlyTab;
 
         studentsAndRoomsAreCombined = false;
     }
@@ -149,7 +167,7 @@ public class MainPanel extends UiPart<Region> {
     void separateStudentsAndRooms() {
         if (studentsAndRoomsAreCombined) {
             tabPane.getTabs().remove(0);
-            addSeparateStudentsRoomsTabs();
+            addSeparateStudentsRoomsPiechartsTabs();
         }
     }
 
