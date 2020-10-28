@@ -10,7 +10,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class ApplicationStatus {
     public static final String MESSAGE_CONSTRAINTS =
-            "Application Status should only contain the words: processing, accepted, rejected. It should not be blank";
+            "Application Status should only contain the words: received, processing, accepted, rejected. It should not be blank";
     private PossibleApplicationStatus value;
 
     /**

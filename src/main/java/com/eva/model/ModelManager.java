@@ -296,7 +296,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setApplicationStatus(Applicant applicant, ApplicationStatus status) {
-        System.out.println("Need to Implement");
+        applicant.setApplicationStatus(status);
     }
 
     public void deleteApplication(Applicant target, Application toSet) {
