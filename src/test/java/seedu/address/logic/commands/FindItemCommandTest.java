@@ -4,10 +4,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.parser.ItemParserUtil.REGEX_ENTRIES;
 import static seedu.address.testutil.TypicalItems.getTypicalItemList;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -70,14 +73,13 @@ public class FindItemCommandTest {
         CommandResult expectedResult = new CommandResult(expectedMessage,
                 false, false, DisplayedInventoryType.ITEMS);
         assertCommandSuccess(command, model, expectedResult, expectedModel);
-        assertEquals(Collections.emptyList(), expectedModel.getFilteredItemList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleItemsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_ITEMS_LISTED_OVERVIEW, 3);
 
-        NameMatchesKeywordsPredicate predicate = preparePredicate("Apple Banana Carrot");
+        NameMatchesKeywordsPredicate predicate = preparePredicate("Apple, Banana,Carrot");
         FindItemCommand command = new FindItemCommand(predicate);
 
         expectedModel.updateFilteredItemList(predicate);
@@ -93,6 +95,9 @@ public class FindItemCommandTest {
      * Parses {@code userInput} into a {@code NameMatchesKeywordsPredicate}.
      */
     private NameMatchesKeywordsPredicate preparePredicate(String userInput) {
-        return new NameMatchesKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+        List<String> inputs = Arrays.stream(userInput.split(REGEX_ENTRIES))
+                .map(String::strip)
+                .collect(Collectors.toList());
+        return new NameMatchesKeywordsPredicate(inputs);
     }
 }

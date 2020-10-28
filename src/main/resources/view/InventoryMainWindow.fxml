@@ -13,7 +13,7 @@
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="Inventoryinator" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
-        <Image url="@/images/inventoryinator.png" />
+        <Image url="@/images/icon.jpg" />
     </icons>
     <scene>
         <Scene>

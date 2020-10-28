@@ -1,5 +1,7 @@
 package seedu.address.model.item;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
@@ -20,6 +22,7 @@ public class NameMatchesKeywordsPredicate implements Predicate<Item> {
      * @param keywords keywords to use to search.
      */
     public NameMatchesKeywordsPredicate(List<String> keywords) {
+        requireNonNull(keywords);
         assert keywords.size() > 0;
 
         this.keywords = keywords;
