@@ -20,6 +20,7 @@ interface Question <<Interface>>
 class Answer
 class Choice
 class Tag
+class Difficulty
 class UniqueFlashcardList
 class Flashcard
 }
@@ -34,6 +35,7 @@ MultipleChoiceQuestion *--> "1..*" Choice
 Flashcard *--> "1" Question
 Flashcard *--> "1" Answer
 Flashcard *--> "*" Tag
+Flashcard *--> "1" Difficulty
 
 UniqueFlashcardList o--> "*" Flashcard
 QuickCache *--> "1" UniqueFlashcardList
