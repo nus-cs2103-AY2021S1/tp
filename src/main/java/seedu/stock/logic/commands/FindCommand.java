@@ -69,4 +69,13 @@ public class FindCommand extends Command {
                 || (other instanceof FindCommand // instanceof handles nulls
                 && predicates.equals(((FindCommand) other).predicates)); // state check
     }
+
+    @Override
+    public String toString() {
+        return predicates.toString();
+    }
+
+    public List<FieldContainsKeywordsPredicate> getPredicates() {
+        return this.predicates;
+    }
 }

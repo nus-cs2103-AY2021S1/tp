@@ -73,6 +73,11 @@ public class UpdateCommand extends Command {
         this.updateStockDescriptor = updateStockDescriptor;
     }
 
+    @Override
+    public String toString() {
+        return "UpdateCommand:\n" + updateStockDescriptor;
+    }
+
     /**
      * Executes the update command and returns the result.
      *
@@ -237,7 +242,6 @@ public class UpdateCommand extends Command {
 
         public List<SerialNumber> getSerialNumbers() {
             assert serialNumbers != null;
-
             return serialNumbers;
         }
 
@@ -271,6 +275,17 @@ public class UpdateCommand extends Command {
 
         public Optional<Location> getLocation() {
             return Optional.ofNullable(location);
+        }
+
+        @Override
+        public String toString() {
+            return "UpdateStockDescriptor:\n"
+                    + name + "\n"
+                    + serialNumbers.toString() + "\n"
+                    + source + "\n"
+                    + quantity + "\n"
+                    + location + "\n"
+                    + quantityAdder;
         }
 
         @Override

@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.BookmarkCommand;
+import seedu.stock.logic.commands.ClearCommand;
 import seedu.stock.logic.commands.Command;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -59,9 +60,6 @@ public class StockBookParser {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
 
-        case ExitCommand.COMMAND_WORD:
-            return new ExitCommand();
-
         case HelpCommand.COMMAND_WORD:
             try {
                 return new HelpCommandParser().parse(arguments);
@@ -86,6 +84,13 @@ public class StockBookParser {
         case ListCommand.COMMAND_WORD:
             try {
                 return new ListCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case ClearCommand.COMMAND_WORD:
+            try {
+                return new ClearCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
@@ -156,6 +161,13 @@ public class StockBookParser {
         case UnbookmarkCommand.COMMAND_WORD:
             try {
                 return new UnbookmarkCommandParser().parse(arguments);
+            } catch (ParseException ex) {
+                return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
+            }
+
+        case ExitCommand.COMMAND_WORD:
+            try {
+                return new ExitCommandParser().parse(arguments);
             } catch (ParseException ex) {
                 return new SuggestionCommandParser(commandWord, ex.getMessage()).parse(arguments);
             }
