@@ -68,6 +68,13 @@ public class SampleDataUtil {
             "15.0",
             "false"
     ));
+    private static ArrayList<String> VALID_TASK = new ArrayList<>(Arrays.asList(
+            "Write testcases",
+            "testcases for storage, person and project class",
+            "10-10-2020 23:59:00",
+            "10.0",
+            "false"
+    ));
 
     public static Person[] getSamplePersons() {
         return new Person[]{
@@ -166,6 +173,14 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a assignee set containing the list of strings given.
+     */
+    public static Set<String> getAssigneeSet(String... strings) {
+        return Arrays.stream(strings)
+                .collect(Collectors.toSet());
+    }
+
     public static ArrayList<String> getTask1() {
         return task1;
     }
@@ -188,5 +203,8 @@ public class SampleDataUtil {
 
     public static ArrayList<String> getTask6() {
         return task6;
+    }
+    public static ArrayList<String> getValidTask() {
+        return VALID_TASK;
     }
 }
