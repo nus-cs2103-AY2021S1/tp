@@ -1,11 +1,10 @@
 package seedu.address.logic.commands;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.Model;
-
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.tutorialgroup.TutorialGroup;
 
 public class ListStudentCommand extends Command {
     public static final String COMMAND_WORD = "listStudent";
@@ -14,14 +13,16 @@ public class ListStudentCommand extends Command {
             + ": Views all the students.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS = "Viewing All Students";
+    public static final String MESSAGE_VIEWING_TUTORIAL_GROUPS_SUCCESS = "Viewing all students of: %1$s";
 
     public ListStudentCommand() { }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS), false, false, false, true, false);
+        TutorialGroup tg = model.getCurrentTgInView();
+        return new CommandResult(String.format(MESSAGE_VIEWING_TUTORIAL_GROUPS_SUCCESS, tg),
+                false, false, false, true, false);
     }
 
     @Override

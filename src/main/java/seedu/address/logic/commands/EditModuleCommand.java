@@ -32,8 +32,9 @@ public class EditModuleCommand extends Command {
 
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in the address book.";
-    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. Run listMod to go back to the module view.";
+    public static final String MESSAGE_DUPLICATE_MODULE = "This module already exists in Trackr.";
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. "
+            + "Run listMod to go back to the Module view.";
 
     private final Index index;
     private final String newModuleId;

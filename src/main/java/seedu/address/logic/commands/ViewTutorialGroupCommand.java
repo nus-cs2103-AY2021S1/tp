@@ -18,7 +18,9 @@ public class ViewTutorialGroupCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_VIEWING_TG_SUCCESS = "Viewing Tutorial Groups of: %1$s";
+    public static final String MESSAGE_VIEWING_TG_SUCCESS = "Viewing tutorial groups of: %1$s";
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. "
+            + "Run listMod to go back to the Module view.";
 
     private final Index targetIndex;
 
@@ -28,6 +30,10 @@ public class ViewTutorialGroupCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        if (!model.isInModuleView()) {
+            throw new CommandException(MESSAGE_NOT_IN_MODULE_VIEW);
+        }
+
         requireNonNull(model);
         List<Module> lastShownList = model.getFilteredModuleList();
 

@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
-import seedu.address.model.exceptions.NotInModuleViewException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.person.Student;
@@ -148,6 +147,11 @@ public class ModelManager implements Model {
         return this.isInModuleView;
     }
 
+    @Override
+    public Module getCurrentModuleInView() {
+        return currentModuleInView;
+    }
+
     //=========== TutorialGroup Operations ====================================================================
 
     @Override
@@ -184,6 +188,11 @@ public class ModelManager implements Model {
     @Override
     public boolean isInTutorialGroupView() {
         return this.isInTutorialGroupView;
+    }
+
+    @Override
+    public TutorialGroup getCurrentTgInView() {
+        return currentTgInView;
     }
 
     //=========== Student Operations =============================================================================
