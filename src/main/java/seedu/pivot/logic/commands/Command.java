@@ -8,6 +8,8 @@ import seedu.pivot.model.Model;
  */
 public abstract class Command {
 
+    public static final String TYPE_TITLE = "title";
+    public static final String TYPE_STATUS = "status";
     public static final String TYPE_CASE = "case";
     public static final String TYPE_DESC = "desc";
     public static final String TYPE_DOC = "doc";

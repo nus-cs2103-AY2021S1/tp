@@ -9,7 +9,6 @@ import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERS
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;

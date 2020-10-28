@@ -48,7 +48,8 @@ public class AddWitnessCommandParserTest {
     //TODO: add all the fields in for witness here
     @Test
     public void parse_allFieldsPresent_success() {
-        Witness expectedWitness = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB).withGender(VALID_GENDER_BOB)
+        Witness expectedWitness = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB)
+                .withGender(VALID_GENDER_BOB)
                 .buildWitness();
 
         // normal input

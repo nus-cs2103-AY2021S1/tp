@@ -38,9 +38,14 @@ public class AddDocumentCommandParserTest {
     public static final String VALID_REFERENCE = "existingReference.txt";
     public static final String INVALID_REFERENCE = "invalidReference.myExt";
 
+    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
+
+    private AddDocumentCommandParser parser = new AddDocumentCommandParser();
+
     private static Path getTempFilePath(String fileName) {
         return testFolder.resolve(fileName);
     }
+
 
     /**
      * Represents a Reference with separate default paths for testing.
@@ -74,7 +79,8 @@ public class AddDocumentCommandParserTest {
 
             if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_REFERENCE)
                     || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDocumentCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        AddDocumentCommand.MESSAGE_USAGE));
             }
 
             Index index = StateManager.getState();
@@ -92,10 +98,6 @@ public class AddDocumentCommandParserTest {
         }
     }
 
-
-    private static Index index = Index.fromZeroBased(INDEX_FIRST_PERSON.getZeroBased());
-
-    private AddDocumentCommandParser parser = new AddDocumentCommandParser();
 
     @BeforeAll
     public static void setStateZero() {
@@ -124,7 +126,8 @@ public class AddDocumentCommandParserTest {
     public void parse_prefixesMissing_throwsParseException() {
         // missing name prefix
         assertThrows(ParseException.class, () -> parser.parse(PREFIX_REFERENCE_TEST + VALID_REFERENCE));
-        assertParseFailure(parser, PREFIX_REFERENCE_TEST + VALID_REFERENCE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, PREFIX_REFERENCE_TEST + VALID_REFERENCE,
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AddDocumentCommand.MESSAGE_USAGE));
 
         // missing reference prefix

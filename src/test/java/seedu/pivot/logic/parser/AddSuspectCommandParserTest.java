@@ -7,8 +7,6 @@ import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITE
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_CASEPERSON_NAME_BOB;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_GENDER_BOB;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_AMY;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.pivot.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -50,7 +48,8 @@ public class AddSuspectCommandParserTest {
     //TODO: add all the fields in for suspect here
     @Test
     public void parse_allFieldsPresent_success() {
-        Suspect expectedSuspect = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB).withGender(VALID_GENDER_BOB)
+        Suspect expectedSuspect = new CasePersonBuilder().withName(VALID_CASEPERSON_NAME_BOB)
+                .withGender(VALID_GENDER_BOB)
                 .buildSuspect();
 
         // normal input

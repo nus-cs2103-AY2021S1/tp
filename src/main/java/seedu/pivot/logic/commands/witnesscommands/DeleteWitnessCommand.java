@@ -70,6 +70,7 @@ public class DeleteWitnessCommand extends DeleteCommand {
                 stateCase.getVictims(), updatedWitnesses, stateCase.getTags());
 
         model.setCase(stateCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));
         model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_WITNESS_SUCCESS, witnessToDelete));

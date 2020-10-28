@@ -117,6 +117,9 @@ public class AddCaseCommandTest {
         }
 
         @Override
+        public void commitPivot(String command) {}
+
+        @Override
         public ReadOnlyPivot getPivot() {
             return new Pivot();
         }

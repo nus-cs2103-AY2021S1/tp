@@ -16,7 +16,8 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setPivotBook(new Pivot());
+        model.setPivot(new Pivot());
+        model.commitPivot(MESSAGE_CLEAR_SUCCESS);
         return new CommandResult(MESSAGE_CLEAR_SUCCESS);
     }
 }

@@ -117,5 +117,8 @@ public class DeleteDocumentCommandTest {
         public void updateFilteredCaseList(Predicate<Case> predicate) {
             return;
         }
+
+        @Override
+        public void commitPivot(String command) {}
     }
 }

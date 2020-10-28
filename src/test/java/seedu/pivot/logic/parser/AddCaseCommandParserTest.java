@@ -4,6 +4,7 @@ import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORM
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_INVALID_STATUS;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_INVALID_TAG;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_INVALID_TITLE_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_STATUS_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_STATUS_BOB;
@@ -11,7 +12,6 @@ import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TA
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TAG_HUSBAND;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TITLE_AMY;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_TITLE_BOB;
-import static seedu.pivot.logic.commands.testutil.CommandTestUtil.PREFIX_WITH_INVALID_TAG;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.VALID_TITLE_BOB;
@@ -102,7 +102,8 @@ public class AddCaseCommandParserTest {
         // two invalid values, only first invalid value reported
         // Is relevant for "add case t:TITLE s:STATUS" or any number of invalid fields
         // Using 2 invalid Fields Title and Status
-        assertParseFailure(parser, PREFIX_WITH_INVALID_TITLE_AMY + PREFIX_WITH_INVALID_STATUS, Title.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, PREFIX_WITH_INVALID_TITLE_AMY + PREFIX_WITH_INVALID_STATUS,
+                Title.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + PREFIX_WITH_TITLE_BOB
