@@ -90,6 +90,8 @@ public interface Model {
 
     boolean isInModuleView();
 
+    Module getCurrentModuleInView();
+
     //TutorialGroup Operations
 
     /**
@@ -104,6 +106,12 @@ public interface Model {
      */
     void addTutorialGroup(TutorialGroup tutorialGroup);
 
+    void deleteTutorialGroup(TutorialGroup tutorialGroup);
+
+    boolean hasTutorialGroup(TutorialGroup tutorialGroup);
+
+    void setTutorialGroup(TutorialGroup target, TutorialGroup edited);
+
     boolean isInTutorialGroupView();
     // Student Operations
 
@@ -112,6 +120,8 @@ public interface Model {
      * @param target
      */
     void setViewToStudent(TutorialGroup target);
+
+    TutorialGroup getCurrentTgInView();
 
     /**
      * Returns true if a student with the same identity as {@code student} exists in trackr.

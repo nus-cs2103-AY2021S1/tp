@@ -13,9 +13,10 @@ public class ListModuleCommand extends Command {
             + ": Views all the modules.\n"
             + "Example: " + COMMAND_WORD;
 
-    public static final String MESSAGE_VIEWING_MODULES_SUCCESS = "Viewing All Modules";
+    public static final String MESSAGE_VIEWING_MODULES_SUCCESS = "Viewing all modules";
 
-    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. Run listMod to go back to the module view.";
+    public static final String MESSAGE_NOT_IN_MODULE_VIEW = "You are currently not in the Module view. "
+            + "Run listMod to go back to the Module view.";
 
     public ListModuleCommand() { }
 
