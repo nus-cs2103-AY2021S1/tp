@@ -335,6 +335,12 @@
     -fx-label-padding: 4 12 4 12;
 }
 
+#newModeLabel {
+    -fx-font-size: 13pt;
+    -fx-text-fill: orange;
+    -fx-label-padding: 4 12 4 12;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

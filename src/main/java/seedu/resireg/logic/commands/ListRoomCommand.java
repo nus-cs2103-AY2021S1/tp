@@ -23,7 +23,7 @@ import seedu.resireg.storage.Storage;
  * Lists rooms in ResiReg to the user, optionally filtered by some criteria.
  */
 public class ListRoomCommand extends Command {
-    public static final String COMMAND_WORD = CommandWordEnum.LIST_ROOM_COMMAND.toString();
+    public static final String COMMAND_WORD = "rooms";
     public static final String COMMAND_VACANT_FLAG = "vacant";
     public static final String COMMAND_ALLOCATED_FLAG = "allocated";
 

@@ -35,7 +35,7 @@ import seedu.resireg.storage.Storage;
  */
 public class EditCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.EDIT_COMMAND.toString();
+    public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

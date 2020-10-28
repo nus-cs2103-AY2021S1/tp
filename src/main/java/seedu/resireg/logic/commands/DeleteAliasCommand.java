@@ -15,7 +15,7 @@ import seedu.resireg.storage.Storage;
  */
 public class DeleteAliasCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.DELETE_ALIAS_COMMAND.toString();
+    public static final String COMMAND_WORD = "dealias";
 
     public static final String MESSAGE_SUCCESS = "The alias %1$s has been deleted.";
     public static final String MESSAGE_INVALID_ALIAS = "This alias doesn't exist.";

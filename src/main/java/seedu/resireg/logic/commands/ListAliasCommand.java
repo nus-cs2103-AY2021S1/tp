@@ -11,7 +11,7 @@ import seedu.resireg.storage.Storage;
  */
 public class ListAliasCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.LIST_ALIAS_COMMAND.toString();
+    public static final String COMMAND_WORD = "aliases";
 
     public static final String MESSAGE_SUCCESS = "Here are the command-alias pairs defined so far: \n%1$s";
     public static final String MESSAGE_EMPTY_ALIAS = "No command-alias pairs have been defined so far.";

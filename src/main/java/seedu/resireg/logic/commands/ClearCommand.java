@@ -12,7 +12,7 @@ import seedu.resireg.storage.Storage;
  */
 public class ClearCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.CLEAR_COMMAND.toString();
+    public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "ResiReg has been cleared!";
 
     public static final Help HELP = new Help(COMMAND_WORD, "Clears all students and rooms.");

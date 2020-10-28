@@ -343,4 +343,6 @@ public interface Model {
     void saveStateResiReg();
 
     AppMode getAppMode();
+
+    void finalizeRooms();
 }

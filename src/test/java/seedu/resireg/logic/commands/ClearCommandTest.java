@@ -18,6 +18,7 @@ public class ClearCommandTest {
     @Test
     public void execute_emptyResiReg_success() {
         Model model = new ModelManager();
+        model.finalizeRooms();
         Model expectedModel = new ModelManager();
         expectedModel.saveStateResiReg();
 

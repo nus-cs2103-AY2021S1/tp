@@ -18,8 +18,8 @@ public class Help {
      */
     Help(String commandWord, String summary, String longerDescription) {
         this.commandWord = commandWord;
-        this.summary = summary;
-        this.longerDescription = longerDescription;
+        this.summary = summary.strip();
+        this.longerDescription = longerDescription.strip();
     }
 
     Help(String commandWord, String summary) {

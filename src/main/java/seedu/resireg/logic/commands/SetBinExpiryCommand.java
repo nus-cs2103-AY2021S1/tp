@@ -12,7 +12,7 @@ import seedu.resireg.storage.Storage;
  */
 public class SetBinExpiryCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.SET_BIN_EXPIRY_COMMAND.toString();
+    public static final String COMMAND_WORD = "set-bin-expiry";
 
     public static final String MESSAGE_SUCCESS = "Bin items will now be stored for %1$s days";
 

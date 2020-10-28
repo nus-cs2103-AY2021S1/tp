@@ -19,7 +19,7 @@ import seedu.resireg.storage.Storage;
  */
 public class RestoreCommand extends Command {
 
-    public static final String COMMAND_WORD = CommandWordEnum.RESTORE_COMMAND.toString();
+    public static final String COMMAND_WORD = "restore";
 
     public static final String MESSAGE_RESTORE_STUDENT_SUCCESS = "Restored Student: %1$s";
 

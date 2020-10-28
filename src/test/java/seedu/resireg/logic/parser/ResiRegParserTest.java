@@ -19,7 +19,44 @@ import seedu.resireg.storage.Storage;
 public class ResiRegParserTest {
     private static final String MOCK_COMMAND_WORD = "command";
 
-    private final ResiRegParser mockParser;
+    private final Map<String, Parser<Command>> mockMap;
+
+    ResiRegParserTest() {
+        mockMap = new HashMap<>();
+        mockMap.put(MOCK_COMMAND_WORD, MockCommand::new);
+    }
+
+    @Test
+    public void parseCommand_validCommandWordNoArgs() throws ParseException {
+        assertEquals("", ((MockCommand) ResiRegParser.parseCommand(MOCK_COMMAND_WORD, mockMap)).getUserInput());
+    }
+
+    @Test
+    public void parseCommand_validCommandWordWithArgs() throws ParseException {
+        assertEquals(" args", ((MockCommand) ResiRegParser.parseCommand(MOCK_COMMAND_WORD + " args", mockMap))
+                .getUserInput());
+        assertEquals(" a1 a2", ((MockCommand) ResiRegParser.parseCommand(MOCK_COMMAND_WORD + " a1 a2", mockMap))
+                .getUserInput());
+    }
+
+    @Test
+    public void parseCommand_validCommandWordWithArgsTrailingSpaces() throws ParseException {
+        // check that trailing spaces are removed
+        assertEquals(" args", ((MockCommand) ResiRegParser.parseCommand(MOCK_COMMAND_WORD + " args  ", mockMap))
+                .getUserInput());
+    }
+
+
+    @Test
+    public void parseCommand_invalidCommandWord() {
+        assertThrows(ParseException.class, () -> ResiRegParser.parseCommand("nonexistentCommand", mockMap));
+    }
+
+    @Test
+    public void parseCommand_invalidCommandWordSubset() {
+        assertThrows(ParseException.class, () -> ResiRegParser.parseCommand(MOCK_COMMAND_WORD + "asdfj", mockMap));
+        assertThrows(ParseException.class, () -> ResiRegParser.parseCommand("asdfj" + MOCK_COMMAND_WORD, mockMap));
+    }
 
     private static class MockCommand extends Command {
         private final String userInput;
@@ -38,38 +75,4 @@ public class ResiRegParserTest {
         }
     }
 
-    ResiRegParserTest() {
-        Map<String, Parser<Command>> map = new HashMap<>();
-        map.put(MOCK_COMMAND_WORD, MockCommand::new);
-        mockParser = new ResiRegParser(map);
-    }
-
-    @Test
-    public void parseCommand_validCommandWordNoArgs() throws ParseException {
-        assertEquals("", ((MockCommand) mockParser.parseCommand(MOCK_COMMAND_WORD)).getUserInput());
-    }
-
-    @Test
-    public void parseCommand_validCommandWordWithArgs() throws ParseException {
-        assertEquals(" args", ((MockCommand) mockParser.parseCommand(MOCK_COMMAND_WORD + " args")).getUserInput());
-        assertEquals(" a1 a2", ((MockCommand) mockParser.parseCommand(MOCK_COMMAND_WORD + " a1 a2")).getUserInput());
-    }
-
-    @Test
-    public void parseCommand_validCommandWordWithArgsTrailingSpaces() throws ParseException {
-        // check that trailing spaces are removed
-        assertEquals(" args", ((MockCommand) mockParser.parseCommand(MOCK_COMMAND_WORD + " args  ")).getUserInput());
-    }
-
-
-    @Test
-    public void parseCommand_invalidCommandWord() {
-        assertThrows(ParseException.class, () -> mockParser.parseCommand("nonexistentCommand"));
-    }
-
-    @Test
-    public void parseCommand_invalidCommandWordSubset() {
-        assertThrows(ParseException.class, () -> mockParser.parseCommand(MOCK_COMMAND_WORD + "asdfj"));
-        assertThrows(ParseException.class, () -> mockParser.parseCommand("asdfj" + MOCK_COMMAND_WORD));
-    }
 }
