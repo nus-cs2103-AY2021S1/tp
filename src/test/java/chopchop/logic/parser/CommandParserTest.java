@@ -173,13 +173,40 @@ public class CommandParserTest {
         var cases = new HashMap<String, Boolean>();
         var parser = new CommandParser();
 
+
+        cases.put("list recipes /uwu",                                                  false);
+        cases.put("filter recipe /qty:kekw",                                            false);
+        cases.put("help /uwu",                                                          false);
+        cases.put("view x /uwu",                                                        false);
+        cases.put("make /uwu",                                                          false);
+        cases.put("make x /uwu",                                                        false);
+        cases.put("make",                                                               false);
+        cases.put("find /asdf",                                                         false);
+
+        cases.put("filter recipe",                                                      false);
+        cases.put("filter recipe /name x",                                              false);
+        cases.put("filter recipe /tag",                                                 false);
+        cases.put("filter recipe /ingredient",                                          false);
+
+        cases.put("filter ingredient",                                                  false);
+        cases.put("filter ingredient /name x",                                          false);
+        cases.put("filter ingredient /tag",                                             false);
+        cases.put("filter ingredient /expiry a a a ",                                   false);
+
         cases.put("help",                                                               true);
         cases.put("help add",                                                           true);
         cases.put("help add recipe",                                                    true);
         cases.put("add ingredient f",                                                   true);
 
-        cases.put("list recipes /uwu",                                                  false);
-        cases.put("filter recipe /qty:kekw",                                            false);
-        cases.put("help /uwu",                                                          false);
+        cases.put("filter recipe /tag x",                                               true);
+        cases.put("filter recipe /tag x /ingredient x",                                 true);
+        cases.put("filter recipe /ingredient x",                                        true);
+
+        cases.put("filter ingredient /tag x",                                           true);
+        cases.put("filter ingredient /expiry 2020-01-01",                               true);
+
+        cases.forEach((k, v) -> {
+            assertEquals(v, parser.parse(k).hasValue());
+        });
     }
 }
