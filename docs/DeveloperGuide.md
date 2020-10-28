@@ -711,18 +711,8 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### F1. Launch and shutdown
 
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-
-if there is no existing same item. If there is an existing same item, 
-
-### F2. Adding a new item
+### F1. Adding a new item
 
 1. Adding an item
     1. Test Case: `add-i n/Chicken q/123 s/NTUC`
@@ -740,7 +730,7 @@ if there is no existing same item. If there is an existing same item,
     1. Test Case: `add-i n/Chicken s/NTUC t/meat`
        Expected: User will receive an error message as `Quantity` is a compulsory field for `add-i`.
 
-### F3. Adding to an existing item
+### F2. Adding to an existing item
 
 1. Adding to an existing item
 
@@ -757,7 +747,7 @@ if there is no existing same item. If there is an existing same item,
     1. Test Case: `add-i n/Chicken s/NTUC q/10 t/meat`
        Expected: Meat tag should be added into the chicken supplied from NTUC, and quantity increased by 10.
        
-### F4. Adding a pending delivery
+### F3. Adding a pending delivery
 
 1. Adding a pending delivery
 
@@ -768,7 +758,7 @@ if there is no existing same item. If there is an existing same item,
    1. Test Case: `add-d n/DAMITH p/91829722 a/Jln Bukit Batok o/Nasi lemak x2 by/15`
        Expected: Same delivery as the above test case is added with the exception of `deliver by` to be 15 minutes.
 
-### F5. Deleting an item
+### F4. Deleting an item
 
 1. Deleting an item while all items are being shown
 
@@ -784,7 +774,7 @@ if there is no existing same item. If there is an existing same item,
    x is a negative number, or x is not an integer)<br>
       Expected: Similar to previous.
       
-### F6. Undoing a command
+### F5. Undoing a command
 
 1. Undoing a command before any commands have been entered.
     
@@ -800,7 +790,7 @@ if there is no existing same item. If there is an existing same item,
     1. Test Case: `undo` <br>
         Expected: The inventory book is restored to the state where it had 5 items. Success message is displayed.
       
-### F7. Redoing an undone command
+### F6. Redoing an undone command
 
 1. Redoing a command before any commands have been undone.
     
@@ -825,18 +815,5 @@ if there is no existing same item. If there is an existing same item,
     1. Test Case: `redo` <br>
         Expected: The inventory book is restored to the state where all its items were cleared. Success message is displayed. 
 
-### F8. Saving data
-
-1. Dealing with missing data files
-
-   1. Test Case: First time user running OneShelf <br>
-   Expected: OneShelf will load a sample data file.
-
-1. Dealing with corrupted data files
-
-   1. Prerequisite: There is an existing json file (inventorybook.json or deliverybook.json)
-
-   1. Test Case: Delete some mandatory field in the json file and launch OneShelf <br>
-      Expected: OneShelf will load a new empty json file respectively
 
 
