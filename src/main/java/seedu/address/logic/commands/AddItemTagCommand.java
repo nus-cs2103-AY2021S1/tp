@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.EditItemCommand.EditItemDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -29,8 +30,6 @@ public class AddItemTagCommand extends Command {
             + "Example: " + COMMAND_WORD + " " + PREFIX_ITEM_NAME + "Iron "
             + PREFIX_ITEM_TAG + "delicious, tuturu";
 
-    public static final String MESSAGE_ITEM_NOT_PROVIDED = "Item name was not provided.";
-    public static final String MESSAGE_ITEM_NOT_FOUND = "Item was not found in the item list.";
     public static final String MESSAGE_TAG_NOT_ADDED = "No new tag is added.";
     public static final String MESSAGE_TAG_NOT_PROVIDED = "Item Tag was not provided";
 
@@ -61,10 +60,9 @@ public class AddItemTagCommand extends Command {
         // filter to only get matching and not deleted items
         itemList.removeIf(x -> !x.getName().equals(itemName));
 
-        Item itemToEdit;
-        itemToEdit = itemList.stream()
+        Item itemToEdit = itemList.stream()
                 .findFirst() // Get the first (and only) item matching or else throw Error
-                .orElseThrow(() -> new CommandException(MESSAGE_ITEM_NOT_FOUND));
+                .orElseThrow(() -> new CommandException(String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, itemName)));
 
         assert (itemToEdit != null);
         assert (itemToEdit.getTags() != null);

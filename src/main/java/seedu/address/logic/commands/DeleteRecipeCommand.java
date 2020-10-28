@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECIPE_PRODUCT_NAME;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -27,7 +28,6 @@ public class DeleteRecipeCommand extends Command {
             + PREFIX_RECIPE_ID + "2";
 
     public static final String MESSAGE_SUCCESS = "Recipe has been deleted: %1$s";
-    public static final String MESSAGE_RECIPE_NOT_FOUND = "Recipe is not found in the recipe list";
     public static final String MESSAGE_INDEX_NOT_FOUND = "Recipe ID is out of range";
 
     private final String productName;
@@ -50,7 +50,7 @@ public class DeleteRecipeCommand extends Command {
         // filter to only get matching recipes
         recipeList.removeIf(x -> !x.getProductName().equals(productName));
         if (recipeList.isEmpty()) {
-            throw new CommandException(MESSAGE_RECIPE_NOT_FOUND);
+            throw new CommandException((String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, productName)));
         }
 
         Recipe recipeToDelete;

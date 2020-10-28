@@ -9,6 +9,7 @@ import static seedu.address.testutil.TypicalRecipes.getTypicalRecipeList;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -40,7 +41,9 @@ public class DeleteRecipeCommandIntegrationTest {
     public void execute_recipeNotFound() {
         DeleteRecipeCommand drc = new DeleteRecipeCommand("Cake", Index.fromOneBased(1));
         // Cake does not exist in recipe list
-        assertInventoryCommandFailure(drc, model, DeleteRecipeCommand.MESSAGE_RECIPE_NOT_FOUND);
+        String expectedMessage = String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, "Cake");
+
+        assertInventoryCommandFailure(drc, model, expectedMessage);
     }
 
     /**

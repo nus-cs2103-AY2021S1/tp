@@ -11,6 +11,7 @@ import seedu.address.logic.commands.AddItemCommand;
 import seedu.address.logic.commands.AddItemTagCommand;
 import seedu.address.logic.commands.AddQuantityToItemCommand;
 import seedu.address.logic.commands.AddRecipeCommand;
+import seedu.address.logic.commands.CheckCraftCommand;
 import seedu.address.logic.commands.ClearItemCommand;
 import seedu.address.logic.commands.ClearRecipeCommand;
 import seedu.address.logic.commands.Command;
@@ -81,8 +82,6 @@ public class InventoryParser {
             return new DeleteItemCommandParser().parse(arguments);
         case ViewDetailsCommand.COMMAND_WORD:
             return new ViewDetailsCommandParser().parse(arguments);
-        case CraftItemCommand.COMMAND_WORD:
-            return new CraftItemCommandParser().parse(arguments);
 
         // Recipe commands start here
         case AddRecipeCommand.COMMAND_WORD:
@@ -93,6 +92,12 @@ public class InventoryParser {
             return new ListRecipeCommandParser().parse(arguments);
         case ClearRecipeCommand.COMMAND_WORD:
             return new ClearRecipeCommand();
+
+        // Crafting commands start here
+        case CraftItemCommand.COMMAND_WORD:
+            return new CraftItemCommandParser().parse(arguments);
+        case CheckCraftCommand.COMMAND_WORD:
+            return new CheckCraftCommandParser().parse(arguments);
 
         // Utility commands start here
         case UndoCommand.COMMAND_WORD:

@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.ItemList;
@@ -128,7 +129,7 @@ public class CraftItemCommandTest {
     @Test
     public void execute_invalidItem_throwsCommandException() {
         CraftItemCommand cic = new CraftItemCommand("test", new Quantity("1"), Index.fromZeroBased(0));
-        String expectedMessage = CraftItemCommand.MESSAGE_ITEM_NOT_FOUND;
+        String expectedMessage = String.format(Messages.MESSAGE_NO_ITEM_FOUND, "test");
 
         assertThrows(CommandException.class, expectedMessage, () -> cic.execute(model));
         assertEquals(sameModel, model);
@@ -140,7 +141,7 @@ public class CraftItemCommandTest {
     @Test
     public void execute_recipeNotFound_throwsCommandException() {
         CraftItemCommand cic = new CraftItemCommand(BANANA.getName(), new Quantity("1"), Index.fromZeroBased(0));
-        String expectedMessage = CraftItemCommand.MESSAGE_RECIPE_NOT_FOUND;
+        String expectedMessage = String.format(Messages.MESSAGE_RECIPE_NOT_FOUND, BANANA.getName());
 
         assertThrows(CommandException.class, expectedMessage, () -> cic.execute(model));
         assertEquals(sameModel, model);
