@@ -68,7 +68,8 @@ public class DeleteCommand extends Command {
                 .reduce("", (x, y) -> x + y + ", ");
         deletedNames = deletedNames.substring(0, deletedNames.length() - 2);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames));
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, deletedNames), false, false,
+                true);
     }
 
     @Override
