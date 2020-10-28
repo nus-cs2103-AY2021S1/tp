@@ -138,6 +138,14 @@ public interface Model {
 
     Ingredient findIngredientByName(IngredientName ingredientName);
 
+    /**
+     * Returns an ArrayList of ingredients that are in shortage. If
+     * no ingredient is in shortage, return an empty ArrayList.
+     *
+     * @return an ArrayList of ingredients that are in shortage
+     */
+    ArrayList<Ingredient> findIngredientInShortage();
+
     void setSalesBook(ReadOnlySalesBook salesBook);
 
     SalesBook getSalesBook();
