@@ -62,10 +62,10 @@ If this is your first time using `ZooKeep`, this guide will serve to provide a r
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/Hershey`.
 
 * You can choose not to include the fields in square brackets.<br>
-  e.g `n/NAME [m/MEDICAL CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
+  e.g `n/NAME [m/MEDICAL_CONDITION]` can be used as `n/Hershey m/Flu` or as `n/Hershey`.
 
 * Fields with `…`​ after them indicate that you can enter them multiple times or omit them if unneeded.<br>
-  e.g. `[f/FEED TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
+  e.g. `[f/FEED_TIME]…​` can be used as ` ` (i.e. 0 times), `f/0600`, `f/0600 f/1800` etc.
 
 * You can enter the parameters in any order you like.<br>
   e.g. if the command specifies `n/NAME s/SPECIES i/ID`, `n/NAME i/ID s/SPECIES` is also acceptable.
@@ -116,7 +116,7 @@ When you get new animals assigned to you, you can use `add` to make new entries 
 important information. Compulsory entries you need to add are the animals' names, species and ID number.
 You can choose to add optional fields like medical conditions and feed times if necessary. 
 
-Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+Format: `add n/NAME s/SPECIES i/ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
@@ -131,7 +131,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` of animal to add must not already exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -192,7 +192,7 @@ If you forgot to add the medical conditions and/or feed times for a particular a
 append the missing information to the respective fields of the animal with the specified `ID` instead of deleting and adding
 that same animal again. `ID` here refers to the id number shown in the displayed animal list.
 
-Format: `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+Format: `append ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
@@ -207,7 +207,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` of animal must exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -222,7 +222,7 @@ After making a mistake while entering the information of an animal in your `ZooK
 and entering all the information again, you can use this command to replace only the incorrect information in the fields
 of the animal after specifying its `ID`. `ID` refers to the id number shown in the displayed animal list.
 
-Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…​`
+Format: `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 An animal can have any number of medical conditions and feed times (including 0).
@@ -237,7 +237,7 @@ An animal can have any number of medical conditions and feed times (including 0)
 
 * `ID` of animal must exist in the zookeep book.
 
-* `FEED TIME` must be a valid time in 24 hour format.
+* `FEED_TIME` must be a valid time in 24 hour format.
 </div>
 
 Examples:
@@ -253,7 +253,7 @@ example, you may need to find animals with the same feed times or similar medica
 You can use this command to find and list all animals in the `ZooKeep` book whose fields contain any of the specified 
 argument keywords (at least 1).
 
-Format: `find KEYWORD [MORE KEYWORDS]...`
+Format: `find KEYWORD [MORE KEYWORDS]…`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Keyword matching is case insensitive.
@@ -299,21 +299,21 @@ Example:
 
 ### Saving a snapshot of animal data: `snap`
 
-This command is useful for storing important archives in the `data` folder of the `ZooKeep` application, in case you need
+This command is useful for storing important archives in the `data/snapshots` folder of the `ZooKeep` application, in case you need
 to refer to the information of animals that have been deleted long ago. When executed, this command will
 create a snapshot of the current `ZooKeep` book data, saved as a file with the user specified file name.
+
+Format: `snap FILE_NAME`
 
 <div markdown="block" class="alert alert-warning">
 **:exclamation: Constraints:**<br>
 
-* File name can only contain alphanumeric characters, hyphens `-` and underscores `_`.
+* `FILE_NAME` can only contain alphanumeric characters, hyphens `-` and underscores `_`.
 
-* File name must be at least 1 character long and at most 100 characters long.
+* `FILE_NAME` must be at least 1 character long and at most 100 characters long.
 
-* File name must not already exist in the `data/snapshots` folder.
+* `FILE_NAME` must not already exist in the `data/snapshots` folder.
 </div>
-
-Format: `snap FILE_NAME`
 
 Example:
 * `snap zookeepbook_19-10-2020` saves the current state of the zookeep book data as a file named 
@@ -323,22 +323,21 @@ Example:
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous ZooKeep home folder.
+**Q**: How do I transfer my data to a new computer?<br>
+**A**: First, install the app on your new computer. Next, copy over the `zookeepbook.json` file
+       from your old computer and paste it into the `data` folder of your new computer.
 
 **Q**: How can I manually save new data that I enter into the application?<br>
-**A**: Animal data is saved in the hard disk with the preferred file name automatically after any command that changes the data. 
-       By default, the preferred file name is `zookeepbook.json`.
-       There is no need to save manually, though a copy of the current data can be created with the `snap` command.
+**A**: You do not need to manually save data as animal data is saved in the hard disk 
+       automatically as a file named `zookeepbook.json` after any command that changes the data. 
+       Please do not manually edit this file as it may result in loss of data or unexpected 
+       behaviour when running the application.
 
 **Q**: Can I record the feed times of a specific animal in any order I prefer?<br>
 **A**: The feed time will be arranged in chronological order regardless of the order entered for easier reference.
 
 **Q**: Can I search for animals based on a certain alphabet or half specified keywords?<br>
 **A**: The find feature will only list animals with the exact specified keyword provided.
-
-**Q**: Can I manually edit the ZooKeep data file?<br>
-**A**: No, manually editing the data file may result in loss of data or unexpected behaviour when running the application.
 
 ## Command summary
 
@@ -348,15 +347,12 @@ Action | Format, Examples
 **Exit** | `exit`
 **List** | `list`
 **Clear** | `clear`
-**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL CONDITION]…​[f/FEED TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
+**Add** | `add n/NAME s/SPECIES i/ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `add n/Lonesome George s/Galapagos Tortoise i/117 m/Flu f/1200`
 **Delete** | `delete ID` <br> e.g. `delete 193`
 **Undo** | `undo`
 **Redo** | `redo`
-**Append** | `append ID [m/MEDICAL CONDITION]… [f/FEED TIME]…` <br> e.g. `append 1307 f/1900`
-**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL CONDITION]… [f/FEED TIME]…` <br> e.g. `replace 1307 i/2910 n/Jirachi`
-**Find** | `find KEYWORD [MORE KEYWORDS]...` <br> e.g. `find Ahmeng Buttercup Coco`
+**Append** | `append ID [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `append 1307 f/1900`
+**Replace** | `replace ID [n/NAME] [s/SPECIES] [i/ID] [m/MEDICAL_CONDITION]… [f/FEED_TIME]…` <br> e.g. `replace 1307 i/2910 n/Jirachi`
+**Find** | `find KEYWORD [MORE KEYWORDS]…` <br> e.g. `find Ahmeng Buttercup Coco`
 **Sort** | `sort CATEGORY` <br> e.g. `sort name` 
 **Snap** | `snap FILE_NAME` <br> e.g. `snap zookeepbook_19-10-2020`
-
-
-
