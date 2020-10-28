@@ -150,6 +150,15 @@ public class Lesson {
                 && otherLesson.getStartDate().equals(getStartDate())
                 && otherLesson.getEndDate().equals(getEndDate());
     }
+    
+    public boolean isSameTimeSlot(Lesson otherLesson) {
+        if (otherLesson == this) {
+            return true;
+        }
+        return otherLesson != null
+                && otherLesson.getDayOfWeek().equals(getDayOfWeek())
+                && 
+    }
 
     @Override
     public int hashCode() {

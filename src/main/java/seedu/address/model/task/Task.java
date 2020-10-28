@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import seedu.address.model.tag.Tag;
 
@@ -42,6 +43,10 @@ public abstract class Task implements Comparable<Task> {
      */
     public Tag getTag() {
         return tag;
+    }
+    public static boolean isOverlappingTimePeriod(LocalDateTime startA, LocalDateTime endA, LocalDateTime startB,
+                                                  LocalDateTime endB) {
+        return (startA.isBefore(endB)) && (endA.isAfter(startB));
     }
     /**
      * Returns the time taken for the task to be completed in minutes.
