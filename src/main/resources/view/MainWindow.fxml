@@ -46,7 +46,7 @@
         </StackPane>
             <HBox VBox.vgrow="ALWAYS">
                <children>
-                  <SplitPane dividerPositions="0.5" orientation="VERTICAL">
+                  <SplitPane dividerPositions="0.5" maxWidth="800.0" orientation="VERTICAL" HBox.hgrow="ALWAYS">
                      <items>
                     <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
                            <children>

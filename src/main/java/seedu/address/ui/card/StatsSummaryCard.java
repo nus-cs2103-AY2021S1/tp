@@ -18,6 +18,8 @@ public class StatsSummaryCard extends UiPart<Region> {
     private Label lessonTime;
     @FXML
     private Label taskTime;
+    @FXML
+    private Label totalTime;
 
     public StatsSummaryCard(Tag tag, StatisticsData dataSet) {
         super(FXML);
@@ -25,6 +27,7 @@ public class StatsSummaryCard extends UiPart<Region> {
         moduleCode.setText(tag.tagName);
         lessonTime.setText("" + dataSet.getTotalLessonTime(tag));
         taskTime.setText("" + dataSet.getTotalTaskTime(tag));
+        totalTime.setText("" + dataSet.getTotalTime(tag));
     }
 
     @Override

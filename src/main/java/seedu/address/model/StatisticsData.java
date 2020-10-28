@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
+import java.util.Set;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
@@ -90,6 +91,9 @@ public class StatisticsData {
     }
 
     //TODO:get list of Tag
+    public Set<Tag> getTags() {
+        return stats.keySet();
+    }
 
     @Override
     public String toString() {

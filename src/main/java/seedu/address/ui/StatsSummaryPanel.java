@@ -8,7 +8,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.StatisticsData;
-import seedu.address.model.lesson.Lesson;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.card.StatsSummaryCard;
 
@@ -23,21 +22,12 @@ public class StatsSummaryPanel extends UiPart<Region> {
     @FXML
     private ListView<Tag> tagListView;
 
-    public StatsSummaryPanel(ObservableList<Lesson> lessonList, StatisticsData dataSet) {
+    public StatsSummaryPanel(StatisticsData dataSet) {
         super(FXML);
         this.dataSet = dataSet;
-        ObservableList<Tag> tagList = extractTags(lessonList);
+        ObservableList<Tag> tagList = FXCollections.observableArrayList(dataSet.getTags());
         tagListView.setItems(tagList);
         tagListView.setCellFactory(listView -> new TagListViewCell());
-    }
-
-    private ObservableList<Tag> extractTags(ObservableList<Lesson> lessonList) {
-        ObservableList<Tag> tagList = FXCollections.observableArrayList();
-        for (Lesson lesson : lessonList) {
-            Tag tag = lesson.getTag();
-            tagList.add(tag);
-        }
-        return tagList;
     }
 
     class TagListViewCell extends ListCell<Tag> {
