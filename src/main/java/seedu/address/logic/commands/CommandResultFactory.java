@@ -16,4 +16,5 @@ public class CommandResultFactory {
     public static CommandResult createDefaultCommandResult(String message) {
         return new CommandResult(message, false, false, false);
     }
+
 }

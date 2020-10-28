@@ -98,22 +98,22 @@ public class CommonCentsParserTest {
         List<String> generalKeywords = Arrays.asList("rent", "flowers");
 
         FindCommand actualFindCommandExpense = (FindCommand) parser.parseCommand(
-            EntryUtil.getValidFindExpenseCommand());
+                EntryUtil.getValidFindExpenseCommand());
         FindCommand expectedFindCommandExpense = new FindCommand(
-            new ExpenseDescriptionContainsKeywordsPredicate(expenseKeywords));
+                new ExpenseDescriptionContainsKeywordsPredicate(expenseKeywords));
         assertEquals(expectedFindCommandExpense, actualFindCommandExpense);
 
         FindCommand actualFindCommandRevenue = (FindCommand) parser.parseCommand(
-            EntryUtil.getValidFindRevenueCommand());
+                EntryUtil.getValidFindRevenueCommand());
         FindCommand expectedFindCommandRevenue = new FindCommand(
-            new RevenueDescriptionContainsKeywordsPredicate(revenueKeywords));
+                new RevenueDescriptionContainsKeywordsPredicate(revenueKeywords));
         assertEquals(expectedFindCommandRevenue, actualFindCommandRevenue);
 
         FindCommand actualFindCommandGeneral = (FindCommand) parser.parseCommand(
-            EntryUtil.getValidFindGeneralCommand());
+                EntryUtil.getValidFindGeneralCommand());
         FindCommand expectedFindCommandGeneral = new FindCommand(
-            new ExpenseDescriptionContainsKeywordsPredicate(generalKeywords),
-            new RevenueDescriptionContainsKeywordsPredicate(generalKeywords));
+                new ExpenseDescriptionContainsKeywordsPredicate(generalKeywords),
+                new RevenueDescriptionContainsKeywordsPredicate(generalKeywords));
         assertEquals(expectedFindCommandGeneral, actualFindCommandGeneral);
     }
 
@@ -129,12 +129,12 @@ public class CommonCentsParserTest {
 
         ClearCommand expectedExpenseClearCommand = new ClearCommand(new Category("expense"));
         ClearCommand actualExpenseClearCommand = (ClearCommand) parser.parseCommand(
-            EntryUtil.getValidClearExpenseCommand());
+                EntryUtil.getValidClearExpenseCommand());
         assertEquals(expectedExpenseClearCommand, actualExpenseClearCommand);
 
         ClearCommand expectedRevenueClearCommand = new ClearCommand(new Category("revenue"));
         ClearCommand actualRevenueClearCommand = (ClearCommand) parser.parseCommand(
-            EntryUtil.getValidClearRevenueCommand());
+                EntryUtil.getValidClearRevenueCommand());
         assertEquals(expectedRevenueClearCommand, actualRevenueClearCommand);
     }
 
@@ -153,7 +153,7 @@ public class CommonCentsParserTest {
     @Test
     public void parseValidAddAccCommand_success() throws ParseException {
         AddAccountCommand actualCommand = (AddAccountCommand) parser.parseCommand(
-                                                    EntryUtil.getValidAddAccountCommand());
+                EntryUtil.getValidAddAccountCommand());
         AddAccountCommand expectedCommand = new AddAccountCommand(new Account(new Name("newacc")));
         assertEquals(expectedCommand, actualCommand);
     }
@@ -161,7 +161,7 @@ public class CommonCentsParserTest {
     @Test
     public void parseValidEditAccCommand_success() throws ParseException {
         EditAccountNameCommand actualCommand = (EditAccountNameCommand) parser.parseCommand(
-                                                        EntryUtil.getValidEditAccountCommand());
+                EntryUtil.getValidEditAccountCommand());
         EditAccountNameCommand expectedCommand = new EditAccountNameCommand(new Name("anotheracc"));
         assertEquals(expectedCommand, actualCommand);
     }
@@ -169,7 +169,7 @@ public class CommonCentsParserTest {
     @Test
     public void parseValidDeleteAccCommand_success() throws ParseException {
         DeleteAccountCommand actualCommand = (DeleteAccountCommand) parser.parseCommand(
-            EntryUtil.getValidDeleteAccountCommand());
+                EntryUtil.getValidDeleteAccountCommand());
         DeleteAccountCommand expectedCommand = new DeleteAccountCommand(INDEX_FIRST_ENTRY);
         assertEquals(expectedCommand, actualCommand);
     }
@@ -177,7 +177,7 @@ public class CommonCentsParserTest {
     @Test
     public void parseValidSwitchAccCommand_success() throws ParseException {
         SwitchAccountCommand actualCommand = (SwitchAccountCommand) parser.parseCommand(
-            EntryUtil.getValidSwitchAccountCommand());
+                EntryUtil.getValidSwitchAccountCommand());
         SwitchAccountCommand expectedCommand = new SwitchAccountCommand(INDEX_FIRST_ENTRY);
         assertEquals(expectedCommand, actualCommand);
     }

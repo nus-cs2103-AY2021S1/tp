@@ -35,7 +35,9 @@ public class EditEntryDescriptorBuilder {
         descriptor = new EditEntryDescriptor();
         descriptor.setDescription(entry.getDescription());
         descriptor.setAmount(entry.getAmount());
-        descriptor.setTags(entry.getTags());
+        if (!entry.getTags().isEmpty()) {
+            descriptor.setTags(entry.getTags());
+        }
 
         if (entry instanceof Expense) {
             descriptor.setCategory(new Category("expense"));

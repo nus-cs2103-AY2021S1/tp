@@ -56,7 +56,7 @@ public class EntryUtil {
     public static String getValidEditExpenseCommand() {
         // replace the info of the 1st entry in the revenue list with that of PAY_RENT
         return EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
-            + " " + getEntryDetails(TypicalEntries.PAY_RENT) + " t/";
+                + " " + getEntryDetails(TypicalEntries.PAY_RENT);
     }
 
     /**
@@ -65,7 +65,7 @@ public class EntryUtil {
     public static String getValidEditRevenueCommand() {
         // replace the info of the 1st entry in the revenue list with that of SELL_FLOWER_SEEDS
         return EditCommand.COMMAND_WORD + " " + INDEX_FIRST_ENTRY.getOneBased()
-            + " " + getEntryDetails(TypicalEntries.SELL_FLOWER_SEEDS);
+                + " " + getEntryDetails(TypicalEntries.SELL_FLOWER_SEEDS);
     }
 
     /**
@@ -73,7 +73,7 @@ public class EntryUtil {
      */
     public static String getValidFindExpenseCommand() {
         return FindCommand.COMMAND_WORD + " " + PREFIX_CATEGORY + EXPENSE_STRING
-            + " " + PREFIX_KEYWORDS + " " + "flowers food";
+                + " " + PREFIX_KEYWORDS + " " + "flowers food";
     }
 
     /**
@@ -81,7 +81,7 @@ public class EntryUtil {
      */
     public static String getValidFindRevenueCommand() {
         return FindCommand.COMMAND_WORD + " " + PREFIX_CATEGORY + REVENUE_STRING
-            + " " + PREFIX_KEYWORDS + " " + "canvas";
+                + " " + PREFIX_KEYWORDS + " " + "canvas";
     }
 
     /**
