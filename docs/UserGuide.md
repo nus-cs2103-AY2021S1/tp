@@ -127,43 +127,43 @@ ChopChop will always display textual responses to the commands you input — the
 
 
 <a name="RecipeButton"></a>
-### Recipe Button
+### 4.3 Recipe Button
 ChopChop is able to display all of your recipes as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` as shown in Figure 1.2 when you press the `Recipes` button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
 
 
 
 <a name="IngredientButton"></a>
-### Ingredient Button
+### 4.4 Ingredient Button
 ChopChop is able to display all of your ingredients as [Ingredient Tiles](#IngredientTiles) in the `Main Display Area` as shown in Figure 1.3 when you press the `Ingredients` button.
 
 
 
 <a name="RecommendationButton"></a>
-### Recommendation Button
+### 4.5 Recommendation Button
 ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be display as [Recipe Tiles](#RecipeTiles) in the `Main Display Area` when you press the `Recommendations` button.
 
 
 
 <a name="FavouriteButton"></a>
-### Favourite Button
+### 4.6 Favourite Button
 ChopChop is able to save your favourite recipes — press the `Favourites` button to view them as [Recipe Tiles](#RecipeTiles).
 
 
 
 <a name="StatisticsBox"></a>
-### Statistics Box
+### 4.7 Statistics Box
 ChopChop is able to produce statistics based on the food you make! -insert more info cause idk what stats does atm-
 
 
 
 <a name="RecipeTiles"></a>
-### Recipe Tiles
+### 4.8 Recipe Tiles
 ChopChop is able to show you your recipes in the form of tiles — simply click on a tile to view the detailed information about the selected recipe in the `Main Display Area`, as shown in Figure 1.4.
 
 
 
 <a name="IngredientTiles"></a>
-### Ingredient Tiles
+### 4.9 Ingredient Tiles
 ChopChop is able to show you your ingredients in the form of tiles, as shown in Figure 1.3. In each tile, there are 5 components:
 
 1. The `Index` shows the index of the ingredient for easier referencing.
@@ -181,25 +181,25 @@ Figure 1.4: <i>The Recipe Display Panel of ChopChop.</i>
 
 
 <a name="RecipeName"></a>
-### Recipe Name and Tags
+### 4.10 Recipe Name and Tags
 ChopChop displays the name of the recipe, and the tags associated with it in this area. 
 
 
 
 <a name="RecipeIngredients"></a>
-### Recipe Ingredients
+### 4.11 Recipe Ingredients
 ChopChop displays the ingredients you need in the recipe here. The format of the display is the `Ingredient`, follow by the `(Quantity)`. 
 
 
 
 <a name="RecipeSteps"></a>
-### Recipe Steps
+### 4.12 Recipe Steps
 ChopChop lists down the steps you can take to create the dish here.
 
 
 
 <a name="MenuBar"></a>
-### Menu Bar
+### 4.13 Menu Bar
 ChopChop provides two buttons here — `File` and `Help`. Click the `exit` option under `File` to exit ChopChop, and if you want to view this User Guide, you can click the `help` option under `Help`.
 
 
