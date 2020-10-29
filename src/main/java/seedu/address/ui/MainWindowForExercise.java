@@ -187,8 +187,6 @@ public class MainWindowForExercise extends UiPart<Stage> {
 
     /**
      * Executes the command and returns the result.
-     *
-     * @see seedu.address.logic.Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException, IOException {
         try {
