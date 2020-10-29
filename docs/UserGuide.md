@@ -90,15 +90,15 @@ Specifically, this section covers:
 2. [Command Output](#commandOutput)
 3. [Recipe Button](#recipeButton)
 4. [Ingredient Button](#ingredientButton)
-5. Recommendation Button
-6. Favourites Button
-7. Statistics Box
-8. Recipe Tile
-9. Ingredient Tile
-10. Recipe Name and Tags
-11. Recipe Ingredients
-12. Recipe Steps
-13. Menu Bar
+5. [Recommendation Button](#recommendationButton)
+6. [Favourites Button](#favouriteButton)
+7. [Statistics Box](#statisticsBox)
+8. [Recipe Tile](#recipeTiles)
+9. [Ingredient Tile](#ingredientTiles)
+10. [Recipe Name and Tags](#recipeName)
+11. [Recipe Ingredients]
+12. [Recipe Steps]
+13. [Menu Bar]
 
 <div style="text-align: center; padding-bottom: 2em">
 <img src="images/ug/recipe_panel_description.png" width="95%" /> <br />
@@ -124,15 +124,28 @@ ChopChop will always display textual responses to the commands you input — the
 
 <a name="recipeButton"></a>
 ### Recipe Button
-ChopChop is able to display all of your recipes as [Recipe Tiles]() as shown in Figure 1.2 when you press the `Recipe Button`. Also, the `Recipe Button` will be in a darker shade of orange when the `Recipe Tiles` are in play.
+ChopChop is able to display all of your recipes as [Recipe Tiles]() in the `Main Display Area` as shown in Figure 1.2 when you press the `Recipes` button. The 4 buttons at the bottom of our GUI will take on a darker shade when they are currently selected.
 
 
 
 
 <a name="ingredientButton"></a>
 ### Ingredient Button
-ChopChop is able to display all of your ingredients as [Ingredient Tiles]() as shown in Figure 1.3 when you press the `Ingredient button`. Also, the `Ingredient Button` will be in a darker shade of orange when the `Ingredient Tiles` are in play.
+ChopChop is able to display all of your ingredients as [Ingredient Tiles]() in the `Main Display Area` as shown in Figure 1.3 when you press the `Ingredients` button.
 
+
+<a name="recommendationButton"></a>
+### Recommendation Button
+ChopChop is able to recommend you recipes to cook if you want it to! The recipes that are recommended will be display as [Recipe Tiles]() in the `Main Display Area` when you press the `Recommendations` button.
+
+<a name="favouriteButton"></a>
+### Favourite Button
+ChopChop is able to save your favourite recipes — press the `Favourites` button to view them as [Recipe Tiles]().
+
+
+<a name="statisticsBox"></a>
+### Statistics Box
+ChopChop is able to produce statistics based on the food you make! -insert more info cause idk what stats does atm-
 
 
 <div style="text-align: center; padding-bottom: 2em">
