@@ -1,18 +1,23 @@
 package seedu.address.model.event;
 
-import java.time.LocalDateTime;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
+
 public class SchedulePrefs {
     private ScheduleViewMode viewMode;
-    private LocalDateTime targetViewDateTime;
+    private LocalDateTime viewDateTime;
 
-    public SchedulePrefs(ScheduleViewMode viewMode, LocalDateTime targetViewDateTime) {
-        requireAllNonNull(viewMode, targetViewDateTime);
+    /**
+     * Creates a schedule preferences which encompass the user's preferred view mode and view date time.
+     * @param viewMode
+     * @param viewDateTime
+     */
+    public SchedulePrefs(ScheduleViewMode viewMode, LocalDateTime viewDateTime) {
+        requireAllNonNull(viewMode, viewDateTime);
         this.viewMode = viewMode;
-        this.targetViewDateTime = targetViewDateTime;
+        this.viewDateTime = viewDateTime;
     }
 
     public ScheduleViewMode getViewMode() {
@@ -24,13 +29,13 @@ public class SchedulePrefs {
         this.viewMode = viewMode;
     }
 
-    public LocalDateTime getTargetViewDateTime() {
-        return targetViewDateTime;
+    public LocalDateTime getViewDateTime() {
+        return viewDateTime;
     }
 
-    public void setTargetViewDateTime(LocalDateTime targetViewDateTime) {
-        requireNonNull(targetViewDateTime);
-        this.targetViewDateTime = targetViewDateTime;
+    public void setViewDateTime(LocalDateTime viewDateTime) {
+        requireNonNull(viewDateTime);
+        this.viewDateTime = viewDateTime;
     }
 
     /**
@@ -47,7 +52,7 @@ public class SchedulePrefs {
         }
 
         SchedulePrefs otherPrefs = (SchedulePrefs) other;
-        return otherPrefs.getTargetViewDateTime().equals(getTargetViewDateTime())
+        return otherPrefs.getViewDateTime().equals(getViewDateTime())
                 && otherPrefs.getViewMode().equals(getViewMode());
     }
 
@@ -57,6 +62,6 @@ public class SchedulePrefs {
      */
     @Override
     public String toString() {
-        return viewMode.name() + "_" + targetViewDateTime.toLocalDate().toString();
+        return viewMode.name() + "_" + viewDateTime.toLocalDate().toString();
     }
 }

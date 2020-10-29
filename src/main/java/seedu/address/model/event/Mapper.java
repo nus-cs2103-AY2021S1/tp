@@ -16,8 +16,6 @@ public class Mapper {
 
     /**
      * Maps a local Event object to a VEvent for Jfxtras calendar
-     * @param event
-     * @return
      */
     public static VEvent mapEventToVEvent(Event event) {
         requireNonNull(event);
@@ -26,16 +24,20 @@ public class Mapper {
                 .withDateTimeStart(event.getEventStartDateTime())
                 .withDateTimeEnd(event.getEventEndDateTime())
                 .withUniqueIdentifier(event.getUniqueIdentifier());
-        if (! (event.getRecurrence() == null) || !event.getRecurrence().equals(EventRecurrence.NONE)) {
-            vEvent.setRecurrenceRule(event.getRecurrence().getVEventRecurRule());
+        if (!(event.getRecurrence() == null) || !event.getRecurrence().equals(EventRecurrence.NONE)) {
+            vEvent.setRecurrenceRule(event.getRecurrence().getvEventRecurRule());
         }
-        if (event.getRecurrence().getVEventRecurRule() == "") {
-            vEvent.setRecurrenceRule(EventRecurrence.NONE.getVEventRecurRule());
+        if (event.getRecurrence().getvEventRecurRule() == "") {
+            vEvent.setRecurrenceRule(EventRecurrence.NONE.getvEventRecurRule());
         }
 
         return vEvent;
     }
 
+    /**
+     * Maps a List of Event to VEvent
+     * @param events the events to be mapped
+     */
     public static List<VEvent> mapListOfEventsToVEvent(List<Event> events) {
         List<VEvent> vEvents = new ArrayList<>();
         for (Event event: events) {
@@ -46,8 +48,6 @@ public class Mapper {
 
     /**
      * Maps a VEvent from jfxtras calendar to local Event object
-     * @param vEvent
-     * @return
      */
     public static Event mapVEventToEvent(VEvent vEvent) {
         requireNonNull(vEvent);
@@ -72,6 +72,10 @@ public class Mapper {
                 uniqueIdentifier, recurrence);
     }
 
+    /**
+     * Maps a list of VEvent to Event.
+     * @param vEvents the VEvents to be mapped
+     */
     public static List<Event> mapListOfVEventsToEvent(List<VEvent> vEvents) {
         List<Event> events = new ArrayList<>();
         for (VEvent vEvent: vEvents) {

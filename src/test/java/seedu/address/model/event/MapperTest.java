@@ -17,7 +17,7 @@ public class MapperTest {
                 .withDateTimeStart(ALICE_CLASS_EVENT.getEventStartDateTime())
                 .withDateTimeEnd(ALICE_CLASS_EVENT.getEventEndDateTime())
                 .withUniqueIdentifier(ALICE_CLASS_EVENT.getUniqueIdentifier())
-                .withRecurrenceRule(ALICE_CLASS_EVENT.getRecurrence().getVEventRecurRule());
+                .withRecurrenceRule(ALICE_CLASS_EVENT.getRecurrence().getvEventRecurRule());
 
         VEvent mappedVEvent = Mapper.mapEventToVEvent(event);
         assertEquals(expectedVEvent, mappedVEvent);
@@ -30,7 +30,7 @@ public class MapperTest {
                 .withDateTimeStart(ALICE_CLASS_EVENT.getEventStartDateTime())
                 .withDateTimeEnd(ALICE_CLASS_EVENT.getEventEndDateTime())
                 .withUniqueIdentifier(ALICE_CLASS_EVENT.getUniqueIdentifier())
-                .withRecurrenceRule(ALICE_CLASS_EVENT.getRecurrence().getVEventRecurRule());
+                .withRecurrenceRule(ALICE_CLASS_EVENT.getRecurrence().getvEventRecurRule());
 
         Event expectedEvent = ALICE_CLASS_EVENT;
 
