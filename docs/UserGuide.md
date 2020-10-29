@@ -61,6 +61,13 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 </div>
 
+### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+Format: `help`
 
 ### Adding a contact : `contact add`
 
@@ -283,8 +290,8 @@ Currently Modduke will support autocompletion for the following fields in v1.3.
 
 Typing in these trigger phrases will turn the text yellow to show that CommandBox has entered Autocompletion Mode.
 Use `Tab` to scroll forward and `Shift-Tab` to iterate backwards through suggestions.
-![Autocomplete Example](images/AutocompleteExample.gif)
 
+![Autocomplete Example](images/AutocompleteExample.gif)
 
 * Note that while in Autocomplete mode you cannot edit suggestions unless you iterated back to your own input or you press `Backspace`.
 * Pressing `Enter` will lock in your current selection and take you out of Autocomplete mode.
