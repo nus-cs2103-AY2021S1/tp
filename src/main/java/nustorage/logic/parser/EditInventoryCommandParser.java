@@ -3,6 +3,7 @@ package nustorage.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
@@ -23,7 +24,8 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
     public EditInventoryCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION,
+                        PREFIX_ITEM_COST, PREFIX_DATETIME);
 
         Index index;
 
@@ -41,6 +43,10 @@ public class EditInventoryCommandParser implements Parser<EditInventoryCommand> 
         if (argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).isPresent()) {
             editInventoryDescriptor.setDescription(ParserUtil.parseItemDescription(
                     argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_ITEM_COST).isPresent()) {
+            editInventoryDescriptor.setDescription(ParserUtil.parseItemDescription(
+                    argMultimap.getValue(PREFIX_ITEM_COST).get()));
         }
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             editInventoryDescriptor.setDescription(ParserUtil.parseItemDescription(
