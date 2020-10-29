@@ -2,7 +2,6 @@ package chopchop.model.ingredient;
 
 import java.util.Optional;
 import java.util.Set;
-import java.util.TreeMap;
 
 import chopchop.commons.exceptions.IllegalValueException;
 import chopchop.commons.util.Pair;
@@ -172,7 +171,7 @@ public class IngredientTest {
             var ppp1 = ppp.fst();
             var ppp2 = ppp.snd();
 
-            System.err.printf("ppp1 = %s / %s\n", ppp1, ppp1.getIngredientSets());
+            // System.err.printf("ppp1 = %s / %s\n", ppp1, ppp1.getIngredientSets());
             assertTrue(ppp2.getIngredientSets().isEmpty());
 
         } catch (IllegalValueException e) {

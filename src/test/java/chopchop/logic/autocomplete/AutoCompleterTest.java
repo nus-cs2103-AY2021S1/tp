@@ -219,6 +219,8 @@ public class AutoCompleterTest {
 
         cases.put("help f",                                 List.of("help find", "help filter"));
 
+        cases.put("list r",                                 List.of("list recipe", "list recommendation"));
+
         cases.forEach((k, v) -> {
             var completer = new AutoCompleter();
 
@@ -255,7 +257,10 @@ public class AutoCompleterTest {
         cases.put("kk",                                     "kk");
         cases.put("add",                                    "add");
         cases.put("add owo /q",                             "add owo /q");
+        cases.put("add owo",                                "add owo");
         cases.put("add recipe",                             "add recipe");
+        cases.put("add recommendation owo",                 "add recommendation owo");
+        cases.put("add recommendation owo /tag a",          "add recommendation owo /tag a");
         cases.put("add recipe /ingredient qqq",             "add recipe /ingredient qqq");
         cases.put("find recipe",                            "find recipe");
         cases.put("find recipe /",                          "find recipe /");

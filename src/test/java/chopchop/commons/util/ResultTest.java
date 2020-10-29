@@ -75,7 +75,9 @@ public class ResultTest {
         assertEquals(1234, r1.orElseThrow(e -> new RuntimeException("")));
         assertThrows(RuntimeException.class, () -> e1.orElseThrow(e -> new RuntimeException("")));
         assertThrows(RuntimeException.class, () -> e1.throwIfError(e -> new RuntimeException("")));
-        assertThrows(RuntimeException.class, () -> r1.perform(x -> { throw new RuntimeException(""); }));
+        assertThrows(RuntimeException.class, () -> r1.perform(x -> {
+            throw new RuntimeException("");
+        }));
 
 
         r1.perform(x -> {});

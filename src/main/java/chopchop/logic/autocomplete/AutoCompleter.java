@@ -153,8 +153,7 @@ public class AutoCompleter {
     }
 
     /**
-     * Returns a completion for the target only. Since targets don't share any prefix
-     * (recipe vs ingredient), there's no need to handle cycling here.
+     * Returns a completion for the target only.
      */
     private String completeTarget(CommandArguments args, String orig, boolean nested) {
 
@@ -171,10 +170,35 @@ public class AutoCompleter {
             partial = args.getFirstWordFromRemaining();
         }
 
+        var valids = new ArrayList<String>();
+        for (var tgt : CommandTarget.values()) {
+            if (tgt.toString().startsWith(partial)) {
+                valids.add(tgt.toString());
+            }
+        }
 
-        return tryCompletionUsing(Arrays.stream(CommandTarget.values()).map(x -> x.toString())
-                .collect(Collectors.toList()), orig, partial)
-            .orElse(orig);
+        valids.sort((a, b) -> a.length() - b.length());
+
+        if (this.lastViableCompletions == null) {
+            this.lastViableCompletions = new ArrayList<String>(valids);
+        }
+
+
+        var allExceptLast = orig.stripTrailing().substring(0,
+            orig.stripTrailing().length() - partial.length());
+
+        if (this.lastViableCompletions.isEmpty()) {
+            return orig;
+        } else {
+
+            // see the note in completeCommand ('this should always hold, because...')
+            assert this.lastCompletionIndex < this.lastViableCompletions.size();
+
+            var completion = this.lastViableCompletions.get(this.lastCompletionIndex);
+            this.lastCompletionIndex = (this.lastCompletionIndex + 1) % this.lastViableCompletions.size();
+
+            return allExceptLast + completion + " ";
+        }
     }
 
     private String completeTag(Model model, CommandArguments args, String orig) {
