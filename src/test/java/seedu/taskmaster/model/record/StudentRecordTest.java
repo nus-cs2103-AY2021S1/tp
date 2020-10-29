@@ -17,7 +17,7 @@ class StudentRecordTest {
     private StudentRecord testRecord3 = new StudentRecord(
             new Name("Chiau Siak"), new NusnetId("e0201167"));
     private StudentRecord testRecord4 = new StudentRecord(
-            new Name("Coh Ghiau Siak"), new NusnetId("e0201167"));
+            new Name("Coh Ghiau Siak"), new NusnetId("e0201166"));
 
     @Test
     void getName() {
@@ -53,6 +53,7 @@ class StudentRecordTest {
     void testEquals() {
         assertTrue(testRecord.equals(testRecord)); // same instance
         assertTrue(testRecord.equals(testRecord2)); // same fields
+        assertFalse(testRecord.equals("some string")); // not InstanceOf
         assertFalse(testRecord.equals(testRecord3)); // different NusnetId
         assertFalse(testRecord.equals(testRecord4)); // different name
         assertFalse(testRecord3.equals(testRecord4)); // different in both fields
