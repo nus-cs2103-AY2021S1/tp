@@ -29,6 +29,7 @@ Refer to this video for a quick tutorial on **OneShelf Installation Guide**:
 
 <br>
 
+Installation Steps:
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `oneshelf.jar` from [here](https://github.com/AY2021S1-CS2103T-T12-1/tp/releases).
@@ -62,7 +63,7 @@ All items related commands have a suffix `-i`.
 Pending deliveries are deliveries that has yet to be delivered out to customers. Imagine you have received a call from
 a customer requesting for a delivery, you can also keep track for all the deliveries' request.
 
-
+All pending deliveries related command have a suffix `-d`.
 
 ### 2.3 User Interface Sections
 
@@ -502,8 +503,6 @@ Exits the program.
 Format: `exit`
 
 
---------------------------------------------------------------------------------------------------------------------
-
 ### 3.2 General Features
 
 #### 3.2.1 Saving the data
@@ -532,7 +531,6 @@ by pressing the arrow down key you're able to traverse into next commands.
 
 * Pending deliveries are sorted based on deliver by timing.
 
---------------------------------------------------------------------------------------------------------------------
 
 ### 3.3 Coming Soon
 
