@@ -123,15 +123,32 @@ Examples:
 
   Adds an assignment that takes up a percentage of the grade and has a result from 0.00 to 1.00 to an existing module.
 
-  Format: `addassignment` **_`n/[MODULE_NAME]`_** **_`a/[ASSIGNMENT_NAME]`_**
-  **_`%/[ASSIGNMENT_PERCENTAGE]`_** **_`r/[ASSIGNMENT_RESULT]`_**
+  Format: `addassignment` **_`n/MODULE_NAME`_** **_`a/ASSIGNMENT_NAME`_**
+  **_`%/ASSIGNMENT_PERCENTAGE`_** **_`r/ASSIGNMENT_RESULT`_**
 
-  * Adds an assignment **_`[ASSIGNMENT_NAME]`_** that takes up **_`[ASSIGNMENT_PERCENTAGE]`_**
-  of the grade with a result of **_`[ASSIGMENT_RESULT]`_** to a module named **_`[MODULE_NAME]`_**
+  * Adds an assignment **_`ASSIGNMENT_NAME`_** that takes up **_`ASSIGNMENT_PERCENTAGE`_**
+  of the grade with a result of **_`ASSIGNMENT_RESULT`_** to a module named **_`MODULE_NAME`_**
 
   Example of usage:
-  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` that takes up `5`% of the
-  grade with a result of `0.80` to the module named `CS2100`
+  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1` 
+  carries `5`% of the final grade and the result for this assignment is `80/100`.
+  
+#### Editing an assignment in a module: `editassignment`
+
+  Edits an assignment at the specified position in the specified module. The fields that can be edited are the assignment name, 
+  assignment percentage of the final grade and assignment result.
+
+  Format: `editassignment` **_`INDEX`_** **_`n/MODULE_NAME`_** **_`[a/ASSIGNMENT_NAME]`_**
+  **_`[%/ASSIGNMENT_PERCENTAGE]`_** **_`[r/ASSIGNMENT_RESULT]`_**
+
+  * Edits the assignment at **_`INDEX`_** in the module **_`MODULE_NAME`_** with a new **_`[ASSIGMENT_NAME]`_**, 
+  **_`[ASSIGNMENT_PERCENTAGE]`_** or **_`[ASSIGNMENT_RESULT]`_** if provided.
+
+  Example of usage:
+   `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
+   assignment name, `Quiz 1`. 
+   `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
+   assignment name, `Quiz 1`.   
 
 
 ### Todo List Features
