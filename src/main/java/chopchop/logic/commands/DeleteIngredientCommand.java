@@ -109,8 +109,4 @@ public class DeleteIngredientCommand extends Command implements Undoable {
     public static String getCommandHelp() {
         return "Deletes an ingredient, or removes some quantity of an existing ingredient";
     }
-
-    public static String getUserGuideSection() {
-        return "deleting-ingredients--deleteingredient";
-    }
 }

@@ -121,8 +121,4 @@ public class MakeRecipeCommand extends Command implements Undoable {
     public static String getCommandHelp() {
         return "Makes the given recipe";
     }
-
-    public static String getUserGuideSection() {
-        return "make-recipe--make";
-    }
 }

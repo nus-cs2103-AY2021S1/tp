@@ -74,8 +74,4 @@ public class FilterIngredientCommand extends Command {
     public static String getCommandHelp() {
         return "Filters ingredients by one or more criteria (tags and expiry dates)";
     }
-
-    public static String getUserGuideSection() {
-        return "filtering-ingredients--filteringredient";
-    }
 }

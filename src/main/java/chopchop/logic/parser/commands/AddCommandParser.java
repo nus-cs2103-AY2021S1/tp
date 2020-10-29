@@ -10,26 +10,25 @@ import java.util.stream.Collectors;
 
 import chopchop.model.attributes.Tag;
 import chopchop.commons.util.Result;
-import chopchop.commons.util.Strings;
 import chopchop.commons.util.StringView;
-
 import chopchop.model.attributes.Step;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.ExpiryDate;
-
 import chopchop.model.ingredient.IngredientReference;
-
-import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
-
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.AddRecipeCommand;
 import chopchop.logic.commands.AddIngredientCommand;
 
+import static chopchop.commons.util.Strings.ARG_EXPIRY;
+import static chopchop.commons.util.Strings.ARG_INGREDIENT;
+import static chopchop.commons.util.Strings.ARG_QUANTITY;
+import static chopchop.commons.util.Strings.ARG_STEP;
+import static chopchop.commons.util.Strings.ARG_TAG;
+import static chopchop.commons.util.Strings.COMMAND_ADD;
 import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
-import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
-import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
+import static chopchop.logic.parser.commands.CommonParser.checkArguments;
 
 public class AddCommandParser {
 
@@ -43,7 +42,7 @@ public class AddCommandParser {
      */
     public static Result<? extends Command> parseAddCommand(CommandArguments args) {
 
-        ensureCommandName(args, Strings.COMMAND_ADD);
+        ensureCommandName(args, COMMAND_ADD);
 
         return getCommandTarget(args)
             .then(target -> {
@@ -70,32 +69,27 @@ public class AddCommandParser {
      */
     private static Result<AddIngredientCommand> parseAddIngredientCommand(String name, CommandArguments args) {
 
-        Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_QUANTITY, Strings.ARG_EXPIRY, Strings.ARG_TAG);
-
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'add ingredient' command doesn't support edit-arguments (found '%s')",
-                foo.get());
-        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
-            return Result.error("'add ingredient' command doesn't support '%s'", foo.get());
+        Optional<String> err;
+        var supportedArgs = List.of(ARG_QUANTITY, ARG_EXPIRY, ARG_TAG);
+        if ((err = checkArguments(args, "add ingredient", supportedArgs)).isPresent()) {
+            return Result.error(err.get());
         }
 
-
-        var qtys = args.getArgument(Strings.ARG_QUANTITY);
+        var qtys = args.getArgument(ARG_QUANTITY);
         if (qtys.size() > 1) {
             return Result.error("Multiple quantities specified");
         } else if (qtys.size() == 1 && qtys.get(0).isEmpty()) {
             return Result.error("Specified quantity cannot be emtpy");
         }
 
-        var exps = args.getArgument(Strings.ARG_EXPIRY);
+        var exps = args.getArgument(ARG_EXPIRY);
         if (exps.size() > 1) {
             return Result.error("Multiple expiry dates specified");
         } else if (exps.size() == 1 && exps.get(0).isEmpty()) {
             return Result.error("Specified expiry date cannot be empty");
         }
 
-        var tags = args.getArgument(Strings.ARG_TAG);
+        var tags = args.getArgument(ARG_TAG);
         var tagSet = Set.copyOf(tags.stream()
             .map(x -> new Tag(x))
             .collect(Collectors.toList())
@@ -121,17 +115,13 @@ public class AddCommandParser {
      */
     private static Result<AddRecipeCommand> parseAddRecipeCommand(String name, CommandArguments args) {
 
-        Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_QUANTITY, Strings.ARG_INGREDIENT,
-            Strings.ARG_STEP, Strings.ARG_TAG);
-
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'add recipe' command doesn't support edit-arguments (found '%s')", foo.get());
-        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
-            return Result.error("'add recipe' command doesn't support '%s'", foo.get());
+        Optional<String> err;
+        var supportedArgs = List.of(ARG_QUANTITY, ARG_INGREDIENT, ARG_STEP, ARG_TAG);
+        if ((err = checkArguments(args, "add recipe", supportedArgs)).isPresent()) {
+            return Result.error(err.get());
         }
 
-        var tags = args.getArgument(Strings.ARG_TAG);
+        var tags = args.getArgument(ARG_TAG);
         var tagSet = Set.copyOf(tags.stream()
             .map(x -> new Tag(x))
             .collect(Collectors.toList())
@@ -141,7 +131,7 @@ public class AddCommandParser {
             .map(ingrs -> createAddRecipeCommand(name, ingrs,
                 args.getAllArguments()
                     .stream()
-                    .filter(p -> p.fst().equals(Strings.ARG_STEP))
+                    .filter(p -> p.fst().equals(ARG_STEP))
                     .map(p -> p.snd())
                     .map(x -> new Step(x))
                     .collect(Collectors.toList()),
@@ -163,7 +153,7 @@ public class AddCommandParser {
         for (int i = 0; i < arglist.size(); i++) {
 
             var p = arglist.get(i);
-            if (p.fst().equals(Strings.ARG_INGREDIENT)) {
+            if (p.fst().equals(ARG_INGREDIENT)) {
 
                 var name = p.snd();
                 if (name.isEmpty()) {
@@ -175,7 +165,7 @@ public class AddCommandParser {
                 // check the next argument for a quantity (which is optional)
                 if (i + 1 < arglist.size()) {
                     var q = arglist.get(i + 1);
-                    if (q.fst().equals(Strings.ARG_QUANTITY)) {
+                    if (q.fst().equals(ARG_QUANTITY)) {
                         var qty = Quantity.parse(q.snd());
                         if (qty.isError()) {
                             return Result.error(qty.getError());
@@ -190,9 +180,9 @@ public class AddCommandParser {
 
                 ingredients.add(new IngredientReference(name, quantity));
 
-            } else if (p.fst().equals(Strings.ARG_QUANTITY)) {
+            } else if (p.fst().equals(ARG_QUANTITY)) {
                 return Result.error("'%s' without ingredient in argument %d [/qty %s...]",
-                    Strings.ARG_QUANTITY, i + 1, new StringView(p.snd()).take(4));
+                    ARG_QUANTITY, i + 1, new StringView(p.snd()).take(4));
             } else {
                 // do nothing.
             }

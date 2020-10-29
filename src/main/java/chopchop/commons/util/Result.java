@@ -326,7 +326,7 @@ public class Result<T> extends Either<String, T> {
     }
 
     /**
-     * Returns the first errored result from the given list.This function should be used to check
+     * Returns the first errored result from the given list. This function should be used to check
      * that all the given result types were valid (so you can unconditionally getValue() them).
      *
      * In addition, unlike {@code Result::sequence()}, this supports heterogenous result types.

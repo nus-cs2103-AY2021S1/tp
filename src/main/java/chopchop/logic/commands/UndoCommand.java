@@ -31,8 +31,4 @@ public class UndoCommand extends Command {
     public static String getCommandHelp() {
         return "Undoes the last performed command";
     }
-
-    public static String getUserGuideSection() {
-        return "undoing-commands--undo";
-    }
 }

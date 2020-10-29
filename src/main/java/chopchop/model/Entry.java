@@ -2,7 +2,6 @@ package chopchop.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -25,8 +24,6 @@ public abstract class Entry {
     public abstract Set<Tag> getTags();
 
     public abstract Optional<ExpiryDate> getExpiryDate();
-
-    public abstract Optional<List<ExpiryDate>> getExpiryDates();
 
     /**
      * Returns true if both entries have the same name.

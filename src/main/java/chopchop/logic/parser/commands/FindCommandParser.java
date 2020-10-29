@@ -2,25 +2,20 @@
 
 package chopchop.logic.parser.commands;
 
-import java.util.List;
 import java.util.Optional;
 
 import chopchop.commons.util.Result;
-import chopchop.commons.util.Strings;
 import chopchop.commons.util.StringView;
-
-import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
-
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.FindRecipeCommand;
 import chopchop.logic.commands.FindIngredientCommand;
-
 import chopchop.model.attributes.NameContainsKeywordsPredicate;
 
+import static chopchop.commons.util.Strings.COMMAND_FIND;
 import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
-import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
+import static chopchop.logic.parser.commands.CommonParser.checkArguments;
 
 public class FindCommandParser {
 
@@ -33,12 +28,12 @@ public class FindCommandParser {
      * @return     a FindCommand, if the input was valid.
      */
     public static Result<? extends Command> parseFindCommand(CommandArguments args) {
-        ensureCommandName(args, Strings.COMMAND_FIND);
+        ensureCommandName(args, COMMAND_FIND);
 
         // we expect no named arguments. note we don't need to check for augments.
-        Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
-            return Result.error("'find' command doesn't support '%s'", foo.get());
+        Optional<String> err;
+        if ((err = checkArguments(args, "find")).isPresent()) {
+            return Result.error(err.get());
         }
 
         return getCommandTarget(args, /* acceptsPlural: */ true)

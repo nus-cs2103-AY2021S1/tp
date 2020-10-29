@@ -69,7 +69,6 @@ public class AddIngredientCommand extends Command implements Undoable {
             return CommandResult.message("Updated ingredient '%s'", this.combinedIngredient.getName());
 
         } else {
-
             model.addIngredient(this.addedIngredient);
             return CommandResult.message("Added ingredient '%s'", this.addedIngredient.getName());
         }
@@ -127,9 +126,5 @@ public class AddIngredientCommand extends Command implements Undoable {
 
     public static String getCommandHelp() {
         return "Adds a new ingredient, or increases the quantity of an existing ingredient";
-    }
-
-    public static String getUserGuideSection() {
-        return "adding-ingredients--addingredient";
     }
 }

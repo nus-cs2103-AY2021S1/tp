@@ -8,20 +8,22 @@ import chopchop.logic.commands.EditRecipeCommand;
 import chopchop.model.attributes.Quantity;
 import chopchop.model.attributes.Tag;
 import chopchop.commons.util.Result;
-import chopchop.commons.util.Strings;
-
 import chopchop.logic.edit.EditOperationType;
 import chopchop.logic.edit.IngredientEditDescriptor;
 import chopchop.logic.edit.RecipeEditDescriptor;
 import chopchop.logic.edit.StepEditDescriptor;
 import chopchop.logic.edit.TagEditDescriptor;
-
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.ItemReference;
 import chopchop.logic.parser.CommandArguments;
-
 import chopchop.logic.commands.Command;
 
+import static chopchop.commons.util.Strings.ARG_INGREDIENT;
+import static chopchop.commons.util.Strings.ARG_NAME;
+import static chopchop.commons.util.Strings.ARG_QUANTITY;
+import static chopchop.commons.util.Strings.ARG_STEP;
+import static chopchop.commons.util.Strings.ARG_TAG;
+import static chopchop.commons.util.Strings.COMMAND_EDIT;
 import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 
@@ -35,7 +37,7 @@ public class EditCommandParser {
      * @return     an AddCommand, if the input was valid.
      */
     public static Result<? extends Command> parseEditCommand(CommandArguments args) {
-        ensureCommandName(args, Strings.COMMAND_EDIT);
+        ensureCommandName(args, COMMAND_EDIT);
 
         return getCommandTarget(args)
             .then(target -> {
@@ -60,7 +62,7 @@ public class EditCommandParser {
                     var argName = arg.fst();
                     var argValue = arg.snd();
 
-                    if (argName.nameEquals(Strings.ARG_NAME)) {
+                    if (argName.nameEquals(ARG_NAME)) {
 
                         if (argValue.isEmpty()) {
                             return Result.error("Expected a name after '/name'");
@@ -70,20 +72,20 @@ public class EditCommandParser {
 
                         editedName = Optional.of(argValue);
 
-                    } else if (argName.nameEquals(Strings.ARG_TAG)) {
+                    } else if (argName.nameEquals(ARG_TAG)) {
 
                         tagEdits.add(parseTagEdit(argName, argValue));
 
-                    } else if (argName.nameEquals(Strings.ARG_STEP)) {
+                    } else if (argName.nameEquals(ARG_STEP)) {
 
                         stepEdits.add(parseStepEdit(argName, argValue));
 
-                    } else if (argName.nameEquals(Strings.ARG_INGREDIENT)) {
+                    } else if (argName.nameEquals(ARG_INGREDIENT)) {
 
                         Optional<Quantity> qty = Optional.empty();
                         if (i + 1 < args.getAllArguments().size()) {
                             var nextArg = args.getAllArguments().get(i + 1);
-                            if (nextArg.fst().equals(Strings.ARG_QUANTITY)) {
+                            if (nextArg.fst().equals(ARG_QUANTITY)) {
 
                                 var q = Quantity.parse(nextArg.snd());
                                 if (q.isError()) {
@@ -99,7 +101,7 @@ public class EditCommandParser {
 
                         ingrEdits.add(parseIngredientEdit(argName, argValue, qty));
 
-                    } else if (argName.nameEquals(Strings.ARG_QUANTITY)) {
+                    } else if (argName.nameEquals(ARG_QUANTITY)) {
 
                         return Result.error("/qty can only appear after an /ingredient:add or /ingredient:delete");
 

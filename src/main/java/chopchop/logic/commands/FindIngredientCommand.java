@@ -55,8 +55,4 @@ public class FindIngredientCommand extends Command {
     public static String getCommandHelp() {
         return "Finds ingredients by searching for keywords in their names";
     }
-
-    public static String getUserGuideSection() {
-        return "find-ingredients--findingredient";
-    }
 }

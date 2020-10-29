@@ -40,8 +40,4 @@ public class ListRecommendationCommand extends Command {
     public static String getCommandHelp() {
         return "Lists all recommendations, clearing any search filters";
     }
-
-    public static String getUserGuideSection() {
-        return "list-recommendations--listrecommendation";
-    }
 }

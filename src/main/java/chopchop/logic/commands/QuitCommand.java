@@ -23,8 +23,4 @@ public class QuitCommand extends Command {
     public static String getCommandHelp() {
         return "Quits ChopChop";
     }
-
-    public static String getUserGuideSection() {
-        return "quitting-chopchop--quit";
-    }
 }

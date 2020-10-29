@@ -45,8 +45,6 @@ public class StringView {
         this.chars = chars;
         this.begin = Math.max(begin, 0);
         this.end   = Math.min(end, this.chars.length);
-
-        assert this.begin <= this.end;
     }
 
     /**
@@ -254,7 +252,9 @@ public class StringView {
      * Gets the first character; view must not be empty.
      */
     public char front() {
-        assert this.size() > 0;
+        if (this.size() == 0) {
+            throw new IndexOutOfBoundsException("empty StringView");
+        }
         return this.at(0);
     }
 
@@ -262,7 +262,9 @@ public class StringView {
      * Gets the last character; view must not be empty.
      */
     public char back() {
-        assert this.size() > 0;
+        if (this.size() == 0) {
+            throw new IndexOutOfBoundsException("empty StringView");
+        }
         return this.at(this.size() - 1);
     }
 
@@ -274,7 +276,9 @@ public class StringView {
      * @return a new string view without the first {@code n} characters.
      */
     public StringView drop(int n) {
-        assert n >= 0;
+        if (n < 0) {
+            throw new IndexOutOfBoundsException("cannot drop negative number of chars");
+        }
         return new StringView(this.chars, Math.min(this.begin + n, this.end), this.end);
     }
 
@@ -301,7 +305,9 @@ public class StringView {
      * @return a new string view with only the last {@code n} characters.
      */
     public StringView takeLast(int n) {
-        assert n >= 0;
+        if (n < 0) {
+            throw new IndexOutOfBoundsException("cannot takeLast negative number of chars");
+        }
         return new StringView(this.chars, Math.max(this.end - n, 0), this.end);
     }
 

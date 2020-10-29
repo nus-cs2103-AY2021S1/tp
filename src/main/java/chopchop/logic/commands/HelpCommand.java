@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Optional;
 import java.util.function.Function;
 
+import chopchop.commons.util.StringView;
 import chopchop.commons.util.Strings;
 import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
@@ -15,7 +16,6 @@ public class HelpCommand extends Command {
 
     private static final String METHOD_NAME_GET_CMD = "getCommandString";
     private static final String METHOD_NAME_GET_HELP = "getCommandHelp";
-    private static final String METHOD_NAME_GET_UG_LINK = "getUserGuideSection";
 
     private final Optional<String> helpCommand;
     private final Optional<String> helpTarget;
@@ -47,17 +47,18 @@ public class HelpCommand extends Command {
 
         var cmdStr = invokeMethod(cls, METHOD_NAME_GET_CMD);
         var cmdHelp = invokeMethod(cls, METHOD_NAME_GET_HELP);
-        var cmdUgLink = invokeMethod(cls, METHOD_NAME_GET_UG_LINK);
 
         if (cmdStr == null || cmdHelp == null) {
             return CommandResult.error("No help available for command '%s'", cmd);
         }
 
+        var ugSection = cls.getSimpleName();
         var ret = CommandResult.message("%s: %s", cmdStr, cmdHelp);
-        if (cmdUgLink != null) {
+
+        if (!ugSection.endsWith("Dummy")) {
             ret = ret
                 .appending("see the", /* newline: */ true)
-                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + cmdUgLink,
+                .appendingLink("User Guide", Strings.USER_GUIDE_BASE_URL + "#" + ugSection,
                     /* newline: */ false);
         }
 
@@ -78,24 +79,18 @@ public class HelpCommand extends Command {
 
         var pkg = "chopchop.logic.commands.";
 
+        var extraTarget = "";
+        var xs = new StringView(target).words();
+
+        if (xs.size() > 1) {
+            target = xs.get(0);
+            extraTarget = xs.get(1);
+        }
+
         if (target.equals("recipes")) {
             target = "recipe";
         } else if (target.equals("ingredients")) {
             target = "ingredient";
-        } else if (target.equals("recipe top")) {
-            target = "recipe top";
-        } else if (target.equals("recipe recent")) {
-            target = "recipe recent";
-        } else if (target.equals("recipe made")) {
-            target = "recipe made";
-        } else if (target.equals("recipe clear")) {
-            target = "recipe clear";
-        } else if (target.equals("ingredient recent")) {
-            target = "ingredient recent";
-        } else if (target.equals("ingredient made")) {
-            target = "ingredient made";
-        } else if (target.equals("ingredient clear")) {
-            target = "ingredient clear";
         }
 
         //todo: stats commands have 3 keywords tho
@@ -108,6 +103,7 @@ public class HelpCommand extends Command {
             var className = pkg
                 + camelCasing.apply(cmdName)
                 + camelCasing.apply(target)
+                + camelCasing.apply(extraTarget)
                 + "Command";
 
             System.out.printf("searching for class '%s'\n", className);
@@ -234,7 +230,7 @@ public class HelpCommand extends Command {
             return "stats";
         }
         public static String getCommandHelp() {
-            return "Lists item's usages; see 'stats recipe made' or 'stats ingredient made'";
+            return "Lists recipe and ingredient statistics; see 'stats recipe made' or 'stats ingredient used'";
         }
     }
 }

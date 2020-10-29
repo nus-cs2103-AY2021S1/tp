@@ -5,7 +5,6 @@ import static chopchop.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
@@ -105,10 +104,6 @@ public class Ingredient extends Entry {
         return this.sets.firstKey();
     }
 
-    public Optional<List<ExpiryDate>> getExpiryDates() {
-        return null;
-    }
-
     public TreeMap<Optional<ExpiryDate>, Quantity> getIngredientSets() {
         // i want const correctness dammit
         var ret = new TreeMap<Optional<ExpiryDate>, Quantity>(SET_COMPARATOR);
@@ -158,6 +153,7 @@ public class Ingredient extends Entry {
                     .orElseThrow(IncompatibleIngredientsException::new);
 
                 newSets.put(exp, newQty);
+
             } else {
                 if (!thisQty.compatibleWith(qty)) {
                     throw new IncompatibleIngredientsException(

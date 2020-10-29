@@ -2,11 +2,10 @@
 
 package chopchop.ui;
 
+import java.util.List;
 import java.util.Optional;
 
 import chopchop.model.ingredient.Ingredient;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -19,7 +18,7 @@ public class IngredientViewPanel extends UiPart<Region> {
     private static final String EMPTY_PROMPT = "You do not have any ingredients yet.\nAdd one today!";
     private static final String FILTER_NO_MATCH = "No matching ingredients found";
 
-    private ObservableList<Ingredient> ingredientObservableList;
+    private List<Ingredient> ingredientList;
 
     @FXML
     private ScrollPane ingredientPanel;
@@ -28,13 +27,12 @@ public class IngredientViewPanel extends UiPart<Region> {
     private FlowPane ingredientGridView;
 
     /**
-     * Creates a {@code RecipeView} with the given {@code ObservableList}.
+     * Creates a {@code RecipeView} with the given {@code List}.
      */
-    public IngredientViewPanel(ObservableList<Ingredient> ingredientList) {
+    public IngredientViewPanel(List<Ingredient> ingredientList) {
         super(FXML);
 
-        this.ingredientObservableList = ingredientList;
-        this.ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> this.fillDisplay());
+        this.ingredientList = ingredientList;
         this.fillDisplay();
     }
 
@@ -53,8 +51,8 @@ public class IngredientViewPanel extends UiPart<Region> {
      * Populates the gridPane with recipes stored.
      */
     private void populate() {
-        for (int i = 0; i < this.ingredientObservableList.size(); i++) {
-            var ingredient = this.ingredientObservableList.get(i);
+        for (int i = 0; i < this.ingredientList.size(); i++) {
+            var ingredient = this.ingredientList.get(i);
             var ingredientCard = new IngredientCard(ingredient, i + 1);
             this.ingredientGridView.getChildren().add(ingredientCard.getRoot());
         }
@@ -66,17 +64,17 @@ public class IngredientViewPanel extends UiPart<Region> {
      * If there are recipes to show, returns an empty optional.
      */
     private Optional<String> getPlaceholderText() {
-        if (this.ingredientObservableList instanceof FilteredList<?>) {
-            var src = ((FilteredList<?>) this.ingredientObservableList).getSource();
+        if (this.ingredientList instanceof FilteredList<?>) {
+            var src = ((FilteredList<?>) this.ingredientList).getSource();
 
             // if the source was not empty but the filter view is empty,
             // then we have no results.
-            if (!src.isEmpty() && this.ingredientObservableList.isEmpty()) {
+            if (!src.isEmpty() && this.ingredientList.isEmpty()) {
                 return Optional.of(FILTER_NO_MATCH);
             }
         }
 
-        return this.ingredientObservableList.isEmpty()
+        return this.ingredientList.isEmpty()
             ? Optional.of(EMPTY_PROMPT)
             : Optional.empty();
     }

@@ -8,9 +8,6 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class StatsIngredientRecentCommand extends Command {
-    public static final String COMMAND_WORD = "stats ingredient recently used";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " : Shows a list of"
-        + "ingredients that are recently used. (Capped at 10 ingredients)";
     private static final int N_MOST_RECENT = 10;
 
     /**
@@ -24,7 +21,7 @@ public class StatsIngredientRecentCommand extends Command {
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         try {
-            var output = model.getRecentlyUsedIngredient(N_MOST_RECENT);
+            var output = model.getRecentlyUsedIngredients(N_MOST_RECENT);
             var msgOutput = output.stream()
                 .map(x -> new Pair<>(x.getName(), x.getPrintableDate()))
                 .collect(Collectors.toList());
@@ -45,9 +42,5 @@ public class StatsIngredientRecentCommand extends Command {
 
     public static String getCommandHelp() {
         return "Shows the ingredients that were recently used by recipes that were made";
-    }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("listing-recently-used-ingredient-statsingredientrecent");
     }
 }

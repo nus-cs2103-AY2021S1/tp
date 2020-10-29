@@ -116,10 +116,6 @@ public class AddRecipeCommand extends Command implements Undoable {
     public static String getCommandHelp() {
         return "Adds a new recipe";
     }
-
-    public static String getUserGuideSection() {
-        return "adding-recipes--addrecipe";
-    }
 }
 
 

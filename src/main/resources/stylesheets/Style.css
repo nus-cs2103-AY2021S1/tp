@@ -260,6 +260,27 @@
 
 
 
+.stats-header {
+    -fx-font-size: 20px;
+    -fx-padding: 12px 0 12px 0;
+    -fx-font-family: "Source Sans Pro SemiBold";
+}
+
+.stats-subtitle {
+    -fx-font-size: 16px;
+    -fx-padding: 0 0 8px 0;
+}
+
+.stats-item-container {
+    -fx-border-color: #80d8ff;
+    -fx-background-color: #c2eafc;
+    -fx-background-radius: 4;
+    -fx-border-radius: 4;
+    -fx-padding: 4px 4px 4px 8px;
+}
+
+
+
 
 
 

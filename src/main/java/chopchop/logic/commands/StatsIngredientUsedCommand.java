@@ -1,8 +1,5 @@
 package chopchop.logic.commands;
 
-import static chopchop.commons.util.Strings.ARG_AFTER;
-import static chopchop.commons.util.Strings.ARG_BEFORE;
-
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -11,13 +8,6 @@ import chopchop.logic.history.HistoryManager;
 import chopchop.model.Model;
 
 public class StatsIngredientUsedCommand extends Command {
-    public static final String COMMAND_WORD = "stats ingredient used";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows a list of ingredient. "
-        + "Parameters: "
-        + "[" + ARG_BEFORE + " DATE] "
-        + "[" + ARG_AFTER + " DATE] "
-        + "Example: " + COMMAND_WORD + " " + ARG_BEFORE + " 2020-02-13 ";
 
     private final LocalDateTime before;
     private final LocalDateTime after;
@@ -29,7 +19,7 @@ public class StatsIngredientUsedCommand extends Command {
     public StatsIngredientUsedCommand(LocalDateTime before, LocalDateTime after) {
         if (before == null && after == null) {
             var now = LocalDateTime.now();
-            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfYear(), 0, 0);
+            this.before = LocalDateTime.of(now.getYear(), now.getMonth(), now.getDayOfMonth(), 0, 0);
             this.after = this.before.plusDays(1);
         } else {
             this.before = before;
@@ -85,9 +75,5 @@ public class StatsIngredientUsedCommand extends Command {
 
     public static String getCommandHelp() {
         return "Shows ingredients used by recipes that were made in a given time frame";
-    }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("listing-ingredients-used-within-a-given-time-frame-statsingredientused");
     }
 }

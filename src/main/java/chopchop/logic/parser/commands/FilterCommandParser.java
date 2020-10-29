@@ -3,30 +3,29 @@
 
 package chopchop.logic.parser.commands;
 
-import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
-import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
-import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
-import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import chopchop.commons.util.Result;
-import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.FilterIngredientCommand;
 import chopchop.logic.commands.FilterRecipeCommand;
-import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 import chopchop.model.attributes.ExpiryDate;
 import chopchop.model.attributes.ExpiryDateMatchesKeywordsPredicate;
 import chopchop.model.attributes.IngredientsContainsKeywordsPredicate;
 import chopchop.model.attributes.TagContainsKeywordsPredicate;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import static chopchop.commons.util.Strings.ARG_EXPIRY;
+import static chopchop.commons.util.Strings.ARG_INGREDIENT;
+import static chopchop.commons.util.Strings.ARG_TAG;
+import static chopchop.commons.util.Strings.COMMAND_FILTER;
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
+import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
+import static chopchop.logic.parser.commands.CommonParser.checkArguments;
 
 public class FilterCommandParser {
-
-    private static final String commandName = Strings.COMMAND_FILTER;
 
     /**
      * Parses a 'filter' command. Syntax(es):
@@ -38,15 +37,7 @@ public class FilterCommandParser {
      */
     public static Result<? extends Command> parseFilterCommand(CommandArguments args) {
 
-        ensureCommandName(args, Strings.COMMAND_FILTER);
-
-        // since the sub-commands check for the individual args, we don't need to check here.
-        // just check for no edit-args.
-        Optional<ArgName> foo;
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'filter' command doesn't support edit-arguments (found '%s')",
-                foo.get());
-        }
+        ensureCommandName(args, COMMAND_FILTER);
 
         return getCommandTarget(args, /* acceptsPlural: */ true)
             .then(target -> {
@@ -70,20 +61,19 @@ public class FilterCommandParser {
 
     private static Result<? extends Command> parseFilterIngredientCommand(CommandArguments args) {
 
-        Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_TAG, Strings.ARG_EXPIRY);
-        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
-            return Result.error("'filter ingredient' command doesn't support '%s'", foo.get());
+        Optional<String> err;
+        var supportedArgs = List.of(ARG_TAG, ARG_EXPIRY);
+        if ((err = checkArguments(args, "filter ingredient", supportedArgs)).isPresent()) {
+            return Result.error(err.get());
         }
 
-        var exps = args.getArgument(Strings.ARG_EXPIRY);
-        var tags = args.getArgument(Strings.ARG_TAG);
+        var exps = args.getArgument(ARG_EXPIRY);
+        var tags = args.getArgument(ARG_TAG);
 
-        Optional<String> error;
-        if ((error = checkImproperFieldInput("Expiry date", exps)).isPresent()) {
-            return Result.error(error.get());
-        } else if ((error = checkImproperFieldInput("Tag", tags)).isPresent()) {
-            return Result.error(error.get());
+        if ((err = checkImproperFieldInput("Expiry date", exps)).isPresent()) {
+            return Result.error(err.get());
+        } else if ((err = checkImproperFieldInput("Tag", tags)).isPresent()) {
+            return Result.error(err.get());
         }
 
         return parseExpiryDates(exps)
@@ -96,20 +86,19 @@ public class FilterCommandParser {
 
     private static Result<? extends Command> parseFilterRecipeCommand(CommandArguments args) {
 
-        Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_TAG, Strings.ARG_INGREDIENT);
-        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
-            return Result.error("'filter recipe' command doesn't support '%s'", foo.get());
+        Optional<String> err;
+        var supportedArgs = List.of(ARG_TAG, ARG_INGREDIENT);
+        if ((err = checkArguments(args, "filter recipe", supportedArgs)).isPresent()) {
+            return Result.error(err.get());
         }
 
-        var ingredients = args.getArgument(Strings.ARG_INGREDIENT);
-        var tags = args.getArgument(Strings.ARG_TAG);
+        var ingredients = args.getArgument(ARG_INGREDIENT);
+        var tags = args.getArgument(ARG_TAG);
 
-        Optional<String> error;
-        if ((error = checkImproperFieldInput("Tag", tags)).isPresent()) {
-            return Result.error(error.get());
-        } else if ((error = checkImproperFieldInput("Ingredient", ingredients)).isPresent()) {
-            return Result.error(error.get());
+        if ((err = checkImproperFieldInput("Tag", tags)).isPresent()) {
+            return Result.error(err.get());
+        } else if ((err = checkImproperFieldInput("Ingredient", ingredients)).isPresent()) {
+            return Result.error(err.get());
         }
 
         return Result.of(new FilterRecipeCommand(

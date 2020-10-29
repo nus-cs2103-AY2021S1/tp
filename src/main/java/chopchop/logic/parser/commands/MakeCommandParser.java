@@ -1,18 +1,16 @@
 package chopchop.logic.parser.commands;
 
-import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
-import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
-
-import java.util.List;
 import java.util.Optional;
 
+import chopchop.commons.util.Result;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.MakeRecipeCommand;
-import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 import chopchop.logic.parser.ItemReference;
-import chopchop.commons.util.Result;
-import chopchop.commons.util.Strings;
+
+import static chopchop.commons.util.Strings.COMMAND_MAKE;
+import static chopchop.logic.parser.commands.CommonParser.checkArguments;
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 
 public class MakeCommandParser {
 
@@ -24,12 +22,12 @@ public class MakeCommandParser {
      * @return     a MakeCommand, if the input was valid.
      */
     public static Result<? extends Command> parseMakeCommand(CommandArguments args) {
-        ensureCommandName(args, Strings.COMMAND_MAKE);
+        ensureCommandName(args, COMMAND_MAKE);
 
         // we expect no named arguments
-        Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
-            return Result.error("'make' command doesn't support '%s'", foo.get());
+        Optional<String> err;
+        if ((err = checkArguments(args, "make")).isPresent()) {
+            return Result.error(err.get());
         }
 
         var name = args.getRemaining();

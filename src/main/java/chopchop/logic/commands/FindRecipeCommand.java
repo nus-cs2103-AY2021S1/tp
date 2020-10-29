@@ -55,8 +55,4 @@ public class FindRecipeCommand extends Command {
     public static String getCommandHelp() {
         return "Finds recipes by searching for keywords in their names";
     }
-
-    public static String getUserGuideSection() {
-        return "find-recipes--findrecipe";
-    }
 }

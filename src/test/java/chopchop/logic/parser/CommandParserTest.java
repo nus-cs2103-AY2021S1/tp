@@ -150,6 +150,10 @@ public class CommandParserTest {
             throw new ParseException("owo");
         });
 
+        assertThrows(IllegalArgumentException.class, () -> {
+            FindCommandParser.parseFindCommand(new CommandArguments("kekw"));
+        });
+
         assertNotEquals(new CommandArguments("add"), "add");
         assertNotEquals(new CommandArguments("add"), new CommandArguments("subtract"));
 
@@ -162,8 +166,8 @@ public class CommandParserTest {
         assertNotEquals(new CommandArguments("add", "aaa", List.of(Pair.of(new ArgName("kekw"), "3"))),
             new CommandArguments("add", "aaa", List.of(Pair.of(new ArgName("kekw"), "4"))));
 
-
-
+        assertTrue(CommonParser.checkArguments(parser.parseArgs("x /owo:uwu").getValue(),
+            "x", List.of(), true).isPresent());
     }
 
 
@@ -182,6 +186,7 @@ public class CommandParserTest {
         cases.put("make x /uwu",                                                        false);
         cases.put("make",                                                               false);
         cases.put("find /asdf",                                                         false);
+        cases.put("find /asdf:owo",                                                     false);
 
         cases.put("filter recipe",                                                      false);
         cases.put("filter recipe /name x",                                              false);

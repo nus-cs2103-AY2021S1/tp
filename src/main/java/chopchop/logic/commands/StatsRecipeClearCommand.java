@@ -11,9 +11,6 @@ import chopchop.model.UsageList;
 import chopchop.model.usage.RecipeUsage;
 
 public class StatsRecipeClearCommand extends Command implements Undoable {
-    public static final String COMMAND_WORD = "stats recipe clear";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " : deletes all saved"
-        + "records of recipe usages from ChopChop. It can be undone but cannot be restored.";
 
     private UsageList<RecipeUsage> usages = new UsageList<>();
 
@@ -74,9 +71,5 @@ public class StatsRecipeClearCommand extends Command implements Undoable {
 
     public static String getCommandHelp() {
         return "Clears all records of recipes made";
-    }
-
-    public static String getUserGuideSection() {
-        throw new RuntimeException("clearing-recipe-usage-records-statsrecipeclear");
     }
 }

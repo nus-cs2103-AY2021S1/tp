@@ -56,7 +56,12 @@ public class DisplayController extends UiPart<Region> {
 
         // TODO: Edit to account for loading of recipes/ingredients after UI
         this.recipeObservableList.addListener((ListChangeListener<Recipe>) c -> {
-            c.next();
+
+            // we don't actually care about the incremental changes, just
+            // the final state. so, exhaust all the things.
+            while (c.next()) {
+                // nothing
+            }
 
             /*
              * TODO: Make logic more robust
@@ -71,7 +76,13 @@ public class DisplayController extends UiPart<Region> {
                 this.displayRecipeList();
             }
         });
-        this.ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> this.displayIngredientList());
+        this.ingredientObservableList.addListener((ListChangeListener<Ingredient>) c -> {
+
+            while (c.next()) {
+            }
+
+            this.displayIngredientList();
+        });
 
         if (!logic.getFilteredRecipeList().isEmpty()) {
             this.displayRecipeList();
