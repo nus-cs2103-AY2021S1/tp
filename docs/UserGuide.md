@@ -15,7 +15,7 @@ title: User Guide
 
 1. Open a command window. Run the java -version command to ensure you are using Java 11. If not, please install Java 11 to ensure you are able to safely launch the jar file.
 
-1. Launch the jar file using the java -jar command (do not use double-clicking). The GUI similar to the one below should appear in a few seconds.<br>
+1. Launch the jar file using the java -jar supperstrikers.jar command (do not use double-clicking). The GUI similar to the one below should appear in a few seconds.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
