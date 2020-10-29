@@ -138,8 +138,10 @@ public class CommandTestUtil {
     public static final String INVALID_PATIENTNAME_DESC = " " + PREFIX_APP_PATIENTNAME + "Jane@";
     // '&' not allowed in IcNumber
     public static final String INVALID_PATIENTIC_DESC = " " + PREFIX_APP_PATIENTIC + "&1234567Z";
-    // '/' not allowed in AppointmentDateTime
-    public static final String INVALID_START_TIME_DESC = " " + PREFIX_APP_STARTTIME + "2020/11/1111:50";
+    // '!' not allowed in AppointmentDateTime
+    public static final String INVALID_START_TIME_DESC = " " + PREFIX_APP_STARTTIME + "2020!11!11 11!50";
+    // negative number not allowed in duration
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_APP_DURATION + "-50";
 
     static {
         DESC_AMY = new EditPatientDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
