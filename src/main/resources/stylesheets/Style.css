@@ -244,14 +244,6 @@
     -fx-background-color: #efebe9;
 }
 
-.ingredient-button:hover {
-    -fx-background-color: #d7ccc8;
-}
-
-.ingredient-button:pressed {
-    -fx-background-color: #bcaaa4;
-}
-
 .ingredient-tags {
     -fx-padding: 6px;
 }
