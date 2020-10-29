@@ -56,4 +56,8 @@ public class ModuleName {
         return fullName.hashCode();
     }
 
+    public String getName() {
+        return this.fullName;
+    }
+
 }

@@ -8,7 +8,7 @@ title: Cap 5.0 Buddy
 
 ![Ui](images/OriginalImages/Ui.png)
 
-**Cap 5.0 Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently.** 
+**Cap 5.0 Buddy is a desktop application that helps NUS SoC students to keep track of their module details efficiently.**
 While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
 
 * If you are interested in using Cap 5.0 Buddy, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).

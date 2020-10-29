@@ -1,8 +1,10 @@
 package seedu.address.logic.parser;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
+//import java.util.Optional;
+import java.util.stream.Collectors;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -46,34 +48,30 @@ public class ArgumentTokenizer {
     /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
-     * @return           List of zero-based prefix positions in the given arguments string
+     * @return List of zero-based prefix positions in the given arguments string
      */
     private List<PrefixPosition> findAllPrefixPositions() throws ParseException {
-        // return Arrays.stream(prefixes)
-        //        .flatMap(prefix -> findPrefixPosition(argsString, prefix).stream())
-        //        .collect(Collectors.toList());
-        List<PrefixPosition> prefixPositions = new ArrayList<>();
+        return Arrays.stream(prefixes)
+              .flatMap(prefix -> findPrefixPositions(userInput, prefix).stream())
+              .collect(Collectors.toList());
+        /*List<PrefixPosition> prefixPositions = new ArrayList<>();
         for (Prefix prefix : this.prefixes) {
             Optional<PrefixPosition> prefixPosition = findPrefixPosition(prefix);
             prefixPosition.ifPresent(position -> prefixPositions.add(position));
         }
-        return prefixPositions;
+        return prefixPositions;*/
     }
-
-    /*
     private static List<PrefixPosition> findPrefixPositions(String argsString, Prefix prefix) {
         List<PrefixPosition> positions = new ArrayList<>();
-
         int prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), 0);
         while (prefixPosition != -1) {
             PrefixPosition extendedPrefix = new PrefixPosition(prefix, prefixPosition);
             positions.add(extendedPrefix);
             prefixPosition = findPrefixPosition(argsString, prefix.getPrefix(), prefixPosition);
         }
-
         return positions;
     }
-    */
+
 
     /**
      * Returns the index of the first occurrence of {@code prefix} in
@@ -87,7 +85,7 @@ public class ArgumentTokenizer {
      * {@code argsString} = "e/hi p/900", {@code prefix} = "p/" and
      * {@code fromIndex} = 0, this method returns 5.
      */
-    private Optional<PrefixPosition> findPrefixPosition(Prefix prefix) throws ParseException {
+    /*private Optional<PrefixPosition> findPrefixPosition(Prefix prefix) throws ParseException {
         // int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
         // return prefixIndex == -1 ? -1
         //        : prefixIndex + 1; // +1 as offset for whitespace
@@ -103,6 +101,12 @@ public class ArgumentTokenizer {
         return (prefixIndex == -1
                 ? Optional.empty()
                 : Optional.of(new PrefixPosition(prefix, prefixIndex + 1)));
+    }*/
+
+    private static int findPrefixPosition(String argsString, String prefix, int fromIndex) {
+        int prefixIndex = argsString.indexOf(" " + prefix, fromIndex);
+        return prefixIndex == -1 ? -1
+                : prefixIndex + 1; // +1 as offset for whitespace
     }
 
     /**
@@ -123,7 +127,7 @@ public class ArgumentTokenizer {
      * {@code argsString}.
      *
      * @param prefixPositions Zero-based positions of all prefixes in {@code argsString}
-     * @return                ArgumentMultimap object that maps prefixes to their arguments
+     * @return ArgumentMultimap object that maps prefixes to their arguments
      */
     private ArgumentMultimap extractArguments(List<PrefixPosition> prefixPositions) {
 
@@ -147,7 +151,6 @@ public class ArgumentTokenizer {
                     prefixPositions.get(i), prefixPositions.get(i + 1));
             argMultimap.put(prefix, prefixArgument);
         }
-
         return argMultimap;
     }
 
@@ -164,6 +167,27 @@ public class ArgumentTokenizer {
         String value = argsString.substring(valueStartPos, nextPrefixPosition.getStartPosition());
 
         return value.trim();
+    }
+
+    /**
+     * Represents a prefix's position in an arguments string.
+     */
+    public static class PrefixPosition {
+        private int startPosition;
+        private final Prefix prefix;
+
+        PrefixPosition(Prefix prefix, int startPosition) {
+            this.prefix = prefix;
+            this.startPosition = startPosition;
+        }
+
+        int getStartPosition() {
+            return startPosition;
+        }
+
+        Prefix getPrefix() {
+            return prefix;
+        }
     }
 
 }

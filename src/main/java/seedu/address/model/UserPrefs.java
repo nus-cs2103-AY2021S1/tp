@@ -15,6 +15,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path moduleListFilePath = Paths.get("data" , "moduleList.json");
+    private Path contactListFilePath = Paths.get("data" , "contactList.json");
+    private Path todoListFilePath = Paths.get("data" , "todoList.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +38,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setModuleListFilePath(newUserPrefs.getModuleListFilePath());
+        setContactListFilePath(newUserPrefs.getContactListFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,9 +54,27 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return moduleListFilePath;
     }
 
+    public Path getContactListFilePath() {
+        return contactListFilePath;
+    }
+
+    public Path getTodoListFilePath() {
+        return todoListFilePath;
+    }
+
     public void setModuleListFilePath(Path moduleListFilePath) {
         requireNonNull(moduleListFilePath);
         this.moduleListFilePath = moduleListFilePath;
+    }
+
+    public void setContactListFilePath(Path contactListFilePath) {
+        requireNonNull(contactListFilePath);
+        this.contactListFilePath = contactListFilePath;
+    }
+
+    public void setTodoListFilePath(Path todoListFilePath) {
+        requireNonNull(todoListFilePath);
+        this.todoListFilePath = todoListFilePath;
     }
 
     @Override
@@ -68,19 +89,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && moduleListFilePath.equals(o.moduleListFilePath);
+                && moduleListFilePath.equals(o.moduleListFilePath)
+                && contactListFilePath.equals(o.contactListFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, moduleListFilePath);
+        return Objects.hash(guiSettings, moduleListFilePath, contactListFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + moduleListFilePath);
+        sb.append("\nLocal data file location : " + moduleListFilePath + "\n");
+        sb.append(contactListFilePath);
         return sb.toString();
     }
 

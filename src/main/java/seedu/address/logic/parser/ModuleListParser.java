@@ -6,31 +6,49 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddAssignmentCommand;
-import seedu.address.logic.commands.AddGradeCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.AddZoomLinkCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteModuleCommand;
-import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ViewModuleCommand;
 import seedu.address.logic.commands.contactlistcommands.AddContactCommand;
 import seedu.address.logic.commands.contactlistcommands.DeleteContactCommand;
 import seedu.address.logic.commands.contactlistcommands.EditContactCommand;
+import seedu.address.logic.commands.contactlistcommands.FindContactCommand;
+import seedu.address.logic.commands.gradetrackercommands.AddGradeCommand;
+import seedu.address.logic.commands.modulelistcommands.AddCompletedModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.AddZoomLinkCommand;
+import seedu.address.logic.commands.modulelistcommands.CalculateCapCommand;
+import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.RedoCommand;
+import seedu.address.logic.commands.modulelistcommands.TargetCapCalculatorCommand;
+import seedu.address.logic.commands.modulelistcommands.UndoCommand;
+import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
 import seedu.address.logic.parser.contactlistparsers.AddContactParser;
 import seedu.address.logic.parser.contactlistparsers.DeleteContactParser;
 import seedu.address.logic.parser.contactlistparsers.EditContactParser;
+import seedu.address.logic.parser.contactlistparsers.FindContactParser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.gradetrackerparsers.AddGradeParser;
+import seedu.address.logic.parser.modulelistparsers.AddCompletedModuleParser;
+import seedu.address.logic.parser.modulelistparsers.AddModuleParser;
+import seedu.address.logic.parser.modulelistparsers.AddZoomLinkParser;
+import seedu.address.logic.parser.modulelistparsers.CalculateCapParser;
+import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
+import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
+import seedu.address.logic.parser.modulelistparsers.RedoParser;
+import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
+import seedu.address.logic.parser.modulelistparsers.UndoParser;
+import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
+
 
 /**
  * Parses user input.
  */
-public class ModuleListParser {
+public class ModuleListParser implements FeatureParser {
 
     /**
      * Used for initial separation of command word and args.
@@ -84,8 +102,8 @@ public class ModuleListParser {
         case ViewModuleCommand.COMMAND_WORD:
             return new ViewModuleParser().parse(arguments);
 
-        case AddAssignmentCommand.COMMAND_WORD:
-            return new AddAssignmentParser().parse(arguments);
+        case FindContactCommand.COMMAND_WORD:
+            return new FindContactParser().parse(arguments);
 
         case DeleteContactCommand.COMMAND_WORD:
             return new DeleteContactParser().parse(arguments);
@@ -99,6 +117,24 @@ public class ModuleListParser {
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
 
+        case AddCompletedModuleCommand.COMMAND_WORD:
+            return new AddCompletedModuleParser().parse(arguments);
+
+        case CalculateCapCommand.COMMAND_WORD:
+            return new CalculateCapParser().parse(arguments);
+
+        case TargetCapCalculatorCommand.COMMAND_WORD:
+            return new TargetCapCalculatorParser().parse(arguments);
+        //case EditGradeCommand.COMMAND_WORD:
+        //            return new EditGradeParser().parse(arguments);
+        case UndoCommand.COMMAND_WORD:
+            return new UndoParser().parse(arguments);
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoParser().parse(arguments);
+
+        //case EditGradeCommand.COMMAND_WORD:
+        //            return new EditGradeParser().parse(arguments);
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

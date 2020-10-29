@@ -25,11 +25,15 @@ import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TodoList;
 import seedu.address.model.UserPrefs;
+import seedu.address.storage.ContactListStorage;
+import seedu.address.storage.JsonContactListStorage;
 import seedu.address.storage.JsonModuleListStorage;
+import seedu.address.storage.JsonTodoListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.ModuleListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
+import seedu.address.storage.TodoListStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -60,7 +64,9 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         ModuleListStorage moduleListStorage = new JsonModuleListStorage(userPrefs.getModuleListFilePath());
-        storage = new StorageManager(moduleListStorage, userPrefsStorage);
+        ContactListStorage contactListStorage = new JsonContactListStorage(userPrefs.getContactListFilePath());
+        TodoListStorage todoListStorage = new JsonTodoListStorage(userPrefs.getTodoListFilePath());
+        storage = new StorageManager(moduleListStorage, contactListStorage, todoListStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -72,15 +78,16 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
+     * Returns a {@code ModelManager} with the data from {@code storage}'s module list, contact list
+     * and {@code userPrefs}. <br>
      * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyModuleList> moduleListOptional;
         ReadOnlyModuleList initialData;
-        ReadOnlyTodoList initialTodoList = new TodoList();
-        ReadOnlyContactList initalContactList = new ContactList();
+        ReadOnlyContactList initialContactList = initializeContactList(storage);
+        ReadOnlyTodoList initialTodoList = initializeTodoList(storage);
         try {
             moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
@@ -98,7 +105,63 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
         }
-        return new ModelManager(initialData, initalContactList, initialTodoList, userPrefs);
+        return new ModelManager(initialData, initialContactList, initialTodoList, userPrefs);
+
+    }
+
+    /**
+     * Returns a {@code ReadOnlyContactList} with the data from {@code storage}'s contact list.
+     *
+     * @param storage Storage object containing contact list data.
+     * @return ReadOnlyContactList containing the contacts from the Storage argument.
+     */
+    private ReadOnlyContactList initializeContactList(Storage storage) {
+        Optional<ReadOnlyContactList> contactListOptional;
+        ReadOnlyContactList initialContactList;
+        try {
+            contactListOptional = storage.readContactList();
+            if (!contactListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample ContactList");
+                initialContactList = new ContactList();
+            } else {
+                initialContactList = contactListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ContactList");
+            initialContactList = new ContactList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
+            initialContactList = new ContactList();
+        }
+        return initialContactList;
+
+    }
+
+    /**
+     * Returns a {@code ReadOnlyTodoList} with the data from {@code storage}'s todo list.
+     *
+     * @param storage Storage object containing todo list data.
+     * @return ReadOnlyTodoList containing the tasks from the Storage argument.
+     */
+    private ReadOnlyTodoList initializeTodoList(Storage storage) {
+        Optional<ReadOnlyTodoList> todoListOptional;
+        ReadOnlyTodoList initialTodoList;
+        try {
+            todoListOptional = storage.readTodoList();
+            if (!todoListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample TodoList");
+                initialTodoList = new TodoList();
+            } else {
+                initialTodoList = todoListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty TodoList");
+            initialTodoList = new TodoList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty TodoList");
+            initialTodoList = new TodoList();
+        }
+        return initialTodoList;
     }
 
     private void initLogging(Config config) {
