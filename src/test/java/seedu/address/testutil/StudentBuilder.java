@@ -11,6 +11,9 @@ import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
+/**
+ * An utility class to help with building Student objects.
+ */
 public class StudentBuilder {
 
     public static final String DEFAULT_NAME = "Alice Pauline";
