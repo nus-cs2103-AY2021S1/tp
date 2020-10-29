@@ -280,7 +280,7 @@ Format: `c-list`
 
 #### 3.3 Listing all employees who are working today: `c-today`
 
-Shows a list of all employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
+Shows a list of all active(unarchived) employees whose tags contain today's day (i.e. `Wednesday`, `Tuesday`, etc).
 
 Format: `c-today`
 
@@ -292,7 +292,7 @@ Examples:
 
 #### 3.4 Listing all employees who are working tomorrow: `c-tomorrow`
 
-Shows a list of all employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
+Shows a list of all active(unarchived) employees whose tags contain tomorrow's day (i.e. `Wednesday`, `Tuesday`, etc).
 
 Format: `c-tomorrow`
 
@@ -324,7 +324,7 @@ Examples:
 
 #### 3.6 Locating persons by keywords: `c-find`
 
-Finds all contacts that contain the KEYWORD(s) in their names.
+Finds all active(unarchived) contacts that contain the KEYWORD(s) in their names.
 
 Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
@@ -341,7 +341,7 @@ Examples:
 
 #### 3.7 Locating persons based on matching tags: `c-tag-find`
 
-Finds all contacts that contain the KEYWORD(s) in their tags.
+Finds all active(unarchived) contacts that contain the KEYWORD(s) in their tags.
 
 Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
