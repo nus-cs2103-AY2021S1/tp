@@ -14,7 +14,7 @@ public class ReturnCommand extends Command {
     public static final String COMMAND_WORD = "return";
 
     public static final String MESSAGE_RETURN_SUCCESS = "You are now at the Main Page! Type 'open case [INDEX]' "
-            + "to open a case!";
+            + "to open a case, or 'list case' to view all cases!";
 
     private static final Logger logger = LogsCenter.getLogger(ReturnCommand.class);
 

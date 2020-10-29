@@ -7,8 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.pivot.commons.core.LogsCenter;
 import seedu.pivot.commons.exceptions.IllegalValueException;
-import seedu.pivot.model.investigationcase.Name;
-import seedu.pivot.model.investigationcase.Witness;
+import seedu.pivot.model.investigationcase.caseperson.Address;
+import seedu.pivot.model.investigationcase.caseperson.Email;
+import seedu.pivot.model.investigationcase.caseperson.Gender;
+import seedu.pivot.model.investigationcase.caseperson.Name;
+import seedu.pivot.model.investigationcase.caseperson.Phone;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 
 
 
@@ -21,13 +25,23 @@ public class JsonAdaptedWitness {
     private static final Logger logger = LogsCenter.getLogger(JsonAdaptedWitness.class);
 
     private final String name;
+    private final String gender;
+    private final String phone;
+    private final String email;
+    private final String address;
 
     /**
      * Constructs a {@code JsonAdaptedWitness} with the given {@code witnessName}.
      */
     @JsonCreator
-    public JsonAdaptedWitness(@JsonProperty("name") String name) {
+    public JsonAdaptedWitness(@JsonProperty("name") String name, @JsonProperty("gender") String gender,
+                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
+                              @JsonProperty("address") String address) {
         this.name = name;
+        this.gender = gender;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
     }
 
     /**
@@ -35,6 +49,10 @@ public class JsonAdaptedWitness {
      */
     public JsonAdaptedWitness(Witness source) {
         this.name = source.getName().getAlphaNum();
+        this.gender = source.getGender().toString();
+        this.phone = source.getPhone().toString();
+        this.email = source.getEmail().toString();
+        this.address = source.getAddress().toString();
     }
 
     /**
@@ -53,7 +71,44 @@ public class JsonAdaptedWitness {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelName = new Name(name);
-        return new Witness(modelName);
+
+        if (gender == null) {
+            logger.warning("Witness gender is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
+        }
+        if (!Gender.isValidGender(gender)) {
+            logger.warning("Witness gender is invalid. Check data");
+            throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
+        }
+        final Gender modelGender = Gender.createGender(gender);
+
+        if (phone == null) {
+            logger.warning("Witness phone is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isValidPhone(phone)) {
+            logger.warning("Witness phone is invalid. Check data");
+            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        final Phone modelPhone = new Phone(phone);
+
+        if (email == null) {
+            logger.warning("Witness email is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
+        }
+        if (!Email.isValidEmail(email)) {
+            logger.warning("Witness email is invalid. Check data");
+            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
+        }
+        final Email modelEmail = new Email(email);
+
+        if (address == null) {
+            logger.warning("Witness address is null. Check data");
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        final Address modelAddress = new Address(address);
+
+        return new Witness(modelName, modelGender, modelPhone, modelEmail, modelAddress);
     }
 
 }

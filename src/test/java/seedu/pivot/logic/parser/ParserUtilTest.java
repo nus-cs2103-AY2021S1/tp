@@ -14,7 +14,6 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.parser.exceptions.ParseException;
-import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Title;
 import seedu.pivot.model.tag.Tag;
 
@@ -66,9 +65,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseTitle_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseTitle(nameWithWhitespace));
+        String titleWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        Title expectedTitle = new Title(VALID_NAME);
+        assertEquals(expectedTitle, ParserUtil.parseTitle(titleWithWhitespace));
     }
 
     @Test

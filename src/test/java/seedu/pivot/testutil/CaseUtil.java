@@ -12,21 +12,21 @@ import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Case.
  */
 public class CaseUtil {
 
     /**
-     * Returns an add command string for adding the {@code person}.
+     * Returns an add command string for adding the {@code Case}.
      */
     public static String getAddCommand(Case investigationCase) {
-        return AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + " " + getPersonDetails(investigationCase);
+        return AddCommand.COMMAND_WORD + " " + AddCommand.TYPE_CASE + " " + getCaseDetails(investigationCase);
     }
 
     /**
-     * Returns the part of command string for the given {@code person}'s details.
+     * Returns the part of command string for the given {@code Case}'s details.
      */
-    public static String getPersonDetails(Case investigationCase) {
+    public static String getCaseDetails(Case investigationCase) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + investigationCase.getTitle().getAlphaNum() + " ");
         sb.append(PREFIX_STATUS + investigationCase.getStatus().name() + " ");
@@ -37,9 +37,9 @@ public class CaseUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditPersonDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditCaseDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditCaseDescriptor descriptor) {
+    public static String getEditCaseDescriptorDetails(EditCaseDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getTitle().ifPresent(title -> sb.append(PREFIX_TITLE).append(title.getAlphaNum()).append(" "));
         descriptor.getStatus().ifPresent(status -> sb.append(PREFIX_STATUS).append(status.name()).append(" "));

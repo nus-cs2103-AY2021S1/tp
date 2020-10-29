@@ -1,8 +1,9 @@
 package seedu.pivot.logic.commands.casecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_CASE_PAGE;
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_VALID_INDEX;
 import static seedu.pivot.logic.parser.CliSyntax.PREFIX_DESC;
-import static seedu.pivot.model.Model.PREDICATE_SHOW_ALL_CASES;
 
 import java.util.List;
 import java.util.logging.Logger;
@@ -57,8 +58,8 @@ public class AddDescriptionCommand extends AddCommand {
         List<Case> lastShownList = model.getFilteredCaseList();
 
         //check for valid index
-        assert(StateManager.atCasePage()) : "Program should be at case page";
-        assert(index.getZeroBased() < lastShownList.size()) : "index should be valid";
+        assert(StateManager.atCasePage()) : ASSERT_CASE_PAGE;
+        assert(index.getZeroBased() < lastShownList.size()) : ASSERT_VALID_INDEX;
 
         Case stateCase = lastShownList.get(index.getZeroBased());
         Description stateCaseDescription = stateCase.getDescription();
@@ -72,9 +73,9 @@ public class AddDescriptionCommand extends AddCommand {
         // create new updated case
         Case updatedCase = new Case(stateCase.getTitle(), this.description, stateCase.getStatus(),
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
-                stateCase.getTags());
+                stateCase.getTags(), stateCase.getArchiveStatus());
         model.setCase(stateCase, updatedCase);
-        model.updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
+        model.commitPivot(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
 
         return new CommandResult(String.format(MESSAGE_ADD_DESCRIPTION_SUCCESS, this.description));
     }

@@ -1,25 +1,38 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "PIVOT save file which contains the same Person values as in TypicalCases#getTypicalPivot()",
   "persons" : [ {
-    "title" : "Alice Pauline",
+    "title" : "Alice Pauline Assault",
     "description": "",
     "status": "COLD",
     "documents": [ {
       "name" : "name",
-      "reference" : "test1.txt"
+      "reference" : "validButShouldNotExist.txt"
     } ],
     "witnesses": [ {
-      "name" : "Janice"
+      "name" : "Janice",
+      "gender" : "F",
+      "phone" : "",
+      "email" : "",
+      "address" : ""
     } ],
     "suspects": [ {
-      "name" : "Peter"
+      "name" : "Peter",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "peter@gmail.com",
+      "address" : "Blk 123"
     } ],
     "victims" : [ {
-      "name" : "Tom"
+      "name" : "Tom",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "tom@gmail.com",
+      "address" : "Blk 123"
     } ],
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Benson Meier",
+    "title" : "Benson Meier Robbery",
     "description": "",
     "status": "CLOSED",
     "documents": [ {
@@ -27,57 +40,104 @@
       "reference" : "test1.txt"
     } ],
     "witnesses": [ {
-      "name" : "Mary"
+      "name" : "Janice",
+      "gender" : "F",
+      "phone" : "",
+      "email" : "",
+      "address" : ""
     } ],
     "suspects": [],
     "victims" : [ {
-      "name" : "Tom"
+      "name" : "Tom",
+      "gender" : "M",
+      "phone" : "912345678",
+      "email" : "tom@gmail.com",
+      "address" : "Blk 123"
     } ],
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "owesMoney", "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Carl Kurz",
+    "title" : "Carl Kurz Fire",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Daniel Meier",
+    "title" : "Daniel Meier Shoplifting",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ "friends" ]
+    "tagged" : [ "friends" ],
+    "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Elle Meyer",
+    "title" : "Elle Meyer Shooting",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "Fiona Kunz",
+    "title" : "Fiona Kunz Kidnapping",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
   }, {
-    "title" : "George Best",
+    "title" : "George Best Vandalism",
     "description": "",
     "status": "ACTIVE",
     "documents" : [ ],
     "witnesses": [],
     "suspects": [],
     "victims" : [],
-    "tagged" : [ ]
-  } ]
+    "tagged" : [ ],
+    "archiveStatus" : "DEFAULT"
+  }, {
+    "title" : "Junk Yard Murder",
+    "description": "",
+    "status": "ACTIVE",
+    "documents" : [ ],
+    "witnesses": [],
+    "suspects": [],
+    "victims" : [],
+    "tagged" : [ ],
+    "archiveStatus" : "ARCHIVED"
+  },
+    {
+      "title" : "Klook Scam",
+      "description": "",
+      "status": "ACTIVE",
+      "documents" : [ ],
+      "witnesses": [],
+      "suspects": [],
+      "victims" : [],
+      "tagged" : [ ],
+      "archiveStatus" : "ARCHIVED"
+    },
+    {
+      "title" : "Louis Homicide",
+      "description": "",
+      "status": "ACTIVE",
+      "documents" : [ ],
+      "witnesses": [],
+      "suspects": [],
+      "victims" : [],
+      "tagged" : [ ],
+      "archiveStatus" : "ARCHIVED"
+    }
+  ]
 }

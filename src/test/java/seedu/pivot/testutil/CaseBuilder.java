@@ -1,29 +1,31 @@
 package seedu.pivot.testutil;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.model.investigationcase.Description;
 import seedu.pivot.model.investigationcase.Document;
-import seedu.pivot.model.investigationcase.Name;
 import seedu.pivot.model.investigationcase.Reference;
 import seedu.pivot.model.investigationcase.Status;
-import seedu.pivot.model.investigationcase.Suspect;
 import seedu.pivot.model.investigationcase.Title;
-import seedu.pivot.model.investigationcase.Victim;
-import seedu.pivot.model.investigationcase.Witness;
+import seedu.pivot.model.investigationcase.caseperson.Name;
+import seedu.pivot.model.investigationcase.caseperson.Suspect;
+import seedu.pivot.model.investigationcase.caseperson.Victim;
+import seedu.pivot.model.investigationcase.caseperson.Witness;
 import seedu.pivot.model.tag.Tag;
 import seedu.pivot.model.util.SampleDataUtil;
 
 /**
- * A utility class to help with building Person objects.
+ * A utility class to help with building Case objects.
  */
 public class CaseBuilder {
 
-    public static final String DEFAULT_TITLE = "Alice Pauline";
+    public static final String DEFAULT_TITLE = "Kovan Thefts";
     public static final String DEFAULT_DESCRIPTION = "";
     public static final String DEFAULT_STATUS = "active";
 
@@ -35,9 +37,10 @@ public class CaseBuilder {
     private List<Victim> victims;
     private Set<Tag> tags;
     private List<Witness> witnesses;
+    private ArchiveStatus archiveStatus;
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code CaseBuilder} with the default details.
      */
     public CaseBuilder() {
         title = new Title(DEFAULT_TITLE);
@@ -48,24 +51,26 @@ public class CaseBuilder {
         victims = new ArrayList<>();
         witnesses = new ArrayList<>();
         tags = new HashSet<>();
+        archiveStatus = ArchiveStatus.DEFAULT;
     }
 
     /**
-     * Initializes the PersonBuilder with the data of {@code personToCopy}.
+     * Initializes the CaseBuilder with the data of {@code caseToCopy}.
      */
     public CaseBuilder(Case caseToCopy) {
         title = caseToCopy.getTitle();
         description = caseToCopy.getDescription();
         status = caseToCopy.getStatus();
-        documents = new ArrayList<>(caseToCopy.getDocuments());
+        documents = caseToCopy.getDocuments();
         suspects = caseToCopy.getSuspects();
         victims = caseToCopy.getVictims();
-        witnesses = new ArrayList<>(caseToCopy.getWitnesses());
+        witnesses = caseToCopy.getWitnesses();
         tags = new HashSet<>(caseToCopy.getTags());
+        archiveStatus = caseToCopy.getArchiveStatus();
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Title} of the {@code Case} that we are building.
      */
     public CaseBuilder withTitle(String title) {
         this.title = new Title(title);
@@ -73,7 +78,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Sets the {@code Description} of the {@code Person} that we are building.
+     * Sets the {@code Description} of the {@code Case} that we are building.
      */
     public CaseBuilder withDescription(String description) {
         this.description = new Description(description);
@@ -81,7 +86,7 @@ public class CaseBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Case} that we are building.
      */
     public CaseBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
@@ -89,54 +94,72 @@ public class CaseBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     * Parses the {@code witnesses} into a {@code List<Witness>} and set it to the {@code Case} that we are building.
      */
-    public CaseBuilder withWitnesses(String ... witnesses) {
-        this.witnesses = SampleDataUtil.getWitnessList(witnesses);
+    public CaseBuilder withWitnesses(Witness ... witnesses) {
+        if (this.witnesses == null) {
+            this.witnesses = new ArrayList<>();
+        }
+        this.witnesses.addAll(Arrays.asList(witnesses));
         return this;
     }
 
     /**
-     * Sets the {@code Document} of the {@code Person} that we are building.
+     * Sets the {@code Document} of the {@code Case} that we are building.
      */
     public CaseBuilder withDocument(String name, String ref) {
-        this.documents = new ArrayList<>();
+        if (this.documents == null) {
+            this.documents = new ArrayList<>();
+        }
         this.documents.add(new Document(new Name(name), new Reference(ref)));
         return this;
     }
 
     /**
-     * Sets the {@code Status} of the {@code Person} that we are building.
+     * Sets the {@code Status} of the {@code Case} that we are building.
      */
     public CaseBuilder withStatus(String status) {
         this.status = Status.createStatus(status);
         return this;
     }
 
-    //TODO: Not used anywhere in code, use the witness example and use there
     /**
-     * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code Person} that we are building.
+     * Parses the {@code suspects} into a {@code List<Suspect>} and set it to the {@code Case} that we are building.
      */
-    public CaseBuilder withSuspects(String ... suspects) {
-        this.suspects = SampleDataUtil.getSuspectList(suspects);
+    public CaseBuilder withSuspects(Suspect ... suspects) {
+        if (this.suspects == null) {
+            this.suspects = new ArrayList<>();
+        }
+        this.suspects.addAll(Arrays.asList(suspects));
         return this;
     }
 
     /**
-     * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Person} that we are building.
+     * Parses the {@code victims} into a {@code List<Victim>} and set it to the {@code Case} that we are building.
      */
-    public CaseBuilder withVictims(String ... victims) {
-        this.victims = SampleDataUtil.getVictimList(victims);
+    public CaseBuilder withVictims(Victim ... victims) {
+        if (this.victims == null) {
+            this.victims = new ArrayList<>();
+        }
+        this.victims.addAll(Arrays.asList(victims));
         return this;
     }
 
     /**
-     * Generates a {@code Person} object with existing fields.
+     * Sets the {@code ArchiveStatus} of the {@code Case} that we are building.
+     */
+    public CaseBuilder withArchiveStatus(ArchiveStatus archiveStatus) {
+        this.archiveStatus = archiveStatus;
+        return this;
+    }
+
+    /**
+     * Generates a {@code Case} object with existing fields.
      * @return Person object
      */
     public Case build() {
-        return new Case(title, description, status, documents, suspects, victims, witnesses, tags);
+        return new Case(title, description, status, documents, suspects, victims, witnesses, tags,
+                archiveStatus);
     }
-
 
 }

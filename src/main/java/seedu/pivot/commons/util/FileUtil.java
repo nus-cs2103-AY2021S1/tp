@@ -1,10 +1,17 @@
 package seedu.pivot.commons.util;
 
+import static seedu.pivot.commons.core.DeveloperMessages.ASSERT_FILE_EXIST;
+
+import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+
+import seedu.pivot.commons.core.UserMessages;
+import seedu.pivot.logic.commands.exceptions.CommandException;
 
 /**
  * Writes and reads files
@@ -87,6 +94,23 @@ public class FileUtil {
      */
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
+    }
+
+    /**
+     * Opens a document at the specified path. Path should already be valid.
+     *
+     */
+    public static void openFile(Path file) throws IOException, CommandException {
+
+        //check if Desktop is supported by Platform or not
+        if (!Desktop.isDesktopSupported()) {
+            throw new CommandException(UserMessages.MESSAGE_DESKTOP_API_NOT_AVAILABLE);
+        }
+
+        assert (isFileExists(file)) : ASSERT_FILE_EXIST;
+        File doc = file.toFile();
+        Desktop desktop = Desktop.getDesktop();
+        desktop.open(doc);
     }
 
 }

@@ -20,19 +20,26 @@ public class Reference {
                     + "Please only enter the non-blank file name with its extension.";
 
     private static final String DEFAULT_FILEPATH = "./references/";
-    private final Path path;
-    private final String fileName;
+    protected final Path path;
+    protected final String fileName;
 
     /**
-     * Constructs a {@code Reference}.
+     * Constructs a { @code Reference }.
      *
      * @param fileName A valid file name in the default folder.
      */
     public Reference(String fileName) {
         requireNonNull(fileName);
         checkArgument(isValidReference(fileName), MESSAGE_CONSTRAINTS);
-        this.path = Paths.get(DEFAULT_FILEPATH + fileName);
+        this.path = Paths.get(getFilePath() + fileName);
         this.fileName = fileName;
+    }
+
+    /**
+     * Returns the directory path used to store the references.
+     */
+    public String getFilePath() {
+        return DEFAULT_FILEPATH;
     }
 
     /**
@@ -67,6 +74,10 @@ public class Reference {
     @Override
     public int hashCode() {
         return Objects.hash(path);
+    }
+
+    public Path getPath() {
+        return this.path;
     }
 
     public String getFileName() {

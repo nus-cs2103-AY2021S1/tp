@@ -1,7 +1,7 @@
 package seedu.pivot.logic.commands;
 
-import static seedu.pivot.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.HelpCommand.SHOWING_HELP_MESSAGE;
+import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 
 import org.junit.jupiter.api.Test;
 

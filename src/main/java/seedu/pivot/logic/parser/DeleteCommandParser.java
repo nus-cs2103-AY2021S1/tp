@@ -1,8 +1,8 @@
 package seedu.pivot.logic.parser;
 
-import static seedu.pivot.commons.core.Messages.MESSAGE_INCORRECT_CASE_PAGE;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INCORRECT_MAIN_PAGE;
-import static seedu.pivot.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_CASE_PAGE;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INCORRECT_MAIN_PAGE;
+import static seedu.pivot.commons.core.UserMessages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.pivot.logic.commands.Command.TYPE_CASE;
 import static seedu.pivot.logic.commands.Command.TYPE_DOC;
 import static seedu.pivot.logic.commands.Command.TYPE_SUSPECT;
@@ -43,6 +43,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return parseCasePage(matcher);
         }
 
+        // Might be Dead code, above if conditions are binary
         throw new ParseException(MESSAGE_INVALID_COMMAND_FORMAT);
     }
 

@@ -21,6 +21,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final Pivot pivot;
+    private final VersionedPivot versionedPivot;
     private final UserPrefs userPrefs;
     private final FilteredList<Case> filteredCases;
 
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
         logger.fine("Initializing with PIVOT: " + pivot + " and user prefs " + userPrefs);
 
         this.pivot = new Pivot(pivot);
+        this.versionedPivot = new VersionedPivot(pivot);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredCases = new FilteredList<>(this.pivot.getCaseList());
     }
@@ -80,8 +82,9 @@ public class ModelManager implements Model {
     //=========== PIVOT ================================================================================
 
     @Override
-    public void setPivotBook(ReadOnlyPivot pivot) {
+    public void setPivot(ReadOnlyPivot pivot) {
         this.pivot.resetData(pivot);
+        StateManager.refresh();
     }
 
     @Override
@@ -103,7 +106,6 @@ public class ModelManager implements Model {
     @Override
     public void addCase(Case investigationCase) {
         pivot.addCase(investigationCase);
-        updateFilteredCaseList(PREDICATE_SHOW_ALL_CASES);
     }
 
     @Override
@@ -111,6 +113,39 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedCase);
         pivot.setCase(target, editedCase);
         StateManager.refresh();
+    }
+
+    //=========== Versioned Pivot ===========================================================================
+    @Override
+    public void commitPivot(String command) {
+        requireNonNull(command);
+        this.versionedPivot.purgeStates();
+        this.versionedPivot.commit(new Pivot(this.pivot), command);
+    }
+
+    @Override
+    public boolean canRedoPivot() {
+        return this.versionedPivot.canRedo();
+    }
+
+    @Override
+    public String redoPivot() {
+        ReadOnlyPivot pivot = this.versionedPivot.redo();
+        this.setPivot(pivot);
+        return this.versionedPivot.getStateCommand();
+    }
+
+    @Override
+    public boolean canUndoPivot() {
+        return this.versionedPivot.canUndo();
+    }
+
+    @Override
+    public String undoPivot() {
+        String command = this.versionedPivot.getStateCommand();
+        ReadOnlyPivot pivot = this.versionedPivot.undo();
+        this.setPivot(pivot);
+        return command;
     }
 
     //=========== Filtered Case List Accessors =============================================================
