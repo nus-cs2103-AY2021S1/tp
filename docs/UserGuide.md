@@ -174,13 +174,13 @@ Example(s):
 
 Finds and displays all the contacts of the module specified.
 
-Format: `module list n/MODULE_NAME`
+Format: `module list m/MODULE_NAME`
 
 Note(s): 
-* The command `module list n/clean` will restore the module UI to show all contacts again.
+* The command `module list m/clean` will restore the module UI to show all contacts again.
 
 Example(s):
-* `module list n/CS2103`
+* `module list m/CS2103`
 
 ### Editing a module : `module edit`
 
@@ -204,9 +204,12 @@ Deletes a module with a specific name.
 
 Format: `module delete m/MODULE_NAME`
 
-Note: 
+Note(s): 
 * All meetings based on the deleted module will also be deleted, once deleted there is no undo so delete the module 
 carefully.
+
+Example(s):
+* `module delete m/CS2103`
 
 ### Adding a meeting: `meeting add`
 
@@ -399,8 +402,8 @@ Action | Format, Examples
 **List Contacts** | `contact list`
 **Add Module** | `module add [n/MODULE_NAME] [p/MEMBER_NAME] [p/MEMBER_NAME]...`<br> e.g., `module add n/CS2103 p/Jay p/Roy`
 **Edit Module** | `module edit [m/MODULE_NAME] [n/MODULE_NEWNAME] [p/MEMBER_NAME] [p/MEMBER_NAME]...`<br> e.g., `module edit m/CS2103 n/CS2103T p/Jay p/Roy`
-**List Modules** | `module list  [n/MODULE_NAME]`<br> e.g., `module list n/CS2103`
-**Delete Modules** | `module delete  [n/MODULE_NAME]`<br> e.g., `module delete n/CS2103`
+**List Modules** | `module list  [m/MODULE_NAME]`<br> e.g., `module list m/CS2103`
+**Delete Modules** | `module delete  [m/MODULE_NAME]`<br> e.g., `module delete m/CS2103`
 **Add Label** | `label add [c/CONTACT_NAME] [t/TAG_NAMES]…` <br> e.g., `label add c/Bobby Bob t/friend`
 **Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam, Jay, Jerryl, Roy`
 **Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
