@@ -27,7 +27,7 @@ public class StatsRecipeMadeCommand extends Command {
         }
     }
 
-    private String getMessage() {
+    private String getMessage(boolean isEmpty) {
         DateTimeFormatter onFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         String msg;
@@ -36,16 +36,20 @@ public class StatsRecipeMadeCommand extends Command {
             var before = this.before.format(formatter);
             var after = this.after.format(formatter);
             if (this.after.plusDays(1).equals(this.before)) {
-                msg = String.format("Here is a list of recipes made on %s", onBefore);
+                msg = String.format(isEmpty ? "No recipes were made on %s"
+                                            : "Here is a list of recipes made on %s", onBefore);
             } else {
-                msg = String.format("Here is a list of recipes made from the period %s to %s", after, before);
+                msg = String.format(isEmpty ? "No recipes were made from the period %s to %s"
+                                            : "Here is a list of recipes made from the period %s to %s", after, before);
             }
         } else if (this.before != null) {
             var before = this.before.format(formatter);
-            msg = String.format("Here is a list of recipes made before %s", before);
+            msg = String.format(isEmpty ? "No recipes were made before %s"
+                                        : "Here is a list of recipes made before %s", before);
         } else {
             var before = this.after.format(formatter);
-            msg = String.format("Here is a list of recipes made after %s", before);
+            msg = String.format(isEmpty ? "No recipes were made after %s"
+                                        : "Here is a list of recipes made after %s", before);
         }
         return msg;
     }
@@ -53,7 +57,7 @@ public class StatsRecipeMadeCommand extends Command {
     @Override
     public CommandResult execute(Model model, HistoryManager historyManager) throws CommandException {
         var output = model.getRecipeUsageList().getUsagesBetween(after, before);
-        return CommandResult.statsMessage(output, getMessage());
+        return CommandResult.statsMessage(output, getMessage(output.isEmpty()));
     }
 
     @Override

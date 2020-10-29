@@ -28,6 +28,7 @@ import javafx.scene.layout.VBox;
 public class StatsBox extends UiPart<Region> {
 
     private static final String SUBTITLE_NO_RECIPES = "No recipes were made recently";
+    private static final String SUBTITLE_NO_INGREDIENTS = "No ingredients were made recently";
     private static final String SUBTITLE_DEFAULT = "Showing recently made recipes";
 
     private static final ArrayList<Pair<String, String>> EMPTY_RESULT =
@@ -99,13 +100,9 @@ public class StatsBox extends UiPart<Region> {
 
         this.recipeList.getChildren().clear();
 
-        if (list.isEmpty()) {
-            this.subtitle.setText(SUBTITLE_NO_RECIPES);
-        } else {
-            this.subtitle.setText(subtitle);
-            for (var usage : list) {
-                this.recipeList.getChildren().add(new StatsItemView(usage.fst(), usage.snd()).getRoot());
-            }
+        this.subtitle.setText(subtitle);
+        for (var usage : list) {
+            this.recipeList.getChildren().add(new StatsItemView(usage.fst(), usage.snd()).getRoot());
         }
     }
 }
