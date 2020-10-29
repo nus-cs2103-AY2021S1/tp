@@ -350,8 +350,8 @@ _{explain the feature here}_
 **Q**: Are commands case-sensitive?<br>
 **A**: Yes
 
-**Q**: How can I import contacts from my existing devices e.g. Mobile Phones / Email?<br>
-**A**: We are currently working on importing .vcf contacts, stay tuned!
+**Q**: Can I import contacts from my existing devices e.g. Mobile Phones / Email?<br>
+**A**: No.
 
 --------------------------------------------------------------------------------------------------------------------
 
