@@ -95,9 +95,10 @@ You can include `remind` when adding an assignment instead of using the `remind`
 </div>
 
 For example, to add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
-simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information will be displayed together with the assignment as shown in the labelled diagram below.
+simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information of the assignment will be displayed as shown in the labelled diagram below.
 
-DIAGRAM
+   ![UserGuideAddCommand](images/UserGuideAddCommand.png)
+   *Figure 1: Information of the assignment added labelled*
 
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
@@ -295,19 +296,22 @@ You can keep track of your uncompleted assignments by marking assignments that y
 You can mark **one or more** assignments as done by specifiying the assignment(s) `INDEX` as shown in your list. Here is
 an example with steps to follow:
 
-1) To mark assignments with the name "" and "" shown in the figure below as done, you can simply enter `done 2 3done 2 3` into
-the command line based on the indexes circled and labelled in the figure.
+1) To mark assignments with the name "Essay" and "Biology lab report" shown in the figure below as done, you can simply enter `done 2 3` into
+the command line based on the indexes labelled in the figure.
 
-DIAGRAM
+   ![UserGuideDoneCommandIndex](images/UserGuideDoneCommandIndex.png)
+   *Figure 10a: `Indexes` of assignments labelled*
+   
+2) The two assignments will be marked as done and each assignment will have a green tick displayed as labelled in the figure. 
 
-2) The two assignments will be marked as done and each assignment will have a green tick displayed as circled in the figure. 
-
-DIAGRAM
+   ![UserGuideDoneCommandTicksAdded](images/UserGuideDoneCommandTicksAdded.png)
+   *Figure 10b: Added ticks labelled*
 
 3) A message that includes the information of the assignments marked as done will be displayed in the Command Box.
 
-DIAGRAM
-
+   ![UserGuideDoneCommandSuccess](images/UserGuideDoneCommandSuccess.png)
+   *Figure 10c: Message shown in Command Box labelled*
+   
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * At least one index must be present. For example, `done` without any index will not work.
@@ -326,19 +330,22 @@ You can unmark assignments that you have previously marked as done by specifying
 
 You can unmark `one` done assignment at a time. Here is an example with steps to follow:
 
-1) If you have accidentally marked the assignment with the name " " as done,
-you can simply enter `undone X` into the command line based on the index circled in the figure.
+1) If you have **accidentally** marked the assignment with the name "Essay" as done,
+you can simply enter `undone 2` into the command line based on the index labelled in the figure.
 
-DIAGRAM
+   ![UserGuideUndoneCommandIndex](images/UserGuideUndoneCommandIndex.png)
+   *Figure 11a: `Index` of assignment labelled*
 
 2) The green tick associated to the assignment is no longer displayed as shown in the diagram below.
 
-DIAGRAM
+   ![UserGuideUndoneCommandTickRemoval](images/UserGuideUndoneCommandTickRemoval.png)
+   *Figure 11b: Deleted green tick labelled*
 
 3) A message that includes the information of your assignment marked as undone will be displayed in the Command Box.
 
-DIAGRAM 
-
+   ![UserGuideUndoneCommandSuccess](images/UserGuideUndoneCommandSuccess.png)
+   *Figure 11c: Message shown in Command Box labelled*
+   
 <div markdown="block" class="alert alert-primary">
  **:clipboard: Pointers to note:**<br>
 * Assignments are marked as not done**by default**
@@ -362,13 +369,16 @@ If you cleared all your assignments and lessons by accident, use `undo` to retri
 
 Format: `help`
 
-You can see a summary of all the commands that you can use in ProductiveNUS.
+If you are new to ProductiveNUS or want to have a quick overview of all the available commands, you can simply enter `help` and a Help Window will appear as shown in the labelled diagram below.
+
+   ![UserGuideHelpCommand](images/UserGuideHelpCommand.png)
+   *Figure 12: Help Window labelled*
 
 ### Exiting the program : `exit`
 
 Format: `exit`
 
-Exits the program.
+You can use this command to exit the program.
 
 ### Saving the data
 
