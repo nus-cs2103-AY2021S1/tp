@@ -66,6 +66,7 @@ public class EditStatusCommand extends EditCommand {
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags());
         model.setCase(stateCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_EDIT_STATUS_SUCCESS, status));
 
         return new CommandResult(String.format(MESSAGE_EDIT_STATUS_SUCCESS, status));
     }
