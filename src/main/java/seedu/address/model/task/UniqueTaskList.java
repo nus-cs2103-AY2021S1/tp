@@ -29,6 +29,7 @@ public class UniqueTaskList implements Iterable<Task> {
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+
     /**
      * Returns true if the list contains an equivalent task as the given argument.
      */
@@ -83,6 +84,20 @@ public class UniqueTaskList implements Iterable<Task> {
     }
 
     /**
+     * Returns true if {@code tasks} contains only unique tasks.
+     */
+    private boolean tasksAreUnique(List<Task> tasks) {
+        for (int i = 0; i < tasks.size() - 1; i++) {
+            for (int j = i + 1; j < tasks.size(); j++) {
+                if (tasks.get(i).isSameTask(tasks.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
@@ -104,20 +119,6 @@ public class UniqueTaskList implements Iterable<Task> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
-    }
-
-    /**
-     * Returns true if {@code tasks} contains only unique tasks.
-     */
-    private boolean tasksAreUnique(List<Task> tasks) {
-        for (int i = 0; i < tasks.size() - 1; i++) {
-            for (int j = i + 1; j < tasks.size(); j++) {
-                if (tasks.get(i).isSameTask(tasks.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 }
 
