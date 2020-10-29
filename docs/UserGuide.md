@@ -510,7 +510,7 @@ Format: `undo`
 2. Either press Enter on your keyboard or click Send to execute the command.
     <br>
     
-    ![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
+    ![edit-i example one step three](images/undo-example-one-step-two.PNG)
     <br>
     
     Figure 17: Clear all items
