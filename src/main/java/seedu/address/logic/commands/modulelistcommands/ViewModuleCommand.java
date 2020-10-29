@@ -25,7 +25,6 @@ public class ViewModuleCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views a module in the module list. "
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + "1";
-    public static final String MESSAGE_MODULE_NOT_FOUND = "The module requested cannot be found.";
 
     private Index index;
 
