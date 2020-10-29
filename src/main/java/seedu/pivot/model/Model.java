@@ -94,14 +94,17 @@ public interface Model {
      */
     void updateFilteredCaseList(Predicate<Case> predicate);
 
-    void commitPivot(String command);
+    void commitPivot(String command, boolean isMainPageCommand);
 
     boolean canRedoPivot();
 
-    String redoPivot();
+    void redoPivot();
 
     boolean canUndoPivot();
 
-    String undoPivot();
+    void undoPivot();
 
+    String getStateCommand();
+
+    boolean isMainPageCommand();
 }

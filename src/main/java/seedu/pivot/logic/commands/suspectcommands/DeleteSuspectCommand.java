@@ -65,7 +65,7 @@ public class DeleteSuspectCommand extends DeleteCommand {
                 openCase.getTags(), openCase.getArchiveStatus());
 
         model.setCase(openCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_DELETE_SUSPECT_SUCCESS, suspectToDelete));
+        model.commitPivot(String.format(MESSAGE_DELETE_SUSPECT_SUCCESS, suspectToDelete), false);
         model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         return new CommandResult(String.format(MESSAGE_DELETE_SUSPECT_SUCCESS, suspectToDelete));
