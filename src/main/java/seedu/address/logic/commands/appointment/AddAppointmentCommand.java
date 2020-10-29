@@ -93,7 +93,8 @@ public class AddAppointmentCommand extends Command {
             }
 
             model.addAppointment(toAdd);
-            model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD, toAdd));
+            model.commitCliniCal(String.format(Messages.MESSAGE_UNDONE_REDONE_INPUT, COMMAND_WORD + " for ",
+                toAdd));
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
     }

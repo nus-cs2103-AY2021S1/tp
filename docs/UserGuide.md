@@ -9,48 +9,30 @@ title: CliniCal User Guide
 
 ## 1. Introduction
 
-Welcome to the CliniCal User Guide!
-
 CliniCal(Clinic Calendar) is a **desktop app that allows doctors to manage patient records and schedule upcoming appointments**. With CliniCal, you can enhance your daily workflow through the effective scheduling of medical appointments. You can also have access to a digital database that safely stores all your patient records. 
 
 Furthermore, CliniCal is optimized for use via a Command Line Interface (CLI) and even retains the benefits of a Graphical User Interface (GUI). If you can type fast, CliniCal can get your work done faster than traditional GUI apps.
 
-Interested to know more? Take a look at our [**Quick Start**](#2-quick-start) guide. Enjoy!
+Interested to know more? Take a look at our [**Quick Start**](#3-quick-start) guide. Enjoy!
 
+## 2 About this document
 
-## 2. Quick Start
+Welcome to the CliniCal User Guide!
 
-Welcome to CliniCal! If you are new to our software, this quick start guide will get you up and running in no time! It equips you with the basics tools you need to use CliniCal appropriately.
+If you are new to CliniCal, this quick start guide will get you up and running in no time! It equips you with the basic knowledge you need to use CliniCal properly.
 
-1. Ensure you have Java `11` or above installed in your Computer.
+### 2.1 Formatting
 
-1. Download the latest `CliniCal.jar` from [_here_](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases).
+The CliniCal User Guide contains different formatting used throughout the document which is used to convey different meanings. 
+This table below will illustrate what they mean.
 
-1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
-
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
-
-1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window.<br>
-   Some example commands you can try:
-
-   * `list` : Lists all your patients.
-
-   * `add``n/John Doe p/98765432 ic/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
-
-   * `delete``3` : Deletes the 3rd patient shown in the patient list.
-
-   * `clear` : Deletes all your patients.
-
-   * `exit` : Exits the app.
-
-1. Refer to the [**Features**](#3-features) below for details of each command.
-
---------------------------------------------------------------------------------------------------------------------
-
-## 3. Features
-
-This section highlights the commands that CliniCal supports. These include details about the format of the command and example scenarios of the command.
+| Formatting    | What                            | Meaning   | Example                     |
+| ----------    |-------------------------------------|-----------|--------------------------|
+| `add`      | Words in light-blue highlight, also known as a mark-up| A command that can be typed into CliniCal|`help`|
+| `p/PHONE_NUMBER` | Words in UPPER_CASE | Parameters to be supplied by the user (can be in any order!)|`p/91234567`|
+| `n/NAME [s/SEX]` | Words in square brackets| Optional|`n/John Doe` or <br> `n/John s/M` |
+| `[g/ALLERGY]…` | Words with `…` after them| Parameters that can be input multiple times including 0 times|`g/sul g/ad` or `g/penicillini`|
+| [Blue underline](#2-about-this-document)| Blue words that show underline on mouse-over| A clickable hyperlink, to either an external webpage or other parts of this User Guide|[1. Introduction](#1-introduction)|
 
 <div markdown="block" class="alert alert-info">
 
@@ -70,11 +52,45 @@ This section highlights the commands that CliniCal supports. These include detai
 
 </div>
 
-### 3.1 General Commands
+## 3. Quick Start
 
-General commands are commands that enhances general user experience when you are using the app.
+You can follow the steps below to get CliniCal up and running:
 
-#### 3.1.1 Viewing help: `help`
+1. Ensure you have Java `11` or above installed on your Computer.
+
+1. [Download](https://github.com/AY2021S1-CS2103T-W11-4/tp/releases) the latest `CliniCal.jar`.
+
+1. Copy the file to the folder you want to use as the _home folder_ for CliniCal.
+
+1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+1. Type the command in the command box and press <kbd>Enter</kbd> to execute it. e.g. typing `help` and pressing <kbd>Enter</kbd> will open the help window.<br>
+   Some example commands you can try:
+
+   * `list` : Lists all your patients.
+
+   * `add``n/John Doe p/98765432 ic/S2561932A a/Pickle street, Block 123, #01-01 e/johnd@example.com` : Adds a patient named `John Doe` to the patient database.
+
+   * `delete``3` : Deletes the 3rd patient shown in the patient list.
+
+   * `clear` : Deletes all your patients.
+
+   * `exit` : Exits the app.
+
+1. Refer to the [**Features**](#4-features) below for details of each command or refer to the [**Command Summary**](#6-command-summary) to quickly refer to all available commands.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## 4. Features
+
+This section highlights the commands that CliniCal supports. These include details about the format of the command and example scenarios of the command.
+
+### 4.1 General Commands
+
+General commands help enhance your general user experience while using CliniCal.
+
+#### 4.1.1 Viewing help: `help`
 
 Access help page by referring to the link provided in the message pop-up.
 
@@ -82,7 +98,7 @@ Access help page by referring to the link provided in the message pop-up.
 
 Format: `help`
 
-#### 3.1.2 Retrieving past commands: `history`
+#### 4.1.2 Retrieving past commands: `history`
 
 View a list of past commands that you had used during the session.
 
@@ -90,7 +106,7 @@ View a list of past commands that you had used during the session.
 
 Format: `history`
 
-#### 3.1.3 Clearing command history: `clearhistory`
+#### 4.1.3 Clearing command history: `clearhistory`
 
 Clear the command history.
 
@@ -106,17 +122,44 @@ Format: `clearhistory`
 
 </div>
 
-#### 3.1.4 Exiting the program: `exit`
+#### 4.1.4 Undoing the previous command: `undo`
+
+Revert your previous command which modified the patient database.
+
+![example of undoing command](images/undoExample.png)
+
+Format: `undo`
+
+* Only applies for commands that modify the patient database such as `add`, `addpicture`, `edit`, `delete`, `clear`,
+`addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
+* Does not apply for undoable commands such as `find`, `list` and `clearhistory`.
+
+Example: 
+* While trying to `addpicture`, you accidentally deleted Alex Yeoh's patient details. 
+* Instead of re-entering all the information again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
+
+#### 4.1.5 Redoing a command: `redo`
+
+![example redoing command](images/redoExample.png)
+
+Redo the most recent command that you have undone.
+
+Format: `redo`
+
+* Only able to `redo` commands that have been previously undone such as `add`, `addpicture`, `edit`, `delete`, `clear`,
+`addvisit`, `editvisit`, `deletevisit`, `addappt`, `editappt` and `deleteappt`.
+
+#### 4.1.6 Exiting the program: `exit`
 
 Exit the program.
 
 Format: `exit`
 
-### 3.2 Patient Commands
+### 4.2 Patient Commands
 
-Patient commands are commands that you can utilise to make changes to your list of patients.
+Patient commands help you make changes to your database of patients.
 
-#### 3.2.1 Adding a patient: `add`
+#### 4.2.1 Adding a patient: `add`
 
 Add a new patient to the patient database.
 
@@ -146,7 +189,7 @@ Examples:
 
 </div>
 
-#### 3.2.2 Adding profile picture: `addpicture`
+#### 4.2.2 Adding profile picture: `addpicture`
 
 Add a profile picture to your patient’s profile by specifying the filepath to desired profile picture.
 
@@ -170,7 +213,7 @@ Examples:
 
 </div>
 
-#### 3.2.3 Editing a patient: `edit`
+#### 4.2.3 Editing a patient: `edit`
 
 Edit an existing patient in the patient database.
 
@@ -191,7 +234,7 @@ Examples:
 
 ![example of color coded patient](images/colorTagExample.png)
 
-#### 3.2.4 Deleting a patient: `delete`
+#### 4.2.4 Deleting a patient: `delete`
 
 ![example of deleted patient](images/deleteExample.png)
 
@@ -207,7 +250,7 @@ Examples:
 * `list` followed by `delete 2` Deletes the 2nd patient in the patient database.
 * `find Betsy` followed by `delete 1` Deletes the 1st patient in the results of the `find` command.
 
-#### 3.2.5 Deleting all patients: `clear`
+#### 4.2.5 Deleting all patients: `clear`
 
 ![example of cleared list](images/clearExample.png)
 
@@ -222,7 +265,7 @@ Format: `clear`
 
 </div>
 
-#### 3.2.6 Finding patients: `find`
+#### 4.2.6 Finding patients: `find`
 
 Find patients whose names or IC number contain any of the given keywords.
 
@@ -243,7 +286,7 @@ Examples:
 * `find alex david` Returns `Alex Yeoh`, `David Li`<br>
 * `find 9123456` Returns the patient with the IC number `s9123456z`
 
-#### 3.2.7 Listing all patients: `list`
+#### 4.2.7 Listing all patients: `list`
 
 ![example of listing patients](images/listExample.png)
 
@@ -260,31 +303,7 @@ You can revert your previous command which modified the patient database.
 
 </div>
 
-#### 3.2.8 Undoing the previous command: `undo`
-
-Revert your previous command which modified the patient database.
-
-![example of undoing command](images/undoExample.png)
-
-Format: `undo`
-
-* Only applies for commands that modify the patient database such as `add`, `addpicture`, `edit`, `delete` and `clear`.
-* Does not apply for undoable commands such as `find` and `list`.
-
-Example: 
-* While trying to `addpicture`, you accidentally deleted Alex Yeoh's patient details. Instead of re-entering all the information again, you can easily restore Alex Yeoh's details by using `undo` on your previous `delete` command.
-
-#### 3.2.9 Redoing a command: `redo`
-
-![example redoing command](images/redoExample.png)
-
-Redo the most recent command that you have undone.
-
-Format: `redo`
-
-* Only able to `redo` commands that have been previously undone such as `add`, `addpicture`, `edit`, `delete` and `clear`.
-
-#### 3.2.10 Viewing patient profile: `profile`
+#### 4.2.8 Viewing patient profile: `profile`
 
 Display the patient's profile in a separate window.
 
@@ -303,9 +322,16 @@ Format: `profile INDEX`
 **Step 3**: To close the patient profile window, you can click on the 'Close' button on the top-right section of the window. Alternatively, you can press
 <kbd>ESC</kbd> key on your keyboard.
 
-### 3.3 Patient Visitation Commands
+### 4.3 Patient Visitation Commands
 
-#### 3.3.1 Adding a new visitation log for patient: `addvisit`
+Visitation commands help you make changes to the visitation logs specific to a patient. 
+
+These visitation logs store the following as a short summary of a patient's visit:
+* Diagnosis
+* Prescription
+* Comments
+
+#### 4.3.1 Adding a new visitation log for patient: `addvisit`
 
 Display a new window to add a new visitation log for the specified patient.
 
@@ -333,23 +359,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 </div>
 
-#### 3.3.2 Deleting patient's visitation log: `deletevisit`
-
-Delete the patient's visitation log.
-
-Format: `deletevisit INDEX i/VISIT_INDEX`
-
-* `INDEX` refers to the patient's index number as shown in the displayed patient list.
-* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
-* Both indexes **must be a positive number** 1, 2, 3, …​
-
-**Example**: You want to delete the 2nd visitation log belonging to the 1st patient on the list.
-
-**Step 1**: Input `deletevisit 1 i/2` into the command box and press <kbd>Enter</kbd>.
-
-**Step 2**: A message will be displayed to indicate that the patient's second visitation log has been successfully deleted.
-
-#### 3.3.3 Editing patient's visitation log: `editvisit`
+#### 4.3.2 Editing patient's visitation log: `editvisit`
 
 Display a new window to edit the visitation log for a specified patient.
 
@@ -373,15 +383,33 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
 
-### 3.4 Patient Appointment Commands
+#### 4.3.3 Deleting patient's visitation log: `deletevisit`
 
-#### 3.4.1 Adding an appointment: `addapp`
+Delete the patient's visitation log.
+
+Format: `deletevisit INDEX i/VISIT_INDEX`
+
+* `INDEX` refers to the patient's index number as shown in the displayed patient list.
+* `VISIT_INDEX` refers to the visitation's index number as shown in the patient's profile.
+* Both indexes **must be a positive number** 1, 2, 3, …​
+
+**Example**: You want to delete the 2nd visitation log belonging to the 1st patient on the list.
+
+**Step 1**: Input `deletevisit 1 i/2` into the command box and press <kbd>Enter</kbd>.
+
+**Step 2**: A message will be displayed to indicate that the patient's second visitation log has been successfully deleted.
+
+### 4.4 Patient Appointment Commands
+
+Patient Appointment commands help you manage your upcoming patient appointments.
+
+#### 4.4.1 Adding an appointment: `addappt`
 
 Add a new appointment for the specified patient to the appointment database.
 
 Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
-* `INDEX` refers to the patient's index number as shown in the displayed patient list in the patient tab.
+* `INDEX` refers to the patient's index number as shown in the displayed patient list in the **Patients** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
 * `APPOINTMENT DATETIME` refers to the date and starting time of the appointment.
     * It follows the format of `yyyy-MM-dd HH:mm`.
@@ -392,15 +420,15 @@ Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* If you are having trouble converting your time to 24 hour format, you may use the time format converter at https://www.timecalculator.net/12-hour-to-24-hour-converter.
-
+* If you are having trouble converting your time to 24 hour format, check out a time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
+* You can retrieve your desired patient `INDEX` from the **Patients** tab.
 </div>
 
 Example: You want to add an appointment with the first patient on the list.
 
-Step 1: Input `addapp 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
+Step 1: Input `addappt 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
 
-Step 2: On the overview tab, you can find your newly added appointment saved inside the appointment list.
+Step 2: On the **Overview** tab, you can find your newly added appointment saved inside the appointment list.
 
 Step 3: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
 
@@ -411,20 +439,20 @@ Step 3: If your newly added appointment is happening within a week from today, y
 
 </div>
 
-#### 3.4.2 Editing an appointment: `editapp`
+#### 4.4.2 Editing an appointment: `editappt`
 
 Edit the specified appointment in the appointment database.
 
-Format: `editapp INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIME] [d/DURATION]`
+Format: `editappt INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIME] [d/DURATION]`
 
 * Edits the appointment at the specified `INDEX`. `INDEX` refers to the index number shown in the displayed appointment list. The index **must be a positive number** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
 
-* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab. 
+* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the **Overview** tab. 
     * It **must be a positive number**, eg. 1, 2, 3, …​
-* `PATIENT_NAME` refers to the name of the patient involved in the appointment as shown in the displayed calendar in the overview tab.
-* `PATIENT_IC` refers to the ic number of the patient involved in the appointment as shown in the displayed calendar in the overview tab. 
+* `PATIENT_NAME` refers to the name of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab.
+* `PATIENT_IC` refers to the ic number of the patient involved in the appointment as shown in the displayed calendar in the **Overview** tab. 
 * `APPOINTMENT DATETIME` refers to the date and starting time of the appointment. 
     * It follows the format of `yyyy-MM-dd HH:mm`. 
     * Do note that you will need to input the hour (`HH`) in  the 24-hour format. 
@@ -433,34 +461,41 @@ Format: `editapp INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIM
 <div markdown="block" class="alert alert-primary">
 :bulb: <span style="font-weight:bold">Tip: </span>
 
-* If you are having trouble converting your time to 24 hour format, you may use the time format converter at https://www.timecalculator.net/12-hour-to-24-hour-converter.
-
+* If you are having trouble converting your time to 24 hour format, check out the time format converter at <a href="https://www.timecalculator.net/12-hour-to-24-hour-converter">this link</a>.
+* You can retrieve your desired appointment `INDEX` from the **Overview** tab.
 </div>
 
 Example: You want to edit the time and the duration of the first appointment in the appointment list.
 
-Step 1: Input `editapp 1 st/2020-10-10 11:00 d/30` into the command box and press Enter.
+Step 1: Input `editappt 1 st/2020-10-10 11:00 d/30` into the command box and press Enter.
 
-Step 2: On the overview tab, you can find the newly updated appointment inside the appointment list. 
+Step 2: On the **Overview** tab, you can find the newly updated appointment inside the appointment list. 
 
 Step 3: If the newly updated appointment is due within a week from today, you can also see the appointment details inside the calendar.
 
-#### 3.4.3 Deleting an appointment: `deleteapp`
+#### 4.4.3 Deleting an appointment: `deleteappt`
 
 Delete the specified appointment from the appointment database.
 
-Format: `deleteapp INDEX`
+Format: `deleteappt INDEX`
 
-* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab.
+* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the **Overview** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
 
 Example: You want to delete your next upcoming appointment as your patient could not make it.
 
-Step 1: Input `deleteapp 1` and press Enter.
+Step 1: Input `deleteappt 1` and press Enter.
 
 Step 2: The first appointment displayed will be removed from the appointment list immediately. You can also see that the appointment is no longer being displayed on the calendar.
 
-### 3.5 Retrieving past commands using arrow keys
+<div markdown="block" class="alert alert-primary">
+:bulb: <span style="font-weight:bold">Tip: </span>
+
+* You can retrieve your desired appointment `INDEX` from the **Overview** tab.
+
+</div>
+
+### 4.5 Retrieving past commands using arrow keys
 
 Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kbd> arrow keys on the keyboard.
 1. Click on the text field of the command box.
@@ -476,34 +511,34 @@ Retrieve and reuse past commands using the <kbd>↑</kbd> arrow and <kbd>↓</kb
 
 </div>
 
-### 3.6 Saving the data
+### 4.6 Saving the data
 
 CliniCal data is saved in your hard disk automatically after any command that changes the data. There is no need to save manually.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 4. FAQ
+## 5. FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous CliniCal home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## 5. Command summary
+## 6. Command summary
 
 Action | Format, Examples
 --------|------------------
 **Add** | `add n/NAME p/PHONE_NUMBER ic/NRIC [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…​` <br> e.g., `add n/James Ho p/22224444 i/S2686887R e/jamesho@example.com a/123, Clementi Rd, 1234665 s/M b/B+ g/sulfa g/aspirin`
 **Add profile picture** | `addpicture 1 f/data/profile_picture.png`
 **Add Visit** | `addvisit INDEX [vd/VISIT_DATE]`
-**Add Appointment** | `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION` <br> e.g., `addapp 1 st/2020-10-27 14:00 d/60`
+**Add Appointment** | `addappt INDEX st/APPOINTMENT_DATETIME d/DURATION` <br> e.g., `addappt 1 st/2020-10-27 14:00 d/60`
 **Clear** | `clear`
 **Clear command history** | `clearhistory`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Delete Visit** | `deletevisit INDEX i/VISIT_INDEX`
-**Delete Appointment** | `deleteapp INDEX` <br> e.g., `delete 3`
+**Delete Appointment** | `deleteappt INDEX` <br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [ic/NRIC] [a/ADDRESS] [e/EMAIL] [s/SEX] [b/BLOOD_TYPE] [ct/COLOR_TAG] [g/ALLERGY]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com `
-**Edit Appointment** | `editapp INDEX` <br> e.g., `editapp 3 st/2020-11-11 10:10 d/40`
+**Edit Appointment** | `editappt INDEX` <br> e.g., `editappt 3 st/2020-11-11 10:10 d/40`
 **Edit Visit** | `editvisit INDEX i/VISIT_INDEX`
 **Find** | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
