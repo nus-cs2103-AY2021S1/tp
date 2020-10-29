@@ -34,14 +34,14 @@ public class HelpWindow extends UiPart<Stage> {
             "help";
 
     public static final String ADD_DESCRIPTION =
-            "add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse>";
+            "add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse> \n"
+                    + "add n/<name> s/<source of stock> q/<quantity> l/<location in warehouse> lq/<low quantity>";
 
     public static final String LIST_DESCRIPTION =
             "list lt/all \nlist lt/bookmark \nlist lt/low";
 
     public static final String DELETE_DESCRIPTION =
-            "delete sn/<serial number>"
-            + "delete sn/<serial number> sn/<serial number 2>";
+            "delete sn/<serial number> \n" + "delete sn/<serial number> sn/<serial number 2>";
 
     public static final String FIND_DESCRIPTION =
             "find (followed by combination of any): \n"
@@ -55,7 +55,7 @@ public class HelpWindow extends UiPart<Stage> {
             "update sn/<serial number> (followed by combination of any):\n"
                     + "iq/<+/-><quantity to increment/decrement> \nnq/<new quantity> \nn/<new name>\n"
                     + "l/<new location in warehouse> \ns/<new source of stock>\n"
-                    + "lq/<low quantity>"
+                    + "lq/<low quantity>\n"
                     + "NOTE: only either of iq/ or nq/ can be provided.\n";
 
     public static final String NOTE_DESCRIPTION = "note sn/<serial number> nt/<note for stock>\n"
@@ -211,11 +211,11 @@ public class HelpWindow extends UiPart<Stage> {
 
         //Disclaimer on where to click
         disclaimer.setText(DISCLAIMER);
-        disclaimer.setStyle("-fx-font-size: 110%;");
+        disclaimer.setStyle("-fx-font-size: 200%;");
 
         //setting the colours for the link
         url.setText(USERGUIDE_URL);
-        url.setStyle("-fx-text-fill: #0b6ae0;");
+        url.setStyle("-fx-text-fill: #0b6ae0;" + "-fx-font-size: 200%;");
         url.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
