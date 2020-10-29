@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.logic.commands.AddCommand;
@@ -20,15 +19,20 @@ import seedu.pivot.logic.commands.testutil.ModelStub;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Pivot;
 import seedu.pivot.model.ReadOnlyPivot;
+import seedu.pivot.model.investigationcase.ArchiveStatus;
 import seedu.pivot.model.investigationcase.Case;
 import seedu.pivot.testutil.CaseBuilder;
 
 public class AddCaseCommandTest {
 
-    @BeforeEach
-    public void setUpMainPage() {
+    public void setUpMainPageDefaultSection() {
         StateManager.resetState();
         StateManager.setDefaultSection();
+    }
+
+    public void setUpMainPageArchivedSection() {
+        StateManager.resetState();
+        StateManager.setArchivedSection();
     }
 
     @Test
@@ -37,7 +41,9 @@ public class AddCaseCommandTest {
     }
 
     @Test
-    public void execute_caseAcceptedByModel_addSuccessful() throws Exception {
+    public void executeDefaultSection_caseAcceptedByModel_addSuccessful() throws Exception {
+        setUpMainPageDefaultSection();
+
         ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
         Case validCase = new CaseBuilder().build();
 
@@ -49,8 +55,36 @@ public class AddCaseCommandTest {
     }
 
     @Test
-    public void execute_duplicateCase_throwsCommandException() {
+    public void executeArchivedSection_caseAcceptedByModel_addSuccessful() throws Exception {
+        setUpMainPageArchivedSection();
+
+        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
+        Case validCase = new CaseBuilder().withArchiveStatus(ArchiveStatus.ARCHIVED).build();
+
+        CommandResult commandResult = new AddCaseCommand(validCase).execute(modelStub);
+
+        assertEquals(String.format(AddCaseCommand.MESSAGE_ADD_CASE_SUCCESS, validCase),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validCase), modelStub.personsAdded);
+    }
+
+    @Test
+    public void executeDefaultSection_duplicateCase_throwsCommandException() {
+        setUpMainPageDefaultSection();
+
         Case validCase = new CaseBuilder().build();
+        AddCommand addCommand = new AddCaseCommand(validCase);
+        ModelStub modelStub = new ModelStubWithCase(validCase);
+
+        assertThrows(CommandException.class,
+                AddCaseCommand.MESSAGE_DUPLICATE_CASE, () -> addCommand.execute(modelStub));
+    }
+
+    @Test
+    public void executeArchivedSection_duplicateCase_throwsCommandException() {
+        setUpMainPageArchivedSection();
+
+        Case validCase = new CaseBuilder().withArchiveStatus(ArchiveStatus.ARCHIVED).build();
         AddCommand addCommand = new AddCaseCommand(validCase);
         ModelStub modelStub = new ModelStubWithCase(validCase);
 

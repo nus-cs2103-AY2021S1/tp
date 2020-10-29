@@ -5,11 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandFailure;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.assertCommandSuccess;
 import static seedu.pivot.logic.commands.testutil.CommandTestUtil.showCaseAtIndex;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_ARCHIVED_CASES;
+import static seedu.pivot.model.Model.PREDICATE_SHOW_DEFAULT_CASES;
 import static seedu.pivot.testutil.TypicalCases.getTypicalPivot;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.pivot.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.UserMessages;
@@ -29,15 +30,22 @@ public class DeleteCaseCommandIntegrationTest {
 
     private Model model;
 
-    @BeforeEach
     public void setUpDefaultSection() {
         StateManager.setDefaultSection();
         model = new ModelManager(getTypicalPivot(), new UserPrefs());
-        model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
+        model.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
+    }
+
+    public void setUpArchivedSection() {
+        StateManager.setArchivedSection();
+        model = new ModelManager(getTypicalPivot(), new UserPrefs());
+        model.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
     }
 
     @Test
-    public void execute_validIndexUnfilteredList_success() {
+    public void executeDefaultSection_validIndexUnfilteredList_success() {
+        setUpDefaultSection();
+
         Case caseToDelete = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCaseCommand(INDEX_FIRST_PERSON);
 
@@ -45,13 +53,31 @@ public class DeleteCaseCommandIntegrationTest {
 
         ModelManager expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
-        expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
+        expectedModel.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
+    public void executeArchivedSection_validIndexUnfilteredList_success() {
+        setUpArchivedSection();
+
+        Case caseToDelete = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCaseCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
+        expectedModel.deleteCase(caseToDelete);
+        expectedModel.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void executeDefaultSection_invalidIndexUnfilteredList_throwsCommandException() {
+        setUpDefaultSection();
+
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCaseList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
 
@@ -59,7 +85,19 @@ public class DeleteCaseCommandIntegrationTest {
     }
 
     @Test
-    public void execute_validIndexFilteredList_success() {
+    public void executeArchivedSection_invalidIndexUnfilteredList_throwsCommandException() {
+        setUpArchivedSection();
+
+        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredCaseList().size() + 1);
+        DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
+
+        assertCommandFailure(deleteCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void executeDefaultSection_validIndexFilteredList_success() {
+        setUpDefaultSection();
+
         showCaseAtIndex(model, INDEX_FIRST_PERSON); // filter the list
 
         Case caseToDelete = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
@@ -69,13 +107,48 @@ public class DeleteCaseCommandIntegrationTest {
 
         Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
         expectedModel.deleteCase(caseToDelete);
-        expectedModel.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
+        expectedModel.updateFilteredCaseList(PREDICATE_SHOW_DEFAULT_CASES);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_invalidIndexFilteredList_throwsCommandException() {
+    public void executeArchivedSection_validIndexFilteredList_success() {
+        setUpArchivedSection();
+
+        showCaseAtIndex(model, INDEX_FIRST_PERSON); // filter the list
+
+        Case caseToDelete = model.getFilteredCaseList().get(INDEX_FIRST_PERSON.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCaseCommand(INDEX_FIRST_PERSON);
+
+        String expectedMessage = String.format(DeleteCaseCommand.MESSAGE_DELETE_CASE_SUCCESS, caseToDelete);
+
+        Model expectedModel = new ModelManager(model.getPivot(), new UserPrefs());
+        expectedModel.deleteCase(caseToDelete);
+        expectedModel.updateFilteredCaseList(PREDICATE_SHOW_ARCHIVED_CASES);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void executeDefaultSection_invalidIndexFilteredList_throwsCommandException() {
+        setUpDefaultSection();
+
+        showCaseAtIndex(model, INDEX_FIRST_PERSON);
+
+        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        // ensures that outOfBoundIndex is still in bounds of address book list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPivot().getCaseList().size());
+
+        DeleteCommand deleteCommand = new DeleteCaseCommand(outOfBoundIndex);
+
+        assertCommandFailure(deleteCommand, model, UserMessages.MESSAGE_INVALID_CASE_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void executeArchivedSection_invalidIndexFilteredList_throwsCommandException() {
+        setUpArchivedSection();
+
         showCaseAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;

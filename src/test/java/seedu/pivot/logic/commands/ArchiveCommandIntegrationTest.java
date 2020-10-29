@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.UserMessages;
 import seedu.pivot.commons.core.index.Index;
+import seedu.pivot.logic.commands.archivecommands.ArchiveCommand;
 import seedu.pivot.logic.state.StateManager;
 import seedu.pivot.model.Model;
 import seedu.pivot.model.ModelManager;
