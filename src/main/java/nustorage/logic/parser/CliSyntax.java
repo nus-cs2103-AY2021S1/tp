@@ -8,12 +8,12 @@ public class CliSyntax {
     /* Prefix definitions */
     public static final Prefix PREFIX_TAG = new Prefix("t/");
 
-    // Inventory
+    // InventoryWindow
     public static final Prefix PREFIX_QUANTITY = new Prefix("q/"); // can change to n after removing name
     public static final Prefix PREFIX_ITEM_DESCRIPTION = new Prefix("i/");
     public static final Prefix PREFIX_ITEM_COST = new Prefix("c/");
 
-    // Finance
+    // FinanceWindow
     public static final Prefix PREFIX_AMOUNT = new Prefix("amt/");
     public static final Prefix PREFIX_DATETIME = new Prefix("at/");
     public static final Prefix PREFIX_ID = new Prefix("id/");

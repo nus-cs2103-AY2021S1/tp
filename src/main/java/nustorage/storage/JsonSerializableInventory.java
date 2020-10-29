@@ -16,12 +16,12 @@ import nustorage.model.record.InventoryRecord;
 
 
 /**
- * An Immutable Inventory that's serializable to the JSON format.
+ * An Immutable InventoryWindow that's serializable to the JSON format.
  */
 @JsonRootName("inventory")
 class JsonSerializableInventory {
 
-    public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "Inventory record list contains duplicate records!";
+    public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "InventoryWindow record list contains duplicate records!";
 
     public final List<JsonAdaptedInventoryRecord> inventoryRecords = new ArrayList<>();
 

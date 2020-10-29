@@ -16,9 +16,9 @@ import nustorage.logic.Logic;
 import nustorage.model.record.InventoryRecord;
 import nustorage.ui.uilogic.UiLogic;
 
-public class Inventory extends UiPart<Region> {
+public class InventoryWindow extends UiPart<Region> {
 
-    private static final String FXML = "Inventory.fxml";
+    private static final String FXML = "InventoryWindow.fxml";
 
     @FXML
     private TableView<InventoryRecord> tableView;
@@ -34,9 +34,9 @@ public class Inventory extends UiPart<Region> {
     private TableColumn<InventoryRecord, String> financeIdCol;
 
     /**
-     * Sets the display for the Inventory tab in the user interface.
+     * Sets the display for the InventoryWindow tab in the user interface.
      */
-    public Inventory(Logic logic, UiLogic uiLogic) {
+    public InventoryWindow(Logic logic, UiLogic uiLogic) {
         super(FXML);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
         tableView.getItems().setAll(parseInventoryList(logic));
@@ -73,7 +73,8 @@ public class Inventory extends UiPart<Region> {
                                     button.setOnAction(event -> {
                                         try {
                                             uiLogic.execute("goto_finance");
-                                            logic.execute(String.format("find_finance %s", item));
+                                            System.out.println(String.format("find_finance id/%s", item));
+                                            logic.execute(String.format("find_finance id/%s", item));
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }

@@ -28,7 +28,7 @@ public class AddFinanceCommand extends Command {
     private final FinanceRecord newRecord;
 
     /**
-     * Creates an AddFinanceCommand to add the specified {@code Finance Record}
+     * Creates an AddFinanceCommand to add the specified {@code FinanceWindow Record}
      */
     public AddFinanceCommand(FinanceRecord newRecord) {
         requireNonNull(newRecord);

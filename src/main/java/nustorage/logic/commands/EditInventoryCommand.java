@@ -19,7 +19,7 @@ import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
 /**
- * Edits the details of an existing item in the Inventory
+ * Edits the details of an existing item in the InventoryWindow
  */
 public class EditInventoryCommand extends Command {
     public static final String COMMAND_WORD = "edit_inventory";
@@ -32,10 +32,10 @@ public class EditInventoryCommand extends Command {
             + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DATETIME + "[DATE] [TIME]] ";
 
-    public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Item: %1$s" + "\nFinance record updated";
+    public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Item: %1$s" + "\nFinanceWindow record updated";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This inventory record already "
-            + "exists in the Inventory";
+            + "exists in the InventoryWindow";
 
     private final Index index;
     private final EditInventoryDescriptor editInventoryDescriptor;

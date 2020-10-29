@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import static nustorage.commons.util.DateTimeUtil.*;
+
 /**
- * Class to record movement in the Inventory.
+ * Class to record movement in the InventoryWindow.
  */
 public class InventoryRecord {
 
@@ -100,7 +102,7 @@ public class InventoryRecord {
 
     @Override
     public String toString() {
-        return "Record on " + getDate() + " at " + getTime()
+        return "Record on " + DATETIME_FORMAT.format(dateTime)
                 + ": " + itemName + ", " + quantity + " in stock";
     }
 
