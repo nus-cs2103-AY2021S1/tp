@@ -13,7 +13,6 @@ public class ModuleBuilder {
 
     public static final String DEFAULT_MODULENAME = "CS2103T";
     public static final String DEFAULT_ZOOMLINK = "https://nus-sg.zoom.us/abvuavhua";
-    public static final String DEFAULT_ZOOMLINK = "www.zoom.us";
     public static final double DEFAULT_MODULARCREDITS = 4.0;
 
     private ModuleName moduleName;

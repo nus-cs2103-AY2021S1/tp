@@ -13,8 +13,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 // import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalContacts.AMY;
-import static seedu.address.testutil.TypicalContacts.BOB;
+// import static seedu.address.testutil.TypicalContacts.AMY;
+// import static seedu.address.testutil.TypicalContacts.BOB;
 
 import org.junit.jupiter.api.Test;
 

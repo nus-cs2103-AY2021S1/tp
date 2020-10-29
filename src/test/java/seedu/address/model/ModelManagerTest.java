@@ -1,29 +1,29 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 // import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
+// import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CONTACTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalContacts.ALICE;
-import static seedu.address.testutil.TypicalContacts.BENSON;
-import static seedu.address.testutil.TypicalModules.CS2030;
-import static seedu.address.testutil.TypicalModules.CS2101;
+// import static seedu.address.testutil.TypicalContacts.BENSON;
+// import static seedu.address.testutil.TypicalModules.CS2030;
+// import static seedu.address.testutil.TypicalModules.CS2101;
 // import static seedu.address.testutil.TypicalModules.CS2030;
 // import static seedu.address.testutil.TypicalModules.CS2101;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
+// import java.util.Arrays;
 // import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.contact.NameContainsKeywordsPredicate;
-import seedu.address.testutil.ContactListBuilder;
-import seedu.address.testutil.ModuleListBuilder;
+// import seedu.address.model.contact.NameContainsKeywordsPredicate;
+// import seedu.address.testutil.ContactListBuilder;
+// import seedu.address.testutil.ModuleListBuilder;
 // import seedu.address.testutil.ModuleListBuilder;
 
 public class ModelManagerTest {

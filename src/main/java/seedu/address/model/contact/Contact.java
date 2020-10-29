@@ -90,7 +90,7 @@ public class Contact {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getEmail().equals(getEmail());
+                && (otherPerson.getEmail().equals(getEmail()));
     }
 
     /**

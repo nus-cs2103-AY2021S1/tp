@@ -1,9 +1,9 @@
 package seedu.address.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_SAMPLE;
+// import static org.junit.jupiter.api.Assertions.assertFalse;
+// import static org.junit.jupiter.api.Assertions.assertTrue;
+// import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_SAMPLE;
 // import static org.junit.jupiter.api.Assertions.assertFalse;
 // import static org.junit.jupiter.api.Assertions.assertTrue;
 // import static seedu.address.logic.commands.CommandTestUtil.VALID_ZOOMLINK_CS2103T;
@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.Module;
-import seedu.address.testutil.ModuleBuilder;
+// import seedu.address.testutil.ModuleBuilder;
 // import seedu.address.model.module.exceptions.DuplicateModulesException;
 // import seedu.address.testutil.ModuleBuilder;
 

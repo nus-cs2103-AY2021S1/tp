@@ -50,7 +50,6 @@ public class CommandTestUtil {
             "https://nus-sg.zoom.us/j/99432271156?pwd=SW4wRkcvYXVuVlpGSWl2b3NjaE1Sdz09";
     public static final String VALID_ZOOMLINK_ES2660 = "https://nus-sg.zoom.us/asygfcyuas";
     public static final String VALID_ZOOMLINK_CS2103T = "www.cs2103tzoom.us";
-    public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
     public static final double VALID_MC_4 = 4.0;
     public static final double VALID_MC_2 = 2.0;
     public static final String VALID_TAG_LECTURE = "Lecture";
