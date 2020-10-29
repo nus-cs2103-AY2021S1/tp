@@ -6,7 +6,6 @@ import static seedu.taskmaster.logic.parser.CliSyntax.PREFIX_CLASS_PARTICIPATION
 import java.util.NoSuchElementException;
 
 import seedu.taskmaster.commons.core.index.Index;
-import seedu.taskmaster.logic.commands.MarkCommand;
 import seedu.taskmaster.logic.commands.ParticipationAllCommand;
 import seedu.taskmaster.logic.commands.ParticipationCommand;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
@@ -37,7 +36,8 @@ public class ParticipationCommandParser implements Parser<ParticipationCommand> 
                 return new ParticipationCommand(index, score);
             }
         } catch (ParseException | NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParticipationCommand.MESSAGE_USAGE), e);
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ParticipationCommand.MESSAGE_USAGE), e);
         }
     }
 }

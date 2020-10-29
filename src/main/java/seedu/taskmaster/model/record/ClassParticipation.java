@@ -4,12 +4,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger; // to test logging
 
 public class ClassParticipation {
-    private static Logger logger = Logger.getLogger("LoggingTest");
-    private int score = 0;
-    private int maxScore;
-
     public static final String MESSAGE_CONSTRAINTS = "The score of a student needs to be an integer between"
             + "0 and the maximum score (default 10), inclusive.";
+    private static Logger logger = Logger.getLogger("LoggingTest");
+
+    private int score = 0;
+    private int maxScore;
 
     /**
      * Constructor method for Class Participation
