@@ -474,12 +474,12 @@ Action | Format, Examples
 
 Action | Format, Examples
 -------|------------------------------
-**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 a/Blk 123 AB Road t/MorningShift`
+**Add** | `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…` <br> e.g., `c-add n/James Ho p/22224444 e/81234567 t/MorningShift`
 **List** | `c-list`
 **List avalible manpower** | 1. **For today:**  `c-today`<br>2. **For the next day:**  `c-tomorrow` <br>
-**Edit** | `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
-**Find by name** | `c-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-find James Jake`
-**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS] ...`<br> e.g., `c-tag-find Friday Monday PartTime`
+**Edit** | `c-edit INDEX [n/NAME] [e/EMERGENCY_CONTACT] [t/TAG]…​`<br> e.g.,`c-edit 2 n/James Lee e/81234567`
+**Find by name** | `c-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-find James Jake`
+**Find by tag(s)** | `c-tag-find KEYWORD [MORE_KEYWORDS]`<br> e.g., `c-tag-find Friday Monday PartTime`
 **Delete** | `c-delete INDEX`<br> e.g., `c-delete 3`
 **Clear** | `c-clear`
 **Archive** |  1. **Archive \(1 employee\):**  `c-archive INDEX`<br> e.g., `c-archive 1` <br>2. **Archive \(all employees\):**  `c-archive-all` <br>3. **List all archived data:**  `c-archive-list`</br>
