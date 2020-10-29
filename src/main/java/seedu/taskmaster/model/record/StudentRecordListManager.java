@@ -76,6 +76,44 @@ public class StudentRecordListManager implements StudentRecordList {
         }
     }
 
+
+    /**
+     * Updates participation score of a student represented by their {@code nusnetId} to {@code score}.
+     */
+    @Override
+    public void scoreStudentParticipation(NusnetId nusnetId, int score) {
+        requireAllNonNull(nusnetId);
+
+        boolean isFound = false;
+
+        for (int i = 0; i < internalList.size(); i++) {
+            StudentRecord studentRecord = internalList.get(i);
+            if (studentRecord.getNusnetId().equals(nusnetId)) {
+                EditStudentRecordDescriptor descriptor = new EditStudentRecordDescriptor();
+                descriptor.setClassParticipation(new ClassParticipation(score));
+
+                StudentRecord markedStudentRecord = createEditedStudentRecord(studentRecord, descriptor);
+                internalList.set(i, markedStudentRecord);
+                isFound = true;
+                break;
+            }
+        }
+
+        if (!isFound) {
+            throw new StudentNotFoundException();
+        }
+    }
+
+    /**
+     * Updates participation score of all students in the list of {@code nusnetIds} with {@code attendanceType}.
+     */
+    @Override
+    public void scoreAllParticipation(List<NusnetId> nusnetIds, int score) {
+        for (NusnetId nusnetId : nusnetIds) {
+            scoreStudentParticipation(nusnetId, score);
+        }
+    }
+
     @Override
     public void setStudentRecords(StudentRecordListManager replacement) {
         requireNonNull(replacement);
