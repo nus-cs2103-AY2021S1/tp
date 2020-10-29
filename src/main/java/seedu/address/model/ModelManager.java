@@ -51,9 +51,9 @@ public class ModelManager implements Model {
         this.todoList = new TodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
-        filteredContacts = new FilteredList<Contact>(this.contactList.getContactList());
-        filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
         sortedContacts = new SortedList<Contact>(this.contactList.getContactList());
+        filteredContacts = new FilteredList<Contact>(sortedContacts);
+        filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
         sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
     }
 
