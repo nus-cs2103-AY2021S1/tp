@@ -100,8 +100,8 @@ public class MainApp extends Application {
             logger.warning("Problem while reading from the file. Will be starting with an empty Taskmaster");
             initialData = new Taskmaster();
         } catch (NumberFormatException e) {
-            logger.warning("Problem when parsing ClassParticipation scores." +
-                    " Will be starting with empty SessionList.");
+            logger.warning("Problem when parsing ClassParticipation scores."
+                    + " Will be starting with empty SessionList.");
             initialData = (initialData != null) ? initialData : new Taskmaster();
             initialSessionList = new SessionListManager();
         }
