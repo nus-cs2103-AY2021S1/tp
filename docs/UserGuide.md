@@ -96,7 +96,7 @@ Accompanying the details of each command are figures that show an example of the
 
 Creates and stores a new inventory record into the inventory list.
 
-__Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST] [at/DATE [TIME]]`
+__Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
 __Example:__ `create_inventory i/iphone q/10 c/20` to create a new inventory record of item `iphone` and quantity `10`. A finance record with the total amount (QUANTITY * ITEM_COST) will also be created.
 
@@ -118,7 +118,7 @@ Removes the specified record from the inventory list.
 
 __Format:__ `delete_inventory INDEX`
 
-__Example:__ `delete_inventory 1` to delete the inventory record at index `1`.
+__Example:__ `delete_inventory 1` deletes the inventory record at index `1`.
 
 ![Delete inventory command example](images/commands/delete_inventory_command.jpg)
 
@@ -134,11 +134,27 @@ Edits the item name, quantity or unit cost of the specified record in the invent
 
 __Format:__ `edit_inventory INDEX [i/ITEM_NAME] [q/QUANTITY] [c/ITEM_COST]`
 
-__Example:__ `edit_inventory 1 i/iPad q/100 c/20` to edit the inventory record at index `1`.
+__Example:__ `edit_inventory 2 i/iPad q/100 c/20` edits the inventory record at index `2`.
 
 ![Edit inventory command example](images/commands/edit_inventory_command.jpg)
 
 __Result:__ item name changed from `iphone` to `iPad`, quantity changed from `10` to `100` and unit cost from `5` to `20`.
+
+![Edit inventory result example](images/commands/edit_inventory_result.jpg)
+
+---
+
+#### 4.1.3. Edit record in inventory: `find_inventory`
+
+Edits the item name, quantity or unit cost of the specified record in the inventory list.
+
+__Format:__ `find_inventory KEYWORD`
+
+__Example:__ `find_inventory ipad` finds for inventory records containing the name `ipad`.
+
+![Edit inventory command example](images/commands/edit_inventory_command.jpg)
+
+__Result:__ listed all inventory records with the word `ipad`.
 
 ![Edit inventory result example](images/commands/edit_inventory_result.jpg)
 
@@ -150,7 +166,7 @@ Displays all records in the inventory list.
 
 __Format:__ `list_inventory`
 
-__Example:__ `list_inventory`
+__Example:__ `list_inventory` lists all inventory records.
 
 ![List inventory command example](images/commands/list_inventory_command.jpg)
 

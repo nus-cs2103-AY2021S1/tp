@@ -28,7 +28,7 @@ public class CreateInventoryRecordCommandParser implements Parser<CreateInventor
     public CreateInventoryRecordCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION,
-                        PREFIX_ITEM_COST, PREFIX_DATETIME);
+                        PREFIX_ITEM_COST);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUANTITY, PREFIX_ITEM_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -45,14 +45,9 @@ public class CreateInventoryRecordCommandParser implements Parser<CreateInventor
         } else {
             unitCost = 0;
         }
-        LocalDateTime dateTime;
-        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
-            dateTime = ParserUtil.parseDatetime(argMultimap.getValue(PREFIX_DATETIME).get());
-        } else {
-            dateTime = LocalDateTime.now();
-        }
+
         FinanceRecord financeRecord = new FinanceRecord(unitCost * quantity, true);
-        InventoryRecord inventoryRecord = new InventoryRecord(itemDescription, quantity, unitCost, dateTime);
+        InventoryRecord inventoryRecord = new InventoryRecord(itemDescription, quantity, unitCost);
 
         return new CreateInventoryRecordCommand(inventoryRecord, financeRecord);
     }
