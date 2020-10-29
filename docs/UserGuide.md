@@ -111,15 +111,17 @@ Lists out all the exercises that the user has keyed in.
 Format: `list`
 
 ## 3.6. Find exercises: `find`
-Finds an exercise that matches the given properties.
+Finds an exercise that matches all the input fields.
 
 ![find command message](images/findCommandMessage.png)
 
-Format: `find KEYWORD`
-- The search is case-insensitive. e.g Squats will match squats.
+Format: `find [n/name] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`
+- For name, description, date, and calories, only exercises that exactly match the inputs will be listed. These fields are case-sensitive. e.g. Run will not match run.
+- For keywords, exercises whose names contain any of the keywords will be listed. Keyword is case-insensitive. e.g Squats will match squats.
+- in v1.3, find command does not support muscles and tags.
 
 Example:
-- find Push up
+- find n/running
 
 ## 3.7. Clearing all entries : `clear`
 
@@ -149,6 +151,16 @@ Examples:<br>
 `archive data\file_name.txt`<br>
 
 If the file is located at C:\Users\Desktop\App, the archived file will be saved to  C:\Users\Desktop\App\data\file_name.txt.
+
+
+## 3.11. Recall : `recall`
+Recalls the most recent exercise with the specified name.
+
+Format: `recall NAME`
+- the name is case-sensitive. e.g. Push up will not match push up.
+
+Example:
+- `recall run` finds the most recent exercise with the name "run".
 
 ---
 ## 3.12. FAQ
