@@ -396,7 +396,7 @@ Sorts the list based on a criterion.
 Format: `sorttask` `[r]` `CRITERION`
 
 * `r` indicates if the sorted list should have reversed order, for example, if `sorttask priority` sorts
-  the list from the highest priority to the lowest priority then `sorttask r` will sort the list
+  the list from the highest priority to the lowest priority then `sorttask r priority` will sort the list
   from the lowest to the highest priority instead.
   
 * `r` is **optional**.
@@ -407,9 +407,9 @@ Format: `sorttask` `[r]` `CRITERION`
 
 Examples:
 
-* `sorrtask date` sorts the task from lowest to highest priority.
+* `sorttask date` sorts the task from the task with the closest date to the current date to.
 
-* `sorrtask r date` sorts the task from the highest to the lowest.
+* `sorttask r date` sorts the task from the task with the farthest date from the current date.
 
 #### Listing all tasks: `listtask`
 
@@ -574,12 +574,58 @@ Examples:
  * `findcontact n/bob` followed by `deletecontact 2` deletes the second contact in the results of the `findcontact` command
 
 
-#### Sorting contacts:
+#### Sorting contacts: `sortcontact`
 
+Sorts the list based on the name of the contact lexicographically.
 
-#### Marking contacts as important:
+Format: `sorttask` `[r]`
+
+* `r` indicates if the sorted list should have reversed order.
+
+* `r` is **optional**.
+
+Examples:
+
+* `sortcontact` might produce a list of `{michael, sasha}`.
+
+* `sortcontact r` might produce a list of `{sasha, michael}`.
+
+#### Marking contacts as important: `importantcontact`
+
+Marks a task as `Important`.
+
+Format: `importantcontact` `INDEX`
+
+* You can get the `INDEX` from the current displayed list under the `Contacts` tab.
+
+* `INDEX` must be a **positive integer**.
+
+* _**Tips :**_ You remove important mark from contact by using either the `undo` or `resetcontact` command.
+
+Examples:
+
+* `importantcontact 1` marks the first contact in the list as `Important`.
+
+* `importantcontact 2` mark the second contact in the list as `Important`.
+
+#### Resetting contacts: `resetcontact`
+
+Removes a contact's impotant mark and replaces it with `Not Important` (default).
+
+Format: `resetcontact` `INDEX`
+
+* You can get the `INDEX` from the current displayed list under the `Contacts` tab.
+
+* `INDEX` must be a **positive integer**.
+
+Examples:
+
+* `resetcontact 1` marks the first contact in the list as `Not Important`.
+
+* `resetcontact 2` mark the second contact in the list as `Not Important`.
 
 ### CAP Calculator features
+
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
 Calculates the user's CAP based on completed modules
