@@ -3,6 +3,7 @@
 
 package chopchop.logic.parser.commands;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
@@ -37,13 +38,14 @@ public class FilterCommandParser {
      */
     public static Result<? extends Command> parseFilterCommand(CommandArguments args) {
 
-        assert args.getCommand().equals(Strings.COMMAND_FILTER);
+        ensureCommandName(args, Strings.COMMAND_FILTER);
 
         // since the sub-commands check for the individual args, we don't need to check here.
         // just check for no edit-args.
         Optional<ArgName> foo;
         if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'filter' command doesn't support edit-arguments");
+            return Result.error("'filter' command doesn't support edit-arguments (found '%s')",
+                foo.get());
         }
 
         return getCommandTarget(args, /* acceptsPlural: */ true)

@@ -1,5 +1,6 @@
 package chopchop.logic.parser.commands;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 
 import java.util.List;
@@ -23,7 +24,7 @@ public class MakeCommandParser {
      * @return     a MakeCommand, if the input was valid.
      */
     public static Result<? extends Command> parseMakeCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_MAKE);
+        ensureCommandName(args, Strings.COMMAND_MAKE);
 
         // we expect no named arguments
         Optional<ArgName> foo;

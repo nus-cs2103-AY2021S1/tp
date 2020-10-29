@@ -26,6 +26,7 @@ import chopchop.logic.commands.Command;
 import chopchop.logic.commands.AddRecipeCommand;
 import chopchop.logic.commands.AddIngredientCommand;
 
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
 import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
 import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
@@ -41,7 +42,8 @@ public class AddCommandParser {
      * @return     an AddCommand, if the input was valid.
      */
     public static Result<? extends Command> parseAddCommand(CommandArguments args) {
-        assert args.getCommand().equals(Strings.COMMAND_ADD);
+
+        ensureCommandName(args, Strings.COMMAND_ADD);
 
         return getCommandTarget(args)
             .then(target -> {
@@ -71,10 +73,11 @@ public class AddCommandParser {
         Optional<ArgName> foo;
         var supportedArgs = List.of(Strings.ARG_QUANTITY, Strings.ARG_EXPIRY, Strings.ARG_TAG);
 
-        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add ingredient' command doesn't support edit-arguments (found '%s')",
+                foo.get());
+        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
             return Result.error("'add ingredient' command doesn't support '%s'", foo.get());
-        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'add ingredient' command doesn't support edit-arguments");
         }
 
 
@@ -122,10 +125,10 @@ public class AddCommandParser {
         var supportedArgs = List.of(Strings.ARG_QUANTITY, Strings.ARG_INGREDIENT,
             Strings.ARG_STEP, Strings.ARG_TAG);
 
-        if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
+        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
+            return Result.error("'add recipe' command doesn't support edit-arguments (found '%s')", foo.get());
+        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
             return Result.error("'add recipe' command doesn't support '%s'", foo.get());
-        } else if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'add recipe' command doesn't support edit-arguments");
         }
 
         var tags = args.getArgument(Strings.ARG_TAG);

@@ -56,7 +56,10 @@ public class ItemReference {
      * @return    an ItemReference
      */
     public static ItemReference ofZeroIndex(int idx) {
-        assert idx >= 0;
+        if (idx < 0) {
+            throw new IndexOutOfBoundsException(String.format("idx cannot be negative"));
+        }
+
         return new ItemReference(Either.left(idx));
     }
 
@@ -67,7 +70,10 @@ public class ItemReference {
      * @return    an ItemReference
      */
     public static ItemReference ofOneIndex(int idx) {
-        assert idx > 0;
+        if (idx <= 0) {
+            throw new IndexOutOfBoundsException(String.format("idx must be positive"));
+        }
+
         return new ItemReference(Either.left(idx - 1));
     }
 

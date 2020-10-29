@@ -7,6 +7,17 @@ import java.util.Map;
 import java.util.HashMap;
 
 import chopchop.commons.util.Pair;
+import chopchop.logic.parser.commands.AddCommandParser;
+import chopchop.logic.parser.commands.DeleteCommandParser;
+import chopchop.logic.parser.commands.EditCommandParser;
+import chopchop.logic.parser.commands.FilterCommandParser;
+import chopchop.logic.parser.commands.FindCommandParser;
+import chopchop.logic.parser.commands.HelpCommandParser;
+import chopchop.logic.parser.commands.ListCommandParser;
+import chopchop.logic.parser.commands.MakeCommandParser;
+import chopchop.logic.parser.commands.StatsCommandParser;
+import chopchop.logic.parser.commands.ViewCommandParser;
+import chopchop.logic.parser.commands.CommonParser;
 import chopchop.logic.parser.exceptions.ParseException;
 
 import org.junit.jupiter.api.Test;
@@ -28,13 +39,13 @@ public class CommandParserTest {
         tests.put("add ingredient squid /qty 30g /expiry 2020-12-24",
             "Result(AddIngredientCommand: squid (30g) <Expiry Date: 2020-12-24>)");
 
-        tests.put("add ingredient milk /qty 600ml",
+        tests.put("add ingredient milk /qty 600ml /tag wet",
             "Result(AddIngredientCommand: milk (600mL))");
 
         tests.put("add recipe cake /ingredient milk /qty 400ml /ingredient flour /qty 500g "
-            + "/ingredient egg /qty 7 /step mix /step bake /step eat",
+            + "/ingredient egg /qty 7 /step mix /step bake /step eat /tag baked /ingredient uwu",
             "Result(AddRecipeCommand(cake, ingr: [milk (400mL), flour (500g), "
-                + "egg (7)], steps: [mix, bake, eat]))");
+                + "egg (7), uwu (1)], steps: [mix, bake, eat]))");
 
         tests.put("delete recipe cake", "Result(DeleteRecipeCommand(cake))");
         tests.put("delete recipe #4", "Result(DeleteRecipeCommand(#4))");
@@ -72,6 +83,9 @@ public class CommandParserTest {
         tests.put("view #0", "Error(Invalid index (cannot be zero or negative))");
 
         tests.put("OWO", "Error(Unknown command 'OWO')");
+
+        tests.put("list uwu", "Error(Unknown target 'uwu')");
+        tests.put("edit ingredients", "Error(Unknown target 'ingredients')");
 
         tests.forEach((k, v) -> {
             var x = parser.parse(k);
@@ -116,9 +130,23 @@ public class CommandParserTest {
             assertEquals(v, x.getValue());
         });
 
+        assertTrue(CommonParser.getCommandTarget(new CommandArguments("add"), false).isError());
 
-        // just... force coverage on this class.
+        // just... force coverage on these classes.
         assertThrows(ParseException.class, () -> {
+
+            new AddCommandParser();
+            new DeleteCommandParser();
+            new EditCommandParser();
+            new FilterCommandParser();
+            new FindCommandParser();
+            new HelpCommandParser();
+            new ListCommandParser();
+            new MakeCommandParser();
+            new StatsCommandParser();
+            new ViewCommandParser();
+            new CommonParser();
+
             throw new ParseException("owo");
         });
 
@@ -133,5 +161,52 @@ public class CommandParserTest {
         assertNotEquals(new CommandArguments("add", "aaa", List.of()), new CommandArguments("add", "bbb", List.of()));
         assertNotEquals(new CommandArguments("add", "aaa", List.of(Pair.of(new ArgName("kekw"), "3"))),
             new CommandArguments("add", "aaa", List.of(Pair.of(new ArgName("kekw"), "4"))));
+
+
+
+    }
+
+
+
+    @Test
+    void test_parseCommands2() {
+        var cases = new HashMap<String, Boolean>();
+        var parser = new CommandParser();
+
+
+        cases.put("list recipes /uwu",                                                  false);
+        cases.put("filter recipe /qty:kekw",                                            false);
+        cases.put("help /uwu",                                                          false);
+        cases.put("view x /uwu",                                                        false);
+        cases.put("make /uwu",                                                          false);
+        cases.put("make x /uwu",                                                        false);
+        cases.put("make",                                                               false);
+        cases.put("find /asdf",                                                         false);
+
+        cases.put("filter recipe",                                                      false);
+        cases.put("filter recipe /name x",                                              false);
+        cases.put("filter recipe /tag",                                                 false);
+        cases.put("filter recipe /ingredient",                                          false);
+
+        cases.put("filter ingredient",                                                  false);
+        cases.put("filter ingredient /name x",                                          false);
+        cases.put("filter ingredient /tag",                                             false);
+        cases.put("filter ingredient /expiry a a a ",                                   false);
+
+        cases.put("help",                                                               true);
+        cases.put("help add",                                                           true);
+        cases.put("help add recipe",                                                    true);
+        cases.put("add ingredient f",                                                   true);
+
+        cases.put("filter recipe /tag x",                                               true);
+        cases.put("filter recipe /tag x /ingredient x",                                 true);
+        cases.put("filter recipe /ingredient x",                                        true);
+
+        cases.put("filter ingredient /tag x",                                           true);
+        cases.put("filter ingredient /expiry 2020-01-01",                               true);
+
+        cases.forEach((k, v) -> {
+            assertEquals(v, parser.parse(k).hasValue());
+        });
     }
 }

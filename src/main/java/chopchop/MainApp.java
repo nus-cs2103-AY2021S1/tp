@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import chopchop.commons.core.Config;
 import chopchop.commons.core.LogsCenter;
-import chopchop.commons.core.Version;
 import chopchop.commons.exceptions.DataConversionException;
 import chopchop.commons.util.ConfigUtil;
 import chopchop.commons.util.StringUtil;
@@ -41,8 +40,6 @@ import javafx.stage.Stage;
  * Runs the application.
  */
 public class MainApp extends Application {
-    public static final Version VERSION = new Version(0, 6, 0, true);
-
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private static MainApp singletonInstance;
 
@@ -258,7 +255,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting ChopChop " + MainApp.VERSION);
+        logger.info("Starting ChopChop");
         primaryStage.setResizable(false);
         ui.start(primaryStage);
 
