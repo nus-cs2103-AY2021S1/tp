@@ -122,15 +122,6 @@ Examples:
 *   `contact find n/Tan` Shows all persons with `Tan` in their name.
 *   `contact find n/Jay t/classmates` Shows all persons with `Jay` in their name and persons with the `classmates` tag.
 
-### Creating a module : `module add`
-
-Creates a Module with a given name and members .
-
-Format: `module add n/MODULE_NAME [m/MEMBER_NAMES]…`
-
-Note: A Module can have more than 1 member separated by “,” but can only have one name. Members can be optional.
-
-
 ### Adding a tag to a user : `label add`
 
 Adds the given labels to a contact
@@ -164,6 +155,43 @@ Format: ` label clear CONTACT_NAME`
 
 Examples:
 * `label clear Jay`
+
+### Creating a module : `module add`
+
+Creates a Module with a given name and members .
+
+Format: `module add n/MODULE_NAME p/MEMBER_NAME p/MEMBER_NAME…`
+
+Note: A Module can have more than 1 member but can only have one name. Members can be optional.
+Additionally, Professors and TA's can also be added in the same format as other contacts.
+
+### Listing a module : `module list`
+
+Finds and displays a module with a specific name.
+
+Format: `module list n/MODULE_NAME`
+
+Note: The command `module list n/clean` will restore the module UI to show all modules again.
+
+### Editing a module : `module edit`
+
+Edits a Module based on the inputted details.
+
+Format: `module edit m/MODULE_NAME [n/NEW_MODULE_NAME] [p/MEMBER_NAME] [p/MEMBER_NAME…]`
+
+Note: Note that if you change the participants, the old participants will be overwritten and replaced by the newly
+added participants. You can change either the module name, the participants or both. Note that changes to module will
+affect meetings based on that module, so if the meeting does not include any of the new module participants, it will be 
+deleted. 
+
+### Deleting a module : `module delete`
+
+Deletes a module with a specific name.
+
+Format: `module delete n/MODULE_NAME`
+
+Note: All meetings based on the deleted module will also be deleted, once deleted there is no undo so delete the module 
+carefully.
 
 ### Adding a meeting: `meeting add`
 
@@ -354,8 +382,10 @@ Action | Format, Examples
 **Delete Contact** | `contact delete CONTACT_NAME`<br> e.g., `delete Jay`
 **Edit Contact** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
 **List Contacts** | `contact list`
-**Add Module** | `module add [n/MODULE_NAME] [m/MEMBER_NAMES]`<br> e.g., `module add n/CS2103 m/Jay, Roy`
+**Add Module** | `module add [n/MODULE_NAME] [p/MEMBER_NAME] [p/MEMBER_NAME]...`<br> e.g., `module add n/CS2103 p/Jay p/Roy`
+**Edit Module** | `module edit [m/MODULE_NAME] [n/MODULE_NEWNAME] [p/MEMBER_NAME] [p/MEMBER_NAME]...`<br> e.g., `module edit m/CS2103 n/CS2103T p/Jay p/Roy`
 **List Modules** | `module list  [n/MODULE_NAME]`<br> e.g., `module list n/CS2103`
+**Delete Modules** | `module delete  [n/MODULE_NAME]`<br> e.g., `module delete n/CS2103`
 **Add Label** | `label add [c/CONTACT_NAME] [t/TAG_NAMES]…` <br> e.g., `label add c/Bobby Bob t/friend`
 **Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam, Jay, Jerryl, Roy`
 **Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
