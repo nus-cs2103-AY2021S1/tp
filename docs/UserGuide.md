@@ -85,9 +85,6 @@ Format:  `open case CASE_NO`
 
 Example: `list case` followed by `open case 1` opens the 1st case in the investigation list.
 
-#### Exit application: `exit`
-Exits the application.
-
 ### Investigation Case page
 The page of the application when the user opens a specified investigation case.
 
@@ -135,13 +132,23 @@ Format: `open doc DOC_NO`
 
 Example: `open doc 0`
 
-#### Adding a Suspect related to the case: `add suspect n:NAME`
+#### Adding a suspect related to the case: `add suspect n:NAME`
 
 Adds a new suspect related to the investigation case.
 
 Format: `add suspect n:NAME`
 
 Example: `add suspect n:John Doe`
+
+#### Edit an existing suspect in the case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Edits the fields of the suspect specified with the index in the investigation case.
+At least one of the fields must be specified to be edited.
+
+Format: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Example: `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
 
 #### List all suspects related to the case: `list suspect`
 
@@ -165,6 +172,16 @@ Format: `add victim n:NAME`
 
 Example: `add victim n:James Lee`
 
+#### Edit an existing victim in the case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Edits the fields of the victim specified with the index in the investigation case.
+At least one of the fields must be specified to be edited.
+
+Format: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Example: `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
+
 #### List all victims related to the case: `list victim`
 
 Lists all added victims that are related to the investigation case.
@@ -187,6 +204,16 @@ Format: `add witness n:NAME`
 
 Example: `add witness n:John Doe`
 
+#### Edit an existing witness in the case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Edits the fields of the witness specified with the index in the investigation case. 
+At least one of the fields must be specified to be edited.
+
+Format: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+
+Example: `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
+"newEmail@mail.com" and the address "New Road Crescent".
+
 #### List all witness related to the case: `list witness`
 
 Lists all added witnesses that are related to the investigation case.
@@ -204,6 +231,21 @@ Example: `delete witness 0`
 #### Return to main page: `return`
 
 Returns to the application main page.
+
+### Both pages
+
+#### Undo: `undo'
+
+Undoes the previous command.
+
+Format: `undo'
+
+#### Redo: `redo'
+
+Redoes the command that was just undone. If another command that changes the data of PIVOT is used after an undo 
+command, redo will not be able to be called.
+
+Format: `redo'
 
 #### Exit application: `exit`
 
