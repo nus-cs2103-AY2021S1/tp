@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import javafx.application.HostServices;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -31,7 +30,6 @@ public class MainWindow extends UiPart<Stage> implements Observer {
 
     private Stage primaryStage;
     private Logic logic;
-    private HostServices hostServices;
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
@@ -68,13 +66,13 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
-    public MainWindow(Stage primaryStage, Logic logic, HostServices hostServices) {
+    public MainWindow(Stage primaryStage, Logic logic) {
         super(FXML, primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.hostServices = hostServices;
+
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -175,7 +173,7 @@ public class MainWindow extends UiPart<Stage> implements Observer {
     @FXML
     public void handleHelp() {
         if (!helpWindow.isShowing()) {
-            helpWindow.show(hostServices);
+            helpWindow.show();
         } else {
             helpWindow.focus();
         }

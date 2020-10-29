@@ -83,8 +83,7 @@ public class EditModuleCommand extends Command {
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
         model.updateModuleInMeetingBook(moduleToEdit, editedModule);
         model.updateFilteredMeetingList(PREDICATE_SHOW_ALL_MEETINGS);
-        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule), false, false,
-                true);
+        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
     }
 
     /**
