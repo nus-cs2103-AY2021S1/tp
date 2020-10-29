@@ -50,8 +50,8 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 ### Main page
 The main page of the application when the user first enters the app.
 
-#### Adding an active investigation case: `add case t:TITLE [s:STATUS]`
-Adds a new investigation case which has the active status by default. The user can provide 3 status types:
+#### Adding an investigation case: `add case t:TITLE [s:STATUS]`
+Adds a new investigation case which has the active status by default, if not specified. The user can provide 3 status types:
 
 1. `ACTIVE`
 
@@ -91,35 +91,35 @@ Format:  `open case CASE_NO`
 Example: `list case` followed by `open case 1` opens the 1st case in the investigation list.
 
 #### Archiving an investigation case in the DEFAULT section: `archive case CASE_NO`
-Archives the specified investigation case in DEFAULT section of Pivot.
+Archives the specified investigation case in the DEFAULT section of Pivot.
 
 Format:  `archive case CASE_NO`
 
 Example: `list case` followed by `archive case 1` archives the 1st case in the investigation list.
 
-#### Unarchiving an investigation case in the ARCHIVED section: `archive case CASE_NO`
+#### Unarchiving an investigation case in the ARCHIVED section: `unarchive case CASE_NO`
 Unarchives the specified investigation case in the ARCHIVED section of Pivot.
 
-Format:  `unarchives case CASE_NO`
+Format:  `unarchive case CASE_NO`
 
 Example: `list archive` followed by `unarchive case 1` unarchives the 1st case in the investigation list.
 
-### Finding an investigation case: `find KEYWORD`
+#### Finding an investigation case: `find KEYWORD [MORE_KEYWORDS]`
 
 Finds investigation cases whose details contains any of the given keywords.
-
-Format:  `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g keyword `hans` will match case containing `Hans` in its details
 * The order of the keywords does not matter. e.g. keywords `Hans Bo` will match case containing `Bo Hans` in its details
 * The search finds cases depending on which section they are in. If they are in the DEFAULT section, cases found are in DEFAULT section only.
  If they are in the ARCHIVED section, cases found are in the ARCHIVED section only. Note that on start-up, they are in the DEFAULT section,
- and can alternate between sections using `list case` or `list archive` as mentioned above
-* All details of all cases in relevant section (ARCHIVED/DEFAULT) are searched, specifically: Title, Status, Description, 
+ and can alternate between sections using [`list case`](#list-all-investigation-cases-list-case) or [`list archive`](#list-all-investigation-cases-list-archive)
+* All details of all cases in the relevant section (ARCHIVED/DEFAULT) are searched, specifically: Title, Status, Description, 
 Documents (file name and file reference that the users input on creation), Suspects/Witnesses/Victims (Name, Gender, Phone, Email, Address)
 * Only full words will be matched e.g. keyword `Han` will not match cases containing `Hans` in their details
 * Persons matching at least one keyword will be returned (i.e. `OR` search). e.g. keywords `Hans Bo` will return case 
 containing `Hans Gruber`, `Bo Yang` in their details
+
+Format:  `find KEYWORD [MORE_KEYWORDS]`
 
 Example:
 * `find Ang` return cases `ang` and `Ang Mo Kio Car Theft`, and cases containing `Ang` in their details
