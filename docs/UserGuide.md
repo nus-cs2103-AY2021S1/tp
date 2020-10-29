@@ -1,55 +1,55 @@
 ## Reeve - User Guide
 
 **Table of Contents**  
-- [1. Introduction](#introduction)
-  * [1.1 About Reeve](#about-reeve)
+- [1. Introduction](#1-introduction)
+  * [1.1 About Reeve](#11-about-reeve)
   * [1.2 Understanding the User Guide](#12-understanding-the-user-guide)
 - [2. Quick start](#2-quick-start)
   * [2.1 Setting Up Reeve](#21-setting-up-reeve)
-  * [2.2 Making sense of **Reeve**'s layout](#22-making-sense-of---reeve---s-layout)
+  * [2.2 Making sense of **Reeve**'s layout](#22-making-sense-of-reeves-layout)
 - [3. Features](#3-features)
   * [3.1 Understanding the command format](#31-understanding-the-command-format)
   * [3.2 Student Administrative Features](#32-student-administrative-features)
-    + [3.2.1 Adding a student: `add` (By: Alex and Hogan)](#321-adding-a-student---add---by--alex-and-hogan-)
-    + [3.2.2 Editing a student: `edit` (By: Vaishak)](#322-editing-a-student---edit---by--vaishak-)
-    + [3.2.3 Locating students: `find` (By: Choon Siong)](#323-locating-students---find---by--choon-siong-)
-    + [3.2.4 Listing all students: `list`](#324-listing-all-students---list-)
-    + [3.2.5 Deleting a student: `delete`](#325-deleting-a-student---delete-)
-    + [3.2.6 Sorting the list of students: `sort` (By: Choon Siong)](#326-sorting-the-list-of-students---sort---by--choon-siong-)
-    + [3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)](#327-finding-students-with-overdue-fees---overdue---by--ying-gao-)
-    + [3.2.8 Managing details for a student: `detail` (By: Vaishak)](#328-managing-details-for-a-student---detail---by--vaishak-)
-        + [3.2.8.1 Adding a detail: `detail add`](#3281-adding-a-detail---detail-add-)
-        + [3.2.8.2 Editing a detail: `detail edit`](#3282-editing-a-detail---detail-edit-)
-        + [3.2.8.3 Deleting a detail: `detail delete`](#3283-deleting-a-detail---detail-delete-)
-    + [3.2.9 Clearing all entries: `clear`](#328-clearing-all-entries---clear-)
-  * [3.3 Student Academics Features](#33-stude9t-academics-features)
-    + [3.3.1 Recording questions from a student: `question` (By: Ying Gao)](#331-recording-questions-from-a-student---question---by--ying-gao-)
-        + [3.3.1.1 Adding a question: `question add`](#3311-adding-a-question---question-add-)
-        + [3.3.1.2 Resolving a question: `question solve`](#3312-resolving-a-question---question-solve-)
-        + [3.3.1.3 Deleting a question: `question delete`](#3313-deleting-a-question---question-delete-)
-    + [3.3.2 Recording exams of a student: `exam` (By: Hogan)](#332-recording-exams-of-a-student---exam---by--hogan-)
-        + [3.3.2.1 Adding an exam record to a student: `exam add`](#3321-adding-an-exam-record-to-a-student---exam-add-)
-        + [3.3.2.2 Deleting an exam record for a student: `exam delete`](#3322-deleting-an-exam-record-for-a-student---exam-delete-)
-    + [3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)](#333-recording-attendance-of-a-student---attendance---by--vaishak-)
-        + [3.3.2.1 Adding an attendance record to a student: `attendance add`](#3321-adding-an-attendance-record-to-a-student---attendance-add-)
-        + [3.3.2.2 Deleting an attendance record for a student: `attendance delete`](#3322-deleting-an-attendance-record-for-a-student---attendance-delete-)
+    + [3.2.1 Adding a student: `add` (By: Alex and Hogan)](#321-adding-a-student-add-by-alex-and-hogan)
+    + [3.2.2 Editing a student: `edit` (By: Vaishak)](#322-editing-a-student-edit-by-vaishak)
+    + [3.2.3 Locating students: `find` (By: Choon Siong)](#323-locating-students-find-by-choon-siong)
+    + [3.2.4 Listing all students: `list`](#324-listing-all-students-list)
+    + [3.2.5 Deleting a student: `delete`](#325-deleting-a-student-delete)
+    + [3.2.6 Sorting the list of students: `sort` (By: Choon Siong)](#326-sorting-the-list-of-students-sort-by-choon-siong)
+    + [3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)](#327-finding-students-with-overdue-fees-overdue-by-ying-gao)
+    + [3.2.8 Managing details for a student: `detail` (By: Vaishak)](#328-managing-additional-details-for-a-student-detail-by-vaishak)
+        + [3.2.8.1 Adding a detail: `detail add`](#3281-adding-a-detail-detail-add)
+        + [3.2.8.2 Editing a detail: `detail edit`](#3282-editing-a-detail-detail-edit)
+        + [3.2.8.3 Deleting a detail: `detail delete`](#3283-deleting-a-detail-detail-delete)
+    + [3.2.9 Clearing all entries: `clear`](#329-clearing-all-entries-clear)
+  * [3.3 Student Academics Features](#33-student-academics-features)
+    + [3.3.1 Recording questions from a student: `question` (By: Ying Gao)](#331-recording-questions-from-a-student-question-by-ying-gao)
+        + [3.3.1.1 Adding a question: `question add`](#3311-adding-a-question-question-add)
+        + [3.3.1.2 Resolving a question: `question solve`](#3312-resolving-a-question-question-solve)
+        + [3.3.1.3 Deleting a question: `question delete`](#3313-deleting-a-question-question-delete)
+    + [3.3.2 Recording exams of a student: `exam` (By: Hogan)](#332-recording-exams-of-a-student-exam-by-hogan)
+        + [3.3.2.1 Adding an exam record to a student: `exam add`](#3321-adding-an-exam-record-to-a-student-exam-add)
+        + [3.3.2.2 Deleting an exam record for a student: `exam delete`](#3322-deleting-an-exam-record-for-a-student-exam-delete)
+    + [3.3.3 Recording attendance of a student: `attendance` (By: Vaishak)](#333-recording-attendance-of-a-student-attendance-by-vaishak)
+        + [3.3.3.1 Adding an attendance record to a student: `attendance add`](#3331-adding-an-attendance-record-to-a-student-attendance-add)
+        + [3.3.3.2 Deleting an attendance record for a student: `attendance delete`](#3332-deleting-an-attendance-record-for-a-student-attendance-delete)
   * [3.4 Miscellaneous Features](#34-miscellaneous-features)
-    + [3.4.1 Scheduling: `schedule`](#341-scheduling---schedule-)
-        + [Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)](#viewing-personal-schedule-on-a-timetable---schedule-view----by--alex-)
-        + [Adding events to the schedule: `schedule add`](#adding-events-to-the-schedule---schedule-add-)
-        + [List events: `schedule list`](#list-events---schedule-list-)
-        + [Delete events on the schedule: `schedule delete`](#delete-events-on-the-schedule---schedule-delete-)
-    + [3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#342-toggling-between-academic-and-administrative details---toggle---by--hogan-)
-    + [3.4.3 Viewing help: `help`](#343-viewing-help---help-)
-    + [3.4.4 Exiting the program: `exit`](#344-exiting-the-program---exit-)
+    + [3.4.1 Scheduling: `schedule`](#341-scheduling-schedule)
+        + [3.4.1.1. Viewing personal schedule on a Timetable: `schedule view`  (By: Alex)](#3411-viewing-personal-schedule-on-a-timetable-schedule-view--by-alex)
+        + [3.4.1.2. Adding events to the schedule: `schedule add`](#3412-adding-events-to-the-schedule-schedule-add)
+        + [3.4.1.3. List events: `schedule list`](#3413-list-events-schedule-list)
+        + [3.4.1.4. Delete events on the schedule: `schedule delete`](#3414-delete-events-on-the-schedule-schedule-delete)
+    + [3.4.2 Toggling between academic and administrative details: `toggle` (By: Hogan)](#342-toggling-between-academic-and-administrative-details-toggle-by-hogan)
+    + [3.4.3 Viewing help: `help`](#343-viewing-help-help)
+    + [3.4.4 Exiting the program: `exit`](#344-exiting-the-program-exit)
 - [4. Command summary](#4-command-summary)
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
 
-## 1. Introduction <a name="introduction"/>
+## 1. Introduction
 **Welcome to Reeve!** 
 
-### 1.1 About Reeve <a name="about-reeve"/>
+### 1.1 About Reeve
 Are you looking for a one-stop application that can handle all your private tutoring needs? Then you are in luck!
 
 **Reeve** is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a
@@ -444,7 +444,7 @@ General Format: `attendance COMMAND_WORD STUDENT_INDEX PARAMETERS`
 * `STUDENT_INDEX` **must be a positive integer** 1, 2, 3, …​
 * The format of `PARAMETERS` varies with each command word as explained below.
 
-##### 3.3.2.1 Adding an attendance record to a student: `attendance add`
+##### 3.3.3.1 Adding an attendance record to a student: `attendance add`
 
 You can add an attendance record to a specified student in **Reeve**.
 
@@ -465,7 +465,7 @@ Examples:
 * `attendance add 2 d/08/12/2020 s/attended f/attentive` adds the attendance record with the date 8 Dec 2020,
 status of attended and feedback of attentive, to the 2nd student in **Reeve**.
 
-##### 3.3.2.2 Deleting an attendance record for a student: `attendance delete`
+##### 3.3.3.2 Deleting an attendance record for a student: `attendance delete`
 
 You can delete a specific attendance record from a specified student in **Reeve**.
 
