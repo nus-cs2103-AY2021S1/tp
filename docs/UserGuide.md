@@ -143,7 +143,7 @@ Format: `s-list`
 
 Finds all drinks where their abbreviated names match the KEYWORD(s).
 
-Format: `s-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `s-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `bsbbt` will match `BSBBT`.
 * Only the drink's abbreviated name is searched.
@@ -259,7 +259,7 @@ Format: `i-restock`
 
 Adds an employee to the contact list.
 
-Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT a/ADDRESS [t/TAG]…​`
+Format: `c-add n/NAME p/PHONE_NUMBER e/EMERGENCY_CONTACT [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: 
 
@@ -268,8 +268,8 @@ An employee can have any number of tags (including 0)
 </div>
 
 Examples:
-* `c-add n/John Doe p/98765432 a/Blk 123 ABC Road e/81234567`.
-* `c-add n/Betsy Crowe e/81234567 p/1234567 a/Blk 120 ABC Road t/Friday t/PartTime`.
+* `c-add n/John Doe p/98765432 e/81234567`.
+* `c-add n/Betsy Crowe e/81234567 p/1234567 t/morning shift t/part-time`.
 
 #### 3.2 Listing all employees : `c-list`
 
@@ -307,7 +307,7 @@ tags contain `Thursday` will be listed out.
 
 Edits the corresponding contact information in the contact list.
 
-Format: `c-edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMERGENCY_CONTACT] [a/ADRESS] [t/TAG] …​​`
+Format: `c-edit INDEX n/NAME p/PHONE e/EMERGENCY_CONTACT [a/ADRESS] [t/TAG] …​​`
 
 * Edits the employee at the specified `INDEX`. The index refers to the index number shown in the displayed contact list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -326,7 +326,7 @@ Examples:
 
 Finds all contacts that contain the KEYWORD(s) in their names.
 
-Format: `c-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `c-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`.
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`.
@@ -343,7 +343,7 @@ Examples:
 
 Finds all contacts that contain the KEYWORD(s) in their tags.
 
-Format: `c-tag-find KEYWORD [MORE_KEYWORDS] ...`
+Format: `c-tag-find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `Friday` will match `friday`.
 * The order of the keywords does not matter. e.g. `friday monday` will match `monday friday`.
