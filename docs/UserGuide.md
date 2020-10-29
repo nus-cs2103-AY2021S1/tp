@@ -13,13 +13,15 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
 ---
 
 ## 0. Using this User-Guide
-This User-Guide aims to aid users in using NUStorage to its fullest potential. In this guide, we will be guiding users through the entire process of using NUStorage, from setting it up on your system to the usage of features that NUStorage offers. 
 
-If you are a new user, we recommend that you read this user guide from start to finish and follow the examples provided in the [Commands](#4-commands) section to gain a much better understanding of the application. If you are an experienced user, feel free to use the Table-Of-Contents to skip to the section most relevant to you.
+This User-Guide aims to aid users in using NUStorage to its fullest potential. In this guide, we will be guiding you through the entire process of using NUStorage, from setting it up on your system to the using the features that NUStorage offers.
 
-If you see an acronym that you don't understand, kindly refer to the [glossary](#7-glossary-and-terms). If you have further questions regarding NUStorage or this User-Guide, feel free to contact us at nustorage.support@u.nus.edu. 
+If you are a new user, we recommend that you read this user guide from start to the end and follow the examples provided in the [Commands](#4-commands) section to gain a better understanding of the application. If you are an experienced user, feel free to use the Table-Of-Contents to skip to the section most relevant to you.
+
+If you see an acronym that you don't understand, kindly refer to the [glossary](#7-glossary-and-terms). If you have further questions regarding NUStorage or this User-Guide, feel free to contact us at _nustorage.support@u.nus.edu_.
 
 ## 1. Introduction
+
 Welcome to NUStorage, a desktop application that aims to help users to mange __inventory__, __finance transactions__ as well as __accounts__.
 
 NUStorage revolutionises the way we can manage our inventory and finances by ridding us of cumbersome traditional means of management, such as books and folders. Instead, everything is now stored and displayed neatly in a fast and low-resource application!
@@ -40,11 +42,11 @@ Interested? Read on to get [started](#2-quick-start-guide)!
 4. Double-click on the `.jar` file to start the app. The GUI should look something like this:
 
     ![Start of NUStorage](images/NUStorage.png)
-    
+
 5. Below is an image explaining the relevant areas of the application:
 
     ![NUStorage explained](images/NustorageExplain.png)
-    
+
 6. Type a few commands in the command box and press enter to execute. This is small calibration test to ensure that NUStorage is working as intended.
     * Here are some sample commands to type:
         * `create_inventory i/Logitech G400 q/20 c/69` to add 20 Logitech G400 gaming mouse that cost $69 to the inventory
@@ -320,9 +322,6 @@ __Result:__ Undo or redo the previous command.
 __Add inventory__ | `create_inventory i/ITEM q/QUANTITY [c/ITEM_COST]` <br> e.g. `create_inventory i/MacBook pro q/200 c/50`
 __Delete inventory__ | `delete_inventory INDEX` <br> e.g. `delete_inventory 4`
 __Edit inventory__ | `edit_inventory INDEX i/ITEM_NAME q/QUANTITY`<br> e.g. `edit_inventory 3 i/Lenovo Y50 q/10`
-__List inventory__ | `list_inventory`
-__Add finance__ | `add_finance amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `add_finance amt/420.69 at/2020-04-23`
-__Delete finance__ | `delete_finance INDEX` <br> e.g. `delete_finance 2`
 __Edit finance__ | `edit_finance INDEX amt/AMOUNT [at/DATE] [TIME]` <br> e.g. `edit_finance 1 amt/120 at/2020-10-01`
 __List finance__ | `list_finance`
 __Find finance__ | `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]` <br> e.g. `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes`
