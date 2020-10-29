@@ -6,8 +6,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
-import seedu.address.model.contact.Email;
 import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 

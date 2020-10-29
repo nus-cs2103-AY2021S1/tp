@@ -41,8 +41,6 @@ import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.logic.parser.modulelistparsers.RedoParser;
 import seedu.address.logic.parser.modulelistparsers.UndoParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
-import seedu.address.logic.parser.todolistparsers.FindTaskParser;
-
 
 
 /**

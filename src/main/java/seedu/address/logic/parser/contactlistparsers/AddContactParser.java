@@ -2,7 +2,6 @@ package seedu.address.logic.parser.contactlistparsers;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -21,8 +20,8 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.Prefix;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
 import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 

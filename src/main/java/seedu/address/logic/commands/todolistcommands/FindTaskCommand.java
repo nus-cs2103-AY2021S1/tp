@@ -2,6 +2,9 @@ package seedu.address.logic.commands.todolistcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+import java.util.logging.Logger;
+
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
@@ -9,9 +12,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.task.FindTaskCriteria;
 import seedu.address.model.task.Task;
-
-import java.util.function.Predicate;
-import java.util.logging.Logger;
 
 /**
  * Finds and lists all tasks in the TodoList whose name contains any of the argument keywords.
@@ -59,8 +59,7 @@ public class FindTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindTaskCommand // instanceof handles nulls
-                && predicate.equals(
-                        ((FindTaskCommand) other).predicate)); // state check
+                && predicate.equals(((FindTaskCommand) other).predicate)); // state check
     }
 
     @Override

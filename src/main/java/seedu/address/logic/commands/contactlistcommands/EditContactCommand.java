@@ -20,8 +20,8 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
-import seedu.address.model.contact.Email;
 import seedu.address.model.contact.ContactName;
+import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 

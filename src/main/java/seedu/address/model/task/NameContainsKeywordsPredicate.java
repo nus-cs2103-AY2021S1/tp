@@ -14,8 +14,13 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
 
     private final List<String> keywords;
 
+    /**
+     * Creates and initialises a NameContainsKeywordsPredicate object with a list of keywords.
+     *
+     * @param keywords List of keywords.
+     */
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        assert !keywords.isEmpty()  : "At least one search keyword must be present";
+        assert !keywords.isEmpty() : "At least one search keyword must be present";
         this.keywords = keywords;
     }
 
