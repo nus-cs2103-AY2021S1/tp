@@ -59,8 +59,8 @@ public class AddContactCommand extends Command {
         if (model.hasContact(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_CONTACT);
         }
-
         model.addContact(toAdd);
+        model.commitContactList();
         logger.info("Contact has been added: " + toAdd.toString());
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

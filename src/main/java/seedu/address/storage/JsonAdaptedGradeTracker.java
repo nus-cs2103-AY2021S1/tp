@@ -60,7 +60,7 @@ public class JsonAdaptedGradeTracker {
     public GradeTracker toModelType() throws IllegalValueException {
         GradeTracker modelGradeTracker = new GradeTracker();
         for (JsonAdaptedAssignment assignment : assignments) {
-            if (!modelGradeTracker.isDuplicateAssignment(assignment.toModelType())) {
+            if (!modelGradeTracker.containsDuplicateAssignment(assignment.toModelType())) {
                 modelGradeTracker.addAssignment(assignment.toModelType());
             } else {
                 throw new IllegalValueException(GradeTracker.MESSAGE_DUPLICATE_ASSIGNMENT);

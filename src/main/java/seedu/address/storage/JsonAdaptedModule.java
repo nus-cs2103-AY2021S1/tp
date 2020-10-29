@@ -62,7 +62,7 @@ class JsonAdaptedModule {
      */
     public JsonAdaptedModule(Module source) {
         name = source.getName().fullName;
-        source.getAllLinks().forEach((key, link) -> zoomLinks.add(new JsonAdaptedZoomLink(key, link.getLink())));
+        source.getAllLinks().forEach((lesson, link) -> zoomLinks.add(new JsonAdaptedZoomLink(lesson, link.getLink())));
         gradeTracker = new JsonAdaptedGradeTracker(source.getGradeTracker());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)

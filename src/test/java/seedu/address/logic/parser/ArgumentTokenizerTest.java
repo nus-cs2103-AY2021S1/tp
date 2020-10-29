@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_NEW_ASSIGNMENT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM_LINK;
@@ -129,7 +129,7 @@ public class ArgumentTokenizerTest {
         ArgumentMultimap argMultimap = tokenizer.tokenize();
         // assertArgumentPresent(argMultimap, PREFIX_NAME, "CS2103T");
         assertArgumentPresent(argMultimap, PREFIX_ZOOM_LINK, "www.example.com");
-        assertArgumentAbsent(argMultimap, PREFIX_ADD_NEW_ASSIGNMENT);
+        assertArgumentAbsent(argMultimap, PREFIX_ASSIGNMENT_NAME);
 
         // All three arguments are present
         argsString = "SomePreambleString n/CS2103T z/www.example.com mc/4.0";
