@@ -48,14 +48,17 @@ Given below are my contributions to the project.
   * User Guide:
     * Added documentation for the features `clear`, `edit`, `help` in v1.1
     * Updated documentation for the features `clear-i`, `clear-d`, `list-i`, `list-d` in v1.2
-    * Added numberings and introduction to User Guide
+    * Added numberings, introduction, GUI annotated diagram, quick start installation guide video, FAQ in v1.3
+    * Updated documentation for `add-i`, `add-d`, `help start` and `help summary`, `delete-i`, `delete-d` in v1.3
   * Developer Guide:
     * Added introduction with target audience, purpose of document and summary of document
+    * Added Use Cases and Manual Testing
     * Updated UI Class Diagram and description
     * Updated Glossary
     * Provided description for all components before Diagrams and standardize Figure numbers
     * Added description for structures of `Item` and `Delivery`
     * Added Help Window implementation with description, code snippet and Activity diagram
+    * Restructure DG: Logging, configuration, appendices
 
 
 * **Community**:
@@ -64,7 +67,10 @@ Given below are my contributions to the project.
      [#106](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/106),
      [#115](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/115),
      [#159](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/159),
-     [#166](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/166)
+     [#166](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/166),
+     [#196](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/194),
+     [#199](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/199),
+     [#201](https://github.com/AY2021S1-CS2103T-T12-1/tp/pull/201)
   * Contributed to forum discussions (examples: 
      [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/193),
      [2](https://github.com/nus-cs2103-AY2021S1/forum/issues/150),
