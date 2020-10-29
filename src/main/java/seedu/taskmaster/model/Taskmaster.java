@@ -243,7 +243,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.scoreStudentParticipation(target.getNusnetId(), score);
+        currentSession.get().scoreStudentParticipation(target.getNusnetId(), score);
     }
 
     /**
@@ -265,7 +265,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.scoreStudentParticipation(nusnetId, score);
+        currentSession.get().scoreStudentParticipation(nusnetId, score);
     }
 
     /**
@@ -287,7 +287,7 @@ public class Taskmaster implements ReadOnlyTaskmaster {
             throw new NoSessionSelectedException();
         }
 
-        currentSession.scoreAllParticipation(nusnetIds, score);
+        currentSession.get().scoreAllParticipation(nusnetIds, score);
     }
 
     /* Util Methods */
