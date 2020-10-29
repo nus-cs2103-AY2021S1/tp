@@ -21,11 +21,12 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Detail;
 import seedu.address.testutil.StudentBuilder;
 
-public class AddAdditionalDetailCommandTest {
+public class AddDetailCommandTest {
 
+    //@@author VaishakAnand
     private static final String TEST_DETAIL = "eats flies";
 
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), getTypicalNotebook());
@@ -36,27 +37,27 @@ public class AddAdditionalDetailCommandTest {
 
         // both arguments null
         assertThrows(NullPointerException.class, () ->
-                new AddAdditionalDetailCommand(null, null));
+                new AddDetailCommand(null, null));
 
         // one argument null
         assertThrows(NullPointerException.class, () ->
-                new AddAdditionalDetailCommand(testIndex, null));
+                new AddDetailCommand(testIndex, null));
         assertThrows(NullPointerException.class, () ->
-                new AddAdditionalDetailCommand(null, new AdditionalDetail(TEST_DETAIL)));
+                new AddDetailCommand(null, new Detail(TEST_DETAIL)));
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
         Student clone = new StudentBuilder(asker).withDetails().build();
-        AdditionalDetail additionalDetail = new AdditionalDetail(TEST_DETAIL);
-        AddAdditionalDetailCommand addAdditionalDetailCommand =
-                new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, additionalDetail);
+        Detail detail = new Detail(TEST_DETAIL);
+        AddDetailCommand addAdditionalDetailCommand =
+                new AddDetailCommand(INDEX_FIRST_PERSON, detail);
         Student expectedStudent = new StudentBuilder(ALICE).withDetails(TEST_DETAIL).build();
         model.setStudent(asker, clone);
 
-        String expectedMessage = String.format(AddAdditionalDetailCommand.MESSAGE_SUCCESS, clone.getName(),
-                additionalDetail);
+        String expectedMessage = String.format(AddDetailCommand.MESSAGE_SUCCESS, clone.getName(),
+                detail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
         expectedModel.setStudent(clone, expectedStudent);
@@ -66,9 +67,9 @@ public class AddAdditionalDetailCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBounds = Index.fromOneBased(model.getFilteredStudentList().size() + 1);
-        AddAdditionalDetailCommand command = new AddAdditionalDetailCommand(outOfBounds,
-                new AdditionalDetail(TEST_DETAIL));
+        Index outOfBounds = Index.fromOneBased(model.getSortedStudentList().size() + 1);
+        AddDetailCommand command = new AddDetailCommand(outOfBounds,
+                new Detail(TEST_DETAIL));
 
         assertCommandFailure(command, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
@@ -77,15 +78,15 @@ public class AddAdditionalDetailCommandTest {
     public void execute_validIndexFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
-        Student asker = model.getFilteredStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
-        AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
+        Student asker = model.getSortedStudentList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Detail detail = new Detail(TEST_DETAIL);
         Student clone = new StudentBuilder(asker).withDetails().build();
         model.setStudent(asker, clone);
 
-        AddAdditionalDetailCommand command = new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, detail);
+        AddDetailCommand command = new AddDetailCommand(INDEX_FIRST_PERSON, detail);
         Student expectedStudent = new StudentBuilder(BENSON).withDetails(TEST_DETAIL).build();
 
-        String expectedMessage = String.format(AddAdditionalDetailCommand.MESSAGE_SUCCESS,
+        String expectedMessage = String.format(AddDetailCommand.MESSAGE_SUCCESS,
                 clone.getName(), detail);
 
         ModelManager expectedModel = new ModelManager(model.getReeve(), new UserPrefs(), getTypicalNotebook());
@@ -99,17 +100,17 @@ public class AddAdditionalDetailCommandTest {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
 
         Index outOfBounds = INDEX_SECOND_PERSON;
-        AdditionalDetail detail = new AdditionalDetail(TEST_DETAIL);
-        AddAdditionalDetailCommand invalidCommand = new AddAdditionalDetailCommand(outOfBounds, detail);
+        Detail detail = new Detail(TEST_DETAIL);
+        AddDetailCommand invalidCommand = new AddDetailCommand(outOfBounds, detail);
 
         assertCommandFailure(invalidCommand, model, MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        AdditionalDetail testDetail = new AdditionalDetail(TEST_DETAIL);
-        AddAdditionalDetailCommand addAdditionalDetailCommand =
-                new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, testDetail);
+        Detail testDetail = new Detail(TEST_DETAIL);
+        AddDetailCommand addAdditionalDetailCommand =
+                new AddDetailCommand(INDEX_FIRST_PERSON, testDetail);
 
         // same object -> return true;
         assertTrue(addAdditionalDetailCommand.equals(addAdditionalDetailCommand));
@@ -118,14 +119,14 @@ public class AddAdditionalDetailCommandTest {
         assertFalse(addAdditionalDetailCommand.equals("hello"));
 
         // same fields -> return true;
-        assertTrue(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, testDetail)));
+        assertTrue(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_FIRST_PERSON, testDetail)));
 
         // different index -> return false;
-        assertFalse(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_SECOND_PERSON, testDetail)));
+        assertFalse(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_SECOND_PERSON, testDetail)));
 
         // different detail -> return false;
-        AdditionalDetail altDetail = new AdditionalDetail("he watches birds");
-        assertFalse(addAdditionalDetailCommand.equals(new AddAdditionalDetailCommand(INDEX_FIRST_PERSON, altDetail)));
+        Detail altDetail = new Detail("he watches birds");
+        assertFalse(addAdditionalDetailCommand.equals(new AddDetailCommand(INDEX_FIRST_PERSON, altDetail)));
     }
 
 }

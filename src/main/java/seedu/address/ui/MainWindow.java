@@ -171,6 +171,13 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Toggle the display of student cards in the student list panel between admin and academic.
+     */
+    public void handleAcademicPanel() {
+        studentListPanel.toggleState();
+    }
+
     public StudentListPanel getStudentListPanel() {
         return studentListPanel;
     }
@@ -196,6 +203,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isToggleStudentCard()) {
+                handleAcademicPanel();
             }
 
             return commandResult;

@@ -2,8 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
@@ -16,41 +15,36 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Detail;
 
-public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
+public class DeleteDetailCommand extends DetailCommand {
 
-    public static final String COMMAND_WORD = "edit";
-    public static final String MESSAGE_USAGE = AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD
-            + ": edits an Additional Detail in the student identified "
-            + "by the index number used in the displayed student list. \n"
+    public static final String COMMAND_WORD = "delete";
+    public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
+            + ": deletes an Additional Detail in the student identified"
+            + " by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_DETAIL_INDEX + "DETAIL_INDEX (must be a positive integer) "
-            + PREFIX_DETAIL_TEXT + "DETAIL\n"
-            + "Example: " + AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
-            + PREFIX_DETAIL_INDEX + "1 "
-            + PREFIX_DETAIL_TEXT + "Eats sweets in class";
+            + PREFIX_INDEX + "DETAIL_INDEX (must be a positive integer)\n"
+            + "Example: " + DetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
+            + PREFIX_INDEX + "1";
 
-    public static final String MESSAGE_SUCCESS = "Detail edited for %s: %s";
+    public static final String MESSAGE_SUCCESS = "Detail removed from %s: %s";
     public static final String MESSAGE_BAD_DETAIL_INDEX = "There is no detail at this index";
 
-    private static Logger logger = Logger.getLogger("Edit Additional Detail Log");
+    private static Logger logger = Logger.getLogger("Delete Additional Detail Log");
 
     private final Index studentIndex;
     private final Index detailIndex;
-    private final AdditionalDetail detailToAdd;
 
     /**
      * Constructs a DeleteQuestionCommand to remove a specified {@code Question} from a {@code Student}.
      * @param studentIndex
      * @param detailIndex
-     * @param detailToAdd
      */
-    public EditAdditionalDetailCommand(Index studentIndex, Index detailIndex, AdditionalDetail detailToAdd) {
-        requireAllNonNull(studentIndex, detailIndex, detailToAdd);
+    public DeleteDetailCommand(Index studentIndex, Index detailIndex) {
+        requireAllNonNull(studentIndex, detailIndex);
         this.studentIndex = studentIndex;
         this.detailIndex = detailIndex;
-        this.detailToAdd = detailToAdd;
     }
 
     /**
@@ -62,32 +56,31 @@ public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
      */
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        assert(studentIndex != null && detailIndex != null && detailToAdd != null);
+        assert(studentIndex != null && detailIndex != null);
         requireNonNull(model);
         logger.log(Level.INFO, "Beginning command execution");
 
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getSortedStudentList();
         if (studentIndex.getZeroBased() >= lastShownList.size()) {
             logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToAddDetail = lastShownList.get(studentIndex.getZeroBased());
-
         if (detailIndex.getZeroBased() >= studentToAddDetail.getDetails().size()) {
             logger.log(Level.WARNING, "Invalid detail index input error");
             throw new CommandException(MESSAGE_BAD_DETAIL_INDEX);
         }
 
-        List<AdditionalDetail> details = new ArrayList<>(studentToAddDetail.getDetails());
-        details.set(detailIndex.getZeroBased(), detailToAdd);
+        List<Detail> details = new ArrayList<>(studentToAddDetail.getDetails());
+        Detail removedDetail = details.remove(detailIndex.getZeroBased());
 
         Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);
 
         model.setStudent(studentToAddDetail, updatedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
         logger.log(Level.INFO, "Execution complete");
-        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), detailToAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedStudent.getName(), removedDetail));
     }
 
     @Override
@@ -96,12 +89,11 @@ public class EditAdditionalDetailCommand extends AdditionalDetailCommand {
             return true;
         }
 
-        if (!(obj instanceof EditAdditionalDetailCommand)) {
+        if (!(obj instanceof DeleteDetailCommand)) {
             return false;
         }
 
-        EditAdditionalDetailCommand other = (EditAdditionalDetailCommand) obj;
-        return studentIndex.equals(other.studentIndex) && detailIndex.equals(other.detailIndex)
-                && detailToAdd.equals(other.detailToAdd);
+        DeleteDetailCommand other = (DeleteDetailCommand) obj;
+        return studentIndex.equals(other.studentIndex) && detailIndex.equals(other.detailIndex);
     }
 }

@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.admin.ClassTimeComparator;
 
 /**
  * Finds and list all students with classes on a given date.
@@ -47,8 +48,10 @@ public class ScheduleCommand extends Command {
         // updates the list that is currently showed in the ui
         model.updateFilteredStudentList(predicate);
 
+        model.updateSortedStudentList(new ClassTimeComparator());
+
         return new CommandResult(
-                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getFilteredStudentList().size()));
+                String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW, model.getSortedStudentList().size()));
     }
 
     @Override

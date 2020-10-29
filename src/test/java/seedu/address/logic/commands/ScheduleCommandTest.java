@@ -53,7 +53,7 @@ public class ScheduleCommandTest {
         expectedModel.updateFilteredStudentList(std -> std.getAdmin().getClassTime().isSameDay(day));
 
         String expectedMsg = String.format(Messages.MESSAGE_STUDENTS_LISTED_OVERVIEW,
-                expectedModel.getFilteredStudentList().size());
+                expectedModel.getSortedStudentList().size());
 
         ScheduleCommand scheduleCommand = new ScheduleCommand(validDate);
 

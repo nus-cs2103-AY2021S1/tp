@@ -20,7 +20,23 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
+    }],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+  }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -41,7 +57,23 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
+    } ],
+      "exams" : [ {
+        "examName" : "CA2",
+        "examDate" : "19/9/2020",
+        "score" : "73/100"
+      }, {
+        "examName" : "CA1",
+        "examDate" : "2/3/2020",
+        "score" : "21/40"
+  }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -62,7 +94,23 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
+    } ],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
@@ -83,7 +131,23 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
+    } ],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Elle Meyer",
     "phone" : "9482224",
@@ -104,7 +168,23 @@
       "status" : true,
       "question" : "How do you inverse a matrix?",
       "solution" : "Read your textbook"
-    } ]
+    } ],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   }, {
     "name" : "Fiona Kunz",
     "phone" : "9482427",
@@ -125,8 +205,23 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
-  }, {
+    } ],
+    "exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }}, {
     "name" : "George Best",
     "phone" : "9482442",
     "school": "Montford Secondary",
@@ -146,6 +241,21 @@
       "status" : false,
       "question" : "How do you inverse a matrix?",
       "solution" : ""
-    } ]
+    } ],"exams" : [ {
+      "examName" : "End of Year Examination 2020",
+      "examDate" : "7/11/2020",
+      "score" : "50/100"
+    }, {
+      "examName" : "Mid Year Examination 2020",
+      "examDate" : "25/7/2020",
+      "score" : "20/30"
+    }],
+    "academic" : {
+      "attendanceList" : [ {
+        "date" : "14/04/1998",
+        "attendanceStatus" : "attended",
+        "feedback" : "sleepy during lesson"
+      }]
+    }
   } ]
 }

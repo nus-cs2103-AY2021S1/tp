@@ -24,6 +24,8 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.School;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.Year;
+import seedu.address.model.student.academic.Academic;
+import seedu.address.model.student.academic.exam.Exam;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
 import seedu.address.model.student.admin.ClassVenue;
@@ -65,7 +67,7 @@ public class EditCommand extends Command {
     private final EditAdminDescriptor editAdminDescriptor;
 
     /**
-     * @param index of the student in the filtered student list to edit
+     * @param index of the student in the sorted student list to edit
      * @param editStudentDescriptor details to edit the student with
      * @param editAdminDescriptor admin details to edit the student with
      */
@@ -82,7 +84,7 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getSortedStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -133,7 +135,12 @@ public class EditCommand extends Command {
 
         // Questions should not be edited through this command
         List<Question> questions = studentToEdit.getQuestions();
-        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions);
+        // Exams should not be edited through this command
+        List<Exam> exams = studentToEdit.getExams();
+        // Academic should not be edited through this command
+        Academic academic = studentToEdit.getAcademic();
+        return new Student(updatedName, updatedPhone, updatedSchool, updatedYear, updatedAdmin, questions, exams,
+                academic);
     }
 
     @Override

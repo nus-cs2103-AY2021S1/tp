@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DETAIL_TEXT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TEXT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 import java.util.ArrayList;
@@ -15,31 +15,31 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.admin.AdditionalDetail;
+import seedu.address.model.student.admin.Detail;
 
-public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
+public class AddDetailCommand extends DetailCommand {
 
     public static final String COMMAND_WORD = "add";
-    public static final String MESSAGE_USAGE = AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD
+    public static final String MESSAGE_USAGE = DetailCommand.COMMAND_WORD + " " + COMMAND_WORD
             + ": adds an Additional Detail to the student identified "
             + "by the index number used in the displayed student list. \n"
             + "Parameters: STUDENT_INDEX (must be a positive integer) "
-            + PREFIX_DETAIL_TEXT + "DETAIL\n"
-            + "Example: " + AdditionalDetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
-            + PREFIX_DETAIL_TEXT + "Eats sweets in class";
+            + PREFIX_TEXT + "DETAIL\n"
+            + "Example: " + DetailCommand.COMMAND_WORD + " " + COMMAND_WORD + " 2 "
+            + PREFIX_TEXT + "Eats sweets in class";
 
     public static final String MESSAGE_SUCCESS = "New detail added to %s: %s";
 
     private static Logger logger = Logger.getLogger("Add Additional Detail Log");
 
     private final Index index;
-    private final AdditionalDetail detailToAdd;
+    private final Detail detailToAdd;
 
     /**
      * Creates an AddAdditionalDetailCommand to add the specified {@code AdditionalDetail} to the student
      * at the specified {@code Index}.
      */
-    public AddAdditionalDetailCommand(Index index, AdditionalDetail detailToAdd) {
+    public AddDetailCommand(Index index, Detail detailToAdd) {
         requireAllNonNull(index, detailToAdd);
         this.index = index;
         this.detailToAdd = detailToAdd;
@@ -58,7 +58,7 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
         requireNonNull(model);
         logger.log(Level.INFO, "Beginning command execution");
 
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getSortedStudentList();
         if (index.getZeroBased() >= lastShownList.size()) {
             logger.log(Level.WARNING, "Invalid student index input error");
             throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
@@ -66,7 +66,7 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
 
         Student studentToAddDetail = lastShownList.get(index.getZeroBased());
 
-        List<AdditionalDetail> details = new ArrayList<>(studentToAddDetail.getDetails());
+        List<Detail> details = new ArrayList<>(studentToAddDetail.getDetails());
         details.add(detailToAdd);
 
         Student updatedStudent = super.updateStudentDetail(studentToAddDetail, details);
@@ -83,11 +83,11 @@ public class AddAdditionalDetailCommand extends AdditionalDetailCommand {
             return true;
         }
 
-        if (!(obj instanceof AddAdditionalDetailCommand)) {
+        if (!(obj instanceof AddDetailCommand)) {
             return false;
         }
 
-        AddAdditionalDetailCommand other = (AddAdditionalDetailCommand) obj;
+        AddDetailCommand other = (AddDetailCommand) obj;
         return index.equals(other.index) && detailToAdd.equals(other.detailToAdd);
     }
 }
