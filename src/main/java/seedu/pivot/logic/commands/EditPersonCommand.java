@@ -1,6 +1,7 @@
 package seedu.pivot.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.pivot.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
 
@@ -23,8 +24,7 @@ public abstract class EditPersonCommand extends EditCommand {
      * @param editPersonDescriptor details to edit the person with
      */
     public EditPersonCommand(Index caseIndex, Index personIndex, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(caseIndex);
-        requireNonNull(editPersonDescriptor);
+        requireAllNonNull(caseIndex, personIndex, editPersonDescriptor);
 
         this.caseIndex = caseIndex;
         this.personIndex = personIndex;
@@ -49,6 +49,7 @@ public abstract class EditPersonCommand extends EditCommand {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+            requireNonNull(toCopy);
             setName(toCopy.name);
             setGender(toCopy.gender);
             setPhone(toCopy.phone);
