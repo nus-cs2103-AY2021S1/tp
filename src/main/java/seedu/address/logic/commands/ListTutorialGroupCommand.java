@@ -19,9 +19,10 @@ public class ListTutorialGroupCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if(model.isInModuleView()) {
-            throw new CommandException("This command cannot be used in Module View, use viewTG MODULE_INDEX to specify which Module's" +
-                "Tutorial Groups you would like to view.");
+        if (model.isInModuleView()) {
+            throw new CommandException(
+                "This command cannot be used in Module View, use viewTG MODULE_INDEX to specify which Module's"
+                + "Tutorial Groups you would like to view.");
         }
         model.updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIALGROUPS);
         Module mod = model.getCurrentModuleInView();

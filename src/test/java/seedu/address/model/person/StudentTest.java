@@ -2,62 +2,94 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BENG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BENG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BENG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_STUDENT_ID_BENG;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
+import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalStudents.ALEX;
+import static seedu.address.testutil.TypicalStudents.BENG;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.util.SampleDataUtil;
 import seedu.address.testutil.StudentBuilder;
 
 public class StudentTest {
-    private Student amy = new Student(new Name(VALID_NAME_AMY), new Phone(VALID_PHONE_AMY),
-            new Email(VALID_EMAIL_AMY), SampleDataUtil.getTagSet(),
-            new StudentId(VALID_STUDENT_ID_AMY));
 
-    private Student bob = new Student(new Name(VALID_NAME_BOB), new Phone(VALID_PHONE_BOB),
-            new Email(VALID_EMAIL_BOB), SampleDataUtil.getTagSet(),
-            new StudentId(VALID_STUDENT_ID_BOB));
+    @Test
+    public void asObservableList_modifyList_throwsUnsupportedOperationsException() {
+        Student student = new StudentBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> student.getTags().remove(0));
+    }
+
+    @Test
+    public void isSameStudent() {
+        // same object -> returns true
+        assertTrue(ALEX.isSame(ALEX));
+
+        // null -> returns false
+        assertFalse(ALEX.isSame(null));
+
+        // different phone and email -> returns false
+        Student editedAlex = new StudentBuilder(ALEX).withPhone(VALID_PHONE_BENG).withEmail(VALID_EMAIL_BENG).build();
+        assertFalse(ALEX.isSame(editedAlex));
+
+        // different name -> returns false
+        editedAlex = new StudentBuilder(ALEX).withName(VALID_NAME_BENG).build();
+        assertFalse(ALEX.isSame(editedAlex));
+
+        // different student id -> returns false
+        editedAlex = new StudentBuilder(ALEX).withStudentId(VALID_STUDENT_ID_BENG).build();
+        assertFalse(ALEX.isSame(editedAlex));
+
+        // same name, same phone, same id, different attributes -> returns true
+        editedAlex = new StudentBuilder(ALEX).withEmail(VALID_EMAIL_BENG)
+                .withTags(VALID_TAG_FRIEND).build();
+        assertTrue(ALEX.isSame(editedAlex));
+
+        // same name, same email, same id, different attributes -> returns true
+        editedAlex = new StudentBuilder(ALEX).withPhone(VALID_PHONE_BENG)
+                .withTags(VALID_TAG_FRIEND).build();
+        assertTrue(ALEX.isSame(editedAlex));
+
+        // same name, same phone, same email, same id, different attributes -> returns true
+        editedAlex = new StudentBuilder(ALEX).withTags(VALID_TAG_FRIEND).build();
+        assertTrue(ALEX.isSame(editedAlex));
+    }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Student amyCopy = new StudentBuilder(amy).build();
-        assertTrue(amy.equals(amyCopy));
+        Student alexCopy = new StudentBuilder(ALEX).build();
+        assertTrue(ALEX.equals(alexCopy));
 
         // same object -> returns true
-        assertTrue(amy.equals(amy));
+        assertTrue(ALEX.equals(ALEX));
 
         // null -> returns false
-        assertFalse(amy.equals(null));
+        assertFalse(ALEX.equals(null));
 
         // different type -> returns false
-        assertFalse(amy.equals(5));
+        assertFalse(ALEX.equals(5));
 
-        // different person -> returns false
-        assertFalse(amy.equals(bob));
+        // different student -> returns false
+        assertFalse(ALEX.equals(BENG));
 
         // different name -> returns false
-        Student editedAmy = new StudentBuilder(amy).withName(VALID_NAME_BOB).build();
-        assertFalse(amy.equals(editedAmy));
+        Student editedAlex = new StudentBuilder(ALEX).withName(VALID_NAME_BENG).build();
+        assertFalse(ALEX.equals(editedAlex));
 
         // different phone -> returns false
-        editedAmy = new StudentBuilder(amy).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(amy.equals(editedAmy));
+        editedAlex = new StudentBuilder(ALEX).withPhone(VALID_PHONE_BENG).build();
+        assertFalse(ALEX.equals(editedAlex));
 
         // different email -> returns false
-        editedAmy = new StudentBuilder(amy).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(amy.equals(editedAmy));
+        editedAlex = new StudentBuilder(ALEX).withEmail(VALID_EMAIL_BENG).build();
+        assertFalse(ALEX.equals(editedAlex));
 
         // different tags -> returns false
-        editedAmy = new StudentBuilder(amy).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(amy.equals(editedAmy));
+        editedAlex = new StudentBuilder(ALEX).withTags(VALID_TAG_FRIEND).build();
+        assertFalse(ALEX.equals(editedAlex));
     }
 }
