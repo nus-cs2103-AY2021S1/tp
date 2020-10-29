@@ -336,7 +336,7 @@ You can delete a group of flashcards based on a specified tag. All flashcards th
 
 All flashcards with your specified tag(s) are now deleted!
 
-#### Clearing all entries : `clear`
+#### Clearing all entries : `clear` <a name="clear"></a>
 Suppose you are in a situation where you want to get rid of all the flashcards in QuickCache. You might find it troublesome to delete each flashcard one-by-one. Instead, you can utilize the clear command to clear all flashcards on QuickCache directly.
 
 Format: `clear`
