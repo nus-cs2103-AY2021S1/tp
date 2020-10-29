@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 
@@ -136,7 +137,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setModule(Module target, String newModuleId) {
+    public void setModule(Module target, ModuleId newModuleId) {
         requireAllNonNull(target, newModuleId);
         moduleList.setModule(target, newModuleId);
     }

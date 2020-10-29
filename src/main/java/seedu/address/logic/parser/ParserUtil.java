@@ -16,6 +16,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.tutorialgroup.TutorialGroup;
+import seedu.address.model.tutorialgroup.TutorialGroupId;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -110,6 +112,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String tutorial group id} into a {@code TutorialGroupId}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tutorial group id} is invalid.
+     */
+    public static TutorialGroupId parseTutorialGroupId(String tutorialGroupId) throws ParseException {
+        requireNonNull(tutorialGroupId);
+        String trimmedModule = tutorialGroupId.trim();
+        if (!TutorialGroupId.isValidTutorialGroupId(trimmedModule)) {
+            throw new ParseException(TutorialGroupId.MESSAGE_CONSTRAINTS);
+        }
+        return new TutorialGroupId(tutorialGroupId);
+    }
+
+    /**
      * Parses a {@code String module} into a {@code Module}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -130,13 +147,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code module id} is invalid.
      */
-    public static String parseModuleId(String moduleId) throws ParseException {
+    public static ModuleId parseModuleId(String moduleId) throws ParseException {
         requireNonNull(moduleId);
         String trimmedModule = moduleId.trim();
         if (!ModuleId.isValidModuleId(trimmedModule)) {
             throw new ParseException(ModuleId.MESSAGE_CONSTRAINTS);
         }
-        return moduleId;
+        return new ModuleId(moduleId);
     }
 
     /**
