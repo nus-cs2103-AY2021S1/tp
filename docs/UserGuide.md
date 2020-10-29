@@ -109,8 +109,8 @@ Figure 1.2: <i>The recipe view panel of ChopChop.</i>
 ### 4.1 Command Box 
 ChopChop does your bidding by listening to your commands — the `Command Box` is where you type your textual commands.
 After typing your commands, press <kbd>enter</kbd> to execute the command.
-
-For a quick overview on the commands ChopChop can perform, 
+ 
+To learn about the commands you can perform, check out our [command summary](#commandSummary) for a quick overview or our [commands](#commands) for a detailed walkthrough.
 
 
 <div style="text-align: center; padding-bottom: 2em">
