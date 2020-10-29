@@ -125,14 +125,12 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`,
 
 - stores a `UserPref` object that represents the user’s preferences.
-- stores the residence regulation data.
-- exposes an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
-- does not depend on any of the other three components.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `ResiReg`, which `Person` references. This allows `ResiReg` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
-![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
-
-</div>
+- stores the residence regulation data
+- exposes the following `ObservableList`s that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change:
+    - unmodifiable `ObservableList<Student>`
+    - unmodifiable `ObservableList<Room>`
+    - unmodifiable `ObservableList<Allocation>`
+    - unmodifiable `ObservableList<BinItem>`
 
 ### Storage component
 
