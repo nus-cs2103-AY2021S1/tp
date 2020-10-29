@@ -52,7 +52,7 @@ This section explains the format of commands in this User Guide.
 
 - Words in `<angular_brackets>` are the parameters to be supplied by the user e.g. in `deallocate <student_name>`, `<student_name>` is a parameter which can be used as `deallocate Jet New`.
 - Items in square brackets are optional e.g `<full_name> [-aka <alias>]` can be used as `Jet New -aka JJ` or as `Jet New`.
-- Items separated by <Code>|</Code> indicates a choice between items, but only one item is to be used at any time e.g. `--vacant | --allocated` means either the `--vacant` or the `--allocated` flag (but not both) can be used.
+- Items separated by <Code>or</Code> indicates a choice between items, but only one item is to be used at any time e.g. `--vacant | --allocated` means either the `--vacant` or the `--allocated` flag (but not both) can be used.
 - Items with `…` after them can be used multiple times including zero times, unless otherwise stated e.g. `[/m <mod> /ig <interest_group>]…` can be used as `/m mod /ig ig`, `/m mod1 /ig ig1 /m mod2 /ig ig2` etc.
 </div>
 
@@ -421,14 +421,13 @@ Just type in the `help` command!
 
 | Action                | Format, Examples                                                                                                                                          |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _list rooms_          | `rooms [--allocated                                                                                                                                       | --vacant]`e.g.`rooms`or`rooms --allocated`or`rooms --vacant` |
+| _list rooms_          | `rooms [--allocated or --vacant]`e.g.`rooms`or`rooms --allocated`or`rooms --vacant`                                                                       |
 | _allocate room_       | `allocate si/<student_index> ri/<room_index>` e.g. `allocate si/1 ri/1`                                                                                   |
 | _deallocate room_     | `deallocate si/<student_index>` e.g. `deallocate si/1`                                                                                                    |
 | _edit allocation_     | `reallocate si/<student_index> ri/<room_index>` e.g. `reallocate si/1 ri/2`                                                                               |
-| _list students_       | `students`                                                                                                                                                |
+| _students_            | `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]` e.g. `students n/dameeth`                                                     |
 | _add student_         | `add n/<name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [t/<tag_name>]...` e.g.`add n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` |
 | _edit student_        | `edit <index> [n/<name>] [i/<student_id>] [p/<8_digit_phone_no>] [e/<email>] [f/<faculty>] [t/<tag_name>]…` e.g.`edit 1 n/Jet New`                        |
-| _find student_        | `find <keyword> [<another_keyword>]...` e.g.`find John`                                                                                                   |
 | _delete student_      | `delete <index>` e.g.`delete 2`                                                                                                                           |
 | _list bin items_      | `bin`                                                                                                                                                     |
 | _restore bin item_    | `restore <index>` e.g. `restore 2`                                                                                                                        |
@@ -436,7 +435,7 @@ Just type in the `help` command!
 | _list aliases_        | `aliases`                                                                                                                                                 |
 | _add alias_           | `alias c/<command_word> a/<alias>` e.g. `alias c/rooms a/r`                                                                                               |
 | _delete alias_        | `dealias c/<command_word> a/<alias>` e.g. `alias c/rooms a/r`                                                                                             |
-| _help_                | `help [<command_word>                                                                                                                                     | <alias>]`e.g.`help`or`help rooms`or`help r` |
+| _help_                | `help [<command_word> or <alias>]`e.g.`help`or`help rooms`or`help r`                                                                                      |
 | _archive semester_    | `archive`                                                                                                                                                 |
 | _clear_               | `clear`                                                                                                                                                   |
 | _exit_                | `exit`                                                                                                                                                    |
