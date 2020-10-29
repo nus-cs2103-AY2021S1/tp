@@ -16,9 +16,9 @@ https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2
 
 This User-Guide aims to aid users in using NUStorage to its fullest potential. In this guide, we will be guiding you through the entire process of using NUStorage, from setting it up on your system to the using the features that NUStorage offers.
 
-If you are a new user, we recommend that you read this user guide from start to the end and follow the examples provided in the [Commands](#4-commands) section to gain a better understanding of the application. If you are an experienced user, feel free to use the Table-Of-Contents to skip to the section most relevant to you.
+If you are a new user, we recommend that you read this user guide from start to the end and follow the examples provided in the [Commands](#5-commands) section to gain a better understanding of the application. If you are an experienced user, feel free to use the Table-Of-Contents to skip to the section most relevant to you.
 
-If you see an acronym that you don't understand, kindly refer to the [glossary](#7-glossary-and-terms). If you have further questions regarding NUStorage or this User-Guide, feel free to contact us at _nustorage.support@u.nus.edu_.
+If you see an acronym that you don't understand, kindly refer to the [glossary](#8-glossary-and-terms). If you have further questions regarding NUStorage or this User-Guide, feel free to contact us at _nustorage.support@u.nus.edu_.
 
 ## 2. Introduction
 
@@ -30,7 +30,7 @@ NUStorage is optimised for store owners and managers who prefer to work with a c
 
 With proper usage, NUStorage can manage your inventory and finance records much faster than traditional GUI-based applications, streamlining your workflow and increasing productivity.
 
-Interested? Read on to get [started](#2-quick-start-guide)!
+Interested? Read on to get [started](#3-quick-start-guide)!
 
 ---
 
@@ -320,7 +320,7 @@ __Result:__ Undo or redo the previous command.
 
 ### 6.1. Inventory Commands Summary
 
-The following table gives a summary of the [__inventory commands__](#41-inventory-commands) for quick reference and look-ups.
+The following table gives a summary of the [__inventory commands__](#51-inventory-commands) for quick reference and look-ups.
 
 |Description|Command and Example|
 |---|---|
@@ -332,7 +332,7 @@ The following table gives a summary of the [__inventory commands__](#41-inventor
 
 ### 6.2. Finance Commands Summary
 
-The following table gives a summary of the [__finance commands__](#42-finance-commands) for quick reference and look-ups.
+The following table gives a summary of the [__finance commands__](#52-finance-commands) for quick reference and look-ups.
 
 |Description|Command and Example|
 |---|---|
@@ -344,7 +344,7 @@ The following table gives a summary of the [__finance commands__](#42-finance-co
 
 ### 6.3. Universal Commands Summary
 
-The following table gives a summary of the [__general commands__](#43-universal-commands) for quick reference and look-ups.
+The following table gives a summary of the [__general commands__](#53-universal-commands) for quick reference and look-ups.
 
 |Description|Command and Example|
 |---|---|
