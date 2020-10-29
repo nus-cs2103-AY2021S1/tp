@@ -444,7 +444,7 @@ You may refer to the Help Activity Diagram shown below:
     * `FINE`: Details that is not usually noteworthy but may be useful in debugging e.g. print the actual list instead of just its size.
 
 
-<a name="configuration></a>
+<a name="configuration"></a>
 ### 4.8 Configuration
 
 Certain properties of the application can be controlled (e.g user preferences file location, logging level) through the configuration file (default: `config.json`).
