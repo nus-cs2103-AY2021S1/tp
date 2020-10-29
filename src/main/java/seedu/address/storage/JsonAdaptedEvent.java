@@ -29,20 +29,19 @@ public class JsonAdaptedEvent {
 
     private final String name;
     private final String dateTime;
-    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    // private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedEvent} with the given Event details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name,
-                             @JsonProperty("dateTime") String dateTime,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                            @JsonProperty("date") String dateTime) {
         this.name = name;
         this.dateTime = dateTime;
-        if (tagged != null) {
-            this.tagged.addAll(tagged);
-        }
+        // if (tagged != null) {
+        //     this.tagged.addAll(tagged);
+        // }
     }
 
     /**
@@ -63,18 +62,19 @@ public class JsonAdaptedEvent {
      */
     public Event toModelType() throws IllegalValueException {
         final List<Tag> eventTags = new ArrayList<>();
-        for (JsonAdaptedTag tag : tagged) {
-            eventTags.add(tag.toModelType());
-        }
+        // for (JsonAdaptedTag tag : tagged) {
+        //     eventTags.add(tag.toModelType());
+        // }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    EventName.class.getSimpleName()));
+            // throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+            //        EventName.class.getSimpleName()));
         }
         if (!EventName.isValidName(name)) {
-            throw new IllegalValueException(EventName.MESSAGE_CONSTRAINTS);
+            // throw new IllegalValueException(EventName.MESSAGE_CONSTRAINTS);
         }
         final EventName eventName = new EventName(name);
+
         if (dateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     EventTime.class.getSimpleName()));
@@ -82,10 +82,10 @@ public class JsonAdaptedEvent {
         if (!EventTime.isValidDateTime(dateTime)) {
             throw new IllegalValueException(ModuleName.MESSAGE_CONSTRAINTS);
         }
-        final LocalDateTime time = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern("d-M-uuuu HHmm"));
+        final LocalDateTime time = LocalDateTime.parse(dateTime);
         final EventTime eventTime = new EventTime(time);
 
-        final Set<Tag> modelTags = new HashSet<>(eventTags);
+        // final Set<Tag> modelTags = new HashSet<>(eventTags);
         // TODO: Implement tags in event
         return new Event(eventName, eventTime);
     }

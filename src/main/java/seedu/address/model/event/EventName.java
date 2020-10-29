@@ -32,7 +32,8 @@ public class EventName {
     }
 
     public static boolean isValidName(String name) {
-        return name.matches(VALIDATION_REGEX);
+//        return name.matches(VALIDATION_REGEX);
+        return true;
     }
 
     @Override

@@ -29,15 +29,16 @@ public class EventTime {
     }
 
     public static boolean isValidDateTime(String input) {
-        boolean isValid = false;
-        try {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
-            LocalDateTime.parse(input,formatter);
-            isValid = true;
-        } catch (DateTimeParseException e) {
-            isValid = false;
-        }
-        return isValid;
+//        boolean isValid = false;
+//        try {
+//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("uuuu-MM-ddTHHmm");
+//            LocalDateTime.parse(input,formatter);
+//            isValid = true;
+//        } catch (DateTimeParseException e) {
+//            isValid = false;
+//        }
+//        return isValid;
+        return true;
     }
 
     public LocalDateTime getStart() {

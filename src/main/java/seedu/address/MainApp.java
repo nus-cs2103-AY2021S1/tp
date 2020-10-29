@@ -68,36 +68,26 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyModuleList> moduleListOptional;
-        Optional<ReadOnlyEventList> eventListOptional;
         ReadOnlyModuleList initialData;
         ReadOnlyContactList initialContactList = initializeContactList(storage);
         ReadOnlyTodoList initialTodoList = new TodoList();
-        ReadOnlyEventList initialEventList;
+        ReadOnlyEventList initialEventList = initializeEventList(storage);
         try {
             moduleListOptional = storage.readModuleList();
-            eventListOptional = storage.readEventList();
             if (!moduleListOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ModuleList");
                 initialData = new ModuleList();
             } else {
                 initialData = moduleListOptional.get();
             }
-            if (!eventListOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a blank EventList");
-                initialEventList = new EventList();
-            } else {
-                initialEventList = eventListOptional.get();
-            }
             //to be used when sample modulelist is created
             //initialData = moduleListOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
-            initialEventList = new EventList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty ModuleList");
             initialData = new ModuleList();
-            initialEventList = new EventList();
         }
         return new ModelManager(initialData, initialContactList, initialTodoList, initialEventList, userPrefs);
     }
@@ -127,6 +117,27 @@ public class MainApp extends Application {
             initialContactList = new ContactList();
         }
         return initialContactList;
+    }
+
+    private ReadOnlyEventList initializeEventList(Storage storage) {
+        Optional<ReadOnlyEventList> contactListOptional;
+        ReadOnlyEventList initialEventList;
+        try {
+            contactListOptional = storage.readEventList();
+            if (!contactListOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample EventList");
+                initialEventList = new EventList();
+            } else {
+                initialEventList = contactListOptional.get();
+            }
+        } catch (DataConversionException ex) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty EventList");
+            initialEventList = new EventList();
+        } catch (IOException ex) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty EventList");
+            initialEventList = new EventList();
+        }
+        return initialEventList;
     }
 
     private void initLogging(Config config) {

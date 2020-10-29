@@ -26,7 +26,7 @@ public class JsonSerializableEventList {
      * Constructs a {@code JsonSerializableEventList} with the given Event.
      */
     @JsonCreator
-    public JsonSerializableEventList(@JsonProperty("events") List<JsonAdaptedEvent> events) {
+    public JsonSerializableEventList(@JsonProperty("ents") List<JsonAdaptedEvent> events) {
         this.events.addAll(this.events);
     }
 
