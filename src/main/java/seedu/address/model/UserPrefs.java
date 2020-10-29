@@ -18,6 +18,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private Path archivedModuleListFilePath = Paths.get("data/archive" , "archivedModuleList.json");
     private Path contactListFilePath = Paths.get("data" , "contactList.json");
     private Path todoListFilePath = Paths.get("data" , "todoList.json");
+    private Path eventListFilePath = Paths.get("data", "eventList.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -70,6 +71,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return todoListFilePath;
     }
 
+    public Path getEventListFilePath() {
+        return eventListFilePath;
+    }
+
     public void setModuleListFilePath(Path moduleListFilePath) {
         requireNonNull(moduleListFilePath);
         this.moduleListFilePath = moduleListFilePath;
@@ -88,6 +93,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setTodoListFilePath(Path todoListFilePath) {
         requireNonNull(todoListFilePath);
         this.todoListFilePath = todoListFilePath;
+    }
+
+    public void setEventListFilePath(Path eventListFilePath) {
+        this.eventListFilePath = eventListFilePath;
     }
 
     @Override

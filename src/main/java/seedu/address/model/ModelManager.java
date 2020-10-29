@@ -16,6 +16,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
 import seedu.address.model.exceptions.VersionedListException;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
@@ -34,6 +35,7 @@ public class ModelManager implements Model {
     private final ContactList contactList;
     private final VersionedContactList versionedContactList;
     private final TodoList todoList;
+    private final EventList eventList;
     private final VersionedTodoList versionedTodoList;
     private final UserPrefs userPrefs;
     private final FilteredList<Module> filteredModulesDisplay;
@@ -41,6 +43,7 @@ public class ModelManager implements Model {
     private final FilteredList<Module> filteredArchivedModules;
     private final FilteredList<Contact> filteredContacts;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<Event> filteredEvents;
     private final SortedList<Contact> sortedContacts;
     private final SortedList<Task> sortedTasks;
     private int accessPointer;
@@ -51,14 +54,14 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyModuleList archivedModuleList, ReadOnlyContactList contactList, ReadOnlyTodoList todoList,
+    public ModelManager(ReadOnlyModuleList moduleList, ReadOnlyModuleList archivedModuleList,
+                        ReadOnlyContactList contactList, ReadOnlyTodoList todoList, ReadOnlyEventList eventList,
                         ReadOnlyUserPrefs userPrefs) {
         super();
         requireAllNonNull(moduleList, todoList, userPrefs);
 
         logger.fine("Initializing with module list: " + moduleList + " and todo list" + todoList
                 + " and user prefs " + userPrefs);
-
         this.moduleList = new ModuleList(moduleList);
         this.moduleListDisplay = new ModuleList(moduleList);
         this.archivedModuleList = new ArchivedModuleList(archivedModuleList);
@@ -66,6 +69,7 @@ public class ModelManager implements Model {
         this.contactList = new ContactList(contactList);
         this.versionedContactList = new VersionedContactList(contactList);
         this.todoList = new TodoList(todoList);
+        this.eventList = new EventList(eventList);
         this.versionedTodoList = new VersionedTodoList(todoList);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredModulesDisplay = new FilteredList<Module>(this.moduleListDisplay.getModuleList());
@@ -73,16 +77,17 @@ public class ModelManager implements Model {
         filteredArchivedModules = new FilteredList<Module>(this.archivedModuleList.getModuleList());
         sortedContacts = new SortedList<Contact>(this.contactList.getContactList());
         filteredContacts = new FilteredList<Contact>(sortedContacts);
-        filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
+        filteredEvents = new FilteredList<Event>(this.eventList.getEventList());
         sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
+        filteredTasks = new FilteredList<Task>(sortedTasks);
         accessPointer = 0;
         accessSequence = new ArrayList<>();
         accessSequence.add(0);
         mainList = filteredModules;
     }
-
     public ModelManager() {
-        this(new ModuleList(), new ArchivedModuleList(), new ContactList(), new TodoList(), new UserPrefs());
+        this(new ModuleList(), new ArchivedModuleList(), new ContactList(), new TodoList(),
+                new EventList(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -340,7 +345,9 @@ public class ModelManager implements Model {
         setContactList(versionedContactList.getCurrentContactList());
         //accessSequence.add(2);
     }
+
     //=========== Todo List =============================================================
+
 
     @Override
     public void setTodoList(ReadOnlyTodoList todoList) {
@@ -532,6 +539,16 @@ public class ModelManager implements Model {
         filteredTasks.setPredicate(predicate);
     }
 
+    @Override
+    public ObservableList<Event> getFilteredEventList() {
+        return filteredEvents;
+    }
+
+    @Override
+    public void updateFilteredEventList(Predicate<Event> predicate) {
+        filteredEvents.setPredicate(predicate);
+    }
+
     //=========== Sorted List Accessors =============================================================
 
     /**
@@ -560,33 +577,47 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedTodoList(Comparator<Task> comparator) {
-        requireNonNull(comparator);
+        // No assertion here because comparator value can be null to reset ordering.
         sortedTasks.setComparator(comparator);
+    }
+    // ==================================== Scehduler =============================================== //
+    @Override
+    public void setEventList(ReadOnlyEventList eventList) {
+        this.eventList.resetData(eventList);
     }
 
     @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof ModelManager)) {
-            return false;
-        }
-
-        // state check
-        ModelManager other = (ModelManager) obj;
-        return moduleList.equals(other.moduleList)
-                && userPrefs.equals(other.userPrefs)
-                && filteredModules.equals(other.filteredModules)
-                && filteredContacts.equals(other.filteredContacts)
-                && filteredTasks.equals(other.filteredTasks)
-                && sortedTasks.equals(other.sortedTasks);
+    public ReadOnlyEventList getEventList() {
+        return this.eventList;
     }
+
+    @Override
+    public boolean hasEvent(Event event) {
+        return this.eventList.hasEvent(event);
+    }
+
+    @Override
+    public void deleteEvent(Event target) {
+        this.eventList.removeEvent(target);
+    }
+
     @Override
     public boolean getModuleListDisplay() {
         return isArchiveModuleOnDisplay;
     }
+
+    @Override
+    public void addEvent(Event event) {
+        this.eventList.addEvent(event);
+    }
+
+    @Override
+    public void setEvent(Event target, Event editedEvent) {
+        this.eventList.setEvent(target, editedEvent);
+    }
+
+    // TODO: Yet to be implemented
+    //@Override
+    //public void commitEventList() {}
+
 }

@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. It helps them centralize key module details and follows their study progress through a Command Line Interface (CLI) that allows efficient management of module details.
+Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. 
+It helps you to centralize key module details, contacts and information while following your study progress through a Command Line Interface (CLI).
 
 * Table of Contents
 {:toc}
@@ -30,85 +31,151 @@ Cap 5.0 Buddy helps NUS SoC students to keep track of their module details effic
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
+  e.g. in `addtask n/NAME`, `NAME` is a parameter which can be used as `addtask n/Week 11 quiz`.
 
+* Items in square brackets are optional. Items without square brackets are compulsory fields. <br>
+  e.g. `addtask n/NAME [p/PRIORITY]` can be used as `addtask n/Week 11 quiz p/highest` or as `addtask n/Week 11 quiz`
+  
+* Items with `...` after them can be used multiple times, including zero times. <br>
+  e.g. `[t/TAG]...` can be used as ` ` (i.e. 0 times), `t/easy`, `t/friend t/important` etc.
+  
+* Argument parameters can be provided in any order.
+  e.g. if the command specifies `addtask n/NAME [p/PRIORITY]`, `addtask [p/PRIORITY] n/NAME` is also acceptable.  
+  
+* If you enter duplicate parameters when the command format does not expect multiple occurrence of the same parameter, i.e. 
+  parameters without `...` at the back in the command format (e.g. n/NAME), the application will only consider the argument of the last 
+  occurring duplicate parameter. 
+  e.g. in `addtask n/Week 11 quiz n/Lab assignment`, `n/Week 11 quiz` will be ignored and a task with the name `Lab assignment` will be added.
 
 </div>
 
 
 ### Module Features
 
-#### Adding a new module: `add module`
+#### Adding a new module: `addmodule`
 
 Creates and add a new module to be stored in the system.
 
-  Format: `add module` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
-
-   * Leaving the **_ZOOM_LINK_** part empty will create a empty module.
-
-   Examples:
-   * `add module CS2103T https:\\link` creates and add the module called CS2103T
-   with the specified link into the system.
-   * `add module CS2103T` creates and add the module CS2103T with no zoom link.
+  Format: `addmodule` `n/MODULE_NAME`
+  
+  * You can only key in the module code for the `MODULE_NAME`.
+  
+  * The module code you input must be **capitalised**, eg. `cs2103t` will be rejected while `CS2103T` is correct.
+   
+   Example:
+   * `addmodule CS2103T` creates and add the module CS2103T with no zoom link.
 
 
 #### Viewing a module: `viewmodule`
 
-Views a module stored in the system
+Views a module stored in the system.
 
- Format: `viewmodule` **_`n/[MODULE_NAME]`_**
+ Format: `viewmodule` `INDEX`
 
-  * Views information for a module named **_`[MODULE_NAME]`_**
+  * The module viewed will be at the `INDEX` position of the current displayed list.
+  
+  * The index refers to the index number of the module shown on the displayed module list. 
+  
+  * The index **must be a positive integer** 1, 2, 3...
 
   Examples:
-   * `viewmodule n/cs2103t` views the specified module
+   * `viewmodule 1` views the first module in the displayed list.
 
-#### Adding a zoom link to a module: `add zoom`
+#### Adding a zoom link for a specific lesson to a module: `addzoom`
 
-  Adds a zoom link to an existing module.
+Adds a zoom link for a specific lesson to an existing module.
 
-  Format: `add zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+  Format: `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK`
+  
+   * Adds a zoom link to the module at the specified `INDEX`. 
+   
+   * The index refers to the index number of the module shown on the displayed module list. 
+   
+   * The index **must be a positive integer** 1, 2, 3...
+   
+   * The zoom link provided must be a link that uses the NUS domain. A typical zoom link that is under the NUS domain
+     would start with: `https://nus-sg.zoom.us/`. Zoom links that do not belong to the NUS domain would not be accepted.
 
-  * Adds a zoom link [ZOOM_LINK] to a module named **_`[MODULE_NAME]`_**
-
-  Example of usage:
-  `add zoom cs2103T https://sample.zoom.us` adds a zoom link `https://sample.zoom.us` to the module named `cs2103T`
+  Example:
+  `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/auya7164hg` Adds a zoom link `https://nus-sg.zoom.us/j/auya7164hg` to the first module
+   in the displayed module list for the lesson `lecture`.
+  
 
 #### Deleting a module: `deletemodule`
 
-Deletes the module at the specified position in the module list.
+Deletes a module in the displayed module list.
 
- Format: `delete` **_`[MODULE_POSITION]`_**
-
+ Format: `deletemodule` `INDEX`
+ 
+   * The index **must be a positive integer** 1, 2, 3...
+   
+   * The index refers to the index number of the module shown on the displayed module list. 
+   
   Examples:
   * `deletemodule 1` deletes the module at position `1`
 
-#### Editing a module : `edit zoom`
+#### Editing a module : `editmodule`
 
-* Edits an existing module in the module list.
+Edits an existing module in the displayed module list with new details.
 
-Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+ Format: `editmodule` `INDEX` `[n/MODULE_NAME]` `[mc/MODULAR_CREDITS]` `[gp/GRADE_POINT]` `[t/TAG]...`
 
-* Edits the zoom link of a module named **_`[MODULE_NAME]`_** to **_`[ZOOM_LINK]`_**
+  * Edits the details of the module at position `INDEX` with the optional fields listed.
+  
+  * The index **must be a positive integer** 1, 2, 3...
+  
+  * At least **one** of the optional fields `[MODULE_NAME]`, `[MODULAR_CREDITS]` or `[GRADE_POINT]` must be present.
 
-Examples:
-* `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
-  to `https://sample.zoom.us`
+  * You can add `[TAG]`s to a module through this command,eg. `Tutorial`.
+  
+ Examples:
+  * `editmodule 1 n/CS2030` edits the `MODULE_NAME` for a module at index `1` to `CS2030`.
+  
+  * `editmodule 3 mc/8 gp/4.5` edits the `MODULAR_CREDITS` and `GRADE_POINT` for the module at index `3` to `8.0` 
+  modular credits and the grade points to `4.5`.
+  
+ To be implemented:
+  * We are working on adding the functionality to edit the zoom links for the module for each lesson. 
+
 
 #### Adding assignment to a module: `addassignment`
 
-  Adds an assignment that takes up a percentage of the grade and has a result from 0.00 to 1.00 to an existing module.
+  Adds an assignment to an existing module.
 
-  Format: `addassignment` **_`n/[MODULE_NAME]`_** **_`a/[ASSIGNMENT_NAME]`_**
-  **_`%/[ASSIGNMENT_PERCENTAGE]`_** **_`r/[ASSIGNMENT_RESULT]`_**
+  Format: `addassignment` `n/MODULE_NAME` `a/ASSIGNMENT_NAME` `%/ASSIGNMENT_PERCENTAGE` `r/ASSIGNMENT_RESULT`
 
-  * Adds an assignment **_`[ASSIGNMENT_NAME]`_** that takes up **_`[ASSIGNMENT_PERCENTAGE]`_**
-  of the grade with a result of **_`[ASSIGMENT_RESULT]`_** to a module named **_`[MODULE_NAME]`_**
+  * Adds an assignment `ASSIGNMENT_NAME` to a module `MODULE_NAME`
+   
+  * The assignment takes up a percentage of the final grade, `ASSIGNMENT_PERCENTAGE`.
+  
+  * Your `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
 
   Example of usage:
-  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` that takes up `5`% of the
-  grade with a result of `0.80` to the module named `CS2100`
+  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1` 
+  carries `5`% of the final grade and the result for this assignment is `80/100`.
+  
+#### Editing an assignment in a module: `editassignment`
+
+  Edits an assignment at the specified position in the specified module. 
+
+  Format: `editassignment` `INDEX` `n/MODULE_NAME` `[a/ASSIGNMENT_NAME]` `[%/ASSIGNMENT_PERCENTAGE]` 
+  `[r/ASSIGNMENT_RESULT]`
+  
+  * The fields that can be edited are the `ASSIGNMENT_NAME`, `ASSIGNMENT_PERCENTAGE` of the final grade 
+  and `ASSIGNMENT_RESULT`.
+  
+  * At least **one** of the optional fields must be present.
+  
+  * The index **must be a positive integer** 1, 2, 3...
+  
+  * Your new `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
+
+  Example of usage:
+   `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
+   assignment name, `Quiz 1`. 
+   `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
+   assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.   
 
 
 ### Todo List Features
@@ -153,14 +220,67 @@ Examples:
 * `edittask 1 n/read chapter 5 p/HIGH` edits the first task name to `read chapter 5` and
 and priority to `HIGH`.
 
-#### Finding a task: `findtask`
+#### Locating tasks: `findtask`
 
-Finds a task based on keywords.
+Finds all tasks that fulfil all the provided search criteria.
 
-Format: `findtask` **_`[KEYWORD]`_**
+Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]` 
 
-Examples:
-* `findtask` **_`[k/KEYWORD]`_** list all the task that matches the keyword.
+ * The search is case-insensitive, e.g. `lab` will match `Lab`.
+ 
+ * When you are providing name or tag keywords, separate distinct keywords with a whitespace, 
+   e.g. `findtask n/lab quiz` will search for tasks using the 2 distinct keywords `lab` and `quiz`.
+   
+ * You should ensure that search arguments are not blank and at least one search parameter should be provided.
+ 
+ * Search Parameters:
+ 
+   * Task Name
+ 
+     * You are allowed to provide multiple search keywords.
+     
+     * Tasks with their name matching at least one of the name keywords provided will be considered to have fulfilled the task name search criteria.
+     
+     * The order of the search keywords does not matter, e.g. `Lab Quiz` will match `Quiz Lab`.
+     
+     * Only full words will be matched, e.g. `lab` will match `lab assignment` but not `labs`.
+     
+   * Date
+   
+     * Your search date should be of the format: `YYYY-MM-DD`.
+     
+     * You should only provide one search date, i.e. `d/2020-01-01 2020-02-02` would not be accepted.
+     
+     * Tasks with their date matching the search date exactly are considered to have fulfilled the task date search criteria.
+     
+   * Priority
+   
+     * Your search priority should be one of the following: `highest`, `high`, `normal`, `low` (case-insensitive). 
+       No other search priority will be allowed.
+       
+     * You should only provide one search priority, i.e. `p/highest low` is not allowed.
+     
+     * Tasks with their priority matching the search priority exactly are considered to have fulfilled the task priority search criteria.
+     
+   * Tag
+ 
+     * You are allowed to provide multiple tag keywords.
+     
+     * Tasks containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the task tag search criteria.
+       
+ * Only tasks matching all search parameters provided will be returned.      
+ 
+ Examples:
+ 
+  * `findtask n/lab` returns all tasks with the word `lab` in their name
+ 
+  * `findtask d/2020-10-10 p/HIGHEST` returns all tasks with the date `2020-10-10` **and** `highest` priority
+  
+  * `findtask t/difficult online` returns all tasks that have the `difficult` or `online` tag 
+  
+  * `findtask n/lab quiz t/difficult` returns all tasks with their name containing **either** 
+     the word `lab` or  `quiz` **and** has `difficult` as one of its tags
+
 
 #### Marking a task as completed: `completetask`
 
@@ -201,14 +321,6 @@ Examples:
 * `sorrtask priority` sorts the task from lowest to highest priority.
 * `sorrtask r priority` sorts the task from the highest to the lowest.
 
-#### Filtering tasks: `filtertask`
-
-Filters the list based on a criterion.
-
-Format: `filtertask` + **_`[CRITERION]`_** + **_`[KEYWORD]`_**
-
-Examples:
-* `filtertask priority high` shows only tasks that has high priority.
 
 #### Archiving a task: `archivetask`
 
@@ -228,45 +340,140 @@ Clears all tasks in the list.
 Format: `cleartask`
 
 
-### Contact Features
+### Contact List Features
 
-#### Add a contact: `addcontact`
+
+#### Adding a contact: `addcontact`
 
 Adds a new contact into the contact list if it does not already exist.
 
-Format: `addcontact n/NAME [e/EMAIL] [te/TELEGRAM] [t/TAG]`
+Format: `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...`
+   
+ * The `TELEGRAM` field provided must start with the `@` symbol and must be a valid telegram username,
+   i.e. at least 5 characters long, not including the `@` symbol and contains only alphanumeric characters or underscore
+ 
+ * A contact can have any number of tags (including 0)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** 
-Users are required to provide at least one other contact detail apart from **Name**.
-</div>
 
-Examples of Usage:
-`addcontact n/john e/john@gmail.com te/@john123`
+Examples:
 
-#### Delete a contact: `deletecontact`
+ * `addcontact n/john e/john@gmail.com`
+ * `addcontact n/amy e/amy@gmail.com te/@anytele`
+ * `addcontact n/bob e/bob@gmail.com t/friend`
+ 
+ 
+ #### Locating contacts: `findcontact`
+ 
+ Finds all contacts that fulfil all the provided search criteria.
+ 
+ Format: `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]`
+ 
+  * The search is case-insensitive, e.g. `bob` will match `Bob`.
+  
+  * You are allowed to provide multiple search keywords for both the name and tag parameter.
+  
+  * The order of the search keywords does not matter, e.g. `Bob Abramham` will match `Abraham Bob`.
+  
+  * When you are providing name or tag keywords, separate distinct keywords with a whitespace, 
+    e.g. `findcontact n/bob abraham` will search for contacts using the 2 distinct keywords `bob` and `abraham`.
+    
+  * Only full words will be matched, e.g. `Bob` will match `Bob Abraham` but not `Bobs`.
+    
+  * You should ensure that keywords are not be blank and at least one search parameter should be provided.
+  
+  * Search Parameters:
+  
+    * Name
+  
+      * Contact with a name matching at least one of the name keywords provided will be considered to have fulfilled the contact name search criteria.
+      
+    * Tag
+  
+      * Contacts containing tags which match at least one of the tag keywords provided will be considered to have fulfilled the contact tag search criteria.
+        
+  * Only contacts matching all search parameters provided will be returned.      
+  
+  Examples:
+  
+   * `findcontact n/john` returns all contacts with the word `john` in their name, e.g. `john` and `john doe`
+  
+   * `findcontact n/Bob Abraham` returns all contacts with the word `Bob` or `Abraham` in their name, e.g. `Bob Lim`, `Tommy Abraham`
+   
+   * `findcontact t/friend` returns all contacts with the tag `friend`
+   
+   * `findcontact t/friend coworker` returns all contacts that have the `friend` or `coworker` tag 
+   
+   * `findcontact n/john t/friend` returns all contacts with the word `john` in its name **and** has `friend` as one of its tags
+ 
+ 
+ #### Listing all contacts: `listcontact`
+ 
+ Shows a list of all contacts in the contact list.
+ 
+ Format: `listcontact`
+ 
+ <div markdown="block" class="alert alert-info">
+ 
+ **:information_source: Tip:**<br>
+ 
+ `listcontact` is a useful command that you can use to display the original contact list.
+  e.g. after using the `findcontact` or `sortcontact` commands.
+ 
+ </div>
+ 
+ 
+ #### Editing a contact: `editcontact`
+ 
+ Edits an existing contact in the contact list.
+ 
+ Format: `editcontact INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM] [t/TAG]...`
+ 
+ * Edits the contact at the specified `INDEX`. The index refers to the index number of the contact shown 
+   in the displayed contact list. The index **must be a positive integer** 1, 2, 3...
+ 
+ * At least one of the contact fields must be provided
+ 
+ * At least one of the optional fields must be provided.
+ 
+ * Existing values will be updated to the input values.
+ 
+ * When editing tags, the existing tags of the contact will be removed i.e adding of tags is not cumulative.
+ 
+ * You can remove all the contact’s tags by typing `t/` without specifying any tags after it.
+ 
+ Examples:
+ 
+  * `editcontact 1 n/john e/john@gmail.com` Edits the name and email address of the first contact to be 
+    `john` and `john@gmail.com` respectively.
+    
+  * `editcontact 2 n/Bob Abraham t/` Edits the name of the second contact to be `Bob Abraham` and clears all existing tags of the contact.
 
-Deletes an existing contact from the contact list
 
-Format: `deletecontact CONTACT_INDEX`
+#### Deleting a contact: `deletecontact`
 
-* Contact index refers to the index number of the contact in the contact list displayed in the application
+Deletes the specified contact from the contact list.
 
-Examples of Usage:
-`deletecontact 1`
+Format: `deletecontact INDEX`
 
-#### Edit a contact: `editcontact`
+ * Deletes the contact at the specified `INDEX`. 
+ 
+ * The index refers to the index number of the contact shown on the displayed contact list. 
+   
+ * The index **must be a positive integer** 1, 2, 3...
 
-Edits an existing contact in the contact list.
+Examples:
 
-Format: `editcontact CONTACT_INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM]`
+ * `listcontact` followed by `deletecontact 1` deletes the first contact in the contact list
+ 
+ * `findcontact n/bob` followed by `deletecontact 2` deletes the second contact in the results of the `findcontact` command
 
-* This feature edits the contact at the specified contact index. Contact index refers to the index number of the contact in the contact list displayed in the application
-* At least one of the contact fields must be provided
-* The edit contact must not already exist in the contact list
 
-Examples of Usage:
-`editcontact 1 n/john e/john@gmail.com`: Edits the name and email of the contact at index 1 to `john` and `john@gmail.com` respectively
+#### Sorting contacts:
 
+
+#### Marking contacts as important:
+
+### CAP Calculator features
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
 Calculates the user's CAP based on completed modules
@@ -275,6 +482,17 @@ Calculates the user's CAP based on completed modules
 
   Examples:
   * `calculatecap` calculate the user's cap
+  
+#### Calculating target CAP details: `targetcap`
+
+Calculates helpful CAP details based on the target CAP you input
+
+ Format: `targetcap [tc/TARGET_CAP]`
+
+  * The target cap refers to the desired CAP input by you
+  
+  Examples:
+  * `targetcap tc/4.5` Calculates CAP achievement required for planned modules in order to achieve target CAP
 
 ### Scheduler Features
 
@@ -293,16 +511,18 @@ Creates and add a new Event with the specified information from the user input
 #### Undo previous user command: `undo`
 
 Undoes the previous user command
-
+ 
  Format: `undo`
-
+ 
+ * The `undo` feature currently has not been extended to Scheduler commands
+ 
   Examples:
   * `undo`
 
 #### Redo previous user command: `redo`
 
 Redoes the previously undone user command
-
+ * The `undo` feature currently has not been extended to Scheduler commands
  Format: `redo`
 
   Examples:
@@ -324,13 +544,18 @@ Redoes the previously undone user command
 
 Action | Format, Examples
 --------|------------------
-**Add** | `addmodule n/MODULE_NAME l/ZOOM_LINK`<br> e.g. `addmodule n/CS2103T l/https://sample.zoom.us`
-**View** | `viewmodule n/MODULE_NAME`<br> e.g. `viewmodule n/cs2101`
+**Add Module** | `addmodule n/MODULE_NAME l/ZOOM_LINK`<br> e.g. `addmodule n/CS2103T l/https://sample.zoom.us`
+**View Module** | `viewmodule n/MODULE_NAME`<br> e.g. `viewmodule n/cs2101`
 **Delete** | `deletemodule MODULE_POSITION `<br> e.g. `deletemodule 3`
 **Edit** | `editmodule n/MODULE_NAME e/NEW_NAME l/NEW_LINK`<br> e.g. `editmodule n/CS2103T e/CS2100 l/https://sample.zoom.us`
-**Add Zoom** | `addzoomlink n/MODULE_NAME l/ZOOM_LINK` <br> e.g. `addzoomlink n/cs2103T l/https://sample.zoom.us`
+**Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
+**Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `calculatecap 4.5`
 **Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
+**Add Contact** | `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...` <br> e.g. `addcontact n/john e/john@gmail.com te/@johndoe t/friend`
+**EditContact** | `editcontact INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM] [t/TAG]...` <br> e.g. `editcontact 1 n/amy te/@amytele`
+**FindContact** | `findcontact [n/NAME_KEYWORDS] [t/TAG_KEYWORDS]` <br> e.g. `findcontact n/john`
+**DeleteContact** | `deletcontact INDEX` <br> e.g. `deletecontact`
 **Undo** | `undo` <br> e.g. `undo`
 **Redo** | `redo` <br> e.g. `redo`

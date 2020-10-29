@@ -44,7 +44,6 @@ public class ModuleList implements ReadOnlyModuleList {
      */
     public void resetData(ReadOnlyModuleList newData) {
         requireNonNull(newData);
-
         setModule(newData.getModuleList());
     }
 

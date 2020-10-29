@@ -8,9 +8,11 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyContactList;
+import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.ReadOnlyModuleList;
 import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.contact.Contact;
+import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -83,5 +85,10 @@ public interface Logic {
      */
     public Path getContactListFilePath();
 
+    public ReadOnlyEventList getEventList();
+
+    public ObservableList<Event> getFilteredEventList();
+
+    public Path getEventListFilePath();
 
 }
