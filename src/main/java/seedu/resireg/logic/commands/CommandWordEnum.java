@@ -9,7 +9,6 @@ import seedu.resireg.logic.parser.DeleteAliasCommandParser;
 import seedu.resireg.logic.parser.DeleteCommandParser;
 import seedu.resireg.logic.parser.DeleteRoomCommandParser;
 import seedu.resireg.logic.parser.EditCommandParser;
-import seedu.resireg.logic.parser.FindCommandParser;
 import seedu.resireg.logic.parser.ListRoomsCommandParser;
 import seedu.resireg.logic.parser.ListStudentsCommandParser;
 import seedu.resireg.logic.parser.Parser;
@@ -60,7 +59,6 @@ public enum CommandWordEnum {
     ADD_COMMAND(AddCommand.COMMAND_WORD, AddCommand.HELP, new AddCommandParser()::parse),
     DELETE_COMMAND(DeleteCommand.COMMAND_WORD, DeleteCommand.HELP, new DeleteCommandParser()::parse),
     EDIT_COMMAND(EditCommand.COMMAND_WORD, EditCommand.HELP, new EditCommandParser()::parse),
-    FIND_COMMAND(FindCommand.COMMAND_WORD, FindCommand.HELP, new FindCommandParser()::parse),
     LIST_STUDENTS_COMMAND(ListStudentsCommand.COMMAND_WORD, ListStudentsCommand.HELP,
             new ListStudentsCommandParser()::parse),
 
