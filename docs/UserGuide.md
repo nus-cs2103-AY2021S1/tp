@@ -50,7 +50,7 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 ### Main page
 The main page of the application when the user first enters the app.
 
-#### Adding an active investigation case: `add case t:TITLE [s:STATUS] [t/TAG]`
+#### Adding an active investigation case: `add case t:TITLE [s:STATUS]`
 Adds a new investigation case which has the active status by default. The user can provide 3 status types:
 
 1. `ACTIVE`
@@ -59,11 +59,9 @@ Adds a new investigation case which has the active status by default. The user c
 
 3. `COLD`
 
-User can tag the case they add. Tags cannot contain whitespaces.
+Format: `add case t:[TITLE] [s:STATUS]`
 
-Format: `add case t:[TITLE] [s:STATUS] [t/TAG]`
-
-Example: `add case t:Kovan double murders s:Closed t/SerialKiller` creates a new investigation case with the title “Kovan double murders”, the status initalized as a closed case, tagged as SerialKiller.
+Example: `add case t:Kovan double murders s:Closed t/SerialKiller` creates a new investigation case with the title “Kovan double murders”, the status initalized as a closed case.
 
 #### List all investigation cases: `list case`
 Lists all available investigation cases in PIVOT.
@@ -98,12 +96,8 @@ Format: `add desc d:DESC`
 
 Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this investigation case to “Kovan double murders of twins xxx and yyy”.
 
-#### Edit investigation case tag: `tag STATUS`
-Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
-
-Format: `tag STATUS`
-
-Example: `tag CLOSED` updates the tag status of this investigation case to “CLOSED”.
+This command is flexible. If a description has been added, this command will overwrite the current description.
+Tip: You can also use `add desc d:` to remove the current desc.
 
 #### Adding a document related to the case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document that is related to the investigation case.
@@ -113,12 +107,6 @@ Format: `add doc n:TITLE r:FILE_NAME`
 Example: `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
 
 This document must be manually added to the references folder provided before it can be added to the PIVOT system.
-
-#### List all documents related to the case: `list doc`
-
-Lists all added documents that are related to the investigation case.
-
-Format: `list doc`
 
 #### Delete document: `delete doc DOC_NO `
 Deletes the specified document reference.
@@ -135,19 +123,15 @@ Format: `open doc DOC_NO`
 
 Example: `open doc 0`
 
-#### Adding a Suspect related to the case: `add suspect n:NAME`
+#### Adding a Suspect related to the case: `add suspect n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new suspect related to the investigation case.
 
-Format: `add suspect n:NAME`
+Format: `add suspect n:NAME g:GENDER`
 
-Example: `add suspect n:John Doe`
+Example: `add suspect n:John Doe g:M`
 
-#### List all suspects related to the case: `list suspect`
-
-Lists all added suspects that are related to the investigation case.
-
-Format: `list suspect`
+Gender must either be `M` or `F`.
 
 #### Delete suspect: `delete suspect SUSPECT_NO`
 
@@ -157,21 +141,17 @@ Format: `delete suspect SUSPECT_NO`
 
 Example: `delete suspect 0`
 
-#### Adding a victim related to the case: `add victim n:NAME`
+#### Adding a victim related to the case: `add victim n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new victim that is related to the investigation case.
 
-Format: `add victim n:NAME`
+Format: `add victim n:NAME g:GENDER`
 
-Example: `add victim n:James Lee`
+Example: `add victim n:James Lee g:M`
 
-#### List all victims related to the case: `list victim`
+Gender must either be `M` or `F`.
 
-Lists all added victims that are related to the investigation case.
-
-Format: `list victim`
-
-#### Delete victim: `delete victim VICTIM_NO`
+#### Delete Victim: `delete victim VICTIM_NO`
 
 Deletes the specified victim from the list of victims.
 
@@ -179,21 +159,17 @@ Format: `delete victim VICTIM_NO`
 
 Example: `delete victim 0`
 
-#### Add a witness related to the case: `add witness n:NAME`
+#### Add a witness related to the case: `add witness n:NAME g:GENDER [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Adds a new witness that is related to the investigation case.
 
-Format: `add witness n:NAME`
+Format: `add witness n:NAME g:GENDER`
 
-Example: `add witness n:John Doe`
+Example: `add witness n:John Doe g:M`
 
-#### List all witness related to the case: `list witness`
+Gender must either be `M` or `F`.
 
-Lists all added witnesses that are related to the investigation case.
-
-Format: `list witness`
-
-#### Delete suspect: `delete witness WITNESS_NO`
+#### Delete witness: `delete witness WITNESS_NO`
 
 Deletes the specified witness from the list of witnesses.
 
@@ -234,7 +210,7 @@ User data automatically saves when there is a change in data
 
 |Command            | Format                                | Association   |
 | ----------------- | ------------------------------------- | ------------- |
-|**case**           | `add case t:TITLE [s:STATUS] [t/TAG]` | Investigation |
+|**case**           | `add case t:TITLE [s:STATUS]` | Investigation |
 |**list**           | `list case`                           | Investigation |
 |**delete**         | `delete case CASE_NO`                 | Investigation |
 |**open**           | `open case CASE_NO`                   | Investigation |
@@ -245,19 +221,14 @@ User data automatically saves when there is a change in data
 | Command           | Format                        | Association   |
 | ----------------- | ----------------------------- | ------------- |
 |**desc**           | `add desc d:DESC`             | Investigation |
-|**tag**            | `tag STATUS`                  | Investigation |
 |**document**       | `add doc t:TITLE r:FILE_NAME` | Document      |
-|**list doc**       | `list doc`                    | Document      |
 |**delete doc**     | `delete doc DOC_NO`           | Document      |
 |**open doc**       | `open doc DOC_NO`             | Document      |
 |**suspect**        | `add suspect n:NAME`          | Suspect       |
-|**list suspect**   | `list suspect`                | Suspect       |
 |**delete suspect** | `delete suspect SUSPECT_NO`   | Suspect       |
 |**victim**         | `add victim n:NAME`           | Victim        |
-|**list victim**    | `list victim`                 | Victim        |
 |**delete victim**  | `delete victim VICTIM_NO`     | Victim        |
 |**witness**        | `add witness n:NAME`          | Witness       |
-|**list witness**   | `list witness`                | Witness       |
 |**delete witness** | `delete witness WITNESS_NO`   | Witness       |
 |**return**         | `return`                      | General       |
 |**exit**           | `exit`                        | General       |
