@@ -16,7 +16,7 @@ Modduke is a **desktop app for managing contacts, optimized for use via a Comman
 
 1. Download the latest `modduke.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your Modduke.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -68,9 +68,10 @@ Adds a contact to Modduke.
 
 Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...`
 
-Note: All fields are required except those in square brackets. No duplicate names.
+Note(s): 
+* All fields are required except those in square brackets. No duplicate names.
 
-Example:
+Example(s):
 * `contact add n/John Doe p/98765432 e/johnd@example.com`
 
 ### Deleting a contact : `contact delete`
@@ -349,7 +350,7 @@ _{explain the feature here}_
 
 Action | Format, Examples
 --------|------------------
-**Add Contact** | `contact add [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
+**Add Contact** | `contact add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]...` <br> e.g., `contact add n/Jay p/22224444 e/jay@example.com`
 **Clear Contacts** | `contact clear`
 **Delete Contact** | `contact delete CONTACT_NAME`<br> e.g., `delete Jay`
 **Edit Contact** | `contact edit CONTACT_NAME [n/NEW_NAME] [p/PHONE] [e/EMAIL]` <br> e.g.,`contact edit Jay n/Roy e/roy@example.com`
@@ -360,6 +361,7 @@ Action | Format, Examples
 **Add Meeting** | `meeting add [n/MEETING_NAME] [d/MEETING_DATE] [t/MEETING_TIME] [m/MEMBERS]…` <br> e.g., `meeting add n/CS2103 Meeting d/2020:09:23 t/10:00 m/Ekam, Jay, Jerryl, Roy`
 **Edit Meeting** |  `meeting edit MEETING_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS]… [cA/CONTACTS]…` <br> e.g., `meeting edit CS2103 Meeting n/CS2103 Team Project Meeting d/2020:09:27 t/14:00 cD/Ekam, Jay cA/Bob`
 **List Meetings** | `meeting list`
+**View Meeting** | `meeting view m/MODULE n/MEETING_NAME`
 **Add Consults** | `consult add n/CONSULT_NAME [d/CONSULT_DATE] [t/CONSULT_TIME] [m/MEMBERS]` <br> e.g., `add n/CS2103 Consult d/2020:09:25 t/13:00 m/Vineeth, Ekam, Jay, Jerryl, Roy`
 **Edit Consults** | `consult edit CONSULT_NAME [n/NEW_NAME] [d/NEW_DATE] [t/NEW_TIME] [cD/CONTACTS] [cA/CONTACTS]` <br> e.g., `consult edit CS2103 Consult n/CS2103 Consult with Prof Damith d/2020:09:28 t/15:00 cD/Vineeth cA/Prof Damith`
 **List Consults** | `consult list`

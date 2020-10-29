@@ -50,7 +50,7 @@
           <padding>
             <Insets bottom="5" left="20" right="10" top="5" />
           </padding>
-          <Label styleClass="label-title">ModDuke</Label>
+          <Label styleClass="label-title">Modduke</Label>
         </StackPane>
 
         <HBox styleClass="pane-with-border" HBox.hgrow="ALWAYS">
