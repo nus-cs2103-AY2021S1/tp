@@ -18,9 +18,6 @@ The intended audience of this document are developers, designers, and software t
 #### **About ProductiveNUS**
 ProductiveNUS is a desktop application targeted at Computing students of National University of Singapore (NUS) to help them manage and schedule their academic tasks efficiently.
 
-
---------------------------------------------------------------------------------------------------------------------
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -357,7 +354,7 @@ assignments to be displayed based on the argument index in the user's input.
 - `ListCommandParser` implements `Parser<ListCommand>`. It has a method `parse` which parses the user's input to return a `ListCommand` object.
 - With the use of Regular Expressions to identify index arguments present in the input, it sets a boolean variable `hasArgumentIndex`.
 
-##### Usage scenario
+#### Usage scenario
 The following is a usage scenario of when the user wants to list assignments that are due within the next 3 days from now.
 
 1. `execute("list 3")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
@@ -404,7 +401,7 @@ To delete an assignment, it calls the `deleteAssignment` method of `model`.
 When deleting multiple assignments, it calls this method repeatedly with a for loop as shown in the following sequence diagram under "Usage Scenario".
 Since the index of assignments in the list will update after each delete in the loop, we sorted the list from the largest index to the smallest, and implemented deleting of assignments from the largest index in the list to maintain order.
 
-##### Usage Scenario
+#### Usage Scenario
 The following is a usage scenario of when the user wants to delete the first and second assignment in his displayed assignment list.
 1. `execute("delete 1 2")` of `LogicManager` calls the `parseCommand` method of `ProductiveNusParser`.
  1. `parseCommand("delete 1 2")` parses the String `"delete 1 2"` and returns an initialized `DeleteCommandParser` object. 
