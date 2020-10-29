@@ -21,12 +21,15 @@ import seedu.taskmaster.testutil.TaskmasterBuilder;
 public class ModelManagerTest {
 
     private ModelManager modelManager = new ModelManager();
+    private ModelManager modelManager2 = new ModelManager(new Taskmaster(), new UserPrefs());
 
     @Test
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
         assertEquals(new Taskmaster(), new Taskmaster(modelManager.getTaskmaster()));
+        assertEquals(new UserPrefs(), modelManager2.getUserPrefs());
+        assertEquals(new Taskmaster(), new Taskmaster(modelManager2.getTaskmaster()));
     }
 
     @Test

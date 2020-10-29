@@ -196,7 +196,7 @@ Alternative implementations:
 
 ### Storage
 
-Author: **Jaya Rengam** 
+Author: **Jaya Rengam**
 * Change/Add classes in the Storage package to store data related to Sessions.
 
 ![Structure of the Storage Component](images/NewStorageClassDiagram.png)
