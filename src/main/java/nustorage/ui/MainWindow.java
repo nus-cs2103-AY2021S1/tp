@@ -33,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     private Stage primaryStage;
     private Logic logic;
     private UiLogic uiLogic;
+    private String find;
 
     // Independent Ui parts residing in this Ui container
     private ResultDisplay resultDisplay;
@@ -128,6 +129,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     public void fillInnerParts() {
+        CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
         financeWindow = new FinanceWindow(logic);
         financePlaceholder.getChildren().add(financeWindow.getRoot());
 
@@ -136,10 +140,6 @@ public class MainWindow extends UiPart<Stage> {
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
     }
 
     /**
@@ -193,16 +193,9 @@ public class MainWindow extends UiPart<Stage> {
 
             if (isUiCommand(commandText)) {
                 commandResult = uiLogic.execute(commandText);
-                String userInput = commandText.trim();
-                if (userInput.split("_")[1].equals("inventoryWindow")) {
-                    logic.execute("list_inventory");
-                } else {
-                    logic.execute("list_finance");
-                }
             } else {
                 commandResult = logic.execute(commandText);
             }
-
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 

@@ -10,6 +10,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.Region;
 import javafx.util.Callback;
 import nustorage.logic.Logic;
@@ -73,13 +75,15 @@ public class InventoryWindow extends UiPart<Region> {
                                     button.setOnAction(event -> {
                                         try {
                                             uiLogic.execute("goto_finance");
-                                            System.out.println(String.format("find_finance id/%s", item));
-                                            logic.execute(String.format("find_finance id/%s", item));
+                                            // copy the command
+                                            final Clipboard clipboard = Clipboard.getSystemClipboard();
+                                            final ClipboardContent url = new ClipboardContent();
+                                            url.putString(String.format("find_finance id/%s", item));
+                                            clipboard.setContent(url);
                                         } catch (Exception e) {
                                             e.printStackTrace();
                                         }
                                     });
-
                                     setGraphic(button);
                                 }
 
