@@ -429,7 +429,7 @@ Examples:
 
 #### Marking contacts as important:
 
-
+### CAP Calculator features
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
 Calculates the user's CAP based on completed modules
@@ -438,6 +438,17 @@ Calculates the user's CAP based on completed modules
 
   Examples:
   * `calculatecap` calculate the user's cap
+  
+#### Calculating target CAP details: `targetcap`
+
+Calculates helpful CAP details based on the target CAP you input
+
+ Format: `targetcap [tc/TARGET_CAP]`
+
+  * The target cap refers to the desired CAP input by you
+  
+  Examples:
+  * `targetcap tc/4.5` Calculates CAP achievement required for planned modules in order to achieve target CAP
 
 ### Scheduler Features
 
@@ -456,16 +467,18 @@ Creates and add a new Event with the specified information from the user input
 #### Undo previous user command: `undo`
 
 Undoes the previous user command
-
+ 
  Format: `undo`
-
+ 
+ * The `undo` feature currently has not been extended to Scheduler commands
+ 
   Examples:
   * `undo`
 
 #### Redo previous user command: `redo`
 
 Redoes the previously undone user command
-
+ * The `undo` feature currently has not been extended to Scheduler commands
  Format: `redo`
 
   Examples:
@@ -494,6 +507,7 @@ Action | Format, Examples
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
+**Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `calculatecap 4.5`
 **Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
 **Add Contact** | `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...` <br> e.g. `addcontact n/john e/john@gmail.com te/@johndoe t/friend`
 **EditContact** | `editcontact INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM] [t/TAG]...` <br> e.g. `editcontact 1 n/amy te/@amytele`
