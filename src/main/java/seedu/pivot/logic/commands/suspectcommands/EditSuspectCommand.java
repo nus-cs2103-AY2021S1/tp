@@ -32,7 +32,7 @@ public class EditSuspectCommand extends EditPersonCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + TYPE_SUSPECT
             + ": Edits a person in the opened case in PIVOT.\n"
-            + "Parameters: INDEX "
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_GENDER + "GENDER] "
             + "[" + PREFIX_PHONE + "PHONE] "
