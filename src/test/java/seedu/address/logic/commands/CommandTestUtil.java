@@ -46,6 +46,8 @@ public class CommandTestUtil {
 
     public static final String VALID_MODULENAME_CS2103T = "CS2103T";
     public static final String VALID_MODULENAME_ES2660 = "ES2660";
+    public static final String VALID_MODULELESSONTYPE_CS2103T = "Lecture";
+    public static final String VALID_MODULELESSONTYPE_ES2660 = "Tutorial";
     public static final String VALID_ZOOMLINK_CS2103T = "www.cs2103tzoom.us";
     public static final String VALID_ZOOMLINK_ES2660 = "www.es2660zoom.us";
     public static final double VALID_MC_4 = 4.0;
