@@ -14,22 +14,12 @@ import chopchop.commons.util.Pair;
 import chopchop.logic.commands.CommandResult;
 import chopchop.model.Model;
 import chopchop.model.usage.RecipeUsage;
-import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
-import javafx.util.Callback;
 
 /**
  * The UI component that is responsible for displaying pinned information.
@@ -85,13 +75,19 @@ public class StatsBox extends UiPart<Region> {
         return output.toString();
     }
 
+    /**
+     * Sets the content based on the command result
+     */
     public void setMessage(CommandResult result) {
         this.subtitle.setText(result.toString());
         this.showRecentRecipes(result.toString(), result.getStatsMessage());
     }
 
+    /**
+     * Clears the message and goes back to the recent recipes view
+     */
     public void clearMessage() {
-        var list = this.model.getRecentlyUsedRecipes(20)
+        var list = this.model.getRecentlyUsedRecipes(10)
             .stream()
             .map(u -> Pair.of(u.getName(), u.getPrintableDate()))
             .collect(Collectors.toList());
