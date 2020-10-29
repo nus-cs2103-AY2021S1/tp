@@ -23,7 +23,7 @@ public class CreateInventoryRecordCommand extends Command {
             + PREFIX_QUANTITY + "QUANTITY "
             + "[" + PREFIX_ITEM_COST + "ITEM_COST]";
 
-    public static final String MESSAGE_SUCCESS = "New InventoryWindow record created: %1$s";
+    public static final String MESSAGE_SUCCESS = "New Inventory record created: %1$s";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This item already exists in the InventoryWindow";
     private final InventoryRecord newInventoryRecord;
     private final FinanceRecord newFinanceRecord;

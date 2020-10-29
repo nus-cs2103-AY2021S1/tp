@@ -32,7 +32,7 @@ public class EditInventoryCommand extends Command {
             + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_DATETIME + "[DATE] [TIME]] ";
 
-    public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Item: %1$s" + "\nFinanceWindow record updated";
+    public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Inventory record: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This inventory record already "
             + "exists in the InventoryWindow";

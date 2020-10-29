@@ -100,15 +100,15 @@ __Format:__ `create_inventory i/ITEM_NAME q/QUANTITY [c/ITEM_COST]`
 
 __Example:__ `create_inventory i/iphone q/10 c/20` to create a new inventory record of item `iphone` and quantity `10`. A finance record with the total amount (QUANTITY * ITEM_COST) will also be created.
 
-![Add inventory command example](images/commands/create_inventory_command.jpg)
+![Add inventory command example](images/commands/create_inventory_command.png)
 
 __Result:__ item `iphone` of quantity `10` is added to the inventory.
 
-![Add inventory result example](images/commands/create_inventory_result.jpg)
+![Add inventory result example](images/commands/create_inventory_result.png)
 
 __Result:__ corresponding finance record of total cost `200` is added to the inventory.
 
-![Add inventory result example](images/commands/create_inventory_finance_record_result.jpg)
+![Add inventory result example](images/commands/create_inventory_finance_record_result.png)
 
 ---
 
@@ -122,9 +122,13 @@ __Example:__ `delete_inventory 1` deletes the inventory record at index `1`.
 
 ![Delete inventory command example](images/commands/delete_inventory_command.jpg)
 
-__Result:__ record at index `1` is removed from the inventory list of records.
+__Result:__ record at index `1` is removed from the inventory.
 
 ![Delete inventory result example](images/commands/delete_inventory_result.jpg)
+
+__Result:__ Deleted the corresponding finance record.
+
+![Delete inventory result example](images/commands/delete_finance_from_inventory_result.jpg)
 
 ---
 
@@ -142,6 +146,10 @@ __Result:__ item name changed from `iphone` to `iPad`, quantity changed from `10
 
 ![Edit inventory result example](images/commands/edit_inventory_result.jpg)
 
+__Result:__ updated corresponding finance record with a total cost of `2000`.
+
+![Edit inventory result example](images/commands/edit_inventory_result.jpg)
+
 ---
 
 #### 4.1.3. Edit record in inventory: `find_inventory`
@@ -154,7 +162,7 @@ __Example:__ `find_inventory ipad` finds for inventory records containing the na
 
 ![Edit inventory command example](images/commands/edit_inventory_command.jpg)
 
-__Result:__ listed all inventory records with the word `ipad`.
+__Result:__ lists all inventory records with the word `ipad`.
 
 ![Edit inventory result example](images/commands/edit_inventory_result.jpg)
 
@@ -170,7 +178,7 @@ __Example:__ `list_inventory` lists all inventory records.
 
 ![List inventory command example](images/commands/list_inventory_command.jpg)
 
-__Result:__ inventory records listed.
+__Result:__ lists all inventory records.
 
 ![List inventory result example](images/commands/list_inventory_result.jpg)
 
@@ -240,7 +248,7 @@ __Example:__ `list_finance`
 
 ![List finance command example](images/commands/list_finance_command.jpg)
 
-__Result:__ finance account is listed.
+__Result:__ lists all finance records.
 
 ![List finance result example](images/commands/list_finance_result.jpg)
 
@@ -254,7 +262,7 @@ __Format:__ `find_finance [id/ID] [aft/DATE] [bef/DATE] [item/YESNO]`
 
 __Example:__ `find_finance id/10 aft/2019-10-30 bef/2020-03-23 item/yes` to find records with ID containing "10", took place between 30st Oct 2019 to 23rd Mar 2020 (inclusive), and has a corresponding item record.
 
-__Result:__ finance records that fit the paramaters are listed
+__Result:__ listed finance records that fit the parameters
 
 ---
 

@@ -12,7 +12,7 @@ public class ListInventoryCommand extends Command {
 
     public static final String COMMAND_WORD = "list_inventory";
 
-    public static final String MESSAGE_SUCCESS = "Listed all inventory items!";
+    public static final String MESSAGE_SUCCESS = "Listed all inventory records!";
 
 
     @Override
