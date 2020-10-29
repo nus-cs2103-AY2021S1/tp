@@ -67,9 +67,9 @@ public class ModelManager implements Model {
         filteredModules = new FilteredList<Module>(this.moduleList.getModuleList());
         sortedContacts = new SortedList<Contact>(this.contactList.getContactList());
         filteredContacts = new FilteredList<Contact>(sortedContacts);
-        filteredTasks = new FilteredList<Task>(this.todoList.getTodoList());
         filteredEvents = new FilteredList<Event>(this.eventList.getEventList());
         sortedTasks = new SortedList<Task>(this.todoList.getTodoList());
+        filteredTasks = new FilteredList<Task>(sortedTasks);
         accessPointer = 0;
         accessSequence = new ArrayList<>();
         accessSequence.add(0);
@@ -462,7 +462,7 @@ public class ModelManager implements Model {
 
     @Override
     public void updateSortedTodoList(Comparator<Task> comparator) {
-        requireNonNull(comparator);
+        // No assertion here because comparator value can be null to reset ordering.
         sortedTasks.setComparator(comparator);
     }
     // ==================================== Scehduler =============================================== //

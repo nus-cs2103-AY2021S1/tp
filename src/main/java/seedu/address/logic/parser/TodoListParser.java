@@ -16,6 +16,7 @@ import seedu.address.logic.commands.todolistcommands.FindTaskCommand;
 import seedu.address.logic.commands.todolistcommands.HelpTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ListTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ResetTaskCommand;
+import seedu.address.logic.commands.todolistcommands.SortTaskCommand;
 import seedu.address.logic.commands.todolistcommands.ViewTaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.todolistparsers.AddTaskParser;
@@ -24,6 +25,7 @@ import seedu.address.logic.parser.todolistparsers.DeleteTaskParser;
 import seedu.address.logic.parser.todolistparsers.EditTaskParser;
 import seedu.address.logic.parser.todolistparsers.FindTaskParser;
 import seedu.address.logic.parser.todolistparsers.ResetTaskParser;
+import seedu.address.logic.parser.todolistparsers.SortTaskParser;
 import seedu.address.logic.parser.todolistparsers.ViewTaskParser;
 
 public class TodoListParser implements FeatureParser {
@@ -66,6 +68,9 @@ public class TodoListParser implements FeatureParser {
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
 
+        case SortTaskCommand.COMMAND_WORD:
+            return new SortTaskParser().parse(arguments);
+
         case ResetTaskCommand.COMMAND_WORD:
             return new ResetTaskParser().parse(arguments);
 
@@ -80,9 +85,6 @@ public class TodoListParser implements FeatureParser {
 
         case ViewTaskCommand.COMMAND_WORD:
             return new ViewTaskParser().parse(arguments);
-
-        //case AddAssignmentCommand.COMMAND_WORD:
-        //return new AddAssignmentParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
