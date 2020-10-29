@@ -24,6 +24,7 @@ import seedu.pivot.model.investigationcase.Reference;
 public class OpenDocumentCommand extends OpenCommand {
 
     public static final String MESSAGE_OPEN_DOCUMENT_SUCCESS = "Opened Document: %1$s";
+
     private static final Logger logger = LogsCenter.getLogger(OpenDocumentCommand.class);
 
     public OpenDocumentCommand(Index targetIndex) {

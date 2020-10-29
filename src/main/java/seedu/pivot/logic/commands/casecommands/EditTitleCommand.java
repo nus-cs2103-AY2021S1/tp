@@ -36,7 +36,7 @@ public class EditTitleCommand extends EditCommand {
     private final Title title;
 
     /**
-     * Creates an EditTitleCommand to update the specified { @code Title } to a { @code Case }.
+     * Creates an EditTitleCommand to update the specified { @code Title } for a { @code Case }.
      *
      * @param index Index of the Case in PIVOT.
      * @param title Title to be updated.
@@ -65,6 +65,7 @@ public class EditTitleCommand extends EditCommand {
                 stateCase.getDocuments(), stateCase.getSuspects(), stateCase.getVictims(), stateCase.getWitnesses(),
                 stateCase.getTags());
         model.setCase(stateCase, updatedCase);
+        model.commitPivot(String.format(MESSAGE_EDIT_TITLE_SUCCESS, title));
 
         return new CommandResult(String.format(MESSAGE_EDIT_TITLE_SUCCESS, title));
     }
