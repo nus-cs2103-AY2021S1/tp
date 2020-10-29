@@ -33,6 +33,8 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
      * @param filePath file path to storage file.
      */
     public JsonFinanceAccountStorage(Path filePath) {
+        assert filePath != null : "File path for finance account storage is null!";
+
         this.filePath = filePath;
     }
 
@@ -45,7 +47,6 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
     @Override
     public Optional<ReadOnlyFinanceAccount> readFinanceAccount() throws DataConversionException {
-        assert filePath != null : "Finance file path is null!";
         return readFinanceAccount(filePath);
     }
 
@@ -54,7 +55,6 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
     public Optional<ReadOnlyFinanceAccount> readFinanceAccount(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        // TODO: THIS LINE IS CAUSING A LOADING ERROR
         Optional<JsonSerializableFinanceAccount> jsonFinanceAccount = JsonUtil.readJsonFile(
                 filePath, JsonSerializableFinanceAccount.class);
 
@@ -73,7 +73,7 @@ public class JsonFinanceAccountStorage implements FinanceAccountStorage {
 
     @Override
     public void saveFinanceAccount(ReadOnlyFinanceAccount financeAccount) throws IOException {
-        assert financeAccount != null : "Finance account is null!";
+        // assert financeAccount != null : "Finance account is null!";
         saveFinanceAccount(financeAccount, filePath);
     }
 

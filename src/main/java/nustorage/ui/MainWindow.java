@@ -35,9 +35,10 @@ public class MainWindow extends UiPart<Stage> {
     private UiLogic uiLogic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private Inventory inventory;
+    private Finance finance;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -49,16 +50,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private AnchorPane inventoryPanelPlaceholder;
+    private AnchorPane inventoryPlaceholder;
 
     @FXML
-    private AnchorPane financeListPanelPlaceholder;
+    private AnchorPane financePlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
-
-    @FXML
-    private StackPane statusbarPlaceholder;
 
     @FXML
     private TabPane tabPane;
@@ -129,35 +127,15 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+    public void fillInnerParts() {
+        finance = new Finance(logic);
+        financePlaceholder.getChildren().add(finance.getRoot());
+
+        inventory = new Inventory(logic);
+        inventoryPlaceholder.getChildren().add(inventory.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
-
-    /**
-     * Fills up all the placeholders of this window.
-     */
-    public void fillInnerPartsWithFinance() {
-        FinanceRecordPanel financeRecordPanel = new FinanceRecordPanel(logic.getFilteredFinanceList());
-        financeListPanelPlaceholder.getChildren().add(financeRecordPanel.getRoot());
-
-        InventoryPanel inventoryPanel = new InventoryPanel(logic.getFilteredInventory());
-        inventoryPanelPlaceholder.getChildren().add(inventoryPanel.getRoot());
-
-        resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
@@ -204,10 +182,6 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
-    }
-
     /**
      * Executes the command and returns the result.
      *
@@ -225,16 +199,18 @@ public class MainWindow extends UiPart<Stage> {
                 } else {
                     logic.execute("list_finance");
                 }
-            } else if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Finance")) {
-                commandResult = logic.execute(commandText);
-            } else if (tabPane.getSelectionModel().getSelectedItem().getText().equals("Inventory")) {
-                commandResult = logic.execute(commandText);
             } else {
                 commandResult = logic.execute(commandText);
             }
 
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+
+            inventory = new Inventory(logic);
+            inventoryPlaceholder.getChildren().add(inventory.getRoot());
+
+            finance = new Finance(logic);
+            financePlaceholder.getChildren().add(finance.getRoot());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

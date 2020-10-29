@@ -53,7 +53,6 @@ public class Inventory implements ReadOnlyInventory {
      */
     public void resetData(ReadOnlyInventory newData) {
         requireNonNull(newData);
-
         setInventoryRecords(newData.getInventoryRecordList());
     }
 

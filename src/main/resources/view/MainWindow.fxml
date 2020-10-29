@@ -50,18 +50,16 @@
               <tabs>
                 <Tab fx:id="inventoryTab" text="Inventory">
                   <content>
-                    <AnchorPane fx:id="inventoryPanelPlaceholder" />
+                    <AnchorPane fx:id="inventoryPlaceholder" />
                   </content>
                 </Tab>
                 <Tab fx:id="financeTab" text="Finance">
                   <content>
-                    <AnchorPane fx:id="financeListPanelPlaceholder" />
+                    <AnchorPane fx:id="financePlaceholder" />
                   </content>
                 </Tab>
               </tabs>
             </TabPane>
-
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             <stylesheets>
                <URL value="@Extensions.css" />
                <URL value="@DarkTheme.css" />

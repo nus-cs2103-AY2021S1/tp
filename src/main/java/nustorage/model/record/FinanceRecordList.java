@@ -9,8 +9,8 @@ import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import nustorage.commons.core.index.Index;
-import nustorage.model.person.exceptions.PersonNotFoundException;
+import nustorage.model.record.exceptions.DuplicateFinanceRecordException;
+import nustorage.model.record.exceptions.FinanceRecordNotFoundException;
 
 public class FinanceRecordList implements Iterable<FinanceRecord> {
 
@@ -23,7 +23,7 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
      */
     public boolean contains(FinanceRecord toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::equals);
+        return internalList.stream().anyMatch(toCheck::isSameRecord);
     }
 
     /**
@@ -32,6 +32,9 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
      */
     public void add(FinanceRecord toAdd) {
         requireNonNull(toAdd);
+        if (contains(toAdd)) {
+            throw new DuplicateFinanceRecordException();
+        }
         internalList.add(toAdd);
     }
 
@@ -45,22 +48,31 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new FinanceRecordNotFoundException();
         }
 
         internalList.set(index, editedRecord);
+    }
+
+    public FinanceRecord getFinanceRecord(int recordId) {
+        Optional<FinanceRecord> record = internalList.stream().filter(r -> r.getID() == recordId).findFirst();
+        if (record.isEmpty()) {
+            throw new FinanceRecordNotFoundException();
+        }
+        return record.get();
     }
 
     /**
      * Removes the equivalent person from the list.
      * The person must exist in the list.
      */
-    public Optional<FinanceRecord> remove(Index targetIndex) {
-        requireNonNull(targetIndex);
-        if (targetIndex.getZeroBased() >= internalList.size()) {
-            return Optional.empty();
+    public void remove(FinanceRecord toRemove) {
+        requireNonNull(toRemove);
+
+        if (!internalList.contains(toRemove)) {
+            throw new FinanceRecordNotFoundException();
         }
-        return Optional.of(internalList.remove(targetIndex.getZeroBased()));
+        internalList.remove(toRemove);
     }
 
     public void setFinanceRecords(FinanceRecordList replacement) {
@@ -74,7 +86,21 @@ public class FinanceRecordList implements Iterable<FinanceRecord> {
      */
     public void setFinanceRecords(List<FinanceRecord> financeRecords) {
         requireAllNonNull(financeRecords);
+        if (!financeRecordsAreUnique(financeRecords)) {
+            throw new DuplicateFinanceRecordException();
+        }
         internalList.setAll(financeRecords);
+    }
+
+    private boolean financeRecordsAreUnique(List<FinanceRecord> financeRecords) {
+        for (int i = 0; i < financeRecords.size() - 1; i++) {
+            for (int j = i + 1; j < financeRecords.size(); j++) {
+                if (financeRecords.get(i).isSameRecord(financeRecords.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     /**

@@ -2,6 +2,7 @@ package nustorage.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static nustorage.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
@@ -13,7 +14,7 @@ import nustorage.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new EditInventoryCommand object.
  */
-public class EditInventoryCommandParser {
+public class EditInventoryCommandParser implements Parser<EditInventoryCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the EditInventoryCommand
      * and returns an EditInventoryCommand object for execution.
@@ -40,6 +41,10 @@ public class EditInventoryCommandParser {
         if (argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).isPresent()) {
             editInventoryDescriptor.setDescription(ParserUtil.parseItemDescription(
                     argMultimap.getValue(PREFIX_ITEM_DESCRIPTION).get()));
+        }
+        if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
+            editInventoryDescriptor.setDescription(ParserUtil.parseItemDescription(
+                    argMultimap.getValue(PREFIX_DATETIME).get()));
         }
 
         if (!editInventoryDescriptor.isAnyFieldEdited()) {

@@ -2,7 +2,7 @@ package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Optional;
+import java.util.List;
 
 import nustorage.commons.core.Messages;
 import nustorage.commons.core.index.Index;
@@ -36,13 +36,19 @@ public class DeleteFinanceCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<FinanceRecord> lastShownList = model.getFilteredFinanceList();
 
-        Optional<FinanceRecord> record = model.deleteFinanceRecord(targetIndex);
-
-        if (record.isPresent()) {
-            return new CommandResult(String.format(MESSAGE_SUCCESS, record.get()));
-        } else {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_FINANCE_DISPLAYED_INDEX);
         }
+
+        FinanceRecord recordToDelete = lastShownList.get(targetIndex.getZeroBased());
+
+        if (recordToDelete.taggedToInventory()) {
+            throw new CommandException(Messages.MESSAGE_FINANCE_HAS_INVENTORY);
+        }
+
+        model.deleteFinanceRecord(recordToDelete);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, recordToDelete));
     }
 }

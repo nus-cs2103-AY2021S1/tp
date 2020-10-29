@@ -2,12 +2,9 @@ package nustorage.model;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import nustorage.commons.core.index.Index;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.FinanceRecordList;
 
@@ -16,11 +13,6 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
     private final FinanceRecordList financeRecords;
     {
         financeRecords = new FinanceRecordList();
-    }
-
-    private HashMap<Integer, FinanceRecord> financeRecordHashMap;
-    {
-        financeRecordHashMap = new HashMap<>();
     }
 
     public FinanceAccount() {
@@ -42,10 +34,6 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      */
     public void setFinanceRecords(List<FinanceRecord> financeRecords) {
         this.financeRecords.setFinanceRecords(financeRecords);
-
-        for (FinanceRecord record : financeRecords) {
-            financeRecordHashMap.put(record.getID(), record);
-        }
     }
 
 
@@ -54,7 +42,6 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      */
     public void resetData(ReadOnlyFinanceAccount newData) {
         requireNonNull(newData);
-        financeRecordHashMap = new HashMap<>();
         setFinanceRecords(newData.getFinanceList());
     }
 
@@ -63,7 +50,7 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      */
     public boolean hasFinanceRecord(FinanceRecord financeRecord) {
         requireNonNull(financeRecord);
-        return financeRecordHashMap.containsKey(financeRecord.getID());
+        return financeRecords.contains(financeRecord);
     }
 
     /**
@@ -72,7 +59,6 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      */
     public void addFinanceRecord(FinanceRecord financeRecord) {
         financeRecords.add(financeRecord);
-        financeRecordHashMap.put(financeRecord.getID(), financeRecord);
     }
 
     /**
@@ -82,21 +68,20 @@ public class FinanceAccount implements ReadOnlyFinanceAccount {
      */
     public void setFinanceRecord(FinanceRecord target, FinanceRecord editedRecord) {
         requireNonNull(editedRecord);
-
         financeRecords.setFinanceRecord(target, editedRecord);
-        financeRecordHashMap.replace(target.getID(), editedRecord);
+    }
+
+    public FinanceRecord getFinanceRecord(int recordId) {
+        return financeRecords.getFinanceRecord(recordId);
     }
 
     /**
      * Removes the finance record with the corresponding index
      *
-     * @param targetIndex Index of finance record to be removed
-     * @return Optional containing removed finance record if index is valid, else an empty optional
+     * @param key Finance record to be removed
      */
-    public Optional<FinanceRecord> removeFinanceRecord(Index targetIndex) {
-        Optional<FinanceRecord> removedRecord = financeRecords.remove(targetIndex);
-        removedRecord.ifPresent(record -> financeRecordHashMap.remove(record.getID()));
-        return removedRecord;
+    public void removeFinanceRecord(FinanceRecord key) {
+        financeRecords.remove(key);
     }
 
     //// util methods

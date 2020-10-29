@@ -2,8 +2,13 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+<!-- TOC adapted from
+https://github.com/AY2021S1-CS2103T-W16-3/tp/pull/179/commits/aec461182c194c9ca2c67d7c407fcabb376191ff 
+-->
+<div class="toc-no-bullet-points">
+  * Table of Contents
+  {:toc}
+</div>
 
 ---
 
@@ -21,9 +26,6 @@ The architecture diagram given below shows the high-level design of the software
 
 <img src="images/ArchitectureDiagram.png" width="450" />
 
-<div markdown="span" class="alert alert-primary">
-
-</div>
 
 Given below is a quick overview of each of the components.
 
@@ -96,7 +98,9 @@ Classes in this component:
 
 #### 2.3.2. UI component
 
-Given below is the class diagram of the UI component of NUStorage.
+This section shows the structure and logic of the `UI` component of NUStorage. It shows a generalised view of the `UI` component within the packages.
+
+Given below is the class diagram of the `UI` component of NUStorage.
 
 ![Structure of the UI Component](images/UiComponent.png)<br>
 Figure 3: Class Diagram of UI Component.
@@ -117,11 +121,17 @@ The `UI` component:
 
 #### 2.3.3. Logic component
 
+This section shows the structure and logic of the `Logic` component of NUStorage. It shows a generalised view of the `Logic` component within the packages.
+
+Given below is the class diagram of the `Logic` component of NUStorage.
+
 ![Structure of the Logic Component](images/LogicClassDiagram.png)<br>
 Figure 4: Class Diagram of Logic Component.
 
 **API**:
 [`Logic.java`](https://github.com/AY2021S1-CS2103T-T11-3/tp/blob/master/src/main/java/nustorage/logic/Logic.java)
+
+An outline of how a command is processed through `Logic` is as follows:
 
 1. `Logic` uses the `NuStorageParser` class to parse the user command.
 2. This results in a `Command` object which is executed by the `LogicManager`.
@@ -135,6 +145,10 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 Figure 5: Sequence Diagram of Delete Finance Command.
 
 #### 2.3.4. Model component
+
+This section shows the structure and logic of the `Model` component of NUStorage. It shows a generalised view of the `Model` component within the packages.
+
+Given below is the class diagram of the `Model` component.
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)<br>
 Figure 6: Class Diagram of Model Component.
@@ -150,9 +164,9 @@ The `Model`,
 
 #### 2.3.5. Storage component
 
-This section shows the structure and logic of the storage component of NUStorage. All storage-related classes are stored in the package `nustorage.storage`.
+This section shows the structure and logic of the `Storage` component of NUStorage. All storage-related classes are stored in the package `nustorage.storage`.
 
-Given below is the class diagram of the `storage` component.
+Given below is the class diagram of the `Storage` component.
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)<br>
 Figure 7: Class Diagram of Storage Component.
@@ -349,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | accountant | edit my financial records | update my financial status |
 | `*`      | user | be able to exit the app safely | ... |
 
-### 5.3. Use cases
+### 5.3. Use Cases
 
 For all use cases (unless specified otherwise):
 
@@ -452,15 +466,9 @@ For all use cases (unless specified otherwise):
 2. Should be able to hold up to 100 financial records and 100 inventory items without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 
-### 5.5. Glossary
-
-* **Mainstream OS**: Windows, Linux, MacOS
-* **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object.
-* **Finance**: A record that allows a user to monitor his earnings and spending.
-
 ---
 
-## 6. Appendix: Instructions for manual testing
+## 6. Appendix: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
 
@@ -469,7 +477,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### 6.1. Launch and shutdown
+### 6.1. Launching and Shutting Down
 
 1. Initial launch
 
@@ -496,7 +504,7 @@ testers are expected to do more *exploratory* testing.
 
    1. NUStorage automatically saves any changes made to records while the application is in use. Closing and re-opening the application will not result in any data loss.
 
-### 6.2. Adding a record
+### 6.2. Adding a Record
 
 1. Adding a financial/inventory record.
 
@@ -514,7 +522,7 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect add commands to try: `add`, `add_record`, `add_inventory i/MacBook` `add_finance amt/1000 at/2020-13-13` <br>
      Expected: No record is added. Error details shown in the status message.
 
-### 6.3. Deleting a record
+### 6.3. Deleting a Record
 
 1. Deleting a record while all inventory/financial records are being shown.
 
@@ -532,7 +540,7 @@ testers are expected to do more *exploratory* testing.
    5. Other incorrect delete commands to try: `delete_finance `, `delete_inventory x`, `delete 1`<br>
    Expected: No record is added. Error details shown in the status message.
 
-### 6.4. Editing a record
+### 6.4. Editing a Record
 
 1. Editing a record while all inventory/financial records are being shown.
 
@@ -551,7 +559,7 @@ testers are expected to do more *exploratory* testing.
    `edit_finance 0 amt/3000 at/2021-01-02`, `edit_inventory x i/Pasta q/100`(where x is larger than the number of inventory records in the list)<br>
    Expected: No records are edited. Error details shown in the status message.
 
-### 6.5. Listing records
+### 6.5. Listing Records
 
 1. Listing all inventory/finance records
 
@@ -587,7 +595,7 @@ testers are expected to do more *exploratory* testing.
    `find phone`, `find_inventory `, `find-finance 1000`.
    Expected: No records will be displayed. Error details shown in the status message.
 
-## 7. Appendix: Proposed features for future implementation
+## 7. Appendix: Proposed Features for Future Implementation
 
 1. Customizable Commands<br>
    1. We understand that not everybody that uses NUStorage would be comfortable with the current names of commands. Therefore, we plan to implement a feature that allows users to rename the commands to better suit their liking.
@@ -600,3 +608,10 @@ testers are expected to do more *exploratory* testing.
 3. Saving inventory as items instead of records<br>
    1. Currently, NUStorage saves inventory as records. For business that constantly deals with the same set of items daily, it might seem tiresome to constantly have to add inventory records of the same item.
    2. Thus, we plan to implement a feature that allows users to 'save' a certain inventory item for reuse, allowing them to only have to type the quantity when adding records.
+
+## 8. Glossary and Terms
+
+* **Mainstream OS**: Windows, Linux, MacOS
+* **Inventory**: An item that a user wishes to record. An inventory item can refer to any existing object.
+* **Finance**: A record that allows a user to monitor his earnings and spending.
+

@@ -1,7 +1,6 @@
 package nustorage.logic;
 
 import java.io.IOException;
-import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -13,8 +12,6 @@ import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.logic.parser.NuStorageParser;
 import nustorage.logic.parser.exceptions.ParseException;
 import nustorage.model.Model;
-import nustorage.model.ReadOnlyAddressBook;
-import nustorage.model.person.Person;
 import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 import nustorage.storage.Storage;
@@ -58,16 +55,6 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
-    @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
-    }
-
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
-    }
-
     public ObservableList<InventoryRecord> getFilteredInventory() {
         return model.getFilteredInventory();
     }
@@ -75,11 +62,6 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<FinanceRecord> getFilteredFinanceList() {
         return model.getFilteredFinanceList();
-    }
-
-    @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
     }
 
     @Override

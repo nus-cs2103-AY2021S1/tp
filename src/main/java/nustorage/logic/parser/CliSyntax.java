@@ -21,4 +21,8 @@ public class CliSyntax {
     // Finance
     public static final Prefix PREFIX_AMOUNT = new Prefix("amt/");
     public static final Prefix PREFIX_DATETIME = new Prefix("at/");
+    public static final Prefix PREFIX_ID = new Prefix("id/");
+    public static final Prefix PREFIX_AFTER_DATETIME = new Prefix("aft/");
+    public static final Prefix PREFIX_BEFORE_DATETIME = new Prefix("bef/");
+    public static final Prefix PREFIX_HAS_INVENTORY = new Prefix("item/");
 }

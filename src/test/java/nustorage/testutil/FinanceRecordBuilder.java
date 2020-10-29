@@ -13,27 +13,42 @@ import nustorage.model.record.FinanceRecord;
  */
 public class FinanceRecordBuilder {
 
+    public static final int DEFAULT_ID = 123456789;
     public static final double DEFAULT_AMOUNT = 250000;
     public static final String DEFAULT_DATE = "2020-04-20";
     public static final String DEFAULT_TIME = "13:00";
+    public static final boolean DEFAULT_HAS_INVENTORY = false;
 
+    private int id;
     private double amount;
     private LocalDateTime datetime;
+    private boolean hasInventory;
 
     /**
      * Creates a {@code FinanceRecordBuilder} with the default details.
      */
     public FinanceRecordBuilder() {
+        id = DEFAULT_ID;
         amount = DEFAULT_AMOUNT;
         datetime = LocalDateTime.of(LocalDate.parse(DEFAULT_DATE), LocalTime.parse(DEFAULT_TIME));
+        hasInventory = DEFAULT_HAS_INVENTORY;
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public FinanceRecordBuilder(FinanceRecord recordToCopy) {
+        id = recordToCopy.getID();
         amount = recordToCopy.getAmount();
-        datetime = recordToCopy.getDatetime();
+        datetime = recordToCopy.getDateTime();
+    }
+
+    /**
+     * Sets the {@code Name} of the {@code Person} that we are building.
+     */
+    public FinanceRecordBuilder withId(int id) {
+        this.id = id;
+        return this;
     }
 
     /**
@@ -57,7 +72,7 @@ public class FinanceRecordBuilder {
     }
 
     public FinanceRecord build() {
-        return new FinanceRecord(amount, datetime);
+        return new FinanceRecord(id, amount, datetime, false);
     }
 
 }

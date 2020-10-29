@@ -6,24 +6,21 @@ import static nustorage.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import nustorage.logic.commands.AddCommand;
 import nustorage.logic.commands.AddFinanceCommand;
-import nustorage.logic.commands.AddInventoryRecordCommand;
 import nustorage.logic.commands.ClearCommand;
 import nustorage.logic.commands.Command;
-import nustorage.logic.commands.DeleteCommand;
+import nustorage.logic.commands.CreateInventoryRecordCommand;
 import nustorage.logic.commands.DeleteFinanceCommand;
 import nustorage.logic.commands.DeleteInventoryRecordCommand;
-import nustorage.logic.commands.EditCommand;
 import nustorage.logic.commands.EditFinanceCommand;
 import nustorage.logic.commands.EditInventoryCommand;
 import nustorage.logic.commands.ExitCommand;
-import nustorage.logic.commands.FindCommand;
+import nustorage.logic.commands.FindFinanceCommand;
 import nustorage.logic.commands.FindInventoryRecordCommand;
 import nustorage.logic.commands.HelpCommand;
-import nustorage.logic.commands.ListCommand;
 import nustorage.logic.commands.ListFinanceRecordsCommand;
 import nustorage.logic.commands.ListInventoryCommand;
+import nustorage.logic.commands.UpdateInventoryCommand;
 import nustorage.logic.parser.exceptions.ParseException;
 
 /**
@@ -55,8 +52,8 @@ public class NuStorageParser {
         case ListInventoryCommand.COMMAND_WORD:
             return new ListInventoryCommand();
 
-        case AddInventoryRecordCommand.COMMAND_WORD:
-            return new AddInventoryRecordCommandParser().parse(arguments);
+        case CreateInventoryRecordCommand.COMMAND_WORD:
+            return new CreateInventoryRecordCommandParser().parse(arguments);
 
         case EditInventoryCommand.COMMAND_WORD:
             return new EditInventoryCommandParser().parse(arguments);
@@ -67,35 +64,26 @@ public class NuStorageParser {
         case FindInventoryRecordCommand.COMMAND_WORD:
             return new FindInventoryRecordCommandParser().parse(arguments);
 
+        case UpdateInventoryCommand.COMMAND_WORD:
+            return new UpdateInventoryCommandParser().parse(arguments);
+
         case AddFinanceCommand.COMMAND_WORD:
             return new AddFinanceCommandParser().parse(arguments);
 
         case EditFinanceCommand.COMMAND_WORD:
             return new EditFinanceCommandParser().parse(arguments);
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
-
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case FindFinanceCommand.COMMAND_WORD:
+            return new FindFinanceCommandParser().parse(arguments);
 
         case DeleteFinanceCommand.COMMAND_WORD:
             return new DeleteFinanceCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
 
         case ListFinanceRecordsCommand.COMMAND_WORD:
             return new ListFinanceRecordsCommand();
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
-
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

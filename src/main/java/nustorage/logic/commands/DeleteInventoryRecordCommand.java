@@ -8,6 +8,7 @@ import nustorage.commons.core.Messages;
 import nustorage.commons.core.index.Index;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
+import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
 public class DeleteInventoryRecordCommand extends Command {
@@ -30,13 +31,15 @@ public class DeleteInventoryRecordCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        assert !model.getFilteredInventory().isEmpty();
         List<InventoryRecord> lastShownList = model.getFilteredInventory();
-
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         InventoryRecord inventoryRecordToDelete = lastShownList.get(targetIndex.getZeroBased());
+        FinanceRecord financeRecordToDelete = model.getFinanceRecord(inventoryRecordToDelete);
+        model.deleteFinanceRecord(financeRecordToDelete);
         model.deleteInventoryRecord(inventoryRecordToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_INVENTORY_RECORD_SUCCESS, inventoryRecordToDelete));
     }
