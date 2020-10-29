@@ -2,7 +2,6 @@ package seedu.address.model.patient;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -38,7 +37,7 @@ public class Patient {
     /**
      * Name, phone, and IC number must be present and not null.
      */
-    public Patient(Name name, Phone phone, IcNumber icNumber, Address address, Email email,
+    public Patient(Name name, Phone phone, IcNumber icNumber, VisitHistory visitHistory, Address address, Email email,
                    ProfilePicture profilePicture, Sex sex, BloodType bloodType,
                    Set<Allergy> allergies, ColorTag colorTag) {
         requireAllNonNull(name, phone, icNumber);
@@ -52,7 +51,7 @@ public class Patient {
         this.bloodType = bloodType;
         this.allergies.addAll(allergies);
         this.colorTag = colorTag;
-        this.visitHistory = new VisitHistory(new ArrayList<>());
+        this.visitHistory = visitHistory;
     }
 
     public Name getName() {
@@ -155,24 +154,24 @@ public class Patient {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" NRIC: ")
-                .append(getIcNumber())
-                .append(" Address: ")
-                .append(getAddress())
-                .append(" Email: ")
-                .append(getEmail())
-                .append(" Sex: ")
-                .append(getSex())
-                .append(" Blood Type: ")
-                .append(getBloodType())
-                .append(" ColorTag: ")
-                .append(getColorTag())
-                .append(" Visit History: ")
-                .append(getVisitHistory())
-                .append(" Allergies: ");
+        builder.append("Name: ")
+                .append(getName() + "\n")
+                .append("Phone: ")
+                .append(getPhone() + "\n")
+                .append("NRIC: ")
+                .append(getIcNumber() + "\n")
+                .append("Address: ")
+                .append(getAddress() + "\n")
+                .append("Email: ")
+                .append(getEmail() + "\n")
+                .append("Sex: ")
+                .append(getSex() + "\n")
+                .append("Blood Type: ")
+                .append(getBloodType() + "\n")
+                .append("ColorTag: ")
+                .append(getColorTag() + "\n")
+                .append(getVisitHistory() + "\n")
+                .append("Allergies: ");
         getAllergies().forEach(builder::append);
         return builder.toString();
     }

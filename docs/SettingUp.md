@@ -23,7 +23,7 @@ If you wish to fork the repo:
 1. Click on the <img src="images/forkButton.png" height="40px"> button on the top-right hand corner of the page to fork the repository to your account.
 1. You should be automatically redirected to the fork on your personal account.
 
-If you with to clone the repo: 
+If you with to clone the repo:
 1. Install Git.
 1. On your page of your fork (or the [CliniCal repository](https://github.com/AY2021S1-CS2103T-W11-4/tp) if you did not fork the repo), click on the <img src="images/codeButton.png" height="40px"> and copy the link to the git repo by clicking on <img src="images/copyButton.png" height="70px">.
 1. Navigate to the folder on your computer that you wish to clone the repo to and run the command `git clone (the link you copied earlier)`

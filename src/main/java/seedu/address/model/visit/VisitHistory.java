@@ -1,7 +1,11 @@
 package seedu.address.model.visit;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  * Represents a patient's visit history in the CliniCal application.
@@ -21,34 +25,38 @@ public class VisitHistory {
         this.visits = visits;
     }
 
-    //    /**
-    //     * Adds a new visit to the visit history.
-    //     */
-    //    public VisitHistory addVisit(Visit toAdd) {
-    //        this.visits.add(toAdd);
-    //        Collections.sort(this.visits);
-    //        return this;
-    //    }
-    //
-    //    /**
-    //     * Edits a visit(specified by index) from the visit history.
-    //     */
-    //    public VisitHistory editVisit(int idx, Visit toEdit) {
-    //        this.visits.set(idx - 1, toEdit);
-    //        return this;
-    //    }
-    //
-    //    /**
-    //     * Deletes a visit(specified by index) from the visit history.
-    //     */
-    //    public VisitHistory deleteVisit(int idx) throws IndexOutOfBoundsException {
-    //        this.visits.remove(idx - 1);
-    //        return this;
-    //    }
-    //
-    //    public Visit getVisitByIndex(int idx) throws IndexOutOfBoundsException {
-    //        return visits.get(idx - 1);
-    //    }
+    public ObservableList<Visit> getObservableVisits() {
+        return FXCollections.observableArrayList(this.visits);
+    }
+
+    /**
+     * Adds a new visit to the visit history.
+     */
+    public VisitHistory addVisit(Visit toAdd) {
+        this.visits.add(toAdd);
+        Collections.sort(this.visits);
+        return this;
+    }
+
+    /**
+     * Edits a visit(specified by index) from the visit history.
+     */
+    public VisitHistory editVisit(int idx, Visit toEdit) {
+        this.visits.set(idx - 1, toEdit);
+        return this;
+    }
+
+    /**
+     * Deletes a visit(specified by index) from the visit history.
+     */
+    public VisitHistory deleteVisit(int idx) throws IndexOutOfBoundsException {
+        this.visits.remove(idx - 1);
+        return this;
+    }
+
+    public Visit getVisitByIndex(int idx) throws IndexOutOfBoundsException {
+        return visits.get(idx - 1);
+    }
 
     public ArrayList<Visit> getVisits() {
         return this.visits;
@@ -80,11 +88,11 @@ public class VisitHistory {
     @Override
     public String toString() {
         if (visits.isEmpty()) {
-            return "No visit history";
+            return "This patient has no prior visits.";
         }
         final StringBuilder builder = new StringBuilder();
-        builder.append("Visit History:\n");
-        this.visits.forEach(builder::append);
+        builder.append("Most recent visit date: ");
+        builder.append(visits.get(0).toString());
         return builder.toString();
     }
 }

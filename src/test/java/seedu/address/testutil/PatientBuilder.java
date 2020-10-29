@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,8 @@ import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
 import seedu.address.model.util.SampleDataUtil;
+import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
 
 /**
  * A utility class to help with building Patient objects.
@@ -29,6 +32,7 @@ public class PatientBuilder {
     public static final String DEFAULT_PROFILE_PICTURE = "data/stock_picture.png";
     public static final String DEFAULT_SEX = "F";
     public static final String DEFAULT_BLOODTYPE = "A+";
+    public static final VisitHistory DEFAULT_VISIT_HISTORY = new VisitHistory(new ArrayList<Visit>());
 
     private Name name;
     private Phone phone;
@@ -40,6 +44,7 @@ public class PatientBuilder {
     private BloodType bloodType;
     private Set<Allergy> allergies;
     private ColorTag colorTag;
+    private VisitHistory visitHistory;
 
     /**
      * Creates a {@code PatientBuilder} with the default details.
@@ -55,6 +60,7 @@ public class PatientBuilder {
         bloodType = new BloodType(DEFAULT_BLOODTYPE);
         allergies = new HashSet<>();
         colorTag = new ColorTag();
+        visitHistory = DEFAULT_VISIT_HISTORY;
     }
 
     /**
@@ -71,6 +77,7 @@ public class PatientBuilder {
         bloodType = patientToCopy.getBloodType();
         allergies = new HashSet<>(patientToCopy.getAllergies());
         colorTag = patientToCopy.getColorTag();
+        visitHistory = patientToCopy.getVisitHistory();
     }
 
     /**
@@ -154,10 +161,18 @@ public class PatientBuilder {
     }
 
     /**
+     * Sets the {@code VisitHistory} of the {@code Patient} that we are building.
+     */
+    public PatientBuilder withVisitHistory(VisitHistory visitHistory) {
+        this.visitHistory = visitHistory;
+        return this;
+    }
+
+    /**
      * Builds {@code Patient} with the given fields.
      */
     public Patient build() {
-        return new Patient(name, phone, icNumber, address, email, profilePicture,
+        return new Patient(name, phone, icNumber, visitHistory, address, email, profilePicture,
                 sex, bloodType, allergies, colorTag);
     }
 

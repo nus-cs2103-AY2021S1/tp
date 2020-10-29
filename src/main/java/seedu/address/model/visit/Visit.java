@@ -1,8 +1,12 @@
 package seedu.address.model.visit;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.Objects;
 
 import seedu.address.model.patient.Name;
@@ -22,7 +26,7 @@ public class Visit implements Comparable<Visit> {
     private String comment;
 
     /**
-     * Date must be in the correct format.
+     * Instantiates a Visit object.
      */
     public Visit(LocalDate visitDate, Name patientName, String diagnosis, String prescription, String comment) {
         requireAllNonNull(visitDate, patientName, diagnosis, prescription, comment);
@@ -33,6 +37,16 @@ public class Visit implements Comparable<Visit> {
         this.comment = comment;
     }
 
+    /**
+     * Instantiates a Visit object.
+     */
+    public Visit(String value) {
+        requireNonNull(value);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        visitDate = LocalDate.parse(value, formatter);
+        patientName = new Name("null");
+    }
+
     public LocalDate getVisitDate() {
         return visitDate;
     }
@@ -41,16 +55,55 @@ public class Visit implements Comparable<Visit> {
         return patientName;
     }
 
-    public String getComment() {
-        return comment;
-    }
-
     public String getDiagnosis() {
         return diagnosis;
     }
 
     public String getPrescription() {
         return prescription;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    /**
+     * Sets patient parameters in profile window.
+     */
+    public void setParameters(String diagnosis, String prescription, String comment) {
+        this.diagnosis = diagnosis;
+        this.prescription = prescription;
+        this.comment = comment;
+    }
+
+    /**
+     * Sets patient name.
+     */
+    public void setPatientName(Name patientName) {
+        this.patientName = patientName;
+    }
+
+    /**
+     * Validates visit date in DD/MM/YYYY format.
+     * YYYY must be 19xx or 2xxx.
+     */
+    public static boolean isValidVisitDate(String input) {
+        DateTimeFormatter dateFormatAs19xx =
+                DateTimeFormatter.ofPattern("dd/MM/19uu").withResolverStyle(ResolverStyle.STRICT);
+
+        DateTimeFormatter dateFormatAs2xxx =
+                DateTimeFormatter.ofPattern("dd/MM/2uuu").withResolverStyle(ResolverStyle.STRICT);
+
+        try {
+            LocalDate.parse(input, dateFormatAs19xx);
+        } catch (DateTimeParseException exception) {
+            try {
+                LocalDate.parse(input, dateFormatAs2xxx);
+            } catch (DateTimeParseException exception2) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
@@ -90,18 +143,8 @@ public class Visit implements Comparable<Visit> {
 
     @Override
     public String toString() {
-        return "N/A"; // placeholder String before parser for VisitCommand is implemented
-        //             final StringBuilder builder = new StringBuilder();
-        //             builder.append("Date: ")
-        //                    .append(getVisitDate())
-        //                    .append(" Name: ")
-        //                    .append(getPatientName())
-        //                    .append(" Diagnosis: ")
-        //                    .append(getDiagnosis())
-        //                    .append(" Prescription: ")
-        //                    .append(getPrescription())
-        //                    .append(" Comment: ")
-        //                    .append(getComment()).append("\n");
-        //             return builder.toString();
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getVisitDate().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+        return builder.toString();
     }
 }

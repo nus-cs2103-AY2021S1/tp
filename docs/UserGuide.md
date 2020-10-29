@@ -7,7 +7,7 @@ title: CliniCal User Guide
 {:toc}
 --------------------------------------------------------------------------------------------------------------------
 
-## 1. Introduction 
+## 1. Introduction
 
 Welcome to the CliniCal User Guide!
 
@@ -232,7 +232,7 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* You can search for the patient's name or IC number. 
+* You can search for the patient's name or IC number.
 * Patient will be matched even if the keyword matches the search parameters only partially e.g. `Han` will match `Hans`, `9123456` will match `s9123456z`.
 * Patients matching at least one keyword will be returned (i.e. OR search).
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
@@ -320,7 +320,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 
 **Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in relevant
             details in each text box.
-   
+
 **Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully saved.
@@ -332,7 +332,7 @@ Format: `addvisit INDEX [vd/VISIT_DATE]`
 * You can press <kbd>Esc</kbd> or the close button at the top right to close the window without saving.
 
 </div>
-   
+
 #### 3.3.2 Deleting patient's visitation log: `deletevisit`
 
 Delete the patient's visitation log.
@@ -365,10 +365,10 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 **Step 2**: A window displaying the three parameters - Diagnosis, Prescription and Comments will be shown. Type in updated
             details in each text box.
-       
-   * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box. 
-   * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box. 
-               
+
+   * You may press <kbd>CTRL</kbd> + <kbd>TAB</kbd> on your keyboard to move to the next text box.
+   * You may press <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> on your keyboard to move to the previous text box.
+
 **Step 3**: Click on the 'Save' button or press <kbd>CTRL</kbd> + <kbd>S</kbd> on your keyboard to save the visitation log.
 
 **Step 4**: The window will close, and a message will be displayed to indicate that the visitation log has been successfully updated.
@@ -377,16 +377,16 @@ Format: `editvisit INDEX i/VISIT_INDEX`
 
 #### 3.4.1 Adding an appointment: `addapp`
 
-Add an appointment for the specified patient.
+Add a new appointment for the specified patient to the appointment database.
 
 Format: `addapp INDEX st/APPOINTMENT_DATETIME d/DURATION`
 
-* `INDEX` refers to the patient's index number as shown in the displayed patient list in the patient tab. 
+* `INDEX` refers to the patient's index number as shown in the displayed patient list in the patient tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
-* `APPOINTMENT DATETIME` refers to the date and starting time of the appointment. 
-    * It follows the format of `yyyy-MM-dd HH:mm`. 
-    * Do note that you will need to input the hour (`HH`) in  the 24-hour format. 
-   
+* `APPOINTMENT DATETIME` refers to the date and starting time of the appointment.
+    * It follows the format of `yyyy-MM-dd HH:mm`.
+    * Do note that you will need to input the hour (`HH`) in  the 24-hour format.
+
 * `DURATION` refers to the duration of the appointment, in minutes.
 
 <div markdown="block" class="alert alert-primary">
@@ -400,7 +400,7 @@ Example: You want to add an appointment with the first patient on the list.
 
 Step 1: Input `addapp 1 st/2020-10-10 10:00 d/60` into the command box and press Enter.
 
-Step 2: On the overview tab, you can find your newly added appointment saved inside the appointment list. 
+Step 2: On the overview tab, you can find your newly added appointment saved inside the appointment list.
 
 Step 3: If your newly added appointment is happening within a week from today, you can see the appointment being reflected in the calendar on the right of the appointment list.
 
@@ -413,7 +413,7 @@ Step 3: If your newly added appointment is happening within a week from today, y
 
 #### 3.4.2 Editing an appointment: `editapp`
 
-Edit an existing appointment in the calendar.
+Edit the specified appointment in the appointment database.
 
 Format: `editapp INDEX [pn/PATIENT_NAME] [pi/PATIENT_IC] [st/APPOINTMENT_DATETIME] [d/DURATION]`
 
@@ -447,14 +447,13 @@ Step 3: If the newly updated appointment is due within a week from today, you ca
 
 #### 3.4.3 Deleting an appointment: `deleteapp`
 
-Delete a specified appointment from the appointment database.
-
+Delete the specified appointment from the appointment database.
 
 Format: `deleteapp INDEX`
 
-* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab. 
+* `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the overview tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
-    
+
 Example: You want to delete your next upcoming appointment as your patient could not make it.
 
 Step 1: Input `deleteapp 1` and press Enter.

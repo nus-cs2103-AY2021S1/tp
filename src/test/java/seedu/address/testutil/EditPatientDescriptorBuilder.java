@@ -16,6 +16,8 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
+import seedu.address.model.visit.VisitHistory;
+
 /**
  * A utility class to help with building EditPatientDescriptor objects.
  */
@@ -44,6 +46,7 @@ public class EditPatientDescriptorBuilder {
         descriptor.setSex(patient.getSex());
         descriptor.setBloodType(patient.getBloodType());
         descriptor.setAllergies(patient.getAllergies());
+        descriptor.setVisitHistory(patient.getVisitHistory());
     }
 
     /**
@@ -128,6 +131,16 @@ public class EditPatientDescriptorBuilder {
     public EditPatientDescriptorBuilder withColorTag(String colorName) {
         ColorTag colorTag = new ColorTag(colorName);
         descriptor.setColorTag(colorTag);
+        return this;
+    }
+
+    /**
+     * Parses the {@code visithistory} into a {@code VisitHistory} and set it to the {@code EditPatientDescriptor}
+     * that we are building.
+     */
+    public EditPatientDescriptorBuilder withVisitHistory(VisitHistory visitHistory) {
+        VisitHistory visitHistory1 = new VisitHistory(visitHistory.getVisits());
+        descriptor.setVisitHistory(visitHistory1);
         return this;
     }
 

@@ -67,6 +67,24 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public CommandResult execute(Command command) throws CommandException {
+        String commandString = command.toString();
+        //Logging, safe to ignore
+        logger.info("----------------[USER COMMAND][" + commandString + "]");
+
+        //Executes the Command and stores the result
+        CommandResult commandResult = command.execute(model);
+
+        try {
+            ReadOnlyCliniCal copyOfClinical = model.getCliniCal();
+            storage.saveCliniCal(copyOfClinical);
+        } catch (IOException exception) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + exception, exception);
+        }
+        return commandResult;
+    }
+
+    @Override
     public CommandResult runImageTransfer(Patient patient, File profilePic) throws CommandException,
                                                                                    IllegalValueException {
         requireNonNull(patient);

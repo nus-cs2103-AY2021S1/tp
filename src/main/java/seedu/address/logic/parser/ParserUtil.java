@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -19,6 +20,7 @@ import seedu.address.model.patient.Name;
 import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
+import seedu.address.model.visit.Visit;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -26,6 +28,8 @@ import seedu.address.model.tag.ColorTag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_EMPTY_VISIT_INDEX = "";
+    public static final int MESSAGE_EMPTY_VISIT_INDICATOR = -1;
     public static final String MESSAGE_INVALID_DURATION = "The given duration should be larger than 0.";
 
     /**
@@ -193,11 +197,44 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String dateTime} into an {@code AppointmentDateTime}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Validates {@code index} as a valid number.
      *
-     * @throws ParseException if the given {@code dateTime} is invalid.
+     * @throws ParseException if the given {@code index} is invalid.
      */
+    public static int parseVisitIndex(String index) throws ParseException {
+        if (!index.equals(MESSAGE_EMPTY_VISIT_INDEX)) {
+            if (Integer.parseInt(index) < 1) {
+                throw new ParseException(Messages.MESSAGE_INVALID_VISIT_INDEX);
+            } else {
+                return Integer.parseInt(index);
+            }
+        } else {
+            return MESSAGE_EMPTY_VISIT_INDICATOR;
+        }
+    }
+
+    /**
+     * Validates {@code date} and  returns a  trimmed {@code trimmedDate}.
+     *
+     * @throws ParseException if the given {@code date} is invalid.
+     */
+    public static String parseVisit(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (Visit.isValidVisitDate(trimmedDate)) {
+            // Do nothing.
+        } else {
+            throw new ParseException(Visit.MESSAGE_CONSTRAINTS);
+        }
+        return trimmedDate;
+    }
+
+    /**
+    * Parses a {@code String dateTime} into an {@code AppointmentDateTime}.
+    * Leading and trailing whitespaces will be trimmed.
+    *
+    * @throws ParseException if the given {@code dateTime} is invalid.
+    */
     public static AppointmentDateTime parseDateTime(String dateTime) throws ParseException {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();

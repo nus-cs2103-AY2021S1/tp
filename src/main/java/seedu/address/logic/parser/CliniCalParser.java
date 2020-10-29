@@ -8,16 +8,20 @@ import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.AddProfilePictureCommand;
+import seedu.address.logic.commands.AddVisitCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.ClearHistoryCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteVisitCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditVisitCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HistoryCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ProfileCommand;
 import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.appointment.AddAppointmentCommand;
@@ -93,6 +97,27 @@ public class CliniCalParser {
 
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+        /*
+        case AddAppointmentCommand.COMMAND_WORD:
+            return new AddAppointmentCommandParser().parse(arguments);
+
+        case EditAppointmentCommand.COMMAND_WORD:
+            return new EditAppointmentCommandParser().parse(arguments);
+
+        case DeleteAppointmentCommand.COMMAND_WORD:
+            return new DeleteAppointmentCommandParser().parse(arguments);
+        */
+        case AddVisitCommand.COMMAND_WORD:
+            return new AddVisitCommandParser().parse(arguments);
+
+        case DeleteVisitCommand.COMMAND_WORD:
+            return new DeleteVisitCommandParser().parse(arguments);
+
+        case EditVisitCommand.COMMAND_WORD:
+            return new EditVisitCommandParser().parse(arguments);
+
+        case ProfileCommand.COMMAND_WORD:
+            return new ProfileCommandParser().parse(arguments);
 
         case AddAppointmentCommand.COMMAND_WORD:
             return new AddAppointmentCommandParser().parse(arguments);

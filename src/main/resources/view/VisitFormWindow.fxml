@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.stage.Stage?>
+
+<fx:root minWidth="450.0" resizable="false" title="Visitation Log" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/stethoscope.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="275.0" minWidth="308.0" prefWidth="503.0">
+                <children>
+                    <VBox fx:id="visitRecordForm" layoutY="5.0" styleClass="background" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <children>
+                     <HBox>
+                        <children>
+                                  <Label prefHeight="21.0" prefWidth="122.0" styleClass="label-bright" text="Diagnosis:" />
+                        </children>
+                     </HBox>
+                            <TextArea fx:id="diagnosis" prefHeight="65.0" prefWidth="483.0" promptText="Fill in patient's diagnosis here&#13;&#10;  e.g. Fever, Flu for past 3 days" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                                <VBox.margin>
+                                    <Insets top="5.0" />
+                                </VBox.margin></TextArea>
+                            <Label styleClass="label-bright" text="Prescription:">
+                                <VBox.margin>
+                                    <Insets top="5.0" />
+                                </VBox.margin>
+                     </Label>
+                            <TextArea fx:id="prescription" prefHeight="65.0" prefWidth="483.0" promptText="Fill in patient's prescription here&#13;&#10;    e.g. Paracetamol" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                                <VBox.margin>
+                                    <Insets top="5.0" />
+                                </VBox.margin></TextArea>
+                            <Label styleClass="label-bright" text="Remarks:">
+                                <VBox.margin>
+                                    <Insets top="5.0" />
+                                </VBox.margin></Label>
+                            <TextArea fx:id="comment" prefHeight="200.0" prefWidth="200.0" promptText="Fill in any additional remarks here&#13;&#10;    e.g. Has difficulty swallowing tablets and pills" styleClass="text-field-visit" wrapText="true" VBox.vgrow="SOMETIMES">
+                                <VBox.margin>
+                                    <Insets top="5.0" />
+                                </VBox.margin></TextArea>
+                            <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                <children>
+                                      <Label alignment="CENTER" prefHeight="21.0" prefWidth="200.0" styleClass="label-bright-shortcuts" text="Previous box (SHIFT + Tab)" />
+                                    <Button fx:id="button" mnemonicParsing="false" onAction="#saveVisit">
+                                        <HBox.margin>
+                                            <Insets />
+                                        </HBox.margin>
+                              <graphic>
+                                 <Label prefHeight="21.0" prefWidth="126.0" styleClass="label-bright" text="Save (Ctrl + S)" />
+                              </graphic>
+                                    </Button>
+                                      <Label alignment="CENTER" prefHeight="21.0" prefWidth="198.0" styleClass="label-bright-shortcuts" text="Next box (CTRL + Tab)" />
+                                </children>
+                                <VBox.margin>
+                                    <Insets top="5.0" />
+                                </VBox.margin>
+                            </HBox>
+                        </children>
+                        <opaqueInsets>
+                            <Insets />
+                        </opaqueInsets>
+                        <padding>
+                            <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                        </padding>
+                    </VBox>
+                </children></AnchorPane>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
+        </Scene>
+    </scene>
+</fx:root>

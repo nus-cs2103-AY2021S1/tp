@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -16,6 +17,8 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.patient.Patient;
+import seedu.address.model.visit.Visit;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -36,6 +39,10 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private AppointmentListPanel appointmentListPanel;
     private CalendarDisplay calendarDisplay;
+    private ProfileWindow profilePanel;
+    private VisitFormWindow visitWindow;
+    private ProfileVisitPanel profileVisitPanel;
+    private EmptyVisitList emptyVisitList;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -74,6 +81,13 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        visitWindow = new VisitFormWindow(windowEvent -> {
+            resultDisplay.setFeedbackToUser(visitWindow.getFeedbackMessage());
+            visitWindow.flushParameters();
+        });
+        profilePanel = new ProfileWindow();
+        profileVisitPanel = new ProfileVisitPanel();
+        emptyVisitList = new EmptyVisitList();
     }
 
     public Stage getPrimaryStage() {
@@ -166,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Closes the application.
+     * Exits the application.
      */
     @FXML
     private void handleExit() {
@@ -175,10 +189,52 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
+        profilePanel.hide();
+        visitWindow.hide();
+        profileVisitPanel.hide();
     }
 
-    public PatientListPanel getPatientListPanel() {
-        return patientListPanel;
+    /**
+     * Displays the visit window.
+     * If it is already open, focus on the visit window.
+     */
+    @FXML
+    public void handleDisplayVisit() {
+        if (profileVisitPanel.isShowing()) {
+            profileVisitPanel.hide();
+        }
+
+        if (!visitWindow.isShowing()) {
+            visitWindow.show();
+        } else {
+            visitWindow.focus();
+        }
+    }
+
+    /**
+     * Displays the empty visit window.
+     * If it is already open, focus on the empty visit window.
+     */
+    @FXML
+    public void handleEmptyVisitHistory() {
+        if (!emptyVisitList.isShowing()) {
+            emptyVisitList.show();
+        } else {
+            emptyVisitList.focus();
+        }
+    }
+
+    /**
+     * Displays the patient profile panel.
+     * If it is already open, focus on the profile panel.
+     */
+    @FXML
+    public void handleProfilePanel() {
+        if (!profilePanel.isShowing()) {
+            profilePanel.show();
+        } else {
+            profilePanel.focus();
+        }
     }
 
     /**
@@ -191,6 +247,12 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            int patientIndex = commandResult.getPatientIndex();
+            String visitDate = commandResult.getVisitDate();
+            int visitIndex = commandResult.getVisitIndex();
+            Visit previousVisit = commandResult.getPreviousVisit();
+            ObservableList<Visit> observableHistory = commandResult.getObservableVisitHistory();
+            Patient patient = commandResult.getPatientProfile();
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
@@ -198,6 +260,33 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isAddVisit()) {
+                visitWindow.setVisitDetails(logic, visitDate, patientIndex);
+                handleDisplayVisit();
+            }
+
+            if (commandResult.isEditVisit()) {
+                visitWindow.setPreviousVisitDetails(logic, previousVisit, visitIndex, patientIndex);
+                if (profileVisitPanel.isShowing()) {
+                    profileVisitPanel.hide();
+                }
+                handleDisplayVisit();
+            }
+
+            if (commandResult.isDisplayVisitHistory()) {
+                if (observableHistory.isEmpty()) {
+                    if (profileVisitPanel.isShowing()) {
+                        profileVisitPanel.hide();
+                    }
+                    handleEmptyVisitHistory();
+                }
+            }
+
+            if (commandResult.isDisplayProfile()) {
+                profilePanel.setup(patient, logic);
+                handleProfilePanel();
             }
 
             return commandResult;

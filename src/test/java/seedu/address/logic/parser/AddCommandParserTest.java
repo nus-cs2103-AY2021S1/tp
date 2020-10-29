@@ -199,4 +199,6 @@ public class AddCommandParserTest {
                         + ADDRESS_DESC_BOB + EMAIL_DESC_BOB + SEX_DESC_BOB + BLOODTYPE_DESC_BOB + ALLERGY_DESC_BOB,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+
 }

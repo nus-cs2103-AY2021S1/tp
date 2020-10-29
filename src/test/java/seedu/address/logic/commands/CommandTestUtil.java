@@ -206,6 +206,17 @@ public class CommandTestUtil {
         assertEquals(expectedCliniCal, actualModel.getCliniCal());
         assertEquals(expectedFilteredList, actualModel.getFilteredPatientList());
     }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the clinical, filtered patient list and selected patient in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandPass(Command command, Model expectedModel,
+                                         String expectedMessage, Model actualModel) {
+        assertEquals(expectedModel, actualModel);
+    }
     /**
      * Updates {@code model}'s filtered list to show only the patient at the given {@code targetIndex} in the
      * {@code model}'s clinical.

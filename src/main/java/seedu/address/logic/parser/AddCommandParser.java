@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SEX;
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -27,6 +28,8 @@ import seedu.address.model.patient.Phone;
 import seedu.address.model.patient.ProfilePicture;
 import seedu.address.model.patient.Sex;
 import seedu.address.model.tag.ColorTag;
+import seedu.address.model.visit.Visit;
+import seedu.address.model.visit.VisitHistory;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -52,11 +55,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         IcNumber icNumber = ParserUtil.parseIcNumber(argMultimap.getValue(PREFIX_ICNUMBER).get());
+        VisitHistory visitHistory = new VisitHistory(new ArrayList<Visit>());
 
         assert name != null : "Patient should be given a name.";
         assert phone != null : "Patient should be given a phone number.";
         assert icNumber != null : "Patient should be given an IC number.";
-
         // optional fields
         Address address = new Address();
         Email email = new Email();
@@ -84,7 +87,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Allergy> allergyList = ParserUtil.parseAllergies(argMultimap.getAllValues(PREFIX_ALLERGY));
         ColorTag colorTag = ParserUtil.parseColorTag(argMultimap.getValue(PREFIX_COLORTAG).orElse(""));
 
-        Patient patient = new Patient(name, phone, icNumber, address, email, profilePicture,
+        Patient patient = new Patient(name, phone, icNumber, visitHistory, address, email, profilePicture,
                 sex, bloodType, allergyList, colorTag);
 
         return new AddCommand(patient);
