@@ -9,8 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GRP_START_TIM
 
 import java.sql.Time;
 import java.time.LocalTime;
-import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddTutorialGroupCommand;

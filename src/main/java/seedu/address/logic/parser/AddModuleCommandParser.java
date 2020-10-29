@@ -27,17 +27,16 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddModuleCommand parse(String args) throws ParseException {
-            ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                    PREFIX_MODULE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE);
 
-            if (!arePrefixesPresent(argMultimap, PREFIX_MODULE)) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
-            }
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
+        }
 
-            ModuleId moduleId = ParserUtil.parseModuleId(argMultimap.getValue(PREFIX_MODULE).get());
+        ModuleId moduleId = ParserUtil.parseModuleId(argMultimap.getValue(PREFIX_MODULE).get());
 
-            Module module = new Module(moduleId);
+        Module module = new Module(moduleId);
 
-            return new AddModuleCommand(module);
+        return new AddModuleCommand(module);
     }
 }
