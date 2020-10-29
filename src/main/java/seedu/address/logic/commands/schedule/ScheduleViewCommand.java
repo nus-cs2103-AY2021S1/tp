@@ -12,9 +12,9 @@ import static java.util.Objects.requireNonNull;
 public class ScheduleViewCommand extends ScheduleCommand {
     public static final String COMMAND_WORD = "schedule";
     public static final String MESSAGE_INVALID_VIEW_MODE = "invalid view mode!";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + " [view]: view your events\n"
-            + "mode/ {weekly / daily}\n"
-            + "date/ {yyyy-mm-dd}\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + "\n"
+            + "mode/[weekly / daily]\n"
+            + "date/[yyyy-mm-dd]\n"
             + "Example: event view mode/weekly date/2020-11-22";
 
     private LocalDateTime viewDateTime;
@@ -26,7 +26,6 @@ public class ScheduleViewCommand extends ScheduleCommand {
 
     public void setViewMode(ScheduleViewMode eventScheduleViewMode) {
         requireNonNull(eventScheduleViewMode);
-
         this.viewMode = eventScheduleViewMode;
     }
 
@@ -50,7 +49,7 @@ public class ScheduleViewCommand extends ScheduleCommand {
         if (viewMode != null) {
             model.setScheduleViewMode(viewMode);
         }
-        return new CommandResult(COMMAND_SUCCESS_MESSAGE);
+        return new CommandResult(COMMAND_SUCCESS_MESSAGE, false, false, true);
     }
 
 
