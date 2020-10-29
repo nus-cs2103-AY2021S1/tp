@@ -3,9 +3,11 @@ package seedu.fma.logic.parser;
 import static seedu.fma.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.fma.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.fma.commons.core.LogsCenter;
 import seedu.fma.logic.commands.AddCommand;
 import seedu.fma.logic.commands.AddExCommand;
 import seedu.fma.logic.commands.ClearCommand;
@@ -20,11 +22,13 @@ import seedu.fma.logic.commands.HelpCommand;
 import seedu.fma.logic.commands.ListCommand;
 import seedu.fma.logic.parser.exceptions.ParseException;
 import seedu.fma.model.ReadOnlyLogBook;
+import seedu.fma.storage.StorageManager;
 
 /**
  * Parses user input.
  */
 public class FixMyAbsParser {
+    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
 
     /**
      * Used for initial separation of command word and args.
@@ -41,6 +45,7 @@ public class FixMyAbsParser {
     public Command parseCommand(String userInput, ReadOnlyLogBook logBook) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
+            logger.info(String.format("User command doesn't match format: %s", userInput));
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
