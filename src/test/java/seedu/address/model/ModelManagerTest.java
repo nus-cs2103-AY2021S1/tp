@@ -1,14 +1,18 @@
 package seedu.address.model;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalModules.CS2103T;
+import static seedu.address.testutil.TypicalModules.CS2100;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.module.ModuleContainsKeywordsPredicate;
 
 public class ModelManagerTest {
 
@@ -54,14 +58,72 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setModuleListFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setTrackrFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setModuleListFilePath(path);
-        assertEquals(path, modelManager.getModuleListFilePath());
+        modelManager.setTrackrFilePath(path);
+        assertEquals(path, modelManager.getTrackrFilePath());
+    }
+
+    @Test
+    public void hasModule_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasModule(null));
+    }
+
+    @Test
+    public void hasModule_moduleNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasModule(CS2100));
+    }
+
+    @Test
+    public void hasModule_moduleInAddressBook_returnsTrue() {
+        modelManager.addModule(CS2100);
+        assertTrue(modelManager.hasModule(CS2100));
+    }
+
+    @Test
+    public void getFilteredModuleList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredModuleList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        AddressBook differentAddressBook = new AddressBook();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // same values -> returns true
+        modelManager = new ModelManager(addressBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(addressBook, userPrefs);
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+        // same object -> returns true
+        assertTrue(modelManager.equals(modelManager));
+
+        // null -> returns false
+        assertFalse(modelManager.equals(null));
+
+        // different types -> returns false
+        assertFalse(modelManager.equals(5));
+
+        // different addressBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
+
+        // different filteredList -> returns false
+        String[] keywords = CS2100.getModuleId().toString().split("\\s+");
+        modelManager.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
+
+        // resets modelManager to initial state for upcoming tests
+        modelManager.updateFilteredModuleList(Model.PREDICATE_SHOW_ALL_MODULES);
+
+        // different userPrefs -> returns false
+        UserPrefs differentUserPrefs = new UserPrefs();
+        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
 
     //    @Test
