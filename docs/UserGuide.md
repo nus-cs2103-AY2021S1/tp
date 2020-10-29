@@ -157,6 +157,8 @@ If the file is located at C:\Users\Desktop\App, the archived file will be saved 
 ## 3.11. Recall : `recall`
 Recalls the most recent exercise with the specified name.
 
+![recall command message](images/recallCommandMessage.png)
+
 Format: `recall NAME`
 - the name is case-sensitive. e.g. Push up will not match push up.
 
