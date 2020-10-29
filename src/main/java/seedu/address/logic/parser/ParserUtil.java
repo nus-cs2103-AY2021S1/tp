@@ -1,22 +1,29 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_SEARCH_KEYWORD;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
 import seedu.address.model.module.grade.Assignment;
+import seedu.address.model.module.grade.AssignmentName;
+import seedu.address.model.module.grade.AssignmentPercentage;
+import seedu.address.model.module.grade.AssignmentResult;
 import seedu.address.model.module.grade.Grade;
+import seedu.address.model.module.grade.GradePoint;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Criterion;
 import seedu.address.model.task.Date;
@@ -44,18 +51,66 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     */
+    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+        requireNonNull(tags);
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tagName : tags) {
+            tagSet.add(parseTag(tagName));
+        }
+        return tagSet;
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String keywords} into a {@code List<String>}.
+     *
+     * @param keywords String containing search keywords provided by the user.
+     * @return List of search keywords.
+     * @throws ParseException If the given {@code keywords} is invalid.
+     */
+    public static List<String> parseSearchKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        if (trimmedKeywords.isEmpty()) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_SEARCH_KEYWORD));
+        } else {
+            String[] keywordArray = keywords.split("\\s+");
+            assert keywordArray.length > 0 : "There must be at least one search keyword provided";
+            return Arrays.asList(keywordArray);
+        }
+    }
+
+    // ==================== ContactList ===============================================================
+    /**
+     * Parses a {@code String name} into a {@code ContactName}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static ContactName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!ContactName.isValidName(trimmedName)) {
+            throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new ContactName(trimmedName);
     }
 
     /**
@@ -88,32 +143,7 @@ public class ParserUtil {
         return new Telegram(trimmedTelegram);
     }
 
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
-    }
+    // ==================== ModuleList ===============================================================
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -149,36 +179,36 @@ public class ParserUtil {
      * Parses a {@code String assignmentName}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static String parseAssignmentName(String assignmentName) throws ParseException {
+    public static AssignmentName parseAssignmentName(String assignmentName) throws ParseException {
         String trimmedAssignmentName = assignmentName.trim();
-        if (!Assignment.isValidAssignmentName(trimmedAssignmentName)) {
+        if (!AssignmentName.isValidAssignmentName(trimmedAssignmentName)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_NAME_CONSTRAINTS);
         }
-        return trimmedAssignmentName;
+        return new AssignmentName(trimmedAssignmentName);
     }
 
     /**
      * Parses a {@code String assignmentPercentage}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static double parseAssignmentPercentage(String assignmentPercentage) throws ParseException {
+    public static AssignmentPercentage parseAssignmentPercentage(String assignmentPercentage) throws ParseException {
         double trimmedAssignmentPercentage = Double.parseDouble(assignmentPercentage.trim());
-        if (!Assignment.isValidAssignmentPercentage(trimmedAssignmentPercentage)) {
+        if (!AssignmentPercentage.isValidAssignmentPercentage(trimmedAssignmentPercentage)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_PERCENTAGE_CONSTRAINTS);
         }
-        return trimmedAssignmentPercentage;
+        return new AssignmentPercentage(trimmedAssignmentPercentage);
     }
 
     /**
      * Parses a {@code String assignmentResult}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static double parseAssignmentResult(String assignmentResult) throws ParseException {
+    public static AssignmentResult parseAssignmentResult(String assignmentResult) throws ParseException {
         double trimmedAssignmentResult = Double.parseDouble(assignmentResult.trim());
-        if (!Assignment.isValidAssignmentResult(trimmedAssignmentResult)) {
+        if (!AssignmentResult.isValidAssignmentResult(trimmedAssignmentResult)) {
             throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
         }
-        return trimmedAssignmentResult;
+        return new AssignmentResult(trimmedAssignmentResult);
     }
 
     /**
@@ -188,7 +218,7 @@ public class ParserUtil {
     public static ModularCredits parseModularCredits(String modularCredits) throws ParseException {
         double trimmedModularCredits;
         if (!ModularCredits.isValidModularCredits(modularCredits)) {
-            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+            throw new ParseException(ModularCredits.MESSAGE_CONSTRAINTS);
         } else {
             trimmedModularCredits = Double.parseDouble(modularCredits.trim());
         }
@@ -204,6 +234,19 @@ public class ParserUtil {
             throw new ParseException(Grade.MESSAGE_CONSTRAINTS);
         }
         return trimmedGrade;
+    }
+    /**
+     * Parses a {@code String modularCredits}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static GradePoint parseGradePoint(String gradePoint) throws ParseException {
+        double trimmedGradePoint;
+        if (!GradePoint.isValidGradePoint(gradePoint)) {
+            throw new ParseException(Assignment.MESSAGE_ASSIGNMENT_RESULT_CONSTRAINTS);
+        } else {
+            trimmedGradePoint = Double.parseDouble(gradePoint.trim());
+        }
+        return new GradePoint(trimmedGradePoint);
     }
 
     // ==================== TodoList ===============================================================
@@ -272,7 +315,7 @@ public class ParserUtil {
         switch(criterionAllUpperCase) {
         case("DESCRIPTION"):
         case("DESC"):
-            return Criterion.DESCRIPTION;
+            return Criterion.NAME;
         case("DATE"):
         case("DEADLINE"):
             return Criterion.DATE;

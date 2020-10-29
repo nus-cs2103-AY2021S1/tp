@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 // import java.util.Arrays;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -238,6 +239,83 @@ public class AddModuleCommandTest {
 
         @Override
         public void updateFilteredTodoList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Task> getSortedTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedTodoList(Comparator<Task> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Contact> getSortedContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateSortedContactList(Comparator<Contact> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoModuleList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoContactList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void commitTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoTodoList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void commit(int i) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void redo() {
             throw new AssertionError("This method should not be called.");
         }
     }

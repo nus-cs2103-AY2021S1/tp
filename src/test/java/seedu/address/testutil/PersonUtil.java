@@ -6,7 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 //import java.util.Set;
 import seedu.address.logic.commands.modulelistcommands.AddModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
+import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
 import seedu.address.model.contact.Contact;
 //import seedu.address.model.tag.Tag;
 
@@ -38,10 +38,10 @@ public class PersonUtil {
     /**
      * Returns the part of command string for the given {@code EditModuleDescriptor}'s details.
      */
-    public static String getEditPersonDescriptorDetails(EditModuleCommand.EditModuleDescriptor descriptor) {
+    public static String getEditPersonDescriptorDetails(EditModuleDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getModuleName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
-        descriptor.getZoomLink().ifPresent(zoomLink -> sb.append(PREFIX_EMAIL).append(zoomLink.value).append(" "));
+        // descriptor.getZoomLink().ifPresent(zoomLink -> sb.append(PREFIX_EMAIL).append(zoomLink.value).append(" "));
         //if (descriptor.getTags().isPresent()) {
         //    Set<Tag> tags = descriptor.getTags().get();
         //    if (tags.isEmpty()) {

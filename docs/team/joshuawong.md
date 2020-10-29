@@ -16,17 +16,17 @@ Given below are my contributions to the project.
   * Credits: *{mention here if you reused any code/ideas from elsewhere or if a third-party library is heavily used in the feature so that a reader can make a more accurate judgement of how much effort went into the feature}*
 
 * **New Feature**: Added the Assignment components to each module.
-  * What it does: 
-  * Justification: 
-  * Highlights: 
-  * Credits: 
+  * What it does:
+  * Justification:
+  * Highlights:
+  * Credits:
 
 * **New Feature**: Added the Grade component to each module.
-  * What it does: 
-  * Justification: 
-  * Highlights: 
-  * Credits: 
-  
+  * What it does:
+  * Justification:
+  * Highlights:
+  * Credits:
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2021s1.github.io/tp-dashboard/#breakdown=true&search=&sort=groupTitle&sortWithin=title&since=2020-08-14&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other&tabOpen=true&tabType=zoom&zFR=false&zA=murtubak&zR=AY2021S1-CS2103T-F12-3%2Ftp%5Bmaster%5D&zACS=258.1984652947332&zS=2020-08-14&zFS=&zU=2020-10-14&zMG=false&zFTF=commit&zFGS=groupByRepos)
 
 * **Project management**:

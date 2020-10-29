@@ -25,7 +25,7 @@ import seedu.address.logic.parser.schedulerparsers.ViewEventParser;
 /**
  * Represents the parser in charge for Scheduler related commands.
  */
-public class SchedulerParser {
+public class SchedulerParser implements FeatureParser {
     /**
      * Used for initial separation of command word and args.
      */
