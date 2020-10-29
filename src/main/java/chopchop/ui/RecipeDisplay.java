@@ -9,16 +9,20 @@ import chopchop.commons.util.StreamUtils;
 import chopchop.model.recipe.Recipe;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 
 public class RecipeDisplay extends UiPart<Region> {
-
     private static final String FXML = "RecipeDisplay.fxml";
 
     private final Recipe recipe;
+
+    @FXML
+    private GridPane gridPane;
 
     @FXML
     private Label recipeName;
@@ -48,13 +52,33 @@ public class RecipeDisplay extends UiPart<Region> {
 
         this.recipe = recipe;
         this.display();
+
+        // Implements responsive percentage widths for columns
+        this.getRoot().widthProperty().addListener(((observable, oldValue, newValue) -> {
+            var col1 = new ColumnConstraints();
+            var col2 = new ColumnConstraints();
+
+            this.gridPane.getColumnConstraints().clear();
+
+            if (newValue.doubleValue() < 768) {
+                col1.setPercentWidth(50);
+                col2.setPercentWidth(50);
+            } else if (newValue.doubleValue() >= 992) {
+                col1.setPercentWidth(30);
+                col2.setPercentWidth(70);
+            } else {
+                col1.setPercentWidth(40);
+                col2.setPercentWidth(60);
+            }
+
+            this.gridPane.getColumnConstraints().addAll(col1, col2);
+        }));
     }
 
     /**
      * Displays the recipe on the recipeDisplay.
      */
     private void display() {
-
         this.recipeName.setText(this.recipe.getName());
 
         this.stepHeader.setText("Steps");
@@ -63,7 +87,6 @@ public class RecipeDisplay extends UiPart<Region> {
         this.tagList.getChildren().clear();
         this.stepList.getChildren().clear();
         this.ingredientList.getChildren().clear();
-
 
         if (this.recipe.getIngredients().isEmpty()) {
             this.ingredientList.getChildren().add(new Text("Recipe uses no ingredients"));
@@ -97,7 +120,7 @@ public class RecipeDisplay extends UiPart<Region> {
                 .sorted()
                 .map(s -> {
                     var t = new Label(s);
-                    t.getStyleClass().add("rvTagItem");
+                    t.getStyleClass().add("recipe-tag");
                     return t;
                 })
                 .forEach(this.tagList.getChildren()::add);

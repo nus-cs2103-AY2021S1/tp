@@ -43,7 +43,6 @@ public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
     private static MainApp singletonInstance;
 
-
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
@@ -74,7 +73,6 @@ public class MainApp extends Application {
             recipeBookStorage, ingredientBookStorage,
             recipeUsageStorage, ingredientUsageStorage,
             userPrefsStorage);
-
 
         this.model = new ModelManager(new EntryBook<>(), new EntryBook<>(),
             new UsageList<>(), new UsageList<>(), userPrefs);
@@ -256,8 +254,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         logger.info("Starting ChopChop");
-        primaryStage.setResizable(false);
-        ui.start(primaryStage);
+        this.ui.start(primaryStage);
 
         // we can only load entries after the UI starts!!!!
         this.loadEntries();
@@ -268,7 +265,7 @@ public class MainApp extends Application {
     public void stop() {
         logger.info("============================ [ Stopping ChopChop ] =============================");
         try {
-            storage.saveUserPrefs(model.getUserPrefs());
+            this.storage.saveUserPrefs(this.model.getUserPrefs());
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }

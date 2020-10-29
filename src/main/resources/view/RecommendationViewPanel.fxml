@@ -3,8 +3,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.FlowPane?>
 
-<ScrollPane fx:id="recipePanel" fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER"
+<ScrollPane fx:id="recommendationPanel" fitToHeight="true" fitToWidth="true" vbarPolicy="NEVER"
             xmlns="http://javafx.com/javafx/10.0.2-internal"
             xmlns:fx="http://javafx.com/fxml/1">
-   <FlowPane fx:id="recipeGridView" orientation="VERTICAL" hgap="12" vgap="12"/>
+    <FlowPane fx:id="recommendationGridView" orientation="VERTICAL" hgap="12" vgap="12"/>
 </ScrollPane>

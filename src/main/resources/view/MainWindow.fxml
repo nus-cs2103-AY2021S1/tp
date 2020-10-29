@@ -1,43 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.stage.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.Scene?>
+<?import javafx.stage.Stage?>
 
-<fx:root onCloseRequest="#handleExit" title="ChopChop" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root onCloseRequest="#handleExit" title="ChopChop" type="Stage" xmlns="http://javafx.com/javafx/10.0.2-internal"
+         xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene>
             <stylesheets>
-                <URL value="@Style.css" />
+                <URL value="@../stylesheets/Fonts.css"/>
+                <URL value="@../stylesheets/Style.css"/>
             </stylesheets>
-            <AnchorPane fx:id="anchor">
-                <children>
-                    <MenuBar fx:id="menuBar" prefWidth="928.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-                        <menus>
-                            <Menu mnemonicParsing="false" text="File">
-                                <items>
-                                    <MenuItem fx:id="handleMenuExit" mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-                                </items>
-                            </Menu>
-                            <Menu mnemonicParsing="false" text="Help">
-                                <items>
-                                    <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Docs" />
-                                </items>
-                            </Menu>
-                        </menus>
+            <BorderPane styleClass="main-pane">
+                <top>
+                    <MenuBar fx:id="menuBar" styleClass="menu-bar">
+                        <Menu mnemonicParsing="false" text="File">
+                            <MenuItem fx:id="fileMenuItem" mnemonicParsing="false" onAction="#handleExit"
+                                      text="Exit"/>
+                        </Menu>
+                        <Menu mnemonicParsing="false" text="Help">
+                            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Docs"/>
+                        </Menu>
                     </MenuBar>
-                    <VBox prefHeight="550.0" prefWidth="280.0" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="4.0">
-                        <children>
-                            <StackPane fx:id="commandOutputPlaceholder" prefHeight="240.0" prefWidth="272.0" BorderPane.alignment="TOP_RIGHT" />
-                            <StackPane fx:id="pinBoxPlaceholder" prefHeight="500.0" prefWidth="272.0" BorderPane.alignment="TOP_RIGHT" />
-                        </children>
+                </top>
+                <right>
+                    <VBox prefWidth="300.0" styleClass="sidebar">
+                        <StackPane fx:id="commandOutputPlaceholder"
+                                   styleClass="sidebar-container, command-output-container"
+                                   prefHeight="140.0"/>
+                        <StackPane fx:id="pinBoxPlaceholder" styleClass="sidebar-container, stats-container"
+                                   VBox.vgrow="ALWAYS"/>
                     </VBox>
-                    <StackPane fx:id="displayPlaceholder" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="610.0" AnchorPane.bottomAnchor="13.0" AnchorPane.leftAnchor="8.0" />
-                    <StackPane fx:id="commandBoxPlaceholder" prefHeight="20.0" prefWidth="610.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="38.0" />
-                </children>
-            </AnchorPane>
+                </right>
+                <center>
+                    <VBox styleClass="content-pane">
+                        <StackPane fx:id="commandBoxPlaceholder" styleClass="command-input-container"/>
+                        <StackPane fx:id="displayPlaceholder" VBox.vgrow="ALWAYS"/>
+                    </VBox>
+                </center>
+            </BorderPane>
         </Scene>
     </scene>
 </fx:root>

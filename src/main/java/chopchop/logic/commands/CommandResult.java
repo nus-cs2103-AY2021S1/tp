@@ -137,7 +137,7 @@ public class CommandResult {
     @Override
     public String toString() {
         return (this.isError ? "Error: " : "")
-            + String.join(" ", this.parts.stream().map(Part::getText).collect(Collectors.toList()));
+            + this.parts.stream().map(Part::getText).collect(Collectors.joining(" "));
     }
 
 
