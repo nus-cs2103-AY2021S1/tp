@@ -9,6 +9,7 @@ import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
+import seedu.address.model.delivery.Time;
 import seedu.address.model.deliverymodel.DeliveryBook;
 import seedu.address.model.deliverymodel.ReadOnlyDeliveryBook;
 import seedu.address.model.inventorymodel.InventoryBook;
@@ -46,11 +47,13 @@ public class SampleDataUtil {
             new Delivery(new DeliveryName("Alex Yeoh"),
                 new Phone("87438807"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
-                new Order("2x Chicken Rice, 1x Ice Milo")),
+                new Order("2x Chicken Rice, 1x Ice Milo"),
+                new Time("15", "28 October 2020 00:00:00")),
             new Delivery(new DeliveryName("Bernice Yu"),
                 new Phone("99272758"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                new Order("2x Duck Rice, 1x Ayutaka Green Tea"))};
+                new Order("2x Duck Rice, 1x Ayutaka Green Tea"),
+                new Time("45", "28 October 2020 00:00:00"))};
     }
 
 

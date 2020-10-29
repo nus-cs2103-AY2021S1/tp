@@ -5,6 +5,7 @@ import seedu.address.model.delivery.Delivery;
 import seedu.address.model.delivery.DeliveryName;
 import seedu.address.model.delivery.Order;
 import seedu.address.model.delivery.Phone;
+import seedu.address.model.delivery.Time;
 
 /**
  * A utility class to help with building Delivery objects.
@@ -15,11 +16,13 @@ public class DeliveryBuilder {
     public static final String DEFAULT_PHONE = "91231231";
     public static final String DEFAULT_ADDRESS = "Jln Parang Tritis No. 92 Orchard Road";
     public static final String DEFAULT_ORDER = "Fried Rice 1x, Iced Kopi less sugar x1";
+    public static final String DEFAULT_ENDTIME = "28 October 2020 00:00:00";
 
     private DeliveryName name;
     private Phone phone;
     private Address address;
     private Order order;
+    private Time time;
 
     /**
      * Creates a {@code DeliveryBuilder} with the default details.
@@ -29,6 +32,7 @@ public class DeliveryBuilder {
         phone = new Phone(DEFAULT_PHONE);
         address = new Address(DEFAULT_ADDRESS);
         order = new Order(DEFAULT_ORDER);
+        time = new Time("0", DEFAULT_ENDTIME);
     }
 
     /**
@@ -39,6 +43,7 @@ public class DeliveryBuilder {
         phone = deliveryToCopy.getPhone();
         address = deliveryToCopy.getAddress();
         order = deliveryToCopy.getOrder();
+        time = deliveryToCopy.getTime();
     }
 
     /**
@@ -73,8 +78,16 @@ public class DeliveryBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Time} of the {@code Delivery} that we are building.
+     */
+    public DeliveryBuilder withTime(String time) {
+        this.time = new Time("0", time);
+        return this;
+    }
+
     public Delivery build() {
-        return new Delivery(name, phone, address, order);
+        return new Delivery(name, phone, address, order, time);
     }
 
 }

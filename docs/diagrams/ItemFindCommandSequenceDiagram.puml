@@ -37,7 +37,7 @@ create SupplierContainsKeywordsPredicate
 ItemFindCommandParser -> SupplierContainsKeywordsPredicate : SupplierContainsKeywordsPredicate("NTUC",s/)
 activate SupplierContainsKeywordsPredicate
 
-SupplierContainsKeywordsPredicate --> SupplierFindCommandParser : predicate
+SupplierContainsKeywordsPredicate --> ItemFindCommandParser : predicate
 deactivate SupplierContainsKeywordsPredicate
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SupplierContainsKeywordsPredicate -[hidden]-> ItemFindCommandParser

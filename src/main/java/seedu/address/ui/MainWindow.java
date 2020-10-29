@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser(MESSAGE_HELP_ON_START);
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        deliveryListPanel = new DeliveryListPanel(logic.getFilteredDeliveryList());
+        deliveryListPanel = new DeliveryListPanel(logic.getFilteredAndSortedDeliveryList());
         deliveryListPanelPlaceholder.getChildren().add(deliveryListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter();

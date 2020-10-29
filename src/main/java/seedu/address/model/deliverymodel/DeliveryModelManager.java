@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.UndoRedoLimitReachedException;
@@ -124,8 +125,8 @@ public class DeliveryModelManager implements DeliveryModel {
      * {@code versionedDeliveryBook}
      */
     @Override
-    public ObservableList<Delivery> getFilteredDeliveryList() {
-        return filteredDeliveries;
+    public ObservableList<Delivery> getFilteredAndSortedDeliveryList() {
+        return new SortedList<>(filteredDeliveries, DELIVERY_COMPARATOR);
     }
 
     @Override

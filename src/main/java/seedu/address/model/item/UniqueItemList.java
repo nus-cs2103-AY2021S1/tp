@@ -111,7 +111,7 @@ public class UniqueItemList implements Iterable<Item> {
         assert toAdd.getMaxQuantity().isEmpty();
         Quantity maxQuantity = existingItem.getMaxQuantity().orElse(null);
 
-        Metric metric = toAdd.getMetric().orElse(null);
+        Metric metric = existingItem.getMetric().orElse(null);
 
         Item toReplace = new Item(name, quantity, supplier, combinedTags, maxQuantity, metric);
         internalList.set(index, toReplace);

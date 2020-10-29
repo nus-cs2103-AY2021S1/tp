@@ -1,11 +1,13 @@
 package seedu.address.model.deliverymodel;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.Model;
 import seedu.address.model.delivery.Delivery;
+import seedu.address.model.delivery.comparator.DeliveryEndTimeComparator;
 
 /**
  * API of the DeliveryModel component
@@ -13,6 +15,9 @@ import seedu.address.model.delivery.Delivery;
 public interface DeliveryModel extends Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Delivery> PREDICATE_SHOW_ALL_DELIVERIES = unused -> true;
+
+    /** {@code Comparator} that returns a ItemComparator */
+    Comparator<Delivery> DELIVERY_COMPARATOR = new DeliveryEndTimeComparator();
 
     /**
      * Returns the user prefs' delivery book file path.
@@ -60,7 +65,7 @@ public interface DeliveryModel extends Model {
     void setDelivery(Delivery target, Delivery editedDelivery);
 
     /** Returns an unmodifiable view of the filtered delivery list */
-    ObservableList<Delivery> getFilteredDeliveryList();
+    ObservableList<Delivery> getFilteredAndSortedDeliveryList();
 
     /**
      * Updates the filter of the filtered delivery list to filter by the given {@code predicate}.

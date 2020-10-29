@@ -9,7 +9,6 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.delivery.exception.DeliveryNotFoundException;
-import seedu.address.model.delivery.exception.DuplicateDeliveryException;
 
 /**
  * A list of deliveries that enforces uniqueness between its elements and does not allow nulls.
@@ -22,7 +21,6 @@ import seedu.address.model.delivery.exception.DuplicateDeliveryException;
  *
  * Supports a minimal set of list operations.
  *
- * @see Delivery#isSameDelivery(Delivery)
  */
 public class UniqueDeliveryList implements Iterable<Delivery> {
     private final ObservableList<Delivery> internalList = FXCollections.observableArrayList();
@@ -43,9 +41,6 @@ public class UniqueDeliveryList implements Iterable<Delivery> {
      */
     public void add(Delivery toAdd) {
         requireNonNull(toAdd);
-        if (contains(toAdd)) {
-            throw new DuplicateDeliveryException();
-        }
         internalList.add(toAdd);
     }
 
@@ -60,10 +55,6 @@ public class UniqueDeliveryList implements Iterable<Delivery> {
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new DeliveryNotFoundException();
-        }
-
-        if (!target.equals(editedDelivery) && contains(editedDelivery)) {
-            throw new DuplicateDeliveryException();
         }
 
         internalList.set(index, editedDelivery);
@@ -91,10 +82,6 @@ public class UniqueDeliveryList implements Iterable<Delivery> {
      */
     public void setDeliveries(List<Delivery> deliveries) {
         requireAllNonNull(deliveries);
-        if (!deliveriesAreUnique(deliveries)) {
-            throw new DuplicateDeliveryException();
-        }
-
         internalList.setAll(deliveries);
     }
 
@@ -122,17 +109,4 @@ public class UniqueDeliveryList implements Iterable<Delivery> {
         return internalList.hashCode();
     }
 
-    /**
-     * Returns true if {@code deliveries} contains only unique deliveries.
-     */
-    private boolean deliveriesAreUnique(List<Delivery> items) {
-        for (int i = 0; i < items.size() - 1; i++) {
-            for (int j = i + 1; j < items.size(); j++) {
-                if (items.get(i).equals(items.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }
