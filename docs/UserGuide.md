@@ -11,7 +11,7 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Quick start [To be updated]
+## Quick start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
@@ -27,7 +27,13 @@ If you can type fast, PIVOT can manage your investigation cases faster than trad
 
    * **`list case`** : Lists all investigation cases.
 
-   * **`add case`**`t:Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
+   * **`add case`**` t:Kovan double murders` : Adds a case named `Kovan double murders` to PIVOT.
+   
+   * **`open case`**`1` : Opens the 1st case shown in the current list in the right panel with more details.
+   
+   * **`add victim`**` n:Joseph g:M` : Adds a victim in the current opened case.
+   
+   * **`return`** : Returns to the main page and closes the details on the right panel.
 
    * **`delete`**`case 3` : Deletes the 3rd case shown in the current list.
 
@@ -119,17 +125,17 @@ Example: `add doc n:Case Details r:case_details.pdf` adds a new document with ti
 
 This document must be manually added to the references folder provided before it can be added to the PIVOT system.
 
-#### Edit investigation case document: `edit doc INDEX [n:NAME] [r:REFERENCE]`
+#### Edit investigation case document: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 Edits the document of the current investigation case at the specified index of the list
 
-Format: `edit doc INDEX [n:NAME] [r:REFERENCE]`
+Format: `edit doc DOC_NO [n:NAME] [r:REFERENCE]`
 
 Example: `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
 name "Fire outbreak details" and reference "newFireDoc.pdf".
 
 This document "newFireDoc.pdf" must be manually added to the references folder provided and must be present before the document can be successfully updated.
 
-#### Delete document: `delete doc DOC_NO `
+#### Delete document: `delete doc DOC_NO`
 Deletes the specified document reference.
 
 Format: `delete doc DOC_NO`
@@ -152,14 +158,14 @@ Format: `add suspect n:NAME g:GENDER`
 
 Example: `add suspect n:John Doe g:M`
 
-Gender must either be `M` or `F`.
+Gender must either be `M` or `F`, not case-sensitive.
 
-#### Edit an existing suspect in the case: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing suspect in the case: `edit suspect SUSPECT_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the suspect specified with the index in the investigation case.
 At least one of the fields must be specified to be edited.
 
-Format: `edit suspect INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit suspect SUSPECT_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit suspect 1 e:newEmail@mail.com a:New Road Crescent` edits the first suspect in the list with the email 
 "newEmail@mail.com" and the address "New Road Crescent".
@@ -180,17 +186,18 @@ Format: `add victim n:NAME g:GENDER`
 
 Example: `add victim n:James Lee g:M`
 
-#### Edit an existing victim in the case: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Gender must either be `M` or `F`, not case-sensitive.
+
+#### Edit an existing victim in the case: `edit victim VICTIM_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the victim specified with the index in the investigation case.
 At least one of the fields must be specified to be edited.
 
-Format: `edit victim INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit victim VICTIM_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit victim 1 e:newEmail@mail.com a:New Road Crescent` edits the first victim in the list with the email 
 "newEmail@mail.com" and the address "New Road Crescent".
 
-Gender must either be `M` or `F`.
 
 #### Delete Victim: `delete victim VICTIM_NO`
 
@@ -208,14 +215,14 @@ Format: `add witness n:NAME g:GENDER`
 
 Example: `add witness n:John Doe g:M`
 
-Gender must either be `M` or `F`.
+Gender must either be `M` or `F`, not case-sensitive.
 
-#### Edit an existing witness in the case: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+#### Edit an existing witness in the case: `edit witness WITNESS_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Edits the fields of the witness specified with the index in the investigation case. 
 At least one of the fields must be specified to be edited.
 
-Format: `edit witness INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
+Format: `edit witness WITNESS_NO [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]`
 
 Example: `edit witness 1 e:newEmail@mail.com a:New Road Crescent` edits the first witness in the list with the email 
 "newEmail@mail.com" and the address "New Road Crescent".
