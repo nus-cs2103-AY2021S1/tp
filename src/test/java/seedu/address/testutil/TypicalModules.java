@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import static seedu.address.testutil.TypicalStudents.getTypicalStudents;
+import static seedu.address.testutil.TypicalTutorialGroups.T05;
 import static seedu.address.testutil.TypicalTutorialGroups.getTutorialGroupList;
 
 import java.util.ArrayList;
@@ -41,12 +42,12 @@ public class TypicalModules {
         // populate modules with the same tutorial groups and students
         for (Module module : getTypicalModules()) {
             trackr.addModule(module);
-            for (TutorialGroup tutorialGroup: getTutorialGroupList()) {
-                trackr.addTutorialGroup(tutorialGroup, module);
-                for (Student student : getTypicalStudents()) {
-                    trackr.addStudent(module, tutorialGroup, student);
-                }
-            }
+        }
+        for (TutorialGroup tutorialGroup : getTutorialGroupList()) {
+            trackr.addTutorialGroup(tutorialGroup, CS2103T);
+        }
+        for (Student student : getTypicalStudents()) {
+            trackr.addStudent(CS2103T, T05, student);
         }
         return trackr;
     }

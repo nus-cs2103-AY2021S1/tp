@@ -14,7 +14,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
 
 /**
- * A utility class for Person.
+ * A utility class for Module.
  */
 public class ModuleUtil {
 

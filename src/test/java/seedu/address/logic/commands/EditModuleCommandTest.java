@@ -18,6 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 import seedu.address.testutil.ModuleBuilder;
 
 /**
@@ -42,7 +43,7 @@ public class EditModuleCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditModuleCommand editCommand = new EditModuleCommand(INDEX_FIRST_PERSON, "CS21");
+        EditModuleCommand editCommand = new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21"));
         Module editedModule = model.getFilteredModuleList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
@@ -59,12 +60,12 @@ public class EditModuleCommandTest {
         Module moduleInFilteredList = model.getFilteredModuleList().get(INDEX_FIRST_PERSON.getZeroBased());
         Module editedModule = new ModuleBuilder(moduleInFilteredList).withModuleId("CS21").build();
         EditModuleCommand editCommand = new EditModuleCommand(INDEX_FIRST_PERSON,
-                "CS21");
+                new ModuleId("CS21"));
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
         Model expectedModel = new ModelManager(new Trackr(model.getModuleList()), new UserPrefs());
-        expectedModel.setModule(model.getFilteredModuleList().get(0), "CS21");
+        expectedModel.setModule(model.getFilteredModuleList().get(0), new ModuleId("CS21"));
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -94,7 +95,7 @@ public class EditModuleCommandTest {
     @Test
     public void execute_invalidModuleIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredModuleList().size() + 1);
-        EditModuleCommand editCommand = new EditModuleCommand(outOfBoundIndex, "CS21");
+        EditModuleCommand editCommand = new EditModuleCommand(outOfBoundIndex, new ModuleId("CS21"));
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
@@ -110,17 +111,17 @@ public class EditModuleCommandTest {
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getModuleList().getList().size());
 
-        EditModuleCommand editCommand = new EditModuleCommand(outOfBoundIndex, "CS21");
+        EditModuleCommand editCommand = new EditModuleCommand(outOfBoundIndex, new ModuleId("CS21"));
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditModuleCommand standardCommand = new EditModuleCommand(INDEX_FIRST_PERSON, "CS21");
+        final EditModuleCommand standardCommand = new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21"));
 
         // same values -> returns true
-        EditModuleCommand commandWithSameValues = new EditModuleCommand(INDEX_FIRST_PERSON, "CS21");
+        EditModuleCommand commandWithSameValues = new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21"));
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -133,10 +134,10 @@ public class EditModuleCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditModuleCommand(INDEX_SECOND_PERSON, "CS21")));
+        assertFalse(standardCommand.equals(new EditModuleCommand(INDEX_SECOND_PERSON, new ModuleId("CS21"))));
 
         // different descriptor, same values -> returns true
-        assertTrue(standardCommand.equals(new EditModuleCommand(INDEX_FIRST_PERSON, "CS21")));
+        assertTrue(standardCommand.equals(new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21"))));
     }
 
 }

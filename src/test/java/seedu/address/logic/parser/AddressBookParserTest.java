@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.ListModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleContainsKeywordsPredicate;
+import seedu.address.model.module.ModuleId;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.ModuleUtil;
 
@@ -43,11 +45,12 @@ public class AddressBookParserTest {
         assertEquals(new AddModuleCommand(module), command);
     }
 
-    //    @Test
-    //    public void parseCommand_clear() throws Exception {
-    //        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
-    //        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
-    //    }
+    @Test
+    public void parseCommand_clear() throws Exception {
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
+        assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
+    }
+
     //    @Test
     //    public void parseCommand_delete() throws Exception {
     //        DeleteCommand command = (DeleteCommand) parser.parseCommand(
@@ -76,7 +79,7 @@ public class AddressBookParserTest {
         Module module = new ModuleBuilder().build();
         EditModuleCommand command = (EditModuleCommand) parser.parseCommand(EditModuleCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_PERSON.getOneBased() + " " + "m/CS21");
-        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, "CS21"), command);
+        assertEquals(new EditModuleCommand(INDEX_FIRST_PERSON, new ModuleId("CS21")), command);
     }
 
     @Test
