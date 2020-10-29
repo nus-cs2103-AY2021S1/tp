@@ -192,6 +192,13 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Closes the schedule.
+     */
+    public void closeSchedule() {
+        schedulePanel.getRoot().toBack();
+    }
+
+    /**
      * Toggle the display of student cards in the student list panel between admin and academic.
      */
     public void handleAcademicPanel() {
