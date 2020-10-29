@@ -185,13 +185,14 @@ Format: `archive`
 
 #### 1. Listing all students : `students`
 
-Shows a list of all students in ResiReg.
+Shows a list of all students in ResiReg, optionally filtered by some parameters.
 
-Format: `students`
+Format: `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]`
 
 Examples:
 
 - `students` switches to the Students tab if it is not already selected, and shows the list of students on the right pane.
+- `students n/dameeth` switches to the Students tab if it is not already selected, and shows the list of students matching the name "dameeth" on the right pane.
 
 #### 2. Adding a student : `add`
 
@@ -226,24 +227,6 @@ Examples:
 
 - `edit 1 p/82462157 e/johnd@comp.nus.edu.sg` Edits the phone number and email address of the first student to be `82462157` and `johnd@comp.nus.edu.sg` respectively.
 - `edit 2 n/Alpha Queue/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
-
-#### 4. Finding a student by name : `find`
-
-Finds students whose names contain any of the given keywords.
-
-Format: `find <keyword> [<more_keywords>]...`
-
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Students matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-- `find John` returns `john` and `John Doe`
-- `find alex david` returns `Alex Yeoh`, `David Li`
 
 #### 4. Deleting a student : `delete`
 
