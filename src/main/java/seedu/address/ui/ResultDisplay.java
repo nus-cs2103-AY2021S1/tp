@@ -14,7 +14,7 @@ public class ResultDisplay extends UiPart<Region> {
     private static final String FXML = "ResultDisplay.fxml";
 
     @FXML
-    private TextArea detailsDisplay;
+    private TextArea resultDisplay;
 
     public ResultDisplay() {
         super(FXML);
@@ -22,7 +22,7 @@ public class ResultDisplay extends UiPart<Region> {
 
     public void setFeedbackToUser(String feedbackToUser) {
         requireNonNull(feedbackToUser);
-        detailsDisplay.setText(feedbackToUser);
+        resultDisplay.setText(feedbackToUser);
     }
 
 }

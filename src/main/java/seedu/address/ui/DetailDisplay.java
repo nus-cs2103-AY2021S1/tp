@@ -10,13 +10,13 @@ public class DetailDisplay extends UiPart<Region> {
     private static final String FXML = "DetailsDisplay.fxml";
 
     @FXML
-    private TextArea detailsDisplay;
+    private TextArea resultDisplay;
 
     public DetailDisplay() {
         super(FXML);
     }
 
     public void setDisplay(CommandResult result) {
-        detailsDisplay.setText(result.getFeedbackToUser());
+        resultDisplay.setText(result.getFeedbackToUser());
     }
 }

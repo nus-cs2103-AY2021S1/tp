@@ -65,7 +65,7 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane statusbarPlaceholder;
 
     @FXML
-    private VBox viewItemDisplayPanel;
+    private StackPane viewItemDisplayPanel;
 
 
     /**
@@ -216,7 +216,6 @@ public class MainWindow extends UiPart<Stage> {
             } else {
                 resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             }
-
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
