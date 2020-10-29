@@ -42,7 +42,6 @@ public abstract class EditCommand extends Command {
             + "Parameters: INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " suspect 1 e:newEmail@mail.com a:new road crescent\n\n";
 
-
     //public static final String MESSAGE_EDIT_CASE_SUCCESS = "Edited Case: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     //public static final String MESSAGE_DUPLICATE_CASE = "This case already exists in PIVOT.";
