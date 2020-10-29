@@ -29,10 +29,9 @@
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
           </Menu>
-               <Menu mnemonicParsing="false" text="Calendar">
+               <Menu mnemonicParsing="false" text="Schedule">
                  <items>
                    <MenuItem mnemonicParsing="false" onAction="#handleCalendar" text="show" />
-                     <MenuItem mnemonicParsing="false" onAction="#closeCalendar" text="close" />
                  </items>
                </Menu>
           <Menu mnemonicParsing="false" text="Help">
@@ -56,7 +55,6 @@
               </StackPane>
                </children>
             </GridPane>
-            <StackPane fx:id="calendarPlaceholder" />
                  <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
