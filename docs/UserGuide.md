@@ -95,7 +95,9 @@ You can include `remind` when adding an assignment instead of using the `remind`
 </div>
 
 For example, to add a lab report assignment that is **due** on 23th April 2020 12.30pm and **associated** with the module CS2100, you can 
-simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`.
+simply enter `add n/Lab report d/23-04-2020 1230 mod/CS2100`. All the information will be displayed together with the assignment as shown in the labelled diagram below.
+
+DIAGRAM
 
 <div markdown="span" class="alert alert-success">
 **:bulb: Tip:**
@@ -293,7 +295,7 @@ You can keep track of your uncompleted assignments by marking assignments that y
 You can mark **one or more** assignments as done by specifiying the assignment(s) `INDEX` as shown in your list. Here is
 an example with steps to follow:
 
-1) To mark assignments with the name "" and "" shown in the figure below as done, you can simply enter `done 2 3` into
+1) To mark assignments with the name "" and "" shown in the figure below as done, you can simply enter `done 2 3done 2 3` into
 the command line based on the indexes circled and labelled in the figure.
 
 DIAGRAM
@@ -352,16 +354,21 @@ Format: `clear`
 You can clear all your existing assignments and lessons at the start of every semester.
 
 <div markdown="span" class="alert alert-success">
-
 **:bulb: Tip:**
 If you cleared all your assignments and lessons by accident, use `undo` to retrieve your deleted data.
 </div>
 
+### Accessing help: `help`
+
+Format: `help`
+
+You can see a summary of all the commands that you can use in ProductiveNUS.
+
 ### Exiting the program : `exit`
 
-Exits the program.
-
 Format: `exit`
+
+Exits the program.
 
 ### Saving the data
 
