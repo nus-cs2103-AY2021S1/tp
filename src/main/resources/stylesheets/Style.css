@@ -1,3 +1,4 @@
+/* APPLICATION */
 .main-pane {
     -fx-background-color: #fafafa;
     -fx-font-size: 16px;
@@ -9,8 +10,7 @@
     -fx-font-size: 13px;
 }
 
-/** OVERRIDES **/
-
+/* OVERRIDES */
 .scroll-pane {
     -fx-background-color:transparent;
 }
@@ -43,8 +43,7 @@
     -fx-padding: 0;
 }
 
-/** END OVERRIDES **/
-
+/* SIDEBAR */
 .sidebar {
     -fx-padding: 12px;
 }
@@ -71,6 +70,7 @@
     -fx-border-color: #fbc02d;
 }
 
+/* MAIN PANE */
 .content-pane {
     -fx-padding: 12px 0 12px 12px;
 }
@@ -126,7 +126,7 @@
     -fx-font-size: 36px;
 }
 
-/* -------------------- RECIPE CARD THINGS -------------------- */
+/* RECIPE CARD THINGS */
 .recipe-card-number {
     -fx-font-size: 14px;
     -fx-padding: 12px;
@@ -171,7 +171,7 @@
     -fx-padding: 0;
 }
 
-/* -------------------- RECIPE VIEW THINGS -------------------- */
+/* RECIPE VIEW THINGS */
 .recipe-name {
     -fx-font-size: 36px;
     -fx-padding: 16px 8px 8px;
@@ -220,7 +220,7 @@
     -fx-padding: 4px 8px;
 }
 
-/* -------------------- INGREDIENT CARD THINGS -------------------- */
+/* INGREDIENT CARD THINGS */
 .icName {
     -fx-text-align: center;
     -fx-text-alignment: center;

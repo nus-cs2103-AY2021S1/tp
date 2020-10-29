@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -21,13 +22,17 @@
       <VBox styleClass="recipe-tags-container">
          <FlowPane fx:id="tagList" hgap="8" vgap="6"/>
       </VBox>
-      <VBox styleClass="recipe-ingredients-container" VBox.vgrow="ALWAYS">
-         <Label styleClass="recipe-ingredients-header" fx:id="ingredientHeader" underline="true"/>
-         <TextFlow styleClass="recipe-ingredients" fx:id="ingredientList"/>
+      <ScrollPane styleClass="recipe-ingredients-container" VBox.vgrow="ALWAYS">
+         <VBox>
+            <Label styleClass="recipe-ingredients-header" fx:id="ingredientHeader" underline="true"/>
+            <TextFlow styleClass="recipe-ingredients" fx:id="ingredientList"/>
+         </VBox>
+      </ScrollPane>
+   </VBox>
+   <ScrollPane styleClass="recipe-steps-container" GridPane.columnIndex="1" GridPane.rowIndex="0">
+      <VBox>
+         <Label styleClass="recipe-steps-header" fx:id="stepHeader"/>
+         <TextFlow styleClass="recipe-steps" fx:id="stepList"/>
       </VBox>
-   </VBox>
-   <VBox styleClass="recipe-steps-container" GridPane.columnIndex="1" GridPane.rowIndex="0">
-      <Label styleClass="recipe-steps-header" fx:id="stepHeader"/>
-      <TextFlow styleClass="recipe-steps" fx:id="stepList"/>
-   </VBox>
+   </ScrollPane>
 </GridPane>
