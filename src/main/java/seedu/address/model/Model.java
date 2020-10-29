@@ -22,6 +22,8 @@ public interface Model {
 
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
+    Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
+
     // ==================== UserPrefs ===============================================================
 
     /**

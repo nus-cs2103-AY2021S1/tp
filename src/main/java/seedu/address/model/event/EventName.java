@@ -47,9 +47,11 @@ public class EventName {
             return false;
         } else if (this == otherName) {
             return true;
+        } else if (otherName instanceof EventName){
+            EventName other = (EventName) otherName;
+            return this.getName().equals(other.getName());
         } else {
-            return otherName instanceof EventName
-                    || this.name.equals(((EventName) otherName).getName());
+            return false;
         }
     }
 

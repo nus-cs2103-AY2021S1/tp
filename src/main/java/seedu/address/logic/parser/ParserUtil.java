@@ -2,6 +2,8 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,6 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Email;
 import seedu.address.model.contact.Name;
 import seedu.address.model.contact.Telegram;
+import seedu.address.model.event.EventName;
+import seedu.address.model.event.EventTime;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.ZoomLink;
@@ -296,5 +300,16 @@ public class ParserUtil {
         default:
             throw new ParseException(Criterion.MESSAGE_CONSTRAINTS);
         }
+    }
+    ///////////////////// Scheduler /////////////////////////////
+
+    public static EventName parseEventName(String name) {
+        return new EventName(name);
+    }
+
+    public static EventTime parseEventTime(String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d-M-uuuu HHmm");
+        LocalDateTime localDateTime = LocalDateTime.parse(date, formatter);
+        return new EventTime(localDateTime);
     }
 }
