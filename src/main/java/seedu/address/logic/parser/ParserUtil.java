@@ -261,11 +261,27 @@ public class ParserUtil {
         throw new ParseException(ScheduleViewCommand.MESSAGE_INVALID_VIEW_MODE);
     }
 
-    public static LocalDateTime parseViewDate(String dateToViewSchedule) throws DateTimeParseException {
+    /**
+     * Parses a {@code dateToViewSchedule} into a LocalDateTime object.
+     * @throws ParseException when input string does not follow the format
+     */
+    public static LocalDateTime parseViewDate(String dateToViewSchedule) throws ParseException {
         try {
             return LocalDateTime.parse(dateToViewSchedule, DATE_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new DateTimeParseException("INVALID DATE", e.getParsedString(), e.getErrorIndex());
+            throw new ParseException(e.getMessage());
+        }
+    }
+
+    /**
+     * Parses a {@code dateTime} string into a LocalDateTime object.
+     * @throws ParseException when input string does not follow the format.
+     */
+    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
+        try {
+            return LocalDateTime.parse(dateTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(e.getMessage());
         }
     }
 
