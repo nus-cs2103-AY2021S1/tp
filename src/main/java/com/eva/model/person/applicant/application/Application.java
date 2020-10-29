@@ -47,7 +47,21 @@ public class Application {
         return applicantName;
     }
 
+    public String getExperienceSectionString() {
+        StringBuilder output = new StringBuilder();
+        for (Experience e : this.experienceSection) {
+            output.append(e.toString()).append("\n\n");
+        }
+        return output.toString();
+    }
 
+    public String getEducationSectionString() {
+        StringBuilder output = new StringBuilder();
+        for (Education e : this.educationSection) {
+            output.append(e.toString()).append("\n\n");
+        }
+        return output.toString();
+    }
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
