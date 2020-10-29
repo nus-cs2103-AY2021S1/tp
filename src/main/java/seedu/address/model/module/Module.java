@@ -64,7 +64,7 @@ public class Module {
     }
 
     public void setId(String newId) {
-            this.moduleId.setId(newId);
+        this.moduleId.setId(newId);
     }
 
     public int getTotalGroups() {

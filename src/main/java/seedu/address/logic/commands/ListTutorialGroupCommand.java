@@ -10,7 +10,7 @@ public class ListTutorialGroupCommand extends Command {
     public static final String COMMAND_WORD = "listTG";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Views all the modules.\n"
+            + ": Views all the Tutorial Groups in this Module.\n"
             + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_VIEWING_TUTORIALGROUPS_SUCCESS = "Viewing all tutorial groups of: %1$s";
@@ -19,9 +19,8 @@ public class ListTutorialGroupCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if(model.isInModuleView()) {
-            throw new CommandException("This command cannot be used in Module View, use viewTG MODULE_INDEX to specify which Module's" +
-                "Tutorial Groups you would like to view.");
+        if (!model.isInTutorialGroupView()) {
+            throw new CommandException("This command can only be used in Tutorial Group View");
         }
         model.updateFilteredTutorialGroupList(PREDICATE_SHOW_ALL_TUTORIALGROUPS);
         Module mod = model.getCurrentModuleInView();

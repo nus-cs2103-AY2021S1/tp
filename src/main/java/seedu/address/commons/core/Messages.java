@@ -12,7 +12,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_MODULE_DISPLAYED_INDEX = "The module index provided is invalid";
     public static final String MESSAGE_MODULES_LISTED_OVERVIEW = "%1$d modules listed!";
 
-    public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX =
+    public static final String MESSAGE_INVALID_TUTORIAL_GROUP_DISPLAYED_INDEX =
             "The tutorial group index provided is invalid";
     public static final String MESSAGE_TUTORIAL_GROUPS_LISTED_OVERVIEW = "%1$d tutorial groups listed!";
 

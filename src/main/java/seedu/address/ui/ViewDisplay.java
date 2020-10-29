@@ -13,6 +13,9 @@ public class ViewDisplay extends UiPart<Region> {
     @FXML
     private TextArea viewDisplay;
 
+    /**
+     * Constructor for ViewDisplay.
+     */
     public ViewDisplay() {
         super(FXML);
         viewDisplay.setText("MODULES");

@@ -26,14 +26,11 @@ import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonModuleStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.ModuleStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
-import seedu.address.storage.StudentStorage;
 import seedu.address.storage.UserPrefsStorage;
 import seedu.address.ui.Ui;
 import seedu.address.ui.UiManager;
@@ -63,11 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
         ModuleStorage moduleStorage = new JsonModuleStorage(userPrefs.getModuleListFilePath());
-        StudentStorage studentStorage = null;
 
-        storage = new StorageManager(studentStorage, moduleStorage, userPrefsStorage);
+        storage = new StorageManager(moduleStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -89,14 +84,14 @@ public class MainApp extends Application {
         try {
             Optional<ReadOnlyTrackr<Module>> moduleListOptional = storage.readModuleList();
             if (!moduleListOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+                logger.info("Data file not found. Will be starting with a sample Trackr");
             }
             initialData = moduleListOptional.orElseGet(SampleDataUtil::getSampleModuleList);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty Trackr");
             initialData = new Trackr();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Trackr");
             initialData = new Trackr();
         }
 
