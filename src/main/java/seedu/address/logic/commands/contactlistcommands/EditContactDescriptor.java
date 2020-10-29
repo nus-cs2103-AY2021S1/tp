@@ -7,7 +7,7 @@ import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
+import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
  * corresponding field value of the contact.
  */
 public class EditContactDescriptor {
-    private Name name;
+    private ContactName name;
     private Email email;
     private Telegram telegram;
     private Set<Tag> tags;
@@ -41,11 +41,11 @@ public class EditContactDescriptor {
         return CollectionUtil.isAnyNonNull(name, email, telegram);
     }
 
-    public void setName(Name name) {
+    public void setName(ContactName name) {
         this.name = name;
     }
 
-    public Optional<Name> getName() {
+    public Optional<ContactName> getName() {
         return Optional.ofNullable(name);
     }
 

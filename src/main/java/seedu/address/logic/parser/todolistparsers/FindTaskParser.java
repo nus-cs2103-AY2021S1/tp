@@ -29,7 +29,7 @@ import seedu.address.model.task.TaskMatchesDatePredicate;
 import seedu.address.model.task.TaskMatchesPriorityPredicate;
 
 /**
- * Parses input arguments and creates a new FindTaskCommand object
+ * Parses input arguments and creates a new FindTaskCommand object.
  */
 public class FindTaskParser implements Parser<FindTaskCommand> {
 
@@ -52,8 +52,8 @@ public class FindTaskParser implements Parser<FindTaskCommand> {
         FindTaskCriteria findTaskCriteria = new FindTaskCriteria();
 
         if (argMultiMap.getValue(PREFIX_NAME).isPresent()) {
-            List<String> keywordsAsList = parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
-            NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(keywordsAsList);
+            List<String> nameKeywords = parseSearchKeywords(argMultiMap.getValue(PREFIX_NAME).get());
+            NameContainsKeywordsPredicate namePredicate = new NameContainsKeywordsPredicate(nameKeywords);
             findTaskCriteria.addPredicate(namePredicate);
         }
 

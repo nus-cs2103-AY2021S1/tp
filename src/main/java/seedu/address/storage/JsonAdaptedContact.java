@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
+import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
@@ -67,12 +67,12 @@ public class JsonAdaptedContact {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ContactName.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!ContactName.isValidName(name)) {
+            throw new IllegalValueException(ContactName.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final ContactName modelName = new ContactName(name);
 
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));

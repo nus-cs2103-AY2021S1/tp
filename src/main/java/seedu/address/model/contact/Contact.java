@@ -16,7 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Contact {
 
     // Identity fields
-    private final Name name;
+    private final ContactName name;
     private final Email email;
     private final Telegram telegramUsername;
 
@@ -26,7 +26,7 @@ public class Contact {
     /**
      * Every field must be present and not null.
      */
-    public Contact(Name name, Email email, Telegram telegramUsername, Set<Tag> tags) {
+    public Contact(ContactName name, Email email, Telegram telegramUsername, Set<Tag> tags) {
         requireAllNonNull(name, email, telegramUsername, tags);
         this.name = name;
         this.email = email;
@@ -34,7 +34,7 @@ public class Contact {
         this.tags.addAll(tags);
     }
 
-    public Name getName() {
+    public ContactName getName() {
         return name;
     }
 

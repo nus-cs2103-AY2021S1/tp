@@ -10,7 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
+import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.module.ModularCredits;
 import seedu.address.model.module.ModuleName;
@@ -49,13 +49,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static ContactName parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!ContactName.isValidName(trimmedName)) {
+            throw new ParseException(ContactName.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new ContactName(trimmedName);
     }
 
     /**

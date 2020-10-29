@@ -18,7 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.contact.Email;
-import seedu.address.model.contact.Name;
+import seedu.address.model.contact.ContactName;
 import seedu.address.model.contact.Telegram;
 import seedu.address.model.tag.Tag;
 
@@ -87,7 +87,7 @@ public class EditContactCommand extends Command {
     private static Contact createEditedContact(Contact contactToEdit, EditContactDescriptor editContactDescriptor) {
         assert contactToEdit != null;
 
-        Name updatedName = editContactDescriptor.getName().orElse(contactToEdit.getName());
+        ContactName updatedName = editContactDescriptor.getName().orElse(contactToEdit.getName());
         Email updatedEmail = editContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
         Telegram updatedTelegram = editContactDescriptor.getTelegram().orElse(contactToEdit.getTelegramUsername());
         Set<Tag> updatedTags = editContactDescriptor.getTags().orElse(contactToEdit.getTags());
