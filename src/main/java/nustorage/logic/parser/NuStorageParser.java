@@ -7,9 +7,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import nustorage.logic.commands.AddFinanceCommand;
-import nustorage.logic.commands.AddInventoryRecordCommand;
 import nustorage.logic.commands.ClearCommand;
 import nustorage.logic.commands.Command;
+import nustorage.logic.commands.CreateInventoryRecordCommand;
 import nustorage.logic.commands.DeleteFinanceCommand;
 import nustorage.logic.commands.DeleteInventoryRecordCommand;
 import nustorage.logic.commands.EditFinanceCommand;
@@ -52,8 +52,8 @@ public class NuStorageParser {
         case ListInventoryCommand.COMMAND_WORD:
             return new ListInventoryCommand();
 
-        case AddInventoryRecordCommand.COMMAND_WORD:
-            return new AddInventoryRecordCommandParser().parse(arguments);
+        case CreateInventoryRecordCommand.COMMAND_WORD:
+            return new CreateInventoryRecordCommandParser().parse(arguments);
 
         case EditInventoryCommand.COMMAND_WORD:
             return new EditInventoryCommandParser().parse(arguments);

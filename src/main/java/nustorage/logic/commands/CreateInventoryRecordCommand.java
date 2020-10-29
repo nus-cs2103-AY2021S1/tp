@@ -5,8 +5,6 @@ import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_COST;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 
-import java.util.Optional;
-
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
 import nustorage.model.record.FinanceRecord;
@@ -15,27 +13,27 @@ import nustorage.model.record.InventoryRecord;
 /**
  * An add inventory command class
  */
-public class AddInventoryRecordCommand extends Command {
+public class CreateInventoryRecordCommand extends Command {
 
-    public static final String COMMAND_WORD = "add_inventory";
+    public static final String COMMAND_WORD = "create_inventory";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an inventory record to the Inventory. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates an inventory record in the Inventory. "
             + "Parameters: "
             + PREFIX_ITEM_DESCRIPTION + "ITEM_DESCRIPTION "
             + PREFIX_QUANTITY + "QUANTITY "
             + "[" + PREFIX_ITEM_COST + "ITEM_COST]";
 
-    public static final String MESSAGE_SUCCESS = "New Inventory record added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New Inventory record created: %1$s";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This item already exists in the Inventory";
     private final InventoryRecord newInventoryRecord;
-    private final Optional<FinanceRecord> newFinanceRecord;
+    private final FinanceRecord newFinanceRecord;
 
     /**
      * Constructs an AddInventoryCommand class using a new inventory record.
      * @param newInventoryRecord New inventory record.
      * @param newFinanceRecord New finance record.
      */
-    public AddInventoryRecordCommand(InventoryRecord newInventoryRecord, Optional<FinanceRecord> newFinanceRecord) {
+    public CreateInventoryRecordCommand(InventoryRecord newInventoryRecord, FinanceRecord newFinanceRecord) {
         requireNonNull(newInventoryRecord);
         this.newInventoryRecord = newInventoryRecord;
         this.newFinanceRecord = newFinanceRecord;
@@ -50,10 +48,8 @@ public class AddInventoryRecordCommand extends Command {
         }
 
         model.addInventoryRecord(newInventoryRecord);
-        if (newFinanceRecord.isPresent()) {
-            newInventoryRecord.setFinanceRecord(newFinanceRecord.get());
-            model.addFinanceRecord(newFinanceRecord.get());
-        }
+        newInventoryRecord.setFinanceRecord(newFinanceRecord);
+        model.addFinanceRecord(newFinanceRecord);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, newInventoryRecord));
     }
@@ -61,7 +57,7 @@ public class AddInventoryRecordCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddInventoryRecordCommand // instanceof handles nulls
-                && newInventoryRecord.equals(((AddInventoryRecordCommand) other).newInventoryRecord));
+                || (other instanceof CreateInventoryRecordCommand // instanceof handles nulls
+                && newInventoryRecord.equals(((CreateInventoryRecordCommand) other).newInventoryRecord));
     }
 }
