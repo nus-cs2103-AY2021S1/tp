@@ -95,12 +95,19 @@ Format: `add desc d:DESC`
 
 Example: `add desc d:Kovan double murders of twins xxx and yyy` updates the description of this investigation case to “Kovan double murders of twins xxx and yyy”.
 
-#### Edit investigation case tag: `tag STATUS`
+#### Edit investigation case title: `edit title t:TITLE`
 Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
 
-Format: `tag STATUS`
+Format: `edit title t:TITLE`
 
-Example: `tag CLOSED` updates the tag status of this investigation case to “CLOSED”.
+Example: `edit title t:Murder case 29` updates the title of this investigation case to “Murder case 29”.
+
+#### Edit investigation case status: `edit status s:STATUS`
+Edits the tag of the investigation (tags: ACTIVE, COLD, CLOSED)
+
+Format: `edit status s:STATUS`
+
+Example: `edit status s:CLOSED` updates the status of this investigation case to “CLOSED”.
 
 #### Adding a document related to the case: `add doc n:TITLE r:FILE_NAME`
 Adds a new document that is related to the investigation case.
@@ -110,6 +117,16 @@ Format: `add doc n:TITLE r:FILE_NAME`
 Example: `add doc n:Case Details r:case_details.pdf` adds a new document with title “Case Details” with the file name case_details.pdf to the investigation case.
 
 This document must be manually added to the references folder provided before it can be added to the PIVOT system.
+
+#### Edit investigation case document: `edit doc INDEX [n:NAME] [r:REFERENCE]`
+Edits the document of the current investigation case at the specified index of the list
+
+Format: `edit doc INDEX [n:NAME] [r:REFERENCE]`
+
+Example: `edit doc 2 n:Fire outbreak details r:newFireDoc.pdf` updates the second document of the current opened case with 
+name "Fire outbreak details" and reference "newFireDoc.pdf".
+
+This document "newFireDoc.pdf" must be manually added to the references folder provided and must be present before the document can be successfully updated.
 
 #### List all documents related to the case: `list doc`
 
@@ -130,7 +147,7 @@ Opens the specified document reference.
 
 Format: `open doc DOC_NO`
 
-Example: `open doc 0`
+Example: `open doc 1` opens the document in the list with index 1.
 
 #### Adding a suspect related to the case: `add suspect n:NAME`
 
