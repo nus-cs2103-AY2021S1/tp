@@ -17,9 +17,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.*;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.ReadOnlyEvent;
 import seedu.address.model.event.ScheduleViewMode;
 import seedu.address.model.student.Student;
@@ -161,11 +161,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyVEvent getVEvents() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public Path getScheduleFilePath() {
             throw new AssertionError("This method should not be called.");
         }
@@ -196,27 +191,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addVEvent(VEvent vEvent) {
+        public void addEvent(Event eventToAdd) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasVEvent(VEvent vEvent) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void removeVEvent(Index index) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public VEvent getVEvent(Index index) {
+        public boolean hasEvent(Event eventToCheck) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<VEvent> getVEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean isClashingEvent(Event event) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeEvent(Event Event) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -261,6 +256,22 @@ public class AddCommandTest {
         public ReadOnlyReeve getReeve() {
             return new Reeve();
         }
+
+
+        // Need to rethink this part===================================================================
+        @Override
+        public boolean isClashingEvent(Event event) {
+            return false;
+        }
+
+        @Override
+        public boolean hasEvent(Event eventToCheck) {
+            return false;
+        }
+
+        @Override
+        public void addEvent(Event eventToAdd) {};
+        //=========================================================
     }
 
 }
