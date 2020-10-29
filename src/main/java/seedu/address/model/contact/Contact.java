@@ -33,7 +33,7 @@ public class Contact {
      * @param email Email field of the Contact object.
      * @param tags Set of tags of the Contact object.
      */
-    public Contact(ContactName name, Email email, Set<Tag> tags) {
+    public Contact(ContactName name, Email email, Set<Tag> tags, boolean isImportant) {
         requireAllNonNull(name, email);
         this.name = name;
         this.email = email;
@@ -50,7 +50,7 @@ public class Contact {
      * @param telegram Telegram field of the Contact object.
      * @param tags Set of tags of the Contact object.
      */
-    public Contact(ContactName name, Email email, Telegram telegram, Set<Tag> tags) {
+    public Contact(ContactName name, Email email, Telegram telegram, Set<Tag> tags, boolean isImportant) {
         requireAllNonNull(name, email, telegram, tags);
         this.name = name;
         this.email = email;
