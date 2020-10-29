@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
+import javafx.beans.property.SimpleObjectProperty;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
@@ -233,6 +234,11 @@ public class AddCommandTest {
         @Override
         public void clearAttendance() {
             throw new AssertionError("This method should not be called");
+        }
+
+        @Override
+        public SimpleObjectProperty<Session> getCurrentSession() {
+            throw new AssertionError("This method should not be call");
         }
     }
 
