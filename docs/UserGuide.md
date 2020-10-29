@@ -125,12 +125,16 @@ Examples:
 * The indexes **must not be duplicated**. For example, `delete 3 3` will not work.
 </div>
 
-### Importing timetable : `import`
+### Importing your timetable : `import`
 
 Format: `import url/YOUR_NUSMODS_URL`
 
-You can import your NUSMods timetable data into your task list by providing the URL to your NUSMods timetable share
-link. Follow these steps and try importing your timetable:
+You can import your NUSMods timetable data into ProductiveNUS by providing the URL to your NUSMods timetable share
+link. Imported lesson information can be found in the `Upcoming tasks` list as shown.
+ 
+DIAGRAM
+ 
+Follow these steps and try importing your timetable:
 
 1) At your NUSMods timetable website, click on the "Share/Sync" button to obtain your timetable share link URL.
 
@@ -271,7 +275,7 @@ For example, `unremind 1` will remove the first assignment in `Your Reminders` (
 
 ### Setting priority for assignments : `prioritize`
 
-Format: `prioritize INDEX priority/PRIORITY`
+Format: `prioritize INDEX p/PRIORITY`
 
 You can set priority levels for assignments based on their urgency. Assignments tagged with a priority level will be
 shown with a coloured priority tag (As shown highlighted in red in the figure below).
@@ -280,7 +284,7 @@ DIAGRAM
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set priority tag for that assignment.
 
-For example, `prioritize 1 priority/LOW` will set a low priority tag for the first assignment in your assignment list.
+For example, `prioritize 1 p/LOW` will set a low priority tag for the first assignment in your assignment list.
 
 <div markdown="block" class="alert alert-primary">
   
