@@ -10,23 +10,22 @@ sprite $rake [16x16/8] {
 0000000000000000
 }
 start
-:User lists all the the patients
-to checks appointments;
+:User lists all the the patients;
 :User selects a patient to check his appointments;
 if () then ([User clicks on GUI])
-: render appointments of the selected
- patient in a tableview;
+:Get all the appointments of
+the selected Patient;
 else([User uses the commandline])
     :Find the patient with the NRIC;
-        if () then ([patient not found])
+        if () then ([Patient not found])
         :Render error message;
         stop
-        else([get Appointments of the patient])
-                : render appointments of the patient
-                 found in a tableview;
+        else([Patient found])
+                :Get all the appointments of the
+                Patient;
 endif
 endif
-:display appointment window <$rake>;
+:Display appointment window <$rake>;
 stop
 partition "display appointment window" {
 start
