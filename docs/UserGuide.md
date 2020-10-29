@@ -332,7 +332,7 @@ View all of a specific teammate's details
 
 Format: `deleteteammate GIT_USER_NAME`
 
-Example: `deleteteammate Lucas98` deletes the teammate 
+Example: `deleteteammate Lucas97` deletes the teammate 
 
 ### Return to project view from teammate view `leaveTeammateView`
 
