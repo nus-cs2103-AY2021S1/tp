@@ -18,6 +18,17 @@ public interface StudentRecordList extends Iterable<StudentRecord> {
      */
     void markAllStudents(List<NusnetId> nusnetIds, AttendanceType attendanceType);
 
+    /**
+     * Updates participation score of a student represented by their {@code nusnetId} to {@code score}.
+     */
+    void scoreStudentParticipation(NusnetId nusnetId, int score);
+
+    /**
+     * Updates participation score of all students in the list of {@code nusnetIds} with {@code attendanceType}.
+     */
+    void scoreAllParticipation(List<NusnetId> nusnetIds, int score);
+
+
     void setStudentRecords(StudentRecordListManager replacement);
 
     /**

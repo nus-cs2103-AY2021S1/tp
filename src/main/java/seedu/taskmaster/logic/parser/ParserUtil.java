@@ -12,6 +12,7 @@ import seedu.taskmaster.commons.core.index.Index;
 import seedu.taskmaster.commons.util.StringUtil;
 import seedu.taskmaster.logic.parser.exceptions.ParseException;
 import seedu.taskmaster.model.record.AttendanceType;
+import seedu.taskmaster.model.record.ClassParticipation;
 import seedu.taskmaster.model.session.SessionDateTime;
 import seedu.taskmaster.model.session.SessionName;
 import seedu.taskmaster.model.student.Email;
@@ -179,7 +180,7 @@ public class ParserUtil {
      * Parses a {@code String filename} into a filename.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code attendanceType} is invalid.
+     * @throws ParseException if the given {@code filename} is invalid.
      */
     public static String parseFilename(String filename) throws ParseException {
         requireNonNull(filename);
@@ -188,5 +189,23 @@ public class ParserUtil {
             throw new ParseException(StorageManager.FILENAME_CONSTRAINTS);
         }
         return trimmedFilename;
+    }
+
+    /**
+     * Parses a {@code String score} into a score.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code score} is invalid.
+     */
+    public static int parseScore(String score) throws ParseException {
+        requireNonNull(score);
+        String trimmedScore = score.trim();
+        int parsedScore = 0;
+        try {
+            parsedScore = Integer.valueOf(score);
+        } catch (NumberFormatException e) {
+            throw new ParseException(ClassParticipation.MESSAGE_CONSTRAINTS);
+        }
+        return parsedScore;
     }
 }

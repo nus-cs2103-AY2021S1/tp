@@ -224,6 +224,71 @@ public class Taskmaster implements ReadOnlyTaskmaster {
         currentSession.markAllStudents(nusnetIds, attendanceType);
     }
 
+    /**
+     * Updates participation marks of a {@code target} student with score {@code score} in the current session.
+     *
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
+     */
+    public void scoreStudent(Student target, int score)
+            throws NoSessionException, NoSessionSelectedException {
+        assert target != null;
+
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
+        currentSession.scoreStudentParticipation(target.getNusnetId(), score);
+    }
+
+    /**
+     * Updates participation marks of a student given the {@code nusnetId}
+     * with score {@code score} in the current session.
+     *
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
+     */
+    public void scoreStudentWithNusnetId(NusnetId nusnetId, int score)
+            throws NoSessionException, NoSessionSelectedException {
+        assert nusnetId != null;
+
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
+        currentSession.scoreStudentParticipation(nusnetId, score);
+    }
+
+    /**
+     * Updates participation marks of all students represented by {@code nusnetIds} in the {@code studentRecordList}
+     * of the {@code currentSession}, with the given {@code attendanceType}.
+     *
+     * @throws NoSessionException If the session list is empty.
+     * @throws NoSessionSelectedException If no session has been selected.
+     */
+    public void scoreAllStudents(List<NusnetId> nusnetIds, int score)
+            throws NoSessionException, NoSessionSelectedException {
+        assert nusnetIds != null;
+
+        if (sessions.isEmpty()) {
+            throw new NoSessionException();
+        }
+
+        if (!sessions.isEmpty() && currentSession == null) {
+            throw new NoSessionSelectedException();
+        }
+
+        currentSession.scoreAllParticipation(nusnetIds, score);
+    }
+
     /* Util Methods */
 
     @Override

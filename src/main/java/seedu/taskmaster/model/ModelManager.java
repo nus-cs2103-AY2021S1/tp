@@ -50,6 +50,9 @@ public class ModelManager implements Model {
         filteredSessions = new FilteredList<>(this.taskmaster.getSessionList());
     }
 
+    public ModelManager(ReadOnlyTaskmaster taskmaster, ReadOnlyUserPrefs userPrefs) {
+        this(taskmaster, new SessionListManager(), userPrefs);
+    }
 
     public ModelManager() {
         this(new Taskmaster(), new SessionListManager(), new UserPrefs());
@@ -163,6 +166,28 @@ public class ModelManager implements Model {
     public void markStudentWithNusnetId(NusnetId nusnetId, AttendanceType attendanceType) {
         requireAllNonNull(nusnetId, attendanceType);
         taskmaster.markStudentWithNusnetId(nusnetId, attendanceType);
+    }
+
+    @Override
+    public void scoreStudent(Student target, int score) {
+        requireAllNonNull(target, score);
+        taskmaster.scoreStudent(target, score);
+    }
+
+    @Override
+    public void scoreStudentWithNusnetId(NusnetId nusnetId, int score) {
+        requireAllNonNull(nusnetId, score);
+        taskmaster.scoreStudentWithNusnetId(nusnetId, score);
+    }
+
+    @Override
+    public void scoreAllStudents(List<Student> students, int score) {
+        List<NusnetId> nusnetIds = students
+                .stream()
+                .map(Student::getNusnetId)
+                .collect(Collectors.toList());
+
+        taskmaster.scoreAllStudents(nusnetIds, score);
     }
 
     @Override
