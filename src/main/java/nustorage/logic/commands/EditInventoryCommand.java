@@ -1,6 +1,7 @@
 package nustorage.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nustorage.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static nustorage.logic.parser.CliSyntax.PREFIX_ITEM_DESCRIPTION;
 import static nustorage.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static nustorage.model.Model.PREDICATE_SHOW_ALL_INVENTORY;
@@ -14,6 +15,7 @@ import nustorage.commons.core.index.Index;
 import nustorage.commons.util.CollectionUtil;
 import nustorage.logic.commands.exceptions.CommandException;
 import nustorage.model.Model;
+import nustorage.model.record.FinanceRecord;
 import nustorage.model.record.InventoryRecord;
 
 /**
@@ -27,9 +29,10 @@ public class EditInventoryCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_QUANTITY + "QUANTITY] "
-            + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] ";
+            + "[" + PREFIX_ITEM_DESCRIPTION + "DESCRIPTION] "
+            + "[" + PREFIX_DATETIME + "[DATE] [TIME]] ";
 
-    public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Item: %1$s";
+    public static final String MESSAGE_EDIT_INVENTORY_SUCCESS = "Edited Item: %1$s" + "\nFinance record updated";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "This inventory record already "
             + "exists in the Inventory";
@@ -61,13 +64,19 @@ public class EditInventoryCommand extends Command {
         InventoryRecord inventoryRecordToEdit = lastShownList.get(index.getZeroBased());
         InventoryRecord editedInventoryRecord = createEditedInventoryRecord(
                 inventoryRecordToEdit, editInventoryDescriptor);
-
         if (!inventoryRecordToEdit.equals(editedInventoryRecord)
                 && model.hasInventoryRecord(editedInventoryRecord)) {
             throw new CommandException(MESSAGE_DUPLICATE_INVENTORY_RECORD);
         }
-
+        FinanceRecord financeRecordToEdit = model.getFinanceRecord(inventoryRecordToEdit);
+        FinanceRecord editedFinanceRecord = new FinanceRecord(
+                editedInventoryRecord.getUnitCost() * editedInventoryRecord.getQuantity(),
+                editedInventoryRecord.getDateTime(), true);
+        editedInventoryRecord.setFinanceRecord(editedFinanceRecord);
+        editedInventoryRecord.setFinanceRecord(editedFinanceRecord);
         model.setInventoryRecord(inventoryRecordToEdit, editedInventoryRecord);
+        model.setFinanceRecord(financeRecordToEdit, editedFinanceRecord);
+
         model.updateFilteredInventoryList(PREDICATE_SHOW_ALL_INVENTORY);
         return new CommandResult(String.format(MESSAGE_EDIT_INVENTORY_SUCCESS, editedInventoryRecord));
     }
@@ -82,9 +91,10 @@ public class EditInventoryCommand extends Command {
 
         Integer updatedQuantity = editInventoryDescriptor.getQuantity().orElse(inventoryRecord.getQuantity());
         String updatedDescription = editInventoryDescriptor.getDescription().orElse(inventoryRecord.getItemName());
-        LocalDateTime dateTime = inventoryRecord.getDateTime();
+        LocalDateTime dateTime = editInventoryDescriptor.getDateTime().orElse(inventoryRecord.getDateTime());
+        Double unitCost = editInventoryDescriptor.getUnitCost().orElse(inventoryRecord.getUnitCost());
 
-        return new InventoryRecord(updatedDescription, updatedQuantity, dateTime);
+        return new InventoryRecord(updatedDescription, updatedQuantity, unitCost, dateTime);
     }
 
     @Override
@@ -112,6 +122,8 @@ public class EditInventoryCommand extends Command {
     public static class EditInventoryDescriptor {
         private Integer quantity;
         private String description;
+        private LocalDateTime dateTime;
+        private Double unitCost;
 
 
         public EditInventoryDescriptor() {}
@@ -123,6 +135,8 @@ public class EditInventoryCommand extends Command {
         public EditInventoryDescriptor(EditInventoryDescriptor toCopy) {
             setQuantity(toCopy.quantity);
             setDescription(toCopy.description);
+            setDateTime(toCopy.dateTime);
+            setUnitCost(toCopy.unitCost);
         }
 
         /**
@@ -147,6 +161,23 @@ public class EditInventoryCommand extends Command {
         public Optional<String> getDescription() {
             return Optional.ofNullable(description);
         }
+
+        public void setDateTime(LocalDateTime dateTime) {
+            this.dateTime = dateTime;
+        }
+
+        public Optional<LocalDateTime> getDateTime() {
+            return Optional.ofNullable(dateTime);
+        }
+
+        public void setUnitCost(Double unitCost) {
+            this.unitCost = unitCost;
+        }
+
+        public Optional<Double> getUnitCost() {
+            return Optional.ofNullable(unitCost);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

@@ -2,16 +2,17 @@ package nustorage.model.record;
 
 import static nustorage.commons.util.DateTimeUtil.DATETIME_FORMAT;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class FinanceRecord {
 
     private final int id;
-    private LocalDateTime dateTime;
+    private final LocalDateTime dateTime;
     private final boolean hasInventory;
     private double amount;
     private String uiUsableIndex;
-    private double cost;
 
     /**
      * Constructs a {@code Finance Record}.
@@ -67,19 +68,18 @@ public class FinanceRecord {
         this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
     }
-
     /**
      * Constructs a {@code Finance Record}.
      *
-     * @param amount the amount of the transaction
-     * @param cost the cost of each item
+     * @param amount Amount of the transaction.
+     * @param dateTime Date of the transaction.
      */
-    public FinanceRecord(double amount, double cost) {
+    public FinanceRecord(double amount, LocalDateTime dateTime, boolean hasInventory) {
+        this.id = this.hashCode();
         this.amount = amount;
-        this.id = this.hashCode();;
-        this.dateTime = LocalDateTime.now();
-        this.cost = cost;
-        this.hasInventory = true;
+
+        this.dateTime = dateTime;
+        this.hasInventory = hasInventory;
         this.uiUsableIndex = "" + uiUsableIndex;
     }
 
@@ -91,16 +91,20 @@ public class FinanceRecord {
         return amount;
     }
 
-    public double getCost() {
-        return cost;
-    }
-
     public void setAmount(double amount) {
         this.amount = amount;
     }
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public LocalDate getDate() {
+        return this.dateTime.toLocalDate();
+    }
+
+    public LocalTime getTime() {
+        return this.dateTime.toLocalTime();
     }
 
     public String getDatetimeString() {

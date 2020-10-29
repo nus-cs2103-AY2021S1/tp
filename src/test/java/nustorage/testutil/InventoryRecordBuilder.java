@@ -54,6 +54,6 @@ public class InventoryRecordBuilder {
     }
 
     public InventoryRecord build() {
-        return new InventoryRecord(itemName, 0, dateTime);
+        return new InventoryRecord(itemName, 0, 0.0 , dateTime);
     }
 }

@@ -23,9 +23,11 @@ public class Finance extends UiPart<Region> {
     @FXML
     private TableColumn<FinanceRecord, String> financeIdCol;
     @FXML
-    private TableColumn<FinanceRecord, String> amountCol;
+    private TableColumn<FinanceRecord, String> totalCostCol;
     @FXML
-    private TableColumn<FinanceRecord, String> dateAndTimeCol;
+    private TableColumn<FinanceRecord, String> dateCol;
+    @FXML
+    private TableColumn<FinanceRecord, String> timeCol;
 
     /**
      * Sets the display for the Finance tab in the user interface.
@@ -34,8 +36,9 @@ public class Finance extends UiPart<Region> {
         super(FXML);
         tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY); // to prevent side-scrolling
         tableView.getItems().setAll(parseFinanceList(logic));
-        amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        dateAndTimeCol.setCellValueFactory(new PropertyValueFactory<>("dateTime"));
+        totalCostCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         idCol.setCellValueFactory(id -> {
             SimpleStringProperty property = new SimpleStringProperty();
             property.setValue(String.valueOf(id.getValue().getUiUsableIndex()));

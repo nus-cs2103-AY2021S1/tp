@@ -17,6 +17,7 @@ class JsonAdaptedInventoryRecord {
     private final String itemName;
     private final LocalDateTime dateTime;
     private final int financeId;
+    private final Double unitCost;
 
 
     /**
@@ -25,12 +26,14 @@ class JsonAdaptedInventoryRecord {
     @JsonCreator
     public JsonAdaptedInventoryRecord(@JsonProperty("itemName") String itemName,
                                       @JsonProperty("quantity") int quantity,
+                                      @JsonProperty("unitCost") Double unitCost,
                                       @JsonProperty("dateTime") LocalDateTime dateTime,
                                       @JsonProperty("financeId") int financeId) {
         this.quantity = quantity;
         this.itemName = itemName;
         this.dateTime = dateTime;
         this.financeId = financeId;
+        this.unitCost = unitCost;
     }
 
 
@@ -44,6 +47,7 @@ class JsonAdaptedInventoryRecord {
         this.itemName = source.getItemName();
         this.dateTime = source.getDateTime();
         this.financeId = source.getFinanceId();
+        this.unitCost = source.getUnitCost();
     }
 
 
@@ -73,7 +77,12 @@ class JsonAdaptedInventoryRecord {
         }
         final int modelFinanceId = this.financeId;
 
-        return new InventoryRecord(modelItemName, modelQuantity, modelDateTime, modelFinanceId);
+        if (this.unitCost < 0) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "unitCost"));
+        }
+        final Double modelUnitCost = this.unitCost;
+
+        return new InventoryRecord(modelItemName, modelQuantity, modelUnitCost, modelDateTime, modelFinanceId);
 
     }
 

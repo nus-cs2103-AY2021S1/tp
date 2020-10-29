@@ -12,33 +12,9 @@ public class InventoryRecord {
     private final LocalDateTime dateTime;
     private final int quantity;
     private final String itemName;
+    private final Double unitCost;
     private int financeId;
     private String uiUsableIndex;
-
-    /**
-     * Constructs an InventoryRecord.
-     * @param itemName Name of item added..
-     */
-    public InventoryRecord(String itemName) {
-        this.itemName = itemName;
-        this.quantity = 0;
-        this.dateTime = LocalDateTime.now();
-        this.financeId = -1;
-        this.uiUsableIndex = "" + uiUsableIndex;
-    }
-
-    /**
-     * Constructs an InventoryRecord.
-     * @param itemName Name of item added..
-     * @param quantity Number of items added/removed.
-     */
-    public InventoryRecord(String itemName, int quantity) {
-        this.itemName = itemName;
-        this.quantity = quantity;
-        this.dateTime = LocalDateTime.now();
-        this.financeId = -1;
-        this.uiUsableIndex = "" + uiUsableIndex;
-    }
 
     /**
      * Constructs an InventoryRecord.
@@ -46,11 +22,11 @@ public class InventoryRecord {
      * @param quantity Number of items added/removed.
      * @param dateTime Date and time movement.
      */
-    public InventoryRecord(String itemName, int quantity, LocalDateTime dateTime) {
+    public InventoryRecord(String itemName, int quantity, Double unitCost, LocalDateTime dateTime) {
         this.itemName = itemName;
         this.quantity = quantity;
         this.dateTime = dateTime;
-        this.financeId = -1;
+        this.unitCost = unitCost;
         this.uiUsableIndex = "" + uiUsableIndex;
     }
 
@@ -61,13 +37,15 @@ public class InventoryRecord {
      * @param dateTime Date and time movement.
      * @param financeId ID of the finance record attached to this item.
      */
-    public InventoryRecord(String itemName, int quantity, LocalDateTime dateTime, int financeId) {
+    public InventoryRecord(String itemName, int quantity, Double unitCost, LocalDateTime dateTime, int financeId) {
         this.itemName = itemName;
         this.quantity = quantity;
         this.dateTime = dateTime;
+        this.unitCost = unitCost;
         this.financeId = financeId;
         this.uiUsableIndex = "" + uiUsableIndex;
     }
+
 
     public void setFinanceRecord(FinanceRecord financeRecord) {
         this.financeId = financeRecord.getID();
@@ -82,6 +60,10 @@ public class InventoryRecord {
 
     public String getItemName() {
         return itemName;
+    }
+
+    public Double getUnitCost() {
+        return unitCost;
     }
 
     public LocalDateTime getDateTime() {
