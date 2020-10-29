@@ -298,6 +298,25 @@ Format: `edit-task INDEX ATTRIBUTE_1:NEW_VALUE ATTRIBUTE_2:NEW_VALUE ...`
 
 Examples:
 
+To edit the date and time of a task, users can do the following:
+
+1) Display all lessons by typing `list-task` in the command box, and find the index of the task you want to edit in the task list. The index is displayed in the top left corner of each task.
+
+![list task](images/ListTask.png)
+
+This displays all tasks in the task list.
+
+2) Type `edit-task` and the index of the task, followed by the new date and time you want to update the task with.
+For example, if we want to change the first task start time to be an hour earlier, we can type
+`edit-task 1 from:18:00` in the command box.
+
+![edit task](./images/EditTask.png)
+
+This changes the start time of the first task to 18:00 which is one hour earlier than the original start time. You can view the task with the updated information in the task list.
+
+![edit task result](./images/EditTaskResult.png)
+
+Other examples:
 * `edit-task 1 title:play games` 
     * Edits the first task in the results of the `list` command, changing its title to `play games`.
 * `find-task type:deadline` followed by `edit-task 3 desc:This is very urgent!` 
@@ -333,6 +352,22 @@ Available attributes in v1.3 include:
 
 Examples:
 
+To find all tasks with titles containing the phrase "CS" (case-insensitive), users can do the following:
+
+1) List all tasks by typing `list-task` in the command box:
+
+![list task](./images/ListTask.png)
+
+2) Type the following command in the command box: 
+* `find-task title:CS` 
+
+![find task](./images/FindTask.png)
+
+This lists all tasks with a title including the phrase `CS`.
+
+![find task result](./images/FindTaskResult.png)
+
+Other examples:
 * `find-task title:play games` 
     * Lists all tasks with a title including the phrase `play games`.
 * `find-task tag:CS2040` 
@@ -359,6 +394,21 @@ Format: `delete-task INDEX...`
 
 Examples:
 
+To delete the second task, users can do the following:
+
+1) Type `list-task` in the command box to display all tasks.
+
+![list task](./images/ListTask.png)
+
+2) Type `delete-task 2` in the command box.
+
+![delete task](./images/DeleteTask.png)
+ 
+This deletes the 2nd task from PlaNus.
+
+![delete task result](./images/DeleteTaskResult.png)
+
+Other examples:
 * `list-task` followed by `delete-task 1 2` 
     * Deletes the 1st task followed by the 2nd task in the results of the `list-task` command.
 * `find-task title:homework` followed by `delete-task 1` 
@@ -376,6 +426,15 @@ recurring manner that have a start and end time and a start and end date.
 Shows the user a list of all the lessons in PlaNus.
 
 Format: `list-lesson`
+
+To show all lessons currently stored in PlaNus, users can do the following:
+
+1) Type in the command box the following command:
+* `list-lesson`
+
+![List lesson](./images/ListLesson.png)
+
+This displays all lessons in the lesson list.
 
 ### 3.2 Add a lesson : `lesson`
 
