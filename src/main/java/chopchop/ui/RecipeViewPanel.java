@@ -2,6 +2,7 @@
 
 package chopchop.ui;
 
+import java.util.List;
 import java.util.Optional;
 
 import chopchop.model.recipe.Recipe;
@@ -18,7 +19,7 @@ public class RecipeViewPanel extends UiPart<Region> {
     private static final String EMPTY_PROMPT = "You do not have any recipes yet.\nAdd one today!";
     private static final String FILTER_NO_MATCH = "No matching recipes found";
 
-    private ObservableList<Recipe> recipeObservableList;
+    private List<Recipe> recipeList;
 
     @FXML
     private ScrollPane recipePanel;
@@ -27,13 +28,12 @@ public class RecipeViewPanel extends UiPart<Region> {
     private FlowPane recipeGridView;
 
     /**
-     * Creates a {@code RecipeView} with the given {@code ObservableList}.
+     * Creates a {@code RecipeView} with the given {@code List}.
      */
-    public RecipeViewPanel(ObservableList<Recipe> filteredList) {
+    public RecipeViewPanel(List<Recipe> filteredList) {
         super(FXML);
 
-        this.recipeObservableList = filteredList;
-        this.recipeObservableList.addListener((ListChangeListener<Recipe>) c -> this.fillDisplay());
+        this.recipeList = filteredList;
         this.fillDisplay();
     }
 
@@ -52,8 +52,8 @@ public class RecipeViewPanel extends UiPart<Region> {
      * Populates the gridPane with recipes stored.
      */
     private void populate() {
-        for (int i = 0; i < this.recipeObservableList.size(); i++) {
-            var recipe = this.recipeObservableList.get(i);
+        for (int i = 0; i < this.recipeList.size(); i++) {
+            var recipe = this.recipeList.get(i);
             var recipeCard = new RecipeCard(recipe, i + 1);
             this.recipeGridView.getChildren().add(recipeCard.getRoot());
         }
@@ -64,17 +64,17 @@ public class RecipeViewPanel extends UiPart<Region> {
      * If there are recipes to show, returns an empty optional.
      */
     private Optional<String> getPlaceholderText() {
-        if (this.recipeObservableList instanceof FilteredList<?>) {
-            var src = ((FilteredList<?>) this.recipeObservableList).getSource();
+        if (this.recipeList instanceof FilteredList<?>) {
+            var src = ((FilteredList<?>) this.recipeList).getSource();
 
             // if the source was not empty but the filter view is empty,
             // then we have no results.
-            if (!src.isEmpty() && this.recipeObservableList.isEmpty()) {
+            if (!src.isEmpty() && this.recipeList.isEmpty()) {
                 return Optional.of(FILTER_NO_MATCH);
             }
         }
 
-        return this.recipeObservableList.isEmpty()
+        return this.recipeList.isEmpty()
             ? Optional.of(EMPTY_PROMPT)
             : Optional.empty();
     }
