@@ -18,7 +18,7 @@ public class ModuleId {
      */
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public String id;
+    private String id;
 
     /**
      * Constructs a {@code ModuleId}.

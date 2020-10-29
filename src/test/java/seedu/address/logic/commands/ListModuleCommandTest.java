@@ -4,7 +4,6 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalModules.getTypicalModuleList;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,12 +28,14 @@ public class ListModuleCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListModuleCommand(), model, ListModuleCommand.MESSAGE_VIEWING_MODULES_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListModuleCommand(), model,
+                ListModuleCommand.MESSAGE_VIEWING_MODULES_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showModuleAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListModuleCommand(), model, ListModuleCommand.MESSAGE_VIEWING_MODULES_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListModuleCommand(), model,
+                ListModuleCommand.MESSAGE_VIEWING_MODULES_SUCCESS, expectedModel);
     }
 }

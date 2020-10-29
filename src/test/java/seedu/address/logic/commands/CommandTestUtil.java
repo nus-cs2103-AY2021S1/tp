@@ -53,7 +53,7 @@ public class CommandTestUtil {
 
     public static final String MODULE_ID_DESC_CS2103T = " " + PREFIX_MODULE + VALID_MODULE_CS2103T;
     public static final String MODULE_ID_DESC_CS2040 = " " + PREFIX_MODULE + VALID_MODULE_CS2040;
-    public static final String INVALID_MODULE_ID = " " + PREFIX_MODULE + "CS@";;
+    public static final String INVALID_MODULE_ID = " " + PREFIX_MODULE + "CS@";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -155,7 +155,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredModuleList().size());
 
         Module module = model.getFilteredModuleList().get(targetIndex.getZeroBased());
-        final String[] splitName = module.getModuleId().id.split("\\s+");
+        final String[] splitName = module.getModuleId().toString().split("\\s+");
         model.updateFilteredModuleList(new ModuleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredModuleList().size());

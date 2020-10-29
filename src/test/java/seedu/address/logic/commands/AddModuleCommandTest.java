@@ -1,7 +1,8 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,13 +15,15 @@ import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.ModuleBuilder;
 
 import java.nio.file.Path;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import static seedu.address.testutil.Assert.assertThrows;
 
 import static java.util.Objects.requireNonNull;
@@ -49,7 +52,7 @@ public class AddModuleCommandTest {
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
         assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE,
-        () -> addModuleCommand.execute(modelStub));
+            () -> addModuleCommand.execute(modelStub));
     }
 
     @Test
@@ -76,9 +79,9 @@ public class AddModuleCommandTest {
         assertFalse(addCs2103tCommand.equals(addCs3243Command));
     }
 
-/*
- * A default model stub that have all of the methods failing.
- */
+    /*
+     * A default model stub that have all of the methods failing.
+     */
 
     private class ModelStub implements Model {
         @Override
@@ -253,9 +256,9 @@ public class AddModuleCommandTest {
         }
     }
 
-/*
- * A Model stub that contains a single person.
- */
+    /*
+     * A Model stub that contains a single person.
+     */
 
     private class ModelStubWithModule extends ModelStub {
         private final Module module;
@@ -272,9 +275,9 @@ public class AddModuleCommandTest {
         }
     }
 
-/*
- * A Model stub that always accept the person being added.
- */
+    /*
+     * A Model stub that always accept the person being added.
+     */
 
     private class ModelStubAcceptingModuleAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();

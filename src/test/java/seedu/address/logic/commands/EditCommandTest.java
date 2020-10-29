@@ -16,7 +16,8 @@
 //import seedu.address.model.UserPrefs;
 //
 ///**
-// * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for EditCommand.
+// * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand)
+// and unit tests for EditCommand.
 // */
 //public class EditCommandTest {
 //
