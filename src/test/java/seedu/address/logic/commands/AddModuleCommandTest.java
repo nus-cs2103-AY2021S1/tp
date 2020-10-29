@@ -1,7 +1,19 @@
 package seedu.address.logic.commands;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -13,22 +25,10 @@ import seedu.address.model.person.Student;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.testutil.ModuleBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.address.testutil.Assert.assertThrows;
-
-import static java.util.Objects.requireNonNull;
-
 public class AddModuleCommandTest {
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+    public void constructor_nullModule_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddModuleCommand(null));
     }
 
     @Test
@@ -48,8 +48,9 @@ public class AddModuleCommandTest {
         AddModuleCommand addModuleCommand = new AddModuleCommand(validModule);
         ModelStub modelStub = new ModelStubWithModule(validModule);
 
-        assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE,
-        () -> addModuleCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddModuleCommand.MESSAGE_DUPLICATE_MODULE, ()
+                -> addModuleCommand.execute(modelStub)
+        );
     }
 
     @Test
@@ -76,11 +77,11 @@ public class AddModuleCommandTest {
         assertFalse(addCs2103tCommand.equals(addCs3243Command));
     }
 
-/*
- * A default model stub that have all of the methods failing.
- */
+    /*
+     * A default model stub that have all of the methods failing.
+     */
 
-    private class ModelStub implements Model {
+    public static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -118,17 +119,17 @@ public class AddModuleCommandTest {
 
         @Override
         public boolean isInModuleView() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public Module getCurrentModuleInView() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setViewToTutorialGroup(Module target) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -138,7 +139,7 @@ public class AddModuleCommandTest {
 
         @Override
         public void deleteTutorialGroup(TutorialGroup tutorialGroup) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -148,47 +149,47 @@ public class AddModuleCommandTest {
 
         @Override
         public void setTutorialGroup(TutorialGroup target, TutorialGroup edited) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean isInTutorialGroupView() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setViewToStudent(TutorialGroup target) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public TutorialGroup getCurrentTgInView() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean hasStudent(Student student) {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void deleteStudent(Student target) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void addStudent(Student student) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setStudent(Student target, Student editedStudent) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public boolean isInStudentView() {
-            return false;
+            throw new AssertionError("This method should not be called.");
         }
 
 
@@ -204,7 +205,7 @@ public class AddModuleCommandTest {
 
         @Override
         public void setViewToModule() {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -234,28 +235,28 @@ public class AddModuleCommandTest {
 
         @Override
         public ObservableList<TutorialGroup> getFilteredTutorialGroupList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredTutorialGroupList(Predicate<TutorialGroup> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObservableList<Student> getFilteredStudentList() {
-            return null;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredStudentList(Predicate<Student> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
     }
 
-/*
- * A Model stub that contains a single person.
- */
+    /*
+     * A Model stub that contains a single person.
+     */
 
     private class ModelStubWithModule extends ModelStub {
         private final Module module;
@@ -272,9 +273,9 @@ public class AddModuleCommandTest {
         }
     }
 
-/*
- * A Model stub that always accept the person being added.
- */
+    /*
+     * A Model stub that always accept the person being added.
+     */
 
     private class ModelStubAcceptingModuleAdded extends ModelStub {
         final ArrayList<Module> modulesAdded = new ArrayList<>();
