@@ -19,7 +19,7 @@
    <VBox GridPane.columnIndex="0" GridPane.rowIndex="0">
       <Label styleClass="rvRecipeName" fx:id="recipeName" wrapText="true"/>
       <VBox styleClass="rvTagDisplay">
-         <FlowPane styleClass="rvTagList" fx:id="tagList"/>
+         <FlowPane styleClass="rvTagList" fx:id="tagList" hgap="8" vgap="6"/>
       </VBox>
       <VBox styleClass="rvIngredientDisplay" VBox.vgrow="ALWAYS">
          <Label styleClass="rvIngredientHeader" fx:id="ingredientHeader" underline="true"/>
