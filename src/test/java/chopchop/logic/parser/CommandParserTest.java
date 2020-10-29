@@ -19,7 +19,7 @@ import static chopchop.testutil.Assert.assertThrows;
 public class CommandParserTest {
 
     @Test
-    void parse_validCommands_success() {
+    void test_parseCommands() {
 
         var parser = new CommandParser();
 
@@ -38,6 +38,7 @@ public class CommandParserTest {
 
         tests.put("delete recipe cake", "Result(DeleteRecipeCommand(cake))");
         tests.put("delete recipe #4", "Result(DeleteRecipeCommand(#4))");
+        tests.put("delete recipe #-1", "Error(Invalid index (cannot be zero or negative))");
 
         tests.put("delete ingredient milk", "Result(DeleteIngredientCommand(milk))");
 
@@ -54,12 +55,21 @@ public class CommandParserTest {
         tests.put("list ingredients", "Result(ListIngredientCommand)");
 
         tests.put("make cake", "Result(MakeRecipeCommand(cake))");
+        tests.put("view cake", "Result(ViewCommand(cake))");
+        tests.put("filter recipe /tag owo", "Result(FilterRecipeCommand(...))");
+        tests.put("edit recipe cake", "Result(EditRecipeCommand(cake))");
 
         tests.put("find recipe cake cucumber", "Result(FindRecipeCommand(keywords: [cake, cucumber]))");
         tests.put("find ingredient cake cucumber", "Result(FindIngredientCommand(keywords: [cake, cucumber]))");
 
         tests.put("find recipe", "Error('find' command requires at least one search term)");
         tests.put("add recipe cake /", "Error(Expected argument name after '/')");
+        tests.put("add recipe cake /   ", "Error(Expected argument name after '/')");
+
+        tests.put("view cake cucumber", "Result(ViewCommand(cake cucumber))");
+        tests.put("view", "Error(Recipe name cannot be empty)");
+        tests.put("view #1", "Result(ViewCommand(#1))");
+        tests.put("view #0", "Error(Invalid index (cannot be zero or negative))");
 
         tests.put("OWO", "Error(Unknown command 'OWO')");
 
@@ -88,6 +98,10 @@ public class CommandParserTest {
 
             "add some\\/stuff\\/here",
                 new CommandArguments("add", "some/stuff/here"),
+
+            "add some\\stuff\\here\\",
+                new CommandArguments("add", "some\\stuff\\here\\"),
+
 
             "add some\\/step\\/here /step \\/owo here\\/is\\/a\\/step\\/",
                 new CommandArguments("add", "some/step/here",

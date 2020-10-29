@@ -62,11 +62,14 @@ public interface Quantity extends Comparable<Quantity> {
     Quantity negate();
 
     /**
-     * Returns the value of this quantity.
-     *
-     * @return the double value of this quantity.
+     * Checks whether the quantity is zero
      */
-    double getValue();
+    boolean isZero();
+
+    /**
+     * Checks whether the quantity is negative
+     */
+    boolean isNegative();
 
     /**
      * Parse a quantity and its associated unit.

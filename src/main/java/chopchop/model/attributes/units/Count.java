@@ -27,8 +27,13 @@ public class Count implements Quantity {
     }
 
     @Override
-    public double getValue() {
-        return this.value;
+    public boolean isZero() {
+        return this.value == 0;
+    }
+
+    @Override
+    public boolean isNegative() {
+        return this.value < 0;
     }
 
     @Override
