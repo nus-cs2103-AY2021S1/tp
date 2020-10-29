@@ -21,7 +21,7 @@ import nustorage.model.record.FinanceRecord;
 @JsonRootName("financeAccount")
 class JsonSerializableFinanceAccount {
 
-    public static final String MESSAGE_DUPLICATE_FINANCE_RECORD = "FinanceWindow record list contains duplicate records!";
+    public static final String MESSAGE_DUPLICATE_FINANCE_RECORD = "Finance record list contains duplicate records!";
 
     public final List<JsonAdaptedFinanceRecord> financeRecords = new ArrayList<>();
 

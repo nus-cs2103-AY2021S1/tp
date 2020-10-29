@@ -21,7 +21,7 @@ import nustorage.model.record.InventoryRecord;
 @JsonRootName("inventory")
 class JsonSerializableInventory {
 
-    public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "InventoryWindow record list contains duplicate records!";
+    public static final String MESSAGE_DUPLICATE_INVENTORY_RECORD = "Inventory record list contains duplicate records!";
 
     public final List<JsonAdaptedInventoryRecord> inventoryRecords = new ArrayList<>();
 

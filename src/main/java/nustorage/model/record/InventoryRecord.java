@@ -1,10 +1,10 @@
 package nustorage.model.record;
 
+import static nustorage.commons.util.DateTimeUtil.DATETIME_FORMAT;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
-import static nustorage.commons.util.DateTimeUtil.*;
 
 /**
  * Class to record movement in the InventoryWindow.
