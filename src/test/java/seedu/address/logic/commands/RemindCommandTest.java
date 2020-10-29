@@ -100,8 +100,7 @@ public class RemindCommandTest {
     @Test
     public void execute_validMultipleIndexesUnfilteredList_success() {
         indexesToRemind.add(INDEX_FIRST_ASSIGNMENT);
-        // TODO: change to remind
-        indexesToRemind.add(INDEX_SECOND_ASSIGNMENT); // Two indexes of assignments to delete
+        indexesToRemind.add(INDEX_SECOND_ASSIGNMENT); // Two indexes of assignments to remind
 
         Assignment firstAssignmentToRemind = model.getFilteredAssignmentList()
                 .get(INDEX_FIRST_ASSIGNMENT.getZeroBased());
@@ -134,7 +133,8 @@ public class RemindCommandTest {
 
         RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 
-        assertCommandFailure(remindCommand, model, RemindCommand.MESSAGE_REMINDED_ASSIGNMENT);
+        assertCommandFailure(remindCommand, model, String.format(
+                RemindCommand.MESSAGE_REMINDED_ASSIGNMENT, firstAssignment));
     }
 
     @Test
@@ -151,7 +151,8 @@ public class RemindCommandTest {
 
         RemindCommand remindCommand = new RemindCommand(indexesToRemind);
 
-        assertCommandFailure(remindCommand, model, RemindCommand.MESSAGE_REMINDED_ASSIGNMENT);
+        assertCommandFailure(remindCommand, model, String.format(
+                RemindCommand.MESSAGE_REMINDED_ASSIGNMENT, assignmentInList));
     }
 
     @Test

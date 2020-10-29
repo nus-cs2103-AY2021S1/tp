@@ -4,10 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Priority;
 
 /**
  * Adds an assignment to the academic schedule.
@@ -16,17 +18,19 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the academic schedule. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an assignment to the academic schedule.\n"
             + "Parameters: "
             + PREFIX_NAME + "ASSIGNMENT NAME "
             + PREFIX_DEADLINE + "DEADLINE "
             + PREFIX_MODULE_CODE + "MODULE "
-            + "[remind] "
+            + "[" + PREFIX_PRIORITY + "PRIORITY" + "]"
+            + "[remind]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Lab report 3 "
             + PREFIX_DEADLINE + "23-04-2020 1230 "
             + PREFIX_MODULE_CODE + "CS2100 "
-            + "remind";
+            + PREFIX_PRIORITY + Priority.HIGH_PRIORITY
+            + " remind";
     public static final String MESSAGE_SUCCESS = "New assignment added: %1$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This assignment already exists in the academic schedule";
 
