@@ -6,16 +6,16 @@ import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_FLOOR;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_NUMBER;
 import static seedu.resireg.logic.parser.CliSyntax.PREFIX_ROOM_TYPE;
 
-import seedu.resireg.logic.commands.ListRoomCommand;
-import seedu.resireg.logic.commands.ListRoomCommand.RoomFilter;
+import seedu.resireg.logic.commands.ListRoomsCommand;
+import seedu.resireg.logic.commands.ListRoomsCommand.RoomFilter;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 
-public class ListRoomCommandParser implements Parser<ListRoomCommand> {
+public class ListRoomsCommandParser implements Parser<ListRoomsCommand> {
     private static final String MESSAGE_INVALID_COMMAND = String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            ListRoomCommand.HELP.getFullMessage());
+            ListRoomsCommand.HELP.getFullMessage());
 
     @Override
-    public ListRoomCommand parse(String args) throws ParseException {
+    public ListRoomsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ROOM_FLOOR,
                 PREFIX_ROOM_NUMBER, PREFIX_ROOM_TYPE, PREFIX_KEYWORD);
         RoomFilter filter = new RoomFilter();
@@ -31,10 +31,10 @@ public class ListRoomCommandParser implements Parser<ListRoomCommand> {
         // handle --vacant and --allocated
         if (argMultimap.getValue(PREFIX_KEYWORD).isPresent()) {
             switch (argMultimap.getValue(PREFIX_KEYWORD).get()) {
-            case ListRoomCommand.COMMAND_ALLOCATED_FLAG:
+            case ListRoomsCommand.COMMAND_ALLOCATED_FLAG:
                 filter.onlyAllocated();
                 break;
-            case ListRoomCommand.COMMAND_VACANT_FLAG:
+            case ListRoomsCommand.COMMAND_VACANT_FLAG:
                 filter.onlyVacant();
                 break;
             default:
@@ -55,6 +55,6 @@ public class ListRoomCommandParser implements Parser<ListRoomCommand> {
                     ParserUtil::parseRoomType));
         }
 
-        return new ListRoomCommand(filter);
+        return new ListRoomsCommand(filter);
     }
 }

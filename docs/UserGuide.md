@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-- Table of Contents
-  {:toc}
+* Table of Contents
+{:toc}
 
 ## Introduction
 
@@ -13,8 +13,8 @@ title: User Guide
 **ResiReg** has the following main features:
 
 - Manage records of students.
-- Manage allocations of students to rooms in the College
-- Export records of students, rooms or transactions to CSV files for easy reference and sharing.
+- Manage records of rooms.
+- Manage allocations of students to rooms in the College.
 
 **ResiReg** is optimised for OHS admin who are fast typists who are used to MS Excel, and prefer typing over other means of input. It comes with:
 
@@ -52,7 +52,7 @@ This section explains the format of commands in this User Guide.
 
 - Words in `<angular_brackets>` are the parameters to be supplied by the user e.g. in `deallocate <student_name>`, `<student_name>` is a parameter which can be used as `deallocate Jet New`.
 - Items in square brackets are optional e.g `<full_name> [-aka <alias>]` can be used as `Jet New -aka JJ` or as `Jet New`.
-- Items separated by <Code>|</Code> indicates a choice between items, but only one item is to be used at any time e.g. `--vacant | --allocated` means either the `--vacant` or the `--allocated` flag (but not both) can be used.
+- Items separated by <Code>or</Code> indicates a choice between items, but only one item is to be used at any time e.g. `--vacant or --allocated` means either the `--vacant` or the `--allocated` flag (but not both) can be used.
 - Items with `…` after them can be used multiple times including zero times, unless otherwise stated e.g. `[/m <mod> /ig <interest_group>]…` can be used as `/m mod /ig ig`, `/m mod1 /ig ig1 /m mod2 /ig ig2` etc.
 </div>
 
@@ -122,6 +122,14 @@ Examples:
 - `allocate ri/1 si/1` allocates the room at `room_index` 1 to the student at `student_index` 1.
 
 #### 6. Deallocating a room for a student : `deallocate`
+##### Before allocation
+
+<img src="images/BeforeAllocation.png">
+
+##### After allocation
+
+<img src="images/AfterAllocation.png">
+
 
 Deallocates a room for a student i.e denotes that the student no longer occupies the room.
 
@@ -130,7 +138,14 @@ Format: `deallocate si/<student_index>`
 * The student at `student_index` must have been allocated a room. Otherwise, an error message is displayed.
 
 Examples:
-* `deallocate si/1` deallocates the room for the student at `student_index` 1. 
+* `deallocate si/1` deallocates the room for the student at `student_index` 1.
+
+##### Before deallocation
+Refer to "After allocation" above.
+
+##### After deallocation
+
+<img src="images/AfterDeallocation.png">
 
 #### 7. Reallocating a room for a student : `reallocate`
 
@@ -149,6 +164,28 @@ Examples:
 
 #### 8. Archiving a Semester: `archive`
 
+##### Before reallocation
+Refer to "After allocation" above.
+
+##### After reallocation
+
+<img src="images/AfterReallocation.png">
+
+#### 9. Visualising a Piechart of Allocated Rooms
+
+Visualises a piechart of allocated and unallocated rooms by switching to the `Statistics` tab, and updates upon a change in room allocation.
+
+Example:
+* `allocate si/1 ri/1` allocates a room to a student, updating the piechart.
+
+##### Before a room allocation
+
+<img src="images/BeforeAllocationPiechart.png">
+
+##### After a room allocation
+<img src="images/AfterAllocationPiechart.png">
+
+
 Archives the previous semester's data into an archival folder, and adjusts the application to operate on the succeeding semester.
 
 Format: `archive`
@@ -162,13 +199,14 @@ Format: `archive`
 
 #### 1. Listing all students : `students`
 
-Shows a list of all students in ResiReg.
+Shows a list of all students in ResiReg, optionally filtered by some parameters.
 
-Format: `students`
+Format: `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]`
 
 Examples:
 
 - `students` switches to the Students tab if it is not already selected, and shows the list of students on the right pane.
+- `students n/dameeth` switches to the Students tab if it is not already selected, and shows the list of students matching the name "dameeth" on the right pane.
 
 #### 2. Adding a student : `add-student`
 
@@ -203,24 +241,6 @@ Examples:
 
 - `edit-student 1 p/82462157 e/johnd@comp.nus.edu.sg` Edits the phone number and email address of the first student to be `82462157` and `johnd@comp.nus.edu.sg` respectively.
 - `edit-student 2 n/Alpha Queue/` Edits the name of the 2nd student to be `Alpha Queue` and clears all existing tags.
-
-#### 4. Finding a student by name : `find-students`
-
-Finds students whose names contain any of the given keywords.
-
-Format: `find-students <keyword> [<more_keywords>]...`
-
-- The search is case-insensitive. e.g `hans` will match `Hans`
-- The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-- Only the name is searched.
-- Only full words will be matched e.g. `Han` will not match `Hans`
-- Students matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
-
-Examples:
-
-- `find-students John` returns `john` and `John Doe`
-- `find-students alex david` returns `Alex Yeoh`, `David Li`
 
 #### 4. Deleting a student : `delete-student`
 
@@ -259,7 +279,7 @@ Examples: `bin`
 
 Restores an existing bin item in ResiReg.
 
-Format: `restore <index>​`
+Format: `restore <index>`
 
 - Restores the bin item at the specified `index` to the list it was originally deleted from (e.g. student list). The index refers to the index number shown in the displayed bin item list. The index **must be a positive integer** 1, 2, 3, …​
 
@@ -343,7 +363,7 @@ You can also refer to our user guide at: https://ay2021s1-cs2103-t16-3.github.io
 
 Shows the purpose, syntax, and parameters of a command if you need to use the command but are unsure of its syntax.
 
-Format: `help <command_word> | <alias>`
+Format: `help <command_word> or <alias>`
 
 - `<command_word>` if supplied, should exactly match one of the command words listed by the `help` command
 - `<alias>` if supplied, should exactly match one of the aliases listed by the `aliases` command
@@ -355,7 +375,7 @@ Examples:
 ```
 rooms: Lists all rooms within the system. If the --vacant flag is specified, lists only vacant rooms i.e rooms which have no students allocated to them.
 Otherwise, if the --allocated flag is specified, lists only allocated rooms i.e. rooms which have students allocated to them.
-Parameters: [--vacant | --allocated]
+Parameters: [--vacant or --allocated]
 Example: rooms
 ```
 
@@ -426,7 +446,7 @@ Just type in the `help` command!
 
 | Action                | Format, Examples                                                                                                                                          |
 | --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| _list rooms_          | `rooms [--allocated | --vacant]... [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...` e.g.`rooms` or `rooms --allocated fl/11` |
+| _list rooms_          | `rooms [--allocated or --vacant]... [fl/<floor>]... [n/<room_number>]... [t/<room_type>]...` e.g.`rooms` or `rooms --allocated fl/11` |
 | _add room_            | `add-room fl/<floor> n/<room_number> t/<room_type> [tag/<tag_name>]...` e.g.`add-room fl/11 n/101 t/CN` |
 | _edit room_           | `edit-room <index> [fl/<floor>] [n/<room_number>] [t/<room_type>] [tag/<tag_name>]...` e.g.`edit-room 1 n/100`                        |
 | _delete room_         | `delete-room <index>` e.g.`delete-room 1`                        |
@@ -436,7 +456,7 @@ Just type in the `help` command!
 | _list students_       | `students`                                                                                                                                                |
 | _add student_         | `add-student n/<name> i/<student_id> p/<8_digit_phone_no> e/<email> f/<faculty> [tag/<tag_name>]...` e.g.`add-student n/Jet New i/E0407889 p/82462157 e/jn@u.nus.edu f/SOC` |
 | _edit student_        | `edit-student <index> [n/<name>] [i/<student_id>] [p/<8_digit_phone_no>] [e/<email>] [f/<faculty>] [tag/<tag_name>]…` e.g.`edit 1 n/Jet New`                        |
-| _find student_        | `find-students <keyword> [<another_keyword>]...` e.g.`find-students John`                                                                                                   |
+| _find students_       | `students [n/<name>] [p/<phone>] [e/<email>] [f/<faculty] [i/<student_id>]` e.g. `students n/dameeth`                                                     |
 | _delete student_      | `delete-student <index>` e.g.`delete 2`                                                                                                                           |
 | _list bin items_      | `bin`                                                                                                                                                     |
 | _restore bin item_    | `restore <index>` e.g. `restore 2`                                                                                                                        |
@@ -444,7 +464,7 @@ Just type in the `help` command!
 | _list aliases_        | `aliases`                                                                                                                                                 |
 | _add alias_           | `alias c/<command_word> a/<alias>` e.g. `alias c/rooms a/r`                                                                                               |
 | _delete alias_        | `dealias c/<command_word> a/<alias>` e.g. `alias c/rooms a/r`                                                                                             |
-| _help_                | `help [<command_word>                                                                                                                                     | <alias>]`e.g.`help`or`help rooms`or`help r` |
+| _help_                | `help [<command_word> or <alias>]`e.g.`help`or`help rooms`or`help r`                                                                                      |
 | _archive semester_    | `archive`                                                                                                                                                 |
 | _clear_               | `clear`                                                                                                                                                   |
 | _exit_                | `exit`                                                                                                                                                    |

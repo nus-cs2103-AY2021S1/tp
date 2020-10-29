@@ -5,52 +5,56 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Interface ReadOnlyAddressBook <<Interface>>
+Interface ReadOnlyResiReg <<Interface>>
 Interface Model <<Interface>>
 Interface ObservableList <<Interface>>
-Class AddressBook
-Class ReadOnlyAddressBook
+Class ResiReg
+Class ReadOnlyResiReg
 Class Model
 Class ModelManager
 Class UserPrefs
 Class ReadOnlyUserPrefs
 
-Package Person {
-Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class UniquePersonList
+Package Allocation {
+Class Allocation
+Class UniqueAllocationList
 }
+UniqueAllocationList o--> "*" Allocation
+ResiReg *--> "1" UniqueAllocationList
 
-Package Tag {
-Class Tag
+Package Student {
+Class Student
+Class UniqueStudentList
 }
+UniqueStudentList o--> "*" Student
+ResiReg *--> "1" UniqueStudentList
+
+Package Binnable {
+Class BinItem
+Class UniqueBinItemList
 }
+UniqueBinItemList o--> "*" BinItem
+ResiReg *--> "1" UniqueBinItemList
+
+Package Room {
+Class Room
+Class UniqueRoomList
+}
+UniqueRoomList o--> "*" Room
+ResiReg *--> "1" UniqueRoomList
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
+ResiReg .up.|> ReadOnlyResiReg
 
 ModelManager .up.|> Model
 Model .right.> ObservableList
-ModelManager o--> "1" AddressBook
+ModelManager o--> "1" ResiReg
 ModelManager o-left-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-UniquePersonList o--> "*" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+ResiReg *--> "1" Semester
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
-ModelManager -->"1" Person : filtered list
+ModelManager -->"1" Student : filtered list
 @enduml

@@ -45,6 +45,8 @@ activate UniqueStudentList
 
 UniqueStudentList --> Model
 deactivate UniqueStudentList
+UniqueStudentList -[hidden]-> Model : result
+
 deactivate Model
 
 Model --> RestoreCommand

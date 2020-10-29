@@ -22,7 +22,7 @@ import seedu.resireg.logic.commands.AddCommand;
 import seedu.resireg.logic.commands.CommandResult;
 import seedu.resireg.logic.commands.DeleteCommand;
 import seedu.resireg.logic.commands.HistoryCommand;
-import seedu.resireg.logic.commands.ListCommand;
+import seedu.resireg.logic.commands.ListStudentsCommand;
 import seedu.resireg.logic.commands.exceptions.CommandException;
 import seedu.resireg.logic.parser.exceptions.ParseException;
 import seedu.resireg.model.Model;
@@ -70,8 +70,8 @@ public class LogicManagerTest {
 
     @Test
     public void execute_validCommand_success() throws Exception {
-        String listCommand = ListCommand.COMMAND_WORD;
-        assertCommandSuccess(listCommand, ListCommand.MESSAGE_SUCCESS, model);
+        String listCommand = ListStudentsCommand.COMMAND_WORD;
+        assertCommandSuccess(listCommand, ListStudentsCommand.MESSAGE_SUCCESS, model);
         assertHistoryCorrect(listCommand);
     }
 

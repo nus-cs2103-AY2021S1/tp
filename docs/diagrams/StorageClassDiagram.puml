@@ -6,19 +6,29 @@ skinparam classBackgroundColor STORAGE_COLOR
 
 Interface Storage <<Interface>>
 Interface UserPrefsStorage <<Interface>>
-Interface AddressBookStorage <<Interface>>
+Interface ResiRegStorage <<Interface>>
 
 Class StorageManager
 Class JsonUserPrefsStorage
-Class JsonAddressBookStorage
+Class JsonResiRegStorage
 
 StorageManager .left.|> Storage
 StorageManager o-right-> UserPrefsStorage
-StorageManager o--> AddressBookStorage
+StorageManager o--> ResiRegStorage
 
 JsonUserPrefsStorage .left.|> UserPrefsStorage
-JsonAddressBookStorage .left.|> AddressBookStorage
-JsonAddressBookStorage .down.> JsonSerializableAddressBookStorage
-JsonSerializableAddressBookStorage .right.> JsonSerializablePerson
-JsonSerializablePerson .right.> JsonAdaptedTag
+JsonUserPrefsStorage .down.> JsonSerializableUserPrefs
+JsonSerializableUserPrefs .right.> JsonAdaptedCommandWordAlias
+JsonResiRegStorage .left.|> ResiRegStorage
+JsonResiRegStorage .down.> JsonSerializableResiReg
+JsonSerializableResiReg .left.> JsonAdaptedAllocation
+JsonSerializableResiReg .down.> JsonAdaptedBinItem
+JsonSerializableResiReg .down.> JsonAdaptedRoom
+JsonSerializableResiReg .down.> JsonAdaptedSemester
+JsonSerializableResiReg .right.> JsonAdaptedStudent
+JsonAdaptedBinItem .left.> JsonAdaptedRoom
+JsonAdaptedBinItem .down.> JsonAdaptedStudent
+JsonAdaptedSemester .right.> JsonAdaptedAllocation
+JsonAdaptedStudent .left.> JsonAdaptedTag
+JsonAdaptedRoom .down.> JsonAdaptedTag
 @enduml
