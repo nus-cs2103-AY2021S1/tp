@@ -92,6 +92,10 @@ public class Attendance {
         return lessonDate.format(INPUT_ALT);
     }
 
+    public String getOutputDate() {
+        return lessonDate.format(OUTPUT);
+    }
+
     public boolean getAttendanceStatus() {
         return isPresent;
     }
@@ -100,15 +104,11 @@ public class Attendance {
         return feedback;
     }
 
-    public String getFormattedAttendance() {
-        return "  - Lesson Date: " + getUserInputDate()
-                + "\n      - Present Status: " + (getAttendanceStatus() ? "present" : "absent")
-                + "\n      - Lesson Feedback: " + getFeedback();
-    }
-
     @Override
     public String toString() {
-        return getUserInputDate() + " " + getAttendanceStatus() + " " + getFeedback();
+        return getOutputDate()
+                + "\n\t- Status: " + (getAttendanceStatus() ? "Present" : "Absent")
+                + "\n\t- Feedback: " + getFeedback();
     }
 
     @Override
