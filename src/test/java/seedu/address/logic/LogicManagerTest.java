@@ -88,6 +88,7 @@ public class LogicManagerTest {
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_HW + DEADLINE_DESC_HW + MODULE_CODE_DESC_HW;
         Assignment expectedAssignment = new AssignmentBuilder(HW).build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.preUpdateModel();
         expectedModel.addAssignment(expectedAssignment);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
