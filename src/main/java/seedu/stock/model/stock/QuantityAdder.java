@@ -2,6 +2,8 @@ package seedu.stock.model.stock;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.stock.commons.util.AppUtil.checkArgument;
+import static seedu.stock.model.stock.Quantity.LOW_QUANTITY_MESSAGE_CONSTRAINTS;
+import static seedu.stock.model.stock.Quantity.isValidQuantity;
 
 import java.math.BigInteger;
 import java.util.Optional;
@@ -17,6 +19,7 @@ public class QuantityAdder {
     // Matches any signed integer
     public static final String VALIDATION_REGEX = "^(\\+|-)?\\d+$";
     public final String valueToBeAdded;
+    public final String lowQuantityToBeUpdated;
 
     /**
      * Constructs a new quantity adder object.
@@ -27,6 +30,22 @@ public class QuantityAdder {
         requireNonNull(valueToBeAdded);
         checkArgument(isValidValue(valueToBeAdded), MESSAGE_CONSTRAINTS);
         this.valueToBeAdded = valueToBeAdded;
+        this.lowQuantityToBeUpdated = null;
+    }
+
+    /**
+     * Constructs a new quantity adder object.
+     *
+     * @param valueToBeAdded The value to be added into a quantity object.
+     * @param lowQuantityToBeUpdated The low quantity value to be updated.
+     */
+    public QuantityAdder(String valueToBeAdded, String lowQuantityToBeUpdated) {
+        requireNonNull(valueToBeAdded);
+        requireNonNull(lowQuantityToBeUpdated);
+        checkArgument(isValidValue(valueToBeAdded), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidQuantity(lowQuantityToBeUpdated), LOW_QUANTITY_MESSAGE_CONSTRAINTS);
+        this.valueToBeAdded = valueToBeAdded;
+        this.lowQuantityToBeUpdated = lowQuantityToBeUpdated;
     }
 
     /**
@@ -36,7 +55,13 @@ public class QuantityAdder {
      * @return A boolean value indicating if the test passes.
      */
     public static boolean isValidValue(String test) {
-        return test.matches(VALIDATION_REGEX);
+        try {
+            //protective layer against huge string input.
+            Integer.parseInt(test);
+            return test.matches(VALIDATION_REGEX);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
@@ -69,6 +94,14 @@ public class QuantityAdder {
         if (currentQuantity.signum() == -1) {
             return Optional.empty();
         }
-        return Optional.of(new Quantity(currentQuantity.toString()));
+        if (lowQuantityToBeUpdated != null) {
+            return Optional.of(new Quantity(currentQuantity.toString(), lowQuantityToBeUpdated));
+        } else {
+            return Optional.of(new Quantity(currentQuantity.toString()));
+        }
+    }
+
+    public QuantityAdder updateLowQuantity(String trimmedLowQuantity) {
+        return new QuantityAdder(valueToBeAdded, trimmedLowQuantity);
     }
 }

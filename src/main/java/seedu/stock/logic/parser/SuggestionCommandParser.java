@@ -38,6 +38,7 @@ import seedu.stock.commons.util.SortUtil.Order;
 import seedu.stock.commons.util.SuggestionUtil;
 import seedu.stock.logic.commands.AddCommand;
 import seedu.stock.logic.commands.BookmarkCommand;
+import seedu.stock.logic.commands.ClearCommand;
 import seedu.stock.logic.commands.CommandWords;
 import seedu.stock.logic.commands.DeleteCommand;
 import seedu.stock.logic.commands.ExitCommand;
@@ -150,6 +151,10 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
             generateAddSuggestion(toBeDisplayed, argMultimap);
             break;
 
+        case ClearCommand.COMMAND_WORD:
+            generateClearSuggestion(toBeDisplayed);
+            break;
+
         case DeleteCommand.COMMAND_WORD:
             generateDeleteSuggestion(toBeDisplayed, argMultimap);
             break;
@@ -203,6 +208,16 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
         }
 
         return new SuggestionCommand(toBeDisplayed.toString());
+    }
+
+    /**
+     * Generates suggestion for faulty clear command.
+     * @param toBeDisplayed The accumulated suggestion to be displayed to the user.
+     */
+    private void generateClearSuggestion(StringBuilder toBeDisplayed) {
+        toBeDisplayed.append(CommandWords.CLEAR_COMMAND_WORD);
+
+        generateBodyMessage(toBeDisplayed, ClearCommand.MESSAGE_USAGE);
     }
 
     /**
@@ -325,7 +340,8 @@ public class SuggestionCommandParser implements Parser<SuggestionCommand> {
     private void generateUpdateSuggestion(StringBuilder toBeDisplayed,
             ArgumentMultimap argMultimap) throws ParseException {
         List<Prefix> allowedPrefixes = ParserUtil.generateListOfPrefixes(PREFIX_SERIAL_NUMBER,
-                PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION);
+                PREFIX_INCREMENT_QUANTITY, PREFIX_NEW_QUANTITY, PREFIX_NAME, PREFIX_SOURCE, PREFIX_LOCATION,
+                PREFIX_LOW_QUANTITY);
         toBeDisplayed.append(UPDATE_COMMAND_WORD);
         boolean isIncrementQuantityPresent = argMultimap.getValue(PREFIX_INCREMENT_QUANTITY).isPresent();
         boolean isNewQuantityPresent = argMultimap.getValue(PREFIX_NEW_QUANTITY).isPresent();

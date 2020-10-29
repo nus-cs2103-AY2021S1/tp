@@ -5,11 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.logic.commands.CommandTestUtil.showStockAtSerialNumber;
+import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.APPLE;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_SECOND_STOCK;
 import static seedu.stock.testutil.TypicalStocks.UNKNOWN_SERIAL_NUMBER;
-import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 import static seedu.stock.testutil.TypicalStocks.serialNumberListAsString;
 import static seedu.stock.testutil.TypicalStocks.stocksAsString;
@@ -136,7 +136,7 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different serial numbers -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 

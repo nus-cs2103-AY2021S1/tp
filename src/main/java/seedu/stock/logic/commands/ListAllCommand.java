@@ -6,7 +6,7 @@ import seedu.stock.commons.util.SortUtil;
 import seedu.stock.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all stocks in the stock book to the user.
  */
 public class ListAllCommand extends ListCommand {
 

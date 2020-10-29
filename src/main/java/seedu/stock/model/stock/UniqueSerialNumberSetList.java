@@ -10,9 +10,7 @@ import java.util.Optional;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.stock.model.stock.exceptions.DuplicateSerialNumberSetException;
-import seedu.stock.model.stock.exceptions.DuplicateStockException;
 import seedu.stock.model.stock.exceptions.SerialNumberSetNotFoundException;
-import seedu.stock.model.stock.exceptions.StockNotFoundException;
 
 /**
  * A list of serialNumberSets that enforces uniqueness between its elements and does not allow nulls.
@@ -44,7 +42,7 @@ public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
     public void add(SerialNumberSet toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateStockException();
+            throw new DuplicateSerialNumberSetException();
         }
         internalList.add(toAdd);
     }
@@ -70,11 +68,11 @@ public class UniqueSerialNumberSetList implements Iterable<SerialNumberSet> {
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new StockNotFoundException();
+            throw new SerialNumberSetNotFoundException();
         }
 
         if (!target.isSameSerialNumberSetSource(editedSerialNumberSet) && contains(editedSerialNumberSet)) {
-            throw new DuplicateStockException();
+            throw new DuplicateSerialNumberSetException();
         }
 
         internalList.set(index, editedSerialNumberSet);

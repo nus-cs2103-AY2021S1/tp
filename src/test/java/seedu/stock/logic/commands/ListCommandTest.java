@@ -2,8 +2,8 @@ package seedu.stock.logic.commands;
 
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.stock.logic.commands.CommandTestUtil.showStockAtSerialNumber;
+import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.SERIAL_NUMBER_FIRST_STOCK;
-import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBookSortedSerialNumber;
 

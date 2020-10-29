@@ -20,13 +20,18 @@ public class AccumulatedQuantity {
      */
     public AccumulatedQuantity(String accumulatedQuantity) {
         requireNonNull(accumulatedQuantity);
-        checkArgument(isValidAccQuantity(accumulatedQuantity), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidAccumulatedQuantity(accumulatedQuantity), MESSAGE_CONSTRAINTS);
         this.accumulatedQuantity = accumulatedQuantity;
     }
 
     public AccumulatedQuantity getIncrementedAccumulatedQuantity() {
-        int increased = Integer.parseInt(this.accumulatedQuantity) + 1;
-        return new AccumulatedQuantity(Integer.toString(increased));
+        try {
+            int increased = Integer.parseInt(this.accumulatedQuantity) + 1;
+            return new AccumulatedQuantity(Integer.toString(increased));
+        } catch (Exception e) {
+            //zero denotes integer overflow
+            return new AccumulatedQuantity("0");
+        }
     }
 
     public String getAccumulatedQuantity() {
@@ -36,8 +41,15 @@ public class AccumulatedQuantity {
     /**
      * Returns true if a given int is more than zero or more.
      */
-    public static boolean isValidAccQuantity(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidAccumulatedQuantity(String test) {
+        requireNonNull(test);
+        try {
+            //protective layer against huge string input.
+            Integer.parseInt(test);
+            return test.matches(VALIDATION_REGEX);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

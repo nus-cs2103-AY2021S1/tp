@@ -1,8 +1,8 @@
 package seedu.stock.logic.commands;
 
 import static seedu.stock.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.stock.testutil.TypicalSerialNumberSets.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.PINEAPPLE;
-import static seedu.stock.testutil.TypicalStocks.getTypicalSerialNumberSetsBook;
 import static seedu.stock.testutil.TypicalStocks.getTypicalStockBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +30,9 @@ public class AddCommandIntegrationTest {
         Stock validStock = PINEAPPLE;
 
         Model expectedModel = new ModelManager(model.getStockBook(), new UserPrefs(), getTypicalSerialNumberSetsBook());
+
         expectedModel.addStock(validStock);
+        expectedModel.updateSerialNumberSet(PINEAPPLE.getSource());
 
         assertCommandSuccess(new AddCommand(validStock), model,
                 String.format(AddCommand.MESSAGE_SUCCESS, validStock), expectedModel);

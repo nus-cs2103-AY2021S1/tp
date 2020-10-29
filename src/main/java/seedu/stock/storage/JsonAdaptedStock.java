@@ -33,7 +33,7 @@ class JsonAdaptedStock {
     private final boolean isBookmarked;
 
     /**
-     * Constructs a {@code JsonAdaptedStock} with the given person details.
+     * Constructs a {@code JsonAdaptedStock} with the given stock details.
      */
     @JsonCreator
     public JsonAdaptedStock(@JsonProperty("name") String name, @JsonProperty("serialNumber") String serialNumber,

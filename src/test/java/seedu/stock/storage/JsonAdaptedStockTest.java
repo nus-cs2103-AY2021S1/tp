@@ -34,7 +34,7 @@ public class JsonAdaptedStockTest {
     private static final boolean VALID_IS_BOOKMARKED = BANANA.getIsBookmarked();
 
     @Test
-    public void toModelType_validStockDetails_returnsPerson() throws Exception {
+    public void toModelType_validStockDetails_returnsStock() throws Exception {
         JsonAdaptedStock stock = new JsonAdaptedStock(BANANA);
         assertEquals(BANANA, stock.toModelType());
     }

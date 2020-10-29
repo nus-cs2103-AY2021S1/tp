@@ -11,14 +11,30 @@ searching and ordering supplies, via Command Line Interface (CLI).
 
 Given below are my contributions to the project.
 
-* **New Feature**: Added the ability to update existing items in the storage.
+* **New Feature**: Added the ability to update existing stocks in the inventory.
   * What it does: Allows the user to update the details of the desired stock.
   * Justification: This feature improves the user experience as user can easily edit the details of
-  existing items. Users now do not need to remove the item and then add them back in order to
+  existing stocks. Users now do not need to remove the item and then add them back in order to
   edit the details.
-  * Highlights: This enhancement affects existing commands and commands to be added in future.
-   It required an in-depth analysis of design alternatives.
-   The implementation too was challenging as it required changes to existing commands.
+  * Highlights: Multiple stocks are able to be updated in one step. User can update the name, source, low quantity
+  threshold, quantity, and location details of a stock.
+
+* **New Feature**: Added the ability to sort existing stocks in the inventory.
+  * What it does: Allows the user to sort the stocks in the inventory by the field the user wants.
+  * Justification: This feature improves the user experience as the user can list the existing stocks by
+  the user's order preference. Sorting in alphabetical order also helps for easier viewing of stocks.
+  * Highlights: User can sort by name, source, quantity, serial number, or location. For each field the user can also
+  further specify whether to sort in ascending or descending order.
+  
+* **New Feature**: Added the ability to suggest correct commands to the user.
+  * What it does: Suggests the correct command format to the user if the command user input is in the wrong format.
+  * Justification: This feature improves the user experience as the user can view and type the correct command form
+  easily after entering a faulty command. This makes the user more convenient as every time the user enters a wrong
+  command format, the user will not need to refer to the user guide or help and instead just need to type the suggested
+  message.
+  * Highlights: This feature uses the minimum edit distance heuristics to calculate the closest correct command word.
+  The suggestion for the fields and prefixes is generated based on the user input itself. The minimum edit distance
+  heuristics is implemented using dynamic programming algorithm.
 
 * **Git & Repository**:
   * Created the team repository by forking from `nus-cs2103-AY2021S1/tp`
@@ -36,12 +52,21 @@ Given below are my contributions to the project.
   * Tests other team member's code and determine functional flaws if any.
 
 * **Testing**:
-  * Created JUnit tests for update feature.
+  * Created unit tests for update feature (update command parser).
+  * Created integration tests for update feature (update command).
+  * Created unit tests for suggestion feature (suggestion command parser, suggestion util).
+  * Created integration tests for suggestion feature (suggestion command).
+  * Created unit tests for sort feature (sort command parser, sort util).
+  * Created integration tests for sort feature (sort command).
   * Reviewed other team members' tests and ensure the tests are adequate and working.
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the feature `update`.
+    * Added documentation for the feature `sort`.
+    * Added documentation for the feature `suggestion`.
     * Fix markdown formatting errors.
   * Developer Guide:
     * Added implementation details of the `update` feature.
+    * Added implementation details of the `sort` feature.
+    * Added implementation details of the `suggestion` feature.

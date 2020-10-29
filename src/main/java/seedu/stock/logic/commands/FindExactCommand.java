@@ -16,7 +16,7 @@ import seedu.stock.model.stock.Stock;
 import seedu.stock.model.stock.predicates.FieldContainsKeywordsPredicate;
 
 /**
- * Finds and lists all persons in address book whose name contains any of the argument keywords.
+ * Finds and lists all stocks in stock book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class FindExactCommand extends Command {
