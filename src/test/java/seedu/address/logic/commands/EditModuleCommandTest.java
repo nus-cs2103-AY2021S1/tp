@@ -18,6 +18,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.Trackr;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleId;
 import seedu.address.testutil.ModuleBuilder;
 
 /**

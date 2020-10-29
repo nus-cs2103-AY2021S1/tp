@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.EditModuleCommand;
+import seedu.address.model.module.ModuleId;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 public class EditModuleCommandParserTest {

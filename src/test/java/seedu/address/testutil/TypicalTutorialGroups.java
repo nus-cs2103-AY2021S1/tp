@@ -13,23 +13,33 @@ import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
  * A utility class containing a list of {@code Module} objects to be used in tests.
  */
 public class TypicalTutorialGroups {
+
     public static final TutorialGroup T05 = new TutorialGroup(
             new TutorialGroupId("T05"),
             LocalTime.parse("13:00"),
             LocalTime.parse("14:00"),
             "Monday"
     );
+
     public static final TutorialGroup B06 = new TutorialGroup(
             new TutorialGroupId("B06"),
             LocalTime.parse("12:00"),
             LocalTime.parse("14:00"),
             "Thursday"
     );
+
     public static final TutorialGroup S12 = new TutorialGroup(
             new TutorialGroupId("S12"),
-            LocalTime.parse("8:00"),
+            LocalTime.parse("08:00"),
             LocalTime.parse("10:30"),
             "Friday"
+    );
+
+    public static final TutorialGroup V04 = new TutorialGroup(
+            new TutorialGroupId("V04"),
+            LocalTime.parse("09:00"),
+            LocalTime.parse("10:00"),
+            "Tuesday"
     );
 
     /**
