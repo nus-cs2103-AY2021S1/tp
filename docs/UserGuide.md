@@ -15,6 +15,7 @@ Calo is a desktop app that is **designed for keeping track of calories burnt thr
   - [3.8. Exiting the program : `exit`](#38-exiting-the-program--exit)
   - [3.9. Save](#39-save)
   - [3.10. Archive : `archive`](#310-archive--archive)
+  - [3.11. Recall : `recall`](#311-recall--recall)
   - [3.12. FAQ](#312-faq)
   - [3.13. Command summary](#313-command-summary)
 
@@ -181,9 +182,10 @@ Example:
 *Clear* | `clear`
 | *Delete* | `delete INDEX`<br> e.g., `delete 2`                                                                                                                                   |
 | *Update*   | `update INDEX [n/EXERCISE] [d/DESCRIPTION] [at/DATE] [c/CALORIES]​ [m/MUSCLES_WORKED] [t/TAG]..`<br> e.g., `update 1 n/Push up d/30 at/09-07-2020 c/260 m/chest,arm t/home t/gym`                                           |
-| *Find*  | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| *Find*  | `find [n/name] [d/DESCRIPTION] [at/DATE] [c/CALORIES] [k/KEYWORD...]`<br> e.g., `find n/running`                                                                                                            |
 | *List*   | `list`                                                                                                                                                                |
 | *Archive*   | `archive FILE_LOCATION`    <br> e.g.,`archive data\file_name.txt`                                                                                                                                                                    |
 *Help* | `help`
 *Exit* | `exit`
+| *Recall*   | `recall NAME`
 
