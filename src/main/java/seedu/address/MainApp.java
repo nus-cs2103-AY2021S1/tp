@@ -101,8 +101,7 @@ public class MainApp extends Application {
 
         try {
             scheduleOptional = storage.readSchedule();
-
-            if(!scheduleOptional.isPresent()) {
+            if (!scheduleOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample schedule");
             }
             initialSchedule = scheduleOptional.orElseGet(SampleDataUtil::getSampleSchedule);

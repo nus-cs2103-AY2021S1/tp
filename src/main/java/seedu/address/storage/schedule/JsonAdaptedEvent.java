@@ -1,15 +1,17 @@
 package seedu.address.storage.schedule;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventRecurrence;
-import seedu.address.model.student.Name;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import jfxtras.icalendarfx.components.VEvent;
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventRecurrence;
 
 /**
  * Jackson-friendly version of {@link Event}.
@@ -22,7 +24,6 @@ public class JsonAdaptedEvent {
     private String eventName;
     private String eventStartDateTime;
     private String eventEndDateTime;
-    private String description;
     private String uniqueIdentifier;
     private String eventRecurrence;
 
@@ -33,13 +34,11 @@ public class JsonAdaptedEvent {
     public JsonAdaptedEvent(@JsonProperty("eventName") String eventName,
                               @JsonProperty("eventStartDateTime") String eventStartDateTime,
                               @JsonProperty("eventEndDateTime") String eventEndDateTime,
-                              @JsonProperty("description") String description,
                               @JsonProperty("uniqueIdentifier") String uniqueIdentifier,
                               @JsonProperty("eventRecurrence") String eventRecurrence) {
         this.eventName = eventName;
         this.eventStartDateTime = eventStartDateTime;
         this.eventEndDateTime = eventEndDateTime;
-        this.description = description;
         this.uniqueIdentifier = uniqueIdentifier;
         this.eventRecurrence = eventRecurrence;
     }
@@ -51,7 +50,6 @@ public class JsonAdaptedEvent {
         eventName = source.getEventName();
         eventStartDateTime = source.getEventStartDateTime().toString();
         eventEndDateTime = source.getEventEndDateTime().toString();
-        description = source.getDescription();
         uniqueIdentifier = source.getUniqueIdentifier();
         eventRecurrence = source.getRecurrence().toString();
     }
@@ -81,10 +79,6 @@ public class JsonAdaptedEvent {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "eventEndDateTime"));
         }
 
-        if (description == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "description"));
-        }
-
         if (uniqueIdentifier == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "uid"));
         }
@@ -96,7 +90,7 @@ public class JsonAdaptedEvent {
         EventRecurrence eventRecurrenceEnum;
         try {
             eventRecurrenceEnum = EventRecurrence.checkWhichRecurrence(eventRecurrence);
-        } catch (IllegalArgumentException e) {
+        } catch (ParseException e) {
             throw new IllegalValueException(e.getMessage());
         }
 
@@ -108,7 +102,7 @@ public class JsonAdaptedEvent {
                 throw new IllegalValueException(Event.INVALID_EVENT_START_END_TIME_MSG);
             }
 
-            return new Event(eventName, startDateTime, endDateTime, description, uniqueIdentifier,
+            return new Event(eventName, startDateTime, endDateTime, uniqueIdentifier,
                     eventRecurrenceEnum);
 
         } catch (DateTimeParseException e) {

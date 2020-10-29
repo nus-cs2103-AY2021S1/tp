@@ -81,9 +81,8 @@ public class SampleDataUtil {
 
     public static ReadOnlyEvent getSampleSchedule() {
         Event event = new Event("Lesson event", LocalDateTime.parse("2020-12-03T10:15:30"),
-                LocalDateTime.parse("2020-12-03T10:17:30"), "Alice Pauline Sec 3",
+                LocalDateTime.parse("2020-12-03T10:17:30"),
                 "uidAliceLesson", EventRecurrence.WEEKLY);
-
         List<Event> lst = Arrays.asList(event);
         return new Scheduler(lst);
     }
