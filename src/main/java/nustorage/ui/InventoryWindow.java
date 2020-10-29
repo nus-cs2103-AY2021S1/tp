@@ -56,7 +56,7 @@ public class InventoryWindow extends UiPart<Region> {
         Callback<TableColumn<InventoryRecord, String>,
                 TableCell<InventoryRecord, String>> cellFactory = new Callback<>() {
                     @Override
-                    public TableCell call(final TableColumn<InventoryRecord, String> param) {
+                    public TableCell<InventoryRecord, String> call(final TableColumn<InventoryRecord, String> param) {
                         final TableCell<InventoryRecord, String> cell = new TableCell<>() {
 
                             @Override
@@ -73,7 +73,7 @@ public class InventoryWindow extends UiPart<Region> {
                                     button.setOnAction(event -> {
                                         try {
                                             uiLogic.execute("goto_finance");
-                                            System.out.println(String.format("find_finance id/%s", item));
+                                            System.out.printf("find_finance id/%s%n", item);
                                             logic.execute(String.format("find_finance id/%s", item));
                                         } catch (Exception e) {
                                             e.printStackTrace();
