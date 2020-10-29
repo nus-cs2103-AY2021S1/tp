@@ -486,7 +486,7 @@ Format: `deleteappt INDEX`
 * `INDEX` refers to the appointment's index number as shown in the displayed appointment list in the **Overview** tab.
     * It **must be a positive number**, eg. 1, 2, 3, …​
 
-Example: You want to delete your next upcoming appointment as your patient could not make it.
+Example: You want to delete your next upcoming appointment as your patient could not make it for the appointment.
 
 Step 1: Input `deleteappt 1` and press Enter.
 
