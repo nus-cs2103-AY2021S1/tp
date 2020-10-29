@@ -40,8 +40,7 @@ public abstract class EditCommand extends Command {
             + "Example: " + COMMAND_WORD + " doc 1 n:meeting notes\n\n"
             + "TYPE 'suspect','victim','witness'\n"
             + "Parameters: INDEX [n:NAME] [g:GENDER] [p:PHONE] [e:EMAIL] [a:ADDRESS]\n"
-            + "Example: " + COMMAND_WORD + " suspect 2 e:newEmail.com a:new road crescent\n\n";
-
+            + "Example: " + COMMAND_WORD + " suspect 1 e:newEmail@mail.com a:new road crescent\n\n";
 
     //public static final String MESSAGE_EDIT_CASE_SUCCESS = "Edited Case: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
