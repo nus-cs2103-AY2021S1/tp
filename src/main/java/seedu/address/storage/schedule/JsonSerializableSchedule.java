@@ -12,7 +12,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.ReadOnlyEvent;
 import seedu.address.model.event.Scheduler;
-import seedu.address.model.event.exceptions.DuplicateEventException;
 
 /**
  *  An Immutable Schedule that is serializable to JSON format.

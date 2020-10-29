@@ -7,7 +7,6 @@ import java.time.format.DateTimeParseException;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.Event;

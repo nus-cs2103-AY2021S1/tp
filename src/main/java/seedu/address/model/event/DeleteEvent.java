@@ -8,7 +8,8 @@ import java.time.LocalDateTime;
  */
 public class DeleteEvent extends Event {
 
-    private static final String placeHolderUniqueIdentifier = LocalDateTime.now().toString();
+    private static final String placeHolderUniqueIdentifier =
+            LocalDateTime.of(2020, 12, 25, 23, 30).toString();
     private static final EventRecurrence placeHolderEventRecur = EventRecurrence.NONE;
 
     public DeleteEvent(String eventName, LocalDateTime eventStartDateTime, LocalDateTime eventEndDateTime) {

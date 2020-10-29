@@ -21,8 +21,9 @@ public class ScheduleDeleteCommand extends ScheduleCommand {
             + "Parameters: n/[event name] start/yyyy-mm-ddTHH:mm end/yyyy-mm-ddTHH:mm \n"
             + "Example: " + COMMAND_WORD + "delete" + " n/Lesson start/2020-10-30T16:00 end/2020-10-30T17:00";
 
-    public static final String MESSAGE_DELETE_STUDENT_SUCCESS = "Deleted Event: \n%1$s";
+    public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event: \n%1$s";
     public static final String MESSAGE_NO_MATCHING_EVENT = "Cannot find the event specified";
+    public static final String MESSAGE_EMPTY_EVENT_LIST = "No events in schedule to delete";
 
     private final DeleteEvent eventToDelete;
 
@@ -36,7 +37,7 @@ public class ScheduleDeleteCommand extends ScheduleCommand {
         List<VEvent> vEventList = new ArrayList<>(model.getVEventList());
 
         if (vEventList.size() == 0) {
-            throw new CommandException("No events in schedule to delete");
+            throw new CommandException(MESSAGE_EMPTY_EVENT_LIST);
         }
 
         if (!model.hasEvent(eventToDelete)) {
@@ -44,7 +45,14 @@ public class ScheduleDeleteCommand extends ScheduleCommand {
         }
         model.removeEvent(eventToDelete);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, eventToDelete), false, false, true);
+        return new CommandResult(String.format(MESSAGE_DELETE_EVENT_SUCCESS, eventToDelete), false, false,
+                true, false);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj == this // short circuit if same object
+                || (obj instanceof ScheduleDeleteCommand // instanceof handles nulls
+                && eventToDelete.equals(((ScheduleDeleteCommand) obj).eventToDelete)); // state check
+    }
 }

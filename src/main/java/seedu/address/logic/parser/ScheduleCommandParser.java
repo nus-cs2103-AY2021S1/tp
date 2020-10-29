@@ -26,6 +26,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.event.DeleteEvent;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventRecurrence;
+import seedu.address.model.event.ScheduleViewMode;
 import seedu.address.model.event.UniqueIdentifierGenerator;
 
 /**
@@ -63,19 +64,21 @@ public class ScheduleCommandParser implements Parser<ScheduleCommand> {
     }
 
     private ScheduleViewCommand handleScheduleViewCommand(ArgumentMultimap argumentMultimap) throws ParseException {
-        ScheduleViewCommand scheduleViewCommand = new ScheduleViewCommand();
+
+        ScheduleViewMode viewMode = null;
+        LocalDateTime viewDateTime = null;
 
         if (argumentMultimap.getValue(PREFIX_VIEW_MODE).isPresent()) {
-            String viewMode = argumentMultimap.getValue(PREFIX_VIEW_MODE).get();
-            scheduleViewCommand.setViewMode(ParserUtil.parseViewMode(viewMode));
+            String viewModeString = argumentMultimap.getValue(PREFIX_VIEW_MODE).get();
+            viewMode = (ParserUtil.parseViewMode(viewModeString));
         }
 
         if (argumentMultimap.getValue(PREFIX_VIEW_DATE).isPresent()) {
-            String dateToView = argumentMultimap.getValue(PREFIX_VIEW_DATE).get();
-            scheduleViewCommand.setViewDate(ParserUtil.parseViewDate(dateToView));
+            String viewDateTimeString = argumentMultimap.getValue(PREFIX_VIEW_DATE).get();
+            viewDateTime = (ParserUtil.parseViewDate(viewDateTimeString));
         }
 
-        return scheduleViewCommand;
+        return new ScheduleViewCommand(viewMode, viewDateTime);
     }
 
     private ScheduleAddCommand handleScheduleAddCommand(ArgumentMultimap argumentMultimap) throws ParseException {

@@ -1,8 +1,5 @@
 package seedu.address.logic.commands.schedule;
 
-
-import static java.util.Objects.requireNonNull;
-
 import java.time.LocalDateTime;
 
 import seedu.address.logic.commands.CommandResult;
@@ -18,20 +15,18 @@ public class ScheduleViewCommand extends ScheduleCommand {
             + "date/[yyyy-mm-dd]\n"
             + "Example: event view mode/weekly date/2020-11-22";
 
-    private LocalDateTime viewDateTime;
-    private ScheduleViewMode viewMode;
+    private final LocalDateTime viewDateTime;
+    private final ScheduleViewMode viewMode;
 
-    public ScheduleViewCommand() {
+    /**
+     * Creates a command to view schedule.
+     * @param scheduleViewMode mode to view either weekly or daily.
+     * @param viewDateTime the date time to view.
+     */
+    public ScheduleViewCommand(ScheduleViewMode scheduleViewMode, LocalDateTime viewDateTime) {
+
         super();
-    }
-
-    public void setViewMode(ScheduleViewMode eventScheduleViewMode) {
-        requireNonNull(eventScheduleViewMode);
-        this.viewMode = eventScheduleViewMode;
-    }
-
-    public void setViewDate(LocalDateTime viewDateTime) {
-        requireNonNull(viewDateTime);
+        this.viewMode = scheduleViewMode;
         this.viewDateTime = viewDateTime;
     }
 

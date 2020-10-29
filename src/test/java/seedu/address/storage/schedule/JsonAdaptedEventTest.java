@@ -1,15 +1,15 @@
 package seedu.address.storage.schedule;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.Event;
-import seedu.address.model.event.EventRecurrence;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEvents.ALICE_CLASS_EVENT;
 import static seedu.address.testutil.TypicalEvents.TODO_EVENT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventRecurrence;
 
 public class JsonAdaptedEventTest {
 
