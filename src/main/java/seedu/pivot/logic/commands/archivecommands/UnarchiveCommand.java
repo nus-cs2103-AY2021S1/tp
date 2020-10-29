@@ -30,7 +30,7 @@ public class UnarchiveCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " case 1";
 
-    private static final String MESSAGE_UNARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
+    public static final String MESSAGE_UNARCHIVE_CASE_SUCCESS = "Case unarchived: %1$s";
 
     private static final Logger logger = LogsCenter.getLogger(UnarchiveCommand.class);
 
