@@ -81,7 +81,7 @@ public class EditSuspectCommand extends EditPersonCommand {
                 caseToEdit.getTags(), caseToEdit.getArchiveStatus());
 
         model.setCase(caseToEdit, editedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_SUSPECT_SUCCESS, editedSuspect));
+        model.commitPivot(String.format(MESSAGE_EDIT_SUSPECT_SUCCESS, editedSuspect), false);
 
         return new CommandResult(String.format(MESSAGE_EDIT_SUSPECT_SUCCESS, editedSuspect));
     }

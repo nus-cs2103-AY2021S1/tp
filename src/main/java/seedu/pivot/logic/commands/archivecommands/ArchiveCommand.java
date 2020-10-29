@@ -73,7 +73,7 @@ public class ArchiveCommand extends Command {
         //model.setCase(caseToArchive, updatedCase);
 
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_DEFAULT_CASES);
-        model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
+        model.commitPivot(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase), true);
 
         return new CommandResult(String.format(MESSAGE_ARCHIVE_CASE_SUCCESS, updatedCase));
     }

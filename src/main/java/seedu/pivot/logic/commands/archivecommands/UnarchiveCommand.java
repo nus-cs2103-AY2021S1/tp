@@ -71,7 +71,7 @@ public class UnarchiveCommand extends Command {
         //model.setCase(caseToUnarchive, updatedCase);
 
         model.updateFilteredCaseList(Model.PREDICATE_SHOW_ARCHIVED_CASES);
-        model.commitPivot(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase));
+        model.commitPivot(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase), true);
 
         return new CommandResult(String.format(MESSAGE_UNARCHIVE_CASE_SUCCESS, updatedCase));
     }

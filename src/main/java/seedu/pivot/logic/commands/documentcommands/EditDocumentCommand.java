@@ -99,7 +99,7 @@ public class EditDocumentCommand extends EditCommand {
 
         //update model
         model.setCase(stateCase, updatedCase);
-        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
+        model.commitPivot(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument), false);
 
         return new CommandResult(String.format(MESSAGE_EDIT_DOCUMENT_SUCCESS, editedDocument));
     }
