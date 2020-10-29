@@ -138,7 +138,13 @@ public class Stock {
         List<Note> notesToUpdate = this.notes;
         notesToUpdate.add(noteToAdd);
 
-        return new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+        Stock result = new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+
+        if (this.isBookmarked) {
+            result.setBookmarked();
+        }
+
+        return result;
     }
 
     /**
@@ -160,6 +166,10 @@ public class Stock {
         } else {
             notesToUpdate.remove(indexOfNoteToDelete - 1);
             updatedStock = new Stock(name, serialNumber, source, quantity, location, notesToUpdate);
+        }
+
+        if (this.isBookmarked) {
+            updatedStock.setBookmarked();
         }
 
         return updatedStock;
