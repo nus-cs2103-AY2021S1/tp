@@ -10,7 +10,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.OpenCommand;
 import seedu.pivot.logic.commands.casecommands.OpenCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
@@ -50,7 +49,8 @@ public class OpenCommandParserTest {
 
         //No Index
         assertThrows(ParseException.class, () -> parser.parse(TYPE_CASE));
-        assertParseFailure(parser, TYPE_CASE, String.format(MESSAGE_INVALID_COMMAND_FORMAT, OpenCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, TYPE_CASE, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                OpenCaseCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -61,11 +61,11 @@ public class OpenCommandParserTest {
         //Type is wrong
         assertThrows(ParseException.class, () -> parser.parse(INVALID_TYPE + VALID_INDEX));
         assertParseFailure(parser, INVALID_TYPE + VALID_INDEX, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                OpenCommand.MESSAGE_USAGE));
+                OpenCaseCommand.MESSAGE_USAGE));
 
         //Invalid Index
         assertThrows(ParseException.class, () -> parser.parse(TYPE_CASE + INVALID_INDEX));
         assertParseFailure(parser, TYPE_CASE + INVALID_INDEX, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                OpenCommand.MESSAGE_USAGE));
+                OpenCaseCommand.MESSAGE_USAGE));
     }
 }
