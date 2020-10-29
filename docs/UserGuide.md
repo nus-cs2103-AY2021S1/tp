@@ -29,10 +29,10 @@ The figure below shows the GUI of ProductiveNUS, with its components labelled.
 ### Icon usages
 Wondering what each icon is used for? You can refer to the table below to find out.
 
-| Icon        | Icon usage                                               | Box color |
-|-------------|----------------------------------------------------------|-----------|
-| :clipboard: | - Notes about the command format <br> - Pointers to note | Green     |
-| :bulb:      | - Tip                                                    | Blue      |
+| Icon        | Icon usage                                             | Box color |
+|-------------|--------------------------------------------------------|-----------|
+| :clipboard: | - Notes about the command format<br>- Pointers to note | Green     |
+| :bulb:      | - Tip                                                  | Blue      |
 
 ### Command syntax and terminologies
 
@@ -122,7 +122,6 @@ More examples:
 
  **:clipboard: Pointers to note:**<br>
 * At least one index must be **present**. For example, `delete` without any index will not work.
-* The indexes **must be a positive integer** 1, 2, 3, …​
 * The indexes **must be found in your assignment list**.
 * The indexes **must not be duplicated**. For example, `delete 3 3` will not work.
 </div>
@@ -173,12 +172,13 @@ Format: `find PREFIX/ KEYWORD [MORE_KEYWORDS]`
 You can find your assignments based on keywords you enter. The types of keywords are the name, module code, deadline and priority of assignments. 
 
 This is the table of prefixes used:
-| Prefix | Syntax | Examples | Remarks |
-|-|-|-|-|
-| n/ | n/NAME_OF_ASSIGNMENT \[MORE NAME_OF_ASSIGNMENT\]  | n/Tutorial n/tutorial essay | Case insensitive |
-| mod/ | mod/MODULE_CODE \[MORE MODULE_CODE\] | mod/ST2334 mod/CS2100 cs2103t | Case insensitive |
-| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT \[MORE DATE_OR_TIME_OF_ASSIGNMENT\] | d/24-10-2020 d/1200d/1300 25-11-2020 | Nil |
-| p/ | p/PRIORITY_OF_ASSIGNMENT \[MORE PRIORITY_OF_ASSIGNMENT\] | p/high p/LOW | Case insensitive |
+
+| Prefix | Syntax | Examples |
+|-|-|-|
+| n/ | n/NAME_OF_ASSIGNMENT [MORE NAME_OF_ASSIGNMENT] | - n/Tutorial<br>- n/tutorial essay |
+| mod/ | mod/MODULE_CODE [MORE MODULE_CODE] | - mod/ST2334<br>- mod/CS2100 cs2103t |
+| d/ | d/DATE_OR_TIME_OF_ASSIGNMENT [MORE DATE_OR_TIME_OF_ASSIGNMENT] | - d/24-10-2020 <br>- d/1200<br>- d/1300 25-11-2020 |
+| p/ | p/PRIORITY_OF_ASSIGNMENT [MORE PRIORITY_OF_ASSIGNMENT] | - p/high<br>- p/LOW |
 
 <div markdown="block" class="alert alert-primary">
 
@@ -231,7 +231,6 @@ For example, `remind 2 4` will set reminders for the second and fourth assignmen
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `remind` will not work.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` must be found in your assignment list.
 
 </div>
@@ -252,7 +251,6 @@ For example, `unremind 1` will remove the first assignment in `Your Reminders` (
   
 **:clipboard: Pointers to note:**<br>
 * At least one `INDEX` must be present. For example, `unremind` will not work.
-* `INDEX` **must be a positive integer** 1, 2, 3, …​
 * The `INDEX` must be found in `Your Reminders`.
 
 </div>
@@ -266,7 +264,6 @@ Format: `prioritize INDEX priority/PRIORITY`
 * Sets the priority to the assignment at the specified `INDEX`.
 * Priority levels include LOW, MEDIUM and HIGH.
 * The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
 * If the assignment already has a priority tag, this command will replace the previous priority tag with the new one.
 
 ### Removing priority for assignments : `unprioritize`
@@ -277,7 +274,6 @@ Format: `unprioritze INDEX`
 
 * Removes the priority of the assignment at the specified `INDEX`.
 * The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Marking assignments as done : `done`
 
@@ -287,7 +283,6 @@ Format: `done INDEX`
 
 * Marks the assignment at the specified `INDEX` as done.
 * The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Marking assignments as not done : `undone`
 
@@ -300,7 +295,6 @@ Assignments are marked as not done by default.
 
 * Marks the assignment at the specified `INDEX` as not done.
 * The index refers to the index number shown in the displayed assignment list.
-* The index **must be a positive integer** 1, 2, 3, …​
 
 ### Exiting the program : `exit`
 
