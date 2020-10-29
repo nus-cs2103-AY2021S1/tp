@@ -14,6 +14,7 @@ import seedu.pivot.model.investigationcase.ArchiveStatus;
 public class UiStateManager {
     private static SimpleObjectProperty<Index> caseState = new SimpleObjectProperty<>(null);
     private static SimpleObjectProperty<ArchiveStatus> currentSection = new SimpleObjectProperty<>(null);
+    private static SimpleObjectProperty<String> tabState = new SimpleObjectProperty<>(null);
     private static final Logger logger = LogsCenter.getLogger(UiStateManager.class);
 
     public static SimpleObjectProperty<Index> getCaseState() {
@@ -33,6 +34,27 @@ public class UiStateManager {
         caseState.set(null);
     }
 
+    public static SimpleObjectProperty<String> getTabState() {
+        return tabState;
+    }
+
+    /**
+     * Sets the UI Tab State to given Tab Type.
+     * @param tabType
+     */
+    public static void setTabState(String tabType) {
+        logger.info("UIStateManager: Setting UI Tab State: " + tabType);
+        tabState.set(tabType);
+    }
+
+    /**
+     * Resets the UI Tab State to null.
+     */
+    public static void resetTabState() {
+        logger.info("UIStateManager: Resetting UI Tab State");
+        tabState.set(null);
+    }
+
     /**
      * Signals the GUI to refresh window.
      */
@@ -41,6 +63,10 @@ public class UiStateManager {
         Index index = caseState.get();
         resetCasePanelState();
         setCasePanelState(index);
+
+        String tabType = tabState.get();
+        resetTabState();
+        setTabState(tabType);
     }
 
     public static void setStatusBarArchived() {

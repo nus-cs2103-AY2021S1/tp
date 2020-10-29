@@ -1,5 +1,10 @@
 package seedu.pivot.ui;
 
+import static seedu.pivot.logic.commands.Command.TYPE_DOC;
+import static seedu.pivot.logic.commands.Command.TYPE_SUSPECT;
+import static seedu.pivot.logic.commands.Command.TYPE_VICTIM;
+import static seedu.pivot.logic.commands.Command.TYPE_WITNESS;
+
 import java.util.ArrayList;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -12,6 +17,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -51,6 +57,7 @@ public class MainWindow extends UiPart<Stage> {
     private CasePersonListPanel witnessListPanel;
     private CasePersonListPanel victimListPanel;
     private SimpleObjectProperty<Index> indexSimpleObjectProperty;
+    private SimpleObjectProperty<String> tabSimpleObjectProperty;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -94,6 +101,18 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private TabPane caseTabPane;
 
+    @FXML
+    private Tab documentTab;
+
+    @FXML
+    private Tab suspectTab;
+
+    @FXML
+    private Tab witnessTab;
+
+    @FXML
+    private Tab victimTab;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -116,6 +135,13 @@ public class MainWindow extends UiPart<Stage> {
             @Override
             public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
                 updateCaseInformationPanel((Index) newValue);
+            }
+        });
+
+        UiStateManager.getTabState().addListener(new ChangeListener<Object>() {
+            @Override
+            public void changed(ObservableValue<?> observable, Object oldValue, Object newValue) {
+                setTabSelected((String) newValue);
             }
         });
 
@@ -224,6 +250,25 @@ public class MainWindow extends UiPart<Stage> {
                 investigationCase == null ? new ArrayList<>() : investigationCase.getVictims().stream()
                         .map(x -> (CasePerson) x).collect(Collectors.toList())));
         victimListPanelPlaceholder.getChildren().add(victimListPanel.getRoot());
+    }
+
+    private void setTabSelected(String tabType) {
+        switch (tabType) {
+        case TYPE_DOC:
+            caseTabPane.getSelectionModel().select(documentTab);
+            break;
+        case TYPE_SUSPECT:
+            caseTabPane.getSelectionModel().select(suspectTab);
+            break;
+        case TYPE_VICTIM:
+            caseTabPane.getSelectionModel().select(victimTab);
+            break;
+        case TYPE_WITNESS:
+            caseTabPane.getSelectionModel().select(witnessTab);
+            break;
+        default:
+            caseTabPane.getSelectionModel().clearSelection();
+        }
     }
 
     /**

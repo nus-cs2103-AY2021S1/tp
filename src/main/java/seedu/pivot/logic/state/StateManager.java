@@ -15,6 +15,7 @@ public class StateManager {
 
     private static Optional<Index> state = Optional.empty();
     private static ArchiveStatus currentSection = ArchiveStatus.DEFAULT;
+    private static Optional<String> tabState = Optional.empty();
     private static final Logger logger = LogsCenter.getLogger(StateManager.class);
 
     /**
@@ -106,4 +107,24 @@ public class StateManager {
         return currentSection.equals(ArchiveStatus.DEFAULT);
     }
 
+    /**
+     * Sets the tabState of program to given tabType
+     * @param tabType
+     */
+    public static void setTabState(String tabType) {
+        logger.info("StateManager: Setting tabState with tab" + tabType);
+        assert (tabType != null) : "tabType should not be null";
+        assert (atCasePage()) : "State should not be null";
+        tabState = Optional.of(tabType);
+        UiStateManager.setTabState(tabType);
+    }
+
+    /**
+     * Resets the tabState to empty state.
+     */
+    public static void resetTabState() {
+        logger.info("StateManager: Resetting tabState");
+        tabState = Optional.empty();
+        UiStateManager.resetTabState();
+    }
 }

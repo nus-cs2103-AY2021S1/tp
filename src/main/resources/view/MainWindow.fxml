@@ -69,7 +69,7 @@
                             <padding>
                                 <Insets bottom="10"/>
                             </padding>
-                            <Tab text="Documents">
+                            <Tab fx:id="documentTab" text="Documents">
                                 <AnchorPane VBox.vgrow="ALWAYS">
                                     <StackPane fx:id="documentListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <padding>
@@ -78,7 +78,7 @@
                                     </StackPane>
                                 </AnchorPane>
                             </Tab>
-                            <Tab text="Suspects">
+                            <Tab fx:id="suspectTab" text="Suspects">
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                     <StackPane fx:id="suspectListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <padding>
@@ -87,7 +87,7 @@
                                     </StackPane>
                                 </AnchorPane>
                             </Tab>
-                            <Tab text="Victims">
+                            <Tab fx:id="victimTab" text="Victims">
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                     <StackPane fx:id="victimListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <padding>
@@ -96,7 +96,7 @@
                                     </StackPane>
                                 </AnchorPane>
                             </Tab>
-                            <Tab text="Witnesses">
+                            <Tab fx:id="witnessTab" text="Witnesses">
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                                     <StackPane fx:id="witnessListPanelPlaceholder" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                         <padding>
