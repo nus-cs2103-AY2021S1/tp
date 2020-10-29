@@ -106,6 +106,7 @@ public class MainApp extends Application {
             initialData = new ModuleList();
         }
         return new ModelManager(initialData, initialContactList, initialTodoList, userPrefs);
+
     }
 
     /**
@@ -133,6 +134,7 @@ public class MainApp extends Application {
             initialContactList = new ContactList();
         }
         return initialContactList;
+
     }
 
     /**

@@ -24,6 +24,7 @@ import seedu.address.logic.commands.modulelistcommands.CalculateCapCommand;
 import seedu.address.logic.commands.modulelistcommands.DeleteModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
 import seedu.address.logic.commands.modulelistcommands.RedoCommand;
+import seedu.address.logic.commands.modulelistcommands.TargetCapCalculatorCommand;
 import seedu.address.logic.commands.modulelistcommands.UndoCommand;
 import seedu.address.logic.commands.modulelistcommands.ViewModuleCommand;
 import seedu.address.logic.parser.contactlistparsers.AddContactParser;
@@ -39,9 +40,9 @@ import seedu.address.logic.parser.modulelistparsers.CalculateCapParser;
 import seedu.address.logic.parser.modulelistparsers.DeleteModuleParser;
 import seedu.address.logic.parser.modulelistparsers.EditModuleParser;
 import seedu.address.logic.parser.modulelistparsers.RedoParser;
+import seedu.address.logic.parser.modulelistparsers.TargetCapCalculatorParser;
 import seedu.address.logic.parser.modulelistparsers.UndoParser;
 import seedu.address.logic.parser.modulelistparsers.ViewModuleParser;
-
 
 
 /**
@@ -112,16 +113,26 @@ public class ModuleListParser implements FeatureParser {
 
         case AddContactCommand.COMMAND_WORD:
             return new AddContactParser().parse(arguments);
+
         case AddGradeCommand.COMMAND_WORD:
             return new AddGradeParser().parse(arguments);
+
         case AddCompletedModuleCommand.COMMAND_WORD:
             return new AddCompletedModuleParser().parse(arguments);
+
         case CalculateCapCommand.COMMAND_WORD:
             return new CalculateCapParser().parse(arguments);
+
+        case TargetCapCalculatorCommand.COMMAND_WORD:
+            return new TargetCapCalculatorParser().parse(arguments);
+        //case EditGradeCommand.COMMAND_WORD:
+        //            return new EditGradeParser().parse(arguments);
         case UndoCommand.COMMAND_WORD:
             return new UndoParser().parse(arguments);
+
         case RedoCommand.COMMAND_WORD:
             return new RedoParser().parse(arguments);
+
         //case EditGradeCommand.COMMAND_WORD:
         //            return new EditGradeParser().parse(arguments);
         default:

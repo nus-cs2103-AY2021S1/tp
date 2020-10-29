@@ -18,6 +18,7 @@ public class ListTaskCommand extends Command {
         requireNonNull(model);
         model.updateSortedTodoList(null);
         model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TASKS);
+        model.commitTodoList();
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
