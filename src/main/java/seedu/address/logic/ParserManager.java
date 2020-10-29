@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import seedu.address.logic.parser.FeatureParser;
+import seedu.address.logic.parser.GradeTrackerParser;
 import seedu.address.logic.parser.ModuleListParser;
 import seedu.address.logic.parser.TodoListParser;
 import seedu.address.logic.parser.contactlistparsers.ContactListParser;
@@ -13,19 +14,23 @@ public class ParserManager {
     private final ModuleListParser moduleListParser;
     private final ContactListParser contactListParser;
     private final TodoListParser todoListParser;
+    private final GradeTrackerParser gradeTrackerParser;
 
     /**
      * Creates a Container the holds all the medium parsers.
      * @param moduleListParser parses module related commands.
      * @param todoListParser parses task related commands.
      * @param contactListParser parses contact related commands.
+     * @param gradeTrackerParser parses grade tracker related commands.
      */
     public ParserManager(ModuleListParser moduleListParser,
                          TodoListParser todoListParser,
-                         ContactListParser contactListParser) {
+                         ContactListParser contactListParser,
+                         GradeTrackerParser gradeTrackerParser) {
         this.contactListParser = contactListParser;
         this.todoListParser = todoListParser;
         this.moduleListParser = moduleListParser;
+        this.gradeTrackerParser = gradeTrackerParser;
     }
 
     /**
@@ -35,12 +40,15 @@ public class ParserManager {
      * @throws ParseException when the command word is invalid.
      */
     public FeatureParser select(String commandWord) throws ParseException {
-        if (commandWord.contains("module") || commandWord.contains("undo") || commandWord.contains("redo")) {
+        if (commandWord.contains("module") || commandWord.contains("undo") || commandWord.contains("redo")
+                || commandWord.contains("cap") || commandWord.contains("zoom")) {
             return this.moduleListParser;
         } else if (commandWord.contains("task")) {
             return this.todoListParser;
         } else if (commandWord.contains("contact")) {
             return this.contactListParser;
+        } else if (commandWord.contains("assignment")) {
+            return this.gradeTrackerParser;
         } else {
             throw new ParseException("Does not recognise command type!");
         }

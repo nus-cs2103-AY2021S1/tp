@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
@@ -18,20 +19,43 @@ public class Contact {
     // Identity fields
     private final Name name;
     private final Email email;
-    private final Telegram telegramUsername;
+    private final Telegram telegram;
     private final boolean isImportant;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
+
     /**
-     * Every field must be present and not null.
+     * Creates and initialises a Contact object with a Name, Email and Tag field,
+     * isImportant field, but without a Telegram field.
+     *
+     * @param name Name field of the Contact object.
+     * @param email Email field of the Contact object.
+     * @param tags Set of tags of the Contact object.
      */
-    public Contact(Name name, Email email, Telegram telegramUsername, Set<Tag> tags, boolean isImportant) {
-        requireAllNonNull(name, email, telegramUsername, tags, isImportant);
+    public Contact(Name name, Email email, Set<Tag> tags, boolean isImportant) {
+        requireAllNonNull(name, email);
         this.name = name;
         this.email = email;
-        this.telegramUsername = telegramUsername;
+        this.telegram = null;
+        this.tags.addAll(tags);
+        this.isImportant = isImportant;
+    }
+
+    /**
+     * Every field must be present and not null.
+     *
+     * @param name Name field of the Contact object.
+     * @param email Email field of the Contact object.
+     * @param telegram Telegram field of the Contact object.
+     * @param tags Set of tags of the Contact object.
+     */
+    public Contact(Name name, Email email, Telegram telegram, Set<Tag> tags, boolean isImportant) {
+        requireAllNonNull(name, email, telegram, tags);
+        this.name = name;
+        this.email = email;
+        this.telegram = telegram;
         this.tags.addAll(tags);
         this.isImportant = isImportant;
     }
@@ -44,8 +68,8 @@ public class Contact {
         return email;
     }
 
-    public Telegram getTelegramUsername() {
-        return this.telegramUsername;
+    public Optional<Telegram> getTelegram() {
+        return Optional.ofNullable(this.telegram);
     }
 
     /**
@@ -68,7 +92,7 @@ public class Contact {
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTelegramUsername().equals(getTelegramUsername());
+                && otherPerson.getTelegram().equals(getTelegram());
     }
 
     /**
@@ -77,7 +101,7 @@ public class Contact {
      * @return a new contact.
      */
     public Contact markAsImportant() {
-        return new Contact(this.name, this.email, this.telegramUsername, this.tags, true);
+        return new Contact(this.name, this.email, this.telegram, this.tags, true);
     }
 
     /**
@@ -86,7 +110,7 @@ public class Contact {
      * @return a new contact.
      */
     public Contact markAsNotImportant() {
-        return new Contact(this.name, this.email, this.telegramUsername, this.tags, false);
+        return new Contact(this.name, this.email, this.telegram, this.tags, false);
     }
 
     /**
@@ -125,14 +149,14 @@ public class Contact {
         Contact otherPerson = (Contact) other;
         return otherPerson.getName().equals(getName())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getTelegramUsername().equals(getTelegramUsername())
+                && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, email, telegramUsername, tags);
+        return Objects.hash(name, email, telegram, tags);
     }
 
     @Override
@@ -142,10 +166,11 @@ public class Contact {
                 .append(" Email: ")
                 .append(getEmail())
                 .append(" Telegram: ")
-                .append(getTelegramUsername())
+                .append(getTelegram())
                 .append(" Tags: ")
                 .append(" Important: ")
-                .append(isImportant ? "Yes" : "No");
+                .append(isImportant ? "Yes" : "No")
+                .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();
     }
