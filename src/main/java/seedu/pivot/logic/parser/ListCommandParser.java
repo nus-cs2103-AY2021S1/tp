@@ -8,8 +8,8 @@ import static seedu.pivot.logic.parser.PivotParser.BASIC_COMMAND_FORMAT;
 
 import java.util.regex.Matcher;
 
-import seedu.pivot.logic.commands.ListArchiveCommand;
 import seedu.pivot.logic.commands.ListCommand;
+import seedu.pivot.logic.commands.archivecommands.ListArchiveCommand;
 import seedu.pivot.logic.commands.casecommands.ListCaseCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
