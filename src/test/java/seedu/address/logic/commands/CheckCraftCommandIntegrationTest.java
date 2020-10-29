@@ -12,6 +12,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.LocationList;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -35,7 +36,7 @@ public class CheckCraftCommandIntegrationTest {
     public void setUp() {
         model = new ModelManager(getTypicalItemList(), new LocationList(), new RecipeList(), new UserPrefs());
         IngredientList ingredients = new IngredientList();
-        ingredients.add(new Ingredient(1, 3));
+        ingredients.add(new Ingredient(2, 3));
         // recipe to create 2 apples from 3 bananas
         Recipe recipe = new RecipeBuilder().withId(1).withIngredients(ingredients).withQuantity("2")
                 .withDescription("test").build();
@@ -48,10 +49,11 @@ public class CheckCraftCommandIntegrationTest {
      * Tests for success when item can be crafted with 1 recipe.
      */
     @Test
-    public void execute_craftable_success() {
+    public void execute_craftable_success() throws CommandException {
         CheckCraftCommand ccc = new CheckCraftCommand(APPLE.getName(), new Quantity("3"));
         String expectedMessage = String.format(MESSAGE_SUCCESS_CRAFTABLE, APPLE.getName(), 3)
                 + "\n" + recipeString;
+        System.out.println(ccc.execute(model).getFeedbackToUser());
         assertCommandSuccess(ccc, model, expectedMessage, expectedModel);
     }
 

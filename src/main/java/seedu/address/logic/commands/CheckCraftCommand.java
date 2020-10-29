@@ -14,6 +14,7 @@ import seedu.address.model.item.Item;
 import seedu.address.model.item.Quantity;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
 /**
  * Checks if there are recipes which may be used to craft the desired quantity of the item.
@@ -100,11 +101,17 @@ public class CheckCraftCommand extends Command {
             for (Ingredient ingredient : recipe.getIngredients()) {
                 int itemId = ingredient.getKey();
                 int quantityRequired = ingredient.getValue() * timesToCraft;
-                int currentQuantity = itemList.get(itemId).getQuantity().getNumber();
+                // find the relevant item in item list
+                Item item = itemList.stream()
+                        .filter(item2 -> (item2.getId() == itemId))
+                        .findFirst()
+                        .orElseThrow(IngredientNotFoundException::new); // should never be thrown
+
+                int currentQuantity = item.getQuantity().getNumber();
                 if (quantityRequired <= currentQuantity) {
                     // this recipe can be used
-                    requiredIngredients.append(itemList.get(itemId).getName())
-                            .append("[").append(quantityRequired).append("], ");
+                    requiredIngredients.append(item.getName()).append("[")
+                            .append(quantityRequired).append("], ");
                 } else {
                     // this recipe cannot be used
                     isUsable = false;
