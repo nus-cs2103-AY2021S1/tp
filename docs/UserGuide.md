@@ -35,6 +35,7 @@ Taskmania (based off AB3) is a **desktop app for a project leader to manage team
     - Create a new teammate in a project `newteammate `
     - Edit a teammate's details `editteammate `
     - View a teammate's details `viewteammate `
+    - Delete a teammate `deleteteammate`
     - Return to project view from teammate view `leaveTeammateView `
 - **Summary**
 
@@ -325,6 +326,14 @@ Format: `viewteammate GIT_USER_NAME`
 
 Example: `viewteammate Lucas98` displays all the information about the teammate with the Git User Name Lucas 98 to the user.
 
+### Delete a teammate `deleteteammate`
+
+View all of a specific teammate's details
+
+Format: `deleteteammate GIT_USER_NAME`
+
+Example: `deleteteammate Lucas97` deletes the teammate 
+
 ### Return to project view from teammate view `leaveTeammateView`
 
 Change the view on the screen to project view, when previously on teammate view.
@@ -361,4 +370,5 @@ Action | Format, Examples | Scope
 **Create new teammate** | `newteammate (mn/TEAMMATE_NAME) (mg/GIT_USER_NAME) (mp/PHONE_NUMBER) (me/EMAIL) (ma/ADDRESS)` eg, `newteammate mn/Lucas mg/LucasTai98 mp/93824823 me/lucas@gmail.com ma/18 Evelyn Road`| project scope
 **Edit teammate details** | `editteammate (GIT_USER_NAME) [mn/TEAMMATE_NAME] [mp/PHONE_NUMBER] [me/EMAIL] [ma/ADDRESS]` eg, `editteammate Lucas98 tn/GeNiaaz ta/5 Hacker Way`
 **View a teammate’s details** | `viewteammate GIT_USER_NAME` | project scope
+**Delete a teammate** | `deleteteammate GIT_USER_NAME` | project scope
 **Leave Teammate view to go to Project view** | `leaveteammateview` | project scope
