@@ -121,10 +121,11 @@ public class Tag {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getTagName())
-                .append(" FileAddress: ")
+                .append("\nFileAddress: ")
                 .append(getFileAddress())
-                .append(" Labels: ");
-        getLabels().forEach(builder::append);
+                .append("\nLabels: ");
+        getLabels().forEach((label) -> builder.append(label.getLabel() + ", "));
+        builder.delete(builder.length() - 2, builder.length());
         return builder.toString();
     }
 
