@@ -13,7 +13,6 @@ import java.util.Optional;
 import java.util.regex.Matcher;
 
 import seedu.pivot.commons.core.index.Index;
-import seedu.pivot.logic.commands.EditCommand;
 import seedu.pivot.logic.commands.documentcommands.EditDocumentCommand;
 import seedu.pivot.logic.parser.exceptions.ParseException;
 import seedu.pivot.logic.state.StateManager;
@@ -30,13 +29,13 @@ public class EditDocumentCommandParser implements Parser<EditDocumentCommand> {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(args.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditCommand.MESSAGE_USAGE));
+                    EditDocumentCommand.MESSAGE_USAGE));
         }
         final String docIndex = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
         //convert docIndex to Index class
-        Index documentIndex = ParserUtil.getParsedIndex(docIndex, EditCommand.MESSAGE_USAGE);
+        Index documentIndex = ParserUtil.getParsedIndex(docIndex, EditDocumentCommand.MESSAGE_USAGE);
 
         //get case from state
         Index caseIndex = StateManager.getState();
