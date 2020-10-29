@@ -11,9 +11,9 @@ Welcome to OneShelf. This developer guide aims to introduce potential developers
 OneShelf, so that you can contribute too! <br>
 
 This guide uses a top-down approach design which covers from higher-level design to lower-level design, and
-discusses the implementation of key features as well as the rationale behind certain design decisions with 
+discusses the implementation of key features as well as the rationale behind certain design decisions with
 possible alternatives in code design. Next, there are also links to guides for the tools used in Documentation, Logging,
-Testing, Configuration and DevOps. Lastly, appendices are provided to specify the product scope, requirements, glossary and 
+Testing, Configuration and DevOps. Lastly, appendices are provided to specify the product scope, requirements, glossary and
 instructions for manual testing.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -95,11 +95,11 @@ Figure 4: Structure of the `UI` Component
 
 
 ### Logic component
-The logic component is responsible for all the necessary parsing logic of command, displaying command result 
+The logic component is responsible for all the necessary parsing logic of command, displaying command result
 by instructing `Ui`, and modifies `Model` and/or `Storage` component depending on the command by user.
 
 The following class diagram illustrated the structure of `Logic` component:
-<br> ![Structure of the Logic Component](images/LogicClassDiagram.png) <br> 
+<br> ![Structure of the Logic Component](images/LogicClassDiagram.png) <br>
 Figure 5: Structure of the `Logic` Component
 
 **API** :
@@ -125,7 +125,7 @@ Figure 6: Sequence Diagram of `delete-i 1`
 The Model component corresponds to all the data-related logic that the user works with.
 
 The following class diagram illustrates the structure of the `Model` component:
-<br> 
+<br>
 ![Structure of the Model Component](images/ModelClassDiagram.png) <br>
 Figure 7: Structure of the `Model` Component
 
@@ -157,7 +157,7 @@ Figure 7: Structure of the `Model` Component
 We organised the different data classes into packages (eg.Items) which we will list out the collection of class of that data object
 
 An `Item` consists of `Name`, `Quantity`, `Supplier`, `MaxQuantity`, `Metric` and `Tag`. Once an `item` is deleted,
-its corresponding objects within its composition will also get deleted. An `Item` must have 1 `Name` and `Quantity`, 
+its corresponding objects within its composition will also get deleted. An `Item` must have 1 `Name` and `Quantity`,
 0 or 1 `Supplier`, `MaxQuantity`, `Metric` and 0 or more `Tag` objects.
 
 You may also refer to Figure 8 as shown below:
@@ -165,7 +165,7 @@ You may also refer to Figure 8 as shown below:
 Figure 8: Structure of the `Item`
 
 
-A `Delivery` consists of one `DeliveryName`, `Phone`, `Address`, `Order`. 
+A `Delivery` consists of one `DeliveryName`, `Phone`, `Address`, `Order`.
 
 You may also refer to Figure 9 as shown below:
 <br> ![Structure of the Delivery Component](images/DeliveryClassDiagram.png) <br>
@@ -198,7 +198,8 @@ This section describes some noteworthy details on how certain features are imple
 OneShelf is capable of adding items and deliveries.
 Adding Items and Delivery both are done similarly which will be illustrated with an AddItemActivityDiagram below.
 
-![AddItemActivityDiagram](images/AddItemActivityDiagram.png)
+![AddItemActivityDiagram](images/AddItemActivityDiagram.png) <br>
+Figure 11: AddItemActivityDiagram
 
 Apart from adding a new Item, should there be an existing item in the Inventory Book, `Add` will be able to increase the quantity of that particular Item.
 In this case 2 items are considered the same if they have the same `Name` and `Supplier`.
@@ -214,6 +215,40 @@ Note: Deliveries are all considered unique. Reason being the same person can mak
 
 <div markdown="span" class="alert alert-info">:information_source: **For example:**`John` with the address `Choa Chu Kang Block 259` is able to make multiple orders before his previous deliveries are fulfilled.
 </div>
+
+### Editing Items and Delivery
+OneShelf is capable of editing the current items and deliveries in the list.
+Editing Items and Deliveries both are done similarly which will be illustrated below.
+
+<div markdown="span" class="alert alert-info">:information_source: **For this purpose:**
+`ItemEditCommand` and `DeliveryEditCommand` will be referred as `EditCommand`, similarly to `EditDescriptor` and `EditCommandParser`
+</div>
+
+The following is a class diagram for the `EditCommand`. It takes in an `Index` and a `EditDescriptor` class respectively, which contains of the changes to be made.
+
+![EditClassDiagram](images/EditClassDiagram.png) <br>
+Figure 12: Class Diagram of EditCommand
+
+The following is an activity diagram for the `EditCommand`.
+Once the user enters a valid `EditCommand`, `EditCommandParser` will utilise `ArguementMultiMap` to capture the data of the field to be edited.
+It will then create an `EditDescriptor`, which stores the new data to its respective field, and passed it back to `EditCommand` together with the `Index` that the user has specified.
+`EditCommand` will retrieve the Item/Delivery using the `Index` based on the current list and updates the relevant field.
+
+![EditActivityDiagram](images/EditActivityDiagram.png) <br>
+Figure 13: EditCommand Activity Diagram
+
+Below is a usage example of editing an Item:
+
+Step 1: User executes `edit-i 1 s/Cold Storage`  to edit the supplier from `Index` 1 of the current list. <br>
+Step 2: `ItemEditCommandParser` is called and `ArguementMultiMap` maps "Cold Storage" to `Prefix` "/s". `EditItemDescriptor` will also be created, storing the "Cold Storage" under `Supplier` field. `EditItemDescriptor` and `Index` will then be passed to `ItemEditCommand`.
+<br>
+Step 3: `ItemEditCommand` retrieve the `Item` to be edited from current list. `ItemEditCommand#createEditedItem` will be called to create the new `Item` with the replaced field. <br>
+Step 4: `ItemEditCommand` replaces the existing `Item` to the new `Item` created. <br>
+
+Below is a sequence diagram of the above usage.
+
+![ItemEditCommandSequenceDiagram](images/ItemEditCommandSequenceDiagram.png)
+Figure 14: ItemEditCommand Sequence Diagram
 
 ### Command History Traversal
 Much like Window's Command Prompt, OneShelf supports traversal of command history with the arrow up and down key.
@@ -231,7 +266,7 @@ Below is the sequence diagram when user pressing the arrow up button with `Comma
 ![CommandHistoryTraversalSequenceDiagram](images/CommandHistoryTraversalSequenceDiagram.png)
 
 When the user, while having the `CommandBox` selected, pressing the arrow up key, it'll prompt the GUI to call `CommandBox`'s `handleHistoryNavigation(Event)` which will call `HistoryManager`'s `previousCommand()` method.
-`previousCommand()` will attempt to return the previous command entered by user, if any. Then `CommandBox` will call `TextField`'s `setText(String)` on the return value of `previousCommand()` which will set the text for the User 
+`previousCommand()` will attempt to return the previous command entered by user, if any. Then `CommandBox` will call `TextField`'s `setText(String)` on the return value of `previousCommand()` which will set the text for the User
 in the GUI.
 
 ### Finding Items and Delivery
@@ -247,30 +282,30 @@ to search using the `DELIVERYNAME`, `PHONE`, `ADDRESS` or `ORDER` using `find-d`
 Note that the implementation of `find-i` and `find-d` are relatively similar and in this example, we will only show
 `find-i`.
 
+The following activity diagram summarizes what happens when a user executes a `find` command:
+
+![FindCommandActivityDiagram](images/FindActivityDiagram.png)
+
 By using `ArgumentMultimap`, we are able to record the searching criteria together with the prefixes. We will then pass this criteria along with the prefix to create a Predicate that matches the specified field object which implements `Predicate<Item>`.
 The predicate is then combined and passed to the `InventoryModel#UpdateItemListFilter` which will then be used to set the predicate on the existing filteredlist.
 
 Below is a usage example:
 
 Step 1: User executes `find-i s/NTUC` command to search the list of items by Supplier <br>
-Step 2: `ArguementMultiMap` maps each prefix to their values and `ItemFindCommandParser` checks which prefix has a
+Step 2: `ItemFindCommandParser` is called and `ArguementMultiMap` maps each prefix to their values and checks which prefix has a
 value <br>
 Step 3: The value and prefix is then used to create the predicate and passed to `ItemFindCommand` <br>
 Step 4: `ItemFindCommand` executes the command and update the filteredList <br>
 
 
-<div markdown="block" class="alert alert-info">
+<div markdown="block" class="alert alert-info">:information_source: **Note:**
 There is a slight difference in `ADDRESS`, `PHONE`, `ORDER` predicate. The original implementation of predicates will only return true if there is an exact match.
 The issue comes with that these field might be too long and logically do not make sense to search the whole content of the field.
 Hence, we have modified it to allow the predicate to match the substrings of the whole content.
 </div>
 
 You can refer to the sequence diagram as shown below:
-![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a `find` command:
-
-![FindCommandActivityDiagram](images/FindActivityDiagram.png)
+![ItemFindCommandSequenceDiagram](images/ItemFindCommandSequenceDiagram2.png)
 
 ### Undo/Redo Command
 
@@ -355,7 +390,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 ### Help Window
 There are 2 types of help window: `help summary` and `help start`.
 The `logic` behind help command is similar to other commands in terms of `parsing`.
-In this section, we will only discuss the main difference of `Help Window` as compared to 
+In this section, we will only discuss the main difference of `Help Window` as compared to
 other features' implementation.
 
 Refer to the code snippet shown below which is related to `help summary` command:
@@ -375,12 +410,12 @@ Refer to the code snippet shown below which is related to `help summary` command
     }
 ```
 After parsing of help command has been done *(Refer to Figure 6 for similar sequence diagram)*,
-`HelpSummaryCommand#execute(Model)` will override `isShowPreview` 
+`HelpSummaryCommand#execute(Model)` will override `isShowPreview`
 field from `CommandResult` to be true.
-This method returns `HelpCommandResult` which will interact with `Ui` component to display 
+This method returns `HelpCommandResult` which will interact with `Ui` component to display
 the result in the user interface. Similar to this, the only difference for `help start` is that isShowHelp is
 the field to be overridden as true. <br>
-Also notice that `HelpSummaryCommand#execute(Models)` takes in `HELP_SUMMARY` as the `popUpContent`, 
+Also notice that `HelpSummaryCommand#execute(Models)` takes in `HELP_SUMMARY` as the `popUpContent`,
 which is the message that will be shown to users in the new window.
 If there is a need for any changes in the help message, `HELP_SUMMARY` can be found in `Message` class inside
 `commons/core` package.
@@ -539,7 +574,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 3c1. OneShelf shows an error message.
 
         Use case resumes at step 2.
-        
+
 **Use case: UC04 - User opens help window**
 
 **Actor**: User
@@ -558,9 +593,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. User requests to open up Help Start window.
 
   * 3a1. OneShelf does **not** open a new Help Start Window.
-  
+
   Use case ends.
-    
+   
 **Use case: UC05 - Undoing a command**
 
 **Actor**: User
@@ -600,7 +635,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4a1. OneShelf gives an appropriate message informing the user that there are no more redoable states to go to.
   
   Use case ends.
-    
 
 ### Non-Functional Requirements
 
@@ -625,7 +659,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Item**: Restaurant's inventory item which can be restaurant materials *(i.e fork, spoon, chair)* or ingredients
 *(i.e milk, cheese)*
 * **Delivery**: Delivery order that has yet to be delivered out from the restaurant
-* **Book**: There are 2 types of book, namely: Inventory Book and Delivery Book which stores the data of your 
+* **Book**: There are 2 types of book, namely: Inventory Book and Delivery Book which stores the data of your
 inventory items and pending deliveries respectively
 
 
@@ -655,19 +689,40 @@ if there is no existing same item. If there is an existing same item,
 
 1. Adding an item
     1. Test Case: `add-i n/Chicken q/123 s/NTUC`
-       Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added 
-       
+       Expected: Item with `Name` of Chicken, `Quantity` of 123 and `Supplier` of NTUC added
+
     1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
-       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added when there is no existing same item. 
+       Expected: Item with `Name` of Chicken, `Quantity` of 123, `Supplier` of NTUC, `MaxQuantity` of 500 and `Metric` of kg added when there is no existing same item.
 
 ### Adding to an existing item
 
 1. Adding to an existing item
     1. Test Case: `add-i n/Chicken q/123 s/NTUC`
        Expected: Item with `Name` of Chicken and `Supplier` of NTUC will have it's `Quantity` combine with input item's `Quantity`. `MaxQuantity` `Tags` `Metric` will be adopted from the existing item.
-       
+
     1. Test Case: `add-i n/Chicken q/123 s/giant max/500 metric/kg`
        Expected: User will receive an error message as `MaxQuantity` or `Metric` should not be defined when adding to existing item.
+
+### Editing Command
+
+1. Editing an item or delivery
+
+    1. Prerequisites: List all item or delivery using `list-i` and `list-d` respectively.
+
+    1. Test Case: `edit-i 1 metric/KG` <br>
+       Expected: Metric of the `Item` located at Index 1 of the current list will be changed to "KG".
+
+    1. Test Case: `edit-i 2 t/` <br>
+       Expected: Tag of the `Item` located at Index 2 of the current list will be empty.
+
+    1. Test Case: `edit-d 3 p/85734829` <br>
+       Expected: Phone number of the `Delivery` located at Index 3 of the current list will be changed to 85734829.
+
+    1. Test Case: `edit-i 1` or `edit-d 3` <br>
+       Expected: No item or delivery is edited. Error details shown in status message.
+
+    1. other incorrect edit commands to try: `edit`, edit x n/TUNA`, ... (where x is larger than the list size, x is a negative number or x is not an integer) <br>
+       Expected: Similar to previous.
 
 ### Deleting an item
 
@@ -681,7 +736,7 @@ if there is no existing same item. If there is an existing same item,
    1. Test case: `delete-i 0`<br>
       Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size or 
+   1. Other incorrect delete commands to try: `delete-i`, `delete-i x`, `...` (where x is larger than the list size or
    x is a negative number)<br>
       Expected: Similar to previous.
       

@@ -43,7 +43,7 @@ public class DeliveryEditCommand extends DeliveryCommand {
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91111111 ";
 
-    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Delivery: %1$s";
+    public static final String MESSAGE_EDIT_ITEM_SUCCESS = "Edited Delivery: \n%1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This delivery already exists in the delivery book.";
 

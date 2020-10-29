@@ -305,40 +305,60 @@ Finds items or deliveries whose attributes contain any of the given keywords.
 
 ##### 3.1.5.a `find-i`
 
-Format: `find-i PREFIX KEYWORD [MORE_KEYWORDS]`
+Format: `find-i [n/NAME] [s/SUPPLIER] [t/TAG]`
 
 * The search is case-insensitive. e.g `chicken` will match `CHICKEN`
 * The order of the keywords does not matter. e.g. `Chicken steak` will match `steak Chicken`
-* Name, Supplier and Tag can be searched
+* `Name`, `Supplier` and `Tag` can be searched
 * Only full words will be matched e.g. `chicke` will not match `chicken`
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `chicken steak` will return `chicken steak`, `steak beef`
 * More than one Prefix can be specified (i.e. `AND` search).
-  e.g. 'find-i n/Chicken s/NTUC' will return items matching name and supplier.
+  e.g. `find-i n/Chicken s/NTUC` will return items matching name and supplier.
+* Finding multiple `Tag` needs to be seperated e.g. `find-i t/meat t/perishable`
 
-Examples:
-* `find-i n/Chicken` returns `chicken` and `chicken salad` items.
-* `find-i s/Cold Storage t/meat` returns item with supplier of Cold Storage and tags of meat.
+Example:
+* `find-i s/ntuc t/meat` using [Figure 1](#uiwithannotationpng) as the starting point.
+
+1. Select the Command Box and type in `find-i s/ntuc t/meat`.
+
+2. Either press 'Enter' on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display, and the number of matches will be shown.
+<br>
+![find-command-4](images/find-command-1.PNG)
+<br>
+<br>
+
 
 ##### 3.1.5.b `find-d`
 
-Format: `find-d PREFIX KEYWORD [MORE_KEYWORDS]`
-
+Format: `find-d [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`
 
 * The search is case-insensitive. e.g `john` will match `JOHN`
 * The order of the keywords does not matter. e.g. `John Lim` will match `Lim John`
-* Name, Phone, Address, Order can be searched
+* `Name`, `Phone`, `Address`, `Order` can be searched
 * Only full words for name will be matched e.g. `Bob` will not match `Bobby`
 * Any phone/address/order containing the search string within them will be matched. e.g. "Holland V" will match "Holland Village"
 * Items matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `Bernice Adam` will return `Bernice Yeo`, `Adam Tan`
 * More than one Prefix can be specified (i.e. `AND` search).
-  e.g. 'find-d n/Bernice p/85783742' will return delivery matching name and phone.
+  e.g. `find-d n/Bernice p/85783742` will return delivery matching name and phone.
  
-Examples:
-* `find-d n/John` returns `John Tay` and `John Lim`'s deliveries
+Example:
+* `find-d n/alex aileen` using [Figure 1](#uiwithannotationpng) as the starting point.
 
+1. Select the Command Box and type in `find-d n/alex aileen`
 
+2. Either press 'Enter' on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display, and the number of matches will be shown.
+<br>
+<a name="findexample1"></a>
+![find-command-2](images/find-command-2.PNG)
+
+<br>
+<br>
 
 #### 3.1.6 Listing all items or delivery: `list-i` or `list-d`
 
@@ -348,7 +368,18 @@ that match your find KEYWORD. If you would like to show **all** the items and de
 
 Format: `list-i` or `list-d`
 
+Example: 
+* `list-i` using the result of [find example](#findexample1) as a starting point.
 
+1. Select the Command Box and type in `list-i`.
+
+2. Either press 'Enter' on your keyboard or click Send to execute the command.
+
+3. Success Message will be shown in the Result Display.
+<br>
+![list-command-1](images/list-command-1.PNG)
+<br>
+<br>
 
 #### 3.1.7 Deleting an item or delivery: `delete-i` or `delete-d`
 
@@ -404,10 +435,11 @@ Format: `undo`
 
 2. Either press Enter on your keyboard or click Send to execute the command.
 <br>
-![edit-i example one step three](images/undo%20example%20one%20step%20two.png)
+![edit-i example one step three](images/undo-example-one-step-two.png)
 <br>
 <br>
 
+<a name="undoExample1Step2"></a>
 3. Select the Command box and type in `undo`
 
 4. Repeat step 2
@@ -430,8 +462,7 @@ Example 1: `redo` using [Figure 1](#uiwithannotationpng) as the starting point.
 
 1. Follow steps 1 - 4 of [Example 1](#undoExample1) for the `undo` command
 
-<a name="undoExample1Step2"></a>
-2. Select the Command box and type in `undo`
+2. Select the Command box and type in `redo`
 
 3. Either press Enter on your keyboard or click Send to execute the command
 
@@ -543,7 +574,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Clear from Inventory**  | `clear-i`            |
 |**Delete from Inventory** | `delete-i INDEX`<br> e.g., `delete 3`         |
 |**Edit Inventory**   | `edit-i INDEX [n/NAME] [q/QUANTITY] [s/SUPPLIER] [max/MAX_QUANTITY] [metric/METRIC] [t/TAG]…​`<br> e.g.,`edit 1 n/Chicken q/50`    |
-|**Find in Inventory**   | `find-i PREFIX KEYWORD [MORE_KEYWORDS]`<br> e.g., `find-i n/Chicken Steak`     |
+|**Find in Inventory**   | `find-i [n/NAME] [s/SUPPLIER] [t/TAG]`<br> e.g., `find-i s/ntuc t/meat`     |
 |**List Inventory**   | `list-i` |
 |**Remove from Inventory** | `remove-i INDEX q/QUANTITY`    |
 
@@ -557,7 +588,7 @@ You may refer to the [video](#installationvideo) of installation guide.
 |**Delete from Delivery** | `delete-d INDEX`<br> e.g., `delete 3`     |
 |**Edit Delivery**   | `edit-d INDEX [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]`<br> e.g.,`edit 3 n/AARON p/91111233`   |
 |**List Delivery**   | `list-d` |
-|**Find in Delivery**  | `find-d PREFIX KEYWORD [MORE_KEYWORDS]` <br> e.g., `find-d n/Alex`   |
+|**Find in Delivery**  | `find-d [n/NAME] [p/PHONE] [a/ADDRESS] [o/ORDER]` <br> e.g., `find-d n/alex aileen`   |
 
 --------------------------------------------------------------------------------------------------------------------
 
