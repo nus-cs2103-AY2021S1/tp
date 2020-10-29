@@ -1,11 +1,11 @@
 package seedu.address.model.event;
 
-import jfxtras.icalendarfx.components.VEvent;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.TypicalEvents.ALICE_CLASS_EVENT;
+
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static seedu.address.testutil.TypicalEvents.ALICE_CLASS_EVENT;
+import jfxtras.icalendarfx.components.VEvent;
 
 public class MapperTest {
 

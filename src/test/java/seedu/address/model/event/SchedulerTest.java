@@ -10,14 +10,12 @@ import static seedu.address.testutil.TypicalEvents.getTypicalScheduler;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import jfxtras.icalendarfx.components.VEvent;
-import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.ReadOnlyVEvent;
 import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.event.exceptions.EventNotFoundException;

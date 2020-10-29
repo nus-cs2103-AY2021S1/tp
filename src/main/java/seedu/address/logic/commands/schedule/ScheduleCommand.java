@@ -1,15 +1,6 @@
 package seedu.address.logic.commands.schedule;
 
-import static java.util.Objects.requireNonNull;
-
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.util.function.Predicate;
-
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.Model;
-import seedu.address.model.student.Student;
 
 /**
  * Finds and list all students with classes on a given date.

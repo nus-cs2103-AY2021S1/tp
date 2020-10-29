@@ -1,9 +1,9 @@
 package seedu.address.testutil;
 
+import java.time.LocalDateTime;
+
 import seedu.address.model.event.Event;
 import seedu.address.model.event.EventRecurrence;
-
-import java.time.LocalDateTime;
 
 /**
  * A utility class to help with building Event objects.

@@ -25,6 +25,7 @@ public class Event {
 
     /**
      * Creates an Event object that will be link to the user's schedule.
+     *
      * @param eventName
      * @param eventStartDateTime
      * @param eventEndDateTime
@@ -45,6 +46,7 @@ public class Event {
 
     /**
      * Validates an event name to ensure it is not blank
+     *
      * @param eventName
      * @return
      */
@@ -94,6 +96,7 @@ public class Event {
 
     /**
      * Returns true if both events has the same data fields
+     *
      * @param obj the event to be compared
      */
     @Override
@@ -131,21 +134,11 @@ public class Event {
 
     /**
      * Returns true if the this event overlaps with another event.
+     *
      * @param otherEvent the event to be compared
      */
     public boolean isOverlapping(Event otherEvent) {
         return eventStartDateTime.isBefore(otherEvent.eventEndDateTime)
                 && otherEvent.eventStartDateTime.isBefore(eventEndDateTime);
-    }
-
-    public boolean isSameDay() {
-        return this.eventStartDateTime.toLocalDate().equals(eventEndDateTime.toLocalDate());
-    }
-
-    public boolean isSameStartAndEndTime(Event event) {
-        return eventStartDateTime.toLocalTime().equals(event.eventStartDateTime.toLocalTime())
-                && eventEndDateTime.toLocalTime().equals(event.eventEndDateTime.toLocalTime())
-                // this is assuming that both events are a one day event
-                && eventStartDateTime.getDayOfWeek().equals(event.eventStartDateTime.getDayOfWeek());
     }
 }

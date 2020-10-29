@@ -26,7 +26,8 @@ public class StorageManager implements Storage {
     /**
      * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
      */
-    public StorageManager(ReeveStorage reeveStorage, UserPrefsStorage userPrefsStorage, ScheduleStorage scheduleStorage) {
+    public StorageManager(ReeveStorage reeveStorage,
+                          UserPrefsStorage userPrefsStorage, ScheduleStorage scheduleStorage) {
         super();
         this.reeveStorage = reeveStorage;
         this.userPrefsStorage = userPrefsStorage;

@@ -10,8 +10,8 @@ import seedu.address.model.event.Event;
 
 public class ScheduleAddCommand extends ScheduleCommand {
 
-    public static final String MESSAGE_USAGE = "schedule add n/[characters] start/yyyy-mm-ddTHH:mm " +
-            "end/yyyy-mm-ddTHH:mm "
+    public static final String MESSAGE_USAGE = "schedule add n/[characters] start/yyyy-mm-ddTHH:mm "
+            + "end/yyyy-mm-ddTHH:mm "
             + "r/[weekly, daily, none]" + "\n"
             + "Example: schedule add n/lesson start/2020-10-30T16:00 end/2020-10-30T17:00 r/weekly";
 

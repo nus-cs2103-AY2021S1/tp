@@ -1,5 +1,7 @@
 package seedu.address.model.event;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,8 +12,6 @@ import java.time.temporal.TemporalAdjusters;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.admin.Admin;
 import seedu.address.model.student.admin.ClassTime;
-
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 public class LessonEvent extends Event {
 

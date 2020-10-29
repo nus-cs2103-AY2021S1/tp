@@ -12,18 +12,23 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
 
-import jfxtras.icalendarfx.components.VEvent;
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
+import jfxtras.icalendarfx.components.VEvent;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.*;
+import seedu.address.model.Model;
+import seedu.address.model.ReadOnlyReeve;
+import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.Reeve;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.ReadOnlyEvent;
 import seedu.address.model.event.ScheduleViewMode;
 import seedu.address.model.student.Student;
 import seedu.address.testutil.StudentBuilder;
+
+
 
 public class AddCommandTest {
 
@@ -211,7 +216,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void removeEvent(Event Event) {
+        public void removeEvent(Event event) {
             throw new AssertionError("This method should not be called.");
         }
     }
