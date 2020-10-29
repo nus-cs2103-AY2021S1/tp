@@ -136,45 +136,118 @@ Examples:
 
 ### Todo List Features
 
+Todo List can store all of your tasks that you need to complete. Before you start learning how to use the commands
+for Todo List, you should first understand the details of a task.
+
+#### What is a Task ? : `Task`
+
+A task contains 5 type of information that can be useful when you are tying to track all the things that you need to do.
+Below are the explanations for each information that you can add to a task.
+
+* **`TASK_NAME`**
+
+  * Represents the name of the task which can be a short description.
+  
+  * Can only consist of 30 characters.
+  
+  * _**Tips :**_ You can set the `TASK_NAME` to be short and clear, for instance, you can name the task as "Finish Lab09".
+    this way, you can read through the list much faster.
+    
+* **`TAG`**
+
+  * Represents a single-word (tag) that can help describe the type of the task.
+  
+* **`PRIORITY`**
+
+  * Represents how important the task is.
+  
+  * You can choose 4 **pre-defined** priority level, which are,
+    * `HIGHEST`
+    * `HIGH`
+    * `NORMAL`
+    * `LOW`
+    
+* **`DATE`**
+
+  * You can use `DATE` based on your need, for instance, you can set the `DATE as the deadline of a task or
+    a target deadline that is earlier than the real deadline. It's all up to you.
+    
+* **`STATUS`**
+
+  * Represents the progress status of a task.
+  
+  * Only have two value which are `Completed` or `Note Completed`.
+  
+  * When you create a new task, it will have a status of `Not Completed` by default.
+
 #### Adding a task: `addtask`
 
 Adds a task to the list.
 
-Format: `addtask` **_`[n/TASK_NAME]`_** **_`[t/TAG]`_** **_`[p/PRIORITY]`_** **_`[d/DATE]`_**
+Format: `addtask` `n/TASK_NAME` `[t/TAG]...` `[p/PRIORITY]` `[d/DATE]`
 
-* All fields except the name of the task are optional.
-* Name of the task should not be longer than 30 characters.
-* You can provide more than one tag.
-* Date must be in the form of YYYY-MM-DD.
+* All fields except `TASK_NAME` are **optional**.
+
+* The order of the input does not matter.
+
+* `TASK_NAME` should not be longer than **30 characters**.
+
+* You can provide more than one `TAG` e.g. `t/LAB t/DAILY`.
+
+* You can choose 4 level of `PRIORITY` i.e. `HIGHEST`, `HIGH`, `NORMAL`, `LOW`.
+
+* Input for `PRIORITY` is not case-sensitive e.g. `highest`, `Highest` work fine.
+
+* `Date` must be in the form of `YYYY-MM-DD` e.g. `2020-12-20`.
 
 Examples: 
-* `addtask n/read book t/DAILY HOBBY p/low d/2020-10-10` adds the specified task.
+
+* `addtask n/read book t/DAILY t/HOBBY p/low d/2020-10-10` adds a task with the given input.
+
+* `addtask n/finish assignemnt t/SCHOOL d/2020-12-10` adds a task with the given input.
 
 #### Deleting a task: `deletetask`
 
 Deletes a task from the list.
 
-Format: `deletetask` **_`INDEX`_**
+Format: `deletetask` `INDEX`
 
-* See index from the list.
-* Index must be a positive integer.
+* You can get the `INDEX` from the current displayed list under the `Tasks` tab.
+
+* Index must be a **positive integer**.
 
 Examples:
+
 * `deletetask 1` deletes the first task in the list.
+
+* `deletetask 2` deletes the second task in the list.
 
 #### Editing a task: `edittask`
 
 Edits a task in the list.
 
-Format: `edittask` `INDEX` **_`[n/TASK_NAME]`_** **_`[t/TAG]`_** **_`[p/PRIORITY]`_** **_`[d/DATE]`_**
+Format: `edittask` `INDEX` `[n/TASK_NAME]` `[t/TAG]...` `[p/PRIORITY]` `[d/DATE]`
 
-* See index from the list.
-* Index must be a positive integer.
+* You can get the `INDEX` from the current displayed list under the `Tasks` tab.
+
+* `INDEX` must be a **positive integer**.
+
+* The order of the input does not matter.
+
 * At least one field must not be empty.
 
+* `TASK_NAME` should not be longer than **30 characters**.
+
+* Editing the `TAG` will overwrite all the current `TAG`s.
+
 Examples:
+
 * `edittask 1 n/read chapter 5 p/HIGH` edits the first task name to `read chapter 5` and
-and priority to `HIGH`.
+and the priority to `HIGH`.
+
+* `edittask 2 n/read tutorial d/2020-11-04` edits the second task name to `read tutorial` and
+and the `DATE` to `2020-11-04`.
+
 
 #### Locating tasks: `findtask`
 
@@ -240,60 +313,93 @@ Format: `findtask [n/NAME_KEYWORDS] [d/DATE] [p/PRIORITY] [t/TAG_KEYWORDS]`
 
 #### Marking a task as completed: `completetask`
 
-Labels a task as COMPLETED.
+Labels a task as `Completed`.
 
-Format: `completetask` **_`INDEX`_**
+Format: `completetask` `INDEX`
 
-* See index from the list.
-* Index must be a positive integer.
+* You can get the `INDEX` from the current displayed list under the `Tasks` tab.
+
+* `INDEX` must be a **positive integer**.
+
+* _**Tips :**_ You can change back the status to `Not Completed` by using either the `undo` or `resettask` command.
 
 Examples:
-* `completetask 1` label first task in the list as completed.
+
+* `completetask 1` labels the first task in the list as `Completed`.
+
+* `completetask 2` labels the second task in the list as `Completed`.
 
 #### Resetting a task: `resettask`
 
-Reset the status of a task back to NOT COMPLETED.
+Reset the status of a task back to `Not Completed`.
 
-Format: `resettask` **_`INDEX`_**
+Format: `resettask` `INDEX`
 
-* See index from the list.
-* Index must be a positive integer.
+* You can get the `INDEX` from the current displayed list under the `Tasks` tab.
+
+* `INDEX` must be a **positive integer**.
 
 Examples:
+
+* `resettask 1` reset the first task in the list.
+
 * `resettask 2` reset the second task in the list.
 
 #### Sorting tasks: `sorttask`
 
 Sorts the list based on a criterion.
 
-Format: `sorttask` **_`[REVERSED]`_** **_`[CRITERION]`_**
+Format: `sorttask` `[r]` `CRITERION`
 
-* **_`[REVERSED]`_** is a signle character 'r'.
-* Add **_`[REVERSED]`_** to reverse the ordering of the list.
-* **_`[CRITERION]`_** is pre-defined i.e. choose from `NAME`, `PRIORITY`, `DATE`.
-* **_`[CRITERION]`_** is not case-sensitive.
+* `r` indicates if the sorted list should have reversed order, for example, if `sorttask priority` sorts
+  the list from the highest priority to the lowest priority then `sorttask r` will sort the list
+  from the lowest to the highest priority instead.
+  
+* `r` is **optional**.
+
+* `CRITERION` is **pre-defined**, you can choose `NAME`, `PRIORITY`, or `DATE`.
+
+* `CRITERION` is not case-sensitive e.g `priority, PRIORITY` work fine.
 
 Examples:
-* `sorrtask priority` sorts the task from lowest to highest priority.
-* `sorrtask r priority` sorts the task from the highest to the lowest.
 
+* `sorrtask date` sorts the task from lowest to highest priority.
 
-#### Archiving a task: `archivetask`
+* `sorrtask r date` sorts the task from the highest to the lowest.
+
+#### Listing all tasks: `listtask`
+
+List all the tasks on the list and resets ordering.
+
+Format: `listtask`
+
+* _**Tips :**_ You can use `listtask` to go back to the original list after 
+  performing a `findtask` or `sorttask` command.
+
+#### Archiving a task: `archivetask` **(To be implemented)**
 
 Archives a task from the list.
 
-Format: `archivetask` **_`INDEX`_**
+Format: `archivetask` `INDEX`
 
-* See index from the list.
-* Index must be a positive integer.
+* You can get the `INDEX` from the current displayed list under the `Tasks` tab.
 
-Examples: `archivetask 1` archive the first task.
+* `INDEX` must be a **positive integer**.
+
+Examples: 
+
+* `archivetask 1` archive the first task.
+
+* `archivetask 2` archive the second task.
 
 #### Clearing the list: `cleartask`
 
 Clears all tasks in the list.
 
 Format: `cleartask`
+
+* _**Tips :**_ If you accidentally cleared the whole list, you can always use the `undo` command
+  to restore the list.
 
 
 ### Contact List Features
