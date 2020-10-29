@@ -18,7 +18,8 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Contact[] getSamplePersons() {
         return new Contact[] {
-            new Contact(new ContactName("Alex Yeoh"), new Email("alexyeoh@example.com"),
+            /*
+            new Contact(new Name("Alex Yeoh"), new Email("alexyeoh@example.com"),
                 new Telegram("@alexyeoh"), getTagSet("friends")),
             new Contact(new ContactName("Bernice Yu"), new Email("berniceyu@example.com"),
                 new Telegram("@bernice"), getTagSet("colleagues", "friends")),
@@ -29,7 +30,11 @@ public class SampleDataUtil {
             new Contact(new ContactName("Irfan Ibrahim"), new Email("irfan@example.com"),
                 new Telegram("@irfan"), getTagSet("classmates")),
             new Contact(new ContactName("Roy Balakrishnan"), new Email("royb@example.com"),
+            new Contact(new Name("Roy Balakrishnan"), new Email("royb@example.com"),
+                new Telegram("@roybala"))
+                // getTagSet("colleagues"))
                 new Telegram("@roybala"), getTagSet("colleagues"))
+        */
         };
     }
 

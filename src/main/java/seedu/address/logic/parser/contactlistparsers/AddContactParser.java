@@ -60,9 +60,9 @@ public class AddContactParser implements Parser<AddContactCommand> {
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
             Telegram telegram = ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get());
-            contact = new Contact(name, email, telegram, tagList);
+            contact = new Contact(name, email, telegram, tagList, false);
         } else {
-            contact = new Contact(name, email, tagList);
+            contact = new Contact(name, email, tagList, false);
         }
 
         requireNonNull(contact);

@@ -19,14 +19,15 @@ public class Contact {
     private final ContactName name;
     private final Email email;
     private final Telegram telegram;
+    private final boolean isImportant;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
 
 
     /**
-     * Creates and initialises a Contact object with a Name, Email and Tag field, but
-     * without a Telegram field.
+     * Creates and initialises a Contact object with a Name, Email and Tag field,
+     * isImportant field, but without a Telegram field.
      *
      * @param name Name field of the Contact object.
      * @param email Email field of the Contact object.
@@ -38,6 +39,7 @@ public class Contact {
         this.email = email;
         this.telegram = null;
         this.tags.addAll(tags);
+        this.isImportant = isImportant;
     }
 
     /**
@@ -54,6 +56,7 @@ public class Contact {
         this.email = email;
         this.telegram = telegram;
         this.tags.addAll(tags);
+        this.isImportant = isImportant;
     }
 
     public ContactName getName() {
@@ -91,6 +94,43 @@ public class Contact {
     }
 
     /**
+     * Marks the contact as important
+     *
+     * @return a new contact.
+     */
+    public Contact markAsImportant() {
+        return new Contact(this.name, this.email, this.telegram, this.tags, true);
+    }
+
+    /**
+     * Marks the contact as not important
+     *
+     * @return a new contact.
+     */
+    public Contact markAsNotImportant() {
+        return new Contact(this.name, this.email, this.telegram, this.tags, false);
+    }
+
+    /**
+     * Checks if this contact is important.
+     *
+     * @return true if this contact is important.
+     */
+    public boolean isImportant() {
+        return this.isImportant;
+    }
+
+    /**
+     * Returns String to represent the improtance of this contact.
+     * This method is created to avoid having some logic in the UI.
+     *
+     * @return a String that will be displayed in the Ui.
+     */
+    public String getIsImportantForUi() {
+        return isImportant ? "Important" : "Not important";
+    }
+
+    /**
      * Returns true if both contacts have the same identity and data fields.
      * This defines a stronger notion of equality between two contacts.
      */
@@ -119,6 +159,8 @@ public class Contact {
                 .append(getEmail())
                 .append(" Telegram: ")
                 .append(getTelegram().isPresent() ? getTelegram().get() : "")
+                .append(" Important: ")
+                .append(isImportant ? "Yes" : "No")
                 .append(" Tags: ");
         getTags().forEach(builder::append);
         return builder.toString();

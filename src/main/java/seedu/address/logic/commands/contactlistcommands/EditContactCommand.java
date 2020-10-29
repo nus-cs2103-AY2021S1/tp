@@ -101,21 +101,21 @@ public class EditContactCommand extends Command {
         ContactName updatedName = editContactDescriptor.getName().orElse(contactToEdit.getName());
         Email updatedEmail = editContactDescriptor.getEmail().orElse(contactToEdit.getEmail());
         Set<Tag> updatedTags = editContactDescriptor.getTags().orElse(contactToEdit.getTags());
+        boolean isImportant = contactToEdit.isImportant();
 
         if (editContactDescriptor.getTelegram().isPresent()) {
             Telegram updatedTelegram = editContactDescriptor
                     .getTelegram().get();
-            editedContact = new Contact(updatedName, updatedEmail, updatedTelegram, updatedTags);
+            editedContact = new Contact(updatedName, updatedEmail, updatedTelegram, updatedTags, isImportant);
         } else if (contactToEdit.getTelegram().isPresent()) {
             Telegram telegram = contactToEdit.getTelegram().get();
-            editedContact = new Contact(updatedName, updatedEmail, telegram, updatedTags);
+            editedContact = new Contact(updatedName, updatedEmail, telegram, updatedTags, isImportant);
         } else {
-            editedContact = new Contact(updatedName, updatedEmail, updatedTags);
+            editedContact = new Contact(updatedName, updatedEmail, updatedTags, isImportant);
         }
 
         logger.info("Edited contact created: " + editedContact.toString());
         return editedContact;
-
     }
 
     @Override
