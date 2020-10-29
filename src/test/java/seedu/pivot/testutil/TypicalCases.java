@@ -34,7 +34,7 @@ public class TypicalCases {
     // The cases here are linked to the test file: typicalPersonsPivot.json
     // If the Case is modified here, it has to be modified there too.
     public static final Case ALICE_PAULINE_ASSAULT = new CaseBuilder().withTitle("Alice Pauline Assault")
-            .withDocument("name", "test1.txt")
+            .withDocument("name", "validButShouldNotExist.txt")
             .withStatus("COLD")
             .withVictims(TOM)
             .withWitnesses(JANICE)
