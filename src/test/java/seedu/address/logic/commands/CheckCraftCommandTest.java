@@ -40,7 +40,7 @@ public class CheckCraftCommandTest {
     @BeforeEach
     public void setUp() {
         IngredientList ingredients = new IngredientList();
-        ingredients.add(new Ingredient(1, 3));
+        ingredients.add(new Ingredient(2, 3));
         // recipe to create 2 apples from 3 bananas
         Recipe recipe = new RecipeBuilder().withId(1).withIngredients(ingredients).withQuantity("2")
                 .withDescription("test").build();

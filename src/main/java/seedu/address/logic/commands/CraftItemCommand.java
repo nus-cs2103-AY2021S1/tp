@@ -21,6 +21,7 @@ import seedu.address.model.item.Quantity;
 import seedu.address.model.recipe.Ingredient;
 import seedu.address.model.recipe.IngredientList;
 import seedu.address.model.recipe.Recipe;
+import seedu.address.model.recipe.exceptions.IngredientNotFoundException;
 
 /**
  * CraftItemCommand represents a craft item command with hidden
@@ -134,31 +135,32 @@ public class CraftItemCommand extends Command {
         IngredientList ingredientList = recipeToUse.getIngredients();
         ArrayList<Item> itemList = new ArrayList<>(model.getFilteredItemList());
         // Storage into hashmap to use for updating
-        HashMap<Integer, Integer> requiredIngredients = new HashMap<>();
-
-        // check if there is enough of each ingredient in inventory
-        if (!checkIngredients(ingredientList, itemList, requiredIngredients, recipeProductQuantity)) {
-            throw new CommandException(MESSAGE_INSUFFICIENT_INGREDIENTS);
-        }
-
-        // update ingredients, decrease each by quantity required since ingredients are consumed
-        requiredIngredients.forEach((itemId, quantityRequired) -> {
-            try {
-                new AddQuantityToItemCommand(itemList.get(itemId).getName(), -quantityRequired).execute(model);
-            } catch (CommandException e) {
-                // change of quantity should never fail
-                logger.info("error in changing quantity of item " + itemId);
-            }
-        });
-
-        // update the quantity of the item crafted
-        new AddQuantityToItemCommand(itemName, productQuantity).execute(model);
+        HashMap<String, Integer> requiredIngredients = new HashMap<>();
 
         StringBuilder displayMessage = new StringBuilder();
         // indicate if user left out the recipe index
         if (hasDefaultIndex) {
             displayMessage.append(MESSAGE_MISSING_RECIPE_INDEX);
         }
+
+        // check if there is enough of each ingredient in inventory
+        if (!checkIngredients(ingredientList, itemList, requiredIngredients, recipeProductQuantity)) {
+            displayMessage.append(MESSAGE_INSUFFICIENT_INGREDIENTS);
+            throw new CommandException(displayMessage.toString());
+        }
+
+        // update ingredients, decrease each by quantity required since ingredients are consumed
+        requiredIngredients.forEach((itemName, quantityRequired) -> {
+            try {
+                new AddQuantityToItemCommand(itemName, -quantityRequired).execute(model);
+            } catch (CommandException e) {
+                // change of quantity should never fail
+                logger.info("error in changing quantity of item " + itemName);
+            }
+        });
+
+        // update the quantity of the item crafted
+        new AddQuantityToItemCommand(itemName, productQuantity).execute(model);
 
         // indicate if crafted more than intended due to recipe
         if (hasCraftedExcess) {
@@ -180,16 +182,22 @@ public class CraftItemCommand extends Command {
      * @param requiredIngredients The required amount of ingredients to consume.
      * @return Whether the crafting can be done.
      */
-    private boolean checkIngredients(IngredientList ingredientList, ArrayList<Item> itemList,
-                                     HashMap<Integer, Integer> requiredIngredients, int recipeProductQuantity) {
+    private boolean checkIngredients(IngredientList ingredientList, List<Item> itemList,
+                                     HashMap<String, Integer> requiredIngredients, int recipeProductQuantity) {
         for (Ingredient ingredient : ingredientList) {
             int itemId = ingredient.getKey();
             int quantityRequired = ingredient.getValue() * productQuantity / recipeProductQuantity;
-            int currentQuantity = itemList.get(itemId).getQuantity().getNumber();
+            // find the relevant item in item list
+            Item item = itemList.stream()
+                    .filter(item2 -> item2.getId() == itemId)
+                    .findFirst()
+                    .orElseThrow(IngredientNotFoundException::new); // should never be thrown
+
+            int currentQuantity = item.getQuantity().getNumber();
             if (quantityRequired > currentQuantity) {
                 return false;
             }
-            requiredIngredients.put(itemId, quantityRequired);
+            requiredIngredients.put(item.getName(), quantityRequired);
         }
         return true;
     }
