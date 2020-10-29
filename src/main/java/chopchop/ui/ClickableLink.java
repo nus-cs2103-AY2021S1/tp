@@ -3,8 +3,6 @@
 package chopchop.ui;
 
 import chopchop.MainApp;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Hyperlink;
 
 public class ClickableLink extends Hyperlink {
@@ -20,11 +18,6 @@ public class ClickableLink extends Hyperlink {
 
         this.url = url;
 
-        this.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent t) {
-                MainApp.the().getHostServices().showDocument(ClickableLink.this.url);
-            }
-        });
+        this.setOnAction(t -> MainApp.the().getHostServices().showDocument(ClickableLink.this.url));
     }
 }

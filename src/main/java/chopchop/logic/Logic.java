@@ -11,6 +11,7 @@ import chopchop.model.ReadOnlyEntryBook;
 import chopchop.model.ingredient.Ingredient;
 import chopchop.model.recipe.Recipe;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 
 /**
  * API of the Logic component
@@ -85,6 +86,16 @@ public interface Logic {
      * Returns the input history filtered by a prefix.
      */
     List<String> getInputHistory(String prefix);
+
+    /**
+     * Returns an unmodifiable view of the recommended recipe list.
+     */
+    FilteredList<Recipe> getRecommendedRecipeList();
+
+    /**
+     * Returns an unmodifiable view of the recommended recipe list that have ingredients that expire soon.
+     */
+    FilteredList<Recipe> getExpiringRecipeList();
 
     /**
      * Set the user prefs' GUI settings.

@@ -8,6 +8,7 @@ import java.util.Optional;
 import chopchop.commons.util.Result;
 import chopchop.commons.util.Strings;
 
+import chopchop.logic.commands.ListRecommendationCommand;
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 
@@ -47,8 +48,12 @@ public class ListCommandParser {
                 case INGREDIENT:
                     return Result.of(new ListIngredientCommand());
 
+                case RECOMMENDATION:
+                    return Result.of(new ListRecommendationCommand());
+
                 default:
-                    return Result.error("Can only list recipes or ingredients ('%s' invalid)", target.fst());
+                    return Result.error("Can only list recipes, ingredients or recommendations ('%s' invalid)",
+                            target.fst());
                 }
             });
     }
