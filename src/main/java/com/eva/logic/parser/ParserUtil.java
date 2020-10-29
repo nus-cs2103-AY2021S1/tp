@@ -24,7 +24,6 @@ import com.eva.model.person.Address;
 import com.eva.model.person.Email;
 import com.eva.model.person.Name;
 import com.eva.model.person.Phone;
-import com.eva.model.person.applicant.ApplicationStatus;
 import com.eva.model.person.applicant.InterviewDate;
 import com.eva.model.person.staff.leave.Leave;
 import com.eva.model.tag.Tag;
@@ -40,7 +39,6 @@ public class ParserUtil {
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
-     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
@@ -140,7 +138,6 @@ public class ParserUtil {
 
     /**
      * Parses the commands inside comment input
-     *
      * @param comment comment input
      * @return Comment object created with input
      * @throws ParseException
@@ -173,7 +170,6 @@ public class ParserUtil {
             throw new ParseException(CommentCommand.MESSAGE_USAGE);
         }
     }
-
     /**
      * Parses {@code String leaveDates} into a {@code Leave}.
      * Leading and trailing whitespaces will be trimmed.
@@ -200,7 +196,6 @@ public class ParserUtil {
 
     /**
      * Parses the date arguments inside individual leave input
-     *
      * @param leaveArgsList add leave input
      * @return list of leaves created.
      * @throws ParseException if the any leaveArgs in {@code leaveArgsList} is invalid.
@@ -219,7 +214,6 @@ public class ParserUtil {
 
     /**
      * Converts string with details of comments into a Comment object
-     *
      * @param comments strings of details
      * @return Set of comment objects
      * @throws ParseException
@@ -252,15 +246,5 @@ public class ParserUtil {
             throw new ParseException(DateUtil.MESSAGE_CONSTRAINTS);
         }
         return new InterviewDate(value.trim());
-    }
-
-    /**
-     * Parses {@code String value} into a {@code Application Status}.
-     */
-    public static ApplicationStatus parseApplicationStatus(String value) throws ParseException {
-        if (!ApplicationStatus.isValidApplicationStatus(value)) {
-            throw new ParseException(ApplicationStatus.MESSAGE_CONSTRAINTS);
-        }
-        return new ApplicationStatus(value);
     }
 }
