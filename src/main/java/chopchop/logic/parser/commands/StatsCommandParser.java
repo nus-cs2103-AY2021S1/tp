@@ -3,11 +3,6 @@
 
 package chopchop.logic.parser.commands;
 
-import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
-import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
-import static chopchop.logic.parser.commands.CommonParser.getFirstAugmentedComponent;
-import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -15,9 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
+
 import chopchop.commons.util.Result;
 import chopchop.commons.util.StringView;
-import chopchop.commons.util.Strings;
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.StatsIngredientClearCommand;
 import chopchop.logic.commands.StatsIngredientRecentCommand;
@@ -26,8 +21,14 @@ import chopchop.logic.commands.StatsRecipeClearCommand;
 import chopchop.logic.commands.StatsRecipeMadeCommand;
 import chopchop.logic.commands.StatsRecipeRecentCommand;
 import chopchop.logic.commands.StatsRecipeTopCommand;
-import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
+
+import static chopchop.commons.util.Strings.ARG_AFTER;
+import static chopchop.commons.util.Strings.ARG_BEFORE;
+import static chopchop.commons.util.Strings.COMMAND_STATS;
+import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
+import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
+import static chopchop.logic.parser.commands.CommonParser.checkArguments;
 
 public class StatsCommandParser {
 
@@ -35,13 +36,7 @@ public class StatsCommandParser {
      * Parses a 'stats' command. Syntax(es):
      */
     public static Result<? extends Command> parseStatsCommand(CommandArguments args) {
-        ensureCommandName(args, Strings.COMMAND_STATS);
-
-        Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of(
-            Strings.ARG_BEFORE, Strings.ARG_AFTER))).isPresent()) {
-            return Result.error("'stats' command doesn't support '%s'", foo.get());
-        }
+        ensureCommandName(args, COMMAND_STATS);
 
         return getCommandTarget(args, /* acceptsPlural: */ true)
             .then(target -> {
@@ -49,26 +44,10 @@ public class StatsCommandParser {
 
                 switch (target.fst()) {
                 case RECIPE:
-                    if (target.snd().equals("top")) {
-                        return Result.of(new StatsRecipeTopCommand());
-                    }
-                    if (target.snd().equals("recent")) {
-                        return Result.of(new StatsRecipeRecentCommand());
-                    }
-                    if (target.snd().equals("clear")) {
-                        return Result.of(new StatsRecipeClearCommand());
-                    }
-
-                    return parseDateRecipeCommand(target.snd().strip(), args);
+                    return parseRecipeStatsCommand(args, target.snd().strip());
 
                 case INGREDIENT:
-                    if (target.snd().equals("clear")) {
-                        return Result.of(new StatsIngredientClearCommand());
-                    }
-                    if (target.snd().equals("recent")) {
-                        return Result.of(new StatsIngredientRecentCommand());
-                    }
-                    return parseDateIngredientCommand(target.snd().strip(), args);
+                    return parseIngredientStatsCommand(args, target.snd().strip());
 
                 default:
                     return Result.error("Can only find stats of recipes or ingredients ('%s' invalid)", target.fst());
@@ -76,23 +55,64 @@ public class StatsCommandParser {
             });
     }
 
+    private static Result<? extends Command> parseRecipeStatsCommand(CommandArguments args, String kind) {
+        var c = "stats recipe";
+        switch (kind) {
+        case "top":
+            return ensureNoArgs(args, c + " top", new StatsRecipeTopCommand());
+
+        case "clear":
+            return ensureNoArgs(args, c + " clear", new StatsRecipeClearCommand());
+
+        case "recent":
+            return ensureNoArgs(args, c + " recent", new StatsRecipeRecentCommand());
+
+        case "used":
+            return parseDateRecipeCommand(kind, args);
+
+        default:
+            return Result.error("Expected one of 'top', 'used', 'recent', or 'clear'"
+                + " after '%s' (found '%s')", c, kind);
+        }
+    }
+
+    private static Result<? extends Command> parseIngredientStatsCommand(CommandArguments args, String kind) {
+        var c = "stats ingredient";
+
+        switch (kind) {
+        case "clear":
+            return ensureNoArgs(args, c + " clear", new StatsIngredientClearCommand());
+
+        case "recent":
+            return ensureNoArgs(args, c + " recent", new StatsIngredientRecentCommand());
+
+        case "used":
+            return parseDateIngredientCommand(kind, args);
+
+        default:
+            return Result.error("Expected one of 'used', 'recent', or 'clear'"
+                + " after '%s' (found '%s')", c, kind);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
     private static Result<StatsRecipeMadeCommand> parseDateRecipeCommand(String name, CommandArguments args) {
-        if (!name.equals("used")) {
-            return Result.error("This is an invalid command. Try 'stats recipe used', 'stats recipe top', "
-                + "stats recipe recent' or 'stats recipe clear'");
+        Optional<String> err;
+        var supportedArgs = List.of(ARG_BEFORE, ARG_AFTER);
+        if ((err = checkArguments(args, "stats recipe", supportedArgs)).isPresent()) {
+            return Result.error(err.get());
         }
 
-        Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER);
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'stats' command doesn't support edit-arguments (found '%s')",
-                foo.get());
-        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
-            return Result.error("'stats recipe' command doesn't support '%s'", foo.get());
-        }
-
-        var after = args.getArgument(Strings.ARG_AFTER);
-        var before = args.getArgument(Strings.ARG_BEFORE);
+        var after = args.getArgument(ARG_AFTER);
+        var before = args.getArgument(ARG_BEFORE);
 
         try {
 
@@ -109,22 +129,14 @@ public class StatsCommandParser {
 
     private static Result<StatsIngredientUsedCommand> parseDateIngredientCommand(String name, CommandArguments args) {
 
-        if (!name.equals("used")) {
-            return Result.error("This is an invalid command. Try 'stats ingredient used',"
-                + "stats ingredient recent' or 'stats ingredient clear'");
+        Optional<String> err;
+        var supportedArgs = List.of(ARG_BEFORE, ARG_AFTER);
+        if ((err = checkArguments(args, "stats ingredient", supportedArgs)).isPresent()) {
+            return Result.error(err.get());
         }
 
-        Optional<ArgName> foo;
-        var supportedArgs = List.of(Strings.ARG_BEFORE, Strings.ARG_AFTER);
-        if ((foo = getFirstAugmentedComponent(args)).isPresent()) {
-            return Result.error("'stats' command doesn't support edit-arguments (found '%s')",
-                foo.get());
-        } else if ((foo = getFirstUnknownArgument(args, supportedArgs)).isPresent()) {
-            return Result.error("'stats ingredient' command doesn't support '%s'", foo.get());
-        }
-
-        var after = args.getArgument(Strings.ARG_AFTER);
-        var before = args.getArgument(Strings.ARG_BEFORE);
+        var after = args.getArgument(ARG_AFTER);
+        var before = args.getArgument(ARG_BEFORE);
 
         if (before.size() > 1 || after.size() > 1) {
             return Result.error("Multiple dates specified");
@@ -157,5 +169,14 @@ public class StatsCommandParser {
         } else {
             return Optional.of(LocalDateTime.parse(val, timeFormatter));
         }
+    }
+
+    private static Result<? extends Command> ensureNoArgs(CommandArguments args, String cmd, Command ret) {
+        Optional<String> err;
+        if ((err = checkArguments(args, cmd)).isPresent()) {
+            return Result.error(err.get());
+        }
+
+        return Result.of(ret);
     }
 }

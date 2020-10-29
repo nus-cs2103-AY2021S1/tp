@@ -2,23 +2,19 @@
 
 package chopchop.logic.parser.commands;
 
-import java.util.List;
 import java.util.Optional;
 
 import chopchop.commons.util.Result;
-import chopchop.commons.util.Strings;
-
-import chopchop.logic.commands.ListRecommendationCommand;
-import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
-
 import chopchop.logic.commands.Command;
 import chopchop.logic.commands.ListRecipeCommand;
 import chopchop.logic.commands.ListIngredientCommand;
+import chopchop.logic.commands.ListRecommendationCommand;
 
+import static chopchop.commons.util.Strings.COMMAND_LIST;
 import static chopchop.logic.parser.commands.CommonParser.ensureCommandName;
 import static chopchop.logic.parser.commands.CommonParser.getCommandTarget;
-import static chopchop.logic.parser.commands.CommonParser.getFirstUnknownArgument;
+import static chopchop.logic.parser.commands.CommonParser.checkArguments;
 
 public class ListCommandParser {
 
@@ -31,12 +27,12 @@ public class ListCommandParser {
      * @return     a ListCommand, if the input was valid.
      */
     public static Result<? extends Command> parseListCommand(CommandArguments args) {
-        ensureCommandName(args, Strings.COMMAND_LIST);
+        ensureCommandName(args, COMMAND_LIST);
 
         // we expect no named arguments
-        Optional<ArgName> foo;
-        if ((foo = getFirstUnknownArgument(args, List.of())).isPresent()) {
-            return Result.error("'list' command doesn't support '%s'", foo.get());
+        Optional<String> err;
+        if ((err = checkArguments(args, "list")).isPresent()) {
+            return Result.error(err.get());
         }
 
         return getCommandTarget(args, /* acceptsPlural: */ true)

@@ -8,38 +8,54 @@ import java.util.Optional;
 import chopchop.commons.util.Pair;
 import chopchop.commons.util.Result;
 import chopchop.commons.util.StringView;
-
 import chopchop.logic.parser.ArgName;
 import chopchop.logic.parser.CommandArguments;
 
 public class CommonParser {
 
     /**
-     * Finds the first named argument in the given {@code args} that isn't part of {@code knownArgs}
-     * and returns it so we can print a nice error message. If all names are part of the given list,
-     * then an empty optional is returned.
+     * Checks that the named arguments only contain those in the {@code knownArgs} list. If there was an
+     * unexpected argument, it returns an error message. If not, it returns an empty optional.
+     *
+     * If acceptsEditArguments is false, then it also checks that none of the arguments contain augmented
+     * components (and it returns an appropriate message too).
      */
-    public static Optional<ArgName> getFirstUnknownArgument(CommandArguments args, List<ArgName> knownArgs) {
-        return args.getAllArguments()
-            .stream()
-            .filter(p -> !knownArgs.contains(p.fst()))
-            .map(p -> p.fst())
-            .findFirst();
+    public static Optional<String> checkArguments(CommandArguments args, String cmdname,
+        List<ArgName> knownArgs, boolean acceptsEditArguments) {
+
+        // it's easier to do this imperatively.
+        for (var arg : args.getAllArguments()) {
+            if (!arg.fst().getComponents().isEmpty() && !acceptsEditArguments) {
+                return Optional.of(String.format("'%s' command doesn't support edit-arguments (found '%s')",
+                    cmdname, arg.fst()
+                ));
+            } else if (!knownArgs.contains(arg.fst())) {
+                return Optional.of(String.format("'%s' command doesn't support '%s'",
+                    cmdname, arg.fst()
+                ));
+            }
+        }
+
+        return Optional.empty();
     }
 
     /**
-     * Finds the first augmented argument in the given {@code args} and returns it (optionally), so
-     * we can print a nice error message. The intended use of this function is to parse commands
-     * that don't take augmented arguments (which is all commands except EDIT).
+     * Convenience overload of {@code checkArguments} for commands that don't support edit args.
      */
-    public static Optional<ArgName> getFirstAugmentedComponent(CommandArguments args) {
+    public static Optional<String> checkArguments(CommandArguments args, String cmdname,
+        List<ArgName> knownArgs) {
 
-        return args.getAllArguments()
-            .stream()
-            .filter(arg -> !arg.fst().getComponents().isEmpty())
-            .map(p -> p.fst())
-            .findFirst();
+        return checkArguments(args, cmdname, knownArgs, false);
     }
+
+    /**
+     * Convenience overload of {@code checkArguments} for commands that take no arguments.
+     */
+    public static Optional<String> checkArguments(CommandArguments args, String cmdname) {
+        return checkArguments(args, cmdname, List.of(), false);
+    }
+
+
 
     /**
      * Gets the 'target' of a command, which is either 'ingredient' or 'recipe'. Returns either an error
