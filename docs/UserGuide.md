@@ -226,21 +226,29 @@ Format: `remind INDEX [MORE_INDEXES]`
 
 You can set reminders for specific assignments which will be displayed in `Your Reminders` (Highlighted in red in the figure below) for your easy referral.
 
-   ![UserGuideYourReminders](images/UserGuideYourReminders.png)
-   *Figure 1: `Your Reminders` highlighted in red*
+   ![YourReminders](images/YourReminders.png)
+   *Figure X: `Your Reminders` highlighted in red*
 
 You can use the `INDEX` of the assignment as shown in your assignment list to set reminders for that assignment. 
 
-For example, `remind 1` will set reminders for the first assignment in your assignment list ("CS1231S Homework" as shown in the figure below) and adds it to `Your Reminders`.
+For example, `remind 1` will set reminders for the first assignment in your assignment list ("Statistics tutorial" as shown in the Figure X) and adds it to `Your Reminders` (Figure X).
 
-      ---------------------------Figure of GUI with CS1231S Homework (Highlighted red) added into Your Reminders----------------------------
+   ![Remind1](images/Remind1.png)
+   *Figure X: Before "Statistics tutorial" is added into `Your Reminders`*
+      
+   ![Remind1InYourReminders](images/Remind1InYourReminders.png)
+   *Figure X: "Statistics tutorial" (highlighted in red) is added into `Your Reminders`*
 
 You can set reminders for **more than one** assignments at a time as well. 
 
-For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list and adds both assignments to `Your Reminders`.
+For example, `remind 2 4` will set reminders for the second and fourth assignment in your assignment list ("Essay" and "Assignment 3" respectively as shown in Figure X) and adds both assignments to `Your Reminders` (Figure X).
 
 
-      ---------------------------Figure of GUI with second and fourth assignment (Highlighted red) added into Your Reminders----------------------------
+   ![Remind24](images/Remind24.png)
+   *Figure X: Before "Essay" and "Assignment 3" are added into `Your Reminders`*
+      
+   ![Remind24InYourReminders](images/Remind24InYourReminders.png)
+   *Figure X: "Essay" and "Assignment 3" (highlighted in red) are added into `Your Reminders`*
 
 
 <div markdown="block" class="alert alert-primary">
@@ -259,9 +267,11 @@ You can remove your reminded assignments from `Your Reminders` by specifying the
 
 For example, `unremind 1` will remove the first assignment in `Your Reminders` ("CS2106 Lab" as shown in the figure below).
 
-      ---------------------------------Figure of GUI before CS2106 Lab is removed from Your Reminders---------------------------------
-
-      ---------------------------------Figure of GUI after CS2106 Lab is removed from Your Reminders----------------------------------
+   ![Unemind1](images/Unremind1.png)
+   *Figure X: Before "Statistics tutorial" (highlighted in red) is removed from `Your Reminders`*
+      
+   ![Unremind1YourReminders](images/Unremind1YourReminders.png)
+   *Figure X: "Statistics tutorial" is removed from`Your Reminders`*
 
 <div markdown="block" class="alert alert-primary">
   
