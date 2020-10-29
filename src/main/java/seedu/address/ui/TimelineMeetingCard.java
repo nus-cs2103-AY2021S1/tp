@@ -59,10 +59,10 @@ public class TimelineMeetingCard extends UiPart<Region> {
     }
 
     public void setOverdue() {
-        vbox.setStyle("-fx-background-color: rgb(102, 0, 0);" +
-                "-fx-background-radius: 20;" +
-                "-fx-border-color: white;" +
-                "-fx-border-radius: 20;");
+        vbox.setStyle("-fx-background-color: rgb(102, 0, 0);"
+                + "-fx-background-radius: 20;"
+                + "-fx-border-color: white;"
+                + "-fx-border-radius: 20;");
     }
 
     @Override
