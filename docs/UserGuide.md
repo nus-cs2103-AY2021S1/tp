@@ -1,8 +1,8 @@
 ## Reeve - User Guide
 
 **Table of Contents**  
-- [1. Introduction](#1-introduction)
-  * [1.1 About Reeve](#11-about-reeve)
+- [1. Introduction](#introduction)
+  * [1.1 About Reeve](#about-reeve)
   * [1.2 Understanding the User Guide](#12-understanding-the-user-guide)
 - [2. Quick start](#2-quick-start)
   * [2.1 Setting Up Reeve](#21-setting-up-reeve)
@@ -46,10 +46,10 @@
 - [5. Glossary](#5-glossary)
 - [6. FAQ](#6-faq)
 
-## 1. Introduction
+## 1. Introduction <a name="introduction"/>
 **Welcome to Reeve!** 
 
-### 1.1 About Reeve
+### 1.1 About Reeve <a name="about-reeve"/>
 Are you looking for a one-stop application that can handle all your private tutoring needs? Then you are in luck!
 
 **Reeve** is a desktop application for **private tutors to to better manage both administrative and academic details of their students**, optimised for use via a
@@ -66,7 +66,7 @@ Let's dive into the User Guide to find out more!
 ### 1.2 Understanding the User Guide
 The goal of this User Guide is to provide you with the information on how to utilise **Reeve** to its fullest. 
 
-For those who are unfamiliar with what a CLI is, no worries! This User Guide will ensure that you will be able to understand how to use a CLI by the end of it! Rest assured!
+For those who are unfamiliar with what a CLI is, no worries! This User Guide will ensure that you will be able to understand how to use a CLI by the end of it.
 
 Here is a summary (Table 1) of the symbols that are used in this User Guide:
 
@@ -211,21 +211,30 @@ Examples:
 
 #### 3.2.4 Listing all students: `list`
 
-Shows the list of all students in **Reeve**.
-
-:information source: You will need to use this if you want to view the full student list after using commands such as `find` and `schedule`.
+You can view the list of all students in **Reeve**.
 
 Format: `list`
 
+<div markdown="block" class="alert alert-info">
+:information source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
+</div>
+
 #### 3.2.5 Deleting a student: `delete`
 
-Deletes the specified student from **Reeve**.
+You can delete a specified student from **Reeve**.
 
 Format: `delete INDEX`
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed students list.
-* The index **must be a positive integer** 1, 2, 3, …​
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `INDEX` **must be a positive integer** 1, 2, 3, …​
+
+:information_source: You will need to use this if you wish to view the full student list after using commands such as `find`, `overdue` and `schedule`.
+
+</div>
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd student in **Reeve**.
@@ -250,9 +259,12 @@ Examples:
 
 #### 3.2.7 Finding students with overdue fees: `overdue` (By: Ying Gao)
 
-Finds students whose date of last payment is more than a month ago.
+You can find all students whose date of last payment is more than a month ago.
 
 Format: `unpaid`
+
+* Students tutored for free (i.e. `FEE` = $0.00) will not be displayed.
+* If all students have paid their fees within the past month, no students will be displayed.
 
 #### 3.2.8 Managing additional details for a student: `detail` (By: Vaishak) 
 
@@ -300,7 +312,7 @@ Examples:
 
 #### 3.2.9 Clearing all entries: `clear`
 
-Clears all student data from **Reeve**.
+You can clear all student data from **Reeve**.
 
 Format: `clear`
 
@@ -311,14 +323,17 @@ Thereafter, you will be able to view, edit or delete these details of each stude
 
 #### 3.3.1 Recording questions from a student: `question` (By: Ying Gao) 
 
-Adds, resolves or remove questions from a specified student.
+You can add, resolve or remove questions from a specified student in **Reeve**.
 
 General Format: `question COMMAND_WORD INDEX DETAILS`
 
 * The `COMMAND_WORD` field accepts either `add`, `solve` or `delete`.
-* The command affects the student at the specified `INDEX`.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The command affects the student at the specified `INDEX`, which is his/her position on the list.
 * The format of `DETAILS` varies with each command word as explained below.
+
+<div markdown="block" class="alert alert-info">
+:information_source: `INDEX` **must be a positive integer** 1, 2, 3, …​
+</div>
 
 ##### 3.3.1.1 Adding a question: `question add`
 
@@ -326,8 +341,11 @@ Adds a new question to the student.
 
 Format: `question add INDEX t/QUESTION`
 
-* This records a new unresolved question to a student.
-* `QUESTION` must not be empty.
+* This records a new unresolved question to the student at the specified `INDEX`.
+
+<div markdown="block" class="alert alert-info">
+:information_source: `QUESTION` must not be empty.
+</div>
 
 Example:
 * `question add 1 t/How do birds fly?` records "How do birds fly?" as a question from the 1st student in **Reeve**.
@@ -338,9 +356,18 @@ Marks a student's question as resolved.
 
 Format: `question solve INDEX i/QUESTION_INDEX t/SOLUTION`
 
-* This resolves the question at the specified `QUESTION_INDEX`.
-* `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
-* `SOLUTION` must not be empty.
+* This resolves the question from the student at the specified `INDEX`
+* This resolves the question at the `QUESTION_INDEX`. The `QUESTION_INDEX` refers to the position of the question in the student's list of questions.
+
+<div markdown="block" class="alert alert-info">
+
+:information_source: `QUESTION_INDEX` **must be a positive integer** 1, 2, 3, …​
+
+:information_source: `SOLUTION` must not be empty.
+
+:information_source: You can only resolve unanswered questions (i.e. questions with a cross symbol next to it).
+
+</div>
 
 Example:
 * `question solve 1 i/1 t/Read a book.` marks the 1st question of the 1st student in **Reeve** as answered.
@@ -376,12 +403,14 @@ Format: `exam add INDEX n/EXAM_NAME d/EXAM_DATE s/EXAM_SCORE`
 
 * Adds the given exam to the student at the specified `INDEX`.
 
+<div markdown="block" class="alert alert-info">
 :information_source: The format of EXAM_DATE is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of EXAM_SCORE is as follows:
 * x/y where x and y are non-negative integers. 
 * x has to be less than or equal to y (e.g. 30/50).
+</div>
 
 Examples:
 * `exam add 1 n/Mid Year 2020 d/08/12/2020 s/40/60` adds the "Mid Year 2020" exam with date 8 Dec 2020 and 
@@ -424,11 +453,13 @@ Format: `attendance add STUDENT_INDEX d/LESSON_DATE s/ATTENDANCE_STATUS f/FEEDBA
 * Adds the given attendance record to the student at the specified `STUDENT_INDEX`.
 * There can only be one attendance record for every `LESSON_DATE`.
 
+<div markdown="block" class="alert alert-info">
 :information_source: The format of ATTENDANCE_DATE is as follows:
 * dd/mm/yyyy or d/m/yyyy (e.g. 08/12/2020).
 
 :information_source: The format of FEEDBACK is as follows:
 * attended or unattended.
+</div>
 
 Examples:
 * `attendance add 2 d/08/12/2020 s/attended f/attentive` adds the attendance record with the date 8 Dec 2020,
@@ -513,7 +544,7 @@ Format: `help`
 
 #### 3.4.4 Exiting the program: `exit`
 
-Exits the program.
+You can exit the program. Any changes you have made to **Reeve** is automatically saved to your drive, hence you do not have to worry about losing data.
 
 Format: `exit`
 
@@ -539,6 +570,7 @@ Action | Format, Examples
 ## 5. Glossary
 
 The following table provides the definitions of the various terms used in this User Guide.
+
 Term | Definition
 --------|------------------
 
