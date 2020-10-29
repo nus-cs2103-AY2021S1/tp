@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.notes.TypicalNotes.NOTE_BUY_COFFEE;
 import static seedu.address.testutil.notes.TypicalNotes.NOTE_GRADUATION;
 
-
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.notes.note.Note;
