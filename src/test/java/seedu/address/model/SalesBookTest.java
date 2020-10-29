@@ -58,7 +58,8 @@ public class SalesBookTest {
     }
 
     @Test
-    public void overwriteSales_withOneDrinkItems_success() {
+    public void overwriteSales_overwriteSalesBookWithOneDrinkItem_success() {
+        // overwrite empty sales book
         sales.put(Drink.BSBM, 90);
         salesBook.overwriteSales(sales);
 
@@ -68,15 +69,50 @@ public class SalesBookTest {
         sales.put(Drink.BSPGT, 0);
         sales.put(Drink.BSPBT, 0);
 
-        UniqueSalesRecordList expectedSalesRecord = new UniqueSalesRecordList();
-        expectedSalesRecord.setSalesRecord(sales);
+        UniqueSalesRecordList expectedSalesRecordList = new UniqueSalesRecordList();
+        expectedSalesRecordList.setSalesRecord(sales);
 
-        assertEquals(expectedSalesRecord, salesBook.getRecord());
+        assertEquals(expectedSalesRecordList, salesBook.getRecord());
+
+        // overwrite existing sales book
+        sales.put(Drink.BSBM, 45);
+        salesBook.overwriteSales(sales);
+
+        UniqueSalesRecordList newSalesRecordList = new UniqueSalesRecordList();
+        newSalesRecordList.setSalesRecord(sales);
+
+        assertEquals(newSalesRecordList, salesBook.getRecord());
     }
 
     @Test
-    void isEmptySalesBook() {
+    public void isEmptySalesBook() {
         assertTrue(salesBook.isEmptySalesRecord());
+    }
+
+    @Test
+    public void hasSalesRecordEntry_nullSalesRecordEntry_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> salesBook.hasSalesRecordEntry(null));
+    }
+
+    @Test
+    public void hasSalesRecordEntry_entryNotInSalesBook_returnsFalse() {
+        SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBGT, 49);
+        assertFalse(salesBook.hasSalesRecordEntry(entry));
+    }
+
+    @Test
+    public void hasSalesRecordEntry_entryInSalesBook_returnsTrue() {
+        SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBGT, 49);
+        salesBook.addSalesRecordEntry(entry);
+        assertTrue(salesBook.hasSalesRecordEntry(entry));
+    }
+
+    @Test
+    public void hasSalesRecordEntry_entryWithSameDrinkFieldInSalesBook_returnsTrue() {
+        SalesRecordEntry entry = new SalesRecordEntry(Drink.BSBGT, 49);
+        salesBook.addSalesRecordEntry(entry);
+        SalesRecordEntry sameDrinkEntry = new SalesRecordEntry(entry.getDrink(), entry.getNumberSold() - 1);
+        assertTrue(salesBook.hasSalesRecordEntry(sameDrinkEntry));
     }
 
     @Test
