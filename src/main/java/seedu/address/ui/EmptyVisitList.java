@@ -72,7 +72,7 @@ public class EmptyVisitList extends UiPart<Stage> {
     }
 
     /**
-     * Copies user guide's link to clipboard.
+     * Copies CliniCal's user guide link to clipboard.
      */
     @FXML
     private void copyUrl() {

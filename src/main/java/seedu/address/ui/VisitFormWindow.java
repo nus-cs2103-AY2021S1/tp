@@ -49,9 +49,9 @@ public class VisitFormWindow extends UiPart<Stage> {
     private Logic logic;
 
     /**
-     * Instantiates VisitRecordWindow.
+     * Instantiates VisitFormWindow.
      *
-     * @param root Stage to use for VisitRecordWindow
+     * @param root Stage to use for VisitFormWindow
      */
 
     public VisitFormWindow(EventHandler<WindowEvent> e, Stage root) {
@@ -61,17 +61,17 @@ public class VisitFormWindow extends UiPart<Stage> {
     }
 
     /**
-     * Instantiates VisitRecordWindow.
+     * Instantiates VisitFormWindow.
      */
     public VisitFormWindow(EventHandler<WindowEvent> e) {
         this(e, new Stage());
     }
 
     /**
-     * Displays VisitRecordWindow.
+     * Displays VisitFormWindow.
      */
     public void show() {
-        logger.fine("Displaying Visit Record Window..");
+        logger.fine("Displaying Visit Form Window..");
         getRoot().show();
         getRoot().centerOnScreen();
         getRoot().addEventHandler(KeyEvent.KEY_RELEASED, (KeyEvent event) -> {
@@ -83,21 +83,21 @@ public class VisitFormWindow extends UiPart<Stage> {
     }
 
     /**
-     * Checks if VisitRecordWindow is being displayed.
+     * Checks if VisitFormWindow is being displayed.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
     }
 
     /**
-     * Hides VisitRecordWindow.
+     * Hides VisitFormWindow.
      */
     public void hide() {
         getRoot().hide();
     }
 
     /**
-     * Removes all parameters in VisitWindow.
+     * Removes all parameters in VisitFormWindow.
      */
     public void flushParameters() {
         prescription.clear();
@@ -106,14 +106,14 @@ public class VisitFormWindow extends UiPart<Stage> {
     }
 
     /**
-     * Focuses on VisitRecordWindow.
+     * Focuses on VisitFormWindow.
      */
     public void focus() {
         getRoot().requestFocus();
     }
 
     /**
-     * Saves visit and exits VisitRecordWindow.
+     * Saves visit and exits VisitFormWindow.
      */
     @FXML
     protected void saveVisit(ActionEvent actionEvent) throws CommandException {

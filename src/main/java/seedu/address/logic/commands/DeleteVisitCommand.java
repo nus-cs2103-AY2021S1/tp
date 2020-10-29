@@ -48,6 +48,8 @@ public class DeleteVisitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        assert model != null : "Model cannot be null.";
+
         List<Patient> lastShownList = model.getFilteredPatientList();
         int listSize = lastShownList.size();
 

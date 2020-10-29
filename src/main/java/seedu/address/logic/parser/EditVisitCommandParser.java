@@ -30,9 +30,8 @@ public class EditVisitCommandParser implements Parser<EditVisitCommand> {
             visitIndex = ParserUtil.parseVisitIndex(input);
         } catch (IllegalValueException | NumberFormatException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    EditVisitCommand.MESSAGE_USAGE), ive);
+                                     EditVisitCommand.MESSAGE_USAGE), ive);
         }
-
         return new EditVisitCommand(patientIndex, visitIndex);
     }
 }
