@@ -2,10 +2,10 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.address.model.Model;
-import seedu.address.model.tutorialgroup.TutorialContainsKeywordsPredicate;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.tutorialgroup.TutorialContainsKeywordsPredicate;
 
 public class FindTutorialGroupCommand extends Command {
 
