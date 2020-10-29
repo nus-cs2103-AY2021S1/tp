@@ -5,6 +5,8 @@
 
 ![Logo](./docs/images/AboutUs/logo.png)
 
+---
+
 ![Ui](./docs/images/Ui.png)
 
 * NUStorage is a desktop application for managing inventory, transaction records and accounts.
