@@ -3,8 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CALORIES;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MUSCLES;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TEMP;
 
+import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -13,6 +17,8 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.ExerciseTag;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
 import seedu.address.model.exercise.Template;
 import seedu.address.model.exercise.TemplateList;
@@ -49,15 +55,11 @@ public class AddExerciseFromTemplateParser implements ExerciseParser<AddCommand>
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
 
-        Calories calories = null;
+        Calories calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).orElse(null));
+        List<Muscle> musclesWorked = ParserUtil.parseMusclesWorked(argMultimap.getValue(PREFIX_MUSCLES).orElse(null));
+        Set<ExerciseTag> tagList = ParserUtil.parseExerciseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_CALORIES)) {
-            calories = ParserUtil.parseCalories(template.getCalories().toString());
-        } else {
-            calories = ParserUtil.parseCalories(argMultimap.getValue(PREFIX_CALORIES).get());
-        }
-
-        Exercise exercise = new Exercise(name, description, date, calories);
+        Exercise exercise = new Exercise(name, description, date, calories, musclesWorked, tagList);
 
         return new AddCommand(exercise);
     }

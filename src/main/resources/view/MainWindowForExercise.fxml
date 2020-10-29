@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
+<?import javafx.scene.layout.HBox?>
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Address App" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
@@ -49,12 +50,21 @@
                     </padding>
                 </StackPane>
 
-                <VBox fx:id="exerciseList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-                    <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                    </padding>
-                    <StackPane fx:id="exerciseListPanelPlaceholder" VBox.vgrow="ALWAYS" />
-                </VBox>
+                <HBox fx:id="lists" minWidth="450" prefWidth="450" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                    <VBox fx:id="exerciseList" minWidth="220" prefWidth="220" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                        <padding>
+                            <Insets bottom="10" left="10" right="10" top="10" />
+                        </padding>
+                        <StackPane fx:id="exerciseListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+
+                    <VBox fx:id="templateList" minWidth="220" prefWidth="220" styleClass="pane-with-border" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+                        <padding>
+                            <Insets bottom="10" left="10" right="10" top="10" />
+                        </padding>
+                        <StackPane fx:id="templateListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                </HBox>
 
                 <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
             </VBox>

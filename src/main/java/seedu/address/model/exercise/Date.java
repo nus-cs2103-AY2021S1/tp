@@ -1,6 +1,5 @@
 package seedu.address.model.exercise;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.text.SimpleDateFormat;
@@ -10,7 +9,10 @@ import java.time.format.DateTimeParseException;
 public class Date {
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in the format of DD-MM-YYYY";
+    private static final String DATE_FORMAT = "dd-MM-yyyy";
+
     public final String value;
+    // name collision with Date class
     private java.util.Date actualDate;
 
     /**
@@ -19,15 +21,22 @@ public class Date {
      * @param date A valid input.
      */
     public Date(String date) {
-        requireNonNull(date);
-        checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
-        value = date;
-        try {
-            SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
-            actualDate = formatter.parse(value);
-        } catch (java.text.ParseException e) {
-            // actually ParseException will never be thrown because we already check if the input is valid.
-            actualDate = null;
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+
+        if (date == null) {
+            actualDate = new java.util.Date();
+            value = dateFormat.format(actualDate);
+        } else {
+            checkArgument(isValidDate(date), MESSAGE_CONSTRAINTS);
+
+            try {
+                actualDate = dateFormat.parse(date);
+            } catch (java.text.ParseException e) {
+                // actually ParseException will never be thrown because we already check if the input is valid.
+                actualDate = null;
+            }
+
+            value = date;
         }
     }
 
@@ -35,7 +44,7 @@ public class Date {
      * Returns true if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern(DATE_FORMAT);
         try {
             timeFormatter.parse(test);
 

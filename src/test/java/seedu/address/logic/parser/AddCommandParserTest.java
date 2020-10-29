@@ -10,7 +10,10 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_SIT_
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CALORIES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_MUSCLES_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.MUSCLES_DESC_PUSH_UP;
+import static seedu.address.logic.commands.CommandTestUtil.MUSCLES_DESC_SIT_UP;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_PUSH_UP;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_SIT_UP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -24,6 +27,7 @@ import seedu.address.model.exercise.Calories;
 import seedu.address.model.exercise.Date;
 import seedu.address.model.exercise.Description;
 import seedu.address.model.exercise.Exercise;
+import seedu.address.model.exercise.Muscle;
 import seedu.address.model.exercise.Name;
 import seedu.address.testutil.ExerciseBuilder;
 
@@ -37,31 +41,37 @@ public class AddCommandParserTest {
         // normal input
         assertParseSuccess(parser,
                 NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
-                        + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
+                        + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         // multiple names - last name accepted
         assertParseSuccess(parser,
                 NAME_DESC_SIT_UP + NAME_DESC_PUSH_UP
-                        + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
+                        + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         //multiple descriptions - last description accepted
         assertParseSuccess(parser,
                 NAME_DESC_PUSH_UP + DESCRIPTION_DESC_SIT_UP
-                        + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
+                        + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         //multiple date
         assertParseSuccess(parser,
                 NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
-                        + DATE_DESC_SIT_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
+                        + DATE_DESC_SIT_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
 
         //multiple calories
         assertParseSuccess(parser,
                 NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
-                        + DATE_DESC_PUSH_UP + CALORIES_DESC_SIT_UP + CALORIES_DESC_PUSH_UP,
+                        + DATE_DESC_PUSH_UP + CALORIES_DESC_SIT_UP + CALORIES_DESC_PUSH_UP + MUSCLES_DESC_PUSH_UP,
+                new AddCommand(expectedExercise));
+
+        //multiple groups of muscles
+        assertParseSuccess(parser,
+                NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                        + DATE_DESC_PUSH_UP + CALORIES_DESC_SIT_UP + MUSCLES_DESC_SIT_UP + MUSCLES_DESC_PUSH_UP,
                 new AddCommand(expectedExercise));
     }
 
@@ -75,14 +85,6 @@ public class AddCommandParserTest {
 
         //missing description
         assertParseFailure(parser, NAME_DESC_PUSH_UP + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
-                expectedMessage);
-
-        //missing date
-        assertParseFailure(parser, NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP,
-                expectedMessage);
-
-        //missing calories
-        assertParseFailure(parser, NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP + DATE_DESC_PUSH_UP,
                 expectedMessage);
     }
 
@@ -111,6 +113,12 @@ public class AddCommandParserTest {
                 NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
                         + DATE_DESC_PUSH_UP + INVALID_CALORIES_DESC,
                 Calories.MESSAGE_CONSTRAINTS);
+
+        //invalid muscles worked
+        assertParseFailure(parser,
+                NAME_DESC_PUSH_UP + DESCRIPTION_DESC_PUSH_UP
+                        + DATE_DESC_PUSH_UP + CALORIES_DESC_PUSH_UP + INVALID_MUSCLES_DESC,
+                Muscle.MESSAGE_CONSTRAINTS);
     }
 
 }
