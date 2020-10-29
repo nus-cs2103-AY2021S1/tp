@@ -13,7 +13,6 @@ import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.UniqueStudentList;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
-import seedu.address.model.tutorialgroup.UniqueTutorialGroupList;
 
 public class JsonAdaptedTutorialGroup {
 
