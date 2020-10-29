@@ -16,7 +16,7 @@ import nustorage.model.record.FinanceRecord;
 
 
 /**
- * An Immutable Finance Account that is serializable to the JSON format
+ * An Immutable FinanceWindow Account that is serializable to the JSON format
  */
 @JsonRootName("financeAccount")
 class JsonSerializableFinanceAccount {

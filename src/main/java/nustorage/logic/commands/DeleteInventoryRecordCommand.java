@@ -16,7 +16,7 @@ public class DeleteInventoryRecordCommand extends Command {
     public static final String COMMAND_WORD = "delete_inventory";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the inventory record identified by the index number used in Inventory.\n"
+            + ": Deletes the inventory record identified by the index number used in InventoryWindow.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 

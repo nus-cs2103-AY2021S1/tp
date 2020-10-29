@@ -30,7 +30,7 @@ import nustorage.model.record.FinanceRecord;
 
 class JsonAdaptedFinanceRecordTest {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Finance record's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "FinanceWindow record's %s field is missing!";
 
     @Test
     void toModelType_validSourceRecordA_returnsFinanceRecord() throws Exception {

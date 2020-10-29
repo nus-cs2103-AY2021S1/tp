@@ -20,7 +20,7 @@ import nustorage.model.record.InventoryRecord;
 public class CreateInventoryRecordCommandParser implements Parser<CreateInventoryRecordCommand> {
 
     /**
-     * Parses Inventory commands arguments from the user.
+     * Parses InventoryWindow commands arguments from the user.
      * @param args User arguments.
      * @return An AddInventoryCommand.
      * @throws ParseException When user arguments results in a parsing error.
