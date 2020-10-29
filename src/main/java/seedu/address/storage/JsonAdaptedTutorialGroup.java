@@ -11,6 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.module.ModuleId;
 import seedu.address.model.person.UniqueStudentList;
+import seedu.address.model.tutorialgroup.DayOfWeek;
+import seedu.address.model.tutorialgroup.TimeOfDay;
 import seedu.address.model.tutorialgroup.TutorialGroup;
 import seedu.address.model.tutorialgroup.TutorialGroupId;
 
@@ -45,7 +47,7 @@ public class JsonAdaptedTutorialGroup {
      */
     public JsonAdaptedTutorialGroup(TutorialGroup source) {
         tutorialGroupId = source.getId().toString();
-        dayOfWeek = source.getDayOfWeek();
+        dayOfWeek = source.getDayOfWeek().toString();
         startTime = source.getStartTime().toString();
         endTime = source.getEndTime().toString();
         this.students.addAll(source.getStudents().stream().map(JsonAdaptedStudent::new)
@@ -71,11 +73,41 @@ public class JsonAdaptedTutorialGroup {
         if (!TutorialGroupId.isValidTutorialGroupId(tutorialGroupId)) {
             throw new IllegalValueException(TutorialGroupId.MESSAGE_CONSTRAINTS);
         }
-
         final TutorialGroupId modelTutorialGroupId = new TutorialGroupId(tutorialGroupId);
 
-        return new TutorialGroup(modelTutorialGroupId, modelStudents, dayOfWeek,
-                LocalTime.parse(startTime), LocalTime.parse(endTime));
+        if (dayOfWeek == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DayOfWeek.class.getSimpleName()));
+        }
+        if (!DayOfWeek.isValidDayOfWeek(dayOfWeek)) {
+            throw new IllegalValueException(DayOfWeek.MESSAGE_CONSTRAINTS);
+        }
+        final DayOfWeek modelDayOfWeek = new DayOfWeek(dayOfWeek);
+
+        if (startTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TimeOfDay.class.getSimpleName()));
+        }
+        if (!TimeOfDay.isValidTimeOfDay(startTime)) {
+            throw new IllegalValueException(TimeOfDay.MESSAGE_CONSTRAINTS);
+        }
+        final TimeOfDay modelStartTime = new TimeOfDay(startTime);
+
+        if (endTime == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TimeOfDay.class.getSimpleName()));
+        }
+        if (!TimeOfDay.isValidTimeOfDay(endTime)) {
+            throw new IllegalValueException(TimeOfDay.MESSAGE_CONSTRAINTS);
+        }
+        final TimeOfDay modelEndTime = new TimeOfDay(endTime);
+
+        if (!TimeOfDay.isValidTimes(startTime, endTime)) {
+            throw new IllegalValueException(TimeOfDay.TIME_CONSTRAINTS);
+        }
+
+        return new TutorialGroup(modelTutorialGroupId, modelDayOfWeek,
+                modelStartTime, modelEndTime, modelStudents);
     }
 
 

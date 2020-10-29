@@ -11,33 +11,34 @@ public class TutorialGroup {
     // Identity fields
     private final TutorialGroupId tutorialGroupId;
     private final UniqueStudentList students;
-    private LocalTime startTime;
-    private LocalTime endTime;
-    private String dayOfWeek;
+    private DayOfWeek dayOfWeek;
+    private TimeOfDay startTime;
+    private TimeOfDay endTime;
+
 
     /**
      * Constructor for Tutorial Group
      * @param tutorialGroupId
      */
-    public TutorialGroup(TutorialGroupId tutorialGroupId, LocalTime startTime, LocalTime endTime, String dayOfWeek) {
+    public TutorialGroup(TutorialGroupId tutorialGroupId, DayOfWeek dayOfWeek, TimeOfDay startTime, TimeOfDay endTime) {
         this.tutorialGroupId = tutorialGroupId;
-        this.students = new UniqueStudentList();
+        this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.dayOfWeek = dayOfWeek;
+        this.students = new UniqueStudentList();
     }
 
     /**
      * Constructor for Tutorial Group
      * @param tutorialGroupId
      */
-    public TutorialGroup(TutorialGroupId tutorialGroupId, UniqueStudentList students, String dayOfWeek,
-                         LocalTime startTime, LocalTime endTime) {
+    public TutorialGroup(TutorialGroupId tutorialGroupId, DayOfWeek dayOfWeek,
+                         TimeOfDay startTime, TimeOfDay endTime, UniqueStudentList students) {
         this.tutorialGroupId = tutorialGroupId;
-        this.students = students;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.students = students;
     }
 
     //GETTERS
@@ -46,15 +47,15 @@ public class TutorialGroup {
         return this.tutorialGroupId;
     }
 
-    public LocalTime getStartTime() {
+    public TimeOfDay getStartTime() {
         return this.startTime;
     }
 
-    public LocalTime getEndTime() {
+    public TimeOfDay getEndTime() {
         return endTime;
     }
 
-    public String getDayOfWeek() {
+    public DayOfWeek getDayOfWeek() {
         return this.dayOfWeek;
     }
 
@@ -68,7 +69,7 @@ public class TutorialGroup {
 
 
     //SETTERS
-    public void setLessonTime(LocalTime startTime, LocalTime endTime) {
+    public void setLessonTime(TimeOfDay startTime, TimeOfDay endTime) {
         this.startTime = startTime;
         this.endTime = endTime;
     }
