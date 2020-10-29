@@ -4,6 +4,7 @@ import java.util.Comparator;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -40,6 +41,10 @@ public class TaskCard extends UiPart<Region> {
     private Label date;
     @FXML
     private Label status;
+    @FXML
+    private ProgressBar progressBar;
+    @FXML
+    private Label remainingDays;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -55,6 +60,8 @@ public class TaskCard extends UiPart<Region> {
         priority.setText(task.getPriorityForUi());
         date.setText(task.getDateForUi());
         status.setText(task.getStatusForUi());
+        progressBar.setProgress(task.getProgressPercentageForUi());
+        remainingDays.setText(task.getDaysUntilDeadlineForUi());
     }
 
     @Override

@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -37,4 +38,6 @@
          <RowConstraints />
       </rowConstraints>
   </GridPane>
+   <Label fx:id="remainingDays" text="\$remainingDays" />
+   <ProgressBar fx:id="progressBar" prefHeight="23.0" prefWidth="192.0" progress="0.0" />
 </HBox>

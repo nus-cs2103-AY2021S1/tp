@@ -1,7 +1,9 @@
 package seedu.address.model.task;
 
+import static java.time.temporal.ChronoUnit.DAYS;
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
@@ -20,6 +22,10 @@ public class Task {
     private final Date date;
     private final Status status;
 
+    // unrelated field to the user
+
+    private final LocalDate dateCreated;
+
     /**
      * Initial constructor to avoid having null as arguments.
      *
@@ -32,6 +38,7 @@ public class Task {
         this.priority = null;
         this.date = null;
         this.status = Status.NOT_COMPLETED;
+        this.dateCreated = LocalDate.of(2020, 10, 26);
     }
 
     /**
@@ -51,6 +58,7 @@ public class Task {
         this.priority = priority;
         this.date = date;
         this.status = status;
+        this.dateCreated = LocalDate.of(2020, 10, 26);
     }
 
     public Optional<TaskName> getName() {
@@ -186,7 +194,7 @@ public class Task {
     public Set<Tag> getTagsForUi() {
         if (this.tags == null) {
             HashSet<Tag> defaultTags = new HashSet<>();
-            defaultTags.add(new Tag("Tags not provided"));
+            defaultTags.add(new Tag("TagsNotProvided"));
             return defaultTags;
         } else {
             return this.tags;
@@ -226,7 +234,77 @@ public class Task {
      */
     public String getStatusForUi() {
         assert this.status != null;
-        return this.status.toString();
+        if (status == Status.COMPLETED) {
+            return "Completed";
+        } else {
+            return "Not completed";
+        }
+    }
+
+    /**
+     * Returns the number of days since this Task is created.
+     *
+     * @return number of days as double
+     */
+    public double getDaysSinceCreated() {
+        if (date == null) {
+            return 0;
+        } else {
+            LocalDate currentDate = LocalDate.now();
+            return dateCreated.until(currentDate, DAYS);
+        }
+    }
+
+    /**
+     * Returns the number of days between the date of the creation of the Task until the deadline.
+     *
+     * @return number of days as double
+     */
+    public double getDaysFromCreatedToDeadline() {
+        if (date == null) {
+            return 0;
+        } else {
+            return dateCreated.until(date.getValue(), DAYS);
+        }
+    }
+
+    /**
+     * Returns the number of days from now until the deadline.
+     *
+     * @return number of days as double
+     */
+    public double getDaysUntilDeadline() {
+        LocalDate currentDate = LocalDate.now();
+        return currentDate.until(date.getValue(), DAYS);
+    }
+
+    /**
+     * Returns the percentage of days passed since the date of the Task created to the deadline.
+     *
+     * @return double value from 0 to 1
+     */
+    public double getProgressPercentageForUi() {
+        if (date == null) {
+            return 0;
+        } else {
+            return getDaysSinceCreated() / getDaysFromCreatedToDeadline();
+        }
+    }
+
+    /**
+     * Returns the remaining days until the deadline to be displayed in the GUI.
+     *
+     * @return number of days as integer
+     */
+    public String getDaysUntilDeadlineForUi() {
+        String toDisplay = "Remaining days : ";
+        if (date == null) {
+            toDisplay += "unknown";
+        } else {
+            int remainingDays = (int) getDaysUntilDeadline();
+            toDisplay += String.valueOf(remainingDays);
+        }
+        return toDisplay + " ";
     }
 
     @Override
