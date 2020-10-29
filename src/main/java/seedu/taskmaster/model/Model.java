@@ -141,6 +141,19 @@ public interface Model {
     void markAllStudents(List<Student> students, AttendanceType attendanceType);
 
     /**
+     * Marks the attendance of the given student {@code target} with the given {@code attendanceType}.
+     * The student must exist in the student list.
+     */
+    void scoreStudent(Student target, int score);
+
+    void scoreStudentWithNusnetId(NusnetId nusnetId, int score);
+
+    /**
+     * Marks the attendances of all {@code students} with the given {@code attendanceType}
+     */
+    void scoreAllStudents(List<Student> students, int score);
+
+    /**
      * Updates the corresponding attendance statuses with the Attendances in the given list.
      */
     void updateStudentRecords(List<StudentRecord> studentRecords);

@@ -161,6 +161,28 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void scoreStudent(Student target, int score) {
+        requireAllNonNull(target, score);
+        taskmaster.scoreStudent(target, score);
+    }
+
+    @Override
+    public void scoreStudentWithNusnetId(NusnetId nusnetId, int score) {
+        requireAllNonNull(nusnetId, score);
+        taskmaster.scoreStudentWithNusnetId(nusnetId, score);
+    }
+
+    @Override
+    public void scoreAllStudents(List<Student> students, int score) {
+        List<NusnetId> nusnetIds = students
+                .stream()
+                .map(Student::getNusnetId)
+                .collect(Collectors.toList());
+
+        taskmaster.scoreAllStudents(nusnetIds, score);
+    }
+
+    @Override
     public void markAllStudents(List<Student> students, AttendanceType attendanceType) {
         List<NusnetId> nusnetIds = students
                 .stream()

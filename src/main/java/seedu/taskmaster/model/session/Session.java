@@ -77,6 +77,19 @@ public class Session {
     }
 
     /**
+     * Marks the attendance of a student with the given {@code nusnetId} in the
+     * student record list with {@code attendanceType}.
+     */
+    public void scoreStudentParticipation(NusnetId nusnetId, int score) {
+        assert nusnetId != null;
+        studentRecords.scoreStudentParticipation(nusnetId, score);
+    }
+
+    public void scoreAllParticipation(List<NusnetId> nusnetIds, int score) {
+        studentRecords.scoreAllParticipation(nusnetIds, score);
+    }
+
+    /**
      * Sets the {@code AttendanceType} of all {@code StudentRecords} to NO_RECORD.
      */
     public void clearAttendance() {
