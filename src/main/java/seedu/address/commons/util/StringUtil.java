@@ -57,7 +57,7 @@ public class StringUtil {
         String preparedStr = toCheck.toLowerCase();
         checkArgument(!preparedKey.isEmpty(), "Key parameter cannot be empty");
 
-        return preparedStr.contains(key);
+        return preparedStr.contains(preparedKey);
     }
 
     /**
