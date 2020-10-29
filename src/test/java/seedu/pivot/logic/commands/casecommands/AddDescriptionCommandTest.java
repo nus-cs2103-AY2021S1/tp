@@ -131,7 +131,7 @@ public class AddDescriptionCommandTest {
         }
 
         @Override
-        public void commitPivot(String command) {}
+        public void commitPivot(String command, boolean isMainPageCommand) {}
     }
 
 }
