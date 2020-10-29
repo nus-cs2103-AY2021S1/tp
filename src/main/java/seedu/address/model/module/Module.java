@@ -267,6 +267,20 @@ public class Module {
     }
 
     /**
+     * Returns a set representing of the tags of the task for the UI.
+     *
+     * @return set of tags to be displayed in the UI.
+     */
+    public Set<Tag> getTagsForUi() {
+        if (this.tags == null) {
+            HashSet<Tag> defaultTags = new HashSet<>();
+            defaultTags.add(new Tag("TagNotProvided"));
+            return defaultTags;
+        } else {
+            return this.tags;
+        }
+    }
+    /**
      * Adds a grade to the GradeTracker of the module.
      *
      * @param grade grade to add to grade tracker.

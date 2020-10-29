@@ -4,7 +4,7 @@ title: User Guide
 ---
 
 Cap 5.0 Buddy helps NUS SoC students to keep track of their module details efficiently. 
-It helps them to centralize key module details, contacts and information while following their study progress through a Command Line Interface (CLI).
+It helps you to centralize key module details, contacts and information while following your study progress through a Command Line Interface (CLI).
 
 * Table of Contents
 {:toc}
@@ -31,7 +31,7 @@ It helps them to centralize key module details, contacts and information while f
 
 **:information_source: Notes about the command format:**<br>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+* Words in `UPPER_CASE` are the parameters to be supplied by you.<br>
   e.g. in `addtask n/NAME`, `NAME` is a parameter which can be used as `addtask n/Week 11 quiz`.
 
 * Items in square brackets are optional. Items without square brackets are compulsory fields. <br>
@@ -43,7 +43,7 @@ It helps them to centralize key module details, contacts and information while f
 * Argument parameters can be provided in any order.
   e.g. if the command specifies `addtask n/NAME [p/PRIORITY]`, `addtask [p/PRIORITY] n/NAME` is also acceptable.  
   
-* If duplicate parameters are provided when the command format does not expect multiple occurrence of the same parameter, i.e. 
+* If you enter duplicate parameters when the command format does not expect multiple occurrence of the same parameter, i.e. 
   parameters without `...` at the back in the command format (e.g. n/NAME), the application will only consider the argument of the last 
   occurring duplicate parameter. 
   e.g. in `addtask n/Week 11 quiz n/Lab assignment`, `n/Week 11 quiz` will be ignored and a task with the name `Lab assignment` will be added.
@@ -53,34 +53,38 @@ It helps them to centralize key module details, contacts and information while f
 
 ### Module Features
 
-#### Adding a new module: `add module`
+#### Adding a new module: `addmodule`
 
 Creates and add a new module to be stored in the system.
 
-  Format: `add module` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
-
-   * Leaving the **_ZOOM_LINK_** part empty will create a empty module.
-
-   Examples:
-   * `add module CS2103T https:\\link` creates and add the module called CS2103T
-   with the specified link into the system.
-   * `add module CS2103T` creates and add the module CS2103T with no zoom link.
+  Format: `addmodule` `n/MODULE_NAME`
+  
+  * You can only key in the module code for the `MODULE_NAME`.
+  
+  * The module code you input must be **capitalised**, eg. `cs2103t` will be rejected while `CS2103T` is correct.
+   
+   Example:
+   * `addmodule CS2103T` creates and add the module CS2103T with no zoom link.
 
 
 #### Viewing a module: `viewmodule`
 
-Views a module stored in the system
+Views a module stored in the system.
 
- Format: `viewmodule` **_`n/[MODULE_NAME]`_**
+ Format: `viewmodule` `INDEX`
 
-  * Views information for a module named **_`[MODULE_NAME]`_**
+  * The module viewed will be at the `INDEX` position of the current displayed list.
+  
+  * The index refers to the index number of the module shown on the displayed module list. 
+  
+  * The index **must be a positive integer** 1, 2, 3...
 
   Examples:
-   * `viewmodule n/cs2103t` views the specified module
+   * `viewmodule 1` views the first module in the displayed list.
 
 #### Adding a zoom link for a specific lesson to a module: `addzoom`
 
-  Adds a zoom link for a specific lesson to an existing module.
+Adds a zoom link for a specific lesson to an existing module.
 
   Format: `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK`
   
@@ -100,38 +104,78 @@ Views a module stored in the system
 
 #### Deleting a module: `deletemodule`
 
-Deletes the module at the specified position in the module list.
+Deletes a module in the displayed module list.
 
- Format: `delete` **_`[MODULE_POSITION]`_**
-
+ Format: `deletemodule` `INDEX`
+ 
+   * The index **must be a positive integer** 1, 2, 3...
+   
+   * The index refers to the index number of the module shown on the displayed module list. 
+   
   Examples:
   * `deletemodule 1` deletes the module at position `1`
 
-#### Editing a module : `edit zoom`
+#### Editing a module : `editmodule`
 
-* Edits an existing module in the module list.
+Edits an existing module in the displayed module list with new details.
 
-Format: `edit zoom` **_`[MODULE_NAME]`_** **_`[ZOOM_LINK]`_**
+ Format: `editmodule` `INDEX` `[n/MODULE_NAME]` `[mc/MODULAR_CREDITS]` `[gp/GRADE_POINT]` `[t/TAG]...`
 
-* Edits the zoom link of a module named **_`[MODULE_NAME]`_** to **_`[ZOOM_LINK]`_**
+  * Edits the details of the module at position `INDEX` with the optional fields listed.
+  
+  * The index **must be a positive integer** 1, 2, 3...
+  
+  * At least **one** of the optional fields `[MODULE_NAME]`, `[MODULAR_CREDITS]` or `[GRADE_POINT]` must be present.
 
-Examples:
-* `edit zoom CS2030 https://sample.zoom.us` edits the zoom link for a module named `CS2030`
-  to `https://sample.zoom.us`
+  * You can add `[TAG]`s to a module through this command,eg. `Tutorial`.
+  
+ Examples:
+  * `editmodule 1 n/CS2030` edits the `MODULE_NAME` for a module at index `1` to `CS2030`.
+  
+  * `editmodule 3 mc/8 gp/4.5` edits the `MODULAR_CREDITS` and `GRADE_POINT` for the module at index `3` to `8.0` 
+  modular credits and the grade points to `4.5`.
+  
+ To be implemented:
+  * We are working on adding the functionality to edit the zoom links for the module for each lesson. 
+
 
 #### Adding assignment to a module: `addassignment`
 
-  Adds an assignment that takes up a percentage of the grade and has a result from 0.00 to 1.00 to an existing module.
+  Adds an assignment to an existing module.
 
-  Format: `addassignment` **_`n/[MODULE_NAME]`_** **_`a/[ASSIGNMENT_NAME]`_**
-  **_`%/[ASSIGNMENT_PERCENTAGE]`_** **_`r/[ASSIGNMENT_RESULT]`_**
+  Format: `addassignment` `n/MODULE_NAME` `a/ASSIGNMENT_NAME` `%/ASSIGNMENT_PERCENTAGE` `r/ASSIGNMENT_RESULT`
 
-  * Adds an assignment **_`[ASSIGNMENT_NAME]`_** that takes up **_`[ASSIGNMENT_PERCENTAGE]`_**
-  of the grade with a result of **_`[ASSIGMENT_RESULT]`_** to a module named **_`[MODULE_NAME]`_**
+  * Adds an assignment `ASSIGNMENT_NAME` to a module `MODULE_NAME`
+   
+  * The assignment takes up a percentage of the final grade, `ASSIGNMENT_PERCENTAGE`.
+  
+  * Your `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
 
   Example of usage:
-  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` that takes up `5`% of the
-  grade with a result of `0.80` to the module named `CS2100`
+  `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80` adds an assignment called `Quiz 1` to the module `CS2100`. `Quiz 1` 
+  carries `5`% of the final grade and the result for this assignment is `80/100`.
+  
+#### Editing an assignment in a module: `editassignment`
+
+  Edits an assignment at the specified position in the specified module. 
+
+  Format: `editassignment` `INDEX` `n/MODULE_NAME` `[a/ASSIGNMENT_NAME]` `[%/ASSIGNMENT_PERCENTAGE]` 
+  `[r/ASSIGNMENT_RESULT]`
+  
+  * The fields that can be edited are the `ASSIGNMENT_NAME`, `ASSIGNMENT_PERCENTAGE` of the final grade 
+  and `ASSIGNMENT_RESULT`.
+  
+  * At least **one** of the optional fields must be present.
+  
+  * The index **must be a positive integer** 1, 2, 3...
+  
+  * Your new `ASSIGNMENT_RESULT` must be converted to a decimal from `0.00 - 1.00`
+
+  Example of usage:
+   `editassignment 1 n/CS2100 a/Quiz 1` edits the assignment at position `1` of the module `CS2100` with a new 
+   assignment name, `Quiz 1`. 
+   `editassignment 1 n/CS2100 %/20 r/0.80` edits the assignment at position `1` of the module `CS2100` with a new 
+   assignment percentage, `20`% of the final grade, and a new assignment result, `0.80`.   
 
 
 ### Todo List Features
@@ -535,7 +579,7 @@ Examples:
 
 #### Marking contacts as important:
 
-
+### CAP Calculator features
 #### Calculating Cumulative Average Point(CAP): `calculatecap`
 
 Calculates the user's CAP based on completed modules
@@ -544,6 +588,17 @@ Calculates the user's CAP based on completed modules
 
   Examples:
   * `calculatecap` calculate the user's cap
+  
+#### Calculating target CAP details: `targetcap`
+
+Calculates helpful CAP details based on the target CAP you input
+
+ Format: `targetcap [tc/TARGET_CAP]`
+
+  * The target cap refers to the desired CAP input by you
+  
+  Examples:
+  * `targetcap tc/4.5` Calculates CAP achievement required for planned modules in order to achieve target CAP
 
 ### Scheduler Features
 
@@ -562,16 +617,18 @@ Creates and add a new Event with the specified information from the user input
 #### Undo previous user command: `undo`
 
 Undoes the previous user command
-
+ 
  Format: `undo`
-
+ 
+ * The `undo` feature currently has not been extended to Scheduler commands
+ 
   Examples:
   * `undo`
 
 #### Redo previous user command: `redo`
 
 Redoes the previously undone user command
-
+ * The `undo` feature currently has not been extended to Scheduler commands
  Format: `redo`
 
   Examples:
@@ -600,6 +657,7 @@ Action | Format, Examples
 **Add Zoom to module** | `addzoom INDEX n/LESSON_NAME z/ZOOM_LINK` <br> e.g. `addzoom 1 n/lecture z/https://nus-sg.zoom.us/j/uascya367yfy`
 **Add Assignment** | `addassignment n/MODULE_NAME a/ASSIGNMENT_NAME %/ASSIGNMENT_PERCENTAGE r/ASSIGNMENT_RESULT` <br> e.g. `addassignment n/CS2100 a/Quiz 1 %/5 r/0.80`
 **Calculate CAP** | `calculatecap` <br> e.g. `calculatecap`
+**Calculate Target CAP details** | `targetcap tc/TARGET_CAP` <br> e.g. `calculatecap 4.5`
 **Add Event** | `addevent n/EVENT_NAME d/DATE` <br> e.g. `addevent n/CS2103T d/12-12-2020`
 **Add Contact** | `addcontact n/NAME e/EMAIL [te/TELEGRAM] [t/TAG]...` <br> e.g. `addcontact n/john e/john@gmail.com te/@johndoe t/friend`
 **EditContact** | `editcontact INDEX [n/NAME] [e/EMAIL] [te/TELEGRAM] [t/TAG]...` <br> e.g. `editcontact 1 n/amy te/@amytele`
