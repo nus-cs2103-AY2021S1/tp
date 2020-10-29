@@ -27,20 +27,24 @@ public class JsonAdaptedContact {
     private final String email;
     private final String telegram;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final boolean isImportant;
 
     /**
      * Constructs a {@code JsonAdaptedContact} with the given contact details.
      */
     @JsonCreator
-    public JsonAdaptedContact(@JsonProperty("name") String name, @JsonProperty("email") String email,
-                              @JsonProperty("telegram") String telegram,
-                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+    public JsonAdaptedContact(@JsonProperty("name") String name,
+            @JsonProperty("email") String email,
+            @JsonProperty("telegram") String telegram,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("isImportant") boolean isImportant) {
         this.name = name;
         this.email = email;
         this.telegram = telegram;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.isImportant = isImportant;
     }
 
     /**
@@ -59,6 +63,7 @@ public class JsonAdaptedContact {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        isImportant = source.isImportant();
     }
 
     /**
@@ -90,7 +95,7 @@ public class JsonAdaptedContact {
         final Email modelEmail = new Email(email);
 
         if (telegram == null) {
-            return new Contact(modelName, modelEmail, modelTags);
+            return new Contact(modelName, modelEmail, modelTags, isImportant);
         }
         if (!Telegram.isValidTelegram(telegram)) {
             throw new IllegalValueException(Telegram.MESSAGE_CONSTRAINTS);
@@ -98,7 +103,7 @@ public class JsonAdaptedContact {
 
         final Telegram modelTelegram = new Telegram(telegram);
 
-        return new Contact(modelName, modelEmail, modelTelegram, modelTags);
+        return new Contact(modelName, modelEmail, modelTelegram, modelTags, isImportant);
     }
 
 }
