@@ -19,12 +19,6 @@ public abstract class ScheduleCommand extends Command {
 
     public static final String COMMAND_WORD = "schedule";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Given a date in the format of dd/mm/yy "
-            + "outputs all classes together with the respective student on the date"
-            + "and displays them as a list with index numbers.\n"
-            + "Parameters: DATE \n"
-            + "Example: " + COMMAND_WORD + " 27/10/20";
-
     public static final String INCORRECT_DATE_FORMAT = "Date should be in the format dd/mm/yyyy";
     public static final String EMPTY_DATE_MESSAGE = "Please input a date";
 
