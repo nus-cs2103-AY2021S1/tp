@@ -1,7 +1,7 @@
 package seedu.address.logic.parser.modulelistparsers;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EDIT_NAME;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADE_POINT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULAR_CREDITS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -13,8 +13,10 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.modulelistcommands.EditModuleCommand;
-import seedu.address.logic.commands.modulelistcommands.EditModuleCommand.EditModuleDescriptor;
+import seedu.address.logic.commands.modulelistcommands.EditModuleDescriptor;
+import seedu.address.logic.commands.todolistcommands.EditTaskCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -34,12 +36,17 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
      */
     public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_EDIT_NAME, PREFIX_NAME, PREFIX_ZOOM_LINK,
+        Index index;
+        ArgumentTokenizer tokenizer = new ArgumentTokenizer(args, PREFIX_NAME, PREFIX_ZOOM_LINK,
                 PREFIX_TAG, PREFIX_MODULAR_CREDITS, PREFIX_GRADE_POINT);
         ArgumentMultimap argMultimap = tokenizer.tokenize();
 
-        String moduleName;
-        moduleName = argMultimap.getValue(PREFIX_EDIT_NAME).get();
+        try {
+            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+        } catch (ParseException pe) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditTaskCommand.MESSAGE_USAGE), pe);
+        }
 
         EditModuleDescriptor editModuleDescriptor = new EditModuleDescriptor();
 
@@ -60,9 +67,11 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             editModuleDescriptor.setModuleName(ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_NAME).get()));
         }
+        /*
         if (argMultimap.getValue(PREFIX_ZOOM_LINK).isPresent()) {
             editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM_LINK).get()));
         }
+        */
         if (argMultimap.getValue(PREFIX_MODULAR_CREDITS).isPresent()) {
             editModuleDescriptor.setModularCredits(ParserUtil
                     .parseModularCredits(argMultimap.getValue(PREFIX_MODULAR_CREDITS).get()));
@@ -74,7 +83,7 @@ public class EditModuleParser implements Parser<EditModuleCommand> {
         if (!editModuleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditModuleCommand.MESSAGE_NOT_EDITED);
         }
-        return new EditModuleCommand(moduleName, editModuleDescriptor);
+        return new EditModuleCommand(index, editModuleDescriptor);
     }
 
     /**

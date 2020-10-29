@@ -10,9 +10,11 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyContactList;
 import seedu.address.model.ReadOnlyEventList;
 import seedu.address.model.ReadOnlyModuleList;
+import seedu.address.model.ReadOnlyTodoList;
 import seedu.address.model.contact.Contact;
 import seedu.address.model.event.Event;
 import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
 
 /**
  * API of the Logic component
@@ -61,6 +63,16 @@ public interface Logic {
      * Returns an unmodifiable list of filtered contacts.
      */
     ObservableList<Contact> getFilteredContactList();
+
+    /**
+     * Returns the Todo List.
+     */
+    public ReadOnlyTodoList getTodoList();
+
+    /**
+     * Returns an unmodifiable list of filtered tasks.
+     */
+    ObservableList<Task> getFilteredTodoList();
 
     /**
      * Returns the file Path of the Contact List.

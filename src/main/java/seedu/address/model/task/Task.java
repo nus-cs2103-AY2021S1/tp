@@ -15,7 +15,7 @@ import seedu.address.model.tag.Tag;
  */
 public class Task {
     private final TaskName name;
-    private final Set<Tag> tags;
+    private final Set<Tag> tags = new HashSet<>();
     private final Priority priority;
     private final Date date;
     private final Status status;
@@ -26,9 +26,8 @@ public class Task {
      * @param name name of the task
      */
     public Task(TaskName name) {
-        requireNonNull(name);
+        assert name != null;
         this.name = name;
-        this.tags = null;
         this.priority = null;
         this.date = null;
         this.status = Status.NOT_COMPLETED;
@@ -46,7 +45,6 @@ public class Task {
     public Task(TaskName name, Set<Tag> tags, Priority priority, Date date, Status status) {
         requireNonNull(name);
         this.name = name;
-        this.tags = new HashSet<>();
         this.tags.addAll(tags);
         this.priority = priority;
         this.date = date;
@@ -62,8 +60,7 @@ public class Task {
     }
 
     public Optional<Set<Tag>> getTags() {
-        //return Collections.unmodifiableSet(tags);
-        return Optional.ofNullable(this.tags).map(Collections::unmodifiableSet);
+        return Optional.of(this.tags).map(Collections::unmodifiableSet);
     }
 
     public Task setTags(Set<Tag> tags) {
@@ -88,7 +85,7 @@ public class Task {
 
     public Optional<Status> getStatus() {
         assert this.status != null;
-        return Optional.ofNullable(this.status);
+        return Optional.of(this.status);
     }
 
     public Task setStatus(Status status) {
@@ -166,6 +163,67 @@ public class Task {
             && otherTask.getPriority().equals(getPriority())
             && otherTask.getDate().equals(getDate())
             && otherTask.getStatus().equals(getStatus());
+    }
+
+    /**
+     * Returns string representing of the name of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
+    public String getNameForUi() {
+        assert this.name != null;
+        return this.name.toString();
+    }
+
+    /**
+     * Returns a set representing of the tags of the task for the UI.
+     *
+     * @return set of tags to be displayed in the UI.
+     */
+    public Set<Tag> getTagsForUi() {
+        if (this.tags == null) {
+            HashSet<Tag> defaultTags = new HashSet<>();
+            defaultTags.add(new Tag("Tags not provided"));
+            return defaultTags;
+        } else {
+            return this.tags;
+        }
+    }
+
+    /**
+     * Returns string representing of the priority of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
+    public String getPriorityForUi() {
+        if (this.priority == null) {
+            return "Priority not provided";
+        } else {
+            return this.priority.toString();
+        }
+    }
+
+    /**
+     * Returns string representing of the date of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
+    public String getDateForUi() {
+        if (this.date == null) {
+            return "Date not provided";
+        } else {
+            return this.date.toString();
+        }
+    }
+
+    /**
+     * Returns string representing of the status of the task for the UI.
+     *
+     * @return string to be displayed in the UI.
+     */
+    public String getStatusForUi() {
+        assert this.status != null;
+        return this.status.toString();
     }
 
     @Override

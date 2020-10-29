@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
     private ContactListPanel contactListPanel;
     private EventListPanel eventListPanel;
+    private TodoListPanel todoListPanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,7 +52,7 @@ public class MainWindow extends UiPart<Stage> {
     private VBox contactListPanelPlaceholder;
 
     @FXML
-    private VBox taskListPanelPlaceholder;
+    private VBox todoListPanelPlaceholder;
 
     @FXML
     private VBox eventListPanelPlaceholder;
@@ -126,12 +127,14 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
-        // Waiting for contact list storage to be implemented.
         contactListPanel = new ContactListPanel(logic.getFilteredContactList());
         contactListPanelPlaceholder.getChildren().add(contactListPanel.getRoot());
 
         eventListPanel = new EventListPanel(logic.getFilteredEventList());
         eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
+        todoListPanel = new TodoListPanel(logic.getFilteredTodoList());
+        todoListPanelPlaceholder.getChildren().add(todoListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
