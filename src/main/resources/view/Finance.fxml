@@ -4,15 +4,15 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="1000.0" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TableView fx:id="tableView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columns>
-          <TableColumn fx:id="idCol" prefWidth="250.0" text="ID" />
-            <TableColumn fx:id="financeIdCol" prefWidth="250.0" text="Finance ID" />
-          <TableColumn fx:id="amountCol" prefWidth="250.0" text="Amount" />
-            <TableColumn fx:id="dateAndTimeCol" prefWidth="250.0" text="Date and Time" />
+          <TableColumn fx:id="idCol" prefWidth="200.0" text="ID" />
+            <TableColumn fx:id="financeIdCol" prefWidth="200.0" text="Finance ID" />
+          <TableColumn fx:id="costCol" prefWidth="200.0" text="Cost" />
+            <TableColumn fx:id="dateCol" prefWidth="200.0" text="Date" />
+            <TableColumn fx:id="timeCol" prefWidth="250.0" text="Time" />
         </columns>
       </TableView>
    </children>
