@@ -13,7 +13,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_SUCCESS = "Finished searching. %1$d persons listed!";
+    public static final String MESSAGE_SUCCESS = "Finished searching. %1$d tasks listed!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tasks in which contains any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
