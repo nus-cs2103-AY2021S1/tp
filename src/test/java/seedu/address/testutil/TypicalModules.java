@@ -19,10 +19,10 @@ public class TypicalModules {
     /**
      * Returns an {@code AddressBook} with all the typical persons.
      */
-    public static Trackr<Module> getTypicalModuleList() {
-        Trackr<Module> ab = new Trackr<>();
+    public static Trackr getTypicalModuleList() {
+        Trackr ab = new Trackr();
         for (Module module: getTypicalModules()) {
-            ab.addObject(module);
+            ab.addModule(module);
         }
         return ab;
     }
